@@ -1,0 +1,19 @@
+{
+  "name": "empireai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EmpireAI monorepo — run setup from repository root",
+  "scripts": {
+    "setup": "npm run setup --prefix backend",
+    "setup:all": "npm run setup --prefix backend && npm install --prefix empireai-web",
+    "verify:env": "npm run verify:env --prefix backend",
+    "architect:report": "npm run architect:report --prefix backend",
+    "validate:full": "npm run validate:full --prefix backend",
+    "dev:brain": "npm run dev --prefix backend",
+    "dev:web": "npm run dev --prefix empireai-web"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10.0.0"
+  }
+}

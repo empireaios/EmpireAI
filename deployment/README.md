@@ -1,30 +1,78 @@
-# Deployment
+# EmpireAI Deployment
 
-Infrastructure, containers, and release configuration for running EmpireAI in development, staging, and production.
+Production-oriented stack for local and container deployment.
 
-## Responsibilities
+## Prerequisites
 
-- Docker images and compose stacks for local and cloud environments
-- Kubernetes manifests or equivalent orchestration
-- Infrastructure as Code (Terraform, Pulumi, etc.)
-- Environment variable templates and secrets management docs
-- Monitoring, logging, and health check configuration
+- Node.js 22+
+- Redis 7+
+- Docker & Docker Compose (optional)
 
-## Planned Structure
+## Local development
 
+```bash
+# Terminal 1 — Redis (or use Docker)
+redis-server
+
+# Terminal 2 — Brain API
+cd backend
+cp .env.example .env
+npm install
+npm run dev
+
+# Terminal 3 — Next.js UI
+cd empireai-web
+npm install
+npm run dev
 ```
-deployment/
-├── docker/        # Dockerfiles and docker-compose definitions
-├── kubernetes/    # K8s manifests, Helm charts, or kustomize overlays
-└── infrastructure/ # IaC modules and environment configs
+
+Login: `founder@empireai.com` / `EmpireAI2026!`
+
+## Validation gate (Phase 2.5+)
+
+```powershell
+cd backend
+.\scripts\validate-phase25.ps1
 ```
 
-## Conventions
+Produces `phase25-report.json` with subsystem checklist, Guardian health, and test results.
 
-- Separate configs per environment; no production secrets in repo
-- Document deployment runbooks in `docs/guides/`
-- Pin base image and dependency versions for reproducibility
+## Docker Compose
 
-## Status
+```bash
+docker compose up --build
+```
 
-Scaffold only. Infrastructure not yet defined.
+| Service | URL |
+|---------|-----|
+| Web UI | http://localhost:3000 |
+| Brain API | http://localhost:4000 |
+| Redis | localhost:6379 |
+
+## Environment variables
+
+| Variable | Service | Description |
+|----------|---------|-------------|
+| `REDIS_URL` | Brain | BullMQ, sessions, event bus |
+| `DATABASE_PATH` | Brain | SQLite path for domain + audit data |
+| `GUARDIAN_ENABLED` | Brain | Safety gate on all dispatches |
+| `BRAIN_API_URL` | Web | BFF proxy target (default `http://localhost:4000`) |
+| `SESSION_SECRET` | Brain | Cookie signing (32+ chars in production) |
+| `CORS_ORIGIN` | Brain | Allowed frontend origin |
+
+## Health & observability
+
+| Endpoint | Auth | Purpose |
+|----------|------|---------|
+| `GET /health` | Public | Brain + Guardian summary |
+| `GET /metrics` | Admin | Request latency & error rates |
+| `GET /guardian/health` | User | Full subsystem health report |
+
+## Production checklist
+
+- [ ] Change `SESSION_SECRET` and default user passwords
+- [ ] Configure LLM API keys (`OPENAI_API_KEY`, etc.)
+- [ ] Run `npm run validate:full` before deploy
+- [ ] Enable TLS termination (reverse proxy)
+- [ ] Back up SQLite database volume
+- [ ] Run dedicated worker process: `npm run start:worker`

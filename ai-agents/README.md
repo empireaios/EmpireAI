@@ -1,30 +1,35 @@
 # AI Agents
 
-Specialized AI agents that power EmpireAI's intelligent automation for entrepreneurs.
+Agent definitions, tools, and workflows for EmpireAI — registered through the **EmpireAI Brain** in `backend/`.
 
-## Responsibilities
+## Architecture
 
-- Agent personas (e.g., strategy, marketing, operations, finance)
-- System prompts, tool definitions, and orchestration logic
-- Multi-agent workflows and handoff patterns
-- Evaluation datasets and quality benchmarks
-- Integration points with `backend/` for actions and data retrieval
-
-## Planned Structure
+Agents are **not** standalone executors. Every agent runs through the Brain orchestrator:
 
 ```
-ai-agents/
-├── agents/        # Agent implementations and configurations
-├── prompts/       # Reusable prompt templates and variants
-└── tools/         # Callable tools agents use (search, CRM, calendar, etc.)
+Module UI → POST /brain/dispatch → Orchestrator → Agent Manager → LLM + Tools
 ```
 
-## Conventions
+## Where code lives
 
-- Prompts are versioned and reviewed like code
-- Tools declare clear input/output schemas aligned with `api/`
-- No secrets in prompt files—use environment-backed configuration
+| Concern | Location |
+|---------|----------|
+| Agent definitions | `backend/src/agents/definitions/agents.ts` |
+| Module routes | `backend/src/agents/routes/module-routes.ts` |
+| Tool handlers | `backend/src/agents/tools/` |
+| Workflows | `backend/src/agents/workflows/workflows.ts` |
+| Brain core | `backend/src/brain/` |
 
-## Status
+## Adding a new agent
 
-Scaffold only. Application code not yet implemented.
+1. Implement tools in `backend/src/agents/tools/`
+2. Add agent definition to `backend/src/agents/definitions/agents.ts`
+3. Map module action in `backend/src/agents/routes/module-routes.ts`
+
+No changes to the Brain core are required.
+
+## Registered agents
+
+Victoria (AI CEO), Morgan (Product Intelligence), Alex (Suppliers), Casey (Store Builder), Riley (Marketing), Taylor (Ad Manager), Blake (Finance), Sam (Orders), Nova (Support), Avery (Dashboard), Sentinel (Admin).
+
+See `backend/README.md` for setup and API documentation.

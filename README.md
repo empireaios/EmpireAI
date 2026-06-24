@@ -2,37 +2,66 @@
 
 **An AI Operating System for entrepreneurs.**
 
-EmpireAI is a unified platform that helps founders and business owners plan, build, and scale their ventures with intelligent automation. It combines a modern web experience, robust backend services, specialized AI agents, and operational tooling into one cohesive system.
+EmpireAI is a sovereign platform where founders manufacture and operate autonomous companies through a unified Brain orchestration layer.
 
-## Vision
+## Active applications
 
-Entrepreneurs juggle strategy, product, marketing, operations, and growth—often with fragmented tools and limited time. EmpireAI acts as an operating layer that orchestrates these domains through AI-assisted workflows, clear APIs, and a shared data foundation.
+| Directory | Purpose | Status |
+|-----------|---------|--------|
+| `empireai-web/` | Next.js 16 platform UI + BFF (`/api/*`) | **Primary UI** |
+| `backend/` | EmpireAI Brain — Fastify API, Guardian, domain layer | **Production core** |
+| `frontend/` | Legacy Vite app | Not wired to Brain |
+| `docs/` | Architecture and engineering docs | Active |
+| `deployment/` | Docker Compose and deploy guides | Active |
 
-## Repository Structure
+## Quick start
 
-| Directory     | Purpose                                              |
-|---------------|------------------------------------------------------|
-| `frontend/`   | User-facing web application and client experience    |
-| `backend/`    | Core server logic, business rules, and integrations  |
-| `database/`   | Schemas, migrations, seeds, and data management      |
-| `ai-agents/`  | Agent definitions, prompts, tools, and orchestration |
-| `docs/`       | Architecture, guides, and project documentation      |
-| `api/`        | API contracts, specifications, and shared schemas    |
-| `automation/` | Workflows, scripts, and scheduled operational tasks  |
-| `marketing/`  | Brand assets, content, and go-to-market materials    |
-| `deployment/` | Infrastructure, containers, and release configuration|
-| `tests/`      | Automated test suites across the stack               |
+```bash
+# Redis
+redis-server
 
-## Getting Started
+# Brain (port 4000)
+cd backend && npm install && npm run dev
 
-This repository is in early development. Application code will be added incrementally. Refer to each directory's `README.md` for scope, conventions, and planned contents.
+# Web (port 3000)
+cd empireai-web && npm install && npm run dev
+```
+
+Login: `founder@empireai.com` / `EmpireAI2026!`
+
+## Architecture
+
+All platform modules communicate exclusively through the Brain:
+
+```
+UI → /api/brain/dispatch → Orchestrator → Tools / Agents / Workflows
+                              ↑
+                         Guardian Engine
+```
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
+
+## Validation
+
+```powershell
+cd backend
+.\scripts\validate-phase25.ps1
+```
+
+## Docker
+
+```bash
+docker compose up --build
+```
+
+See [deployment/README.md](deployment/README.md).
 
 ## Principles
 
-- **Entrepreneur-first** — Design for clarity, speed, and actionable outcomes.
-- **AI-native** — Agents and automation are first-class, not bolt-ons.
-- **Modular** — Clear boundaries between frontend, backend, agents, and ops.
-- **Documented** — Decisions and interfaces live in `docs/` and `api/`.
+- **Brain-only control** — No direct LLM or tool calls from the frontend
+- **Guardian safety** — Every dispatch validated; database integrity sacred
+- **Modular domain** — SQLite-backed repositories, replaceable subsystems
+- **Verified milestones** — Typecheck, tests, and integration probes before release
 
 ## License
 

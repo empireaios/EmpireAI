@@ -1,0 +1,18 @@
+# SQLite database files
+data/
+*.db
+
+# Environment
+.env
+.env.local
+
+# Build
+dist/
+node_modules/
+
+# Phase 2.5 validation artifacts (generated)
+phase25-report.json
+phase25-results.txt
+validation-output.log
+dev-env-install.log
+install-status.txt

@@ -1,0 +1,44 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  brain:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      REDIS_URL: redis://redis:6379
+      DATABASE_PATH: ./data/empireai-brain.db
+      PORT: 4000
+      HOST: 0.0.0.0
+      CORS_ORIGIN: http://localhost:3000
+      GUARDIAN_ENABLED: "true"
+      SESSION_SECRET: empireai-dev-session-secret-change-in-production-min-32-chars
+    volumes:
+      - brain-data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./empireai-web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      BRAIN_API_URL: http://brain:4000
+    depends_on:
+      - brain
+
+volumes:
+  brain-data:

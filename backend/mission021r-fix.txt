@@ -1,0 +1,17 @@
+Mission 021R — Google Trends unit test fixes
+
+Changed files:
+- src/eye/connectors/google-trends/mock/fixtures.ts
+- src/eye/connectors/google-trends/mock/mock-trends-data-source.ts
+
+Fixes applied:
+1. kitchen-blenders fixture now lists 2 keywords (was 1) so MockTrendingTopicsProvider returns 2 for limit=2
+2. synthesizeInterest uses resolved keyword from resolveKeyword (single lowercase normalization site) instead of raw productTitle
+
+Expected test results (shell capture unavailable in subagent — re-run locally):
+  cd C:\Users\erlan\OneDrive\Desktop\EmpireAI\backend
+  $env:REDIS_OPTIONAL="true"
+  npm test
+
+Prior run (before fix): tests 138, pass 135, fail 3
+Expected after fix: tests 138, pass 138, fail 0
