@@ -34,12 +34,15 @@ function normalizeCategoryKey(category?: string): string {
 
 function resolveAgeRange(category?: string): string {
   const key = normalizeCategoryKey(category);
-  return CATEGORY_AGE_RANGES[key] ?? CATEGORY_AGE_RANGES.default;
+  return CATEGORY_AGE_RANGES[key] ?? CATEGORY_AGE_RANGES.default ?? "25-54";
 }
 
 function resolveInterests(category?: string, keywords: string[] = []): string[] {
   const key = normalizeCategoryKey(category);
-  const base = CATEGORY_INTERESTS[key] ?? CATEGORY_INTERESTS.default;
+  const base =
+    CATEGORY_INTERESTS[key] ??
+    CATEGORY_INTERESTS.default ??
+    ["online shopping", "product research"];
   const keywordInterests = keywords.slice(0, 3).map((word) => word.replace(/-/g, " "));
   return [...new Set([...base, ...keywordInterests])].slice(0, 6);
 }
