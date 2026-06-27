@@ -3,6 +3,23 @@ import { z } from "zod";
 
 loadEnv();
 
+function defaultDatabasePath(): string {
+  if (process.env.DATABASE_PATH) {
+    return process.env.DATABASE_PATH;
+  }
+  return process.env.VERCEL ? "/tmp/empireai-brain.db" : "./data/empireai-brain.db";
+}
+
+function defaultCorsOrigin(): string {
+  if (process.env.CORS_ORIGIN) {
+    return process.env.CORS_ORIGIN;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:5173";
+}
+
 const envSchema = z.object({
   NODE_ENV: z
     .enum(["development", "production", "test"])
@@ -12,7 +29,7 @@ const envSchema = z.object({
     .default("false")
     .transform((value) => value === "true"),
   REDIS_URL: z.string().default("redis://127.0.0.1:6379"),
-  DATABASE_PATH: z.string().default("./data/empireai-brain.db"),
+  DATABASE_PATH: z.string().default(defaultDatabasePath()),
   OPENAI_API_KEY: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
   GOOGLE_AI_API_KEY: z.string().optional(),
@@ -28,7 +45,7 @@ const envSchema = z.object({
   WORKER_CONCURRENCY: z.coerce.number().default(5),
   SESSION_SECRET: z.string().min(32).default("empireai-dev-session-secret-change-in-production"),
   SESSION_TTL_SECONDS: z.coerce.number().default(60 * 60 * 24 * 7),
-  CORS_ORIGIN: z.string().default("http://localhost:3000"),
+  CORS_ORIGIN: z.string().default(defaultCorsOrigin()),
   ADMIN_EMAIL: z.string().default("admin@empireai.com"),
   ADMIN_PASSWORD: z.string().default("EmpireAI2026!"),
   FOUNDER_EMAIL: z.string().default("founder@empireai.com"),

@@ -16,7 +16,9 @@ const REDIS_MAX_RETRIES = 3;
 
 export function shouldAllowRedisDegradedMode(): boolean {
   if (env.REDIS_OPTIONAL) return true;
-  return env.NODE_ENV === "development";
+  if (env.NODE_ENV === "development") return true;
+  if (process.env.VERCEL) return true;
+  return false;
 }
 
 function attachQuietErrorHandler(client: Redis): void {

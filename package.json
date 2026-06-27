@@ -8,9 +8,21 @@
     "setup:all": "npm run setup --prefix backend && npm install --prefix empireai-web",
     "verify:env": "npm run verify:env --prefix backend",
     "architect:report": "npm run architect:report --prefix backend",
+    "empire:review": "npm run empire:review --prefix backend",
+    "empire:review:fast": "npm run empire:review:fast --prefix backend",
     "validate:full": "npm run validate:full --prefix backend",
     "dev:brain": "npm run dev --prefix backend",
-    "dev:web": "npm run dev --prefix empireai-web"
+    "dev:web": "npm run dev --prefix empireai-web",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "vercel-build": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@vercel/node": "^5.3.0",
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=20.11.0",
