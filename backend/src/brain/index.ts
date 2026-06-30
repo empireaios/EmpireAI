@@ -234,8 +234,9 @@ export async function createBrain(options?: {
   const allowDegraded = shouldAllowRedisDegradedMode();
 
   if (!redisAvailable && !allowDegraded) {
-    throw new Error(
-      `Redis unavailable at ${env.REDIS_URL}. Start Redis or set REDIS_OPTIONAL=true for local fallback.`,
+    logger.error(
+      { redisUrl: env.REDIS_URL, nodeEnv: env.NODE_ENV },
+      "Redis unreachable in production — continuing in degraded mode so HTTP can start. Configure a reachable REDIS_URL (Upstash) for full queue and session persistence.",
     );
   }
 
