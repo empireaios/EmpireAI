@@ -13,8 +13,12 @@ function recordKey(workspaceId: string, recordId: string): string {
   return `${workspaceId}:learning:${recordId}`;
 }
 
+let lastSaveTimestampMs = 0;
+
 function nowIso(): string {
-  return new Date().toISOString();
+  const wallClockMs = Date.now();
+  lastSaveTimestampMs = wallClockMs > lastSaveTimestampMs ? wallClockMs : lastSaveTimestampMs + 1;
+  return new Date(lastSaveTimestampMs).toISOString();
 }
 
 function paginate<T>(items: T[], limit?: number, offset?: number): T[] {
@@ -120,7 +124,8 @@ export class InMemoryLearningRepository implements LearningRepository {
     results.sort(
       (left, right) =>
         right.updatedAt.localeCompare(left.updatedAt) ||
-        left.productId.localeCompare(right.productId),
+        right.createdAt.localeCompare(left.createdAt) ||
+        right.id.localeCompare(left.id),
     );
 
     return paginate(results.map((record) => structuredClone(record)), query.limit, query.offset);

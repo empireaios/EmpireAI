@@ -5,6 +5,15 @@ import { treasuryEngine } from "../treasury/treasury-engine.js";
 import { royaltyFramework } from "../finance/royalty-framework.js";
 import { architectureValidator } from "../guardian/architecture-validator.js";
 import { intelligenceFoundation } from "./intelligence-foundation.js";
+import { initializeSoulFile } from "./soul-file/index.js";
+import { initializeGovernancePolicies } from "./empire-governance/index.js";
+import { initializeIdentityRegistry } from "./identity-registry/index.js";
+import { initializeDoctrines } from "./doctrine-engine/index.js";
+import { initializePolicies } from "./policy-engine/index.js";
+import { initializePromiseRegister } from "./promise-register/index.js";
+import { initializeKpiEngine } from "./kpi-engine/index.js";
+import { initializeDecisionRegistry } from "./decision-registry/index.js";
+import { initializeStrategicMemory } from "./strategic-memory-engine/index.js";
 
 const DEFAULT_WORKSPACE = "ws_empire_1";
 
@@ -24,6 +33,15 @@ export function bootstrapFoundation(workspaceId = DEFAULT_WORKSPACE): void {
 
   treasuryEngine.compute(workspaceId);
   architectureValidator.validate(workspaceId);
+  initializeIdentityRegistry(workspaceId);
+  initializeDoctrines(workspaceId);
+  initializePolicies(workspaceId);
+  initializePromiseRegister(workspaceId);
+  initializeKpiEngine(workspaceId);
+  initializeDecisionRegistry(workspaceId);
+  initializeStrategicMemory(workspaceId);
+  initializeGovernancePolicies(workspaceId);
+  initializeSoulFile(workspaceId, "foundation-bootstrap");
 }
 
 function seedDemoLedgerEvents(workspaceId: string): void {

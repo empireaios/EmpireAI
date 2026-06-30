@@ -6,7 +6,9 @@ import type { BrainTaskQueue } from "./task-queue.js";
 import type { WorkflowEngine } from "./workflow-engine.js";
 import type { ToolRegistry } from "./tools/tool-registry.js";
 import type { GuardianEngine } from "../guardian/guardian-engine.js";
+import type { GovernanceEngine } from "../foundation/empire-governance/services/governance-engine.js";
 import { GuardianBlockedError } from "../guardian/guardian-engine.js";
+import { GovernanceBlockedError } from "../foundation/empire-governance/services/governance-engine.js";
 import type {
   OrchestratorDispatchRequest,
   OrchestratorDispatchResult,
@@ -30,6 +32,7 @@ export type OrchestratorDeps = {
   auditLogger: AuditLogger;
   toolRegistry: ToolRegistry;
   guardian?: GuardianEngine;
+  governance?: GovernanceEngine;
   routes: ModuleRoute[];
 };
 
@@ -54,6 +57,13 @@ export class Orchestrator {
 
     if (!route) {
       throw new Error(`No orchestrator route for ${routeKey}`);
+    }
+
+    if (this.deps.governance) {
+      const governanceVerdict = this.deps.governance.assessDispatch(request);
+      if (!governanceVerdict.allowed) {
+        throw new GovernanceBlockedError(governanceVerdict.reason, governanceVerdict);
+      }
     }
 
     if (this.deps.guardian) {

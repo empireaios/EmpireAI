@@ -9,7 +9,7 @@ export type RedisClient = Redis;
 export { Redis as IORedis };
 
 export const REDIS_START_HINT =
-  "docker run --rm -p 6379:6379 redis:7-alpine or npm run dev:redis";
+  "redis-server, Upstash REDIS_URL, or npm run dev:redis (optional Docker)";
 
 const REDIS_PROBE_TIMEOUT_MS = 2_000;
 const REDIS_MAX_RETRIES = 3;

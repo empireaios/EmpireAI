@@ -6,6 +6,7 @@ import type { AuditLogger } from "../brain/audit/audit-logger.js";
 import { createAuthMiddleware } from "./middleware.js";
 import { type SessionStoreBackend, UserStore } from "./session-store.js";
 import { verifyPassword } from "./seed-users.js";
+import { resolvePlatformIdentity } from "./platform-identity.js";
 import { getDatabase } from "../brain/database.js";
 
 const loginSchema = z.object({
@@ -70,6 +71,7 @@ export async function registerAuthRoutes(
         name: user.name,
         role: user.role,
         workspaceId: user.workspaceId,
+        platformIdentity: resolvePlatformIdentity(user.email, user.role),
       },
       expiresAt: session.expiresAt,
     });
@@ -92,7 +94,13 @@ export async function registerAuthRoutes(
   });
 
   app.get("/auth/me", { preHandler: authenticate }, async (request) => {
-    return { user: request.user };
+    const user = request.user!;
+    return {
+      user: {
+        ...user,
+        platformIdentity: resolvePlatformIdentity(user.email, user.role),
+      },
+    };
   });
 
   app.post("/auth/refresh", { preHandler: authenticate }, async (request, reply) => {

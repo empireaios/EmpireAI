@@ -175,3 +175,16 @@ export {
 } from "./connectors/google-trends/mock/fixtures.js";
 
 export { wrapProductIntelligenceConnector } from "./adapters/product-intelligence-bridge.js";
+
+export {
+  COMPETITOR_INTELLIGENCE_MODULE_ID,
+  COMPETITOR_INTELLIGENCE_MODULE_CONTRACT,
+  CompetitorIntelligenceModule,
+  createCompetitorIntelligenceModule,
+  competitorIntelligenceModule,
+  generateCompetitorIntelligence,
+  runCompetitorWatchCycle,
+  CompetitorWatchConnector,
+  createCompetitorWatchConnector,
+  COMPETITOR_WATCH_PROVIDER_ID,
+} from "./competitor-intelligence/index.js";

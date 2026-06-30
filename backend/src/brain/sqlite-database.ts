@@ -44,9 +44,11 @@ function rowToObject(columns: string[], values: unknown[]): Record<string, unkno
 /** Pure-JS SQLite (sql.js) with a better-sqlite3-compatible surface for EmpireAI. */
 export class EmpireDatabase {
   private readonly db: SqlJsDatabase;
+  private readonly inMemory: boolean;
 
   constructor(private readonly filePath: string) {
-    if (fs.existsSync(filePath)) {
+    this.inMemory = isInMemoryDatabasePath(filePath);
+    if (!this.inMemory && fs.existsSync(filePath)) {
       const buffer = fs.readFileSync(filePath);
       this.db = new SQL.Database(buffer);
     } else {
@@ -117,10 +119,19 @@ export class EmpireDatabase {
   }
 
   private persist(): void {
+    if (this.inMemory) {
+      return;
+    }
     fs.mkdirSync(path.dirname(this.filePath), { recursive: true });
     const data = this.db.export();
     fs.writeFileSync(this.filePath, Buffer.from(data));
   }
 }
+
+function isInMemoryDatabasePath(filePath: string): boolean {
+  return filePath.startsWith(":memory:");
+}
+
+export { isInMemoryDatabasePath };
 
 export { SQL as sqlJsEngine };

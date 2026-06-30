@@ -50,6 +50,7 @@ const envSchema = z.object({
   ADMIN_PASSWORD: z.string().default("EmpireAI2026!"),
   FOUNDER_EMAIL: z.string().default("founder@empireai.com"),
   FOUNDER_PASSWORD: z.string().default("EmpireAI2026!"),
+  EMPIREAI_REPO_ROOT: z.string().optional(),
   GUARDIAN_ENABLED: z
     .enum(["true", "false"])
     .default("true")
