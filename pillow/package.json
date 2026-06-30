@@ -32,6 +32,7 @@
     "test": "node --import tsx --test src/validation/tests/bootstrap.test.ts src/validation/tests/executive-direction.test.ts src/validation/tests/executive-learning.test.ts src/validation/tests/executive-council.test.ts src/validation/tests/intelligence.test.ts src/validation/tests/context.test.ts src/validation/tests/memory.test.ts src/validation/tests/planner.test.ts src/validation/tests/supervisor.test.ts src/validation/tests/recovery.test.ts src/validation/tests/audit-reviewer.test.ts src/validation/tests/synchronizer.test.ts src/validation/tests/due-diligence.test.ts src/validation/tests/improvement.test.ts src/validation/tests/orchestrator.test.ts src/validation/tests/watcher.test.ts src/validation/tests/command.test.ts src/validation/tests/openai.test.ts src/validation/tests/objective.test.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.13.4",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
