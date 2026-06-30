@@ -17,7 +17,19 @@
     "build": "npm run build --prefix backend && npm run build --prefix frontend",
     "build:frontend": "npm run build --prefix frontend",
     "build:backend": "npm run build --prefix backend",
-    "vercel-build": "npm run build"
+    "vercel-build": "npm run build",
+    "pillow:bootstrap": "npm run bootstrap --prefix pillow",
+    "pillow:intelligence": "npm run intelligence --prefix pillow",
+    "pillow:context": "npm run context --prefix pillow",
+    "pillow:memory": "npm run memory --prefix pillow",
+    "pillow:planner": "npm run planner --prefix pillow",
+    "pillow:supervisor": "npm run supervisor --prefix pillow",
+    "pillow:recovery": "npm run recovery --prefix pillow",
+    "pillow:audit-reviewer": "npm run audit-reviewer --prefix pillow",
+    "pillow:synchronizer": "npm run synchronizer --prefix pillow",
+    "pillow:due-diligence": "npm run due-diligence --prefix pillow",
+    "pillow:test": "npm run test --prefix pillow",
+    "pillow:typecheck": "npm run typecheck --prefix pillow"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",

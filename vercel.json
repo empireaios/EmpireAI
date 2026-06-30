@@ -2,25 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "framework": null,
-  "installCommand": "npm install --prefix backend && npm install --prefix frontend && npm install",
-  "buildCommand": "npm run build --prefix backend && npm run build --prefix frontend",
+  "installCommand": "npm install --prefix frontend",
+  "buildCommand": "npm run build --prefix frontend",
   "outputDirectory": "frontend/dist",
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 60,
-      "includeFiles": "backend/dist/**,backend/node_modules/sql.js/**"
-    }
-  },
   "rewrites": [
-    {
-      "source": "/health",
-      "destination": "/api/health"
-    },
-    {
-      "source": "/:prefix((?:auth|brain|guardian|metrics|intelligence|ecommerce-os|product-discovery|business-workspace|customer-orders|commerce-readiness|operation-first-dollar|eye-series|reality-integration|amazon-global-seller|commerce-intelligence-studio|executive-council|executive-surveillance|grand-king|grand-king-revenue-pipeline|marketplace-infrastructure|marketplace-connection|execution-layer|empire-self-inspection|commerce-runtime|global-commerce|global-commerce-intelligence|empire-knowledge|global-commerce-infrastructure|founder-automation|business-build|business-simulation|market-strategy|account-infrastructure|soul-file|soul-runtime|governance|identity-registry|doctrine|policy|promise-register|kpi-engine|decision-registry|strategic-memory|production-deploy|live-payments|meta-ads|grand-kings-revenue|first-revenue-validation|analytics|product-publishing|live-cj-fulfillment|store|webhooks))/:match*",
-      "destination": "/api/:prefix/:match*"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

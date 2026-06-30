@@ -1,0 +1,38 @@
+{
+  "name": "@empireai/pillow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "description": "Pillow — primary executive operating interface for EmpireAI",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.json",
+    "bootstrap": "node --import tsx src/cli/bootstrap-cli.ts",
+    "intelligence": "node --import tsx src/cli/intelligence-cli.ts",
+    "context": "node --import tsx src/cli/context-cli.ts",
+    "memory": "node --import tsx src/cli/memory-cli.ts",
+    "planner": "node --import tsx src/cli/planner-cli.ts",
+    "supervisor": "node --import tsx src/cli/supervisor-cli.ts",
+    "recovery": "node --import tsx src/cli/recovery-cli.ts",
+    "audit-reviewer": "node --import tsx src/cli/audit-reviewer-cli.ts",
+    "synchronizer": "node --import tsx src/cli/synchronizer-cli.ts",
+    "due-diligence": "node --import tsx src/cli/due-diligence-cli.ts",
+    "improvement": "node --import tsx src/cli/improvement-cli.ts",
+    "orchestrator": "node --import tsx src/cli/orchestrator-cli.ts",
+    "watcher": "node --import tsx src/cli/watcher-cli.ts",
+    "command": "node --import tsx src/cli/command-cli.ts",
+    "test": "node --import tsx --test src/validation/tests/bootstrap.test.ts src/validation/tests/executive-direction.test.ts src/validation/tests/executive-learning.test.ts src/validation/tests/executive-council.test.ts src/validation/tests/intelligence.test.ts src/validation/tests/context.test.ts src/validation/tests/memory.test.ts src/validation/tests/planner.test.ts src/validation/tests/supervisor.test.ts src/validation/tests/recovery.test.ts src/validation/tests/audit-reviewer.test.ts src/validation/tests/synchronizer.test.ts src/validation/tests/due-diligence.test.ts src/validation/tests/improvement.test.ts src/validation/tests/orchestrator.test.ts src/validation/tests/watcher.test.ts src/validation/tests/command.test.ts src/validation/tests/openai.test.ts src/validation/tests/objective.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

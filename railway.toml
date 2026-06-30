@@ -1,0 +1,14 @@
+# EmpireAI Brain — Railway managed deployment (preferred backend host)
+# Deploy from repository root so @empireai/pillow (file:../pillow) resolves.
+# See deployment/railway.md for worker service, volumes, and env vars.
+
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install --prefix pillow && npm install --prefix backend && npm run build --prefix pillow && npm run build --prefix backend"
+
+[deploy]
+startCommand = "node backend/dist/index.js"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+healthcheckPath = "/health"
+healthcheckTimeout = 120
