@@ -3,6 +3,23 @@ import { z } from "zod";
 
 loadEnv();
 
+/** Normalize Railway / ops aliases before Zod parse (env-only, no business logic). */
+function normalizeProcessEnv(): NodeJS.ProcessEnv {
+  const normalized = { ...process.env };
+
+  if (!normalized.GOOGLE_AI_API_KEY?.trim() && normalized.GEMINI_API_KEY?.trim()) {
+    normalized.GOOGLE_AI_API_KEY = normalized.GEMINI_API_KEY;
+  }
+
+  if (!normalized.EMPIREAI_REPO_ROOT?.trim()) {
+    if (normalized.RAILWAY_ENVIRONMENT || normalized.RAILWAY_SERVICE_NAME) {
+      normalized.EMPIREAI_REPO_ROOT = "/app";
+    }
+  }
+
+  return normalized;
+}
+
 function defaultDatabasePath(): string {
   if (process.env.DATABASE_PATH) {
     return process.env.DATABASE_PATH;
@@ -59,7 +76,7 @@ const envSchema = z.object({
 
 export type Env = z.infer<typeof envSchema>;
 
-export const env: Env = envSchema.parse(process.env);
+export const env: Env = envSchema.parse(normalizeProcessEnv());
 
 export function requireProviderKey(
   provider: "openai" | "anthropic" | "gemini",

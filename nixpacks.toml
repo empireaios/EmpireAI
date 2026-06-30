@@ -1,0 +1,7 @@
+# Non-secret Railway runtime defaults (REAL-068).
+# Secrets (REDIS_URL, API keys, SESSION_SECRET) must be set in Railway Variables.
+
+[variables]
+EMPIREAI_REPO_ROOT = "/app"
+NODE_ENV = "production"
+DATABASE_PATH = "/data/empireai-brain.db"
