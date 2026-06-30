@@ -1,5 +1,5 @@
-# SQLite database files
-data/
+# SQLite database files (repository-root data volume only — not src/**/data seed modules)
+/data/
 *.db
 
 # Environment
