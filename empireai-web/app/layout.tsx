@@ -19,11 +19,7 @@ export const metadata: Metadata = {
     "EmpireAI orchestrates autonomous agents, market intelligence, and global infrastructure to build, launch, and scale AI-native companies at machine speed.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
