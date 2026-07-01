@@ -1,31 +1,23 @@
 import Link from "next/link";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
 import { CockpitPanel } from "@/components/cockpit/layout/CockpitPanel";
-
-type MissionPreviewItem = {
-  id: string;
-  label: string;
-  severity: "critical" | "high" | "medium";
-  action: string;
-};
-
-const PLACEHOLDER_MISSIONS: MissionPreviewItem[] = [
-  { id: "m1", label: "CJ fulfill #1842", severity: "critical", action: "Review" },
-  { id: "m2", label: "Cursor REAL-085", severity: "critical", action: "Review" },
-  { id: "m3", label: "Meta budget +$500", severity: "high", action: "Review" },
-  { id: "m4", label: "CJ creds missing", severity: "medium", action: "Fix" },
-];
+import {
+  PLACEHOLDER_MISSION_PREVIEWS,
+  type MissionPreviewItem,
+} from "@/components/cockpit/widgets/missionPlaceholderData";
 
 const severityStyles: Record<MissionPreviewItem["severity"], string> = {
   critical: "text-red-400",
   high: "text-orange-400",
   medium: "text-amber-400",
+  low: "text-[#8a847a]",
 };
 
 const severityGlyph: Record<MissionPreviewItem["severity"], string> = {
   critical: "🔴",
   high: "🟠",
   medium: "🟡",
+  low: "○",
 };
 
 /** REAL-079 zone: Mission queue preview (top items — routes to Mission Centre). */
@@ -43,7 +35,7 @@ export function MissionQueuePreviewPlaceholder() {
       }
     >
       <ul className="space-y-3">
-        {PLACEHOLDER_MISSIONS.map((mission) => (
+        {PLACEHOLDER_MISSION_PREVIEWS.map((mission) => (
           <li
             key={mission.id}
             className="flex items-center justify-between gap-3 border-b border-gold/5 pb-3 last:border-0 last:pb-0"
