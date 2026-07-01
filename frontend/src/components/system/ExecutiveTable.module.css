@@ -1,0 +1,63 @@
+.wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.caption {
+  caption-side: top;
+  text-align: left;
+  padding: var(--space-3) var(--space-4) 0;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: var(--color-text-secondary);
+}
+
+.table th {
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-muted);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.clickable:hover td {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.empty {
+  margin: 0;
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}

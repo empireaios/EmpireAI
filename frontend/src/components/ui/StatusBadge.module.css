@@ -1,0 +1,35 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.badge[data-status="connected"],
+.badge[data-status="ready"],
+.badge[data-status="approved"],
+.badge[data-status="live"] {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.badge[data-status="not-connected"],
+.badge[data-status="not-started"],
+.badge[data-status="blocked"],
+.badge[data-status="error"] {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-danger);
+}
+
+.badge[data-status="in-progress"],
+.badge[data-status="connecting"],
+.badge[data-status="partial"] {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-warning);
+}

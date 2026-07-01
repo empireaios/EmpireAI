@@ -26,6 +26,7 @@
 }
 
 .iconButton {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -42,6 +43,22 @@
 .iconButton:hover {
   background: var(--color-border-subtle);
   color: var(--color-text);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-danger, #ef4444);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
 }
 
 .storeLink {
@@ -206,4 +223,10 @@
   .topnav .iconButton[aria-label*="sidebar"] {
     display: inline-flex;
   }
+}
+
+.dropdownMeta {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
 }

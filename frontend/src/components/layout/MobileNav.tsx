@@ -1,38 +1,55 @@
+import { useMemo, useState } from "react";
 import {
-  Bot,
+  Building2,
+  Crown,
   Home,
-  Megaphone,
   MoreHorizontal,
   Package,
+  Rocket,
+  Search,
+  Server,
+  Settings,
 } from "lucide-react";
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 import {
   mobileMoreNavItems,
   mobilePrimaryNavItems,
-  paths,
-  type DashboardNavId,
+  type WorkspaceNavId,
+  type WorkspaceNavItem,
 } from "@/routes/paths";
 import styles from "./MobileNav.module.css";
 
-const mobileIcons: Partial<Record<DashboardNavId, typeof Home>> = {
+const mobileIcons: Partial<Record<WorkspaceNavId, typeof Home>> = {
   home: Home,
-  orders: Package,
-  ads: Megaphone,
-  "ai-team": Bot,
+  command: Crown,
+  intelligence: Search,
+  launch: Rocket,
+  operations: Package,
+  brands: Building2,
+  infrastructure: Server,
+  settings: Settings,
 };
 
-interface MobileNavProps {
-  storefrontUrl: string;
-}
-
-export function MobileNav({ storefrontUrl }: MobileNavProps) {
+export function MobileNav() {
+  const { user } = useAuth();
   const [moreOpen, setMoreOpen] = useState(false);
+
+  function visibleItems(items: WorkspaceNavItem[]) {
+    return items.filter((item) => {
+      if (!item.roles) return true;
+      if (!user) return false;
+      return item.roles.includes(user.role);
+    });
+  }
+
+  const primaryItems = useMemo(() => visibleItems(mobilePrimaryNavItems), [user]);
+  const moreItems = useMemo(() => visibleItems(mobileMoreNavItems), [user]);
 
   return (
     <>
       <nav className={styles.bar} aria-label="Mobile navigation">
-        {mobilePrimaryNavItems.map((item) => {
+        {primaryItems.map((item) => {
           const Icon = mobileIcons[item.id] ?? Home;
           return (
             <NavLink
@@ -69,7 +86,7 @@ export function MobileNav({ storefrontUrl }: MobileNavProps) {
             onClick={() => setMoreOpen(false)}
           />
           <div className={styles.sheet} role="menu">
-            {mobileMoreNavItems.map((item) => (
+            {moreItems.map((item) => (
               <NavLink
                 key={item.id}
                 to={item.path}
@@ -80,24 +97,6 @@ export function MobileNav({ storefrontUrl }: MobileNavProps) {
                 {item.label}
               </NavLink>
             ))}
-            <a
-              href={storefrontUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              role="menuitem"
-              className={styles.sheetItem}
-              onClick={() => setMoreOpen(false)}
-            >
-              View store ↗
-            </a>
-            <NavLink
-              to={paths.support}
-              role="menuitem"
-              className={styles.sheetItem}
-              onClick={() => setMoreOpen(false)}
-            >
-              Help
-            </NavLink>
           </div>
         </>
       )}

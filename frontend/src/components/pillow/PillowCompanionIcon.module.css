@@ -1,0 +1,38 @@
+.pillowFab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(1.25rem + var(--mobile-nav-height, 0px));
+  z-index: 180;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-accent) 92%, #000),
+    color-mix(in srgb, var(--color-accent) 70%, #111)
+  );
+  color: #fff;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--color-accent) 35%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pillowFab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.pillowFab[data-open="true"] {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 55%, white);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1024px) {
+  .pillowFab {
+    bottom: 1.5rem;
+  }
+}

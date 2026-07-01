@@ -1,8 +1,46 @@
-import { Link } from "react-router-dom";
+import { type FormEvent, useState } from "react";
+
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+
+import { ApiError } from "@/api/client";
+
+import { useAuth } from "@/context/AuthContext";
+
+import { postLoginDestination } from "@/lib/post-login-destination";
+
 import { paths } from "@/routes/paths";
+
 import styles from "./LoginPage.module.css";
 
 export function LoginPage() {
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = (location.state as { from?: string } | null)?.from;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  if (user) {
+    return <Navigate to={redirectTo ?? postLoginDestination(user)} replace />;
+  }
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    try {
+      const loggedIn = await login(email, password);
+      navigate(redirectTo ?? postLoginDestination(loggedIn), { replace: true });
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Login failed");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.brand}>
@@ -10,24 +48,13 @@ export function LoginPage() {
           E
         </div>
         <div>
-          <h1 className={styles.title}>Log in to EmpireAI Commerce</h1>
-          <p className={styles.subtitle}>Welcome back. Your dashboard awaits.</p>
+          <h1 className={styles.title}>Sign in to EmpireAI</h1>
+          <p className={styles.subtitle}>Your credentials determine your destination — no role selection</p>
         </div>
       </div>
 
-      <div className={styles.tabs} role="tablist" aria-label="Sign in method">
-        <button type="button" className={`${styles.tab} ${styles.tabActive}`} role="tab" aria-selected="true">
-          Email
-        </button>
-        <button type="button" className={styles.tab} role="tab" aria-selected="false" disabled>
-          Google
-        </button>
-        <button type="button" className={styles.tab} role="tab" aria-selected="false" disabled>
-          Apple
-        </button>
-      </div>
-
-      <form className={styles.form} onSubmit={(e) => e.preventDefault()} noValidate>
+      <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        {error && <p className={styles.error}>{error}</p>}
         <div className={styles.field}>
           <label htmlFor="email">Email</label>
           <input
@@ -35,7 +62,9 @@ export function LoginPage() {
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className={styles.field}>
@@ -45,21 +74,18 @@ export function LoginPage() {
             name="password"
             type="password"
             autoComplete="current-password"
-            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
-        <button type="submit" className={styles.primaryButton}>
-          Log in
+        <button type="submit" className={styles.primaryButton} disabled={submitting}>
+          {submitting ? "Signing in…" : "Log in"}
         </button>
       </form>
 
       <p className={styles.footer}>
-        Don&apos;t have an account?{" "}
-        <Link to={paths.signup}>Sign up</Link>
-      </p>
-
-      <p className={styles.devHint}>
-        <Link to={paths.dashboard.profit}>Preview dashboard shell →</Link>
+        New to EmpireAI? <Link to={paths.home}>Learn more</Link>
       </p>
     </div>
   );

@@ -1,0 +1,58 @@
+.decidedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.decidedItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+}
+
+.decidedTitle {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.verdictTag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+}
+
+.verdictTag[data-verdict="approved"] {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.verdictTag[data-verdict="rejected"] {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.verdictTag[data-verdict="deferred"] {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.ownerNote {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}

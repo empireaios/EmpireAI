@@ -1,0 +1,84 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.85rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.toolbar select {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  background: var(--color-surface-muted);
+  font-size: 0.8125rem;
+}
+
+.live {
+  font-size: 0.78rem;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+}
+
+.inputRow textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  background: var(--color-surface-muted);
+}
+
+.inputRow button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0 0.85rem;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.inputRow button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+  .inputRow {
+    grid-template-columns: 1fr;
+  }
+
+  .inputRow button {
+    justify-content: center;
+    padding: 0.65rem;
+  }
+}

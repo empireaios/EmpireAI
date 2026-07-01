@@ -1,0 +1,10 @@
+.selectArea {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.selectArea:hover .cardTitle {
+  color: var(--color-primary);
+}

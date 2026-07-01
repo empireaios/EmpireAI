@@ -1,0 +1,221 @@
+/* UX-001 Mission Home — focused executive landing */
+
+.sectionTitle {
+  margin: 0 0 var(--space-3);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* 1 — Executive Summary */
+.summaryRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-decoration: none;
+  border-left: 3px solid var(--color-border);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.summaryLink {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.summaryLink:hover {
+  text-decoration: none;
+}
+
+.whyButton {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.whyButton:hover {
+  background: var(--color-primary-muted);
+}
+
+.summaryCard:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.summaryCard[data-tone="ok"] { border-left-color: var(--color-success); }
+.summaryCard[data-tone="warn"] { border-left-color: var(--color-warning); }
+.summaryCard[data-tone="crit"] { border-left-color: var(--color-danger); }
+.summaryCard[data-tone="info"] { border-left-color: var(--color-primary); }
+
+.summaryLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.summaryValue {
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-text);
+  text-transform: capitalize;
+}
+
+.summaryHint {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* 2 — Hero row */
+.heroRow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 960px) {
+  .heroRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.missionHero {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-primary-muted) 100%);
+  border-color: rgba(79, 70, 229, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.missionTitle {
+  margin: 0 0 var(--space-2);
+  font-size: 1.375rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.missionWhy {
+  margin: 0 0 var(--space-4);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  max-width: 52ch;
+}
+
+.blockerLine {
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.blockerLine span {
+  font-weight: 700;
+  color: var(--color-danger);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.6875rem;
+  margin-right: var(--space-1);
+}
+
+.s1Card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.s1Value {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--color-text);
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* 5 — Shortcuts */
+.shortcutRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* 2/7 — Mission briefing */
+.briefList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.briefItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+}
+
+.briefLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.briefText {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* 6 — Notifications */
+.notifItem {
+  border-left: 3px solid var(--color-border);
+  padding: var(--space-2) var(--space-3);
+}
+
+.notifItem[data-tone="crit"] { border-left-color: var(--color-danger); }
+.notifItem[data-tone="warn"] { border-left-color: var(--color-warning); }
+.notifItem[data-tone="info"] { border-left-color: var(--color-primary); }
+.notifItem[data-tone="ok"] { border-left-color: var(--color-success); }
+
+.notifLink {
+  color: var(--color-text);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.notifLink:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}

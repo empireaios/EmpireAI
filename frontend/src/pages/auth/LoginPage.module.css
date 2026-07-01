@@ -40,6 +40,26 @@
   color: var(--color-text-secondary);
 }
 
+.presetHint {
+  margin: -0.75rem 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.error {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  font-size: 0.875rem;
+}
+
+.primaryButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .tabs {
   display: flex;
   gap: 0.25rem;

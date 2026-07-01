@@ -1,10 +1,49 @@
-.tabs {
+.profileGrid {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.profileGrid div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.profileGrid dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.profileGrid dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.savedHint {
+  font-size: 0.8125rem;
+  color: var(--color-success);
 }
 
 .tab {

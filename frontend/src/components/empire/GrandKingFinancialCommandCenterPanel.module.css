@@ -1,0 +1,7 @@
+.root { margin-bottom: 1rem; }
+.metricsRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin: 0.75rem 0; }
+.metricCell { display: flex; flex-direction: column; gap: 0.25rem; }
+.metricValue { font-size: 1.25rem; font-weight: 600; }
+.splitRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+.list { margin: 0.35rem 0 0; padding-left: 1.1rem; font-size: 0.875rem; color: var(--empire-muted, #94a3b8); }
+.recBlock { margin-top: 0.75rem; }

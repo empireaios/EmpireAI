@@ -1,0 +1,323 @@
+/* EmpireAI Executive Design System */
+
+.empirePage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 1440px;
+}
+
+.empirePageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.empirePageTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.empirePageSubtitle {
+  margin: var(--space-2) 0 0;
+  max-width: 56ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.empireEyebrow {
+  margin: 0 0 var(--space-2);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.empireGrid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.empireGridMetrics {
+  composes: empireGrid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.empireGridCards {
+  composes: empireGrid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.empireGridWide {
+  composes: empireGrid;
+  grid-template-columns: 1.4fr 1fr;
+}
+
+@media (max-width: 960px) {
+  .empireGridWide {
+    grid-template-columns: 1fr;
+  }
+}
+
+.empireCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.empireCard:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.empireCardMuted {
+  background: var(--color-surface-muted);
+}
+
+.empireCardAccent {
+  border-color: rgba(79, 70, 229, 0.25);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-primary-muted) 100%);
+}
+
+.empireCardTitle {
+  margin: 0 0 var(--space-3);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.empireCardHeading {
+  margin: 0 0 var(--space-2);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.empireCardBody {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.empireMetric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.empireMetricLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.empireMetricValue {
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.empireMetricHint {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.empireBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.empireBtnPrimary {
+  composes: empireBtn;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.empireBtnPrimary:hover {
+  background: var(--color-primary-hover);
+  text-decoration: none;
+  color: #fff;
+}
+
+.empireBtnSecondary {
+  composes: empireBtn;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.empireBtnSecondary:hover {
+  background: var(--color-surface-muted);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.empireBtnGhost {
+  composes: empireBtn;
+  background: transparent;
+  color: var(--color-text-secondary);
+  padding-inline: 0.5rem;
+}
+
+.empireBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.empireList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.empireListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.empireEmpty {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
+.empireToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.empireInput,
+.empireSelect {
+  padding: 0.5625rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  min-width: 180px;
+}
+
+.empireProgress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-border-subtle);
+  overflow: hidden;
+}
+
+.empireProgressBar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transition: width var(--transition-base);
+}
+
+.empireHealthDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.empireHealthDot[data-health="healthy"] {
+  background: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-bg);
+}
+
+.empireHealthDot[data-health="warning"] {
+  background: var(--color-warning);
+  box-shadow: 0 0 0 3px var(--color-warning-bg);
+}
+
+.empireHealthDot[data-health="critical"] {
+  background: var(--color-danger);
+  box-shadow: 0 0 0 3px var(--color-danger-bg);
+}
+
+.empireHealthDot[data-health="unknown"] {
+  background: var(--color-text-muted);
+}
+
+.empireTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.empireTable th {
+  text-align: left;
+  padding: var(--space-3);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.empireTable td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.empireTable tr:last-child td {
+  border-bottom: none;
+}
+
+/* Legacy aliases — existing pages */
+.grid { composes: empireGrid; }
+.gridMetrics { composes: empireGridMetrics; }
+.gridCards { composes: empireGridCards; }
+.panel { composes: empireCard; }
+.panelTitle { composes: empireCardTitle; }
+.panelList { composes: empireList; }
+.primaryButton { composes: empireBtnPrimary; }
+.secondaryButton { composes: empireBtnSecondary; }
+.toolbar { composes: empireToolbar; }
+.input { composes: empireInput; }
+.select { composes: empireSelect; }
+.card { composes: empireCard; padding: var(--space-4); }
+.cardSelected { border-color: var(--color-primary); box-shadow: 0 0 0 1px var(--color-primary); }
+.cardTitle { composes: empireCardHeading; }
+.cardMeta { composes: empireCardBody; font-size: 0.8125rem; }
+.cardActions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }

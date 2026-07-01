@@ -1,7 +1,8 @@
-import { Bell, ChevronDown, Menu, User } from "lucide-react";
+import { Sparkles, ChevronDown, Menu, User, Bell } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { StoreStatus } from "@/components/layout/Sidebar";
+import { useAuth } from "@/context/AuthContext";
 import { paths } from "@/routes/paths";
 import styles from "./TopNav.module.css";
 
@@ -11,6 +12,9 @@ interface TopNavProps {
   todayProfit: number;
   sidebarCollapsed: boolean;
   onToggleSidebar: () => void;
+  notificationCount?: number;
+  onOpenNotifications?: () => void;
+  onOpenAssistant?: () => void;
 }
 
 export function TopNav({
@@ -19,17 +23,17 @@ export function TopNav({
   todayProfit,
   sidebarCollapsed,
   onToggleSidebar,
+  notificationCount = 0,
+  onOpenNotifications,
+  onOpenAssistant,
 }: TopNavProps) {
+  const { user, logout } = useAuth();
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        profileRef.current &&
-        !profileRef.current.contains(event.target as Node)
-      ) {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
         setProfileOpen(false);
       }
     }
@@ -54,23 +58,38 @@ export function TopNav({
         >
           <Menu size={20} />
         </button>
-        <Link to={paths.dashboard.settingsStore} className={styles.storeLink}>
+        <Link to={paths.dashboard.home} className={styles.storeLink}>
           {storeName}
         </Link>
         <StatusPill status={storeStatus} />
       </div>
 
       <div className={styles.right}>
-        <Link to={paths.dashboard.profit} className={styles.profitSnippet}>
+        <Link to={paths.dashboard.command} className={styles.profitSnippet}>
           Today: <strong>{profitLabel}</strong>
         </Link>
 
         <button
           type="button"
           className={styles.iconButton}
-          aria-label="Notifications"
+          aria-label="AI Assistant"
+          onClick={onOpenAssistant}
+        >
+          <Sparkles size={20} />
+        </button>
+
+        <button
+          type="button"
+          className={styles.iconButton}
+          aria-label={notificationCount > 0 ? `${notificationCount} unread notifications` : "Notifications"}
+          onClick={onOpenNotifications}
         >
           <Bell size={20} />
+          {notificationCount > 0 && (
+            <span className={styles.notificationBadge} aria-hidden="true">
+              {notificationCount > 99 ? "99+" : notificationCount}
+            </span>
+          )}
         </button>
 
         <div className={styles.profileMenu} ref={profileRef}>
@@ -89,22 +108,7 @@ export function TopNav({
 
           {profileOpen && (
             <div className={styles.dropdown} role="menu">
-              <Link
-                to={paths.dashboard.settingsAccount}
-                role="menuitem"
-                className={styles.dropdownItem}
-                onClick={() => setProfileOpen(false)}
-              >
-                Account
-              </Link>
-              <Link
-                to={paths.dashboard.billing}
-                role="menuitem"
-                className={styles.dropdownItem}
-                onClick={() => setProfileOpen(false)}
-              >
-                Billing
-              </Link>
+              <div className={styles.dropdownMeta}>{user?.email}</div>
               <Link
                 to={paths.dashboard.settings}
                 role="menuitem"
@@ -113,14 +117,6 @@ export function TopNav({
               >
                 Settings
               </Link>
-              <Link
-                to={paths.support}
-                role="menuitem"
-                className={styles.dropdownItem}
-                onClick={() => setProfileOpen(false)}
-              >
-                Help
-              </Link>
               <hr className={styles.dropdownDivider} />
               <button
                 type="button"
@@ -128,7 +124,7 @@ export function TopNav({
                 className={styles.dropdownItem}
                 onClick={() => {
                   setProfileOpen(false);
-                  navigate(paths.login);
+                  void logout();
                 }}
               >
                 Log out
@@ -149,12 +145,8 @@ function StatusPill({ status }: { status: StoreStatus }) {
   };
 
   return (
-    <Link
-      to={paths.dashboard.settingsStore}
-      className={styles.statusPill}
-      data-status={status}
-    >
+    <span className={styles.statusPill} data-status={status}>
       {labels[status]}
-    </Link>
+    </span>
   );
 }
