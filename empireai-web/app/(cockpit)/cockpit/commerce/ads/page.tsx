@@ -1,5 +1,5 @@
-import { DepartmentTabPlaceholder } from "@/components/cockpit/widgets/DepartmentTabPlaceholder";
+import { CommerceAdsPanel } from "@/components/cockpit/widgets/CommerceAdsPanel";
 
 export default function CommerceAdsPage() {
-  return <DepartmentTabPlaceholder screenId="SCR-203" title="Ads" />;
+  return <CommerceAdsPanel />;
 }

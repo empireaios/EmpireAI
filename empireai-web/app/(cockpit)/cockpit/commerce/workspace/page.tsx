@@ -1,5 +1,5 @@
-import { DepartmentTabPlaceholder } from "@/components/cockpit/widgets/DepartmentTabPlaceholder";
+import { CommerceWorkspacePanel } from "@/components/cockpit/widgets/CommerceWorkspacePanel";
 
 export default function CommerceWorkspacePage() {
-  return <DepartmentTabPlaceholder screenId="SCR-204" title="Business Workspace" />;
+  return <CommerceWorkspacePanel />;
 }
