@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+function isProtectedAppRoute(pathname: string) {
+  return pathname.startsWith("/platform") || pathname.startsWith("/cockpit");
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (!pathname.startsWith("/platform")) {
+  if (!isProtectedAppRoute(pathname)) {
     return NextResponse.next();
   }
 
@@ -19,5 +23,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/platform/:path*"],
+  matcher: ["/platform/:path*", "/cockpit/:path*"],
 };
