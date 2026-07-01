@@ -10,7 +10,8 @@ export type ModuleId =
   | "orders"
   | "support"
   | "settings"
-  | "admin";
+  | "admin"
+  | "integrations";
 
 export type PlatformModule = {
   id: ModuleId;

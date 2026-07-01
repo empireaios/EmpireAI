@@ -5,6 +5,7 @@ import {
   loadAiCeoView,
   loadDashboardView,
   loadFinanceView,
+  loadIntegrationsView,
   loadIntelligenceView,
   loadMarketingView,
   loadOrdersView,
@@ -118,5 +119,13 @@ export const moduleLoadTools: RegisteredTool[] = [
     authorityLevel: "L0",
     parameters: { type: "object", properties: {} },
     handler: async () => loadAdminView(),
+  },
+  {
+    name: "integrations.load_view",
+    description: "Load integrations grid with live connector truth",
+    module: "integrations",
+    authorityLevel: "L0",
+    parameters: { type: "object", properties: {} },
+    handler: async (_args, context) => loadIntegrationsView(context.workspaceId),
   },
 ];

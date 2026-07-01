@@ -558,4 +558,5 @@ export const moduleRoutes: ModuleRoute[] = [
   { module: "settings", action: "load", toolName: "settings.load_view" },
   { module: "admin", action: "load", toolName: "admin.load_view" },
   { module: "admin", action: "health", agentId: "admin-console" },
+  { module: "integrations", action: "load", toolName: "integrations.load_view" },
 ];
