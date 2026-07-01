@@ -44,8 +44,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    void refresh();
-  }, [refresh]);
+    let cancelled = false;
+
+    async function initSession() {
+      try {
+        const sessionUser = await fetchSessionUser();
+        if (!cancelled) setUser(sessionUser);
+      } catch (err) {
+        if (!cancelled) {
+          setUser(null);
+          setError(err instanceof Error ? err.message : "Session check failed");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    void initSession();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const login = useCallback(
     async (email: string, password: string) => {

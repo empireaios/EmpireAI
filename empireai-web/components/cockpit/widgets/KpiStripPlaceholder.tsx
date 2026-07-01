@@ -1,8 +1,12 @@
+"use client";
+
 import {
   type CockpitKpiDefinition,
   EXECUTIVE_HOME_KPI_STRIP_IDS,
   getCockpitKpisByIds,
 } from "@/lib/cockpit/kpis/registry";
+import { resolveKpiDisplayValue } from "@/lib/cockpit/kpis/resolve-kpi-values";
+import { useLedgerKpiValues } from "@/lib/cockpit/kpis/useLedgerKpiValues";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
 
 type KpiStripProps = {
@@ -16,17 +20,27 @@ function gridClass(columns: 4 | 5) {
     : "grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4";
 }
 
-function KpiCard({ kpi }: { kpi: CockpitKpiDefinition }) {
+function KpiCard({
+  kpi,
+  ledgerMetrics,
+  loading,
+}: {
+  kpi: CockpitKpiDefinition;
+  ledgerMetrics: ReturnType<typeof useLedgerKpiValues>["metrics"];
+  loading: boolean;
+}) {
+  const { value, trend } = resolveKpiDisplayValue(kpi, ledgerMetrics);
+
   return (
     <div className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-4">
       <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6f6a60]">
         {kpi.label}
       </p>
       <div className="mt-2 flex items-baseline gap-2">
-        <span className="font-display text-2xl text-[#f0d78c]">{kpi.placeholderValue}</span>
-        {kpi.placeholderTrend && (
-          <span className="text-sm text-emerald-400">{kpi.placeholderTrend}</span>
-        )}
+        <span className="font-display text-2xl text-[#f0d78c]">
+          {loading && ledgerMetrics.length === 0 ? "…" : value}
+        </span>
+        {trend && <span className="text-sm text-emerald-400">{trend}</span>}
       </div>
       <div className="mt-2">
         <DataModeBadge mode={kpi.dataMode} />
@@ -35,14 +49,15 @@ function KpiCard({ kpi }: { kpi: CockpitKpiDefinition }) {
   );
 }
 
-/** Reusable KPI strip — values from lib/cockpit/kpis/registry. */
+/** REAL-127 — KPI strip with ledger-backed values when available. */
 export function KpiStrip({ kpiIds, columns = 4 }: KpiStripProps) {
   const kpis = getCockpitKpisByIds(kpiIds);
+  const { metrics, loading } = useLedgerKpiValues();
 
   return (
     <div className={gridClass(columns)}>
       {kpis.map((kpi) => (
-        <KpiCard key={kpi.id} kpi={kpi} />
+        <KpiCard key={kpi.id} kpi={kpi} ledgerMetrics={metrics} loading={loading} />
       ))}
     </div>
   );

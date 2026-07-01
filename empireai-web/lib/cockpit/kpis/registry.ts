@@ -12,7 +12,7 @@ export type CockpitKpiDefinition = {
   description?: string;
 };
 
-/** Canonical KPI catalogue — placeholder values until REAL-127+ live ledger. */
+/** Canonical KPI catalogue — live values resolved via REAL-127 ledger hook. */
 export const cockpitKpiRegistry: readonly CockpitKpiDefinition[] = [
   {
     id: "K-E-001",
@@ -172,5 +172,12 @@ export function getCockpitKpisForScreen(screenId: CockpitScreenId) {
 }
 
 export function getCockpitScreenDataMode(screenId: CockpitScreenId): CockpitDataMode {
+  if (
+    (screenId === "SCR-300" || screenId === "SCR-301" || screenId === "SCR-302") &&
+    typeof process !== "undefined" &&
+    process.env.NEXT_PUBLIC_LIVE_COMMERCE_INTEGRATION_MODE === "production"
+  ) {
+    return "live";
+  }
   return cockpitScreenDataModes[screenId] ?? "demo";
 }
