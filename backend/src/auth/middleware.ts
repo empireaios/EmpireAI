@@ -1,4 +1,5 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
+import { logger } from "../config/logger.js";
 import { canAccessModule, type SessionUser } from "./permissions.js";
 import type { SessionStoreBackend } from "./session-store.js";
 
@@ -22,14 +23,22 @@ export function createAuthMiddleware(sessionStore: SessionStoreBackend) {
       : cookieToken;
 
     if (!token) {
-      reply.code(401).send({ error: "Authentication required" });
-      return;
+      return reply.code(401).send({ error: "Authentication required" });
     }
 
-    const session = await sessionStore.get(token);
+    let session;
+    try {
+      session = await sessionStore.get(token);
+    } catch (error) {
+      logger.error(
+        { err: error instanceof Error ? error : new Error(String(error)) },
+        "Session lookup failed",
+      );
+      return reply.code(503).send({ error: "Session store unavailable" });
+    }
+
     if (!session) {
-      reply.code(401).send({ error: "Invalid or expired session" });
-      return;
+      return reply.code(401).send({ error: "Invalid or expired session" });
     }
 
     request.user = {
@@ -49,13 +58,11 @@ export function requireModuleAccess(module: string) {
     reply: FastifyReply,
   ): Promise<void> {
     if (!request.user) {
-      reply.code(401).send({ error: "Authentication required" });
-      return;
+      return reply.code(401).send({ error: "Authentication required" });
     }
 
     if (!canAccessModule(request.user.role, module)) {
-      reply.code(403).send({ error: `Access denied for module: ${module}` });
-      return;
+      return reply.code(403).send({ error: `Access denied for module: ${module}` });
     }
   };
 }

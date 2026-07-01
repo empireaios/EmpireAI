@@ -93,8 +93,12 @@ export async function registerAuthRoutes(
     return reply.send({ ok: true });
   });
 
-  app.get("/auth/me", { preHandler: authenticate }, async (request) => {
-    const user = request.user!;
+  app.get("/auth/me", { preHandler: authenticate }, async (request, reply) => {
+    if (!request.user) {
+      return reply.code(401).send({ error: "Authentication required" });
+    }
+
+    const user = request.user;
     return {
       user: {
         ...user,
