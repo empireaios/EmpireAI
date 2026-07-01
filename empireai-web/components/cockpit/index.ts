@@ -4,3 +4,4 @@ export { ExecutiveHomePage } from "./pages/ExecutiveHomePage";
 export { CommandCentrePage } from "./pages/CommandCentrePage";
 export { MissionCentrePage } from "./pages/MissionCentrePage";
 export { DataModeBadge } from "./widgets/DataModeBadge";
+export { CockpitDepartmentLayout } from "./layout/CockpitDepartmentLayout";
