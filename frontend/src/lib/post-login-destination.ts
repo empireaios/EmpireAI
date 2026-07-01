@@ -1,12 +1,12 @@
 import type { AuthUser } from "@/api/auth";
-import { paths } from "@/routes/paths";
+import { buildCockpitRedirectUrl } from "@/lib/cockpit-redirects";
 
-/** UX-001 — role-correct landing after authentication. */
+/** UX-001 / REAL-126 — post-auth landing on Cockpit canonical routes. */
 export function postLoginDestination(user: AuthUser): string {
   if (user.role === "operator") {
-    return paths.dashboard.brands;
+    return buildCockpitRedirectUrl("/dashboard/brands");
   }
-  return paths.dashboard.home;
+  return buildCockpitRedirectUrl("/dashboard");
 }
 
 /** Whether the user is a Grand King / founder persona (GC-02 · GC-06 apply). */
