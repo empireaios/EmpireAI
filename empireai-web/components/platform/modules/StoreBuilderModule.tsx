@@ -20,7 +20,7 @@ type StoreView = {
 
 export function StoreBuilderModule() {
   const { data, loading, error, reload } = useBrainModule<StoreView>("store");
-  const { execute, loading: acting } = useBrainAction();
+  const { execute, loading: acting } = useBrainAction<{ companyId: string }>();
   const [actionError, setActionError] = useState<string | null>(null);
 
   const building = data?.buildingCompany ?? null;
@@ -32,7 +32,7 @@ export function StoreBuilderModule() {
   async function handleManufactureNew() {
     setActionError(null);
     try {
-      const created = await execute<{ companyId: string }>({
+      const created = await execute({
         module: "store",
         action: "create",
         payload: {
