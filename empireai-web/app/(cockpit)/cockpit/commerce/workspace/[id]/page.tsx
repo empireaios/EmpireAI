@@ -1,5 +1,12 @@
-import { DepartmentTabPlaceholder } from "@/components/cockpit/widgets/DepartmentTabPlaceholder";
+import { CommerceWorkspaceDetailPanel } from "@/components/cockpit/widgets/CommerceWorkspaceDetailPanel";
 
-export default function CommerceWorkspaceDetailPage() {
-  return <DepartmentTabPlaceholder screenId="SCR-204" title="Business Detail" />;
+type CommerceWorkspaceDetailPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function CommerceWorkspaceDetailPage({
+  params,
+}: CommerceWorkspaceDetailPageProps) {
+  const { id } = await params;
+  return <CommerceWorkspaceDetailPanel companyId={id} />;
 }
