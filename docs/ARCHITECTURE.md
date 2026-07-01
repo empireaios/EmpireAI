@@ -1,6 +1,8 @@
 # EmpireAI Architecture
 
-EmpireAI is an AI Operating System: a sovereign platform where founders manufacture and operate autonomous companies through a single Brain orchestration layer.
+EmpireAI is an **AI-powered e-commerce operating system** focused first on **global dropshipping**. Founders manufacture and operate autonomous companies through a single Brain orchestration layer.
+
+**Commercial Risk Intelligence (CRI)** governs pre-launch risk analysis across suppliers and marketplaces — see `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md`.
 
 ## System layers
 
@@ -107,7 +109,7 @@ Integration tests require Redis; they degrade gracefully when unavailable.
 
 ## Deployment
 
-See [deployment/README.md](../deployment/README.md) for Docker Compose and production checklist.
+See [deployment/README.md](../deployment/README.md) for managed cloud deployment (Vercel · Railway · Supabase · Upstash). Docker Compose is optional.
 
 ## Future work
 

@@ -5,7 +5,9 @@
 **Version:** 1.0  
 **Audience:** Founders, engineering, product, operations  
 
-This document defines the architecture EmpireAI **should** follow. It is derived from the hierarchy audit (REAL-076/077) and production gap analysis (REAL-077), and supersedes ad-hoc folder layout as the source of truth for future REAL missions.
+This document defines the architecture EmpireAI **should** follow. EmpireAI is an **AI-powered e-commerce operating system** whose first commercial model is **global dropshipping**. It is derived from the hierarchy audit (REAL-076/077) and production gap analysis (REAL-077), and supersedes ad-hoc folder layout as the source of truth for future REAL missions.
+
+**Commercial Risk Intelligence (CRI)** is a permanent cross-cutting capability — see §3.7A and `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md`.
 
 ---
 
@@ -17,6 +19,7 @@ This document defines the architecture EmpireAI **should** follow. It is derived
 4. **Live data over seed data** — Domain views read from ledger and connector-backed tables in production; seed data is dev/demo only.
 5. **Integration at the connector boundary** — External systems connect through Connectors + Reality Integration, not scattered per module.
 6. **Foundation governs; Runtime advises** — Governance and policy live in Foundation. Runtime modules produce dashboards and recommendations only unless explicitly promoted to Commerce or Intelligence.
+7. **Survival over speculative profit** — Commercial Risk Intelligence (CRI) gates future product launches; survivability takes precedence over upside when refund/dispute structures can cause systematic loss (CRI-001, ADR-051).
 
 ---
 
@@ -169,7 +172,7 @@ EmpireAI
 |-------|------------|
 | **Purpose** | End-to-end venture lifecycle: discover → manufacture → deploy → sell → fulfill → record profit. |
 | **Owner** | Commerce / Execution |
-| **Responsibilities** | Company manufacturing, store generation, Vercel deploy, Stripe checkout, CJ fulfillment, order pipeline, revenue loop, Grand King automation, product publishing, Meta ads execution. |
+| **Responsibilities** | Company manufacturing, store generation, Vercel deploy, Stripe checkout, CJ fulfillment, order pipeline, revenue loop, Grand King automation, product publishing, Meta ads execution. **Future launches:** require CRIR commercial risk certification at READINESS gate (documentation; runtime enforcement deferred). |
 | **Parent** | EmpireAI |
 | **Children** | Manufacturing, Store Builder, Deployment, Payments, Fulfillment, Orders, Revenue Loop, Grand King, Ads Execution, Catalog Publishing |
 | **Dependencies** | Intelligence (product selection), Connectors (Stripe, CJ, Meta, Vercel), Brain dispatch, SQLite ledger |
@@ -199,7 +202,7 @@ Commerce (target)
 |-------|------------|
 | **Purpose** | Signal ingestion, scoring, and recommendations for products, suppliers, markets, and buyers. |
 | **Owner** | Intelligence |
-| **Responsibilities** | PIE (product intelligence), SIE (supplier intelligence), Product Scout, Commerce Intelligence Core (CIC), Eye Series connectors, buyer personas, opportunity matching. |
+| **Responsibilities** | PIE (product intelligence), SIE (supplier intelligence), Product Scout, Commerce Intelligence Core (CIC), Eye Series connectors, buyer personas, opportunity matching. **CRI feed:** continuous supplier + marketplace policy, fee, refund, dispute, shipping, regional restriction, pricing/arbitrage, and commercial risk analysis for CRIR sections 1–2, 5–7. |
 | **Parent** | EmpireAI |
 | **Children** | Product Intelligence Engine, Supplier Intelligence Engine, Product Scout, Eye Series, Commerce Intelligence Core, Scoring engines, Knowledge graph |
 | **Dependencies** | Connectors (Amazon, Trends, CJ catalog), SQLite catalog tables, Brain contract layer |
@@ -213,6 +216,22 @@ Commerce (target)
 | SIE | `backend/src/intelligence/supplier-intelligence-engine/` |
 | Eye | `backend/src/eye/` |
 | CIC | `backend/src/intelligence/commerce-intelligence-core/` |
+
+---
+
+### 3.7A Commercial Risk Intelligence (CRI)
+
+| Field | Definition |
+|-------|------------|
+| **Purpose** | Permanent platform capability for continuous commercial risk analysis across **suppliers** and **marketplaces**; pre-launch **Commercial Risk Intelligence Reports (CRIR)** and commercial risk certification before product launch. |
+| **Owner** | Commercial Architecture · Intelligence · Finance · Governance (shared; see doctrine owner table) |
+| **Responsibilities** | Dual-domain intelligence (supplier capabilities, marketplace policies, fees, refunds, disputes, shipping, restrictions, pricing/arbitrage, commercial risks); CRIR production; Finance sign-off on exposure; Governance certification audit trail; survivability assessment (CRI-001). |
+| **Parent** | Cross-cutting — feeds Commerce READINESS gate and Intelligence engines |
+| **Children** | CRIR artifacts (repository), policy intelligence feeds (future runtime), finance exposure models (future runtime) |
+| **Dependencies** | Intelligence (SIE, marketplace intel), Finance (margin/exposure), Governance (`empire-governance`), Commerce Canon READINESS |
+| **Future growth rules** | Documentation-first in this phase. Runtime enforcement in `commerce-readiness-engine` and Cockpit Governance deferred to future REAL missions. Never bypass CBD-018 triple approval chain. |
+
+**Canonical doctrine:** `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md` · `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_REPORT_SPECIFICATION.md` · ADR-051
 
 ---
 

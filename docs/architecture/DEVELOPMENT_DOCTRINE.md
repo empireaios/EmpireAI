@@ -29,6 +29,15 @@ All REAL missions (REAL-079+) must comply unless an ADR explicitly exceptions.
 - Before adding code, declare: *"Which canonical subsystem owns this?"*
 - If another subsystem already owns it, **extend the owner** — do not create a parallel module.
 
+### 2.2A Commercial Risk Intelligence (governance)
+
+EmpireAI is an **AI-powered e-commerce operating system** (first commercial model: **global dropshipping**). **Commercial Risk Intelligence (CRI)** is a permanent platform capability (ADR-051).
+
+- **Future product launches** require a **Commercial Risk Intelligence Report (CRIR)** and commercial risk certification before launch approval (documentation phase).
+- REAL missions touching launch, READINESS, or PUBLICATION shall reference `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md` and shall not implement launch paths that bypass CRIR without an explicit ADR exception approved by Grand King.
+- **Survival over profit** (CRI-001): do not ship launch enablement whose documented refund/dispute structure can reasonably cause systematic financial loss.
+- Runtime enforcement in `commerce-readiness-engine` is deferred — this rule governs documentation and mission scope until a future REAL implements gates.
+
 ### 2.3 No Duplicate Subsystems
 
 Forbidden duplicates (extend canonical owner instead):

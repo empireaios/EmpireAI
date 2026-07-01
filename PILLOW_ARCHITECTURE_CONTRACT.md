@@ -289,7 +289,7 @@ Pillow Ready
 
 **Mission categories:** UX · REAL · GC · EC · Repository · Journey · Journey Audit · BL-A/B/C · Architecture · Governance · Pillow · Recovery · Executive Reviews · Repository Synchronization · Commercial Intelligence.
 
-**Responsibilities:** Mission sequencing · priority assignment · dependency validation · Cursor-ready mission generation.
+**Responsibilities:** Mission sequencing · priority assignment · dependency validation · Cursor-ready mission generation. **CRI:** Sequence CRI documentation/automation REAL missions before launch REALs; surface CRIR gaps in mission proposals (ADR-051).
 
 **Input:** `RepositoryMemoryState` + `RepositoryIntelligenceContext` + `EmpireBootstrapContext`
 
@@ -310,7 +310,7 @@ Pillow Ready
 
 **Mission lifecycle states:** queued · preparing · repository_inspection · implementation · validation · executive_audit · completed · recovery · failed · cancelled
 
-**Responsibilities:** Mission registry · heartbeat monitoring · progress monitoring · stall detection · dead agent detection · Recovery Manager coordination · Executive Audit supervision.
+**Responsibilities:** Mission registry · heartbeat monitoring · progress monitoring · stall detection · dead agent detection · Recovery Manager coordination · Executive Audit supervision. **CRI:** Launch/commerce Cursor missions must include CRI documentation requirements; reject completion narratives that bypass CRIR when ADR-051 applies.
 
 **Input:** Mission Planner output · Repository Memory · Recovery Doctrine
 
@@ -348,7 +348,7 @@ Pillow Ready
 
 **Purpose:** Mandatory quality gate before any mission is considered complete. Completion does not equal acceptance.
 
-**Review categories:** Contract Compliance · Acceptance Compliance · Architecture Compliance · Repository Ownership · Component Reuse · Dependency Compliance · Validation Quality · Repository Continuity · Governance Compliance · Engineering Completeness
+**Review categories:** Contract Compliance · Acceptance Compliance · Architecture Compliance · Repository Ownership · Component Reuse · Dependency Compliance · Validation Quality · Repository Continuity · Governance Compliance · **CRI / CRIR Compliance (launch audits)** · Engineering Completeness
 
 **Decision outcomes:** approved · approved_with_recommendations · conditionally_approved · rejected · manual_review_required
 
@@ -358,7 +358,7 @@ Pillow Ready
 
 **Prohibited:** Repository writes · Journey/BL mutation · rewriting Executive Audits · approving repository changes
 
-**Acceptance (PILLOW-009 ✅):** Audits evaluated; acceptance criteria verified individually; approval decision with reasoning; read-only verified.
+**Acceptance (PILLOW-009 ✅):** Audits evaluated; acceptance criteria verified individually; approval decision with reasoning; read-only verified. Launch-related audits verified for CRIR presence per Executive Audit Standard §5.
 
 ---
 

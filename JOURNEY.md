@@ -197,6 +197,7 @@ This index is documentation only. No runtime files were modified to produce it. 
 | Commercial Business Doctrine (CBD) | CBD-019 | Evaluate Business Model Path | ✅ |
 | Commercial Business Doctrine (CBD) | CBD-020 | Real Commercial Success | ✅ |
 | Commercial Governance | REAL-051A | Marketplace Autonomy Doctrine — founder one-time onboarding · EmpireAI operational executor · common vs premium channel strategy · approval-gated automation · `docs/governance/MARKETPLACE_AUTONOMY_DOCTRINE_REAL-051A.md` · ADR-050 | ✅ |
+| Commercial Governance | CRI | Commercial Risk Intelligence Doctrine — AI-powered e-commerce OS · global dropshipping · CRIR before launch · commercial risk certification · survival over profit · `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md` · ADR-051 | ✅ |
 | Integrations Hub (IH) | UX-024 | EmpireAI Integrations Hub — external connectivity SSOT · `IntegrationsHubPage` · IH-001 · REAL-051A | ✅ |
 | Managed Production Deployment | MPD-001 | V1 managed cloud — Vercel · Railway · Supabase · Upstash · `deployment/MANAGED_DEPLOYMENT.md` | ✅ |
 | Pillow Executive Companion | PILLOW-019 | Persistent Executive Companion — icon · side panel · workspace context · session continuity | ✅ |

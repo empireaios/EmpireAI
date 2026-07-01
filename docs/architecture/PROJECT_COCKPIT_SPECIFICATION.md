@@ -171,7 +171,7 @@ Cockpit is **not** a single folder today. It is a **logical product layer** that
 
 | Field | Definition |
 |-------|------------|
-| **Responsibilities** | Store builder, manufacture, deploy, catalog, checkout, orders, fulfillment, ads execution, marketing campaigns. |
+| **Responsibilities** | Store builder, manufacture, deploy, catalog, checkout, orders, fulfillment, ads execution, marketing campaigns. **Launch path:** future product launches require CRIR commercial risk certification at READINESS (ADR-051; documentation phase). |
 | **Primary users** | Founder, Operator |
 | **Canonical modules** | store, orders, marketing, ads, revenue-loop, grand-king pipeline |
 
@@ -197,6 +197,7 @@ Cockpit is **not** a single folder today. It is a **logical product layer** that
 | Orders today | orders stats | Live |
 | Blended ROAS | ads + analytics_roas | Live |
 | Fulfillment rate | live_cj_fulfillments | Live |
+| CRIR certification status (future) | CRIR artifact registry / governance | Governance-labeled until live |
 
 **Navigation**
 
@@ -219,7 +220,7 @@ Cockpit is **not** a single folder today. It is a **logical product layer** that
 
 | Field | Definition |
 |-------|------------|
-| **Responsibilities** | P&L, cash runway, treasury, billing, operating cost, profit dashboard. |
+| **Responsibilities** | P&L, cash runway, treasury, billing, operating cost, profit dashboard. **CRI:** Finance owner sign-off on CRIR sections 8–10 (margin after all costs, worst-case exposure, survivability). |
 | **Primary users** | Founder, Admin |
 | **Canonical modules** | finance, treasury, live-payments, operation-first-dollar KPIs |
 
