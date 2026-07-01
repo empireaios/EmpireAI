@@ -9,6 +9,7 @@ import {
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 import type { Metric } from "@/lib/platform/types";
 
 type AdsView = {
@@ -23,6 +24,7 @@ type AdsView = {
 
 export function AdManagerModule() {
   const { data, loading, error, reload } = useBrainModule<AdsView>("ads");
+  const { execute, loading: optimizing } = useBrainAction();
 
   return (
     <BrainModuleShell loading={loading} error={error} onRetry={reload}>
@@ -34,8 +36,31 @@ export function AdManagerModule() {
             description="Multi-channel campaign orchestration with autonomous budget optimization across Meta, Google, and TikTok."
             actions={
               <>
-                <ActionButton variant="secondary">Pause all</ActionButton>
-                <ActionButton>Adjust budget</ActionButton>
+                <ActionButton
+                  variant="secondary"
+                  disabled={optimizing}
+                  onClick={() =>
+                    void execute({
+                      module: "ads",
+                      action: "optimize",
+                      payload: { mode: "pause_all" },
+                    }).then(() => reload())
+                  }
+                >
+                  Pause all
+                </ActionButton>
+                <ActionButton
+                  disabled={optimizing}
+                  onClick={() =>
+                    void execute({
+                      module: "ads",
+                      action: "optimize",
+                      payload: { mode: "adjust_budget" },
+                    }).then(() => reload())
+                  }
+                >
+                  Adjust budget
+                </ActionButton>
               </>
             }
           />

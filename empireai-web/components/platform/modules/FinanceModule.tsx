@@ -8,6 +8,7 @@ import {
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 import type { Metric } from "@/lib/platform/types";
 
 type FinanceView = {
@@ -24,6 +25,7 @@ type FinanceView = {
 
 export function FinanceModule() {
   const { data, loading, error, reload } = useBrainModule<FinanceView>("finance");
+  const { execute, loading: reporting } = useBrainAction();
   const breakdown = data?.breakdown;
 
   const rows = breakdown
@@ -44,7 +46,14 @@ export function FinanceModule() {
             eyebrow="Capital Intelligence"
             title="Finance Dashboard"
             description="Portfolio-wide P&L, cash flow, and capital efficiency across every manufactured company."
-            actions={<ActionButton>Download P&L</ActionButton>}
+            actions={
+              <ActionButton
+                disabled={reporting}
+                onClick={() => void execute({ module: "finance", action: "report" })}
+              >
+                Download P&L
+              </ActionButton>
+            }
           />
 
           {data?.metrics && (

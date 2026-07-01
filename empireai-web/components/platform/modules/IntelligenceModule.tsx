@@ -93,7 +93,11 @@ export function IntelligenceModule() {
           <Panel
             title="Top-Ranked Opportunities"
             subtitle="Morgan · Product Research Agent · Mission 012 connector aggregation"
-            action={<ActionButton variant="ghost">Full catalog</ActionButton>}
+            action={
+              <ActionButton variant="ghost" disabled={scanning} onClick={() => void reload()}>
+                Full catalog
+              </ActionButton>
+            }
           >
             <DataTable
               keyField="id"

@@ -11,6 +11,7 @@ import {
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 import type { ActivityItem, Company, Metric } from "@/lib/platform/types";
 
 type DashboardView = {
@@ -21,6 +22,7 @@ type DashboardView = {
 
 export function FounderDashboardModule() {
   const { data, loading, error, reload } = useBrainModule<DashboardView>("dashboard");
+  const { execute, loading: acting } = useBrainAction();
 
   return (
     <BrainModuleShell loading={loading} error={error} onRetry={reload}>
@@ -32,8 +34,14 @@ export function FounderDashboardModule() {
             description="Your sovereign view across every manufactured company, agent, and dollar in the EmpireAI portfolio."
             actions={
               <>
-                <ActionButton variant="secondary">Export report</ActionButton>
-                <Link href="/platform/ai-ceo">
+                <ActionButton
+                  variant="secondary"
+                  disabled={acting}
+                  onClick={() => void execute({ module: "dashboard", action: "summarize" })}
+                >
+                  Export report
+                </ActionButton>
+                <Link href="/cockpit/command">
                   <ActionButton>Ask AI CEO</ActionButton>
                 </Link>
               </>
@@ -51,7 +59,11 @@ export function FounderDashboardModule() {
               title="Portfolio Companies"
               subtitle={`${data.companies.length} active ventures`}
               className="xl:col-span-2"
-              action={<ActionButton variant="ghost">View all</ActionButton>}
+              action={
+                <ActionButton variant="ghost" onClick={() => reload()}>
+                  View all
+                </ActionButton>
+              }
             >
               <DataTable
                 keyField="id"

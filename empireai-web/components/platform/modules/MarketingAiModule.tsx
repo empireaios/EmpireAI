@@ -10,6 +10,7 @@ import {
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 import type { Metric } from "@/lib/platform/types";
 
 type MarketingView = {
@@ -26,6 +27,7 @@ type MarketingView = {
 
 export function MarketingAiModule() {
   const { data, loading, error, reload } = useBrainModule<MarketingView>("marketing");
+  const { execute, loading: generating } = useBrainAction();
 
   return (
     <BrainModuleShell loading={loading} error={error} onRetry={reload}>
@@ -35,7 +37,20 @@ export function MarketingAiModule() {
             eyebrow="Growth Engine"
             title="Marketing AI"
             description="Autonomous content, positioning, and channel strategy across every manufactured company in your portfolio."
-            actions={<ActionButton>Generate campaign</ActionButton>}
+            actions={
+              <ActionButton
+                disabled={generating}
+                onClick={() =>
+                  void execute({
+                    module: "marketing",
+                    action: "campaign",
+                    payload: { objective: "Generate portfolio campaign" },
+                  }).then(() => reload())
+                }
+              >
+                Generate campaign
+              </ActionButton>
+            }
           />
 
           {data.metrics && (

@@ -10,6 +10,7 @@ import {
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 import type { Metric } from "@/lib/platform/types";
 
 type SupportView = {
@@ -26,6 +27,7 @@ type SupportView = {
 
 export function SupportModule() {
   const { data, loading, error, reload } = useBrainModule<SupportView>("support");
+  const { execute, loading: resolving } = useBrainAction();
 
   return (
     <BrainModuleShell loading={loading} error={error} onRetry={reload}>
@@ -35,7 +37,18 @@ export function SupportModule() {
             eyebrow="Customer Intelligence"
             title="Customer Support AI"
             description="Nova resolves customer inquiries autonomously with 96% satisfaction — escalating only when human judgment is required."
-            actions={<ActionButton>View escalations</ActionButton>}
+            actions={
+              <ActionButton
+                disabled={resolving}
+                onClick={() =>
+                  void execute({ module: "support", action: "resolve", payload: { filter: "escalations" } }).then(
+                    () => reload(),
+                  )
+                }
+              >
+                View escalations
+              </ActionButton>
+            }
           />
 
           {data.metrics && (

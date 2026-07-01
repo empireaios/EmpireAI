@@ -10,6 +10,7 @@ import {
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useAuth } from "@/lib/auth/context";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 
 type AdminView = {
   metrics: Array<{ label: string; value: string }>;
@@ -22,6 +23,7 @@ export function AdminModule() {
   const { data, loading, error, reload } = useBrainModule<AdminView>("admin", "load", {
     enabled: user?.role === "admin",
   });
+  const { execute, loading: acting } = useBrainAction();
 
   if (user && user.role !== "admin") {
     return (
@@ -44,8 +46,19 @@ export function AdminModule() {
             description="System health, tenant management, agent fleet monitoring, and platform-wide orchestration controls."
             actions={
               <>
-                <ActionButton variant="secondary">View logs</ActionButton>
-                <ActionButton>Deploy update</ActionButton>
+                <ActionButton
+                  variant="secondary"
+                  disabled={acting}
+                  onClick={() => void execute({ module: "production-deploy", action: "get_logs" })}
+                >
+                  View logs
+                </ActionButton>
+                <ActionButton
+                  disabled={acting}
+                  onClick={() => void execute({ module: "production-deploy", action: "prepare" })}
+                >
+                  Deploy update
+                </ActionButton>
               </>
             }
           />

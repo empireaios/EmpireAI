@@ -9,6 +9,7 @@ import {
 } from "@/components/platform/ui/PlatformPrimitives";
 import { useAuth } from "@/lib/auth/context";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { useBrainAction } from "@/lib/brain/hooks/useBrainAction";
 
 const tabs = [
   { id: "account", label: "Account" },
@@ -29,6 +30,7 @@ type SettingsView = {
 export function SettingsModule() {
   const { user, logout } = useAuth();
   const { data, loading, error, reload } = useBrainModule<SettingsView>("settings");
+  const { execute, loading: saving } = useBrainAction();
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("account");
 
   return (
@@ -39,7 +41,11 @@ export function SettingsModule() {
             eyebrow="Platform Configuration"
             title="Settings"
             description="Manage your workspace, integrations, security, and notification preferences."
-            actions={<ActionButton>Save changes</ActionButton>}
+            actions={
+              <ActionButton disabled={saving} onClick={() => void reload()}>
+                Save changes
+              </ActionButton>
+            }
           />
 
           <div className="mb-6 flex flex-wrap gap-2 border-b border-gold/10 pb-4">
@@ -117,8 +123,22 @@ export function SettingsModule() {
             )}
             {activeTab === "security" && (
               <div className="space-y-4">
-                <ActionButton variant="secondary">Change password</ActionButton>
-                <ActionButton variant="secondary">Enable 2FA</ActionButton>
+                <ActionButton
+                  variant="secondary"
+                  onClick={() =>
+                    void execute({ module: "empire-governance", action: "evaluate", payload: { domain: "security", action: "change_password" } })
+                  }
+                >
+                  Change password
+                </ActionButton>
+                <ActionButton
+                  variant="secondary"
+                  onClick={() =>
+                    void execute({ module: "empire-governance", action: "evaluate", payload: { domain: "security", action: "enable_2fa" } })
+                  }
+                >
+                  Enable 2FA
+                </ActionButton>
                 <p className="text-xs text-[#6f6a60]">
                   Last login: {data.security.lastLogin} · {data.security.activeSessions}{" "}
                   active session
