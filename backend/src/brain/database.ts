@@ -3,6 +3,7 @@ import path from "node:path";
 import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
 import { EmpireDatabase, isInMemoryDatabasePath } from "./sqlite-database.js";
+export { isPostgresEnabled, getPostgresPool } from "./postgres/pool.js";
 
 let dbInstance: EmpireDatabase | null = null;
 let activeDbPath: string | null = null;
