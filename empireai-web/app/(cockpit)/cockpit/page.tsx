@@ -1,5 +1,5 @@
-import { CockpitScaffoldPage } from "@/components/cockpit/scaffold/CockpitScaffoldPage";
+import { ExecutiveHomePage } from "@/components/cockpit/pages/ExecutiveHomePage";
 
 export default function CockpitIndexPage() {
-  return <CockpitScaffoldPage screenId="SCR-001" title="Executive Home" />;
+  return <ExecutiveHomePage />;
 }
