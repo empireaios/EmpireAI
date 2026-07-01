@@ -54,7 +54,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <GoldButton href="/platform/dashboard">Launch EmpireAI</GoldButton>
+          <GoldButton href="/cockpit">Launch EmpireAI</GoldButton>
         </div>
 
         <button
@@ -93,7 +93,7 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <GoldButton href="/platform/dashboard">Launch EmpireAI</GoldButton>
+          <GoldButton href="/cockpit">Launch EmpireAI</GoldButton>
         </nav>
       </div>
     </header>

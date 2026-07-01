@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       const result = await brainLogin(email, password);
       setUser(result.user);
-      router.push("/platform/dashboard");
+      router.push("/cockpit");
     },
     [router],
   );

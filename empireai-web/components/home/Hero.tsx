@@ -50,7 +50,7 @@ export function Hero() {
 
             <Reveal delay={300}>
               <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-                <GoldButton href="/platform/dashboard">Launch EmpireAI</GoldButton>
+                <GoldButton href="/cockpit">Launch EmpireAI</GoldButton>
                 <GoldButton href="#how-it-works" variant="secondary">
                   See How It Works
                 </GoldButton>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { getCockpitRedirectForPlatformPath } from "@/lib/platform/cockpit-redirects";
 
 function isProtectedAppRoute(pathname: string) {
   return pathname.startsWith("/platform") || pathname.startsWith("/cockpit");
@@ -7,6 +8,11 @@ function isProtectedAppRoute(pathname: string) {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const cockpitRedirect = getCockpitRedirectForPlatformPath(pathname);
+  if (cockpitRedirect) {
+    return NextResponse.redirect(new URL(cockpitRedirect, request.url), 308);
+  }
 
   if (!isProtectedAppRoute(pathname)) {
     return NextResponse.next();
@@ -23,5 +29,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/platform/:path*", "/cockpit/:path*"],
+  matcher: ["/platform", "/platform/:path*", "/cockpit", "/cockpit/:path*"],
 };

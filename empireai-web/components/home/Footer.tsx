@@ -19,7 +19,7 @@ export function Footer() {
               your first venture on EmpireAI today.
             </p>
             <div className="mt-10">
-              <GoldButton href="/platform/dashboard">Launch EmpireAI</GoldButton>
+              <GoldButton href="/cockpit">Launch EmpireAI</GoldButton>
             </div>
           </div>
         </Reveal>

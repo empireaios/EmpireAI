@@ -11,7 +11,7 @@ export function GoldButton({
   children,
   variant = "primary",
   className = "",
-  href = "/platform/dashboard",
+  href = "/cockpit",
 }: GoldButtonProps) {
   const base =
     "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold";
