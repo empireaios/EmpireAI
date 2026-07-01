@@ -150,6 +150,9 @@ export const cockpitScreenDataModes: Partial<Record<CockpitScreenId, CockpitData
   "SCR-001": "live",
   "SCR-010": "live",
   "SCR-020": "live",
+  "SCR-300": "sandbox",
+  "SCR-301": "sandbox",
+  "SCR-302": "sandbox",
 };
 
 const kpiById = new Map(cockpitKpiRegistry.map((kpi) => [kpi.id, kpi]));
