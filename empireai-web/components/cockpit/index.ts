@@ -6,3 +6,4 @@ export { MissionCentrePage } from "./pages/MissionCentrePage";
 export { DataModeBadge } from "./widgets/DataModeBadge";
 export { CockpitDepartmentLayout } from "./layout/CockpitDepartmentLayout";
 export { CommerceStorePanel } from "./widgets/CommerceStorePanel";
+export { CommerceLaunchPanel } from "./widgets/CommerceLaunchPanel";
