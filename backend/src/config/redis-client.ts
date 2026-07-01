@@ -21,12 +21,50 @@ export function shouldAllowRedisDegradedMode(): boolean {
   return false;
 }
 
-function attachQuietErrorHandler(client: Redis): void {
-  let logged = false;
+/** Hostname from REDIS_URL with credentials stripped (safe for logs). */
+export function maskRedisUrlHost(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    const withoutScheme = url.replace(/^[a-z+]+:\/\//i, "");
+    const hostPart = withoutScheme.includes("@")
+      ? withoutScheme.slice(withoutScheme.lastIndexOf("@") + 1)
+      : withoutScheme;
+    return hostPart.split(/[/:]/)[0] || "[invalid-redis-url]";
+  }
+}
+
+function normalizeRedisError(error: unknown): Error {
+  if (error instanceof Error) return error;
+  return new Error(String(error));
+}
+
+/** Log full Redis connection failure details before entering degraded mode. */
+export function logRedisConnectionFailure(url: string, error: unknown): void {
+  const host = maskRedisUrlHost(url);
+  const err = normalizeRedisError(error);
+
+  logger.error(
+    {
+      host,
+      errorMessage: err.message,
+      errorName: err.name,
+      errorStack: err.stack,
+      err,
+    },
+    "Redis connection failed",
+  );
+}
+
+function attachProbeErrorCapture(
+  client: Redis,
+  onError: (error: Error) => void,
+): void {
+  let captured = false;
   client.on("error", (error) => {
-    if (logged) return;
-    logged = true;
-    void error;
+    if (captured) return;
+    captured = true;
+    onError(error);
   });
 }
 
@@ -50,7 +88,10 @@ export async function probeRedisAvailable(
     retryStrategy: () => null,
   });
 
-  attachQuietErrorHandler(client);
+  let probeError: Error | undefined;
+  attachProbeErrorCapture(client, (error) => {
+    probeError = error;
+  });
 
   try {
     await Promise.race([
@@ -61,7 +102,9 @@ export async function probeRedisAvailable(
     ]);
     await client.quit();
     return true;
-  } catch {
+  } catch (error) {
+    const failure = probeError ?? error;
+    logRedisConnectionFailure(url, failure);
     client.disconnect();
     return false;
   }
