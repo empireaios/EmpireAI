@@ -34,6 +34,37 @@ export function maskRedisUrlHost(url: string): string {
   }
 }
 
+/**
+ * Return REDIS_URL with password masked; protocol, username, host, and port unchanged.
+ * Example: rediss://default:SECRET@host:6379 → rediss://default:***@host:6379
+ */
+export function maskRedisUrlPassword(url: string): string {
+  if (!url.includes("@")) {
+    return url;
+  }
+
+  return url.replace(
+    /^((?:rediss?:)?\/\/[^:@/]*:)([^@/]+)(@)/i,
+    "$1***$3",
+  );
+}
+
+function logRedisUrlBeforeClientCreation(
+  url: string,
+  clientKind: "probe" | "persistent" | "bullmq",
+): void {
+  const redisUrl = maskRedisUrlPassword(url);
+
+  logger.info({ redisUrl, clientKind }, "Creating ioredis client");
+
+  if (url.startsWith("//") && !/^rediss?:\/\//i.test(url)) {
+    logger.warn(
+      { redisUrl },
+      "REDIS_URL is protocol-relative (starts with //) — ioredis defaults to non-TLS redis://, not rediss://",
+    );
+  }
+}
+
 function normalizeRedisError(error: unknown): Error {
   if (error instanceof Error) return error;
   return new Error(String(error));
@@ -81,6 +112,8 @@ export async function probeRedisAvailable(
   url: string,
   timeoutMs = REDIS_PROBE_TIMEOUT_MS,
 ): Promise<boolean> {
+  logRedisUrlBeforeClientCreation(url, "probe");
+
   const client = new Redis(url, {
     lazyConnect: true,
     maxRetriesPerRequest: 1,
@@ -114,6 +147,8 @@ export function createRedisClient(
   url: string,
   options?: RedisOptions,
 ): RedisClient {
+  logRedisUrlBeforeClientCreation(url, "persistent");
+
   const client = new Redis(url, {
     maxRetriesPerRequest: 3,
     retryStrategy(times) {
@@ -133,6 +168,8 @@ export function createRedisClient(
  * Pass plain connection options (not a root ioredis instance) to avoid duplicate-package type conflicts.
  */
 export function createBullMQConnection(url: string): ConnectionOptions {
+  logRedisUrlBeforeClientCreation(url, "bullmq");
+
   return {
     url,
     maxRetriesPerRequest: null,
