@@ -9,6 +9,7 @@ import {
   assessVersion1OperationalActivation,
   isPillowProductionModeEnabled,
 } from "../version-1-activation-config.js";
+import { assessProductionInfrastructureReadiness } from "../production-infrastructure-readiness.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -52,4 +53,47 @@ export async function registerVersion1ActivationRoutes(
       pillowProductionMode: isPillowProductionModeEnabled(),
     });
   });
+
+  app.get("/health/production-deploy", async (_request, reply) => {
+    const infrastructure = assessProductionInfrastructureReadiness();
+    const b5Status = infrastructure.b5Closed
+      ? "CLOSED"
+      : infrastructure.hostingConfigured
+        ? "RUNTIME_PENDING"
+        : "OPEN";
+    return reply.send({
+      status: infrastructure.b5Closed ? "ok" : "blocked",
+      b5Status,
+      blockerId: "B5",
+      hostingConfigured: infrastructure.hostingConfigured,
+      runtimeVerified: infrastructure.runtimeVerified,
+      b5Closed: infrastructure.b5Closed,
+      blockers: infrastructure.blockers,
+      warnings: infrastructure.warnings,
+      liveCommerceSafelyBlocked: infrastructure.liveCommerceSafelyBlocked,
+      liveCommerceMode: infrastructure.liveCommerceMode,
+      credentialReadinessForB6: infrastructure.credentialReadinessForB6,
+      secretsChecklist: infrastructure.secretsChecklist,
+      domainReadiness: infrastructure.domainReadiness,
+      deploymentTargets: infrastructure.deploymentTargets,
+      computedAt: infrastructure.computedAt,
+    });
+  });
+
+  app.get(
+    "/version-1-activation/production-deploy",
+    { preHandler: authenticate },
+    async (_request, reply) => {
+      const infrastructure = assessProductionInfrastructureReadiness();
+      const review = runVersion1ProductionReadinessReview();
+      return reply.send({
+        infrastructure,
+        review: {
+          infrastructureDeploymentPassed: review.infrastructureDeploymentPassed,
+          productionReadinessPassed: review.productionReadinessPassed,
+          findingsPreventingOperation: review.findingsPreventingOperation,
+        },
+      });
+    },
+  );
 }

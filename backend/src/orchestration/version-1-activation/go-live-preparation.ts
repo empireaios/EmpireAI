@@ -16,9 +16,10 @@ export type Version1GoLivePreparation = {
   grandKingChecklist: ReturnType<typeof buildGrandKingGoLiveChecklist>;
   goLiveApprovalAssessment: ReturnType<typeof buildVersion1GoLiveApproval>;
   deploymentVerification: {
-    healthEndpoint: "/health";
-    liveCommerceHealth: "/reality-integration/live-commerce/health";
-    operationalActivation: "/version-1-activation/readiness";
+    healthEndpoint: string;
+    productionDeployHealth: string;
+    liveCommerceHealth: string;
+    operationalActivation: string;
     rollbackReadiness: string;
   };
   pillowProductionMode: {
@@ -64,6 +65,7 @@ export function buildVersion1GoLivePreparation(
     goLiveApprovalAssessment,
     deploymentVerification: {
       healthEndpoint: "/health",
+      productionDeployHealth: "/health/production-deploy",
       liveCommerceHealth: "/reality-integration/live-commerce/health",
       operationalActivation: "/version-1-activation/readiness",
       rollbackReadiness:

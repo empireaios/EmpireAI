@@ -18,5 +18,13 @@ export {
   runVersion1ProductionReadinessReview,
 } from "./production-readiness-review.js";
 export type { Version1ProductionReadinessReview } from "./production-readiness-review.js";
+export {
+  assessProductionInfrastructureReadiness,
+  probeProductionDeployHealth,
+} from "./production-infrastructure-readiness.js";
+export type {
+  ProductionInfrastructureAssessment,
+  ProductionDeployProbeResult,
+} from "./production-infrastructure-readiness.js";
 export { buildVersion1GoLivePreparation } from "./go-live-preparation.js";
 export type { Version1GoLivePreparation } from "./go-live-preparation.js";

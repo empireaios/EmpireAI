@@ -1,0 +1,12 @@
+# EmpireAI Brain Worker — Railway duplicate service (REAL-068)
+# Create a second Railway service from the same repo with this config.
+# See deployment/railway.md § Worker service.
+
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install --prefix pillow && npm install --prefix backend && npm run build --prefix pillow && npm run build --prefix backend"
+
+[deploy]
+startCommand = "node backend/dist/worker.js"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
