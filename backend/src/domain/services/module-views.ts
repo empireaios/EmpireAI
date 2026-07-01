@@ -1,3 +1,4 @@
+import { getDatabase } from "../../brain/database.js";
 import { formatCurrency, formatMargin, formatRelativeTime } from "../format.js";
 import {
   formatDemandLabel,
@@ -16,7 +17,9 @@ import { ProductRepository } from "../repositories/product-repository.js";
 import { SupplierRepository } from "../repositories/supplier-repository.js";
 import { TicketRepository } from "../repositories/ticket-repository.js";
 import { DecisionRepository } from "../repositories/decision-repository.js";
-import { WorkspaceRepository } from "../repositories/workspace-repository.js";
+import { ConnectorConnectionRepository } from "../../connectors/connection-repository.js";
+import type { ConnectorConnectionRecord } from "../../connectors/types.js";
+import { resolveLiveCommerceIntegrationMode } from "../../orchestration/reality-integration/live-commerce/config.js";
 
 const companies = new CompanyRepository();
 const activity = new ActivityRepository();
@@ -27,6 +30,9 @@ const products = new ProductRepository();
 const campaigns = new CampaignRepository();
 const ads = new AdRepository();
 const tickets = new TicketRepository();
+import { WorkspaceRepository } from "../repositories/workspace-repository.js";
+
+const connectorConnections = new ConnectorConnectionRepository();
 const workspaces = new WorkspaceRepository();
 
 function mapCompanyView(company: ReturnType<CompanyRepository["listByWorkspace"]>[number]) {
@@ -435,32 +441,70 @@ export function loadSettingsView(workspaceId: string, userEmail?: string, userNa
   };
 }
 
+export function loadIntegrationsView(workspaceId: string) {
+  const mode = resolveLiveCommerceIntegrationMode();
+  const connections = connectorConnections.listByWorkspace(workspaceId);
+
+  return {
+    mode,
+    liveCommerceEnabled: mode === "production",
+    integrations: connections.map((row: ConnectorConnectionRecord) => ({
+      id: row.id,
+      name: row.connectorId,
+      type: row.category,
+      status: row.status === "connected" ? "connected" : row.status,
+      lastSync: row.updatedAt,
+    })),
+  };
+}
+
 export function loadAdminView() {
+  const db = getDatabase();
+
+  const workspaceRow = db.prepare("SELECT COUNT(*) AS cnt FROM workspaces").get() as
+    | { cnt: number }
+    | undefined;
+  const companyRow = db.prepare("SELECT COUNT(*) AS cnt FROM companies").get() as
+    | { cnt: number }
+    | undefined;
+  const auditRow = db
+    .prepare(
+      "SELECT COUNT(*) AS cnt FROM audit_logs WHERE created_at >= datetime('now', '-24 hours')",
+    )
+    .get() as { cnt: number } | undefined;
+  const pendingJobs = db
+    .prepare("SELECT COUNT(*) AS cnt FROM workflow_runs WHERE status IN ('pending', 'running')")
+    .get() as { cnt: number } | undefined;
+
+  const tenants = Number(workspaceRow?.cnt ?? 0);
+  const companies = Number(companyRow?.cnt ?? 0);
+  const queueDepth = Number(pendingJobs?.cnt ?? 0);
+  const audit24h = Number(auditRow?.cnt ?? 0);
+
   return {
     metrics: [
-      { label: "Active Tenants", value: "2,412" },
-      { label: "Agent Fleet", value: "43,416" },
-      { label: "API Uptime", value: "99.97%" },
-      { label: "Queue Depth", value: "124" },
+      { label: "Active Tenants", value: tenants.toLocaleString() },
+      { label: "Portfolio Companies", value: companies.toLocaleString() },
+      { label: "Audit Events (24h)", value: audit24h.toLocaleString() },
+      { label: "Queue Depth", value: queueDepth.toLocaleString() },
     ],
     alerts: [
       {
-        severity: "warning",
-        message: "PrimeDrop API latency elevated — auto-failover active",
+        severity: queueDepth > 50 ? "warning" : "info",
+        message:
+          queueDepth > 50
+            ? `Workflow queue elevated — ${queueDepth} pending jobs`
+            : "Workflow queue within normal range",
       },
       {
         severity: "info",
-        message: "PIE batch job completed — 12,400 SKUs scored",
-      },
-      {
-        severity: "success",
-        message: "Platform deploy v2.14.0 — all regions healthy",
+        message: `REAL-131 live admin metrics · ${companies} companies across ${tenants} workspaces`,
       },
     ],
     fleet: [
-      { region: "US-East", agents: 12400, status: "healthy" },
-      { region: "EU-West", agents: 9800, status: "healthy" },
-      { region: "AP-South", agents: 11200, status: "healthy" },
+      { region: "Brain Core", agents: companies * 3, status: "healthy" },
+      { region: "Cockpit UI", agents: 1, status: "healthy" },
+      { region: "Integrations", agents: 4, status: queueDepth > 0 ? "degraded" : "healthy" },
     ],
   };
 }
