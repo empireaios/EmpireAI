@@ -12,6 +12,7 @@ import {
 import { assessProductionInfrastructureReadiness } from "../production-infrastructure-readiness.js";
 import { assessB6CredentialImplementation } from "../b6-credential-implementation.js";
 import { runCjLiveAuthProof } from "../../../suppliers/cj-dropshipping/cj-live-auth-proof.js";
+import { runStripeLiveAuthProof } from "../../../revenue/shared/stripe-live-auth-proof.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -111,6 +112,22 @@ export async function registerVersion1ActivationRoutes(
     const proof = await runCjLiveAuthProof();
     return reply.code(proof.success ? 200 : 503).send({
       status: proof.success ? "ok" : "failed",
+      ...proof,
+    });
+  });
+
+  app.get("/health/b6-03-stripe-live-auth", async (_request, reply) => {
+    const proof = await runStripeLiveAuthProof();
+    const remainingBlockers = proof.success
+      ? [
+          ...(proof.paymentService.livePaymentEnabled
+            ? []
+            : ["LIVE_PAYMENT_ENABLED=false — live charges gated (Protect The Empire)"]),
+        ]
+      : [];
+    return reply.code(proof.success ? 200 : 503).send({
+      status: proof.success ? "ok" : "failed",
+      remainingBlockers,
       ...proof,
     });
   });

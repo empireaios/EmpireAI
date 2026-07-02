@@ -1,14 +1,12 @@
 import crypto from "node:crypto";
 
 import { loadLivePaymentEnv, isStripeLiveConfigured } from "../config/live-payment-env.js";
+import {
+  verifyStripeWebhookSignature as verifyStripeWebhookSignatureCore,
+  type StripeWebhookEvent,
+} from "../../shared/stripe-webhook-verification.js";
 
-export type StripeWebhookEvent = {
-  id: string;
-  type: string;
-  data: {
-    object: Record<string, unknown>;
-  };
-};
+export type { StripeWebhookEvent };
 
 export type StripeCheckoutResult = {
   sessionId: string;
@@ -172,7 +170,7 @@ export async function createStripePaymentIntent(
   const body: Record<string, string | number | boolean> = {
     amount: input.amountCents,
     currency: input.currency.toLowerCase(),
-    automatic_payment_methods_enabled: true,
+    "automatic_payment_methods[enabled]": true,
   };
 
   if (input.description) body.description = input.description;
@@ -202,43 +200,11 @@ export function verifyStripeWebhookSignature(
   signatureHeader: string | undefined,
 ): StripeWebhookEvent {
   const config = loadLivePaymentEnv();
-  const webhookSecret = config.STRIPE_WEBHOOK_SECRET;
-
-  if (!webhookSecret) {
-    throw new Error("STRIPE_WEBHOOK_SECRET is not configured");
-  }
-  if (!signatureHeader) {
-    throw new Error("Missing Stripe-Signature header");
-  }
-
-  const elements = signatureHeader.split(",").reduce<Record<string, string>>((acc, part) => {
-    const [key, value] = part.split("=");
-    if (key && value) acc[key.trim()] = value.trim();
-    return acc;
-  }, {});
-
-  const timestamp = elements.t;
-  const signature = elements.v1;
-  if (!timestamp || !signature) {
-    throw new Error("Invalid Stripe-Signature header");
-  }
-
-  const signedPayload = `${timestamp}.${rawBody.toString("utf8")}`;
-  const expected = crypto
-    .createHmac("sha256", webhookSecret)
-    .update(signedPayload, "utf8")
-    .digest("hex");
-
-  const signatureBuffer = Buffer.from(signature, "hex");
-  const expectedBuffer = Buffer.from(expected, "hex");
-  if (
-    signatureBuffer.length !== expectedBuffer.length ||
-    !crypto.timingSafeEqual(signatureBuffer, expectedBuffer)
-  ) {
-    throw new Error("Stripe webhook signature verification failed");
-  }
-
-  return JSON.parse(rawBody.toString("utf8")) as StripeWebhookEvent;
+  return verifyStripeWebhookSignatureCore(
+    rawBody,
+    signatureHeader,
+    config.STRIPE_WEBHOOK_SECRET ?? "",
+  );
 }
 
 export function buildMockCheckoutCompletedEvent(
