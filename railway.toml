@@ -4,7 +4,7 @@
 
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm install --prefix pillow && npm install --prefix backend --include=dev && npm run build --prefix pillow && npm run build --prefix backend"
+buildCommand = "NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_CONFIG_PRODUCTION=false npm install --prefix backend && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
 startCommand = "node backend/dist/index.js"

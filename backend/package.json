@@ -44,17 +44,16 @@
     "pino": "^9.6.0",
     "sql.js": "^1.12.0",
     "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
     "uuid": "^11.1.0",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.13.4",
+    "@types/pg": "^8.20.0",
+    "@types/sql.js": "^1.4.9"
   },
   "overrides": {
     "ioredis": "5.11.1"
   },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^22.13.4",
-    "@types/pg": "^8.20.0",
-    "@types/sql.js": "^1.4.9",
-    "typescript": "^5.8.2"
-  }
+  "devDependencies": {}
 }
