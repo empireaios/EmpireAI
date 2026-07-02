@@ -1,7 +1,4 @@
 import {
-  hasStripeProductionCredentials,
-} from "../../orchestration/version-1-activation/b6-credential-implementation.js";
-import {
   isStripeLiveConfigured,
   loadLivePaymentEnv,
 } from "../live-payment-engine/config/live-payment-env.js";
@@ -148,6 +145,10 @@ async function probeWebhookEndpoint(
   }
 }
 
+function hasStripeProductionCredentials(env: NodeJS.ProcessEnv): boolean {
+  return Boolean(env.STRIPE_SECRET_KEY?.trim() && env.STRIPE_WEBHOOK_SECRET?.trim());
+}
+
 /** Runs live Stripe production readiness proof (redacted — no secrets returned). */
 export async function runStripeLiveAuthProof(
   env: NodeJS.ProcessEnv = process.env,
@@ -260,7 +261,7 @@ export async function runStripeLiveAuthProof(
   }
 
   if (!hasStripeProductionCredentials(env)) {
-    blockers.push("B6-03 production credentials incomplete");
+    blockers.push("STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET required");
   }
 
   if (!paymentService.livePaymentEnabled) {
