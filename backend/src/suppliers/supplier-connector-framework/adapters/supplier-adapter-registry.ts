@@ -68,7 +68,7 @@ export const CJ_DROPSHIPPING_ADAPTER: SupplierAdapterTemplate = {
   displayName: "CJ Dropshipping",
   apiBaseUrl: "https://developers.cjdropshipping.com/api2.0/v1",
   documentationUrl: "https://developers.cjdropshipping.com/",
-  credentialsRequired: ["CJ_API_KEY", "CJ_API_SECRET"],
+  credentialsRequired: ["CJ_API_KEY"],
   capabilities: baseCapabilities(),
   syncNotes: "CJ Dropshipping connector supports SANDBOX and LIVE catalog sync. No live ordering enabled.",
 };

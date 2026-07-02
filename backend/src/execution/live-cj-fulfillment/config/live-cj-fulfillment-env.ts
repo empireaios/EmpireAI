@@ -22,8 +22,7 @@ export function loadLiveCjFulfillmentEnv(
   const parsed = liveCjFulfillmentEnvSchema.parse(env);
   const mockMode =
     parsed.LIVE_CJ_FULFILLMENT_MOCK ||
-    !process.env.CJ_API_KEY ||
-    !process.env.CJ_API_SECRET;
+    !(process.env.CJ_API_KEY?.trim() || process.env.CJ_DROPSHIPPING_API_KEY?.trim());
 
   return { ...parsed, LIVE_CJ_FULFILLMENT_MOCK: mockMode };
 }

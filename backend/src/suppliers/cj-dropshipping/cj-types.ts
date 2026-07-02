@@ -5,9 +5,9 @@ export type CjAccessTokenResponse = {
   message: string;
   data?: {
     accessToken?: string;
-    accessTokenExpiryDate?: number;
+    accessTokenExpiryDate?: string | number;
     refreshToken?: string;
-    refreshTokenExpiryDate?: number;
+    refreshTokenExpiryDate?: string | number;
     createDate?: string;
   };
   requestId?: string;

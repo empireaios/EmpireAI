@@ -28,11 +28,10 @@ export function hasAmazonSpApiEnvCredentials(env: NodeJS.ProcessEnv = process.en
   );
 }
 
-/** CJ Dropshipping credentials — supports both env naming conventions. */
+/** CJ Dropshipping credentials — CJ API 2.0 requires API key only (secret optional legacy). */
 export function hasCjDropshippingEnvCredentials(env: NodeJS.ProcessEnv = process.env): boolean {
   const apiKey = env.CJ_DROPSHIPPING_API_KEY ?? env.CJ_API_KEY;
-  const apiSecret = env.CJ_DROPSHIPPING_API_SECRET ?? env.CJ_API_SECRET;
-  return hasNonEmpty(apiKey) && hasNonEmpty(apiSecret);
+  return hasNonEmpty(apiKey);
 }
 
 export function hasCredentialVaultKey(env: NodeJS.ProcessEnv = process.env): boolean {
@@ -119,7 +118,7 @@ export function assessVersion1OperationalActivation(
     blockers.push("AMAZON_SP_API_CLIENT_ID/SECRET/REFRESH_TOKEN not configured");
   }
   if (!gates.cjDropshippingCredentials) {
-    blockers.push("CJ_DROPSHIPPING_API_KEY/SECRET (or CJ_API_KEY/SECRET) not configured");
+    blockers.push("CJ_API_KEY (or CJ_DROPSHIPPING_API_KEY) not configured");
   }
   if (!gates.operationalReadyFlag) {
     warnings.push("EMPIRE_V1_OPERATIONAL_READY=false — Pillow remains in dry-run readiness mode");

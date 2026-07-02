@@ -10,6 +10,8 @@ import {
   isPillowProductionModeEnabled,
 } from "../version-1-activation-config.js";
 import { assessProductionInfrastructureReadiness } from "../production-infrastructure-readiness.js";
+import { assessB6CredentialImplementation } from "../b6-credential-implementation.js";
+import { runCjLiveAuthProof } from "../../../suppliers/cj-dropshipping/cj-live-auth-proof.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -96,4 +98,20 @@ export async function registerVersion1ActivationRoutes(
       });
     },
   );
+
+  app.get("/health/b6-implementation", async (_request, reply) => {
+    const tracking = assessB6CredentialImplementation();
+    return reply.send({
+      status: tracking.b6Closed ? "ok" : "in_progress",
+      ...tracking,
+    });
+  });
+
+  app.get("/health/b6-02-cj-live-auth", async (_request, reply) => {
+    const proof = await runCjLiveAuthProof();
+    return reply.code(proof.success ? 200 : 503).send({
+      status: proof.success ? "ok" : "failed",
+      ...proof,
+    });
+  });
 }

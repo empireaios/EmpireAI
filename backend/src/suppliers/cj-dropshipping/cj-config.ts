@@ -3,6 +3,7 @@ export type CjIntegrationMode = "SANDBOX" | "LIVE";
 export type CjConfig = {
   apiBaseUrl: string;
   apiKey: string | null;
+  /** Legacy optional secret — CJ API 2.0 uses apiKey only; retained for backward compatibility. */
   apiSecret: string | null;
   integrationMode: CjIntegrationMode;
   requestTimeoutMs: number;
@@ -18,24 +19,35 @@ function readIntegrationMode(): CjIntegrationMode {
   return "SANDBOX";
 }
 
-function hasCredentials(apiKey: string | null, apiSecret: string | null): boolean {
-  return Boolean(apiKey && apiSecret);
+/** Resolves CJ API key from env (API 2.0 — key only). */
+export function resolveCjApiKeyFromEnv(env: NodeJS.ProcessEnv = process.env): string | null {
+  const apiKey = env.CJ_API_KEY?.trim() || env.CJ_DROPSHIPPING_API_KEY?.trim() || null;
+  return apiKey || null;
+}
+
+/** Resolves legacy optional CJ API secret from env. */
+export function resolveCjApiSecretFromEnv(env: NodeJS.ProcessEnv = process.env): string | null {
+  const apiSecret =
+    env.CJ_API_SECRET?.trim() || env.CJ_DROPSHIPPING_API_SECRET?.trim() || null;
+  return apiSecret || null;
 }
 
 /** Loads CJ Dropshipping configuration from environment variables. */
 export function loadCjConfig(
   env: NodeJS.ProcessEnv = process.env,
 ): CjConfig {
-  const apiKey = env.CJ_API_KEY?.trim() || null;
-  const apiSecret = env.CJ_API_SECRET?.trim() || null;
+  const apiKey = resolveCjApiKeyFromEnv(env);
+  const apiSecret = resolveCjApiSecretFromEnv(env);
   const requestedMode = readIntegrationMode();
 
   return {
     apiBaseUrl:
-      env.CJ_API_BASE_URL?.trim() || "https://developers.cjdropshipping.com/api2.0/v1",
+      env.CJ_API_BASE_URL?.trim() ||
+      env.CJ_DROPSHIPPING_API_BASE?.trim() ||
+      "https://developers.cjdropshipping.com/api2.0/v1",
     apiKey,
     apiSecret,
-    integrationMode: hasCredentials(apiKey, apiSecret) ? requestedMode : "SANDBOX",
+    integrationMode: apiKey ? requestedMode : "SANDBOX",
     requestTimeoutMs: Number(env.CJ_REQUEST_TIMEOUT_MS ?? 15_000),
     maxRetries: Number(env.CJ_MAX_RETRIES ?? 3),
     rateLimitPerMinute: Number(env.CJ_RATE_LIMIT_PER_MINUTE ?? 60),
@@ -44,10 +56,10 @@ export function loadCjConfig(
 
 /** Returns true when live CJ API calls are permitted. */
 export function isCjLiveApiEnabled(config: CjConfig): boolean {
-  return Boolean(config.apiKey && config.apiSecret && config.integrationMode === "LIVE");
+  return Boolean(config.apiKey && config.integrationMode === "LIVE");
 }
 
-/** Returns true when CJ credentials are present in configuration. */
+/** Returns true when CJ API key is present (CJ API 2.0 — secret not required). */
 export function hasCjCredentials(config: CjConfig): boolean {
-  return Boolean(config.apiKey && config.apiSecret);
+  return Boolean(config.apiKey);
 }

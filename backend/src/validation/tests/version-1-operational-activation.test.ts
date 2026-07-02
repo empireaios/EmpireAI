@@ -15,13 +15,19 @@ import { resolveMarketplaceAdapter } from "../../runtime/marketplace-publishing/
 import { buildMarketplaceListingPackage } from "../../runtime/marketplace-publishing/services/marketplace-publishing-service.js";
 
 const PRODUCTION_ENV: NodeJS.ProcessEnv = {
+  NODE_ENV: "production",
+  DATABASE_PATH: "/data/empireai-brain.db",
+  REDIS_URL: "rediss://default:pass@endpoint.upstash.io:6379",
+  SESSION_SECRET: "production-session-secret-with-32-characters-minimum",
+  CORS_ORIGIN: "https://empireai-five.vercel.app",
+  EMPIREAI_REPO_ROOT: "/app",
+  PRODUCTION_DEPLOY_VERIFIED: "true",
   LIVE_COMMERCE_INTEGRATION_MODE: "production",
   CREDENTIAL_VAULT_KEY: "test-vault-key-32-chars-minimum-xx",
   AMAZON_SP_API_CLIENT_ID: "amz-client-id",
   AMAZON_SP_API_CLIENT_SECRET: "amz-client-secret",
   AMAZON_SP_API_REFRESH_TOKEN: "amz-refresh-token",
   CJ_DROPSHIPPING_API_KEY: "cj-key",
-  CJ_DROPSHIPPING_API_SECRET: "cj-secret",
   EMPIRE_V1_OPERATIONAL_READY: "true",
 };
 
@@ -118,6 +124,19 @@ describe("Version 1 Operational Activation (M1–M5)", () => {
     const withoutFlag = { ...PRODUCTION_ENV, EMPIRE_V1_OPERATIONAL_READY: "false" };
     assert.equal(isPillowProductionModeEnabled(withoutFlag), false);
     assert.equal(isPillowProductionModeEnabled(PRODUCTION_ENV), true);
+  });
+
+  it("M2 — CJ live activation detected with API key only (CJ API 2.0)", () => {
+    const keyOnlyEnv: NodeJS.ProcessEnv = {
+      ...PRODUCTION_ENV,
+      CJ_DROPSHIPPING_API_KEY: undefined,
+      CJ_DROPSHIPPING_API_SECRET: undefined,
+      CJ_API_KEY: "cj-key-only",
+      CJ_API_SECRET: undefined,
+    };
+    assert.equal(isCjLiveCommerceActivated(keyOnlyEnv), true);
+    const assessment = assessVersion1OperationalActivation(keyOnlyEnv);
+    assert.equal(assessment.ready, true);
   });
 
   it("M2 — CJ live activation detected with alternate env names", () => {

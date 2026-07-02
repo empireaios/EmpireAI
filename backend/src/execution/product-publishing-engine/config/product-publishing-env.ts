@@ -26,8 +26,7 @@ export function loadProductPublishingEnv(
 ): ProductPublishingEnv {
   const parsed = productPublishingEnvSchema.parse(env);
   const apiKey = env.CJ_DROPSHIPPING_API_KEY ?? env.CJ_API_KEY;
-  const apiSecret = env.CJ_DROPSHIPPING_API_SECRET ?? env.CJ_API_SECRET;
-  const hasCjCredentials = Boolean(apiKey && apiSecret);
+  const hasCjCredentials = Boolean(apiKey?.trim());
   const liveActivated = isCjLiveCommerceActivated(env);
   const mockMode =
     parsed.PRODUCT_PUBLISHING_MOCK ||

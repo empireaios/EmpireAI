@@ -9,7 +9,10 @@ export type { CjRequestOptions } from "./cj-api-client.js";
 
 export { CjRateLimiter } from "./cj-rate-limiter.js";
 
-export { buildCjAuthHeaders, getCjAccessToken, clearCjAuthCache } from "./cj-auth.js";
+export { buildCjAuthHeaders, getCjAccessToken, clearCjAuthCache, getCjAuthCacheStatus } from "./cj-auth.js";
+
+export { runCjLiveAuthProof, hasCjLiveAuthProofCredentials } from "./cj-live-auth-proof.js";
+export type { CjLiveAuthProofResult } from "./cj-live-auth-proof.js";
 
 export {
   mapCjProductToCatalogItem,

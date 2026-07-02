@@ -201,7 +201,7 @@ export function assessProductionInfrastructureReadiness(
       present: cjCreds,
       requiredForHosting: false,
       category: "commerce" as const,
-      note: "B6 — not required to close B5",
+      note: "B6 — CJ API 2.0 key only (CJ_API_KEY or CJ_DROPSHIPPING_API_KEY)",
     },
     {
       key: "CREDENTIAL_VAULT_KEY",

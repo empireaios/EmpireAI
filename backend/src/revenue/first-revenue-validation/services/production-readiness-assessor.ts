@@ -76,7 +76,7 @@ export function assessProductionReadiness(
     blockers.push("META_ADS_LAUNCH_ENABLED=false — ad campaigns cannot go live (Protect The Empire)");
   }
   if (!gates.cjCredentialsConfigured) {
-    blockers.push("CJ_API_KEY/CJ_API_SECRET missing — supplier fulfillment unavailable");
+    blockers.push("CJ_API_KEY missing — supplier fulfillment unavailable");
   }
   if (!gates.liveCjFulfillmentEnabled) {
     blockers.push("LIVE_CJ_FULFILLMENT_ENABLED=false — CJ orders will not submit live");
