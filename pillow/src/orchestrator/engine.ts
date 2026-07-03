@@ -101,6 +101,11 @@ export class EmpireAIOrchestrator {
     this.refreshDiscovery();
   }
 
+  registerEmpireCommander(commander: import("../empire-commander/engine.js").EmpireCommanderEngine): void {
+    this.bundle.empireCommander = commander;
+    this.refreshDiscovery();
+  }
+
   getSubsystems(): SubsystemEntry[] {
     return [...this.subsystems];
   }

@@ -11,6 +11,7 @@ import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
 import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
+import type { EmpireCommanderEngine } from "../empire-commander/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -44,6 +45,7 @@ export class ContextBuilder {
     private readonly cursorBridge?: CursorBridgeEngine,
     private readonly infrastructureCommander?: InfrastructureCommanderEngine,
     private readonly commerceIntelligence?: CommerceIntelligenceEngine,
+    private readonly empireCommander?: EmpireCommanderEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -117,6 +119,12 @@ export class ContextBuilder {
       this.commerceIntelligence,
     );
 
+    const empireCommanderBrief = await resolveEmpireCommanderBrief(
+      request.userMessage,
+      task,
+      this.empireCommander,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -139,6 +147,7 @@ export class ContextBuilder {
       cursorBridgeBrief,
       infrastructureBrief,
       commerceIntelligenceBrief,
+      empireCommanderBrief,
     };
 
     if (this.cacheEnabled) {
@@ -285,6 +294,26 @@ function resolveCommerceIntelligenceBrief(
   return report.executiveBrief;
 }
 
+async function resolveEmpireCommanderBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  commander?: EmpireCommanderEngine,
+): Promise<string | undefined> {
+  if (!userMessage?.trim() || !commander) return undefined;
+
+  const shouldCommand =
+    task === "empire_commander" ||
+    task === "empire_progress" ||
+    /empire health|executive commander|strategic plan|overall empire|prioriti[sz]e empire|cross-domain|empire commander/i.test(
+      userMessage,
+    );
+
+  if (!shouldCommand) return undefined;
+
+  const report = await commander.commandEmpire(userMessage);
+  return report.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
@@ -295,6 +324,7 @@ export async function runContextBuild(
   cursorBridge?: CursorBridgeEngine,
   infrastructureCommander?: InfrastructureCommanderEngine,
   commerceIntelligence?: CommerceIntelligenceEngine,
+  empireCommander?: EmpireCommanderEngine,
 ): Promise<OperationalContext> {
   const builder = new ContextBuilder(
     bootstrap,
@@ -304,6 +334,7 @@ export async function runContextBuild(
     cursorBridge,
     infrastructureCommander,
     commerceIntelligence,
+    empireCommander,
     options,
   );
   return builder.build(request);

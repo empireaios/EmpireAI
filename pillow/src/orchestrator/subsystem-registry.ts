@@ -18,6 +18,7 @@ import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
 import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
+import type { EmpireCommanderEngine } from "../empire-commander/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -41,6 +42,7 @@ export interface PillowSubsystemBundle {
   cursorBridge?: CursorBridgeEngine;
   infrastructureCommander?: InfrastructureCommanderEngine;
   commerceIntelligence?: CommerceIntelligenceEngine;
+  empireCommander?: EmpireCommanderEngine;
 }
 
 interface SubsystemDescriptor {
@@ -299,6 +301,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.commerceIntelligence) return "unavailable";
       try {
         b.commerceIntelligence.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire_commander",
+    label: "Empire Commander",
+    missionId: "PILLOW-EC-001",
+    runtimePath: "pillow/src/empire-commander/",
+    probe: (b) => {
+      if (!b.empireCommander) return "unavailable";
+      try {
+        b.empireCommander.getState();
         return "ready";
       } catch {
         return "unavailable";

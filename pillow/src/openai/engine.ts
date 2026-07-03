@@ -161,6 +161,10 @@ function assembleLlmMessages(
     ? `--- Commerce Intelligence Executive (Phase 7) ---\n${context.commerceIntelligenceBrief}\nPillow performs product, supplier, competitor, and market intelligence. Grand King decides business direction only.`
     : null;
 
+  const empireCommanderAnchor = context.empireCommanderBrief
+    ? `--- Empire Commander (Phase 8) ---\n${context.empireCommanderBrief}\nPillow is unified executive intelligence. The King gives strategic direction; Pillow plans, coordinates, evaluates, and reports across all domains.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -171,6 +175,7 @@ function assembleLlmMessages(
     cursorBridgeAnchor,
     infrastructureAnchor,
     commerceIntelligenceAnchor,
+    empireCommanderAnchor,
     repositoryKnowledge,
     contextBody,
   ]

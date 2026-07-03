@@ -48,6 +48,7 @@ const EMPIRE_TASKS = new Set<ContextTask>([
   "empire_progress",
   "journey_question",
   "commerce_intelligence",
+  "empire_commander",
 ]);
 
 export function resolveOperatingMode(task: ContextTask): PillowOperatingMode {
