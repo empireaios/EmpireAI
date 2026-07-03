@@ -30,6 +30,7 @@ import {
 } from "@/lib/cockpit/pillow/pillow-session-store";
 import { createPillowHostSession, sendPillowChat } from "@/lib/pillow/client";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
+import { useAuth } from "@/lib/auth/context";
 
 type GlobalAiAssistantState = {
   expanded: boolean;
@@ -71,9 +72,11 @@ const GlobalAiAssistantContext = createContext<GlobalAiAssistantContextValue | n
 
 export function GlobalAiAssistantProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const { user } = useAuth();
   const panelPrefs = loadPillowPanelPreferences();
   const savedSession = loadPillowSession();
   const hostSessionInit = useRef(false);
+  const sessionRecoveryAttempted = useRef(false);
 
   const [state, setState] = useState<GlobalAiAssistantState>({
     expanded: panelPrefs.expanded,
@@ -99,6 +102,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   }, [state.expanded, state.panelWidthPx, state.voiceEnabled]);
 
   useEffect(() => {
+    if (!user) return;
     if (hostSessionInit.current) return;
     hostSessionInit.current = true;
 
@@ -131,7 +135,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         }));
       }
     })();
-  }, [pathname, savedSession?.turns]);
+  }, [pathname, savedSession?.turns, user]);
 
   const refreshContext = useCallback(async () => {
     setState((s) => ({ ...s, loading: true }));
@@ -209,6 +213,14 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       return null;
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (!user || !state.connectionError || state.pillowConnected || sessionRecoveryAttempted.current) {
+      return;
+    }
+    sessionRecoveryAttempted.current = true;
+    void ensureHostSession();
+  }, [user, state.connectionError, state.pillowConnected, ensureHostSession]);
 
   const dispatchViaBrain = useCallback(
     async (
