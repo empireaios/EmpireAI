@@ -27,12 +27,13 @@ describe("B6 credential implementation tracking", () => {
     assert.equal(isB5CertificationFrozen(B5_PRODUCTION_ENV), true);
   });
 
-  it("identifies Amazon SP-API as first required integration", () => {
+  it("identifies Amazon US SP-API as first required integration", () => {
     const tracking = assessB6CredentialImplementation(B5_PRODUCTION_ENV);
-    assert.equal(tracking.currentObjectiveId, "B6-01");
-    assert.equal(tracking.firstRequiredIntegration, "Amazon SP-API production credentials");
-    assert.equal(tracking.items[0]!.id, "B6-01");
+    assert.equal(tracking.currentObjectiveId, "B6-01a");
+    assert.equal(tracking.firstRequiredIntegration, "Amazon US SP-API production credentials");
+    assert.equal(tracking.items[0]!.id, "B6-01a");
     assert.equal(tracking.items[0]!.status, "PENDING");
+    assert.equal(tracking.items[1]!.id, "B6-01b");
   });
 
   it("tracks CJ API key without secret for B6-02", () => {

@@ -15,3 +15,18 @@ export {
   supplierIntelligenceModule,
   SupplierIntelligenceModule,
 } from "./module-contract.js";
+export {
+  G3_03_SCHEMA_VERSION,
+  G3_03_CAPABILITIES,
+  G3_03_ENGINE_INTEGRATIONS,
+  G3_03_DATA_FLOW,
+  buildSupplierIntelligenceEngineArchitecture,
+  loadSupplierIntelligenceEngineView,
+  resolveRegistryDiscoveredSuppliers,
+  mapEvaluationToAnalysisContract,
+  rankSupplierAnalysisContracts,
+  buildSupplierComparison,
+  type SupplierIntelligenceAnalysisContract,
+  type SupplierIntelligenceEngineArchitecture,
+  type SupplierIntelligenceEngineView,
+} from "./engine-architecture.js";

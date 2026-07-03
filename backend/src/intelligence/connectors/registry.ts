@@ -63,6 +63,3 @@ export class ProductIntelligenceConnectorRegistry {
     );
   }
 }
-
-export const defaultProductIntelligenceConnectorRegistry =
-  new ProductIntelligenceConnectorRegistry();

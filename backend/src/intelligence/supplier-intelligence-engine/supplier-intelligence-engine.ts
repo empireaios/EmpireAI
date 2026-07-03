@@ -5,6 +5,7 @@ import { deriveSupplierRecommendation } from "./recommendation-engine.js";
 import { computeAllScores, computeConfidence } from "./score-computers.js";
 import { supplierIntelligenceGuard } from "./supplier-guard.js";
 import type {
+  SupplierCatalogRecord,
   SupplierComparison,
   SupplierDiscoveryFilters,
   SupplierDiscoveryResult,
@@ -56,9 +57,15 @@ export class SupplierIntelligenceEvaluationEngine {
     if (!supplier) {
       throw new Error(`Unknown supplier: ${input.supplierId}`);
     }
+    return this.evaluateSupplierCatalogRecord(supplier, input);
+  }
 
-    const scores = computeAllScores(supplier, input);
-    const confidence = computeConfidence(supplier, input);
+  evaluateSupplierCatalogRecord(
+    supplier: SupplierCatalogRecord,
+    input: Omit<SupplierEvaluationInput, "supplierId"> & { supplierId?: string },
+  ): SupplierEvaluation {
+    const scores = computeAllScores(supplier, { ...input, supplierId: supplier.id });
+    const confidence = computeConfidence(supplier, { ...input, supplierId: supplier.id });
     const guardianVerdict = supplierIntelligenceGuard.assess(scores, supplier.verified);
     const { overallRecommendation, explanation } = deriveSupplierRecommendation({
       supplierName: supplier.name,

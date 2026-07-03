@@ -26,7 +26,8 @@ const PRODUCTION_ENV: NodeJS.ProcessEnv = {
   CREDENTIAL_VAULT_KEY: "test-vault-key-32-chars-minimum-xx",
   AMAZON_SP_API_CLIENT_ID: "amz-client-id",
   AMAZON_SP_API_CLIENT_SECRET: "amz-client-secret",
-  AMAZON_SP_API_REFRESH_TOKEN: "amz-refresh-token",
+  AMAZON_SP_API_REFRESH_TOKEN_NA: "amz-refresh-token-na",
+  AMAZON_SP_API_REFRESH_TOKEN_FE: "amz-refresh-token-fe",
   CJ_DROPSHIPPING_API_KEY: "cj-key",
   EMPIRE_V1_OPERATIONAL_READY: "true",
 };
@@ -47,6 +48,8 @@ function clearActivationEnv(): void {
     "CREDENTIAL_VAULT_KEY",
     "AMAZON_SP_API_CLIENT_ID",
     "AMAZON_SP_API_CLIENT_SECRET",
+    "AMAZON_SP_API_REFRESH_TOKEN_NA",
+    "AMAZON_SP_API_REFRESH_TOKEN_FE",
     "AMAZON_SP_API_REFRESH_TOKEN",
     "CJ_DROPSHIPPING_API_KEY",
     "CJ_DROPSHIPPING_API_SECRET",
@@ -85,6 +88,8 @@ describe("Version 1 Operational Activation (M1–M5)", () => {
     assert.equal(adapter.supportsPublish, true);
     assert.equal(adapter.adapterStatus, "CONNECTED");
     assert.equal(isAmazonLiveCommerceActivated(PRODUCTION_ENV), true);
+    assert.equal(isPlatformOperationallyLive("amazon-us", PRODUCTION_ENV), true);
+    assert.equal(isPlatformOperationallyLive("amazon-sg", PRODUCTION_ENV), true);
     assert.equal(isPlatformOperationallyLive("amazon-seller", PRODUCTION_ENV), true);
     assert.equal(isPlatformOperationallyLive("cj-dropshipping", PRODUCTION_ENV), true);
   });

@@ -54,8 +54,18 @@ describe("REAL-002B — Live Commerce Integration", () => {
     assert.equal(dashboard.missionId, "REAL-002B");
     assert.equal(dashboard.liveIntegrationEnabled, true);
     assert.equal(dashboard.mode, "sandbox");
-    assert.ok(dashboard.marketplaceProviders.some((p) => p.providerId === "amazon-seller"));
+    assert.ok(dashboard.marketplaceProviders.some((p) => p.providerId === "amazon-us"));
+    assert.ok(dashboard.marketplaceProviders.some((p) => p.providerId === "amazon-sg"));
     assert.ok(dashboard.supplierProviders.some((p) => p.providerId === "cj-dropshipping"));
+  });
+
+  it("REAL-002B — OAuth uses region-specific Seller Central for amazon-sg", () => {
+    const started = startMarketplaceOAuth({
+      workspaceId: WORKSPACE_ID,
+      providerId: "amazon-sg",
+      redirectUri: "https://empire.local/oauth/callback",
+    });
+    assert.ok(started.authorizationUrl.includes("sellercentral.amazon.sg"));
   });
 
   it("REAL-002B — OAuth lifecycle start and complete", async () => {
@@ -168,12 +178,14 @@ describe("REAL-002B — Live Commerce Integration", () => {
   });
 
   it("REAL-002B — security review and go-live assessment", async () => {
-    await connectLiveCommerceProvider({
-      workspaceId: WORKSPACE_ID,
-      providerId: "amazon-seller",
-      credentialType: "oauth",
-      secretPayload: { accessToken: "token", refreshToken: "refresh" },
-    });
+    for (const providerId of ["amazon-us", "amazon-sg"] as const) {
+      await connectLiveCommerceProvider({
+        workspaceId: WORKSPACE_ID,
+        providerId,
+        credentialType: "oauth",
+        secretPayload: { accessToken: "token", refreshToken: "refresh" },
+      });
+    }
     await connectLiveCommerceProvider({
       workspaceId: WORKSPACE_ID,
       providerId: "cj-dropshipping",
@@ -181,18 +193,20 @@ describe("REAL-002B — Live Commerce Integration", () => {
       secretPayload: { apiKey: "cj-key" },
     });
 
-    const security = runLiveCommerceSecurityReview(WORKSPACE_ID, "amazon-seller");
-    assert.equal(security.passed, true);
+    for (const providerId of ["amazon-us", "amazon-sg"] as const) {
+      const security = runLiveCommerceSecurityReview(WORKSPACE_ID, providerId);
+      assert.equal(security.passed, true);
 
-    for (const syncType of ["catalog", "inventory", "pricing", "orders"] as const) {
-      await runLiveCommerceSync({
-        workspaceId: WORKSPACE_ID,
-        providerId: "amazon-seller",
-        syncType,
-      });
+      for (const syncType of ["catalog", "inventory", "pricing", "orders"] as const) {
+        await runLiveCommerceSync({
+          workspaceId: WORKSPACE_ID,
+          providerId,
+          syncType,
+        });
+      }
+
+      await connectorValidate(WORKSPACE_ID, providerId);
     }
-
-    await connectorValidate(WORKSPACE_ID, "amazon-seller");
 
     const goLive = assessLiveCommerceGoLive(WORKSPACE_ID);
     assert.ok(goLive.score >= 70);

@@ -17,6 +17,10 @@ import {
   evaluateSupplier,
   supplierIntelligenceEvaluationEngine,
 } from "./supplier-intelligence-engine.js";
+import {
+  buildSupplierIntelligenceEngineArchitecture,
+  loadSupplierIntelligenceEngineView,
+} from "./engine-architecture.js";
 import { listMockCatalog } from "./mock-catalog.js";
 
 const CAPABILITIES: readonly SupplierIntelligenceCapability[] = [
@@ -25,6 +29,8 @@ const CAPABILITIES: readonly SupplierIntelligenceCapability[] = [
   "supplier-intelligence.evaluate",
   "supplier-intelligence.compare",
   "supplier-intelligence.score",
+  "supplier-intelligence.architecture",
+  "supplier-intelligence.rank",
 ] as const;
 
 const REQUIRED_INPUTS: readonly ModuleInputSpec[] = [
@@ -44,8 +50,8 @@ const PRODUCED_OUTPUTS: readonly ModuleOutputSpec[] = [
 
 export class SupplierIntelligenceModule implements IntelligenceModuleContract {
   readonly moduleId = "supplier-intelligence" as const;
-  readonly moduleName = "AI Supplier Intelligence";
-  readonly moduleVersion = "1.0.0";
+  readonly moduleName = "Supplier Intelligence Engine";
+  readonly moduleVersion = "g3-03.1.0.0";
   readonly capabilities = CAPABILITIES;
   readonly requiredInputs = REQUIRED_INPUTS;
   readonly producedOutputs = PRODUCED_OUTPUTS;
@@ -74,6 +80,10 @@ export class SupplierIntelligenceModule implements IntelligenceModuleContract {
       if (!Array.isArray(ids) || ids.length < 2) {
         errors.push("supplierIds array with at least 2 entries is required for compare");
       }
+    }
+
+    if (action === "supplier-intelligence.rank" && !task.input.supplierId) {
+      warnings.push("supplierId omitted — returning full ranked supplier catalog");
     }
 
     return { valid: errors.length === 0, errors, warnings };
@@ -143,6 +153,24 @@ export class SupplierIntelligenceModule implements IntelligenceModuleContract {
           };
           confidence = 80;
           break;
+        case "supplier-intelligence.architecture":
+          output = { architecture: buildSupplierIntelligenceEngineArchitecture() };
+          confidence = 95;
+          break;
+        case "supplier-intelligence.rank": {
+          const view = loadSupplierIntelligenceEngineView(workspaceId);
+          if (task.input.supplierId) {
+            const match = view.analysedSuppliers.find((s) => s.supplierId === task.input.supplierId);
+            output = {
+              analysisContract: match ?? null,
+              engineView: view,
+            };
+          } else {
+            output = { engineView: view, topRanked: view.topRanked };
+          }
+          confidence = view.analysedSuppliers.length > 0 ? 85 : 40;
+          break;
+        }
         default:
           throw new Error(`Unhandled action: ${action}`);
       }

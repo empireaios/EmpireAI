@@ -11,12 +11,15 @@ import {
   getCommerceReadinessBlockers,
   getCommerceReadinessEvaluation,
   getCommerceReadinessSummary,
+  registerCrirReport,
+  resetCrirReportRepository,
 } from "../../orchestration/commerce-readiness-engine/index.js";
 import {
   buildGrandKingsDashboard,
   resetEcommerceOsWorkflowRepository,
   runGrandKingsResearchPhase,
   startGrandKingsLaunchWorkflow,
+  approveLaunchProducts,
 } from "../../orchestration/ecommerce-os-orchestrator/index.js";
 import {
   completeMarketplaceConnectionFlow,
@@ -75,6 +78,7 @@ beforeEach(() => {
   resetMarketplaceConnectionRepository();
   resetMarketplaceConnectionEngineRepository();
   resetEcommerceOsWorkflowRepository();
+  resetCrirReportRepository();
 });
 
 afterEach(() => {
@@ -82,6 +86,7 @@ afterEach(() => {
   resetMarketplaceConnectionRepository();
   resetMarketplaceConnectionEngineRepository();
   resetEcommerceOsWorkflowRepository();
+  resetCrirReportRepository();
   resetDatabaseInstance();
 });
 
@@ -108,6 +113,7 @@ describe("LIVE-004 Commerce Readiness Engine", () => {
     assert.ok(evaluation.individualReadiness.payment >= 0);
     assert.ok(evaluation.individualReadiness.governance >= 0);
     assert.ok(evaluation.individualReadiness.treasury >= 0);
+    assert.ok(evaluation.individualReadiness.crir >= 0);
   });
 
   it("returns structured blockers with severity levels", () => {
@@ -199,5 +205,83 @@ describe("LIVE-004 Commerce Readiness Engine", () => {
       workspaceId: WORKSPACE_ID,
       companyId: COMPANY_ID,
     }).launchDecision, evaluation.launchDecision);
+  });
+
+  it("blocks launch when approved products exist without certified CRIR (EI6-09)", () => {
+    connectLaunchInfrastructure();
+
+    const started = startGrandKingsLaunchWorkflow({
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+      brandChoice: "Vennya Kitchen",
+      category: "kitchen",
+      actor: "founder@test.com",
+    });
+    const researched = runGrandKingsResearchPhase(started.workflowId);
+    assert.ok(researched.recommendations.length > 0);
+
+    approveLaunchProducts({
+      workflowId: started.workflowId,
+      productIds: [researched.recommendations[0]!.productId],
+      actor: "founder@test.com",
+    });
+
+    const evaluationBefore = getCommerceReadinessEvaluation({
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+    });
+
+    assert.ok(
+      evaluationBefore.blockers.some(
+        (blocker) => blocker.id === "crir:missing" && blocker.severity === "BLOCKING",
+      ),
+    );
+
+    registerCrirReport({
+      reportId: "CRIR-2026-SA001-001",
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+      supplierIds: [],
+      marketplaceIds: [],
+      preparedBy: "intelligence@test.com",
+      preparedAt: new Date().toISOString(),
+      certificationStatus: "GOVERNANCE_CERTIFIED",
+      survivabilityAssessment: "PASS",
+      sectionsComplete: true,
+      version: "1.0",
+    });
+
+    const evaluationAfter = getCommerceReadinessEvaluation({
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+    });
+
+    assert.equal(evaluationAfter.individualReadiness.crir, 100);
+    assert.ok(!evaluationAfter.blockers.some((blocker) => blocker.id === "crir:missing"));
+  });
+
+  it("blocks launch when CRIR survivability is FAIL", () => {
+    registerCrirReport({
+      reportId: "CRIR-2026-FAIL-001",
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+      supplierIds: [],
+      marketplaceIds: [],
+      preparedBy: "intelligence@test.com",
+      preparedAt: new Date().toISOString(),
+      certificationStatus: "GOVERNANCE_CERTIFIED",
+      survivabilityAssessment: "FAIL",
+      sectionsComplete: true,
+      version: "1.0",
+    });
+
+    const evaluation = getCommerceReadinessEvaluation({
+      workspaceId: WORKSPACE_ID,
+      companyId: COMPANY_ID,
+    });
+
+    assert.ok(evaluation.blockers.some((blocker) => blocker.id === "crir:survivability-fail"));
+    assert.equal(evaluation.individualReadiness.crir, 0);
+    assert.equal(evaluation.launchDecision, "NOT_READY");
   });
 });

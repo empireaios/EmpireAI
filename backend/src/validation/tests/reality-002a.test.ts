@@ -60,8 +60,9 @@ describe("Live Commerce Foundation (REAL-002A / EAR-001)", () => {
     ]);
   });
 
-  it("REAL-002A — marketplace catalog includes Amazon first and future global providers", () => {
-    assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("amazon-seller"));
+  it("REAL-002A — marketplace catalog includes V1 Amazon regions and future global providers", () => {
+    assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("amazon-us"));
+    assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("amazon-sg"));
     assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("ebay"));
     assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("shopee"));
     assert.ok(LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.includes("lazada"));
@@ -74,7 +75,7 @@ describe("Live Commerce Foundation (REAL-002A / EAR-001)", () => {
   });
 
   it("REAL-002A — runtime activation blocked until CONNECTED + VERIFIED + founder approved", async () => {
-    const blocked = assessRuntimeActivation(WORKSPACE_ID, "amazon-seller");
+    const blocked = assessRuntimeActivation(WORKSPACE_ID, "amazon-us");
     assert.equal(blocked.blocked, true);
     assert.equal(blocked.activated, false);
     assert.ok(blocked.blockers.length > 0);
@@ -83,13 +84,13 @@ describe("Live Commerce Foundation (REAL-002A / EAR-001)", () => {
 
     await connectProvider({
       workspaceId: WORKSPACE_ID,
-      providerId: "amazon-seller",
+      providerId: "amazon-us",
       credentialType: "oauth",
       secretPayload: { accessToken: "amazon-token" },
       scopes: ["read_products", "write_products"],
     });
 
-    const connected = assessRuntimeActivation(WORKSPACE_ID, "amazon-seller");
+    const connected = assessRuntimeActivation(WORKSPACE_ID, "amazon-us");
     assert.equal(connected.blocked, true);
     assert.ok(connected.blockers.some((b) => b.includes("VERIFIED") || b.includes("Founder")));
   });
@@ -100,17 +101,17 @@ describe("Live Commerce Foundation (REAL-002A / EAR-001)", () => {
     assert.equal(registry.moduleId, "operational-access-registry");
     assert.ok(registry.records.length >= LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS.length);
 
-    const amazon = registry.records.find((r) => r.providerId === "amazon-seller");
+    const amazon = registry.records.find((r) => r.providerId === "amazon-us");
     assert.ok(amazon);
-    assert.equal(amazon!.platform, "Amazon Seller");
+    assert.equal(amazon!.platform, "Amazon US");
     assert.equal(amazon!.operationalStatus, "BLOCKED");
     assert.ok(amazon!.currentRestrictions.length > 0);
     assert.ok(amazon!.supportedCapabilities.length >= 0);
   });
 
   it("REAL-002A — provider capability verification reports standard operational capabilities", () => {
-    const report = verifyProviderCapabilities(WORKSPACE_ID, "amazon-seller");
-    assert.equal(report.providerId, "amazon-seller");
+    const report = verifyProviderCapabilities(WORKSPACE_ID, "amazon-us");
+    assert.equal(report.providerId, "amazon-us");
     assert.equal(report.capabilities.length, 10);
     assert.ok(report.capabilities.some((c) => c.capability === "publish"));
     assert.ok(report.capabilities.some((c) => c.capability === "webhooks"));
