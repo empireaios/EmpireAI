@@ -75,6 +75,14 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
     "status",
     "decisions",
   ],
+  ux_design: [
+    "ux_contract",
+    "ux_enhancement_register",
+    "journey",
+    "status",
+    "decisions",
+    "pillow_contract",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

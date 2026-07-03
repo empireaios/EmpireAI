@@ -14,6 +14,7 @@ export function selectSourcesForTask(
 
   if (
     task === "continue_ux" ||
+    task === "ux_design" ||
     task === "review_executive_audit" ||
     task === "generate_cursor_mission"
   ) {
@@ -29,7 +30,7 @@ export function selectSourcesForTask(
     }
   }
 
-  if (task === "continue_ux") {
+  if (task === "continue_ux" || task === "ux_design") {
     addIntelligenceEntityPaths(
       intelligence,
       ["ux", "global_component"],

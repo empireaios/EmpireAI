@@ -33,6 +33,7 @@ const MODE_BUDGETS: Record<PillowOperatingMode, PillowTokenBudget> = {
 
 const ENGINEERING_TASKS = new Set<ContextTask>([
   "continue_ux",
+  "ux_design",
   "generate_cursor_mission",
   "review_executive_audit",
   "architecture",

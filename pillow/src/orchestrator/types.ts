@@ -15,7 +15,8 @@ export type SubsystemId =
   | "live_repository_watcher"
   | "grand_king_command_interface"
   | "objective_engine"
-  | "technical_chief";
+  | "technical_chief"
+  | "ux_designer";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

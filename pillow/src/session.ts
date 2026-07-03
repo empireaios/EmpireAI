@@ -43,6 +43,11 @@ import {
   createTechnicalChiefEngine,
 } from "./technical-chief/engine.js";
 import type { TechnicalChiefState } from "./technical-chief/types.js";
+import {
+  UxDesignerEngine,
+  createUxDesignerEngine,
+} from "./ux-designer/engine.js";
+import type { UxDesignerState } from "./ux-designer/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -61,6 +66,7 @@ let commandInterface: GrandKingCommandInterface | null = null;
 let objectiveEngine: ObjectiveEngine | null = null;
 let autonomousRuntime: AutonomousRuntimeOrchestrator | null = null;
 let technicalChiefEngine: TechnicalChiefEngine | null = null;
+let uxDesignerEngine: UxDesignerEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -83,6 +89,7 @@ export interface PillowSession {
   objective: ObjectiveEngine;
   autonomousRuntime: AutonomousRuntimeOrchestrator;
   technicalChief: TechnicalChiefEngine;
+  uxDesigner: UxDesignerEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -102,7 +109,14 @@ export async function startPillow(options?: {
   intelligenceContext = await runRepositoryIntelligence({ bootstrap: result });
   technicalChiefEngine = createTechnicalChiefEngine(result, intelligenceContext);
   await technicalChiefEngine.initialize();
-  contextBuilder = new ContextBuilder(result, intelligenceContext, technicalChiefEngine);
+  uxDesignerEngine = createUxDesignerEngine(result);
+  await uxDesignerEngine.initialize();
+  contextBuilder = new ContextBuilder(
+    result,
+    intelligenceContext,
+    technicalChiefEngine,
+    uxDesignerEngine,
+  );
   memoryEngine = new RepositoryMemoryEngine(result, intelligenceContext, {
     contextBuilder,
   });
@@ -181,6 +195,7 @@ export async function startPillow(options?: {
     objective: objectiveEngine,
     autonomousRuntime,
     technicalChief: technicalChiefEngine,
+    uxDesigner: uxDesignerEngine,
   });
   await orchestrator.initialize();
 
@@ -219,6 +234,7 @@ export async function startPillow(options?: {
     objective: objectiveEngine,
     autonomousRuntime,
     technicalChief: technicalChiefEngine,
+    uxDesigner: uxDesignerEngine,
   };
 }
 
@@ -578,6 +594,15 @@ export function requirePillowTechnicalChief(): TechnicalChiefEngine {
   return technicalChiefEngine;
 }
 
+export function requirePillowUxDesigner(): UxDesignerEngine {
+  if (!uxDesignerEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow UX Designer not ready. Call startPillow() first.",
+    );
+  }
+  return uxDesignerEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -597,6 +622,7 @@ export function resetPillowSession(): void {
   objectiveEngine = null;
   autonomousRuntime = null;
   technicalChiefEngine = null;
+  uxDesignerEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

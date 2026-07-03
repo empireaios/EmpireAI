@@ -14,6 +14,7 @@ import type { GrandKingCommandInterface } from "../command/engine.js";
 import type { ObjectiveEngine } from "../objective/engine.js";
 import type { AutonomousRuntimeOrchestrator } from "../objective/autonomous-runtime-orchestrator.js";
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
+import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -33,6 +34,7 @@ export interface PillowSubsystemBundle {
   objective?: ObjectiveEngine;
   autonomousRuntime?: AutonomousRuntimeOrchestrator;
   technicalChief?: TechnicalChiefEngine;
+  uxDesigner?: UxDesignerEngine;
 }
 
 interface SubsystemDescriptor {
@@ -231,6 +233,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.technicalChief) return "unavailable";
       try {
         b.technicalChief.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ux_designer",
+    label: "AI UX Designer",
+    missionId: "PILLOW-UX-001",
+    runtimePath: "pillow/src/ux-designer/",
+    probe: (b) => {
+      if (!b.uxDesigner) return "unavailable";
+      try {
+        b.uxDesigner.getState();
         return "ready";
       } catch {
         return "unavailable";

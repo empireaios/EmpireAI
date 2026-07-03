@@ -2,6 +2,27 @@ import type { ContextTask } from "./types.js";
 
 const INTENT_PATTERNS: Array<{ task: ContextTask; patterns: RegExp[] }> = [
   {
+    task: "ux_design",
+    patterns: [
+      /make (the |it )?(homepage|home page|dashboard|page|ui|interface)/i,
+      /move (the )?(dashboard|sidebar|panel)/i,
+      /increase spacing/i,
+      /use darker colou?rs?/i,
+      /replace (the )?cards?/i,
+      /make it premium/i,
+      /apple[- ]style/i,
+      /futuristic neon/i,
+      /improve readability/i,
+      /redesign/i,
+      /ux design/i,
+      /make .+ pink/i,
+      /change (the )?colou?r/i,
+      /more spacing/i,
+      /premium design/i,
+      /neon/i,
+    ],
+  },
+  {
     task: "continue_ux",
     patterns: [/continue ux/i, /ux mission/i, /next ux/i, /ux-\d{3}/i],
   },

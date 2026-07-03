@@ -7,6 +7,7 @@ import {
 } from "../repository-intelligence/query-engine.js";
 import { formatKnowledgeModelSummary } from "../repository-intelligence/knowledge-model.js";
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
+import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -36,6 +37,7 @@ export class ContextBuilder {
     private readonly bootstrap: EmpireBootstrapContext,
     private readonly intelligence: RepositoryIntelligenceContext,
     private readonly technicalChief?: TechnicalChiefEngine,
+    private readonly uxDesigner?: UxDesignerEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -85,6 +87,12 @@ export class ContextBuilder {
       this.technicalChief,
     );
 
+    const uxDesignBrief = resolveUxDesignBrief(
+      request.userMessage,
+      task,
+      this.uxDesigner,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -103,6 +111,7 @@ export class ContextBuilder {
       intelligenceSnapshot: buildIntelligenceSnapshot(this.intelligence, this.bootstrap),
       repositoryKnowledgeAnswer,
       technicalChiefBrief,
+      uxDesignBrief,
     };
 
     if (this.cacheEnabled) {
@@ -169,13 +178,40 @@ function resolveTechnicalChiefBrief(
   return analysis.executiveBrief;
 }
 
+function resolveUxDesignBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  uxDesigner?: UxDesignerEngine,
+): string | undefined {
+  if (!userMessage?.trim() || !uxDesigner) return undefined;
+
+  const shouldDesign =
+    task === "ux_design" ||
+    task === "continue_ux" ||
+    /make .+ pink|homepage|redesign|apple[- ]style|premium|spacing|neon|readability|replace card|darker colou?r/i.test(
+      userMessage,
+    );
+
+  if (!shouldDesign) return undefined;
+
+  const result = uxDesigner.designFromRequest(userMessage);
+  return result.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
   request: ContextBuildRequest = {},
   options?: ContextBuilderOptions,
   technicalChief?: TechnicalChiefEngine,
+  uxDesigner?: UxDesignerEngine,
 ): Promise<OperationalContext> {
-  const builder = new ContextBuilder(bootstrap, intelligence, technicalChief, options);
+  const builder = new ContextBuilder(
+    bootstrap,
+    intelligence,
+    technicalChief,
+    uxDesigner,
+    options,
+  );
   return builder.build(request);
 }

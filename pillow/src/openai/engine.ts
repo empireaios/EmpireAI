@@ -145,12 +145,17 @@ function assembleLlmMessages(
     ? `--- Technical Chief (Phase 3) ---\n${context.technicalChiefBrief}\nUse this engineering analysis as authoritative pre-Cursor diagnosis. Do not contradict root cause without new evidence.`
     : null;
 
+  const uxDesignAnchor = context.uxDesignBrief
+    ? `--- AI UX Designer (Phase 4) ---\n${context.uxDesignBrief}\nUse Option A as default unless King selects B or C. Present engineering spec and Cursor mission to King. Do not ask for technical implementation details.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
     learningAnchor,
     councilAnchor,
     technicalChiefAnchor,
+    uxDesignAnchor,
     repositoryKnowledge,
     contextBody,
   ]

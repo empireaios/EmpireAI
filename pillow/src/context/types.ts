@@ -10,6 +10,7 @@ export type ContextTask =
   | "architecture"
   | "repository_intelligence"
   | "technical_chief"
+  | "ux_design"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -65,6 +66,8 @@ export interface OperationalContext {
   repositoryKnowledgeAnswer?: string;
   /** Phase 3 Technical Chief engineering analysis anchor */
   technicalChiefBrief?: string;
+  /** Phase 4 AI UX Designer brief with A/B/C proposals and Cursor-ready spec */
+  uxDesignBrief?: string;
 }
 
 export interface ContextBuilderOptions {
