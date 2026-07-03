@@ -157,6 +157,10 @@ function assembleLlmMessages(
     ? `--- Infrastructure Commander (Phase 6) ---\n${context.infrastructureBrief}\nPillow coordinates GitHub, Railway, and Vercel. Alert Grand King only when executive attention is required.`
     : null;
 
+  const commerceIntelligenceAnchor = context.commerceIntelligenceBrief
+    ? `--- Commerce Intelligence Executive (Phase 7) ---\n${context.commerceIntelligenceBrief}\nPillow performs product, supplier, competitor, and market intelligence. Grand King decides business direction only.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -166,6 +170,7 @@ function assembleLlmMessages(
     uxDesignAnchor,
     cursorBridgeAnchor,
     infrastructureAnchor,
+    commerceIntelligenceAnchor,
     repositoryKnowledge,
     contextBody,
   ]

@@ -17,6 +17,7 @@ import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
+import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -39,6 +40,7 @@ export interface PillowSubsystemBundle {
   uxDesigner?: UxDesignerEngine;
   cursorBridge?: CursorBridgeEngine;
   infrastructureCommander?: InfrastructureCommanderEngine;
+  commerceIntelligence?: CommerceIntelligenceEngine;
 }
 
 interface SubsystemDescriptor {
@@ -282,6 +284,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.infrastructureCommander) return "unavailable";
       try {
         b.infrastructureCommander.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "commerce_intelligence",
+    label: "Commerce Intelligence Executive",
+    missionId: "PILLOW-CI-001",
+    runtimePath: "pillow/src/commerce-intelligence/",
+    probe: (b) => {
+      if (!b.commerceIntelligence) return "unavailable";
+      try {
+        b.commerceIntelligence.getState();
         return "ready";
       } catch {
         return "unavailable";

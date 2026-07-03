@@ -1,0 +1,40 @@
+import type { CompetitorProfile } from "./types.js";
+
+export const COMPETITOR_CATALOG: CompetitorProfile[] = [
+  {
+    id: "COMP-001",
+    name: "Amazon Basics",
+    positioning: "Value mass-market",
+    priceIndex: 85,
+    brandingScore: 70,
+    reviewSentiment: 72,
+    marketingIntensity: 60,
+    websiteQuality: 90,
+    strengths: ["Prime delivery", "Brand trust", "Low prices"],
+    weaknesses: ["Generic positioning", "Thin margins for sellers"],
+  },
+  {
+    id: "COMP-002",
+    name: "Anker",
+    positioning: "Premium tech accessories",
+    priceIndex: 110,
+    brandingScore: 92,
+    reviewSentiment: 88,
+    marketingIntensity: 85,
+    websiteQuality: 95,
+    strengths: ["Strong brand", "Quality perception", "Ad spend"],
+    weaknesses: ["Higher price point", "Crowded SKU space"],
+  },
+  {
+    id: "COMP-003",
+    name: "Generic Dropship Storefronts",
+    positioning: "Low-cost impulse",
+    priceIndex: 70,
+    brandingScore: 40,
+    reviewSentiment: 45,
+    marketingIntensity: 75,
+    websiteQuality: 50,
+    strengths: ["Aggressive Facebook ads", "Fast trend cycling"],
+    weaknesses: ["Poor reviews", "High return rates", "No brand loyalty"],
+  },
+];

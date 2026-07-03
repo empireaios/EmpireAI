@@ -10,6 +10,7 @@ import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
+import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -42,6 +43,7 @@ export class ContextBuilder {
     private readonly uxDesigner?: UxDesignerEngine,
     private readonly cursorBridge?: CursorBridgeEngine,
     private readonly infrastructureCommander?: InfrastructureCommanderEngine,
+    private readonly commerceIntelligence?: CommerceIntelligenceEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -109,6 +111,12 @@ export class ContextBuilder {
       this.infrastructureCommander,
     );
 
+    const commerceIntelligenceBrief = resolveCommerceIntelligenceBrief(
+      request.userMessage,
+      task,
+      this.commerceIntelligence,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -130,6 +138,7 @@ export class ContextBuilder {
       uxDesignBrief,
       cursorBridgeBrief,
       infrastructureBrief,
+      commerceIntelligenceBrief,
     };
 
     if (this.cacheEnabled) {
@@ -257,6 +266,25 @@ async function resolveInfrastructureBrief(
   return report.executiveBrief;
 }
 
+function resolveCommerceIntelligenceBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  commerce?: CommerceIntelligenceEngine,
+): string | undefined {
+  if (!userMessage?.trim() || !commerce) return undefined;
+
+  const shouldAnalyze =
+    task === "commerce_intelligence" ||
+    /product|supplier|market|launch|competitor|commerce|dropship|margin|winning/i.test(
+      userMessage,
+    );
+
+  if (!shouldAnalyze) return undefined;
+
+  const report = commerce.analyzeCommerce(userMessage);
+  return report.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
@@ -266,6 +294,7 @@ export async function runContextBuild(
   uxDesigner?: UxDesignerEngine,
   cursorBridge?: CursorBridgeEngine,
   infrastructureCommander?: InfrastructureCommanderEngine,
+  commerceIntelligence?: CommerceIntelligenceEngine,
 ): Promise<OperationalContext> {
   const builder = new ContextBuilder(
     bootstrap,
@@ -274,6 +303,7 @@ export async function runContextBuild(
     uxDesigner,
     cursorBridge,
     infrastructureCommander,
+    commerceIntelligence,
     options,
   );
   return builder.build(request);

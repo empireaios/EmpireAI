@@ -13,6 +13,7 @@ export type ContextTask =
   | "ux_design"
   | "cursor_bridge"
   | "infrastructure"
+  | "commerce_intelligence"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -74,6 +75,8 @@ export interface OperationalContext {
   cursorBridgeBrief?: string;
   /** Phase 6 Infrastructure Commander operational visibility anchor */
   infrastructureBrief?: string;
+  /** Phase 7 Commerce Intelligence Executive brief with product/supplier/market analysis */
+  commerceIntelligenceBrief?: string;
 }
 
 export interface ContextBuilderOptions {

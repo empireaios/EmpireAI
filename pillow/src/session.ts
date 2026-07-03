@@ -58,6 +58,11 @@ import {
   createInfrastructureCommanderEngine,
 } from "./infrastructure-commander/engine.js";
 import type { InfrastructureCommanderState } from "./infrastructure-commander/types.js";
+import {
+  CommerceIntelligenceEngine,
+  createCommerceIntelligenceEngine,
+} from "./commerce-intelligence/engine.js";
+import type { CommerceIntelligenceState } from "./commerce-intelligence/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -79,6 +84,7 @@ let technicalChiefEngine: TechnicalChiefEngine | null = null;
 let uxDesignerEngine: UxDesignerEngine | null = null;
 let cursorBridgeEngine: CursorBridgeEngine | null = null;
 let infrastructureCommanderEngine: InfrastructureCommanderEngine | null = null;
+let commerceIntelligenceEngine: CommerceIntelligenceEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -104,6 +110,7 @@ export interface PillowSession {
   uxDesigner: UxDesignerEngine;
   cursorBridge: CursorBridgeEngine;
   infrastructureCommander: InfrastructureCommanderEngine;
+  commerceIntelligence: CommerceIntelligenceEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -165,6 +172,11 @@ export async function startPillow(options?: {
     recoveryManager,
   );
   await infrastructureCommanderEngine.initialize();
+  commerceIntelligenceEngine = createCommerceIntelligenceEngine(
+    result,
+    intelligenceContext,
+  );
+  await commerceIntelligenceEngine.initialize();
   contextBuilder = new ContextBuilder(
     result,
     intelligenceContext,
@@ -172,6 +184,7 @@ export async function startPillow(options?: {
     uxDesignerEngine,
     cursorBridgeEngine,
     infrastructureCommanderEngine,
+    commerceIntelligenceEngine,
   );
   dueDiligenceEngine = new ContinuousDueDiligenceEngine(
     result,
@@ -225,6 +238,7 @@ export async function startPillow(options?: {
     uxDesigner: uxDesignerEngine,
     cursorBridge: cursorBridgeEngine,
     infrastructureCommander: infrastructureCommanderEngine,
+    commerceIntelligence: commerceIntelligenceEngine,
   });
   await orchestrator.initialize();
 
@@ -266,6 +280,7 @@ export async function startPillow(options?: {
     uxDesigner: uxDesignerEngine,
     cursorBridge: cursorBridgeEngine,
     infrastructureCommander: infrastructureCommanderEngine,
+    commerceIntelligence: commerceIntelligenceEngine,
   };
 }
 
@@ -652,6 +667,15 @@ export function requirePillowInfrastructureCommander(): InfrastructureCommanderE
   return infrastructureCommanderEngine;
 }
 
+export function requirePillowCommerceIntelligence(): CommerceIntelligenceEngine {
+  if (!commerceIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Commerce Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return commerceIntelligenceEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -674,6 +698,7 @@ export function resetPillowSession(): void {
   uxDesignerEngine = null;
   cursorBridgeEngine = null;
   infrastructureCommanderEngine = null;
+  commerceIntelligenceEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

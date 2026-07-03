@@ -2,6 +2,25 @@ import type { ContextTask } from "./types.js";
 
 const INTENT_PATTERNS: Array<{ task: ContextTask; patterns: RegExp[] }> = [
   {
+    task: "commerce_intelligence",
+    patterns: [
+      /commerce intelligence/i,
+      /product discovery/i,
+      /winning product/i,
+      /what products should/i,
+      /recommend products/i,
+      /supplier ranking/i,
+      /compare suppliers/i,
+      /market opportunity/i,
+      /launch plan/i,
+      /business launch/i,
+      /competitor analysis/i,
+      /profit margin/i,
+      /dropshipping/i,
+      /cj supplier/i,
+    ],
+  },
+  {
     task: "infrastructure",
     patterns: [
       /infrastructure status/i,

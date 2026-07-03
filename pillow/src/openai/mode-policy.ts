@@ -47,6 +47,7 @@ const ENGINEERING_TASKS = new Set<ContextTask>([
 const EMPIRE_TASKS = new Set<ContextTask>([
   "empire_progress",
   "journey_question",
+  "commerce_intelligence",
 ]);
 
 export function resolveOperatingMode(task: ContextTask): PillowOperatingMode {
