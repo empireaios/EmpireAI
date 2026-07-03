@@ -17,6 +17,7 @@ const REQUIRED = [
   "EMPIREAI_CONSTITUTION.md",
   "PILLOW_ARCHITECTURE_CONTRACT.md",
   "JOURNEY.md",
+  "EMPIREAI_CURSOR_RECOVERY_DOCTRINE.md",
 ];
 
 async function exists(target) {
