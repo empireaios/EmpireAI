@@ -2,6 +2,9 @@
 
 import type { BrainLLMProviderName } from "@empireai/pillow";
 import type { CommandResponse } from "@empireai/pillow";
+import type { GovernanceKnowledgeDiagnostics } from "./governance-knowledge.js";
+
+export type { GovernanceKnowledgeDiagnostics };
 
 export type PillowHealthState =
   | "Running"
@@ -57,6 +60,7 @@ export interface PillowHostStatus {
   llmProviders: BrainLLMProviderName[];
   pillowVersion: string;
   missionId: "PILLOW-016";
+  governanceKnowledge: GovernanceKnowledgeDiagnostics | null;
 }
 
 import type { PillowWorkspaceContext } from "./workspace-context.js";

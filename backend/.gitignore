@@ -9,6 +9,7 @@
 # Build
 dist/
 node_modules/
+.pillow-governance-bundle/
 
 # Phase 2.5 validation artifacts (generated)
 phase25-report.json

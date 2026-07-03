@@ -33,7 +33,11 @@ import {
 import { createBrainLLMAdapter } from "./brain-llm-adapter.js";
 import { newPillowRequestId, PillowRequestLogger } from "./pillow-logger.js";
 import { formatPillowWorkspaceContext } from "./workspace-context.js";
-import { resolvePillowRepositoryRoot } from "./resolve-repo-root.js";
+import type { GovernanceKnowledgeDiagnostics } from "./types.js";
+import {
+  getLastGovernanceKnowledgeAudit,
+  resolvePillowRepositoryRootWithAudit,
+} from "./resolve-repo-root.js";
 import { PillowSessionStore } from "./session-store.js";
 import type {
   PillowHealthState,
@@ -80,6 +84,7 @@ export class PillowHost {
   private lastError: string | null = null;
   private activeRequests = 0;
   private repositoryRoot: string | null = null;
+  private governanceKnowledge: GovernanceKnowledgeDiagnostics | null = null;
 
   private llmRouter: LLMRouter | null = null;
   private auditLogger: AuditLogger | undefined;
@@ -115,7 +120,18 @@ export class PillowHost {
     this.lastError = null;
 
     try {
-      this.repositoryRoot = await resolvePillowRepositoryRoot(this.repoRootOverride);
+      const resolution = await resolvePillowRepositoryRootWithAudit(
+        this.repoRootOverride,
+      );
+      this.repositoryRoot = resolution.repositoryRoot;
+      this.governanceKnowledge = resolution.governanceAudit;
+
+      if (!resolution.governanceAudit.requiredKnowledgeFilesFound) {
+        throw new Error(
+          `Pillow governance knowledge incomplete at ${resolution.repositoryRoot}: missing ${resolution.governanceAudit.missingKnowledgeFiles.join(", ")}`,
+        );
+      }
+
       resetPillowSession();
 
       const pillowProductionMode = isPillowProductionModeEnabled();
@@ -164,9 +180,18 @@ export class PillowHost {
       this.lifecycle = "error";
       this.health = "Error";
       this.lastError = error instanceof Error ? error.message : String(error);
+      this.governanceKnowledge =
+        this.governanceKnowledge ?? getLastGovernanceKnowledgeAudit();
       this.pillowSession = null;
       this.llmLayer = null;
-      logger.error({ error: this.lastError }, "Pillow host failed to start");
+      logger.error(
+        {
+          error: this.lastError,
+          repositoryRoot: this.repositoryRoot,
+          governanceKnowledge: this.governanceKnowledge,
+        },
+        "Pillow host failed to start",
+      );
       throw error;
     }
   }
@@ -222,6 +247,7 @@ export class PillowHost {
       llmProviders: this.llmLayer?.listAvailableProviders() ?? [],
       pillowVersion: "PILLOW-016",
       missionId: "PILLOW-016",
+      governanceKnowledge: this.governanceKnowledge,
     };
   }
 

@@ -49,12 +49,17 @@ export async function registerPillowRoutes(
 
   app.get("/api/pillow/health", async (_request, reply) => {
     const status = pillowHost.getStatus();
+    const governance = status.governanceKnowledge;
     return reply.send({
       health: status.health,
       lifecycle: status.lifecycle,
       missionId: status.missionId,
       lastHeartbeatAt: status.lastHeartbeatAt,
       lastError: status.lastError,
+      resolvedRepoRoot: status.repositoryRoot,
+      requiredKnowledgeFilesFound: governance?.requiredKnowledgeFilesFound ?? false,
+      missingKnowledgeFiles: governance?.missingKnowledgeFiles ?? [],
+      doctrineFilesFound: governance?.doctrineFilesFound ?? 0,
     });
   });
 
