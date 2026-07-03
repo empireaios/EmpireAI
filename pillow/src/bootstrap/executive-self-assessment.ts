@@ -36,6 +36,7 @@ export interface ExecutiveAssessmentInput {
   journeyText: string | null;
   statusText: string | null;
   constitutionText: string | null;
+  pillowArchitectureContractText: string | null;
   pillowEnhancementRegisterText: string | null;
 }
 
@@ -43,14 +44,21 @@ export async function gatherExecutiveAssessmentInput(
   reader: RepositoryReader,
   artifacts: LoadedArtifact[],
 ): Promise<ExecutiveAssessmentInput> {
-  const [soulText, journeyText, statusText, constitutionText, pillowEnhancementRegisterText] =
-    await Promise.all([
-      reader.readText("EMPIREAI_SOUL.md"),
-      reader.readText("JOURNEY.md"),
-      reader.readText("EMPIREAI_STATUS.md"),
-      reader.readText("EMPIREAI_CONSTITUTION.md"),
-      reader.readText("docs/governance/PILLOW_ENHANCEMENT_REGISTER.md"),
-    ]);
+  const [
+    soulText,
+    journeyText,
+    statusText,
+    constitutionText,
+    pillowArchitectureContractText,
+    pillowEnhancementRegisterText,
+  ] = await Promise.all([
+    reader.readText("EMPIREAI_SOUL.md"),
+    reader.readText("JOURNEY.md"),
+    reader.readText("EMPIREAI_STATUS.md"),
+    reader.readText("EMPIREAI_CONSTITUTION.md"),
+    reader.readText("PILLOW_ARCHITECTURE_CONTRACT.md"),
+    reader.readText("docs/governance/PILLOW_ENHANCEMENT_REGISTER.md"),
+  ]);
 
   return {
     artifacts,
@@ -58,6 +66,7 @@ export async function gatherExecutiveAssessmentInput(
     journeyText,
     statusText,
     constitutionText,
+    pillowArchitectureContractText,
     pillowEnhancementRegisterText,
   };
 }
@@ -177,14 +186,21 @@ function assessApprovedExecutiveKnowledge(
   input: ExecutiveAssessmentInput,
 ): ExecutiveSelfAssessmentCriterion {
   const present = input.artifacts.filter((artifact) => artifact.present);
-  const hasSoul = present.some((a) => a.descriptor.relativePath === "EMPIREAI_SOUL.md");
-  const hasConstitution = present.some(
-    (a) => a.descriptor.relativePath === "EMPIREAI_CONSTITUTION.md",
+  const hasSoul =
+    present.some((a) => a.descriptor.relativePath === "EMPIREAI_SOUL.md") ||
+    Boolean(input.soulText?.trim());
+  const hasConstitution =
+    present.some((a) => a.descriptor.relativePath === "EMPIREAI_CONSTITUTION.md") ||
+    Boolean(input.constitutionText?.trim());
+  const hasPillowContract =
+    present.some((a) => a.descriptor.relativePath === "PILLOW_ARCHITECTURE_CONTRACT.md") ||
+    Boolean(input.pillowArchitectureContractText?.trim());
+  const doctrineCount = Math.max(
+    present.filter((a) => a.descriptor.category === "doctrine").length,
+    present.filter((a) =>
+      /^EMPIREAI_.*_DOCTRINE/i.test(a.descriptor.relativePath.split("/").pop() ?? ""),
+    ).length,
   );
-  const hasPillowContract = present.some(
-    (a) => a.descriptor.relativePath === "PILLOW_ARCHITECTURE_CONTRACT.md",
-  );
-  const doctrineCount = present.filter((a) => a.descriptor.category === "doctrine").length;
 
   const passed = hasSoul && hasConstitution && hasPillowContract && doctrineCount >= 2;
 

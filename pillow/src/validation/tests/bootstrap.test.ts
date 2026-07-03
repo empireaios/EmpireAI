@@ -212,6 +212,7 @@ describe("PILLOW-002 Repository Reconstruction Bootstrap", () => {
       journeyText: "# Journey\nVersion 1\nPillow Runtime",
       statusText: "# Status\nCurrent position: test",
       constitutionText: "# Constitution\nPrimary mission CTD-002 SUCCESS-001 USD 100,000 net profit",
+      pillowArchitectureContractText: "# Pillow Architecture Contract\n",
       pillowEnhancementRegisterText: "| PILLOW-ENH-001 | x | Future |",
     };
 

@@ -39,6 +39,10 @@ function buildRepositoryRootCandidates(override?: string): string[] {
   };
 
   push(override);
+  // Railway runtime checkout may omit governance trees; prefer the build-time bundle first.
+  if (process.env.RAILWAY_PROJECT_ID || process.env.RAILWAY_ENVIRONMENT) {
+    push(resolveBundledGovernanceRoot());
+  }
   push(env.EMPIREAI_REPO_ROOT);
   push(process.env.EMPIREAI_REPO_ROOT);
   if (process.env.RAILWAY_PROJECT_ID || process.env.RAILWAY_ENVIRONMENT) {
@@ -46,7 +50,9 @@ function buildRepositoryRootCandidates(override?: string): string[] {
   }
   push(process.cwd());
   push(path.resolve(__dirname, "../../../.."));
-  push(resolveBundledGovernanceRoot());
+  if (!(process.env.RAILWAY_PROJECT_ID || process.env.RAILWAY_ENVIRONMENT)) {
+    push(resolveBundledGovernanceRoot());
+  }
 
   return ordered;
 }
