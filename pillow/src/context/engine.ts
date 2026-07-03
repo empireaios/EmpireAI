@@ -6,6 +6,7 @@ import {
   queryRepositoryKnowledge,
 } from "../repository-intelligence/query-engine.js";
 import { formatKnowledgeModelSummary } from "../repository-intelligence/knowledge-model.js";
+import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -34,6 +35,7 @@ export class ContextBuilder {
   constructor(
     private readonly bootstrap: EmpireBootstrapContext,
     private readonly intelligence: RepositoryIntelligenceContext,
+    private readonly technicalChief?: TechnicalChiefEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -77,6 +79,12 @@ export class ContextBuilder {
       this.intelligence,
     );
 
+    const technicalChiefBrief = resolveTechnicalChiefBrief(
+      request.userMessage,
+      task,
+      this.technicalChief,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -94,6 +102,7 @@ export class ContextBuilder {
       slices,
       intelligenceSnapshot: buildIntelligenceSnapshot(this.intelligence, this.bootstrap),
       repositoryKnowledgeAnswer,
+      technicalChiefBrief,
     };
 
     if (this.cacheEnabled) {
@@ -140,12 +149,33 @@ function resolveRepositoryKnowledgeAnswer(
   return `${summary}\n\n--- Deterministic Q&A ---\n${answer}`;
 }
 
+function resolveTechnicalChiefBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  technicalChief?: TechnicalChiefEngine,
+): string | undefined {
+  if (!userMessage?.trim() || !technicalChief) return undefined;
+
+  const shouldAnalyze =
+    task === "technical_chief" ||
+    task === "recovery" ||
+    /root cause|diagnose|why.*fail|failed to fetch|502|503|504|what broke|safest fix|technical chief/i.test(
+      userMessage,
+    );
+
+  if (!shouldAnalyze) return undefined;
+
+  const analysis = technicalChief.analyzeIssue({ problemDescription: userMessage });
+  return analysis.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
   request: ContextBuildRequest = {},
   options?: ContextBuilderOptions,
+  technicalChief?: TechnicalChiefEngine,
 ): Promise<OperationalContext> {
-  const builder = new ContextBuilder(bootstrap, intelligence, options);
+  const builder = new ContextBuilder(bootstrap, intelligence, technicalChief, options);
   return builder.build(request);
 }

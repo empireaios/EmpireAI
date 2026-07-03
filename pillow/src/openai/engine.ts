@@ -141,11 +141,16 @@ function assembleLlmMessages(
     ? `--- Repository Intelligence (Phase 2) ---\n${context.repositoryKnowledgeAnswer}`
     : null;
 
+  const technicalChiefAnchor = context.technicalChiefBrief
+    ? `--- Technical Chief (Phase 3) ---\n${context.technicalChiefBrief}\nUse this engineering analysis as authoritative pre-Cursor diagnosis. Do not contradict root cause without new evidence.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
     learningAnchor,
     councilAnchor,
+    technicalChiefAnchor,
     repositoryKnowledge,
     contextBody,
   ]

@@ -13,6 +13,7 @@ import type { LiveRepositoryWatcherEngine } from "../watcher/engine.js";
 import type { GrandKingCommandInterface } from "../command/engine.js";
 import type { ObjectiveEngine } from "../objective/engine.js";
 import type { AutonomousRuntimeOrchestrator } from "../objective/autonomous-runtime-orchestrator.js";
+import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -31,6 +32,7 @@ export interface PillowSubsystemBundle {
   command?: GrandKingCommandInterface;
   objective?: ObjectiveEngine;
   autonomousRuntime?: AutonomousRuntimeOrchestrator;
+  technicalChief?: TechnicalChiefEngine;
 }
 
 interface SubsystemDescriptor {
@@ -214,6 +216,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.objective) return "unavailable";
       try {
         b.objective.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "technical_chief",
+    label: "Technical Chief",
+    missionId: "PILLOW-TC-001",
+    runtimePath: "pillow/src/technical-chief/",
+    probe: (b) => {
+      if (!b.technicalChief) return "unavailable";
+      try {
+        b.technicalChief.getState();
         return "ready";
       } catch {
         return "unavailable";

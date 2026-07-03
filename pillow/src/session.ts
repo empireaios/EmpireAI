@@ -38,6 +38,11 @@ import {
   createAutonomousRuntimeOrchestrator,
 } from "./objective/autonomous-runtime-orchestrator.js";
 import type { ObjectiveEngineState } from "./objective/types.js";
+import {
+  TechnicalChiefEngine,
+  createTechnicalChiefEngine,
+} from "./technical-chief/engine.js";
+import type { TechnicalChiefState } from "./technical-chief/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -55,6 +60,7 @@ let repositoryWatcher: LiveRepositoryWatcherEngine | null = null;
 let commandInterface: GrandKingCommandInterface | null = null;
 let objectiveEngine: ObjectiveEngine | null = null;
 let autonomousRuntime: AutonomousRuntimeOrchestrator | null = null;
+let technicalChiefEngine: TechnicalChiefEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -76,6 +82,7 @@ export interface PillowSession {
   command: GrandKingCommandInterface;
   objective: ObjectiveEngine;
   autonomousRuntime: AutonomousRuntimeOrchestrator;
+  technicalChief: TechnicalChiefEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -93,7 +100,9 @@ export async function startPillow(options?: {
   bootstrapContext = result;
   executiveDirectionContext = ExecutiveDirectionContext.fromBootstrap(result);
   intelligenceContext = await runRepositoryIntelligence({ bootstrap: result });
-  contextBuilder = new ContextBuilder(result, intelligenceContext);
+  technicalChiefEngine = createTechnicalChiefEngine(result, intelligenceContext);
+  await technicalChiefEngine.initialize();
+  contextBuilder = new ContextBuilder(result, intelligenceContext, technicalChiefEngine);
   memoryEngine = new RepositoryMemoryEngine(result, intelligenceContext, {
     contextBuilder,
   });
@@ -171,6 +180,7 @@ export async function startPillow(options?: {
     watcher: repositoryWatcher,
     objective: objectiveEngine,
     autonomousRuntime,
+    technicalChief: technicalChiefEngine,
   });
   await orchestrator.initialize();
 
@@ -208,6 +218,7 @@ export async function startPillow(options?: {
     command: commandInterface,
     objective: objectiveEngine,
     autonomousRuntime,
+    technicalChief: technicalChiefEngine,
   };
 }
 
@@ -558,6 +569,15 @@ export function requirePillowMemory(): RepositoryMemoryEngine {
   return memoryEngine;
 }
 
+export function requirePillowTechnicalChief(): TechnicalChiefEngine {
+  if (!technicalChiefEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Technical Chief not ready. Call startPillow() first.",
+    );
+  }
+  return technicalChiefEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -576,6 +596,7 @@ export function resetPillowSession(): void {
   commandInterface = null;
   objectiveEngine = null;
   autonomousRuntime = null;
+  technicalChiefEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

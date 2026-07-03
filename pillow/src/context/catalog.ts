@@ -66,6 +66,15 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
     "journey",
     "decisions",
   ],
+  technical_chief: [
+    "pillow_contract",
+    "managed_deployment",
+    "architecture_doc",
+    "empire_recovery",
+    "journey",
+    "status",
+    "decisions",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

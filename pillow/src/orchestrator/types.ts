@@ -14,7 +14,8 @@ export type SubsystemId =
   | "autonomous_improvement"
   | "live_repository_watcher"
   | "grand_king_command_interface"
-  | "objective_engine";
+  | "objective_engine"
+  | "technical_chief";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

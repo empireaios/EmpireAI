@@ -9,6 +9,7 @@ export type ContextTask =
   | "journey_question"
   | "architecture"
   | "repository_intelligence"
+  | "technical_chief"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -62,6 +63,8 @@ export interface OperationalContext {
   executiveReasoning?: import("../bootstrap/types.js").ExecutiveReasoningComposition;
   /** Phase 2 deterministic repository Q&A anchor for LLM assembly */
   repositoryKnowledgeAnswer?: string;
+  /** Phase 3 Technical Chief engineering analysis anchor */
+  technicalChiefBrief?: string;
 }
 
 export interface ContextBuilderOptions {
