@@ -22,7 +22,15 @@ const SCAN_ROOTS: Array<{
   { relativeDir: "pillow/src/intelligence", layer: "pillow", owner: "Repository Intelligence", maxDepth: 2 },
   { relativeDir: "pillow/src/repository-intelligence", layer: "pillow", owner: "Phase 2 Repository Intelligence", maxDepth: 2 },
   { relativeDir: "pillow/src/context", layer: "pillow", owner: "Context Builder", maxDepth: 2 },
+  { relativeDir: "pillow/src/openai", layer: "pillow", owner: "OpenAI Integration", maxDepth: 2 },
+  { relativeDir: "pillow/src/validation/tests", layer: "pillow", owner: "Pillow Validation Tests", maxDepth: 1 },
+  { relativeDir: "backend/src/validation/tests", layer: "brain", owner: "Backend Validation Tests", maxDepth: 1 },
+  { relativeDir: "backend/src/auth", layer: "brain", owner: "Auth & Permissions", maxDepth: 2 },
+  { relativeDir: "backend/src/orchestration", layer: "brain", owner: "Orchestration Layer", maxDepth: 1 },
+  { relativeDir: "docs/governance", layer: "governance", owner: "Governance Docs", maxDepth: 1 },
+  { relativeDir: "docs/architecture", layer: "governance", owner: "Architecture Docs", maxDepth: 1 },
   { relativeDir: "deployment", layer: "deployment", owner: "Deployment Docs", maxDepth: 1 },
+  { relativeDir: "empireai-web/lib/cockpit/global-assistant", layer: "frontend", owner: "Global AI Assistant", maxDepth: 2 },
 ];
 
 /** Known Cockpit screen routes → component paths. */

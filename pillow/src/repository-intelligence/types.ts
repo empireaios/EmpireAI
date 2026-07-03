@@ -67,6 +67,26 @@ export interface RepositoryKnowledgeModel {
   screens: ScreenRouteEntry[];
   dependencies: DependencyLink[];
   indexedPaths: number;
+  /** Consolidated repository domains (source, docs, governance, tests, deployment). */
+  domains: RepositoryDomainSummary[];
+  /** Critical dependency paths for change-impact analysis. */
+  criticalPaths: string[];
+  missions: MissionRegistryEntry[];
+}
+
+export interface RepositoryDomainSummary {
+  id: string;
+  name: string;
+  rootPath: string;
+  artifactCount: number;
+  description: string;
+}
+
+export interface MissionRegistryEntry {
+  id: string;
+  name: string;
+  rootPath: string;
+  layer: string;
 }
 
 export interface RepositoryKnowledgeQueryAnswer {

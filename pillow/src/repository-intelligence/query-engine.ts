@@ -4,6 +4,7 @@ import type {
   RepositoryKnowledgeQueryResult,
 } from "./types.js";
 import { findModuleByKeyword, findScreenByKeyword } from "./code-indexer.js";
+import { findMissionById, findMissionByKeyword } from "./mission-registry.js";
 
 /**
  * Phase 2 repository question answering — deterministic engineering queries.
@@ -22,7 +23,7 @@ export function queryRepositoryKnowledge(
     answers.push(answerWhereImplemented(normalized, model));
   }
 
-  if (normalized.includes("who owns") || normalized.includes("owner of")) {
+  if (normalized.includes("who owns") || normalized.includes("owner of") || normalized.includes("what owns")) {
     answers.push(answerWhoOwns(normalized, model));
   }
 
@@ -148,24 +149,22 @@ function answerMissionIntroduced(
   normalized: string,
   model: RepositoryKnowledgeModel,
 ): RepositoryKnowledgeQueryAnswer {
-  const missionMatch = normalized.match(/pillow-\d{3}|real-\d{3}|ux-\d{3}|scr-\d{3}/i);
-  const mission = missionMatch?.[0]?.toUpperCase() ?? "PILLOW-016";
+  const missionMatch = normalized.match(/pillow-\d{3}|pillow-ri-\d{3}|real-\d{3}|ux-\d{3}|scr-\d{3}|g[0-9]-\d{2}/i);
+  const missionId = missionMatch?.[0]?.toUpperCase() ?? "PILLOW-016";
 
-  const hints: Record<string, string> = {
-    "PILLOW-002": "Repository Bootstrap — pillow/src/bootstrap/",
-    "PILLOW-003": "Repository Intelligence — pillow/src/intelligence/",
-    "PILLOW-004": "Context Builder — pillow/src/context/",
-    "PILLOW-016": "Pillow Host + OpenAI layer — backend/src/orchestration/pillow-host/",
-    "SCR-800": "Development Pillow Chat — empireai-web/components/cockpit/development/",
-  };
+  const registered = findMissionById(missionId) ?? findMissionByKeyword(missionId.toLowerCase());
+  const fromModel = model.missions.find((m) => m.id === missionId);
 
-  const path = hints[mission] ?? "JOURNEY.md and PILLOW_ARCHITECTURE_CONTRACT.md";
+  const entry = registered ?? fromModel;
+  const path = entry?.rootPath ?? "JOURNEY.md and PILLOW_ARCHITECTURE_CONTRACT.md";
 
   return {
     question: "Which mission introduced this?",
-    answer: `${mission} is documented in JOURNEY.md and implemented near ${path}. Cross-reference JOURNEY_AUDIT.md for acceptance history.`,
+    answer: entry
+      ? `${entry.id} (${entry.name}) is implemented at ${entry.rootPath}. Cross-reference JOURNEY.md and JOURNEY_AUDIT.md for acceptance history.`
+      : `${missionId} is documented in JOURNEY.md and implemented near ${path}. Cross-reference JOURNEY_AUDIT.md for acceptance history.`,
     sources: ["JOURNEY.md", "JOURNEY_AUDIT.md", path],
-    confidence: hints[mission] ? "high" : "medium",
+    confidence: entry ? "high" : "medium",
   };
 }
 

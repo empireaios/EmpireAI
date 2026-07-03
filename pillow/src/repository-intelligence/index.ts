@@ -7,7 +7,8 @@ export {
   findModuleByKeyword,
   findScreenByKeyword,
 } from "./code-indexer.js";
-export { buildRepositoryKnowledgeModel } from "./knowledge-model.js";
+export { buildRepositoryKnowledgeModel, formatKnowledgeModelSummary } from "./knowledge-model.js";
+export { MISSION_REGISTRY, findMissionById, findMissionByKeyword } from "./mission-registry.js";
 export {
   queryRepositoryKnowledge,
   formatRepositoryKnowledgeAnswer,
@@ -22,4 +23,6 @@ export type {
   RuntimeFlow,
   ScreenRouteEntry,
   SystemLayer,
+  RepositoryDomainSummary,
+  MissionRegistryEntry,
 } from "./types.js";

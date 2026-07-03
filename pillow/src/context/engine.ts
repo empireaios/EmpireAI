@@ -5,6 +5,7 @@ import {
   formatRepositoryKnowledgeAnswer,
   queryRepositoryKnowledge,
 } from "../repository-intelligence/query-engine.js";
+import { formatKnowledgeModelSummary } from "../repository-intelligence/knowledge-model.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -132,7 +133,11 @@ function resolveRepositoryKnowledgeAnswer(
   if (!shouldQuery) return undefined;
 
   const result = queryRepositoryKnowledge(userMessage, intelligence.knowledgeModel);
-  return formatRepositoryKnowledgeAnswer(result) ?? undefined;
+  const answer = formatRepositoryKnowledgeAnswer(result);
+  if (!answer) return undefined;
+
+  const summary = formatKnowledgeModelSummary(intelligence.knowledgeModel);
+  return `${summary}\n\n--- Deterministic Q&A ---\n${answer}`;
 }
 
 export async function runContextBuild(

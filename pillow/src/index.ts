@@ -80,6 +80,7 @@ export {
   buildRepositoryKnowledgeModel,
   queryRepositoryKnowledge,
   formatRepositoryKnowledgeAnswer,
+  formatKnowledgeModelSummary,
 } from "./repository-intelligence/index.js";
 export type { RepositoryKnowledgeModel } from "./repository-intelligence/types.js";
 export {

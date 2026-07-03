@@ -39,6 +39,9 @@ describe("Phase 2 Repository Intelligence (PILLOW-RI-001)", () => {
     assert.ok(model.screens.length >= 3);
     assert.ok(model.dependencies.length >= 5);
     assert.ok(model.indexedPaths > 0);
+    assert.ok(model.domains.length >= 6);
+    assert.ok(model.missions.length >= 8);
+    assert.ok(model.criticalPaths.length >= 3);
   });
 
   test("Where is pillow-host implemented?", async () => {
