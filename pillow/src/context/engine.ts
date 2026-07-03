@@ -9,6 +9,7 @@ import { formatKnowledgeModelSummary } from "../repository-intelligence/knowledg
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
+import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -40,6 +41,7 @@ export class ContextBuilder {
     private readonly technicalChief?: TechnicalChiefEngine,
     private readonly uxDesigner?: UxDesignerEngine,
     private readonly cursorBridge?: CursorBridgeEngine,
+    private readonly infrastructureCommander?: InfrastructureCommanderEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -101,6 +103,12 @@ export class ContextBuilder {
       this.cursorBridge,
     );
 
+    const infrastructureBrief = await resolveInfrastructureBrief(
+      request.userMessage,
+      task,
+      this.infrastructureCommander,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -121,6 +129,7 @@ export class ContextBuilder {
       technicalChiefBrief,
       uxDesignBrief,
       cursorBridgeBrief,
+      infrastructureBrief,
     };
 
     if (this.cacheEnabled) {
@@ -227,6 +236,27 @@ function resolveCursorBridgeBrief(
   return result.executiveBrief;
 }
 
+async function resolveInfrastructureBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  commander?: InfrastructureCommanderEngine,
+): Promise<string | undefined> {
+  if (!userMessage?.trim() || !commander) return undefined;
+
+  const shouldReport =
+    task === "infrastructure" ||
+    task === "recovery" ||
+    task === "cursor_bridge" ||
+    /infrastructure|railway|vercel|deployment status|production readiness|platform health|service availability/i.test(
+      userMessage,
+    );
+
+  if (!shouldReport) return undefined;
+
+  const report = await commander.generateExecutiveReport(userMessage);
+  return report.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
@@ -235,6 +265,7 @@ export async function runContextBuild(
   technicalChief?: TechnicalChiefEngine,
   uxDesigner?: UxDesignerEngine,
   cursorBridge?: CursorBridgeEngine,
+  infrastructureCommander?: InfrastructureCommanderEngine,
 ): Promise<OperationalContext> {
   const builder = new ContextBuilder(
     bootstrap,
@@ -242,6 +273,7 @@ export async function runContextBuild(
     technicalChief,
     uxDesigner,
     cursorBridge,
+    infrastructureCommander,
     options,
   );
   return builder.build(request);

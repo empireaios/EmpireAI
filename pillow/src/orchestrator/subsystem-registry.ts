@@ -16,6 +16,7 @@ import type { AutonomousRuntimeOrchestrator } from "../objective/autonomous-runt
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
 import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
+import type { InfrastructureCommanderEngine } from "../infrastructure-commander/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -37,6 +38,7 @@ export interface PillowSubsystemBundle {
   technicalChief?: TechnicalChiefEngine;
   uxDesigner?: UxDesignerEngine;
   cursorBridge?: CursorBridgeEngine;
+  infrastructureCommander?: InfrastructureCommanderEngine;
 }
 
 interface SubsystemDescriptor {
@@ -265,6 +267,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.cursorBridge) return "unavailable";
       try {
         b.cursorBridge.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "infrastructure_commander",
+    label: "Infrastructure Commander",
+    missionId: "PILLOW-IC-001",
+    runtimePath: "pillow/src/infrastructure-commander/",
+    probe: (b) => {
+      if (!b.infrastructureCommander) return "unavailable";
+      try {
+        b.infrastructureCommander.getState();
         return "ready";
       } catch {
         return "unavailable";

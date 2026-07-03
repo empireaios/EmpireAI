@@ -153,6 +153,10 @@ function assembleLlmMessages(
     ? `--- Autonomous Cursor Bridge (Phase 5) ---\n${context.cursorBridgeBrief}\nPillow is Engineering Chief. Dispatch complete missions to Cursor. Validate results. Report completion. Grand King gives business instructions only.`
     : null;
 
+  const infrastructureAnchor = context.infrastructureBrief
+    ? `--- Infrastructure Commander (Phase 6) ---\n${context.infrastructureBrief}\nPillow coordinates GitHub, Railway, and Vercel. Alert Grand King only when executive attention is required.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -161,6 +165,7 @@ function assembleLlmMessages(
     technicalChiefAnchor,
     uxDesignAnchor,
     cursorBridgeAnchor,
+    infrastructureAnchor,
     repositoryKnowledge,
     contextBody,
   ]

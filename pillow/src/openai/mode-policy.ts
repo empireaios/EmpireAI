@@ -35,6 +35,7 @@ const ENGINEERING_TASKS = new Set<ContextTask>([
   "continue_ux",
   "ux_design",
   "cursor_bridge",
+  "infrastructure",
   "generate_cursor_mission",
   "review_executive_audit",
   "architecture",

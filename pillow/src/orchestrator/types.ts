@@ -17,7 +17,8 @@ export type SubsystemId =
   | "objective_engine"
   | "technical_chief"
   | "ux_designer"
-  | "cursor_bridge";
+  | "cursor_bridge"
+  | "infrastructure_commander";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

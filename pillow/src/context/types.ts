@@ -12,6 +12,7 @@ export type ContextTask =
   | "technical_chief"
   | "ux_design"
   | "cursor_bridge"
+  | "infrastructure"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -71,6 +72,8 @@ export interface OperationalContext {
   uxDesignBrief?: string;
   /** Phase 5 Autonomous Cursor Bridge engineering mission and validation anchor */
   cursorBridgeBrief?: string;
+  /** Phase 6 Infrastructure Commander operational visibility anchor */
+  infrastructureBrief?: string;
 }
 
 export interface ContextBuilderOptions {
