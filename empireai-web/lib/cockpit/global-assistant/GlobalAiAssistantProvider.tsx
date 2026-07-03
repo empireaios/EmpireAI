@@ -20,6 +20,7 @@ import type {
 } from "@/lib/cockpit/global-assistant/types";
 import {
   appendPillowTurn,
+  clearPillowHostSession,
   loadPillowPanelPreferences,
   loadPillowSession,
   savePillowPanelPreferences,
@@ -42,6 +43,7 @@ type GlobalAiAssistantState = {
   conversation: PillowConversationTurn[];
   hostSessionId: string | null;
   pillowConnected: boolean;
+  connectionError: string | null;
 };
 
 type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
@@ -84,7 +86,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     queryDraft: "",
     conversation: savedSession?.turns ?? [],
     hostSessionId: savedSession?.hostSessionId ?? null,
-    pillowConnected: Boolean(savedSession?.hostSessionId),
+    pillowConnected: false,
+    connectionError: null,
   });
 
   useEffect(() => {
@@ -100,15 +103,6 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     hostSessionInit.current = true;
 
     void (async () => {
-      if (savedSession?.hostSessionId) {
-        setState((s) => ({
-          ...s,
-          hostSessionId: savedSession.hostSessionId ?? null,
-          pillowConnected: true,
-        }));
-        return;
-      }
-
       try {
         const session = await createPillowHostSession();
         const snapshot: PillowSessionSnapshot = {
@@ -122,12 +116,22 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           ...s,
           hostSessionId: session.sessionId,
           pillowConnected: true,
+          connectionError: null,
         }));
-      } catch {
-        setState((s) => ({ ...s, pillowConnected: false }));
+      } catch (error) {
+        clearPillowHostSession();
+        setState((s) => ({
+          ...s,
+          hostSessionId: null,
+          pillowConnected: false,
+          connectionError:
+            error instanceof Error
+              ? error.message
+              : "Pillow host session unavailable — using Brain assistant fallback.",
+        }));
       }
     })();
-  }, [pathname, savedSession?.hostSessionId, savedSession?.turns]);
+  }, [pathname, savedSession?.turns]);
 
   const refreshContext = useCallback(async () => {
     setState((s) => ({ ...s, loading: true }));
@@ -176,9 +180,6 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   );
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
-    const existing = loadPillowSession()?.hostSessionId ?? state.hostSessionId;
-    if (existing) return existing;
-
     try {
       const session = await createPillowHostSession();
       const snapshot: PillowSessionSnapshot = {
@@ -192,13 +193,46 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         ...s,
         hostSessionId: session.sessionId,
         pillowConnected: true,
+        connectionError: null,
       }));
       return session.sessionId;
-    } catch {
-      setState((s) => ({ ...s, pillowConnected: false }));
+    } catch (error) {
+      clearPillowHostSession();
+      const message =
+        error instanceof Error ? error.message : "Pillow host session unavailable";
+      setState((s) => ({
+        ...s,
+        hostSessionId: null,
+        pillowConnected: false,
+        connectionError: message,
+      }));
       return null;
     }
-  }, [pathname, state.hostSessionId]);
+  }, [pathname]);
+
+  const dispatchViaBrain = useCallback(
+    async (
+      action: GlobalAssistantAction,
+      userQuery: string,
+      target?: GlobalAssistantTarget,
+    ): Promise<GlobalAssistantResponse | null> => {
+      const result = await brainDispatch<GlobalAssistantResponse>({
+        module: "cockpit-global-assistant",
+        action,
+        payload: {
+          action,
+          screenPath: pathname,
+          query: userQuery,
+          targetType: target?.targetType,
+          targetId: target?.targetId,
+          label: target?.label ?? userQuery,
+          value: target?.value,
+        },
+      });
+      return result.result ?? null;
+    },
+    [pathname],
+  );
 
   const askPillow = useCallback(
     async (query: string, target?: GlobalAssistantTarget) => {
@@ -207,29 +241,57 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         expanded: true,
         loading: true,
         activeTarget: target ?? null,
+        queryDraft: "",
       }));
 
       const sessionId = await ensureHostSession();
-      if (!sessionId) {
-        setState((s) => ({ ...s, loading: false }));
-        return;
+
+      if (sessionId) {
+        try {
+          const chatResult = await sendPillowChat({ message: query, sessionId });
+          const response = mapPillowChatToAssistantResponse(chatResult, query);
+          recordConversation(query, response);
+          setState((s) => ({
+            ...s,
+            loading: false,
+            lastResponse: response,
+            pillowConnected: true,
+            connectionError: null,
+          }));
+          return;
+        } catch (error) {
+          clearPillowHostSession();
+          const message = error instanceof Error ? error.message : "Pillow chat failed";
+          setState((s) => ({
+            ...s,
+            hostSessionId: null,
+            pillowConnected: false,
+            connectionError: message,
+          }));
+        }
       }
 
       try {
-        const chatResult = await sendPillowChat({ message: query, sessionId });
-        const response = mapPillowChatToAssistantResponse(chatResult, query);
+        const response = await dispatchViaBrain("ask", query, target);
         recordConversation(query, response);
         setState((s) => ({
           ...s,
           loading: false,
           lastResponse: response,
-          pillowConnected: true,
+          connectionError:
+            s.connectionError ??
+            "Pillow host offline — answered via Brain cockpit assistant.",
         }));
       } catch {
-        setState((s) => ({ ...s, loading: false, pillowConnected: false }));
+        setState((s) => ({
+          ...s,
+          loading: false,
+          connectionError:
+            s.connectionError ?? "Could not reach Pillow or Brain. Try again shortly.",
+        }));
       }
     },
-    [ensureHostSession, recordConversation],
+    [dispatchViaBrain, ensureHostSession, recordConversation],
   );
 
   const runAction = useCallback(

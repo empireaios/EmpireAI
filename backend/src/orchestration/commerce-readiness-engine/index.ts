@@ -34,6 +34,30 @@ export { registerCommerceReadinessRoutes } from "./routes/commerce-readiness-rou
 export { commerceReadinessTools } from "./tools/commerce-readiness-tools.js";
 
 export {
+  CRIR_CERTIFICATION_STATUSES,
+  CRIR_SURVIVABILITY_ASSESSMENTS,
+  CRIR_MINIMUM_LAUNCH_CERTIFICATION,
+  crirReportSchema,
+  registerCrirReportInputSchema,
+  isCrirLaunchCertificationSufficient,
+} from "./models/crir-report.js";
+export type {
+  CrirCertificationStatus,
+  CrirSurvivabilityAssessment,
+  CrirReport,
+  RegisterCrirReportInput,
+} from "./models/crir-report.js";
+
+export {
+  registerCrirReport,
+  getCrirReportsForCompany,
+  getCrirReportById,
+  evaluateCrirReadiness,
+} from "./services/crir-certification-service.js";
+
+export { resetCrirReportRepository } from "./repositories/sqlite-crir-report-repository.js";
+
+export {
   COMMERCE_READINESS_ENGINE_MODULE_ID,
   COMMERCE_READINESS_CAPABILITIES,
   createCommerceReadinessModuleContract,

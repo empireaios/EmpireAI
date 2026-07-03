@@ -9,6 +9,12 @@ import {
   getCommerceReadinessEvaluation,
   getCommerceReadinessSummary,
 } from "../services/commerce-readiness-service.js";
+import { registerCrirReportInputSchema } from "../models/crir-report.js";
+import {
+  getCrirReportById,
+  getCrirReportsForCompany,
+  registerCrirReport,
+} from "../services/crir-certification-service.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -97,5 +103,46 @@ export async function registerCommerceReadinessRoutes(
       accountType: query.accountType ?? "grand_king",
     });
     return reply.send({ decision });
+  });
+
+  app.get("/commerce-readiness/crir", { preHandler: authenticate }, async (request, reply) => {
+    const user = request.user!;
+    const query = z.object({ companyId: z.string().min(1) }).parse(request.query);
+    const reports = getCrirReportsForCompany(user.workspaceId, query.companyId);
+    return reply.send({ reports, total: reports.length });
+  });
+
+  app.get("/commerce-readiness/crir/:reportId", { preHandler: authenticate }, async (request, reply) => {
+    const params = z.object({ reportId: z.string().min(1) }).parse(request.params);
+    const report = getCrirReportById(params.reportId);
+    if (!report) {
+      return reply.status(404).send({ error: "CRIR not found" });
+    }
+    return reply.send({ report });
+  });
+
+  app.post("/commerce-readiness/crir", { preHandler: authenticate }, async (request, reply) => {
+    const user = request.user!;
+    const body = registerCrirReportInputSchema.parse({
+      ...(request.body as Record<string, unknown>),
+      workspaceId: user.workspaceId,
+    });
+
+    const report = registerCrirReport(body);
+
+    auditLogger.write({
+      action: "commerce_readiness.crir_registered",
+      actor: user.email,
+      workspaceId: user.workspaceId,
+      correlationId: request.id,
+      metadata: {
+        reportId: report.reportId,
+        companyId: report.companyId,
+        certificationStatus: report.certificationStatus,
+        survivabilityAssessment: report.survivabilityAssessment,
+      },
+    });
+
+    return reply.status(201).send({ report });
   });
 }

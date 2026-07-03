@@ -34,7 +34,7 @@ export const GLOBAL_MARKETPLACE_PROVIDERS: ProviderEntry[] = [
   { providerId: "shopee-sg", displayName: "Shopee SG", domain: "marketplace", countryCode: "SG" },
   { providerId: "lazada-sg", displayName: "Lazada SG", domain: "marketplace", countryCode: "SG" },
   { providerId: "tiktok-shop-sg", displayName: "TikTok Shop SG", domain: "marketplace", countryCode: "SG", realityProviderId: "tiktok-shop" },
-  { providerId: "amazon-sg", displayName: "Amazon SG", domain: "marketplace", countryCode: "SG", realityProviderId: "amazon-seller" },
+  { providerId: "amazon-sg", displayName: "Amazon SG", domain: "marketplace", countryCode: "SG", realityProviderId: "amazon-sg" },
   { providerId: "qoo10-sg", displayName: "Qoo10", domain: "marketplace", countryCode: "SG" },
   { providerId: "carousell-sg", displayName: "Carousell", domain: "marketplace", countryCode: "SG" },
   // Malaysia
@@ -61,7 +61,7 @@ export const GLOBAL_MARKETPLACE_PROVIDERS: ProviderEntry[] = [
   { providerId: "tiktok-shop-vn", displayName: "TikTok Shop VN", domain: "marketplace", countryCode: "VN", realityProviderId: "tiktok-shop" },
   { providerId: "tiki-vn", displayName: "Tiki", domain: "marketplace", countryCode: "VN" },
   // United States
-  { providerId: "amazon-us", displayName: "Amazon US", domain: "marketplace", countryCode: "US", realityProviderId: "amazon-seller" },
+  { providerId: "amazon-us", displayName: "Amazon US", domain: "marketplace", countryCode: "US", realityProviderId: "amazon-us" },
   { providerId: "ebay-us", displayName: "eBay US", domain: "marketplace", countryCode: "US", realityProviderId: "ebay" },
   { providerId: "walmart-us", displayName: "Walmart", domain: "marketplace", countryCode: "US", realityProviderId: "walmart" },
   { providerId: "shopify-us", displayName: "Shopify", domain: "marketplace", countryCode: "US", runtimePluginId: "shopify", realityProviderId: "shopify" },
@@ -129,6 +129,21 @@ export const GLOBAL_PAYMENT_PROVIDERS: ProviderEntry[] = [
   { providerId: "paypal-global", displayName: "PayPal", domain: "payment", countryCode: "GLOBAL", realityProviderId: "paypal" },
 ];
 
+export const GLOBAL_ADVERTISING_PROVIDERS: ProviderEntry[] = [
+  { providerId: "meta-ads-global", displayName: "Meta Ads", domain: "advertising", countryCode: "GLOBAL", realityProviderId: "meta-ads" },
+  { providerId: "google-ads-global", displayName: "Google Ads", domain: "advertising", countryCode: "GLOBAL", realityProviderId: "google-ads" },
+];
+
+export const GLOBAL_CUSTOMER_PROVIDERS: ProviderEntry[] = [
+  { providerId: "zendesk-global", displayName: "Zendesk", domain: "customer_service", countryCode: "GLOBAL", realityProviderId: "zendesk" },
+  { providerId: "intercom-global", displayName: "Intercom", domain: "customer_service", countryCode: "GLOBAL", realityProviderId: "intercom" },
+];
+
+export const GLOBAL_POLICY_PROVIDERS: ProviderEntry[] = [
+  { providerId: "gdpr-eu-policy", displayName: "GDPR Compliance Framework", domain: "policy", countryCode: "GLOBAL" },
+  { providerId: "amazon-seller-policy", displayName: "Amazon Seller Policy", domain: "policy", countryCode: "GLOBAL", realityProviderId: "amazon" },
+];
+
 export const GLOBAL_SUPPLIER_PROVIDERS: ProviderEntry[] = [
   { providerId: "cj-global", displayName: "CJ Dropshipping", domain: "supplier", countryCode: "GLOBAL", realityProviderId: "cj-dropshipping" },
 ];
@@ -136,5 +151,8 @@ export const GLOBAL_SUPPLIER_PROVIDERS: ProviderEntry[] = [
 export const ALL_GLOBAL_PROVIDERS: ProviderEntry[] = [
   ...GLOBAL_MARKETPLACE_PROVIDERS,
   ...GLOBAL_PAYMENT_PROVIDERS,
+  ...GLOBAL_ADVERTISING_PROVIDERS,
+  ...GLOBAL_CUSTOMER_PROVIDERS,
+  ...GLOBAL_POLICY_PROVIDERS,
   ...GLOBAL_SUPPLIER_PROVIDERS,
 ];

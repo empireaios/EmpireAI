@@ -1,5 +1,10 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
+import {
+  type AmazonMarketplaceRegistryId,
+  getAmazonMarketplaceProfile,
+  resolveAmazonSpApiEndpoint,
+} from "../amazon-marketplace-profiles.js";
 import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
 import type {
@@ -19,164 +24,201 @@ const AMAZON_CAPABILITIES = [
   "listing_readiness",
 ];
 
-function resolveEndpoint(mode: LiveCommerceAdapterContext["mode"]): string {
-  const config = getAmazonSpApiConfig();
-  return mode === "production" ? config.productionEndpoint : config.sandboxEndpoint;
-}
+function createAmazonAdapterHelpers(registryId: AmazonMarketplaceRegistryId) {
+  const profile = getAmazonMarketplaceProfile(registryId);
 
-function hasRequiredCredentials(credentials: Record<string, unknown>, mode: "sandbox" | "production"): boolean {
-  if (mode === "sandbox") {
-    return Boolean(credentials.accessToken || credentials.refreshToken || credentials.lwaRefreshToken);
-  }
-  const config = getAmazonSpApiConfig();
-  return Boolean(
-    credentials.accessToken &&
-      (credentials.refreshToken || credentials.lwaRefreshToken || config.refreshToken) &&
-      config.clientId &&
-      config.clientSecret,
-  );
-}
-
-async function pingMarketplace(ctx: LiveCommerceAdapterContext): Promise<boolean> {
-  if (ctx.mode === "sandbox") {
-    return hasRequiredCredentials(ctx.credentials, ctx.mode);
+  function resolveEndpoint(mode: LiveCommerceAdapterContext["mode"]): string {
+    return resolveAmazonSpApiEndpoint(profile, mode);
   }
 
-  const response = await httpTransport({
-    url: `${resolveEndpoint(ctx.mode)}/sellers/v1/marketplaceParticipations`,
-    method: "GET",
-    headers: {
-      "x-amz-access-token": String(ctx.credentials.accessToken ?? ""),
-    },
-  });
-  return response.ok;
-}
+  function getConfig() {
+    return getAmazonSpApiConfig(registryId);
+  }
 
-function buildSyncResult(
-  syncType: LiveCommerceSyncResult["syncType"],
-  ctx: LiveCommerceAdapterContext,
-  itemsProcessed: number,
-): LiveCommerceSyncResult {
+  function hasRequiredCredentials(
+    credentials: Record<string, unknown>,
+    mode: "sandbox" | "production",
+  ): boolean {
+    if (mode === "sandbox") {
+      return Boolean(
+        credentials.accessToken || credentials.refreshToken || credentials.lwaRefreshToken,
+      );
+    }
+    const config = getConfig();
+    return Boolean(
+      credentials.accessToken &&
+        (credentials.refreshToken || credentials.lwaRefreshToken || config.refreshToken) &&
+        config.clientId &&
+        config.clientSecret,
+    );
+  }
+
+  async function pingMarketplace(ctx: LiveCommerceAdapterContext): Promise<boolean> {
+    if (ctx.mode === "sandbox") {
+      return hasRequiredCredentials(ctx.credentials, ctx.mode);
+    }
+
+    const response = await httpTransport({
+      url: `${resolveEndpoint(ctx.mode)}/sellers/v1/marketplaceParticipations`,
+      method: "GET",
+      headers: {
+        "x-amz-access-token": String(ctx.credentials.accessToken ?? ""),
+      },
+    });
+    return response.ok;
+  }
+
+  function buildSyncResult(
+    syncType: LiveCommerceSyncResult["syncType"],
+    ctx: LiveCommerceAdapterContext,
+    itemsProcessed: number,
+  ): LiveCommerceSyncResult {
+    return {
+      syncType,
+      itemsProcessed,
+      itemsFailed: 0,
+      liveApiVerified: ctx.mode === "production" || hasRequiredCredentials(ctx.credentials, ctx.mode),
+    };
+  }
+
   return {
-    syncType,
-    itemsProcessed,
-    itemsFailed: 0,
-    liveApiVerified: ctx.mode === "production" || hasRequiredCredentials(ctx.credentials, ctx.mode),
+    profile,
+    resolveEndpoint,
+    getConfig,
+    hasRequiredCredentials,
+    pingMarketplace,
+    buildSyncResult,
   };
 }
 
-export const amazonSpApiAdapter: LiveCommerceProviderAdapter = {
-  providerId: "amazon-seller",
-  category: "marketplace",
+export function createAmazonSpApiAdapter(
+  registryId: AmazonMarketplaceRegistryId,
+): LiveCommerceProviderAdapter {
+  const helpers = createAmazonAdapterHelpers(registryId);
 
-  async validateConnection(ctx): Promise<LiveCommerceValidationResult> {
-    const blockers: string[] = [];
-    if (!hasRequiredCredentials(ctx.credentials, ctx.mode)) {
-      blockers.push("Amazon SP-API credentials incomplete");
-    }
+  return {
+    providerId: registryId,
+    category: "marketplace",
 
-    let liveApiVerified = false;
-    if (blockers.length === 0) {
-      liveApiVerified = await pingMarketplace(ctx);
-      if (!liveApiVerified) blockers.push("Amazon SP-API marketplace validation failed");
-    }
+    async validateConnection(ctx): Promise<LiveCommerceValidationResult> {
+      const blockers: string[] = [];
+      if (!helpers.hasRequiredCredentials(ctx.credentials, ctx.mode)) {
+        blockers.push(`Amazon SP-API credentials incomplete for ${registryId}`);
+      }
 
-    return {
-      valid: blockers.length === 0,
-      providerId: ctx.providerId,
-      capabilities: AMAZON_CAPABILITIES,
-      blockers,
-      liveApiVerified,
-    };
-  },
+      let liveApiVerified = false;
+      if (blockers.length === 0) {
+        liveApiVerified = await helpers.pingMarketplace(ctx);
+        if (!liveApiVerified) {
+          blockers.push(`Amazon SP-API marketplace validation failed for ${registryId}`);
+        }
+      }
 
-  async syncCatalog(ctx) {
-    if (ctx.mode === "sandbox") return buildSyncResult("catalog", ctx, 12);
-    const response = await httpTransport({
-      url: `${resolveEndpoint(ctx.mode)}/catalog/2022-04-01/items`,
-      method: "GET",
-      headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-    });
-    const items = Array.isArray((response.json as { items?: unknown[] })?.items)
-      ? ((response.json as { items: unknown[] }).items.length)
-      : response.ok
-        ? 1
-        : 0;
-    return {
-      syncType: "catalog",
-      itemsProcessed: items,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
-  },
+      return {
+        valid: blockers.length === 0,
+        providerId: ctx.providerId,
+        capabilities: AMAZON_CAPABILITIES,
+        blockers,
+        liveApiVerified,
+      };
+    },
 
-  async syncInventory(ctx) {
-    if (ctx.mode === "sandbox") return buildSyncResult("inventory", ctx, 8);
-    const response = await httpTransport({
-      url: `${resolveEndpoint(ctx.mode)}/fba/inventory/v1/summaries`,
-      method: "GET",
-      headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-    });
-    return {
-      syncType: "inventory",
-      itemsProcessed: response.ok ? 8 : 0,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
-  },
+    async syncCatalog(ctx) {
+      if (ctx.mode === "sandbox") return helpers.buildSyncResult("catalog", ctx, 12);
+      const response = await httpTransport({
+        url: `${helpers.resolveEndpoint(ctx.mode)}/catalog/2022-04-01/items`,
+        method: "GET",
+        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
+      });
+      const items = Array.isArray((response.json as { items?: unknown[] })?.items)
+        ? (response.json as { items: unknown[] }).items.length
+        : response.ok
+          ? 1
+          : 0;
+      return {
+        syncType: "catalog",
+        itemsProcessed: items,
+        itemsFailed: response.ok ? 0 : 1,
+        liveApiVerified: response.ok,
+      };
+    },
 
-  async syncPricing(ctx) {
-    if (ctx.mode === "sandbox") return buildSyncResult("pricing", ctx, 6);
-    const response = await httpTransport({
-      url: `${resolveEndpoint(ctx.mode)}/products/pricing/v0/price`,
-      method: "GET",
-      headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-    });
-    return {
-      syncType: "pricing",
-      itemsProcessed: response.ok ? 6 : 0,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
-  },
+    async syncInventory(ctx) {
+      if (ctx.mode === "sandbox") return helpers.buildSyncResult("inventory", ctx, 8);
+      const response = await httpTransport({
+        url: `${helpers.resolveEndpoint(ctx.mode)}/fba/inventory/v1/summaries`,
+        method: "GET",
+        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
+      });
+      return {
+        syncType: "inventory",
+        itemsProcessed: response.ok ? 8 : 0,
+        itemsFailed: response.ok ? 0 : 1,
+        liveApiVerified: response.ok,
+      };
+    },
 
-  async syncOrders(ctx) {
-    if (ctx.mode === "sandbox") return buildSyncResult("orders", ctx, 4);
-    const response = await httpTransport({
-      url: `${resolveEndpoint(ctx.mode)}/orders/v0/orders`,
-      method: "GET",
-      headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-    });
-    const count = Array.isArray((response.json as { orders?: unknown[] })?.orders)
-      ? (response.json as { orders: unknown[] }).orders.length
-      : response.ok
-        ? 1
-        : 0;
-    return {
-      syncType: "orders",
-      itemsProcessed: count,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
-  },
+    async syncPricing(ctx) {
+      if (ctx.mode === "sandbox") return helpers.buildSyncResult("pricing", ctx, 6);
+      const response = await httpTransport({
+        url: `${helpers.resolveEndpoint(ctx.mode)}/products/pricing/v0/price`,
+        method: "GET",
+        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
+      });
+      return {
+        syncType: "pricing",
+        itemsProcessed: response.ok ? 6 : 0,
+        itemsFailed: response.ok ? 0 : 1,
+        liveApiVerified: response.ok,
+      };
+    },
 
-  verifyWebhookSignature(payload, signature, secret) {
-    if (!secret || !signature) return false;
-    const digest = createHmac("sha256", secret).update(payload).digest("hex");
-    try {
-      return timingSafeEqual(Buffer.from(digest), Buffer.from(signature));
-    } catch {
-      return digest === signature;
-    }
-  },
-};
+    async syncOrders(ctx) {
+      if (ctx.mode === "sandbox") return helpers.buildSyncResult("orders", ctx, 4);
+      const response = await httpTransport({
+        url: `${helpers.resolveEndpoint(ctx.mode)}/orders/v0/orders`,
+        method: "GET",
+        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
+      });
+      const count = Array.isArray((response.json as { orders?: unknown[] })?.orders)
+        ? (response.json as { orders: unknown[] }).orders.length
+        : response.ok
+          ? 1
+          : 0;
+      return {
+        syncType: "orders",
+        itemsProcessed: count,
+        itemsFailed: response.ok ? 0 : 1,
+        liveApiVerified: response.ok,
+      };
+    },
+
+    verifyWebhookSignature(payload, signature, secret) {
+      if (!secret || !signature) return false;
+      const digest = createHmac("sha256", secret).update(payload).digest("hex");
+      try {
+        return timingSafeEqual(Buffer.from(digest), Buffer.from(signature));
+      } catch {
+        return digest === signature;
+      }
+    },
+  };
+}
+
+export const amazonUsSpApiAdapter = createAmazonSpApiAdapter("amazon-us");
+export const amazonSgSpApiAdapter = createAmazonSpApiAdapter("amazon-sg");
+
+/** @deprecated Legacy alias — use amazonUsSpApiAdapter (B6-01D). */
+export const amazonSpApiAdapter = amazonUsSpApiAdapter;
 
 export function amazonOAuthAuthorizeUrl(input: {
+  registryId: AmazonMarketplaceRegistryId;
   redirectUri: string;
   state: string;
   scopes?: string[];
 }): string {
-  const config = getAmazonSpApiConfig();
+  const profile = getAmazonMarketplaceProfile(input.registryId);
+  const config = getAmazonSpApiConfig(input.registryId);
   const clientId = config.clientId || "sandbox-client-id";
   const scope = (input.scopes ?? ["sellingpartnerapi::notifications"]).join(" ");
   const params = new URLSearchParams({
@@ -186,18 +228,19 @@ export function amazonOAuthAuthorizeUrl(input: {
     redirect_uri: input.redirectUri,
     state: input.state,
   });
-  return `https://sellercentral.amazon.com/apps/authorize/consent?${params.toString()}`;
+  return `${profile.sellerCentralAuthorizeBaseUrl}?${params.toString()}`;
 }
 
 export async function amazonOAuthExchangeCode(input: {
+  registryId: AmazonMarketplaceRegistryId;
   code: string;
   redirectUri: string;
 }): Promise<Record<string, unknown>> {
-  const config = getAmazonSpApiConfig();
+  const config = getAmazonSpApiConfig(input.registryId);
   if (!isProductionLiveCommerce() || !config.clientId || !config.clientSecret) {
     return {
-      accessToken: `sandbox-amazon-access-${input.code.slice(0, 8)}`,
-      refreshToken: `sandbox-amazon-refresh-${input.code.slice(0, 8)}`,
+      accessToken: `sandbox-amazon-access-${input.registryId}-${input.code.slice(0, 8)}`,
+      refreshToken: `sandbox-amazon-refresh-${input.registryId}-${input.code.slice(0, 8)}`,
       expiresIn: 3600,
       tokenType: "bearer",
     };
@@ -211,7 +254,7 @@ export async function amazonOAuthExchangeCode(input: {
   });
 
   if (!response.ok) {
-    throw new Error("Amazon OAuth token exchange failed");
+    throw new Error(`Amazon OAuth token exchange failed for ${input.registryId}`);
   }
 
   const json = response.json as Record<string, unknown>;
@@ -223,11 +266,14 @@ export async function amazonOAuthExchangeCode(input: {
   };
 }
 
-export async function amazonOAuthRefreshToken(refreshToken: string): Promise<Record<string, unknown>> {
-  const config = getAmazonSpApiConfig();
+export async function amazonOAuthRefreshToken(
+  registryId: AmazonMarketplaceRegistryId,
+  refreshToken: string,
+): Promise<Record<string, unknown>> {
+  const config = getAmazonSpApiConfig(registryId);
   if (!isProductionLiveCommerce() || !config.clientId || !config.clientSecret) {
     return {
-      accessToken: `sandbox-amazon-access-refreshed-${Date.now()}`,
+      accessToken: `sandbox-amazon-access-refreshed-${registryId}-${Date.now()}`,
       refreshToken,
       expiresIn: 3600,
       tokenType: "bearer",
@@ -245,7 +291,7 @@ export async function amazonOAuthRefreshToken(refreshToken: string): Promise<Rec
     },
   });
 
-  if (!response.ok) throw new Error("Amazon OAuth refresh failed");
+  if (!response.ok) throw new Error(`Amazon OAuth refresh failed for ${registryId}`);
   const json = response.json as Record<string, unknown>;
   return {
     accessToken: json.access_token,

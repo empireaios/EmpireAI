@@ -8,6 +8,7 @@ export const CommerceDomainSchema = z.enum([
   "advertising",
   "analytics",
   "customer_service",
+  "policy",
 ]);
 
 export type CommerceDomain = z.infer<typeof CommerceDomainSchema>;

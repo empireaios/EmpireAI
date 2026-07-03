@@ -13,6 +13,7 @@ import type {
   ReadinessBlocker,
 } from "../models/commerce-readiness.js";
 import { createReadinessBlocker } from "../models/commerce-readiness.js";
+import { evaluateCrirReadiness } from "./crir-certification-service.js";
 
 export type EvaluateCommerceReadinessInput = {
   workspaceId: string;
@@ -429,6 +430,12 @@ export function evaluateCommerceReadiness(input: EvaluateCommerceReadinessInput)
   const fulfillment = evaluateFulfillment(input.workspaceId, workflow, blockers);
   const governance = evaluateGovernance(input.workspaceId, input.companyId, blockers);
   const treasury = evaluateTreasury(input.workspaceId, blockers);
+  const crir = evaluateCrirReadiness(
+    input.workspaceId,
+    input.companyId,
+    workflow,
+    blockers,
+  );
 
   const individualReadiness: IndividualReadiness = {
     accounts,
@@ -440,6 +447,7 @@ export function evaluateCommerceReadiness(input: EvaluateCommerceReadinessInput)
     payment,
     governance,
     treasury,
+    crir,
   };
 
   const overallReadinessScore = averageScores(Object.values(individualReadiness));

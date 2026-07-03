@@ -1,11 +1,12 @@
 import {
+  hasAmazonMarketplaceEnvCredentials,
   hasAmazonSpApiEnvCredentials,
-  hasCjDropshippingEnvCredentials,
   hasCredentialVaultKey,
-  isAmazonLiveCommerceActivated,
+  hasCjDropshippingEnvCredentials,
+  isAmazonMarketplaceLiveActivated,
   isCjLiveCommerceActivated,
   isLiveCommerceProductionMode,
-  V1_PRODUCTION_MARKETPLACE_ID,
+  V1_PRODUCTION_MARKETPLACE_IDS,
   V1_PRODUCTION_REALITY_SUPPLIER,
 } from "./version-1-activation-config.js";
 import { assessProductionInfrastructureReadiness } from "./production-infrastructure-readiness.js";
@@ -74,6 +75,11 @@ function itemStatus(configured: boolean, verified: boolean): B6ImplementationIte
   return "PENDING";
 }
 
+const AMAZON_SHARED_ENV_KEYS = [
+  "AMAZON_SP_API_CLIENT_ID",
+  "AMAZON_SP_API_CLIENT_SECRET",
+] as const;
+
 /** B6 — live commerce credential implementation tracker (PROOF-001 path). */
 export function assessB6CredentialImplementation(
   env: NodeJS.ProcessEnv = process.env,
@@ -82,8 +88,11 @@ export function assessB6CredentialImplementation(
   const b5Closed = infrastructure.b5Closed;
   const b5Frozen = b5Closed;
 
-  const amazonConfigured = hasAmazonSpApiEnvCredentials(env);
-  const amazonVerified = isAmazonLiveCommerceActivated(env);
+  const amazonUsConfigured = hasAmazonMarketplaceEnvCredentials("amazon-us", env);
+  const amazonUsVerified = isAmazonMarketplaceLiveActivated("amazon-us", env);
+
+  const amazonSgConfigured = hasAmazonMarketplaceEnvCredentials("amazon-sg", env);
+  const amazonSgVerified = isAmazonMarketplaceLiveActivated("amazon-sg", env);
 
   const cjConfigured = hasCjDropshippingEnvCredentials(env);
   const cjVerified = isCjLiveCommerceActivated(env);
@@ -100,31 +109,46 @@ export function assessB6CredentialImplementation(
   const adapterVerified =
     adapterConfigured &&
     isLiveCommerceProductionMode(env) &&
-    amazonVerified &&
+    amazonUsVerified &&
+    amazonSgVerified &&
     cjVerified;
 
   const items: B6ImplementationItem[] = [
     {
-      id: "B6-01",
+      id: "B6-01a",
       order: 1,
-      label: "Amazon SP-API production credentials",
-      status: itemStatus(amazonConfigured, amazonVerified),
-      configured: amazonConfigured,
-      verified: amazonVerified,
+      label: "Amazon US SP-API production credentials",
+      status: itemStatus(amazonUsConfigured, amazonUsVerified),
+      configured: amazonUsConfigured,
+      verified: amazonUsVerified,
       envKeys: [
-        "AMAZON_SP_API_CLIENT_ID",
-        "AMAZON_SP_API_CLIENT_SECRET",
+        ...AMAZON_SHARED_ENV_KEYS,
+        "AMAZON_SP_API_REFRESH_TOKEN_NA",
         "AMAZON_SP_API_REFRESH_TOKEN",
       ],
-      detail: amazonVerified
-        ? `${V1_PRODUCTION_MARKETPLACE_ID} live commerce activated`
-        : amazonConfigured
-          ? "Credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
-          : "Inject Amazon SP-API credentials on Railway",
+      detail: amazonUsVerified
+        ? `${V1_PRODUCTION_MARKETPLACE_IDS[0]} live commerce activated (NA endpoint)`
+        : amazonUsConfigured
+          ? "US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
+          : "Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+    },
+    {
+      id: "B6-01b",
+      order: 2,
+      label: "Amazon SG SP-API production credentials",
+      status: itemStatus(amazonSgConfigured, amazonSgVerified),
+      configured: amazonSgConfigured,
+      verified: amazonSgVerified,
+      envKeys: [...AMAZON_SHARED_ENV_KEYS, "AMAZON_SP_API_REFRESH_TOKEN_FE"],
+      detail: amazonSgVerified
+        ? `${V1_PRODUCTION_MARKETPLACE_IDS[1]} live commerce activated (FE endpoint)`
+        : amazonSgConfigured
+          ? "SG credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
+          : "Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_FE on Railway",
     },
     {
       id: "B6-02",
-      order: 2,
+      order: 3,
       label: "CJ Dropshipping production credentials",
       status: itemStatus(cjConfigured, cjVerified),
       configured: cjConfigured,
@@ -138,7 +162,7 @@ export function assessB6CredentialImplementation(
     },
     {
       id: "B6-03",
-      order: 3,
+      order: 4,
       label: "Stripe production API integration",
       status: itemStatus(stripeConfigured, stripeVerified),
       configured: stripeConfigured,
@@ -152,7 +176,7 @@ export function assessB6CredentialImplementation(
     },
     {
       id: "B6-04",
-      order: 4,
+      order: 5,
       label: "Credential Vault verification",
       status: itemStatus(vaultConfigured, vaultVerified),
       configured: vaultConfigured,
@@ -166,17 +190,17 @@ export function assessB6CredentialImplementation(
     },
     {
       id: "B6-05",
-      order: 5,
+      order: 6,
       label: "Commerce adapter connectivity test",
       status: itemStatus(adapterConfigured, adapterVerified),
       configured: adapterConfigured,
       verified: adapterVerified,
       envKeys: [],
       detail: adapterVerified
-        ? "Amazon + CJ adapters verified in production mode"
+        ? "Amazon US + Amazon SG + CJ adapters verified in production mode"
         : adapterConfigured
           ? "Run validateLiveMarketplaceConnection after production mode enabled"
-          : "Complete B6-01 and B6-02 first",
+          : "Complete B6-01a, B6-01b, and B6-02 first",
     },
   ];
 
@@ -187,7 +211,8 @@ export function assessB6CredentialImplementation(
   const currentObjectiveId = firstPending?.id ?? "B6-COMPLETE";
   const firstRequiredIntegration = firstPending?.label ?? "All B6 objectives complete";
 
-  let nextHighestImpactAction = "B6-01 — Inject Amazon SP-API production credentials on Railway";
+  let nextHighestImpactAction =
+    "B6-01a — Inject Amazon US SP-API production credentials on Railway";
   if (firstPending) {
     nextHighestImpactAction = `${firstPending.id} — ${firstPending.detail}`;
   } else {
@@ -195,7 +220,8 @@ export function assessB6CredentialImplementation(
   }
 
   const b6Closed =
-    amazonVerified &&
+    amazonUsVerified &&
+    amazonSgVerified &&
     cjVerified &&
     stripeVerified &&
     vaultVerified &&

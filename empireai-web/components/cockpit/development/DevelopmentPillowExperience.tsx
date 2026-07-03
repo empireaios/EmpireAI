@@ -30,6 +30,7 @@ export function DevelopmentPillowExperience() {
     loading,
     context,
     lastResponse,
+    connectionError,
   } = useGlobalAiAssistant();
   const [activeTab, setActiveTab] = useState<PillowTab>("chat");
   const activatedRef = useRef(false);
@@ -103,6 +104,9 @@ export function DevelopmentPillowExperience() {
                 <span className="text-xs text-[#6f6a60]">
                   Session {hostSessionId.slice(0, 8)}…
                 </span>
+              )}
+              {connectionError && (
+                <p className="w-full text-xs text-amber-200">{connectionError}</p>
               )}
             </div>
           </Panel>

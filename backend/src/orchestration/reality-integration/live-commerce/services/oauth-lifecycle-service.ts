@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 
+import { resolveAmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import {
   amazonOAuthAuthorizeUrl,
   amazonOAuthExchangeCode,
@@ -28,7 +29,13 @@ export function startMarketplaceOAuth(input: {
   };
   getLiveCommerceRepository().saveOAuthState(state);
 
+  const registryId = resolveAmazonMarketplaceRegistryId(input.providerId);
+  if (!registryId) {
+    throw new Error(`Unsupported Amazon marketplace provider: ${input.providerId}`);
+  }
+
   const authorizationUrl = amazonOAuthAuthorizeUrl({
+    registryId,
     redirectUri: input.redirectUri,
     state: stateId,
     scopes: state.scopes,
@@ -46,7 +53,13 @@ export async function completeMarketplaceOAuth(input: {
   if (!existing) throw new Error("OAuth state not found");
   if (existing.status !== "pending") throw new Error("OAuth state is not pending");
 
+  const registryId = resolveAmazonMarketplaceRegistryId(existing.providerId);
+  if (!registryId) {
+    throw new Error(`Unsupported Amazon marketplace provider: ${existing.providerId}`);
+  }
+
   const tokens = await amazonOAuthExchangeCode({
+    registryId,
     code: input.code,
     redirectUri: existing.redirectUri,
   });
@@ -60,8 +73,15 @@ export async function completeMarketplaceOAuth(input: {
   return { state: completed, tokens };
 }
 
-export async function refreshMarketplaceOAuthTokens(refreshToken: string): Promise<Record<string, unknown>> {
-  return amazonOAuthRefreshToken(refreshToken);
+export async function refreshMarketplaceOAuthTokens(input: {
+  providerId: string;
+  refreshToken: string;
+}): Promise<Record<string, unknown>> {
+  const registryId = resolveAmazonMarketplaceRegistryId(input.providerId);
+  if (!registryId) {
+    throw new Error(`Unsupported Amazon marketplace provider: ${input.providerId}`);
+  }
+  return amazonOAuthRefreshToken(registryId, input.refreshToken);
 }
 
 export function authenticateSupplierProvider(input: {

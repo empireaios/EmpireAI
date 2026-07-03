@@ -1,5 +1,16 @@
 /** REAL-002B — Live Commerce Integration configuration. */
 
+import {
+  AMAZON_MARKETPLACE_REGISTRY_IDS,
+  type AmazonMarketplaceRegistryId,
+  getAmazonMarketplaceCredentialProfile,
+  getAmazonMarketplaceProfile,
+  getAmazonSpApiSharedCredentials,
+  hasAmazonSpApiSharedCredentials,
+  listAmazonMarketplaceProfiles,
+  resolveAmazonSpApiEndpoint,
+} from "./amazon-marketplace-profiles.js";
+
 export type LiveCommerceIntegrationMode = "disabled" | "sandbox" | "production";
 
 export function isLiveCommerceIntegrationEnabled(): boolean {
@@ -17,23 +28,37 @@ export function isProductionLiveCommerce(): boolean {
   return resolveLiveCommerceIntegrationMode() === "production";
 }
 
+/** V1 Amazon marketplaces — ADR-052 / B6-01D. Shopee + Shopify added in later missions. */
 export const LIVE_COMMERCE_PROVIDER_IDS = {
-  marketplaces: ["amazon-seller"] as const,
+  marketplaces: [...AMAZON_MARKETPLACE_REGISTRY_IDS] as readonly AmazonMarketplaceRegistryId[],
   suppliers: ["cj-dropshipping"] as const,
 };
 
-export function getAmazonSpApiConfig() {
+export {
+  AMAZON_MARKETPLACE_REGISTRY_IDS,
+  getAmazonMarketplaceCredentialProfile,
+  getAmazonMarketplaceProfile,
+  getAmazonSpApiSharedCredentials,
+  hasAmazonSpApiSharedCredentials,
+  listAmazonMarketplaceProfiles,
+};
+
+/** @deprecated Use getAmazonMarketplaceCredentialProfile(registryId) — B6-01D multi-region. */
+export function getAmazonSpApiConfig(registryId: AmazonMarketplaceRegistryId = "amazon-us") {
+  const profile = getAmazonMarketplaceProfile(registryId);
+  const credentialProfile = getAmazonMarketplaceCredentialProfile(registryId);
   return {
-    clientId: process.env.AMAZON_SP_API_CLIENT_ID ?? "",
-    clientSecret: process.env.AMAZON_SP_API_CLIENT_SECRET ?? "",
-    refreshToken: process.env.AMAZON_SP_API_REFRESH_TOKEN ?? "",
-    region: process.env.AMAZON_SP_API_REGION ?? "na",
-    sandboxEndpoint:
-      process.env.AMAZON_SP_API_SANDBOX_ENDPOINT ??
-      "https://sandbox.sellingpartnerapi-na.amazon.com",
-    productionEndpoint:
-      process.env.AMAZON_SP_API_ENDPOINT ??
-      "https://sellingpartnerapi-na.amazon.com",
+    registryId,
+    clientId: credentialProfile.shared.clientId,
+    clientSecret: credentialProfile.shared.clientSecret,
+    refreshToken: credentialProfile.refreshToken,
+    region: profile.spApiRegion.toLowerCase(),
+    marketplaceId: profile.marketplaceId,
+    sandboxEndpoint: profile.sandboxEndpoint,
+    productionEndpoint: profile.productionEndpoint,
+    sellerCentralAuthorizeBaseUrl: profile.sellerCentralAuthorizeBaseUrl,
+    resolveEndpoint: (mode: "sandbox" | "production") =>
+      resolveAmazonSpApiEndpoint(profile, mode),
   };
 }
 

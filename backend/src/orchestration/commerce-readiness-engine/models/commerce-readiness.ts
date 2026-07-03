@@ -34,6 +34,7 @@ export const individualReadinessSchema = z.object({
   payment: z.number().int().min(0).max(100),
   governance: z.number().int().min(0).max(100),
   treasury: z.number().int().min(0).max(100),
+  crir: z.number().int().min(0).max(100),
 });
 
 export type IndividualReadiness = z.infer<typeof individualReadinessSchema>;

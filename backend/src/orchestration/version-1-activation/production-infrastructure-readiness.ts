@@ -1,4 +1,5 @@
 import {
+  hasAmazonMarketplaceEnvCredentials,
   hasAmazonSpApiEnvCredentials,
   hasCjDropshippingEnvCredentials,
   isLiveCommerceProductionMode,
@@ -34,6 +35,8 @@ export type ProductionInfrastructureAssessment = {
   liveCommerceMode: string;
   credentialReadinessForB6: {
     amazon: boolean;
+    amazonUs: boolean;
+    amazonSg: boolean;
     cj: boolean;
     vault: boolean;
   };
@@ -194,7 +197,7 @@ export function assessProductionInfrastructureReadiness(
       present: amazonCreds,
       requiredForHosting: false,
       category: "commerce" as const,
-      note: "B6 — not required to close B5",
+      note: "B6 — shared LWA app + NA/FE refresh tokens (amazon-us, amazon-sg)",
     },
     {
       key: "CJ_DROPSHIPPING_*",
@@ -241,6 +244,8 @@ export function assessProductionInfrastructureReadiness(
     liveCommerceMode,
     credentialReadinessForB6: {
       amazon: amazonCreds,
+      amazonUs: hasAmazonMarketplaceEnvCredentials("amazon-us", env),
+      amazonSg: hasAmazonMarketplaceEnvCredentials("amazon-sg", env),
       cj: cjCreds,
       vault: vaultKey,
     },

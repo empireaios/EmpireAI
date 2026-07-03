@@ -19,7 +19,8 @@ export type LiveCommerceLifecycleState = (typeof LIVE_COMMERCE_LIFECYCLE_STATES)
 
 /** First certified marketplace + future global providers. */
 export const LIVE_COMMERCE_MARKETPLACE_PROVIDER_IDS = [
-  "amazon-seller",
+  "amazon-us",
+  "amazon-sg",
   "ebay",
   "shopee",
   "lazada",

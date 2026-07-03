@@ -53,7 +53,10 @@ export function buildEsisLiveCommercePayload(workspaceId: string) {
     operationalAccess: dash.operationalAccessSummary,
     credentialHealth: dash.credentialHealth,
     activationReadiness: dash.activationReadiness,
-    amazonCapabilities: capabilities.find((c) => c.providerId === "amazon-seller") ?? null,
+    amazonCapabilities: {
+      us: capabilities.find((c) => c.providerId === "amazon-us") ?? null,
+      sg: capabilities.find((c) => c.providerId === "amazon-sg") ?? null,
+    },
   };
 }
 
@@ -65,6 +68,9 @@ export function buildExecutiveLiveCommerceSnapshot(workspaceId: string) {
     missionId: "REAL-002A",
     operationalAccess: registry.summary,
     topBlockers: activations.flatMap((a) => a.blockers).slice(0, 5),
-    amazonActivation: activations.find((a) => a.providerId === "amazon-seller") ?? null,
+    amazonActivations: {
+      us: activations.find((a) => a.providerId === "amazon-us") ?? null,
+      sg: activations.find((a) => a.providerId === "amazon-sg") ?? null,
+    },
   };
 }

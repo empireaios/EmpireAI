@@ -9,6 +9,8 @@ import { verifyProviderCapabilities } from "./provider-capability-verification-s
 import { getRuntimePluginRegistry } from "../../../runtime/plugins/registry/runtime-plugin-registry.js";
 
 const PLUGIN_BY_PROVIDER: Record<string, string> = {
+  "amazon-us": "amazon-seller",
+  "amazon-sg": "amazon-seller",
   "amazon-seller": "amazon-seller",
   shopify: "shopify",
 };

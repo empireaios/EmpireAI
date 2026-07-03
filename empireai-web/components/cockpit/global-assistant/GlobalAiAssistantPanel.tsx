@@ -74,6 +74,7 @@ export function GlobalAiAssistantPanel() {
     conversation,
     panelWidthPx,
     voiceEnabled,
+    connectionError,
     toggle,
     collapse,
     setQueryDraft,
@@ -163,6 +164,11 @@ export function GlobalAiAssistantPanel() {
       </header>
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
+        {connectionError && (
+          <p className="mb-3 rounded border border-amber-500/25 bg-amber-500/10 px-2 py-1.5 text-xs text-amber-100">
+            {connectionError}
+          </p>
+        )}
         {conversation.length > 0 && (
           <div className="mb-4 space-y-2 border-b border-gold/10 pb-3">
             <p className="text-[10px] uppercase text-[#6f6a60]">Conversation</p>

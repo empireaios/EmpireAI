@@ -1,6 +1,19 @@
-/** Version 1 production marketplace — Amazon only (M3 scope). */
+import {
+  type AmazonMarketplaceRegistryId,
+  hasAmazonMarketplaceEnvCredentials,
+  hasAmazonSpApiEnvCredentials,
+  isAmazonMarketplaceRegistryId,
+} from "../reality-integration/live-commerce/amazon-marketplace-profiles.js";
+
+/** Version 1 production marketplaces — ADR-052 / B6-01D. */
+export const V1_PRODUCTION_MARKETPLACE_IDS = ["amazon-us", "amazon-sg"] as const;
+
+/** Publish-layer umbrella id (legacy listing packages). */
 export const V1_PRODUCTION_MARKETPLACE_ID = "amazon" as const;
+
+/** @deprecated Use V1_PRODUCTION_MARKETPLACE_IDS — B6-01D multi-region. */
 export const V1_PRODUCTION_REALITY_MARKETPLACE = "amazon-seller" as const;
+
 export const V1_PRODUCTION_REALITY_SUPPLIER = "cj-dropshipping" as const;
 
 export type Version1ActivationAssessment = {
@@ -14,19 +27,7 @@ function hasNonEmpty(value: string | undefined): boolean {
   return Boolean(value && value.trim().length > 0);
 }
 
-/** Amazon SP-API env credentials present (M2). */
-export function hasAmazonSpApiEnvCredentials(env: NodeJS.ProcessEnv = process.env): boolean {
-  const cfg = {
-    clientId: env.AMAZON_SP_API_CLIENT_ID,
-    clientSecret: env.AMAZON_SP_API_CLIENT_SECRET,
-    refreshToken: env.AMAZON_SP_API_REFRESH_TOKEN,
-  };
-  return (
-    hasNonEmpty(cfg.clientId) &&
-    hasNonEmpty(cfg.clientSecret) &&
-    hasNonEmpty(cfg.refreshToken)
-  );
-}
+export { hasAmazonSpApiEnvCredentials, hasAmazonMarketplaceEnvCredentials };
 
 /** CJ Dropshipping credentials — CJ API 2.0 requires API key only (secret optional legacy). */
 export function hasCjDropshippingEnvCredentials(env: NodeJS.ProcessEnv = process.env): boolean {
@@ -49,7 +50,15 @@ export function isLiveCommerceProductionMode(env: NodeJS.ProcessEnv = process.en
   return resolveLiveCommerceModeFromEnv(env) === "production";
 }
 
-/** M3 — Amazon live publish/order path enabled (production mode + credentials). */
+/** M3 — single Amazon marketplace live path (production mode + region credentials). */
+export function isAmazonMarketplaceLiveActivated(
+  registryId: AmazonMarketplaceRegistryId,
+  env: NodeJS.ProcessEnv = process.env,
+): boolean {
+  return isLiveCommerceProductionMode(env) && hasAmazonMarketplaceEnvCredentials(registryId, env);
+}
+
+/** M3 — all V1 Amazon marketplaces live (shared LWA app + per-region refresh tokens). */
 export function isAmazonLiveCommerceActivated(env: NodeJS.ProcessEnv = process.env): boolean {
   return isLiveCommerceProductionMode(env) && hasAmazonSpApiEnvCredentials(env);
 }
@@ -81,7 +90,13 @@ export function isPlatformOperationallyLive(
   platformId: string,
   env: NodeJS.ProcessEnv = process.env,
 ): boolean {
-  if (platformId === V1_PRODUCTION_REALITY_MARKETPLACE) {
+  if (isAmazonMarketplaceRegistryId(platformId)) {
+    return isAmazonMarketplaceLiveActivated(platformId, env);
+  }
+  if (
+    platformId === V1_PRODUCTION_REALITY_MARKETPLACE ||
+    platformId === V1_PRODUCTION_MARKETPLACE_ID
+  ) {
     return isAmazonLiveCommerceActivated(env);
   }
   if (platformId === V1_PRODUCTION_REALITY_SUPPLIER) {
@@ -98,6 +113,8 @@ export function assessVersion1OperationalActivation(
     liveCommerceProductionMode: isLiveCommerceProductionMode(env),
     credentialVaultKey: hasCredentialVaultKey(env),
     amazonSpApiCredentials: hasAmazonSpApiEnvCredentials(env),
+    amazonUsCredentials: hasAmazonMarketplaceEnvCredentials("amazon-us", env),
+    amazonSgCredentials: hasAmazonMarketplaceEnvCredentials("amazon-sg", env),
     cjDropshippingCredentials: hasCjDropshippingEnvCredentials(env),
     amazonLiveActivated: isAmazonLiveCommerceActivated(env),
     cjLiveActivated: isCjLiveCommerceActivated(env),
@@ -115,7 +132,9 @@ export function assessVersion1OperationalActivation(
     blockers.push("CREDENTIAL_VAULT_KEY required for production credential vault");
   }
   if (!gates.amazonSpApiCredentials) {
-    blockers.push("AMAZON_SP_API_CLIENT_ID/SECRET/REFRESH_TOKEN not configured");
+    blockers.push(
+      "Amazon SP-API shared LWA credentials and per-region refresh tokens (NA + FE) not configured",
+    );
   }
   if (!gates.cjDropshippingCredentials) {
     blockers.push("CJ_API_KEY (or CJ_DROPSHIPPING_API_KEY) not configured");

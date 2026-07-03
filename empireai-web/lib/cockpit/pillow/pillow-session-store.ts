@@ -49,6 +49,12 @@ export function savePillowSession(snapshot: PillowSessionSnapshot): void {
   window.localStorage.setItem(PILLOW_SESSION_STORAGE_KEY, JSON.stringify(snapshot));
 }
 
+export function clearPillowHostSession(): void {
+  const session = loadPillowSession();
+  if (!session) return;
+  savePillowSession({ ...session, hostSessionId: undefined });
+}
+
 export function loadPillowPanelPreferences(): PillowPanelPreferences {
   if (typeof window === "undefined") return DEFAULT_PANEL;
   try {
