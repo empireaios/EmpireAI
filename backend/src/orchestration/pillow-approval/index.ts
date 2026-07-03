@@ -21,6 +21,11 @@ export {
 } from "./cursor-heartbeat-service.js";
 export { registerPillowApprovalRoutes } from "./routes/pillow-approval-routes.js";
 export {
+  wireCanonicalPillowApprovalPipeline,
+  listCanonicalApprovals,
+  getCanonicalApprovalGate,
+} from "./canonical-pillow-approval-pipeline.js";
+export {
   ensurePillowApprovalTables,
   SqlitePillowApprovalRepository,
 } from "./repository/sqlite-pillow-approval-repository.js";

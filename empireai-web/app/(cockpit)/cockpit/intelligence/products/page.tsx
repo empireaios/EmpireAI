@@ -1,4 +1,4 @@
-import { IntelligenceOverviewPanel } from "@/components/cockpit/widgets/IntelligenceOverviewPanel";
+import { IntelligenceOverviewPanel } from "@/components/cockpit/widgets/IntelligenceEnginePanels";
 
 export default function IntelligenceProductsPage() {
   return <IntelligenceOverviewPanel />;

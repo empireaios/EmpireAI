@@ -8,9 +8,15 @@ import type { BrainError } from "@/lib/brain/types";
 export function useBrainModule<T>(
   module: ModuleId,
   action = "load",
-  options?: { enabled?: boolean },
+  options?: {
+    enabled?: boolean;
+    payload?: Record<string, unknown>;
+    companyId?: string;
+  },
 ) {
   const enabled = options?.enabled ?? true;
+  const payload = options?.payload;
+  const companyId = options?.companyId;
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState<BrainError | null>(null);
@@ -22,7 +28,6 @@ export function useBrainModule<T>(
 
   useEffect(() => {
     if (!enabled) {
-      setLoading(false);
       return;
     }
 
@@ -33,7 +38,12 @@ export function useBrainModule<T>(
       setError(null);
 
       try {
-        const response = await brainDispatch<T>({ module, action });
+        const response = await brainDispatch<T>({
+          module,
+          action,
+          companyId,
+          payload,
+        });
         if (!cancelled) {
           setData(response.result ?? null);
         }
@@ -53,7 +63,7 @@ export function useBrainModule<T>(
     return () => {
       cancelled = true;
     };
-  }, [module, action, enabled, attempt]);
+  }, [module, action, enabled, attempt, companyId, JSON.stringify(payload ?? null)]);
 
-  return { data, loading, error, reload };
+  return { data, loading: enabled && loading, error, reload };
 }

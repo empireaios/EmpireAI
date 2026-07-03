@@ -28,6 +28,7 @@ export function CockpitDepartmentTabs({ tabs }: CockpitDepartmentTabsProps) {
           <Link
             key={tab.id}
             href={tab.href}
+            aria-current={active ? "page" : undefined}
             className={`shrink-0 border-b-2 px-4 py-2.5 text-sm transition-colors ${
               active
                 ? "border-[#d4af37] text-[#f0d78c]"

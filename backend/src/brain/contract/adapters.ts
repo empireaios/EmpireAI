@@ -88,6 +88,8 @@ export type ProductIntelligenceTaskInput = ProductIntelligenceInput & {
 export const PRODUCT_INTELLIGENCE_ACTION_MAP = {
   "product-intelligence.evaluate": "evaluateProduct",
   "product-intelligence.persist": "persist",
+  "product-intelligence.architecture": "buildProductIntelligenceEngineArchitecture",
+  "product-intelligence.rank": "loadProductIntelligenceEngineView",
 } as const satisfies Record<ProductIntelligenceCapability, string>;
 
 export type SupplierIntelligenceModuleCapability = SupplierIntelligenceCapability;
@@ -121,4 +123,6 @@ export const SUPPLIER_INTELLIGENCE_ACTION_MAP = {
   "supplier-intelligence.evaluate": "evaluateSupplier",
   "supplier-intelligence.score": "evaluateSupplier",
   "supplier-intelligence.compare": "compareSuppliers",
+  "supplier-intelligence.architecture": "buildSupplierIntelligenceEngineArchitecture",
+  "supplier-intelligence.rank": "loadSupplierIntelligenceEngineView",
 } as const satisfies Record<SupplierIntelligenceCapability, string>;

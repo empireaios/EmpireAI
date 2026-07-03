@@ -148,11 +148,14 @@ export const COMMAND_CENTRE_KPI_STRIP_IDS = [
 
 export const cockpitScreenDataModes: Partial<Record<CockpitScreenId, CockpitDataMode>> = {
   "SCR-001": "live",
+  "SCR-015": "live",
   "SCR-010": "live",
   "SCR-020": "live",
-  "SCR-300": "sandbox",
-  "SCR-301": "sandbox",
-  "SCR-302": "sandbox",
+  "SCR-300": "live",
+  "SCR-301": "live",
+  "SCR-302": "live",
+  "SCR-303": "live",
+  "SCR-304": "live",
 };
 
 const kpiById = new Map(cockpitKpiRegistry.map((kpi) => [kpi.id, kpi]));

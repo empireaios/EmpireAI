@@ -1,5 +1,5 @@
-import { DevelopmentPillowPanel } from "@/components/cockpit/widgets/DevelopmentPanels";
+import { DevelopmentPillowExperience } from "@/components/cockpit/development/DevelopmentPillowExperience";
 
 export default function DevelopmentPillowPage() {
-  return <DevelopmentPillowPanel />;
+  return <DevelopmentPillowExperience />;
 }

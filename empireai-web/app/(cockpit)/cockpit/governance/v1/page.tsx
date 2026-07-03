@@ -1,5 +1,5 @@
-import { GovernanceRecoveryPanel } from "@/components/cockpit/widgets/GovernancePanels";
+import { GovernanceV1CertificationPanel } from "@/components/cockpit/widgets/FinancePanels";
 
 export default function GovernanceV1Page() {
-  return <GovernanceRecoveryPanel />;
+  return <GovernanceV1CertificationPanel />;
 }

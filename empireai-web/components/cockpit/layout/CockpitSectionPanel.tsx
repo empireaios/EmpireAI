@@ -1,14 +1,22 @@
 import type { ReactNode } from "react";
 
-type CockpitPanelProps = {
+type CockpitSectionPanelProps = {
   title: string;
   action?: ReactNode;
   children: ReactNode;
   className?: string;
 };
 
-/** Shared panel chrome for Cockpit page compositions. */
-export function CockpitPanel({ title, action, children, className = "" }: CockpitPanelProps) {
+/**
+ * G4-10 — Section panel chrome (uppercase title style).
+ * Distinct from ui/CockpitPanel which re-exports platform Panel.
+ */
+export function CockpitSectionPanel({
+  title,
+  action,
+  children,
+  className = "",
+}: CockpitSectionPanelProps) {
   return (
     <section
       className={`rounded-xl border border-gold/10 bg-white/[0.02] p-5 ${className}`}
@@ -23,3 +31,6 @@ export function CockpitPanel({ title, action, children, className = "" }: Cockpi
     </section>
   );
 }
+
+/** @deprecated Use CockpitSectionPanel — layout alias retained for imports. */
+export const CockpitPanel = CockpitSectionPanel;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
-import { CockpitPanel } from "@/components/cockpit/layout/CockpitPanel";
+import { CockpitPanel } from "@/components/cockpit/layout/CockpitSectionPanel";
 
 const PLACEHOLDER_HEADLINE =
   "Portfolio velocity is accelerating across commerce and intelligence.";

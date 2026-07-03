@@ -1,4 +1,4 @@
-import { CommerceMarketingPanel } from "@/components/cockpit/widgets/CommerceMarketingPanel";
+import { CommerceMarketingPanel } from "@/components/cockpit/widgets/CommerceEnginePanels";
 
 export default function CommerceMarketingPage() {
   return <CommerceMarketingPanel />;

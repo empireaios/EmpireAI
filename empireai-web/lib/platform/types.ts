@@ -11,7 +11,30 @@ export type ModuleId =
   | "support"
   | "settings"
   | "admin"
-  | "integrations";
+  | "integrations"
+  | "cockpit-command"
+  | "launch"
+  | "executive-home"
+  | "cockpit-missions"
+  | "cockpit-automation"
+  | "cockpit-authorization-centre"
+  | "cockpit-audit"
+  | "cockpit-pillow"
+  | "cockpit-engine"
+  | "cockpit-intelligence"
+  | "product-intelligence-engine"
+  | "market-intelligence-engine"
+  | "supplier-intelligence-engine"
+  | "financial-intelligence-engine"
+  | "quantitative-intelligence-engine"
+  | "advertising-intelligence-engine"
+  | "customer-intelligence-engine"
+  | "risk-intelligence-engine"
+  | "decision-intelligence-engine"
+  | "executive-intelligence-orchestrator"
+  | "cockpit-interaction"
+  | "executive-relationship-graph"
+  | "cockpit-global-assistant";
 
 export type PlatformModule = {
   id: ModuleId;

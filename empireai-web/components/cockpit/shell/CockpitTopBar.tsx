@@ -4,11 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { useAuth } from "@/lib/auth/context";
+import { resolvePlatformIdentityLabel } from "@/lib/auth/display";
 import {
   cockpitNavigation,
 } from "@/lib/cockpit/navigation";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
 import { isCockpitNavActive } from "./cockpitNavUtils";
+import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 
 function resolveCockpitTitle(pathname: string) {
   const candidates = cockpitNavigation.flatMap((item) => {
@@ -38,6 +40,7 @@ function resolveCockpitTitle(pathname: string) {
 export function CockpitTopBar() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
+  const { expand, summarise, nextAction } = useGlobalAiAssistant();
 
   const title = useMemo(() => resolveCockpitTitle(pathname), [pathname]);
 
@@ -81,9 +84,33 @@ export function CockpitTopBar() {
         </div>
 
         <div className="flex items-center gap-3 sm:gap-6">
+          <button
+            type="button"
+            aria-label="Open Global AI Assistant"
+            onClick={() => expand()}
+            className="hidden rounded-lg border border-gold/20 bg-gold/5 px-3 py-1.5 text-xs text-[#d4af37] hover:bg-gold/10 sm:block"
+          >
+            Ask AI
+          </button>
+          <button
+            type="button"
+            aria-label="Recommend next executive action"
+            onClick={() => void nextAction()}
+            className="hidden rounded-lg border border-gold/15 px-3 py-1.5 text-xs text-[#8a847a] hover:text-[#f0d78c] lg:block"
+          >
+            Next action
+          </button>
+          <button
+            type="button"
+            aria-label="Summarise current Cockpit context"
+            onClick={() => void summarise()}
+            className="hidden rounded-lg border border-gold/15 px-3 py-1.5 text-xs text-[#8a847a] hover:text-[#f0d78c] xl:block"
+          >
+            Summarise
+          </button>
           <div className="hidden text-right sm:block">
             <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
-              {user?.role ?? "Session"}
+              {resolvePlatformIdentityLabel(user)}
             </p>
             <p className="text-sm font-semibold text-[#d4af37]">{user?.name ?? "Guest"}</p>
           </div>
@@ -110,6 +137,7 @@ export function CockpitTopBar() {
               <Link
                 key={tab.id}
                 href={tab.href}
+                aria-current={active ? "page" : undefined}
                 className={`shrink-0 rounded-md px-3 py-1.5 text-xs transition-colors ${
                   active
                     ? "bg-gold/10 text-[#f0d78c]"

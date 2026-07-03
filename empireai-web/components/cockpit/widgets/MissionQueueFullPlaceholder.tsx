@@ -1,4 +1,4 @@
-import { CockpitPanel } from "@/components/cockpit/layout/CockpitPanel";
+import { CockpitPanel } from "@/components/cockpit/layout/CockpitSectionPanel";
 import {
   PLACEHOLDER_MISSION_QUEUE,
   type MissionQueueItem,

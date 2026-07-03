@@ -10,13 +10,14 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import type { SessionUser } from "@/lib/auth/types";
+import { resolvePostAuthPath } from "@/lib/auth/redirect";
 import { fetchSessionUser, login as brainLogin, logout as brainLogout } from "@/lib/brain/client";
 
 type AuthContextValue = {
   user: SessionUser | null;
   loading: boolean;
   error: string | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string, redirectTo?: string) => Promise<void>;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 };
@@ -67,11 +68,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = useCallback(
-    async (email: string, password: string) => {
+    async (email: string, password: string, redirectTo?: string) => {
       setError(null);
       const result = await brainLogin(email, password);
       setUser(result.user);
-      router.push("/cockpit");
+      router.push(resolvePostAuthPath(redirectTo));
     },
     [router],
   );

@@ -9,14 +9,66 @@ export type ProductScoutCapability =
 
 export type ProductIntelligenceCapability =
   | "product-intelligence.evaluate"
-  | "product-intelligence.persist";
+  | "product-intelligence.persist"
+  | "product-intelligence.architecture"
+  | "product-intelligence.rank";
+
+export type MarketIntelligenceCapability =
+  | "market-intelligence.architecture"
+  | "market-intelligence.analyse"
+  | "market-intelligence.rank"
+  | "market-intelligence.compare";
+
+export type FinancialIntelligenceCapability =
+  | "financial-intelligence.architecture"
+  | "financial-intelligence.analyse"
+  | "financial-intelligence.rank"
+  | "financial-intelligence.forecast";
+
+export type QuantitativeIntelligenceCapability =
+  | "quantitative-intelligence.architecture"
+  | "quantitative-intelligence.compute"
+  | "quantitative-intelligence.simulate"
+  | "quantitative-intelligence.analyse";
+
+export type AdvertisingIntelligenceCapability =
+  | "advertising-intelligence.architecture"
+  | "advertising-intelligence.analyse"
+  | "advertising-intelligence.rank"
+  | "advertising-intelligence.compare";
+
+export type CustomerIntelligenceCapability =
+  | "customer-intelligence.architecture"
+  | "customer-intelligence.analyse"
+  | "customer-intelligence.rank"
+  | "customer-intelligence.compare";
+
+export type RiskIntelligenceCapability =
+  | "risk-intelligence.architecture"
+  | "risk-intelligence.analyse"
+  | "risk-intelligence.rank"
+  | "risk-intelligence.compare";
+
+export type DecisionIntelligenceCapability =
+  | "decision-intelligence.architecture"
+  | "decision-intelligence.orchestrate"
+  | "decision-intelligence.synthesize"
+  | "decision-intelligence.feeds";
+
+export type ExecutiveIntelligenceOrchestratorCapability =
+  | "executive-intelligence-orchestrator.architecture"
+  | "executive-intelligence-orchestrator.coordinate"
+  | "executive-intelligence-orchestrator.aggregate"
+  | "executive-intelligence-orchestrator.deliver";
 
 export type SupplierIntelligenceCapability =
   | "supplier-intelligence.list"
   | "supplier-intelligence.discover"
   | "supplier-intelligence.evaluate"
   | "supplier-intelligence.score"
-  | "supplier-intelligence.compare";
+  | "supplier-intelligence.compare"
+  | "supplier-intelligence.architecture"
+  | "supplier-intelligence.rank";
 
 export type MarketingStrategistCapability =
   | "marketing-strategist.generate_campaign"
@@ -57,6 +109,14 @@ export type GuardianCapability =
 export type IntelligenceCapability =
   | ProductScoutCapability
   | ProductIntelligenceCapability
+  | MarketIntelligenceCapability
+  | FinancialIntelligenceCapability
+  | QuantitativeIntelligenceCapability
+  | AdvertisingIntelligenceCapability
+  | CustomerIntelligenceCapability
+  | RiskIntelligenceCapability
+  | DecisionIntelligenceCapability
+  | ExecutiveIntelligenceOrchestratorCapability
   | SupplierIntelligenceCapability
   | MarketingStrategistCapability
   | CfoCapability
@@ -70,6 +130,14 @@ export type IntelligenceCapability =
 export type ModuleCapabilityMap = {
   "product-scout": ProductScoutCapability;
   "product-intelligence": ProductIntelligenceCapability;
+  "market-intelligence": MarketIntelligenceCapability;
+  "financial-intelligence": FinancialIntelligenceCapability;
+  "quantitative-intelligence": QuantitativeIntelligenceCapability;
+  "advertising-intelligence": AdvertisingIntelligenceCapability;
+  "customer-intelligence": CustomerIntelligenceCapability;
+  "risk-intelligence": RiskIntelligenceCapability;
+  "decision-intelligence": DecisionIntelligenceCapability;
+  "executive-intelligence-orchestrator": ExecutiveIntelligenceOrchestratorCapability;
   "supplier-intelligence": SupplierIntelligenceCapability;
   "marketing-strategist": MarketingStrategistCapability;
   cfo: CfoCapability;
@@ -93,6 +161,56 @@ export const MODULE_CAPABILITIES: {
   "product-intelligence": [
     "product-intelligence.evaluate",
     "product-intelligence.persist",
+    "product-intelligence.architecture",
+    "product-intelligence.rank",
+  ],
+  "market-intelligence": [
+    "market-intelligence.architecture",
+    "market-intelligence.analyse",
+    "market-intelligence.rank",
+    "market-intelligence.compare",
+  ],
+  "financial-intelligence": [
+    "financial-intelligence.architecture",
+    "financial-intelligence.analyse",
+    "financial-intelligence.rank",
+    "financial-intelligence.forecast",
+  ],
+  "quantitative-intelligence": [
+    "quantitative-intelligence.architecture",
+    "quantitative-intelligence.compute",
+    "quantitative-intelligence.simulate",
+    "quantitative-intelligence.analyse",
+  ],
+  "advertising-intelligence": [
+    "advertising-intelligence.architecture",
+    "advertising-intelligence.analyse",
+    "advertising-intelligence.rank",
+    "advertising-intelligence.compare",
+  ],
+  "customer-intelligence": [
+    "customer-intelligence.architecture",
+    "customer-intelligence.analyse",
+    "customer-intelligence.rank",
+    "customer-intelligence.compare",
+  ],
+  "risk-intelligence": [
+    "risk-intelligence.architecture",
+    "risk-intelligence.analyse",
+    "risk-intelligence.rank",
+    "risk-intelligence.compare",
+  ],
+  "decision-intelligence": [
+    "decision-intelligence.architecture",
+    "decision-intelligence.orchestrate",
+    "decision-intelligence.synthesize",
+    "decision-intelligence.feeds",
+  ],
+  "executive-intelligence-orchestrator": [
+    "executive-intelligence-orchestrator.architecture",
+    "executive-intelligence-orchestrator.coordinate",
+    "executive-intelligence-orchestrator.aggregate",
+    "executive-intelligence-orchestrator.deliver",
   ],
   "supplier-intelligence": [
     "supplier-intelligence.list",
@@ -100,6 +218,8 @@ export const MODULE_CAPABILITIES: {
     "supplier-intelligence.evaluate",
     "supplier-intelligence.score",
     "supplier-intelligence.compare",
+    "supplier-intelligence.architecture",
+    "supplier-intelligence.rank",
   ],
   "marketing-strategist": [
     "marketing-strategist.generate_campaign",

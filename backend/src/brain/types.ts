@@ -309,6 +309,7 @@ export type AuditAction =
   | "marketplace_connection.revoked"
   | "marketplace_connection.verified"
   | "commerce_readiness.evaluated"
+  | "commerce_readiness.crir_registered"
   | "product_discovery.session_started"
   | "product_discovery.discovered"
   | "product_discovery.approved"

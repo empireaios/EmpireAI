@@ -108,7 +108,9 @@ export async function fetchSessionUser() {
     throw normalizeError(new Error(body.error ?? "Session check failed"), response.status);
   }
 
-  const data = (await response.json()) as { user: import("../auth/types").SessionUser };
+  const data = (await response.json()) as {
+    user: import("../auth/types").SessionUser;
+  };
   return data.user;
 }
 

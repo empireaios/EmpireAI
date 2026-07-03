@@ -4,6 +4,7 @@ import type { UserRole } from "@/lib/auth/types";
 
 export const cockpitNavIcons: Record<CockpitNavIcon, string> = {
   home: "◉",
+  graph: "◈",
   command: "♛",
   missions: "⚑",
   intelligence: "◎",
@@ -20,8 +21,11 @@ export function canAccessCockpitNav(
   roles: readonly CockpitRole[] | undefined,
   userRole: UserRole | undefined,
 ) {
-  if (!roles || !userRole) {
+  if (!roles) {
     return true;
+  }
+  if (!userRole) {
+    return false;
   }
   return roles.includes(userRole);
 }

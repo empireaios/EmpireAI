@@ -4,39 +4,22 @@ import { Outlet } from "react-router-dom";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
-import { PillowCompanionIcon } from "@/components/pillow/PillowCompanionIcon";
-import { PillowCompanionPanel } from "@/components/pillow/PillowCompanionPanel";
 import { CommandPalette, useCommandPaletteShortcut } from "@/components/system/CommandPalette";
 import { GlobalApprovalBar } from "@/components/system/GlobalApprovalBar";
 import { GlobalSuccess001BlockerBar } from "@/components/system/GlobalSuccess001BlockerBar";
 import {
-  GlobalAssistantPanel,
-  useGlobalAssistantShortcut,
-} from "@/components/system/GlobalAssistantPanel";
-import {
   NotificationsCenter,
   useNotificationsUnreadCount,
 } from "@/components/system/NotificationsCenter";
-import { GlobalAssistantProvider, useGlobalAssistant } from "@/context/GlobalAssistantContext";
-import { PillowCompanionProvider, usePillowCompanion } from "@/context/PillowCompanionContext";
+import { PillowCompanionProvider } from "@/context/PillowCompanionContext";
+import { GlobalAssistantProvider } from "@/context/GlobalAssistantContext";
 import { useAuth } from "@/context/AuthContext";
 import { useFounderGovernanceChrome } from "@/hooks/useFounderGovernanceChrome";
 import { isFounderPersona } from "@/lib/post-login-destination";
 import styles from "./DashboardLayout.module.css";
 
-function DashboardShellBase({
-  isFounder,
-  showCompanionChrome,
-  companionOpen,
-  onTogglePillow,
-}: {
-  isFounder: boolean;
-  showCompanionChrome: boolean;
-  companionOpen?: boolean;
-  onTogglePillow?: () => void;
-}) {
+function DashboardShell({ isFounder }: { isFounder: boolean }) {
   const { user } = useAuth();
-  const { open, openAssistant, closeAssistant } = useGlobalAssistant();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -45,7 +28,6 @@ function DashboardShellBase({
   const { unreadCount, setUnreadCount } = useNotificationsUnreadCount(isFounder);
 
   useCommandPaletteShortcut(() => setPaletteOpen(true), isFounder);
-  useGlobalAssistantShortcut(() => openAssistant(), isFounder);
 
   const storeContext = useMemo(
     () => ({
@@ -62,14 +44,11 @@ function DashboardShellBase({
         collapsed={sidebarCollapsed}
         storeName={storeContext.name}
         storeStatus={storeContext.storeStatus}
-        onTogglePillow={onTogglePillow}
-        pillowOpen={companionOpen}
       />
 
       <div
         className={styles.main}
         data-sidebar-collapsed={sidebarCollapsed || undefined}
-        data-companion-open={companionOpen || undefined}
       >
         <TopNav
           storeName={storeContext.name}
@@ -79,7 +58,6 @@ function DashboardShellBase({
           onToggleSidebar={() => setSidebarCollapsed((prev) => !prev)}
           notificationCount={unreadCount}
           onOpenNotifications={() => setNotificationsOpen(true)}
-          onOpenAssistant={() => openAssistant()}
         />
 
         {isFounder && (
@@ -105,27 +83,7 @@ function DashboardShellBase({
         onClose={() => setNotificationsOpen(false)}
         onUnreadChange={setUnreadCount}
       />
-      <GlobalAssistantPanel open={open} onClose={closeAssistant} />
-
-      {showCompanionChrome && (
-        <>
-          <PillowCompanionIcon />
-          <PillowCompanionPanel />
-        </>
-      )}
     </div>
-  );
-}
-
-function DashboardShellWithCompanion({ isFounder }: { isFounder: boolean }) {
-  const { open, toggleCompanion } = usePillowCompanion();
-  return (
-    <DashboardShellBase
-      isFounder={isFounder}
-      showCompanionChrome
-      companionOpen={open}
-      onTogglePillow={toggleCompanion}
-    />
   );
 }
 
@@ -142,12 +100,12 @@ function DashboardLayoutInner() {
         pendingApprovals={governance.pendingCount}
         unreadNotifications={unreadCount}
       >
-        <DashboardShellWithCompanion isFounder={isFounder} />
+        <DashboardShell isFounder={isFounder} />
       </PillowCompanionProvider>
     );
   }
 
-  return <DashboardShellBase isFounder={isFounder} showCompanionChrome={false} />;
+  return <DashboardShell isFounder={isFounder} />;
 }
 
 export function DashboardLayout() {

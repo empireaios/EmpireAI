@@ -1,4 +1,4 @@
-import { CockpitPanel } from "@/components/cockpit/layout/CockpitPanel";
+import { CockpitPanel } from "@/components/cockpit/layout/CockpitSectionPanel";
 
 const PLACEHOLDER_HEADLINE = "Portfolio velocity is accelerating across core ventures.";
 

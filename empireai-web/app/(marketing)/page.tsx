@@ -1,5 +1,6 @@
-import { HomePage } from "@/components/home/HomePage";
+import { redirect } from "next/navigation";
 
-export default function MarketingPage() {
-  return <HomePage />;
+/** V1 Activation — no public landing page; middleware also routes unauthenticated `/` to login. */
+export default function RootPage() {
+  redirect("/login");
 }

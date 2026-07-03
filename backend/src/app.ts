@@ -31,6 +31,7 @@ import { registerEmpireUxIdentityDoctrineRoutes } from "./foundation/empire-ux-i
 import { registerEmpireCommercialBusinessDoctrineRoutes } from "./foundation/empire-commercial-business-doctrine/routes/empire-commercial-business-doctrine-routes.js";
 import { registerPolicyRoutes } from "./foundation/policy-engine/routes/policy-routes.js";
 import { registerPromiseRegisterRoutes } from "./foundation/promise-register/routes/promise-register-routes.js";
+import { registerObjectiveManagementRoutes } from "./orchestration/objective-management-engine/routes/objective-management-routes.js";
 import { registerKpiEngineRoutes } from "./foundation/kpi-engine/routes/kpi-engine-routes.js";
 import { registerDecisionRegistryRoutes } from "./foundation/decision-registry/routes/decision-registry-routes.js";
 import { registerStrategicMemoryRoutes } from "./foundation/strategic-memory-engine/routes/strategic-memory-routes.js";
@@ -168,6 +169,7 @@ import {
   shutdownPillowHost,
 } from "./orchestration/pillow-host/index.js";
 import { registerPillowApprovalRoutes } from "./orchestration/pillow-approval/index.js";
+import { wireCanonicalPillowApprovalPipeline } from "./orchestration/pillow-approval/canonical-pillow-approval-pipeline.js";
 import { registerExecutiveLearningRoutes } from "./orchestration/executive-learning/index.js";
 import { registerPillowExecutiveCouncilRoutes } from "./orchestration/pillow-executive-council/index.js";
 import { seedGrandKingAccount } from "./grand-king/services/grand-king-seed-service.js";
@@ -516,6 +518,11 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     auditLogger: brain.auditLogger,
   });
 
+  await registerObjectiveManagementRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
   await registerKpiEngineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
@@ -855,10 +862,12 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     auditLogger: brain.auditLogger,
   });
 
-  await registerGlobalAssistantRoutes(app, {
-    authenticate,
-    auditLogger: brain.auditLogger,
-  });
+  if (process.env.EMPIRE_LEGACY_GC05_GLOBAL_ASSISTANT === "true") {
+    await registerGlobalAssistantRoutes(app, {
+      authenticate,
+      auditLogger: brain.auditLogger,
+    });
+  }
 
   await registerGrandKingRoutes(app, {
     authenticate,
@@ -884,6 +893,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         cursorBridge: pillowHost.getCursorBridge(),
         auditLogger: brain.auditLogger,
       });
+      wireCanonicalPillowApprovalPipeline(pillowHost.getApprovalGate());
       await registerExecutiveLearningRoutes(app, {
         authenticate,
         auditLogger: brain.auditLogger,

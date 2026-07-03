@@ -8,6 +8,11 @@ import {
   ApprovalNotFoundError,
   type ApprovalGateEngine,
 } from "../approval-gate-engine.js";
+import {
+  listCanonicalApprovals,
+  recordCanonicalApprovalEklsOutcome,
+  syncGateDecisionToG5,
+} from "../canonical-pillow-approval-pipeline.js";
 import { CursorBridgeError, type CursorBridgeAdapter } from "../cursor-bridge-adapter.js";
 import type { PillowHost } from "../../pillow-host/pillow-host.js";
 
@@ -124,6 +129,14 @@ export async function registerPillowApprovalRoutes(
         notes: body.notes,
         correlationId: request.id,
       });
+      syncGateDecisionToG5(approval, user.email, body.notes ?? null);
+      recordCanonicalApprovalEklsOutcome({
+        approvalId: approval.approvalId,
+        workspaceId,
+        actorId: user.email,
+        outcome: body.outcome,
+        summary: approval.proposal.title,
+      });
       auditLogger.write({
         action: "pillow.approval.decide",
         actor: user.email,
@@ -157,13 +170,17 @@ export async function registerPillowApprovalRoutes(
       return reply.code(403).send({ error: "Workspace access denied" });
     }
 
-    const approvals = query.status
-      ? approvalGate.list(workspaceId, query.status)
-      : approvalGate.listPending(workspaceId);
+    const approvals = listCanonicalApprovals(approvalGate, workspaceId, {
+      status: query.status,
+      includeHistory: query.includeHistory,
+    });
 
     const payload: Record<string, unknown> = {
       approvals,
-      pendingCount: approvalGate.listPending(workspaceId).length,
+      pendingCount: listCanonicalApprovals(approvalGate, workspaceId).filter(
+        (item) => item.status === "Pending",
+      ).length,
+      pipeline: "canonical-pillow-approval",
     };
 
     if (query.includeHistory) {

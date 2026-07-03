@@ -47,7 +47,9 @@ import { empireCommercialBusinessDoctrineTools } from "../foundation/empire-comm
 import { initializePolicies } from "../foundation/policy-engine/index.js";
 import { policyTools } from "../foundation/policy-engine/tools/policy-tools.js";
 import { initializePromiseRegister } from "../foundation/promise-register/index.js";
+import { initializeObjectiveManagement } from "../orchestration/objective-management-engine/index.js";
 import { promiseRegisterTools } from "../foundation/promise-register/tools/promise-register-tools.js";
+import { objectiveManagementTools } from "../orchestration/objective-management-engine/tools/objective-management-tools.js";
 import { initializeKpiEngine } from "../foundation/kpi-engine/index.js";
 import { kpiEngineTools } from "../foundation/kpi-engine/tools/kpi-engine-tools.js";
 import { initializeDecisionRegistry } from "../foundation/decision-registry/index.js";
@@ -58,6 +60,44 @@ import { ecommerceOsTools } from "../orchestration/ecommerce-os-orchestrator/too
 import { accountInfrastructureTools } from "../orchestration/account-infrastructure-engine/tools/account-infrastructure-tools.js";
 import { marketplaceConnectionTools } from "../orchestration/marketplace-connection-engine/tools/marketplace-connection-tools.js";
 import { commerceReadinessTools } from "../orchestration/commerce-readiness-engine/tools/commerce-readiness-tools.js";
+import { businessAutomationTools } from "../orchestration/business-automation/tools/business-automation-tools.js";
+import { productionCertificationTools } from "../orchestration/production-certification/tools/production-certification-tools.js";
+import { platformIntegrityTools } from "../orchestration/production-certification/platform-integrity/tools/platform-integrity-tools.js";
+import { securityGovernanceTools } from "../orchestration/production-certification/security-governance/tools/security-governance-tools.js";
+import { infrastructureDeploymentTools } from "../orchestration/production-certification/infrastructure-deployment/tools/infrastructure-deployment-tools.js";
+import { operationalReadinessTools } from "../orchestration/production-certification/operational-readiness/tools/operational-readiness-tools.js";
+import { businessOperationsTools } from "../orchestration/production-certification/business-operations/tools/business-operations-tools.js";
+import { performanceCertificationTools } from "../orchestration/production-certification/performance-scalability-resilience/tools/performance-certification-tools.js";
+import { executiveOperationsTools } from "../orchestration/production-certification/executive-operations/tools/executive-operations-tools.js";
+import { failureRecoveryTools } from "../orchestration/production-certification/failure-recovery-incident/tools/failure-recovery-tools.js";
+import { productionSimulationTools } from "../orchestration/production-certification/production-simulation/tools/production-simulation-tools.js";
+import { finalProductionReadinessTools } from "../orchestration/production-certification/final-production-readiness/tools/final-production-readiness-tools.js";
+import { grandKingLiveOperationsTools } from "../orchestration/grand-king-live-operations/tools/live-operations-tools.js";
+import { grandKingProductionWorkspaceTools } from "../orchestration/grand-king-production-workspace/tools/production-workspace-tools.js";
+import { grandKingCommerceOperationsTools } from "../orchestration/grand-king-commerce-operations/tools/commerce-operations-tools.js";
+import { grandKingBusinessAutomationOperationsTools } from "../orchestration/grand-king-business-automation-operations/tools/automation-operations-tools.js";
+import { grandKingExecutiveDecisionCentreTools } from "../orchestration/grand-king-executive-decision-centre/tools/executive-decision-centre-tools.js";
+import { grandKingRevenueFinancialOperationsTools } from "../orchestration/grand-king-revenue-financial-operations/tools/financial-operations-tools.js";
+import { grandKingContinuousIntelligenceOptimizationTools } from "../orchestration/grand-king-continuous-intelligence-optimization/tools/continuous-intelligence-tools.js";
+import { grandKingAutonomousOperationsTools } from "../orchestration/grand-king-autonomous-operations/tools/autonomous-operations-tools.js";
+import { grandKingSelfHealingOperationsTools } from "../orchestration/grand-king-self-healing-operations/tools/self-healing-tools.js";
+import { grandKingOperationalIntelligenceTools } from "../orchestration/grand-king-operational-intelligence-executive-insights/tools/operational-intelligence-tools.js";
+import { finalLiveLaunchCertificationTools } from "../orchestration/grand-king-live-operations/final-live-operations-certification/tools/final-live-launch-certification-tools.js";
+import { identityAuthorizationTools } from "../orchestration/identity-authorization-platform/tools/identity-authorization-tools.js";
+import { connectionRegistryTools } from "../orchestration/identity-authorization-platform/connection-registry/tools/connection-registry-tools.js";
+import { authorizationFrameworkTools } from "../orchestration/identity-authorization-platform/authorization-framework/tools/authorization-framework-tools.js";
+import { credentialVaultTools } from "../orchestration/identity-authorization-platform/credential-vault-integration/tools/credential-vault-tools.js";
+import { connectionHealthTools } from "../orchestration/identity-authorization-platform/connection-health-monitoring/tools/connection-health-tools.js";
+import { authorizationCentreTools } from "../orchestration/identity-authorization-platform/authorization-centre/tools/authorization-centre-tools.js";
+import { operationalReadinessTools as identityAuthorizationReadinessTools } from "../orchestration/identity-authorization-platform/operational-readiness-engine/tools/operational-readiness-tools.js";
+import { tokenLifecycleTools as identityTokenLifecycleTools } from "../orchestration/identity-authorization-platform/automatic-reauthorization/tools/token-lifecycle-tools.js";
+import { isolationTools } from "../orchestration/identity-authorization-platform/multi-workspace-isolation/tools/isolation-tools.js";
+import { identityPluginTools } from "../orchestration/identity-authorization-platform/identity-plugin-integration/tools/identity-plugin-tools.js";
+import { wrapG8BrainToolsWithIsolation } from "../orchestration/identity-authorization-platform/multi-workspace-isolation/tools/isolation-brain-gateway.js";
+import { cockpitAutomationTools } from "../orchestration/business-automation/tools/cockpit-automation-tools.js";
+import { eklsOutcomeTools } from "../orchestration/business-automation/tools/ekls-outcome-tools.js";
+import { automationPluginTools } from "../orchestration/business-automation/tools/automation-plugin-tools.js";
+import { setAutomationBrainDispatch } from "../orchestration/business-automation/broker/brain-dispatch-adapter.js";
 import { productDiscoveryTools } from "../orchestration/product-discovery-opportunity-engine/tools/product-discovery-tools.js";
 import { businessOpportunityWorkspaceTools } from "../orchestration/business-opportunity-workspace/tools/business-opportunity-workspace-tools.js";
 import { businessPreviewStudioTools } from "../orchestration/business-preview-studio/tools/business-preview-studio-tools.js";
@@ -134,6 +174,7 @@ import { productionHardeningTools } from "../runtime/production-hardening/tools/
 import { version1AcceptanceTestTools } from "../runtime/version-1-acceptance-test/tools/version-1-acceptance-test-tools.js";
 import { grandKingGoLiveChecklistTools } from "../runtime/grand-king-go-live-checklist/tools/grand-king-go-live-checklist-tools.js";
 import { version1GoldMasterTools } from "../runtime/version-1-gold-master/tools/version-1-gold-master-tools.js";
+import { versionGovernanceTools } from "../orchestration/empire-version-governance/tools/version-governance-tools.js";
 import { globalBusinessHealthEngineTools } from "../runtime/global-business-health-engine/tools/global-business-health-engine-tools.js";
 import { empireKpiEngineTools } from "../runtime/empire-kpi-engine/tools/empire-kpi-engine-tools.js";
 import { liveCommercialInvestigationsTools } from "../runtime/live-commercial-investigations/tools/live-commercial-investigations-tools.js";
@@ -180,6 +221,15 @@ import { grandKingTools } from "../grand-king/tools/grand-king-tools.js";
 import { grandKingRevenuePipelineTools } from "../grand-king-revenue-pipeline/tools/grand-king-revenue-pipeline-tools.js";
 import { getGrandKingSchedulerDefinitions } from "../grand-king/automation/grand-king-automation-server.js";
 import { registerSupplierIntelligenceModule } from "../intelligence/supplier-intelligence-engine/module-contract.js";
+import "../intelligence/product-intelligence-engine/module-contract.js";
+import "../intelligence/market-intelligence-engine/module-contract.js";
+import "../intelligence/financial-intelligence-engine/module-contract.js";
+import "../intelligence/quantitative-intelligence-engine/module-contract.js";
+import "../intelligence/advertising-intelligence-engine/module-contract.js";
+import "../intelligence/customer-intelligence-engine/module-contract.js";
+import "../intelligence/risk-intelligence-engine/module-contract.js";
+import "../intelligence/decision-intelligence-engine/module-contract.js";
+import "../intelligence/executive-intelligence-orchestrator/module-contract.js";
 import { workflowDefinitions } from "../agents/workflows/workflows.js";
 import { AgentManager } from "./agent-manager.js";
 import { AuditLogger } from "./audit/audit-logger.js";
@@ -226,6 +276,18 @@ export type EmpireBrain = {
   shutdown: () => Promise<void>;
 };
 
+const identityAuthorizationPlatformTools = wrapG8BrainToolsWithIsolation([
+  ...identityAuthorizationTools,
+  ...connectionRegistryTools,
+  ...authorizationFrameworkTools,
+  ...credentialVaultTools,
+  ...connectionHealthTools,
+  ...authorizationCentreTools,
+  ...identityAuthorizationReadinessTools,
+  ...identityTokenLifecycleTools,
+  ...identityPluginTools,
+]);
+
 export async function createBrain(options?: {
   startWorkers?: boolean;
   startScheduler?: boolean;
@@ -262,6 +324,7 @@ export async function createBrain(options?: {
   initializeDoctrines("ws_empire_1");
   initializePolicies("ws_empire_1");
   initializePromiseRegister("ws_empire_1");
+  initializeObjectiveManagement("ws_empire_1", "co-grand-king");
   initializeKpiEngine("ws_empire_1");
   initializeDecisionRegistry("ws_empire_1");
   initializeStrategicMemory("ws_empire_1");
@@ -314,6 +377,7 @@ export async function createBrain(options?: {
     ...empireCommercialBusinessDoctrineTools,
     ...policyTools,
     ...promiseRegisterTools,
+    ...objectiveManagementTools,
     ...kpiEngineTools,
     ...decisionRegistryTools,
     ...strategicMemoryTools,
@@ -321,6 +385,34 @@ export async function createBrain(options?: {
     ...accountInfrastructureTools,
     ...marketplaceConnectionTools,
     ...commerceReadinessTools,
+    ...businessAutomationTools,
+    ...productionCertificationTools,
+    ...platformIntegrityTools,
+    ...securityGovernanceTools,
+    ...infrastructureDeploymentTools,
+    ...operationalReadinessTools,
+    ...businessOperationsTools,
+    ...performanceCertificationTools,
+    ...executiveOperationsTools,
+    ...failureRecoveryTools,
+    ...productionSimulationTools,
+    ...finalProductionReadinessTools,
+    ...grandKingLiveOperationsTools,
+    ...grandKingProductionWorkspaceTools,
+    ...grandKingCommerceOperationsTools,
+    ...grandKingBusinessAutomationOperationsTools,
+    ...grandKingExecutiveDecisionCentreTools,
+    ...grandKingRevenueFinancialOperationsTools,
+    ...grandKingContinuousIntelligenceOptimizationTools,
+    ...grandKingAutonomousOperationsTools,
+    ...grandKingSelfHealingOperationsTools,
+    ...grandKingOperationalIntelligenceTools,
+    ...finalLiveLaunchCertificationTools,
+    ...identityAuthorizationPlatformTools,
+    ...isolationTools,
+    ...cockpitAutomationTools,
+    ...eklsOutcomeTools,
+    ...automationPluginTools,
     ...productDiscoveryTools,
     ...businessOpportunityWorkspaceTools,
     ...businessPreviewStudioTools,
@@ -397,6 +489,7 @@ export async function createBrain(options?: {
     ...version1AcceptanceTestTools,
     ...grandKingGoLiveChecklistTools,
     ...version1GoldMasterTools,
+    ...versionGovernanceTools,
     ...globalBusinessHealthEngineTools,
     ...empireKpiEngineTools,
     ...liveCommercialInvestigationsTools,
@@ -476,6 +569,8 @@ export async function createBrain(options?: {
     governance: governanceEngine,
     routes: moduleRoutes,
   });
+
+  setAutomationBrainDispatch((request) => orchestrator.dispatch(request));
 
   const scheduler = new BrainScheduler(taskQueue, auditLogger);
   const workerPool = new BrainWorkerPool(bullmqConnection, {

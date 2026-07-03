@@ -14,9 +14,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EmpireAI — The AI OS that manufactures companies",
-  description:
-    "EmpireAI orchestrates autonomous agents, market intelligence, and global infrastructure to build, launch, and scale AI-native companies at machine speed.",
+  title: "EmpireAI — Grand King Operating Environment",
+  description: "Private executive operating system for the Grand King.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    nosnippet: true,
+    noarchive: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

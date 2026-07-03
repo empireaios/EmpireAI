@@ -7,20 +7,34 @@ import {
   Panel,
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
-import {
-  COMMERCE_LAUNCH_DEPLOYMENT_CHECKLIST,
-  COMMERCE_LAUNCH_FOCUS,
-  COMMERCE_LAUNCH_PUBLICATION_PIPELINE,
-  COMMERCE_LAUNCH_WORKFLOW,
-  type DeploymentChecklistItem,
-  type LaunchWorkflowStatus,
-  type LaunchWorkflowStep,
-  type PublicationPipelineRow,
-  type PublicationStageStatus,
-} from "@/components/cockpit/widgets/launch/commerceLaunchDemoData";
+import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+
+type LaunchView = {
+  readinessScore: number | null;
+  launchDecision: string;
+  launchStatus: string;
+  workflowStage: string | null;
+  focusLabel: string;
+  focusDetail: string;
+  blockingCount: number;
+  workflowSteps: Array<{
+    id: string;
+    label: string;
+    description: string;
+    status: "complete" | "in_progress" | "blocked" | "pending";
+    progress: number;
+  }>;
+  deploymentChecklist: Array<{
+    itemId: string;
+    category: string;
+    label: string;
+    status: "ready" | "blocked" | "pending";
+    note: string;
+  }>;
+};
 
 function workflowBadgeVariant(
-  status: LaunchWorkflowStatus,
+  status: LaunchView["workflowSteps"][number]["status"],
 ): "success" | "gold" | "default" | "warning" {
   switch (status) {
     case "complete":
@@ -34,25 +48,8 @@ function workflowBadgeVariant(
   }
 }
 
-function publicationBadgeVariant(
-  status: PublicationStageStatus,
-): "success" | "gold" | "default" | "warning" | "danger" {
-  switch (status) {
-    case "published":
-      return "success";
-    case "ready":
-      return "gold";
-    case "review":
-      return "warning";
-    case "blocked":
-      return "danger";
-    default:
-      return "default";
-  }
-}
-
 function checklistBadgeVariant(
-  status: DeploymentChecklistItem["status"],
+  status: LaunchView["deploymentChecklist"][number]["status"],
 ): "success" | "gold" | "warning" {
   switch (status) {
     case "ready":
@@ -64,7 +61,11 @@ function checklistBadgeVariant(
   }
 }
 
-function LaunchWorkflowStepRow({ step }: { step: LaunchWorkflowStep }) {
+function LaunchWorkflowStepRow({
+  step,
+}: {
+  step: LaunchView["workflowSteps"][number];
+}) {
   return (
     <div className="relative pl-8">
       <span
@@ -97,71 +98,85 @@ function LaunchWorkflowStepRow({ step }: { step: LaunchWorkflowStep }) {
   );
 }
 
-/** SCR-201 — Commerce Launch Centre panel (presentation-only demo). */
+/** SCR-201 — Commerce Launch Centre (Brain live — P0-4). */
 export function CommerceLaunchPanel() {
-  const readyCount = COMMERCE_LAUNCH_DEPLOYMENT_CHECKLIST.filter(
-    (item) => item.status === "ready",
-  ).length;
-  const blockedCount = COMMERCE_LAUNCH_DEPLOYMENT_CHECKLIST.filter(
-    (item) => item.status === "blocked",
-  ).length;
+  const { data, loading, error, reload } = useBrainModule<LaunchView>("launch");
+
+  if (loading) {
+    return <Panel title="Launch Centre">Loading live launch readiness…</Panel>;
+  }
+
+  if (error || !data) {
+    return (
+      <Panel title="Launch Centre" subtitle="Brain dispatch unavailable">
+        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
+          Retry
+        </button>
+      </Panel>
+    );
+  }
+
+  const readinessScore = data.readinessScore ?? null;
+  const readyCount = data.deploymentChecklist.filter((i) => i.status === "ready").length;
+  const blockedCount = data.deploymentChecklist.filter((i) => i.status === "blocked").length;
+  const completeSteps = data.workflowSteps.filter((s) => s.status === "complete").length;
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge variant="gold">Launch readiness {COMMERCE_LAUNCH_FOCUS.readinessScore}%</Badge>
-        <Badge variant="warning">Pipeline 4 products</Badge>
-        <Badge variant="success">Preview deployed 1</Badge>
+        <Badge variant="gold">
+          Launch readiness{" "}
+          {readinessScore !== null ? `${readinessScore}%` : "Awaiting implementation"}
+        </Badge>
+        <Badge variant="warning">{data.launchDecision.replace(/_/g, " ")}</Badge>
+        <Badge variant={data.blockingCount > 0 ? "warning" : "success"}>
+          {data.blockingCount} blocking
+        </Badge>
       </div>
 
       <div className="rounded-xl border border-gold/20 bg-white/[0.02] p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <Badge variant="gold">Launch focus</Badge>
-            <h2 className="mt-2 font-display text-2xl text-[#f0d78c]">
-              {COMMERCE_LAUNCH_FOCUS.product}
-            </h2>
+            <h2 className="mt-2 font-display text-2xl text-[#f0d78c]">{data.focusLabel}</h2>
             <p className="text-sm text-[#8a847a]">
-              {COMMERCE_LAUNCH_FOCUS.company} · {COMMERCE_LAUNCH_FOCUS.agent}
+              {data.focusDetail} · {data.launchStatus}
+              {data.workflowStage ? ` · ${data.workflowStage}` : ""}
             </p>
           </div>
           <p className="font-display text-4xl text-[#d4af37]">
-            {COMMERCE_LAUNCH_FOCUS.readinessScore}%
+            {readinessScore !== null ? `${readinessScore}%` : "—"}
           </p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <ActionButton variant="secondary" disabled>
-            Start launch session
+            Launch actions via Brain dispatch
           </ActionButton>
-          <ActionButton variant="secondary" disabled>
-            Approve publication
-          </ActionButton>
-          <ActionButton disabled>Deploy to preview</ActionButton>
         </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           label="Launch readiness"
-          value={`${COMMERCE_LAUNCH_FOCUS.readinessScore}%`}
-          change="Demo score — not live"
+          value={readinessScore !== null ? `${readinessScore}%` : "Awaiting implementation"}
+          change={data.launchDecision}
           trend="neutral"
         />
         <StatCard
           label="Workflow complete"
-          value={`${COMMERCE_LAUNCH_WORKFLOW.filter((s) => s.status === "complete").length}/${COMMERCE_LAUNCH_WORKFLOW.length}`}
-          change="Discovery and preview done"
+          value={`${completeSteps}/${data.workflowSteps.length}`}
+          change="Live Grand King dashboard"
           trend="up"
         />
         <StatCard
-          label="Publication queue"
-          value={String(COMMERCE_LAUNCH_PUBLICATION_PIPELINE.length)}
-          change="Nova Home catalog"
-          trend="neutral"
+          label="Blocking items"
+          value={String(data.blockingCount)}
+          change="Commerce readiness engine"
+          trend={data.blockingCount > 0 ? "down" : "up"}
         />
         <StatCard
           label="Deploy checklist"
-          value={`${readyCount}/${COMMERCE_LAUNCH_DEPLOYMENT_CHECKLIST.length}`}
+          value={`${readyCount}/${data.deploymentChecklist.length}`}
           change={blockedCount > 0 ? `${blockedCount} blocked` : "On track"}
           trend={blockedCount > 0 ? "down" : "up"}
         />
@@ -169,73 +184,39 @@ export function CommerceLaunchPanel() {
 
       <Panel
         title="Launch Readiness Workflow"
-        subtitle="Discovery → Preview → Build → Readiness → Publication → Deploy"
+        subtitle="Brand → Products → Store → Payments → Fulfillment → Launch"
       >
         <div className="space-y-6 border-l border-gold/10 pl-4">
-          {COMMERCE_LAUNCH_WORKFLOW.map((step) => (
+          {data.workflowSteps.map((step) => (
             <LaunchWorkflowStepRow key={step.id} step={step} />
           ))}
         </div>
       </Panel>
 
-      <div className="grid gap-6 xl:grid-cols-5">
-        <Panel
-          title="Product Publication Pipeline"
-          subtitle="Listing packages by stage"
-          className="xl:col-span-3"
-        >
-          <DataTable<PublicationPipelineRow>
-            keyField="productId"
-            data={COMMERCE_LAUNCH_PUBLICATION_PIPELINE}
-            columns={[
-              { key: "productName", header: "Product" },
-              { key: "company", header: "Company" },
-              { key: "stage", header: "Stage" },
-              {
-                key: "status",
-                header: "Status",
-                render: (row) => (
-                  <Badge variant={publicationBadgeVariant(row.status)}>
-                    {row.status}
-                  </Badge>
-                ),
-              },
-              {
-                key: "confidence",
-                header: "Confidence",
-                render: (row) => `${row.confidence}%`,
-              },
-              { key: "updatedAt", header: "Updated" },
-            ]}
-          />
-        </Panel>
-
-        <Panel
-          title="Deployment Checklist"
-          subtitle={`${readyCount} ready · ${blockedCount} blocked`}
-          className="xl:col-span-2"
-        >
-          <ul className="space-y-4">
-            {COMMERCE_LAUNCH_DEPLOYMENT_CHECKLIST.map((item) => (
-              <li
-                key={item.itemId}
-                className="rounded-lg border border-gold/10 bg-white/[0.02] p-4"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6f6a60]">
-                      {item.category}
-                    </p>
-                    <p className="mt-1 text-sm font-medium text-[#f0d78c]">{item.label}</p>
-                  </div>
-                  <Badge variant={checklistBadgeVariant(item.status)}>{item.status}</Badge>
+      <Panel
+        title="Deployment Checklist"
+        subtitle={`${readyCount} ready · ${blockedCount} blocked · live blockers from Brain`}
+      >
+        <ul className="space-y-4">
+          {data.deploymentChecklist.map((item) => (
+            <li
+              key={item.itemId}
+              className="rounded-lg border border-gold/10 bg-white/[0.02] p-4"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6f6a60]">
+                    {item.category}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-[#f0d78c]">{item.label}</p>
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-[#8a847a]">{item.note}</p>
-              </li>
-            ))}
-          </ul>
-        </Panel>
-      </div>
+                <Badge variant={checklistBadgeVariant(item.status)}>{item.status}</Badge>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-[#8a847a]">{item.note}</p>
+            </li>
+          ))}
+        </ul>
+      </Panel>
     </div>
   );
 }

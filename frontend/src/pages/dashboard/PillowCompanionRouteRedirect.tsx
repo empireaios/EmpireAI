@@ -1,18 +1,13 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { usePillowCompanion } from "@/context/PillowCompanionContext";
+import { buildCockpitRedirectUrl } from "@/lib/cockpit-redirects";
 import { paths } from "@/routes/paths";
 
-/** Legacy /dashboard/pillow route — opens companion and returns to current workflow. */
+/** Legacy /dashboard/pillow — redirects to canonical Cockpit Pillow panel. */
 export function PillowCompanionRouteRedirect() {
-  const navigate = useNavigate();
-  const { openCompanion } = usePillowCompanion();
-
   useEffect(() => {
-    openCompanion();
-    navigate(paths.dashboard.home, { replace: true });
-  }, [navigate, openCompanion]);
+    window.location.replace(buildCockpitRedirectUrl(paths.dashboard.pillow));
+  }, []);
 
   return null;
 }

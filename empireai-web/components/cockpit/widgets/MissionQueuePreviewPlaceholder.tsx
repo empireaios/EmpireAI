@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
-import { CockpitPanel } from "@/components/cockpit/layout/CockpitPanel";
+import { CockpitPanel } from "@/components/cockpit/layout/CockpitSectionPanel";
 import {
   PLACEHOLDER_MISSION_PREVIEWS,
   type MissionPreviewItem,

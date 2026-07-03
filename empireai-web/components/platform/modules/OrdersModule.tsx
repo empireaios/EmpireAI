@@ -1,6 +1,7 @@
 "use client";
 
 import { BrainModuleShell } from "@/components/platform/brain/BrainModuleShell";
+import { FulfillmentReadinessPanel } from "@/components/platform/modules/orders/FulfillmentReadinessPanel";
 import {
   ActionButton,
   Badge,
@@ -8,6 +9,7 @@ import {
   PlatformPageHeader,
   StatCard,
 } from "@/components/platform/ui/PlatformPrimitives";
+import { useOrderFulfillment } from "@/lib/brain/hooks/useOrderFulfillment";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
 import type { Metric } from "@/lib/platform/types";
 
@@ -26,6 +28,7 @@ type OrdersView = {
 
 export function OrdersModule() {
   const { data, loading, error, reload } = useBrainModule<OrdersView>("orders");
+  const fulfillment = useOrderFulfillment();
 
   return (
     <BrainModuleShell loading={loading} error={error} onRetry={reload}>
@@ -37,6 +40,8 @@ export function OrdersModule() {
             description="Unified order flow across every manufactured company — from capture to delivery."
             actions={<ActionButton variant="secondary">Export CSV</ActionButton>}
           />
+
+          <FulfillmentReadinessPanel fulfillment={fulfillment} />
 
           {data.metrics && (
             <div className="mb-8 grid gap-4 sm:grid-cols-4">

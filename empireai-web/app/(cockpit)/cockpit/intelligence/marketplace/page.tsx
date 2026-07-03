@@ -1,5 +1,5 @@
-import { IntelligenceTrendPanel } from "@/components/cockpit/widgets/IntelligenceTrendPanel";
+import { IntelligenceMarketplacePanel } from "@/components/cockpit/widgets/IntelligenceEnginePanels";
 
 export default function IntelligenceMarketplacePage() {
-  return <IntelligenceTrendPanel />;
+  return <IntelligenceMarketplacePanel />;
 }

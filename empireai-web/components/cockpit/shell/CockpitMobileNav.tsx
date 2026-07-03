@@ -11,7 +11,7 @@ import {
   isCockpitNavActive,
 } from "./cockpitNavUtils";
 
-const mobilePrimaryIds = new Set(["home", "command", "missions"]);
+const mobilePrimaryIds = new Set(["home", "relationship", "command", "missions"]);
 
 export function CockpitMobileNav() {
   const pathname = usePathname();
@@ -27,24 +27,39 @@ export function CockpitMobileNav() {
 
   return (
     <>
-      <nav className="fixed inset-x-0 bottom-0 z-50 flex border-t border-gold/10 bg-[#030303]/95 backdrop-blur-xl lg:hidden">
+      <nav
+        aria-label="Cockpit mobile navigation"
+        className="fixed inset-x-0 bottom-0 z-50 flex border-t border-gold/10 bg-[#030303]/95 backdrop-blur-xl lg:hidden"
+      >
         {mobileTabs.map((tab) => {
           const active = isCockpitNavActive(pathname, tab.href);
+          const shortLabel =
+            tab.id === "home"
+              ? "Home"
+              : tab.id === "command"
+                ? "Command"
+                : tab.id === "missions"
+                  ? "Missions"
+                  : tab.id === "relationship"
+                    ? "Graph"
+                    : tab.label;
           return (
             <Link
               key={tab.id}
               href={tab.href}
+              aria-current={active ? "page" : undefined}
               className={`flex flex-1 flex-col items-center gap-1 py-3 text-[10px] uppercase tracking-wider ${
                 active ? "text-[#d4af37]" : "text-[#6f6a60]"
               }`}
             >
               <span className="text-base">{cockpitNavIcons[tab.icon]}</span>
-              {tab.id === "home" ? "Home" : tab.id === "command" ? "Command" : "Missions"}
+              {shortLabel}
             </Link>
           );
         })}
         <button
           type="button"
+          aria-label="Open all departments"
           onClick={() => setMoreOpen(true)}
           className="flex flex-1 flex-col items-center gap-1 py-3 text-[10px] uppercase tracking-wider text-[#6f6a60]"
         >
