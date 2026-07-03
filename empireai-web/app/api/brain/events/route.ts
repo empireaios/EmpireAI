@@ -1,7 +1,11 @@
 import { resolveBrainApiUrl } from "@/lib/brain/server-proxy";
+import { brainRouteConfig } from "@/lib/brain/route-config";
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const runtime = brainRouteConfig.runtime;
+export const dynamic = brainRouteConfig.dynamic;
+export const maxDuration = brainRouteConfig.maxDuration;
+
+const UPSTREAM_TIMEOUT_MS = 25_000;
 
 export async function GET(request: Request) {
   const cookie = request.headers.get("cookie") ?? "";
@@ -19,6 +23,7 @@ export async function GET(request: Request) {
     const upstream = await fetch(`${brainApiUrl}/brain/events/stream`, {
       headers: { cookie },
       cache: "no-store",
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
     });
 
     if (!upstream.ok || !upstream.body) {

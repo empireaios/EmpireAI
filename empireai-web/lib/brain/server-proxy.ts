@@ -1,16 +1,26 @@
 const LOCAL_BRAIN_URL = "http://localhost:4000";
+const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
+const UPSTREAM_TIMEOUT_MS = 25_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */
 export function resolveBrainApiUrl(): string {
   const configured = process.env.BRAIN_API_URL?.trim();
-  if (configured) {
-    return configured.replace(/\/$/, "");
-  }
 
   if (process.env.VERCEL) {
-    throw new Error(
-      "BRAIN_API_URL is not configured. Set it to your Railway Brain URL in Vercel project settings.",
-    );
+    let resolved = (configured || PRODUCTION_BRAIN_URL).replace(/\/$/, "");
+    if (/localhost|127\.0\.0\.1/i.test(resolved)) {
+      resolved = PRODUCTION_BRAIN_URL;
+    }
+    if (!/^https:\/\//i.test(resolved)) {
+      throw new Error(
+        `BRAIN_API_URL must be an absolute https URL on Vercel (received "${configured}").`,
+      );
+    }
+    return resolved;
+  }
+
+  if (configured) {
+    return configured.replace(/\/$/, "");
   }
 
   return LOCAL_BRAIN_URL;
@@ -46,6 +56,7 @@ export async function proxyBrainRequest(
   const url = `${brainApiUrl}${path}`;
 
   try {
+    const upstreamAbort = AbortSignal.timeout(UPSTREAM_TIMEOUT_MS);
     const response = await fetch(url, {
       ...init,
       headers: {
@@ -53,6 +64,7 @@ export async function proxyBrainRequest(
         cookie: forwardCookie(request) ?? "",
       },
       cache: "no-store",
+      signal: init?.signal ?? upstreamAbort,
     });
 
     const body = await response.text();
@@ -68,6 +80,14 @@ export async function proxyBrainRequest(
       headers,
     });
   } catch (error) {
+    if (error instanceof Error && error.name === "TimeoutError") {
+      return brainProxyErrorResponse(
+        new Error(
+          `Brain API timed out after ${UPSTREAM_TIMEOUT_MS}ms (${brainApiUrl}). Check BRAIN_API_URL on Vercel.`,
+        ),
+        504,
+      );
+    }
     return brainProxyErrorResponse(error, 502);
   }
 }

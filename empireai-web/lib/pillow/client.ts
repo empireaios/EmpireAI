@@ -9,6 +9,8 @@ import type {
   PillowWorkspaceSession,
 } from "./types";
 
+const PILLOW_REQUEST_TIMEOUT_MS = 60_000;
+
 async function pillowRequest<T>(
   path: string,
   init?: RequestInit & { params?: Record<string, string | undefined> },
@@ -20,21 +22,34 @@ async function pillowRequest<T>(
     }
   }
 
-  const response = await fetch(url.pathname + url.search, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(init?.headers ?? {}),
-    },
-    credentials: "include",
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), PILLOW_REQUEST_TIMEOUT_MS);
 
-  if (!response.ok) {
-    const body = (await response.json().catch(() => ({}))) as { error?: string };
-    throw new Error(body.error ?? `Pillow request failed (${response.status})`);
+  try {
+    const response = await fetch(url.pathname + url.search, {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...(init?.headers ?? {}),
+      },
+      credentials: "include",
+      signal: init?.signal ?? controller.signal,
+    });
+
+    if (!response.ok) {
+      const body = (await response.json().catch(() => ({}))) as { error?: string };
+      throw new Error(body.error ?? `Pillow request failed (${response.status})`);
+    }
+
+    return response.json() as Promise<T>;
+  } catch (error) {
+    if (error instanceof Error && error.name === "AbortError") {
+      throw new Error("Pillow request timed out — Brain may still be processing. Try again.");
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeout);
   }
-
-  return response.json() as Promise<T>;
 }
 
 export async function fetchPillowHealth(): Promise<{ health: PillowHealth; missionId: string; lifecycle: string }> {
