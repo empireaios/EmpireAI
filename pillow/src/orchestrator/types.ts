@@ -16,7 +16,8 @@ export type SubsystemId =
   | "grand_king_command_interface"
   | "objective_engine"
   | "technical_chief"
-  | "ux_designer";
+  | "ux_designer"
+  | "cursor_bridge";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

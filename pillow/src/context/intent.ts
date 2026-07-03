@@ -2,6 +2,16 @@ import type { ContextTask } from "./types.js";
 
 const INTENT_PATTERNS: Array<{ task: ContextTask; patterns: RegExp[] }> = [
   {
+    task: "cursor_bridge",
+    patterns: [
+      /deploy latest|deploy to production|prepare production release/i,
+      /investigate performance|find architectural weakness|recommend improvements/i,
+      /explain current screen|generate three dashboard/i,
+      /floating sidebar|engineering chief|cursor bridge/i,
+      /dispatch to cursor|autonomous engineering/i,
+    ],
+  },
+  {
     task: "ux_design",
     patterns: [
       /make (the |it )?(homepage|home page|dashboard|page|ui|interface)/i,

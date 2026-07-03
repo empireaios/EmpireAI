@@ -15,6 +15,7 @@ import type { ObjectiveEngine } from "../objective/engine.js";
 import type { AutonomousRuntimeOrchestrator } from "../objective/autonomous-runtime-orchestrator.js";
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
+import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -35,6 +36,7 @@ export interface PillowSubsystemBundle {
   autonomousRuntime?: AutonomousRuntimeOrchestrator;
   technicalChief?: TechnicalChiefEngine;
   uxDesigner?: UxDesignerEngine;
+  cursorBridge?: CursorBridgeEngine;
 }
 
 interface SubsystemDescriptor {
@@ -248,6 +250,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.uxDesigner) return "unavailable";
       try {
         b.uxDesigner.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cursor_bridge",
+    label: "Autonomous Cursor Bridge",
+    missionId: "PILLOW-CB-001",
+    runtimePath: "pillow/src/cursor-bridge/",
+    probe: (b) => {
+      if (!b.cursorBridge) return "unavailable";
+      try {
+        b.cursorBridge.getState();
         return "ready";
       } catch {
         return "unavailable";

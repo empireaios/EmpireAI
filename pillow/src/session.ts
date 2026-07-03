@@ -48,6 +48,11 @@ import {
   createUxDesignerEngine,
 } from "./ux-designer/engine.js";
 import type { UxDesignerState } from "./ux-designer/types.js";
+import {
+  CursorBridgeEngine,
+  createCursorBridgeEngine,
+} from "./cursor-bridge/engine.js";
+import type { CursorBridgeState } from "./cursor-bridge/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -67,6 +72,7 @@ let objectiveEngine: ObjectiveEngine | null = null;
 let autonomousRuntime: AutonomousRuntimeOrchestrator | null = null;
 let technicalChiefEngine: TechnicalChiefEngine | null = null;
 let uxDesignerEngine: UxDesignerEngine | null = null;
+let cursorBridgeEngine: CursorBridgeEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -90,6 +96,7 @@ export interface PillowSession {
   autonomousRuntime: AutonomousRuntimeOrchestrator;
   technicalChief: TechnicalChiefEngine;
   uxDesigner: UxDesignerEngine;
+  cursorBridge: CursorBridgeEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -111,15 +118,7 @@ export async function startPillow(options?: {
   await technicalChiefEngine.initialize();
   uxDesignerEngine = createUxDesignerEngine(result);
   await uxDesignerEngine.initialize();
-  contextBuilder = new ContextBuilder(
-    result,
-    intelligenceContext,
-    technicalChiefEngine,
-    uxDesignerEngine,
-  );
-  memoryEngine = new RepositoryMemoryEngine(result, intelligenceContext, {
-    contextBuilder,
-  });
+  memoryEngine = new RepositoryMemoryEngine(result, intelligenceContext);
   memoryEngine.initialize();
   missionPlanner = new MissionPlannerEngine(
     result,
@@ -146,6 +145,21 @@ export async function startPillow(options?: {
     { recoveryManager, auditReviewer },
   );
   await cursorSupervisor.initialize();
+  cursorBridgeEngine = createCursorBridgeEngine(
+    result,
+    missionPlanner,
+    cursorSupervisor,
+    technicalChiefEngine,
+    uxDesignerEngine,
+  );
+  await cursorBridgeEngine.initialize();
+  contextBuilder = new ContextBuilder(
+    result,
+    intelligenceContext,
+    technicalChiefEngine,
+    uxDesignerEngine,
+    cursorBridgeEngine,
+  );
   dueDiligenceEngine = new ContinuousDueDiligenceEngine(
     result,
     intelligenceContext,
@@ -196,6 +210,7 @@ export async function startPillow(options?: {
     autonomousRuntime,
     technicalChief: technicalChiefEngine,
     uxDesigner: uxDesignerEngine,
+    cursorBridge: cursorBridgeEngine,
   });
   await orchestrator.initialize();
 
@@ -235,6 +250,7 @@ export async function startPillow(options?: {
     autonomousRuntime,
     technicalChief: technicalChiefEngine,
     uxDesigner: uxDesignerEngine,
+    cursorBridge: cursorBridgeEngine,
   };
 }
 
@@ -603,6 +619,15 @@ export function requirePillowUxDesigner(): UxDesignerEngine {
   return uxDesignerEngine;
 }
 
+export function requirePillowCursorBridge(): CursorBridgeEngine {
+  if (!cursorBridgeEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Cursor Bridge not ready. Call startPillow() first.",
+    );
+  }
+  return cursorBridgeEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -623,6 +648,7 @@ export function resetPillowSession(): void {
   autonomousRuntime = null;
   technicalChiefEngine = null;
   uxDesignerEngine = null;
+  cursorBridgeEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

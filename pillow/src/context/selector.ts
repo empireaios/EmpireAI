@@ -30,7 +30,7 @@ export function selectSourcesForTask(
     }
   }
 
-  if (task === "continue_ux" || task === "ux_design") {
+  if (task === "continue_ux" || task === "ux_design" || task === "cursor_bridge") {
     addIntelligenceEntityPaths(
       intelligence,
       ["ux", "global_component"],

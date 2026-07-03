@@ -8,6 +8,7 @@ import {
 import { formatKnowledgeModelSummary } from "../repository-intelligence/knowledge-model.js";
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
+import type { CursorBridgeEngine } from "../cursor-bridge/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -38,6 +39,7 @@ export class ContextBuilder {
     private readonly intelligence: RepositoryIntelligenceContext,
     private readonly technicalChief?: TechnicalChiefEngine,
     private readonly uxDesigner?: UxDesignerEngine,
+    private readonly cursorBridge?: CursorBridgeEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -93,6 +95,12 @@ export class ContextBuilder {
       this.uxDesigner,
     );
 
+    const cursorBridgeBrief = resolveCursorBridgeBrief(
+      request.userMessage,
+      task,
+      this.cursorBridge,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -112,6 +120,7 @@ export class ContextBuilder {
       repositoryKnowledgeAnswer,
       technicalChiefBrief,
       uxDesignBrief,
+      cursorBridgeBrief,
     };
 
     if (this.cacheEnabled) {
@@ -198,6 +207,26 @@ function resolveUxDesignBrief(
   return result.executiveBrief;
 }
 
+function resolveCursorBridgeBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  cursorBridge?: CursorBridgeEngine,
+): string | undefined {
+  if (!userMessage?.trim() || !cursorBridge) return undefined;
+
+  const shouldBridge =
+    task === "cursor_bridge" ||
+    task === "generate_cursor_mission" ||
+    /deploy|investigate|review cursor|architectural weakness|recommend improvement|prepare production|engineering chief/i.test(
+      userMessage,
+    );
+
+  if (!shouldBridge) return undefined;
+
+  const result = cursorBridge.processInstruction(userMessage);
+  return result.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
@@ -205,12 +234,14 @@ export async function runContextBuild(
   options?: ContextBuilderOptions,
   technicalChief?: TechnicalChiefEngine,
   uxDesigner?: UxDesignerEngine,
+  cursorBridge?: CursorBridgeEngine,
 ): Promise<OperationalContext> {
   const builder = new ContextBuilder(
     bootstrap,
     intelligence,
     technicalChief,
     uxDesigner,
+    cursorBridge,
     options,
   );
   return builder.build(request);

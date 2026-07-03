@@ -83,6 +83,15 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
     "decisions",
     "pillow_contract",
   ],
+  cursor_bridge: [
+    "pillow_contract",
+    "ux_contract",
+    "managed_deployment",
+    "journey",
+    "status",
+    "decisions",
+    "empire_recovery",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

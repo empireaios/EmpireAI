@@ -149,6 +149,10 @@ function assembleLlmMessages(
     ? `--- AI UX Designer (Phase 4) ---\n${context.uxDesignBrief}\nUse Option A as default unless King selects B or C. Present engineering spec and Cursor mission to King. Do not ask for technical implementation details.`
     : null;
 
+  const cursorBridgeAnchor = context.cursorBridgeBrief
+    ? `--- Autonomous Cursor Bridge (Phase 5) ---\n${context.cursorBridgeBrief}\nPillow is Engineering Chief. Dispatch complete missions to Cursor. Validate results. Report completion. Grand King gives business instructions only.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -156,6 +160,7 @@ function assembleLlmMessages(
     councilAnchor,
     technicalChiefAnchor,
     uxDesignAnchor,
+    cursorBridgeAnchor,
     repositoryKnowledge,
     contextBody,
   ]
