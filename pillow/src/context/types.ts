@@ -8,6 +8,7 @@ export type ContextTask =
   | "empire_progress"
   | "journey_question"
   | "architecture"
+  | "repository_intelligence"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -59,6 +60,8 @@ export interface OperationalContext {
   intelligenceSnapshot: IntelligenceSnapshot;
   /** Present when userMessage supplied — executive reasoning pipeline anchor */
   executiveReasoning?: import("../bootstrap/types.js").ExecutiveReasoningComposition;
+  /** Phase 2 deterministic repository Q&A anchor for LLM assembly */
+  repositoryKnowledgeAnswer?: string;
 }
 
 export interface ContextBuilderOptions {

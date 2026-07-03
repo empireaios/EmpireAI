@@ -17,6 +17,9 @@ export const CONTEXT_SOURCE_CATALOG: ContextSourceDescriptor[] = [
   { id: "pillow_enhancement_register", path: "docs/governance/PILLOW_ENHANCEMENT_REGISTER.md", description: "Pillow enhancements", maxBytes: 6_000 },
   { id: "empire_recovery", path: "EMPIREAI_EMPIRE_RECOVERY_DOCTRINE.md", description: "Recovery doctrine", maxBytes: 4_000 },
   { id: "constitution", path: "EMPIREAI_CONSTITUTION.md", description: "Permanent law", maxBytes: 4_000 },
+  { id: "managed_deployment", path: "deployment/MANAGED_DEPLOYMENT.md", description: "Deploy topology", maxBytes: 8_000 },
+  { id: "architecture_doc", path: "docs/ARCHITECTURE.md", description: "Architecture overview", maxBytes: 6_000 },
+  { id: "repo_master_index", path: "EMPIREAI_REPOSITORY_MASTER_INDEX.md", description: "Repository index", maxBytes: 6_000 },
 ];
 
 /** Task → minimum context source IDs (precision over volume). */
@@ -55,6 +58,14 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
   ],
   journey_question: ["journey", "journey_audit", "status"],
   architecture: ["journey", "soul", "decisions", "pillow_contract", "constitution"],
+  repository_intelligence: [
+    "pillow_contract",
+    "managed_deployment",
+    "architecture_doc",
+    "repo_master_index",
+    "journey",
+    "decisions",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

@@ -137,7 +137,18 @@ function assembleLlmMessages(
     .map((slice) => `--- ${slice.path} ---\n${slice.content}`)
     .join("\n\n");
 
-  const systemContent = [systemHeader, executiveAnchor, learningAnchor, councilAnchor, contextBody]
+  const repositoryKnowledge = context.repositoryKnowledgeAnswer
+    ? `--- Repository Intelligence (Phase 2) ---\n${context.repositoryKnowledgeAnswer}`
+    : null;
+
+  const systemContent = [
+    systemHeader,
+    executiveAnchor,
+    learningAnchor,
+    councilAnchor,
+    repositoryKnowledge,
+    contextBody,
+  ]
     .filter(Boolean)
     .join("\n\n");
 

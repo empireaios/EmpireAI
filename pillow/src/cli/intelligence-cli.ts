@@ -26,6 +26,7 @@ if (query) {
     { entities: intelligence.entities, bootstrap },
     intelligence.relationships,
     intelligence.dependencies,
+    intelligence,
   );
   if (!result.matched) {
     console.log(`No matching query handler for: "${query}"`);

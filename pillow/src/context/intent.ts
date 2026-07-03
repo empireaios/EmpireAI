@@ -42,6 +42,21 @@ const INTENT_PATTERNS: Array<{ task: ContextTask; patterns: RegExp[] }> = [
     patterns: [/architecture/i, /pillow architecture/i, /subsystem/i],
   },
   {
+    task: "repository_intelligence",
+    patterns: [
+      /where is .+ implement/i,
+      /who owns .+ module/i,
+      /which file renders/i,
+      /what depends on/i,
+      /what happens if .+ change/i,
+      /how does .+ (flow|runtime|deploy|startup)/i,
+      /which mission introduced/i,
+      /repository intelligence/i,
+      /codebase architecture/i,
+      /system boundary/i,
+    ],
+  },
+  {
     task: "recovery",
     patterns: [/recovery/i, /empire recovery/i, /workstation/i],
   },

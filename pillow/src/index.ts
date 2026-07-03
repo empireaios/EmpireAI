@@ -77,6 +77,12 @@ export {
 export { runRepositoryIntelligence } from "./intelligence/engine.js";
 export { queryRepository, formatQueryAnswer } from "./intelligence/query.js";
 export {
+  buildRepositoryKnowledgeModel,
+  queryRepositoryKnowledge,
+  formatRepositoryKnowledgeAnswer,
+} from "./repository-intelligence/index.js";
+export type { RepositoryKnowledgeModel } from "./repository-intelligence/types.js";
+export {
   type RepositoryIntelligenceContext,
   type ClassifiedEntity,
   type RelationshipEdge,

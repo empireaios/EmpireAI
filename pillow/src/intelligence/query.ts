@@ -4,6 +4,7 @@ import type {
   QueryAnswer,
   QueryResult,
   RelationshipEdge,
+  RepositoryIntelligenceContext,
 } from "./types.js";
 import {
   findDependents,
@@ -12,15 +13,36 @@ import {
   findOwners,
 } from "./health.js";
 import type { IntelligenceCorpus } from "./graph.js";
+import {
+  formatRepositoryKnowledgeAnswer,
+  queryRepositoryKnowledge,
+} from "../repository-intelligence/query-engine.js";
 
 export function queryRepository(
   question: string,
   corpus: IntelligenceCorpus,
   relationships: RelationshipEdge[],
   dependencies: DependencyEdge[],
+  intelligence?: Pick<RepositoryIntelligenceContext, "knowledgeModel">,
 ): QueryResult {
   const normalized = question.trim().toLowerCase();
   const answers: QueryAnswer[] = [];
+
+  if (intelligence?.knowledgeModel) {
+    const riResult = queryRepositoryKnowledge(question, intelligence.knowledgeModel);
+    if (riResult.matched) {
+      for (const riAnswer of riResult.answers) {
+        answers.push({
+          question: riAnswer.question,
+          answer: riAnswer.answer,
+          entities: [],
+          relationships: [],
+          dependencies: [],
+          sources: riAnswer.sources,
+        });
+      }
+    }
+  }
 
   const uxOwner = normalized.match(
     /what owns (ux-\d{3})/i,
@@ -71,6 +93,25 @@ export function queryRepository(
         dependencies,
       ),
     );
+  }
+
+  if (
+    answers.length === 0 &&
+    intelligence?.knowledgeModel
+  ) {
+    const fallback = formatRepositoryKnowledgeAnswer(
+      queryRepositoryKnowledge(question, intelligence.knowledgeModel),
+    );
+    if (fallback) {
+      answers.push({
+        question,
+        answer: fallback,
+        entities: [],
+        relationships: [],
+        dependencies: [],
+        sources: ["repository-intelligence"],
+      });
+    }
   }
 
   return {

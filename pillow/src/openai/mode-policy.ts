@@ -36,6 +36,7 @@ const ENGINEERING_TASKS = new Set<ContextTask>([
   "generate_cursor_mission",
   "review_executive_audit",
   "architecture",
+  "repository_intelligence",
   "recovery",
 ]);
 

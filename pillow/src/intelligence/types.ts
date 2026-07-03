@@ -110,6 +110,8 @@ export interface RepositoryIntelligenceContext {
   dependencies: DependencyEdge[];
   health: RepositoryHealthReport;
   graphSummary: GraphSummary;
+  /** Phase 2 — code/architecture/runtime knowledge model (PILLOW-RI-001). */
+  knowledgeModel: import("../repository-intelligence/types.js").RepositoryKnowledgeModel;
 }
 
 export interface QueryAnswer {

@@ -1,5 +1,6 @@
 import type { EmpireBootstrapContext } from "../bootstrap/types.js";
 import { RepositoryReader } from "../bootstrap/repository-reader.js";
+import { buildRepositoryKnowledgeModel } from "../repository-intelligence/knowledge-model.js";
 import {
   buildDependencyGraph,
   buildIntelligenceCorpus,
@@ -60,6 +61,8 @@ export async function runRepositoryIntelligence(
     dependencies,
   );
 
+  const knowledgeModel = await buildRepositoryKnowledgeModel(reader);
+
   return {
     intelligenceVersion: "PILLOW-003",
     status: "ready",
@@ -71,5 +74,6 @@ export async function runRepositoryIntelligence(
     dependencies,
     health,
     graphSummary,
+    knowledgeModel,
   };
 }

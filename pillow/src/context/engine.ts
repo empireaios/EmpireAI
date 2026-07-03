@@ -2,6 +2,10 @@ import type { EmpireBootstrapContext } from "../bootstrap/types.js";
 import { RepositoryReader } from "../bootstrap/repository-reader.js";
 import type { RepositoryIntelligenceContext } from "../intelligence/types.js";
 import {
+  formatRepositoryKnowledgeAnswer,
+  queryRepositoryKnowledge,
+} from "../repository-intelligence/query-engine.js";
+import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
   ContextCache,
@@ -66,6 +70,12 @@ export class ContextBuilder {
     const totalBytes = totalSliceBytes(slices);
     const durationMs = Math.round(performance.now() - started);
 
+    const repositoryKnowledgeAnswer = resolveRepositoryKnowledgeAnswer(
+      request.userMessage,
+      task,
+      this.intelligence,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -82,6 +92,7 @@ export class ContextBuilder {
       },
       slices,
       intelligenceSnapshot: buildIntelligenceSnapshot(this.intelligence, this.bootstrap),
+      repositoryKnowledgeAnswer,
     };
 
     if (this.cacheEnabled) {
@@ -102,6 +113,26 @@ function buildIntelligenceSnapshot(
     journeyPosition: bootstrap.journeyPosition,
     healthIssueCount: intelligence.health.issues.length,
   };
+}
+
+function resolveRepositoryKnowledgeAnswer(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  intelligence: RepositoryIntelligenceContext,
+): string | undefined {
+  if (!userMessage?.trim()) return undefined;
+
+  const shouldQuery =
+    task === "repository_intelligence" ||
+    task === "architecture" ||
+    /where is|who owns|depends on|what happens if|how does|which file renders|which mission/i.test(
+      userMessage,
+    );
+
+  if (!shouldQuery) return undefined;
+
+  const result = queryRepositoryKnowledge(userMessage, intelligence.knowledgeModel);
+  return formatRepositoryKnowledgeAnswer(result) ?? undefined;
 }
 
 export async function runContextBuild(
