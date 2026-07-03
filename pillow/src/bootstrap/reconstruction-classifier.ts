@@ -25,7 +25,7 @@ export function mapToArtifactCategory(
   if (/EXECUTIVE_AUDIT|DIFFERENCE_REPORT|COMBINED_EXECUTIVE_AUDIT/i.test(base)) {
     return "executive_audit";
   }
-  if (/^EMPIREAI_.*_DOCTRINE\.md$/i.test(base) || /RECOVERY/i.test(base)) {
+  if (/^EMPIREAI_.*DOCTRINE/i.test(base) || /RECOVERY/i.test(base)) {
     return "doctrine";
   }
   if (/^EMPIREAI_(BACKLOG|EXECUTIVE|REPOSITORY|JOURNEY)/i.test(base)) {
