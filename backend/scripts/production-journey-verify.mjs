@@ -111,12 +111,12 @@ async function main() {
     return body.session;
   });
 
-  await timed("pillow chat", async () => {
+  await timed("pillow chat message 1", async () => {
     const res = await fetch(`${BASE}/api/pillow/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json", cookie: loginRes.cookie },
       body: JSON.stringify({
-        message: "Grand King production check — respond with one sentence confirming Pillow is live.",
+        message: "Hello Pillow — reply in one short sentence.",
         sessionId: session.sessionId,
       }),
     });
@@ -124,9 +124,30 @@ async function main() {
     if (!res.ok) throw new Error(`HTTP ${res.status} ${JSON.stringify(body).slice(0, 300)}`);
     const text = body.result?.message ?? body.message ?? "";
     if (!text || text.length < 5) throw new Error(`Empty Pillow response: ${JSON.stringify(body).slice(0, 200)}`);
-    console.log(`  Pillow reply: ${text.slice(0, 160)}`);
+    if (body.result?.trace) console.log("  trace:", JSON.stringify(body.result.trace));
+    console.log(`  reply 1: ${text.slice(0, 160)}`);
     return body;
   });
+
+  for (const [index, message] of [
+    "What is your role in EmpireAI? One sentence.",
+    "Confirm you are still connected. One sentence.",
+  ].entries()) {
+    await timed(`pillow chat message ${index + 2}`, async () => {
+      const res = await fetch(`${BASE}/api/pillow/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", cookie: loginRes.cookie },
+        body: JSON.stringify({ message, sessionId: session.sessionId }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(`HTTP ${res.status} ${JSON.stringify(body).slice(0, 300)}`);
+      const text = body.result?.message ?? body.message ?? "";
+      if (!text || text.length < 5) throw new Error(`Empty Pillow response: ${JSON.stringify(body).slice(0, 200)}`);
+      if (body.result?.trace) console.log("  trace:", JSON.stringify(body.result.trace));
+      console.log(`  reply ${index + 2}: ${text.slice(0, 160)}`);
+      return body;
+    });
+  }
 
   console.log("\nProduction journey: ALL STEPS PASSED");
 }

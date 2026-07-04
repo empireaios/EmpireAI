@@ -93,6 +93,8 @@ export interface RoutePromptResult {
     totalTokens: number;
   };
   latencyMs: number;
+  /** Stage timings for production trace (ms per stage). */
+  trace?: Record<string, number>;
   command?: Pick<
     CommandResponse,
     "intent" | "category" | "plan" | "awareness"

@@ -3,6 +3,10 @@ const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
 const AUTH_UPSTREAM_TIMEOUT_MS = 10_000;
 const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
+/** Pillow chat runs context assembly + LLM — must stay under Vercel maxDuration (60s). */
+const PILLOW_UPSTREAM_TIMEOUT_MS = 58_000;
+const PILLOW_SESSION_UPSTREAM_TIMEOUT_MS = 30_000;
+const PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS = 10_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */
 export function resolveBrainApiUrl(): string {
@@ -113,4 +117,11 @@ export async function proxyBrainRequest(
 /** @deprecated Use resolveBrainApiUrl() so production misconfiguration fails clearly. */
 export const BRAIN_API_URL = process.env.BRAIN_API_URL ?? LOCAL_BRAIN_URL;
 
-export { AUTH_UPSTREAM_TIMEOUT_MS, DISPATCH_UPSTREAM_TIMEOUT_MS, withClearedSessionCookie };
+export {
+  AUTH_UPSTREAM_TIMEOUT_MS,
+  DISPATCH_UPSTREAM_TIMEOUT_MS,
+  PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS,
+  PILLOW_SESSION_UPSTREAM_TIMEOUT_MS,
+  PILLOW_UPSTREAM_TIMEOUT_MS,
+  withClearedSessionCookie,
+};

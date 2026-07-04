@@ -1,4 +1,9 @@
-import { proxyBrainRequest } from "@/lib/brain/server-proxy";
+import {
+  PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS,
+  PILLOW_SESSION_UPSTREAM_TIMEOUT_MS,
+  PILLOW_UPSTREAM_TIMEOUT_MS,
+  proxyBrainRequest,
+} from "@/lib/brain/server-proxy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,11 +13,29 @@ type RouteContext = {
   params: Promise<{ path: string[] }>;
 };
 
+function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string): number {
+  const resource = pathSegments[0] ?? "";
+  if (resource === "health" || resource === "status") {
+    return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
+  }
+  if (resource === "session") {
+    return PILLOW_SESSION_UPSTREAM_TIMEOUT_MS;
+  }
+  if (resource === "chat" || resource === "chat/stream") {
+    return PILLOW_UPSTREAM_TIMEOUT_MS;
+  }
+  if (method === "GET") {
+    return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
+  }
+  return PILLOW_UPSTREAM_TIMEOUT_MS;
+}
+
 async function proxyPillow(pathSegments: string[], request: Request, method: string): Promise<Response> {
   const url = new URL(request.url);
   const backendPath = `/api/pillow/${pathSegments.join("/")}${url.search}`;
+  const upstreamTimeoutMs = resolvePillowUpstreamTimeoutMs(pathSegments, method);
 
-  const init: RequestInit = {
+  const init: RequestInit & { upstreamTimeoutMs?: number } = {
     method,
     headers: {
       cookie: request.headers.get("cookie") ?? "",
@@ -21,6 +44,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
         : {}),
     },
     cache: "no-store",
+    upstreamTimeoutMs,
   };
 
   if (method !== "GET" && method !== "DELETE") {

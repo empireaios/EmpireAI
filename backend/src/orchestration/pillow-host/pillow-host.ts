@@ -420,26 +420,40 @@ export class PillowHost {
       ? `${formatPillowWorkspaceContext(input.workspaceContext)}\n\nGrand King: ${input.message}`
       : input.message;
 
+    const trace: Record<string, number> = {};
+    let stageStart = performance.now();
+    const markStage = (name: string) => {
+      trace[name] = Math.round(performance.now() - stageStart);
+      stageStart = performance.now();
+    };
+
+    const productionFastPath = process.env.NODE_ENV === "production";
+
     try {
       const pillow = this.pillowSession!;
       const commandResponse = await pillow.command.processCommand({
         command: input.message,
         skipAutonomousPause: true,
       });
+      markStage("commandMs");
 
       const operationalContext = await pillow.contextBuilder.build({
         userMessage: input.message,
       });
+      markStage("contextMs");
       const executiveReasoning = pillow.executiveDirection.composeReasoningCycle(
         input.message,
       );
+      markStage("executiveReasoningMs");
       const objectiveState = pillow.objective.getDashboardState();
-      const executiveLearningBundle = buildReasoningBundleForWorkspace({
-        workspaceId: input.workspaceId,
-        currentObjective: objectiveState.currentObjective.title ?? null,
-        executiveConstitutionSummary: executiveReasoning.briefingAnchor,
-        executivePerspectives: executiveReasoning.executiveReasoningNotes,
-      });
+      const executiveLearningBundle = productionFastPath
+        ? undefined
+        : buildReasoningBundleForWorkspace({
+            workspaceId: input.workspaceId,
+            currentObjective: objectiveState.currentObjective.title ?? null,
+            executiveConstitutionSummary: executiveReasoning.briefingAnchor,
+            executivePerspectives: executiveReasoning.executiveReasoningNotes,
+          });
       const contextWithReasoning = {
         ...operationalContext,
         executiveReasoning,
@@ -462,7 +476,7 @@ export class PillowHost {
       let executiveCouncilRecommendation: CeoExecutiveRecommendation | undefined;
       let executiveCouncilDebateId: string | undefined;
 
-      if (shouldRunExecutiveCouncil(input.message)) {
+      if (!productionFastPath && shouldRunExecutiveCouncil(input.message)) {
         try {
           const councilResult = runAndStoreExecutiveCouncil(
             {
@@ -493,6 +507,7 @@ export class PillowHost {
           );
         }
       }
+      markStage("executiveCouncilMs");
 
       const providers = this.llmLayer?.listAvailableProviders() ?? [];
       if (this.llmLayer && providers.length > 0) {
@@ -534,6 +549,7 @@ export class PillowHost {
             error instanceof Error ? error.message : String(error);
         }
       }
+      markStage("llmMs");
 
       const assistantTurn = {
         role: "assistant" as const,
@@ -544,31 +560,55 @@ export class PillowHost {
       };
       session.conversationHistory.push(assistantTurn);
 
-      try {
-        observeExecutiveConversation(
-          {
-            workspaceId: input.workspaceId,
-            sessionId: session.sessionId,
-            requestId,
-            userMessage: input.message,
-            assistantMessage: message,
-            executiveReasoning,
-            conversationTurnCount: session.conversationHistory.length,
-            actor: input.actor,
-          },
-          this.auditLogger,
-        );
-      } catch (learningError) {
-        logger.warn(
-          {
-            error:
-              learningError instanceof Error ? learningError.message : String(learningError),
-          },
-          "Executive learning observation failed (non-blocking)",
-        );
+      if (productionFastPath) {
+        setImmediate(() => {
+          try {
+            observeExecutiveConversation(
+              {
+                workspaceId: input.workspaceId,
+                sessionId: session.sessionId,
+                requestId,
+                userMessage: input.message,
+                assistantMessage: message,
+                executiveReasoning,
+                conversationTurnCount: session.conversationHistory.length,
+                actor: input.actor,
+              },
+              this.auditLogger,
+            );
+          } catch {
+            /* non-blocking background observation */
+          }
+        });
+      } else {
+        try {
+          observeExecutiveConversation(
+            {
+              workspaceId: input.workspaceId,
+              sessionId: session.sessionId,
+              requestId,
+              userMessage: input.message,
+              assistantMessage: message,
+              executiveReasoning,
+              conversationTurnCount: session.conversationHistory.length,
+              actor: input.actor,
+            },
+            this.auditLogger,
+          );
+        } catch (learningError) {
+          logger.warn(
+            {
+              error:
+                learningError instanceof Error ? learningError.message : String(learningError),
+            },
+            "Executive learning observation failed (non-blocking)",
+          );
+        }
       }
 
       const latencyMs = Math.round(performance.now() - started);
+      trace.totalMs = latencyMs;
+      logger.info({ requestId, trace, kind, provider, logResult }, "Pillow chat trace");
       const now = new Date().toISOString();
       session.updatedAt = now;
       session.lastActivityAt = now;
@@ -603,6 +643,7 @@ export class PillowHost {
         mode,
         tokens,
         latencyMs,
+        trace,
         command: {
           intent: commandResponse.intent,
           category: commandResponse.category,

@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import type { LLMRouter } from "../../../brain/llm/llm-router.js";
+import { logger } from "../../../config/logger.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
 import {
   PillowHostNotRunningError,
@@ -238,6 +239,12 @@ export async function registerPillowRoutes(
       return pillowStartingResponse(reply);
     }
 
+    const chatStarted = Date.now();
+    logger.info(
+      { correlationId: request.id, sessionId: body.sessionId, stage: "chat.enter" },
+      "Pillow chat request entered",
+    );
+
     try {
       const result = await pillowHost.routePrompt({
         workspaceId,
@@ -248,6 +255,17 @@ export async function registerPillowRoutes(
         provider: body.provider,
         workspaceContext: body.workspaceContext,
       });
+      logger.info(
+        {
+          correlationId: request.id,
+          sessionId: body.sessionId,
+          stage: "chat.exit",
+          durationMs: Date.now() - chatStarted,
+          trace: result.trace,
+          kind: result.kind,
+        },
+        "Pillow chat request completed",
+      );
       return reply.send({ result });
     } catch (error) {
       if (error instanceof PillowSessionNotFoundError) {
