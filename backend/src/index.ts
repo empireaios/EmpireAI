@@ -21,6 +21,13 @@ async function main() {
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info({ port: env.PORT, earlyListen: productionEarlyListen }, "EmpireAI Brain API listening");
 
+  if (env.NODE_ENV === "production") {
+    const { scheduleExecutiveHomeCacheWarmup } = await import(
+      "./domain/services/executive-home-loader.js"
+    );
+    scheduleExecutiveHomeCacheWarmup("ws_empire_1", "co-grand-king");
+  }
+
   if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {
     const deferMs = Number(process.env.EMPIRE_EXTENSION_ROUTE_DEFER_MS ?? 10 * 60 * 1000);
     setTimeout(() => {

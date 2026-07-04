@@ -151,11 +151,21 @@ export function buildExecutiveDependencyGraph(
   return { nodes, edges: V1_DEPENDENCY_EDGES };
 }
 
+function resolveEnginePanel(
+  engineId: Parameters<typeof loadEnginePanelView>[0],
+  workspaceId: string,
+  env: NodeJS.ProcessEnv,
+  preloaded?: Record<string, EnginePanelView>,
+): EnginePanelView {
+  return preloaded?.[engineId] ?? loadEnginePanelView(engineId, workspaceId, env);
+}
+
 export function buildExecutiveTimeline(
   workspaceId: string,
   companyId: string,
   portfolio: ReturnType<typeof loadDashboardView>,
   env: NodeJS.ProcessEnv = process.env,
+  preloadedEnginePanels?: Record<string, EnginePanelView>,
 ): ExecutiveTimelineEvent[] {
   const events: ExecutiveTimelineEvent[] = [];
   const now = new Date().toISOString();
@@ -173,7 +183,7 @@ export function buildExecutiveTimeline(
     });
   }
 
-  const supplierPanel = loadEnginePanelView("supplier", workspaceId, env);
+  const supplierPanel = resolveEnginePanel("supplier", workspaceId, env, preloadedEnginePanels);
   for (const row of supplierPanel.detailRows?.slice(0, 3) ?? []) {
     events.push({
       id: `tl-supplier-${row.label}`,
@@ -186,7 +196,7 @@ export function buildExecutiveTimeline(
     });
   }
 
-  const marketplacePanel = loadEnginePanelView("marketplace", workspaceId, env);
+  const marketplacePanel = resolveEnginePanel("marketplace", workspaceId, env, preloadedEnginePanels);
   for (const row of marketplacePanel.detailRows?.slice(0, 3) ?? []) {
     events.push({
       id: `tl-marketplace-${row.label}`,
@@ -249,7 +259,7 @@ export function buildExecutiveTimeline(
     });
   }
 
-  const analyticsPanel = loadEnginePanelView("analytics", workspaceId, env);
+  const analyticsPanel = resolveEnginePanel("analytics", workspaceId, env, preloadedEnginePanels);
   events.push({
     id: "tl-analytics-proof",
     sourceEngine: "analytics",

@@ -227,7 +227,7 @@ export function loadOperationalCommandView(
   env: NodeJS.ProcessEnv = process.env,
 ): OperationalCommandView {
   const cid = resolveCompanyId(workspaceId, companyId);
-  const productionReview = runVersion1ProductionReadinessReview(env);
+  runVersion1ProductionReadinessReview(env);
   const infrastructure = assessProductionInfrastructureReadiness(env);
   const activation = assessVersion1OperationalActivation(env);
   const goLiveApproval = buildVersion1GoLiveApproval(workspaceId, cid);
@@ -251,6 +251,125 @@ export function loadOperationalCommandView(
   const pillowRepo = new SqlitePillowApprovalRepository();
   const pendingRows = pillowRepo.listApprovals(workspaceId, { status: "Pending" });
   const topPending = pendingRows[0] ?? null;
+
+  return renderOperationalCommandView(workspaceId, cid, env, {
+    infrastructure,
+    activation,
+    goLiveApproval,
+    success001,
+    proof001,
+    commerceDashboard,
+    crirReports,
+    crirScore,
+    crirBlocking,
+    crirBlockers,
+    pendingRows,
+    topPending,
+  });
+}
+
+const yieldEventLoop = (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
+
+/** Non-blocking variant — yields between heavy aggregation calls for Brain /health/live. */
+export async function loadOperationalCommandViewAsync(
+  workspaceId: string,
+  companyId?: string,
+  env: NodeJS.ProcessEnv = process.env,
+): Promise<OperationalCommandView> {
+  const cid = resolveCompanyId(workspaceId, companyId);
+
+  await yieldEventLoop();
+  runVersion1ProductionReadinessReview(env);
+
+  await yieldEventLoop();
+  const infrastructure = assessProductionInfrastructureReadiness(env);
+
+  await yieldEventLoop();
+  const activation = assessVersion1OperationalActivation(env);
+
+  await yieldEventLoop();
+  const goLiveApproval = buildVersion1GoLiveApproval(workspaceId, cid);
+
+  await yieldEventLoop();
+  const success001 = buildSuccess001CommandCenter(workspaceId, cid);
+
+  await yieldEventLoop();
+  const validations = listFirstRevenueValidations(workspaceId, cid);
+  const proof001 = computeProof001(validations);
+
+  await yieldEventLoop();
+  const commerceDashboard = buildCommerceReadinessDashboard({
+    workspaceId,
+    companyId: cid,
+    accountType: "grand_king",
+  });
+
+  await yieldEventLoop();
+  const crirReports = getCrirReportsForCompany(workspaceId, cid);
+  const workflowRepo = getEcommerceOsWorkflowRepository();
+  const workflow = workflowRepo.listWorkflows(workspaceId, cid)[0] ?? null;
+  const crirBlockers: ReadinessBlocker[] = [];
+  const crirScore = evaluateCrirReadiness(workspaceId, cid, workflow, crirBlockers);
+  const crirBlocking = crirBlockers.some((b) => b.severity === "BLOCKING");
+
+  await yieldEventLoop();
+  ensurePillowApprovalTables();
+  const pillowRepo = new SqlitePillowApprovalRepository();
+  const pendingRows = pillowRepo.listApprovals(workspaceId, { status: "Pending" });
+  const topPending = pendingRows[0] ?? null;
+
+  await yieldEventLoop();
+  return renderOperationalCommandView(workspaceId, cid, env, {
+    infrastructure,
+    activation,
+    goLiveApproval,
+    success001,
+    proof001,
+    commerceDashboard,
+    crirReports,
+    crirScore,
+    crirBlocking,
+    crirBlockers,
+    pendingRows,
+    topPending,
+  });
+}
+
+type OperationalCommandRenderInput = {
+  infrastructure: ReturnType<typeof assessProductionInfrastructureReadiness>;
+  activation: ReturnType<typeof assessVersion1OperationalActivation>;
+  goLiveApproval: ReturnType<typeof buildVersion1GoLiveApproval>;
+  success001: ReturnType<typeof buildSuccess001CommandCenter>;
+  proof001: ReturnType<typeof computeProof001>;
+  commerceDashboard: ReturnType<typeof buildCommerceReadinessDashboard>;
+  crirReports: ReturnType<typeof getCrirReportsForCompany>;
+  crirScore: number;
+  crirBlocking: boolean;
+  crirBlockers: ReadinessBlocker[];
+  pendingRows: ReturnType<SqlitePillowApprovalRepository["listApprovals"]>;
+  topPending: (ReturnType<SqlitePillowApprovalRepository["listApprovals"]>[number]) | null;
+};
+
+function renderOperationalCommandView(
+  workspaceId: string,
+  cid: string,
+  env: NodeJS.ProcessEnv,
+  input: OperationalCommandRenderInput,
+): OperationalCommandView {
+  const {
+    infrastructure,
+    activation,
+    goLiveApproval,
+    success001,
+    proof001,
+    commerceDashboard,
+    crirReports,
+    crirScore,
+    crirBlocking,
+    crirBlockers,
+    pendingRows,
+    topPending,
+  } = input;
 
   const gateValues = Object.values(activation.gates);
   const operationalPercent = Math.round(
