@@ -20,6 +20,7 @@ import type { InfrastructureCommanderEngine } from "../infrastructure-commander/
 import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
 import type { EmpireCommanderEngine } from "../empire-commander/engine.js";
 import type { EmpireOperatingSystemEngine } from "../empire-operating-system/engine.js";
+import type { ContinuousEvolutionEngine } from "../continuous-evolution/engine.js";
 import type { SubsystemEntry, SubsystemHealth, SubsystemId } from "./types.js";
 
 export interface PillowSubsystemBundle {
@@ -45,6 +46,7 @@ export interface PillowSubsystemBundle {
   commerceIntelligence?: CommerceIntelligenceEngine;
   empireCommander?: EmpireCommanderEngine;
   empireOperatingSystem?: EmpireOperatingSystemEngine;
+  continuousEvolution?: ContinuousEvolutionEngine;
 }
 
 interface SubsystemDescriptor {
@@ -333,6 +335,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.empireOperatingSystem) return "unavailable";
       try {
         b.empireOperatingSystem.getState();
+        return "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "continuous_evolution",
+    label: "Continuous Empire Evolution",
+    missionId: "PILLOW-CEV-001",
+    runtimePath: "pillow/src/continuous-evolution/",
+    probe: (b) => {
+      if (!b.continuousEvolution) return "unavailable";
+      try {
+        b.continuousEvolution.getState();
         return "ready";
       } catch {
         return "unavailable";

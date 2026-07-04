@@ -73,6 +73,11 @@ import {
   createEmpireOperatingSystemEngine,
 } from "./empire-operating-system/engine.js";
 import type { EmpireOperatingSystemState } from "./empire-operating-system/types.js";
+import {
+  ContinuousEvolutionEngine,
+  createContinuousEvolutionEngine,
+} from "./continuous-evolution/engine.js";
+import type { ContinuousEvolutionState } from "./continuous-evolution/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -97,6 +102,7 @@ let infrastructureCommanderEngine: InfrastructureCommanderEngine | null = null;
 let commerceIntelligenceEngine: CommerceIntelligenceEngine | null = null;
 let empireCommanderEngine: EmpireCommanderEngine | null = null;
 let empireOperatingSystemEngine: EmpireOperatingSystemEngine | null = null;
+let continuousEvolutionEngine: ContinuousEvolutionEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -125,6 +131,7 @@ export interface PillowSession {
   commerceIntelligence: CommerceIntelligenceEngine;
   empireCommander: EmpireCommanderEngine;
   empireOperatingSystem: EmpireOperatingSystemEngine;
+  continuousEvolution: ContinuousEvolutionEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -288,6 +295,21 @@ export async function startPillow(options?: {
   await empireOperatingSystemEngine.initialize();
   orchestrator.registerEmpireOperatingSystem(empireOperatingSystemEngine);
 
+  continuousEvolutionEngine = createContinuousEvolutionEngine({
+    bootstrap: result,
+    intelligence: intelligenceContext,
+    dueDiligence: dueDiligenceEngine,
+    improvement: improvementEngine,
+    empireCommander: empireCommanderEngine,
+    empireOperatingSystem: empireOperatingSystemEngine,
+    commerceIntelligence: commerceIntelligenceEngine,
+    infrastructureCommander: infrastructureCommanderEngine,
+    orchestrator,
+    objective: objectiveEngine,
+  });
+  await continuousEvolutionEngine.initialize();
+  orchestrator.registerContinuousEvolution(continuousEvolutionEngine);
+
   contextBuilder = new ContextBuilder(
     result,
     intelligenceContext,
@@ -298,6 +320,7 @@ export async function startPillow(options?: {
     commerceIntelligenceEngine,
     empireCommanderEngine,
     empireOperatingSystemEngine,
+    continuousEvolutionEngine,
   );
 
   commandInterface = new GrandKingCommandInterface({
@@ -341,6 +364,7 @@ export async function startPillow(options?: {
     commerceIntelligence: commerceIntelligenceEngine,
     empireCommander: empireCommanderEngine,
     empireOperatingSystem: empireOperatingSystemEngine,
+    continuousEvolution: continuousEvolutionEngine,
   };
 }
 
@@ -754,6 +778,15 @@ export function requirePillowEmpireOperatingSystem(): EmpireOperatingSystemEngin
   return empireOperatingSystemEngine;
 }
 
+export function requirePillowContinuousEvolution(): ContinuousEvolutionEngine {
+  if (!continuousEvolutionEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Continuous Evolution not ready. Call startPillow() first.",
+    );
+  }
+  return continuousEvolutionEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -779,6 +812,7 @@ export function resetPillowSession(): void {
   commerceIntelligenceEngine = null;
   empireCommanderEngine = null;
   empireOperatingSystemEngine = null;
+  continuousEvolutionEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

@@ -50,6 +50,7 @@ const EMPIRE_TASKS = new Set<ContextTask>([
   "commerce_intelligence",
   "empire_commander",
   "empire_operating_system",
+  "continuous_evolution",
 ]);
 
 export function resolveOperatingMode(task: ContextTask): PillowOperatingMode {

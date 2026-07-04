@@ -128,6 +128,15 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
     "bl_c",
     "repo_master_index",
   ],
+  continuous_evolution: [
+    "journey",
+    "status",
+    "bl_c_constitution",
+    "bl_c",
+    "decisions",
+    "pillow_contract",
+    "constitution",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

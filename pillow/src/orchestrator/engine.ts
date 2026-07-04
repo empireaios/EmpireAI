@@ -113,6 +113,13 @@ export class EmpireAIOrchestrator {
     this.refreshDiscovery();
   }
 
+  registerContinuousEvolution(
+    evolution: import("../continuous-evolution/engine.js").ContinuousEvolutionEngine,
+  ): void {
+    this.bundle.continuousEvolution = evolution;
+    this.refreshDiscovery();
+  }
+
   getSubsystems(): SubsystemEntry[] {
     return [...this.subsystems];
   }

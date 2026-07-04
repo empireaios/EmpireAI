@@ -13,6 +13,7 @@ import type { InfrastructureCommanderEngine } from "../infrastructure-commander/
 import type { CommerceIntelligenceEngine } from "../commerce-intelligence/engine.js";
 import type { EmpireCommanderEngine } from "../empire-commander/engine.js";
 import type { EmpireOperatingSystemEngine } from "../empire-operating-system/engine.js";
+import type { ContinuousEvolutionEngine } from "../continuous-evolution/engine.js";
 import {
   buildRepositoryFingerprint,
   cacheKeyForTask,
@@ -48,6 +49,7 @@ export class ContextBuilder {
     private readonly commerceIntelligence?: CommerceIntelligenceEngine,
     private readonly empireCommander?: EmpireCommanderEngine,
     private readonly empireOperatingSystem?: EmpireOperatingSystemEngine,
+    private readonly continuousEvolution?: ContinuousEvolutionEngine,
     options: ContextBuilderOptions = {},
   ) {
     this.reader = new RepositoryReader(bootstrap.repositoryRoot);
@@ -133,6 +135,12 @@ export class ContextBuilder {
       this.empireOperatingSystem,
     );
 
+    const continuousEvolutionBrief = await resolveContinuousEvolutionBrief(
+      request.userMessage,
+      task,
+      this.continuousEvolution,
+    );
+
     const context: OperationalContext = {
       manifest: {
         contextVersion: "PILLOW-004",
@@ -157,6 +165,7 @@ export class ContextBuilder {
       commerceIntelligenceBrief,
       empireCommanderBrief,
       empireOperatingSystemBrief,
+      continuousEvolutionBrief,
     };
 
     if (this.cacheEnabled) {
@@ -342,6 +351,25 @@ async function resolveEmpireOperatingSystemBrief(
   return report.executiveBrief;
 }
 
+async function resolveContinuousEvolutionBrief(
+  userMessage: string | undefined,
+  task: import("./types.js").ContextTask,
+  evolution?: ContinuousEvolutionEngine,
+): Promise<string | undefined> {
+  if (!userMessage?.trim() || !evolution) return undefined;
+
+  const shouldEvolve =
+    task === "continuous_evolution" ||
+    /continuous(ly)? (improve|evolve|optimi[sz]e)|evolution engine|improvement backlog|due diligence cycle|risk detection|never stagnat/i.test(
+      userMessage,
+    );
+
+  if (!shouldEvolve) return undefined;
+
+  const report = await evolution.evolveEmpire(userMessage);
+  return report.executiveBrief;
+}
+
 export async function runContextBuild(
   bootstrap: EmpireBootstrapContext,
   intelligence: RepositoryIntelligenceContext,
@@ -354,6 +382,7 @@ export async function runContextBuild(
   commerceIntelligence?: CommerceIntelligenceEngine,
   empireCommander?: EmpireCommanderEngine,
   empireOperatingSystem?: EmpireOperatingSystemEngine,
+  continuousEvolution?: ContinuousEvolutionEngine,
 ): Promise<OperationalContext> {
   const builder = new ContextBuilder(
     bootstrap,
@@ -365,6 +394,7 @@ export async function runContextBuild(
     commerceIntelligence,
     empireCommander,
     empireOperatingSystem,
+    continuousEvolution,
     options,
   );
   return builder.build(request);

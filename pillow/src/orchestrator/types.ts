@@ -21,7 +21,8 @@ export type SubsystemId =
   | "infrastructure_commander"
   | "commerce_intelligence"
   | "empire_commander"
-  | "empire_operating_system";
+  | "empire_operating_system"
+  | "continuous_evolution";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

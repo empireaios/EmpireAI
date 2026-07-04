@@ -169,6 +169,10 @@ function assembleLlmMessages(
     ? `--- Empire Operating System (Phase 9) ---\n${context.empireOperatingSystemBrief}\nPillow executes the Empire. The King provides vision; Pillow creates, launches, operates, optimises, and scales businesses autonomously.`
     : null;
 
+  const continuousEvolutionAnchor = context.continuousEvolutionBrief
+    ? `--- Continuous Empire Evolution (Phase 10) ---\n${context.continuousEvolutionBrief}\nPillow continuously evolves the Empire. Never wait for problems — analyse, discover, recommend, and improve continuously.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -181,6 +185,7 @@ function assembleLlmMessages(
     commerceIntelligenceAnchor,
     empireCommanderAnchor,
     empireOperatingSystemAnchor,
+    continuousEvolutionAnchor,
     repositoryKnowledge,
     contextBody,
   ]
