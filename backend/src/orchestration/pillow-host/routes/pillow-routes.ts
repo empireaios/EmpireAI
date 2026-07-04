@@ -2,10 +2,12 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
+import type { LLMRouter } from "../../../brain/llm/llm-router.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
 import {
   PillowHostNotRunningError,
   PillowSessionNotFoundError,
+  initializePillowHost,
   type PillowHost,
 } from "../pillow-host.js";
 import { pillowWorkspaceContextSchema } from "../workspace-context.js";
@@ -36,15 +38,47 @@ function founderAuth(authenticate: AuthMiddleware) {
   };
 }
 
+let pillowBootPromise: Promise<void> | null = null;
+
+function schedulePillowHostBoot(
+  pillowHost: PillowHost,
+  llmRouter: LLMRouter,
+  auditLogger: AuditLogger,
+): Promise<void> | null {
+  const lifecycle = pillowHost.getStatus().lifecycle;
+  if (lifecycle === "running") return pillowBootPromise;
+  if (lifecycle === "starting") return pillowBootPromise;
+
+  if (!pillowBootPromise) {
+    pillowHost.configure({ llmRouter, auditLogger });
+    pillowBootPromise = initializePillowHost({ llmRouter, auditLogger })
+      .then(() => undefined)
+      .catch(() => {
+        pillowBootPromise = null;
+      });
+  }
+
+  return pillowBootPromise;
+}
+
+function pillowStartingResponse(reply: FastifyReply) {
+  return reply.code(503).send({
+    error: "Pillow host is starting — retry in a moment.",
+    retryAfterSec: 30,
+    lifecycle: "starting",
+  });
+}
+
 export async function registerPillowRoutes(
   app: FastifyInstance,
   deps: {
     authenticate: AuthMiddleware;
     pillowHost: PillowHost;
     auditLogger: AuditLogger;
+    llmRouter: LLMRouter;
   },
 ): Promise<void> {
-  const { authenticate, pillowHost, auditLogger } = deps;
+  const { authenticate, pillowHost, auditLogger, llmRouter } = deps;
   const pillowAuth = founderAuth(authenticate);
 
   app.get("/api/pillow/health", async (_request, reply) => {
@@ -90,6 +124,11 @@ export async function registerPillowRoutes(
     const workspaceId = body.workspaceId ?? user.workspaceId;
     if (workspaceId !== user.workspaceId && user.role !== "admin") {
       return reply.code(403).send({ error: "Workspace access denied" });
+    }
+
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return pillowStartingResponse(reply);
     }
 
     try {
@@ -192,6 +231,11 @@ export async function registerPillowRoutes(
     const workspaceId = body.workspaceId ?? user.workspaceId;
     if (workspaceId !== user.workspaceId && user.role !== "admin") {
       return reply.code(403).send({ error: "Workspace access denied" });
+    }
+
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return pillowStartingResponse(reply);
     }
 
     try {

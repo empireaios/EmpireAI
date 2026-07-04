@@ -216,7 +216,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   bootstrapFoundation("ws_empire_1");
 
   const pillowHost = getPillowHost();
-  if (pillowEnabled) {
+  if (pillowEnabled && process.env.NODE_ENV !== "production") {
     const bootPillowHost = () => {
       void initializePillowHost({
         llmRouter: brain.llmRouter,
@@ -230,8 +230,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         );
       });
     };
-    // Grace period so auth, Cockpit, and Brain dispatch stay responsive during deploy.
-    setTimeout(bootPillowHost, 15_000);
+    setTimeout(bootPillowHost, 5_000);
   }
 
   const sessionStore = brain.sessionStore;
@@ -891,6 +890,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       authenticate,
       pillowHost,
       auditLogger: brain.auditLogger,
+      llmRouter: brain.llmRouter,
     });
     if (pillowHost.getStatus().lifecycle === "running") {
       await registerPillowApprovalRoutes(app, {
