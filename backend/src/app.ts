@@ -482,6 +482,22 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
       auditLogger: brain.auditLogger,
       llmRouter: brain.llmRouter,
     });
+
+    if (process.env.NODE_ENV === "production") {
+      setTimeout(() => {
+        void initializePillowHost({
+          llmRouter: brain.llmRouter,
+          auditLogger: brain.auditLogger,
+        }).catch((error) => {
+          logger.warn(
+            {
+              error: error instanceof Error ? error.message : String(error),
+            },
+            "Background Pillow warmup failed — first chat may wait for host boot",
+          );
+        });
+      }, 5_000);
+    }
   }
 
   app.get(

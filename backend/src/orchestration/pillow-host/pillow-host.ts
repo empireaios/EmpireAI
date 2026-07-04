@@ -4,7 +4,9 @@ import {
   createOpenAIIntegrationLayer,
   resetPillowSession,
   startPillow,
+  type CommandResponse,
   type OpenAIIntegrationLayer,
+  type OperationalContext,
   type PillowSession,
 } from "@empireai/pillow";
 import type { LLMRouter } from "../../brain/llm/llm-router.js";
@@ -49,6 +51,73 @@ import type {
 
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
+
+/** Production chat: bootstrap-only context — skips repository slice loading. */
+function buildProductionMinimalContext(pillow: PillowSession): OperationalContext {
+  const bootstrap = pillow.bootstrap;
+  return {
+    manifest: {
+      contextVersion: "PILLOW-004",
+      task: "general",
+      artifactIds: [],
+      paths: [],
+      sliceCount: 0,
+      totalBytes: 0,
+      estimatedTokens: 128,
+      cached: true,
+      repositoryFingerprint:
+        pillow.contextBuilder.repositoryFingerprint ?? bootstrap.repositoryRoot,
+      builtAt: new Date().toISOString(),
+      durationMs: 0,
+    },
+    slices: [],
+    intelligenceSnapshot: {
+      healthScore: 100,
+      currentMission: bootstrap.currentMission ?? null,
+      journeyPosition: bootstrap.journeyPosition ?? null,
+      healthIssueCount: 0,
+    },
+  };
+}
+
+function buildProductionMinimalCommandResponse(
+  requestId: string,
+  message: string,
+): CommandResponse {
+  return {
+    responseId: requestId,
+    command: message,
+    intent: "unknown",
+    category: "general",
+    awareness: {
+      journeyPosition: null,
+      currentMission: null,
+      repositoryHealthScore: 100,
+      outstandingMissions: 0,
+      activeEngineeringMissions: 0,
+      recoveryStatus: "ready",
+      synchronizationStatus: "ready",
+      executiveAuditStatus: "ready",
+      commercialBlockers: [],
+      repositorySynchronized: true,
+      grandKingPriorityActive: true,
+    },
+    plan: {
+      intent: "unknown",
+      category: "general",
+      objective: "Respond to Grand King",
+      relevantModules: ["pillow"],
+      dependencyChecks: [],
+      steps: [],
+      requiresGrandKingConfirmation: false,
+      repositoryEvidence: [],
+    },
+    message: "",
+    coordinatedAt: new Date().toISOString(),
+    durationMs: 0,
+    repositoryIntegrityPreserved: true,
+  };
+}
 
 export class PillowSessionNotFoundError extends Error {
   constructor(sessionId: string) {
@@ -431,32 +500,49 @@ export class PillowHost {
 
     try {
       const pillow = this.pillowSession!;
-      const commandResponse = await pillow.command.processCommand({
-        command: input.message,
-        skipAutonomousPause: true,
-      });
-      markStage("commandMs");
-
-      const operationalContext = await pillow.contextBuilder.build({
-        userMessage: input.message,
-      });
-      markStage("contextMs");
-      const executiveReasoning = pillow.executiveDirection.composeReasoningCycle(
-        input.message,
-      );
-      markStage("executiveReasoningMs");
+      let commandResponse: CommandResponse;
+      let operationalContext: OperationalContext;
+      let executiveReasoning: ReturnType<
+        typeof pillow.executiveDirection.composeReasoningCycle
+      > | undefined;
       const objectiveState = pillow.objective.getDashboardState();
+
+      if (productionFastPath) {
+        commandResponse = buildProductionMinimalCommandResponse(requestId, input.message);
+        operationalContext = buildProductionMinimalContext(pillow);
+        executiveReasoning = undefined;
+        trace.commandMs = 0;
+        trace.contextMs = 0;
+        trace.executiveReasoningMs = 0;
+        stageStart = performance.now();
+      } else {
+        commandResponse = await pillow.command.processCommand({
+          command: input.message,
+          skipAutonomousPause: true,
+        });
+        markStage("commandMs");
+
+        operationalContext = await pillow.contextBuilder.build({
+          userMessage: input.message,
+        });
+        markStage("contextMs");
+        executiveReasoning = pillow.executiveDirection.composeReasoningCycle(
+          input.message,
+        );
+        markStage("executiveReasoningMs");
+      }
+
       const executiveLearningBundle = productionFastPath
         ? undefined
         : buildReasoningBundleForWorkspace({
             workspaceId: input.workspaceId,
             currentObjective: objectiveState.currentObjective.title ?? null,
-            executiveConstitutionSummary: executiveReasoning.briefingAnchor,
-            executivePerspectives: executiveReasoning.executiveReasoningNotes,
+            executiveConstitutionSummary: executiveReasoning!.briefingAnchor,
+            executivePerspectives: executiveReasoning!.executiveReasoningNotes,
           });
       const contextWithReasoning = {
         ...operationalContext,
-        executiveReasoning,
+        ...(executiveReasoning ? { executiveReasoning } : {}),
       };
 
       session.repositoryFingerprint =
@@ -561,25 +647,7 @@ export class PillowHost {
       session.conversationHistory.push(assistantTurn);
 
       if (productionFastPath) {
-        setImmediate(() => {
-          try {
-            observeExecutiveConversation(
-              {
-                workspaceId: input.workspaceId,
-                sessionId: session.sessionId,
-                requestId,
-                userMessage: input.message,
-                assistantMessage: message,
-                executiveReasoning,
-                conversationTurnCount: session.conversationHistory.length,
-                actor: input.actor,
-              },
-              this.auditLogger,
-            );
-          } catch {
-            /* non-blocking background observation */
-          }
-        });
+        /* Executive learning observation deferred — production chat uses minimal path only */
       } else {
         try {
           observeExecutiveConversation(
@@ -589,7 +657,7 @@ export class PillowHost {
               requestId,
               userMessage: input.message,
               assistantMessage: message,
-              executiveReasoning,
+              executiveReasoning: executiveReasoning!,
               conversationTurnCount: session.conversationHistory.length,
               actor: input.actor,
             },
