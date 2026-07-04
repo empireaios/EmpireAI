@@ -22,6 +22,9 @@ import {
 } from "../../orchestration/pillow-approval/repository/sqlite-pillow-approval-repository.js";
 import { getObjectiveReportingSummary } from "../../orchestration/objective-management-engine/services/objective-management-service.js";
 import { buildGrandKingsDashboard } from "../../orchestration/ecommerce-os-orchestrator/services/dashboard-status-service.js";
+import {
+  cooperativeYield,
+} from "../../runtime/event-loop-cooperative.js";
 import type { ReadinessBlocker } from "../../orchestration/commerce-readiness-engine/models/commerce-readiness.js";
 
 const DEFAULT_COMPANY = "co-grand-king";
@@ -335,6 +338,76 @@ export async function loadOperationalCommandViewAsync(
   });
 }
 
+/** Brain dispatch lite path — skips SUCCESS-001 / go-live / CRIR / commerce dashboards that scan the repo. */
+export async function loadOperationalCommandViewForDispatchAsync(
+  workspaceId: string,
+  companyId?: string,
+  env: NodeJS.ProcessEnv = process.env,
+): Promise<OperationalCommandView> {
+  const cid = resolveCompanyId(workspaceId, companyId);
+
+  await cooperativeYield();
+  const infrastructure = assessProductionInfrastructureReadiness(env);
+
+  await cooperativeYield();
+  const activation = assessVersion1OperationalActivation(env);
+
+  await cooperativeYield();
+  const validations = listFirstRevenueValidations(workspaceId, cid);
+  const proof001 = computeProof001(validations);
+
+  await cooperativeYield();
+  ensurePillowApprovalTables();
+  const pillowRepo = new SqlitePillowApprovalRepository();
+  const pendingRows = pillowRepo.listApprovals(workspaceId, { status: "Pending" });
+  const topPending = pendingRows[0] ?? null;
+
+  await cooperativeYield();
+  const omsSummary = getObjectiveReportingSummary(workspaceId, cid);
+
+  const goLiveApprovalStub = {
+    items: [
+      {
+        itemId: "final-recommendation",
+        status: "BLOCKED" as const,
+        recommendation: "Dispatch lite path — full go-live package on refresh",
+        label: "GK-GOLIVE-APPROVAL",
+      },
+    ],
+  } as unknown as ReturnType<typeof buildVersion1GoLiveApproval>;
+
+  const success001Stub = {
+    progressPercent: proof001.progressPercent,
+    currentNetProfitUsd: 0,
+    operationalBlockers: [],
+    commercialBlockers: [],
+    supplierBlockers: [],
+    marketplaceBlockers: [],
+  } as unknown as ReturnType<typeof buildSuccess001CommandCenter>;
+
+  const commerceDashboardStub = {
+    overallReadinessScore: null,
+    launchDecision: "NOT_READY",
+    blockingItems: [],
+  } as unknown as ReturnType<typeof buildCommerceReadinessDashboard>;
+
+  return renderOperationalCommandView(workspaceId, cid, env, {
+    infrastructure,
+    activation,
+    goLiveApproval: goLiveApprovalStub,
+    success001: success001Stub,
+    proof001,
+    commerceDashboard: commerceDashboardStub,
+    crirReports: [],
+    crirScore: 0,
+    crirBlocking: false,
+    crirBlockers: [],
+    pendingRows,
+    topPending,
+    omsSummary,
+  });
+}
+
 type OperationalCommandRenderInput = {
   infrastructure: ReturnType<typeof assessProductionInfrastructureReadiness>;
   activation: ReturnType<typeof assessVersion1OperationalActivation>;
@@ -348,6 +421,7 @@ type OperationalCommandRenderInput = {
   crirBlockers: ReadinessBlocker[];
   pendingRows: ReturnType<SqlitePillowApprovalRepository["listApprovals"]>;
   topPending: (ReturnType<SqlitePillowApprovalRepository["listApprovals"]>[number]) | null;
+  omsSummary?: ReturnType<typeof getObjectiveReportingSummary>;
 };
 
 function renderOperationalCommandView(
@@ -418,7 +492,7 @@ function renderOperationalCommandView(
   };
 
   const success001Blocker = deriveSuccess001Blocker(success001);
-  const omsSummary = getObjectiveReportingSummary(workspaceId, cid);
+  const omsSummary = input.omsSummary ?? getObjectiveReportingSummary(workspaceId, cid);
 
   const nextExecutiveApproval =
     topPending?.proposal.title ??

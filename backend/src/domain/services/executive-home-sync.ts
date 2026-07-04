@@ -19,7 +19,7 @@ import {
 } from "./cockpit-panel-views.js";
 import { loadDashboardView } from "./module-views.js";
 import {
-  loadOperationalCommandViewAsync,
+  loadOperationalCommandViewForDispatchAsync,
   loadOperationalCommandView,
 } from "./operational-command-view.js";
 import {
@@ -42,7 +42,7 @@ export async function assembleExecutiveHomeViewAsync(
   };
 
   await cooperativeYield();
-  const command = await loadOperationalCommandViewAsync(workspaceId, companyId, env);
+  const command = await loadOperationalCommandViewForDispatchAsync(workspaceId, companyId, env);
   mark("commandMs");
 
   await cooperativeYield();
@@ -169,7 +169,7 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
   env: NodeJS.ProcessEnv,
 ): Promise<ExecutiveHomeView> {
   await cooperativeYield();
-  const command = await loadOperationalCommandViewAsync(workspaceId, companyId, env);
+  const command = await loadOperationalCommandViewForDispatchAsync(workspaceId, companyId, env);
   await cooperativeYield();
   const portfolio = loadDashboardView(workspaceId);
   return {
