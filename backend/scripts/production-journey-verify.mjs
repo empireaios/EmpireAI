@@ -3,6 +3,7 @@
  * Usage: node backend/scripts/production-journey-verify.mjs
  */
 const BASE = process.env.EMPIRE_COCKPIT_URL ?? "https://empire-ai.co";
+const BRAIN = process.env.RAILWAY_BRAIN_URL ?? "https://empireai-production.up.railway.app";
 const EMAIL = process.env.EMPIRE_LOGIN_EMAIL ?? "founder@empireai.com";
 const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD ?? "EmpireAI2026!";
 
@@ -71,14 +72,29 @@ async function main() {
     return true;
   });
 
+  await timed("health/live baseline", async () => {
+    const res = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(3000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  });
+
   await timed("executive-home dispatch", async () => {
-    const res = await fetch(`${BASE}/api/brain/dispatch`, {
+    const dispatchPromise = fetch(`${BASE}/api/brain/dispatch`, {
       method: "POST",
       headers: { "Content-Type": "application/json", cookie: loginRes.cookie },
       body: JSON.stringify({ module: "executive-home", action: "load" }),
     });
+    await new Promise((r) => setTimeout(r, 1500));
+    const healthDuring = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(3000) });
+    if (!healthDuring.ok) throw new Error(`health/live failed during dispatch: HTTP ${healthDuring.status}`);
+    const healthBody = await healthDuring.json();
+    if (healthBody.brain !== "online") throw new Error("health/live not online during dispatch");
+    console.log("  health/live during dispatch: OK");
+    const res = await dispatchPromise;
     const body = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(`HTTP ${res.status} ${JSON.stringify(body).slice(0, 200)}`);
+    if (body.result?._trace) console.log("  executive-home trace:", JSON.stringify(body.result._trace));
+    if (body.result?._fallback) console.log("  executive-home fallback: true");
     return body;
   });
 
@@ -90,25 +106,22 @@ async function main() {
   });
 
   const session = await timed("pillow session create", async () => {
-    const res = await fetch(`${BASE}/api/pillow/session`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", cookie: loginRes.cookie },
-      body: JSON.stringify({}),
-    });
-    const body = await res.json().catch(() => ({}));
-    if (res.status === 503 && body.lifecycle === "starting") {
-      await new Promise((r) => setTimeout(r, 5000));
-      const retry = await fetch(`${BASE}/api/pillow/session`, {
+    const deadline = Date.now() + 90_000;
+    while (Date.now() < deadline) {
+      const res = await fetch(`${BASE}/api/pillow/session`, {
         method: "POST",
         headers: { "Content-Type": "application/json", cookie: loginRes.cookie },
         body: JSON.stringify({}),
       });
-      const retryBody = await retry.json().catch(() => ({}));
-      if (!retry.ok) throw new Error(`HTTP ${retry.status} ${JSON.stringify(retryBody)}`);
-      return retryBody.session;
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body.session) return body.session;
+      if (res.status === 503 && body.lifecycle === "starting") {
+        await new Promise((r) => setTimeout(r, 5000));
+        continue;
+      }
+      throw new Error(`HTTP ${res.status} ${JSON.stringify(body)}`);
     }
-    if (!res.ok) throw new Error(`HTTP ${res.status} ${JSON.stringify(body)}`);
-    return body.session;
+    throw new Error("Pillow session create timed out after 90s");
   });
 
   await timed("pillow chat message 1", async () => {

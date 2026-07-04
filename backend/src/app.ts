@@ -483,21 +483,8 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
       llmRouter: brain.llmRouter,
     });
 
-    if (process.env.NODE_ENV === "production") {
-      setTimeout(() => {
-        void initializePillowHost({
-          llmRouter: brain.llmRouter,
-          auditLogger: brain.auditLogger,
-        }).catch((error) => {
-          logger.warn(
-            {
-              error: error instanceof Error ? error.message : String(error),
-            },
-            "Background Pillow warmup failed — first chat may wait for host boot",
-          );
-        });
-      }, 5_000);
-    }
+    // Pillow starts lazily on first /api/pillow/session or /api/pillow/chat — no background boot
+    // during Grand King login / Executive Home load (avoids event-loop contention on Railway).
   }
 
   app.get(
@@ -538,6 +525,19 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
         payload.founderApproved = true;
       }
 
+      const dispatchStarted = Date.now();
+      if (body.module === "executive-home") {
+        logger.info(
+          {
+            stage: "executive-home.dispatch.enter",
+            action: body.action,
+            correlationId: body.correlationId ?? request.id,
+            workspaceId,
+          },
+          "Executive home dispatch entered",
+        );
+      }
+
       const result = await brain.orchestrator.dispatch({
         module: body.module,
         action: body.action,
@@ -546,6 +546,31 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
         payload,
         correlationId: body.correlationId,
       });
+
+      if (body.module === "executive-home") {
+        const trace =
+          result.result &&
+          typeof result.result === "object" &&
+          "_trace" in result.result
+            ? (result.result as { _trace?: Record<string, number> })._trace
+            : undefined;
+        logger.info(
+          {
+            stage: "executive-home.dispatch.exit",
+            action: body.action,
+            correlationId: result.correlationId,
+            durationMs: Date.now() - dispatchStarted,
+            trace,
+            fallback:
+              result.result &&
+              typeof result.result === "object" &&
+              "_fallback" in result.result
+                ? (result.result as { _fallback?: boolean })._fallback
+                : undefined,
+          },
+          "Executive home dispatch completed",
+        );
+      }
 
       return reply.send(result);
     },

@@ -20,7 +20,6 @@ import {
 } from "../../domain/services/operational-command-view.js";
 import {
   loadExecutiveAuditView,
-  loadExecutiveHomeView,
   loadIntelligenceEnginePanel,
   loadMarketIntelligenceEnginePanel,
   loadSupplierIntelligenceEnginePanel,
@@ -35,6 +34,7 @@ import {
   loadPillowSupervisorView,
   type EngineCenterPanelId,
 } from "../../domain/services/cockpit-panel-views.js";
+import { loadExecutiveHomeForDispatch } from "../../domain/services/executive-home-loader.js";
 import { loadEngineCenterView } from "../../domain/services/engine-center-views.js";
 import {
   handleCockpitInteraction,
@@ -220,7 +220,7 @@ export const moduleLoadTools: RegisteredTool[] = [
       },
     },
     handler: async (args, context) =>
-      loadExecutiveHomeView(
+      loadExecutiveHomeForDispatch(
         context.workspaceId,
         args.companyId ? String(args.companyId) : context.companyId,
       ),
