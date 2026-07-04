@@ -181,8 +181,16 @@ export function ExecutiveCommandStrip() {
 
   if (loading) {
     return (
-      <div className="border-b border-gold/10 bg-[#050505] px-4 py-3 text-sm text-[#8a847a] lg:px-8">
-        Loading executive command centre…
+      <div className="space-y-3 border-b border-gold/10 bg-[#050505] px-4 py-3 lg:px-8">
+        <div className="h-4 w-48 animate-pulse rounded bg-white/[0.04]" />
+        <div className="flex flex-wrap gap-2">
+          {[1, 2, 3, 4].map((key) => (
+            <div
+              key={key}
+              className="h-16 min-w-[140px] flex-1 animate-pulse rounded-lg border border-gold/10 bg-white/[0.02]"
+            />
+          ))}
+        </div>
       </div>
     );
   }

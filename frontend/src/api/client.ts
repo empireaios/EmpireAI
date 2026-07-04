@@ -38,7 +38,14 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   });
 
   const text = await response.text();
-  const payload = text ? (JSON.parse(text) as unknown) : null;
+  let payload: unknown = null;
+  if (text) {
+    try {
+      payload = JSON.parse(text) as unknown;
+    } catch {
+      payload = null;
+    }
+  }
 
   if (!response.ok) {
     const message =

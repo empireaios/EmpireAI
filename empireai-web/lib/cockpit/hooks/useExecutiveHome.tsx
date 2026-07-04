@@ -17,6 +17,7 @@ const DEFAULT_REFRESH_MS = 45_000;
 type ExecutiveHomeContextValue = {
   data: ExecutiveHomeView | null;
   loading: boolean;
+  refreshing: boolean;
   error: Error | null;
   reload: () => void;
   lastUpdatedAt: string | null;
@@ -32,7 +33,7 @@ export function ExecutiveHomeProvider({
   children: ReactNode;
   refreshMs?: number;
 }) {
-  const { data, loading, error, reload } = useBrainModule<ExecutiveHomeView>("executive-home");
+  const { data, loading, error, reload, refreshing } = useBrainModule<ExecutiveHomeView>("executive-home");
   const [lastUpdatedAt, setLastUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
@@ -51,12 +52,13 @@ export function ExecutiveHomeProvider({
     () => ({
       data,
       loading,
+      refreshing,
       error: error ? new Error(error.message) : null,
       reload,
       lastUpdatedAt,
       refreshMs,
     }),
-    [data, loading, error, reload, lastUpdatedAt, refreshMs],
+    [data, loading, refreshing, error, reload, lastUpdatedAt, refreshMs],
   );
 
   return (

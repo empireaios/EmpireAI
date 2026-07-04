@@ -4,13 +4,10 @@ import type {
   BrainError,
 } from "./types";
 import { brainLogger } from "./logger";
-
-const MAX_RETRIES = 3;
-const BASE_DELAY_MS = 400;
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import {
+  fetchWithRetry as sharedFetchWithRetry,
+  SESSION_FETCH_TIMEOUT_MS,
+} from "./fetch-utils";
 
 function normalizeError(error: unknown, status?: number): BrainError {
   if (error instanceof Error) {
@@ -23,46 +20,6 @@ function normalizeError(error: unknown, status?: number): BrainError {
   return { message: "Unknown Brain error", status, retryable: true };
 }
 
-async function fetchWithRetry(
-  input: RequestInfo,
-  init?: RequestInit,
-  retries = MAX_RETRIES,
-): Promise<Response> {
-  let lastError: BrainError | null = null;
-
-  for (let attempt = 0; attempt <= retries; attempt += 1) {
-    try {
-      const response = await fetch(input, init);
-      if (response.ok || response.status < 500) {
-        return response;
-      }
-
-      lastError = normalizeError(
-        new Error(`Brain request failed (${response.status})`),
-        response.status,
-      );
-
-      if (attempt < retries) {
-        brainLogger.warn("Retrying Brain request", {
-          attempt: attempt + 1,
-          status: response.status,
-        });
-        await sleep(BASE_DELAY_MS * 2 ** attempt);
-      }
-    } catch (error) {
-      lastError = normalizeError(error);
-      if (attempt < retries) {
-        brainLogger.warn("Retrying Brain request after network error", {
-          attempt: attempt + 1,
-        });
-        await sleep(BASE_DELAY_MS * 2 ** attempt);
-      }
-    }
-  }
-
-  throw lastError ?? normalizeError(new Error("Brain request failed"));
-}
-
 export async function brainDispatch<T = unknown>(
   request: BrainDispatchRequest,
 ): Promise<BrainDispatchResult<T>> {
@@ -71,11 +28,12 @@ export async function brainDispatch<T = unknown>(
     action: request.action,
   });
 
-  const response = await fetchWithRetry("/api/brain/dispatch", {
+  const response = await sharedFetchWithRetry("/api/brain/dispatch", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify(request),
+    retries: 2,
   });
 
   if (!response.ok) {
@@ -98,8 +56,10 @@ export async function brainDispatch<T = unknown>(
 }
 
 export async function fetchSessionUser() {
-  const response = await fetchWithRetry("/api/auth/me", {
+  const response = await sharedFetchWithRetry("/api/auth/me", {
     credentials: "include",
+    timeoutMs: SESSION_FETCH_TIMEOUT_MS,
+    retries: 0,
   });
 
   if (response.status === 401) return null;

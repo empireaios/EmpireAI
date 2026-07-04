@@ -1,6 +1,7 @@
 const LOCAL_BRAIN_URL = "http://localhost:4000";
 const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
+const AUTH_UPSTREAM_TIMEOUT_MS = 10_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */
 export function resolveBrainApiUrl(): string {
@@ -43,9 +44,10 @@ function brainProxyErrorResponse(
 export async function proxyBrainRequest(
   path: string,
   request: Request,
-  init?: RequestInit,
+  init?: RequestInit & { upstreamTimeoutMs?: number },
 ): Promise<Response> {
   let brainApiUrl: string;
+  const upstreamTimeoutMs = init?.upstreamTimeoutMs ?? UPSTREAM_TIMEOUT_MS;
 
   try {
     brainApiUrl = resolveBrainApiUrl();
@@ -56,7 +58,7 @@ export async function proxyBrainRequest(
   const url = `${brainApiUrl}${path}`;
 
   try {
-    const upstreamAbort = AbortSignal.timeout(UPSTREAM_TIMEOUT_MS);
+    const upstreamAbort = AbortSignal.timeout(upstreamTimeoutMs);
     const response = await fetch(url, {
       ...init,
       headers: {
@@ -83,7 +85,7 @@ export async function proxyBrainRequest(
     if (error instanceof Error && error.name === "TimeoutError") {
       return brainProxyErrorResponse(
         new Error(
-          `Brain API timed out after ${UPSTREAM_TIMEOUT_MS}ms (${brainApiUrl}). Check BRAIN_API_URL on Vercel.`,
+          `Brain API timed out after ${upstreamTimeoutMs}ms (${brainApiUrl}). Check BRAIN_API_URL on Vercel.`,
         ),
         504,
       );
@@ -94,3 +96,5 @@ export async function proxyBrainRequest(
 
 /** @deprecated Use resolveBrainApiUrl() so production misconfiguration fails clearly. */
 export const BRAIN_API_URL = process.env.BRAIN_API_URL ?? LOCAL_BRAIN_URL;
+
+export { AUTH_UPSTREAM_TIMEOUT_MS };

@@ -1,9 +1,8 @@
 import { resolveBrainApiUrl } from "@/lib/brain/server-proxy";
-import { brainRouteConfig } from "@/lib/brain/route-config";
 
-export const runtime = brainRouteConfig.runtime;
-export const dynamic = brainRouteConfig.dynamic;
-export const maxDuration = brainRouteConfig.maxDuration;
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const UPSTREAM_TIMEOUT_MS = 25_000;
 

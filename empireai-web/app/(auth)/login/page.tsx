@@ -34,6 +34,17 @@ function LoginForm() {
     }
   }
 
+  if (loading && !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#030303] text-sm text-[#8a847a]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-gold/20 border-t-[#d4af37]" />
+          Checking session…
+        </div>
+      </div>
+    );
+  }
+
   if (!loading && user) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#030303] text-sm text-[#8a847a]">

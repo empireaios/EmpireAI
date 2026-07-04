@@ -10,6 +10,7 @@ import type {
 } from "./types";
 
 const PILLOW_REQUEST_TIMEOUT_MS = 60_000;
+const PILLOW_SESSION_TIMEOUT_MS = 15_000;
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 400;
 
@@ -34,12 +35,13 @@ async function pillowFetchWithRetry(
   input: string,
   init: RequestInit,
   retries = MAX_RETRIES,
+  timeoutMs = PILLOW_REQUEST_TIMEOUT_MS,
 ): Promise<Response> {
   let lastError: Error | null = null;
 
   for (let attempt = 0; attempt <= retries; attempt += 1) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), PILLOW_REQUEST_TIMEOUT_MS);
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
       const response = await fetch(input, {
@@ -71,7 +73,7 @@ async function pillowFetchWithRetry(
 
 async function pillowRequest<T>(
   path: string,
-  init?: RequestInit & { params?: Record<string, string | undefined> },
+  init?: RequestInit & { params?: Record<string, string | undefined>; timeoutMs?: number; retries?: number },
 ): Promise<T> {
   const url = new URL(path, typeof window !== "undefined" ? window.location.origin : "http://localhost");
   if (init?.params) {
@@ -81,13 +83,18 @@ async function pillowRequest<T>(
   }
 
   try {
-    const response = await pillowFetchWithRetry(url.pathname + url.search, {
-      ...init,
-      headers: {
-        "Content-Type": "application/json",
-        ...(init?.headers ?? {}),
+    const response = await pillowFetchWithRetry(
+      url.pathname + url.search,
+      {
+        ...init,
+        headers: {
+          "Content-Type": "application/json",
+          ...(init?.headers ?? {}),
+        },
       },
-    });
+      init?.retries ?? MAX_RETRIES,
+      init?.timeoutMs ?? PILLOW_REQUEST_TIMEOUT_MS,
+    );
 
     if (!response.ok) {
       const body = (await response.json().catch(() => ({}))) as { error?: string };
@@ -112,6 +119,8 @@ export async function createPillowHostSession(workspaceId?: string): Promise<Pil
   const result = await pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
     method: "POST",
     body: JSON.stringify(workspaceId ? { workspaceId } : {}),
+    timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
+    retries: 1,
   });
   return result.session;
 }

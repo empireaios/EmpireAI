@@ -27,12 +27,14 @@ function formatLastUpdated(iso: string | null) {
 
 /** G4-06 — Brain sync status for Executive Home. */
 export function ExecutiveHomeSyncBar() {
-  const { loading, lastUpdatedAt, refreshMs, reload } = useExecutiveHome();
+  const { loading, refreshing, lastUpdatedAt, refreshMs, reload } = useExecutiveHome();
+  const isInitialLoad = loading && !lastUpdatedAt;
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-gold/10 bg-white/[0.02] px-4 py-2 text-xs text-[#8a847a]">
       <span>
-        Brain sync · {loading ? "Refreshing…" : `Updated ${formatLastUpdated(lastUpdatedAt)}`}
+        Brain sync ·{" "}
+        {isInitialLoad ? "Connecting…" : refreshing ? "Refreshing…" : `Updated ${formatLastUpdated(lastUpdatedAt)}`}
       </span>
       <div className="flex items-center gap-3">
         <span>Auto-refresh {Math.round(refreshMs / 1000)}s</span>
@@ -50,8 +52,10 @@ export function ExecutiveAttentionStrip() {
   const { data, loading } = useExecutiveHome();
   if (loading && !data) {
     return (
-      <div className="rounded-lg border border-gold/10 bg-white/[0.02] px-4 py-3 text-sm text-[#8a847a]">
-        Loading attention items…
+      <div className="space-y-2">
+        <div className="h-3 w-40 animate-pulse rounded bg-white/[0.04]" />
+        <div className="h-12 animate-pulse rounded-lg border border-gold/10 bg-white/[0.02]" />
+        <div className="h-12 animate-pulse rounded-lg border border-gold/10 bg-white/[0.02]" />
       </div>
     );
   }

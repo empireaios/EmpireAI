@@ -6,6 +6,8 @@ import { ApiError } from "@/api/client";
 
 import { useAuth } from "@/context/AuthContext";
 
+import { LoadingState } from "@/components/ui/PageStates";
+
 import { postLoginDestination } from "@/lib/post-login-destination";
 
 import { paths } from "@/routes/paths";
@@ -13,7 +15,7 @@ import { paths } from "@/routes/paths";
 import styles from "./LoginPage.module.css";
 
 export function LoginPage() {
-  const { user, login } = useAuth();
+  const { user, login, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = (location.state as { from?: string } | null)?.from;
@@ -22,6 +24,10 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  if (loading) {
+    return <LoadingState message="Checking session…" />;
+  }
 
   if (user) {
     return <Navigate to={redirectTo ?? postLoginDestination(user)} replace />;

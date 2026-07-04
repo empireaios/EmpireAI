@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ModuleId } from "@/lib/platform/types";
 import { brainDispatch } from "@/lib/brain/client";
 import type { BrainError } from "@/lib/brain/types";
@@ -21,6 +21,8 @@ export function useBrainModule<T>(
   const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState<BrainError | null>(null);
   const [attempt, setAttempt] = useState(0);
+  const dataRef = useRef<T | null>(null);
+  dataRef.current = data;
 
   const reload = useCallback(() => {
     setAttempt((value) => value + 1);
@@ -34,7 +36,10 @@ export function useBrainModule<T>(
     let cancelled = false;
 
     async function load() {
-      setLoading(true);
+      const hasCachedData = dataRef.current !== null;
+      if (!hasCachedData) {
+        setLoading(true);
+      }
       setError(null);
 
       try {
@@ -65,5 +70,5 @@ export function useBrainModule<T>(
     };
   }, [module, action, enabled, attempt, companyId, JSON.stringify(payload ?? null)]);
 
-  return { data, loading: enabled && loading, error, reload };
+  return { data, loading: enabled && loading && data === null, error, reload, refreshing: enabled && loading && data !== null };
 }
