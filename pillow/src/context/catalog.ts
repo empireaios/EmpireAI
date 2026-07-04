@@ -118,6 +118,16 @@ export const TASK_SOURCE_MAP: Record<ContextTask, string[]> = {
     "managed_deployment",
     "bl_c",
   ],
+  empire_operating_system: [
+    "journey",
+    "status",
+    "soul",
+    "decisions",
+    "pillow_contract",
+    "constitution",
+    "bl_c",
+    "repo_master_index",
+  ],
   recovery: ["empire_recovery", "journey", "status", "journey_audit"],
 };
 

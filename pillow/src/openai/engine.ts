@@ -165,6 +165,10 @@ function assembleLlmMessages(
     ? `--- Empire Commander (Phase 8) ---\n${context.empireCommanderBrief}\nPillow is unified executive intelligence. The King gives strategic direction; Pillow plans, coordinates, evaluates, and reports across all domains.`
     : null;
 
+  const empireOperatingSystemAnchor = context.empireOperatingSystemBrief
+    ? `--- Empire Operating System (Phase 9) ---\n${context.empireOperatingSystemBrief}\nPillow executes the Empire. The King provides vision; Pillow creates, launches, operates, optimises, and scales businesses autonomously.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -176,6 +180,7 @@ function assembleLlmMessages(
     infrastructureAnchor,
     commerceIntelligenceAnchor,
     empireCommanderAnchor,
+    empireOperatingSystemAnchor,
     repositoryKnowledge,
     contextBody,
   ]

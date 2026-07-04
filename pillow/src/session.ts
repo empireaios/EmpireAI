@@ -68,6 +68,11 @@ import {
   createEmpireCommanderEngine,
 } from "./empire-commander/engine.js";
 import type { EmpireCommanderState } from "./empire-commander/types.js";
+import {
+  EmpireOperatingSystemEngine,
+  createEmpireOperatingSystemEngine,
+} from "./empire-operating-system/engine.js";
+import type { EmpireOperatingSystemState } from "./empire-operating-system/types.js";
 
 let bootstrapContext: EmpireBootstrapContext | null = null;
 let intelligenceContext: RepositoryIntelligenceContext | null = null;
@@ -91,6 +96,7 @@ let cursorBridgeEngine: CursorBridgeEngine | null = null;
 let infrastructureCommanderEngine: InfrastructureCommanderEngine | null = null;
 let commerceIntelligenceEngine: CommerceIntelligenceEngine | null = null;
 let empireCommanderEngine: EmpireCommanderEngine | null = null;
+let empireOperatingSystemEngine: EmpireOperatingSystemEngine | null = null;
 
 let executiveDirectionContext: ExecutiveDirectionContext | null = null;
 
@@ -118,6 +124,7 @@ export interface PillowSession {
   infrastructureCommander: InfrastructureCommanderEngine;
   commerceIntelligence: CommerceIntelligenceEngine;
   empireCommander: EmpireCommanderEngine;
+  empireOperatingSystem: EmpireOperatingSystemEngine;
 }
 
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
@@ -266,6 +273,21 @@ export async function startPillow(options?: {
   await empireCommanderEngine.initialize();
   orchestrator.registerEmpireCommander(empireCommanderEngine);
 
+  empireOperatingSystemEngine = createEmpireOperatingSystemEngine({
+    bootstrap: result,
+    intelligence: intelligenceContext,
+    empireCommander: empireCommanderEngine,
+    commerceIntelligence: commerceIntelligenceEngine,
+    infrastructureCommander: infrastructureCommanderEngine,
+    dueDiligence: dueDiligenceEngine,
+    improvement: improvementEngine,
+    orchestrator,
+    objective: objectiveEngine,
+    auditReviewer,
+  });
+  await empireOperatingSystemEngine.initialize();
+  orchestrator.registerEmpireOperatingSystem(empireOperatingSystemEngine);
+
   contextBuilder = new ContextBuilder(
     result,
     intelligenceContext,
@@ -275,6 +297,7 @@ export async function startPillow(options?: {
     infrastructureCommanderEngine,
     commerceIntelligenceEngine,
     empireCommanderEngine,
+    empireOperatingSystemEngine,
   );
 
   commandInterface = new GrandKingCommandInterface({
@@ -317,6 +340,7 @@ export async function startPillow(options?: {
     infrastructureCommander: infrastructureCommanderEngine,
     commerceIntelligence: commerceIntelligenceEngine,
     empireCommander: empireCommanderEngine,
+    empireOperatingSystem: empireOperatingSystemEngine,
   };
 }
 
@@ -721,6 +745,15 @@ export function requirePillowEmpireCommander(): EmpireCommanderEngine {
   return empireCommanderEngine;
 }
 
+export function requirePillowEmpireOperatingSystem(): EmpireOperatingSystemEngine {
+  if (!empireOperatingSystemEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Empire Operating System not ready. Call startPillow() first.",
+    );
+  }
+  return empireOperatingSystemEngine;
+}
+
 export function resetPillowSession(): void {
   bootstrapContext = null;
   executiveDirectionContext = null;
@@ -745,6 +778,7 @@ export function resetPillowSession(): void {
   infrastructureCommanderEngine = null;
   commerceIntelligenceEngine = null;
   empireCommanderEngine = null;
+  empireOperatingSystemEngine = null;
 }
 
 export class BootstrapFailureError extends Error {

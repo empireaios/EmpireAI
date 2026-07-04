@@ -20,7 +20,8 @@ export type SubsystemId =
   | "cursor_bridge"
   | "infrastructure_commander"
   | "commerce_intelligence"
-  | "empire_commander";
+  | "empire_commander"
+  | "empire_operating_system";
 
 export type SubsystemHealth = "ready" | "degraded" | "unavailable" | "deferred";
 

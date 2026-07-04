@@ -106,6 +106,13 @@ export class EmpireAIOrchestrator {
     this.refreshDiscovery();
   }
 
+  registerEmpireOperatingSystem(
+    eos: import("../empire-operating-system/engine.js").EmpireOperatingSystemEngine,
+  ): void {
+    this.bundle.empireOperatingSystem = eos;
+    this.refreshDiscovery();
+  }
+
   getSubsystems(): SubsystemEntry[] {
     return [...this.subsystems];
   }

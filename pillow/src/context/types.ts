@@ -15,6 +15,7 @@ export type ContextTask =
   | "infrastructure"
   | "commerce_intelligence"
   | "empire_commander"
+  | "empire_operating_system"
   | "recovery";
 
 export interface ContextSourceDescriptor {
@@ -80,6 +81,8 @@ export interface OperationalContext {
   commerceIntelligenceBrief?: string;
   /** Phase 8 Empire Commander unified cross-domain executive brief */
   empireCommanderBrief?: string;
+  /** Phase 9 Empire Operating System business creation and operation brief */
+  empireOperatingSystemBrief?: string;
 }
 
 export interface ContextBuilderOptions {
