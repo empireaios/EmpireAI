@@ -192,6 +192,8 @@ const dispatchSchema = z.object({
   correlationId: z.string().optional(),
 });
 
+const breathe = () => new Promise<void>((resolve) => setImmediate(resolve));
+
 export type BuildAppOptions = {
   startWorkers?: boolean;
   startScheduler?: boolean;
@@ -406,6 +408,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     },
   );
 
+  await breathe();
   await registerAuthRoutes(app, {
     sessionStore,
     auditLogger: brain.auditLogger,
@@ -422,7 +425,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   };
 
   if (earlyListen) {
-    await registerCockpitCriticalRoutes(routeDeps);
+    await breathe();
+  await registerCockpitCriticalRoutes(routeDeps);
     return {
       app,
       brain,
@@ -431,6 +435,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     };
   }
 
+  await breathe();
   await registerEmpireExtensionRoutes(routeDeps);
 
   return {
@@ -470,7 +475,8 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
   const { app, authenticate, brain, pillowEnabled, pillowHost, eventStream } = deps;
 
   if (pillowEnabled) {
-    await registerPillowRoutes(app, {
+    await breathe();
+  await registerPillowRoutes(app, {
       authenticate,
       pillowHost,
       auditLogger: brain.auditLogger,
@@ -533,479 +539,634 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
 async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<void> {
   const { app, authenticate, brain, pillowEnabled, pillowHost, eventStream } = deps;
 
+  await breathe();
   await registerProductIntelligenceRoutes(app, { authenticate });
 
+  await breathe();
   await registerCommerceIntelligenceCoreRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerRevenueLoopRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerProductionDeploymentRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerLivePaymentRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerCustomerOrderPipelineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerLiveCjFulfillmentRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerAnalyticsConversionRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerMetaAdsConnectorRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerProductPublishingRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGrandKingsRevenueRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerFirstRevenueValidationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerSoulFileRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerSoulRuntimeRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGovernanceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerIdentityRegistryRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerDoctrineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireConstitutionRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireGovernanceDoctrineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireArchitectureConstraintsRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireUxIdentityDoctrineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireCommercialBusinessDoctrineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerPolicyRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerPromiseRegisterRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerObjectiveManagementRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerKpiEngineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerDecisionRegistryRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerStrategicMemoryRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEcommerceOsRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerAccountInfrastructureRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerMarketplaceConnectionRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerCommerceReadinessRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerProductDiscoveryRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerBusinessOpportunityWorkspaceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerMarketDominationStrategyRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerBusinessBuildRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerBusinessSimulationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerExecutionLayerRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerRealityIntegrationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEyeSeriesRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerOperationFirstDollarRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEsisRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerMasterCompletionLedgerRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerOperationalAccessRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerIntegrationsHubRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerSupplierIntelligenceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerCommerceRuntimeRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalCommerceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalCommerceIntelligenceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireKnowledgeRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalCommerceInfrastructureRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerFounderAutomationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerAmazonGlobalSellerRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerCommerceIntelligenceStudioRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerMarketplacePublishingRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerListingIntelligenceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerProductMediaRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerCommerceExecutionPipelineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerExecutiveVisualDebateRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalMarketplaceOperationsRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerLiveProductIntelligenceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerExecutiveProductOptimizationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerSupplierIntelligenceLoopRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalOpportunityEngineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerRevenueImprovementEngineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalCommandCenterRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerEmpireEconomicsRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGrandKingFinancialCommandCenterRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerFounderPlatformPreparationRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAiSelfImprovementEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion2BacklogEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1ReadinessAuditRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1LockdownRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerCustomerIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerCompetitorIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerCustomerPsychologyEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalCategoryExpansionEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalRevenueSimulationRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAiChiefOfCommerceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAiChiefOfGrowthRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAiChiefOfCustomerRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalStrategyEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerSuccess001CommandCenterRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerUnifiedGrandKingHeadquartersRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerWorldOperationsMapRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalMarketShareEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerProductPortfolioCommandRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerExecutiveWarRoomRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerSoulDecisionChamberRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerMissionCommandEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalExecutionTimelineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAutonomousAnalysisEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerCommercialMemoryEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGrandKingLiveOperationsModeRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalOperationalCommandCenterRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalAdvertisingIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerFirstOrderOperationsRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalOrderIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerPostPurchaseIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalKnowledgeEvolutionRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerAiStrategicMemoryRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerEmpirePlaybookEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalRiskCommandRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerFounderPlatformReadinessRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerProductionHardeningRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1AcceptanceTestRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGrandKingGoLiveChecklistRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1GoldMasterRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalBusinessHealthEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerEmpireKpiEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerLiveCommercialInvestigationsRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerCommercialSimulationEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerGlobalExpansionCommandRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerCommercialExplorerRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerEmpireStrategicCenterRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1GovernanceReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerSuccess001ReadinessReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await breathe();
   await registerVersion1ExecutiveSignOffRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalSupplierMarketRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalMarketplaceAdapterFrameworkRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerMarketplaceDifferenceEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerCountryDifferenceEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalPriceIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerShippingIntelligenceRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerProductLaunchCommanderRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerPostLaunchCommanderRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerProductScaleEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerProductRetirementEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerEmpireRevenueForecastRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerEmpireCashflowEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerEmpireInvestmentEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalOpportunityBoardRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerExecutiveStrategyRoomRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerKingDecisionHistoryRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerSoulLearningReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerEmpirePatternLibraryRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerGlobalExpansionScoreRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerEmpirePriorityEngineRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerCommandCenterPolishRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerUxReviewPreparationRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerPerformanceReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerSecurityReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerArchitectureReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerCommercialReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerVersion1FreezeReviewRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerVersion1ReleaseCandidateRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerVersion1GoLiveApprovalRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerVersion1ActivationRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerVersion1CompletionRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
+  await breathe();
   await registerExecutiveCouncilRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerExecutiveSurveillanceRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGlobalNotificationRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
   if (process.env.EMPIRE_LEGACY_GC05_GLOBAL_ASSISTANT === "true") {
-    await registerGlobalAssistantRoutes(app, {
+    await breathe();
+  await registerGlobalAssistantRoutes(app, {
       authenticate,
       auditLogger: brain.auditLogger,
     });
   }
 
+  await breathe();
   await registerGrandKingRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
   await registerGrandKingRevenuePipelineRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
@@ -1013,7 +1174,8 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
 
   if (pillowEnabled) {
     if (pillowHost.getStatus().lifecycle === "running") {
-      await registerPillowApprovalRoutes(app, {
+      await breathe();
+  await registerPillowApprovalRoutes(app, {
         authenticate,
         pillowHost,
         approvalGate: pillowHost.getApprovalGate(),
@@ -1021,11 +1183,13 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
         auditLogger: brain.auditLogger,
       });
       wireCanonicalPillowApprovalPipeline(pillowHost.getApprovalGate());
-      await registerExecutiveLearningRoutes(app, {
+      await breathe();
+  await registerExecutiveLearningRoutes(app, {
         authenticate,
         auditLogger: brain.auditLogger,
       });
-      await registerPillowExecutiveCouncilRoutes(app, {
+      await breathe();
+  await registerPillowExecutiveCouncilRoutes(app, {
         authenticate,
         auditLogger: brain.auditLogger,
       });
