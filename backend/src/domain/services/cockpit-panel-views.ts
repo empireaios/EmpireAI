@@ -717,6 +717,100 @@ function loadExecutiveSummaryCardInputsSync(
   };
 }
 
+/** Production Brain dispatch — skips repo-scanning ESIS and global timeline (built separately). */
+export async function buildExecutiveSummaryCardsForDispatchAsync(
+  workspaceId: string,
+  companyId: string,
+  command: ReturnType<typeof loadOperationalCommandView>,
+  portfolio: ReturnType<typeof loadDashboardView>,
+  engineSummaries: EnginePanelView[],
+  env: NodeJS.ProcessEnv,
+  pillow: ReturnType<typeof loadPillowSupervisorView>,
+): Promise<ExecutiveSummaryCard[]> {
+  await cooperativeYield();
+  const orders = loadOrdersView(workspaceId);
+  await cooperativeYield();
+  const finance = loadFinanceView(workspaceId);
+  await cooperativeYield();
+  const aiCeo = loadAiCeoView(workspaceId);
+  await cooperativeYield();
+  await waitForEventLoopCapacity();
+
+  const healthyEngines = engineSummaries.filter((e) => e.health === "HEALTHY").length;
+  const totalEngines = engineSummaries.length;
+  const opsScore = command.operationalReadiness.percent;
+  const opsState = command.operationalReadiness.passed ? "HEALTHY" : "WARNING";
+
+  const esisStub: ExecutiveSummaryCardInputs["esis"] = {
+    workspaceId,
+    companyId,
+    reviewTimestamp: null,
+    systemHealth: {
+      state: opsState as "HEALTHY" | "WARNING",
+      score: opsScore,
+      summary: command.operationalReadiness.detail,
+    },
+    architectureHealth: {
+      state: "UNKNOWN",
+      score: opsScore,
+      summary: `${healthyEngines}/${totalEngines} engines healthy`,
+    },
+    commerceHealth: {
+      state: (command.commerceReadiness.blockingCount > 0 ? "WARNING" : "HEALTHY") as "HEALTHY" | "WARNING",
+      score: command.commerceReadiness.score ?? opsScore,
+      summary: command.commerceReadiness.launchDecision,
+    },
+    frontendHealth: { state: "UNKNOWN", score: 50, summary: "Dispatch lite path — full ESIS on refresh" },
+    backendHealth: {
+      state: opsState as "HEALTHY" | "WARNING",
+      score: opsScore,
+      summary: command.operationalReadiness.detail,
+    },
+    validationHealth: { state: "UNKNOWN", score: 50, summary: "Skipped on dispatch lite path" },
+    productionReadiness: {
+      state: command.operationalReadiness.passed ? "HEALTHY" : "WARNING",
+      score: opsScore,
+      summary: command.operationalReadiness.detail,
+    },
+    summary: command.operationalReadiness.detail,
+  };
+
+  const objectiveDashboardStub = {
+    activeObjectives: command.oms.activeObjective
+      ? [
+          {
+            title: command.oms.activeObjective,
+            currentProgressPercent: command.oms.progress,
+            status: command.oms.overallHealth,
+          },
+        ]
+      : [],
+  } as unknown as ReturnType<typeof buildObjectiveDashboard>;
+
+  const timelineStub = {
+    events: [],
+    upcomingCount: 0,
+    eventCount: 0,
+  } as unknown as ReturnType<typeof buildGlobalExecutionTimeline>;
+
+  return buildExecutiveSummaryCardsWithInputs(
+    command,
+    portfolio,
+    engineSummaries,
+    env,
+    {
+      esis: esisStub,
+      orders,
+      finance,
+      aiCeo,
+      oms: command.oms,
+      objectiveDashboard: objectiveDashboardStub,
+      pillow,
+      timeline: timelineStub,
+    },
+  );
+}
+
 /** Yields between each heavy data source so auth and /health/live stay responsive. */
 export async function buildExecutiveSummaryCardsAsync(
   workspaceId: string,

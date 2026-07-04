@@ -9,7 +9,7 @@ import {
 } from "./executive-dashboard-integration.js";
 import {
   buildExecutiveSummaryCards,
-  buildExecutiveSummaryCardsAsync,
+  buildExecutiveSummaryCardsForDispatchAsync,
   COCKPIT_ENGINE_IDS,
   type EnginePanelView,
   type ExecutiveAttentionItem,
@@ -73,13 +73,14 @@ export async function assembleExecutiveHomeViewAsync(
 
   await cooperativeYield();
   await waitForEventLoopCapacity();
-  const summaryCards = await buildExecutiveSummaryCardsAsync(
+  const summaryCards = await buildExecutiveSummaryCardsForDispatchAsync(
     workspaceId,
     company,
     command,
     portfolio,
     engineSummaries,
     env,
+    pillow,
   );
   mark("summaryCardsMs");
 
