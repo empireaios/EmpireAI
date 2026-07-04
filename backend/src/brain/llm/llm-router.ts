@@ -47,6 +47,21 @@ export class LLMRouter {
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
     const provider = this.resolve(request.provider);
-    return provider.complete({ ...request, provider: provider.name });
+    const timeoutMs = Number(process.env.LLM_REQUEST_TIMEOUT_MS ?? 45_000);
+    const completion = provider.complete({ ...request, provider: provider.name });
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<never>((_, reject) => {
+      timer = setTimeout(
+        () => reject(new Error(`LLM request timed out after ${timeoutMs}ms (${provider.name})`)),
+        timeoutMs,
+      );
+    });
+
+    try {
+      return await Promise.race([completion, timeout]);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
   }
 }

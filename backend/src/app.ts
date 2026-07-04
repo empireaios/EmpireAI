@@ -5,6 +5,8 @@ import cookie from "@fastify/cookie";
 import { z } from "zod";
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
+import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
+import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { registerAuthRoutes } from "./auth/routes.js";
 import { registerProductIntelligenceRoutes } from "./intelligence/product-intelligence-engine/routes.js";
@@ -339,6 +341,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   app.get("/health/live", async () => ({
     status: "ok",
     brain: "online",
+    eventLoopLagMs: getRecentEventLoopLagMs(),
+    sqlite: getSqlitePersistStats(),
   }));
 
   app.get("/health", async () => {

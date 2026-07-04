@@ -40,6 +40,8 @@ function founderAuth(authenticate: AuthMiddleware) {
 }
 
 let pillowBootPromise: Promise<void> | null = null;
+const PILLOW_BOOT_STUCK_MS = Number(process.env.PILLOW_BOOT_STUCK_MS ?? 130_000);
+let pillowBootStartedAt: number | null = null;
 
 function schedulePillowHostBoot(
   pillowHost: PillowHost,
@@ -47,15 +49,37 @@ function schedulePillowHostBoot(
   auditLogger: AuditLogger,
 ): Promise<void> | null {
   const lifecycle = pillowHost.getStatus().lifecycle;
-  if (lifecycle === "running") return pillowBootPromise;
-  if (lifecycle === "starting") return pillowBootPromise;
+
+  if (lifecycle === "running") {
+    return pillowBootPromise;
+  }
+
+  if (lifecycle === "starting") {
+    if (
+      pillowBootStartedAt &&
+      Date.now() - pillowBootStartedAt > PILLOW_BOOT_STUCK_MS
+    ) {
+      logger.warn("Pillow boot appears stuck — forcing recovery");
+      pillowHost.forceBootFailure("Pillow boot stuck — forced recovery");
+      pillowBootPromise = null;
+      pillowBootStartedAt = null;
+    } else {
+      return pillowBootPromise;
+    }
+  }
 
   if (!pillowBootPromise) {
     pillowHost.configure({ llmRouter, auditLogger });
+    pillowBootStartedAt = Date.now();
     pillowBootPromise = initializePillowHost({ llmRouter, auditLogger })
       .then(() => undefined)
-      .catch(() => {
+      .catch((error) => {
+        logger.error(
+          { error: error instanceof Error ? error.message : String(error) },
+          "Pillow host boot failed",
+        );
         pillowBootPromise = null;
+        pillowBootStartedAt = null;
       });
   }
 

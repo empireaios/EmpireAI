@@ -246,21 +246,7 @@ export class PillowHost {
         "Pillow host started (PILLOW-016)",
       );
     } catch (error) {
-      this.lifecycle = "error";
-      this.health = "Error";
-      this.lastError = error instanceof Error ? error.message : String(error);
-      this.governanceKnowledge =
-        this.governanceKnowledge ?? getLastGovernanceKnowledgeAudit();
-      this.pillowSession = null;
-      this.llmLayer = null;
-      logger.error(
-        {
-          error: this.lastError,
-          repositoryRoot: this.repositoryRoot,
-          governanceKnowledge: this.governanceKnowledge,
-        },
-        "Pillow host failed to start",
-      );
+      this.markBootFailed(error);
       throw error;
     }
   }
@@ -753,6 +739,32 @@ export class PillowHost {
     }
   }
 
+  /** Recover from hung boot — allows a fresh initializePillowHost attempt. */
+  forceBootFailure(reason: string): void {
+    if (this.lifecycle !== "starting") {
+      return;
+    }
+    this.markBootFailed(new Error(reason));
+  }
+
+  private markBootFailed(error: unknown): void {
+    this.lifecycle = "error";
+    this.health = "Error";
+    this.lastError = error instanceof Error ? error.message : String(error);
+    this.governanceKnowledge =
+      this.governanceKnowledge ?? getLastGovernanceKnowledgeAudit();
+    this.pillowSession = null;
+    this.llmLayer = null;
+    logger.error(
+      {
+        error: this.lastError,
+        repositoryRoot: this.repositoryRoot,
+        governanceKnowledge: this.governanceKnowledge,
+      },
+      "Pillow host failed to start",
+    );
+  }
+
   private ensureRunning(): void {
     if (this.lifecycle !== "running" || !this.pillowSession) {
       throw new PillowHostNotRunningError();
@@ -798,8 +810,24 @@ export async function initializePillowHost(options: {
 }): Promise<PillowHost> {
   const host = getPillowHost();
   host.configure(options);
-  await host.startPillow();
-  return host;
+
+  const bootTimeoutMs = Number(process.env.PILLOW_BOOT_TIMEOUT_MS ?? 120_000);
+  let bootTimer: ReturnType<typeof setTimeout> | undefined;
+
+  try {
+    await Promise.race([
+      host.startPillow(),
+      new Promise<never>((_, reject) => {
+        bootTimer = setTimeout(() => {
+          host.forceBootFailure(`Pillow boot timed out after ${bootTimeoutMs}ms`);
+          reject(new Error(`Pillow boot timed out after ${bootTimeoutMs}ms`));
+        }, bootTimeoutMs);
+      }),
+    ]);
+    return host;
+  } finally {
+    if (bootTimer) clearTimeout(bootTimer);
+  }
 }
 
 export async function shutdownPillowHost(): Promise<void> {
