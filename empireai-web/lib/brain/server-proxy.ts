@@ -2,6 +2,7 @@ const LOCAL_BRAIN_URL = "http://localhost:4000";
 const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
 const AUTH_UPSTREAM_TIMEOUT_MS = 10_000;
+const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */
 export function resolveBrainApiUrl(): string {
@@ -97,4 +98,4 @@ export async function proxyBrainRequest(
 /** @deprecated Use resolveBrainApiUrl() so production misconfiguration fails clearly. */
 export const BRAIN_API_URL = process.env.BRAIN_API_URL ?? LOCAL_BRAIN_URL;
 
-export { AUTH_UPSTREAM_TIMEOUT_MS };
+export { AUTH_UPSTREAM_TIMEOUT_MS, DISPATCH_UPSTREAM_TIMEOUT_MS };

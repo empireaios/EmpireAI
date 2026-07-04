@@ -1,5 +1,6 @@
 export const SESSION_FETCH_TIMEOUT_MS = 8_000;
 export const BRAIN_FETCH_TIMEOUT_MS = 20_000;
+export const BRAIN_DISPATCH_TIMEOUT_MS = 55_000;
 
 export type FetchWithRetryOptions = RequestInit & {
   timeoutMs?: number;

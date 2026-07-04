@@ -1,4 +1,5 @@
-import { proxyBrainRequest } from "@/lib/brain/server-proxy";
+import { DISPATCH_UPSTREAM_TIMEOUT_MS, proxyBrainRequest } from "@/lib/brain/server-proxy";
+import { brainRouteConfig } from "@/lib/brain/route-config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,5 +11,6 @@ export async function POST(request: Request) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body,
+    upstreamTimeoutMs: DISPATCH_UPSTREAM_TIMEOUT_MS,
   });
 }

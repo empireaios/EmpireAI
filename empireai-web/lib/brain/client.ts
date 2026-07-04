@@ -7,6 +7,7 @@ import { brainLogger } from "./logger";
 import {
   fetchWithRetry as sharedFetchWithRetry,
   SESSION_FETCH_TIMEOUT_MS,
+  BRAIN_DISPATCH_TIMEOUT_MS,
 } from "./fetch-utils";
 
 function normalizeError(error: unknown, status?: number): BrainError {
@@ -33,7 +34,8 @@ export async function brainDispatch<T = unknown>(
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify(request),
-    retries: 2,
+    retries: 1,
+    timeoutMs: BRAIN_DISPATCH_TIMEOUT_MS,
   });
 
   if (!response.ok) {
