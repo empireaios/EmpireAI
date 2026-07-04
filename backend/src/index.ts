@@ -22,11 +22,17 @@ async function main() {
   logger.info({ port: env.PORT, earlyListen: productionEarlyListen }, "EmpireAI Brain API listening");
 
   if (finishRouteRegistration) {
-    void finishRouteRegistration()
-      .then(() => logger.info("Empire extension routes registered"))
-      .catch((error) =>
-        logger.error({ error }, "Empire extension route registration failed"),
-      );
+    // REAL module HTTP routes are not required for Cockpit auth, dispatch, or Pillow chat.
+    // Register them after a delay so production stays responsive for the Grand King journey.
+    const deferMs = 10 * 60 * 1000;
+    setTimeout(() => {
+      void finishRouteRegistration()
+        .then(() => logger.info("Empire extension routes registered (deferred)"))
+        .catch((error) =>
+          logger.error({ error }, "Empire extension route registration failed"),
+        );
+    }, deferMs);
+    logger.info({ deferMs }, "Deferred REAL module HTTP route registration");
   }
 }
 
