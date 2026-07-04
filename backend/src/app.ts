@@ -217,17 +217,21 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
 
   const pillowHost = getPillowHost();
   if (pillowEnabled) {
-    void initializePillowHost({
-      llmRouter: brain.llmRouter,
-      auditLogger: brain.auditLogger,
-    }).catch((error) => {
-      logger.error(
-        {
-          error: error instanceof Error ? error.message : String(error),
-        },
-        "Pillow host startup failed — backend continues in degraded mode",
-      );
-    });
+    const bootPillowHost = () => {
+      void initializePillowHost({
+        llmRouter: brain.llmRouter,
+        auditLogger: brain.auditLogger,
+      }).catch((error) => {
+        logger.error(
+          {
+            error: error instanceof Error ? error.message : String(error),
+          },
+          "Pillow host startup failed — backend continues in degraded mode",
+        );
+      });
+    };
+    // Grace period so auth, Cockpit, and Brain dispatch stay responsive during deploy.
+    setTimeout(bootPillowHost, 15_000);
   }
 
   const sessionStore = brain.sessionStore;

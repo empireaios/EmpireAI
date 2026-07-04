@@ -134,6 +134,10 @@ export interface PillowSession {
   continuousEvolution: ContinuousEvolutionEngine;
 }
 
+async function yieldEventLoop(): Promise<void> {
+  await new Promise<void>((resolve) => setImmediate(resolve));
+}
+
 /** Mandatory session init: PILLOW-002 → … → PILLOW-015. */
 export async function startPillow(options?: {
   repositoryRoot?: string;
@@ -142,6 +146,8 @@ export async function startPillow(options?: {
 }): Promise<PillowSession> {
   const result = await runBootstrap(options);
 
+  await yieldEventLoop();
+
   if (!isBootstrapReady(result)) {
     throw new BootstrapFailureError(result.failure, result);
   }
@@ -149,10 +155,13 @@ export async function startPillow(options?: {
   bootstrapContext = result;
   executiveDirectionContext = ExecutiveDirectionContext.fromBootstrap(result);
   intelligenceContext = await runRepositoryIntelligence({ bootstrap: result });
+  await yieldEventLoop();
   technicalChiefEngine = createTechnicalChiefEngine(result, intelligenceContext);
   await technicalChiefEngine.initialize();
+  await yieldEventLoop();
   uxDesignerEngine = createUxDesignerEngine(result);
   await uxDesignerEngine.initialize();
+  await yieldEventLoop();
   memoryEngine = new RepositoryMemoryEngine(result, intelligenceContext);
   memoryEngine.initialize();
   missionPlanner = new MissionPlannerEngine(
@@ -161,18 +170,22 @@ export async function startPillow(options?: {
     memoryEngine,
   );
   missionPlanner.initialize();
+  await yieldEventLoop();
   recoveryManager = new RecoveryManagerEngine(result, {
     dryRunValidation: options?.dryRunRecoveryValidation ?? true,
   });
   await recoveryManager.initialize();
+  await yieldEventLoop();
   auditReviewer = new ExecutiveAuditReviewerEngine(result);
   await auditReviewer.initialize();
+  await yieldEventLoop();
   repositorySynchronizer = new RepositorySynchronizerEngine(
     result,
     memoryEngine,
     { dryRunExecution: options?.dryRunSyncExecution ?? true },
   );
   await repositorySynchronizer.initialize();
+  await yieldEventLoop();
   cursorSupervisor = new CursorSupervisorEngine(
     result,
     memoryEngine,
@@ -180,6 +193,7 @@ export async function startPillow(options?: {
     { recoveryManager, auditReviewer },
   );
   await cursorSupervisor.initialize();
+  await yieldEventLoop();
   cursorBridgeEngine = createCursorBridgeEngine(
     result,
     missionPlanner,
@@ -188,16 +202,19 @@ export async function startPillow(options?: {
     uxDesignerEngine,
   );
   await cursorBridgeEngine.initialize();
+  await yieldEventLoop();
   infrastructureCommanderEngine = createInfrastructureCommanderEngine(
     result,
     recoveryManager,
   );
   await infrastructureCommanderEngine.initialize();
+  await yieldEventLoop();
   commerceIntelligenceEngine = createCommerceIntelligenceEngine(
     result,
     intelligenceContext,
   );
   await commerceIntelligenceEngine.initialize();
+  await yieldEventLoop();
   contextBuilder = new ContextBuilder(
     result,
     intelligenceContext,
@@ -214,6 +231,7 @@ export async function startPillow(options?: {
     { planner: missionPlanner, supervisor: cursorSupervisor },
   );
   await dueDiligenceEngine.initialize();
+  await yieldEventLoop();
   improvementEngine = new AutonomousImprovementEngine(
     result,
     intelligenceContext,
@@ -222,9 +240,11 @@ export async function startPillow(options?: {
     { planner: missionPlanner },
   );
   await improvementEngine.initialize();
+  await yieldEventLoop();
 
   objectiveEngine = new ObjectiveEngine(result);
   await objectiveEngine.initialize();
+  await yieldEventLoop();
   autonomousRuntime = createAutonomousRuntimeOrchestrator(objectiveEngine);
 
   repositoryWatcher = new LiveRepositoryWatcherEngine(
@@ -233,6 +253,7 @@ export async function startPillow(options?: {
     memoryEngine,
   );
   await repositoryWatcher.initialize();
+  await yieldEventLoop();
 
   repositoryWatcher.registerSubscriber({
     id: "executive_direction",
@@ -262,6 +283,7 @@ export async function startPillow(options?: {
     commerceIntelligence: commerceIntelligenceEngine,
   });
   await orchestrator.initialize();
+  await yieldEventLoop();
 
   empireCommanderEngine = createEmpireCommanderEngine({
     bootstrap: result,
@@ -278,6 +300,7 @@ export async function startPillow(options?: {
     objective: objectiveEngine,
   });
   await empireCommanderEngine.initialize();
+  await yieldEventLoop();
   orchestrator.registerEmpireCommander(empireCommanderEngine);
 
   empireOperatingSystemEngine = createEmpireOperatingSystemEngine({
@@ -293,6 +316,7 @@ export async function startPillow(options?: {
     auditReviewer,
   });
   await empireOperatingSystemEngine.initialize();
+  await yieldEventLoop();
   orchestrator.registerEmpireOperatingSystem(empireOperatingSystemEngine);
 
   continuousEvolutionEngine = createContinuousEvolutionEngine({
@@ -308,6 +332,7 @@ export async function startPillow(options?: {
     objective: objectiveEngine,
   });
   await continuousEvolutionEngine.initialize();
+  await yieldEventLoop();
   orchestrator.registerContinuousEvolution(continuousEvolutionEngine);
 
   contextBuilder = new ContextBuilder(
@@ -337,6 +362,7 @@ export async function startPillow(options?: {
     watcher: repositoryWatcher,
   });
   await commandInterface.initialize();
+  await yieldEventLoop();
   orchestrator.registerCommandInterface(commandInterface);
 
   return {
