@@ -53,6 +53,24 @@ async function main() {
     return body;
   });
 
+  await timed("stale session cookie cleared", async () => {
+    const res = await fetch(`${BASE}/api/auth/me`, {
+      headers: { cookie: "empireai_session=invalid-stale-token" },
+    });
+    if (res.status !== 401) throw new Error(`Expected 401, got ${res.status}`);
+    const cleared = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
+    const hasClear = cleared.some((h) => /empireai_session=;|Max-Age=0/i.test(h));
+    if (!hasClear) throw new Error("401 did not clear session cookie");
+    const loginPage = await fetch(`${BASE}/login`, {
+      redirect: "manual",
+      headers: { cookie: "empireai_session=invalid-stale-token" },
+    });
+    if (loginPage.status >= 300 && loginPage.status < 400) {
+      throw new Error(`Stale cookie still redirects login (${loginPage.status})`);
+    }
+    return true;
+  });
+
   await timed("executive-home dispatch", async () => {
     const res = await fetch(`${BASE}/api/brain/dispatch`, {
       method: "POST",

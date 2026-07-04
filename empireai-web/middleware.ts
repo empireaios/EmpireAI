@@ -33,12 +33,6 @@ export function middleware(request: NextRequest) {
     return withSearchEngineProtection(NextResponse.redirect(new URL(target, request.url)));
   }
 
-  if (pathname === "/login" && session) {
-    return withSearchEngineProtection(
-      NextResponse.redirect(new URL("/cockpit", request.url)),
-    );
-  }
-
   if (!isProtectedAppRoute(pathname)) {
     return withSearchEngineProtection(NextResponse.next());
   }

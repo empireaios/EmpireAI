@@ -32,6 +32,21 @@ function forwardCookie(request: Request): string | undefined {
   return request.headers.get("cookie") ?? undefined;
 }
 
+/** Clear stale HttpOnly session cookie (invalid/expired sessions). */
+export function buildClearSessionCookieHeader(): string {
+  const secure = process.env.VERCEL ? "; Secure" : "";
+  return `empireai_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax${secure}`;
+}
+
+function withClearedSessionCookie(response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.set("set-cookie", buildClearSessionCookieHeader());
+  return new Response(response.body, {
+    status: response.status,
+    headers,
+  });
+}
+
 function brainProxyErrorResponse(
   error: unknown,
   status: number,
@@ -98,4 +113,4 @@ export async function proxyBrainRequest(
 /** @deprecated Use resolveBrainApiUrl() so production misconfiguration fails clearly. */
 export const BRAIN_API_URL = process.env.BRAIN_API_URL ?? LOCAL_BRAIN_URL;
 
-export { AUTH_UPSTREAM_TIMEOUT_MS, DISPATCH_UPSTREAM_TIMEOUT_MS };
+export { AUTH_UPSTREAM_TIMEOUT_MS, DISPATCH_UPSTREAM_TIMEOUT_MS, withClearedSessionCookie };

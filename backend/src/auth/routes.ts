@@ -77,19 +77,32 @@ export async function registerAuthRoutes(
     });
   });
 
-  app.post("/auth/logout", { preHandler: authenticate }, async (request, reply) => {
-    if (request.sessionToken) {
-      await sessionStore.destroy(request.sessionToken);
-      auditLogger.write({
-        action: "auth.logout",
-        actor: request.user!.email,
-        workspaceId: request.user!.workspaceId,
-        correlationId: `auth:${Date.now()}`,
-        metadata: { userId: request.user!.id },
-      });
+  app.post("/auth/logout", async (request, reply) => {
+    const header = request.headers.authorization;
+    const cookieToken = (request.cookies as Record<string, string | undefined>)
+      ?.empireai_session;
+    const token = header?.startsWith("Bearer ") ? header.slice(7) : cookieToken;
+
+    if (token) {
+      const session = await sessionStore.get(token);
+      if (session) {
+        await sessionStore.destroy(token);
+        auditLogger.write({
+          action: "auth.logout",
+          actor: session.email,
+          workspaceId: session.workspaceId,
+          correlationId: `auth:${Date.now()}`,
+          metadata: { userId: session.id },
+        });
+      }
     }
 
-    reply.clearCookie("empireai_session", { path: "/" });
+    reply.clearCookie("empireai_session", {
+      path: "/",
+      httpOnly: true,
+      secure: env.CORS_ORIGIN.startsWith("https"),
+      sameSite: "lax",
+    });
     return reply.send({ ok: true });
   });
 

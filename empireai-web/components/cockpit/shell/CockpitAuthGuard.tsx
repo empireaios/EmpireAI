@@ -82,7 +82,7 @@ export function CockpitAuthGuard({ children }: { children: React.ReactNode }) {
   }
 
   if (!user) {
-    return null;
+    return <SessionVerifyScreen message="Redirecting to login…" showLoginLink />;
   }
 
   return <>{children}</>;
