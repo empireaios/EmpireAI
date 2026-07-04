@@ -215,22 +215,19 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   seedGrandKingAccount();
   bootstrapFoundation("ws_empire_1");
 
-  let pillowHost = getPillowHost();
+  const pillowHost = getPillowHost();
   if (pillowEnabled) {
-    try {
-      pillowHost = await initializePillowHost({
-        llmRouter: brain.llmRouter,
-        auditLogger: brain.auditLogger,
-      });
-    } catch (error) {
+    void initializePillowHost({
+      llmRouter: brain.llmRouter,
+      auditLogger: brain.auditLogger,
+    }).catch((error) => {
       logger.error(
         {
           error: error instanceof Error ? error.message : String(error),
         },
         "Pillow host startup failed — backend continues in degraded mode",
       );
-      pillowHost = getPillowHost();
-    }
+    });
   }
 
   const sessionStore = brain.sessionStore;
@@ -311,6 +308,12 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       error: err.message || "Internal server error",
     });
   });
+
+  app.get("/health/live", async () => ({
+    status: "ok",
+    brain: "online",
+    redisMode: brain.redisMode,
+  }));
 
   app.get("/health", async () => {
     let guardianReport: Record<string, unknown> = { overall: "unknown" };

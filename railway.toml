@@ -10,5 +10,5 @@ buildCommand = "node scripts/sync-pillow-governance.mjs && NPM_CONFIG_PRODUCTION
 startCommand = "node backend/dist/index.js"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
-healthcheckPath = "/health"
-healthcheckTimeout = 120
+healthcheckPath = "/health/live"
+healthcheckTimeout = 300
