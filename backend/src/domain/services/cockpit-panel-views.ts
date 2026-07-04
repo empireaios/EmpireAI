@@ -63,6 +63,10 @@ import {
   type ExecutiveTimelineEvent,
 } from "./executive-dashboard-integration.js";
 import { buildGlobalExecutionTimeline } from "../../runtime/global-execution-timeline/services/global-execution-timeline-service.js";
+import {
+  cooperativeYield,
+  waitForEventLoopCapacity,
+} from "../../runtime/event-loop-cooperative.js";
 
 export type EnginePanelHealth = "HEALTHY" | "WARNING" | "FAILED" | "NOT_IMPLEMENTED" | "UNKNOWN";
 
@@ -685,6 +689,70 @@ function engineHref(engineId: string): string {
   }
 }
 
+type ExecutiveSummaryCardInputs = {
+  esis: ReturnType<typeof buildEsisDashboard>;
+  orders: ReturnType<typeof loadOrdersView>;
+  finance: ReturnType<typeof loadFinanceView>;
+  aiCeo: ReturnType<typeof loadAiCeoView>;
+  oms: ReturnType<typeof getObjectiveReportingSummary>;
+  objectiveDashboard: ReturnType<typeof buildObjectiveDashboard>;
+  pillow: ReturnType<typeof loadPillowSupervisorView>;
+  timeline: ReturnType<typeof buildGlobalExecutionTimeline>;
+};
+
+function loadExecutiveSummaryCardInputsSync(
+  workspaceId: string,
+  companyId: string,
+  env: NodeJS.ProcessEnv,
+): ExecutiveSummaryCardInputs {
+  return {
+    esis: buildEsisDashboard(workspaceId, companyId),
+    orders: loadOrdersView(workspaceId),
+    finance: loadFinanceView(workspaceId),
+    aiCeo: loadAiCeoView(workspaceId),
+    oms: getObjectiveReportingSummary(workspaceId, companyId),
+    objectiveDashboard: buildObjectiveDashboard(workspaceId, companyId),
+    pillow: loadPillowSupervisorView(workspaceId, env),
+    timeline: buildGlobalExecutionTimeline(workspaceId, companyId),
+  };
+}
+
+/** Yields between each heavy data source so auth and /health/live stay responsive. */
+export async function buildExecutiveSummaryCardsAsync(
+  workspaceId: string,
+  companyId: string,
+  command: ReturnType<typeof loadOperationalCommandView>,
+  portfolio: ReturnType<typeof loadDashboardView>,
+  engineSummaries: EnginePanelView[],
+  env: NodeJS.ProcessEnv = process.env,
+): Promise<ExecutiveSummaryCard[]> {
+  await cooperativeYield();
+  const esis = buildEsisDashboard(workspaceId, companyId);
+  await cooperativeYield();
+  const orders = loadOrdersView(workspaceId);
+  await cooperativeYield();
+  const finance = loadFinanceView(workspaceId);
+  await cooperativeYield();
+  const aiCeo = loadAiCeoView(workspaceId);
+  await cooperativeYield();
+  const oms = getObjectiveReportingSummary(workspaceId, companyId);
+  await cooperativeYield();
+  const objectiveDashboard = buildObjectiveDashboard(workspaceId, companyId);
+  await cooperativeYield();
+  const pillow = loadPillowSupervisorView(workspaceId, env);
+  await cooperativeYield();
+  await waitForEventLoopCapacity();
+  const timeline = buildGlobalExecutionTimeline(workspaceId, companyId);
+  await cooperativeYield();
+  return buildExecutiveSummaryCardsWithInputs(
+    command,
+    portfolio,
+    engineSummaries,
+    env,
+    { esis, orders, finance, aiCeo, oms, objectiveDashboard, pillow, timeline },
+  );
+}
+
 export function buildExecutiveSummaryCards(
   workspaceId: string,
   companyId: string,
@@ -693,14 +761,23 @@ export function buildExecutiveSummaryCards(
   engineSummaries: EnginePanelView[],
   env: NodeJS.ProcessEnv = process.env,
 ): ExecutiveSummaryCard[] {
-  const esis = buildEsisDashboard(workspaceId, companyId);
-  const orders = loadOrdersView(workspaceId);
-  const finance = loadFinanceView(workspaceId);
-  const aiCeo = loadAiCeoView(workspaceId);
-  const oms = getObjectiveReportingSummary(workspaceId, companyId);
-  const objectiveDashboard = buildObjectiveDashboard(workspaceId, companyId);
-  const pillow = loadPillowSupervisorView(workspaceId, env);
-  const timeline = buildGlobalExecutionTimeline(workspaceId, companyId);
+  return buildExecutiveSummaryCardsWithInputs(
+    command,
+    portfolio,
+    engineSummaries,
+    env,
+    loadExecutiveSummaryCardInputsSync(workspaceId, companyId, env),
+  );
+}
+
+function buildExecutiveSummaryCardsWithInputs(
+  command: ReturnType<typeof loadOperationalCommandView>,
+  portfolio: ReturnType<typeof loadDashboardView>,
+  engineSummaries: EnginePanelView[],
+  env: NodeJS.ProcessEnv,
+  inputs: ExecutiveSummaryCardInputs,
+): ExecutiveSummaryCard[] {
+  const { esis, orders, finance, aiCeo, oms, objectiveDashboard, pillow, timeline } = inputs;
 
   const profitTodayMetric = orders.metrics.find((m) => m.label === "Profit Today");
   const profitToday = profitTodayMetric?.value ?? finance.orderProfitToday;

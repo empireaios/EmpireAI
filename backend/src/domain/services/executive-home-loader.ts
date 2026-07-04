@@ -135,7 +135,7 @@ export async function loadExecutiveHomeForDispatch(
   }
 }
 
-/** Warm cache after Brain listen — does not block request handling. */
+/** @deprecated Production warmup removed — it blocked auth/login after deploy. */
 export function scheduleExecutiveHomeCacheWarmup(
   workspaceId: string,
   companyId?: string,

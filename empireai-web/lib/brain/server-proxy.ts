@@ -1,7 +1,7 @@
 const LOCAL_BRAIN_URL = "http://localhost:4000";
 const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
-const AUTH_UPSTREAM_TIMEOUT_MS = 10_000;
+const AUTH_UPSTREAM_TIMEOUT_MS = 20_000;
 const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
 /** Pillow chat runs context assembly + LLM — must stay under Vercel maxDuration (60s). */
 const PILLOW_UPSTREAM_TIMEOUT_MS = 58_000;

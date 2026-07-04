@@ -9,6 +9,7 @@ import {
 } from "./executive-dashboard-integration.js";
 import {
   buildExecutiveSummaryCards,
+  buildExecutiveSummaryCardsAsync,
   COCKPIT_ENGINE_IDS,
   type EnginePanelView,
   type ExecutiveAttentionItem,
@@ -21,10 +22,12 @@ import {
   loadOperationalCommandViewAsync,
   loadOperationalCommandView,
 } from "./operational-command-view.js";
+import {
+  cooperativeYield,
+  waitForEventLoopCapacity,
+} from "../../runtime/event-loop-cooperative.js";
 
 const DEFAULT_COMPANY = "co-grand-king";
-
-const yieldEventLoop = (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
 
 export async function assembleExecutiveHomeViewAsync(
   workspaceId: string,
@@ -38,18 +41,19 @@ export async function assembleExecutiveHomeViewAsync(
     stageStart = performance.now();
   };
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const command = await loadOperationalCommandViewAsync(workspaceId, companyId, env);
   mark("commandMs");
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const portfolio = loadDashboardView(workspaceId);
   mark("portfolioMs");
 
   const engineSummaries: EnginePanelView[] = [];
   const panelById: Record<string, EnginePanelView> = {};
   for (const engineId of COCKPIT_ENGINE_IDS) {
-    await yieldEventLoop();
+    await cooperativeYield();
+    await waitForEventLoopCapacity();
     const panel = loadEnginePanelView(engineId, workspaceId, env);
     engineSummaries.push(panel);
     panelById[engineId] = panel;
@@ -61,14 +65,15 @@ export async function assembleExecutiveHomeViewAsync(
   );
   const top = openBlockers[0] ?? null;
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const pillow = loadPillowSupervisorView(workspaceId, env);
   mark("pillowSupervisorMs");
 
   const company = companyId ?? DEFAULT_COMPANY;
 
-  await yieldEventLoop();
-  const summaryCards = buildExecutiveSummaryCards(
+  await cooperativeYield();
+  await waitForEventLoopCapacity();
+  const summaryCards = await buildExecutiveSummaryCardsAsync(
     workspaceId,
     company,
     command,
@@ -91,14 +96,14 @@ export async function assembleExecutiveHomeViewAsync(
     engineId: alert.engineId,
   }));
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const quantitativePanel = loadEnginePanelView("quantitative-intelligence", workspaceId, env);
-  await yieldEventLoop();
+  await cooperativeYield();
   const pillowEnginePanel = loadEnginePanelView("pillow-supervisor", workspaceId, env);
   panelById["quantitative-intelligence"] = quantitativePanel;
   panelById["pillow-supervisor"] = pillowEnginePanel;
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const executiveTimeline = buildExecutiveTimeline(
     workspaceId,
     company,
@@ -108,14 +113,14 @@ export async function assembleExecutiveHomeViewAsync(
   );
   mark("timelineMs");
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const approvalRoutes = buildExecutiveApprovalRoutes(workspaceId, command, env);
   mark("approvalRoutesMs");
 
   const extraPanels = [quantitativePanel, pillowEnginePanel];
   mark("extraPanelsMs");
 
-  await yieldEventLoop();
+  await cooperativeYield();
   const dependencyGraph = buildExecutiveDependencyGraph([...engineSummaries, ...extraPanels]);
   mark("dependencyGraphMs");
 
@@ -162,9 +167,9 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
   companyId: string | undefined,
   env: NodeJS.ProcessEnv,
 ): Promise<ExecutiveHomeView> {
-  await yieldEventLoop();
+  await cooperativeYield();
   const command = await loadOperationalCommandViewAsync(workspaceId, companyId, env);
-  await yieldEventLoop();
+  await cooperativeYield();
   const portfolio = loadDashboardView(workspaceId);
   return {
     computedAt: new Date().toISOString(),

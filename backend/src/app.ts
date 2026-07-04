@@ -217,9 +217,27 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
 
   const brain = await createBrain({ startWorkers, startScheduler });
   await seedDefaultUsers();
-  seedDomainData();
-  seedGrandKingAccount();
-  bootstrapFoundation("ws_empire_1");
+
+  const deferHeavyBootstrap = env.NODE_ENV === "production";
+  if (deferHeavyBootstrap) {
+    setImmediate(() => {
+      try {
+        seedDomainData();
+        seedGrandKingAccount();
+        bootstrapFoundation("ws_empire_1");
+        logger.info("Deferred production bootstrap completed");
+      } catch (error) {
+        logger.error(
+          { error: error instanceof Error ? error.message : String(error) },
+          "Deferred production bootstrap failed",
+        );
+      }
+    });
+  } else {
+    seedDomainData();
+    seedGrandKingAccount();
+    bootstrapFoundation("ws_empire_1");
+  }
 
   const pillowHost = getPillowHost();
   if (pillowEnabled && process.env.NODE_ENV !== "production") {
@@ -321,7 +339,6 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   app.get("/health/live", async () => ({
     status: "ok",
     brain: "online",
-    redisMode: brain.redisMode,
   }));
 
   app.get("/health", async () => {

@@ -31,11 +31,16 @@ async function main() {
   console.log(`Verifying production journey at ${BASE}`);
 
   const loginRes = await timed("login", async () => {
-    const res = await fetch(`${BASE}/api/auth/login`, {
+    const loginPromise = fetch(`${BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
     });
+    await new Promise((r) => setTimeout(r, 500));
+    const healthDuring = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(3000) });
+    if (!healthDuring.ok) throw new Error(`health/live failed during login: HTTP ${healthDuring.status}`);
+    console.log("  health/live during login: OK");
+    const res = await loginPromise;
     const body = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(`HTTP ${res.status} ${JSON.stringify(body)}`);
     const cookies = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
