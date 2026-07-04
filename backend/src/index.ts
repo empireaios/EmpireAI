@@ -21,10 +21,8 @@ async function main() {
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info({ port: env.PORT, earlyListen: productionEarlyListen }, "EmpireAI Brain API listening");
 
-  if (finishRouteRegistration) {
-    // REAL module HTTP routes are not required for Cockpit auth, dispatch, or Pillow chat.
-    // Register them after a delay so production stays responsive for the Grand King journey.
-    const deferMs = 10 * 60 * 1000;
+  if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {
+    const deferMs = Number(process.env.EMPIRE_EXTENSION_ROUTE_DEFER_MS ?? 10 * 60 * 1000);
     setTimeout(() => {
       void finishRouteRegistration()
         .then(() => logger.info("Empire extension routes registered (deferred)"))
@@ -33,6 +31,10 @@ async function main() {
         );
     }, deferMs);
     logger.info({ deferMs }, "Deferred REAL module HTTP route registration");
+  } else if (finishRouteRegistration) {
+    logger.info(
+      "Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)",
+    );
   }
 }
 
