@@ -3,9 +3,11 @@ import { logger } from "./config/logger.js";
 import { buildApp } from "./app.js";
 
 async function main() {
-  const { app, shutdown } = await buildApp({
-    startWorkers: true,
-    startScheduler: true,
+  const productionEarlyListen = env.NODE_ENV === "production";
+  const { app, shutdown, finishRouteRegistration } = await buildApp({
+    startWorkers: !productionEarlyListen,
+    startScheduler: !productionEarlyListen,
+    earlyListen: productionEarlyListen,
   });
 
   const handleShutdown = async () => {
@@ -17,7 +19,15 @@ async function main() {
   process.on("SIGTERM", handleShutdown);
 
   await app.listen({ port: env.PORT, host: env.HOST });
-  logger.info({ port: env.PORT }, "EmpireAI Brain API listening");
+  logger.info({ port: env.PORT, earlyListen: productionEarlyListen }, "EmpireAI Brain API listening");
+
+  if (finishRouteRegistration) {
+    void finishRouteRegistration()
+      .then(() => logger.info("Empire extension routes registered"))
+      .catch((error) =>
+        logger.error({ error }, "Empire extension route registration failed"),
+      );
+  }
 }
 
 main().catch((error) => {

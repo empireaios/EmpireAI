@@ -196,18 +196,22 @@ export type BuildAppOptions = {
   startWorkers?: boolean;
   startScheduler?: boolean;
   pillowEnabled?: boolean;
+  /** Production: listen before registering hundreds of REAL module routes. */
+  earlyListen?: boolean;
 };
 
 export type EmpireApp = {
   app: FastifyInstance;
   brain: EmpireBrain;
   shutdown: () => Promise<void>;
+  finishRouteRegistration?: () => Promise<void>;
 };
 
 export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp> {
   const startWorkers = options.startWorkers ?? false;
   const startScheduler = options.startScheduler ?? false;
   const pillowEnabled = options.pillowEnabled ?? true;
+  const earlyListen = options.earlyListen ?? false;
 
   const brain = await createBrain({ startWorkers, startScheduler });
   await seedDefaultUsers();
@@ -406,6 +410,128 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     sessionStore,
     auditLogger: brain.auditLogger,
   });
+
+  const routeDeps: EmpireRouteDeps = {
+    app,
+    authenticate,
+    sessionStore,
+    brain,
+    pillowEnabled,
+    pillowHost,
+    eventStream,
+  };
+
+  if (earlyListen) {
+    await registerCockpitCriticalRoutes(routeDeps);
+    return {
+      app,
+      brain,
+      shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+      finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
+    };
+  }
+
+  await registerEmpireExtensionRoutes(routeDeps);
+
+  return {
+    app,
+    brain,
+    shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+  };
+}
+
+type EmpireRouteDeps = {
+  app: FastifyInstance;
+  authenticate: ReturnType<typeof createAuthMiddleware>;
+  sessionStore: EmpireBrain["sessionStore"];
+  brain: EmpireBrain;
+  pillowEnabled: boolean;
+  pillowHost: ReturnType<typeof getPillowHost>;
+  eventStream: EventStreamHub;
+};
+
+function createEmpireShutdown(deps: {
+  app: FastifyInstance;
+  brain: EmpireBrain;
+  pillowEnabled: boolean;
+  eventStream: EventStreamHub;
+}) {
+  return async () => {
+    deps.eventStream.stop();
+    if (deps.pillowEnabled) {
+      await shutdownPillowHost();
+    }
+    await deps.app.close();
+    await deps.brain.shutdown();
+  };
+}
+
+async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
+  const { app, authenticate, brain, pillowEnabled, pillowHost, eventStream } = deps;
+
+  if (pillowEnabled) {
+    await registerPillowRoutes(app, {
+      authenticate,
+      pillowHost,
+      auditLogger: brain.auditLogger,
+      llmRouter: brain.llmRouter,
+    });
+  }
+
+  app.get(
+    "/brain/events/stream",
+    { preHandler: authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId;
+      eventStream.attach(request, reply, workspaceId);
+      return reply;
+    },
+  );
+
+  app.post(
+    "/brain/dispatch",
+    { preHandler: authenticate },
+    async (request, reply) => {
+      const body = dispatchSchema.parse(request.body);
+      const user = request.user!;
+
+      if (!canAccessModule(user.role, body.module)) {
+        return reply.code(403).send({
+          error: `Access denied for module: ${body.module}`,
+        });
+      }
+
+      const workspaceId = user.workspaceId;
+      if (body.workspaceId && body.workspaceId !== workspaceId) {
+        return reply.code(403).send({ error: "Workspace mismatch" });
+      }
+
+      const payload = { ...body.payload };
+      const isFounderApproval =
+        body.module === "ai-ceo" &&
+        (body.action === "approve" || body.action === "approve_all") &&
+        (user.role === "founder" || user.role === "admin");
+
+      if (isFounderApproval) {
+        payload.founderApproved = true;
+      }
+
+      const result = await brain.orchestrator.dispatch({
+        module: body.module,
+        action: body.action,
+        workspaceId,
+        companyId: body.companyId,
+        payload,
+        correlationId: body.correlationId,
+      });
+
+      return reply.send(result);
+    },
+  );
+}
+
+async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<void> {
+  const { app, authenticate, brain, pillowEnabled, pillowHost, eventStream } = deps;
 
   await registerProductIntelligenceRoutes(app, { authenticate });
 
@@ -886,12 +1012,6 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   });
 
   if (pillowEnabled) {
-    await registerPillowRoutes(app, {
-      authenticate,
-      pillowHost,
-      auditLogger: brain.auditLogger,
-      llmRouter: brain.llmRouter,
-    });
     if (pillowHost.getStatus().lifecycle === "running") {
       await registerPillowApprovalRoutes(app, {
         authenticate,
@@ -911,57 +1031,6 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       });
     }
   }
-
-  app.get(
-    "/brain/events/stream",
-    { preHandler: authenticate },
-    async (request, reply) => {
-      const workspaceId = request.user!.workspaceId;
-      eventStream.attach(request, reply, workspaceId);
-      return reply;
-    },
-  );
-
-  app.post(
-    "/brain/dispatch",
-    { preHandler: authenticate },
-    async (request, reply) => {
-      const body = dispatchSchema.parse(request.body);
-      const user = request.user!;
-
-      if (!canAccessModule(user.role, body.module)) {
-        return reply.code(403).send({
-          error: `Access denied for module: ${body.module}`,
-        });
-      }
-
-      const workspaceId = user.workspaceId;
-      if (body.workspaceId && body.workspaceId !== workspaceId) {
-        return reply.code(403).send({ error: "Workspace mismatch" });
-      }
-
-      const payload = { ...body.payload };
-      const isFounderApproval =
-        body.module === "ai-ceo" &&
-        (body.action === "approve" || body.action === "approve_all") &&
-        (user.role === "founder" || user.role === "admin");
-
-      if (isFounderApproval) {
-        payload.founderApproved = true;
-      }
-
-      const result = await brain.orchestrator.dispatch({
-        module: body.module,
-        action: body.action,
-        workspaceId,
-        companyId: body.companyId,
-        payload,
-        correlationId: body.correlationId,
-      });
-
-      return reply.send(result);
-    },
-  );
 
   app.get(
     "/brain/agents",
@@ -1038,17 +1107,6 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       );
     },
   );
-
-  const shutdown = async () => {
-    eventStream.stop();
-    if (pillowEnabled) {
-      await shutdownPillowHost();
-    }
-    await app.close();
-    await brain.shutdown();
-  };
-
-  return { app, brain, shutdown };
 }
 
 let appPromise: Promise<FastifyInstance> | null = null;
