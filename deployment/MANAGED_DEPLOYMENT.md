@@ -2,6 +2,8 @@
 
 **Version 1 production strategy (Grand King Executive Directive)**
 
+> **Canonical Infrastructure Architecture (P3-06):** [`docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md`](../docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md) — operational foundation. This document is the **deploy runbook companion** (MPD-001).
+
 | Layer | Platform | Role |
 |-------|----------|------|
 | **Frontend** | [Vercel](vercel.md) | Founder UX (`frontend/`) — static SPA |
@@ -27,7 +29,9 @@ Docker, Docker Compose, and VPS deployment are **optional** local or self-host p
                      REDIS_URL                  DATABASE_PATH              (optional backup)
 ```
 
-The frontend never calls LLMs or external APIs directly. All REAL modules, Pillow, Guardian, and commerce flows route through the Brain on Railway.
+The frontend never calls LLMs or external APIs directly. All REAL modules, Pillow, Guardian, and commerce flows route through the Pillow-owned Brain on Railway.
+
+**Platform hierarchy:** Pillow is sole technical owner of EmpireAI; Brain is a Pillow-owned subsystem — `EMPIREAI_PILLOW_CONSTITUTION.md` §17.
 
 ---
 

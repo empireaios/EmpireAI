@@ -1,11 +1,14 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
+import { configureValidationEnvironment } from "../harness.js";
 import {
   loadEnginePanelView,
   loadExecutiveHomeView,
   loadMissionCentreView,
 } from "../../domain/services/cockpit-panel-views.js";
+
+configureValidationEnvironment();
 
 describe("Cockpit panel views (G4-02)", () => {
   it("returns six-field engine panel for supplier engine", () => {

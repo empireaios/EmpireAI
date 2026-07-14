@@ -76,7 +76,7 @@ describe("Phase 2 Repository Intelligence Certification", () => {
     assert.ok(model.architecture.some((b) => b.id === "registry"));
 
     const summary = formatKnowledgeModelSummary(model);
-    assert.match(summary, /Repository Intelligence PILLOW-RI-001/);
+    assert.match(summary, /Repository Intelligence PILLOW-RI-002/);
     assert.match(summary, /Critical path/);
   });
 

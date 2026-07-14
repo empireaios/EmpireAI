@@ -1,0 +1,58 @@
+{
+  "mission": "B6-01A",
+  "superseded": true,
+  "supersededBy": "B6-01C",
+  "supersededAt": "2026-07-02",
+  "certification": "AUDIT_SUPERSEDED",
+  "recommendation": "DEFER",
+  "recommendationStatus": "VOID",
+  "recommendationSummary": "Defer Amazon SP-API from Version 1 blockers; launch Grand King via CJ + Stripe owned storefront. Requires governance scope amendment — not automatic.",
+  "auditedAt": "2026-07-02T04:30:00.000Z",
+  "productionBaselineCommit": "a8945b2",
+  "codeChangesRequired": false,
+  "governanceChangesRequiredForDeferral": true,
+  "grandKingCjOnlyLaunchViable": true,
+  "amazonRequiredByCurrentV1Doctrine": true,
+  "amazonRequiredByExecutableRevenuePath": false,
+  "dependencyCounts": {
+    "requiredForV1CurrentDoctrine": 9,
+    "requiredForV1RevenueExecution": 6,
+    "optionalForV1": 3,
+    "futureEnhancement": 10
+  },
+  "productionB6State": {
+    "B6-01": { "status": "PENDING", "configured": false, "verified": false },
+    "B6-02": { "status": "CONFIGURED", "configured": true, "verified": false },
+    "B6-03": { "status": "VERIFIED", "configured": true, "verified": true },
+    "B6-04": { "status": "VERIFIED", "configured": true, "verified": true },
+    "B6-05": { "status": "PENDING", "configured": false, "verified": false },
+    "b6Closed": false,
+    "progressPercent": 40
+  },
+  "cjOnlyLaunchPath": [
+    "Vercel Storefront (production-store-deployment)",
+    "Stripe Checkout (live-payment-engine / minimum-live-revenue-loop)",
+    "Customer Order Pipeline",
+    "CJ Fulfilment (live-cj-fulfillment)",
+    "Financial Ledger / Treasury",
+    "First Revenue Validation (12 stages)",
+    "PROOF-001 Net Profit"
+  ],
+  "amazonGatedPaths": [
+    "B6-01 credential tracker",
+    "isVersion1OperationalActivationReady()",
+    "assessLiveCommerceGoLive() amazon-seller",
+    "Marketplace publish supportsPublish",
+    "isPlatformOperationallyLive(amazon-seller)",
+    "amazon-sp-api-adapter live sync",
+    "PROOF-001 OMS critical path B6-01"
+  ],
+  "remainingB6BlockersIfDeferred": [
+    { "id": "B6-01", "action": "DEFER — remove from V1 closure via governance amendment" },
+    { "id": "B6-02", "action": "CONFIGURED — enable production mode + King approval for VERIFIED" },
+    { "id": "B6-05", "action": "PENDING — redefine as CJ-only connectivity test" },
+    { "id": "GLOBAL", "action": "LIVE_PAYMENT_ENABLED=false; LIVE_COMMERCE_INTEGRATION_MODE=sandbox" }
+  ],
+  "recommendedNextMission": "B6-01B — V1 Scope Amendment: Defer Amazon SP-API",
+  "filesChanged": []
+}

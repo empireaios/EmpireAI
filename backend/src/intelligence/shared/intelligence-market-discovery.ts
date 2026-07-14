@@ -23,6 +23,7 @@ import {
 import type { Country, ProviderEntry } from "../../runtime/global-commerce/models/global-registry.js";
 import type { MarketplaceChannelProfile } from "./marketplace-channel-registry.js";
 import { getDeploymentChannelProfile } from "./marketplace-channel-registry.js";
+import { loadMarketplaceRows } from "../../registry/sources/platform-catalog-source.js";
 
 export type { IntelligenceSourceDefinition, IntelligenceSourceStatus };
 
@@ -40,9 +41,11 @@ export function listAvailableCountries(): Country[] {
 }
 
 export function listAvailableMarketplacesByCountry(countryCode: string): ProviderEntry[] {
-  return getRegistryLoader()
-    .resolve({}, "REG-MARKETPLACE", { countryCode })
-    .rows as ProviderEntry[];
+  const fromSnapshot = discoveryView().marketplacesByCountry[countryCode];
+  if (fromSnapshot?.length) {
+    return fromSnapshot;
+  }
+  return loadMarketplaceRows({ countryCode });
 }
 
 export function listAvailableChannels(): MarketplaceChannelProfile[] {

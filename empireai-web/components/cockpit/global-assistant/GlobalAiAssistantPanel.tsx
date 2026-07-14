@@ -2,9 +2,13 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import type { GlobalAssistantResponse } from "@/lib/cockpit/global-assistant/types";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
+import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
+import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProactiveGuidance";
+import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 
 function confidenceLabel(confidence: GlobalAssistantResponse["confidence"]) {
   if (confidence === "high") return "High confidence";
@@ -64,6 +68,9 @@ const ACTION_BUTTONS: Array<{
 
 /** V1 Activation — Persistent Pillow operating shell (canonical AI interface). */
 export function GlobalAiAssistantPanel() {
+  const pathname = usePathname();
+  const isExecutiveHome = pathname === "/cockpit" || pathname === "/cockpit/";
+
   const {
     expanded,
     loading,
@@ -82,6 +89,8 @@ export function GlobalAiAssistantPanel() {
     setVoiceEnabled,
     runAction,
     ask,
+    executiveSnapshot,
+    proactiveGuidance,
   } = useGlobalAiAssistant();
 
   const voice = usePillowVoice((transcript) => {
@@ -95,6 +104,10 @@ export function GlobalAiAssistantPanel() {
   }, [lastResponse, voiceEnabled]);
 
   const executive = context?.executiveContext;
+
+  if (isExecutiveHome) {
+    return null;
+  }
 
   if (!expanded) {
     return (
@@ -164,6 +177,18 @@ export function GlobalAiAssistantPanel() {
       </header>
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
+        {executiveSnapshot && (
+          <div className="mb-3 space-y-2">
+            <PillowContextPanel
+              snapshot={executiveSnapshot}
+              screenTitle={resolveCockpitScreenContext(pathname).screenTitle}
+            />
+            <PillowProactiveGuidance
+              items={proactiveGuidance}
+              onAsk={(prompt) => void ask(prompt)}
+            />
+          </div>
+        )}
         {connectionError && (
           <p className="mb-3 rounded border border-amber-500/25 bg-amber-500/10 px-2 py-1.5 text-xs text-amber-100">
             {connectionError}

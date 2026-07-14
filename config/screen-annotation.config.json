@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "annotationCaptureRulesEnabled": true,
+  "pointerCaptureRulesEnabled": true,
+  "coordinateMappingRulesEnabled": true,
+  "componentMatchingRulesEnabled": true,
+  "layoutRegionMatchingRulesEnabled": true,
+  "navigationMatchingRulesEnabled": true,
+  "uxFindingLinkageRulesEnabled": true,
+  "builderCapabilityLinkageRulesEnabled": true,
+  "clarificationRulesEnabled": true,
+  "confidenceThreshold": 0.55,
+  "clarificationConfidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "annotationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryAnnotations": 50,
+  "overlapTolerancePx": 4
+}

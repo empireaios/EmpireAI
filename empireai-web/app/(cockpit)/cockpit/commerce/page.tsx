@@ -1,8 +1,6 @@
 import { redirect } from "next/navigation";
-import { getCockpitNavItemById } from "@/lib/cockpit/navigation";
-import { COCKPIT_BASE } from "@/lib/cockpit/types";
 
+/** P8-02 — Commerce index routes to canonical Operating Model. */
 export default function CommerceIndexPage() {
-  const commerce = getCockpitNavItemById("commerce");
-  redirect(commerce?.href ?? `${COCKPIT_BASE}/commerce/store`);
+  redirect("/cockpit/commerce/operating");
 }

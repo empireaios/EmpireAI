@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "minimumProposalCount": 3,
+  "maximumProposalCount": 8,
+  "proposalCategoryRulesEnabled": true,
+  "proposalDiversityRulesEnabled": true,
+  "uxFindingLinkageRulesEnabled": true,
+  "builderCapabilityLinkageRulesEnabled": true,
+  "confidenceThreshold": 0.5,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "generationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistorySessions": 50
+}

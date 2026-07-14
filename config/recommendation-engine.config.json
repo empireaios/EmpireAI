@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "recommendationFrequency": "on_demand",
+  "priorityRulesEnabled": true,
+  "severityRulesEnabled": true,
+  "confidenceThreshold": 0.4,
+  "evidenceRequirementsEnabled": true,
+  "maxProposalsPerReport": 50,
+  "validationRulesEnabled": true,
+  "maxReportDurationMs": 60000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "reportTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "validationScope": [
+    "T2-01",
+    "T2-02",
+    "T2-03",
+    "T2-04",
+    "T2-05",
+    "T2-06",
+    "T2-07",
+    "T2-08",
+    "T2-09"
+  ],
+  "testSessionDurationMs": 60000,
+  "requiredPassThreshold": 50,
+  "requireEndToEndPass": true,
+  "reportOutputRoot": ".pillow-ux-intelligence-certification",
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "certificationTimeoutMs": 180000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateSensitiveDataProtection": true,
+  "validateHealthReporting": true,
+  "validateRecoveryBehavior": true,
+  "requireT1FoundationCertified": false
+}

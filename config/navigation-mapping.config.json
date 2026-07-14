@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "mappingIntervalMs": 1000,
+  "maxMappingRate": 5,
+  "confidenceThreshold": 0.5,
+  "transitionDetectionEnabled": true,
+  "graphUpdateMerge": true,
+  "graphBufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "mappingTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateGraphs": true
+}

@@ -1,0 +1,33 @@
+﻿TAP version 13
+# Subtest: T5-06 Adaptive Interface
+    # Subtest: adapt produces machine-readable adaptive interface records
+    not ok 1 - adapt produces machine-readable adaptive interface records
+      ---
+      duration_ms: 4844.971
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:22152'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:16:28)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:898:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Promise.all (index 2)
+        async Suite.run (node:internal/test_runner/test:1771:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+      ...
+    1..1
+not ok 1 - T5-06 Adaptive Interface
+  ---
+  duration_ms: 4865.5659
+  type: 'suite'
+  location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:19523'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...

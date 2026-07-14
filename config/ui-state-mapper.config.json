@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "updateIntervalMs": 1000,
+  "maxUpdateRate": 5,
+  "serializationFormat": "json",
+  "gridRows": 4,
+  "gridColumns": 4,
+  "stateBufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "mappingTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateStates": true
+}

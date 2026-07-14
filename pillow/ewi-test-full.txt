@@ -1,0 +1,80 @@
+﻿TAP version 13
+# Subtest: T5-08 Executive Workspace Intelligence
+    # Subtest: buildExecutiveWorkspaceIntelligenceConfiguration loads defaults
+    ok 1 - buildExecutiveWorkspaceIntelligenceConfiguration loads defaults
+      ---
+      duration_ms: 5.6338
+      type: 'test'
+      ...
+    # Subtest: executive workspace intelligence initializes with doctrine doc
+    ok 2 - executive workspace intelligence initializes with doctrine doc
+      ---
+      duration_ms: 1162.492
+      type: 'test'
+      ...
+    # Subtest: optimizeWorkspace produces machine-readable workspace intelligence records
+    ok 3 - optimizeWorkspace produces machine-readable workspace intelligence records
+      ---
+      duration_ms: 1150.2764
+      type: 'test'
+      ...
+    # Subtest: generates mission-specific dashboard recommendations
+    ok 4 - generates mission-specific dashboard recommendations
+      ---
+      duration_ms: 1125.5508
+      type: 'test'
+      ...
+    # Subtest: recommends workspace layouts
+    ok 5 - recommends workspace layouts
+      ---
+      duration_ms: 1147.7352
+      type: 'test'
+      ...
+    # Subtest: recommends executive widgets and shortcuts
+    ok 6 - recommends executive widgets and shortcuts
+      ---
+      duration_ms: 1192.1742
+      type: 'test'
+      ...
+    # Subtest: never applies workspace changes automatically (recommend-only)
+    ok 7 - never applies workspace changes automatically (recommend-only)
+      ---
+      duration_ms: 1309.2756
+      type: 'test'
+      ...
+    # Subtest: start and stop continuous optimization toggles monitoring state
+    ok 8 - start and stop continuous optimization toggles monitoring state
+      ---
+      duration_ms: 1187.1839
+      type: 'test'
+      ...
+    # Subtest: validateForSupervisorSync reports readiness after optimization
+    ok 9 - validateForSupervisorSync reports readiness after optimization
+      ---
+      duration_ms: 1047.6254
+      type: 'test'
+      ...
+    # Subtest: cockpit snapshot exposes workspace intelligence health
+    ok 10 - cockpit snapshot exposes workspace intelligence health
+      ---
+      duration_ms: 1131.3151
+      type: 'test'
+      ...
+    # Subtest: getLatestReport returns most recent optimization run
+    ok 11 - getLatestReport returns most recent optimization run
+      ---
+      duration_ms: 1026.743
+      type: 'test'
+      ...
+    # Subtest: understands executive priorities and mission context
+    ok 12 - understands executive priorities and mission context
+      ---
+      duration_ms: 1049.381
+      type: 'test'
+      ...
+    1..12
+ok 1 - T5-08 Executive Workspace Intelligence
+  ---
+  duration_ms: 12537.6793
+  type: 'suite'
+  ...

@@ -1,0 +1,3136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>EmpireAI Master Build Bible</title>
+<style>
+  @page { margin: 18mm 16mm; }
+  body { font-family: "Segoe UI", Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.45; color: #1a1a1a; max-width: 920px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 22pt; border-bottom: 3px solid #1e3a5f; padding-bottom: 8px; page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 { font-size: 15pt; color: #1e3a5f; margin-top: 1.4em; border-bottom: 1px solid #ccc; }
+  h3 { font-size: 12pt; color: #2c5282; margin-top: 1.1em; }
+  h4 { font-size: 10.5pt; color: #333; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 16px; font-size: 9pt; }
+  th, td { border: 1px solid #cbd5e1; padding: 5px 7px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; font-weight: 600; }
+  tr:nth-child(even) { background: #f8fafc; }
+  code, pre { font-family: Consolas, monospace; font-size: 8.5pt; background: #f1f5f9; }
+  pre { padding: 10px; overflow-x: auto; border: 1px solid #e2e8f0; white-space: pre-wrap; }
+  blockquote { border-left: 4px solid #1e3a5f; margin: 12px 0; padding: 8px 14px; background: #f8fafc; }
+  .toc { background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px 20px; margin: 20px 0; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc > ul > li { margin: 6px 0; font-weight: 600; }
+  .toc ul ul { padding-left: 18px; font-weight: normal; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+  .cover { text-align: center; padding: 80px 20px 40px; page-break-after: always; }
+  .cover h1 { border: none; font-size: 28pt; page-break-before: avoid; }
+  .cover p { font-size: 12pt; color: #475569; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <h1>EmpireAI Master Build Bible</h1>
+  <p>Definitive hierarchical engineering map of the EmpireAI repository</p>
+  <p>Repository archaeology · read-only · no code or documentation modified</p>
+  <p><strong>Generated:</strong> 2026-07-02</p>
+</div>
+<div class="toc"><h2 id="table-of-contents">Table of Contents</h2><ul>
+<li><a href="#empireai-master-build-bible">EmpireAI Master Build Bible</a></li>
+<ul>
+<li><a href="#build-statistics">Build Statistics</a></li>
+</ul>
+<ul>
+<li><a href="#major-milestones">Major Milestones</a></li>
+</ul>
+<ul>
+<li><a href="#canonical-architecture-relationships">Canonical Architecture Relationships</a></li>
+</ul>
+<ul>
+<li><a href="#supreme-hierarchy-tree">Supreme Hierarchy Tree</a></li>
+</ul>
+</ul>
+<li><a href="#1-empireai-root">1. EmpireAI Root</a></li>
+<ul>
+<li><a href="#11-vision-identity">1.1 Vision & Identity</a></li>
+</ul>
+</ul>
+<li><a href="#2-foundation">2. Foundation</a></li>
+<ul>
+<li><a href="#21-core-constitution-ctd-001040">2.1 Core Constitution (CTD-001→040)</a></li>
+</ul>
+<ul>
+<li><a href="#22-governance-doctrine-gvd-001030">2.2 Governance Doctrine (GVD-001→030)</a></li>
+</ul>
+<ul>
+<li><a href="#23-architecture-constraints-acd-001030">2.3 Architecture Constraints (ACD-001→030)</a></li>
+</ul>
+<ul>
+<li><a href="#24-ux-identity-doctrine-uid-001020">2.4 UX Identity Doctrine (UID-001→020)</a></li>
+</ul>
+<ul>
+<li><a href="#25-commercial-business-doctrine-cbd-001020">2.5 Commercial Business Doctrine (CBD-001→020)</a></li>
+</ul>
+<ul>
+<li><a href="#26-commerce-canon-cos">2.6 Commerce Canon & COS</a></li>
+</ul>
+<ul>
+<li><a href="#27-foundation-runtime">2.7 Foundation Runtime</a></li>
+</ul>
+</ul>
+<li><a href="#3-governance-continuity">3. Governance & Continuity</a></li>
+<ul>
+<li><a href="#31-backlog-releases">3.1 Backlog Releases</a></li>
+</ul>
+<ul>
+<li><a href="#32-journey-continuity-spine">3.2 Journey Continuity Spine</a></li>
+</ul>
+<ul>
+<li><a href="#33-version-1-certification">3.3 Version 1 Certification</a></li>
+</ul>
+<ul>
+<li><a href="#34-architecture-decision-records">3.4 Architecture Decision Records</a></li>
+</ul>
+</ul>
+<li><a href="#4-pillow">4. Pillow</a></li>
+<ul>
+<li><a href="#41-constitution-core-doctrines">4.1 Constitution & Core Doctrines</a></li>
+</ul>
+<ul>
+<li><a href="#42-architecture-contract-pillow-001">4.2 Architecture Contract (PILLOW-001)</a></li>
+</ul>
+<ul>
+<li><a href="#43-pillow-runtime-missions-pillow-002015">4.3 Pillow Runtime Missions (PILLOW-002→015)</a></li>
+</ul>
+<ul>
+<li><a href="#44-pillow-product-integration-pillow-016019">4.4 Pillow Product Integration (PILLOW-016→019)</a></li>
+</ul>
+<ul>
+<li><a href="#45-pillow-executive-intelligence-layer-2-future">4.5 Pillow Executive Intelligence (Layer 2 — future)</a></li>
+</ul>
+<ul>
+<li><a href="#46-pillow-commerce-intelligence-implemented">4.6 Pillow Commerce Intelligence (implemented)</a></li>
+</ul>
+</ul>
+<li><a href="#5-ekls">5. EKLS</a></li>
+<ul>
+<li><a href="#51-ekls-implementation">5.1 EKLS Implementation</a></li>
+</ul>
+<ul>
+<li><a href="#52-ekls-legacy-integration-backends">5.2 EKLS Legacy Integration Backends</a></li>
+</ul>
+</ul>
+<li><a href="#6-brain">6. Brain</a></li>
+</ul>
+<li><a href="#7-registry-system">7. Registry System</a></li>
+</ul>
+<li><a href="#8-guardian">8. Guardian</a></li>
+</ul>
+<li><a href="#9-executive-ai-engines-g3">9. Executive AI Engines (G3)</a></li>
+<ul>
+<li><a href="#91-g3-engine-matrix">9.1 G3 Engine Matrix</a></li>
+</ul>
+</ul>
+<li><a href="#10-grand-king-cockpit-g4">10. Grand King Cockpit (G4)</a></li>
+</ul>
+<li><a href="#11-business-engines-b6">11. Business Engines & B6</a></li>
+<ul>
+<li><a href="#111-canonical-business-engines-target-map">11.1 Canonical Business Engines (target map)</a></li>
+</ul>
+<ul>
+<li><a href="#112-b6-live-commerce-programme">11.2 B6 Live Commerce Programme</a></li>
+</ul>
+</ul>
+<li><a href="#12-real-programme">12. REAL Programme</a></li>
+<ul>
+<li><a href="#121-real-batch-audits">12.1 REAL Batch Audits</a></li>
+</ul>
+<ul>
+<li><a href="#122-real-001100-index-journey-status">12.2 REAL-001→100 Index (Journey status)</a></li>
+</ul>
+</ul>
+<li><a href="#13-executive-intelligence-library">13. Executive Intelligence Library</a></li>
+</ul>
+<li><a href="#14-ux-global-components">14. UX & Global Components</a></li>
+</ul>
+<li><a href="#15-business-automation-g5">15. Business Automation (G5)</a></li>
+</ul>
+<li><a href="#16-mission-system-cursor">16. Mission System & Cursor</a></li>
+</ul>
+<li><a href="#17-executive-audit-system">17. Executive Audit System</a></li>
+</ul>
+<li><a href="#18-deployment-infrastructure">18. Deployment & Infrastructure</a></li>
+</ul>
+<li><a href="#19-future-programmes">19. Future Programmes</a></li>
+</ul>
+<li><a href="#completion-summary">Completion Summary</a></li>
+<ul>
+<li><a href="#programmes-closed-or-architecturally-complete">Programmes closed or architecturally complete</a></li>
+</ul>
+<ul>
+<li><a href="#active-or-open-workstreams">Active or open workstreams</a></li>
+</ul>
+<ul>
+<li><a href="#superseded-documents-retained-in-repository">Superseded documents (retained in repository)</a></li>
+</ul>
+<ul>
+<li><a href="#definitive-cross-references">Definitive cross-references</a></li>
+</ul>
+</ul>
+</ul></div>
+<h1 id="empireai-master-build-bible">EmpireAI Master Build Bible</h1>
+<p><strong>Document type:</strong> Hierarchical engineering map (repository archaeology)<br />
+<strong>Generated:</strong> 2026-07-02<br />
+<strong>Authority:</strong> Grand King · Repository continuity spine<br />
+<strong>Scope:</strong> Complete build history reconstructed from repository artifacts — <strong>no code modified</strong></p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>See PDF/HTML edition for clickable navigation. Major sections:</p>
+<ol>
+<li><a href="#build-statistics">Build Statistics</a></li>
+<li><a href="#major-milestones">Major Milestones</a></li>
+<li><a href="#canonical-architecture-relationships">Canonical Architecture Relationships</a></li>
+<li><a href="#supreme-hierarchy-tree">Supreme Hierarchy Tree</a></li>
+<li><a href="#1-empireai-root">EmpireAI Root</a></li>
+<li><a href="#2-foundation">Foundation</a></li>
+<li><a href="#3-governance--continuity">Governance &amp; Continuity</a></li>
+<li><a href="#4-pillow">Pillow</a></li>
+<li><a href="#5-ekls">EKLS</a></li>
+<li><a href="#6-brain">Brain</a></li>
+<li><a href="#7-registry-system">Registry System</a></li>
+<li><a href="#8-guardian">Guardian</a></li>
+<li><a href="#9-executive-ai-engines-g3">Executive AI Engines (G3)</a></li>
+<li><a href="#10-grand-king-cockpit-g4">Grand King Cockpit (G4)</a></li>
+<li><a href="#11-business-engines--b6">Business Engines &amp; B6</a></li>
+<li><a href="#12-real-programme">REAL Programme</a></li>
+<li><a href="#13-executive-intelligence-library">Executive Intelligence Library</a></li>
+<li><a href="#14-ux--global-components">UX &amp; Global Components</a></li>
+<li><a href="#15-business-automation-g5">Business Automation (G5)</a></li>
+<li><a href="#16-mission-system--cursor">Mission System &amp; Cursor</a></li>
+<li><a href="#17-executive-audit-system">Executive Audit System</a></li>
+<li><a href="#18-deployment--infrastructure">Deployment &amp; Infrastructure</a></li>
+<li><a href="#19-future-programmes">Future Programmes</a></li>
+<li><a href="#completion-summary">Completion Summary</a></li>
+</ol>
+<hr />
+<h2 id="build-statistics">Build Statistics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Count</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markdown documentation files (repo-wide)</td>
+<td style="text-align: right;">463+</td>
+<td>Includes root, docs/, artifacts/</td>
+</tr>
+<tr>
+<td><code>artifacts/</code> executive audit files</td>
+<td style="text-align: right;">45</td>
+<td>G3, G4, G5, B6, EA, EKLS, constitutional</td>
+</tr>
+<tr>
+<td>Root <code>COMBINED_EXECUTIVE_AUDIT_*.md</code></td>
+<td style="text-align: right;">38</td>
+<td>Batch doctrine + programme audits</td>
+</tr>
+<tr>
+<td>Architecture Decision Records (ADR-001→052)</td>
+<td style="text-align: right;">52</td>
+<td><code>EMPIREAI_DECISIONS.md</code></td>
+</tr>
+<tr>
+<td>REAL modules (REAL-001→100)</td>
+<td style="text-align: right;">100</td>
+<td>Journey index; 103 runtime folders</td>
+</tr>
+<tr>
+<td>Pillow missions (PILLOW-001→019)</td>
+<td style="text-align: right;">19</td>
+<td>Layer 1 runtime complete</td>
+</tr>
+<tr>
+<td>Executive AI Engine missions (G3-01→10)</td>
+<td style="text-align: right;">11</td>
+<td>Suite closed; architecture + wiring</td>
+</tr>
+<tr>
+<td>Cockpit missions (G4-01→10)</td>
+<td style="text-align: right;">11</td>
+<td>G4 programme complete</td>
+</tr>
+<tr>
+<td>Registry architecture (EA-002→007)</td>
+<td style="text-align: right;">6</td>
+<td>Certified PASS WITH CONDITIONS (EA-007)</td>
+</tr>
+<tr>
+<td>B6 live-commerce probes (B6-01A→04B)</td>
+<td style="text-align: right;">12</td>
+<td>Mixed pass/fail/superseded</td>
+</tr>
+<tr>
+<td>UX screens (UX-001→023)</td>
+<td style="text-align: right;">23</td>
+<td>Frozen V1 contract</td>
+</tr>
+<tr>
+<td>Global Components (GC-01→07)</td>
+<td style="text-align: right;">7</td>
+<td>ADR-047 layers</td>
+</tr>
+<tr>
+<td>Backend validation test files</td>
+<td style="text-align: right;">198</td>
+<td><code>backend/src/validation/tests/</code></td>
+</tr>
+<tr>
+<td>CTD articles</td>
+<td style="text-align: right;">40</td>
+<td>Immutable core constitution</td>
+</tr>
+<tr>
+<td>GVD articles</td>
+<td style="text-align: right;">30</td>
+<td>Governance doctrine</td>
+</tr>
+<tr>
+<td>ACD articles</td>
+<td style="text-align: right;">30</td>
+<td>Architecture constraints</td>
+</tr>
+<tr>
+<td>UID articles</td>
+<td style="text-align: right;">20</td>
+<td>UX identity</td>
+</tr>
+<tr>
+<td>CBD articles</td>
+<td style="text-align: right;">20</td>
+<td>Commercial business doctrine</td>
+</tr>
+<tr>
+<td>Executive Intelligence (EI0→EI10)</td>
+<td style="text-align: right;">11</td>
+<td>EIR-v1.0 certified library</td>
+</tr>
+<tr>
+<td><code>.cursor/missions/</code> pending</td>
+<td style="text-align: right;">2</td>
+<td>PILLOW-017 deferred, REPOSITORY-SYNC</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Programme completion snapshot:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Programme</th>
+<th>Architecture</th>
+<th>Implementation</th>
+<th>Live revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-A / BL-B</td>
+<td>✅ Closed</td>
+<td>✅</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>BL-C</td>
+<td>✅ Active</td>
+<td>🟡 Accumulating</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Pillow Runtime (L1)</td>
+<td>✅</td>
+<td>✅ PILLOW-002→019</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Pillow Executive Intelligence (L2)</td>
+<td>✅ Docs</td>
+<td>🔵 Deferred</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>EKLS</td>
+<td>✅ Canonical spec</td>
+<td>✅ Gateway + partial backends</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Registry (EA)</td>
+<td>✅ EA-002→007</td>
+<td>✅ EA-003 loader</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>G3 Executive AI Engines</td>
+<td>✅</td>
+<td>✅ Wired + tests</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>G4 Cockpit</td>
+<td>✅ G4-01</td>
+<td>✅ G4-02→10</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>G5 Business Automation</td>
+<td>✅ G5-00 only</td>
+<td>🔴 No runtime</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>REAL-001→100</td>
+<td>✅</td>
+<td>✅ Built/wired</td>
+<td>🔴 PROOF-001 pending</td>
+</tr>
+<tr>
+<td>V1 Go-Live</td>
+<td>✅ Certification Mode</td>
+<td>🟡 Blockers B5–B8</td>
+<td>🔴 GK-GOLIVE</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="major-milestones">Major Milestones</h2>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Label</th>
+<th>Status</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empire genesis</td>
+<td>EMPIREAI_GENESIS.md</td>
+<td>✅</td>
+<td>Vision phase</td>
+</tr>
+<tr>
+<td>Brain sovereignty</td>
+<td>EMPIREAI_CONSTITUTION.md Art. I</td>
+<td>✅</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>Commerce OS pivot</td>
+<td>COS-001 / ADR-013</td>
+<td>✅</td>
+<td>COMMERCE_OS_BLUEPRINT.md</td>
+</tr>
+<tr>
+<td>UX Master frozen</td>
+<td>UX-000B contract</td>
+<td>✅</td>
+<td>COMBINED UX-001-023 audit</td>
+</tr>
+<tr>
+<td>BL-A repository sync</td>
+<td>BL-A closed</td>
+<td>✅</td>
+<td>ADR-014→020</td>
+</tr>
+<tr>
+<td>BL-B Pillow doctrines</td>
+<td>BL-B closed 2026-06-29</td>
+<td>✅</td>
+<td>Pillow architecture batch</td>
+</tr>
+<tr>
+<td>BL-C continuous improvement</td>
+<td>BL-C ACTIVE</td>
+<td>🟡</td>
+<td>Enhancement registers</td>
+</tr>
+<tr>
+<td>Pillow Runtime complete</td>
+<td>PILLOW-016→019</td>
+<td>✅</td>
+<td>Product integration master plan</td>
+</tr>
+<tr>
+<td>REAL namespace canon</td>
+<td>ADR-044</td>
+<td>✅</td>
+<td>⚠️ 4 conflicts deferred</td>
+</tr>
+<tr>
+<td>Executive Intelligence certified</td>
+<td>EIR-v1.0</td>
+<td>✅</td>
+<td>EI release certificate</td>
+</tr>
+<tr>
+<td>REAL-061 compile recovery</td>
+<td>REAL-061</td>
+<td>✅</td>
+<td>Combined audit certified</td>
+</tr>
+<tr>
+<td>Managed deployment</td>
+<td>MPD-001</td>
+<td>✅ Adaptation</td>
+<td>Deploy pending</td>
+</tr>
+<tr>
+<td>G3 suite closed</td>
+<td>G3-01→G3-10</td>
+<td>✅</td>
+<td>g3-10 executive audit</td>
+</tr>
+<tr>
+<td>EKLS institutionalised</td>
+<td>Canonical EKLS</td>
+<td>✅</td>
+<td>canonical-ekls-executive-audit</td>
+</tr>
+<tr>
+<td>Pillow §17 hierarchy</td>
+<td>Constitutional amendment</td>
+<td>✅</td>
+<td>constitutional-pillow-hierarchy audit</td>
+</tr>
+<tr>
+<td>EA registry certified</td>
+<td>EA-007</td>
+<td>✅ PASS WITH CONDITIONS</td>
+<td>ea-007 certification</td>
+</tr>
+<tr>
+<td>G4 Cockpit complete</td>
+<td>G4-02→G4-10</td>
+<td>✅</td>
+<td>g4-10 production readiness</td>
+</tr>
+<tr>
+<td>G5 architecture</td>
+<td>G5-00</td>
+<td>✅ Architecture only</td>
+<td>g5-business-automation-architecture</td>
+</tr>
+<tr>
+<td>MS-A (USD 100K profit)</td>
+<td>MS-A</td>
+<td>🔴</td>
+<td>Commercial milestone</td>
+</tr>
+<tr>
+<td>PROOF-001 first live profit</td>
+<td>PROOF-001</td>
+<td>🔴</td>
+<td>Go-live gate</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="canonical-architecture-relationships">Canonical Architecture Relationships</h2>
+<pre><code>Grand King
+    └── EmpireAI (repository)
+            └── Pillow (sole technical owner — EMPIREAI_PILLOW_CONSTITUTION.md §17)
+                    ├── Brain (execution — not peer of Pillow)
+                    ├── EKLS (institutional memory)
+                    ├── Registry System (configuration catalog)
+                    ├── Mission System (Cursor + objective)
+                    ├── Executive Audit System (artifacts corpus)
+                    ├── Guardian (pre-dispatch safety)
+                    ├── Executive AI Engines G3-01→10 (analyse)
+                    ├── Business Engines ×7 (commerce execute)
+                    ├── Grand King Cockpit G4 (visualise · approve)
+                    ├── Business Automation G5 (orchestrate decisions → ops) [architecture]
+                    └── Future Platform Services (deployment · infra)
+</code></pre>
+<p><strong>Cross-reference spine:</strong> <code>JOURNEY.md</code> → <code>JOURNEY_AUDIT.md</code> → <code>EMPIREAI_SOUL.md</code> → <code>EMPIREAI_STATUS.md</code> → <code>EMPIREAI_DECISIONS.md</code> → <code>EMPIREAI_REPOSITORY_MASTER_INDEX.md</code></p>
+<hr />
+<h2 id="supreme-hierarchy-tree">Supreme Hierarchy Tree</h2>
+<pre><code>EmpireAI
+├── Foundation (CTD · GVD · ACD · UID · CBD · Commerce Canon)
+├── Governance &amp; Continuity (BL-A/B/C · Journey · Audits · ADRs)
+├── Pillow
+│   ├── Constitution &amp; Doctrines
+│   ├── Architecture Contract (PILLOW-001→027)
+│   ├── Runtime Package (PILLOW-002→015)
+│   ├── Product Integration (PILLOW-016→019)
+│   ├── Executive Intelligence Layer 2 (doctrine · 🔵 runtime)
+│   ├── EKLS
+│   ├── Mission System / Cursor Bridge
+│   └── Executive Perspectives &amp; Council
+├── Brain
+│   ├── Orchestrator · Agents · Workflows
+│   ├── LLM Router · Task Queue · Guardian integration
+│   └── Auth · Permissions
+├── Registry System (EA-002→007)
+├── Guardian
+├── Executive AI Engines (G3)
+│   ├── G3-01 Product … G3-09 Decision
+│   └── G3-10 Orchestrator
+├── Grand King Cockpit (G4)
+│   ├── G4-01 Architecture
+│   └── G4-02→10 Implementation
+├── Business Engines
+│   ├── Marketplace · Supplier · Storefront
+│   ├── Advertising · Payment · Logistics · Analytics
+│   └── B6 Live Commerce Probes
+├── REAL Programme (REAL-001→100)
+├── Executive Intelligence Library (EI0→EI10)
+├── UX &amp; Global Components (UX-001→023 · GC-01→07)
+├── Business Automation (G5-00 architecture)
+├── Deployment (MPD-001)
+└── Future Programmes (G5-01+ · Pillow L2 · MS-A · PROOF-001)
+</code></pre>
+<hr />
+<h1 id="1-empireai-root">1. EmpireAI Root</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Grand King</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Foundation · Governance · Pillow (all technical subsystems) · Documentation corpus</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>AI-powered e-commerce operating system — manufacture and operate autonomous companies</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Active repository</td>
+</tr>
+<tr>
+<td><strong>Completion</strong></td>
+<td>V1 architecture substantially complete; live revenue gates open</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td>Repository root <code>EmpireAI/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>Genesis · REAL programme · G3 · G4 · G5 · B6 · EA</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>SA-001 suite · EMPIREAI_V1_* combined audits</td>
+</tr>
+</tbody>
+</table>
+<h3>1.1 Vision &amp; Identity</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Classification</th>
+<th>Missions / Audits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Genesis</strong></td>
+<td>EmpireAI</td>
+<td><code>EMPIREAI_GENESIS.md</code></td>
+<td>✅</td>
+<td>Canonical</td>
+<td>Vision</td>
+</tr>
+<tr>
+<td><strong>Soul</strong></td>
+<td>EmpireAI</td>
+<td><code>EMPIREAI_SOUL.md</code></td>
+<td>✅</td>
+<td>Canonical</td>
+<td>BL-A continuity</td>
+</tr>
+<tr>
+<td><strong>README</strong></td>
+<td>EmpireAI</td>
+<td><code>README.md</code></td>
+<td>✅</td>
+<td>Derived</td>
+<td>Platform overview</td>
+</tr>
+<tr>
+<td><strong>Roadmap</strong></td>
+<td>EmpireAI</td>
+<td><code>EMPIREAI_ROADMAP.md</code></td>
+<td>✅</td>
+<td>Canonical</td>
+<td>Points to COS-001</td>
+</tr>
+<tr>
+<td><strong>Founder Experience</strong></td>
+<td>EmpireAI</td>
+<td><code>docs/FOUNDER_EXPERIENCE.md</code></td>
+<td>✅</td>
+<td>Derived</td>
+<td>Product vision</td>
+</tr>
+<tr>
+<td><strong>Marketplace OS Vision</strong></td>
+<td>EmpireAI</td>
+<td><code>MARKETPLACE_OS_VISION.md</code></td>
+<td>🟡</td>
+<td><strong>Superseded</strong> by COS-001</td>
+<td>Legacy</td>
+</tr>
+<tr>
+<td><strong>Reality V1</strong></td>
+<td>EmpireAI</td>
+<td><code>EMPIREAI_REALITY_V1.md</code></td>
+<td>🟡</td>
+<td><strong>Superseded</strong></td>
+<td>Legacy archived</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="2-foundation">2. Foundation</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>EmpireAI</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>CTD · GVD · ACD · UID · CBD · Commerce Canon · Engineering Constitution</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Immutable doctrine and commercial law governing all subsystems</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Complete (doctrine catalogs)</td>
+</tr>
+<tr>
+<td><strong>Completion</strong></td>
+<td>All articles indexed in JOURNEY.md</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td>Root <code>EMPIREAI_*_DOCTRINE*.md</code>, <code>EMPIREAI_CORE_CONSTITUTION_CTD.md</code>, <code>backend/src/foundation/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>BL-A · BL-B doctrine registration</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>COMBINED CTD · GVD · ACD · UID · CBD audits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-core-constitution-ctd-001040">2.1 Core Constitution (CTD-001→040)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>40 immutable articles</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Supreme commercial constitution — CTD-040 constitution supreme</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_CORE_CONSTITUTION_CTD.md</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>COMBINED_EXECUTIVE_AUDIT_CTD-001-040.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-governance-doctrine-gvd-001030">2.2 Governance Doctrine (GVD-001→030)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Grand King authority, approval gates (GVD-019), governance versioning</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_GOVERNANCE_DOCTRINE_GVD.md</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>COMBINED_EXECUTIVE_AUDIT_GVD-001-030.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-architecture-constraints-acd-001030">2.3 Architecture Constraints (ACD-001→030)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Engineering constraints, module boundaries</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_ARCHITECTURE_CONSTRAINTS_ACD.md</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>COMBINED_EXECUTIVE_AUDIT_ACD-001-030.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-ux-identity-doctrine-uid-001020">2.4 UX Identity Doctrine (UID-001→020)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Immutable UX identity law</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_UX_IDENTITY_DOCTRINE_UID.md</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>COMBINED_EXECUTIVE_AUDIT_UID-001-020.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-commercial-business-doctrine-cbd-001020">2.5 Commercial Business Doctrine (CBD-001→020)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Commercial business rules, triple approval (CBD-018)</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_COMMERCIAL_BUSINESS_DOCTRINE_CBD.md</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>COMBINED_EXECUTIVE_AUDIT_CBD-001-020.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3>2.6 Commerce Canon &amp; COS</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Commerce Canon C001</strong></td>
+<td>Foundation</td>
+<td><code>EMPIREAI_COMMERCE_CANON.md</code></td>
+<td>✅</td>
+<td>Canonical (ADR-011)</td>
+</tr>
+<tr>
+<td><strong>Commerce OS COS-001</strong></td>
+<td>Foundation</td>
+<td><code>COMMERCE_OS_BLUEPRINT.md</code></td>
+<td>✅</td>
+<td>Canonical (ADR-013)</td>
+</tr>
+<tr>
+<td><strong>Engineering Constitution</strong></td>
+<td>Foundation</td>
+<td><code>EMPIREAI_CONSTITUTION.md</code></td>
+<td>✅</td>
+<td>Canonical (Brain law; CTD supersedes commercially)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="27-foundation-runtime">2.7 Foundation Runtime</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Foundation → Brain</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>15 governance subsystems in <code>backend/src/foundation/</code></td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Runtime doctrine enforcement, KPI, governance engine</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Implemented</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Derived</strong> runtime</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/foundation/</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>foundation.test.ts</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>3. Governance &amp; Continuity</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>EmpireAI</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>BL-A · BL-B · BL-C · Journey spine · ADRs · Certification · CRI</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Repository synchronization, backlog releases, audit standards, go-live gates</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>BL-A/B ✅ closed · BL-C 🟡 active</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>JOURNEY.md</code>, <code>BL-*.md</code>, <code>docs/governance/</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>38 COMBINED executive audits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="31-backlog-releases">3.1 Backlog Releases</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Completion</th>
+<th>Audits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BL-A</strong></td>
+<td>Governance</td>
+<td>ADR-014→020, sync reports</td>
+<td>✅ Closed</td>
+<td>Repository sync standard</td>
+<td>BL-A_* reports</td>
+</tr>
+<tr>
+<td><strong>BL-B</strong></td>
+<td>Governance</td>
+<td>ADR-021→030, Pillow doctrines</td>
+<td>✅ Closed 2026-06-29</td>
+<td>Executive audit standard</td>
+<td>BL-B validation</td>
+</tr>
+<tr>
+<td><strong>BL-C</strong></td>
+<td>Governance</td>
+<td><code>BL-C.md</code>, <code>EMPIREAI_BL_C_*.md</code></td>
+<td>🟡 ACTIVE</td>
+<td>Continuous improvement</td>
+<td>Enhancement registers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-journey-continuity-spine">3.2 Journey Continuity Spine</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Purpose</th>
+<th>Status</th>
+<th>Paths</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Journey</strong></td>
+<td>Governance</td>
+<td>Master operational index</td>
+<td>✅</td>
+<td><code>JOURNEY.md</code></td>
+</tr>
+<tr>
+<td><strong>Journey Audit</strong></td>
+<td>Journey</td>
+<td>Structural change log</td>
+<td>✅</td>
+<td><code>JOURNEY_AUDIT.md</code></td>
+</tr>
+<tr>
+<td><strong>Master Index</strong></td>
+<td>Journey</td>
+<td>Searchable artifact catalog</td>
+<td>✅</td>
+<td><code>EMPIREAI_REPOSITORY_MASTER_INDEX.md</code></td>
+</tr>
+<tr>
+<td><strong>Project Status</strong></td>
+<td>Journey</td>
+<td>Current implementation state</td>
+<td>✅</td>
+<td><code>EMPIREAI_STATUS.md</code></td>
+</tr>
+<tr>
+<td><strong>Decision Register</strong></td>
+<td>Journey</td>
+<td>ADR log</td>
+<td>✅</td>
+<td><code>EMPIREAI_DECISIONS.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-version-1-certification">3.3 Version 1 Certification</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Paths</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Certification Mode</strong></td>
+<td>Governance</td>
+<td><code>docs/governance/VERSION_1_CERTIFICATION_MODE.md</code></td>
+<td>✅ ACTIVE (ADR-048)</td>
+</tr>
+<tr>
+<td><strong>Blocker Register B5–B8</strong></td>
+<td>Governance</td>
+<td><code>docs/governance/VERSION_1_CERTIFICATION_BLOCKER_REGISTER.md</code></td>
+<td>🟡 Open</td>
+</tr>
+<tr>
+<td><strong>Go-Live Checklist</strong></td>
+<td>Governance</td>
+<td><code>docs/governance/VERSION_1_GO_LIVE_PREPARATION_CHECKLIST.md</code></td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong>Commercial Risk Intelligence</strong></td>
+<td>Governance</td>
+<td><code>docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md</code></td>
+<td>✅ (ADR-051)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-architecture-decision-records">3.4 Architecture Decision Records</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Governance</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>ADR-001 through ADR-052</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Permanent decision log</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_DECISIONS.md</code>, <code>docs/governance/ADR-044-*.md</code></td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Key ADR clusters: Brain/Guardian (001–010) · Commerce (011–013) · BL-A (014–020) · BL-B/Pillow (021–043) · REAL/UX (044–047) · V1/Pillow delivery (048–049) · Marketplace/CRI (050–052)</p>
+<hr />
+<h1 id="4-pillow">4. Pillow</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>EmpireAI</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Constitution · Contract · Runtime · Host · EKLS · EI Layer 2 · Missions</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Sole technical owner; Executive Intelligence; governance of all subsystems</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Layer 1 ✅ · Layer 2 🔵 · §17 hierarchy ✅</td>
+</tr>
+<tr>
+<td><strong>Completion</strong></td>
+<td>PILLOW-002→019 runtime complete</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_PILLOW_*.md</code>, <code>PILLOW_*.md</code>, <code>pillow/</code>, <code>backend/src/orchestration/pillow-*</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>PILLOW-001→019</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>10+ COMBINED Pillow audits · constitutional-pillow-hierarchy · canonical-ekls</td>
+</tr>
+</tbody>
+</table>
+<h3>4.1 Constitution &amp; Core Doctrines</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Classification</th>
+<th>Audits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pillow Constitution V1</strong></td>
+<td>Pillow</td>
+<td><code>EMPIREAI_PILLOW_CONSTITUTION.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong></td>
+<td>PILLOW_CONSTITUTION_UPDATE</td>
+</tr>
+<tr>
+<td><strong>§17 Platform Hierarchy</strong></td>
+<td>Constitution</td>
+<td>§17</td>
+<td>✅</td>
+<td><strong>Canonical</strong></td>
+<td>constitutional-pillow-hierarchy</td>
+</tr>
+<tr>
+<td><strong>Executive Intelligence Constitution L2</strong></td>
+<td>Pillow</td>
+<td><code>EMPIREAI_PILLOW_EXECUTIVE_INTELLIGENCE_CONSTITUTION.md</code></td>
+<td>✅ docs</td>
+<td><strong>Canonical</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Memory Doctrine</strong></td>
+<td>Pillow</td>
+<td><code>EMPIREAI_PILLOW_MEMORY_DOCTRINE.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong> → EKLS</td>
+<td>BL-B</td>
+</tr>
+<tr>
+<td><strong>Pillow Architecture</strong></td>
+<td>Pillow</td>
+<td><code>EMPIREAI_PILLOW_ARCHITECTURE.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Delivery Mode</strong></td>
+<td>Pillow</td>
+<td><code>docs/governance/PILLOW_VERSION_1_DELIVERY_MODE.md</code></td>
+<td>✅ ACTIVE</td>
+<td><strong>Canonical</strong> (ADR-049)</td>
+<td>Combined audit</td>
+</tr>
+<tr>
+<td><strong>Roadmap (5 layers)</strong></td>
+<td>Pillow</td>
+<td><code>PILLOW_ROADMAP.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-architecture-contract-pillow-001">4.2 Architecture Contract (PILLOW-001)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>27 subsystems (Bootstrap → EKLS)</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Single source of truth for Pillow implementation</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Frozen V1 (ADR-027, ADR-030 sync)</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>PILLOW_ARCHITECTURE_CONTRACT.md</code></td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-pillow-runtime-missions-pillow-002015">4.3 Pillow Runtime Missions (PILLOW-002→015)</h3>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Subsystem</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PILLOW-002</td>
+<td>Bootstrap + Repository Reader</td>
+<td><code>pillow/src/bootstrap/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-003</td>
+<td>Repository Intelligence</td>
+<td><code>pillow/src/intelligence/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-004</td>
+<td>Context Builder</td>
+<td><code>pillow/src/context/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-005</td>
+<td>Repository Memory</td>
+<td><code>pillow/src/memory/</code></td>
+<td>✅</td>
+<td>Legacy backend → EKLS</td>
+</tr>
+<tr>
+<td>PILLOW-006</td>
+<td>Mission Planner</td>
+<td><code>pillow/src/planner/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-007</td>
+<td>Cursor Supervisor</td>
+<td><code>pillow/src/supervisor/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-008</td>
+<td>Recovery Manager</td>
+<td><code>pillow/src/recovery/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-009</td>
+<td>Executive Audit Reviewer</td>
+<td><code>pillow/src/audit-reviewer/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-010</td>
+<td>Repository Synchronizer</td>
+<td><code>pillow/src/synchronizer/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-011</td>
+<td>Continuous Due Diligence</td>
+<td><code>pillow/src/due-diligence/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-012</td>
+<td>Autonomous Improvement</td>
+<td><code>pillow/src/improvement/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-013</td>
+<td>EmpireAI Orchestrator</td>
+<td><code>pillow/src/orchestrator/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-014</td>
+<td>Live Repository Watcher</td>
+<td><code>pillow/src/watcher/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>PILLOW-015</td>
+<td>Grand King Command Interface</td>
+<td><code>pillow/src/command/</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Deferred managers (contract):</strong> Journey · Decision · Status · UX Register · Audit Reader — 🔵 partial in Bootstrap</p>
+<h3 id="44-pillow-product-integration-pillow-016019">4.4 Pillow Product Integration (PILLOW-016→019)</h3>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Component</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Audits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PILLOW-016</td>
+<td>Brain Integration / Pillow Host</td>
+<td><code>backend/src/orchestration/pillow-host/</code></td>
+<td>✅</td>
+<td>Product integration plan</td>
+</tr>
+<tr>
+<td>PILLOW-017</td>
+<td>Approval Gate + Cursor Bridge</td>
+<td><code>backend/src/orchestration/pillow-approval/</code>, <code>.cursor/missions/pending/PILLOW-017.md</code></td>
+<td>✅ built · mission deferred</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PILLOW-018</td>
+<td>Pillow Chat UI</td>
+<td><code>frontend/.../PillowChatPage.tsx</code></td>
+<td>✅</td>
+<td>Executive Companion audit</td>
+</tr>
+<tr>
+<td>PILLOW-019</td>
+<td>Objective Engine + Companion</td>
+<td><code>pillow/src/objective/</code>, <code>PillowCompanionContext.tsx</code></td>
+<td>✅</td>
+<td>PILLOW-019 audit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Plans:</strong> <code>PILLOW_RUNTIME_INTEGRATION_PLAN.md</code> (✅ historical) · <code>docs/governance/PILLOW_PRODUCT_INTEGRATION_MASTER_PLAN.md</code> (✅ canonical)</p>
+<h3 id="45-pillow-executive-intelligence-layer-2-future">4.5 Pillow Executive Intelligence (Layer 2 — future)</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parent</th>
+<th>Status</th>
+<th>Classification</th>
+<th>Missions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executive Reflection</td>
+<td>Pillow L2</td>
+<td>🔵 Planned</td>
+<td>Derived</td>
+<td>PEI-026</td>
+</tr>
+<tr>
+<td>Evidence-Based Learning</td>
+<td>Pillow L2</td>
+<td>🔵 Planned</td>
+<td>Derived</td>
+<td>PEI-021</td>
+</tr>
+<tr>
+<td>OKQA</td>
+<td>Pillow L2</td>
+<td>🔵 Planned</td>
+<td>Derived</td>
+<td>PEI-027</td>
+</tr>
+<tr>
+<td>EIL Steward</td>
+<td>Pillow L2</td>
+<td>🔵 Planned</td>
+<td>Derived</td>
+<td>PEI-028</td>
+</tr>
+<tr>
+<td>Executive Perspectives</td>
+<td>Pillow</td>
+<td>✅ Doctrine/runtime</td>
+<td>Canonical</td>
+<td>§15 constitution</td>
+</tr>
+<tr>
+<td>Executive Council</td>
+<td>Pillow</td>
+<td>✅</td>
+<td>Derived</td>
+<td>Superseded by Perspectives audit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="46-pillow-commerce-intelligence-implemented">4.6 Pillow Commerce Intelligence (implemented)</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Audits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commerce Intelligence Core</td>
+<td><code>backend/src/intelligence/commerce-intelligence-core/</code></td>
+<td>✅</td>
+<td>PILLOW-020 CIC audit</td>
+</tr>
+<tr>
+<td>Commerce Intelligence OS</td>
+<td>Pillow-owned CIC integration</td>
+<td>✅</td>
+<td>PILLOW_020 audit</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="5-ekls">5. EKLS</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Canonical spec · 28 subsystems · Governance gateway · Unified service · Legacy backends</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Institutional memory — remembers, learns, preserves</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Permanent canonical specification</td>
+</tr>
+<tr>
+<td><strong>Completion</strong></td>
+<td>Gateway + registry ✅ · many stores architecture/partial</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>CANONICAL_EKLS_SPECIFICATION.md</code>, <code>backend/src/orchestration/pillow/ekls/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>EKLS institutionalisation (post-G3)</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>artifacts/canonical-ekls-executive-audit.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-ekls-implementation">5.1 EKLS Implementation</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Paths</th>
+<th>Status</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Canonical Specification</td>
+<td><code>CANONICAL_EKLS_SPECIFICATION.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong> (amend in place only)</td>
+</tr>
+<tr>
+<td>Subsystem registry (28)</td>
+<td><code>ekls/contracts/subsystem-registry.ts</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>Governance gateway</td>
+<td><code>ekls/services/ekls-governance-gateway.ts</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>Unified service</td>
+<td><code>ekls/services/ekls-unified-service.ts</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>Store registry</td>
+<td><code>ekls/storage/store-registry.ts</code></td>
+<td>✅</td>
+<td>Canonical</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><code>canonical-ekls.test.ts</code></td>
+<td>✅ 7/7</td>
+<td>Derived</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-ekls-legacy-integration-backends">5.2 EKLS Legacy Integration Backends</h3>
+<table>
+<thead>
+<tr>
+<th>Subsystem</th>
+<th>Backend path</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learning Store</td>
+<td><code>backend/src/orchestration/executive-learning/</code></td>
+<td>Legacy live</td>
+</tr>
+<tr>
+<td>Knowledge Store / Graph</td>
+<td><code>backend/src/runtime/empire-knowledge/</code></td>
+<td>Legacy live</td>
+</tr>
+<tr>
+<td>Document Memory</td>
+<td><code>pillow/src/memory/</code></td>
+<td>Legacy live</td>
+</tr>
+<tr>
+<td>Audit Memory</td>
+<td><code>artifacts/</code> (referenced)</td>
+<td>Derived</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="6-brain">6. Brain</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow (not peer)</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Orchestrator · Agents · Workflows · LLM · Queue · Auth · Memory (ephemeral)</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Mandatory orchestration execution path</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Production core (Railway)</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/brain/</code>, <code>backend/src/agents/</code>, <code>backend/src/auth/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>Phase 1–3 architecture · REAL dispatch wiring</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>EMPIREAI_CONSTITUTION · subsystems.test.ts</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Paths</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orchestrator</td>
+<td><code>brain/orchestrator.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Agent Manager</td>
+<td><code>brain/agent-manager.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Workflow Engine</td>
+<td><code>brain/workflow-engine.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Task Queue / Workers</td>
+<td><code>brain/task-queue.ts</code>, <code>workers/</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Tool Registry</td>
+<td><code>brain/tools/tool-registry.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>LLM Router</td>
+<td><code>brain/llm/llm-router.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Guardian integration</td>
+<td>Pre-dispatch</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Session Memory</td>
+<td><code>brain/memory/memory-store.ts</code></td>
+<td>✅ ephemeral (EKLS owns long-term)</td>
+</tr>
+<tr>
+<td>Module routes</td>
+<td><code>backend/src/agents/routes/module-routes.ts</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Architecture docs</td>
+<td><code>docs/ARCHITECTURE.md</code>, <code>docs/architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md</code></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="7-registry-system">7. Registry System</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>EA-002 architecture · EA-003 loader · EA-004 migration · EA-005 EPF · EA-006 discovery · EA-007 certification</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Registry-driven configuration — no hardcoded business assumptions</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ EA-003 wired · EA-007 PASS WITH CONDITIONS</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/registry/</code>, <code>artifacts/ea-*.md</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>EA-002→007</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>ea-003 audit · architecture-hardcode-governance (EA-001)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Document</th>
+<th>Status</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EA-001</td>
+<td><code>artifacts/architecture-hardcode-governance-audit.md</code></td>
+<td>✅</td>
+<td>Derived audit</td>
+</tr>
+<tr>
+<td>EA-002</td>
+<td><code>artifacts/ea-002-canonical-registry-architecture.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong> spec</td>
+</tr>
+<tr>
+<td>EA-003</td>
+<td><code>artifacts/ea-003-registry-loader-foundation-executive-audit.md</code></td>
+<td>✅</td>
+<td>Canonical implementation</td>
+</tr>
+<tr>
+<td>EA-004</td>
+<td><code>artifacts/ea-004-registry-migration-standard.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong> methodology</td>
+</tr>
+<tr>
+<td>EA-005</td>
+<td><code>artifacts/ea-005-plugin-framework.md</code></td>
+<td>✅</td>
+<td><strong>Canonical</strong> EPF spec</td>
+</tr>
+<tr>
+<td>EA-006</td>
+<td><code>artifacts/ea-006-dynamic-capability-discovery.md</code></td>
+<td>✅</td>
+<td>Derived spec</td>
+</tr>
+<tr>
+<td>EA-007</td>
+<td><code>artifacts/ea-007-architecture-certification.md</code></td>
+<td>✅ PASS WITH CONDITIONS</td>
+<td>Derived audit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Runtime:</strong> <code>backend/src/registry/registry-loader.ts</code> · tests <code>ea-003-registry-loader-foundation.test.ts</code> (12 tests)</p>
+<p><strong>Registry IDs:</strong> REG-DOCTRINE · REG-COUNTRY · REG-MARKETPLACE · REG-SUPPLIER · REG-CHANNEL · REG-PRODUCT (placeholder) · DERIVED-DISCOVERY-SNAPSHOT · + policy placeholders</p>
+<hr />
+<h1 id="8-guardian">8. Guardian</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Engine · Action guard · DB guardian · Health monitor · Recovery planner</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Pre-dispatch safety; database integrity; authority gates</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Implemented</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/guardian/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>ADR-004 · Constitution Art. II</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>guardian.test.ts</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="9-executive-ai-engines-g3">9. Executive AI Engines (G3)</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>G3-01→G3-10 · shared discovery · G3 architecture refactor</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Executive intelligence — analyse, never own memory</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ <strong>G3 SUITE CLOSED</strong></td>
+</tr>
+<tr>
+<td><strong>Completion</strong></td>
+<td>Architecture + Brain wiring + Cockpit panels + tests</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/intelligence/</code>, <code>backend/src/domain/services/*-views.ts</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td><code>artifacts/g3-*-executive-audit.md</code> (12 files)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="91-g3-engine-matrix">9.1 G3 Engine Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Engine</th>
+<th>Backend path</th>
+<th>Cockpit route</th>
+<th>Test</th>
+<th>Audit status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G3 arch</td>
+<td>Dynamic Market Discovery</td>
+<td><code>intelligence/shared/intelligence-market-discovery.ts</code></td>
+<td>—</td>
+<td>g3-architecture test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-01</td>
+<td>Product Intelligence</td>
+<td><code>product-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/products</code></td>
+<td>g3-01 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-02</td>
+<td>Market Intelligence</td>
+<td><code>market-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/markets</code></td>
+<td>g3-02 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-03</td>
+<td>Supplier Intelligence</td>
+<td><code>supplier-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/suppliers</code></td>
+<td>g3-03 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-04</td>
+<td>Financial Intelligence</td>
+<td><code>financial-intelligence-engine/</code></td>
+<td><code>/cockpit/finance/intelligence</code></td>
+<td>g3-04 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-05</td>
+<td>Quantitative Intelligence</td>
+<td><code>quantitative-intelligence-engine/</code></td>
+<td>Engine center</td>
+<td>g3-05 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-06</td>
+<td>Advertising Intelligence</td>
+<td><code>advertising-intelligence-engine/</code></td>
+<td><code>/cockpit/commerce/ad-intelligence</code></td>
+<td>g3-06 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-07</td>
+<td>Customer Intelligence</td>
+<td><code>customer-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/customers</code></td>
+<td>g3-07 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-08</td>
+<td>Risk Intelligence</td>
+<td><code>risk-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/risk</code></td>
+<td>g3-08 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-09</td>
+<td>Decision Intelligence</td>
+<td><code>decision-intelligence-engine/</code></td>
+<td><code>/cockpit/intelligence/decisions</code></td>
+<td>g3-09 test</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>G3-10</td>
+<td>Executive Intelligence Orchestrator</td>
+<td><code>executive-intelligence-orchestrator/</code></td>
+<td><code>/cockpit/intelligence/executive</code></td>
+<td>g3-10 test</td>
+<td>✅ <strong>SUITE CLOSED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>G3-10 consumer channels:</strong> Cockpit · Pillow · Global AI Assistant · <strong>Business Automation</strong> · Executive Reports</p>
+<hr />
+<h1 id="10-grand-king-cockpit-g4">10. Grand King Cockpit (G4)</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>G4-01 architecture · G4-02→10 implementation · Cockpit docs · UI shells</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Executive Operating System — visualise, approve, never own truth</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ G4 programme complete (G4-02→10)</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> (G4-01) + <strong>Derived</strong> (implementation)</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>empireai-web/app/(cockpit)/</code>, <code>empireai-web/components/cockpit/</code>, <code>frontend/src/pages/dashboard/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>G4-01→G4-10 · GO-002 Phase 4</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>11 <code>artifacts/g4-*</code> files</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Deliverable</th>
+<th>Status</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G4-01</td>
+<td>Complete cockpit architecture spec</td>
+<td>✅ Architecture only</td>
+<td>g4-01-grand-king-cockpit-architecture</td>
+</tr>
+<tr>
+<td>G4-02</td>
+<td>Live Brain wiring</td>
+<td>✅</td>
+<td>g4-02-live-cockpit-wiring</td>
+</tr>
+<tr>
+<td>G4-03</td>
+<td>Executive Home</td>
+<td>✅</td>
+<td>g4-03-executive-home</td>
+</tr>
+<tr>
+<td>G4-04</td>
+<td>Engine Centers</td>
+<td>✅</td>
+<td>g4-04-engine-centers</td>
+</tr>
+<tr>
+<td>G4-05</td>
+<td>Executive Dashboard</td>
+<td>✅</td>
+<td>g4-05-executive-dashboard</td>
+</tr>
+<tr>
+<td>G4-05A</td>
+<td>Grand King Authentication UX</td>
+<td>✅</td>
+<td>g4-05a</td>
+</tr>
+<tr>
+<td>G4-05B</td>
+<td>Authentication Verification</td>
+<td>✅</td>
+<td>g4-05b</td>
+</tr>
+<tr>
+<td>G4-06</td>
+<td>Live Executive Widgets</td>
+<td>✅</td>
+<td>g4-06</td>
+</tr>
+<tr>
+<td>G4-07</td>
+<td>AI Interaction Layer</td>
+<td>✅</td>
+<td>g4-07</td>
+</tr>
+<tr>
+<td>G4-08</td>
+<td>Executive Relationship Graph</td>
+<td>✅</td>
+<td>g4-08</td>
+</tr>
+<tr>
+<td>G4-09</td>
+<td>Global AI Assistant</td>
+<td>✅ Framework</td>
+<td>g4-09</td>
+</tr>
+<tr>
+<td>G4-10</td>
+<td>Production Readiness &amp; UX Polish</td>
+<td>✅</td>
+<td>g4-10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cockpit documentation:</strong> <code>docs/architecture/PROJECT_COCKPIT_SPECIFICATION.md</code> · <code>docs/architecture/cockpit/COCKPIT_*.md</code> (6 files)</p>
+<p><strong>GO-002:</strong> <code>GO-002_GRAND_KING_OPERATIONAL_MASTER_PLAN.md</code> — operational sequence driver</p>
+<hr />
+<h1>11. Business Engines &amp; B6</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>7 canonical engines · execution/ modules · B6 live probes · CRI</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Commerce execution — orders, listings, payments, logistics</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>🟡 Partial live · namespace consolidation pending</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Legacy layout</strong> → <strong>Canonical</strong> targets</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/execution/</code>, <code>payments/</code>, <code>revenue/</code>, <code>orders/</code>, <code>fulfillment/</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>REAL commerce chain · B6 · CRI</td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>B6-01A→04B · COMBINED REAL commerce audits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="111-canonical-business-engines-target-map">11.1 Canonical Business Engines (target map)</h3>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Primary paths</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marketplace</td>
+<td><code>orchestration/marketplace-*</code>, <code>runtime/global-commerce/</code>, <code>runtime/amazon-global-seller/</code></td>
+<td>🟡 Partial</td>
+</tr>
+<tr>
+<td>Supplier</td>
+<td><code>suppliers/</code>, <code>execution/live-cj-fulfillment/</code></td>
+<td>🟡 Partial</td>
+</tr>
+<tr>
+<td>Storefront</td>
+<td><code>execution/store-*</code>, <code>storefront-*</code>, <code>production-store-deployment/</code></td>
+<td>🟡 Partial</td>
+</tr>
+<tr>
+<td>Advertising</td>
+<td><code>execution/meta-ads-connector/</code>, <code>marketing-campaign-*</code></td>
+<td>🟡 Partial</td>
+</tr>
+<tr>
+<td>Payment</td>
+<td><code>payments/</code>, <code>revenue/live-payment-engine/</code></td>
+<td>🟡 Partial live</td>
+</tr>
+<tr>
+<td>Logistics</td>
+<td><code>fulfillment/</code>, <code>orders/</code></td>
+<td>🟡 Partial</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td><code>execution/analytics-*</code>, <code>reporting/</code></td>
+<td>🟡 Partial</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112-b6-live-commerce-programme">11.2 B6 Live Commerce Programme</h3>
+<table>
+<thead>
+<tr>
+<th>Mission</th>
+<th>Focus</th>
+<th>Status</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B6-01A</td>
+<td>Amazon SP-API scope</td>
+<td><strong>Superseded</strong></td>
+<td>b6-01a</td>
+</tr>
+<tr>
+<td>B6-01B</td>
+<td>Marketplace architecture</td>
+<td>Amended</td>
+<td>b6-01b</td>
+</tr>
+<tr>
+<td>B6-01C</td>
+<td>Marketplace governance v2</td>
+<td>✅</td>
+<td>b6-01c (ADR-052)</td>
+</tr>
+<tr>
+<td>B6-01D</td>
+<td>Amazon multi-region foundation</td>
+<td>✅ Foundation</td>
+<td>b6-01d</td>
+</tr>
+<tr>
+<td>B6-02A</td>
+<td>CJ API 2.0 auth compatibility</td>
+<td>✅</td>
+<td>b6-02a</td>
+</tr>
+<tr>
+<td>B6-02B</td>
+<td>Live CJ auth proof</td>
+<td>✅ PASS</td>
+<td>b6-02b</td>
+</tr>
+<tr>
+<td>B6-03</td>
+<td>Stripe production readiness</td>
+<td>🟡 Pending</td>
+<td>b6-03</td>
+</tr>
+<tr>
+<td>B6-03B</td>
+<td>Stripe live auth proof</td>
+<td>✅ PASS</td>
+<td>b6-03b</td>
+</tr>
+<tr>
+<td>B6-03C</td>
+<td>Railway recovery</td>
+<td>✅ RESTORED</td>
+<td>b6-03c</td>
+</tr>
+<tr>
+<td>B6-04</td>
+<td>Production vault</td>
+<td>❌ FAIL</td>
+<td>b6-04</td>
+</tr>
+<tr>
+<td>B6-04B</td>
+<td>Live vault certification</td>
+<td>✅ PASS</td>
+<td>b6-04b</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CRI:</strong> <code>backend/src/orchestration/commerce-readiness-engine/</code> · CRIR doctrine docs</p>
+<hr />
+<h1 id="12-real-programme">12. REAL Programme</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow → EmpireAI platform</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>REAL-001→100 · reality-integration · runtime/ (103 modules)</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Modular runtime architecture — advisory + execution dashboards</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Built/wired (⚠️ 4 namespace conflicts)</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> labels · <strong>Legacy</strong> runtime tier C collapse target</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>backend/src/runtime/</code>, <code>backend/src/orchestration/reality-integration/</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>11 COMBINED REAL batch audits · REAL-061 recovery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="121-real-batch-audits">12.1 REAL Batch Audits</h3>
+<table>
+<thead>
+<tr>
+<th>Audit file</th>
+<th>REAL range</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COMBINED REAL-002B</td>
+<td>REAL-002B Live Commerce</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-003-007</td>
+<td>REAL-003→007</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-008-012</td>
+<td>REAL-008→012</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-013-018</td>
+<td>REAL-013→018</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-019-025</td>
+<td>REAL-019→025</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-026-035</td>
+<td>REAL-026→035</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-036-050</td>
+<td>REAL-036→050</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-051-070</td>
+<td>REAL-051→070</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL-071-100</td>
+<td>REAL-071→100</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>COMBINED REAL061</td>
+<td>Backend compile recovery</td>
+<td>✅ Certified</td>
+</tr>
+<tr>
+<td>EXECUTIVE_AUDIT REAL072</td>
+<td>Frontend production build</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gaps (no combined audit):</strong> REAL-001 · REAL-002 · REAL-002A</p>
+<h3 id="122-real-001100-index-journey-status">12.2 REAL-001→100 Index (Journey status)</h3>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Domain</th>
+<th>Journey status</th>
+<th>Audit batch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REAL-001→002B</td>
+<td>Reality Integration / Live Commerce</td>
+<td>✅ (002B)</td>
+<td>002B</td>
+</tr>
+<tr>
+<td>REAL-003→007</td>
+<td>Global Commerce Execution</td>
+<td>✅ ⚠️ namespace</td>
+<td>003-007</td>
+</tr>
+<tr>
+<td>REAL-008→012</td>
+<td>Global Marketplace Operations</td>
+<td>✅</td>
+<td>008-012</td>
+</tr>
+<tr>
+<td>REAL-013→018</td>
+<td>Global Command Center</td>
+<td>✅</td>
+<td>013-018</td>
+</tr>
+<tr>
+<td>REAL-019→025</td>
+<td>Economics + V1 readiness</td>
+<td>✅</td>
+<td>019-025</td>
+</tr>
+<tr>
+<td>REAL-026→035</td>
+<td>SUCCESS-001 Commercial OS</td>
+<td>✅</td>
+<td>026-035</td>
+</tr>
+<tr>
+<td>REAL-036→050</td>
+<td>Production + go-live</td>
+<td>✅</td>
+<td>036-050</td>
+</tr>
+<tr>
+<td>REAL-051→070</td>
+<td>Grand King HQ expansion</td>
+<td>✅</td>
+<td>051-070</td>
+</tr>
+<tr>
+<td>REAL-071→100</td>
+<td>V1 absolute completion</td>
+<td>✅</td>
+<td>071-100</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ Deferred conflicts (ADR-044):</strong> REAL-003/004/005 foundation vs commerce · REAL-055 alias drift</p>
+<p><strong>Superseded:</strong> <code>EMPIREAI_REALITY_V1.md</code> · <code>ARCHIVED_R002_README.md</code> · <code>MARKETPLACE_OS_VISION.md</code> (partial)</p>
+<hr />
+<h1 id="13-executive-intelligence-library">13. Executive Intelligence Library</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Grand King → Pillow applies</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>EI0→EI10 · EIR reports · Pillow executive companion docs</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Approved executive doctrine — Pillow executes, never self-amends</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ EIR-v1.0 certified</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> (King-approved)</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>docs/executive-intelligence/</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>EIR-001→006 · GO-001 · GO-002</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Role</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EI0 Charter</td>
+<td>Executive Intelligence charter</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>EI1 Empire Constitution</td>
+<td>Empire constitution (EI)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>EI2→EI10</td>
+<td>Domain doctrines (commerce, risk, marketplace, etc.)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>EI_INDEX.md</td>
+<td>Library index</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>EXECUTIVE_INTELLIGENCE_MANIFEST.md</td>
+<td>Manifest</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>EXECUTIVE_INTELLIGENCE_RELEASE_CERTIFICATE.md</td>
+<td>EIR-v1.0</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>PILLOW_EXECUTIVE_*.md (8 files)</td>
+<td>Pillow alignment</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GO-001</td>
+<td>Operational readiness report</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GO-002</td>
+<td>Grand King operational master plan</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>14. UX &amp; Global Components</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow → Cockpit presentation</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>UX Master · UX-001→023 · GC-01→07 · Executive Components</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Frozen V1 UX contract and global chrome</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ UX complete</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> contract · <strong>Derived</strong> pages</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>UX_IMPLEMENTATION_CONTRACT.md</code>, <code>frontend/</code>, <code>empireai-web/</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>COMBINED UX-001-023 · GC-03 · GC-05</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>IDs</th>
+<th>ADR</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UX Blueprint</td>
+<td>UX-000→000B</td>
+<td>—</td>
+<td>✅ Superseded by contract</td>
+</tr>
+<tr>
+<td>UX Screens</td>
+<td>UX-001→023</td>
+<td>—</td>
+<td>✅ Frozen</td>
+</tr>
+<tr>
+<td>Global Components</td>
+<td>GC-01→07</td>
+<td>ADR-047</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GC-03 Notifications</td>
+<td>GC-03</td>
+<td>ADR-047 Attention</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GC-05 AI Assistant</td>
+<td>GC-05</td>
+<td>ADR-047 Interaction</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Integrations Hub</td>
+<td>UX-024</td>
+<td>ADR-050</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="15-business-automation-g5">15. Business Automation (G5)</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>G5-00 architecture · G5-01→10 roadmap (not implemented)</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Convert approved executive decisions into executable business operations</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ G5-00 architecture only · 🔴 No runtime</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> (architecture)</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>artifacts/g5-business-automation-architecture.md</code></td>
+</tr>
+<tr>
+<td><strong>Missions</strong></td>
+<td>G5-00 complete · G5-01+ planned</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>G3-10 <code>business-automation</code> consumer channel</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Planned children (G5-01→10):</strong> Registry schemas · Trigger engine · Scheduler · Orchestrator · Approval router · Recovery · Cockpit SCR · EKLS outcomes · EPF plugins · Production audit</p>
+<hr />
+<h1>16. Mission System &amp; Cursor</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Mission Planner · Cursor Supervisor · <code>.cursor/missions/</code> · CAGW</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Grand King-approved Cursor execution and repository artifacts</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Runtime · 2 pending mission files</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong></td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>pillow/src/planner/</code>, <code>pillow/src/supervisor/</code>, <code>.cursor/missions/</code></td>
+</tr>
+<tr>
+<td><strong>Doctrines</strong></td>
+<td><code>EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Pending mission</th>
+<th>Path</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PILLOW-017</td>
+<td><code>.cursor/missions/pending/PILLOW-017.md</code></td>
+<td>Deferred post-V1</td>
+</tr>
+<tr>
+<td>REPOSITORY-SYNC</td>
+<td><code>.cursor/missions/pending/REPOSITORY-SYNC.md</code></td>
+<td>Pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="17-executive-audit-system">17. Executive Audit System</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>Audit standard · artifacts/ · COMBINED audits · Audit index · PILLOW-009 reviewer</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Mandatory quality gate and permanent audit corpus</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Active (38+ combined · 45 artifacts)</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td><strong>Canonical</strong> standard · <strong>Derived</strong> artifacts</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>EMPIREAI_EXECUTIVE_AUDIT_STANDARD.md</code>, <code>artifacts/</code>, <code>docs/governance/EXECUTIVE_AUDIT_INDEX.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audit categories:</strong> CTD · GVD · ACD · UID · CBD · REAL (11 batches) · UX · GC · Pillow (10+) · V1 certification · G3 (12) · G4 (11) · G5 · B6 (12) · EA (7) · EKLS · Constitutional · SA-001 supreme audit</p>
+<hr />
+<h1>18. Deployment &amp; Infrastructure</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Pillow → Future Platform Services</td>
+</tr>
+<tr>
+<td><strong>Children</strong></td>
+<td>MPD-001 · Railway · Vercel · Supabase · Upstash</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Version 1 managed cloud deployment</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ Documentation · deploy pending</td>
+</tr>
+<tr>
+<td><strong>Paths</strong></td>
+<td><code>deployment/</code>, <code>railway.toml</code>, <code>vercel.json</code></td>
+</tr>
+<tr>
+<td><strong>Audits</strong></td>
+<td>MANAGED_PRODUCTION_DEPLOYMENT · MANAGED_DEPLOYMENT_SYNCHRONIZATION · V1_PRODUCTION_DEPLOYMENT</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Platform</th>
+<th>Doc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>Vercel</td>
+<td><code>deployment/vercel.md</code></td>
+</tr>
+<tr>
+<td>Backend (Brain)</td>
+<td>Railway</td>
+<td><code>deployment/railway.md</code></td>
+</tr>
+<tr>
+<td>Storage backup</td>
+<td>Supabase</td>
+<td><code>deployment/supabase.md</code></td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Upstash</td>
+<td><code>deployment/upstash.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="19-future-programmes">19. Future Programmes</h1>
+<table>
+<thead>
+<tr>
+<th>Programme</th>
+<th>Parent</th>
+<th>Status</th>
+<th>Next missions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>G5 Business Automation</strong></td>
+<td>Pillow</td>
+<td>G5-00 ✅</td>
+<td>G5-01→10 implementation</td>
+</tr>
+<tr>
+<td><strong>Pillow Layer 2 EI</strong></td>
+<td>Pillow</td>
+<td>🔵 Docs only</td>
+<td>PEI-021, 026, 027, 028</td>
+</tr>
+<tr>
+<td><strong>MS-A USD 100K</strong></td>
+<td>Commercial</td>
+<td>🔴</td>
+<td>PROOF-001 · live commerce</td>
+</tr>
+<tr>
+<td><strong>MS-B USD 1M</strong></td>
+<td>Commercial</td>
+<td>🔴</td>
+<td>Post MS-A</td>
+</tr>
+<tr>
+<td><strong>GK-GOLIVE-APPROVAL</strong></td>
+<td>Release</td>
+<td>🔴</td>
+<td>B5–B8 blockers</td>
+</tr>
+<tr>
+<td><strong>REAL namespace cleanup</strong></td>
+<td>REAL</td>
+<td>⚠️ Deferred post-V1</td>
+<td>Renumber 003–005</td>
+</tr>
+<tr>
+<td><strong>Runtime Tier C collapse</strong></td>
+<td>REAL</td>
+<td>🔵</td>
+<td>REAL-078 consolidation</td>
+</tr>
+<tr>
+<td><strong>Prompt Registry</strong></td>
+<td>Pillow</td>
+<td>🔴 Not implemented</td>
+<td>Master index §13</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="completion-summary">Completion Summary</h1>
+<h3 id="programmes-closed-or-architecturally-complete">Programmes closed or architecturally complete</h3>
+<ul>
+<li><strong>BL-A / BL-B</strong> — repository synchronization and Pillow doctrine batches</li>
+<li><strong>Pillow Runtime PILLOW-002→019</strong> — Layer 1 complete</li>
+<li><strong>Executive Intelligence Library EIR-v1.0</strong> — certified</li>
+<li><strong>UX Master UX-001→023</strong> — frozen V1 contract</li>
+<li><strong>G3 Executive AI Engine suite G3-01→G3-10</strong> — closed</li>
+<li><strong>G4 Cockpit G4-02→G4-10</strong> — complete</li>
+<li><strong>EKLS canonical specification</strong> — permanent</li>
+<li><strong>Registry EA-002→007</strong> — certified (conditions on EA-007)</li>
+<li><strong>REAL-001→100</strong> — built/wired in Journey (live revenue separate)</li>
+<li><strong>G5-00 Business Automation architecture</strong> — specification only</li>
+</ul>
+<h3 id="active-or-open-workstreams">Active or open workstreams</h3>
+<ul>
+<li><strong>BL-C</strong> continuous improvement — enhancement registers accumulating</li>
+<li><strong>V1 Certification Mode</strong> — blockers B5–B8 open</li>
+<li><strong>PROOF-001 / MS-A / GK-GOLIVE</strong> — live commercial gates</li>
+<li><strong>Pillow Layer 2</strong> — Executive Reflection and learning runtime deferred</li>
+<li><strong>G5-01+</strong> — Business Automation implementation not started</li>
+<li><strong>B6</strong> — mixed live auth proofs; production vault path certified via B6-04B</li>
+<li><strong>REAL namespace conflicts</strong> — four labels deferred post-V1</li>
+</ul>
+<h3 id="superseded-documents-retained-in-repository">Superseded documents (retained in repository)</h3>
+<ul>
+<li><code>EMPIREAI_REALITY_V1.md</code> · <code>MARKETPLACE_OS_VISION.md</code> · <code>ARCHIVED_R002_README.md</code></li>
+<li><code>EMPIREAI_UX_MASTER_BLUEPRINT.md</code> (by UX contract)</li>
+<li>B6-01A (by B6-01C)</li>
+<li>Pillow Executive Council audit (by Executive Perspectives refinement)</li>
+</ul>
+<h3 id="definitive-cross-references">Definitive cross-references</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Document</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operational status</td>
+<td><code>JOURNEY.md</code></td>
+</tr>
+<tr>
+<td>Artifact paths</td>
+<td><code>EMPIREAI_REPOSITORY_MASTER_INDEX.md</code></td>
+</tr>
+<tr>
+<td>Technical ownership</td>
+<td><code>EMPIREAI_PILLOW_CONSTITUTION.md</code> §17</td>
+</tr>
+<tr>
+<td>Target architecture</td>
+<td><code>docs/architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md</code></td>
+</tr>
+<tr>
+<td>Hierarchy inventory</td>
+<td><code>artifacts/repository-totality-hierarchy-report.md</code></td>
+</tr>
+<tr>
+<td>Build history (this bible)</td>
+<td><code>artifacts/empireai-master-build-bible.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>EmpireAI Master Build Bible · Repository archaeology · 2026-07-02 · Grand King Authority · No repository files modified</em></p>
+</body>
+</html>

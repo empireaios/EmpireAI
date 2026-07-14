@@ -1,0 +1,201 @@
+﻿TAP version 13
+# Subtest: T5-06 Adaptive Interface
+    # Subtest: buildAdaptiveInterfaceConfiguration loads defaults
+    ok 1 - buildAdaptiveInterfaceConfiguration loads defaults
+      ---
+      duration_ms: 14.9595
+      type: 'test'
+      ...
+    # Subtest: adaptive interface initializes with doctrine doc
+    ok 2 - adaptive interface initializes with doctrine doc
+      ---
+      duration_ms: 3491.6185
+      type: 'test'
+      ...
+    # Subtest: adapt produces machine-readable adaptive interface records
+    not ok 3 - adapt produces machine-readable adaptive interface records
+      ---
+      duration_ms: 3877.7229
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:22152'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:898:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: detects workflow context from T5 chain
+    not ok 4 - detects workflow context from T5 chain
+      ---
+      duration_ms: 8153.3591
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:22970'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:920:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: generates adaptive navigation recommendations
+    not ok 5 - generates adaptive navigation recommendations
+      ---
+      duration_ms: 3610.8619
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:23245'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:930:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: generates adaptive workspace recommendations
+    not ok 6 - generates adaptive workspace recommendations
+      ---
+      duration_ms: 3653.0151
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:23637'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:945:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: never applies interface changes automatically (recommend-only)
+    not ok 7 - never applies interface changes automatically (recommend-only)
+      ---
+      duration_ms: 3254.4084
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:24026'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:959:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: start and stop continuous adaptation toggles monitoring state
+    ok 8 - start and stop continuous adaptation toggles monitoring state
+      ---
+      duration_ms: 6532.3423
+      type: 'test'
+      ...
+    # Subtest: validateForSupervisorSync reports readiness after adaptation
+    not ok 9 - validateForSupervisorSync reports readiness after adaptation
+      ---
+      duration_ms: 2842.8159
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:24714'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:977:31)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: cockpit snapshot exposes adaptation health
+    not ok 10 - cockpit snapshot exposes adaptation health
+      ---
+      duration_ms: 2795.4771
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:25066'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:986:31)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: getLatestReport returns most recent adaptation run
+    not ok 11 - getLatestReport returns most recent adaptation run
+      ---
+      duration_ms: 3146.9834
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:25371'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:995:46)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: maintains adaptive interface profile after adaptation
+    not ok 12 - maintains adaptive interface profile after adaptation
+      ---
+      duration_ms: 2774.1124
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:25690'
+      failureType: 'testCodeFailure'
+      error: 'candidates is not defined'
+      code: 'ERR_TEST_FAILURE'
+      name: 'ReferenceError'
+      stack: |-
+        InterfaceProfileManager.updateProfile (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\interface-profile-manager.ts:37:49)
+        AdaptiveInterfaceManager.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-manager.ts:78:41)
+        AdaptiveInterfaceController.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\adaptive-interface-controller.ts:174:35)
+        AdaptiveInterfaceEngine.adapt (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\adaptive-interface-engine\engine.ts:122:28)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\adaptive-interface.test.ts:1004:31)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    1..12
+not ok 1 - T5-06 Adaptive Interface
+  ---
+  duration_ms: 44165.9047
+  type: 'suite'
+  location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\adaptive-interface.test.ts:1:19523'
+  failureType: 'subtestsFailed'
+  error: '9 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...

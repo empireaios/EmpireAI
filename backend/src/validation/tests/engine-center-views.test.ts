@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
+import { configureValidationEnvironment } from "../harness.js";
 import { loadEngineCenterView } from "../../domain/services/engine-center-views.js";
 import { ENGINE_CENTER_IDS } from "../../domain/services/engine-center-views.js";
+
+configureValidationEnvironment();
 
 describe("Engine Center views (G4-04)", () => {
   for (const engineId of ENGINE_CENTER_IDS) {

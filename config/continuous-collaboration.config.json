@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "sessionPersistenceRulesEnabled": true,
+  "contextRetentionRulesEnabled": true,
+  "maxActiveDiscussions": 20,
+  "pendingProposalRetentionRulesEnabled": true,
+  "pendingApprovalRetentionRulesEnabled": true,
+  "preferenceApplicationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "collaborationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistorySessions": 50,
+  "maxPendingProposals": 30,
+  "maxPendingApprovals": 20
+}

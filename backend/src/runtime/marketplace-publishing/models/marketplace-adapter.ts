@@ -1,10 +1,17 @@
 import { z } from "zod";
 
-import { isAmazonLiveCommerceActivated } from "../../../orchestration/version-1-activation/version-1-activation-config.js";
+import {
+  isAmazonLiveCommerceActivated,
+  isAmazonMarketplaceLiveActivated,
+} from "../../../orchestration/version-1-activation/version-1-activation-config.js";
+import type { AmazonMarketplaceRegistryId } from "../../../orchestration/reality-integration/live-commerce/amazon-marketplace-profiles.js";
+import { isAmazonMarketplaceRegistryId } from "../../../orchestration/reality-integration/live-commerce/amazon-marketplace-profiles.js";
 
 /** REAL-003 — Supported marketplace adapters (provider-agnostic). */
 export const MARKETPLACE_PUBLISH_IDS = [
   "amazon",
+  "amazon-us",
+  "amazon-sg",
   "ebay",
   "etsy",
   "shopify",
@@ -29,7 +36,9 @@ export const marketplaceAdapterSchema = z.object({
 export type MarketplaceAdapter = z.infer<typeof marketplaceAdapterSchema>;
 
 export const MARKETPLACE_ADAPTERS: MarketplaceAdapter[] = [
-  { marketplaceId: "amazon", displayName: "Amazon", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "amazon-sp-api", validatorId: "amazon-listing" },
+  { marketplaceId: "amazon", displayName: "Amazon (all V1 regions)", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "amazon-sp-api", validatorId: "amazon-listing" },
+  { marketplaceId: "amazon-us", displayName: "Amazon US", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "amazon-sp-api", validatorId: "amazon-listing" },
+  { marketplaceId: "amazon-sg", displayName: "Amazon Singapore", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "amazon-sp-api", validatorId: "amazon-listing" },
   { marketplaceId: "ebay", displayName: "eBay", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "ebay-trading", validatorId: "ebay-listing" },
   { marketplaceId: "etsy", displayName: "Etsy", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "etsy-v3", validatorId: "etsy-listing" },
   { marketplaceId: "shopify", displayName: "Shopify", adapterStatus: "ARCHITECTURE_READY", supportsDraft: true, supportsPublish: false, requiresKingApproval: true, formatterId: "shopify-admin", validatorId: "shopify-product" },
@@ -45,6 +54,16 @@ export function resolveMarketplaceAdapter(
 ): MarketplaceAdapter {
   const base = MARKETPLACE_ADAPTERS.find((a) => a.marketplaceId === marketplaceId)!;
   if (marketplaceId === "amazon" && isAmazonLiveCommerceActivated(env)) {
+    return {
+      ...base,
+      adapterStatus: "CONNECTED",
+      supportsPublish: true,
+    };
+  }
+  if (
+    isAmazonMarketplaceRegistryId(marketplaceId) &&
+    isAmazonMarketplaceLiveActivated(marketplaceId as AmazonMarketplaceRegistryId, env)
+  ) {
     return {
       ...base,
       adapterStatus: "CONNECTED",

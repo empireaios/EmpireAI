@@ -11,6 +11,7 @@ import {
   resetPillowHostSingleton,
   shutdownPillowHost,
 } from "../../orchestration/pillow-host/index.js";
+import { resetPillowBootState } from "../../orchestration/pillow-host/pillow-boot.js";
 import { createBrainLLMAdapter } from "../../orchestration/pillow-host/brain-llm-adapter.js";
 import { configureValidationEnvironment } from "../harness.js";
 
@@ -19,11 +20,13 @@ describe("PILLOW-016 Pillow Host Integration", () => {
     configureValidationEnvironment();
     resetDatabaseInstance();
     resetPillowHostSingleton();
+    resetPillowBootState();
   });
 
   after(async () => {
     await shutdownPillowHost();
     resetPillowHostSingleton();
+    resetPillowBootState();
     resetDatabaseInstance();
   });
 
@@ -83,6 +86,7 @@ describe("PILLOW-016 Pillow Host Integration", () => {
       startWorkers: false,
       startScheduler: false,
       pillowEnabled: true,
+      earlyListen: true,
     });
 
     try {
@@ -168,6 +172,7 @@ describe("PILLOW-016 Pillow Host Integration", () => {
       startWorkers: false,
       startScheduler: false,
       pillowEnabled: true,
+      earlyListen: true,
     });
 
     try {

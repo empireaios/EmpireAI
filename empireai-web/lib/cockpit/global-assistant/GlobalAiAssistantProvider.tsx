@@ -28,8 +28,21 @@ import {
   type PillowConversationTurn,
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
-import { createPillowHostSession, sendPillowChat } from "@/lib/pillow/client";
+import { createPillowHostSession, fetchPillowHistory, sendPillowChat } from "@/lib/pillow/client";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
+import type { PillowChatArtifact } from "@/lib/pillow/types";
+import {
+  buildExecutiveContextSnapshot,
+  buildPillowActionPrompt,
+  buildPillowWorkspaceContext,
+  buildProactiveGuidance,
+  resolveCockpitScreenContext,
+  type PillowExecutiveContextSnapshot,
+  type PillowGuidanceItem,
+  type PillowPageContextOverride,
+  type PillowWorkspaceContext,
+} from "@/lib/pillow-ux";
+import { useFounderShellOptional } from "@/lib/founder-shell/FounderShellProvider";
 import { useAuth } from "@/lib/auth/context";
 
 type GlobalAiAssistantState = {
@@ -45,6 +58,10 @@ type GlobalAiAssistantState = {
   hostSessionId: string | null;
   pillowConnected: boolean;
   connectionError: string | null;
+  pageOverride: PillowPageContextOverride | null;
+  executiveSnapshot: PillowExecutiveContextSnapshot | null;
+  proactiveGuidance: PillowGuidanceItem[];
+  workspaceContext: PillowWorkspaceContext | null;
 };
 
 type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
@@ -55,6 +72,7 @@ type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
   setQueryDraft: (query: string) => void;
   setPanelWidthPx: (widthPx: number) => void;
   setVoiceEnabled: (enabled: boolean) => void;
+  setPageOverride: (override: PillowPageContextOverride | null) => void;
   refreshContext: () => Promise<void>;
   runAction: (
     action: GlobalAssistantAction,
@@ -62,10 +80,10 @@ type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
     query?: string,
   ) => Promise<void>;
   ask: (query: string, target?: GlobalAssistantTarget) => Promise<void>;
-  explain: (label: string, targetId?: string, value?: string) => Promise<void>;
-  recommend: () => Promise<void>;
-  summarise: () => Promise<void>;
-  nextAction: () => Promise<void>;
+  explain: (label: string, targetId?: string, value?: string) => void;
+  recommend: () => void;
+  summarise: () => void;
+  nextAction: () => void;
 };
 
 const GlobalAiAssistantContext = createContext<GlobalAiAssistantContextValue | null>(null);
@@ -73,10 +91,12 @@ const GlobalAiAssistantContext = createContext<GlobalAiAssistantContextValue | n
 export function GlobalAiAssistantProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { user } = useAuth();
+  const founderShell = useFounderShellOptional();
   const panelPrefs = loadPillowPanelPreferences();
   const savedSession = loadPillowSession();
   const hostSessionInit = useRef(false);
   const sessionRecoveryAttempted = useRef(false);
+  const navHistoryRef = useRef<string[]>([pathname]);
 
   const [state, setState] = useState<GlobalAiAssistantState>({
     expanded: panelPrefs.expanded,
@@ -91,7 +111,18 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     hostSessionId: savedSession?.hostSessionId ?? null,
     pillowConnected: false,
     connectionError: null,
+    pageOverride: null,
+    executiveSnapshot: null,
+    proactiveGuidance: [],
+    workspaceContext: null,
   });
+
+  useEffect(() => {
+    const history = navHistoryRef.current;
+    if (history[history.length - 1] !== pathname) {
+      navHistoryRef.current = [...history, pathname].slice(-20);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     savePillowPanelPreferences({
@@ -101,6 +132,61 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     });
   }, [state.expanded, state.panelWidthPx, state.voiceEnabled]);
 
+  const buildWorkspaceContext = useCallback(
+    (
+      brainContext: GlobalAssistantContext | null,
+      pageOverride: PillowPageContextOverride | null,
+    ): PillowWorkspaceContext => {
+      const snapshot = buildExecutiveContextSnapshot({
+        founderShell: founderShell?.data ?? null,
+        brainContext,
+        pendingApprovals: brainContext?.executiveContext?.activeMissionCount,
+        nextExecutiveAction: brainContext?.executiveContext?.nextExecutiveAction ?? null,
+      });
+
+      return buildPillowWorkspaceContext({
+        screenPath: pathname,
+        navigationHistory: navHistoryRef.current,
+        pageOverride,
+        executive: {
+          currentBusiness: snapshot.currentBusiness,
+          currentMission: snapshot.currentMission,
+          currentJourney: snapshot.currentJourney,
+          currentRoadmapItem: snapshot.currentRoadmapItem,
+          builderStatus: snapshot.builderStatus,
+          supervisorStatus: snapshot.supervisorStatus,
+          productionStatus: snapshot.productionStatus,
+          guardianStatus: snapshot.guardianStatus,
+          pendingApprovals: snapshot.pendingApprovals,
+          unreadNotifications: snapshot.alertCount,
+          recommendations: snapshot.recommendations,
+          risks: snapshot.risks,
+        },
+      });
+    },
+    [founderShell?.data, pathname],
+  );
+
+  const syncExecutiveAwareness = useCallback(
+    (brainContext: GlobalAssistantContext | null, pageOverride: PillowPageContextOverride | null) => {
+      const snapshot = buildExecutiveContextSnapshot({
+        founderShell: founderShell?.data ?? null,
+        brainContext,
+        pendingApprovals: brainContext?.executiveContext?.activeMissionCount,
+        nextExecutiveAction: brainContext?.executiveContext?.nextExecutiveAction ?? null,
+      });
+      const guidance = buildProactiveGuidance(snapshot);
+      const workspaceContext = buildWorkspaceContext(brainContext, pageOverride);
+      setState((s) => ({
+        ...s,
+        executiveSnapshot: snapshot,
+        proactiveGuidance: guidance,
+        workspaceContext,
+      }));
+    },
+    [buildWorkspaceContext, founderShell?.data],
+  );
+
   useEffect(() => {
     if (!user) return;
     if (hostSessionInit.current) return;
@@ -109,8 +195,28 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     void (async () => {
       try {
         const session = await createPillowHostSession();
+        let turns = savedSession?.turns ?? [];
+        try {
+          const history = await fetchPillowHistory(session.sessionId);
+          if (history.session.conversationHistory.length > 0) {
+            turns = history.session.conversationHistory.flatMap((turn, index) => {
+              const role = turn.role === "user" ? ("grand-king" as const) : ("pillow" as const);
+              return [
+                {
+                  id: `server-${index}-${turn.timestamp}`,
+                  role,
+                  content: turn.content,
+                  screenPath: pathname,
+                  recordedAt: turn.timestamp,
+                },
+              ];
+            });
+          }
+        } catch {
+          /* keep local turns if history unavailable */
+        }
         const snapshot: PillowSessionSnapshot = {
-          turns: savedSession?.turns ?? [],
+          turns,
           lastScreenPath: pathname,
           updatedAt: new Date().toISOString(),
           hostSessionId: session.sessionId,
@@ -118,6 +224,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         savePillowSession(snapshot);
         setState((s) => ({
           ...s,
+          conversation: turns,
           hostSessionId: session.sessionId,
           pillowConnected: true,
           connectionError: null,
@@ -145,22 +252,34 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         action: "context",
         payload: { screenPath: pathname },
       });
+      const brainContext = result.result ?? null;
       setState((s) => ({
         ...s,
         loading: false,
-        context: result.result ?? null,
+        context: brainContext,
       }));
+      syncExecutiveAwareness(brainContext, state.pageOverride);
     } catch {
       setState((s) => ({ ...s, loading: false }));
     }
-  }, [pathname]);
+  }, [pathname, state.pageOverride, syncExecutiveAwareness]);
 
   useEffect(() => {
     void refreshContext();
   }, [refreshContext]);
 
+  useEffect(() => {
+    if (state.context) {
+      syncExecutiveAwareness(state.context, state.pageOverride);
+    }
+  }, [founderShell?.data, state.context, state.pageOverride, syncExecutiveAwareness]);
+
   const recordConversation = useCallback(
-    (query: string, response: GlobalAssistantResponse | null) => {
+    (
+      query: string,
+      response: GlobalAssistantResponse | null,
+      artifacts?: PillowChatArtifact[],
+    ) => {
       let session: PillowSessionSnapshot | null = loadPillowSession();
       session = appendPillowTurn(session, {
         role: "grand-king",
@@ -172,6 +291,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           role: "pillow",
           content: response.interactionSummary,
           screenPath: pathname,
+          artifacts,
         });
       }
       setState((s) => ({
@@ -246,6 +366,54 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     [pathname],
   );
 
+  const sendViaPillow = useCallback(
+    async (
+      query: string,
+      target?: GlobalAssistantTarget,
+    ): Promise<boolean> => {
+      const sessionId = await ensureHostSession();
+      if (!sessionId) return false;
+
+      const workspaceContext = buildWorkspaceContext(state.context, state.pageOverride);
+
+      try {
+        const chatResult = await sendPillowChat({
+          message: query,
+          sessionId,
+          workspaceContext: workspaceContext as unknown as Record<string, unknown>,
+        });
+        const response = mapPillowChatToAssistantResponse(chatResult, query);
+        recordConversation(query, response, chatResult.artifacts);
+        setState((s) => ({
+          ...s,
+          loading: false,
+          lastResponse: response,
+          pillowConnected: true,
+          connectionError: null,
+          activeTarget: target ?? null,
+        }));
+        return true;
+      } catch (error) {
+        clearPillowHostSession();
+        setState((s) => ({
+          ...s,
+          hostSessionId: null,
+          pillowConnected: false,
+          connectionError: error instanceof Error ? error.message : "Pillow chat failed",
+        }));
+        return false;
+      }
+    },
+    [
+      buildWorkspaceContext,
+      ensureHostSession,
+      pathname,
+      recordConversation,
+      state.context,
+      state.pageOverride,
+    ],
+  );
+
   const askPillow = useCallback(
     async (query: string, target?: GlobalAssistantTarget) => {
       setState((s) => ({
@@ -256,32 +424,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         queryDraft: "",
       }));
 
-      const sessionId = await ensureHostSession();
-
-      if (sessionId) {
-        try {
-          const chatResult = await sendPillowChat({ message: query, sessionId });
-          const response = mapPillowChatToAssistantResponse(chatResult, query);
-          recordConversation(query, response);
-          setState((s) => ({
-            ...s,
-            loading: false,
-            lastResponse: response,
-            pillowConnected: true,
-            connectionError: null,
-          }));
-          return;
-        } catch (error) {
-          clearPillowHostSession();
-          const message = error instanceof Error ? error.message : "Pillow chat failed";
-          setState((s) => ({
-            ...s,
-            hostSessionId: null,
-            pillowConnected: false,
-            connectionError: message,
-          }));
-        }
-      }
+      const sent = await sendViaPillow(query, target);
+      if (sent) return;
 
       try {
         const response = await dispatchViaBrain("ask", query, target);
@@ -303,7 +447,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         }));
       }
     },
-    [dispatchViaBrain, ensureHostSession, recordConversation],
+    [dispatchViaBrain, recordConversation, sendViaPillow],
   );
 
   const runAction = useCallback(
@@ -312,7 +456,17 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       target?: GlobalAssistantTarget,
       query?: string,
     ) => {
-      const userQuery = query ?? target?.label ?? action;
+      const screen = resolveCockpitScreenContext(pathname);
+      const userQuery =
+        query ??
+        (action === "ask"
+          ? (target?.label ?? "")
+          : buildPillowActionPrompt(action, {
+              screenTitle: screen.screenTitle,
+              screenPath: pathname,
+              targetLabel: target?.label,
+              nextExecutiveAction: state.executiveSnapshot?.nextExecutiveAction,
+            }));
 
       if (action === "ask") {
         await askPillow(userQuery, target);
@@ -325,21 +479,12 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         loading: true,
         activeTarget: target ?? null,
       }));
+
+      const sent = await sendViaPillow(userQuery, target);
+      if (sent) return;
+
       try {
-        const result = await brainDispatch<GlobalAssistantResponse>({
-          module: "cockpit-global-assistant",
-          action,
-          payload: {
-            action,
-            screenPath: pathname,
-            query: userQuery,
-            targetType: target?.targetType,
-            targetId: target?.targetId,
-            label: target?.label,
-            value: target?.value,
-          },
-        });
-        const response = result.result ?? null;
+        const response = await dispatchViaBrain(action, userQuery, target);
         recordConversation(userQuery, response);
         setState((s) => ({
           ...s,
@@ -350,7 +495,14 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         setState((s) => ({ ...s, loading: false }));
       }
     },
-    [pathname, recordConversation, askPillow],
+    [
+      askPillow,
+      dispatchViaBrain,
+      pathname,
+      recordConversation,
+      sendViaPillow,
+      state.executiveSnapshot?.nextExecutiveAction,
+    ],
   );
 
   const ask = useCallback(
@@ -360,13 +512,17 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
 
   const explain = useCallback(
     (label: string, targetId?: string, value?: string) =>
-      runAction("explain", { targetType: "panel", targetId, label, value }),
+      void runAction("explain", { targetType: "panel", targetId, label, value }),
     [runAction],
   );
 
-  const recommend = useCallback(() => runAction("recommend"), [runAction]);
-  const summarise = useCallback(() => runAction("summarise"), [runAction]);
-  const nextAction = useCallback(() => runAction("next_action"), [runAction]);
+  const recommend = useCallback(() => void runAction("recommend"), [runAction]);
+  const summarise = useCallback(() => void runAction("summarise"), [runAction]);
+  const nextAction = useCallback(() => void runAction("next_action"), [runAction]);
+
+  const setPageOverride = useCallback((override: PillowPageContextOverride | null) => {
+    setState((s) => ({ ...s, pageOverride: override }));
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -379,6 +535,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       setPanelWidthPx: (panelWidthPx: number) =>
         setState((s) => ({ ...s, panelWidthPx: Math.max(320, Math.min(720, panelWidthPx)) })),
       setVoiceEnabled: (voiceEnabled: boolean) => setState((s) => ({ ...s, voiceEnabled })),
+      setPageOverride,
       refreshContext,
       runAction,
       ask,
@@ -390,6 +547,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     [
       state,
       ensureHostSession,
+      setPageOverride,
       refreshContext,
       runAction,
       ask,
@@ -413,4 +571,12 @@ export function useGlobalAiAssistant() {
     throw new Error("useGlobalAiAssistant must be used within GlobalAiAssistantProvider");
   }
   return ctx;
+}
+
+export function usePillowPageContext() {
+  const ctx = useContext(GlobalAiAssistantContext);
+  return {
+    setPageOverride: ctx?.setPageOverride ?? (() => undefined),
+    pageOverride: ctx?.pageOverride ?? null,
+  };
 }

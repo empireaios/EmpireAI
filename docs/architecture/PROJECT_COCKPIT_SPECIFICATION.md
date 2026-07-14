@@ -1,5 +1,8 @@
 # Project Cockpit Specification
 
+> **Canonical Cockpit Architecture (P3-03):** [`EMPIREAI_COCKPIT_ARCHITECTURE.md`](./EMPIREAI_COCKPIT_ARCHITECTURE.md) — normative Executive OS  
+> **This document:** REAL-078 target specification · department detail
+
 **Mission:** REAL-078  
 **Status:** Official target specification  
 **Version:** 1.0  

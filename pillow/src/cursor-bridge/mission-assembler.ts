@@ -6,6 +6,47 @@ import type { CursorMissionDocument } from "../planner/types.js";
 import type { MissionPlannerEngine } from "../planner/engine.js";
 import type { TechnicalChiefEngine } from "../technical-chief/engine.js";
 import type { UxDesignerEngine } from "../ux-designer/engine.js";
+import { prependMissionSynchronization } from "../vision-synchronization/mission-preamble.js";
+import type { VisionSyncPipelineResult } from "../vision-synchronization/types.js";
+import { prependContextSynchronization } from "../context-synchronization/mission-preamble.js";
+import type { ContextSyncPipelineResult } from "../context-synchronization/types.js";
+import type { CursorProtocolEngine } from "../cursor-protocol/engine.js";
+import type { RecoveryDoctrineEngine } from "../recovery-doctrine/engine.js";
+import { prependRecoveryDoctrine } from "../recovery-doctrine/mission-preamble.js";
+import type { BrowserTruthEngine } from "../browser-truth/engine.js";
+import { prependBrowserTruth } from "../browser-truth/mission-preamble.js";
+import type { E2eTestingEngine } from "../e2e-testing/engine.js";
+import { prependE2eTesting } from "../e2e-testing/mission-preamble.js";
+import type { JourneySystemEngine } from "../journey-system/engine.js";
+import { prependJourneySystem } from "../journey-system/mission-preamble.js";
+import type { BrainRuntimeEngine } from "../brain-runtime/engine.js";
+import { prependBrainRuntime } from "../brain-runtime/mission-preamble.js";
+import type { ProductionModeEngine } from "../production-mode/engine.js";
+import { prependProductionMode } from "../production-mode/mission-preamble.js";
+import type { DurableSessionEngine } from "../durable-sessions/engine.js";
+import { prependDurableSession } from "../durable-sessions/mission-preamble.js";
+import type { GuardianMonitoringEngine } from "../guardian-monitoring/engine.js";
+import { prependGuardianMonitoring } from "../guardian-monitoring/mission-preamble.js";
+import type { ScalingArchitectureEngine } from "../scaling-architecture/engine.js";
+import { prependScalingArchitecture } from "../scaling-architecture/mission-preamble.js";
+import type { PerformanceGovernanceEngine } from "../performance-governance/engine.js";
+import { prependPerformanceGovernance } from "../performance-governance/mission-preamble.js";
+import type { ExecutionControlCenterEngine } from "../execution-control-center/engine.js";
+import { prependExecutionControlCenter } from "../execution-control-center/mission-preamble.js";
+import type { VisionIntegrityEngine } from "../vision-integrity-engine/engine.js";
+import { prependVisionIntegrityEngine } from "../vision-integrity-engine/mission-preamble.js";
+import type { CursorSupervisorEngine } from "../supervisor/engine.js";
+import { prependSupervisorSystem } from "../supervisor/mission-preamble.js";
+import type { BuilderMonitorEngine } from "../builder-monitor/engine.js";
+import { prependBuilderMonitor } from "../builder-monitor/mission-preamble.js";
+import type { EtaEngine } from "../eta-engine/engine.js";
+import { prependEtaEngine } from "../eta-engine/mission-preamble.js";
+import type { AutonomousRecoveryEngine } from "../autonomous-recovery-engine/engine.js";
+import { prependAutonomousRecoveryEngine } from "../autonomous-recovery-engine/mission-preamble.js";
+import type { ZeroHumanAutomationEngine } from "../zero-human-automation/engine.js";
+import { prependZeroHumanAutomation } from "../zero-human-automation/mission-preamble.js";
+import type { FounderShellEngine } from "../founder-shell/engine.js";
+import { prependFounderShell } from "../founder-shell/mission-preamble.js";
 import type {
   AutonomousEngineeringMission,
   BridgeInstruction,
@@ -18,25 +59,79 @@ export function assembleEngineeringMission(input: {
   planner: MissionPlannerEngine;
   technicalChief: TechnicalChiefEngine;
   uxDesigner: UxDesignerEngine;
+  syncPipeline: VisionSyncPipelineResult;
+  contextPipeline: ContextSyncPipelineResult;
+  cursorProtocol: CursorProtocolEngine;
+  recoveryDoctrine: RecoveryDoctrineEngine;
+  browserTruth: BrowserTruthEngine;
+  e2eTesting: E2eTestingEngine;
+  journeySystem: JourneySystemEngine;
+  brainRuntime: BrainRuntimeEngine;
+  productionMode: ProductionModeEngine;
+  durableSessions: DurableSessionEngine;
+  guardianMonitoring: GuardianMonitoringEngine;
+  scalingArchitecture: ScalingArchitectureEngine;
+  performanceGovernance: PerformanceGovernanceEngine;
+  executionControlCenter: ExecutionControlCenterEngine;
+  visionIntegrity: VisionIntegrityEngine;
+  supervisor: CursorSupervisorEngine;
+  builderMonitor: BuilderMonitorEngine;
+  etaEngine: EtaEngine;
+  autonomousRecoveryEngine: AutonomousRecoveryEngine;
+  zeroHumanAutomationEngine: ZeroHumanAutomationEngine;
+  founderShellEngine: FounderShellEngine;
 }): AutonomousEngineeringMission {
   const bridgeMissionId = randomUUID();
-  const { instruction } = input;
+  const { instruction, syncPipeline, contextPipeline } = input;
+
+  let mission: AutonomousEngineeringMission;
 
   switch (instruction.kind) {
     case "ux_change":
-      return assembleUxMission(bridgeMissionId, instruction, input.uxDesigner, input.bootstrap);
+      mission = assembleUxMission(bridgeMissionId, instruction, input.uxDesigner, input.bootstrap);
+      break;
     case "investigation":
-      return assembleInvestigationMission(bridgeMissionId, instruction, input.technicalChief, input.bootstrap);
+      mission = assembleInvestigationMission(bridgeMissionId, instruction, input.technicalChief, input.bootstrap);
+      break;
     case "deployment":
     case "release":
-      return assembleDeploymentMission(bridgeMissionId, instruction, input.bootstrap);
+      mission = assembleDeploymentMission(bridgeMissionId, instruction, input.bootstrap);
+      break;
     case "cursor_review":
-      return assembleReviewMission(bridgeMissionId, instruction, input.bootstrap);
+      mission = assembleReviewMission(bridgeMissionId, instruction, input.bootstrap);
+      break;
     case "architecture":
-      return assembleArchitectureMission(bridgeMissionId, instruction, input.technicalChief, input.bootstrap);
+      mission = assembleArchitectureMission(bridgeMissionId, instruction, input.technicalChief, input.bootstrap);
+      break;
     default:
-      return assemblePlannedMission(bridgeMissionId, instruction, input.planner, input.bootstrap);
+      mission = assemblePlannedMission(bridgeMissionId, instruction, input.planner, input.bootstrap);
   }
+
+  return applySynchronization(
+    mission,
+    syncPipeline,
+    contextPipeline,
+    input.cursorProtocol,
+    input.recoveryDoctrine,
+    input.browserTruth,
+    input.e2eTesting,
+    input.journeySystem,
+    input.brainRuntime,
+    input.productionMode,
+    input.durableSessions,
+    input.guardianMonitoring,
+    input.scalingArchitecture,
+    input.performanceGovernance,
+    input.executionControlCenter,
+    input.visionIntegrity,
+    input.supervisor,
+    input.builderMonitor,
+    input.etaEngine,
+    input.autonomousRecoveryEngine,
+    input.zeroHumanAutomationEngine,
+    input.founderShellEngine,
+    input.bootstrap,
+  );
 }
 
 function assembleUxMission(
@@ -297,6 +392,145 @@ function assemblePlannedMission(
     formatted,
     bootstrap,
   });
+}
+
+function applySynchronization(
+  mission: AutonomousEngineeringMission,
+  syncPipeline: VisionSyncPipelineResult,
+  contextPipeline: ContextSyncPipelineResult,
+  cursorProtocol: CursorProtocolEngine,
+  recoveryDoctrine: RecoveryDoctrineEngine,
+  browserTruth: BrowserTruthEngine,
+  e2eTesting: E2eTestingEngine,
+  journeySystem: JourneySystemEngine,
+  brainRuntime: BrainRuntimeEngine,
+  productionMode: ProductionModeEngine,
+  durableSessions: DurableSessionEngine,
+  guardianMonitoring: GuardianMonitoringEngine,
+  scalingArchitecture: ScalingArchitectureEngine,
+  performanceGovernance: PerformanceGovernanceEngine,
+  executionControlCenter: ExecutionControlCenterEngine,
+  visionIntegrity: VisionIntegrityEngine,
+  supervisor: CursorSupervisorEngine,
+  builderMonitor: BuilderMonitorEngine,
+  etaEngine: EtaEngine,
+  autonomousRecoveryEngine: AutonomousRecoveryEngine,
+  zeroHumanAutomationEngine: ZeroHumanAutomationEngine,
+  founderShellEngine: FounderShellEngine,
+  bootstrap: EmpireBootstrapContext,
+): AutonomousEngineeringMission {
+  let inner = prependMissionSynchronization(mission.formattedDocument, syncPipeline);
+  inner = prependContextSynchronization(inner, contextPipeline);
+  inner = prependRecoveryDoctrine(
+    inner,
+    recoveryDoctrine.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependE2eTesting(
+    inner,
+    e2eTesting.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependJourneySystem(
+    inner,
+    journeySystem.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependBrainRuntime(
+    inner,
+    brainRuntime.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependProductionMode(
+    inner,
+    productionMode.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependDurableSession(
+    inner,
+    durableSessions.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependGuardianMonitoring(
+    inner,
+    guardianMonitoring.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependScalingArchitecture(
+    inner,
+    scalingArchitecture.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependPerformanceGovernance(
+    inner,
+    performanceGovernance.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependExecutionControlCenter(
+    inner,
+    executionControlCenter.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependVisionIntegrityEngine(
+    inner,
+    visionIntegrity.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  inner = prependSupervisorSystem(
+    inner,
+    supervisor.formatMissionPreamble({ missionTitle: mission.title, missionId: mission.bridgeMissionId }),
+  );
+  inner = prependBuilderMonitor(
+    inner,
+    builderMonitor.formatMissionPreamble({ missionTitle: mission.title, missionId: mission.bridgeMissionId }),
+  );
+  inner = prependEtaEngine(
+    inner,
+    etaEngine.formatMissionPreamble({ missionTitle: mission.title, missionId: mission.bridgeMissionId }),
+  );
+  inner = prependAutonomousRecoveryEngine(
+    inner,
+    autonomousRecoveryEngine.formatMissionPreamble({
+      missionTitle: mission.title,
+      missionId: mission.bridgeMissionId,
+    }),
+  );
+  inner = prependZeroHumanAutomation(
+    inner,
+    zeroHumanAutomationEngine.formatMissionPreamble({
+      missionTitle: mission.title,
+      missionId: mission.bridgeMissionId,
+    }),
+  );
+  inner = prependFounderShell(
+    inner,
+    founderShellEngine.formatMissionPreamble({
+      missionId: mission.bridgeMissionId,
+      missionTitle: mission.title,
+    }),
+  );
+  inner = prependBrowserTruth(
+    inner,
+    browserTruth.formatMissionPreamble({ missionTitle: mission.title }),
+  );
+  const wrapped = cursorProtocol.wrapMissionDocument(inner, {
+    missionTitle: mission.title,
+    missionPurpose: mission.objective,
+    acceptanceCriteria: mission.acceptanceCriteria,
+    validationSteps: mission.validationSteps,
+    contextPipeline,
+  });
+  const formattedDocument = wrapped.document;
+  let cursorPrompt = prependMissionSynchronization(mission.cursorPrompt, syncPipeline);
+  cursorPrompt = prependContextSynchronization(cursorPrompt, contextPipeline);
+  const promptWrapped = cursorProtocol.wrapMissionDocument(cursorPrompt, {
+    missionTitle: mission.title,
+    missionPurpose: mission.objective,
+    contextPipeline,
+  });
+  const artifactPath = writeArtifact(
+    bootstrap.repositoryRoot,
+    mission.bridgeMissionId,
+    formattedDocument,
+  );
+  return {
+    ...mission,
+    formattedDocument,
+    cursorPrompt: promptWrapped.document,
+    artifactPath,
+    synchronizationApplied: true,
+    contextSynchronizationApplied: true,
+    cursorProtocolApplied: wrapped.gate.envelope.allPreMissionChecksPassed,
+  };
 }
 
 function buildMission(

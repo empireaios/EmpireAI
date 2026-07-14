@@ -20,6 +20,7 @@ const AUTHORIZATION_TYPE_REFS: Record<ConnectionRegistryProviderId, Authorizatio
   shopify: "oauth2",
   tiktok: "oauth2",
   openai: "api_key",
+  canva: "oauth2",
   anthropic: "api_key",
   github: "oauth2",
   vercel: "api_key",

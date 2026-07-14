@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "intentRecognitionRulesEnabled": true,
+  "contextRetentionEnabled": true,
+  "clarificationRulesEnabled": true,
+  "conversationTimeoutMs": 300000,
+  "conversationHistoryRetentionMs": 86400000,
+  "maxHistoryTurns": 50,
+  "builderRequestGenerationEnabled": true,
+  "confidenceThreshold": 0.55,
+  "clarificationConfidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "conversationTimeoutMsHard": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true
+}

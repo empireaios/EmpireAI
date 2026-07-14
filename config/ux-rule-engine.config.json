@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "ruleSourceLocation": "config/ux-rules.json",
+  "evaluationFrequency": "on_demand",
+  "ruleVersioningEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "evaluationTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "failOnCriticalViolations": true,
+  "allowPartialResults": true
+}

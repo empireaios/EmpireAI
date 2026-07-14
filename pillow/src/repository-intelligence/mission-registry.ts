@@ -11,7 +11,7 @@ export const MISSION_REGISTRY: MissionEntry[] = [
   { id: "PILLOW-003", name: "Repository Intelligence", rootPath: "pillow/src/intelligence", layer: "pillow" },
   { id: "PILLOW-004", name: "Context Builder", rootPath: "pillow/src/context", layer: "pillow" },
   { id: "PILLOW-016", name: "OpenAI Integration Layer", rootPath: "pillow/src/openai", layer: "pillow" },
-  { id: "PILLOW-RI-001", name: "Phase 2 Repository Intelligence", rootPath: "pillow/src/repository-intelligence", layer: "pillow" },
+  { id: "PILLOW-RI-002", name: "Repository Architecture Intelligence", rootPath: "pillow/src/repository-intelligence", layer: "pillow" },
   { id: "SCR-800", name: "Development Pillow Chat", rootPath: "empireai-web/components/cockpit/development", layer: "frontend" },
   { id: "G4-09", name: "Global AI Assistant", rootPath: "empireai-web/lib/cockpit/global-assistant", layer: "frontend" },
   { id: "G5-01", name: "Automation Registry", rootPath: "backend/src/orchestration/business-automation", layer: "automation" },

@@ -3,7 +3,8 @@
 **Canonical label:** Repository First Doctrine  
 **Status:** ✅ Permanent repository governance rule  
 **Registered:** BL-B Item 010 (2026-06-29)  
-**Canonical owners:** Repository Governance · Pillow Architecture
+**Canonical owners:** Repository Governance · Pillow Architecture  
+**Repository structure:** [`docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md`](./docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md) (P1-09)
 
 ---
 

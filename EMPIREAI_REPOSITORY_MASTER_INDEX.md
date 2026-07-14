@@ -4,7 +4,22 @@
 > **Purpose:** Searchable master navigation for every permanent repository artifact  
 > **Authority:** BL-A continuity model · Journey First · Repository First  
 > **Status:** ACTIVE (opened 2026-06-29)  
-> **Synchronized with:** `JOURNEY.md` · `JOURNEY_AUDIT.md`
+> **Synchronized with:** `JOURNEY.md` · `JOURNEY_AUDIT.md`  
+> **Repository doctrine:** [`docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md`](docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md) (P1-09)  
+> **Production Truth:** [`docs/governance/EMPIREAI_PRODUCTION_TRUTH.md`](docs/governance/EMPIREAI_PRODUCTION_TRUTH.md) (P1-10)  
+> **Constitution Hierarchy:** [`docs/governance/EMPIREAI_CONSTITUTION_HIERARCHY.md`](docs/governance/EMPIREAI_CONSTITUTION_HIERARCHY.md) (P2-01 · CON-004)  
+> **Architecture Law:** [`docs/architecture/EMPIREAI_ARCHITECTURE_LAW.md`](docs/architecture/EMPIREAI_ARCHITECTURE_LAW.md) (P2-05)  
+> **Brain Architecture (P3-01):** [`docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md`](docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md)  
+> **Pillow Architecture (P3-02):** [`docs/architecture/EMPIREAI_PILLOW_ARCHITECTURE.md`](docs/architecture/EMPIREAI_PILLOW_ARCHITECTURE.md)  
+> **Builder Architecture (P3-04):** [`docs/architecture/EMPIREAI_BUILDER_ARCHITECTURE.md`](docs/architecture/EMPIREAI_BUILDER_ARCHITECTURE.md)  
+> **Commerce Architecture (P3-05):** [`docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md)  
+> **Infrastructure Architecture (P3-06):** [`docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md)  
+> **ADR System (P3-07):** [`docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md`](docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md)  
+> **Engineering Standards (P4-01):** [`docs/governance/EMPIREAI_ENGINEERING_STANDARDS.md`](docs/governance/EMPIREAI_ENGINEERING_STANDARDS.md)  
+> **Cockpit Architecture (P3-03):** [`docs/architecture/EMPIREAI_COCKPIT_ARCHITECTURE.md`](docs/architecture/EMPIREAI_COCKPIT_ARCHITECTURE.md)  
+> **Documentation Law:** [`docs/governance/EMPIREAI_DOCUMENTATION_LAW.md`](docs/governance/EMPIREAI_DOCUMENTATION_LAW.md) (P2-06 · ECDS-1)  
+> **Constitution Validation (P2-07):** [`docs/governance/EMPIREAI_CONSTITUTION_VALIDATION.md`](docs/governance/EMPIREAI_CONSTITUTION_VALIDATION.md)  
+> **Doctrine System:** [`docs/governance/EMPIREAI_DOCTRINE_SYSTEM.md`](docs/governance/EMPIREAI_DOCTRINE_SYSTEM.md) (P2-04)
 
 Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-###, GC-##, ADR-###), or owner.
 
@@ -16,7 +31,8 @@ Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-#
 
 | Section | Jump |
 |---|---|
-| [Continuity spine](#1-continuity-spine-journey--soul--status) | Journey, Audit, Soul, Status, Roadmap |
+| [Continuity spine](#1-continuity-spine-journey--soul--status) | Journey, Audit, Soul, Status, Roadmap, Vision |
+| [P1 Identity Foundation](#3-governance) | P1-01→P1-10 governance docs — see Repository Structure doctrine |
 | [Managed deployment (MPD-001)](#1a-managed-production-deployment-mpd-001) | Vercel · Railway · Supabase · Upstash |
 | [ADRs](#2-architecture-decision-records-adrs) | Decision Register |
 | [Governance](#3-governance) | Doctrines, BL governance, milestones |
@@ -28,7 +44,7 @@ Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-#
 | [UX](#9-ux-architecture) | Screens, foundation, backlog |
 | [Global Components](#10-global-components-gc) | GC-01…07 |
 | [Executive Components](#11-executive-components) | Design system primitives |
-| [PILLOW](#12-pillow-architecture) | PILLOW-001…019 + runtime |
+| [PILLOW](#12-pillow-architecture) | PILLOW-001…019 + runtime + **EKLS** |
 | [Prompt Registry](#13-prompt-registry) | Not implemented |
 | [REAL appendix](#appendix-a-real-001100-index) | Full REAL label table |
 
@@ -41,11 +57,12 @@ Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-#
 | Journey | `JOURNEY.md` | Journey | Master operational index — what exists, status, phase | Doctrine catalogs, ledgers, audits, contracts | `JOURNEY_AUDIT.md`, `EMPIREAI_SOUL.md`, `EMPIREAI_STATUS.md`, this index |
 | Journey Audit | `JOURNEY_AUDIT.md` | Journey (change log) | Structural change log, gaps, conflicts, BL sync history | `JOURNEY.md` | All BL validation/difference reports; §9 change log |
 | Soul | `EMPIREAI_SOUL.md` | Soul continuity | Permanent identity, mission, doctrine memory | CTD, GVD, ADR-015/016/018/019 | `JOURNEY.md`, `EMPIREAI_STATUS.md`, `EMPIREAI_DECISIONS.md` |
+| Vision | `EMPIREAI_VISION.md` | Grand King · Chief Architect | Canonical WHY — Tier 2 identity (P1-01) | Soul, CTD | `EMPIREAI_SOUL.md`, P1 governance docs |
 | Project State | `EMPIREAI_STATUS.md` | Project State | Current implemented state, milestone progress, next gates | `JOURNEY.md`, runtime reality | `EMPIREAI_SOUL.md`, `JOURNEY.md`, Pillow bootstrap |
 | Roadmap | `EMPIREAI_ROADMAP.md` | Vision | Active direction; points to Commerce OS (COS-001) | `COMMERCE_OS_BLUEPRINT.md` | `JOURNEY.md`, `EMPIREAI_SOUL.md` |
 | **Master Index** | `EMPIREAI_REPOSITORY_MASTER_INDEX.md` | Repository Governance | Searchable navigation catalog (this file) | All canonical artifacts | `JOURNEY.md`, Pillow bootstrap catalog |
 | **Pillow Roadmap** | `PILLOW_ROADMAP.md` | Pillow Architecture | Five-layer roadmap — Runtime vs Executive Intelligence | Pillow Runtime complete | Constitution, Contract Part 11 |
-| **Pillow Constitution (V1)** | `EMPIREAI_PILLOW_CONSTITUTION.md` | Pillow Architecture | Permanent identity — Executive Intelligence, Supreme Directive, Cursor Sovereignty, One Objective | PILLOW-019 · ADR-016 | Layer 2 constitution, Contract Part 1 |
+| **Pillow Constitution (V1)** | `EMPIREAI_PILLOW_CONSTITUTION.md` | Pillow Architecture | Permanent identity — Executive Intelligence, Supreme Directive, Cursor Sovereignty, One Objective, **§17 Platform Hierarchy** | PILLOW-019 · ADR-016 | Layer 2 constitution, Contract Part 1 |
 | **Pillow Executive Intelligence Constitution** | `EMPIREAI_PILLOW_EXECUTIVE_INTELLIGENCE_CONSTITUTION.md` | Pillow Architecture | Layer 2 Core Principle — conversation → organizational intelligence | PILLOW_ROADMAP Layer 2 · Pillow Constitution | Memory Doctrine, Approval Gate |
 | **Pillow Integration Plan** | `PILLOW_RUNTIME_INTEGRATION_PLAN.md` | Pillow Architecture | Historical Layer 1 integration (complete) | Pillow Runtime | `PILLOW_ROADMAP.md` |
 | **Pillow Product Integration Master Plan** | `docs/governance/PILLOW_PRODUCT_INTEGRATION_MASTER_PLAN.md` | Pillow Architecture | Canonical PILLOW-016…019 product integration · migration Phases 0–4 | Pillow Runtime complete | Constitution · ADR-047 |
@@ -82,7 +99,14 @@ Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-#
 
 | File | Path | Owner | Purpose | Dependencies | Related artifacts |
 |---|---|---|---|---|---|
-| Engineering Constitution | `EMPIREAI_CONSTITUTION.md` | Constitution (supreme) | Permanent engineering law — Brain sovereignty, Guardian, financial integrity | — | All doctrine; BL-C derives authority |
+| Engineering Constitution | `EMPIREAI_CONSTITUTION.md` | Chief Architect | **Ratified (P2-03 · CON-015)** — HOW engineering law · Articles I–IX · mission lifecycle | CTD | Cursor standards · Recovery doctrines |
+| **Constitution Validation (P2-07)** | `docs/governance/EMPIREAI_CONSTITUTION_VALIDATION.md` | Chief Architect | P2 foundation validation — consistency · traceability · P3 readiness | P2-01→P2-06 · Constitution Lock | All P2 law bodies |
+| **Documentation Law (P2-06)** | `docs/governance/EMPIREAI_DOCUMENTATION_LAW.md` | Chief Architect | ECDS-1 ratified — classification · lifecycle · traceability · quality | P1-09 · P2-01→P2-05 | Master Index · Repository Structure |
+| **Doctrine System (P2-04)** | `docs/governance/EMPIREAI_DOCTRINE_SYSTEM.md` | Chief Architect | Apex doctrine registry — catalogue · hierarchy · lifecycle | P2-01→P2-03 | Foundation doctrines · domain doctrines · Master Index |
+| **Constitutional Framework** | `docs/governance/EMPIREAI_CONSTITUTIONAL_FRAMEWORK.md` | Chief Architect | P-era governance entry point · mission chains | P1 docs | Constitution Lock |
+| **Constitution Hierarchy (P2-01)** | `docs/governance/EMPIREAI_CONSTITUTION_HIERARCHY.md` | Chief Architect | Apex constitutional governance map — Tiers 0–7 · precedence · citation (CON-004) | P1 complete · CTD | Framework · Vision Hierarchy · Roadmap Hierarchy |
+| **Repository Structure (P1-09)** | `docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md` | Chief Architect | Canonical folder/document doctrine | P1-01→P1-10 | Master Index · Repository First |
+| **Production Truth (P1-10)** | `docs/governance/EMPIREAI_PRODUCTION_TRUTH.md` | Grand King · Chief Architect | Truth hierarchy · triple acceptance · CON-009 | P1 Identity complete | STATUS · MANAGED_DEPLOYMENT |
 | Backlog Release Governance | `EMPIREAI_BACKLOG_RELEASE_GOVERNANCE.md` | Repository Governance | BL routing model, lifecycle, immutability, ROUTE 02 | ADR-020, ADR-022 | `BL-A`…`BL-C.md`, validation reports |
 | Executive Audit Standard | `EMPIREAI_EXECUTIVE_AUDIT_STANDARD.md` | Repository Governance | Mandatory audit sections incl. Owner Justification + Future Enhancements + Cursor Output traceability | BL-B, BL-C | `docs/governance/EXECUTIVE_AUDIT_INDEX.md` · all `COMBINED_EXECUTIVE_AUDIT_*.md` |
 | Cursor Output Standard | `EMPIREAI_CURSOR_OUTPUT_STANDARD.md` | Repository Governance | Executive Summary + Cursor Draft — preserves intent and implementation | Executive Audit Standard · PILLOW-006 | `docs/governance/CURSOR_OUTPUT_TEMPLATE.md` |
@@ -92,9 +116,21 @@ Use **Ctrl+F / Cmd+F** to search by file name, label (REAL-###, UX-###, PILLOW-#
 | Cursor Recovery Doctrine | `EMPIREAI_CURSOR_RECOVERY_DOCTRINE.md` | CTO / Cursor | Recovery Mode for agent stalls and validation deadlocks | BL-B | `PILLOW-007`, `PILLOW-008` |
 | Empire Recovery Doctrine | `EMPIREAI_EMPIRE_RECOVERY_DOCTRINE.md` | Pillow Architecture | No single device destroys the Empire; recovery assessment | ADR-025, BL-B | Layer 2 PEI-017 (deferred) |
 | BL-C Continuous Improvement Constitution | `EMPIREAI_BL_C_CONTINUOUS_IMPROVEMENT_CONSTITUTION.md` | Repository Governance · Continuous Improvement | BL-C doctrine — enhancement lifecycle, registers, GK approval gate | Constitution | `BL-C.md`, enhancement registers |
-| Core Constitution (CTD) | `EMPIREAI_CORE_CONSTITUTION_CTD.md` | Immutable doctrine | CTD-001→040 articles | `backend/src/foundation/empire-constitution/` | `COMBINED_EXECUTIVE_AUDIT_CTD-001-040.md` |
+| Core Constitution (CTD) | `EMPIREAI_CORE_CONSTITUTION_CTD.md` | Grand King | **Ratified (P2-02)** — CTD-001→040 commercial apex · immutable v1.0.0 | P1 · P2-01 | Constitution Hierarchy · GVD · CBD · Engineering Constitution |
 | Governance Doctrine (GVD) | `EMPIREAI_GOVERNANCE_DOCTRINE_GVD.md` | Immutable doctrine | GVD-001→030 — roles, approval, audit | foundation catalog | `COMBINED_EXECUTIVE_AUDIT_GVD-001-030.md` |
 | Architecture Constraints (ACD) | `EMPIREAI_ARCHITECTURE_CONSTRAINTS_ACD.md` | Immutable doctrine | ACD-001→030 — modular architecture rules | foundation catalog | `COMBINED_EXECUTIVE_AUDIT_ACD-001-030.md` |
+| **Architecture Law (P2-05)** | `docs/architecture/EMPIREAI_ARCHITECTURE_LAW.md` | Chief Architect | Constitutional architecture governance — lifecycle · drift · acceptance | P2-01→P2-04 · ACD | Canonical Architecture · Development Doctrine |
+| **Engineering Standards (P4-01)** | `docs/governance/EMPIREAI_ENGINEERING_STANDARDS.md` | Chief Architect | Single engineering practice authority — review · test · deploy rules | Engineering Constitution · P3 complete | Development Doctrine · Builder |
+| **ADR System (P3-07)** | `docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md` | Chief Architect · Grand King | Permanent ADR governance — lifecycle · ADR-CON index · traceability | P3-01→P3-06 · Architecture Law | `EMPIREAI_DECISIONS.md` |
+| **Infrastructure Architecture (P3-06)** | `docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md` | Pillow · Grand King | Operational foundation — V1 topology · target · security · recovery | P3-01→P3-05 · Production Truth | Railway · Vercel · Redis · deployment/ |
+| **Commerce Architecture (P3-05)** | `docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md` | Pillow · Grand King | Business operating layer — factory · domains · Grand King model | P3-01→P3-04 · C001 · CBD | commerce-readiness · intelligence · revenue |
+| **Builder Architecture (P3-04)** | `docs/architecture/EMPIREAI_BUILDER_ARCHITECTURE.md` | Grand King · Pillow | Engineering execution engine — pipeline · states · telemetry | P3-01→P3-03 · Engineering Constitution | cursor-bridge · supervisor · `.cursor/missions/` |
+| **Cockpit Architecture (P3-03)** | `docs/architecture/EMPIREAI_COCKPIT_ARCHITECTURE.md` | Pillow · Chief Architect | Executive Operating System — panels · navigation · Executive Home | P3-01 · P3-02 · REAL-078 | empireai-web · cockpit-panel-views |
+| **Pillow Architecture (P3-02)** | `docs/architecture/EMPIREAI_PILLOW_ARCHITECTURE.md` | Pillow · Chief Architect | Constitutional operating intelligence — stewardship · sync · subsystems | P3-01 · Pillow Constitution | Contract · pillow/ · pillow-host |
+| **Brain Architecture (P3-01)** | `docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md` | Pillow · Chief Architect | Canonical Brain execution engine — modules · interfaces · runtime | P2 complete · Architecture Law | Canonical Architecture §3.3 · backend/ |
+| **Canonical Architecture** | `docs/architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md` | Chief Architect | Normative target structure (REAL-078) | Architecture Law | `docs/ARCHITECTURE.md` (operational) |
+| **Development Doctrine** | `docs/architecture/DEVELOPMENT_DOCTRINE.md` | Chief Architect | REAL mission engineering rules | Architecture Law · ACD | REAL missions |
+| **Operational Architecture** | `docs/ARCHITECTURE.md` | Brain team | Current implementation map — may lag canonical | Canonical Architecture | STATUS |
 | UX Identity Doctrine (UID) | `EMPIREAI_UX_IDENTITY_DOCTRINE_UID.md` | Immutable doctrine | UID-001→020 — Grand King/founder UX law | foundation catalog | `COMBINED_EXECUTIVE_AUDIT_UID-001-020.md` |
 | Commercial Business Doctrine (CBD) | `EMPIREAI_COMMERCIAL_BUSINESS_DOCTRINE_CBD.md` | Immutable doctrine | CBD-001→020 — commercial soul | foundation catalog | `COMBINED_EXECUTIVE_AUDIT_CBD-001-020.md` |
 | Marketplace Autonomy Doctrine (REAL-051A) | `docs/governance/MARKETPLACE_AUTONOMY_DOCTRINE_REAL-051A.md` | Commercial governance | Founder onboarding · marketplace autonomy · channel strategy · approval-gated automation | CBD · Commerce Canon · ADR-050 | Operational activation · go-live checklist |
@@ -320,8 +356,9 @@ Design system barrel: `frontend/src/components/system/index.ts` · Owner: **Exec
 | File | Path | Owner | Purpose | Dependencies | Related |
 |---|---|---|---|---|---|
 | Pillow Architecture Contract | `PILLOW_ARCHITECTURE_CONTRACT.md` | Pillow Architecture | **Frozen V1 authority** | ADR-027→043 | `pillow/` package |
-| Pillow Architecture (doctrine) | `EMPIREAI_PILLOW_ARCHITECTURE.md` | Pillow Architecture | Bootstrap, operating modes doctrine | BL-B | Contract Part 7 |
-| Pillow Memory Doctrine | `EMPIREAI_PILLOW_MEMORY_DOCTRINE.md` | Pillow Architecture | Remember knowledge not conversations | BL-B | PILLOW-005 |
+| Pillow Architecture (doctrine) | `EMPIREAI_PILLOW_ARCHITECTURE.md` | Pillow Architecture | BL-B Bootstrap · modes companion | BL-B | **P3-02** canonical · Contract Part 7 |
+| Pillow Memory Doctrine | `EMPIREAI_PILLOW_MEMORY_DOCTRINE.md` | Pillow Architecture | Remember knowledge not conversations | BL-B | PILLOW-005 · **EKLS** |
+| **Canonical EKLS Specification** | `CANONICAL_EKLS_SPECIFICATION.md` | Pillow Architecture | **Permanent** Knowledge & Learning subsystem — Pillow-governed institutional memory | G3 suite complete | `backend/src/orchestration/pillow/ekls/` |
 | Pillow Constitution (V1) | `EMPIREAI_PILLOW_CONSTITUTION.md` | Pillow Architecture | Executive Intelligence identity · Supreme Directive · Cursor Sovereignty · One Objective · Proposal Model | PILLOW-019 · ADR-016 | Layer 2 constitution · Contract Part 1 |
 | Pillow Executive Intelligence Constitution | `EMPIREAI_PILLOW_EXECUTIVE_INTELLIGENCE_CONSTITUTION.md` | Pillow Architecture | Layer 2 — Executive Reflection §2.2; EIL Update Policy §3.4; Evidence Sources; lifecycle §2.1; PEI-026 first downstream capability | PILLOW_ROADMAP · ADR-046 pipelines · Pillow Constitution | PEI-021…028 · EIL Update Policy |
 | Pillow Enhancement Register | `docs/governance/PILLOW_ENHANCEMENT_REGISTER.md` | Pillow Architecture | Post-V1 Pillow enhancements | BL-C | Contract |

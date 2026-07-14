@@ -36,6 +36,17 @@ export type PillowTurn = {
   provider?: string;
 };
 
+export type PillowChatArtifact = {
+  artifactId: string;
+  artifactType: string;
+  sourceTool: string;
+  title: string;
+  content: string;
+  timestamp: string;
+  status: string;
+  metadata?: Record<string, unknown>;
+};
+
 export type PillowChatResult = {
   requestId: string;
   sessionId: string;
@@ -65,6 +76,12 @@ export type PillowChatResult = {
     expectedRisk: string;
     objectiveAlignment: string;
     status: string;
+  };
+  artifacts?: PillowChatArtifact[];
+  intelligenceRouting?: {
+    primarySource: string;
+    primaryCapability: string;
+    rationale: string;
   };
 };
 

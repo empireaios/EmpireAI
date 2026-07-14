@@ -7,7 +7,14 @@ import {
 } from "./code-indexer.js";
 import { MISSION_REGISTRY } from "./mission-registry.js";
 import { RUNTIME_FLOWS } from "./runtime-flows.js";
-import type { RepositoryDomainSummary, RepositoryKnowledgeModel } from "./types.js";
+import { discoverRepositoryInventory } from "./repository-discovery.js";
+import { buildComponentIntelligence } from "./component-intelligence.js";
+import { buildFolderIntelligence } from "./folder-intelligence.js";
+import { buildFileIntelligence } from "./file-intelligence.js";
+import { buildDependencyGraphIntelligence } from "./dependency-intelligence.js";
+import { getAllExecutionFlows } from "./execution-flows-extended.js";
+import { buildSearchIndex } from "./impact-analysis.js";
+import type { RepositoryArchitectureIntelligence, RepositoryDomainSummary, RepositoryKnowledgeModel } from "./types.js";
 
 const DOMAIN_CATALOG: Array<{
   id: string;
@@ -34,9 +41,17 @@ export async function buildRepositoryKnowledgeModel(
   const dependencies = buildArchitectureDependencies();
   const domains = await buildDomainSummaries(reader);
   const criticalPaths = deriveCriticalPaths(dependencies);
+  const architectureIntelligence = await buildArchitectureIntelligence({
+    reader,
+    modules,
+    dependencies,
+    domains,
+    indexedPaths,
+    criticalPaths,
+  });
 
   return {
-    version: "PILLOW-RI-001",
+    version: "PILLOW-RI-002",
     builtAt: new Date().toISOString(),
     architecture: ARCHITECTURE_BOUNDARIES,
     runtimeFlows: RUNTIME_FLOWS,
@@ -47,6 +62,51 @@ export async function buildRepositoryKnowledgeModel(
     domains,
     criticalPaths,
     missions: MISSION_REGISTRY,
+    architectureIntelligence,
+  };
+}
+
+async function buildArchitectureIntelligence(input: {
+  reader: RepositoryReader;
+  modules: RepositoryKnowledgeModel["modules"];
+  dependencies: RepositoryKnowledgeModel["dependencies"];
+  domains: RepositoryDomainSummary[];
+  indexedPaths: number;
+  criticalPaths: string[];
+}): Promise<RepositoryArchitectureIntelligence> {
+  const inventory = await discoverRepositoryInventory(input.reader, input.indexedPaths);
+  const components = buildComponentIntelligence({
+    architecture: ARCHITECTURE_BOUNDARIES,
+    modules: input.modules,
+    dependencies: input.dependencies,
+    criticalPaths: input.criticalPaths,
+  });
+  const folders = await buildFolderIntelligence({
+    reader: input.reader,
+    modules: input.modules,
+    domains: input.domains,
+  });
+  const files = await buildFileIntelligence({
+    reader: input.reader,
+    modules: input.modules,
+    criticalPaths: input.criticalPaths,
+  });
+  const dependencyGraph = buildDependencyGraphIntelligence({
+    dependencies: input.dependencies,
+    components,
+    architecture: ARCHITECTURE_BOUNDARIES,
+  });
+  const executionFlows = getAllExecutionFlows();
+  const searchIndex = buildSearchIndex({ components, folders, files });
+
+  return {
+    inventory,
+    components,
+    folders,
+    files,
+    dependencyGraph,
+    executionFlows,
+    searchIndex,
   };
 }
 
@@ -59,6 +119,7 @@ export function formatKnowledgeModelSummary(model: RepositoryKnowledgeModel): st
 
   return [
     `Repository Intelligence ${model.version} — ${model.indexedPaths} indexed paths`,
+    `Architecture intelligence: ${model.architectureIntelligence.components.length} components · ${model.architectureIntelligence.folders.length} folders · ${model.architectureIntelligence.files.length} files`,
     `Architecture layers: ${layers.join("; ")}`,
     `Domains: ${domainList}`,
     `Runtime flows: ${flows}`,

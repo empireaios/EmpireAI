@@ -104,6 +104,19 @@ EMPIRE_V1_OPERATIONAL_READY=true
 # Plus Amazon SP-API, CJ, etc. — see backend/.env.example
 ```
 
+### Canva Connect (Visual Generation Layer)
+
+Register the **same** redirect URI in the Canva Connect app and Railway:
+
+```env
+CANVA_CLIENT_ID=...
+CANVA_CLIENT_SECRET=...
+CANVA_REDIRECT_URI=https://empire-ai.co/api/integrations/canva/callback
+CANVA_MOCK=false
+```
+
+The Vercel BFF at that URL proxies to Brain `GET /canva/oauth/callback`.
+
 ---
 
 ## Worker service

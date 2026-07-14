@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "trackingIntervalMs": 500,
+  "maxTrackingRate": 10,
+  "confidenceThreshold": 0.5,
+  "eventBufferLimit": 200,
+  "eventDebounceMs": 50,
+  "eventSamplingRate": 1,
+  "captureInputChanges": true,
+  "maskSensitiveValues": true,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "trackingTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateEvents": true
+}

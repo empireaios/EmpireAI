@@ -83,6 +83,69 @@ export type ExecutiveDependencyGraph = {
   edges: Array<{ from: string; to: string; label: string }>;
 };
 
+export type ExecutiveHomeBrief = {
+  overallEmpireStatus: string;
+  currentStrategicObjective: string;
+  currentConstitutionalPhase: string;
+  currentExecutionPhase: string;
+  highestPriorityRisk: string;
+  highestPriorityOpportunity: string;
+  currentRecommendation: string;
+};
+
+export type MissionCentreSummary = {
+  currentMission: string;
+  missionOwner: string;
+  currentStep: string;
+  progress: number;
+  eta: string;
+  dependencies: string[];
+  currentRisks: string[];
+  validationStatus: string;
+  recoveryStatus: string;
+  href: string;
+};
+
+export type PillowCentreSummary = {
+  recommendations: string[];
+  architectureFindings: string[];
+  engineeringFindings: string[];
+  businessFindings: string[];
+  commercialOpportunities: string[];
+  visionAlignment: string;
+  pendingDecisions: string[];
+};
+
+export type BusinessCentreSummary = {
+  activeBusinesses: number;
+  revenue: string;
+  orders: string;
+  profit: string;
+  advertisingSpend: string;
+  marketingPerformance: string;
+  businessHealth: string;
+  growthTrend: string;
+  href: string;
+};
+
+export type ProductionCentreSummary = {
+  productionHealth: string;
+  runtimeHealth: string;
+  guardianStatus: string;
+  sessions: string;
+  infrastructure: string;
+  deploymentStatus: string;
+  currentIncidents: string[];
+  href: string;
+};
+
+export type ExecutiveHomeCentreSummaries = {
+  mission: MissionCentreSummary;
+  pillow: PillowCentreSummary;
+  business: BusinessCentreSummary;
+  production: ProductionCentreSummary;
+};
+
 export type RelationshipNodeKind =
   | "engine"
   | "company"
@@ -190,6 +253,9 @@ export type ExecutiveHomeView = {
   executiveAlerts: ExecutiveAlert[];
   approvalRoutes: ExecutiveApprovalRoute[];
   dependencyGraph: ExecutiveDependencyGraph;
+  architectureVersion: "P7-04";
+  executiveBrief: ExecutiveHomeBrief;
+  centreSummaries: ExecutiveHomeCentreSummaries;
 };
 
 export type MissionCentreView = {

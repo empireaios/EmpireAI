@@ -67,9 +67,10 @@ describe("PILLOW-007 Cursor Supervisor", () => {
     const session = await startPillow({ repositoryRoot: REPO_ROOT });
     const state = session.supervisor.getState();
 
-    assert.equal(state.supervisorVersion, "PILLOW-007");
+    assert.equal(state.supervisorVersion, "PILLOW-SV-001");
     assert.equal(state.status, "ready");
     assert.equal(state.doctrinePath, "EMPIREAI_CURSOR_RECOVERY_DOCTRINE.md");
+    assert.equal(state.systemDoctrinePath, "docs/governance/EMPIREAI_SUPERVISOR_SYSTEM.md");
   });
 
   test("Mission launched and lifecycle tracked", async () => {

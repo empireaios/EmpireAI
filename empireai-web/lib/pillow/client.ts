@@ -10,7 +10,7 @@ import type {
 } from "./types";
 
 const PILLOW_REQUEST_TIMEOUT_MS = 60_000;
-const PILLOW_SESSION_TIMEOUT_MS = 15_000;
+const PILLOW_SESSION_TIMEOUT_MS = 130_000;
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 400;
 
@@ -120,7 +120,7 @@ export async function createPillowHostSession(workspaceId?: string): Promise<Pil
     method: "POST",
     body: JSON.stringify(workspaceId ? { workspaceId } : {}),
     timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
-    retries: 1,
+    retries: 2,
   });
   return result.session;
 }
@@ -129,12 +129,22 @@ export async function sendPillowChat(input: {
   message: string;
   sessionId: string;
   workspaceId?: string;
+  workspaceContext?: Record<string, unknown>;
 }): Promise<PillowChatResult> {
   const result = await pillowRequest<{ result: PillowChatResult }>("/api/pillow/chat", {
     method: "POST",
     body: JSON.stringify(input),
   });
   return result.result;
+}
+
+export async function fetchPillowHistory(sessionId: string): Promise<{
+  session: PillowWorkspaceSession;
+}> {
+  return pillowRequest("/api/pillow/history", {
+    params: { sessionId },
+    timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
+  });
 }
 
 export async function fetchPillowApprovals(includeHistory = false): Promise<{

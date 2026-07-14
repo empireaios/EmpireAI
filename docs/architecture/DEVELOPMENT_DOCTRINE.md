@@ -1,7 +1,9 @@
 # EmpireAI Development Doctrine
 
 **Mission:** REAL-078  
-**Status:** Official engineering rules  
+**Engineering Standards (P4-01):** [`EMPIREAI_ENGINEERING_STANDARDS.md`](../governance/EMPIREAI_ENGINEERING_STANDARDS.md) — **single engineering practice authority**; this document is the REAL-mission companion  
+**Architecture Law:** [`EMPIREAI_ARCHITECTURE_LAW.md`](./EMPIREAI_ARCHITECTURE_LAW.md) (P2-05)  
+**Status:** Official REAL engineering rules — subordinate to P4-01 · Architecture Law · ACD  
 **Version:** 1.0  
 **Supersedes:** Ad-hoc conventions; complements `docs/governance/*`  
 
@@ -19,14 +21,15 @@ All REAL missions (REAL-079+) must comply unless an ADR explicitly exceptions.
 
 ### 2.1 Single Brain Path
 
-- Every autonomous action: **UI → BFF/REST → Brain → Tool|Agent|Workflow**.
+- Every autonomous action: **UI → BFF/REST → Brain → Tool|Agent|Workflow** (Brain is Pillow-owned; not a peer of Pillow).
 - No frontend imports `@anthropic-ai/*`, OpenAI SDK, Stripe SDK, or CJ clients.
 - No new LLM calls outside `backend/src/brain/llm/` and `pillow/src/openai/`.
 
 ### 2.2 Canonical Ownership
 
-- Each capability has **one owner subsystem** (see `EMPIREAI_CANONICAL_ARCHITECTURE.md`).
-- Before adding code, declare: *"Which canonical subsystem owns this?"*
+- **Pillow is the sole technical owner** of EmpireAI — see `EMPIREAI_PILLOW_CONSTITUTION.md` §17.
+- Each capability has **one Pillow-owned subsystem** (see `EMPIREAI_CANONICAL_ARCHITECTURE.md` §2).
+- Before adding code, declare: *"Which Pillow-owned subsystem owns this?"*
 - If another subsystem already owns it, **extend the owner** — do not create a parallel module.
 
 ### 2.2A Commercial Risk Intelligence (governance)

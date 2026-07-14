@@ -165,34 +165,36 @@ export function ExecutiveAlertsPanel() {
   if (loading || !data) return null;
 
   return (
-    <Panel title="Executive Alerts" subtitle="Routed to affected Engine Centers">
-      <div id="executive-alerts" className="mb-3">
-        <DataModeBadge mode="live" />
-      </div>
-      {data.executiveAlerts.length === 0 ? (
-        <p className="text-sm text-emerald-200/80">No open alerts.</p>
-      ) : (
-        <ul className="space-y-2 text-sm">
-          {data.executiveAlerts.map((alert) => (
-            <li
-              key={alert.id}
-              className="rounded-lg border border-gold/10 px-3 py-2"
-            >
-              <Link href={alert.href} className="text-[#e8e0d0] hover:text-[#f0d78c]">
-                {alert.label} →
-              </Link>
-              {alert.engineId && (
-                <p className="mt-1 text-[10px] text-[#6f6a60]">
-                  Engine:{" "}
-                  <Link href={engineCenterHref(alert.engineId)} className="text-[#d4af37]">
-                    {alert.engineId}
-                  </Link>
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </Panel>
+    <div id="executive-alerts">
+      <Panel title="Executive Alerts" subtitle="Routed to affected Engine Centers">
+        <div className="mb-3">
+          <DataModeBadge mode="live" />
+        </div>
+        {data.executiveAlerts.length === 0 ? (
+          <p className="text-sm text-emerald-200/80">No open alerts.</p>
+        ) : (
+          <ul className="space-y-2 text-sm">
+            {data.executiveAlerts.map((alert) => (
+              <li
+                key={alert.id}
+                className="rounded-lg border border-gold/10 px-3 py-2"
+              >
+                <Link href={alert.href} className="text-[#e8e0d0] hover:text-[#f0d78c]">
+                  {alert.label} →
+                </Link>
+                {alert.engineId && (
+                  <p className="mt-1 text-[10px] text-[#6f6a60]">
+                    Engine:{" "}
+                    <Link href={engineCenterHref(alert.engineId)} className="text-[#d4af37]">
+                      {alert.engineId}
+                    </Link>
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </Panel>
+    </div>
   );
 }

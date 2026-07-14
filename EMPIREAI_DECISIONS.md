@@ -1,13 +1,97 @@
 # EMPIREAI DECISIONS
 
-> Living memory document — architectural decision record
+> **Classification:** CANONICAL — Tier 4 Register (Architecture Decision Records)  
+> **ADR System (P3-07):** [`docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md`](docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md)  
+> **Authority:** Chief Architect (authorship) · Grand King (ADR-CON-* approval)  
+> **Inventory:** ADR-001→052 (programme) · ADR-CON-001→010 (constitutional architecture) · PDR-001→006 (pending)  
+> **Rule:** Single register — companions link here; never fork
+
+Living memory document — architectural decision record
+
+---
+
+## Constitutional Architecture Decisions (ADR-CON-001 → ADR-CON-010)
+
+> **Governed by:** P3-07 ADR System · [`EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md`](docs/governance/EMPIREAI_ARCHITECTURAL_DECISION_RECORD_SYSTEM.md)
+
+| ID | Title | Status | Consolidates |
+|----|-------|--------|--------------|
+| **ADR-CON-001** | Production Client Authority | **Draft** — Grand King pending | ADR-010 · CON-006 |
+| **ADR-CON-002** | Production Mode Policy | Approved · CON-007 pending | ADR-048/049 · Production Truth |
+| **ADR-CON-003** | Brain Runtime Strategy | Approved · Production Validated | ADR-001/003/004 · P3-01 |
+| **ADR-CON-004** | Builder Governance | Approved · Implemented | ADR-035 · P3-04 |
+| **ADR-CON-005** | Infrastructure Strategy | Approved · Production Validated | ADR-002/003 · P3-06 · MPD-001 |
+| **ADR-CON-006** | Commerce Strategy | Approved · Implemented | ADR-011/013/051 · P3-05 |
+| **ADR-CON-007** | Vision Synchronization | Approved · Implemented | ADR-014/026 · Sync Policy |
+| **ADR-CON-008** | Supervisor Architecture | Approved · Implemented | ADR-035 · PILLOW-007 |
+| **ADR-CON-009** | Production Acceptance Model | Approved · Implemented | P1-10 Production Truth |
+| **ADR-CON-010** | Future Expansion Strategy | Approved | ADR-015/016/019 · MS-A/MS-B |
+
+**Full records:** See P3-07 system doc §9 for problem/context/decision/alternatives/trade-offs/consequences per ADR-CON. Expanded narrative entries appended below.
+
+### ADR-CON-001: Production Client Authority (Draft)
+
+**Owner:** Chief Architect · Grand King · **Approver:** Grand King (pending) · **Roadmap:** CON-006  
+**Problem:** Dual frontend (`frontend/` vs `empireai-web/`) — no single production Grand King client authority.  
+**Decision:** Pending GK — options: (A) empireai-web sole, (B) frontend sole, (C) phased V2 merge.  
+**Production Impact:** Blocks canonical Cockpit URL claims until resolved.
+
+### ADR-CON-002: Production Mode Policy
+
+**Decision:** Fail-closed live commerce · extension routes gated (`EMPIRE_ENABLE_EXTENSION_ROUTES` off) · sandbox ≠ Production Truth (CTD-018).  
+**Related:** CON-007 route policy · CON-008 Pillow production mode.
+
+### ADR-CON-003: Brain Runtime Strategy
+
+**Decision:** Single Brain dispatch · Redis queue/sessions · Guardian pre-dispatch · BFF-only frontend.  
+**Architecture:** [`EMPIREAI_BRAIN_ARCHITECTURE.md`](docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md)
+
+### ADR-CON-004: Builder Governance
+
+**Decision:** Builder = supervised Cursor channel — Bridge + Supervisor + Approval Gate + Vision Sync mandatory.  
+**Architecture:** [`EMPIREAI_BUILDER_ARCHITECTURE.md`](docs/architecture/EMPIREAI_BUILDER_ARCHITECTURE.md)
+
+### ADR-CON-005: Infrastructure Strategy
+
+**Decision:** V1 split-stack — Vercel · Railway · Upstash · SQLite volume · Postgres migration before HA.  
+**Architecture:** [`EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_INFRASTRUCTURE_ARCHITECTURE.md)
+
+### ADR-CON-006: Commerce Strategy
+
+**Decision:** C001 + COS + P3-05 — one lifecycle · CRIR gates · G2 fabric companion.  
+**Architecture:** [`EMPIREAI_COMMERCE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md)
+
+### ADR-CON-007: Vision Synchronization
+
+**Decision:** Mandatory mission-start chain before Builder implements; Vision Accumulation post-mission.  
+**Policy:** [`EMPIREAI_VISION_SYNCHRONIZATION_POLICY.md`](docs/governance/EMPIREAI_VISION_SYNCHRONIZATION_POLICY.md)
+
+### ADR-CON-008: Supervisor Architecture
+
+**Decision:** Supervisor = Pillow COI — continuous Builder telemetry · stall recovery · Executive Audit gate.  
+**Governance:** [`EMPIREAI_SUPERVISOR_GOVERNANCE.md`](docs/governance/EMPIREAI_SUPERVISOR_GOVERNANCE.md)
+
+### ADR-CON-009: Production Acceptance Model
+
+**Decision:** Triple acceptance — Repository · Production · Grand King — none implied by another.  
+**Doctrine:** [`EMPIREAI_PRODUCTION_TRUTH.md`](docs/governance/EMPIREAI_PRODUCTION_TRUTH.md)
+
+### ADR-CON-010: Future Expansion Strategy
+
+**Decision:** Grand King-first → validated → repeatable → multi-founder via workspace isolation; public rollout post MS-B.  
+**Milestones:** ADR-015 MS-A/MS-B · CTD-002
+
+---
+
+## Programme ADRs (ADR-001 → ADR-052)
 
 ## ADR-001: Brain as single orchestration point
 
 **Status:** Accepted  
 **Decision:** All platform actions flow through the Brain Orchestrator.  
 **Rationale:** Security, auditability, Guardian enforcement, consistent agent routing.  
-**Consequences:** Frontend uses BFF proxy only; no direct provider calls.
+**Consequences:** Frontend uses BFF proxy only; no direct provider calls.  
+**Constitutional index:** ADR-CON-003
 
 ## ADR-002: SQLite for Phase 1–3 persistence
 
@@ -440,6 +524,15 @@ Public rollout may only begin **after MS-B**.
 **Rationale:** Executive Intelligence governance direction — commercial success depends on deep intelligence across both suppliers and marketplaces; financial survivability must gate launch decisions.  
 **Consequences:** Companion to CBD-001→020 (survivability aligns with CBD-002; CRI-001 elevates survivability when in conflict). CRIR added as Commerce Canon READINESS documentation criterion. Cross-referenced in Canonical Architecture §3.7A, Master Index, Roadmap. **No runtime, Cockpit, Brain, API, or REAL mission history changes** authorized by this ADR. Future REAL missions may implement CRIR automation and launch gate enforcement.
 
+## ADR-052: Version 1 Marketplace & Channel Registry (B6-01C)
+
+**Status:** Accepted · **ACTIVE**  
+**Date:** 2026-07-02  
+**Decision:** Adopt **`docs/governance/V1_MARKETPLACE_CHANNEL_REGISTRY.md`** as the canonical Version 1 marketplace and channel governance registry. V1 **must support** four channel identities: **`amazon-us`**, **`amazon-sg`**, **`shopee-sg`**, and **`shopify` (architecture provision)**. Shopify is required as an architecture provision in the marketplace/channel layer; live Shopify launch is optional until King approval. Supersede B6-01A Amazon deferral recommendation and any doctrine assuming a single generic Amazon marketplace as the sole V1 path. Future marketplaces register via **Country × Marketplace × Credential Profile × API Capability** — V1 must not hard-code a closed three-marketplace ceiling in implementation design.  
+**Owner:** Repository Governance · Commercial Architecture · B6-01C  
+**Rationale:** Grand King refined V1 marketplace requirement; future-proofs multi-country expansion (Lazada, TikTok Shop, eBay, Etsy, Walmart, additional Amazon/Shopee countries, Shopify stores, direct storefronts).  
+**Consequences:** GO-002 P3 amended · B6 blocker scope amended · go-live checklist M2/M3 amended · B6-01A/B audit artifacts superseded. **No runtime code, adapters, or Railway env changes** authorized by this ADR — implementation via subsequent B6 missions.
+
 ---
 
 ## Superseded Programs (Historical Reference)
@@ -463,4 +556,4 @@ Public rollout may only begin **after MS-B**.
 | PDR-005 | Marketplace OS kernel location | **Superseded by ADR-013** — Connector Kernel extends `reality-integration` |
 | PDR-006 | COS-002 first deliverable | Connector SDK types vs reference Shopify adapter |
 
-_Last updated: Commercial Risk Intelligence (CRI) governance alignment — ADR-051 — 2026-06-21. See `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md`._
+_Last updated: P3-07 Architectural ADR System — ADR-CON-001→010 · Phase P3 complete — 2026-07-05._

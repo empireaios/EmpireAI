@@ -339,6 +339,18 @@ export const INTEGRATIONS_HUB_CATALOG: IntegrationsHubDefinition[] = [
   },
   // AI Providers
   {
+    integrationId: "canva",
+    displayName: "Canva",
+    category: "ai_providers",
+    purpose: "Canonical visual production engine — designs, brand assets, exports.",
+    whyEmpireNeedsIt: "Default shared visual generation provider for Commerce, Media, Marketing, and executive assets via the Visual Generation Layer.",
+    oneTimeSetup: true,
+    platformId: "canva",
+    realityProviderId: "canva",
+    connectKind: "reality",
+    documentationUrl: "https://www.canva.dev/docs/connect",
+  },
+  {
     integrationId: "openai",
     displayName: "OpenAI",
     category: "ai_providers",

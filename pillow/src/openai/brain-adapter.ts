@@ -35,3 +35,31 @@ export interface BrainLLMAdapter {
   complete(request: BrainLLMCompleteRequest): Promise<BrainLLMCompleteResponse>;
   listAvailableProviders(): BrainLLMProviderName[];
 }
+
+/** Capability execution request for OpenAI Intelligence Platform. */
+export interface BrainLLMCapabilityRequest {
+  capability: import("../intelligence-platform/types.js").OpenAICapability;
+  userMessage: string;
+  systemContext: string;
+  workspaceId: string;
+  correlationId: string;
+}
+
+export interface BrainLLMCapabilityResponse {
+  capability: import("../intelligence-platform/types.js").OpenAICapability;
+  content: string;
+  artifactType: import("../intelligence-platform/types.js").EmpireAIArtifactType;
+  metadata: Record<string, unknown>;
+  success: boolean;
+}
+
+/** Extended adapter supporting OpenAI Intelligence Platform capabilities. */
+export interface IntelligencePlatformAdapter extends BrainLLMAdapter {
+  listCapabilities(): import("../intelligence-platform/types.js").OpenAICapability[];
+  isCapabilityAvailable(
+    capability: import("../intelligence-platform/types.js").OpenAICapability,
+  ): boolean;
+  executeCapability(
+    request: BrainLLMCapabilityRequest,
+  ): Promise<BrainLLMCapabilityResponse>;
+}

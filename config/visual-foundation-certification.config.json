@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "validationScope": [
+    "T1-01",
+    "T1-02",
+    "T1-03",
+    "T1-04",
+    "T1-05",
+    "T1-06",
+    "T1-07",
+    "T1-08",
+    "T1-09"
+  ],
+  "testSessionDurationMs": 30000,
+  "requiredPassThreshold": 50,
+  "requireEndToEndPass": true,
+  "reportOutputRoot": ".pillow-visual-foundation-certification",
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "certificationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateSensitiveDataProtection": true,
+  "validateHealthReporting": true,
+  "validateRecoveryBehavior": true
+}

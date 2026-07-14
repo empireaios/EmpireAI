@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "continuousEvolutionEnabled": true,
+  "analysisFrequencyMs": 12000,
+  "frictionDetectionRulesEnabled": true,
+  "prioritizationRulesEnabled": true,
+  "productivityScoringRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "analysisTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryEvolutionCycles": 120,
+  "deduplicateRecommendations": true,
+  "recommendOnlyMode": true
+}

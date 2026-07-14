@@ -2,7 +2,7 @@
 
 **Canonical label:** Cursor Recovery Doctrine
 **Status:** ✅ Permanent repository engineering rule
-**Parent law:** `EMPIREAI_CONSTITUTION.md` (permanent engineering law)
+**Parent law:** [`EMPIREAI_CONSTITUTION.md`](./EMPIREAI_CONSTITUTION.md) (Engineering Constitution · P2-03)
 **Synchronization standard:** BL-A Repository Synchronization standard / Repository Continuity Doctrine
 **Canonical owners:** Cursor (governed AI engineering worker) · CTO (engineering governance) · Repository Continuity Doctrine (synchronization owner)
 **Registered:** 2026-06-29 (BL-B)

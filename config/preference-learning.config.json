@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "learningScope": "standard",
+  "evidenceRequirementsEnabled": true,
+  "confidenceThreshold": 0.45,
+  "versioningRulesEnabled": true,
+  "preferenceRetentionRulesEnabled": true,
+  "explicitEvidenceRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "learningTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryPreferences": 100,
+  "maxPreferenceVersions": 20
+}

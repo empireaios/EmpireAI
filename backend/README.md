@@ -1,5 +1,7 @@
 # Backend — EmpireAI Brain
 
+> **Canonical Brain Architecture (P3-01):** [`docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md`](../docs/architecture/EMPIREAI_BRAIN_ARCHITECTURE.md)
+
 Core server and **EmpireAI Brain** — the AI orchestration layer that powers every platform module.
 
 ## Architecture

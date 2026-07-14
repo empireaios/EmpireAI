@@ -1,0 +1,43 @@
+{
+  "status": "ok",
+  "mission": "B6-02B",
+  "success": true,
+  "verifiedAt": "2026-07-02T01:44:48.859Z",
+  "probeSource": "GET https://empireai-production.up.railway.app/health/b6-02-cj-live-auth",
+  "deployCommit": "d56cf3d",
+  "credentialSource": "CJ_API_KEY",
+  "auth": {
+    "endpoint": "https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken",
+    "method": "POST",
+    "payloadShape": {
+      "apiKey": true
+    },
+    "httpStatus": 200,
+    "accessTokenReceived": true,
+    "refreshTokenReceived": true,
+    "accessTokenExpiryParsed": true,
+    "refreshTokenExpiryParsed": true,
+    "apiResult": true,
+    "apiMessage": "Success"
+  },
+  "tokenCache": {
+    "populated": true,
+    "accessExpiresAt": "2026-12-28T17:44:48.000Z",
+    "refreshTokenPresent": true,
+    "refreshExpiresAt": "2026-12-28T17:44:48.000Z",
+    "accessValid": true,
+    "refreshValid": true,
+    "reuseVerified": true
+  },
+  "authenticatedCall": {
+    "endpoint": "https://developers.cjdropshipping.com/api2.0/v1/product/list?pageNum=1&pageSize=1",
+    "method": "GET",
+    "httpStatus": 200,
+    "apiResult": true,
+    "productCount": 1,
+    "message": "Success"
+  },
+  "blockers": [],
+  "errorCode": null,
+  "errorMessage": null
+}

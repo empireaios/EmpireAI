@@ -112,6 +112,21 @@ export interface RoutePromptResult {
     objectiveAlignment: string;
     status: string;
   };
+  artifacts?: Array<{
+    artifactId: string;
+    artifactType: string;
+    sourceTool: string;
+    title: string;
+    content: string;
+    timestamp: string;
+    status: string;
+    metadata?: Record<string, unknown>;
+  }>;
+  intelligenceRouting?: {
+    primarySource: string;
+    primaryCapability: string;
+    rationale: string;
+  };
 }
 
 export interface PillowRequestLogEntry {

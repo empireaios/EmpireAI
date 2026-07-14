@@ -26,6 +26,17 @@ export const pillowWorkspaceContextSchema = z.object({
     .optional(),
   businessEntity: z.record(z.unknown()).optional(),
   extensionId: z.string().optional(),
+  currentBusiness: z.string().nullable().optional(),
+  currentMission: z.string().nullable().optional(),
+  currentJourney: z.string().nullable().optional(),
+  currentRoadmapItem: z.string().nullable().optional(),
+  builderStatus: z.string().nullable().optional(),
+  supervisorStatus: z.string().nullable().optional(),
+  productionStatus: z.string().nullable().optional(),
+  guardianStatus: z.string().nullable().optional(),
+  repositoryFingerprint: z.string().nullable().optional(),
+  recommendations: z.array(z.string()).max(12).optional(),
+  risks: z.array(z.string()).max(12).optional(),
 });
 
 export type PillowWorkspaceContext = z.infer<typeof pillowWorkspaceContextSchema>;
@@ -58,6 +69,19 @@ export function formatPillowWorkspaceContext(context: PillowWorkspaceContext): s
     context.businessEntity && Object.keys(context.businessEntity).length > 0
       ? `Business entity: ${JSON.stringify(context.businessEntity)}`
       : null,
+    context.currentBusiness ? `Current business: ${context.currentBusiness}` : null,
+    context.currentMission ? `Current mission: ${context.currentMission}` : null,
+    context.currentJourney ? `Current journey: ${context.currentJourney}` : null,
+    context.currentRoadmapItem ? `Current roadmap: ${context.currentRoadmapItem}` : null,
+    context.builderStatus ? `Builder status: ${context.builderStatus}` : null,
+    context.supervisorStatus ? `Supervisor status: ${context.supervisorStatus}` : null,
+    context.productionStatus ? `Production status: ${context.productionStatus}` : null,
+    context.guardianStatus ? `Guardian/runtime status: ${context.guardianStatus}` : null,
+    context.repositoryFingerprint ? `Repository: ${context.repositoryFingerprint}` : null,
+    context.recommendations?.length
+      ? `Pillow recommendations: ${context.recommendations.join("; ")}`
+      : null,
+    context.risks?.length ? `Current risks: ${context.risks.join("; ")}` : null,
   ].filter(Boolean);
 
   return lines.join("\n");

@@ -16,6 +16,7 @@ export const CONNECTION_REGISTRY_PROVIDER_IDS = [
   "shopify",
   "tiktok",
   "openai",
+  "canva",
   "anthropic",
   "github",
   "vercel",

@@ -22,6 +22,7 @@ export type CockpitScreenId =
   | "SCR-202"
   | "SCR-203"
   | "SCR-204"
+  | "SCR-205"
   | "SCR-300"
   | "SCR-301"
   | "SCR-302"

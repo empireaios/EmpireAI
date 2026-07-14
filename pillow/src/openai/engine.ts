@@ -12,10 +12,16 @@ import type {
   BrainLLMProviderName,
 } from "./brain-adapter.js";
 import {
+  assessKnowledgeRouting,
+  buildKnowledgeRoutingPromptSection,
+} from "./knowledge-routing.js";
+import {
   budgetForMode,
   resolveOperatingMode,
   resolvePreferredProvider,
 } from "./mode-policy.js";
+import type { IntelligencePlatformEngine } from "../intelligence-platform/engine.js";
+import type { EmpireAIArtifact } from "../intelligence-platform/types.js";
 
 export interface PillowCompletionRequest {
   operationalContext: OperationalContext;
@@ -27,6 +33,7 @@ export interface PillowCompletionRequest {
   executiveReasoning?: ExecutiveReasoningComposition;
   executiveLearningBundle?: ExecutiveLearningReasoningBundle;
   executiveCouncilRecommendation?: PillowExecutiveRecommendation;
+  actor?: string;
 }
 
 export interface PillowCompletionResult {
@@ -40,6 +47,13 @@ export interface PillowCompletionResult {
     completionTokens: number;
     totalTokens: number;
   };
+  artifacts?: EmpireAIArtifact[];
+  capabilitiesUsed?: string[];
+  intelligenceRouting?: {
+    primarySource: string;
+    primaryCapability: string;
+    rationale: string;
+  };
 }
 
 /**
@@ -47,7 +61,10 @@ export interface PillowCompletionResult {
  * Assembles Context Builder payloads and delegates completion to Brain LLMRouter via adapter.
  */
 export class OpenAIIntegrationLayer {
-  constructor(private readonly adapter: BrainLLMAdapter) {}
+  constructor(
+    private readonly adapter: BrainLLMAdapter,
+    private readonly intelligencePlatform?: IntelligencePlatformEngine,
+  ) {}
 
   listAvailableProviders(): BrainLLMProviderName[] {
     return this.adapter.listAvailableProviders();
@@ -72,7 +89,50 @@ export class OpenAIIntegrationLayer {
       request.executiveReasoning ?? request.operationalContext.executiveReasoning,
       request.executiveLearningBundle,
       request.executiveCouncilRecommendation,
+      this.intelligencePlatform,
     );
+
+    const systemContext = messages.find((m) => m.role === "system")?.content ?? "";
+
+    if (this.intelligencePlatform) {
+      const routing = this.intelligencePlatform.assessRouting(
+        request.userMessage,
+        request.operationalContext,
+      );
+      const specialCapabilities = new Set([
+        "web_search",
+        "file_search",
+        "file_analysis",
+        "image_generation",
+        "vision",
+        "code_execution",
+      ]);
+      if (specialCapabilities.has(routing.primaryCapability)) {
+        const platformResult = await this.intelligencePlatform.execute({
+          operationalContext: request.operationalContext,
+          userMessage: request.userMessage,
+          workspaceId: request.workspaceId,
+          correlationId: request.correlationId,
+          owner: request.actor ?? "grand_king",
+          missionId: request.operationalContext.intelligenceSnapshot.currentMission,
+          systemContext,
+        });
+        return {
+          content: platformResult.content,
+          provider,
+          model: request.model ?? "intelligence-platform",
+          mode,
+          manifestId: request.operationalContext.manifest.repositoryFingerprint,
+          artifacts: platformResult.artifacts,
+          capabilitiesUsed: platformResult.capabilitiesUsed,
+          intelligenceRouting: {
+            primarySource: platformResult.routing.primarySource,
+            primaryCapability: platformResult.routing.primaryCapability,
+            rationale: platformResult.routing.rationale,
+          },
+        };
+      }
+    }
 
     const llmRequest: BrainLLMCompleteRequest = {
       messages,
@@ -86,6 +146,25 @@ export class OpenAIIntegrationLayer {
 
     const response = await this.adapter.complete(llmRequest);
 
+    let artifacts: EmpireAIArtifact[] | undefined;
+    if (this.intelligencePlatform) {
+      const chatArtifact = this.intelligencePlatform.getArtifactRegistry().register({
+        artifactType: "chat_response",
+        sourceTool: "general_knowledge",
+        missionId: request.operationalContext.intelligenceSnapshot.currentMission,
+        owner: request.actor ?? "grand_king",
+        title: `Chat: ${request.userMessage.slice(0, 60)}`,
+        content: response.content,
+        metadata: { provider: response.provider, model: response.model },
+      });
+      artifacts = [chatArtifact];
+    }
+
+    const routing = this.intelligencePlatform?.assessRouting(
+      request.userMessage,
+      request.operationalContext,
+    );
+
     return {
       content: response.content,
       provider: response.provider,
@@ -93,6 +172,15 @@ export class OpenAIIntegrationLayer {
       mode,
       manifestId: request.operationalContext.manifest.repositoryFingerprint,
       usage: response.usage,
+      artifacts,
+      capabilitiesUsed: routing ? [routing.primaryCapability] : undefined,
+      intelligenceRouting: routing
+        ? {
+            primarySource: routing.primarySource,
+            primaryCapability: routing.primaryCapability,
+            rationale: routing.rationale,
+          }
+        : undefined,
     };
   }
 }
@@ -104,11 +192,25 @@ function assembleLlmMessages(
   executiveReasoning?: ExecutiveReasoningComposition,
   executiveLearningBundle?: ExecutiveLearningReasoningBundle,
   executiveCouncilRecommendation?: PillowExecutiveRecommendation,
+  intelligencePlatform?: IntelligencePlatformEngine,
 ): BrainLLMMessage[] {
   const snapshot = context.intelligenceSnapshot;
+  const hasRepositoryKnowledge = Boolean(context.repositoryKnowledgeAnswer?.trim());
+  const knowledgeRouting = assessKnowledgeRouting(userMessage, {
+    hasRepositoryAnswer: hasRepositoryKnowledge,
+    contextTask: context.manifest.task,
+  });
+  const knowledgeRoutingPolicy = intelligencePlatform
+    ? intelligencePlatform.buildRoutingPromptSection(userMessage, context)
+    : buildKnowledgeRoutingPromptSection(
+        knowledgeRouting,
+        hasRepositoryKnowledge,
+        userMessage,
+      );
+
   const systemHeader = [
     "You are Pillow, the AI operating layer inside EmpireAI.",
-    "Answer using the repository context below. Do not invent repository facts.",
+    knowledgeRoutingPolicy,
     `Operating mode: ${mode}`,
     `Context task: ${context.manifest.task}`,
     `Repository fingerprint: ${context.manifest.repositoryFingerprint}`,
@@ -203,6 +305,7 @@ function assembleLlmMessages(
 
 export function createOpenAIIntegrationLayer(
   adapter: BrainLLMAdapter,
+  intelligencePlatform?: IntelligencePlatformEngine,
 ): OpenAIIntegrationLayer {
-  return new OpenAIIntegrationLayer(adapter);
+  return new OpenAIIntegrationLayer(adapter, intelligencePlatform);
 }

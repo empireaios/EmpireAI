@@ -1,0 +1,46 @@
+{
+  "enabled": true,
+  "codeGenerationScopes": [
+    "page",
+    "screen",
+    "view",
+    "ui_section",
+    "existing_component",
+    "existing_layout",
+    "navigation_area",
+    "form",
+    "card",
+    "table",
+    "dashboard",
+    "modal",
+    "drawer",
+    "loading_state",
+    "empty_state",
+    "error_state"
+  ],
+  "allowedTargetDirectories": [
+    "empireai-web/components",
+    "empireai-web/app",
+    "empireai-web/lib"
+  ],
+  "protectedFiles": [
+    "package.json",
+    "tsconfig.json",
+    "backend/",
+    "pillow/src/session.ts",
+    "pillow/src/index.ts"
+  ],
+  "designSystemConstraintsEnabled": true,
+  "executivePreferenceConstraintsEnabled": true,
+  "safetyRulesEnabled": true,
+  "requireUxCertificationPass": false,
+  "requireApprovalThreshold": true,
+  "minConfidenceThreshold": 0.4,
+  "maxRecordsPerBuild": 25,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "buildTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validationRulesEnabled": true
+}

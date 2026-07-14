@@ -1,5 +1,6 @@
 # PILLOW ARCHITECTURE CONTRACT — PILLOW-001 (Synchronized)
 
+> **Canonical Pillow Architecture (P3-02):** [`docs/architecture/EMPIREAI_PILLOW_ARCHITECTURE.md`](docs/architecture/EMPIREAI_PILLOW_ARCHITECTURE.md)  
 > Mission: PILLOW-001 — Pillow Architecture Contract  
 > **Synchronized:** 2026-06-29 — Pillow Architecture Synchronization (ADR-030)  
 > **Status:** **CANONICAL AUTHORITY** — PILLOW-002 ✅ · PILLOW-003 ✅ implemented; future missions follow Part 7 (finalized)  
@@ -45,6 +46,9 @@ Pillow **prepares** operational knowledge via Bootstrap and Repository Intellige
 | Executive Audit standard | `EMPIREAI_EXECUTIVE_AUDIT_STANDARD.md` |
 | Cursor Output standard | `EMPIREAI_CURSOR_OUTPUT_STANDARD.md` |
 | Continuous Artifact Generation | `EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md` |
+| **EKLS (Knowledge & Learning)** | `CANONICAL_EKLS_SPECIFICATION.md` |
+
+**Platform hierarchy & technical ownership:** `EMPIREAI_PILLOW_CONSTITUTION.md` §17 — Pillow is sole technical owner; Brain is not a peer of Pillow.
 
 ---
 
@@ -133,8 +137,9 @@ Pillow **prepares** operational knowledge via Bootstrap and Repository Intellige
 | 24 | **Pillow Chat UI** | Single continuous conversation surface | Pillow backend/session | Session state (ephemeral) | 🔵 PILLOW-018 |
 | 25 | **OpenAI API Integration Layer** | LLM requests with Context Builder payloads | Context Builder + Memory | None | 🔵 PILLOW-016 |
 | 26 | **Empire Recovery Assessment** | Recovery session runtime (BL-B doctrine) | Recovery checklist domains | Recovery report (gated) | 🔵 PILLOW-019 |
+| 27 | **EKLS (Empire Knowledge & Learning System)** | Institutional memory — schedules, coordinates, aggregates; Pillow-governed; owns no business logic | All knowledge sources via governance gateway | Pillow-governed stores only | ✅ Canonical |
 
-**PILLOW-001 note:** Original contract listed 13 subsystems without Repository Intelligence and with managers assumed in PILLOW-002. **Part 10** maps original names to finalized names. Completed PILLOW-002/003 implementations are **not discarded**.
+**EKLS note:** EKLS is **not** a Pillow chat subsystem — it is the permanent Knowledge & Learning layer under Pillow. See `CANONICAL_EKLS_SPECIFICATION.md` and `backend/src/orchestration/pillow/ekls/`. Original contract listed 13 subsystems without Repository Intelligence and with managers assumed in PILLOW-002. **Part 10** maps original names to finalized names. Completed PILLOW-002/003 implementations are **not discarded**.
 
 ---
 

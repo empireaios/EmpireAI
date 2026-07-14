@@ -71,7 +71,7 @@ export async function submitLiveCjOrder(order: Order): Promise<LiveCjSubmitResul
       };
     }
     throw new LiveCjFulfillmentBlockedError(
-      "CJ live credentials required — set CJ_API_KEY, CJ_API_SECRET, CJ_INTEGRATION_MODE=LIVE",
+      "CJ live credentials required — set CJ_API_KEY and CJ_INTEGRATION_MODE=LIVE",
     );
   }
 

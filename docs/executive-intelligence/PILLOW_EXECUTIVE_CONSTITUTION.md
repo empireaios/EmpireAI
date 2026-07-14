@@ -58,17 +58,21 @@ Only the **King** may approve Executive Intelligence amendments. See [EXECUTIVE_
 
 ## 4. Architectural placement
 
+**Technical ownership:** Pillow is the sole technical owner of EmpireAI (`EMPIREAI_PILLOW_CONSTITUTION.md` §17). Brain, Cockpit, EKLS, and all engines are Pillow-owned subsystems — Brain is not a peer of Pillow.
+
 ```
 Grand King
   ↓
-Pillow (this constitution)
+EmpireAI
+  ↓
+Pillow (this constitution — sole technical owner)
   ↓
 Executive Intelligence Library (EI0–EI10)
   ↓
-Brain
+Brain (Pillow-owned execution)
 ```
 
-Pillow **applies** Executive Intelligence. Brain **computes**. Cockpit **presents** Executive Intelligence.
+Pillow **applies** Executive Intelligence. Brain **computes** under Pillow ownership. Cockpit **presents** Executive Intelligence.
 
 See [EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md](./EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md).
 

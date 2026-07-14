@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "scoringFrequency": "on_demand",
+  "passThreshold": 70,
+  "minimumScoreThreshold": 0,
+  "severityImpact": { "error": 15, "warning": 8, "info": 3 },
+  "strengthBonus": 5,
+  "confidenceImpactEnabled": true,
+  "validationRulesEnabled": true,
+  "maxScoringDurationMs": 60000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "scoringTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

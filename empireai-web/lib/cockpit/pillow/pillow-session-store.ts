@@ -11,6 +11,7 @@ export type PillowConversationTurn = {
   content: string;
   screenPath: string;
   recordedAt: string;
+  artifacts?: import("@/lib/pillow/types").PillowChatArtifact[];
 };
 
 export type PillowSessionSnapshot = {

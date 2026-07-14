@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "storageBackend": "memory",
+  "storageRoot": ".pillow-visual-memory",
+  "memoryCaptureIntervalMs": 2000,
+  "maxCaptureRate": 3,
+  "retentionDurationMs": 604800000,
+  "snapshotRetentionDurationMs": 86400000,
+  "maxStorageSizeBytes": 52428800,
+  "maxRecords": 5000,
+  "retrievalLimit": 100,
+  "storeSnapshots": true,
+  "maskSensitiveValues": true,
+  "compressRecords": false,
+  "cleanupIntervalMs": 3600000,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "storageTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateRecords": true
+}

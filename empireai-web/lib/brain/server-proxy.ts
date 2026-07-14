@@ -5,7 +5,7 @@ const AUTH_UPSTREAM_TIMEOUT_MS = 20_000;
 const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
 /** Pillow chat runs context assembly + LLM — must stay under Vercel maxDuration (60s). */
 const PILLOW_UPSTREAM_TIMEOUT_MS = 58_000;
-const PILLOW_SESSION_UPSTREAM_TIMEOUT_MS = 30_000;
+const PILLOW_SESSION_UPSTREAM_TIMEOUT_MS = 130_000;
 const PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS = 10_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */

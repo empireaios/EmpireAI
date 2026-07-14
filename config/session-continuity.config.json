@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "continuityUpdateIntervalMs": 1500,
+  "maxUpdateRate": 4,
+  "sessionTimeoutMs": 1800000,
+  "recentHistoryWindow": 20,
+  "stableStateThreshold": 3,
+  "continuityBufferLimit": 30,
+  "persistenceRoot": ".pillow-session-continuity",
+  "persistSessionContext": true,
+  "maskSensitiveValues": true,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "continuityTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateContinuity": true
+}

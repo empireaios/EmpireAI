@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "validationScope": [
+    "T3-01",
+    "T3-02",
+    "T3-03",
+    "T3-04",
+    "T3-05",
+    "T3-06",
+    "T3-07",
+    "T3-08",
+    "T3-09"
+  ],
+  "testWorkflowDurationMs": 120000,
+  "requiredPassThreshold": 50,
+  "requireEndToEndPass": true,
+  "reportOutputRoot": ".pillow-autonomous-builder-certification",
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "certificationTimeoutMs": 300000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateHealthReporting": true,
+  "validateRecoveryBehavior": true,
+  "validateMetadataRules": true,
+  "validateProductionSafety": true,
+  "requireT2UxIntelligenceCertified": false
+}

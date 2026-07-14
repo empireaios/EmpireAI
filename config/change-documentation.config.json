@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "documentationScopes": [
+    "frontend",
+    "component",
+    "layout",
+    "theme",
+    "preview",
+    "validation",
+    "regression",
+    "rollback",
+    "full"
+  ],
+  "documentationOutputLocation": ".pillow-change-documentation",
+  "documentationFormat": "structured",
+  "evidenceReferenceRulesEnabled": true,
+  "fileChangeSummaryRulesEnabled": true,
+  "uxRationaleRulesEnabled": true,
+  "safetySummaryRulesEnabled": true,
+  "retentionMs": 604800000,
+  "maxRecordsPerRun": 50,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "documentationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true
+}

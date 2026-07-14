@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "mission": "B6-03B",
+  "success": true,
+  "certification": "PASS",
+  "verifiedAt": "2026-07-02T03:50:14.610Z",
+  "probeSource": "GET https://empireai-production.up.railway.app/health/b6-03-stripe-live-auth",
+  "deployCommit": "0a613c9",
+  "recoveryCommit": "a8945b2",
+  "productionReachable": true,
+  "productionHttpStatus": 200,
+  "preDeployCredentialCheck": {
+    "source": "GET https://empireai-production.up.railway.app/health/b6-implementation",
+    "b6_03_status": "VERIFIED",
+    "configured": true,
+    "verified": true,
+    "detail": "Stripe live keys configured",
+    "observedBeforeDeploy": "2026-07-02T02:38:00.000Z"
+  },
+  "credentials": {
+    "secretKeyPresent": true,
+    "secretKeyMode": "live",
+    "webhookSecretPresent": true,
+    "webhookSecretFormatValid": true
+  },
+  "stripeApi": {
+    "endpoint": "https://api.stripe.com/v1/balance",
+    "method": "GET",
+    "httpStatus": 200,
+    "livemode": true,
+    "accountAccessible": true,
+    "message": "Success"
+  },
+  "webhookVerification": {
+    "signatureRoundTripVerified": true,
+    "staleSignatureRejected": true
+  },
+  "paymentService": {
+    "initialized": true,
+    "stripeLiveConfigured": true,
+    "livePaymentEnabled": false,
+    "mockMode": false
+  },
+  "webhookEndpoint": {
+    "path": "/live-payments/webhooks/stripe",
+    "method": "POST",
+    "httpStatus": 200,
+    "operational": true,
+    "acceptsSignedPayload": true
+  },
+  "blockers": [],
+  "remainingBlockers": [
+    "LIVE_PAYMENT_ENABLED=false — live charges gated (Protect The Empire)"
+  ],
+  "errorCode": null,
+  "errorMessage": null,
+  "recoveryNote": "Initial probe after 0a613c9 returned HTTP 502 (build failure). Recovered via B6-03C commit a8945b2."
+}

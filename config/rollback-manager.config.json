@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "restorePointRulesEnabled": true,
+  "snapshotRetentionMs": 86400000,
+  "maxRestorePoints": 50,
+  "rollbackVerificationEnabled": true,
+  "cleanupExpiredSnapshots": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "rollbackTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "autoCreateRestorePoints": true
+}

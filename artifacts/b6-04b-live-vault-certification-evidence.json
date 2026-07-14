@@ -1,0 +1,64 @@
+{
+  "mission": "B6-04B",
+  "certification": "PASS",
+  "success": true,
+  "verifiedAt": "2026-07-02T04:12:58.252Z",
+  "probeSource": "GET https://empireai-production.up.railway.app/health/b6-implementation",
+  "secondaryProbe": "GET https://empireai-production.up.railway.app/health/production-deploy",
+  "productionBaselineCommit": "a8945b2",
+  "codeChangesRequired": false,
+  "operatorAction": "CREDENTIAL_VAULT_KEY injected on Railway",
+  "pollAttempts": 7,
+  "pollIntervalSeconds": 30,
+  "initialProbeAt": "2026-07-02T04:09:14.508Z",
+  "initialB604Status": "PENDING",
+  "certifyingProbeAt": "2026-07-02T04:12:58.252Z",
+  "b6_04": {
+    "id": "B6-04",
+    "label": "Credential Vault verification",
+    "statusBefore": "PENDING",
+    "statusAfter": "VERIFIED",
+    "configured": true,
+    "verified": true,
+    "envKeys": ["CREDENTIAL_VAULT_KEY"],
+    "detail": "Vault encryption key verified (32+ chars)"
+  },
+  "runtimeDetection": {
+    "credentialReadinessForB6Vault": true,
+    "secretsChecklistCredentialVaultKeyPresent": true
+  },
+  "b6Tracker": {
+    "progressPercentBefore": 20,
+    "progressPercentAfter": 40,
+    "completedCount": 2,
+    "totalObjectives": 5,
+    "b6Closed": false,
+    "currentObjectiveId": "B6-01",
+    "nextHighestImpactAction": "B6-01 — Inject Amazon SP-API credentials on Railway"
+  },
+  "remainingBlockers": [
+    {
+      "id": "B6-01",
+      "status": "PENDING",
+      "detail": "Inject Amazon SP-API credentials on Railway"
+    },
+    {
+      "id": "B6-02",
+      "status": "CONFIGURED",
+      "detail": "CJ key present — requires LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
+    },
+    {
+      "id": "B6-05",
+      "status": "PENDING",
+      "detail": "Commerce adapter connectivity test — complete B6-01 and B6-02 first"
+    },
+    {
+      "id": "GLOBAL",
+      "status": "GATED",
+      "detail": "liveCommerceMode=sandbox; LIVE_PAYMENT_ENABLED=false"
+    }
+  ],
+  "itemsVerified": ["B6-03", "B6-04"],
+  "itemsPending": ["B6-01", "B6-05"],
+  "itemsConfiguredNotVerified": ["B6-02"]
+}

@@ -293,7 +293,9 @@ export function getInfrastructureConnectionStatus(
   }
 
   if (connectorId === "cj-dropshipping") {
-    const hasCj = Boolean(process.env.CJ_API_KEY && process.env.CJ_API_SECRET);
+    const hasCj = Boolean(
+      process.env.CJ_API_KEY?.trim() || process.env.CJ_DROPSHIPPING_API_KEY?.trim(),
+    );
     return hasCj ? "CONNECTING" : "NOT_CONNECTED";
   }
 

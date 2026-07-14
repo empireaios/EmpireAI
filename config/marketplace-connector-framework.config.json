@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "connectorRegistrationRulesEnabled": true,
+  "authenticationRulesEnabled": true,
+  "apiTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "defaultRequestsPerMinute": 60,
+  "defaultBurstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "webhookRulesEnabled": true,
+  "webhookSignatureVerificationEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maxRegisteredConnectors": 50,
+  "isolateConnectors": true,
+  "maskSensitiveValues": true
+}

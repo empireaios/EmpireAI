@@ -3,27 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "@/lib/auth/context";
-import { cockpitNavigation } from "@/lib/cockpit/navigation";
 import {
-  canAccessCockpitNav,
-  cockpitNavIcons,
-  isCockpitNavActive,
-} from "./cockpitNavUtils";
-
-const mobilePrimaryIds = new Set(["home", "relationship", "command", "missions"]);
+  COCKPIT_UX_MOBILE_PRIMARY,
+  COCKPIT_UX_NAVIGATION,
+} from "@/lib/cockpit-ux/navigation";
+import { isCockpitNavActive } from "./cockpitNavUtils";
 
 export function CockpitMobileNav() {
   const pathname = usePathname();
-  const { user } = useAuth();
   const [moreOpen, setMoreOpen] = useState(false);
 
-  const visibleNavigation = cockpitNavigation.filter((item) =>
-    canAccessCockpitNav(item.roles, user?.role),
+  const mobileTabs = COCKPIT_UX_NAVIGATION.filter((item) =>
+    COCKPIT_UX_MOBILE_PRIMARY.includes(item.id),
   );
-
-  const mobileTabs = visibleNavigation.filter((item) => mobilePrimaryIds.has(item.id));
-  const moreItems = visibleNavigation.filter((item) => !mobilePrimaryIds.has(item.id));
+  const moreItems = COCKPIT_UX_NAVIGATION.filter(
+    (item) => !COCKPIT_UX_MOBILE_PRIMARY.includes(item.id),
+  );
 
   return (
     <>
@@ -34,15 +29,15 @@ export function CockpitMobileNav() {
         {mobileTabs.map((tab) => {
           const active = isCockpitNavActive(pathname, tab.href);
           const shortLabel =
-            tab.id === "home"
+            tab.id === "executive_home"
               ? "Home"
-              : tab.id === "command"
-                ? "Command"
-                : tab.id === "missions"
+              : tab.id === "pillow"
+                ? "Pillow"
+                : tab.id === "mission_centre"
                   ? "Missions"
-                  : tab.id === "relationship"
-                    ? "Graph"
-                    : tab.label;
+                  : tab.id === "builder"
+                    ? "Builder"
+                    : tab.label.split(" ")[0];
           return (
             <Link
               key={tab.id}
@@ -52,14 +47,14 @@ export function CockpitMobileNav() {
                 active ? "text-[#d4af37]" : "text-[#6f6a60]"
               }`}
             >
-              <span className="text-base">{cockpitNavIcons[tab.icon]}</span>
+              <span className="text-base">{tab.icon}</span>
               {shortLabel}
             </Link>
           );
         })}
         <button
           type="button"
-          aria-label="Open all departments"
+          aria-label="Open all centres"
           onClick={() => setMoreOpen(true)}
           className="flex flex-1 flex-col items-center gap-1 py-3 text-[10px] uppercase tracking-wider text-[#6f6a60]"
         >
@@ -78,7 +73,7 @@ export function CockpitMobileNav() {
           />
           <div className="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-2xl border-t border-gold/20 bg-[#0a0a0a] p-6">
             <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#d4af37]">
-              All Departments
+              Executive Cockpit · P7-02
             </p>
             <div className="grid grid-cols-2 gap-2">
               {moreItems.map((item) => (
@@ -88,6 +83,7 @@ export function CockpitMobileNav() {
                   onClick={() => setMoreOpen(false)}
                   className="rounded-lg border border-gold/10 px-3 py-3 text-sm text-[#c8c0b0] transition-colors hover:border-gold/25 hover:text-[#f0d78c]"
                 >
+                  <span className="mr-2">{item.icon}</span>
                   {item.label}
                 </Link>
               ))}

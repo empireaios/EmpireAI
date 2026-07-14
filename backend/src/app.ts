@@ -18,6 +18,8 @@ import { registerCustomerOrderPipelineRoutes } from "./revenue/customer-order-pi
 import { registerLiveCjFulfillmentRoutes } from "./execution/live-cj-fulfillment/routes/live-cj-fulfillment-routes.js";
 import { registerAnalyticsConversionRoutes } from "./execution/analytics-conversion-engine/routes/analytics-conversion-routes.js";
 import { registerMetaAdsConnectorRoutes } from "./execution/meta-ads-connector/routes/meta-ads-connector-routes.js";
+import { registerCanvaConnectRoutes } from "./execution/canva-connect-connector/routes/canva-connect-routes.js";
+import { registerVisualGenerationRoutes } from "./orchestration/visual-generation-layer/routes/visual-generation-routes.js";
 import { registerProductPublishingRoutes } from "./execution/product-publishing-engine/routes/product-publishing-routes.js";
 import { registerGrandKingsRevenueRoutes } from "./revenue/grand-kings-revenue-engine/routes/grand-kings-revenue-routes.js";
 import { registerFirstRevenueValidationRoutes } from "./revenue/first-revenue-validation/routes/first-revenue-validation-routes.js";
@@ -40,6 +42,7 @@ import { registerStrategicMemoryRoutes } from "./foundation/strategic-memory-eng
 import { registerEcommerceOsRoutes } from "./orchestration/ecommerce-os-orchestrator/routes/ecommerce-os-routes.js";
 import { registerAccountInfrastructureRoutes } from "./orchestration/account-infrastructure-engine/routes/account-infrastructure-routes.js";
 import { registerMarketplaceConnectionRoutes } from "./orchestration/marketplace-connection-engine/routes/marketplace-connection-routes.js";
+import { registerMarketplaceIntegrationArchitectureRoutes } from "./orchestration/infrastructure-commerce/marketplace/routes/marketplace-integration-architecture-routes.js";
 import { registerCommerceReadinessRoutes } from "./orchestration/commerce-readiness-engine/routes/commerce-readiness-routes.js";
 import { registerProductDiscoveryRoutes } from "./orchestration/product-discovery-opportunity-engine/routes/product-discovery-routes.js";
 import { registerBusinessOpportunityWorkspaceRoutes } from "./orchestration/business-opportunity-workspace/routes/business-opportunity-workspace-routes.js";
@@ -170,6 +173,7 @@ import {
   registerPillowRoutes,
   shutdownPillowHost,
 } from "./orchestration/pillow-host/index.js";
+import { schedulePillowHostBoot } from "./orchestration/pillow-host/pillow-boot.js";
 import { registerPillowApprovalRoutes } from "./orchestration/pillow-approval/index.js";
 import { wireCanonicalPillowApprovalPipeline } from "./orchestration/pillow-approval/canonical-pillow-approval-pipeline.js";
 import { registerExecutiveLearningRoutes } from "./orchestration/executive-learning/index.js";
@@ -242,21 +246,21 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   }
 
   const pillowHost = getPillowHost();
-  if (pillowEnabled && process.env.NODE_ENV !== "production") {
+  if (pillowEnabled) {
+    const bootDelayMs = env.NODE_ENV === "production" ? 15_000 : 5_000;
     const bootPillowHost = () => {
-      void initializePillowHost({
-        llmRouter: brain.llmRouter,
-        auditLogger: brain.auditLogger,
-      }).catch((error) => {
-        logger.error(
-          {
-            error: error instanceof Error ? error.message : String(error),
-          },
-          "Pillow host startup failed — backend continues in degraded mode",
-        );
-      });
+      void schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger)?.catch(
+        (error) => {
+          logger.error(
+            {
+              error: error instanceof Error ? error.message : String(error),
+            },
+            "Pillow host startup failed — backend continues in degraded mode",
+          );
+        },
+      );
     };
-    setTimeout(bootPillowHost, 5_000);
+    setTimeout(bootPillowHost, bootDelayMs);
   }
 
   const sessionStore = brain.sessionStore;
@@ -504,8 +508,7 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
       llmRouter: brain.llmRouter,
     });
 
-    // Pillow starts lazily on first /api/pillow/session or /api/pillow/chat — no background boot
-    // during Grand King login / Executive Home load (avoids event-loop contention on Railway).
+    // Pillow also boots in the background after server start; session/chat await readiness.
   }
 
   app.get(
@@ -653,6 +656,18 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
   });
 
   await breathe();
+  await registerCanvaConnectRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerVisualGenerationRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
   await registerProductPublishingRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
@@ -780,6 +795,12 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
 
   await breathe();
   await registerMarketplaceConnectionRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerMarketplaceIntegrationArchitectureRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });

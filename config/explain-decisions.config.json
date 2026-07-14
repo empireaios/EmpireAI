@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "explanationDetailLevel": "standard",
+  "evidenceLinkageRulesEnabled": true,
+  "tradeoffAnalysisRulesEnabled": true,
+  "uxScoreExplanationRulesEnabled": true,
+  "accessibilityExplanationRulesEnabled": true,
+  "consistencyExplanationRulesEnabled": true,
+  "workflowExplanationRulesEnabled": true,
+  "executivePreferenceExplanationRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "explanationTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryExplanations": 50,
+  "weakEvidenceWarningEnabled": true
+}

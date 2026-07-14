@@ -64,8 +64,6 @@ interface SidebarProps {
   collapsed: boolean;
   storeName: string;
   storeStatus: StoreStatus;
-  onTogglePillow?: () => void;
-  pillowOpen?: boolean;
 }
 
 const sections: Array<{ key: WorkspaceNavItem["section"]; label: string }> = [
@@ -78,8 +76,6 @@ export function Sidebar({
   collapsed,
   storeName,
   storeStatus,
-  onTogglePillow,
-  pillowOpen,
 }: SidebarProps) {
   const { user } = useAuth();
 
@@ -121,26 +117,6 @@ export function Sidebar({
             <ul className={styles.navList}>
               {section.items.map((item) => {
                 const Icon = navIcons[item.id];
-                if (item.id === "pillow" && onTogglePillow) {
-                  return (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        className={
-                          pillowOpen
-                            ? `${styles.navLink} ${styles.navLinkActive}`
-                            : styles.navLink
-                        }
-                        title={collapsed ? item.label : undefined}
-                        aria-pressed={pillowOpen}
-                        onClick={onTogglePillow}
-                      >
-                        <Icon size={18} strokeWidth={2} aria-hidden="true" />
-                        {!collapsed && <span>{item.label}</span>}
-                      </button>
-                    </li>
-                  );
-                }
                 return (
                   <li key={item.id}>
                     <NavLink

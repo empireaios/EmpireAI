@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "syncFrequencyMinutes": 30,
+  "lowStockThreshold": 10,
+  "discrepancyRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "allowStockPush": false,
+  "maskSensitiveValues": true
+}

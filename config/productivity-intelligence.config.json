@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "continuousLearningEnabled": true,
+  "learningFrequencyMs": 10000,
+  "patternDetectionRulesEnabled": true,
+  "bottleneckDetectionRulesEnabled": true,
+  "trendAnalysisRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "learningTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryLearningCycles": 120,
+  "deduplicatePatterns": true,
+  "learnOnlyMode": true
+}

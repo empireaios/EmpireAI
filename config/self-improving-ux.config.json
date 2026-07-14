@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "continuousLearningEnabled": true,
+  "learningFrequencyMs": 22000,
+  "learningRulesEnabled": true,
+  "knowledgeRetentionRulesEnabled": true,
+  "recommendationImprovementRulesEnabled": true,
+  "prioritizationImprovementRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "learningTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxKnowledgeBaseEntries": 200,
+  "deduplicateLearnings": true,
+  "learnOnlyMode": true
+}

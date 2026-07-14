@@ -3,7 +3,7 @@
 > **Authority:** Grand King Executive Directive · Version 1 Operational Activation (M4)  
 > **Status:** Preparation artifact — **go-live NOT executed**  
 > **API:** `GET /version-1-activation/go-live-preparation`  
-> **Health:** `GET /health/version-1-activation`
+> **Amended:** 2026-07-02 · B6-01C — V1 marketplace/channel credentials per `docs/governance/V1_MARKETPLACE_CHANNEL_REGISTRY.md`
 
 ---
 
@@ -20,15 +20,23 @@
 
 ## M2 — Production credentials
 
+> **V1 channels:** `amazon-us` · `amazon-sg` · `shopee-sg` · `shopify` (architecture provision) — full matrix in `V1_MARKETPLACE_CHANNEL_REGISTRY.md`
+
 | # | Variable | Required | Notes |
 |---|---|---|---|
 | 1 | `LIVE_COMMERCE_INTEGRATION_MODE` | **production** | Must not remain `sandbox` |
 | 2 | `CREDENTIAL_VAULT_KEY` | **yes** | Secure key for credential vault |
-| 3 | `AMAZON_SP_API_CLIENT_ID` | **yes** | Amazon SP-API |
-| 4 | `AMAZON_SP_API_CLIENT_SECRET` | **yes** | Amazon SP-API |
-| 5 | `AMAZON_SP_API_REFRESH_TOKEN` | **yes** | Amazon SP-API |
-| 6 | `CJ_DROPSHIPPING_API_KEY` or `CJ_API_KEY` | **yes** | CJ fulfilment |
-| 7 | `CJ_DROPSHIPPING_API_SECRET` or `CJ_API_SECRET` | **yes** | CJ fulfilment |
+| 3 | `AMAZON_SP_API_CLIENT_ID` | **yes** | Shared SP-API app (US + SG) |
+| 4 | `AMAZON_SP_API_CLIENT_SECRET` | **yes** | Shared SP-API app |
+| 5 | `AMAZON_SP_API_REFRESH_TOKEN_NA` | **yes** | Amazon US (NA region) — governance |
+| 6 | `AMAZON_SP_API_REFRESH_TOKEN_FE` | **yes** | Amazon SG (FE region) — governance |
+| 7 | `SHOPEE_PARTNER_ID` / `SHOPEE_PARTNER_KEY` | **yes** | Shopee SG Open Platform |
+| 8 | `SHOPEE_SHOP_ID` | **yes** | After OAuth authorization |
+| 9 | `SHOPIFY_*` credential profile | **provision** | Architecture schema defined; live optional until King approval |
+| 10 | `CJ_DROPSHIPPING_API_KEY` or `CJ_API_KEY` | **yes** | CJ fulfilment |
+| 11 | `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | **yes** | Stripe live (B6-03) |
+
+*Legacy single `AMAZON_SP_API_REFRESH_TOKEN` — superseded by per-region tokens (B6-01C).*
 
 ---
 
@@ -39,11 +47,13 @@
 
 | # | Check | Evidence |
 |---|---|---|
-| 1 | Amazon adapter `supportsPublish: true` | `resolveMarketplaceAdapter("amazon")` when activated |
-| 2 | OAR `amazon-seller` not architecture-only | `isPlatformOperationallyLive("amazon-seller")` |
-| 3 | OAR `cj-dropshipping` not architecture-only | `isPlatformOperationallyLive("cj-dropshipping")` |
-| 4 | Publish path — GK + Council approval | `buildMarketplaceListingPackage` — no architecture-only blocker |
-| 5 | Live commerce health | `GET /reality-integration/live-commerce/health` |
+| 1 | Amazon US (`amazon-us`) live readiness | SP-API NA token + marketplace `ATVPDKIKX0DER` |
+| 2 | Amazon SG (`amazon-sg`) live readiness | SP-API FE token + marketplace `A19VAU5U5O7RUS` |
+| 3 | Shopee SG (`shopee-sg`) live readiness | Open Platform OAuth + shop authorization |
+| 4 | Shopify (`shopify`) architecture provision | Registry slot + credential schema verified (live optional) |
+| 5 | OAR `cj-dropshipping` not architecture-only | `isPlatformOperationallyLive("cj-dropshipping")` |
+| 6 | Publish path — GK + Council approval | `buildMarketplaceListingPackage` — no architecture-only blocker |
+| 7 | Live commerce health | `GET /reality-integration/live-commerce/health` |
 
 ---
 
@@ -76,8 +86,8 @@ To revert to safe pre-live state without code changes:
 1. Set `LIVE_COMMERCE_INTEGRATION_MODE=sandbox`
 2. Set `EMPIRE_V1_OPERATIONAL_READY=false`
 3. Restart backend (Pillow returns to dry-run)
-4. Amazon adapter reverts to `supportsPublish: false`
-5. OAR platforms return to architecture-only
+4. Amazon US/SG adapters revert to pre-live readiness
+5. OAR platforms return to architecture-only where not verified
 
 ---
 
@@ -86,7 +96,7 @@ To revert to safe pre-live state without code changes:
 - Executing go-live
 - PROOF-001 commercial transaction
 - Grand King go-live signature (B7)
-- Additional marketplace activation
+- Additional marketplace activation beyond V1 registry expansion process
 
 ---
 

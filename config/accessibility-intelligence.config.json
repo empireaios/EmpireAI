@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "reviewFrequency": "on_demand",
+  "componentAccessibilityRulesEnabled": true,
+  "layoutAccessibilityRulesEnabled": true,
+  "navigationAccessibilityRulesEnabled": true,
+  "formAccessibilityRulesEnabled": true,
+  "focusOrderRulesEnabled": true,
+  "keyboardNavigationRulesEnabled": true,
+  "severityRulesEnabled": true,
+  "confidenceThreshold": 0.4,
+  "validationRulesEnabled": true,
+  "minTouchTargetPx": 44,
+  "maxReviewDurationMs": 60000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "reviewTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

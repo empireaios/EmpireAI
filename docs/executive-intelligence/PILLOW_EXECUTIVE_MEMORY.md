@@ -10,7 +10,8 @@
 | **Supersedes** | — |
 | **Next Version** | — |
 
-**Parent:** [PILLOW_EXECUTIVE_CONSTITUTION.md](./PILLOW_EXECUTIVE_CONSTITUTION.md)
+**Parent:** [PILLOW_EXECUTIVE_CONSTITUTION.md](./PILLOW_EXECUTIVE_CONSTITUTION.md)  
+**EKLS authority:** Executive Memory is a **domain of EKLS** under Pillow governance — see `CANONICAL_EKLS_SPECIFICATION.md`. This document defines Pillow's Executive Memory Keeper role; it does not define a competing memory specification.
 
 ---
 

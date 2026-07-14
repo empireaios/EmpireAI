@@ -1,15 +1,17 @@
 # EmpireAI
 
-**An AI-powered e-commerce operating system** — with the first commercial model focused on **global dropshipping** — where founders manufacture and operate autonomous companies through a unified Brain orchestration layer.
+**An AI-powered e-commerce operating system** — with the first commercial model focused on **global dropshipping** — where founders manufacture and operate autonomous companies through Pillow-owned subsystems, with Brain as the mandatory orchestration execution path.
 
 Commercial launch decisions require **Commercial Risk Intelligence (CRI)** certification per `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md`.
+
+**Platform hierarchy:** `EMPIREAI_PILLOW_CONSTITUTION.md` §17 — Pillow is sole technical owner of EmpireAI; Brain is not a peer of Pillow.
 
 ## Active applications
 
 | Directory | Purpose | Status |
 |-----------|---------|--------|
 | `frontend/` | Founder UX — Mission Home, Pillow, GC shell, REAL dashboards | **Production UI (Vercel)** |
-| `backend/` | EmpireAI Brain — Fastify API, Guardian, REAL modules, Pillow host | **Production core (Railway)** |
+| `backend/` | Brain (Pillow-owned) — Fastify API, Guardian, REAL modules, Pillow host | **Production core (Railway)** |
 | `empireai-web/` | Next.js alternate UI + BFF | Secondary / legacy |
 | `pillow/` | Pillow runtime package (`@empireai/pillow`) | In-process in Brain |
 | `docs/` | Architecture and engineering docs | Active |
@@ -45,12 +47,14 @@ Login: `founder@empireai.com` / `EmpireAI2026!`
 
 ## Architecture
 
-All platform modules communicate exclusively through the Brain:
+**Canonical hierarchy:** Grand King → EmpireAI → Pillow → { Brain, EKLS, Executive AI Engines, Business Engines, Grand King Cockpit, … }. See `EMPIREAI_PILLOW_CONSTITUTION.md` §17.
+
+All platform modules communicate through the Pillow-owned Brain orchestrator:
 
 ```
 UI → Brain API → Orchestrator → Tools / Agents / Workflows
                       ↑
-                 Guardian Engine
+                 Guardian Engine (Pillow-owned)
 ```
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
@@ -72,6 +76,7 @@ See [deployment/README.md](deployment/README.md).
 
 ## Principles
 
+- **Pillow technical ownership** — Pillow owns all technical subsystems; Brain is the mandatory execution path, not a peer of Pillow
 - **Brain-only control** — No direct LLM or tool calls from the frontend
 - **Guardian safety** — Every dispatch validated; database integrity sacred
 - **Modular domain** — SQLite-backed repositories, replaceable subsystems

@@ -2,7 +2,7 @@
 ## COS-001 — Permanent Kernel Architecture
 
 > **Status:** CANONICAL BLUEPRINT · **Mission:** COS-001  
-> **Hierarchy:** Soul File → [Commerce Canon](./EMPIREAI_COMMERCE_CANON.md) (C001) → **This document (COS Kernel)** → Connectors (future)  
+> **Hierarchy:** Soul File → [Commerce Canon](./EMPIREAI_COMMERCE_CANON.md) (C001) → [`docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md) (P3-05) → **This document (COS Kernel)** → Connectors (future)  
 > **Scope:** Architecture only — no live execution, no OAuth, no API integrations  
 > **Date:** 2026-06-21
 

@@ -21,6 +21,8 @@ Formalize the EmpireAI Version 1 **commercial operating model** so the repositor
 
 **Namespace note:** REAL-051A is a **governance doctrine label**. It is distinct from runtime module REAL-051 (Unified Grand King Headquarters). See ADR-044 namespace guidance.
 
+**V1 channel registry (B6-01C):** Version 1 mandatory channels and future expansion model are defined in **`docs/governance/V1_MARKETPLACE_CHANNEL_REGISTRY.md`** (ADR-052). REAL-051A multi-marketplace autonomy applies **after** V1 channel architecture is provisioned.
+
 ---
 
 ## 2. Principle A — Founder One-Time Onboarding

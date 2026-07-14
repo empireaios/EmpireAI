@@ -1,4 +1,6 @@
 import type { CursorSupervisorEngine } from "../supervisor/engine.js";
+import type { VisionSynchronizationEngine } from "../vision-synchronization/engine.js";
+import type { ContextSynchronizationEngine } from "../context-synchronization/engine.js";
 import type { CursorMissionDocument } from "../planner/types.js";
 import type { AutonomousEngineeringMission, DispatchMode, DispatchResult } from "./types.js";
 
@@ -15,8 +17,32 @@ export function dispatchToCursor(input: {
   mission: AutonomousEngineeringMission;
   supervisor: CursorSupervisorEngine;
   mode?: DispatchMode;
+  visionSync?: VisionSynchronizationEngine;
+  contextSync?: ContextSynchronizationEngine;
 }): DispatchResult {
   const mode = input.mode ?? (isSdkAvailable() ? "sdk" : "artifact");
+
+  if (input.visionSync) {
+    const validation = input.visionSync.validateForSupervisorSync({
+      missionTitle: input.mission.title,
+    });
+    if (!validation.valid) {
+      throw new Error(
+        `Supervisor blocked dispatch — Vision Synchronization invalid: ${validation.alignmentNotes.join("; ")}`,
+      );
+    }
+  }
+
+  if (input.contextSync) {
+    const validation = input.contextSync.validateForSupervisorSync({
+      missionTitle: input.mission.title,
+    });
+    if (!validation.valid) {
+      throw new Error(
+        `Supervisor blocked dispatch — Context Synchronization invalid: ${validation.notes.join("; ")}`,
+      );
+    }
+  }
 
   const document: CursorMissionDocument = {
     missionId: `BRIDGE-${input.mission.bridgeMissionId.slice(0, 8)}`,

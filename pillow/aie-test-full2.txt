@@ -1,0 +1,80 @@
+﻿TAP version 13
+# Subtest: T5-06 Adaptive Interface
+    # Subtest: buildAdaptiveInterfaceConfiguration loads defaults
+    ok 1 - buildAdaptiveInterfaceConfiguration loads defaults
+      ---
+      duration_ms: 12.8908
+      type: 'test'
+      ...
+    # Subtest: adaptive interface initializes with doctrine doc
+    ok 2 - adaptive interface initializes with doctrine doc
+      ---
+      duration_ms: 2720.791
+      type: 'test'
+      ...
+    # Subtest: adapt produces machine-readable adaptive interface records
+    ok 3 - adapt produces machine-readable adaptive interface records
+      ---
+      duration_ms: 2670.6306
+      type: 'test'
+      ...
+    # Subtest: detects workflow context from T5 chain
+    ok 4 - detects workflow context from T5 chain
+      ---
+      duration_ms: 2315.7284
+      type: 'test'
+      ...
+    # Subtest: generates adaptive navigation recommendations
+    ok 5 - generates adaptive navigation recommendations
+      ---
+      duration_ms: 2412.8019
+      type: 'test'
+      ...
+    # Subtest: generates adaptive workspace recommendations
+    ok 6 - generates adaptive workspace recommendations
+      ---
+      duration_ms: 2529.9955
+      type: 'test'
+      ...
+    # Subtest: never applies interface changes automatically (recommend-only)
+    ok 7 - never applies interface changes automatically (recommend-only)
+      ---
+      duration_ms: 2732.1713
+      type: 'test'
+      ...
+    # Subtest: start and stop continuous adaptation toggles monitoring state
+    ok 8 - start and stop continuous adaptation toggles monitoring state
+      ---
+      duration_ms: 2303.2989
+      type: 'test'
+      ...
+    # Subtest: validateForSupervisorSync reports readiness after adaptation
+    ok 9 - validateForSupervisorSync reports readiness after adaptation
+      ---
+      duration_ms: 2318.0724
+      type: 'test'
+      ...
+    # Subtest: cockpit snapshot exposes adaptation health
+    ok 10 - cockpit snapshot exposes adaptation health
+      ---
+      duration_ms: 2484.1545
+      type: 'test'
+      ...
+    # Subtest: getLatestReport returns most recent adaptation run
+    ok 11 - getLatestReport returns most recent adaptation run
+      ---
+      duration_ms: 2259.5643
+      type: 'test'
+      ...
+    # Subtest: maintains adaptive interface profile after adaptation
+    ok 12 - maintains adaptive interface profile after adaptation
+      ---
+      duration_ms: 2223.6503
+      type: 'test'
+      ...
+    1..12
+ok 1 - T5-06 Adaptive Interface
+  ---
+  duration_ms: 26989.1268
+  type: 'suite'
+  ...

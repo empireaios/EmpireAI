@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "useSandbox": false,
+  "apiEndpointRulesEnabled": true,
+  "authenticationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "requestsPerMinute": 30,
+  "burstLimit": 5,
+  "rateLimitWindowMs": 60000,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://walmart-marketplace-api",
+  "maskSensitiveValues": true
+}

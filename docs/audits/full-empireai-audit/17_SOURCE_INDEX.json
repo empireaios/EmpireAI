@@ -1,0 +1,171 @@
+{
+  "auditMeta": {
+    "auditId": "full-empireai-audit-2026-07-04",
+    "repositoryPath": "C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI",
+    "gitHead": "9e51bc7",
+    "gitBranch": "main",
+    "gitCommitCount": 124,
+    "scanCounts": {
+      "markdownFiles": 499,
+      "typescriptFiles": 7855,
+      "testFiles": 285,
+      "artifactFiles": 130,
+      "combinedExecutiveAudits": 38,
+      "cursorMissionArtifacts": 19
+    }
+  },
+  "canonicalSpine": [
+    {
+      "path": "EMPIREAI_REPOSITORY_MASTER_INDEX.md",
+      "classification": "CANONICAL",
+      "purpose": "Master navigation catalog"
+    },
+    {
+      "path": "JOURNEY.md",
+      "classification": "CANONICAL",
+      "purpose": "Living operational index"
+    },
+    {
+      "path": "EMPIREAI_SOUL.md",
+      "classification": "CANONICAL",
+      "purpose": "Soul File identity memory"
+    },
+    {
+      "path": "EMPIREAI_CORE_CONSTITUTION_CTD.md",
+      "classification": "CANONICAL",
+      "purpose": "Supreme V1 commercial law"
+    },
+    {
+      "path": "EMPIREAI_CONSTITUTION.md",
+      "classification": "CANONICAL",
+      "purpose": "Engineering Brain law"
+    },
+    {
+      "path": "EMPIREAI_PILLOW_CONSTITUTION.md",
+      "classification": "CANONICAL",
+      "purpose": "Master Pillow identity"
+    },
+    {
+      "path": "EMPIREAI_ROADMAP.md",
+      "classification": "CANONICAL",
+      "purpose": "Empire roadmap"
+    },
+    {
+      "path": "artifacts/empireai-version-1-build-hierarchy-bible.md",
+      "classification": "CANONICAL",
+      "purpose": "V1 hierarchy bible"
+    },
+    {
+      "path": "docs/architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md",
+      "classification": "CANONICAL",
+      "purpose": "Normative architecture target"
+    },
+    {
+      "path": "deployment/MANAGED_DEPLOYMENT.md",
+      "classification": "CANONICAL",
+      "purpose": "Production deployment sequence"
+    }
+  ],
+  "missingCanonical": [
+    {
+      "id": "VISION-FILE",
+      "intendedName": "EMPIREAI_VISION.md",
+      "status": "MISSING"
+    },
+    {
+      "id": "VIE",
+      "intendedName": "Vision Integrity Engine",
+      "status": "NOT_FOUND"
+    },
+    {
+      "id": "ECC",
+      "intendedName": "Execution Control Center",
+      "status": "NOT_FOUND"
+    }
+  ],
+  "codeRoots": [
+    {
+      "path": "backend/src/brain/",
+      "classification": "ACTIVE",
+      "domain": "Brain core",
+      "tested": true,
+      "productionConnected": true
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/",
+      "classification": "ACTIVE",
+      "domain": "Pillow Brain host",
+      "tested": true,
+      "productionConnected": true
+    },
+    {
+      "path": "pillow/src/",
+      "classification": "ACTIVE",
+      "domain": "Pillow package",
+      "tested": true,
+      "productionConnected": "partial"
+    },
+    {
+      "path": "empireai-web/",
+      "classification": "ACTIVE",
+      "domain": "Cockpit + BFF",
+      "tested": "typecheck",
+      "productionConnected": true
+    },
+    {
+      "path": "frontend/",
+      "classification": "ACTIVE",
+      "domain": "Founder SPA",
+      "tested": "typecheck",
+      "productionConnected": "unclear"
+    },
+    {
+      "path": "backend/src/runtime/",
+      "classification": "ACTIVE",
+      "domain": "REAL runtime modules",
+      "tested": true,
+      "productionConnected": "dispatch-only-default"
+    },
+    {
+      "path": "backend/src/orchestration/",
+      "classification": "ACTIVE",
+      "domain": "Business engines",
+      "tested": true,
+      "productionConnected": "partial"
+    },
+    {
+      "path": "ai-agents/",
+      "classification": "STUB",
+      "domain": "AI agents placeholder",
+      "tested": false,
+      "productionConnected": false
+    }
+  ],
+  "configFiles": [
+    { "path": "railway.toml", "classification": "ACTIVE", "purpose": "Railway Brain deploy" },
+    { "path": "vercel.json", "classification": "ACTIVE", "purpose": "frontend SPA deploy" },
+    { "path": "empireai-web/vercel.json", "classification": "ACTIVE", "purpose": "Cockpit deploy" },
+    { "path": "backend/.env.example", "classification": "CANONICAL", "purpose": "Brain env reference" },
+    { "path": "deployment/railway-production.env.template", "classification": "CANONICAL", "purpose": "Production env template" }
+  ],
+  "productionScripts": [
+    { "path": "backend/scripts/production-journey-verify.mjs", "classification": "ACTIVE", "purpose": "Single journey verify" },
+    { "path": "backend/scripts/production-long-run-stability.mjs", "classification": "ACTIVE", "purpose": "Long-run stability verify" },
+    { "path": "backend/scripts/verify-production-deploy.mjs", "classification": "ACTIVE", "purpose": "Deploy smoke" }
+  ],
+  "evidenceJson": [
+    "artifacts/b5-production-deploy-evidence.json",
+    "artifacts/b6-01a-amazon-sp-api-evidence.json",
+    "artifacts/b6-02b-live-cj-auth-evidence.json",
+    "artifacts/b6-03b-stripe-live-auth-evidence.json",
+    "artifacts/b6-04-production-vault-evidence.json",
+    "artifacts/b6-04b-live-vault-certification-evidence.json",
+    "artifacts/g4-05b-auth-verification-results.json"
+  ],
+  "obsoleteDocs": [
+    { "path": "docs/SYSTEM_ARCHITECTURE.md", "reason": "Pre-Pillow SaaS draft conflicts with current hierarchy" },
+    { "path": "artifacts/empireai-master-build-bible.md", "reason": "Superseded by version-1-build-hierarchy-bible" },
+    { "path": "docs/README.md", "reason": "Stale scaffold-only statement" }
+  ],
+  "constitutionLockReady": false
+}

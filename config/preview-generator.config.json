@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "maxPreviewsPerGeneration": 15,
+  "maxActiveEnvironments": 10,
+  "previewRetentionMs": 3600000,
+  "previewCleanupEnabled": true,
+  "isolateFromProduction": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "buildTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validationRulesEnabled": true
+}

@@ -10,6 +10,7 @@ import {
   type CockpitNavItem,
 } from "@/lib/cockpit/navigation";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
+import { COCKPIT_UX_NAVIGATION } from "@/lib/cockpit-ux/navigation";
 import {
   canAccessCockpitNav,
   cockpitNavIcons,
@@ -26,6 +27,52 @@ export function CockpitSidebar() {
   );
   const departmentItems = cockpitDepartmentNavigation.filter((item) =>
     canAccessCockpitNav(item.roles, user?.role),
+  );
+
+  const primaryNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "primary");
+  const operationsNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "operations");
+  const systemNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "system");
+
+  const renderCockpitGroup = (
+    label: string,
+    items: typeof COCKPIT_UX_NAVIGATION,
+  ) => (
+    <div className="mb-6">
+      {!collapsed && (
+        <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#6f6a60]">
+          {label}
+        </p>
+      )}
+      <ul className="space-y-0.5">
+        {items.map((item) => {
+          const active = isCockpitNavActive(pathname, item.href);
+          return (
+            <li key={item.id}>
+              <Link
+                href={item.href}
+                className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
+                  active
+                    ? "bg-gold/10 text-[#f0d78c] shadow-[inset_2px_0_0_#d4af37]"
+                    : "text-[#8a847a] hover:bg-white/[0.04] hover:text-[#f0d78c]"
+                }`}
+                title={item.description}
+              >
+                <span
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs ${
+                    active
+                      ? "bg-gold/15 text-[#d4af37]"
+                      : "bg-white/[0.03] text-[#6f6a60] group-hover:text-[#d4af37]"
+                  }`}
+                >
+                  {item.icon}
+                </span>
+                {!collapsed && <span className="truncate">{item.label}</span>}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 
   const renderGroup = (label: string, items: readonly CockpitNavItem[]) => (
@@ -94,6 +141,9 @@ export function CockpitSidebar() {
       </div>
 
       <nav className="flex-1 overflow-y-auto px-2 py-4">
+        {renderCockpitGroup("Executive Cockpit", primaryNav)}
+        {renderCockpitGroup("Operations", operationsNav)}
+        {renderCockpitGroup("System", systemNav)}
         {renderGroup("Command", commandItems)}
         {renderGroup("Departments", departmentItems)}
       </nav>

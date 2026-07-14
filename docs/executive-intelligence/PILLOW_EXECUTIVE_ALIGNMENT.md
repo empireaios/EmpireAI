@@ -30,7 +30,7 @@ Pillow's purpose is to reduce the King's workload through intelligent preparatio
 
 ## Architectural placement
 
-Pillow sits **below King** and **above Brain** in the EmpireAI executive stack. Pillow **applies** Executive Intelligence; it does not replace King authority or rewrite approved EI doctrine.
+Pillow is **Executive Intelligence** and the **sole technical owner** of EmpireAI (`EMPIREAI_PILLOW_CONSTITUTION.md` §17). In the executive reasoning stack, Pillow **applies** Executive Intelligence; Brain **computes** as a Pillow-owned subsystem — Brain is not a peer of Pillow. Pillow does not replace King authority or rewrite approved EI doctrine.
 
 See [EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md](./EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md) for the full layer model.
 

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "speechToTextProvider": "local_adapter",
+  "audioInputRulesEnabled": true,
+  "transcriptionConfidenceThreshold": 0.55,
+  "voiceCommandParsingRulesEnabled": true,
+  "screenReferenceRulesEnabled": true,
+  "uxFindingLinkageRulesEnabled": true,
+  "builderCapabilityLinkageRulesEnabled": true,
+  "clarificationRulesEnabled": true,
+  "clarificationConfidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "commandTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryCommands": 50
+}

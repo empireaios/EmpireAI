@@ -55,6 +55,7 @@ const PLATFORM_PERMISSION_MAP: Record<string, PermissionType[]> = {
   dhl: ["read", "order", "fulfill", "webhook"],
   fedex: ["read", "order", "fulfill", "webhook"],
   openai: ["read", "write"],
+  canva: ["read", "write"],
   anthropic: ["read", "write"],
   "google-ai": ["read", "write"],
 };

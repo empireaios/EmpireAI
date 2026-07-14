@@ -1,4 +1,5 @@
 import { logger } from "./config/logger.js";
+import { logCaughtError } from "./config/log-caught-error.js";
 import { createBrain } from "./brain/index.js";
 
 async function main() {
@@ -16,6 +17,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  logger.error({ error }, "Failed to start EmpireAI Brain worker");
+  logCaughtError(logger, error, "Failed to start EmpireAI Brain worker");
   process.exit(1);
 });

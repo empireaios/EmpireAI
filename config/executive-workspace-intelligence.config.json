@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "continuousOptimizationEnabled": true,
+  "workspaceOptimizationFrequencyMs": 20000,
+  "dashboardRecommendationRulesEnabled": true,
+  "workspaceOrganizationRulesEnabled": true,
+  "widgetRecommendationRulesEnabled": true,
+  "shortcutRecommendationRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "optimizationTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryOptimizationCycles": 120,
+  "deduplicateRecommendations": true,
+  "recommendOnlyMode": true
+}

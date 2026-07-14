@@ -25,6 +25,8 @@ import { customerOrderPipelineTools } from "../revenue/customer-order-pipeline/t
 import { liveCjFulfillmentTools } from "../execution/live-cj-fulfillment/tools/live-cj-fulfillment-tools.js";
 import { analyticsConversionTools } from "../execution/analytics-conversion-engine/tools/analytics-conversion-tools.js";
 import { metaAdsConnectorTools } from "../execution/meta-ads-connector/tools/meta-ads-connector-tools.js";
+import { canvaConnectTools } from "../execution/canva-connect-connector/tools/canva-connect-tools.js";
+import { visualGenerationTools } from "../orchestration/visual-generation-layer/tools/visual-generation-tools.js";
 import { productPublishingTools } from "../execution/product-publishing-engine/tools/product-publishing-tools.js";
 import { grandKingsRevenueTools } from "../revenue/grand-kings-revenue-engine/tools/grand-kings-revenue-tools.js";
 import { firstRevenueValidationTools } from "../revenue/first-revenue-validation/tools/first-revenue-validation-tools.js";
@@ -362,6 +364,8 @@ export async function createBrain(options?: {
     ...liveCjFulfillmentTools,
     ...analyticsConversionTools,
     ...metaAdsConnectorTools,
+    ...canvaConnectTools,
+    ...visualGenerationTools,
     ...productPublishingTools,
     ...grandKingsRevenueTools,
     ...firstRevenueValidationTools,

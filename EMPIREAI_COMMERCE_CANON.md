@@ -4,7 +4,7 @@
 > Permanent orchestration standard for Grand King, Founder Accounts, AI agents, and future connectors.  
 > **Status:** Canonical · **Version:** 1.0 · **Date:** 2026-06-21
 
-> **Roadmap note:** Active kernel architecture: [COMMERCE_OS_BLUEPRINT.md](./COMMERCE_OS_BLUEPRINT.md) (COS-001). This canon remains **ACTIVE** for lifecycle mapping. COS implements canon phases through domain kernels and adapters.
+> **Roadmap note:** Active kernel architecture: [COMMERCE_OS_BLUEPRINT.md](./COMMERCE_OS_BLUEPRINT.md) (COS-001). **Canonical Commerce Architecture (P3-05):** [`docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md`](docs/architecture/EMPIREAI_COMMERCE_ARCHITECTURE.md). This canon remains **ACTIVE** for lifecycle mapping. COS implements canon phases through domain kernels and adapters.
 
 This document **does not replace** any existing module. It **maps** the one canonical commerce lifecycle onto modules, APIs, tools, tables, and UI that already exist. Live commerce execution extends this canon through **COS adapters** — it does not fork it.
 

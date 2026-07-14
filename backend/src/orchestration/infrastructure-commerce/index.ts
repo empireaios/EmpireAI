@@ -136,6 +136,38 @@ export {
 export { buildMarketplaceDomainContractBundle } from "./marketplace/services/marketplace-domain-contract-service.js";
 
 export {
+  MARKETPLACE_INTEGRATION_ARCHITECTURE_VERSION,
+  MARKETPLACE_CONNECTOR_IDS,
+  MARKETPLACE_CONNECTOR_CAPABILITIES,
+  MARKETPLACE_CONNECTOR_STATUSES,
+  MARKETPLACE_FAILURE_KINDS,
+  MARKETPLACE_INTEGRATION_PIPELINE as P8_MARKETPLACE_INTEGRATION_PIPELINE,
+  MARKETPLACE_SYNC_DOMAINS as P8_MARKETPLACE_SYNC_DOMAINS,
+  type MarketplaceConnectorDefinition,
+  type MarketplaceConnectorRuntimeSnapshot,
+  type MarketplaceFailureRecoveryMapping,
+} from "./marketplace/contracts/marketplace-connector-model.js";
+
+export {
+  MARKETPLACE_CONNECTOR_CATALOG,
+  MARKETPLACE_FAILURE_RECOVERY_MAPPINGS,
+} from "./marketplace/data/marketplace-connector-catalog.js";
+
+export {
+  MARKETPLACE_COCKPIT_VIEW_ID,
+  buildMarketplaceIntegrationArchitectureSnapshot,
+  buildMarketplaceCockpitIntegrationView,
+  getMarketplaceConnectorDefinition,
+  listMarketplaceConnectorDefinitions,
+  listMarketplaceIntegrationPipelinePhases,
+  listMarketplaceSyncDomains,
+  type MarketplaceIntegrationArchitectureSnapshot,
+  type MarketplaceCockpitIntegrationView,
+} from "./marketplace/services/marketplace-integration-architecture-service.js";
+
+export { registerMarketplaceIntegrationArchitectureRoutes } from "./marketplace/routes/marketplace-integration-architecture-routes.js";
+
+export {
   SUPPLIER_INTEGRATION_VERSION,
   SUPPLIER_INTEGRATION_LIFECYCLE,
   SUPPLIER_API_PROTOCOLS,

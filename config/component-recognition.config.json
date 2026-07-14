@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "recognitionIntervalMs": 1000,
+  "maxRecognitionRate": 5,
+  "confidenceThreshold": 0.5,
+  "identityMatchTolerance": 0.15,
+  "resultBufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "recognitionTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateResults": true
+}

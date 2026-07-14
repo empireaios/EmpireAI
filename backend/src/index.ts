@@ -1,5 +1,6 @@
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
+import { logCaughtError } from "./config/log-caught-error.js";
 import { buildApp } from "./app.js";
 
 async function main() {
@@ -30,7 +31,7 @@ async function main() {
       void finishRouteRegistration()
         .then(() => logger.info("Empire extension routes registered (deferred)"))
         .catch((error) =>
-          logger.error({ error }, "Empire extension route registration failed"),
+          logCaughtError(logger, error, "Empire extension route registration failed"),
         );
     }, deferMs);
     logger.info({ deferMs }, "Deferred REAL module HTTP route registration");
@@ -42,6 +43,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  logger.error({ error }, "Failed to start EmpireAI Brain API");
+  logCaughtError(logger, error, "Failed to start EmpireAI Brain API");
   process.exit(1);
 });

@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "reviewFrequency": "on_demand",
+  "componentConsistencyRulesEnabled": true,
+  "typographyConsistencyRulesEnabled": true,
+  "colorConsistencyRulesEnabled": true,
+  "spacingConsistencyRulesEnabled": true,
+  "sizingConsistencyRulesEnabled": true,
+  "iconConsistencyRulesEnabled": true,
+  "patternConsistencyRulesEnabled": true,
+  "severityRulesEnabled": true,
+  "confidenceThreshold": 0.4,
+  "validationRulesEnabled": true,
+  "spacingTolerancePx": 4,
+  "sizingTolerancePx": 8,
+  "maxReviewDurationMs": 60000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "reviewTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

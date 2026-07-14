@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "captureIntervalMs": 1000,
+  "maxFrameRate": 5,
+  "captureSource": "browser_viewport",
+  "captureUrl": "http://localhost:3000/cockpit",
+  "windowTitlePatterns": ["EmpireAI", "localhost:3000", "Grand King"],
+  "bufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "captureTimeoutMs": 15000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

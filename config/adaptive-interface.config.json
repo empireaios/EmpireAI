@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "continuousAdaptationEnabled": true,
+  "contextDetectionFrequencyMs": 15000,
+  "adaptationRulesEnabled": true,
+  "personalizationRulesEnabled": true,
+  "workspaceAdaptationRulesEnabled": true,
+  "navigationAdaptationRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "adaptationTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryAdaptationCycles": 120,
+  "deduplicateAdaptations": true,
+  "recommendOnlyMode": true
+}

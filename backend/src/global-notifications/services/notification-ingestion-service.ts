@@ -7,6 +7,7 @@ import type { GlobalNotification, GlobalNotificationType } from "../models/globa
 import { inferTypeFromSignalPriority, priorityForType } from "../models/global-notification.js";
 import { getGlobalNotificationRepository } from "../repositories/sqlite-global-notification-repository.js";
 import { DEEP_LINKS, moduleDeepLink } from "../deep-links.js";
+import { evaluateAllActiveObjectives } from "../../orchestration/objective-management-engine/services/objective-management-service.js";
 
 type Draft = Omit<GlobalNotification, "notificationId" | "readAt" | "acknowledgedAt">;
 
@@ -292,6 +293,62 @@ function ingestPillow(workspaceId: string, companyId: string): GlobalNotificatio
   return results;
 }
 
+function ingestObjectiveManagement(workspaceId: string, companyId: string): GlobalNotification[] {
+  const results: GlobalNotification[] = [];
+  try {
+    const { objectives, alerts } = evaluateAllActiveObjectives(workspaceId, companyId);
+    for (const alert of alerts.filter((a) => a.materialChange).slice(0, 10)) {
+      const type =
+        alert.alertType === "objective_completed"
+          ? "success"
+          : alert.alertType === "ahead_of_schedule"
+            ? "success"
+            : alert.alertType === "critical_blocker" || alert.alertType === "at_risk"
+              ? "critical"
+              : alert.alertType === "executive_approval_required"
+                ? "executive"
+                : "warning";
+      results.push(
+        upsertDraft(
+          draft({
+            workspaceId,
+            companyId,
+            type,
+            source: "pillow",
+            title: alert.title,
+            body: alert.summary,
+            deepLink: DEEP_LINKS.pillow as string,
+            sourceRef: `oms:alert:${alert.alertId}`,
+            metadata: { alertType: alert.alertType, objectiveId: alert.objectiveId },
+          }),
+        ),
+      );
+    }
+
+    const primary = objectives[0];
+    if (primary && primary.overallHealth === "RED") {
+      results.push(
+        upsertDraft(
+          draft({
+            workspaceId,
+            companyId,
+            type: "critical",
+            source: "pillow",
+            title: `Objective at risk: ${primary.title}`,
+            body: primary.currentBlockers[0] ?? `${primary.currentProgressPercent}% complete · confidence ${primary.confidencePercent}%`,
+            deepLink: DEEP_LINKS.pillow as string,
+            sourceRef: `oms:health:${primary.objectiveId}:${primary.overallHealth}`,
+            metadata: { objectiveId: primary.objectiveId, health: primary.overallHealth },
+          }),
+        ),
+      );
+    }
+  } catch {
+    // OMS optional during bootstrap
+  }
+  return results;
+}
+
 function ingestUxMissionHome(workspaceId: string, companyId: string): GlobalNotification[] {
   const results: GlobalNotification[] = [];
   try {
@@ -319,7 +376,7 @@ function ingestUxMissionHome(workspaceId: string, companyId: string): GlobalNoti
   return results;
 }
 
-/** GC-03 — Pull notifications from ESS, Eye, REAL, Council, Pillow, and UX modules. */
+/** GC-03 — Pull notifications from ESS, Eye, REAL, Council, Pillow, OMS, and UX modules. */
 export function ingestNotificationsFromSources(workspaceId: string, companyId: string): GlobalNotification[] {
   return [
     ...ingestEss(workspaceId, companyId),
@@ -327,6 +384,7 @@ export function ingestNotificationsFromSources(workspaceId: string, companyId: s
     ...ingestRealModules(workspaceId, companyId),
     ...ingestExecutiveCouncil(workspaceId, companyId),
     ...ingestPillow(workspaceId, companyId),
+    ...ingestObjectiveManagement(workspaceId, companyId),
     ...ingestUxMissionHome(workspaceId, companyId),
   ];
 }

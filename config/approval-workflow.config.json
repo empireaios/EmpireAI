@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "approvalRequirementRulesEnabled": true,
+  "approvalDecisionRulesEnabled": true,
+  "approvedActionDispatchRulesEnabled": true,
+  "blockedActionRulesEnabled": true,
+  "confirmationRulesEnabled": true,
+  "recordRetentionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "approvalTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryApprovals": 50,
+  "requireExplanationBeforeApproval": false,
+  "requireComparisonBeforeApproval": false,
+  "confidenceThreshold": 0.4
+}

@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "continuousDiscoveryEnabled": true,
+  "discoveryFrequencyMs": 8000,
+  "prioritizationRulesEnabled": true,
+  "impactScoringRulesEnabled": true,
+  "complexityScoringRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "discoveryTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryDiscoveries": 120,
+  "deduplicateOpportunities": true,
+  "discoverOnlyMode": true
+}

@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "validationScope": ["T1", "T2", "T3", "T4", "T5"],
+  "requiredPassThreshold": 50,
+  "requireEndToEndPass": true,
+  "requireProductionReadiness": true,
+  "requireGovernanceCompliance": true,
+  "governanceVerificationRulesEnabled": true,
+  "healthVerificationRulesEnabled": true,
+  "recoveryVerificationRulesEnabled": true,
+  "metadataValidationRulesEnabled": true,
+  "reportGenerationRulesEnabled": true,
+  "reportOutputRoot": ".pillow-visual-intelligence-certification",
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "certificationTimeoutMs": 300000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateHealthReporting": true,
+  "validateRecoveryBehavior": true,
+  "runNestedProgrammeCertifications": true,
+  "certifyOnlyMode": true
+}

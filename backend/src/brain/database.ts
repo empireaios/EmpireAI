@@ -787,6 +787,33 @@ function migrate(db: EmpireDatabase): void {
 
     CREATE INDEX IF NOT EXISTS idx_meta_ads_oauth_workspace ON meta_ads_oauth(workspace_id);
 
+    CREATE TABLE IF NOT EXISTS canva_oauth_pending (
+      pending_id TEXT PRIMARY KEY,
+      workspace_id TEXT NOT NULL,
+      company_id TEXT NOT NULL,
+      state TEXT NOT NULL UNIQUE,
+      code_verifier_encrypted TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      expires_at TEXT NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_canva_oauth_pending_state ON canva_oauth_pending(state);
+
+    CREATE TABLE IF NOT EXISTS canva_oauth_connections (
+      connection_id TEXT PRIMARY KEY,
+      workspace_id TEXT NOT NULL,
+      company_id TEXT NOT NULL,
+      credentials_ref TEXT NOT NULL,
+      scopes_json TEXT NOT NULL DEFAULT '[]',
+      mock INTEGER NOT NULL DEFAULT 0,
+      revoked INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_canva_oauth_connections_workspace_company
+      ON canva_oauth_connections(workspace_id, company_id);
+
     CREATE TABLE IF NOT EXISTS meta_ads_campaigns (
       campaign_id TEXT PRIMARY KEY,
       workspace_id TEXT NOT NULL,

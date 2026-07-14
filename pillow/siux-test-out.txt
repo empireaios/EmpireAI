@@ -1,0 +1,134 @@
+﻿TAP version 13
+# Subtest: T5-09 Self-Improving UX Engine
+    # Subtest: buildSelfImprovingUxConfiguration loads defaults
+    ok 1 - buildSelfImprovingUxConfiguration loads defaults
+      ---
+      duration_ms: 7.2456
+      type: 'test'
+      ...
+    # Subtest: self-improving UX engine initializes with doctrine doc
+    ok 2 - self-improving UX engine initializes with doctrine doc
+      ---
+      duration_ms: 1764.4578
+      type: 'test'
+      ...
+    # Subtest: learnUx produces machine-readable UX learning records
+    not ok 3 - learnUx produces machine-readable UX learning records
+      ---
+      duration_ms: 1438.8844
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:24010'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'documentChanges')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        primeUpstream (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:890:31)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:972:11)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: learns from redesign and workspace intelligence
+    not ok 4 - learns from redesign and workspace intelligence
+      ---
+      duration_ms: 1348.9947
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:24768'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'documentChanges')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        primeUpstream (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:890:31)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:992:11)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: learns from workflow and productivity outcomes
+    not ok 5 - learns from workflow and productivity outcomes
+      ---
+      duration_ms: 2274.9638
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:25162'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'documentChanges')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        primeUpstream (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:890:31)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:1007:11)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: improves future recommendations and prioritization
+    not ok 6 - improves future recommendations and prioritization
+      ---
+      duration_ms: 2886.9061
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:25498'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'documentChanges')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        primeUpstream (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:890:31)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:1021:11)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: never applies UX changes automatically (learn-only)
+    ok 7 - never applies UX changes automatically (learn-only)
+      ---
+      duration_ms: 1298.8285
+      type: 'test'
+      ...
+    # Subtest: start and stop continuous learning toggles monitoring state
+    ok 8 - start and stop continuous learning toggles monitoring state
+      ---
+      duration_ms: 1356.0718
+      type: 'test'
+      ...
+    # Subtest: validateForSupervisorSync reports readiness after learning
+    ok 9 - validateForSupervisorSync reports readiness after learning
+      ---
+      duration_ms: 1308.5633
+      type: 'test'
+      ...
+    # Subtest: cockpit snapshot exposes learning health
+    ok 10 - cockpit snapshot exposes learning health
+      ---
+      duration_ms: 1254.9815
+      type: 'test'
+      ...
+    # Subtest: getLatestReport returns most recent learning run
+    ok 11 - getLatestReport returns most recent learning run
+      ---
+      duration_ms: 1251.3667
+      type: 'test'
+      ...
+    # Subtest: updates experience knowledge base after learning
+    not ok 12 - updates experience knowledge base after learning
+      ---
+      duration_ms: 1351.784
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:27443'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'documentChanges')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        primeUpstream (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:890:31)
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\self-improving-ux.test.ts:1077:11)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    1..12
+not ok 1 - T5-09 Self-Improving UX Engine
+  ---
+  duration_ms: 17546.6771
+  type: 'suite'
+  location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\self-improving-ux.test.ts:1:21262'
+  failureType: 'subtestsFailed'
+  error: '5 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...

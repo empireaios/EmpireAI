@@ -1,0 +1,99 @@
+﻿TAP version 13
+# Subtest: T5-08 Executive Workspace Intelligence
+    # Subtest: buildExecutiveWorkspaceIntelligenceConfiguration loads defaults
+    ok 1 - buildExecutiveWorkspaceIntelligenceConfiguration loads defaults
+      ---
+      duration_ms: 7.0858
+      type: 'test'
+      ...
+    # Subtest: executive workspace intelligence initializes with doctrine doc
+    ok 2 - executive workspace intelligence initializes with doctrine doc
+      ---
+      duration_ms: 1864.8682
+      type: 'test'
+      ...
+    # Subtest: optimizeWorkspace produces machine-readable workspace intelligence records
+    not ok 3 - optimizeWorkspace produces machine-readable workspace intelligence records
+      ---
+      duration_ms: 1546.7166
+      type: 'test'
+      location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\executive-workspace-intelligence.test.ts:1:23481'
+      failureType: 'testCodeFailure'
+      error: |-
+        The expression evaluated to a falsy value:
+        
+          assert.ok(record.expectedProductivityBenefit)
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: true
+      operator: '=='
+      stack: |-
+        TestContext.<anonymous> (C:\Users\erlan\OneDrive\Desktop\EmpireAI\pillow\src\validation\tests\executive-workspace-intelligence.test.ts:956:14)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    # Subtest: generates mission-specific dashboard recommendations
+    ok 4 - generates mission-specific dashboard recommendations
+      ---
+      duration_ms: 1433.6708
+      type: 'test'
+      ...
+    # Subtest: recommends workspace layouts
+    ok 5 - recommends workspace layouts
+      ---
+      duration_ms: 1397.1588
+      type: 'test'
+      ...
+    # Subtest: recommends executive widgets and shortcuts
+    ok 6 - recommends executive widgets and shortcuts
+      ---
+      duration_ms: 1465.805
+      type: 'test'
+      ...
+    # Subtest: never applies workspace changes automatically (recommend-only)
+    ok 7 - never applies workspace changes automatically (recommend-only)
+      ---
+      duration_ms: 1314.2619
+      type: 'test'
+      ...
+    # Subtest: start and stop continuous optimization toggles monitoring state
+    ok 8 - start and stop continuous optimization toggles monitoring state
+      ---
+      duration_ms: 1368.4845
+      type: 'test'
+      ...
+    # Subtest: validateForSupervisorSync reports readiness after optimization
+    ok 9 - validateForSupervisorSync reports readiness after optimization
+      ---
+      duration_ms: 1378.2194
+      type: 'test'
+      ...
+    # Subtest: cockpit snapshot exposes workspace intelligence health
+    ok 10 - cockpit snapshot exposes workspace intelligence health
+      ---
+      duration_ms: 2421.0069
+      type: 'test'
+      ...
+    # Subtest: getLatestReport returns most recent optimization run
+    ok 11 - getLatestReport returns most recent optimization run
+      ---
+      duration_ms: 1334.3346
+      type: 'test'
+      ...
+    # Subtest: understands executive priorities and mission context
+    ok 12 - understands executive priorities and mission context
+      ---
+      duration_ms: 1329.0043
+      type: 'test'
+      ...
+    1..12
+not ok 1 - T5-08 Executive Workspace Intelligence
+  ---
+  duration_ms: 16863.491
+  type: 'suite'
+  location: 'C:\\Users\\erlan\\OneDrive\\Desktop\\EmpireAI\\pillow\\src\\validation\\tests\\executive-workspace-intelligence.test.ts:1:20669'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...

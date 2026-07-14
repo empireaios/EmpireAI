@@ -1,0 +1,47 @@
+{
+  "mission": "B6-04",
+  "certification": "FAIL",
+  "readinessScore": 52,
+  "auditedAt": "2026-07-02T04:00:00.000Z",
+  "productionBaselineCommit": "a8945b2",
+  "probeSources": [
+    "GET https://empireai-production.up.railway.app/health/b6-implementation",
+    "GET https://empireai-production.up.railway.app/health/production-deploy"
+  ],
+  "b6_04_status": {
+    "id": "B6-04",
+    "status": "PENDING",
+    "configured": false,
+    "verified": false,
+    "envKeys": ["CREDENTIAL_VAULT_KEY"],
+    "detail": "Set CREDENTIAL_VAULT_KEY on Railway"
+  },
+  "vaultReadiness": {
+    "implementationPresent": true,
+    "encryptionAlgorithm": "AES-256-GCM",
+    "keyDerivation": "scryptSync(CREDENTIAL_VAULT_KEY, empire-credential-vault-v1, 32)",
+    "productionKeyPresent": false,
+    "productionKeyVerified": false,
+    "liveProofEndpoint": false
+  },
+  "credentialReadinessForB6": {
+    "amazon": false,
+    "cj": true,
+    "vault": false
+  },
+  "dimensionScores": {
+    "railwayEnvironmentVariables": 0,
+    "secretLoading": 55,
+    "encryption": 80,
+    "rotationCapability": 50,
+    "accessControl": 70,
+    "auditLogging": 60
+  },
+  "blockers": [
+    "CREDENTIAL_VAULT_KEY not set on Railway (B6-04 gate)",
+    "No B6-04 live vault proof endpoint (optional vs current gate definition)",
+    "Dev fallback vault key active when CREDENTIAL_VAULT_KEY unset"
+  ],
+  "filesChanged": [],
+  "recommendedNextMission": "B6-04B — Live Credential Vault Authentication Proof (operator sets CREDENTIAL_VAULT_KEY + optional live proof endpoint)"
+}

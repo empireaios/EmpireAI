@@ -17,6 +17,7 @@ import {
   loadEnginePanelView,
   loadPillowSupervisorView,
 } from "./cockpit-panel-views.js";
+import { enrichExecutiveHomeViewP704 } from "./executive-home-p7-04.js";
 import { loadDashboardView } from "./module-views.js";
 import {
   loadOperationalCommandViewForDispatchAsync,
@@ -139,7 +140,7 @@ export async function assembleExecutiveHomeViewAsync(
       ? "Monitor revenue and scale top-performing ventures"
       : command.proof001.detail);
 
-  return {
+  return enrichExecutiveHomeViewP704({
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
@@ -160,7 +161,7 @@ export async function assembleExecutiveHomeViewAsync(
     executiveAlerts,
     approvalRoutes,
     dependencyGraph,
-  };
+  });
 }
 
 export async function buildMinimalExecutiveHomeFallbackAsync(
@@ -172,7 +173,7 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
   const command = await loadOperationalCommandViewForDispatchAsync(workspaceId, companyId, env);
   await cooperativeYield();
   const portfolio = loadDashboardView(workspaceId);
-  return {
+  return enrichExecutiveHomeViewP704({
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
@@ -192,7 +193,7 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
     executiveAlerts: [],
     approvalRoutes: [],
     dependencyGraph: { nodes: [], edges: [] },
-  };
+  });
 }
 
 /** Sync path retained for callers outside dispatch (tests, interaction layer). */
@@ -265,7 +266,7 @@ export function assembleExecutiveHomeViewSync(
   );
   const top = openBlockers[0] ?? null;
 
-  return {
+  return enrichExecutiveHomeViewP704({
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
@@ -298,7 +299,7 @@ export function assembleExecutiveHomeViewSync(
     executiveAlerts,
     approvalRoutes,
     dependencyGraph,
-  };
+  });
 }
 
 export function buildMinimalExecutiveHomeFallback(
@@ -308,7 +309,7 @@ export function buildMinimalExecutiveHomeFallback(
 ): ExecutiveHomeView {
   const command = loadOperationalCommandView(workspaceId, companyId, env);
   const portfolio = loadDashboardView(workspaceId);
-  return {
+  return enrichExecutiveHomeViewP704({
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
@@ -328,5 +329,5 @@ export function buildMinimalExecutiveHomeFallback(
     executiveAlerts: [],
     approvalRoutes: [],
     dependencyGraph: { nodes: [], edges: [] },
-  };
+  });
 }

@@ -1,0 +1,14 @@
+﻿TAP version 13
+# Subtest: T5-08 Executive Workspace Intelligence
+    # Subtest: optimizeWorkspace produces machine-readable workspace intelligence records
+    ok 1 - optimizeWorkspace produces machine-readable workspace intelligence records
+      ---
+      duration_ms: 1870.0581
+      type: 'test'
+      ...
+    1..1
+ok 1 - T5-08 Executive Workspace Intelligence
+  ---
+  duration_ms: 1872.3934
+  type: 'suite'
+  ...

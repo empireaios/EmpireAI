@@ -1,6 +1,13 @@
 # EmpireAI Architecture
 
-EmpireAI is an **AI-powered e-commerce operating system** focused first on **global dropshipping**. Founders manufacture and operate autonomous companies through a single Brain orchestration layer.
+> **Operational architecture (current state)** — may lag normative target.  
+> **Architecture Law:** [`docs/architecture/EMPIREAI_ARCHITECTURE_LAW.md`](architecture/EMPIREAI_ARCHITECTURE_LAW.md) (P2-05)  
+> **Normative target:** [`docs/architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md`](architecture/EMPIREAI_CANONICAL_ARCHITECTURE.md)  
+> **Cockpit Architecture (P3-03):** [`docs/architecture/EMPIREAI_COCKPIT_ARCHITECTURE.md`](architecture/EMPIREAI_COCKPIT_ARCHITECTURE.md)
+
+EmpireAI is an **AI-powered e-commerce operating system** focused first on **global dropshipping**. Founders manufacture and operate autonomous companies through Pillow-owned subsystems, with Brain as the mandatory orchestration execution path.
+
+**Platform hierarchy:** `EMPIREAI_PILLOW_CONSTITUTION.md` §17 — Pillow is sole technical owner; Brain is not a peer of Pillow.
 
 **Commercial Risk Intelligence (CRI)** governs pre-launch risk analysis across suppliers and marketplaces — see `docs/governance/COMMERCIAL_RISK_INTELLIGENCE_DOCTRINE.md`.
 
@@ -8,12 +15,17 @@ EmpireAI is an **AI-powered e-commerce operating system** focused first on **glo
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  empireai-web (Next.js)                                     │
+│  Pillow (sole technical owner)                              │
+│  Grand King Cockpit · EKLS · Engines · Governance           │
+└───────────────────────────┬─────────────────────────────────┘
+                            │
+┌───────────────────────────▼─────────────────────────────────┐
+│  empireai-web (Next.js) · frontend/ (Founder UX)          │
 │  Platform UI · BFF (/api/*) · Session cookies               │
 └───────────────────────────┬─────────────────────────────────┘
                             │ HTTP (never direct tool/LLM calls)
 ┌───────────────────────────▼─────────────────────────────────┐
-│  Brain API (Fastify, port 4000)                             │
+│  Brain API (Fastify, port 4000) — Pillow-owned              │
 │  Auth · Guardian · Orchestrator · SSE events                │
 └───────────────────────────┬─────────────────────────────────┘
                             │

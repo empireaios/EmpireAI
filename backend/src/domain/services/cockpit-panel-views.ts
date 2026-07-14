@@ -24,6 +24,7 @@ import { getObjectiveReportingSummary } from "../../orchestration/objective-mana
 import { resolveLiveCommerceIntegrationMode } from "../../orchestration/reality-integration/live-commerce/config.js";
 import { AMAZON_MARKETPLACE_REGISTRY_IDS } from "../../orchestration/reality-integration/live-commerce/amazon-marketplace-profiles.js";
 import { buildObjectiveDashboard } from "../../orchestration/objective-management-engine/services/objective-management-service.js";
+import { enrichExecutiveHomeViewP704 } from "./executive-home-p7-04.js";
 import {
   loadAiCeoView,
   loadDashboardView,
@@ -69,6 +70,8 @@ import {
 } from "../../runtime/event-loop-cooperative.js";
 
 export type EnginePanelHealth = "HEALTHY" | "WARNING" | "FAILED" | "NOT_IMPLEMENTED" | "UNKNOWN";
+
+export type { ExecutiveAlert } from "./executive-dashboard-integration.js";
 
 export type EnginePanelView = {
   engineId: string;
@@ -141,6 +144,10 @@ export type ExecutiveHomeView = {
   executiveAlerts: ExecutiveAlert[];
   approvalRoutes: ExecutiveApprovalRoute[];
   dependencyGraph: ExecutiveDependencyGraph;
+  /** P7-04 — constitutional command centre */
+  architectureVersion: "P7-04";
+  executiveBrief: import("./executive-home-p7-04.js").ExecutiveHomeBrief;
+  centreSummaries: import("./executive-home-p7-04.js").ExecutiveHomeCentreSummaries;
 };
 
 export type MissionCentreView = {
@@ -1204,7 +1211,7 @@ export function loadExecutiveHomeView(
       ? "Monitor revenue and scale top-performing ventures"
       : command.proof001.detail);
 
-  return {
+  return enrichExecutiveHomeViewP704({
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
@@ -1225,7 +1232,7 @@ export function loadExecutiveHomeView(
     executiveAlerts,
     approvalRoutes,
     dependencyGraph,
-  };
+  });
 }
 
 export function loadMissionCentreView(

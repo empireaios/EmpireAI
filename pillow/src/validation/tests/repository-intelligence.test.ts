@@ -11,6 +11,11 @@ import {
   queryRepositoryKnowledge,
   formatRepositoryKnowledgeAnswer,
 } from "../../repository-intelligence/query-engine.js";
+import {
+  buildRepositoryArchitectureSnapshot,
+  analyzeRepositoryImpact,
+  searchRepositoryArchitecture,
+} from "../../repository-intelligence/index.js";
 import { resetPillowSession } from "../../session.js";
 
 const REPO_ROOT = path.resolve(
@@ -21,7 +26,7 @@ const REPO_ROOT = path.resolve(
   "..",
 );
 
-describe("Phase 2 Repository Intelligence (PILLOW-RI-001)", () => {
+describe("Phase 2 Repository Intelligence (PILLOW-RI-002)", () => {
   before(() => resetPillowSession());
   after(() => resetPillowSession());
 
@@ -32,7 +37,7 @@ describe("Phase 2 Repository Intelligence (PILLOW-RI-001)", () => {
     const intelligence = await runRepositoryIntelligence({ bootstrap });
     const model = intelligence.knowledgeModel;
 
-    assert.equal(model.version, "PILLOW-RI-001");
+    assert.equal(model.version, "PILLOW-RI-002");
     assert.ok(model.architecture.length >= 8);
     assert.ok(model.runtimeFlows.length >= 4);
     assert.ok(model.modules.length >= 10);
@@ -42,6 +47,12 @@ describe("Phase 2 Repository Intelligence (PILLOW-RI-001)", () => {
     assert.ok(model.domains.length >= 6);
     assert.ok(model.missions.length >= 8);
     assert.ok(model.criticalPaths.length >= 3);
+    assert.ok(model.architectureIntelligence.components.length >= 8);
+    assert.ok(model.architectureIntelligence.folders.length >= 5);
+    assert.ok(model.architectureIntelligence.files.length >= 5);
+    assert.ok(model.architectureIntelligence.executionFlows.length >= 10);
+    assert.ok(model.architectureIntelligence.searchIndex.length >= 10);
+    assert.ok(model.architectureIntelligence.inventory.topLevelFolders.length >= 4);
   });
 
   test("Where is pillow-host implemented?", async () => {
@@ -144,5 +155,43 @@ describe("Phase 2 Repository Intelligence (PILLOW-RI-001)", () => {
 
     assert.equal(result.matched, true);
     assert.match(result.answers[0]?.answer ?? "", /bff|empireai-web/i);
+  });
+
+  test("architecture snapshot provides executive cockpit data", async () => {
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
+    if (!isBootstrapReady(bootstrap)) assert.fail();
+    const intelligence = await runRepositoryIntelligence({ bootstrap });
+    const snapshot = buildRepositoryArchitectureSnapshot(intelligence.knowledgeModel);
+
+    assert.equal(snapshot.version, "PILLOW-RI-002");
+    assert.ok(snapshot.componentCount >= 8);
+    assert.ok(snapshot.flowCount >= 10);
+    assert.ok(snapshot.searchIndex.length >= 10);
+    assert.match(snapshot.grandKingSummary, /Repository Architecture Intelligence/);
+  });
+
+  test("impact analysis identifies affected components before missions", async () => {
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
+    if (!isBootstrapReady(bootstrap)) assert.fail();
+    const intelligence = await runRepositoryIntelligence({ bootstrap });
+
+    const impact = analyzeRepositoryImpact({
+      model: intelligence.knowledgeModel,
+      target: "pillow-host",
+    });
+
+    assert.ok(impact.affectedComponents.length > 0 || impact.affectedFolders.length > 0);
+    assert.ok(impact.requiredTests.length > 0);
+    assert.ok(impact.recommendation.length > 0);
+  });
+
+  test("repository search finds components and folders", async () => {
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
+    if (!isBootstrapReady(bootstrap)) assert.fail();
+    const intelligence = await runRepositoryIntelligence({ bootstrap });
+
+    const results = searchRepositoryArchitecture(intelligence.knowledgeModel, "pillow");
+    assert.ok(results.length > 0);
+    assert.ok(results.some((r) => r.label.toLowerCase().includes("pillow") || r.path.includes("pillow")));
   });
 });

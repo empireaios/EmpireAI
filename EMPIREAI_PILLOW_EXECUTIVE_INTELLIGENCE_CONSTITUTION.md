@@ -5,7 +5,7 @@
 > **Authority:** Grand King Architecture Decision · EmpireAI Version 1  
 > **Status:** ✅ Permanent doctrine — Layer 2 defining purpose  
 > **Registered:** 2026-06-29 · **Refined:** 2026-06-29 (Outcome-Based Learning · Evidence-Based Learning Architecture · Executive Reflection)  
-> **Companion artifacts:** `EMPIREAI_PILLOW_CONSTITUTION.md` (V1 permanent identity & execution law) · `PILLOW_ROADMAP.md` · `PILLOW_ARCHITECTURE_CONTRACT.md` Part 11 · `EMPIREAI_PILLOW_MEMORY_DOCTRINE.md` · **`EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md`**
+> **Companion artifacts:** `EMPIREAI_PILLOW_CONSTITUTION.md` (V1 permanent identity & execution law) · `PILLOW_ROADMAP.md` · `PILLOW_ARCHITECTURE_CONTRACT.md` Part 11 · `EMPIREAI_PILLOW_MEMORY_DOCTRINE.md` · **`CANONICAL_EKLS_SPECIFICATION.md`** (institutional memory under Pillow) · **`EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md`**
 
 This document is the **Layer 2 constitution** for **Pillow Executive Intelligence** (EmpireAI roadmap Layer 2). It does not modify Pillow Runtime (Layer 1). It governs how Pillow **thinks**, **learns**, and **evolves** from executive conversation **and validated operational outcomes**.
 
@@ -90,7 +90,7 @@ Candidate Organizational Knowledge
       ↓
 Grand King Approval
       ↓
-Executive Knowledge Base
+Executive Knowledge Base (EKLS Learning Store)
       ↓
 Future Bootstrap
 ```
@@ -103,7 +103,7 @@ Future Bootstrap
 | **Conversation** | Active dialogue | Ephemeral Executive Context — not permanent memory |
 | **Executive Reasoning** | Turn composition + response | Executive Briefing anchor → conversation → reasoning → user-facing response |
 | **Executive Reflection** | Post-reasoning evaluation | First downstream Layer 2 capability — see §2.2 |
-| **Candidate knowledge → Approval → Executive Knowledge Base** | Permanent intelligence | §3 mandatory chain — no stage may be skipped |
+| **Candidate knowledge → Approval → Executive Knowledge Base (EKLS Learning Store)** | Permanent intelligence | §3 mandatory chain — no stage may be skipped |
 | **Future Bootstrap** | Next session / refresh | Approved knowledge loaded into reconstruction canon |
 
 Bootstrap extensions (Executive Identity, Executive Direction, Executive Context, Executive Reasoning composition) are **implemented** in Pillow Runtime foundations. **Executive Reflection** is the **first planned downstream intelligence capability** built on that completed architecture.
@@ -150,7 +150,7 @@ Candidate Organizational Knowledge
       ↓
 Grand King Approval (GVD-019 · Approval Gate)
       ↓
-Executive Knowledge Base (repository artifacts)
+Executive Knowledge Base (EKLS Learning Store)
       ↓
 Future Bootstrap
 ```
@@ -161,7 +161,7 @@ Future Bootstrap
 | **Internal Analysis** | Silent; never interrupts conversational flow; includes Executive Reflection evaluation |
 | **Candidate knowledge** | Proposals, diffs, evidence — never auto-applied |
 | **Grand King Approval** | Mandatory for all repository mutations, mission dispatch, and permanent intelligence updates |
-| **Executive Knowledge Base** | Journey, Soul, Decisions, Status, contracts, doctrines, audits |
+| **Executive Knowledge Base (EKLS Learning Store)** | Journey, Soul, Decisions, Status, contracts, doctrines, audits |
 | **Future reasoning** | Bootstrap reconstruction, Memory, Intelligence, Executive Briefing — enriched by approved knowledge from prior Reflection cycles |
 
 Only **approved** organizational knowledge becomes permanent.
@@ -178,7 +178,7 @@ Every signal that may inform organizational intelligence enters Layer 2 as **Evi
 |---|---|
 | **Unified entry** | All learning inputs — conversation, repository drift, commercial signals, runtime telemetry, audits, reviews — are Evidence from an Evidence Source |
 | **Observational status** | Evidence is ephemeral or observational until validated through §3 |
-| **Non-direct modification** | **No Evidence Source may directly modify Executive Knowledge** (Executive Knowledge Base, Bootstrap reconstruction canon, or repository artifacts) |
+| **Non-direct modification** | **No Evidence Source may directly modify Executive Knowledge** (Executive Knowledge Base (EKLS Learning Store), Bootstrap reconstruction canon, or repository artifacts) |
 | **Governance parity** | Every source, present and future, is subject to the mandatory chain in §3 |
 
 ### 3.1.1 Initial Evidence Sources (mandatory catalog)
@@ -203,7 +203,7 @@ Future Executive Intelligence implementations **shall** register and ingest from
 | Reserved rule | Requirement |
 |---|---|
 | **Registration** | Future implementation only — requires Grand King architecture decision |
-| **Same chain** | Validated External Intelligence follows §3 exactly — Evidence → Analysis → Candidate → GK Approval → Executive Knowledge Base |
+| **Same chain** | Validated External Intelligence follows §3 exactly — Evidence → Analysis → Candidate → GK Approval → Executive Knowledge Base (EKLS Learning Store) |
 | **No governance bypass** | External origin does not reduce approval requirements or permit direct Executive Knowledge modification |
 | **Constitutional stability** | Reserving this source does not modify GVD-019, Approval Gate, BL-C, or Memory Doctrine |
 
@@ -352,7 +352,7 @@ Pillow Executive Intelligence shall **never**:
 
 * Auto-write repository artifacts from conversation, reflection output, **or any Evidence Source** without Approval Gate  
 * Treat chat history or runtime telemetry as canonical organizational memory  
-* Apply commercial or runtime signals directly to Executive Knowledge Base  
+* Apply commercial or runtime signals directly to Executive Knowledge Base (EKLS Learning Store)  
 * Force Grand King into formal protocol when natural dialogue suffices  
 * Measure success by feature checklist alone  
 * Bypass objective discipline (PILLOW-019) or constitutional reasoning  

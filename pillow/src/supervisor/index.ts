@@ -23,6 +23,37 @@ export {
   matchDoctrineStall,
 } from "./doctrine.js";
 export {
+  buildSupervisorReadinessPipeline,
+  buildSupervisorReadinessPipelineSync,
+  evaluateSupervisorBuilderGate,
+} from "./builder-gate.js";
+export {
+  executeSupervisorSystemAssessment,
+  buildSupervisorSystemSnapshot,
+  mapStateToSupervisionEvent,
+} from "./supervision-assessment.js";
+export {
+  classifyMissionHealthStatus,
+  inferCurrentStep,
+  inferCurrentPhase,
+  computeOverallProgressPercent,
+} from "./health-classifier.js";
+export {
+  formatSupervisorPreamble,
+  prependSupervisorSystem,
+} from "./mission-preamble.js";
+export { SUPERVISION_PIPELINE_REGISTRY } from "./pipeline-registry.js";
+export { SUPERVISION_EVENT_REGISTRY } from "./event-registry.js";
+export {
+  SUPERVISOR_SYSTEM_PATH,
+  SUPERVISOR_PRINCIPLES,
+  SUPERVISOR_RESPONSIBILITIES,
+  SUPERVISION_PIPELINE,
+  MISSION_HEALTH_CLASSIFICATIONS,
+  SUPERVISION_EVENTS,
+  SUPERVISION_OBSERVATIONS,
+} from "./paths.js";
+export {
   DEFAULT_HEARTBEAT_CONFIG,
   type CursorMissionState,
   type HeartbeatKind,
@@ -45,4 +76,14 @@ export {
   type LaunchMissionResult,
   type SupervisionTickResult,
   type CursorSupervisorOptions,
+  type MissionHealthClassification,
+  type SupervisionEventKind,
+  type SupervisionEventRecord,
+  type SupervisorSystemRequest,
+  type SupervisorReadinessPipeline,
+  type SupervisorBuilderGateResult,
+  type SupervisorSystemSnapshot,
+  type SupervisorSystemAssessment,
+  type SupervisorSystemMetrics,
+  type SupervisorSystemAnalysis,
 } from "./types.js";

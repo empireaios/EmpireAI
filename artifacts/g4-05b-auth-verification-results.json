@@ -1,0 +1,1468 @@
+{
+  "generatedAt": "2026-07-02T07:41:14.728Z",
+  "results": [
+    {
+      "id": "L1-invalid-login",
+      "target": "local",
+      "method": "POST",
+      "url": "http://127.0.0.1:60580/auth/login",
+      "requestBody": {
+        "email": "wrong@test.com",
+        "password": "[REDACTED]"
+      },
+      "status": 401,
+      "responseBody": {
+        "error": "Invalid email or password"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Invalid credentials rejected"
+    },
+    {
+      "id": "L2-valid-login",
+      "target": "local",
+      "method": "POST",
+      "url": "http://127.0.0.1:60580/auth/login",
+      "requestBody": {
+        "email": "founder@empireai.com",
+        "password": "[REDACTED]"
+      },
+      "status": 200,
+      "responseBody": {
+        "user": {
+          "id": "1c0466d4-fbe1-4783-8f37-349af57ca952",
+          "email": "founder@empireai.com",
+          "name": "Empire Founder",
+          "role": "founder",
+          "workspaceId": "ws_empire_1",
+          "platformIdentity": "grand-king"
+        },
+        "expiresAt": "2026-07-09T07:38:31.045Z"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8",
+        "set-cookie": "empireai_session=46a05d858fbe7d676eb73884a7d990434fc7499de4e2752e576fa619cd495d59; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax"
+      },
+      "cookiePresent": true,
+      "pass": true,
+      "notes": "Seed founder account (project fixture)"
+    },
+    {
+      "id": "L3-auth-me",
+      "target": "local",
+      "method": "GET",
+      "url": "http://127.0.0.1:60580/auth/me",
+      "status": 200,
+      "responseBody": {
+        "user": {
+          "id": "1c0466d4-fbe1-4783-8f37-349af57ca952",
+          "email": "founder@empireai.com",
+          "name": "Empire Founder",
+          "role": "founder",
+          "workspaceId": "ws_empire_1",
+          "platformIdentity": "grand-king"
+        }
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Session validated; platformIdentity returned"
+    },
+    {
+      "id": "L4-executive-home-dispatch",
+      "target": "local",
+      "method": "POST",
+      "url": "http://127.0.0.1:60580/brain/dispatch",
+      "requestBody": {
+        "module": "executive-home",
+        "action": "load"
+      },
+      "status": 200,
+      "responseBody": {
+        "correlationId": "ddef5703-7b87-4bd0-b0af-c44e83e0013d",
+        "status": "completed",
+        "result": {
+          "computedAt": "2026-07-02T07:40:43.012Z",
+          "greeting": {
+            "displayNameHint": "Grand King",
+            "topBlocker": "B5: DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+            "topBlockerHref": "/cockpit/infrastructure/health"
+          },
+          "command": {
+            "computedAt": "2026-07-02T07:38:32.801Z",
+            "workspaceId": "ws_empire_1",
+            "companyId": "ws_empire_1__c4",
+            "certificationBlockers": {
+              "B5": {
+                "id": "B5",
+                "label": "Production deploy + readiness",
+                "status": "open",
+                "detail": "DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)"
+              },
+              "B6": {
+                "id": "B6",
+                "label": "REAL-002B credentials",
+                "status": "partial",
+                "detail": "B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway"
+              },
+              "B7": {
+                "id": "B7",
+                "label": "GK-GOLIVE-APPROVAL",
+                "status": "open",
+                "detail": "RECOMMEND DEFER — resolve blocked items before authorizing production go-live"
+              },
+              "B8": {
+                "id": "B8",
+                "label": "PROOF-001",
+                "status": "open",
+                "detail": "Awaiting implementation — no first-revenue validation runs recorded"
+              }
+            },
+            "operationalReadiness": {
+              "percent": 0,
+              "passed": false,
+              "detail": "LIVE_COMMERCE_INTEGRATION_MODE must be production"
+            },
+            "crirReadiness": {
+              "score": null,
+              "launchReady": false,
+              "reportCount": 0,
+              "status": "Awaiting implementation",
+              "detail": "Commercial Risk Intelligence Report (CRIR) required"
+            },
+            "proof001": {
+              "achieved": false,
+              "progressPercent": 0,
+              "stagesPassed": 0,
+              "totalStages": 12,
+              "detail": "Awaiting implementation — no first-revenue validation runs recorded",
+              "validationCount": 0
+            },
+            "commerceReadiness": {
+              "score": 36,
+              "launchDecision": "NOT_READY",
+              "blockingCount": 3
+            },
+            "pendingApprovals": {
+              "count": 0,
+              "top": null
+            },
+            "nextExecutiveApproval": "Grand King go-live checklist (REAL-049)",
+            "success001": {
+              "blocker": "No live platform connections — REAL-002B",
+              "progressPercent": 0,
+              "currentNetProfitUsd": 0
+            },
+            "implementation": {
+              "milestone": "P0-1",
+              "phase": "GO-002 Phase 5 — Production Deploy & Credential Activation",
+              "objective": "Awaiting implementation",
+              "currentBlocker": "B5"
+            },
+            "oms": {
+              "activeObjective": "Awaiting implementation",
+              "progress": 0,
+              "confidence": 0,
+              "overallHealth": "YELLOW",
+              "currentBlocker": null,
+              "nextHighestImpactAction": null,
+              "forecastCompletion": null,
+              "remainingWork": [
+                "DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+                "B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+                "RECOMMEND DEFER — resolve blocked items before authorizing production go-live",
+                "Awaiting implementation — no first-revenue validation runs recorded"
+              ],
+              "remainingBlockers": [
+                "B5: DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+                "B6: B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+                "B7: RECOMMEND DEFER — resolve blocked items before authorizing production go-live",
+                "B8: Awaiting implementation — no first-revenue validation runs recorded"
+              ]
+            }
+          },
+          "portfolio": {
+            "portfolioMetrics": [
+              {
+                "label": "Portfolio Revenue",
+                "value": "$1.63M",
+                "change": "+18.4%",
+                "trend": "up"
+              },
+              {
+                "label": "Net Margin",
+                "value": "49.0%",
+                "change": "+2.1%",
+                "trend": "up"
+              },
+              {
+                "label": "Active Companies",
+                "value": "4",
+                "change": "+1",
+                "trend": "up"
+              },
+              {
+                "label": "Agents Online",
+                "value": "64",
+                "change": "100%",
+                "trend": "neutral"
+              }
+            ],
+            "companies": [
+              {
+                "id": "ws_empire_1__c4",
+                "name": "Atlas Fintech",
+                "category": "Fintech",
+                "status": "live",
+                "revenue": "$891K",
+                "margin": "34.0%",
+                "agents": 18
+              },
+              {
+                "id": "ws_empire_1__c3",
+                "name": "Lumen Media",
+                "category": "Media",
+                "status": "building",
+                "revenue": "$0.00",
+                "margin": "—",
+                "agents": 12
+              },
+              {
+                "id": "ws_empire_1__c2",
+                "name": "Vertex SaaS",
+                "category": "SaaS",
+                "status": "live",
+                "revenue": "$312K",
+                "margin": "71.0%",
+                "agents": 16
+              },
+              {
+                "id": "ws_empire_1__c1",
+                "name": "Meridian Commerce",
+                "category": "Commerce",
+                "status": "live",
+                "revenue": "$428K",
+                "margin": "42.0%",
+                "agents": 18
+              }
+            ],
+            "recentActivity": [
+              {
+                "id": "f5e07d30-9070-4ded-8618-a65a40d23610",
+                "agent": "Taylor",
+                "action": "Paused underperforming Meta ad set",
+                "module": "ads",
+                "timestamp": "Just now",
+                "outcome": "Saved $840/day"
+              },
+              {
+                "id": "f881ec75-dda7-4610-b738-9838fc578080",
+                "agent": "Nova",
+                "action": "Escalated billing dispute to finance module",
+                "module": "support",
+                "timestamp": "Just now",
+                "outcome": "Refund authorized"
+              },
+              {
+                "id": "d70aa66c-bc94-454b-bbe1-f306dd6219cb",
+                "agent": "Victoria",
+                "action": "Initiated manufacturing pipeline for Health vertical",
+                "module": "ai-ceo",
+                "timestamp": "Just now",
+                "outcome": "Pipeline queued"
+              },
+              {
+                "id": "d6ae4ec9-4922-4c19-85a0-397ae3ed4f33",
+                "agent": "Morgan",
+                "action": "Detected demand spike in wireless accessories",
+                "module": "intelligence",
+                "timestamp": "Just now",
+                "outcome": "+34% demand signal"
+              },
+              {
+                "id": "f93d0893-e9c5-4e2c-aa62-139647b9d516",
+                "agent": "Alex",
+                "action": "Auto-swapped supplier for Atlas Fintech SKU-4421",
+                "module": "suppliers",
+                "timestamp": "Just now",
+                "outcome": "Fulfillment restored"
+              }
+            ],
+            "workspaceId": "ws_empire_1"
+          },
+          "engineSummaries": [
+            {
+              "engineId": "supplier",
+              "displayName": "Supplier Engine",
+              "computedAt": "2026-07-02T07:38:32.803Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "CJ credentials not injected (B6-02)",
+              "health": "FAILED",
+              "progress": {
+                "percent": 15,
+                "label": "Inject CJ_API_KEY on Railway (CJ API 2.0 — key only)"
+              },
+              "nextAction": "Inject CJ_API_KEY on Railway (CJ API 2.0 — key only)",
+              "executiveAudit": {
+                "summary": "B6-02 PENDING · 3 supplier row(s) in domain store",
+                "artifactRef": "artifacts/b6-02-cj-dropshipping-executive-audit.md"
+              },
+              "dependencies": [
+                "CREDENTIAL_VAULT_KEY (B6-04)",
+                "LIVE_COMMERCE_INTEGRATION_MODE=production",
+                "CJ connector not connected"
+              ],
+              "metrics": [
+                {
+                  "label": "Connected Suppliers",
+                  "value": "3"
+                },
+                {
+                  "label": "Fulfillment Rate",
+                  "value": "93.0%"
+                },
+                {
+                  "label": "Auto-Recoveries",
+                  "value": "12"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "GlobalSource Direct",
+                  "value": "94% reliable · 7.1 days",
+                  "status": "healthy"
+                },
+                {
+                  "label": "Nexus Fulfillment",
+                  "value": "98% reliable · 4.2 days",
+                  "status": "healthy"
+                },
+                {
+                  "label": "PrimeDrop Logistics",
+                  "value": "87% reliable · 5.8 days",
+                  "status": "degraded"
+                }
+              ]
+            },
+            {
+              "engineId": "marketplace",
+              "displayName": "Marketplace Engine",
+              "computedAt": "2026-07-02T07:38:32.804Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "Amazon SP-API credentials pending (B6-01a/b)",
+              "health": "FAILED",
+              "progress": {
+                "percent": 10,
+                "label": "US: PENDING · SG: PENDING"
+              },
+              "nextAction": "B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+              "executiveAudit": {
+                "summary": "ADR-052 V1 channels · shopee-sg architecture pending B6-01c",
+                "artifactRef": "artifacts/b6-01d-amazon-multi-region-foundation-executive-audit.md"
+              },
+              "dependencies": [
+                "AMAZON_SP_API_CLIENT_ID + CLIENT_SECRET (shared)",
+                "AMAZON_SP_API_REFRESH_TOKEN_NA + _FE",
+                "Live commerce mode: sandbox"
+              ],
+              "detailRows": [
+                {
+                  "label": "amazon-us",
+                  "value": "Refresh token pending",
+                  "status": "pending"
+                },
+                {
+                  "label": "amazon-sg",
+                  "value": "Refresh token pending",
+                  "status": "pending"
+                },
+                {
+                  "label": "shopee-sg",
+                  "value": "Not yet implemented in B6-01D scope",
+                  "status": "pending"
+                },
+                {
+                  "label": "shopify",
+                  "value": "Architecture provision only",
+                  "status": "pending"
+                }
+              ]
+            },
+            {
+              "engineId": "storefront",
+              "displayName": "Storefront Engine",
+              "computedAt": "2026-07-02T07:38:33.048Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Building Lumen Media (69% complete)",
+              "health": "FAILED",
+              "progress": {
+                "percent": 0,
+                "label": "Store pending"
+              },
+              "nextAction": "No marketplaces ready for publishing",
+              "executiveAudit": {
+                "summary": "Launch decision: NOT_READY · 3 blocker(s)",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "No marketplaces ready for publishing: blocked",
+                "Supplier unavailable: blocked",
+                "Fulfillment not ready: blocked"
+              ],
+              "metrics": [
+                {
+                  "label": "Brand system",
+                  "value": "100% · complete"
+                },
+                {
+                  "label": "Product catalog",
+                  "value": "100% · complete"
+                },
+                {
+                  "label": "Storefront theme",
+                  "value": "78% · in_progress"
+                },
+                {
+                  "label": "Checkout & payments",
+                  "value": "45% · in_progress"
+                },
+                {
+                  "label": "Ad creatives",
+                  "value": "20% · in_progress"
+                }
+              ]
+            },
+            {
+              "engineId": "advertising",
+              "displayName": "Advertising Engine",
+              "computedAt": "2026-07-02T07:38:33.049Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Campaign data in domain store — live Meta connector optional pre-PROOF-001",
+              "health": "WARNING",
+              "progress": {
+                "percent": 35,
+                "label": "2 active campaigns"
+              },
+              "nextAction": "Optional pre-PROOF: configure Meta Ads connector (B6 not required for PROOF-001 path)",
+              "executiveAudit": {
+                "summary": "GO-002 Phase 7 — Advertising optional before first profit proof",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "Storefront deployed",
+                "Product listing live",
+                "Meta Ads connector (optional pre-PROOF)"
+              ],
+              "metrics": [
+                {
+                  "label": "Daily Budget",
+                  "value": "$25K"
+                },
+                {
+                  "label": "Spend Today",
+                  "value": "$16K"
+                },
+                {
+                  "label": "Blended ROAS",
+                  "value": "3.9×"
+                },
+                {
+                  "label": "Conversions",
+                  "value": "1,367"
+                },
+                {
+                  "label": "Active Campaigns",
+                  "value": "2"
+                },
+                {
+                  "label": "Content Pieces",
+                  "value": "94"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "Google",
+                  "value": "$8K · ROAS 3.6×",
+                  "status": "Live"
+                },
+                {
+                  "label": "Meta",
+                  "value": "$12K · ROAS 4.2×",
+                  "status": "Live"
+                },
+                {
+                  "label": "TikTok",
+                  "value": "$3K · ROAS 2.9×",
+                  "status": "Paused"
+                }
+              ]
+            },
+            {
+              "engineId": "payment",
+              "displayName": "Payment Engine",
+              "computedAt": "2026-07-02T07:38:33.050Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Stripe live keys verified (sk_live)",
+              "health": "HEALTHY",
+              "progress": {
+                "percent": 100,
+                "label": "Stripe live keys configured"
+              },
+              "nextAction": "Monitor checkout webhooks on Finance → Billing",
+              "executiveAudit": {
+                "summary": "B6-03 VERIFIED · Vault missing",
+                "artifactRef": "artifacts/b6-03-stripe-production-executive-audit.md"
+              },
+              "dependencies": [
+                "STRIPE_SECRET_KEY",
+                "STRIPE_WEBHOOK_SECRET",
+                "CREDENTIAL_VAULT_KEY required (B6-04)"
+              ],
+              "metrics": [
+                {
+                  "label": "Net Profit (MTD)",
+                  "value": "$229K"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "14.1%"
+                },
+                {
+                  "label": "Cash Runway",
+                  "value": "18 mo"
+                }
+              ]
+            },
+            {
+              "engineId": "logistics",
+              "displayName": "Logistics Engine",
+              "computedAt": "2026-07-02T07:38:33.050Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "CJ fulfilment gated until B6-02 + production mode",
+              "health": "FAILED",
+              "progress": {
+                "percent": 10,
+                "label": "1 shipped · 2 recent order(s)"
+              },
+              "nextAction": "Complete B6-02 CJ credentials before live fulfilment",
+              "executiveAudit": {
+                "summary": "live-cj-fulfillment module gated by B6 + King approval",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "Supplier Engine (CJ) configured",
+                "Order pipeline active",
+                "LIVE_COMMERCE_INTEGRATION_MODE=production"
+              ],
+              "metrics": [
+                {
+                  "label": "Today",
+                  "value": "2"
+                },
+                {
+                  "label": "Processing",
+                  "value": "1"
+                },
+                {
+                  "label": "Shipped",
+                  "value": "1"
+                },
+                {
+                  "label": "Profit Today",
+                  "value": "$96.60"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "ws_empire_1__1041",
+                  "value": "Budget Tracker Pro · $149.00",
+                  "status": "Processing"
+                },
+                {
+                  "label": "ws_empire_1__1042",
+                  "value": "ProFlex Earbuds · $89.00",
+                  "status": "Shipped"
+                }
+              ]
+            },
+            {
+              "engineId": "analytics",
+              "displayName": "Analytics Engine",
+              "computedAt": "2026-07-02T07:38:33.391Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "PROOF-001 0/12 stages · Portfolio 4 companies",
+              "health": "UNKNOWN",
+              "progress": {
+                "percent": 0,
+                "label": "Awaiting implementation — no first-revenue validation runs recorded"
+              },
+              "nextAction": "Advance V1 commercial spine to first revenue",
+              "executiveAudit": {
+                "summary": "SUCCESS-001 0% · Net profit $0",
+                "artifactRef": "artifacts/b6-03-stripe-production-executive-audit.md"
+              },
+              "dependencies": [
+                "Payment Engine (Stripe)",
+                "Order + fulfilment telemetry",
+                "Analytics conversion engine (optional GA4/pixel)"
+              ],
+              "metrics": [
+                {
+                  "label": "Portfolio Revenue",
+                  "value": "$1.63M"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "49.0%"
+                },
+                {
+                  "label": "Net Profit (MTD)",
+                  "value": "$229K"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "14.1%"
+                }
+              ]
+            }
+          ],
+          "summaryCards": [
+            {
+              "id": "empire-health",
+              "title": "Empire Health",
+              "available": true,
+              "primaryValue": "65%",
+              "status": "WARNING · Ops readiness 0%",
+              "dependency": "239 modules; 0 routes; 10 risks",
+              "nextAction": "LIVE_COMMERCE_INTEGRATION_MODE must be production",
+              "href": "/cockpit/finance/profit",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "Commerce",
+                  "value": "65% · WARNING"
+                },
+                {
+                  "label": "Production readiness",
+                  "value": "95% · HEALTHY"
+                },
+                {
+                  "label": "Engines healthy",
+                  "value": "1/7"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "revenue-today",
+              "title": "Revenue Today",
+              "available": true,
+              "primaryValue": "$96.60",
+              "status": "2 order(s) today",
+              "dependency": "Order repository · profitTodayCents",
+              "nextAction": "Awaiting implementation — no first-revenue validation runs recorded",
+              "href": "/cockpit/finance/profit",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "PROOF-001",
+                  "value": "0/12 stages"
+                },
+                {
+                  "label": "Net profit (runtime)",
+                  "value": "$0"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "marketplace-status",
+              "title": "Marketplace Status",
+              "available": true,
+              "primaryValue": "10%",
+              "status": "Amazon SP-API credentials pending (B6-01a/b)",
+              "dependency": "AMAZON_SP_API_CLIENT_ID + CLIENT_SECRET (shared)",
+              "nextAction": "B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+              "href": "/cockpit/intelligence/marketplace",
+              "health": "FAILED",
+              "items": [
+                {
+                  "label": "amazon-us",
+                  "value": "Refresh token pending"
+                },
+                {
+                  "label": "amazon-sg",
+                  "value": "Refresh token pending"
+                },
+                {
+                  "label": "shopee-sg",
+                  "value": "Not yet implemented in B6-01D scope"
+                }
+              ],
+              "engineCenterId": "marketplace"
+            },
+            {
+              "id": "supplier-status",
+              "title": "Supplier Status",
+              "available": true,
+              "primaryValue": "15%",
+              "status": "CJ credentials not injected (B6-02)",
+              "dependency": "CREDENTIAL_VAULT_KEY (B6-04)",
+              "nextAction": "Inject CJ_API_KEY on Railway (CJ API 2.0 — key only)",
+              "href": "/cockpit/intelligence/suppliers",
+              "health": "FAILED",
+              "items": [
+                {
+                  "label": "GlobalSource Direct",
+                  "value": "94% reliable · 7.1 days"
+                },
+                {
+                  "label": "Nexus Fulfillment",
+                  "value": "98% reliable · 4.2 days"
+                },
+                {
+                  "label": "PrimeDrop Logistics",
+                  "value": "87% reliable · 5.8 days"
+                }
+              ],
+              "engineCenterId": "supplier"
+            },
+            {
+              "id": "active-missions",
+              "title": "Active Missions",
+              "available": true,
+              "primaryValue": "1",
+              "status": "OBJ-001 — PROOF-001",
+              "dependency": "Objective Management System (OMS)",
+              "nextAction": "P0-1 — Production deploy (closes B5)",
+              "href": "/cockpit/missions",
+              "health": "RED",
+              "items": [
+                {
+                  "label": "PROOF-001",
+                  "value": "0% · AT_RISK"
+                }
+              ],
+              "engineCenterId": null
+            },
+            {
+              "id": "executive-alerts",
+              "title": "Executive Alerts",
+              "available": true,
+              "primaryValue": "4",
+              "status": "4 certification · 0 approval",
+              "dependency": "B5–B8 certification register · Pillow approval repository",
+              "nextAction": "DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+              "href": "/cockpit/finance/profit",
+              "health": "FAILED",
+              "items": [
+                {
+                  "label": "B5",
+                  "value": "DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)"
+                },
+                {
+                  "label": "B6",
+                  "value": "B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway"
+                },
+                {
+                  "label": "B7",
+                  "value": "RECOMMEND DEFER — resolve blocked items before authorizing production go-live"
+                },
+                {
+                  "label": "B8",
+                  "value": "Awaiting implementation — no first-revenue validation runs recorded"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "pillow-status",
+              "title": "Pillow Status",
+              "available": true,
+              "primaryValue": "0",
+              "status": "Dry-run readiness — EMPIRE_V1_OPERATIONAL_READY not set",
+              "dependency": "Pillow approval runtime (ADR-049)",
+              "nextAction": "Pillow Supervisor exposes runtime approval state only",
+              "href": "/cockpit/development/pillow",
+              "health": "HEALTHY",
+              "items": [],
+              "engineCenterId": "pillow-supervisor"
+            },
+            {
+              "id": "pending-kings-approval",
+              "title": "Pending King's Approval",
+              "available": true,
+              "primaryValue": "0",
+              "status": "No items awaiting sovereign approval",
+              "dependency": "Decision repository · Pillow approval queue",
+              "nextAction": "Portfolio fully authorized",
+              "href": "/cockpit/development/approvals",
+              "health": "HEALTHY",
+              "items": [],
+              "engineCenterId": "pillow-supervisor"
+            },
+            {
+              "id": "ai-recommendations",
+              "title": "AI Recommendations",
+              "available": true,
+              "primaryValue": "3",
+              "status": "Portfolio velocity is accelerating. Three ventures are ready to scale.",
+              "dependency": "AI CEO repository (seeded portfolio briefing — no generative AI in G4-03)",
+              "nextAction": "P0-1 — Production deploy (closes B5)",
+              "href": "/cockpit/intelligence/discovery",
+              "health": "HEALTHY",
+              "items": [
+                {
+                  "label": "Scale top revenue company",
+                  "value": "High impact · Recommended"
+                },
+                {
+                  "label": "Launch Lumen Media ads",
+                  "value": "Medium impact · Queued"
+                },
+                {
+                  "label": "Manufacture new vertical",
+                  "value": "High impact · In progress"
+                }
+              ],
+              "engineCenterId": "quantitative-intelligence"
+            },
+            {
+              "id": "executive-timeline",
+              "title": "Executive Timeline",
+              "available": true,
+              "primaryValue": "18",
+              "status": "15 upcoming · 5 recent activity",
+              "dependency": "Activity repository · global-execution-timeline",
+              "nextAction": "Open Mission Centre for full objective timeline",
+              "href": "/cockpit#executive-timeline",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "Taylor",
+                  "value": "Paused underperforming Meta ad set",
+                  "timestamp": "Just now"
+                },
+                {
+                  "label": "Nova",
+                  "value": "Escalated billing dispute to finance module",
+                  "timestamp": "Just now"
+                },
+                {
+                  "label": "Victoria",
+                  "value": "Initiated manufacturing pipeline for Health vertical",
+                  "timestamp": "Just now"
+                },
+                {
+                  "label": "Old Seasonal Mug Warmer — ARCHIVED",
+                  "value": "marketplace TBD · score 68",
+                  "timestamp": "2026-07-02T07:40:42.456Z"
+                },
+                {
+                  "label": "Foldable Cutting Board — SCALING",
+                  "value": "spocket · score 68",
+                  "timestamp": "2026-07-05T07:40:42.456Z"
+                }
+              ],
+              "engineCenterId": null
+            }
+          ],
+          "attentionItems": [
+            {
+              "id": "B5",
+              "label": "B5: DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+              "severity": "critical",
+              "href": "/cockpit/finance/profit",
+              "engineId": "analytics"
+            },
+            {
+              "id": "B6",
+              "label": "B6: B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+              "severity": "warning",
+              "href": "/cockpit/intelligence/marketplace",
+              "engineId": "marketplace"
+            },
+            {
+              "id": "B7",
+              "label": "B7: RECOMMEND DEFER — resolve blocked items before authorizing production go-live",
+              "severity": "critical",
+              "href": "/cockpit/governance/v1",
+              "engineId": null
+            },
+            {
+              "id": "B8",
+              "label": "B8: Awaiting implementation — no first-revenue validation runs recorded",
+              "severity": "critical",
+              "href": "/cockpit/governance/v1",
+              "engineId": null
+            },
+            {
+              "id": "engine-supplier",
+              "label": "Supplier Engine — CJ credentials not injected (B6-02)",
+              "severity": "critical",
+              "href": "/cockpit/intelligence/suppliers",
+              "engineId": "supplier"
+            },
+            {
+              "id": "engine-marketplace",
+              "label": "Marketplace Engine — Amazon SP-API credentials pending (B6-01a/b)",
+              "severity": "critical",
+              "href": "/cockpit/intelligence/marketplace",
+              "engineId": "marketplace"
+            },
+            {
+              "id": "engine-storefront",
+              "label": "Storefront Engine — Building Lumen Media (69% complete)",
+              "severity": "critical",
+              "href": "/cockpit/commerce/store",
+              "engineId": "storefront"
+            },
+            {
+              "id": "engine-logistics",
+              "label": "Logistics Engine — CJ fulfilment gated until B6-02 + production mode",
+              "severity": "critical",
+              "href": "/cockpit/operations/fulfillment",
+              "engineId": "logistics"
+            }
+          ],
+          "nextExecutiveAction": "Grand King go-live checklist (REAL-049)",
+          "executiveTimeline": [
+            {
+              "id": "tl-activity-f5e07d30-9070-4ded-8618-a65a40d23610",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Taylor",
+              "summary": "Paused underperforming Meta ad set",
+              "timestamp": "Just now",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-f881ec75-dda7-4610-b738-9838fc578080",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Nova",
+              "summary": "Escalated billing dispute to finance module",
+              "timestamp": "Just now",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-d70aa66c-bc94-454b-bbe1-f306dd6219cb",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Victoria",
+              "summary": "Initiated manufacturing pipeline for Health vertical",
+              "timestamp": "Just now",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-d6ae4ec9-4922-4c19-85a0-397ae3ed4f33",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Morgan",
+              "summary": "Detected demand spike in wireless accessories",
+              "timestamp": "Just now",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-logistics-ws_empire_1__1041",
+              "sourceEngine": "logistics",
+              "sourceLabel": "Logistics",
+              "title": "Budget Tracker Pro",
+              "summary": "Processing · $149.00",
+              "timestamp": "2m ago",
+              "href": "/cockpit/operations/fulfillment"
+            },
+            {
+              "id": "tl-logistics-ws_empire_1__1042",
+              "sourceEngine": "logistics",
+              "sourceLabel": "Logistics",
+              "title": "ProFlex Earbuds",
+              "summary": "Shipped · $89.00",
+              "timestamp": "2m ago",
+              "href": "/cockpit/operations/fulfillment"
+            },
+            {
+              "id": "tl-program-operational-access",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "REAL-002B — Connect Amazon SP-API + first VERIFIED credentials (live)",
+              "summary": "Operational Access · 100% complete",
+              "timestamp": "2026-07-09T07:40:42.988Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-1782e607-3056-4c4d-b81c-ef22bdf7eee0",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Smart Measuring Cups — LIVE",
+              "summary": "cj-dropshipping · score 68",
+              "timestamp": "2026-07-08T07:40:42.988Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-fe334c50-67e3-4b7b-aad0-63df8b92c85f",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Foldable Cutting Board — SCALING",
+              "summary": "spocket · score 68",
+              "timestamp": "2026-07-05T07:40:42.988Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-0f224016-996b-4fae-8240-09ad086c0971",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Old Seasonal Mug Warmer — ARCHIVED",
+              "summary": "marketplace TBD · score 68",
+              "timestamp": "2026-07-02T07:40:42.988Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-supplier-GlobalSource Direct",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "GlobalSource Direct",
+              "summary": "94% reliable · 7.1 days",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-supplier-Nexus Fulfillment",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "Nexus Fulfillment",
+              "summary": "98% reliable · 4.2 days",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-supplier-PrimeDrop Logistics",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "PrimeDrop Logistics",
+              "summary": "87% reliable · 5.8 days",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-marketplace-amazon-us",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "amazon-us",
+              "summary": "Refresh token pending",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-marketplace-amazon-sg",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "amazon-sg",
+              "summary": "Refresh token pending",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-marketplace-shopee-sg",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "shopee-sg",
+              "summary": "Not yet implemented in B6-01D scope",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-storefront-Brand system",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Brand system",
+              "summary": "100% · complete",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-storefront-Product catalog",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Product catalog",
+              "summary": "100% · complete",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-storefront-Storefront theme",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Storefront theme",
+              "summary": "78% · in_progress",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-advertising-ws_empire_1__m1",
+              "sourceEngine": "advertising",
+              "sourceLabel": "Advertising",
+              "title": "Meridian — Summer Scale",
+              "summary": "Active · reach 2.4M",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/commerce/marketing"
+            },
+            {
+              "id": "tl-advertising-ws_empire_1__m2",
+              "sourceEngine": "advertising",
+              "sourceLabel": "Advertising",
+              "title": "Vertex — Retention Loop",
+              "summary": "Active · reach 890K",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/commerce/marketing"
+            },
+            {
+              "id": "tl-payment-profit-today",
+              "sourceEngine": "payment",
+              "sourceLabel": "Payment",
+              "title": "Order profit today",
+              "summary": "$96.60",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/finance/billing"
+            },
+            {
+              "id": "tl-analytics-proof",
+              "sourceEngine": "analytics",
+              "sourceLabel": "Analytics",
+              "title": "PROOF-001 tracker",
+              "summary": "PROOF-001 0/12 stages · Portfolio 4 companies",
+              "timestamp": "2026-07-02T07:40:42.459Z",
+              "href": "/cockpit/finance/profit"
+            }
+          ],
+          "executiveAlerts": [
+            {
+              "id": "B5",
+              "label": "B5: DATABASE_PATH must point to persistent volume (e.g. /data/empireai-brain.db)",
+              "severity": "critical",
+              "engineId": "analytics",
+              "href": "/cockpit/finance/profit"
+            },
+            {
+              "id": "B6",
+              "label": "B6: B6-01a — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_NA on Railway",
+              "severity": "warning",
+              "engineId": "marketplace",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "B7",
+              "label": "B7: RECOMMEND DEFER — resolve blocked items before authorizing production go-live",
+              "severity": "critical",
+              "engineId": null,
+              "href": "/cockpit/governance/v1"
+            },
+            {
+              "id": "B8",
+              "label": "B8: Awaiting implementation — no first-revenue validation runs recorded",
+              "severity": "critical",
+              "engineId": null,
+              "href": "/cockpit/governance/v1"
+            },
+            {
+              "id": "engine-supplier",
+              "label": "Supplier Engine — CJ credentials not injected (B6-02)",
+              "severity": "critical",
+              "engineId": "supplier",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "engine-marketplace",
+              "label": "Marketplace Engine — Amazon SP-API credentials pending (B6-01a/b)",
+              "severity": "critical",
+              "engineId": "marketplace",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "engine-storefront",
+              "label": "Storefront Engine — Building Lumen Media (69% complete)",
+              "severity": "critical",
+              "engineId": "storefront",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "engine-logistics",
+              "label": "Logistics Engine — CJ fulfilment gated until B6-02 + production mode",
+              "severity": "critical",
+              "engineId": "logistics",
+              "href": "/cockpit/operations/fulfillment"
+            }
+          ],
+          "approvalRoutes": [],
+          "dependencyGraph": {
+            "nodes": [
+              {
+                "engineId": "supplier",
+                "displayName": "Supplier Engine",
+                "route": "/cockpit/intelligence/suppliers",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "marketplace",
+                "displayName": "Marketplace Engine",
+                "route": "/cockpit/intelligence/marketplace",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "storefront",
+                "displayName": "Storefront Engine",
+                "route": "/cockpit/commerce/store",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "advertising",
+                "displayName": "Advertising Engine",
+                "route": "/cockpit/commerce/marketing",
+                "health": "WARNING"
+              },
+              {
+                "engineId": "payment",
+                "displayName": "Payment Engine",
+                "route": "/cockpit/finance/billing",
+                "health": "HEALTHY"
+              },
+              {
+                "engineId": "logistics",
+                "displayName": "Logistics Engine",
+                "route": "/cockpit/operations/fulfillment",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "analytics",
+                "displayName": "Analytics Engine",
+                "route": "/cockpit/finance/profit",
+                "health": "UNKNOWN"
+              },
+              {
+                "engineId": "quantitative-intelligence",
+                "displayName": "Quantitative Intelligence",
+                "route": "/cockpit/intelligence/discovery",
+                "health": "WARNING"
+              },
+              {
+                "engineId": "pillow-supervisor",
+                "displayName": "Pillow Supervisor",
+                "route": "/cockpit/development/pillow",
+                "health": "HEALTHY"
+              }
+            ],
+            "edges": [
+              {
+                "from": "supplier",
+                "to": "logistics",
+                "label": "Fulfilment supply"
+              },
+              {
+                "from": "supplier",
+                "to": "marketplace",
+                "label": "Catalog sourcing"
+              },
+              {
+                "from": "marketplace",
+                "to": "storefront",
+                "label": "Channel listings"
+              },
+              {
+                "from": "storefront",
+                "to": "advertising",
+                "label": "Traffic destination"
+              },
+              {
+                "from": "storefront",
+                "to": "payment",
+                "label": "Checkout surface"
+              },
+              {
+                "from": "payment",
+                "to": "analytics",
+                "label": "Revenue telemetry"
+              },
+              {
+                "from": "logistics",
+                "to": "analytics",
+                "label": "Fulfilment telemetry"
+              },
+              {
+                "from": "advertising",
+                "to": "analytics",
+                "label": "Conversion telemetry"
+              },
+              {
+                "from": "quantitative-intelligence",
+                "to": "supplier",
+                "label": "Scoring input"
+              },
+              {
+                "from": "quantitative-intelligence",
+                "to": "marketplace",
+                "label": "Opportunity signals"
+              },
+              {
+                "from": "pillow-supervisor",
+                "to": "supplier",
+                "label": "Approval gate"
+              },
+              {
+                "from": "pillow-supervisor",
+                "to": "marketplace",
+                "label": "Approval gate"
+              }
+            ]
+          }
+        }
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Executive Home Brain module accessible when authenticated"
+    },
+    {
+      "id": "L5-protected-without-cookie",
+      "target": "local",
+      "method": "GET",
+      "url": "http://127.0.0.1:60580/auth/me",
+      "status": 401,
+      "responseBody": {
+        "error": "Authentication required"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Protected route without session"
+    },
+    {
+      "id": "L6-logout",
+      "target": "local",
+      "method": "POST",
+      "url": "http://127.0.0.1:60580/auth/logout",
+      "status": 200,
+      "responseBody": {
+        "ok": true
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8",
+        "set-cookie": "empireai_session=; Max-Age=0; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax"
+      },
+      "cookiePresent": true,
+      "pass": true,
+      "notes": "Session destroyed"
+    },
+    {
+      "id": "L7-auth-me-after-logout",
+      "target": "local",
+      "method": "GET",
+      "url": "http://127.0.0.1:60580/auth/me",
+      "status": 401,
+      "responseBody": {
+        "error": "Invalid or expired session"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Stale cookie rejected after logout"
+    },
+    {
+      "id": "P1-invalid-login",
+      "target": "production",
+      "method": "POST",
+      "url": "https://empireai-five.vercel.app/api/auth/login",
+      "requestBody": {
+        "email": "wrong@test.com",
+        "password": "[REDACTED]"
+      },
+      "status": 401,
+      "responseBody": {
+        "error": "Invalid email or password"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Invalid credentials via Next BFF proxy"
+    },
+    {
+      "id": "P2-auth-me-unauthenticated",
+      "target": "production",
+      "method": "GET",
+      "url": "https://empireai-five.vercel.app/api/auth/me",
+      "status": 401,
+      "responseBody": {
+        "error": "Authentication required"
+      },
+      "responseHeaders": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Unauthenticated session check"
+    },
+    {
+      "id": "P3-cockpit-redirect",
+      "target": "production",
+      "method": "GET",
+      "url": "https://empireai-five.vercel.app/cockpit",
+      "status": 307,
+      "responseBody": "Redirecting...\n",
+      "responseHeaders": {
+        "content-type": "text/plain",
+        "location": "/login?next=%2Fcockpit"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Middleware redirects to login with next param"
+    },
+    {
+      "id": "P4-cockpit-deep-link-redirect",
+      "target": "production",
+      "method": "GET",
+      "url": "https://empireai-five.vercel.app/cockpit/command",
+      "status": 307,
+      "responseBody": "Redirecting...\n",
+      "responseHeaders": {
+        "content-type": "text/plain",
+        "location": "/login?next=%2Fcockpit%2Fcommand"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Deep link preserves return path in Location header"
+    },
+    {
+      "id": "P5-login-page",
+      "target": "production",
+      "method": "GET",
+      "url": "https://empireai-five.vercel.app/login",
+      "status": 200,
+      "responseBody": "<!DOCTYPE html><html lang=\"en\" class=\"cormorant_garamond_e0daf49b-module__iVEqIq__variable inter_fe8b9d92-module__LINzvG__variable h-full antialiased\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/_next/static/media/01e4147cff8141ee-s.p.3huc2loe0ie8a.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/17sg6lrju-dl5.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/1bjiqt1umpgsx.js\"/><script src=\"/_next/static/chunks/3pkem_dvbnxik.js\" async=\"\"></script><script src=\"/_next/static/chunks/268wvy0p_n49k.js\" async=\"\"></script><script src=\"/_next/static/chunks/0akygul-vl67p.js\" async=\"\"></script><script src=\"/_next/static/chunks/turbopack-0zghs2q0urxey.js\" async=\"\"></script><script src=\"/_next/static/chunks/1mdko1yufb8cq.js\" async=\"\"></script><script src=\"/_next/static/chunks/2598hjula5o1z.js\" async=\"\"></script><script src=\"/_next/static/chunks/1g5csh_cr9tcg.js\" async=\"\"></script><script src=\"/_next/static/chunks/3vz95wmyb0e-r.js\" async=\"\"></script><meta name=\"next-size-adjust\" content=\"\"/><title>EmpireAI — The AI OS that manufactures companies</title><meta name=\"description\" content=\"EmpireAI orchestrates autonomous agents, market intelligence, and global infrastructure to build, launch, and scale AI-native companies at machine speed.\"/><link rel=\"icon\" href=\"/favicon.ico?favicon.2vob68tjqpejf.ico\" sizes=\"256x256\" type=\"image/x-icon\"/><script src=\"/_next/static/chunks/0cz1d0mv5g_q7.js\" noModule=\"\"></script></head><body class=\"min-h-full flex flex-col bg-background text-foreground\"><div hidden=\"\"><!--$--><!--/$--></div><div class=\"flex min-h-screen items-center justify-center bg-[#030303] px-4\"><div class=\"w-full max-w-md rounded-2xl border border-gold/15 bg-[#0a0a0a] p-8 shadow-2xl\"><div class=\"mb-8 text-center\"><p class=\"text-xs uppercase tracking-[0.3em] text-[#d4af37]\">EmpireAI Brain</p><h1 class=\"mt-2 font-display text-3xl text-[#f0d78c]\">Secure Access</h1><p class=\"mt-2 text-sm text-[#8a847a]\">All platform modules communicate through the Brain orchestrator.</p></div><form class=\"space-y-4\"><label class=\"block\"><span class=\"text-xs uppercase tracking-wider text-[#6f6a60]\">Email</span><input type=\"email\" required=\"\" class=\"mt-2 w-full rounded-lg border border-gold/15 bg-white/[0.03] px-4 py-2.5 text-sm text-[#f0d78c] outline-none focus:border-gold/40\" value=\"founder@empireai.com\"/></label><label class=\"block\"><span class=\"text-xs uppercase tracking-wider text-[#6f6a60]\">Password</span><input type=\"password\" required=\"\" class=\"mt-2 w-full rounded-lg border border-gold/15 bg-white/[0.03] px-4 py-2.5 text-sm text-[#f0d78c] outline-none focus:border-gold/40\" value=\"\"/></label><button type=\"submit\" disabled=\"\" class=\"w-full rounded-lg bg-gradient-to-r from-[#d4af37] to-[#9a7b1a] px-4 py-3 text-sm font-semibold uppercase tracking-wider text-[#1a1408] transition-opacity hover:opacity-90 disabled:opacity-50\">Enter Platform</button></form><p class=\"mt-6 text-center text-xs text-[#6f6a60]\">Demo: founder@empireai.com · admin@empireai.com</p><p class=\"mt-2 text-center text-xs\"><a class=\"text-[#d4af37] hover:underline\" href=\"/\">Return to landing page</a></p></div></div><!--$--><!--/$--><script src=\"/_next/static/chunks/1bjiqt1umpgsx.js\" id=\"_R_\" async=\"\"></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n2:I[36323,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"default\\\"]\\n3:I[26430,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"default\\\"]\\n4:I[35466,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\",\\\"/_next/static/chunks/1g5csh_cr9tcg.js\\\"],\\\"AuthProvider\\\"]\\n5:I[60654,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"ClientPageRoot\\\"]\\n6:I[86325,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\",\\\"/_next/static/chunks/1g5csh_cr9tcg.js\\\",\\\"/_next/static/chunks/3vz95wmyb0e-r.js\\\"],\\\"default\\\"]\\n9:I[23131,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"OutletBoundary\\\"]\\na:\\\"$Sreact.suspense\\\"\\nd:I[23131,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"ViewportBoundary\\\"]\\nf:I[23131,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"MetadataBoundary\\\"]\\n11:I[55889,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"default\\\",1]\\n:HL[\\\"/_next/static/chunks/17sg6lrju-dl5.css\\\",\\\"style\\\"]\\n:HL[\\\"/_next/static/media/01e4147cff8141ee-s.p.3huc2loe0ie8a.woff2\\\",\\\"font\\\",{\\\"crossOrigin\\\":\\\"\\\",\\\"type\\\":\\\"font/woff2\\\"}]\\n:HL[\\\"/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2\\\",\\\"font\\\",{\\\"crossOrigin\\\":\\\"\\\",\\\"type\\\":\\\"font/woff2\\\"}]\\n\"])</script><script>self.__next_f.push([1,\"0:{\\\"P\\\":null,\\\"c\\\":[\\\"\\\",\\\"login\\\"],\\\"q\\\":\\\"\\\",\\\"i\\\":false,\\\"f\\\":[[[\\\"\\\",{\\\"children\\\":[\\\"(auth)\\\",{\\\"children\\\":[\\\"login\\\",{\\\"children\\\":[\\\"__PAGE__\\\",{}]}]}]},\\\"$undefined\\\",\\\"$undefined\\\",16],[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[[[\\\"$\\\",\\\"link\\\",\\\"0\\\",{\\\"rel\\\":\\\"stylesheet\\\",\\\"href\\\":\\\"/_next/static/chunks/17sg6lrju-dl5.css\\\",\\\"precedence\\\":\\\"next\\\",\\\"crossOrigin\\\":\\\"$undefined\\\",\\\"nonce\\\":\\\"$undefined\\\"}],[\\\"$\\\",\\\"script\\\",\\\"script-0\\\",{\\\"src\\\":\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"async\\\":true,\\\"nonce\\\":\\\"$undefined\\\"}],[\\\"$\\\",\\\"script\\\",\\\"script-1\\\",{\\\"src\\\":\\\"/_next/static/chunks/2598hjula5o1z.js\\\",\\\"async\\\":true,\\\"nonce\\\":\\\"$undefined\\\"}]],[\\\"$\\\",\\\"html\\\",null,{\\\"lang\\\":\\\"en\\\",\\\"className\\\":\\\"cormorant_garamond_e0daf49b-module__iVEqIq__variable inter_fe8b9d92-module__LINzvG__variable h-full antialiased\\\",\\\"children\\\":[\\\"$\\\",\\\"body\\\",null,{\\\"className\\\":\\\"min-h-full flex flex-col bg-background text-foreground\\\",\\\"children\\\":[\\\"$\\\",\\\"$L2\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L3\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":[[[\\\"$\\\",\\\"title\\\",null,{\\\"children\\\":\\\"404: This page could not be found.\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":{\\\"fontFamily\\\":\\\"system-ui,\\\\\\\"Segoe UI\\\\\\\",Roboto,Helvetica,Arial,sans-serif,\\\\\\\"Apple Color Emoji\\\\\\\",\\\\\\\"Segoe UI Emoji\\\\\\\"\\\",\\\"height\\\":\\\"100vh\\\",\\\"textAlign\\\":\\\"center\\\",\\\"display\\\":\\\"flex\\\",\\\"flexDirection\\\":\\\"column\\\",\\\"alignItems\\\":\\\"center\\\",\\\"justifyContent\\\":\\\"center\\\"},\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"children\\\":[[\\\"$\\\",\\\"style\\\",null,{\\\"dangerouslySetInnerHTML\\\":{\\\"__html\\\":\\\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\\\"}}],[\\\"$\\\",\\\"h1\\\",null,{\\\"className\\\":\\\"next-error-h1\\\",\\\"style\\\":{\\\"display\\\":\\\"inline-block\\\",\\\"margin\\\":\\\"0 20px 0 0\\\",\\\"padding\\\":\\\"0 23px 0 0\\\",\\\"fontSize\\\":24,\\\"fontWeight\\\":500,\\\"verticalAlign\\\":\\\"top\\\",\\\"lineHeight\\\":\\\"49px\\\"},\\\"children\\\":404}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":{\\\"display\\\":\\\"inline-block\\\"},\\\"children\\\":[\\\"$\\\",\\\"h2\\\",null,{\\\"style\\\":{\\\"fontSize\\\":14,\\\"fontWeight\\\":400,\\\"lineHeight\\\":\\\"49px\\\",\\\"margin\\\":0},\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],[]],\\\"forbidden\\\":\\\"$undefined\\\",\\\"unauthorized\\\":\\\"$undefined\\\"}]}]}]]}],{\\\"children\\\":[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[[[\\\"$\\\",\\\"script\\\",\\\"script-0\\\",{\\\"src\\\":\\\"/_next/static/chunks/1g5csh_cr9tcg.js\\\",\\\"async\\\":true,\\\"nonce\\\":\\\"$undefined\\\"}]],[\\\"$\\\",\\\"$L4\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$L2\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L3\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":[[[\\\"$\\\",\\\"title\\\",null,{\\\"children\\\":\\\"404: This page could not be found.\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":\\\"$0:f:0:1:0:props:children:1:props:children:props:children:props:notFound:0:1:props:style\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"children\\\":[[\\\"$\\\",\\\"style\\\",null,{\\\"dangerouslySetInnerHTML\\\":{\\\"__html\\\":\\\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\\\"}}],[\\\"$\\\",\\\"h1\\\",null,{\\\"className\\\":\\\"next-error-h1\\\",\\\"style\\\":\\\"$0:f:0:1:0:props:children:1:props:children:props:children:props:notFound:0:1:props:children:props:children:1:props:style\\\",\\\"children\\\":404}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":\\\"$0:f:0:1:0:props:children:1:props:children:props:children:props:notFound:0:1:props:children:props:children:2:props:style\\\",\\\"children\\\":[\\\"$\\\",\\\"h2\\\",null,{\\\"style\\\":\\\"$0:f:0:1:0:props:children:1:props:children:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style\\\",\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],[]],\\\"forbidden\\\":\\\"$undefined\\\",\\\"unauthorized\\\":\\\"$undefined\\\"}]}]]}],{\\\"children\\\":[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[null,[\\\"$\\\",\\\"$L2\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L3\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":\\\"$undefined\\\",\\\"forbidden\\\":\\\"$undefined\\\",\\\"unauthorized\\\":\\\"$undefined\\\"}]]}],{\\\"children\\\":[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[[\\\"$\\\",\\\"$L5\\\",null,{\\\"Component\\\":\\\"$6\\\",\\\"serverProvidedParams\\\":{\\\"searchParams\\\":{},\\\"params\\\":{},\\\"promises\\\":[\\\"$@7\\\",\\\"$@8\\\"]}}],[[\\\"$\\\",\\\"script\\\",\\\"script-0\\\",{\\\"src\\\":\\\"/_next/static/chunks/3vz95wmyb0e-r.js\\\",\\\"async\\\":true,\\\"nonce\\\":\\\"$undefined\\\"}]],[\\\"$\\\",\\\"$L9\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$a\\\",null,{\\\"name\\\":\\\"Next.MetadataOutlet\\\",\\\"children\\\":\\\"$@b\\\"}]}]]}],{},null,false,null]},null,false,\\\"$@c\\\"]},null,false,null]},null,false,null],[\\\"$\\\",\\\"$1\\\",\\\"h\\\",{\\\"children\\\":[null,[\\\"$\\\",\\\"$Ld\\\",null,{\\\"children\\\":\\\"$Le\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"hidden\\\":true,\\\"children\\\":[\\\"$\\\",\\\"$Lf\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$a\\\",null,{\\\"name\\\":\\\"Next.Metadata\\\",\\\"children\\\":\\\"$L10\\\"}]}]}],[\\\"$\\\",\\\"meta\\\",null,{\\\"name\\\":\\\"next-size-adjust\\\",\\\"content\\\":\\\"\\\"}]]}],false]],\\\"m\\\":\\\"$undefined\\\",\\\"G\\\":[\\\"$11\\\",[[\\\"$\\\",\\\"link\\\",\\\"0\\\",{\\\"rel\\\":\\\"stylesheet\\\",\\\"href\\\":\\\"/_next/static/chunks/17sg6lrju-dl5.css\\\",\\\"precedence\\\":\\\"next\\\",\\\"crossOrigin\\\":\\\"$undefined\\\",\\\"nonce\\\":\\\"$undefined\\\"}]]],\\\"S\\\":true,\\\"h\\\":null,\\\"s\\\":\\\"$undefined\\\",\\\"l\\\":\\\"$undefined\\\",\\\"p\\\":\\\"$undefined\\\",\\\"d\\\":\\\"$undefined\\\",\\\"b\\\":\\\"zjnPI8Agdf8KLkG2EdNd_\\\"}\\n\"])</script><script>self.__next_f.push([1,\"12:[]\\nc:\\\"$W12\\\"\\n7:{}\\n8:\\\"$0:f:0:1:1:children:1:children:1:children:0:props:children:0:props:serverProvidedParams:params\\\"\\n\"])</script><script>self.__next_f.push([1,\"e:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"charSet\\\":\\\"utf-8\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"1\\\",{\\\"name\\\":\\\"viewport\\\",\\\"content\\\":\\\"width=device-width, initial-scale=1\\\"}]]\\n\"])</script><script>self.__next_f.push([1,\"13:I[5462,[\\\"/_next/static/chunks/1mdko1yufb8cq.js\\\",\\\"/_next/static/chunks/2598hjula5o1z.js\\\"],\\\"IconMark\\\"]\\nb:null\\n10:[[\\\"$\\\",\\\"title\\\",\\\"0\\\",{\\\"children\\\":\\\"EmpireAI — The AI OS that manufactures companies\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"1\\\",{\\\"name\\\":\\\"description\\\",\\\"content\\\":\\\"EmpireAI orchestrates autonomous agents, market intelligence, and global infrastructure to build, launch, and scale AI-native companies at machine speed.\\\"}],[\\\"$\\\",\\\"link\\\",\\\"2\\\",{\\\"rel\\\":\\\"icon\\\",\\\"href\\\":\\\"/favicon.ico?favicon.2vob68tjqpejf.ico\\\",\\\"sizes\\\":\\\"256x256\\\",\\\"type\\\":\\\"image/x-icon\\\"}],[\\\"$\\\",\\\"$L13\\\",\\\"3\\\",{}]]\\n\"])</script></body></html>",
+      "responseHeaders": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "cookiePresent": false,
+      "pass": true,
+      "notes": "Login page reachable"
+    }
+  ]
+}

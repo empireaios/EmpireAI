@@ -5,7 +5,7 @@
 **Version:** 1  
 **Canonical label:** BL-C · Continuous Improvement Constitution  
 **Status:** **ACTIVE** — accumulates approved continuous-improvement items  
-**Authority:** EmpireAI Constitution (supreme) · BL-C derives authority from Constitution  
+**Authority:** Engineering Constitution ([`EMPIREAI_CONSTITUTION.md`](./EMPIREAI_CONSTITUTION.md) · P2-03) · CTD (supreme)  
 **Date:** 2026-06-29  
 **Canonical owner:** Repository Governance · Continuous Improvement
 
@@ -16,9 +16,9 @@
 
 ## Authority
 
-The EmpireAI Constitution is the supreme authority.
+The **Engineering Constitution** ([`EMPIREAI_CONSTITUTION.md`](./EMPIREAI_CONSTITUTION.md) · P2-03) and **CTD** are supreme over BL-C for execution and commercial bounds.
 
-BL-C derives its authority from the Constitution.
+BL-C derives its authority from the Engineering Constitution and CTD.
 
 BL-C governs every continuous improvement process throughout EmpireAI.
 

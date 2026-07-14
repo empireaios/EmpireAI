@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "learningRules": ["explicit_approval", "explicit_rejection", "design_system_context"],
+  "approvalWeight": 0.15,
+  "rejectionWeight": 0.2,
+  "confidenceThreshold": 0.4,
+  "versioningEnabled": true,
+  "conflictResolutionEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "learningTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "deduplicateEvents": true
+}

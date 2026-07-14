@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "continuousObservationEnabled": true,
+  "observationFrequencyMs": 2000,
+  "changeDetectionRulesEnabled": true,
+  "screenMonitoringRulesEnabled": true,
+  "routeMonitoringRulesEnabled": true,
+  "componentMonitoringRulesEnabled": true,
+  "layoutMonitoringRulesEnabled": true,
+  "confidenceThreshold": 0.55,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "observationTimeoutMs": 30000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryObservations": 200,
+  "observeOnlyMode": true
+}

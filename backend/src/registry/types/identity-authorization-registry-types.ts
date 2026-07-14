@@ -15,6 +15,7 @@ export const FOUNDATION_PROVIDER_IDS = [
   "shopify",
   "tiktok",
   "openai",
+  "canva",
   "anthropic",
   "github",
   "vercel",

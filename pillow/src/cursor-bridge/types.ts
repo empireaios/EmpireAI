@@ -47,6 +47,12 @@ export interface AutonomousEngineeringMission {
   cursorPrompt: string;
   formattedDocument: string;
   artifactPath: string | null;
+  /** P4-02 — mandatory synchronization package when assembly succeeded */
+  synchronizationApplied?: boolean;
+  /** P4-03 — context package applied */
+  contextSynchronizationApplied?: boolean;
+  /** P4-04 — constitutional protocol envelope applied */
+  cursorProtocolApplied?: boolean;
 }
 
 export interface DispatchResult {
@@ -102,6 +108,14 @@ export interface BridgeProcessResult {
   validation: BridgeValidationResult | null;
   report: ExecutiveBridgeReport | null;
   executiveBrief: string;
+  /** P4-02 — Builder refused because synchronization failed */
+  refused?: boolean;
+  refusalReason?: string;
+  synchronization?: import("../vision-synchronization/types.js").VisionSyncPipelineResult;
+  /** P4-03 — Context synchronization result */
+  contextSynchronization?: import("../context-synchronization/types.js").ContextSyncPipelineResult;
+  /** P4-04 — Cursor Protocol envelope */
+  cursorProtocol?: import("../cursor-protocol/types.js").CursorProtocolEnvelope;
 }
 
 export interface CursorBridgeState {

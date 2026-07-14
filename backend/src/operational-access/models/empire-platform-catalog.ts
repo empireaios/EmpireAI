@@ -49,6 +49,7 @@ export const EMPIRE_ACCESS_PLATFORMS: EmpirePlatformDefinition[] = [
   { platformId: "dhl", displayName: "DHL", category: "shipping", authentication: "api_key", revenueBlocking: false, architectureOnly: true },
   { platformId: "fedex", displayName: "FedEx", category: "shipping", authentication: "api_key", revenueBlocking: false, architectureOnly: true },
   { platformId: "openai", displayName: "OpenAI", category: "creative_ai", realityProviderId: "openai", authentication: "api_key", revenueBlocking: false, architectureOnly: false, documentationUrl: "https://platform.openai.com/docs" },
+  { platformId: "canva", displayName: "Canva", category: "creative_ai", realityProviderId: "canva", authentication: "oauth2", revenueBlocking: false, architectureOnly: false, documentationUrl: "https://www.canva.dev/docs/connect" },
   { platformId: "anthropic", displayName: "Anthropic", category: "creative_ai", authentication: "api_key", revenueBlocking: false, architectureOnly: true },
   { platformId: "google-ai", displayName: "Google AI", category: "creative_ai", authentication: "api_key", revenueBlocking: false, architectureOnly: true, documentationUrl: "https://ai.google.dev" },
 ];

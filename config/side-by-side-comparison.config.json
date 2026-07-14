@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "maximumComparedOptions": 4,
+  "comparisonLayoutRulesEnabled": true,
+  "differenceHighlightRulesEnabled": true,
+  "previewLinkageRulesEnabled": true,
+  "uxScoreDisplayRulesEnabled": true,
+  "accessibilityDisplayRulesEnabled": true,
+  "consistencyDisplayRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "comparisonTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryComparisons": 50
+}

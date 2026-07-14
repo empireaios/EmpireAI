@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "analysisFrequency": "on_demand",
+  "stepThreshold": 5,
+  "repetitionThreshold": 3,
+  "navigationFrictionEnabled": true,
+  "formFrictionEnabled": true,
+  "waitingStateRulesEnabled": true,
+  "severityRulesEnabled": true,
+  "confidenceThreshold": 0.4,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "analysisTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

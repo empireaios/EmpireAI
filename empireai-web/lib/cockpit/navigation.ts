@@ -229,6 +229,14 @@ export const cockpitNavigation = [
         navLevel: "tab",
       },
       {
+        id: "marketplace",
+        label: "Marketplace",
+        href: `${COCKPIT_BASE}/commerce/marketplace`,
+        screenId: "SCR-205",
+        department: "commerce",
+        navLevel: "tab",
+      },
+      {
         id: "marketing",
         label: "Marketing",
         href: `${COCKPIT_BASE}/commerce/marketing`,

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "minConfidenceThreshold": 0.4,
+  "maxLayoutsPerRefactoring": 15,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "refactoringTimeoutMs": 120000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveRouting": true,
+  "preserveBusinessLogic": true,
+  "componentPlacementRulesEnabled": true,
+  "designSystemConstraintsEnabled": true,
+  "executivePreferenceConstraintsEnabled": true,
+  "safetyRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "requireApprovalThreshold": true
+}

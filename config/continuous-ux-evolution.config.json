@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "continuousEvolutionEnabled": true,
+  "evolutionFrequencyMs": 18000,
+  "improvementPrioritizationRulesEnabled": true,
+  "trendAnalysisRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "confidenceThreshold": 0.45,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "evolutionTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "outputValidationEnabled": true,
+  "maxHistoryEvolutionCycles": 120,
+  "deduplicateImprovements": true,
+  "recommendOnlyMode": true
+}

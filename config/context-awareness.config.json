@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "contextUpdateIntervalMs": 1000,
+  "maxUpdateRate": 5,
+  "confidenceThreshold": 0.5,
+  "contextBufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "contextTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateContexts": true
+}

@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "designTokenSource": "empireai-web/app/globals.css",
+  "evaluationFrequency": "on_demand",
+  "validationRulesEnabled": true,
+  "versioningEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "analysisTimeoutMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "minComponentConfidence": 0.3,
+  "trackEvolution": true
+}

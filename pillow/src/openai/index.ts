@@ -1,10 +1,13 @@
 export type {
   BrainLLMAdapter,
+  BrainLLMCapabilityRequest,
+  BrainLLMCapabilityResponse,
   BrainLLMCompleteRequest,
   BrainLLMCompleteResponse,
   BrainLLMMessage,
   BrainLLMMessageRole,
   BrainLLMProviderName,
+  IntelligencePlatformAdapter,
 } from "./brain-adapter.js";
 export {
   OpenAIIntegrationLayer,
@@ -19,3 +22,12 @@ export {
   type PillowOperatingMode,
   type PillowTokenBudget,
 } from "./mode-policy.js";
+export {
+  assessKnowledgeRouting,
+  buildKnowledgeRoutingPromptSection,
+  isRepositorySpecificQuestion,
+  isHistoricalKnowledgeQuestion,
+  requiresLiveInformation,
+  type KnowledgeRoutingAssessment,
+  type KnowledgeSource,
+} from "./knowledge-routing.js";

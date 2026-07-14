@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "analysisIntervalMs": 1000,
+  "maxAnalysisRate": 5,
+  "confidenceThreshold": 0.5,
+  "groupingThreshold": 24,
+  "alignmentTolerance": 16,
+  "layoutBufferLimit": 30,
+  "maxRetryAttempts": 5,
+  "retryDelayMs": 2000,
+  "analysisTimeoutMs": 10000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "validateLayouts": true
+}

@@ -1,0 +1,35 @@
+{
+  "mission": "P0-1",
+  "blockerId": "B5",
+  "verifiedAt": "2026-07-01T23:59:00.434Z",
+  "build": {
+    "backend": true,
+    "frontend": true
+  },
+  "probe": {
+    "baseUrl": "https://empireai-production.up.railway.app",
+    "checks": [
+      {
+        "name": "GET /health",
+        "pass": true,
+        "detail": "redisMode=connected"
+      },
+      {
+        "name": "GET /health/production-deploy",
+        "pass": true,
+        "detail": "b5Status=CLOSED hostingConfigured=true"
+      },
+      {
+        "name": "GET /health/version-1-activation",
+        "pass": true,
+        "detail": "status=BLOCKED (B6 credentials may still block)"
+      }
+    ],
+    "allPassed": true
+  },
+  "b5Ready": true,
+  "notes": [
+    "Set PRODUCTION_DEPLOY_VERIFIED=true on Railway after successful public probe.",
+    "Keep LIVE_COMMERCE_INTEGRATION_MODE=sandbox until B6 credentials approved."
+  ]
+}
