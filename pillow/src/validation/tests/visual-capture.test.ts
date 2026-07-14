@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import { describe, test, beforeEach, afterEach } from "node:test";
 
 import { runBootstrap } from "../../bootstrap/engine.js";
+
+const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..", "..", "..");
 import {
   createVisualCaptureEngine,
   resetVisualCaptureEngineForTesting,
@@ -21,7 +24,7 @@ describe("T1-01 Visual Capture Engine", () => {
   });
 
   test("buildVisualCaptureConfiguration loads defaults and env", () => {
-    const config = buildVisualCaptureConfiguration(process.cwd());
+    const config = buildVisualCaptureConfiguration(REPO_ROOT);
     assert.equal(config.enabled, true);
     assert.ok(config.captureIntervalMs >= 200);
     assert.ok(config.bufferLimit >= 1);
@@ -29,7 +32,7 @@ describe("T1-01 Visual Capture Engine", () => {
   });
 
   test("effectiveCaptureIntervalMs respects max frame rate", () => {
-    const config = buildVisualCaptureConfiguration(process.cwd(), {
+    const config = buildVisualCaptureConfiguration(REPO_ROOT, {
       captureIntervalMs: 100,
       maxFrameRate: 2,
     });
@@ -37,7 +40,7 @@ describe("T1-01 Visual Capture Engine", () => {
   });
 
   test("visual capture engine initializes with doctrine doc", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const engine = createVisualCaptureEngine(bootstrap, { autoStart: false });
     const state = await engine.initialize();
     assert.equal(state.engineVersion, "PILLOW-VCE-001");
@@ -48,7 +51,7 @@ describe("T1-01 Visual Capture Engine", () => {
   });
 
   test("capture session produces frames with metadata", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const engine = createVisualCaptureEngine(bootstrap, {
       autoStart: false,
       configuration: {
@@ -76,7 +79,7 @@ describe("T1-01 Visual Capture Engine", () => {
   });
 
   test("pause and resume capture safely", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const engine = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await engine.initialize();
     await engine.startCapture();

@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import { describe, test, beforeEach, afterEach } from "node:test";
 
 import { runBootstrap } from "../../bootstrap/engine.js";
+
+const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..", "..", "..");
 import {
   createVisualCaptureEngine,
   resetVisualCaptureEngineForTesting,
@@ -60,14 +63,14 @@ describe("T1-03 Component Recognition", () => {
   });
 
   test("buildComponentRecognitionConfiguration loads defaults", () => {
-    const config = buildComponentRecognitionConfiguration(process.cwd());
+    const config = buildComponentRecognitionConfiguration(REPO_ROOT);
     assert.equal(config.enabled, true);
     assert.ok(config.confidenceThreshold >= 0);
     assert.ok(config.componentTypeRules.length >= 1);
   });
 
   test("effectiveRecognitionIntervalMs respects max rate", () => {
-    const config = buildComponentRecognitionConfiguration(process.cwd(), {
+    const config = buildComponentRecognitionConfiguration(REPO_ROOT, {
       recognitionIntervalMs: 100,
       maxRecognitionRate: 2,
     });
@@ -75,7 +78,7 @@ describe("T1-03 Component Recognition", () => {
   });
 
   test("component recognition initializes with doctrine doc", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const uiStateMapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -94,7 +97,7 @@ describe("T1-03 Component Recognition", () => {
   });
 
   test("detects components from UI state model", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const uiStateMapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -128,7 +131,7 @@ describe("T1-03 Component Recognition", () => {
   });
 
   test("detects component changes between states", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const uiStateMapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -156,7 +159,7 @@ describe("T1-03 Component Recognition", () => {
   });
 
   test("pause and resume recognition safely", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const uiStateMapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });

@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import { describe, test, beforeEach, afterEach } from "node:test";
 
 import { runBootstrap } from "../../bootstrap/engine.js";
+
+const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..", "..", "..");
 import {
   createVisualCaptureEngine,
   resetVisualCaptureEngineForTesting,
@@ -52,7 +55,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("buildUiStateMapperConfiguration loads defaults and env", () => {
-    const config = buildUiStateMapperConfiguration(process.cwd());
+    const config = buildUiStateMapperConfiguration(REPO_ROOT);
     assert.equal(config.enabled, true);
     assert.ok(config.updateIntervalMs >= 200);
     assert.ok(config.gridRows >= 1);
@@ -60,7 +63,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("effectiveUpdateIntervalMs respects max update rate", () => {
-    const config = buildUiStateMapperConfiguration(process.cwd(), {
+    const config = buildUiStateMapperConfiguration(REPO_ROOT, {
       updateIntervalMs: 100,
       maxUpdateRate: 2,
     });
@@ -68,7 +71,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("ui state mapper initializes with doctrine doc", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const mapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -82,7 +85,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("processes frame into machine-readable UI model", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const mapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -105,7 +108,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("detects state changes between consecutive frames", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const mapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
@@ -125,7 +128,7 @@ describe("T1-02 UI State Mapper", () => {
   });
 
   test("pause and resume mapping safely", async () => {
-    const bootstrap = await runBootstrap({ repositoryRoot: process.cwd() });
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
     const visualCapture = createVisualCaptureEngine(bootstrap, { autoStart: false });
     await visualCapture.initialize();
     const mapper = createUiStateMapperEngine(bootstrap, visualCapture, { autoStart: false });
