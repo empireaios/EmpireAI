@@ -1,7 +1,7 @@
 # T Phase — Complete Programme Certification
 
 **Certification date:** 2026-07-14  
-**Repository commit:** `20a3d6a` (pre-fix); certification includes test fix commit  
+**Repository commit:** `99d38bd30b2d9ff6677ffb198fac4b3d7bf75f46`  
 **Auditor mandate:** Repository is the only source of truth  
 **Programme scope:** T Series T1-01 through T5-10 (50 missions) — Visual & UX Intelligence  
 
