@@ -1,7 +1,7 @@
 # R Phase — Complete Holistic Programme Certification
 
 **Certification date:** 2026-07-19  
-**Repository commit:** `cfeef16` (certification content commit; final sync hash recorded after push)  
+**Repository commit:** `b601a56` (tip after hash-record commit; content commit `cfeef16`)  
 **Auditor mandate:** Repository is the only source of truth  
 **Programme scope:** R Series R1-01 through R5-20 (**92 missions**) — Real World Operations  
 
@@ -225,7 +225,7 @@ No empty-shell, missing-module, or failing-test defects were found among the 92 
 | Branch | `main` |
 | Remote | `origin` → `https://github.com/empireaios/EmpireAI.git` |
 | Pre-audit tip | `836ff94` (T Phase cert hash record) matched `origin/main` with dirty tree |
-| Post-cert | Local `main` equals `origin/main` after push; working tree clean of R implementation |
+| Post-cert tip | `b601a56` — Local `main` equals `origin/main` after push; working tree clean of R implementation |
 
 ---
 
