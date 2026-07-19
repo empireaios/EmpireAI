@@ -1,7 +1,7 @@
 # R Phase — Complete Holistic Programme Certification
 
 **Certification date:** 2026-07-19  
-**Repository commit:** *(recorded after certification commit — see Git Synchronization)*  
+**Repository commit:** `cfeef16` (certification content commit; final sync hash recorded after push)  
 **Auditor mandate:** Repository is the only source of truth  
 **Programme scope:** R Series R1-01 through R5-20 (**92 missions**) — Real World Operations  
 
