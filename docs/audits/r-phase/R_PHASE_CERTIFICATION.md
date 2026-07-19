@@ -1,7 +1,7 @@
 # R Phase — Complete Holistic Programme Certification
 
 **Certification date:** 2026-07-19  
-**Repository commit:** `b601a56` (tip after hash-record commit; content commit `cfeef16`)  
+**Repository commit:** `3ae0d4f` (tip on `origin/main`; content commit `cfeef16`)  
 **Auditor mandate:** Repository is the only source of truth  
 **Programme scope:** R Series R1-01 through R5-20 (**92 missions**) — Real World Operations  
 
@@ -225,7 +225,7 @@ No empty-shell, missing-module, or failing-test defects were found among the 92 
 | Branch | `main` |
 | Remote | `origin` → `https://github.com/empireaios/EmpireAI.git` |
 | Pre-audit tip | `836ff94` (T Phase cert hash record) matched `origin/main` with dirty tree |
-| Post-cert tip | `b601a56` — Local `main` equals `origin/main` after push; working tree clean of R implementation |
+| Post-cert tip | `3ae0d4f` — Local `main` equals `origin/main` after push |
 
 ---
 
@@ -235,12 +235,13 @@ No empty-shell, missing-module, or failing-test defects were found among the 92 
 
 **Answer: YES** — proven by:
 
-1. Legitimate R implementation committed and pushed to `origin/main`.
-2. Fresh clone into a separate empty directory from `origin/main`.
+1. Legitimate R implementation committed and pushed to `origin/main` (tip `3ae0d4f`).
+2. Fresh shallow clone into `C:\Users\erlan\AppData\Local\Temp\EmpireAI-R-Phase-Clone-20260719155305` from `origin/main`.
 3. Certification artifact present in the clone at `docs/audits/r-phase/R_PHASE_CERTIFICATION.md`.
-4. Dependencies installable; Pillow built before backend where required.
-5. Typecheck/build and representative critical R tests pass from the clone.
-6. Manual restore items only: `backend/.env`, `frontend/.env`, production provider credentials / OAuth client configuration (correctly never in Git).
+4. Clone pillow: `npm install` → typecheck PASS → build PASS.
+5. Clone backend: `npm install` → `tsc --noEmit` PASS.
+6. Clone critical R tests (R1-01, R2-01, R3-01, R4-01, R5-01, R5-20): **6 suites · 67 tests · 0 fail**.
+7. Manual restore items only: `backend/.env`, `frontend/.env`, production provider credentials / OAuth client configuration (correctly never in Git).
 
 **Machine-local only (correctly excluded):** `.env*`, `node_modules/`, `dist/`, `.cursor/`, `.pillow-*` bundles, local DBs/caches.
 
