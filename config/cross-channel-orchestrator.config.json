@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "channelSynchronizationRulesEnabled": true,
+  "campaignCoordinationRulesEnabled": true,
+  "journeyCoordinationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverLaunchCoordinatedCampaignsWithoutValidation": true,
+  "maskSensitiveValues": true,
+  "conflictSeverityThreshold": 1,
+  "maxChannelsPerOrchestration": 6,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

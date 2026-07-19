@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "moduleRegistrationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "eventRoutingRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "apiTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "defaultEventsPerMinute": 60,
+  "defaultBurstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maxRegisteredModules": 50,
+  "isolateModules": true,
+  "maskSensitiveValues": true
+}

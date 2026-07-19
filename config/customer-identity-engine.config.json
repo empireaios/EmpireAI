@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "identityMatchingRulesEnabled": true,
+  "identityMergeRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "minMatchConfidenceScore": 80,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "matchingRules": [
+    { "identifierType": "email", "label": "Email match", "enabled": true, "minConfidenceScore": 90 },
+    { "identifierType": "phone", "label": "Phone match", "enabled": true, "minConfidenceScore": 85 },
+    { "identifierType": "marketplace", "label": "Marketplace ID match", "enabled": true, "minConfidenceScore": 80 },
+    { "identifierType": "communication", "label": "Communication channel match", "enabled": true, "minConfidenceScore": 75 },
+    { "identifierType": "external", "label": "External ID match", "enabled": true, "minConfidenceScore": 70 }
+  ],
+  "mergeRules": [
+    { "ruleId": "validated_merge", "label": "Require validation before merge", "requireValidation": true, "enabled": true },
+    { "ruleId": "preserve_target", "label": "Preserve target identity as primary", "requireValidation": false, "enabled": true }
+  ]
+}

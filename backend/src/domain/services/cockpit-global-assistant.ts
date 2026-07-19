@@ -19,6 +19,7 @@ import {
   type CockpitInteractionRequest,
   type CockpitInteractionResponse,
 } from "./cockpit-interaction-layer.js";
+import { mapExecutiveQueryToCockpitIntent } from "./executive-conversational-routing.js";
 
 const DEFAULT_COMPANY = "co-grand-king";
 
@@ -156,14 +157,7 @@ function buildExecutiveContext(
 }
 
 function mapAskQueryToIntent(query: string): CockpitInteractionIntent {
-  const q = query.toLowerCase();
-  if (q.includes("recommend") || q.includes("next action")) return "recommend_next_action";
-  if (q.includes("alert")) return "explain_alert";
-  if (q.includes("health") || q.includes("supplier") || q.includes("marketplace")) {
-    return "explain_engine_health";
-  }
-  if (q.includes("revenue") || q.includes("metric")) return "explain_metric";
-  return "explain_panel";
+  return mapExecutiveQueryToCockpitIntent(query);
 }
 
 function actionToInteractionIntent(

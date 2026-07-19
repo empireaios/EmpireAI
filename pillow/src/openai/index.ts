@@ -24,6 +24,7 @@ export {
 } from "./mode-policy.js";
 export {
   assessKnowledgeRouting,
+  buildExecutiveConversationKnowledgeSection,
   buildKnowledgeRoutingPromptSection,
   isRepositorySpecificQuestion,
   isHistoricalKnowledgeQuestion,

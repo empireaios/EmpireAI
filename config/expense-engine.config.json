@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "classificationRulesEnabled": true,
+  "aggregationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultCurrency": "USD",
+  "maskSensitiveValues": true
+}

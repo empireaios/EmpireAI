@@ -8,6 +8,7 @@ import { ContextBuilder } from "../../context/engine.js";
 import { runRepositoryIntelligence } from "../../intelligence/engine.js";
 import {
   assessKnowledgeRouting,
+  buildExecutiveConversationKnowledgeSection,
   buildKnowledgeRoutingPromptSection,
   createOpenAIIntegrationLayer,
   isRepositorySpecificQuestion,
@@ -287,5 +288,89 @@ describe("Pillow General Knowledge Routing", () => {
     const content = systemContent(captured!.messages);
     assert.match(content, /Repository-specific questions: use repository context ONLY/);
     assert.match(content, /never fabricate/i);
+  });
+});
+
+describe("Executive conversation LLM assembly", () => {
+  let contextBuilder: ContextBuilder;
+
+  before(async () => {
+    const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT });
+    assert.equal(bootstrap.status, "ready");
+    if (!isBootstrapReady(bootstrap)) return;
+    const intelligence = await runRepositoryIntelligence({ bootstrap });
+    contextBuilder = new ContextBuilder(bootstrap, intelligence);
+  });
+
+  test("prior conversation turns are injected before the current user message", async () => {
+    let captured: BrainLLMCompleteRequest | undefined;
+    const layer = createOpenAIIntegrationLayer(mockAdapter((req) => {
+      captured = req;
+    }));
+
+    const operationalContext = await contextBuilder.build({
+      userMessage: "And what about the risks?",
+    });
+
+    await layer.complete({
+      operationalContext,
+      userMessage: "Grand King: And what about the risks?",
+      priorConversationTurns: [
+        { role: "user", content: "What should I focus on this week?" },
+        {
+          role: "assistant",
+          content: "Focus on validating Executive Home conversational routing first.",
+        },
+      ],
+      executiveConversationMode: true,
+      workspaceId: "ws_exec_conv",
+      correlationId: "corr-prior-turns",
+    });
+
+    assert.ok(captured);
+    assert.equal(captured!.messages.length, 4);
+    assert.equal(captured!.messages[1]?.role, "user");
+    assert.match(captured!.messages[1]?.content ?? "", /focus on this week/i);
+    assert.equal(captured!.messages[2]?.role, "assistant");
+    assert.equal(captured!.messages[3]?.role, "user");
+    assert.match(captured!.messages[3]?.content ?? "", /what about the risks/i);
+  });
+
+  test("executive conversation mode uses natural tone policy without source labels", async () => {
+    let captured: BrainLLMCompleteRequest | undefined;
+    const layer = createOpenAIIntegrationLayer(mockAdapter((req) => {
+      captured = req;
+    }));
+
+    const operationalContext = await contextBuilder.build({
+      userMessage: "What am I looking at?",
+    });
+
+    await layer.complete({
+      operationalContext,
+      userMessage: "What am I looking at?",
+      executiveConversationMode: true,
+      workspaceId: "ws_exec_tone",
+      correlationId: "corr-exec-tone",
+    });
+
+    assert.ok(captured);
+    const content = systemContent(captured!.messages);
+    assert.match(content, /Executive Conversation/i);
+    assert.match(content, /Do not prefix answers with \[Repository Fact\]/i);
+    assert.doesNotMatch(content, /Begin each answer with exactly one label/i);
+  });
+
+  test("buildExecutiveConversationKnowledgeSection preserves no-fabrication rule", () => {
+    const section = buildExecutiveConversationKnowledgeSection(
+      assessKnowledgeRouting("Where is pillow-host implemented?", {
+        hasRepositoryAnswer: false,
+        contextTask: "repository_intelligence",
+      }),
+      false,
+      "Where is pillow-host implemented?",
+    );
+    assert.match(section, /never invent repository facts/i);
+    assert.match(section, /do not fabricate/i);
   });
 });

@@ -40,6 +40,8 @@ export type AiInsightContract = {
 
 export type CockpitInteractionIntent =
   | "explain_panel"
+  | "explain_screen"
+  | "explain_cursor"
   | "explain_alert"
   | "explain_metric"
   | "recommend_next_action"
@@ -115,6 +117,8 @@ const COCKPIT_SCREEN_REGISTRY: Array<{
 
 const DEFAULT_INTENTS: CockpitInteractionIntent[] = [
   "explain_panel",
+  "explain_screen",
+  "explain_cursor",
   "explain_alert",
   "explain_metric",
   "recommend_next_action",
@@ -213,21 +217,123 @@ function defaultPageInsight(
   companyId?: string,
 ): AiInsightContract {
   const home = loadExecutiveHomeView(workspaceId, companyId);
+  const screenInsight = `You are on ${screen.screenTitle} (${screen.screenId}) in the ${screen.department} department. ${screen.boundModules.length > 0 ? `Active modules: ${screen.boundModules.join(", ")}.` : ""}`;
   return {
-    currentInsight: home.nextExecutiveAction,
-    recommendedAction: home.nextExecutiveAction,
-    confidence: home.attentionItems.some((a) => a.severity === "critical") ? "low" : "medium",
-    confidenceScore: 60,
-    reasoningSource: "executive-home aggregate · OMS + certification register",
-    supportingEvidence: home.attentionItems.slice(0, 5).map((a) => ({
-      source: "executive-home",
-      label: a.label,
-      value: a.severity,
-      href: a.href,
-    })),
+    currentInsight: screenInsight,
+    recommendedAction:
+      home.attentionItems.length > 0
+        ? `Review ${home.attentionItems.length} attention item(s), or ask Pillow about a specific panel or alert.`
+        : "Explore this screen or ask Pillow what you are looking at.",
+    confidence: "high",
+    confidenceScore: 80,
+    reasoningSource: "cockpit screen registry · executive-home aggregate",
+    supportingEvidence: [
+      {
+        source: "screen",
+        label: "Screen",
+        value: `${screen.screenTitle} (${screen.screenPath})`,
+      },
+      ...home.attentionItems.slice(0, 4).map((a) => ({
+        source: "executive-home",
+        label: a.label,
+        value: a.severity,
+        href: a.href,
+      })),
+    ],
     computedAt: home.computedAt,
-    interactionChannel: "executive-home",
+    interactionChannel: "cockpit-interaction",
     futureCapabilities: FUTURE_CAPABILITIES,
+  };
+}
+
+function buildScreenExplanation(
+  screen: CockpitScreenContext,
+  request: CockpitInteractionRequest,
+): { summary: string; insight: AiInsightContract } {
+  const focus = request.label?.trim();
+  const summary = [
+    `You are viewing ${screen.screenTitle} (${screen.screenId}).`,
+    `Department: ${screen.department}.`,
+    `Path: ${screen.screenPath}.`,
+    screen.boundModules.length > 0
+      ? `Bound modules: ${screen.boundModules.join(", ")}.`
+      : null,
+    focus ? `Your focus: ${focus}.` : null,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return {
+    summary,
+    insight: {
+      currentInsight: summary,
+      recommendedAction:
+        "Ask about a specific widget, alert, button, or next step on this screen.",
+      confidence: "high",
+      confidenceScore: 88,
+      reasoningSource: "cockpit screen registry · G4-07 screen awareness",
+      supportingEvidence: [
+        {
+          source: "screen",
+          label: "Screen title",
+          value: screen.screenTitle,
+        },
+        {
+          source: "screen",
+          label: "Screen ID",
+          value: screen.screenId,
+        },
+        ...screen.boundModules.map((module) => ({
+          source: "module",
+          label: "Bound module",
+          value: module,
+        })),
+      ],
+      computedAt: new Date().toISOString(),
+      interactionChannel: "cockpit-interaction",
+      futureCapabilities: FUTURE_CAPABILITIES,
+    },
+  };
+}
+
+function buildCursorExplanation(screen: CockpitScreenContext): {
+  summary: string;
+  insight: AiInsightContract;
+} {
+  const summary = [
+    "Pillow provides Cursor executive assistance through the Autonomous Cursor Bridge.",
+    "Pillow can explain Cursor output, recommend actions, dispatch missions, analyse build failures, and resume interrupted missions.",
+    `Current cockpit screen: ${screen.screenTitle} (${screen.screenPath}).`,
+    screen.screenPath.includes("/development/pillow") || screen.boundModules.includes("cockpit-pillow")
+      ? "You are on the Pillow Supervisor surface — ideal for mission supervision and Cursor coordination."
+      : "Open Pillow Supervisor (/cockpit/development/pillow) for live Cursor mission control.",
+  ].join(" ");
+
+  return {
+    summary,
+    insight: {
+      currentInsight: summary,
+      recommendedAction:
+        "Ask Pillow to explain a build failure, resume a mission, or generate a Cursor mission brief.",
+      confidence: "high",
+      confidenceScore: 85,
+      reasoningSource: "Autonomous Cursor Bridge · Pillow Supervisor · G4-07",
+      supportingEvidence: [
+        {
+          source: "cursor-bridge",
+          label: "Capability",
+          value: "Mission dispatch · build analysis · recovery",
+        },
+        {
+          source: "screen",
+          label: "Current screen",
+          value: screen.screenTitle,
+        },
+      ],
+      computedAt: new Date().toISOString(),
+      interactionChannel: "cockpit-interaction",
+      futureCapabilities: FUTURE_CAPABILITIES,
+    },
   };
 }
 
@@ -326,6 +432,16 @@ export function handleCockpitInteraction(
       futureCapabilities: FUTURE_CAPABILITIES,
     };
     followUps.push("Recommend next action", "Explain this panel");
+  } else if (request.intent === "explain_screen") {
+    const screenAnswer = buildScreenExplanation(screen, request);
+    summary = screenAnswer.summary;
+    insight = screenAnswer.insight;
+    followUps.push("What should I click?", "Explain this alert", "Recommend next action");
+  } else if (request.intent === "explain_cursor") {
+    const cursorAnswer = buildCursorExplanation(screen);
+    summary = cursorAnswer.summary;
+    insight = cursorAnswer.insight;
+    followUps.push("Explain build failures", "Resume interrupted mission", "Open Pillow Supervisor");
   } else if (request.intent === "explain_engine_health" && engineId) {
     const center = loadFullEngineCenterView(engineId, workspaceId, process.env, companyId);
     insight = buildEngineAiInsight(center, "engine-center");
@@ -383,9 +499,10 @@ export function handleCockpitInteraction(
     };
     followUps.push("Explain PROOF-001 progress", "Recommend next action");
   } else {
-    summary = `${screen.screenTitle}: ${home.nextExecutiveAction}`;
-    insight = defaultPageInsight(workspaceId, screen, companyId);
-    followUps.push("Explain this panel", "Why is this alert shown?");
+    const screenAnswer = buildScreenExplanation(screen, request);
+    summary = screenAnswer.summary;
+    insight = screenAnswer.insight;
+    followUps.push("Recommend next action", "Explain top alert", "Can you help me with Cursor?");
   }
 
   return {

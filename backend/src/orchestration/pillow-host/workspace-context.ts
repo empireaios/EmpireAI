@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  classifyExecutiveQuery,
+  conversationalResponsePolicy,
+} from "../../domain/services/executive-conversational-routing.js";
 
 /** PILLOW-019 — Structured workspace context from Executive Companion (session-scoped). */
 export const pillowWorkspaceContextSchema = z.object({
@@ -41,7 +45,41 @@ export const pillowWorkspaceContextSchema = z.object({
 
 export type PillowWorkspaceContext = z.infer<typeof pillowWorkspaceContextSchema>;
 
-export function formatPillowWorkspaceContext(context: PillowWorkspaceContext): string {
+export function buildScreenAwarenessBrief(
+  context: PillowWorkspaceContext,
+  query?: string,
+): string {
+  const lines = [
+    `Active screen: ${context.screenTitle}`,
+    `Path: ${context.screenPath}`,
+    context.module ? `Module: ${context.module}` : null,
+    context.purpose ? `Purpose: ${context.purpose}` : null,
+    context.workflow ? `Workflow: ${context.workflow}` : null,
+    context.kpiLabel
+      ? `Visible KPI: ${context.kpiLabel}${context.kpiValue ? ` = ${context.kpiValue}` : ""}`
+      : null,
+    context.selectedRecords?.length
+      ? `Selected items: ${context.selectedRecords.map((r) => `${r.type}:${r.label ?? r.id}`).join(", ")}`
+      : null,
+    context.navigationHistory?.length
+      ? `Recent navigation: ${context.navigationHistory.slice(-5).join(" → ")}`
+      : null,
+  ].filter(Boolean);
+
+  if (query) {
+    lines.unshift(conversationalResponsePolicy(query));
+  }
+
+  return lines.join("\n");
+}
+
+export function formatPillowWorkspaceContext(
+  context: PillowWorkspaceContext,
+  query?: string,
+): string {
+  const queryKind = query ? classifyExecutiveQuery(query) : "general";
+  const includeOperationalRisks =
+    queryKind === "blocker" || queryKind === "alert" || queryKind === "recommend";
   const lines = [
     "[Executive Companion — active workspace]",
     `Screen: ${context.screenTitle} (${context.screenPath})`,
@@ -78,10 +116,12 @@ export function formatPillowWorkspaceContext(context: PillowWorkspaceContext): s
     context.productionStatus ? `Production status: ${context.productionStatus}` : null,
     context.guardianStatus ? `Guardian/runtime status: ${context.guardianStatus}` : null,
     context.repositoryFingerprint ? `Repository: ${context.repositoryFingerprint}` : null,
-    context.recommendations?.length
+    context.recommendations?.length && includeOperationalRisks
       ? `Pillow recommendations: ${context.recommendations.join("; ")}`
       : null,
-    context.risks?.length ? `Current risks: ${context.risks.join("; ")}` : null,
+    context.risks?.length && includeOperationalRisks
+      ? `Current risks: ${context.risks.join("; ")}`
+      : null,
   ].filter(Boolean);
 
   return lines.join("\n");

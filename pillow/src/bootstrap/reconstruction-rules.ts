@@ -26,6 +26,18 @@ export const RECONSTRUCTION_SCAN_PROFILES: ReconstructionScanProfile[] = [
     recursive: true,
   },
   {
+    id: "architecture_companion_tree",
+    relativeRoot: "docs/architecture",
+    filePattern: /\.(md|MD)$/,
+    recursive: true,
+  },
+  {
+    id: "runtime_audit_evidence_tree",
+    relativeRoot: "docs/audits/full-empireai-audit",
+    filePattern: /\.(md|MD)$/,
+    recursive: true,
+  },
+  {
     id: "executive_component_surface",
     relativeRoot: "frontend/src/components/system",
     filePattern: /\.(ts|tsx)$/,

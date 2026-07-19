@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "funnelTrackingRulesEnabled": true,
+  "conversionCalculationRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverModifyProductionCampaignsWithoutValidation": true,
+  "maskSensitiveValues": true,
+  "bottleneckDropOffThresholdPercent": 45,
+  "abandonmentThresholdPercent": 60,
+  "efficiencyFloorPercent": 40,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

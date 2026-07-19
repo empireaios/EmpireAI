@@ -229,6 +229,94 @@ import { collectAmazonOrderManagementSnapshot } from "../amazon-order-management
 import { collectAmazonInventorySyncSnapshot } from "../amazon-inventory-sync-bridge.js";
 import { collectWalmartMarketplaceIntegrationSnapshot } from "../walmart-marketplace-integration-bridge.js";
 import { collectEtsyMarketplaceIntegrationSnapshot } from "../etsy-marketplace-integration-bridge.js";
+import { collectEbayMarketplaceIntegrationSnapshot } from "../ebay-marketplace-integration-bridge.js";
+import { collectTikTokShopMarketplaceIntegrationSnapshot } from "../tiktok-shop-marketplace-integration-bridge.js";
+import { collectShopifyStoreMarketplaceIntegrationSnapshot } from "../shopify-store-marketplace-integration-bridge.js";
+import { collectWooCommerceMarketplaceIntegrationSnapshot } from "../woocommerce-marketplace-integration-bridge.js";
+import { collectMarketplaceProductNormalizationSnapshot } from "../marketplace-product-normalization-bridge.js";
+import { collectMarketplaceOrderNormalizationSnapshot } from "../marketplace-order-normalization-bridge.js";
+import { collectMarketplaceHealthMonitorSnapshot } from "../marketplace-health-monitor-bridge.js";
+import { collectMarketplaceCertificationSnapshot } from "../marketplace-certification-bridge.js";
+import { collectSupplierFrameworkSnapshot } from "../supplier-framework-bridge.js";
+import { collectCjDropshippingIntegrationSnapshot } from "../cj-dropshipping-integration-bridge.js";
+import { collectAliExpressIntegrationSnapshot } from "../aliexpress-integration-bridge.js";
+import { collectOss1688IntegrationSnapshot } from "../oss1688-integration-bridge.js";
+import { collectSupplierProductSyncSnapshot } from "../supplier-product-sync-bridge.js";
+import { collectSupplierInventorySyncSnapshot } from "../supplier-inventory-sync-bridge.js";
+import { collectSupplierPricingEngineSnapshot } from "../supplier-pricing-engine-bridge.js";
+import { collectSupplierRankingEngineSnapshot } from "../supplier-ranking-engine-bridge.js";
+import { collectProcurementEngineSnapshot } from "../procurement-engine-bridge.js";
+import { collectFulfilmentOrchestratorSnapshot } from "../fulfilment-orchestrator-bridge.js";
+import { collectShippingCarrierIntegrationSnapshot } from "../shipping-carrier-integration-bridge.js";
+import { collectShipmentTrackingEngineSnapshot } from "../shipment-tracking-engine-bridge.js";
+import { collectReturnManagementSnapshot } from "../return-management-bridge.js";
+import { collectWarehouseIntelligenceSnapshot } from "../warehouse-intelligence-bridge.js";
+import { collectMultiWarehouseSupportSnapshot } from "../multi-warehouse-support-bridge.js";
+import { collectSupplierRiskMonitorSnapshot } from "../supplier-risk-monitor-bridge.js";
+import { collectLogisticsOptimizationSnapshot } from "../logistics-optimization-bridge.js";
+import { collectFulfilmentSlaMonitorSnapshot } from "../fulfilment-sla-monitor-bridge.js";
+import { collectProcurementIntelligenceSnapshot } from "../procurement-intelligence-bridge.js";
+import { collectSupplierOperationsCertificationSnapshot } from "../supplier-operations-certification-bridge.js";
+import { collectFinancialFrameworkSnapshot } from "../financial-framework-bridge.js";
+import { collectPaymentGatewayIntegrationSnapshot } from "../payment-gateway-integration-bridge.js";
+import { collectBankingIntegrationSnapshot } from "../banking-integration-bridge.js";
+import { collectRevenueEngineSnapshot } from "../revenue-engine-bridge.js";
+import { collectExpenseEngineSnapshot } from "../expense-engine-bridge.js";
+import { collectProfitCalculationEngineSnapshot } from "../profit-calculation-engine-bridge.js";
+import { collectCashFlowMonitorSnapshot } from "../cash-flow-monitor-bridge.js";
+import { collectReconciliationEngineSnapshot } from "../reconciliation-engine-bridge.js";
+import { collectInvoiceGeneratorSnapshot } from "../invoice-generator-bridge.js";
+import { collectRefundEngineSnapshot } from "../refund-engine-bridge.js";
+import { collectTaxIntelligenceEngineSnapshot } from "../tax-intelligence-engine-bridge.js";
+import { collectMultiCurrencyEngineSnapshot } from "../multi-currency-engine-bridge.js";
+import { collectFinancialForecastEngineSnapshot } from "../financial-forecast-engine-bridge.js";
+import { collectBudgetManagementEngineSnapshot } from "../budget-management-engine-bridge.js";
+import { collectFinancialRiskMonitorSnapshot } from "../financial-risk-monitor-bridge.js";
+import { collectExecutiveFinancialDashboardSnapshot } from "../executive-financial-dashboard-bridge.js";
+import { collectAccountingExportEngineSnapshot } from "../accounting-export-engine-bridge.js";
+import { collectFinancialOperationsCertificationSnapshot } from "../financial-operations-certification-bridge.js";
+import { collectCustomerIdentityEngineSnapshot } from "../customer-identity-engine-bridge.js";
+import { collectCrmFoundationSnapshot } from "../crm-foundation-bridge.js";
+import { collectCustomerTimelineEngineSnapshot } from "../customer-timeline-engine-bridge.js";
+import { collectEmailCommunicationEngineSnapshot } from "../email-communication-engine-bridge.js";
+import { collectSmsCommunicationEngineSnapshot } from "../sms-communication-engine-bridge.js";
+import { collectWhatsAppIntegrationSnapshot } from "../whatsapp-integration-bridge.js";
+import { collectLiveChatIntegrationSnapshot } from "../live-chat-integration-bridge.js";
+import { collectAiCustomerSupportSnapshot } from "../ai-customer-support-bridge.js";
+import { collectTicketManagementEngineSnapshot } from "../ticket-management-engine-bridge.js";
+import { collectCustomerSentimentEngineSnapshot } from "../customer-sentiment-engine-bridge.js";
+import { collectReviewManagementEngineSnapshot } from "../review-management-engine-bridge.js";
+import { collectLoyaltyProgrammeEngineSnapshot } from "../loyalty-programme-engine-bridge.js";
+import { collectReturnsIntelligenceEngineSnapshot } from "../returns-intelligence-engine-bridge.js";
+import { collectCustomerRiskEngineSnapshot } from "../customer-risk-engine-bridge.js";
+import { collectCustomerLifetimeValueEngineSnapshot } from "../customer-lifetime-value-engine-bridge.js";
+import { collectCustomerSegmentationEngineSnapshot } from "../customer-segmentation-engine-bridge.js";
+import { collectCustomerJourneyIntelligenceEngineSnapshot } from "../customer-journey-intelligence-engine-bridge.js";
+import { collectExecutiveCustomerDashboardSnapshot } from "../executive-customer-dashboard-bridge.js";
+import { collectCustomerOperationsCertificationSnapshot } from "../customer-operations-certification-bridge.js";
+import { collectMarketingFrameworkSnapshot } from "../marketing-framework-bridge.js";
+import { collectMetaAdsIntegrationSnapshot } from "../meta-ads-integration-bridge.js";
+import { collectGoogleAdsIntegrationSnapshot } from "../google-ads-integration-bridge.js";
+import { collectTikTokAdsIntegrationSnapshot } from "../tiktok-ads-integration-bridge.js";
+import { collectYouTubeAdsIntegrationSnapshot } from "../youtube-ads-integration-bridge.js";
+import { collectSeoIntelligenceSnapshot } from "../seo-intelligence-bridge.js";
+import { collectCampaignManagerSnapshot } from "../campaign-manager-bridge.js";
+import { collectAudienceIntelligenceSnapshot } from "../audience-intelligence-bridge.js";
+import { collectAttributionEngineSnapshot } from "../attribution-engine-bridge.js";
+import { collectMarketingAnalyticsDashboardSnapshot } from "../marketing-analytics-dashboard-bridge.js";
+import { collectCreativeAssetManagerSnapshot } from "../creative-asset-manager-bridge.js";
+import { collectAiCampaignGeneratorSnapshot } from "../ai-campaign-generator-bridge.js";
+import { collectBudgetOptimizationEngineSnapshot } from "../budget-optimization-engine-bridge.js";
+import { collectConversionIntelligenceSnapshot } from "../conversion-intelligence-bridge.js";
+import { collectCompetitorMarketingMonitorSnapshot } from "../competitor-marketing-monitor-bridge.js";
+import { collectViralTrendIntelligenceSnapshot } from "../viral-trend-intelligence-bridge.js";
+import { collectMarketingExperimentEngineSnapshot } from "../marketing-experiment-engine-bridge.js";
+import { collectCrossChannelOrchestratorSnapshot } from "../cross-channel-orchestrator-bridge.js";
+import { collectAutonomousMarketingEngineSnapshot } from "../autonomous-marketing-engine-bridge.js";
+import { collectRealWorldOperationsCertificationSnapshot } from "../real-world-operations-certification-bridge.js";
+import { collectCompanyFactoryFrameworkSnapshot } from "../company-factory-framework-bridge.js";
+import { collectBusinessOpportunityDiscoverySnapshot } from "../business-opportunity-discovery-bridge.js";
+import { collectMarketValidationEngineSnapshot } from "../market-validation-engine-bridge.js";
 import { collectCockpitUxSnapshot } from "../cockpit-ux-bridge.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
@@ -3165,6 +3253,10224 @@ export async function registerPillowRoutes(
     } catch (error) {
       if (error instanceof PillowHostNotRunningError) {
         return reply.code(503).send(collectEtsyMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/ebay-marketplace-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectEbayMarketplaceIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        ebayMarketplaceIntegration: pillowHost.getEbayMarketplaceIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectEbayMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ebay-marketplace-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectEbay(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ebay-marketplace-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        method?: string;
+        path?: string;
+      };
+      const report = await pillowHost.routeEbayApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ebay-marketplace-integration/handle-event", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        topic?: string;
+        payloadRef?: string;
+      };
+      const report = pillowHost.handleEbayEvent({
+        topic: body.topic ?? "UNKNOWN",
+        payloadRef: body.payloadRef ?? "payload-ref-offline",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEbayMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/tiktok-shop-marketplace-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectTikTokShopMarketplaceIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        tiktokShopMarketplaceIntegration: pillowHost.getTikTokShopMarketplaceIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectTikTokShopMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-shop-marketplace-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        shopId?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectTikTokShop(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-shop-marketplace-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        method?: string;
+        path?: string;
+      };
+      const report = await pillowHost.routeTikTokShopApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-shop-marketplace-integration/handle-event", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        topic?: string;
+        payloadRef?: string;
+      };
+      const report = pillowHost.handleTikTokShopEvent({
+        topic: body.topic ?? "UNKNOWN",
+        payloadRef: body.payloadRef ?? "payload-ref-offline",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokShopMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/shopify-store-marketplace-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        shopifyStoreMarketplaceIntegration: pillowHost.getShopifyStoreMarketplaceIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shopify-store-marketplace-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        storeId?: string;
+        storeDomain?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectShopifyStore(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shopify-store-marketplace-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        method?: string;
+        path?: string;
+      };
+      const report = await pillowHost.routeShopifyStoreApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shopify-store-marketplace-integration/handle-webhook", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        topic?: string;
+        payloadRef?: string;
+      };
+      const report = pillowHost.handleShopifyStoreWebhook({
+        topic: body.topic ?? "UNKNOWN",
+        payloadRef: body.payloadRef ?? "payload-ref-offline",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShopifyStoreMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/woocommerce-marketplace-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectWooCommerceMarketplaceIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        woocommerceMarketplaceIntegration: pillowHost.getWooCommerceMarketplaceIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectWooCommerceMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/woocommerce-marketplace-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        storeId?: string;
+        storeUrl?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectWooCommerce(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/woocommerce-marketplace-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        method?: string;
+        path?: string;
+      };
+      const report = await pillowHost.routeWooCommerceApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/woocommerce-marketplace-integration/handle-webhook", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        topic?: string;
+        payloadRef?: string;
+      };
+      const report = pillowHost.handleWooCommerceWebhook({
+        topic: body.topic ?? "UNKNOWN",
+        payloadRef: body.payloadRef ?? "payload-ref-offline",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWooCommerceMarketplaceIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketplace-product-normalization", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketplaceProductNormalizationSnapshot());
+    }
+    try {
+      return reply.send({
+        marketplaceProductNormalization: pillowHost.getMarketplaceProductNormalization(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMarketplaceProductNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-product-normalization/normalize", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceProductNormalizationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketplaceIdentifier?: string;
+        includeFixtureCatalog?: boolean;
+      };
+      const report = await pillowHost.normalizeProducts({
+        marketplaceIdentifier: body.marketplaceIdentifier as
+          | "amazon"
+          | "walmart"
+          | "etsy"
+          | "ebay"
+          | "tiktok-shop"
+          | "shopify"
+          | "woocommerce"
+          | undefined,
+        includeFixtureCatalog: body.includeFixtureCatalog,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceProductNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-product-normalization/detect-duplicates", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceProductNormalizationSnapshot());
+    }
+    try {
+      const report = pillowHost.detectProductDuplicates({});
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceProductNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketplace-order-normalization", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketplaceOrderNormalizationSnapshot());
+    }
+    try {
+      return reply.send({
+        marketplaceOrderNormalization: pillowHost.getMarketplaceOrderNormalization(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMarketplaceOrderNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-order-normalization/normalize", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceOrderNormalizationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketplaceIdentifier?: string;
+        includeFixtureCatalog?: boolean;
+      };
+      const report = await pillowHost.normalizeOrders({
+        marketplaceIdentifier: body.marketplaceIdentifier as
+          | "amazon"
+          | "walmart"
+          | "etsy"
+          | "ebay"
+          | "tiktok-shop"
+          | "shopify"
+          | "woocommerce"
+          | undefined,
+        includeFixtureCatalog: body.includeFixtureCatalog,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceOrderNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-order-normalization/detect-duplicates", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceOrderNormalizationSnapshot());
+    }
+    try {
+      const report = pillowHost.detectOrderDuplicates({});
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceOrderNormalizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketplace-health-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketplaceHealthMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        marketplaceHealthMonitor: pillowHost.getMarketplaceHealthMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMarketplaceHealthMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-health-monitor/health-check", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceHealthMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketplaceIdentifier?: string;
+        includeAllMarketplaces?: boolean;
+      };
+      const report = await pillowHost.runMarketplaceHealthCheck({
+        marketplaceIdentifier: body.marketplaceIdentifier as
+          | "amazon"
+          | "walmart"
+          | "etsy"
+          | "ebay"
+          | "tiktok-shop"
+          | "shopify"
+          | "woocommerce"
+          | undefined,
+        includeAllMarketplaces: body.includeAllMarketplaces,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceHealthMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-health-monitor/detect-failures", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceHealthMonitorSnapshot());
+    }
+    try {
+      const report = pillowHost.detectMarketplaceHealthFailures({});
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceHealthMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketplace-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketplaceCertificationSnapshot());
+    }
+    try {
+      return reply.send({
+        marketplaceCertification: pillowHost.getMarketplaceCertification(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMarketplaceCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-certification/run", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceCertificationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        missionScope?: string[];
+        includeSmokeTests?: boolean;
+      };
+      const report = await pillowHost.runMarketplaceCertification({
+        missionScope: body.missionScope,
+        includeSmokeTests: body.includeSmokeTests,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketplace-certification/validate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketplaceCertificationSnapshot());
+    }
+    try {
+      const validation = pillowHost.validateMarketplaceCertificationReport();
+      return reply.send({ computedAt: new Date().toISOString(), validation });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketplaceCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-framework", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierFrameworkSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierFramework: pillowHost.getSupplierFramework(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-framework/register", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        definition?: Record<string, unknown>;
+        forceRegister?: boolean;
+      };
+      const report = pillowHost.registerSupplierConnector({
+        definition: body.definition,
+        forceRegister: body.forceRegister,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-framework/activate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { supplierIdentifier?: string };
+      const report = pillowHost.activateSupplierConnector(body.supplierIdentifier ?? "");
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/cj-dropshipping-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCjDropshippingIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        cjDropshippingIntegration: pillowHost.getCjDropshippingIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCjDropshippingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cj-dropshipping-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCjDropshippingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { credentialRef?: string; forceReconnect?: boolean };
+      const report = pillowHost.connectCjDropshipping(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCjDropshippingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cj-dropshipping-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCjDropshippingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { method?: string; path?: string };
+      const report = await pillowHost.routeCjApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/product/list",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCjDropshippingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/aliexpress-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAliExpressIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        aliExpressIntegration: pillowHost.getAliExpressIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectAliExpressIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/aliexpress-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAliExpressIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { credentialRef?: string; forceReconnect?: boolean };
+      const report = pillowHost.connectAliExpress(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAliExpressIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/aliexpress-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAliExpressIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { method?: string; path?: string };
+      const report = await pillowHost.routeAliExpressApi({
+        method: body.method ?? "GET",
+        path: body.path ?? "/product/list",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAliExpressIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/1688-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectOss1688IntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        oss1688Integration: pillowHost.getOss1688Integration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectOss1688IntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/1688-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectOss1688IntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { credentialRef?: string; forceReconnect?: boolean };
+      const report = pillowHost.connectOss1688(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectOss1688IntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/1688-integration/route-api", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectOss1688IntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { method?: string; path?: string };
+      const report = await pillowHost.routeOss1688Api({
+        method: body.method ?? "GET",
+        path: body.path ?? "/product/list",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectOss1688IntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-product-sync", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierProductSyncSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierProductSync: pillowHost.getSupplierProductSync(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierProductSyncSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-product-sync/sync", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierProductSyncSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierId?: string;
+        includeFixtureCatalog?: boolean;
+        changeFixtureMode?: "none" | "updated" | "discontinued" | "new";
+      };
+      const report = await pillowHost.syncSupplierProducts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierProductSyncSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-product-sync/detect-duplicates", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierProductSyncSnapshot());
+    }
+    try {
+      const report = pillowHost.detectDuplicateSupplierProducts();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierProductSyncSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-inventory-sync", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierInventorySyncSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierInventorySync: pillowHost.getSupplierInventorySync(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierInventorySyncSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-inventory-sync/sync", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierInventorySyncSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierId?: string;
+        includeFixtureInventory?: boolean;
+        changeFixtureMode?: "none" | "increase" | "decrease" | "out_of_stock" | "discontinued";
+      };
+      const report = await pillowHost.syncSupplierInventory(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierInventorySyncSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-pricing-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierPricingEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierPricingEngine: pillowHost.getSupplierPricingEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierPricingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-pricing-engine/sync", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierPricingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierId?: string;
+        includeFixturePricing?: boolean;
+        changeFixtureMode?: "none" | "increase" | "decrease" | "anomaly";
+      };
+      const report = await pillowHost.syncSupplierPricing(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierPricingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-ranking-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierRankingEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierRankingEngine: pillowHost.getSupplierRankingEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierRankingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-ranking-engine/rank", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierRankingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierId?: string;
+        includeFixtureMetrics?: boolean;
+        performanceFixtureMode?: "none" | "declining" | "high_performing";
+      };
+      const report = pillowHost.rankSuppliers(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierRankingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/procurement-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectProcurementEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        procurementEngine: pillowHost.getProcurementEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectProcurementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/procurement-engine/request", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProcurementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        productReference?: string;
+        supplierProductId?: string;
+        requestedQuantity?: number;
+        preferredSupplierId?: string;
+        includeFixtureRequest?: boolean;
+      };
+      const report = pillowHost.createProcurementRequest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProcurementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/procurement-engine/approve", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProcurementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { procurementId?: string; approved?: boolean };
+      const report = pillowHost.approveProcurement({
+        procurementId: body.procurementId ?? "",
+        approved: body.approved ?? true,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProcurementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/fulfilment-orchestrator", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFulfilmentOrchestratorSnapshot());
+    }
+    try {
+      return reply.send({
+        fulfilmentOrchestrator: pillowHost.getFulfilmentOrchestrator(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFulfilmentOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/fulfilment-orchestrator/route", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFulfilmentOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        orderReference?: string;
+        procurementReference?: string;
+        productReference?: string;
+        quantity?: number;
+      };
+      const report = pillowHost.routeFulfilment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFulfilmentOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/shipping-carrier-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectShippingCarrierIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        shippingCarrierIntegration: pillowHost.getShippingCarrierIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectShippingCarrierIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shipping-carrier-integration/shipment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShippingCarrierIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        carrierId?: string;
+        orderReference?: string;
+        fulfilmentReference?: string;
+        includeFixtureShipment?: boolean;
+      };
+      const report = pillowHost.createShipmentRequest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShippingCarrierIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shipping-carrier-integration/rates", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShippingCarrierIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { carrierId?: string; orderReference?: string };
+      const report = pillowHost.requestShippingRates(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShippingCarrierIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/shipment-tracking-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectShipmentTrackingEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        shipmentTrackingEngine: pillowHost.getShipmentTrackingEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectShipmentTrackingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/shipment-tracking-engine/sync", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectShipmentTrackingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        shipmentId?: string;
+        trackingFixtureMode?: "none" | "in_transit" | "delivered" | "delayed" | "failed";
+      };
+      const report = pillowHost.syncShipmentTracking(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectShipmentTrackingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/return-management", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectReturnManagementSnapshot());
+    }
+    try {
+      return reply.send({
+        returnManagement: pillowHost.getReturnManagement(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectReturnManagementSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/return-management/request", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnManagementSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        orderReference?: string;
+        shipmentReference?: string;
+        customerReference?: string;
+        supplierReference?: string;
+        returnReason?: string;
+        includeFixtureReturn?: boolean;
+      };
+      const report = pillowHost.createReturnRequest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnManagementSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/warehouse-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectWarehouseIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        warehouseIntelligence: pillowHost.getWarehouseIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectWarehouseIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/warehouse-intelligence/coordinate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWarehouseIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        warehouseId?: string;
+        includeFixtureWarehouses?: boolean;
+        warehouseFixtureMode?: "none" | "optimal" | "bottleneck" | "shortage" | "overstock";
+      };
+      const report = pillowHost.coordinateWarehouses(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWarehouseIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/multi-warehouse-support", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMultiWarehouseSupportSnapshot());
+    }
+    try {
+      return reply.send({
+        multiWarehouseSupport: pillowHost.getMultiWarehouseSupport(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMultiWarehouseSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-warehouse-support/register", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiWarehouseSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        warehouseIds?: string[];
+        includeFixtureWarehouses?: boolean;
+        networkFixtureMode?: "none" | "balanced" | "imbalanced" | "capacity_issue";
+      };
+      const report = pillowHost.registerWarehouses(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiWarehouseSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-risk-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierRiskMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierRiskMonitor: pillowHost.getSupplierRiskMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-risk-monitor/monitor", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierIds?: string[];
+        includeFixtureSuppliers?: boolean;
+        riskFixtureMode?: "none" | "healthy" | "elevated" | "disrupted" | "abnormal";
+      };
+      const report = pillowHost.monitorSupplierHealth(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/logistics-optimization", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectLogisticsOptimizationSnapshot());
+    }
+    try {
+      return reply.send({
+        logisticsOptimization: pillowHost.getLogisticsOptimization(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectLogisticsOptimizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/logistics-optimization/optimize", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLogisticsOptimizationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        orderReference?: string;
+        includeFixtureOrders?: boolean;
+        logisticsFixtureMode?: "none" | "optimal" | "bottleneck" | "inefficient" | "high_cost";
+      };
+      const report = pillowHost.optimizeShipping(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLogisticsOptimizationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/fulfilment-sla-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFulfilmentSlaMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        fulfilmentSlaMonitor: pillowHost.getFulfilmentSlaMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFulfilmentSlaMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/fulfilment-sla-monitor/monitor", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFulfilmentSlaMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        orderReference?: string;
+        includeFixtureOrders?: boolean;
+        slaFixtureMode?: "none" | "compliant" | "at_risk" | "breached";
+      };
+      const report = pillowHost.monitorFulfilmentSla(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFulfilmentSlaMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/procurement-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectProcurementIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        procurementIntelligence: pillowHost.getProcurementIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectProcurementIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/procurement-intelligence/analyze", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProcurementIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        productReference?: string;
+        procurementReference?: string;
+        includeFixtureProcurements?: boolean;
+        intelligenceFixtureMode?: "none" | "optimal" | "elevated_cost" | "anomaly" | "high_risk";
+      };
+      const report = pillowHost.analyzeProcurement(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProcurementIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/supplier-operations-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSupplierOperationsCertificationSnapshot());
+    }
+    try {
+      return reply.send({
+        supplierOperationsCertification: pillowHost.getSupplierOperationsCertification(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSupplierOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-operations-certification/run", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierOperationsCertificationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        missionScope?: string[];
+        includeSmokeTests?: boolean;
+      };
+      const report = await pillowHost.runSupplierOperationsCertification({
+        missionScope: body.missionScope,
+        includeSmokeTests: body.includeSmokeTests,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/supplier-operations-certification/validate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSupplierOperationsCertificationSnapshot());
+    }
+    try {
+      const validation = pillowHost.validateSupplierOperationsCertificationReport();
+      return reply.send({ computedAt: new Date().toISOString(), validation });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSupplierOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/financial-framework", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialFrameworkSnapshot());
+    }
+    try {
+      return reply.send({
+        financialFramework: pillowHost.getFinancialFramework(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFinancialFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-framework/register", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        definition?: Record<string, unknown>;
+        forceRegister?: boolean;
+      };
+      const report = pillowHost.registerFinancialModule({
+        definition: body.definition,
+        forceRegister: body.forceRegister,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-framework/activate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { financialModuleIdentifier?: string };
+      const report = pillowHost.activateFinancialModule(body.financialModuleIdentifier ?? "");
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/payment-gateway-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectPaymentGatewayIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        paymentGatewayIntegration: pillowHost.getPaymentGatewayIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectPaymentGatewayIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/payment-gateway-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectPaymentGatewayIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        providerIdentifier?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectPaymentGateway(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectPaymentGatewayIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/payment-gateway-integration/create-payment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectPaymentGatewayIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        customerReference?: string;
+        orderReference?: string;
+        paymentAmount?: number;
+        currency?: string;
+      };
+      const report = pillowHost.createPaymentRequest({
+        customerReference: body.customerReference ?? "",
+        orderReference: body.orderReference ?? "",
+        paymentAmount: body.paymentAmount ?? 0,
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectPaymentGatewayIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/banking-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectBankingIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        bankingIntegration: pillowHost.getBankingIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectBankingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/banking-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBankingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        providerIdentifier?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectBankingIntegration(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBankingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/banking-integration/sync-accounts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBankingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        providerIdentifier?: string;
+        includeFixtureAccounts?: boolean;
+      };
+      const report = pillowHost.syncBankAccounts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBankingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/banking-integration/sync-balances", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBankingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        bankAccountReference?: string;
+        includeFixtureBalances?: boolean;
+      };
+      const report = pillowHost.syncAccountBalances(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBankingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/banking-integration/sync-transactions", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBankingIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        bankAccountReference?: string;
+        includeFixtureTransactions?: boolean;
+      };
+      const report = pillowHost.syncTransactionHistory(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBankingIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/revenue-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRevenueEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        revenueEngine: pillowHost.getRevenueEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectRevenueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/revenue-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRevenueEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectRevenueEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRevenueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/revenue-engine/record-payment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRevenueEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        paymentId?: string;
+        businessReference?: string;
+      };
+      const report = pillowHost.recordCompletedPaymentRevenue({
+        paymentId: body.paymentId ?? "",
+        businessReference: body.businessReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRevenueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/revenue-engine/record-marketplace", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRevenueEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketplaceReference?: string;
+        customerReference?: string;
+        businessReference?: string;
+        grossRevenue?: number;
+        netRevenue?: number;
+        currency?: string;
+      };
+      const report = pillowHost.recordMarketplaceRevenue({
+        marketplaceReference: body.marketplaceReference ?? "",
+        customerReference: body.customerReference,
+        businessReference: body.businessReference,
+        grossRevenue: body.grossRevenue ?? 0,
+        netRevenue: body.netRevenue,
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRevenueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/revenue-engine/aggregate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRevenueEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        currency?: string;
+        businessReference?: string;
+        marketplaceReference?: string;
+      };
+      const report = pillowHost.aggregateRevenue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRevenueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/expense-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectExpenseEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        expenseEngine: pillowHost.getExpenseEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectExpenseEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/expense-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExpenseEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectExpenseEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExpenseEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/expense-engine/record-supplier-payment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExpenseEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        supplierReference?: string;
+        paymentReference?: string;
+        bankingReference?: string;
+        expenseAmount?: number;
+        currency?: string;
+        recurring?: boolean;
+      };
+      const report = pillowHost.recordSupplierPayment({
+        supplierReference: body.supplierReference ?? "",
+        paymentReference: body.paymentReference,
+        bankingReference: body.bankingReference,
+        expenseAmount: body.expenseAmount ?? 0,
+        currency: body.currency,
+        recurring: body.recurring,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExpenseEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/expense-engine/record-shipping", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExpenseEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        expenseAmount?: number;
+        paymentReference?: string;
+        currency?: string;
+        recurring?: boolean;
+      };
+      const report = pillowHost.recordShippingExpense({
+        expenseAmount: body.expenseAmount ?? 0,
+        paymentReference: body.paymentReference,
+        currency: body.currency,
+        recurring: body.recurring,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExpenseEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/expense-engine/aggregate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExpenseEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        currency?: string;
+        expenseCategory?: string;
+      };
+      const report = pillowHost.aggregateExpenses(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExpenseEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/profit-calculation-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectProfitCalculationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        profitCalculationEngine: pillowHost.getProfitCalculationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectProfitCalculationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/profit-calculation-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectProfitCalculationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/profit-calculation-engine/calculate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        currency?: string;
+        revenueReference?: string;
+        expenseReference?: string;
+      };
+      const report = pillowHost.calculateProfit(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/profit-calculation-engine/calculate-marketplace", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketplaceReference?: string;
+        currency?: string;
+      };
+      const report = pillowHost.calculateProfitByMarketplace({
+        marketplaceReference: body.marketplaceReference ?? "",
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/profit-calculation-engine/aggregate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { currency?: string; scope?: string };
+      const report = pillowHost.aggregateProfit(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectProfitCalculationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/cash-flow-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        cashFlowMonitor: pillowHost.getCashFlowMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCashFlowMonitor(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/monitor", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { bankingReference?: string };
+      const report = pillowHost.monitorCashFlow(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/monitor-inflows", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { revenueReference?: string };
+      const report = pillowHost.monitorCashInflows(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/monitor-outflows", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { expenseReference?: string };
+      const report = pillowHost.monitorCashOutflows(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/forecast", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { horizonDays?: number; bankingReference?: string };
+      const report = pillowHost.forecastCashAvailability(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cash-flow-monitor/aggregate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCashFlowMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { currency?: string; scope?: string };
+      const report = pillowHost.aggregateCashFlow(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCashFlowMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/reconciliation-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        reconciliationEngine: pillowHost.getReconciliationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectReconciliationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-payments", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { paymentReference?: string; currency?: string };
+      const report = pillowHost.reconcilePayments(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-banking", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { bankingReference?: string; currency?: string };
+      const report = pillowHost.reconcileBanking(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-revenue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { revenueReference?: string; currency?: string };
+      const report = pillowHost.reconcileRevenue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-expenses", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { expenseReference?: string; currency?: string };
+      const report = pillowHost.reconcileExpenses(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-cash-flow", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { cashFlowReference?: string; currency?: string };
+      const report = pillowHost.reconcileCashFlow(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/reconciliation-engine/reconcile-all", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReconciliationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { currency?: string };
+      const report = pillowHost.reconcileAll(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReconciliationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/invoice-generator", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectInvoiceGeneratorSnapshot());
+    }
+    try {
+      return reply.send({
+        invoiceGenerator: pillowHost.getInvoiceGenerator(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectInvoiceGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/invoice-generator/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectInvoiceGenerator(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/invoice-generator/create-customer", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        revenueReference?: string;
+        customerReference?: string;
+        orderReference?: string;
+        currency?: string;
+      };
+      const report = pillowHost.createCustomerInvoice({
+        revenueReference: body.revenueReference ?? "",
+        customerReference: body.customerReference,
+        orderReference: body.orderReference,
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/invoice-generator/create-supplier", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        expenseReference?: string;
+        supplierReference?: string;
+        currency?: string;
+      };
+      const report = pillowHost.createSupplierInvoice({
+        expenseReference: body.expenseReference ?? "",
+        supplierReference: body.supplierReference,
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/invoice-generator/update-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        invoiceId?: string;
+        invoiceStatus?: "draft" | "issued" | "sent" | "paid" | "cancelled" | "failed";
+      };
+      const report = pillowHost.updateInvoiceStatus({
+        invoiceId: body.invoiceId ?? "",
+        invoiceStatus: body.invoiceStatus ?? "issued",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectInvoiceGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/refund-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRefundEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        refundEngine: pillowHost.getRefundEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectRefundEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/refund-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRefundEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectRefundEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRefundEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/refund-engine/create-request", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRefundEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        paymentReference?: string;
+        invoiceReference?: string;
+        customerReference?: string;
+        orderReference?: string;
+        refundAmount?: number;
+        currency?: string;
+        refundReason?: string;
+      };
+      const report = pillowHost.createRefundRequest({
+        paymentReference: body.paymentReference ?? "",
+        invoiceReference: body.invoiceReference,
+        customerReference: body.customerReference,
+        orderReference: body.orderReference,
+        refundAmount: body.refundAmount ?? 0,
+        currency: body.currency,
+        refundReason: body.refundReason ?? "",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRefundEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/refund-engine/process-full", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRefundEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        paymentReference?: string;
+        invoiceReference?: string;
+        refundReason?: string;
+        currency?: string;
+      };
+      const report = pillowHost.processFullRefund({
+        paymentReference: body.paymentReference ?? "",
+        invoiceReference: body.invoiceReference,
+        refundReason: body.refundReason ?? "",
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRefundEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/refund-engine/process-partial", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRefundEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        paymentReference?: string;
+        invoiceReference?: string;
+        refundAmount?: number;
+        refundReason?: string;
+        currency?: string;
+      };
+      const report = pillowHost.processPartialRefund({
+        paymentReference: body.paymentReference ?? "",
+        invoiceReference: body.invoiceReference,
+        refundAmount: body.refundAmount ?? 0,
+        refundReason: body.refundReason ?? "",
+        currency: body.currency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRefundEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/tax-intelligence-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        taxIntelligenceEngine: pillowHost.getTaxIntelligenceEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectTaxIntelligenceEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/classify", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        revenueReference?: string;
+        expenseReference?: string;
+        invoiceReference?: string;
+        refundReference?: string;
+        taxJurisdiction?: string;
+      };
+      const report = pillowHost.classifyTaxableTransaction(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/calculate-liability", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        revenueReference?: string;
+        expenseReference?: string;
+        invoiceReference?: string;
+        taxableAmount?: number;
+        taxJurisdiction?: string;
+        taxCategory?: string;
+      };
+      const report = pillowHost.calculateTaxLiability({
+        revenueReference: body.revenueReference,
+        expenseReference: body.expenseReference,
+        invoiceReference: body.invoiceReference,
+        taxableAmount: body.taxableAmount ?? 0,
+        taxJurisdiction: body.taxJurisdiction,
+        taxCategory: body.taxCategory as
+          | "sales_tax"
+          | "vat"
+          | "income_tax"
+          | "deductible"
+          | "refund_adjustment"
+          | "withholding"
+          | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/calculate-adjustment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        refundReference?: string;
+        taxJurisdiction?: string;
+      };
+      const report = pillowHost.calculateTaxAdjustment({
+        refundReference: body.refundReference ?? "",
+        taxJurisdiction: body.taxJurisdiction,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/record-payment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        taxRecordId?: string;
+        paymentAmount?: number;
+      };
+      const report = pillowHost.recordTaxPayment({
+        taxRecordId: body.taxRecordId ?? "",
+        paymentAmount: body.paymentAmount ?? 0,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tax-intelligence-engine/summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { taxJurisdiction?: string };
+      const report = pillowHost.generateTaxSummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTaxIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/multi-currency-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        multiCurrencyEngine: pillowHost.getMultiCurrencyEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectMultiCurrencyEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/convert", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        sourceCurrency?: string;
+        targetCurrency?: string;
+        originalAmount?: number;
+      };
+      const report = pillowHost.convertCurrency({
+        sourceCurrency: body.sourceCurrency ?? "USD",
+        targetCurrency: body.targetCurrency ?? "USD",
+        originalAmount: body.originalAmount ?? 0,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/record-transaction", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        sourceCurrency?: string;
+        originalAmount?: number;
+        revenueReference?: string;
+        expenseReference?: string;
+      };
+      const report = pillowHost.recordTransactionCurrency({
+        sourceCurrency: body.sourceCurrency ?? "USD",
+        originalAmount: body.originalAmount ?? 0,
+        revenueReference: body.revenueReference,
+        expenseReference: body.expenseReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/refresh-rates", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceRefresh?: boolean };
+      const report = pillowHost.refreshExchangeRates(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/gain-loss", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        sourceCurrency?: string;
+        originalAmount?: number;
+        reportingCurrency?: string;
+      };
+      const report = pillowHost.calculateCurrencyGainLoss({
+        sourceCurrency: body.sourceCurrency ?? "USD",
+        originalAmount: body.originalAmount ?? 0,
+        reportingCurrency: body.reportingCurrency,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/multi-currency-engine/summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { reportingCurrency?: string };
+      const report = pillowHost.generateCurrencySummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMultiCurrencyEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/financial-forecast-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialForecastEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        financialForecastEngine: pillowHost.getFinancialForecastEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFinancialForecastEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-forecast-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectFinancialForecastEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-forecast-engine/generate-projection", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forecastPeriod?: string };
+      const report = pillowHost.generateFinancialProjection({
+        forecastPeriod: body.forecastPeriod as "7d" | "30d" | "90d" | "quarterly" | "annual" | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-forecast-engine/analyze-trends", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forecastPeriod?: string };
+      const report = pillowHost.analyzeFinancialTrends({
+        forecastPeriod: body.forecastPeriod as "7d" | "30d" | "90d" | "quarterly" | "annual" | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-forecast-engine/detect-deviations", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forecastRecordId?: string };
+      const report = pillowHost.detectForecastDeviations({
+        forecastRecordId: body.forecastRecordId,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialForecastEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/budget-management-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        budgetManagementEngine: pillowHost.getBudgetManagementEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectBudgetManagementEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/create-budget", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        budgetPeriod?: string;
+        budgetCategory?: string;
+        budgetAllocation?: number;
+      };
+      const report = pillowHost.createBudget({
+        budgetPeriod: body.budgetPeriod as "monthly" | "quarterly" | "annual" | undefined,
+        budgetCategory: body.budgetCategory as "operations" | "marketing" | "payroll" | "supplies" | "overhead" | "other" | undefined,
+        budgetAllocation: body.budgetAllocation ?? 0,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/allocate-budget", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string; additionalAllocation?: number };
+      const report = pillowHost.allocateBudget({
+        budgetRecordId: body.budgetRecordId ?? "",
+        additionalAllocation: body.additionalAllocation ?? 0,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/track-utilization", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.trackBudgetUtilization({ budgetRecordId: body.budgetRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/compare-actual", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.compareActualVsBudget({ budgetRecordId: body.budgetRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/detect-overruns", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.detectBudgetOverruns({ budgetRecordId: body.budgetRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/detect-variances", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.detectBudgetVariances({ budgetRecordId: body.budgetRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-management-engine/recommendations", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.generateBudgetRecommendations({ budgetRecordId: body.budgetRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/financial-risk-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        financialRiskMonitor: pillowHost.getFinancialRiskMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectFinancialRiskMonitor(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/monitor-health", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { riskCategory?: string };
+      const report = pillowHost.monitorFinancialHealth({
+        riskCategory: body.riskCategory as "liquidity" | "profitability" | "cash_flow" | "budget" | "revenue_volatility" | "expense_volatility" | "composite" | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/calculate-risk-score", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { riskCategory?: string };
+      const report = pillowHost.calculateFinancialRiskScore({
+        riskCategory: body.riskCategory as "liquidity" | "profitability" | "cash_flow" | "budget" | "revenue_volatility" | "expense_volatility" | "composite" | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/detect-anomalies", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { riskRecordId?: string };
+      const report = pillowHost.detectFinancialAnomalies({ riskRecordId: body.riskRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/detect-threshold-breaches", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { riskRecordId?: string };
+      const report = pillowHost.detectThresholdBreaches({ riskRecordId: body.riskRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-risk-monitor/generate-alerts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { riskRecordId?: string };
+      const report = pillowHost.generateFinancialRiskAlerts({ riskRecordId: body.riskRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialRiskMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/executive-financial-dashboard", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      return reply.send({
+        executiveFinancialDashboard: pillowHost.getExecutiveFinancialDashboard(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-financial-dashboard/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectExecutiveFinancialDashboard(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-financial-dashboard/refresh", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceRefresh?: boolean };
+      const report = pillowHost.refreshExecutiveDashboard({ forceRefresh: body.forceRefresh });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-financial-dashboard/generate-summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.generateExecutiveSummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-financial-dashboard/aggregate-kpis", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.aggregateFinancialKpis(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-financial-dashboard/widgets", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { widgetTypes?: string[] };
+      const report = pillowHost.getDashboardWidgets({
+        widgetTypes: body.widgetTypes as import("@empireai/pillow").WidgetType[] | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveFinancialDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/accounting-export-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        accountingExportEngine: pillowHost.getAccountingExportEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/accounting-export-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectAccountingExportEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/accounting-export-engine/export", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        exportFormat?: string;
+        exportScope?: string;
+        forceExport?: boolean;
+      };
+      const report = pillowHost.exportFinancialRecords({
+        exportFormat: body.exportFormat as import("@empireai/pillow").ExportFormat | undefined,
+        exportScope: body.exportScope as import("@empireai/pillow").ExportScope | undefined,
+        forceExport: body.forceExport,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/accounting-export-engine/validate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { exportRecordId?: string };
+      const report = pillowHost.validateExport({ exportRecordId: body.exportRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/accounting-export-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { exportRecordId?: string };
+      const report = pillowHost.detectExportFailures({ exportRecordId: body.exportRecordId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/accounting-export-engine/package", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAccountingExportEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { exportRecordId?: string; exportFormat?: string };
+      const report = pillowHost.packageExport({
+        exportRecordId: body.exportRecordId,
+        exportFormat: body.exportFormat as import("@empireai/pillow").ExportFormat | undefined,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAccountingExportEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/financial-operations-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialOperationsCertificationSnapshot());
+    }
+    try {
+      return reply.send({
+        financialOperationsCertification: pillowHost.getFinancialOperationsCertification(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectFinancialOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-operations-certification/run", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialOperationsCertificationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        missionScope?: string[];
+        includeSmokeTests?: boolean;
+      };
+      const report = await pillowHost.runFinancialOperationsCertification({
+        missionScope: body.missionScope,
+        includeSmokeTests: body.includeSmokeTests,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/financial-operations-certification/validate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectFinancialOperationsCertificationSnapshot());
+    }
+    try {
+      const validation = pillowHost.validateFinancialOperationsCertificationReport();
+      return reply.send({ computedAt: new Date().toISOString(), validation });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectFinancialOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-identity-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerIdentityEngine: pillowHost.getCustomerIdentityEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCustomerIdentityEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/create-identity", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateCustomerIdentityInput;
+      const report = pillowHost.createCustomerIdentity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/link-identity", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").LinkCustomerIdentityInput;
+      const report = pillowHost.linkCustomerIdentity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/detect-duplicates", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { customerId?: string };
+      const report = pillowHost.detectDuplicateIdentities({ customerId: body.customerId });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/merge-identities", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").MergeCustomerIdentitiesInput;
+      const report = pillowHost.mergeCustomerIdentities(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-identity-engine/resolve-identity", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ResolveCustomerIdentityInput;
+      const report = pillowHost.resolveCustomerIdentity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerIdentityEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/crm-foundation", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCrmFoundationSnapshot());
+    }
+    try {
+      return reply.send({
+        crmFoundation: pillowHost.getCrmFoundation(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCrmFoundation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/create-profile", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateCustomerProfileInput;
+      const report = pillowHost.createCustomerProfile(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/update-record", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").UpdateCrmRecordInput;
+      const report = pillowHost.updateCrmRecord(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/search", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SearchCustomerRecordsInput;
+      const report = pillowHost.searchCustomerRecords(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/add-note", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").AddCustomerNoteInput;
+      const report = pillowHost.addCustomerNote(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/update-tags", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").UpdateCustomerTagsInput;
+      const report = pillowHost.updateCustomerTags(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/crm-foundation/update-attributes", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrmFoundationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").UpdateCustomAttributesInput;
+      const report = pillowHost.updateCustomAttributes(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrmFoundationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-timeline-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerTimelineEngine: pillowHost.getCustomerTimelineEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCustomerTimelineEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-event", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordTimelineEventInput;
+      const report = pillowHost.recordTimelineEvent(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-interaction", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordCustomerInteractionInput;
+      const report = pillowHost.recordCustomerInteraction(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-purchase", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordPurchaseInput;
+      const report = pillowHost.recordPurchase(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-support", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordSupportActivityInput;
+      const report = pillowHost.recordSupportActivity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-communication", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordCommunicationInput;
+      const report = pillowHost.recordCommunication(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-account-change", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordAccountChangeInput;
+      const report = pillowHost.recordAccountChange(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/record-milestone", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RecordCustomerMilestoneInput;
+      const report = pillowHost.recordCustomerMilestone(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-timeline-engine/search", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SearchTimelineHistoryInput;
+      const report = pillowHost.searchTimelineHistory(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerTimelineEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/email-communication-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        emailCommunicationEngine: pillowHost.getEmailCommunicationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectEmailCommunicationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/send-transactional", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendEmailInput;
+      const report = pillowHost.sendTransactionalEmail(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/send-marketing", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendEmailInput;
+      const report = pillowHost.sendMarketingEmail(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/send-notification", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendEmailInput;
+      const report = pillowHost.sendNotificationEmail(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/send-support", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendEmailInput;
+      const report = pillowHost.sendSupportEmail(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/create-template", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateEmailTemplateInput;
+      const report = pillowHost.createEmailTemplate(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/process-queue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { limit?: number };
+      const report = pillowHost.processEmailQueue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/track-open", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackEmailOpenInput;
+      const report = pillowHost.trackEmailOpen(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/track-click", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackEmailClickInput;
+      const report = pillowHost.trackEmailClick(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/email-communication-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { emailRecordId?: string };
+      const report = pillowHost.detectEmailFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectEmailCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/sms-communication-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        smsCommunicationEngine: pillowHost.getSmsCommunicationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectSmsCommunicationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/send-transactional", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendSmsInput;
+      const report = pillowHost.sendTransactionalSms(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/send-notification", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendSmsInput;
+      const report = pillowHost.sendNotificationSms(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/send-verification", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendSmsInput;
+      const report = pillowHost.sendVerificationSms(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/create-template", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateSmsTemplateInput;
+      const report = pillowHost.createSmsTemplate(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/process-queue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { limit?: number };
+      const report = pillowHost.processSmsQueue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/track-confirmation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackDeliveryConfirmationInput;
+      const report = pillowHost.trackDeliveryConfirmation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/retry", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RetrySmsInput;
+      const report = pillowHost.retrySms(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/sms-communication-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { smsRecordId?: string };
+      const report = pillowHost.detectSmsFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSmsCommunicationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/whatsapp-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        whatsAppIntegration: pillowHost.getWhatsAppIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectWhatsAppIntegration(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/send-transactional", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendWhatsAppInput;
+      const report = pillowHost.sendTransactionalWhatsApp(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/send-notification", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendWhatsAppInput;
+      const report = pillowHost.sendNotificationWhatsApp(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/send-template", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendWhatsAppInput;
+      const report = pillowHost.sendTemplateWhatsApp(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/receive-inbound", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ReceiveInboundMessageInput;
+      const report = pillowHost.receiveInboundMessage(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/manage-conversation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ManageConversationInput;
+      const report = pillowHost.manageConversation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/create-template", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateWhatsAppTemplateInput;
+      const report = pillowHost.createWhatsAppTemplate(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/process-queue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { limit?: number };
+      const report = pillowHost.processMessageQueue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/track-delivery", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackDeliveryInput;
+      const report = pillowHost.trackDelivery(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/track-read-receipt", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackReadReceiptInput;
+      const report = pillowHost.trackReadReceipt(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/whatsapp-integration/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { whatsAppRecordId?: string };
+      const report = pillowHost.detectMessagingFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectWhatsAppIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/live-chat-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        liveChatIntegration: pillowHost.getLiveChatIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectLiveChatIntegration(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/create-session", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").CreateChatSessionInput;
+      const report = pillowHost.createChatSession(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/receive-message", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ReceiveCustomerMessageInput;
+      const report = pillowHost.receiveCustomerMessage(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/send-response", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").SendSupportResponseInput;
+      const report = pillowHost.sendSupportResponse(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/manage-conversation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ManageChatConversationInput;
+      const report = pillowHost.manageChatConversation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/process-queue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { limit?: number };
+      const report = pillowHost.processChatQueue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/assign-session", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").AssignChatSessionInput;
+      const report = pillowHost.assignChatSession(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/track-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackChatStatusInput;
+      const report = pillowHost.trackChatStatus(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/track-response-time", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").TrackResponseTimeInput;
+      const report = pillowHost.trackResponseTime(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/live-chat-integration/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { chatSessionId?: string };
+      const report = pillowHost.detectChatFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLiveChatIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/ai-customer-support", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      return reply.send({
+        aiCustomerSupport: pillowHost.getAiCustomerSupport(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectAiCustomerSupport(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/receive-enquiry", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").ReceiveCustomerEnquiryInput;
+      const report = pillowHost.receiveCustomerEnquiry(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/understand-intent", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").UnderstandCustomerIntentInput;
+      const report = pillowHost.understandCustomerIntent(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/retrieve-context", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").RetrieveCustomerContextInput;
+      const report = pillowHost.retrieveCustomerContext(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/generate-response", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").GenerateAiResponseInput;
+      const report = pillowHost.generateAiResponse(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/escalate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").EscalateEnquiryInput;
+      const report = pillowHost.escalateEnquiry(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/multi-channel", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").HandleMultiChannelSupportInput;
+      const report = pillowHost.handleMultiChannelSupport(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/generate-summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as import("@empireai/pillow").GenerateSupportSummaryInput;
+      const report = pillowHost.generateSupportSummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-customer-support/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCustomerSupportSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { aiSupportRecordId?: string };
+      const report = pillowHost.detectSupportFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCustomerSupportSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/ticket-management-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        ticketManagementEngine: pillowHost.getTicketManagementEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectTicketManagementEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/create-ticket", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.createSupportTicket>[0];
+      const report = pillowHost.createSupportTicket(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/classify-category", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.classifyTicketCategory>[0];
+      const report = pillowHost.classifyTicketCategory(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/assign-priority", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.assignTicketPriority>[0];
+      const report = pillowHost.assignTicketPriority(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/assign-ownership", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.assignTicketOwnership>[0];
+      const report = pillowHost.assignTicketOwnership(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/track-lifecycle", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.trackTicketLifecycle>[0];
+      const report = pillowHost.trackTicketLifecycle(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/link-customer", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.linkTicketToCustomer>[0];
+      const report = pillowHost.linkTicketToCustomer(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/link-conversation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.linkTicketToConversation>[0];
+      const report = pillowHost.linkTicketToConversation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/link-timeline", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.linkTicketToTimeline>[0];
+      const report = pillowHost.linkTicketToTimeline(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/detect-overdue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { ticketId?: string };
+      const report = pillowHost.detectOverdueTickets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/detect-stalled", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { ticketId?: string };
+      const report = pillowHost.detectStalledTickets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ticket-management-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTicketManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { ticketId?: string };
+      const report = pillowHost.detectTicketFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTicketManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-sentiment-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerSentimentEngine: pillowHost.getCustomerSentimentEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCustomerSentimentEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/analyze-message", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.analyzeCustomerMessage>[0];
+      const report = pillowHost.analyzeCustomerMessage(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/analyze-conversation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.analyzeCustomerConversation>[0];
+      const report = pillowHost.analyzeCustomerConversation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/detect-satisfaction", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectCustomerSatisfaction>[0];
+      const report = pillowHost.detectCustomerSatisfaction(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/detect-frustration", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectCustomerFrustration>[0];
+      const report = pillowHost.detectCustomerFrustration(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/detect-escalation-risk", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectEscalationRisk>[0];
+      const report = pillowHost.detectEscalationRisk(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/detect-positive-experience", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectPositiveExperience>[0];
+      const report = pillowHost.detectPositiveExperience(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/track-trends", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.trackSentimentTrends>[0];
+      const report = pillowHost.trackSentimentTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/calculate-score", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.calculateSentimentScore>[0];
+      const report = pillowHost.calculateSentimentScore(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/generate-alerts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.generateSentimentAlerts>[0];
+      const report = pillowHost.generateSentimentAlerts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-sentiment-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectSentimentFailures>[0];
+      const report = pillowHost.detectSentimentFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSentimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/review-management-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        reviewManagementEngine: pillowHost.getReviewManagementEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectReviewManagementEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/collect-review", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.collectCustomerReview>[0];
+      const report = pillowHost.collectCustomerReview(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/import-marketplace-review", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.importMarketplaceReview>[0];
+      const report = pillowHost.importMarketplaceReview(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/classify-sentiment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.classifyReviewSentiment>[0];
+      const report = pillowHost.classifyReviewSentiment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/detect-negative", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectNegativeReviews>[0];
+      const report = pillowHost.detectNegativeReviews(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/detect-positive", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectPositiveReviews>[0];
+      const report = pillowHost.detectPositiveReviews(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/track-trends", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.trackReviewTrends>[0];
+      const report = pillowHost.trackReviewTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/generate-alerts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.generateReputationAlerts>[0];
+      const report = pillowHost.generateReputationAlerts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectReviewFailures>[0];
+      const report = pillowHost.detectReviewFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportReviewStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/review-management-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReviewManagementEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportReviewHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReviewManagementEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/loyalty-programme-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        loyaltyProgrammeEngine: pillowHost.getLoyaltyProgrammeEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectLoyaltyProgrammeEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/create-programme", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.createLoyaltyProgramme>[0];
+      const report = pillowHost.createLoyaltyProgramme(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/register-member", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.registerLoyaltyMember>[0];
+      const report = pillowHost.registerLoyaltyMember(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/award-points", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.awardLoyaltyPoints>[0];
+      const report = pillowHost.awardLoyaltyPoints(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/redeem-points", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.redeemLoyaltyPoints>[0];
+      const report = pillowHost.redeemLoyaltyPoints(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/manage-tier", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.manageLoyaltyTier>[0];
+      const report = pillowHost.manageLoyaltyTier(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/detect-abuse", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectLoyaltyAbuse>[0];
+      const report = pillowHost.detectLoyaltyAbuse(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/generate-rewards", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.generateLoyaltyRewards>[0];
+      const report = pillowHost.generateLoyaltyRewards(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectLoyaltyFailures>[0];
+      const report = pillowHost.detectLoyaltyFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportLoyaltyStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/loyalty-programme-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportLoyaltyHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectLoyaltyProgrammeEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/returns-intelligence-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        returnsIntelligenceEngine: pillowHost.getReturnsIntelligenceEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectReturnsIntelligenceEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/receive-request", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.receiveReturnRequest>[0];
+      const report = pillowHost.receiveReturnRequest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/evaluate-eligibility", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.evaluateReturnEligibility>[0];
+      const report = pillowHost.evaluateReturnEligibility(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/analyze-history", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.analyzeReturnHistory>[0];
+      const report = pillowHost.analyzeReturnHistory(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/detect-abnormal", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectAbnormalReturnBehavior>[0];
+      const report = pillowHost.detectAbnormalReturnBehavior(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/detect-repeat-patterns", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectRepeatReturnPatterns>[0];
+      const report = pillowHost.detectRepeatReturnPatterns(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/recommend-decision", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as Parameters<typeof pillowHost.recommendReturnDecision>[0];
+      const report = pillowHost.recommendReturnDecision(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/generate-insights", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.generateReturnInsights>[0];
+      const report = pillowHost.generateReturnInsights(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Parameters<typeof pillowHost.detectReturnFailures>[0];
+      const report = pillowHost.detectReturnFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportReturnIntelligenceStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/returns-intelligence-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportReturnIntelligenceHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectReturnsIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-risk-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerRiskEngine: pillowHost.getCustomerRiskEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as Record<string, unknown> | undefined;
+      const report = pillowHost.connectCustomerRiskEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/evaluate-risk", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string; riskCategory?: string };
+      const report = pillowHost.evaluateCustomerRisk(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-fraud", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectFraudIndicators(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-abuse", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectAccountAbuse(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-purchasing", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectSuspiciousPurchasingBehaviour(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-returns", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectSuspiciousReturnBehaviour(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-communication", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectSuspiciousCommunicationPatterns(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/calculate-score", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.calculateCustomerRiskScore(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/generate-alerts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId?: string } | undefined;
+      const report = pillowHost.generateCustomerRiskAlerts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/recommend-mitigation", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerRiskId: string };
+      const report = pillowHost.recommendMitigationActions(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerRiskId?: string } | undefined;
+      const report = pillowHost.detectCustomerRiskFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportCustomerRiskStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-risk-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportCustomerRiskHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerRiskEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-lifetime-value-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerLifetimeValueEngine: pillowHost.getCustomerLifetimeValueEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as Record<string, unknown> | undefined;
+      const report = pillowHost.connectClvEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/calculate-clv", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.calculateCustomerLifetimeValue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/track-revenue", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackCustomerRevenueContribution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/track-profitability", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackCustomerProfitability(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/track-retention", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackCustomerRetention(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/track-purchase-frequency", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackPurchaseFrequency(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/track-average-order-value", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackAverageOrderValue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/predict-future-value", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.predictFutureCustomerValue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/identify-high-value", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId?: string } | undefined;
+      const report = pillowHost.identifyHighValueCustomers(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/identify-declining-value", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId?: string } | undefined;
+      const report = pillowHost.identifyDecliningCustomerValue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const body = request.body as { clvRecordId?: string } | undefined;
+      const report = pillowHost.detectClvFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportClvStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-lifetime-value-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportClvHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerLifetimeValueEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-segmentation-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        customerSegmentationEngine: pillowHost.getCustomerSegmentationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as Record<string, unknown> | undefined;
+      const report = pillowHost.connectSegmentationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/create-segment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { segmentName: string; segmentType: string; description?: string };
+      const report = pillowHost.createCustomerSegment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/assign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.assignCustomerToSegments(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-demographics", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByDemographics(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-purchasing", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByPurchasingBehaviour(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-value", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByCustomerValue(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-loyalty", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByLoyaltyStatus(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-sentiment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByCustomerSentiment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/segment-risk", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.segmentByCustomerRisk(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/detect-changes", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId?: string } | undefined;
+      const report = pillowHost.detectSegmentChanges(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const body = request.body as { segmentationRecordId?: string } | undefined;
+      const report = pillowHost.detectSegmentationFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportSegmentationStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-segmentation-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportSegmentationHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerSegmentationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-journey-intelligence-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        ...collectCustomerJourneyIntelligenceEngineSnapshot(),
+        live: true,
+        customerJourneyIntelligenceEngine: pillowHost.getCustomerJourneyIntelligenceEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { forceReconnect?: boolean } | undefined;
+      const report = pillowHost.connectJourneyIntelligenceEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/map-journey", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.mapCustomerJourney(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/track-touchpoints", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.trackCustomerTouchpoints(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/identify-stages", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.identifyJourneyStages(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/detect-dropoff", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectDropOffPoints(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/detect-friction", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.detectFrictionPoints(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/measure-performance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.measureJourneyPerformance(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/measure-conversion", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId?: string } | undefined;
+      const report = pillowHost.measureConversionRates(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/recommend-improvements", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.recommendJourneyImprovements(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/predict-progression", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { customerId: string };
+      const report = pillowHost.predictCustomerProgression(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const body = request.body as { journeyRecordId?: string } | undefined;
+      const report = pillowHost.detectJourneyFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportJourneyStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-journey-intelligence-engine/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+    }
+    try {
+      const report = pillowHost.reportJourneyHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerJourneyIntelligenceEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/executive-customer-dashboard", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      return reply.send({
+        ...collectExecutiveCustomerDashboardSnapshot(),
+        live: true,
+        executiveCustomerDashboard: pillowHost.getExecutiveCustomerDashboard(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const body = request.body as { forceReconnect?: boolean } | undefined;
+      const report = pillowHost.connectExecutiveCustomerDashboard(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/refresh", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const body = request.body as { forceRefresh?: boolean } | undefined;
+      const report = pillowHost.refreshExecutiveCustomerDashboard(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-growth", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerGrowth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-activity", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerActivity();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-lifetime-value", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerLifetimeValue();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-segmentation", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerSegmentation();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-sentiment", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerSentiment();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-loyalty", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerLoyalty();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-journey", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerJourneyAnalytics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-risk", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerRisk();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/display-support", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.displayCustomerSupportMetrics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/aggregate-kpis", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.aggregateExecutiveCustomerKpis();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/widgets", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const body = request.body as { widgetTypes?: string[] } | undefined;
+      const report = pillowHost.getExecutiveCustomerDashboardWidgets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/detect-failures", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const body = request.body as { dashboardId?: string } | undefined;
+      const report = pillowHost.detectExecutiveCustomerDashboardFailures(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/report-status", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.reportExecutiveCustomerDashboardStatus();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/executive-customer-dashboard/report-health", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+    }
+    try {
+      const report = pillowHost.reportExecutiveCustomerDashboardHealth();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectExecutiveCustomerDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/customer-operations-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCustomerOperationsCertificationSnapshot());
+    }
+    try {
+      return reply.send({
+        customerOperationsCertification: pillowHost.getCustomerOperationsCertification(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCustomerOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-operations-certification/run", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerOperationsCertificationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        missionScope?: string[];
+        includeSmokeTests?: boolean;
+      };
+      const report = await pillowHost.runCustomerOperationsCertification({
+        missionScope: body.missionScope,
+        includeSmokeTests: body.includeSmokeTests,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/customer-operations-certification/validate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCustomerOperationsCertificationSnapshot());
+    }
+    try {
+      const validation = pillowHost.validateCustomerOperationsCertificationReport();
+      return reply.send({ computedAt: new Date().toISOString(), validation });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCustomerOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketing-framework", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketingFrameworkSnapshot());
+    }
+    try {
+      return reply.send({
+        marketingFramework: pillowHost.getMarketingFramework(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMarketingFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-framework/register", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        definition?: Record<string, unknown>;
+        forceRegister?: boolean;
+      };
+      const report = pillowHost.registerMarketingModule({
+        definition: body.definition,
+        forceRegister: body.forceRegister,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-framework/activate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { marketingModuleIdentifier?: string };
+      const report = pillowHost.activateMarketingModule(body.marketingModuleIdentifier ?? "");
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/meta-ads-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMetaAdsIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        metaAdsIntegration: pillowHost.getMetaAdsIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectMetaAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/meta-ads-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        businessAccountId?: string;
+        adAccountId?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectMetaAds(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/meta-ads-integration/create-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignName?: string;
+        businessAccountId?: string;
+        adAccountId?: string;
+        objective?: string;
+      };
+      const report = pillowHost.createMetaCampaign({
+        campaignName: body.campaignName ?? "",
+        businessAccountId: body.businessAccountId,
+        adAccountId: body.adAccountId,
+        objective: body.objective,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/meta-ads-integration/retrieve-performance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.retrieveMetaPerformance({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/meta-ads-integration/sync-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.syncMetaCampaignStatus({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMetaAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/google-ads-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectGoogleAdsIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        googleAdsIntegration: pillowHost.getGoogleAdsIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectGoogleAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/google-ads-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        customerAccountId?: string;
+        advertisingAccountId?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectGoogleAds(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/google-ads-integration/create-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignName?: string;
+        customerAccountId?: string;
+        advertisingAccountId?: string;
+        objective?: string;
+      };
+      const report = pillowHost.createGoogleCampaign({
+        campaignName: body.campaignName ?? "",
+        customerAccountId: body.customerAccountId,
+        advertisingAccountId: body.advertisingAccountId,
+        objective: body.objective,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/google-ads-integration/retrieve-performance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.retrieveGooglePerformance({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/google-ads-integration/sync-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.syncGoogleCampaignStatus({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectGoogleAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/tiktok-ads-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        tiktokAdsIntegration: pillowHost.getTikTokAdsIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-ads-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        advertiserAccountId?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectTikTokAds(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-ads-integration/create-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignName?: string;
+        advertiserAccountId?: string;
+        objective?: string;
+      };
+      const report = pillowHost.createTikTokCampaign({
+        campaignName: body.campaignName ?? "",
+        advertiserAccountId: body.advertiserAccountId,
+        objective: body.objective,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-ads-integration/retrieve-performance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.retrieveTikTokPerformance({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-ads-integration/sync-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.syncTikTokCampaignStatus({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/tiktok-ads-integration/sync-audience", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignReference?: string;
+        audienceName?: string;
+      };
+      const report = pillowHost.syncTikTokAudience({
+        campaignReference: body.campaignReference,
+        audienceName: body.audienceName,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectTikTokAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/youtube-ads-integration", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      return reply.send({
+        youtubeAdsIntegration: pillowHost.getYouTubeAdsIntegration(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/youtube-ads-integration/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        credentialRef?: string;
+        advertiserAccountId?: string;
+        forceReconnect?: boolean;
+      };
+      const report = pillowHost.connectYouTubeAds(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/youtube-ads-integration/create-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignName?: string;
+        advertiserAccountId?: string;
+        objective?: string;
+      };
+      const report = pillowHost.createYouTubeCampaign({
+        campaignName: body.campaignName ?? "",
+        advertiserAccountId: body.advertiserAccountId,
+        objective: body.objective,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/youtube-ads-integration/manage-video-asset", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        videoAssetName?: string;
+        durationSeconds?: number;
+        campaignReference?: string;
+      };
+      const report = pillowHost.manageYouTubeVideoAsset({
+        videoAssetName: body.videoAssetName ?? "",
+        durationSeconds: body.durationSeconds,
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/youtube-ads-integration/retrieve-performance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.retrieveYouTubePerformance({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/youtube-ads-integration/sync-status", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.syncYouTubeCampaignStatus({
+        campaignReference: body.campaignReference,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectYouTubeAdsIntegrationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/seo-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        seoIntelligence: pillowHost.getSeoIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        websiteReference?: string;
+        projectName?: string;
+      };
+      const report = pillowHost.connectSeoEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/analyze-page", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        pageReference?: string;
+        websiteReference?: string;
+        pageTitle?: string;
+        metaDescription?: string;
+      };
+      const report = pillowHost.analyzeSeoPage({
+        pageReference: body.pageReference ?? "",
+        websiteReference: body.websiteReference,
+        pageTitle: body.pageTitle,
+        metaDescription: body.metaDescription,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/manage-keyword", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        keyword?: string;
+        websiteReference?: string;
+        targetPageReference?: string;
+        searchVolume?: number;
+        difficulty?: number;
+      };
+      const report = pillowHost.manageSeoKeyword({
+        keyword: body.keyword ?? "",
+        websiteReference: body.websiteReference,
+        targetPageReference: body.targetPageReference,
+        searchVolume: body.searchVolume,
+        difficulty: body.difficulty,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/track-ranking", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        keywordReference?: string;
+        websiteReference?: string;
+      };
+      const report = pillowHost.trackSeoRanking(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/generate-recommendations", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        pageReference?: string;
+        websiteReference?: string;
+      };
+      const report = pillowHost.generateSeoRecommendations(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/seo-intelligence/monitor-organic", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectSeoIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        websiteReference?: string;
+        pageReference?: string;
+      };
+      const report = pillowHost.monitorSeoOrganicPerformance(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectSeoIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/campaign-manager", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCampaignManagerSnapshot());
+    }
+    try {
+      return reply.send({
+        campaignManager: pillowHost.getCampaignManager(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean };
+      const report = pillowHost.connectCampaignManager(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/create", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignName?: string;
+        campaignObjective?: "awareness" | "traffic" | "engagement" | "leads" | "conversions" | "retention";
+        marketingChannels?: Array<"meta" | "google" | "tiktok" | "youtube" | "seo">;
+        startAt?: string;
+        endAt?: string | null;
+        timezone?: string;
+      };
+      const report = pillowHost.createManagedCampaign({
+        campaignName: body.campaignName ?? "",
+        campaignObjective: body.campaignObjective ?? "awareness",
+        marketingChannels: body.marketingChannels ?? [],
+        startAt: body.startAt,
+        endAt: body.endAt,
+        timezone: body.timezone,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/approve", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignId?: string };
+      const report = pillowHost.approveManagedCampaign({
+        campaignId: body.campaignId ?? "",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/schedule", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignId?: string;
+        startAt?: string;
+        endAt?: string | null;
+        timezone?: string;
+      };
+      const report = pillowHost.scheduleManagedCampaign({
+        campaignId: body.campaignId ?? "",
+        startAt: body.startAt ?? new Date().toISOString(),
+        endAt: body.endAt,
+        timezone: body.timezone,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/coordinate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignId?: string };
+      const report = pillowHost.coordinateManagedCampaign({
+        campaignId: body.campaignId ?? "",
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/campaign-manager/track-execution", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCampaignManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignId?: string };
+      const report = pillowHost.trackManagedCampaignExecution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCampaignManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/audience-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        audienceIntelligence: pillowHost.getAudienceIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectAudienceIntelligence(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/build", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        audienceName?: string;
+        audienceSource?: string;
+        estimatedSize?: number;
+        demographicHints?: string[];
+        interestHints?: string[];
+        behaviourHints?: string[];
+      };
+      const report = pillowHost.buildAudience(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/analyze-demographics", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.analyzeAudienceDemographics(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/analyze-interests", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.analyzeAudienceInterests(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/analyze-behaviour", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.analyzeAudienceBehaviour(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/analyze-intent", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.analyzeAudienceIntent(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/measure-engagement", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.measureAudienceEngagement(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/measure-quality", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.measureAudienceQuality(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/detect-overlap", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.detectAudienceOverlap(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/audience-intelligence/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { audienceRecordId?: string };
+      const report = pillowHost.generateAudienceRecommendations(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAudienceIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/attribution-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAttributionEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        attributionEngine: pillowHost.getAttributionEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectAttributionEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/track-acquisition", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        customerRef?: string;
+        marketingChannel?: string;
+        campaignReference?: string;
+        sourceLabel?: string;
+      };
+      const report = pillowHost.trackAttributionAcquisitionSource(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/track-touchpoint", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        customerRef?: string;
+        marketingChannel?: string;
+        campaignReference?: string;
+        advertisementReference?: string;
+        sourceLabel?: string;
+      };
+      const report = pillowHost.trackAttributionTouchpoint(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/track-conversion", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        customerRef?: string;
+        conversionValue?: number;
+        attributionModel?: string;
+        campaignReference?: string;
+      };
+      const report = pillowHost.trackAttributionConversionJourney(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/attribute", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        customerRef?: string;
+        conversionValue?: number;
+        attributionModel?: string;
+        campaignReference?: string;
+      };
+      const report = pillowHost.attributeConversion(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/measure-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { customerRef?: string; attributionModel?: string };
+      const report = pillowHost.measureAttributionCampaignContribution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/measure-channel", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { customerRef?: string; attributionModel?: string };
+      const report = pillowHost.measureAttributionChannelContribution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/measure-advertisement", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { customerRef?: string; attributionModel?: string };
+      const report = pillowHost.measureAttributionAdvertisementContribution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/calculate-roas", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        spend?: number;
+        revenue?: number;
+        attributionModel?: string;
+        customerRef?: string;
+      };
+      const report = pillowHost.calculateAttributionRoas(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/attribution-engine/calculate-roi", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAttributionEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        spend?: number;
+        revenue?: number;
+        attributionModel?: string;
+        customerRef?: string;
+      };
+      const report = pillowHost.calculateAttributionMarketingRoi(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAttributionEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketing-analytics-dashboard", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketingAnalyticsDashboardSnapshot());
+    }
+    try {
+      return reply.send({
+        marketingAnalyticsDashboard: pillowHost.getMarketingAnalyticsDashboard(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-analytics-dashboard/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { forceReconnect?: boolean; authorized?: boolean };
+      const report = pillowHost.connectMarketingAnalyticsDashboard(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-analytics-dashboard/refresh", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { authorized?: boolean; includeAlerts?: boolean };
+      const report = pillowHost.refreshMarketingAnalyticsDashboard(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-analytics-dashboard/aggregate-kpis", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { authorized?: boolean };
+      const report = pillowHost.aggregateMarketingAnalyticsKpis(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-analytics-dashboard/executive-summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { authorized?: boolean };
+      const report = pillowHost.generateMarketingAnalyticsExecutiveSummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingAnalyticsDashboardSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/creative-asset-manager", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      return reply.send({
+        creativeAssetManager: pillowHost.getCreativeAssetManager(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectCreativeAssetManager(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/create", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        assetName?: string;
+        assetType?: string;
+        campaignReference?: string;
+        tags?: string[];
+        storageRef?: string;
+      };
+      const report = pillowHost.createCreativeAsset(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/update", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        assetId?: string;
+        assetName?: string;
+        tags?: string[];
+        campaignReference?: string;
+        forceOverwriteApproved?: boolean;
+      };
+      const report = pillowHost.updateCreativeAsset(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/version", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { assetId?: string; changeSummary?: string };
+      const report = pillowHost.createCreativeAssetVersion(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/approve", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { assetId?: string; approved?: boolean };
+      const report = pillowHost.approveCreativeAsset(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/tag", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { assetId?: string; tags?: string[] };
+      const report = pillowHost.tagCreativeAsset(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/track-usage", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        assetId?: string;
+        context?: string;
+        campaignReference?: string;
+      };
+      const report = pillowHost.trackCreativeAssetUsage(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/search", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        query?: string;
+        assetType?: string;
+        approvalStatus?: string;
+        tag?: string;
+      };
+      const report = pillowHost.searchCreativeAssets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/creative-asset-manager/classify", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { assetId?: string };
+      const report = pillowHost.classifyCreativeAsset(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCreativeAssetManagerSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/ai-campaign-generator", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      return reply.send({
+        aiCampaignGenerator: pillowHost.getAiCampaignGenerator(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectAiCampaignGenerator(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/generate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        objective?: string;
+        productFocus?: string;
+        budgetUsd?: number;
+        durationDays?: number;
+        preferredChannels?: string[];
+      };
+      const report = pillowHost.generateAiCampaign(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/strategy", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { objective?: string; productFocus?: string };
+      const report = pillowHost.generateAiCampaignStrategy(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/objective", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { objective?: string; productFocus?: string };
+      const report = pillowHost.generateAiCampaignObjective(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-channels", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignChannels(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-audience", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignAudience(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-budget", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignBudget(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-schedule", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignSchedule(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-keywords", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignKeywords(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/recommend-creatives", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.recommendAiCampaignCreatives(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/ai-campaign-generator/summary", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.generateAiCampaignSummary(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAiCampaignGeneratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/budget-optimization-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        budgetOptimizationEngine: pillowHost.getBudgetOptimizationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectBudgetOptimization(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/allocate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignReference?: string;
+        marketingChannel?: string;
+        allocatedBudget?: number;
+        currentSpend?: number;
+      };
+      const report = pillowHost.allocateBudget(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/reallocate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.reallocateBudget(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/monitor-spend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.monitorBudgetSpend(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/monitor-utilization", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.monitorBudgetUtilization(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/detect-inefficiencies", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.detectBudgetInefficiencies(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/detect-overspend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.detectBudgetOverspend(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/calculate-efficiency", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.calculateBudgetEfficiency(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { budgetRecordId?: string };
+      const report = pillowHost.recommendBudgetAdjustments(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/budget-optimization-engine/optimize", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string; validated?: boolean };
+      const report = pillowHost.optimizeBudgets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBudgetOptimizationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/conversion-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        conversionIntelligence: pillowHost.getConversionIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectConversionIntelligence(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/track-funnel", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        campaignReference?: string;
+        marketingChannel?: string;
+        funnelStage?: string;
+        conversionRate?: number;
+        dropOffRate?: number;
+        landingPageScore?: number;
+      };
+      const report = pillowHost.trackConversionFunnel(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/track-drop-off", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.trackConversionDropOff(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/measure-landing-page", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.measureConversionLandingPage(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/measure-campaign", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string };
+      const report = pillowHost.measureCampaignConversion(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/measure-channel", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { marketingChannel?: string };
+      const report = pillowHost.measureChannelConversion(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/detect-bottlenecks", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.detectConversionBottlenecks(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/detect-abandonment", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.detectConversionAbandonment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/calculate-efficiency", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.calculateConversionEfficiency(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { conversionRecordId?: string };
+      const report = pillowHost.recommendConversionImprovements(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/conversion-intelligence/optimize", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectConversionIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string; validated?: boolean };
+      const report = pillowHost.optimizeConversionFunnel(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectConversionIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/competitor-marketing-monitor", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      return reply.send({
+        competitorMarketingMonitor: pillowHost.getCompetitorMarketingMonitor(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectCompetitorMarketingMonitor(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/discover", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { seedIdentifier?: string; marketingChannel?: string };
+      const report = pillowHost.discoverMarketingCompetitors(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-campaigns", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorCampaigns(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-advertisements", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorAdvertisements(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-keywords", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorKeywords(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-seo", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorSeoRankings(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-landing-pages", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorLandingPages(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/monitor-promotions", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.monitorCompetitorPromotions(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/detect-strategy-changes", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.detectCompetitorStrategyChanges(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/detect-emerging", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.detectEmergingMarketingCompetitors(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/competitor-marketing-monitor/generate-intelligence", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { competitorRecordId?: string };
+      const report = pillowHost.generateCompetitorMarketingIntelligence(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompetitorMarketingMonitorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/viral-trend-intelligence", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      return reply.send({
+        viralTrendIntelligence: pillowHost.getViralTrendIntelligence(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectViralTrendIntelligence(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/discover", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        seedKeyword?: string;
+        trendCategory?: string;
+        trendSource?: string;
+      };
+      const report = pillowHost.discoverViralTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/monitor-keywords", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.monitorViralTrendKeywords(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/monitor-hashtags", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.monitorViralTrendHashtags(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/monitor-products", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.monitorViralTrendProducts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/monitor-content", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.monitorViralTrendContent(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/monitor-creators", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.monitorViralTrendCreators(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/detect-acceleration", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.detectViralTrendAcceleration(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/detect-decline", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.detectViralTrendDecline(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/predict", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.predictViralTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/viral-trend-intelligence/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { trendRecordId?: string };
+      const report = pillowHost.recommendViralTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectViralTrendIntelligenceSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/marketing-experiment-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        marketingExperimentEngine: pillowHost.getMarketingExperimentEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectMarketingExperimentEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/create", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        experimentName?: string;
+        experimentType?: string;
+        campaignReference?: string;
+        variants?: string[];
+        audienceReference?: string;
+        validated?: boolean;
+      };
+      const report = pillowHost.createMarketingExperiment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/ab-test", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string; variants?: string[] };
+      const report = pillowHost.manageMarketingAbTest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/multivariate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string; variants?: string[] };
+      const report = pillowHost.manageMarketingMultivariateTest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/assign-audience", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        experimentId?: string;
+        audienceReference?: string;
+        splitPercent?: number;
+      };
+      const report = pillowHost.assignMarketingExperimentAudience(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/measure", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string };
+      const report = pillowHost.measureMarketingExperimentPerformance(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/compare", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string };
+      const report = pillowHost.compareMarketingExperimentVariants(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/detect-significance", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string };
+      const report = pillowHost.detectMarketingExperimentSignificance(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/recommend-winner", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string };
+      const report = pillowHost.recommendMarketingExperimentWinner(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/marketing-experiment-engine/archive", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { experimentId?: string; validated?: boolean };
+      const report = pillowHost.archiveMarketingExperiment(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketingExperimentEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/cross-channel-orchestrator", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      return reply.send({
+        crossChannelOrchestrator: pillowHost.getCrossChannelOrchestrator(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectCrossChannelOrchestrator(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-campaigns", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        marketingChannels?: string[];
+        schedule?: string;
+        validated?: boolean;
+      };
+      const report = pillowHost.coordinateCrossChannelCampaigns(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/synchronize-execution", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.synchronizeCrossChannelExecution(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/synchronize-schedules", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { schedule?: string; validated?: boolean };
+      const report = pillowHost.synchronizeCrossChannelSchedules(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-journeys", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.coordinateCrossChannelJourneys(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-channels", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.coordinateCrossChannelChannels(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-budgets", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.coordinateCrossChannelBudgets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-assets", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.coordinateCrossChannelAssets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/coordinate-experiments", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.coordinateCrossChannelExperiments(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/cross-channel-orchestrator/detect-conflicts", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.detectCrossChannelConflicts(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCrossChannelOrchestratorSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/autonomous-marketing-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        autonomousMarketingEngine: pillowHost.getAutonomousMarketingEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectAutonomousMarketingEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/monitor", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { campaignReference?: string; validated?: boolean };
+      const report = pillowHost.monitorAutonomousMarketingPerformance(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.generateAutonomousMarketingRecommendations(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/optimize-budgets", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.optimizeAutonomousMarketingBudgets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/optimize-audience", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.optimizeAutonomousMarketingAudience(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/optimize-scheduling", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.optimizeAutonomousMarketingScheduling(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/optimize-creative", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.optimizeAutonomousMarketingCreative(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/optimize-channels", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.optimizeAutonomousMarketingChannelAllocation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/respond", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.respondToAutonomousMarketingPerformanceChanges(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/autonomous-marketing-engine/execute", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        autonomousMarketingId?: string;
+        approved?: boolean;
+        validated?: boolean;
+      };
+      const report = pillowHost.executeApprovedAutonomousMarketingOptimizations(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectAutonomousMarketingEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/real-world-operations-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRealWorldOperationsCertificationSnapshot());
+    }
+    try {
+      return reply.send({
+        realWorldOperationsCertification: pillowHost.getRealWorldOperationsCertification(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRealWorldOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/real-world-operations-certification/run", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRealWorldOperationsCertificationSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        programmeScope?: string[];
+        validated?: boolean;
+      };
+      const report = await pillowHost.runRealWorldOperationsCertification(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRealWorldOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/real-world-operations-certification/validate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectRealWorldOperationsCertificationSnapshot());
+    }
+    try {
+      const validation = pillowHost.validateRealWorldOperationsCertificationReport();
+      return reply.send({ computedAt: new Date().toISOString(), validation });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectRealWorldOperationsCertificationSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/company-factory-framework", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCompanyFactoryFrameworkSnapshot());
+    }
+    try {
+      return reply.send({
+        companyFactoryFramework: pillowHost.getCompanyFactoryFramework(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.send(collectCompanyFactoryFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/company-factory-framework/register", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompanyFactoryFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        definition?: Record<string, unknown>;
+        forceRegister?: boolean;
+      };
+      const report = pillowHost.registerCompanyModule({
+        definition: body.definition,
+        forceRegister: body.forceRegister,
+      });
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompanyFactoryFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/company-factory-framework/activate", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectCompanyFactoryFrameworkSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as { companyModuleIdentifier?: string };
+      const report = pillowHost.activateCompanyModule(body.companyModuleIdentifier ?? "");
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectCompanyFactoryFrameworkSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/business-opportunity-discovery", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      return reply.send({
+        businessOpportunityDiscovery: pillowHost.getBusinessOpportunityDiscovery(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectBusinessOpportunityDiscovery(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/discover", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        industry?: string;
+        marketReference?: string;
+        category?: string;
+        validated?: boolean;
+      };
+      const report = pillowHost.discoverBusinessOpportunities(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/monitor-trends", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.monitorBusinessOpportunityMarketTrends(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/monitor-industries", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.monitorBusinessOpportunityEmergingIndustries(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/monitor-demand", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.monitorBusinessOpportunityCustomerDemand(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/monitor-competitors", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.monitorBusinessOpportunityCompetitorActivity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/identify-underserved", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.identifyUnderservedBusinessMarkets(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/identify-niches", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.identifyProfitableBusinessNiches(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/score", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.scoreBusinessOpportunities(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/business-opportunity-discovery/rank", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.rankBusinessOpportunities(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectBusinessOpportunityDiscoverySnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.get("/api/pillow/market-validation-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      return reply.send({
+        marketValidationEngine: pillowHost.getMarketValidationEngine(),
+      });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/connect", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.connectMarketValidationEngine(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-opportunity", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as {
+        opportunityReference?: string;
+        industry?: string;
+        validated?: boolean;
+      };
+      const report = pillowHost.validateMarketOpportunity(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-demand", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.validateMarketDemand(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-customer", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.validateMarketCustomerInterest(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-competition", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.validateMarketCompetitiveLandscape(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-size", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.validateMarketSize(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/validate-profitability", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.validateMarketProfitabilityPotential(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/calculate-confidence", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.calculateMarketValidationConfidence(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/identify-risks", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.identifyMarketRisks(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
+      }
+      throw error;
+    }
+  });
+
+  app.post("/api/pillow/market-validation-engine/recommend", { preHandler: pillowAuth }, async (request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      return reply.code(503).send(collectMarketValidationEngineSnapshot());
+    }
+    try {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report = pillowHost.generateMarketInvestmentRecommendation(body);
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    } catch (error) {
+      if (error instanceof PillowHostNotRunningError) {
+        return reply.code(503).send(collectMarketValidationEngineSnapshot());
       }
       throw error;
     }

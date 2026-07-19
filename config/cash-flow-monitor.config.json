@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "monitoringFrequencyMinutes": 15,
+  "liquidityThresholdHealthy": 10000,
+  "liquidityThresholdAdequate": 5000,
+  "liquidityThresholdLow": 1000,
+  "forecastRulesEnabled": true,
+  "forecastHorizonDays": 7,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultCurrency": "USD",
+  "maskSensitiveValues": true
+}

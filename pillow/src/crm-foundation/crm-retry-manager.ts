@@ -1,0 +1,53 @@
+/** R4-02 — CRM retry manager. */
+
+import type { CrmFoundationConfiguration } from "./configuration.js";
+import { appendCrmLog } from "./crm-logging.js";
+
+export class CrmRetryManager {
+  private retryAttempts = 0;
+
+  async executeWithRetry<T>(
+    operation: () => T,
+    config: CrmFoundationConfiguration,
+    label: string,
+  ): Promise<T> {
+    let lastError: Error | null = null;
+    let delay = config.retryDelayMs;
+
+    for (let attempt = 0; attempt <= config.maxRetryAttempts; attempt++) {
+      try {
+        const result = operation();
+        if (attempt > 0) {
+          appendCrmLog({
+            event: "recovery_attempt",
+            level: "info",
+            details: `${label} succeeded after ${attempt} retry attempt(s)`,
+          });
+        }
+        return result;
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error(String(err));
+        this.retryAttempts += 1;
+        appendCrmLog({
+          event: "crm_failure",
+          level: "warn",
+          details: `${label} attempt ${attempt + 1} failed: ${lastError.message}`,
+        });
+        if (attempt < config.maxRetryAttempts) {
+          await new Promise((r) => setTimeout(r, delay));
+          delay *= config.retryBackoffMultiplier;
+        }
+      }
+    }
+
+    throw lastError ?? new Error(`${label} failed after retries`);
+  }
+
+  getRetryAttempts(): number {
+    return this.retryAttempts;
+  }
+
+  reset(): void {
+    this.retryAttempts = 0;
+  }
+}

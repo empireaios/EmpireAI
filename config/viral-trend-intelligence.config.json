@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "trendMonitoringRulesEnabled": true,
+  "trendScoringRulesEnabled": true,
+  "predictionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverCollectRestrictedOrUnauthorizedInfo": true,
+  "authorizedPublicSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "accelerationThresholdPercent": 20,
+  "declineThresholdPercent": -15,
+  "emergingScoreThreshold": 55,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

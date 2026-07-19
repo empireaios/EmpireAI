@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "synchronizationFrequencyMs": 300000,
+  "stockValidationRulesEnabled": true,
+  "inventoryMappingRulesEnabled": true,
+  "changeDetectionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "lowStockThreshold": 10,
+  "maskSensitiveValues": true
+}

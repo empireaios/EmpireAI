@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "scoringRulesEnabled": true,
+  "weightingRulesEnabled": true,
+  "qualityWeight": 0.25,
+  "pricingWeight": 0.2,
+  "inventoryReliabilityWeight": 0.25,
+  "fulfilmentReliabilityWeight": 0.2,
+  "responsivenessWeight": 0.1,
+  "highPerformerThreshold": 80,
+  "decliningPerformanceThreshold": 15,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "maskSensitiveValues": true
+}

@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "alertRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "liquidityRiskThreshold": 60,
+  "profitabilityRiskThreshold": 60,
+  "budgetRiskThreshold": 70,
+  "revenueVolatilityThreshold": 25,
+  "expenseVolatilityThreshold": 25,
+  "compositeRiskThreshold": 65,
+  "monitoringFrequencyMs": 60000,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "riskThresholds": [
+    { "category": "liquidity", "warningThreshold": 40, "criticalThreshold": 70, "label": "Liquidity risk" },
+    { "category": "profitability", "warningThreshold": 40, "criticalThreshold": 70, "label": "Profitability risk" },
+    { "category": "budget", "warningThreshold": 50, "criticalThreshold": 80, "label": "Budget risk" },
+    { "category": "composite", "warningThreshold": 45, "criticalThreshold": 75, "label": "Composite risk" }
+  ]
+}

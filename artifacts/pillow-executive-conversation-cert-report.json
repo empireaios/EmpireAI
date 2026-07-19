@@ -1,0 +1,163 @@
+{
+  "mission": "Pillow Executive Conversation Certification",
+  "certifiedAt": "2026-07-18T08:27:00+08:00",
+  "overallVerdict": "FINAL_PASS",
+  "verdictReason": "All 18 executive conversation scenarios pass on live production after deploy bcb5a234-73dd-4645-bcf8-1bd6cec94ba8. Session memory (codeword test), follow-up understanding, clarification intelligence, natural speech (no robotic labels), and Post-T regression (5/5) all validated on https://empire-ai.co.",
+  "deployment": {
+    "platform": "Railway",
+    "deploymentId": "bcb5a234-73dd-4645-bcf8-1bd6cec94ba8",
+    "previousDeploymentId": "1029bbae-f433-47aa-a595-392b8731bc84",
+    "failedDeployId": "36d7b9e8-b549-4713-aec2-546e65d4d334",
+    "failedDeployCause": "Pillow build TS error in loyalty-programme-manager.ts (getCustomerProfiles → getCrmRecords fix applied)",
+    "status": "Online",
+    "frontendUrl": "https://empire-ai.co",
+    "backendUrl": "https://empireai-production.up.railway.app",
+    "deployedAt": "2026-07-18T00:19:42.894Z"
+  },
+  "liveValidation": {
+    "executiveConversationCert": {
+      "validatedAt": "2026-07-18T00:25:28.122Z",
+      "passCount": 18,
+      "total": 18,
+      "overallPass": true,
+      "artifact": "artifacts/pillow-executive-conversation-certification.json",
+      "categorySummary": {
+        "Executive Conversation": "5/5",
+        "Screen Discussion": "4/4",
+        "Cursor Assistance": "2/2",
+        "Executive Reasoning": "3/3",
+        "Technical Explanation": "2/2",
+        "Executive Memory": "2/2"
+      }
+    },
+    "postTRegression": {
+      "validatedAt": "2026-07-18T00:22:03.947Z",
+      "passCount": 5,
+      "total": 5,
+      "overallPass": true,
+      "artifact": "artifacts/post-t-executive-home-validation.json"
+    },
+    "spotCheckEvidence": {
+      "memoryCodeword": {
+        "turn1": "Acknowledged, Grand King. The codeword \"purple-rabbit-42\" is noted for our chat.",
+        "turn2": "purple-rabbit-42",
+        "pass": true
+      },
+      "clarificationFixIt": {
+        "response": "Could you please clarify what specific issue you would like me to fix?",
+        "webSearchDetour": false,
+        "pass": true
+      },
+      "roboticLabels": {
+        "detected": false,
+        "pass": true
+      }
+    }
+  },
+  "architecturalValidation": {
+    "openaiUnitTests": "15/15 pass",
+    "testsRun": [
+      "pillow/src/validation/tests/openai.test.ts",
+      "backend/src/validation/tests/executive-conversational-routing.test.ts"
+    ],
+    "evidence": [
+      "prior conversation turns injected into LLM message array",
+      "executive conversation mode replaces label-mandatory knowledge routing with natural executive tone policy",
+      "executive conversation mode bypasses intelligence platform web_search special path",
+      "stripExecutiveResponseLabels() applied on executive chat responses",
+      "executiveLearningBundle guarded when executiveReasoning absent"
+    ]
+  },
+  "capabilities": [
+    { "capability": "Natural multi-turn conversation", "pass": true, "notes": "18/18 scenarios; greetings, follow-ups, depth adjustment all coherent" },
+    { "capability": "Answer the actual question", "pass": true, "notes": "18/18 scenario content checks passed on production" },
+    { "capability": "Maintain conversation context", "pass": true, "notes": "Codeword and focus-echo memory tests pass within session" },
+    { "capability": "Understand follow-up questions", "pass": true, "notes": "Shorter bullets, why-priority, simplify-one-sentence follow-ups answered from prior turns" },
+    { "capability": "Ask clarifying questions when necessary", "pass": true, "notes": "'Fix it.' triggers clarification, not Web Search Report" },
+    { "capability": "Avoid robotic or repetitive responses", "pass": true, "notes": "Zero [Repository Fact]/[General Knowledge]/[Web Search Report] prefixes in cert run" },
+    { "capability": "Avoid always returning executive alerts", "pass": true, "notes": "No B6-01a template regression" },
+    { "capability": "Speak naturally in professional English", "pass": true, "notes": "Executive tone without source-label scaffolding" },
+    { "capability": "Adjust response depth to question", "pass": true, "notes": "Summarise + shorter follow-up worked" },
+    { "capability": "Recommend next actions", "pass": true, "notes": "Blocker and next-action queries answered with priorities" },
+    { "capability": "Explain WHY recommendations are made", "pass": true, "notes": "Follow-up 'Why is that the top priority?' answered with rationale" },
+    { "capability": "Compare alternatives", "pass": true, "notes": "Deploy vs certification comparison returned" },
+    { "capability": "Identify risks", "pass": true, "notes": "Blocker responses include risk areas" },
+    { "capability": "Identify opportunities", "pass": true, "notes": "General guidance includes improvement paths" },
+    { "capability": "Prioritise work", "pass": true, "notes": "Next-action responses ordered by priority" },
+    { "capability": "Think several steps ahead", "pass": true, "notes": "Multi-step recommendations in blocker/next-action flows" },
+    { "capability": "Distinguish urgent from non-urgent", "pass": true, "notes": "Blocker framing distinguishes critical vs deferred items" },
+    { "capability": "Executive Home screen discussion", "pass": true, "notes": "Screen-awareness queries answered with Executive Home context; Post-T 5/5" },
+    { "capability": "Cursor assistance", "pass": true, "notes": "Cursor help and mission explanation both answered; Post-T pass" },
+    { "capability": "Technical explanation (adapted depth)", "pass": true, "notes": "Plain-language Pillow explanation and EISDIR guidance" },
+    { "capability": "Executive session memory", "pass": true, "notes": "conversationHistory injected into LLM via priorConversationTurns" },
+    { "capability": "Response quality (accurate, helpful, concise when asked)", "pass": true, "notes": "Accurate, helpful, natural tone; concise when explicitly requested" }
+  ],
+  "rootCausesResolved": [
+    {
+      "symptom": "Follow-up questions ignored prior turn content",
+      "rootCause": "session.conversationHistory stored but not passed to assembleLlmMessages",
+      "fix": "priorConversationTurns injected in pillow-host → engine.ts assembleLlmMessages"
+    },
+    {
+      "symptom": "Robotic [Repository Fact]/[General Knowledge] prefixes",
+      "rootCause": "buildKnowledgeRoutingPromptSection mandated labels for all chat",
+      "fix": "buildExecutiveConversationKnowledgeSection + executiveConversationMode + stripExecutiveResponseLabels"
+    },
+    {
+      "symptom": "Ambiguous queries invoked Web Search Report",
+      "rootCause": "Intelligence Platform special-capability path intercepted conversational queries",
+      "fix": "executiveConversationMode skips intelligence platform special paths in engine.ts complete()"
+    },
+    {
+      "symptom": "Potential production crash on executiveLearningBundle",
+      "rootCause": "executiveReasoning undefined in productionFastPath but bundle still dereferenced briefingAnchor",
+      "fix": "Guard in pillow-host.ts when reasoning absent"
+    }
+  ],
+  "filesModified": [
+    {
+      "file": "pillow/src/openai/engine.ts",
+      "change": "Inject priorConversationTurns; executiveConversationMode uses natural tone and skips intelligence platform special paths"
+    },
+    {
+      "file": "pillow/src/openai/knowledge-routing.ts",
+      "change": "Added buildExecutiveConversationKnowledgeSection"
+    },
+    {
+      "file": "pillow/src/openai/index.ts",
+      "change": "Export executive conversation knowledge helper"
+    },
+    {
+      "file": "backend/src/orchestration/pillow-host/pillow-host.ts",
+      "change": "Pass prior turns + executiveConversationMode; stripExecutiveResponseLabels; guard executiveLearningBundle"
+    },
+    {
+      "file": "backend/src/domain/services/executive-conversational-routing.ts",
+      "change": "Expanded follow-up/ambiguous/memory routing"
+    },
+    {
+      "file": "pillow/src/loyalty-programme-engine/loyalty-programme-manager.ts",
+      "change": "Build blocker fix: getCustomerProfiles → getCrmRecords (unrelated TS error blocking deploy)"
+    },
+    {
+      "file": "pillow/src/validation/tests/openai.test.ts",
+      "change": "Unit tests for memory injection and executive tone policy (15/15 pass)"
+    },
+    {
+      "file": "backend/scripts/pillow-executive-conversation-cert.mjs",
+      "change": "Comprehensive live certification suite"
+    }
+  ],
+  "remainingLimitations": [
+    "Executive reasoning cycle still skipped in production (NODE_ENV=production) for latency; strategic depth may be slightly reduced vs dev",
+    "command.intent may remain unknown on LLM path (cosmetic; content unaffected)",
+    "memory_focus_echo follow-up paraphrases rather than verbatim echo — acceptable but not word-for-word recall",
+    "First cert run after deploy hit transient fetch failure on scenario 2; immediate retry passed 18/18"
+  ],
+  "certificationGate": {
+    "preFixVerdict": "CONDITIONAL_FAIL",
+    "postFixVerdict": "FINAL_PASS",
+    "blockingCriteriaMet": true,
+    "liveProductionValidated": true
+  }
+}

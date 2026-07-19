@@ -79,7 +79,7 @@ export async function resolvePillowRepositoryRootWithAudit(
     const resolution = { repositoryRoot: found, governanceAudit };
     discovered.push(resolution);
 
-    if (governanceAudit.requiredKnowledgeFilesFound) {
+    if (governanceAudit.requiredKnowledgeFilesFound && governanceAudit.bootstrapRequiredFilesFound) {
       lastGovernanceAudit = governanceAudit;
       return resolution;
     }
@@ -92,8 +92,12 @@ export async function resolvePillowRepositoryRootWithAudit(
   }
 
   const best = discovered.reduce((current, next) => {
-    const currentMissing = current.governanceAudit.missingKnowledgeFiles.length;
-    const nextMissing = next.governanceAudit.missingKnowledgeFiles.length;
+    const currentMissing =
+      current.governanceAudit.missingKnowledgeFiles.length +
+      current.governanceAudit.missingBootstrapFiles.length;
+    const nextMissing =
+      next.governanceAudit.missingKnowledgeFiles.length +
+      next.governanceAudit.missingBootstrapFiles.length;
     if (nextMissing < currentMissing) return next;
     if (nextMissing > currentMissing) return current;
     return next.governanceAudit.doctrineFilesFound >

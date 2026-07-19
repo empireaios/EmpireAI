@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "useSandbox": true,
+  "authenticationRulesEnabled": true,
+  "campaignSynchronizationRulesEnabled": true,
+  "audienceSynchronizationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "operationsPerMinute": 60,
+  "burstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://tiktok-ads-api",
+  "defaultAdvertiserAccountId": "adv-tiktok-default",
+  "maskSensitiveValues": true
+}

@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "useSandbox": false,
+  "authenticationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "requestsPerMinute": 40,
+  "burstLimit": 5,
+  "rateLimitWindowMs": 60000,
+  "webhookRulesEnabled": true,
+  "webhookSignatureVerificationEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://shopify-admin-api",
+  "defaultStoreId": null,
+  "defaultStoreDomain": null,
+  "maskSensitiveValues": true
+}

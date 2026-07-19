@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "exchangeRateProviderRulesEnabled": true,
+  "conversionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "exchangeRateRefreshFrequencyMs": 3600000,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "reportingCurrency": "USD",
+  "supportedCurrencies": ["USD", "EUR", "GBP", "JPY", "CAD", "AUD"]
+}

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "experimentRulesEnabled": true,
+  "audienceAllocationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverDeployWinningVariantsWithoutValidation": true,
+  "maskSensitiveValues": true,
+  "significanceThreshold": 0.95,
+  "minimumSampleSize": 100,
+  "defaultAudienceSplitPercent": 50,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "marketScoringRulesEnabled": true,
+  "investmentRecommendationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverFabricateValidationResults": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "minMarketDemandScore": 50,
+  "minCompetitionScore": 40,
+  "minProfitabilityScore": 50,
+  "minValidationConfidence": 55,
+  "proceedThreshold": 75,
+  "cautionThreshold": 55,
+  "maxValidationsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

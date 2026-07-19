@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "clvCalculationRulesEnabled": true,
+  "predictionRulesEnabled": true,
+  "retentionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "highValueThreshold": 500,
+  "decliningValueDropPercent": 20,
+  "defaultProfitMargin": 0.25,
+  "predictionHorizonMonths": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

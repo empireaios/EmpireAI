@@ -1,0 +1,613 @@
+{
+  "validatedAt": "2026-07-18T00:25:28.122Z",
+  "baseUrl": "https://empire-ai.co",
+  "sessionId": "per-scenario",
+  "passCount": 18,
+  "total": 18,
+  "overallPass": true,
+  "capabilitySummary": [
+    {
+      "category": "Executive Conversation",
+      "pass": true,
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "category": "Screen Discussion",
+      "pass": true,
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "category": "Cursor Assistance",
+      "pass": true,
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "category": "Executive Reasoning",
+      "pass": true,
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "category": "Technical Explanation",
+      "pass": true,
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "category": "Executive Memory",
+      "pass": true,
+      "passed": 2,
+      "total": 2
+    }
+  ],
+  "results": [
+    {
+      "id": "casual_greeting",
+      "category": "Executive Conversation",
+      "message": "Good morning Pillow — quick check-in before I start the day.",
+      "shouldMatch": {},
+      "mustNotMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Good morning Pillow — quick check-in before I start the day.",
+          "response": "Good morning, Your Majesty! Everything is on track for today. The focus remains on completing EmpireAI Version 1. If there's anything specific you'd like to address or any updates you need, please let me know.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1231,
+            "totalMs": 1238
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "screen_what_am_i_looking_at",
+      "category": "Screen Discussion",
+      "message": "What am I looking at?",
+      "shouldMatch": {},
+      "mustNotMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What am I looking at?",
+          "response": "You are currently viewing the Executive Home screen, which serves as your daily operating dashboard for EmpireAI. This screen provides an overview of key metrics, updates, and insights related to the ongoing mission of Pillow Executive Conversation Certification. \n\nThe layout includes various panels that display critical information such as operational performance, project statuses, and any immediate actions required. This centralized view allows you to monitor progress, make informed decisions, and stay aligned with the objectives of EmpireAI.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 3,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1845,
+            "totalMs": 1854
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "screen_explain_page",
+      "category": "Screen Discussion",
+      "message": "Explain this page to me in plain English.",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Explain this page to me in plain English.",
+          "response": "This page is your daily operating screen for managing EmpireAI. It provides an overview of key information and metrics relevant to your role as Grand King. \n\nThe layout includes various panels that display important data, updates, and insights into the current state of the business. You can monitor ongoing projects, track performance metrics, and access essential tools for decision-making. The purpose is to keep you informed and facilitate efficient management of EmpireAI's operations. \n\nOverall, this screen serves as a centralized hub for your daily activities and strategic oversight.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1965,
+            "totalMs": 1971
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "screen_what_to_click",
+      "category": "Screen Discussion",
+      "message": "What should I click first on this screen?",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What should I click first on this screen?",
+          "response": "On the Executive Home screen, I recommend clicking on the \"Executive Dashboard\" panel first. This panel provides an overview of key performance indicators, current objectives, and any critical updates related to EmpireAI. It will give you a comprehensive snapshot of the current state of affairs, helping you prioritize your next actions effectively. \n\nAfter reviewing the dashboard, you can explore other panels for more specific insights or actions related to ongoing projects and operational tasks.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1515,
+            "totalMs": 1521
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "cursor_help",
+      "category": "Cursor Assistance",
+      "message": "Can you help me with Cursor?",
+      "shouldMatch": {},
+      "mustNotMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Can you help me with Cursor?",
+          "response": "Cursor is currently in a state of readiness for repository synchronization. The mission involves validating dependencies and ensuring that all necessary components are in place before proceeding. \n\nTo move forward, I recommend confirming the following:\n1. **Dependencies**: Ensure that all required modules and components are operational.\n2. **Mission Progress**: Review any pending tasks related to Cursor to ensure they are addressed.\n\nIf you have specific tasks or issues regarding Cursor that you need assistance with, please let me know!",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 12985,
+            "totalMs": 12992
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "cursor_mission_explain",
+      "category": "Cursor Assistance",
+      "message": "Explain this mission to me like I'm planning the day, not debugging code.",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Explain this mission to me like I'm planning the day, not debugging code.",
+          "response": "This mission is about completing the final touches on EmpireAI Version 1, ensuring everything is in place for a successful launch. Think of it as preparing for a big event:\n\n1. **Morning Preparation**: Start by reviewing the overall plan and objectives. We need to ensure that all components of EmpireAI are ready, just like checking the venue for an event.\n\n2. **Team Coordination**: Gather your team to discuss any outstanding tasks or blockers. This is akin to a pre-event meeting to ensure everyone knows their roles.\n\n3. **Final Checks**: Conduct a thorough review of the system. This includes t",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 5,
+            "llmMs": 3366,
+            "totalMs": 3377
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "strategic_blocker",
+      "category": "Executive Reasoning",
+      "message": "What is the biggest blocker right now?",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What is the biggest blocker right now?",
+          "response": "The biggest blocker right now is the Core Constitution (CTD). This is critical as it directly impacts the overall framework and governance of EmpireAI. Other significant blockers include Architecture Constraints (ACD), Reality Integration (REAL), and the Release & Go-Live preparations. Addressing these issues is essential for progressing towards the completion of EmpireAI Version 1.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1563,
+            "totalMs": 1570
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "strategic_next_action",
+      "category": "Executive Reasoning",
+      "message": "What should I do next?",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What should I do next?",
+          "response": "To advance your mission of completing EmpireAI Version 1, focus on validating conversational intelligence across executive scenarios. This involves:\n\n1. **Engaging in Scenario Testing**: Conduct tests to ensure the conversational AI performs effectively in various executive scenarios. This will help identify any gaps in memory or response accuracy.\n\n2. **Reviewing Feedback**: Gather and analyze feedback from recent interactions to refine the AI's responses and improve its conversational flow.\n\n3. **Addressing Current Risks**: Work on mitigating risks related to conversation memory gaps and avo",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 2335,
+            "totalMs": 2345
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "strategic_compare",
+      "category": "Executive Reasoning",
+      "message": "Should I focus on deployment fixes or conversational certification first? Compare both briefly.",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Should I focus on deployment fixes or conversational certification first? Compare both briefly.",
+          "response": "You should focus on deployment fixes first. \n\n**Deployment Fixes:**\n- **Importance:** Ensuring a stable deployment is critical for operational readiness and user experience. It addresses immediate technical issues that could hinder the functionality of the system.\n- **Current Status:** There are known deployment issues that could lead to production risks. Fixing these will help maintain system integrity and performance.\n- **Risk:** High production risk if not addressed; it could lead to outages or degraded service.\n\n**Conversational Certification:**\n- **Importance:** This focuses on validating",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 35,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 3,
+            "llmMs": 18386,
+            "totalMs": 18429
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "technical_plain",
+      "category": "Technical Explanation",
+      "message": "Explain what Pillow does in this app without jargon.",
+      "shouldMatch": {},
+      "mustNotMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Explain what Pillow does in this app without jargon.",
+          "response": "Pillow is designed to assist you in managing and navigating the EmpireAI platform. It helps streamline decision-making, provides insights, and organizes information to ensure you have everything you need at your fingertips. Essentially, it acts as your intelligent assistant, making it easier for you to focus on strategic tasks and achieve your goals efficiently.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1277,
+            "totalMs": 1285
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "technical_error",
+      "category": "Technical Explanation",
+      "message": "If deployment fails with EISDIR on DATABASE_PATH, what does that mean and what should Cursor do?",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "If deployment fails with EISDIR on DATABASE_PATH, what does that mean and what should Cursor do?",
+          "response": "If deployment fails with an EISDIR error on DATABASE_PATH, it indicates that the system is attempting to access a directory as if it were a file. This can occur when the path specified for a file operation points to a directory instead of a valid file.\n\nTo resolve this issue, Cursor should:\n\n1. **Verify the DATABASE_PATH**: Ensure that the path specified is indeed pointing to a file and not a directory. If it is a directory, update the path to point to the correct file.\n\n2. **Check Configuration Files**: Review any configuration files or environment variables that define the DATABASE_PATH to e",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 3,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 2762,
+            "totalMs": 2769
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "memory_codeword",
+      "category": "Executive Memory",
+      "message": "Remember this codeword for our chat only: purple-rabbit-42. Acknowledge briefly.",
+      "multiTurn": true,
+      "followUp": "What codeword did I give you? Reply with just the codeword.",
+      "expectMemory": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Remember this codeword for our chat only: purple-rabbit-42. Acknowledge briefly.",
+          "response": "Acknowledged, Grand King. The codeword \"purple-rabbit-42\" is noted for our chat. How may I assist you today?",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 1,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 857,
+            "totalMs": 863
+          },
+          "pass": true,
+          "notes": []
+        },
+        {
+          "turn": "followUp",
+          "message": "What codeword did I give you? Reply with just the codeword.",
+          "response": "purple-rabbit-42",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1379,
+            "totalMs": 1386
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "memory_focus_echo",
+      "category": "Executive Memory",
+      "message": "Let's track one thing: our focus today is conversational certification, not new features.",
+      "multiTurn": true,
+      "followUp": "What did I say our focus is today?",
+      "expectMemory": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Let's track one thing: our focus today is conversational certification, not new features.",
+          "response": "Understood, Grand King. Our focus will remain on conversational certification for today. Please let me know how you would like to proceed or if there are specific areas within the certification process that you want to address.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 2018,
+            "totalMs": 2026
+          },
+          "pass": true,
+          "notes": []
+        },
+        {
+          "turn": "followUp",
+          "message": "What did I say our focus is today?",
+          "response": "You stated that our focus today is on conversational certification, not new features. How would you like to proceed with this focus?",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 2974,
+            "totalMs": 2981
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "follow_up_depth",
+      "category": "Executive Conversation",
+      "message": "Summarise everything important on this page.",
+      "multiTurn": true,
+      "followUp": "Make that shorter — three bullets only.",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Summarise everything important on this page.",
+          "response": "The Executive Home screen serves as the daily operating dashboard for the Grand King, focusing on the current business, EmpireAI, and the ongoing mission of Pillow Executive Conversation Certification. Key elements include:\n\n1. **Current Business**: EmpireAI, emphasizing its operational status and ongoing initiatives.\n2. **Current Mission**: Focused on achieving the Pillow Executive Conversation Certification, which is essential for ensuring effective communication and operational readiness.\n3. **Screen Purpose**: To provide an overview and facilitate efficient management and decision-making f",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 3,
+            "llmMs": 13100,
+            "totalMs": 13108
+          },
+          "pass": true,
+          "notes": []
+        },
+        {
+          "turn": "followUp",
+          "message": "Make that shorter — three bullets only.",
+          "response": "- **Current Business**: EmpireAI.\n- **Current Mission**: Achieving Pillow Executive Conversation Certification.\n- **Screen Purpose**: Daily operational overview for effective management.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 4470,
+            "totalMs": 4477
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "follow_up_why",
+      "category": "Executive Conversation",
+      "message": "What is the biggest blocker right now?",
+      "multiTurn": true,
+      "followUp": "Why is that the top priority?",
+      "shouldMatch": {},
+      "followUpMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What is the biggest blocker right now?",
+          "response": "The biggest blocker right now is the Core Constitution (CTD). This is critical as it impacts several other areas, including Architecture Constraints (ACD), Reality Integration (REAL), and the overall release and go-live preparations. Addressing the Core Constitution will help mitigate these interconnected issues and facilitate progress toward completing EmpireAI Version 1.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1148,
+            "totalMs": 1155
+          },
+          "pass": true,
+          "notes": []
+        },
+        {
+          "turn": "followUp",
+          "message": "Why is that the top priority?",
+          "response": "The Core Constitution (CTD) is the top priority because it serves as the foundational framework for all operations and governance within EmpireAI. Without a solid constitution, we risk misalignment in architecture, governance, and operational execution, which can lead to delays in completing EmpireAI Version 1. Addressing this issue will create a stable base for further developments and ensure that all subsequent initiatives can proceed smoothly and effectively.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 3,
+            "llmMs": 1447,
+            "totalMs": 1454
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "follow_up_simplify",
+      "category": "Executive Conversation",
+      "message": "Explain what Pillow does in this app without jargon.",
+      "multiTurn": true,
+      "followUp": "Can you simplify that in one sentence?",
+      "shouldMatch": {},
+      "followUpMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Explain what Pillow does in this app without jargon.",
+          "response": "Pillow acts as your executive assistant within this app, helping you manage tasks, access information, and make informed decisions efficiently. It streamlines your daily operations by providing insights, reminders, and support for various activities, ensuring you stay organized and focused on your priorities.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 1,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1114,
+            "totalMs": 1121
+          },
+          "pass": true,
+          "notes": []
+        },
+        {
+          "turn": "followUp",
+          "message": "Can you simplify that in one sentence?",
+          "response": "Pillow is your personal assistant in this app, helping you stay organized and make decisions more easily.",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 1,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 1028,
+            "totalMs": 1035
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "clarification_ambiguous",
+      "category": "Executive Conversation",
+      "message": "Fix it.",
+      "shouldMatch": {},
+      "mustNotMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "Fix it.",
+          "response": "Could you please clarify what specific issue you would like me to fix?",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 2,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 630,
+            "totalMs": 636
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "id": "alert_meaning",
+      "category": "Screen Discussion",
+      "message": "What does this alert mean?",
+      "shouldMatch": {},
+      "pass": true,
+      "notes": [],
+      "turns": [
+        {
+          "turn": "primary",
+          "message": "What does this alert mean?",
+          "response": "The alert indicates that there are critical issues affecting the operational readiness of EmpireAI. Specifically, it highlights the following blockers:\n\n1. **Core Constitution (CTD)**: This may refer to foundational governance or structural issues that need resolution.\n2. **Architecture Constraints (ACD)**: These could be limitations within the system architecture that hinder progress.\n3. **Reality Integration (REAL)**: This might involve challenges in integrating real-world data or systems.\n4. **Global Components (GC)**: Potential issues with components that are essential for global operation",
+          "kind": "llm",
+          "trace": {
+            "commandMs": 1,
+            "contextMs": 0,
+            "executiveReasoningMs": 0,
+            "executiveCouncilMs": 2,
+            "llmMs": 2676,
+            "totalMs": 2683
+          },
+          "pass": true,
+          "notes": []
+        }
+      ]
+    }
+  ]
+}

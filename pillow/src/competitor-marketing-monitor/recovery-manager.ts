@@ -1,0 +1,46 @@
+/** R5-15 — Competitor Marketing Monitor recovery manager. */
+
+import { appendCmmLog } from "./cmm-logging.js";
+import type { CompetitorMarketingMonitorConfiguration } from "./configuration.js";
+
+export class RecoveryManager {
+  private recoveryAttempts = 0;
+  private consecutiveFailures = 0;
+
+  recordSuccess(): void {
+    this.consecutiveFailures = 0;
+  }
+
+  recordFailure(error: string, config: CompetitorMarketingMonitorConfiguration): boolean {
+    this.consecutiveFailures += 1;
+    appendCmmLog({
+      event: "monitoring_failures",
+      level: "warn",
+      details: `${error} (consecutive: ${this.consecutiveFailures})`,
+    });
+
+    if (!config.autoRecover) return false;
+    if (this.consecutiveFailures < 2) return false;
+
+    this.recoveryAttempts += 1;
+    appendCmmLog({
+      event: "recovery_attempt",
+      level: "info",
+      details: `Competitor Marketing Monitor recovery attempt ${this.recoveryAttempts}`,
+    });
+    return this.recoveryAttempts <= config.maxRetryAttempts;
+  }
+
+  getRecoveryAttempts(): number {
+    return this.recoveryAttempts;
+  }
+
+  getConsecutiveFailures(): number {
+    return this.consecutiveFailures;
+  }
+
+  reset(): void {
+    this.recoveryAttempts = 0;
+    this.consecutiveFailures = 0;
+  }
+}

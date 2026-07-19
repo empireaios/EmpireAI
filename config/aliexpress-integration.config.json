@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "useSandbox": true,
+  "apiEndpointRulesEnabled": true,
+  "authenticationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "requestsPerMinute": 60,
+  "burstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "webhookRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://aliexpress-api",
+  "maskSensitiveValues": true
+}

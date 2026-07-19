@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "forecastPeriodRulesEnabled": true,
+  "forecastCalculationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "confidenceThreshold": 50,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultForecastPeriod": "30d",
+  "periodRules": [
+    { "period": "7d", "multiplier": 0.25, "label": "7-day forecast" },
+    { "period": "30d", "multiplier": 1, "label": "30-day forecast" },
+    { "period": "90d", "multiplier": 3, "label": "90-day forecast" },
+    { "period": "quarterly", "multiplier": 3, "label": "Quarterly forecast" },
+    { "period": "annual", "multiplier": 12, "label": "Annual forecast" }
+  ]
+}

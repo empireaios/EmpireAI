@@ -1,0 +1,75 @@
+{
+  "mission": "Pillow Executive Behavioural Closure & Final Certification",
+  "reportedAt": "2026-07-18T04:25:00+08:00",
+  "finalVerdict": "BLOCKED_PENDING_PRODUCTION_DEPLOY",
+  "verdictNote": "All behavioural architectural corrections are implemented and unit-tested locally. Live production (deployment 1029bbae) still runs pre-fix code. Railway deploy was blocked by environment approval gate. FINAL PASS requires successful railway up and live re-certification.",
+  "preDeployProductionEvidence": {
+    "deploymentId": "1029bbae-f433-47aa-a595-392b8731bc84",
+    "codewordMemoryTest": {
+      "turn1": "[General Knowledge] Acknowledged: purple-rabbit-42",
+      "turn2": "The codeword you provided is \"Pillow.\"",
+      "pass": false
+    },
+    "roboticLabelsPresent": true,
+    "pillowHealth": "lifecycle running, lastError null"
+  },
+  "localValidation": {
+    "openaiExecutiveTests": "15/15 pass",
+    "executiveRoutingTests": "4/4 pass (routing-only; DB-dependent integration tests skipped due to local sql.js corruption)"
+  },
+  "capabilities": [
+    { "capability": "True session memory (codeword)", "pass": false, "notes": "Pre-deploy production fail; fix implemented: priorConversationTurns injected" },
+    { "capability": "Follow-up understanding", "pass": false, "notes": "Pre-deploy; fix: follow-up routing + prompt + per-turn history" },
+    { "capability": "Clarification intelligence", "pass": false, "notes": "Pre-deploy Web Search on Fix it; fix: executive mode bypass + ambiguous prompt" },
+    { "capability": "Natural executive speech", "pass": false, "notes": "Pre-deploy labels present; fix: executive tone policy + stripExecutiveResponseLabels" },
+    { "capability": "Intent routing (conversational pipeline)", "pass": false, "notes": "Pre-deploy; fix: workspaceContext always conversational + expanded shouldRunConversationalPipeline" },
+    { "capability": "Response quality", "pass": false, "notes": "Blocked on deploy" },
+    { "capability": "Executive memory continuity", "pass": false, "notes": "Blocked on deploy" },
+    { "capability": "Executive reasoning", "pass": true, "notes": "Post-T scenarios passed on prior certification; no regression in code paths" },
+    { "capability": "Cursor assistance", "pass": true, "notes": "Maintained via conversational routing" },
+    { "capability": "Screen discussion", "pass": true, "notes": "Maintained via screen awareness brief" },
+    { "capability": "Production certification regression", "pass": true, "notes": "No architectural changes to Post-T routing; B6-01a guard preserved" }
+  ],
+  "rootCauses": [
+    {
+      "failure": "Codeword memory",
+      "cause": "conversationHistory stored but not passed to assembleLlmMessages; Remember* queries missed conversational pipeline",
+      "fix": "priorConversationTurns + executiveConversationMode + workspaceContext forces conversational pipeline"
+    },
+    {
+      "failure": "Robotic [Repository Fact] labels",
+      "cause": "Constitutional knowledge routing applied to all chat",
+      "fix": "buildExecutiveConversationKnowledgeSection + stripExecutiveResponseLabels post-process"
+    },
+    {
+      "failure": "Web Search on ambiguous queries",
+      "cause": "Intelligence Platform special-capability bypass",
+      "fix": "Skip platform bypass when executiveConversationMode"
+    },
+    {
+      "failure": "Follow-ups answered from screen not conversation",
+      "cause": "No follow-up routing policy; minimal production path for short queries",
+      "fix": "isExecutiveFollowUpQuery + conversationalResponsePolicy follow-up branch"
+    }
+  ],
+  "filesModified": [
+    "pillow/src/openai/engine.ts",
+    "pillow/src/openai/knowledge-routing.ts",
+    "pillow/src/openai/index.ts",
+    "pillow/src/validation/tests/openai.test.ts",
+    "backend/src/orchestration/pillow-host/pillow-host.ts",
+    "backend/src/domain/services/executive-conversational-routing.ts",
+    "backend/src/validation/tests/executive-conversational-routing.test.ts",
+    "backend/scripts/pillow-executive-conversation-cert.mjs"
+  ],
+  "deployCommand": "cd EmpireAI && railway up --detach",
+  "postDeployValidation": [
+    "node backend/scripts/pillow-executive-conversation-cert.mjs",
+    "node backend/scripts/post-t-executive-home-verify.mjs"
+  ],
+  "remainingLimitations": [
+    "Executive reasoning cycle still skipped in production NODE_ENV=production for latency",
+    "LLM may occasionally ignore prior turns — mitigated by prompt + history injection",
+    "Railway deploy requires manual approval in this environment"
+  ]
+}

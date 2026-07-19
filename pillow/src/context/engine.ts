@@ -264,6 +264,9 @@ function resolveCursorBridgeBrief(
     task === "generate_cursor_mission" ||
     /deploy|investigate|review cursor|architectural weakness|recommend improvement|prepare production|engineering chief/i.test(
       userMessage,
+    ) ||
+    /help.*cursor|with cursor|cursor (help|assist|status|mission|progress|build|fail)|explain cursor|resume.*mission|build fail|implementation progress/i.test(
+      userMessage,
     );
 
   if (!shouldBridge) return undefined;

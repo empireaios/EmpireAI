@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "dashboardRefreshFrequencyMs": 60000,
+  "kpiSelectionRulesEnabled": true,
+  "executiveSummaryRulesEnabled": true,
+  "alertDisplayRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultWidgets": ["revenue", "expense", "profit", "cash_flow", "liquidity", "budget", "forecast", "risk", "kpi", "trend"],
+  "kpiRules": [
+    { "kpiId": "net_profit", "label": "Net Profit", "enabled": true },
+    { "kpiId": "profit_margin", "label": "Profit Margin", "enabled": true },
+    { "kpiId": "cash_flow", "label": "Net Cash Flow", "enabled": true },
+    { "kpiId": "budget_utilization", "label": "Budget Utilization", "enabled": true },
+    { "kpiId": "risk_score", "label": "Risk Score", "enabled": true }
+  ]
+}

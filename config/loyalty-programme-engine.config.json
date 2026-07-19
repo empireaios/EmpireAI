@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "pointsCalculationRulesEnabled": true,
+  "tierRulesEnabled": true,
+  "rewardRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "abuseDetectionEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "maxPointsPerAward": 10000,
+  "maxRedemptionsPerHour": 5,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

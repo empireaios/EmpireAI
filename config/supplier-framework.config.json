@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "supplierRegistrationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "eventRoutingRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "apiTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "defaultEventsPerMinute": 60,
+  "defaultBurstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maxRegisteredSuppliers": 50,
+  "isolateSuppliers": true,
+  "maskSensitiveValues": true
+}

@@ -13,7 +13,15 @@ function resolveDatabasePath(): string {
   if (isInMemoryDatabasePath(raw)) {
     return raw;
   }
-  return path.resolve(raw);
+  let resolved = path.resolve(raw);
+  try {
+    if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
+      resolved = path.join(resolved, "empireai-brain.db");
+    }
+  } catch {
+    // best-effort — EmpireDatabase constructor handles missing files
+  }
+  return resolved;
 }
 
 export function getDatabase(): EmpireDatabase {

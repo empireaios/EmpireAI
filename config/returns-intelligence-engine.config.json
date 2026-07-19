@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "eligibilityRulesEnabled": true,
+  "riskScoringRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "abnormalDetectionEnabled": true,
+  "repeatPatternDetectionEnabled": true,
+  "maxReturnsPerCustomerPerMonth": 5,
+  "highRiskThreshold": 75,
+  "mediumRiskThreshold": 45,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

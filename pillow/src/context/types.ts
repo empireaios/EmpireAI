@@ -86,6 +86,8 @@ export interface OperationalContext {
   empireOperatingSystemBrief?: string;
   /** Phase 10 Continuous Empire Evolution improvement and certification brief */
   continuousEvolutionBrief?: string;
+  /** Active workspace screen awareness from Executive Companion / CSO */
+  screenAwarenessBrief?: string;
 }
 
 export interface ContextBuilderOptions {

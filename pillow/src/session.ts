@@ -397,6 +397,358 @@ import {
   createEtsyMarketplaceIntegrationEngine,
 } from "./etsy-marketplace-integration/engine.js";
 import {
+  EbayMarketplaceIntegrationEngine,
+  createEbayMarketplaceIntegrationEngine,
+} from "./ebay-marketplace-integration/engine.js";
+import {
+  TikTokShopMarketplaceIntegrationEngine,
+  createTikTokShopMarketplaceIntegrationEngine,
+} from "./tiktok-shop-marketplace-integration/engine.js";
+import {
+  ShopifyStoreMarketplaceIntegrationEngine,
+  createShopifyStoreMarketplaceIntegrationEngine,
+} from "./shopify-store-marketplace-integration/engine.js";
+import {
+  WooCommerceMarketplaceIntegrationEngine,
+  createWooCommerceMarketplaceIntegrationEngine,
+} from "./woocommerce-marketplace-integration/engine.js";
+import {
+  MarketplaceProductNormalizationEngine,
+  createMarketplaceProductNormalizationEngine,
+} from "./marketplace-product-normalization/engine.js";
+import {
+  MarketplaceOrderNormalizationEngine,
+  createMarketplaceOrderNormalizationEngine,
+} from "./marketplace-order-normalization/engine.js";
+import {
+  MarketplaceHealthMonitorEngine,
+  createMarketplaceHealthMonitorEngine,
+} from "./marketplace-health-monitor/engine.js";
+import {
+  MarketplaceCertificationEngine,
+  createMarketplaceCertificationEngine,
+} from "./marketplace-certification/engine.js";
+import {
+  SupplierFrameworkEngine,
+  createSupplierFrameworkEngine,
+} from "./supplier-framework/engine.js";
+import {
+  CjDropshippingIntegrationEngine,
+  createCjDropshippingIntegrationEngine,
+} from "./cj-dropshipping-integration/engine.js";
+import {
+  AliExpressIntegrationEngine,
+  createAliExpressIntegrationEngine,
+} from "./aliexpress-integration/engine.js";
+import {
+  Oss1688IntegrationEngine,
+  createOss1688IntegrationEngine,
+} from "./1688-integration/engine.js";
+import {
+  SupplierProductSyncEngine,
+  createSupplierProductSyncEngine,
+} from "./supplier-product-sync/engine.js";
+import {
+  SupplierInventorySyncEngine,
+  createSupplierInventorySyncEngine,
+} from "./supplier-inventory-sync/engine.js";
+import {
+  SupplierPricingEngine,
+  createSupplierPricingEngine,
+} from "./supplier-pricing-engine/engine.js";
+import {
+  SupplierRankingEngine,
+  createSupplierRankingEngine,
+} from "./supplier-ranking-engine/engine.js";
+import {
+  ProcurementEngine,
+  createProcurementEngine,
+} from "./procurement-engine/engine.js";
+import {
+  FulfilmentOrchestrator,
+  createFulfilmentOrchestrator,
+} from "./fulfilment-orchestrator/engine.js";
+import {
+  ShippingCarrierIntegrationEngine,
+  createShippingCarrierIntegrationEngine,
+} from "./shipping-carrier-integration/engine.js";
+import {
+  ShipmentTrackingEngine,
+  createShipmentTrackingEngine,
+} from "./shipment-tracking-engine/engine.js";
+import {
+  ReturnManagementEngine,
+  createReturnManagementEngine,
+} from "./return-management/engine.js";
+import {
+  WarehouseIntelligenceEngine,
+  createWarehouseIntelligenceEngine,
+} from "./warehouse-intelligence/engine.js";
+import {
+  MultiWarehouseSupportEngine,
+  createMultiWarehouseSupportEngine,
+} from "./multi-warehouse-support/engine.js";
+import {
+  SupplierRiskMonitorEngine,
+  createSupplierRiskMonitorEngine,
+} from "./supplier-risk-monitor/engine.js";
+import {
+  LogisticsOptimizationEngine,
+  createLogisticsOptimizationEngine,
+} from "./logistics-optimization/engine.js";
+import {
+  FulfilmentSlaMonitorEngine,
+  createFulfilmentSlaMonitorEngine,
+} from "./fulfilment-sla-monitor/engine.js";
+import {
+  ProcurementIntelligenceEngine,
+  createProcurementIntelligenceEngine,
+} from "./procurement-intelligence/engine.js";
+import {
+  SupplierOperationsCertificationEngine,
+  createSupplierOperationsCertificationEngine,
+} from "./supplier-operations-certification/engine.js";
+import {
+  FinancialFrameworkEngine,
+  createFinancialFrameworkEngine,
+} from "./financial-framework/engine.js";
+import {
+  PaymentGatewayIntegrationEngine,
+  createPaymentGatewayIntegrationEngine,
+} from "./payment-gateway-integration/engine.js";
+import {
+  BankingIntegrationEngine,
+  createBankingIntegrationEngine,
+} from "./banking-integration/engine.js";
+import {
+  RevenueEngine,
+  createRevenueEngine,
+} from "./revenue-engine/engine.js";
+import {
+  ExpenseEngine,
+  createExpenseEngine,
+} from "./expense-engine/engine.js";
+import {
+  ProfitCalculationEngine,
+  createProfitCalculationEngine,
+} from "./profit-calculation-engine/engine.js";
+import {
+  CashFlowMonitorEngine,
+  createCashFlowMonitorEngine,
+} from "./cash-flow-monitor/engine.js";
+import {
+  ReconciliationEngine,
+  createReconciliationEngine,
+} from "./reconciliation-engine/engine.js";
+import {
+  InvoiceGeneratorEngine,
+  createInvoiceGeneratorEngine,
+} from "./invoice-generator/engine.js";
+import {
+  RefundEngine,
+  createRefundEngine,
+} from "./refund-engine/engine.js";
+import {
+  TaxIntelligenceEngine,
+  createTaxIntelligenceEngine,
+} from "./tax-intelligence-engine/engine.js";
+import {
+  MultiCurrencyEngine,
+  createMultiCurrencyEngine,
+} from "./multi-currency-engine/engine.js";
+import {
+  FinancialForecastEngine,
+  createFinancialForecastEngine,
+} from "./financial-forecast-engine/engine.js";
+import {
+  BudgetManagementEngine,
+  createBudgetManagementEngine,
+} from "./budget-management-engine/engine.js";
+import {
+  FinancialRiskMonitor,
+  createFinancialRiskMonitor,
+} from "./financial-risk-monitor/engine.js";
+import {
+  ExecutiveFinancialDashboard,
+  createExecutiveFinancialDashboard,
+} from "./executive-financial-dashboard/engine.js";
+import {
+  AccountingExportEngine,
+  createAccountingExportEngine,
+} from "./accounting-export-engine/engine.js";
+import {
+  FinancialOperationsCertificationEngine,
+  createFinancialOperationsCertificationEngine,
+} from "./financial-operations-certification/engine.js";
+import {
+  CustomerIdentityEngine,
+  createCustomerIdentityEngine,
+} from "./customer-identity-engine/engine.js";
+import {
+  CrmFoundationEngine,
+  createCrmFoundationEngine,
+} from "./crm-foundation/engine.js";
+import {
+  CustomerTimelineEngine,
+  createCustomerTimelineEngine,
+} from "./customer-timeline-engine/engine.js";
+import {
+  EmailCommunicationEngine,
+  createEmailCommunicationEngine,
+} from "./email-communication-engine/engine.js";
+import {
+  SmsCommunicationEngine,
+  createSmsCommunicationEngine,
+} from "./sms-communication-engine/engine.js";
+import {
+  WhatsAppIntegration,
+  createWhatsAppIntegration,
+} from "./whatsapp-integration/engine.js";
+import {
+  LiveChatIntegration,
+  createLiveChatIntegration,
+} from "./live-chat-integration/engine.js";
+import {
+  AiCustomerSupport,
+  createAiCustomerSupport,
+} from "./ai-customer-support/engine.js";
+import {
+  TicketManagementEngine,
+  createTicketManagementEngine,
+} from "./ticket-management-engine/engine.js";
+import {
+  CustomerSentimentEngine,
+  createCustomerSentimentEngine,
+} from "./customer-sentiment-engine/engine.js";
+import {
+  ReviewManagementEngine,
+  createReviewManagementEngine,
+} from "./review-management-engine/engine.js";
+import {
+  LoyaltyProgrammeEngine,
+  createLoyaltyProgrammeEngine,
+} from "./loyalty-programme-engine/engine.js";
+import {
+  ReturnsIntelligenceEngine,
+  createReturnsIntelligenceEngine,
+} from "./returns-intelligence-engine/engine.js";
+import {
+  CustomerRiskEngine,
+  createCustomerRiskEngine,
+} from "./customer-risk-engine/engine.js";
+import {
+  CustomerLifetimeValueEngine,
+  createCustomerLifetimeValueEngine,
+} from "./customer-lifetime-value-engine/engine.js";
+import {
+  CustomerSegmentationEngine,
+  createCustomerSegmentationEngine,
+} from "./customer-segmentation-engine/engine.js";
+import {
+  CustomerJourneyIntelligenceEngine,
+  createCustomerJourneyIntelligenceEngine,
+} from "./customer-journey-intelligence-engine/engine.js";
+import {
+  ExecutiveCustomerDashboard,
+  createExecutiveCustomerDashboard,
+} from "./executive-customer-dashboard/engine.js";
+import {
+  CustomerOperationsCertificationEngine,
+  createCustomerOperationsCertificationEngine,
+} from "./customer-operations-certification/engine.js";
+import {
+  MarketingFrameworkEngine,
+  createMarketingFrameworkEngine,
+} from "./marketing-framework/engine.js";
+import {
+  MetaAdsIntegration,
+  createMetaAdsIntegration,
+} from "./meta-ads-integration/engine.js";
+import {
+  GoogleAdsIntegration,
+  createGoogleAdsIntegration,
+} from "./google-ads-integration/engine.js";
+import {
+  TikTokAdsIntegration,
+  createTikTokAdsIntegration,
+} from "./tiktok-ads-integration/engine.js";
+import {
+  YouTubeAdsIntegration,
+  createYouTubeAdsIntegration,
+} from "./youtube-ads-integration/engine.js";
+import {
+  SeoIntelligenceEngine,
+  createSeoIntelligenceEngine,
+} from "./seo-intelligence-engine/engine.js";
+import {
+  CampaignManagerEngine,
+  createCampaignManagerEngine,
+} from "./campaign-manager/engine.js";
+import {
+  AudienceIntelligenceEngine,
+  createAudienceIntelligenceEngine,
+} from "./audience-intelligence/engine.js";
+import {
+  AttributionEngine,
+  createAttributionEngine,
+} from "./attribution-engine/engine.js";
+import {
+  MarketingAnalyticsDashboard,
+  createMarketingAnalyticsDashboard,
+} from "./marketing-analytics-dashboard/engine.js";
+import {
+  CreativeAssetManager,
+  createCreativeAssetManager,
+} from "./creative-asset-manager/engine.js";
+import {
+  AiCampaignGenerator,
+  createAiCampaignGenerator,
+} from "./ai-campaign-generator/engine.js";
+import {
+  BudgetOptimizationEngine,
+  createBudgetOptimizationEngine,
+} from "./budget-optimization-engine/engine.js";
+import {
+  ConversionIntelligence,
+  createConversionIntelligence,
+} from "./conversion-intelligence/engine.js";
+import {
+  CompetitorMarketingMonitor,
+  createCompetitorMarketingMonitor,
+} from "./competitor-marketing-monitor/engine.js";
+import {
+  ViralTrendIntelligence,
+  createViralTrendIntelligence,
+} from "./viral-trend-intelligence/engine.js";
+import {
+  MarketingExperimentEngine,
+  createMarketingExperimentEngine,
+} from "./marketing-experiment-engine/engine.js";
+import {
+  CrossChannelOrchestrator,
+  createCrossChannelOrchestrator,
+} from "./cross-channel-orchestrator/engine.js";
+import {
+  AutonomousMarketingEngine,
+  createAutonomousMarketingEngine,
+} from "./autonomous-marketing-engine/engine.js";
+import {
+  RealWorldOperationsCertificationEngine,
+  createRealWorldOperationsCertificationEngine,
+} from "./real-world-operations-certification/engine.js";
+import {
+  CompanyFactoryFrameworkEngine,
+  createCompanyFactoryFrameworkEngine,
+} from "./company-factory-framework/engine.js";
+import {
+  BusinessOpportunityDiscovery,
+  createBusinessOpportunityDiscovery,
+} from "./business-opportunity-discovery/engine.js";
+import {
+  MarketValidationEngine,
+  createMarketValidationEngine,
+} from "./market-validation-engine/engine.js";
+import {
   EmpireCommanderEngine,
   createEmpireCommanderEngine,
 } from "./empire-commander/engine.js";
@@ -440,6 +792,94 @@ let amazonOrderManagementEngine: AmazonOrderManagementEngine | null = null;
 let amazonInventorySyncEngine: AmazonInventorySyncEngine | null = null;
 let walmartMarketplaceIntegrationEngine: WalmartMarketplaceIntegrationEngine | null = null;
 let etsyMarketplaceIntegrationEngine: EtsyMarketplaceIntegrationEngine | null = null;
+let ebayMarketplaceIntegrationEngine: EbayMarketplaceIntegrationEngine | null = null;
+let tiktokShopMarketplaceIntegrationEngine: TikTokShopMarketplaceIntegrationEngine | null = null;
+let shopifyStoreMarketplaceIntegrationEngine: ShopifyStoreMarketplaceIntegrationEngine | null = null;
+let woocommerceMarketplaceIntegrationEngine: WooCommerceMarketplaceIntegrationEngine | null = null;
+let marketplaceProductNormalizationEngine: MarketplaceProductNormalizationEngine | null = null;
+let marketplaceOrderNormalizationEngine: MarketplaceOrderNormalizationEngine | null = null;
+let marketplaceHealthMonitorEngine: MarketplaceHealthMonitorEngine | null = null;
+let marketplaceCertificationEngine: MarketplaceCertificationEngine | null = null;
+let supplierFrameworkEngine: SupplierFrameworkEngine | null = null;
+let cjDropshippingIntegrationEngine: CjDropshippingIntegrationEngine | null = null;
+let aliExpressIntegrationEngine: AliExpressIntegrationEngine | null = null;
+let oss1688IntegrationEngine: Oss1688IntegrationEngine | null = null;
+let supplierProductSyncEngine: SupplierProductSyncEngine | null = null;
+let supplierInventorySyncEngine: SupplierInventorySyncEngine | null = null;
+let supplierPricingEngine: SupplierPricingEngine | null = null;
+let supplierRankingEngine: SupplierRankingEngine | null = null;
+let procurementEngine: ProcurementEngine | null = null;
+let fulfilmentOrchestrator: FulfilmentOrchestrator | null = null;
+let shippingCarrierIntegrationEngine: ShippingCarrierIntegrationEngine | null = null;
+let shipmentTrackingEngine: ShipmentTrackingEngine | null = null;
+let returnManagementEngine: ReturnManagementEngine | null = null;
+let warehouseIntelligenceEngine: WarehouseIntelligenceEngine | null = null;
+let multiWarehouseSupportEngine: MultiWarehouseSupportEngine | null = null;
+let supplierRiskMonitorEngine: SupplierRiskMonitorEngine | null = null;
+let logisticsOptimizationEngine: LogisticsOptimizationEngine | null = null;
+let fulfilmentSlaMonitorEngine: FulfilmentSlaMonitorEngine | null = null;
+let procurementIntelligenceEngine: ProcurementIntelligenceEngine | null = null;
+let supplierOperationsCertificationEngine: SupplierOperationsCertificationEngine | null = null;
+let financialFrameworkEngine: FinancialFrameworkEngine | null = null;
+let paymentGatewayIntegrationEngine: PaymentGatewayIntegrationEngine | null = null;
+let bankingIntegrationEngine: BankingIntegrationEngine | null = null;
+let revenueEngine: RevenueEngine | null = null;
+let expenseEngine: ExpenseEngine | null = null;
+let profitCalculationEngine: ProfitCalculationEngine | null = null;
+let cashFlowMonitor: CashFlowMonitorEngine | null = null;
+let reconciliationEngine: ReconciliationEngine | null = null;
+let invoiceGenerator: InvoiceGeneratorEngine | null = null;
+let refundEngine: RefundEngine | null = null;
+let taxIntelligenceEngine: TaxIntelligenceEngine | null = null;
+let multiCurrencyEngine: MultiCurrencyEngine | null = null;
+let financialForecastEngine: FinancialForecastEngine | null = null;
+let budgetManagementEngine: BudgetManagementEngine | null = null;
+let financialRiskMonitor: FinancialRiskMonitor | null = null;
+let executiveFinancialDashboard: ExecutiveFinancialDashboard | null = null;
+let accountingExportEngine: AccountingExportEngine | null = null;
+let financialOperationsCertificationEngine: FinancialOperationsCertificationEngine | null = null;
+let customerIdentityEngine: CustomerIdentityEngine | null = null;
+let crmFoundationEngine: CrmFoundationEngine | null = null;
+let customerTimelineEngine: CustomerTimelineEngine | null = null;
+let emailCommunicationEngine: EmailCommunicationEngine | null = null;
+let smsCommunicationEngine: SmsCommunicationEngine | null = null;
+let whatsAppIntegration: WhatsAppIntegration | null = null;
+let liveChatIntegration: LiveChatIntegration | null = null;
+let aiCustomerSupport: AiCustomerSupport | null = null;
+let ticketManagementEngine: TicketManagementEngine | null = null;
+let customerSentimentEngine: CustomerSentimentEngine | null = null;
+let reviewManagementEngine: ReviewManagementEngine | null = null;
+let loyaltyProgrammeEngine: LoyaltyProgrammeEngine | null = null;
+let returnsIntelligenceEngine: ReturnsIntelligenceEngine | null = null;
+let customerRiskEngine: CustomerRiskEngine | null = null;
+let customerLifetimeValueEngine: CustomerLifetimeValueEngine | null = null;
+let customerSegmentationEngine: CustomerSegmentationEngine | null = null;
+let customerJourneyIntelligenceEngine: CustomerJourneyIntelligenceEngine | null = null;
+let executiveCustomerDashboard: ExecutiveCustomerDashboard | null = null;
+let customerOperationsCertificationEngine: CustomerOperationsCertificationEngine | null = null;
+let marketingFrameworkEngine: MarketingFrameworkEngine | null = null;
+let metaAdsIntegration: MetaAdsIntegration | null = null;
+let googleAdsIntegration: GoogleAdsIntegration | null = null;
+let tiktokAdsIntegration: TikTokAdsIntegration | null = null;
+let youtubeAdsIntegration: YouTubeAdsIntegration | null = null;
+let seoIntelligenceEngine: SeoIntelligenceEngine | null = null;
+let campaignManagerEngine: CampaignManagerEngine | null = null;
+let audienceIntelligenceEngine: AudienceIntelligenceEngine | null = null;
+let attributionEngine: AttributionEngine | null = null;
+let marketingAnalyticsDashboard: MarketingAnalyticsDashboard | null = null;
+let creativeAssetManager: CreativeAssetManager | null = null;
+let aiCampaignGenerator: AiCampaignGenerator | null = null;
+let budgetOptimizationEngine: BudgetOptimizationEngine | null = null;
+let conversionIntelligence: ConversionIntelligence | null = null;
+let competitorMarketingMonitor: CompetitorMarketingMonitor | null = null;
+let viralTrendIntelligence: ViralTrendIntelligence | null = null;
+let marketingExperimentEngine: MarketingExperimentEngine | null = null;
+let crossChannelOrchestrator: CrossChannelOrchestrator | null = null;
+let autonomousMarketingEngine: AutonomousMarketingEngine | null = null;
+let realWorldOperationsCertificationEngine: RealWorldOperationsCertificationEngine | null = null;
+let companyFactoryFrameworkEngine: CompanyFactoryFrameworkEngine | null = null;
+let businessOpportunityDiscovery: BusinessOpportunityDiscovery | null = null;
+let marketValidationEngine: MarketValidationEngine | null = null;
 let empireCommanderEngine: EmpireCommanderEngine | null = null;
 let empireOperatingSystemEngine: EmpireOperatingSystemEngine | null = null;
 let continuousEvolutionEngine: ContinuousEvolutionEngine | null = null;
@@ -617,6 +1057,94 @@ export interface PillowSession {
   amazonInventorySync: AmazonInventorySyncEngine;
   walmartMarketplaceIntegration: WalmartMarketplaceIntegrationEngine;
   etsyMarketplaceIntegration: EtsyMarketplaceIntegrationEngine;
+  ebayMarketplaceIntegration: EbayMarketplaceIntegrationEngine;
+  tiktokShopMarketplaceIntegration: TikTokShopMarketplaceIntegrationEngine;
+  shopifyStoreMarketplaceIntegration: ShopifyStoreMarketplaceIntegrationEngine;
+  woocommerceMarketplaceIntegration: WooCommerceMarketplaceIntegrationEngine;
+  marketplaceProductNormalization: MarketplaceProductNormalizationEngine;
+  marketplaceOrderNormalization: MarketplaceOrderNormalizationEngine;
+  marketplaceHealthMonitor: MarketplaceHealthMonitorEngine;
+  marketplaceCertification: MarketplaceCertificationEngine;
+  supplierFramework: SupplierFrameworkEngine;
+  cjDropshippingIntegration: CjDropshippingIntegrationEngine;
+  aliExpressIntegration: AliExpressIntegrationEngine;
+  oss1688Integration: Oss1688IntegrationEngine;
+  supplierProductSync: SupplierProductSyncEngine;
+  supplierInventorySync: SupplierInventorySyncEngine;
+  supplierPricingEngine: SupplierPricingEngine;
+  supplierRankingEngine: SupplierRankingEngine;
+  procurementEngine: ProcurementEngine;
+  fulfilmentOrchestrator: FulfilmentOrchestrator;
+  shippingCarrierIntegration: ShippingCarrierIntegrationEngine;
+  shipmentTrackingEngine: ShipmentTrackingEngine;
+  returnManagement: ReturnManagementEngine;
+  warehouseIntelligence: WarehouseIntelligenceEngine;
+  multiWarehouseSupport: MultiWarehouseSupportEngine;
+  supplierRiskMonitor: SupplierRiskMonitorEngine;
+  logisticsOptimization: LogisticsOptimizationEngine;
+  fulfilmentSlaMonitor: FulfilmentSlaMonitorEngine;
+  procurementIntelligence: ProcurementIntelligenceEngine;
+  supplierOperationsCertification: SupplierOperationsCertificationEngine;
+  financialFramework: FinancialFrameworkEngine;
+  paymentGatewayIntegration: PaymentGatewayIntegrationEngine;
+  bankingIntegration: BankingIntegrationEngine;
+  revenueEngine: RevenueEngine;
+  expenseEngine: ExpenseEngine;
+  profitCalculationEngine: ProfitCalculationEngine;
+  cashFlowMonitor: CashFlowMonitorEngine;
+  reconciliationEngine: ReconciliationEngine;
+  invoiceGenerator: InvoiceGeneratorEngine;
+  refundEngine: RefundEngine;
+  taxIntelligenceEngine: TaxIntelligenceEngine;
+  multiCurrencyEngine: MultiCurrencyEngine;
+  financialForecastEngine: FinancialForecastEngine;
+  budgetManagementEngine: BudgetManagementEngine;
+  financialRiskMonitor: FinancialRiskMonitor;
+  executiveFinancialDashboard: ExecutiveFinancialDashboard;
+  accountingExportEngine: AccountingExportEngine;
+  financialOperationsCertification: FinancialOperationsCertificationEngine;
+  customerIdentityEngine: CustomerIdentityEngine;
+  crmFoundation: CrmFoundationEngine;
+  customerTimelineEngine: CustomerTimelineEngine;
+  emailCommunicationEngine: EmailCommunicationEngine;
+  smsCommunicationEngine: SmsCommunicationEngine;
+  whatsAppIntegration: WhatsAppIntegration;
+  liveChatIntegration: LiveChatIntegration;
+  aiCustomerSupport: AiCustomerSupport;
+  ticketManagementEngine: TicketManagementEngine;
+  customerSentimentEngine: CustomerSentimentEngine;
+  reviewManagementEngine: ReviewManagementEngine;
+  loyaltyProgrammeEngine: LoyaltyProgrammeEngine;
+  returnsIntelligenceEngine: ReturnsIntelligenceEngine;
+  customerRiskEngine: CustomerRiskEngine;
+  customerLifetimeValueEngine: CustomerLifetimeValueEngine;
+  customerSegmentationEngine: CustomerSegmentationEngine;
+  customerJourneyIntelligenceEngine: CustomerJourneyIntelligenceEngine;
+  executiveCustomerDashboard: ExecutiveCustomerDashboard;
+  customerOperationsCertification: CustomerOperationsCertificationEngine;
+  marketingFramework: MarketingFrameworkEngine;
+  metaAdsIntegration: MetaAdsIntegration;
+  googleAdsIntegration: GoogleAdsIntegration;
+  tiktokAdsIntegration: TikTokAdsIntegration;
+  youtubeAdsIntegration: YouTubeAdsIntegration;
+  seoIntelligenceEngine: SeoIntelligenceEngine;
+  campaignManager: CampaignManagerEngine;
+  audienceIntelligence: AudienceIntelligenceEngine;
+  attributionEngine: AttributionEngine;
+  marketingAnalyticsDashboard: MarketingAnalyticsDashboard;
+  creativeAssetManager: CreativeAssetManager;
+  aiCampaignGenerator: AiCampaignGenerator;
+  budgetOptimizationEngine: BudgetOptimizationEngine;
+  conversionIntelligence: ConversionIntelligence;
+  competitorMarketingMonitor: CompetitorMarketingMonitor;
+  viralTrendIntelligence: ViralTrendIntelligence;
+  marketingExperimentEngine: MarketingExperimentEngine;
+  crossChannelOrchestrator: CrossChannelOrchestrator;
+  autonomousMarketingEngine: AutonomousMarketingEngine;
+  realWorldOperationsCertification: RealWorldOperationsCertificationEngine;
+  companyFactoryFramework: CompanyFactoryFrameworkEngine;
+  businessOpportunityDiscovery: BusinessOpportunityDiscovery;
+  marketValidationEngine: MarketValidationEngine;
   empireCommander: EmpireCommanderEngine;
   empireOperatingSystem: EmpireOperatingSystemEngine;
   continuousEvolution: ContinuousEvolutionEngine;
@@ -1461,6 +1989,825 @@ export async function startPillow(options?: {
   );
   await etsyMarketplaceIntegrationEngine.initialize();
   await yieldEventLoop();
+  ebayMarketplaceIntegrationEngine = createEbayMarketplaceIntegrationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await ebayMarketplaceIntegrationEngine.initialize();
+  await yieldEventLoop();
+  tiktokShopMarketplaceIntegrationEngine = createTikTokShopMarketplaceIntegrationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await tiktokShopMarketplaceIntegrationEngine.initialize();
+  await yieldEventLoop();
+  shopifyStoreMarketplaceIntegrationEngine = createShopifyStoreMarketplaceIntegrationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await shopifyStoreMarketplaceIntegrationEngine.initialize();
+  await yieldEventLoop();
+  woocommerceMarketplaceIntegrationEngine = createWooCommerceMarketplaceIntegrationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await woocommerceMarketplaceIntegrationEngine.initialize();
+  await yieldEventLoop();
+  marketplaceProductNormalizationEngine = createMarketplaceProductNormalizationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await marketplaceProductNormalizationEngine.initialize();
+  await yieldEventLoop();
+  marketplaceOrderNormalizationEngine = createMarketplaceOrderNormalizationEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+  );
+  await marketplaceOrderNormalizationEngine.initialize();
+  await yieldEventLoop();
+  marketplaceHealthMonitorEngine = createMarketplaceHealthMonitorEngine(
+    result,
+    marketplaceConnectorFrameworkEngine,
+    marketplaceProductNormalizationEngine,
+    marketplaceOrderNormalizationEngine,
+  );
+  await marketplaceHealthMonitorEngine.initialize();
+  await yieldEventLoop();
+  marketplaceCertificationEngine = createMarketplaceCertificationEngine(result, {
+    mcf: marketplaceConnectorFrameworkEngine,
+    amazonIntegration: amazonMarketplaceIntegrationEngine,
+    amazonProductIntelligence: amazonProductIntelligenceEngine,
+    amazonOrderManagement: amazonOrderManagementEngine,
+    amazonInventorySync: amazonInventorySyncEngine,
+    walmartIntegration: walmartMarketplaceIntegrationEngine,
+    etsyIntegration: etsyMarketplaceIntegrationEngine,
+    ebayIntegration: ebayMarketplaceIntegrationEngine,
+    tiktokShopIntegration: tiktokShopMarketplaceIntegrationEngine,
+    shopifyStoreIntegration: shopifyStoreMarketplaceIntegrationEngine,
+    woocommerceIntegration: woocommerceMarketplaceIntegrationEngine,
+    productNormalization: marketplaceProductNormalizationEngine,
+    orderNormalization: marketplaceOrderNormalizationEngine,
+    healthMonitor: marketplaceHealthMonitorEngine,
+  });
+  await marketplaceCertificationEngine.initialize();
+  await yieldEventLoop();
+  supplierFrameworkEngine = createSupplierFrameworkEngine(result);
+  await supplierFrameworkEngine.initialize();
+  await yieldEventLoop();
+  cjDropshippingIntegrationEngine = createCjDropshippingIntegrationEngine(
+    result,
+    supplierFrameworkEngine,
+  );
+  await cjDropshippingIntegrationEngine.initialize();
+  await yieldEventLoop();
+  aliExpressIntegrationEngine = createAliExpressIntegrationEngine(
+    result,
+    supplierFrameworkEngine,
+  );
+  await aliExpressIntegrationEngine.initialize();
+  await yieldEventLoop();
+  oss1688IntegrationEngine = createOss1688IntegrationEngine(
+    result,
+    supplierFrameworkEngine,
+  );
+  await oss1688IntegrationEngine.initialize();
+  await yieldEventLoop();
+  supplierProductSyncEngine = createSupplierProductSyncEngine(
+    result,
+    cjDropshippingIntegrationEngine,
+    aliExpressIntegrationEngine,
+    oss1688IntegrationEngine,
+    supplierFrameworkEngine,
+  );
+  await supplierProductSyncEngine.initialize();
+  await yieldEventLoop();
+  supplierInventorySyncEngine = createSupplierInventorySyncEngine(
+    result,
+    supplierProductSyncEngine,
+  );
+  await supplierInventorySyncEngine.initialize();
+  await yieldEventLoop();
+  supplierPricingEngine = createSupplierPricingEngine(
+    result,
+    supplierProductSyncEngine,
+    supplierInventorySyncEngine,
+  );
+  await supplierPricingEngine.initialize();
+  await yieldEventLoop();
+  supplierRankingEngine = createSupplierRankingEngine(
+    result,
+    supplierProductSyncEngine,
+    supplierInventorySyncEngine,
+    supplierPricingEngine,
+  );
+  await supplierRankingEngine.initialize();
+  await yieldEventLoop();
+  procurementEngine = createProcurementEngine(
+    result,
+    supplierProductSyncEngine,
+    supplierInventorySyncEngine,
+    supplierPricingEngine,
+    supplierRankingEngine,
+  );
+  await procurementEngine.initialize();
+  await yieldEventLoop();
+  fulfilmentOrchestrator = createFulfilmentOrchestrator(result, procurementEngine);
+  await fulfilmentOrchestrator.initialize();
+  await yieldEventLoop();
+  shippingCarrierIntegrationEngine = createShippingCarrierIntegrationEngine(
+    result,
+    fulfilmentOrchestrator,
+  );
+  await shippingCarrierIntegrationEngine.initialize();
+  await yieldEventLoop();
+  shipmentTrackingEngine = createShipmentTrackingEngine(
+    result,
+    shippingCarrierIntegrationEngine,
+  );
+  await shipmentTrackingEngine.initialize();
+  await yieldEventLoop();
+  returnManagementEngine = createReturnManagementEngine(
+    result,
+    shipmentTrackingEngine,
+  );
+  await returnManagementEngine.initialize();
+  await yieldEventLoop();
+  warehouseIntelligenceEngine = createWarehouseIntelligenceEngine(
+    result,
+    supplierInventorySyncEngine,
+    fulfilmentOrchestrator,
+    shipmentTrackingEngine,
+  );
+  await warehouseIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  multiWarehouseSupportEngine = createMultiWarehouseSupportEngine(
+    result,
+    warehouseIntelligenceEngine,
+  );
+  await multiWarehouseSupportEngine.initialize();
+  await yieldEventLoop();
+  supplierRiskMonitorEngine = createSupplierRiskMonitorEngine(
+    result,
+    supplierRankingEngine,
+    procurementEngine,
+    supplierInventorySyncEngine,
+    multiWarehouseSupportEngine,
+  );
+  await supplierRiskMonitorEngine.initialize();
+  await yieldEventLoop();
+  logisticsOptimizationEngine = createLogisticsOptimizationEngine(
+    result,
+    fulfilmentOrchestrator,
+    shippingCarrierIntegrationEngine,
+    shipmentTrackingEngine,
+    multiWarehouseSupportEngine,
+  );
+  await logisticsOptimizationEngine.initialize();
+  await yieldEventLoop();
+  fulfilmentSlaMonitorEngine = createFulfilmentSlaMonitorEngine(
+    result,
+    fulfilmentOrchestrator,
+    shipmentTrackingEngine,
+    logisticsOptimizationEngine,
+  );
+  await fulfilmentSlaMonitorEngine.initialize();
+  await yieldEventLoop();
+  procurementIntelligenceEngine = createProcurementIntelligenceEngine(
+    result,
+    procurementEngine,
+    supplierRankingEngine,
+    supplierPricingEngine,
+    supplierRiskMonitorEngine,
+    logisticsOptimizationEngine,
+  );
+  await procurementIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  supplierOperationsCertificationEngine = createSupplierOperationsCertificationEngine(result, {
+    supplierFramework: supplierFrameworkEngine,
+    cjDropshipping: cjDropshippingIntegrationEngine,
+    aliExpress: aliExpressIntegrationEngine,
+    oss1688: oss1688IntegrationEngine,
+    supplierProductSync: supplierProductSyncEngine,
+    supplierInventorySync: supplierInventorySyncEngine,
+    supplierPricing: supplierPricingEngine,
+    supplierRanking: supplierRankingEngine,
+    procurement: procurementEngine,
+    fulfilmentOrchestrator: fulfilmentOrchestrator,
+    shippingCarrier: shippingCarrierIntegrationEngine,
+    shipmentTracking: shipmentTrackingEngine,
+    returnManagement: returnManagementEngine,
+    warehouseIntelligence: warehouseIntelligenceEngine,
+    multiWarehouseSupport: multiWarehouseSupportEngine,
+    supplierRiskMonitor: supplierRiskMonitorEngine,
+    logisticsOptimization: logisticsOptimizationEngine,
+    fulfilmentSlaMonitor: fulfilmentSlaMonitorEngine,
+    procurementIntelligence: procurementIntelligenceEngine,
+  });
+  await supplierOperationsCertificationEngine.initialize();
+  await yieldEventLoop();
+  financialFrameworkEngine = createFinancialFrameworkEngine(result);
+  await financialFrameworkEngine.initialize();
+  await yieldEventLoop();
+  paymentGatewayIntegrationEngine = createPaymentGatewayIntegrationEngine(
+    result,
+    financialFrameworkEngine,
+  );
+  await paymentGatewayIntegrationEngine.initialize();
+  await yieldEventLoop();
+  bankingIntegrationEngine = createBankingIntegrationEngine(
+    result,
+    financialFrameworkEngine,
+  );
+  await bankingIntegrationEngine.initialize();
+  await yieldEventLoop();
+  revenueEngine = createRevenueEngine(
+    result,
+    financialFrameworkEngine,
+    paymentGatewayIntegrationEngine,
+    bankingIntegrationEngine,
+  );
+  await revenueEngine.initialize();
+  await yieldEventLoop();
+  expenseEngine = createExpenseEngine(
+    result,
+    financialFrameworkEngine,
+    paymentGatewayIntegrationEngine,
+    bankingIntegrationEngine,
+    revenueEngine,
+  );
+  await expenseEngine.initialize();
+  await yieldEventLoop();
+  profitCalculationEngine = createProfitCalculationEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+  );
+  await profitCalculationEngine.initialize();
+  await yieldEventLoop();
+  cashFlowMonitor = createCashFlowMonitorEngine(
+    result,
+    financialFrameworkEngine,
+    bankingIntegrationEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+  );
+  await cashFlowMonitor.initialize();
+  await yieldEventLoop();
+  reconciliationEngine = createReconciliationEngine(
+    result,
+    financialFrameworkEngine,
+    paymentGatewayIntegrationEngine,
+    bankingIntegrationEngine,
+    revenueEngine,
+    expenseEngine,
+    cashFlowMonitor,
+  );
+  await reconciliationEngine.initialize();
+  await yieldEventLoop();
+  invoiceGenerator = createInvoiceGeneratorEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    reconciliationEngine,
+  );
+  await invoiceGenerator.initialize();
+  await yieldEventLoop();
+  refundEngine = createRefundEngine(
+    result,
+    financialFrameworkEngine,
+    paymentGatewayIntegrationEngine,
+    bankingIntegrationEngine,
+    revenueEngine,
+    expenseEngine,
+    invoiceGenerator,
+  );
+  await refundEngine.initialize();
+  await yieldEventLoop();
+  taxIntelligenceEngine = createTaxIntelligenceEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    reconciliationEngine,
+    invoiceGenerator,
+    refundEngine,
+  );
+  await taxIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  multiCurrencyEngine = createMultiCurrencyEngine(
+    result,
+    financialFrameworkEngine,
+    bankingIntegrationEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    taxIntelligenceEngine,
+  );
+  await multiCurrencyEngine.initialize();
+  await yieldEventLoop();
+  financialForecastEngine = createFinancialForecastEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    cashFlowMonitor,
+    multiCurrencyEngine,
+  );
+  await financialForecastEngine.initialize();
+  await yieldEventLoop();
+  budgetManagementEngine = createBudgetManagementEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    cashFlowMonitor,
+    financialForecastEngine,
+  );
+  await budgetManagementEngine.initialize();
+  await yieldEventLoop();
+  financialRiskMonitor = createFinancialRiskMonitor(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    cashFlowMonitor,
+    financialForecastEngine,
+    budgetManagementEngine,
+  );
+  await financialRiskMonitor.initialize();
+  await yieldEventLoop();
+  executiveFinancialDashboard = createExecutiveFinancialDashboard(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    cashFlowMonitor,
+    financialForecastEngine,
+    budgetManagementEngine,
+    financialRiskMonitor,
+  );
+  await executiveFinancialDashboard.initialize();
+  await yieldEventLoop();
+  accountingExportEngine = createAccountingExportEngine(
+    result,
+    financialFrameworkEngine,
+    revenueEngine,
+    expenseEngine,
+    profitCalculationEngine,
+    reconciliationEngine,
+    invoiceGenerator,
+    refundEngine,
+    taxIntelligenceEngine,
+  );
+  await accountingExportEngine.initialize();
+  await yieldEventLoop();
+  financialOperationsCertificationEngine = createFinancialOperationsCertificationEngine(result, {
+    financialFramework: financialFrameworkEngine,
+    paymentGateway: paymentGatewayIntegrationEngine,
+    bankingIntegration: bankingIntegrationEngine,
+    revenueEngine: revenueEngine,
+    expenseEngine: expenseEngine,
+    profitCalculationEngine: profitCalculationEngine,
+    cashFlowMonitor: cashFlowMonitor,
+    reconciliationEngine: reconciliationEngine,
+    invoiceGenerator: invoiceGenerator,
+    refundEngine: refundEngine,
+    taxIntelligenceEngine: taxIntelligenceEngine,
+    multiCurrencyEngine: multiCurrencyEngine,
+    financialForecastEngine: financialForecastEngine,
+    budgetManagementEngine: budgetManagementEngine,
+    financialRiskMonitor: financialRiskMonitor,
+    executiveFinancialDashboard: executiveFinancialDashboard,
+    accountingExportEngine: accountingExportEngine,
+  });
+  await financialOperationsCertificationEngine.initialize();
+  await yieldEventLoop();
+  customerIdentityEngine = createCustomerIdentityEngine(result);
+  await customerIdentityEngine.initialize();
+  await yieldEventLoop();
+  crmFoundationEngine = createCrmFoundationEngine(result, customerIdentityEngine);
+  await crmFoundationEngine.initialize();
+  await yieldEventLoop();
+  customerTimelineEngine = createCustomerTimelineEngine(
+    result,
+    customerIdentityEngine,
+    crmFoundationEngine,
+  );
+  await customerTimelineEngine.initialize();
+  await yieldEventLoop();
+  emailCommunicationEngine = createEmailCommunicationEngine(
+    result,
+    crmFoundationEngine,
+    customerTimelineEngine,
+  );
+  await emailCommunicationEngine.initialize();
+  await yieldEventLoop();
+  smsCommunicationEngine = createSmsCommunicationEngine(
+    result,
+    crmFoundationEngine,
+    customerTimelineEngine,
+  );
+  await smsCommunicationEngine.initialize();
+  await yieldEventLoop();
+  whatsAppIntegration = createWhatsAppIntegration(
+    result,
+    crmFoundationEngine,
+    customerTimelineEngine,
+  );
+  await whatsAppIntegration.initialize();
+  await yieldEventLoop();
+  liveChatIntegration = createLiveChatIntegration(result, customerTimelineEngine);
+  await liveChatIntegration.initialize();
+  await yieldEventLoop();
+  aiCustomerSupport = createAiCustomerSupport(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    emailCommunicationEngine!,
+    smsCommunicationEngine!,
+    whatsAppIntegration!,
+    liveChatIntegration,
+  );
+  await aiCustomerSupport.initialize();
+  await yieldEventLoop();
+  ticketManagementEngine = createTicketManagementEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    liveChatIntegration,
+    aiCustomerSupport,
+  );
+  await ticketManagementEngine.initialize();
+  await yieldEventLoop();
+  customerSentimentEngine = createCustomerSentimentEngine(
+    result,
+    customerTimelineEngine!,
+    emailCommunicationEngine!,
+    smsCommunicationEngine!,
+    whatsAppIntegration!,
+    liveChatIntegration,
+    aiCustomerSupport,
+    ticketManagementEngine,
+  );
+  await customerSentimentEngine.initialize();
+  await yieldEventLoop();
+  reviewManagementEngine = createReviewManagementEngine(
+    result,
+    customerIdentityEngine!,
+    customerTimelineEngine!,
+    customerSentimentEngine,
+    aiCustomerSupport,
+  );
+  await reviewManagementEngine.initialize();
+  await yieldEventLoop();
+  loyaltyProgrammeEngine = createLoyaltyProgrammeEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    customerSentimentEngine,
+    reviewManagementEngine,
+  );
+  await loyaltyProgrammeEngine.initialize();
+  await yieldEventLoop();
+  returnsIntelligenceEngine = createReturnsIntelligenceEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    aiCustomerSupport,
+    ticketManagementEngine!,
+    returnManagementEngine!,
+  );
+  await returnsIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  customerRiskEngine = createCustomerRiskEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    ticketManagementEngine!,
+    customerSentimentEngine,
+    reviewManagementEngine,
+    returnsIntelligenceEngine,
+  );
+  await customerRiskEngine.initialize();
+  await yieldEventLoop();
+  customerLifetimeValueEngine = createCustomerLifetimeValueEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    revenueEngine!,
+    profitCalculationEngine!,
+    loyaltyProgrammeEngine,
+    customerRiskEngine,
+  );
+  await customerLifetimeValueEngine.initialize();
+  await yieldEventLoop();
+  customerSegmentationEngine = createCustomerSegmentationEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    customerSentimentEngine,
+    loyaltyProgrammeEngine,
+    customerRiskEngine,
+    customerLifetimeValueEngine,
+  );
+  await customerSegmentationEngine.initialize();
+  await yieldEventLoop();
+  customerJourneyIntelligenceEngine = createCustomerJourneyIntelligenceEngine(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    customerSentimentEngine,
+    customerLifetimeValueEngine,
+    customerSegmentationEngine,
+  );
+  await customerJourneyIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  executiveCustomerDashboard = createExecutiveCustomerDashboard(
+    result,
+    customerIdentityEngine!,
+    crmFoundationEngine!,
+    customerTimelineEngine!,
+    aiCustomerSupport!,
+    customerSentimentEngine,
+    reviewManagementEngine,
+    loyaltyProgrammeEngine,
+    customerRiskEngine,
+    customerLifetimeValueEngine,
+    customerSegmentationEngine,
+    customerJourneyIntelligenceEngine,
+  );
+  await executiveCustomerDashboard.initialize();
+  await yieldEventLoop();
+  customerOperationsCertificationEngine = createCustomerOperationsCertificationEngine(result, {
+    customerIdentityEngine: customerIdentityEngine!,
+    crmFoundation: crmFoundationEngine!,
+    customerTimelineEngine: customerTimelineEngine!,
+    emailCommunicationEngine: emailCommunicationEngine!,
+    smsCommunicationEngine: smsCommunicationEngine!,
+    whatsAppIntegration: whatsAppIntegration!,
+    liveChatIntegration: liveChatIntegration!,
+    aiCustomerSupport: aiCustomerSupport!,
+    ticketManagementEngine: ticketManagementEngine!,
+    customerSentimentEngine: customerSentimentEngine,
+    reviewManagementEngine: reviewManagementEngine,
+    loyaltyProgrammeEngine: loyaltyProgrammeEngine,
+    returnsIntelligenceEngine: returnsIntelligenceEngine,
+    customerRiskEngine: customerRiskEngine,
+    customerLifetimeValueEngine: customerLifetimeValueEngine,
+    customerSegmentationEngine: customerSegmentationEngine,
+    customerJourneyIntelligenceEngine: customerJourneyIntelligenceEngine,
+    executiveCustomerDashboard: executiveCustomerDashboard,
+  });
+  await customerOperationsCertificationEngine.initialize();
+  await yieldEventLoop();
+  marketingFrameworkEngine = createMarketingFrameworkEngine(result);
+  await marketingFrameworkEngine.initialize();
+  await yieldEventLoop();
+  metaAdsIntegration = createMetaAdsIntegration(result, marketingFrameworkEngine);
+  await metaAdsIntegration.initialize();
+  await yieldEventLoop();
+  googleAdsIntegration = createGoogleAdsIntegration(result, marketingFrameworkEngine!);
+  await googleAdsIntegration.initialize();
+  await yieldEventLoop();
+  tiktokAdsIntegration = createTikTokAdsIntegration(result, marketingFrameworkEngine!);
+  await tiktokAdsIntegration.initialize();
+  await yieldEventLoop();
+  youtubeAdsIntegration = createYouTubeAdsIntegration(
+    result,
+    marketingFrameworkEngine!,
+    googleAdsIntegration,
+  );
+  await youtubeAdsIntegration.initialize();
+  await yieldEventLoop();
+  seoIntelligenceEngine = createSeoIntelligenceEngine(
+    result,
+    marketingFrameworkEngine!,
+    customerJourneyIntelligenceEngine,
+  );
+  await seoIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  campaignManagerEngine = createCampaignManagerEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+  });
+  await campaignManagerEngine.initialize();
+  await yieldEventLoop();
+  audienceIntelligenceEngine = createAudienceIntelligenceEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    customerSegmentation: customerSegmentationEngine,
+    customerJourney: customerJourneyIntelligenceEngine,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    campaignManager: campaignManagerEngine,
+  });
+  await audienceIntelligenceEngine.initialize();
+  await yieldEventLoop();
+  attributionEngine = createAttributionEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+  });
+  await attributionEngine.initialize();
+  await yieldEventLoop();
+  marketingAnalyticsDashboard = createMarketingAnalyticsDashboard(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+  });
+  await marketingAnalyticsDashboard.initialize();
+  await yieldEventLoop();
+  creativeAssetManager = createCreativeAssetManager(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    campaignManager: campaignManagerEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+  });
+  await creativeAssetManager.initialize();
+  await yieldEventLoop();
+  aiCampaignGenerator = createAiCampaignGenerator(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    creativeAssetManager: creativeAssetManager,
+  });
+  await aiCampaignGenerator.initialize();
+  await yieldEventLoop();
+  budgetOptimizationEngine = createBudgetOptimizationEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    aiCampaignGenerator: aiCampaignGenerator,
+  });
+  await budgetOptimizationEngine.initialize();
+  await yieldEventLoop();
+  conversionIntelligence = createConversionIntelligence(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+  });
+  await conversionIntelligence.initialize();
+  await yieldEventLoop();
+  competitorMarketingMonitor = createCompetitorMarketingMonitor(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    conversionIntelligence: conversionIntelligence,
+  });
+  await competitorMarketingMonitor.initialize();
+  await yieldEventLoop();
+  viralTrendIntelligence = createViralTrendIntelligence(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    competitorMarketingMonitor: competitorMarketingMonitor,
+  });
+  await viralTrendIntelligence.initialize();
+  await yieldEventLoop();
+  marketingExperimentEngine = createMarketingExperimentEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+    conversionIntelligence: conversionIntelligence,
+    viralTrendIntelligence: viralTrendIntelligence,
+  });
+  await marketingExperimentEngine.initialize();
+  await yieldEventLoop();
+  crossChannelOrchestrator = createCrossChannelOrchestrator(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+    conversionIntelligence: conversionIntelligence,
+    competitorMarketingMonitor: competitorMarketingMonitor,
+    viralTrendIntelligence: viralTrendIntelligence,
+    marketingExperimentEngine: marketingExperimentEngine,
+  });
+  await crossChannelOrchestrator.initialize();
+  await yieldEventLoop();
+  autonomousMarketingEngine = createAutonomousMarketingEngine(result, {
+    marketingFramework: marketingFrameworkEngine!,
+    metaAds: metaAdsIntegration,
+    googleAds: googleAdsIntegration,
+    tiktokAds: tiktokAdsIntegration,
+    youtubeAds: youtubeAdsIntegration,
+    seoIntelligence: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    creativeAssetManager: creativeAssetManager,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+    conversionIntelligence: conversionIntelligence,
+    competitorMarketingMonitor: competitorMarketingMonitor,
+    viralTrendIntelligence: viralTrendIntelligence,
+    marketingExperimentEngine: marketingExperimentEngine,
+    crossChannelOrchestrator: crossChannelOrchestrator,
+  });
+  await autonomousMarketingEngine.initialize();
+  await yieldEventLoop();
+  realWorldOperationsCertificationEngine = createRealWorldOperationsCertificationEngine(result, {
+    marketplaceCertification: marketplaceCertificationEngine,
+    supplierOperationsCertification: supplierOperationsCertificationEngine,
+    financialOperationsCertification: financialOperationsCertificationEngine,
+    customerOperationsCertification: customerOperationsCertificationEngine,
+    marketingFramework: marketingFrameworkEngine!,
+    campaignManager: campaignManagerEngine,
+    crossChannelOrchestrator: crossChannelOrchestrator,
+    autonomousMarketingEngine: autonomousMarketingEngine,
+  });
+  await realWorldOperationsCertificationEngine.initialize();
+  await yieldEventLoop();
+  companyFactoryFrameworkEngine = createCompanyFactoryFrameworkEngine(result);
+  await companyFactoryFrameworkEngine.initialize();
+  await yieldEventLoop();
+  businessOpportunityDiscovery = createBusinessOpportunityDiscovery(result, {
+    companyFactoryFramework: companyFactoryFrameworkEngine,
+  });
+  await businessOpportunityDiscovery.initialize();
+  await yieldEventLoop();
+  marketValidationEngine = createMarketValidationEngine(result, {
+    companyFactoryFramework: companyFactoryFrameworkEngine,
+    businessOpportunityDiscovery: businessOpportunityDiscovery,
+  });
+  await marketValidationEngine.initialize();
+  await yieldEventLoop();
   founderShellEngine!.attachSurfaces({
     supervisor: cursorSupervisor,
     builderMonitor: builderMonitorEngine,
@@ -1614,6 +2961,94 @@ export async function startPillow(options?: {
     amazonInventorySync: amazonInventorySyncEngine,
     walmartMarketplaceIntegration: walmartMarketplaceIntegrationEngine,
     etsyMarketplaceIntegration: etsyMarketplaceIntegrationEngine,
+    ebayMarketplaceIntegration: ebayMarketplaceIntegrationEngine,
+    tiktokShopMarketplaceIntegration: tiktokShopMarketplaceIntegrationEngine,
+    shopifyStoreMarketplaceIntegration: shopifyStoreMarketplaceIntegrationEngine,
+    woocommerceMarketplaceIntegration: woocommerceMarketplaceIntegrationEngine,
+    marketplaceProductNormalization: marketplaceProductNormalizationEngine,
+    marketplaceOrderNormalization: marketplaceOrderNormalizationEngine,
+    marketplaceHealthMonitor: marketplaceHealthMonitorEngine,
+    marketplaceCertification: marketplaceCertificationEngine,
+    supplierFramework: supplierFrameworkEngine,
+    cjDropshippingIntegration: cjDropshippingIntegrationEngine,
+    aliExpressIntegration: aliExpressIntegrationEngine,
+    oss1688Integration: oss1688IntegrationEngine,
+    supplierProductSync: supplierProductSyncEngine,
+    supplierInventorySync: supplierInventorySyncEngine,
+    supplierPricingEngine: supplierPricingEngine,
+    supplierRankingEngine: supplierRankingEngine,
+    procurementEngine: procurementEngine,
+    fulfilmentOrchestrator: fulfilmentOrchestrator,
+    shippingCarrierIntegration: shippingCarrierIntegrationEngine,
+    shipmentTrackingEngine: shipmentTrackingEngine,
+    returnManagement: returnManagementEngine,
+    warehouseIntelligence: warehouseIntelligenceEngine,
+    multiWarehouseSupport: multiWarehouseSupportEngine,
+    supplierRiskMonitor: supplierRiskMonitorEngine,
+    logisticsOptimization: logisticsOptimizationEngine,
+    fulfilmentSlaMonitor: fulfilmentSlaMonitorEngine,
+    procurementIntelligence: procurementIntelligenceEngine,
+    supplierOperationsCertification: supplierOperationsCertificationEngine,
+    financialFramework: financialFrameworkEngine,
+    paymentGatewayIntegration: paymentGatewayIntegrationEngine,
+    bankingIntegration: bankingIntegrationEngine,
+    revenueEngine: revenueEngine,
+    expenseEngine: expenseEngine,
+    profitCalculationEngine: profitCalculationEngine,
+    cashFlowMonitor: cashFlowMonitor,
+    reconciliationEngine: reconciliationEngine,
+    invoiceGenerator: invoiceGenerator,
+    refundEngine: refundEngine,
+    taxIntelligenceEngine: taxIntelligenceEngine,
+    multiCurrencyEngine: multiCurrencyEngine,
+    financialForecastEngine: financialForecastEngine,
+    budgetManagementEngine: budgetManagementEngine,
+    financialRiskMonitor: financialRiskMonitor,
+    executiveFinancialDashboard: executiveFinancialDashboard,
+    accountingExportEngine: accountingExportEngine,
+    financialOperationsCertification: financialOperationsCertificationEngine,
+    customerIdentityEngine: customerIdentityEngine,
+    crmFoundation: crmFoundationEngine,
+    customerTimelineEngine: customerTimelineEngine,
+    emailCommunicationEngine: emailCommunicationEngine,
+    smsCommunicationEngine: smsCommunicationEngine,
+    whatsAppIntegration: whatsAppIntegration,
+    liveChatIntegration: liveChatIntegration,
+    aiCustomerSupport: aiCustomerSupport,
+    ticketManagementEngine: ticketManagementEngine,
+    customerSentimentEngine: customerSentimentEngine,
+    reviewManagementEngine: reviewManagementEngine,
+    loyaltyProgrammeEngine: loyaltyProgrammeEngine,
+    returnsIntelligenceEngine: returnsIntelligenceEngine,
+    customerRiskEngine: customerRiskEngine,
+    customerLifetimeValueEngine: customerLifetimeValueEngine,
+    customerSegmentationEngine: customerSegmentationEngine,
+    customerJourneyIntelligenceEngine: customerJourneyIntelligenceEngine,
+    executiveCustomerDashboard: executiveCustomerDashboard,
+    customerOperationsCertification: customerOperationsCertificationEngine,
+    marketingFramework: marketingFrameworkEngine,
+    metaAdsIntegration: metaAdsIntegration,
+    googleAdsIntegration: googleAdsIntegration,
+    tiktokAdsIntegration: tiktokAdsIntegration,
+    youtubeAdsIntegration: youtubeAdsIntegration,
+    seoIntelligenceEngine: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    creativeAssetManager: creativeAssetManager,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+    conversionIntelligence: conversionIntelligence,
+    competitorMarketingMonitor: competitorMarketingMonitor,
+    viralTrendIntelligence: viralTrendIntelligence,
+    marketingExperimentEngine: marketingExperimentEngine,
+    crossChannelOrchestrator: crossChannelOrchestrator,
+    autonomousMarketingEngine: autonomousMarketingEngine,
+    realWorldOperationsCertification: realWorldOperationsCertificationEngine,
+    companyFactoryFramework: companyFactoryFrameworkEngine,
+    businessOpportunityDiscovery: businessOpportunityDiscovery,
+    marketValidationEngine: marketValidationEngine,
   });
   await orchestrator.initialize();
   await yieldEventLoop();
@@ -1798,6 +3233,94 @@ export async function startPillow(options?: {
     amazonInventorySync: amazonInventorySyncEngine,
     walmartMarketplaceIntegration: walmartMarketplaceIntegrationEngine,
     etsyMarketplaceIntegration: etsyMarketplaceIntegrationEngine,
+    ebayMarketplaceIntegration: ebayMarketplaceIntegrationEngine,
+    tiktokShopMarketplaceIntegration: tiktokShopMarketplaceIntegrationEngine,
+    shopifyStoreMarketplaceIntegration: shopifyStoreMarketplaceIntegrationEngine,
+    woocommerceMarketplaceIntegration: woocommerceMarketplaceIntegrationEngine,
+    marketplaceProductNormalization: marketplaceProductNormalizationEngine,
+    marketplaceOrderNormalization: marketplaceOrderNormalizationEngine,
+    marketplaceHealthMonitor: marketplaceHealthMonitorEngine,
+    marketplaceCertification: marketplaceCertificationEngine,
+    supplierFramework: supplierFrameworkEngine,
+    cjDropshippingIntegration: cjDropshippingIntegrationEngine,
+    aliExpressIntegration: aliExpressIntegrationEngine,
+    oss1688Integration: oss1688IntegrationEngine,
+    supplierProductSync: supplierProductSyncEngine,
+    supplierInventorySync: supplierInventorySyncEngine,
+    supplierPricingEngine: supplierPricingEngine,
+    supplierRankingEngine: supplierRankingEngine,
+    procurementEngine: procurementEngine,
+    fulfilmentOrchestrator: fulfilmentOrchestrator,
+    shippingCarrierIntegration: shippingCarrierIntegrationEngine,
+    shipmentTrackingEngine: shipmentTrackingEngine,
+    returnManagement: returnManagementEngine,
+    warehouseIntelligence: warehouseIntelligenceEngine,
+    multiWarehouseSupport: multiWarehouseSupportEngine,
+    supplierRiskMonitor: supplierRiskMonitorEngine,
+    logisticsOptimization: logisticsOptimizationEngine,
+    fulfilmentSlaMonitor: fulfilmentSlaMonitorEngine,
+    procurementIntelligence: procurementIntelligenceEngine,
+    supplierOperationsCertification: supplierOperationsCertificationEngine,
+    financialFramework: financialFrameworkEngine,
+    paymentGatewayIntegration: paymentGatewayIntegrationEngine,
+    bankingIntegration: bankingIntegrationEngine,
+    revenueEngine: revenueEngine,
+    expenseEngine: expenseEngine,
+    profitCalculationEngine: profitCalculationEngine,
+    cashFlowMonitor: cashFlowMonitor,
+    reconciliationEngine: reconciliationEngine,
+    invoiceGenerator: invoiceGenerator,
+    refundEngine: refundEngine,
+    taxIntelligenceEngine: taxIntelligenceEngine,
+    multiCurrencyEngine: multiCurrencyEngine,
+    financialForecastEngine: financialForecastEngine,
+    budgetManagementEngine: budgetManagementEngine,
+    financialRiskMonitor: financialRiskMonitor,
+    executiveFinancialDashboard: executiveFinancialDashboard,
+    accountingExportEngine: accountingExportEngine,
+    financialOperationsCertification: financialOperationsCertificationEngine,
+    customerIdentityEngine: customerIdentityEngine,
+    crmFoundation: crmFoundationEngine,
+    customerTimelineEngine: customerTimelineEngine,
+    emailCommunicationEngine: emailCommunicationEngine,
+    smsCommunicationEngine: smsCommunicationEngine,
+    whatsAppIntegration: whatsAppIntegration,
+    liveChatIntegration: liveChatIntegration,
+    aiCustomerSupport: aiCustomerSupport,
+    ticketManagementEngine: ticketManagementEngine,
+    customerSentimentEngine: customerSentimentEngine,
+    reviewManagementEngine: reviewManagementEngine,
+    loyaltyProgrammeEngine: loyaltyProgrammeEngine,
+    returnsIntelligenceEngine: returnsIntelligenceEngine,
+    customerRiskEngine: customerRiskEngine,
+    customerLifetimeValueEngine: customerLifetimeValueEngine,
+    customerSegmentationEngine: customerSegmentationEngine,
+    customerJourneyIntelligenceEngine: customerJourneyIntelligenceEngine,
+    executiveCustomerDashboard: executiveCustomerDashboard,
+    customerOperationsCertification: customerOperationsCertificationEngine,
+    marketingFramework: marketingFrameworkEngine,
+    metaAdsIntegration: metaAdsIntegration,
+    googleAdsIntegration: googleAdsIntegration,
+    tiktokAdsIntegration: tiktokAdsIntegration,
+    youtubeAdsIntegration: youtubeAdsIntegration,
+    seoIntelligenceEngine: seoIntelligenceEngine,
+    campaignManager: campaignManagerEngine,
+    audienceIntelligence: audienceIntelligenceEngine,
+    attributionEngine: attributionEngine,
+    marketingAnalyticsDashboard: marketingAnalyticsDashboard,
+    creativeAssetManager: creativeAssetManager,
+    aiCampaignGenerator: aiCampaignGenerator,
+    budgetOptimizationEngine: budgetOptimizationEngine,
+    conversionIntelligence: conversionIntelligence,
+    competitorMarketingMonitor: competitorMarketingMonitor,
+    viralTrendIntelligence: viralTrendIntelligence,
+    marketingExperimentEngine: marketingExperimentEngine,
+    crossChannelOrchestrator: crossChannelOrchestrator,
+    autonomousMarketingEngine: autonomousMarketingEngine,
+    realWorldOperationsCertification: realWorldOperationsCertificationEngine,
+    companyFactoryFramework: companyFactoryFrameworkEngine,
+    businessOpportunityDiscovery: businessOpportunityDiscovery,
+    marketValidationEngine: marketValidationEngine,
     empireCommander: empireCommanderEngine,
     empireOperatingSystem: empireOperatingSystemEngine,
     continuousEvolution: continuousEvolutionEngine,
@@ -2889,6 +4412,798 @@ export function requirePillowEtsyMarketplaceIntegration(): EtsyMarketplaceIntegr
   return etsyMarketplaceIntegrationEngine;
 }
 
+export function requirePillowEbayMarketplaceIntegration(): EbayMarketplaceIntegrationEngine {
+  if (!ebayMarketplaceIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow eBay Marketplace Integration not ready. Call startPillow() first.",
+    );
+  }
+  return ebayMarketplaceIntegrationEngine;
+}
+
+export function requirePillowTikTokShopMarketplaceIntegration(): TikTokShopMarketplaceIntegrationEngine {
+  if (!tiktokShopMarketplaceIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow TikTok Shop Marketplace Integration not ready. Call startPillow() first.",
+    );
+  }
+  return tiktokShopMarketplaceIntegrationEngine;
+}
+
+export function requirePillowShopifyStoreMarketplaceIntegration(): ShopifyStoreMarketplaceIntegrationEngine {
+  if (!shopifyStoreMarketplaceIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Shopify Store Marketplace Integration not ready. Call startPillow() first.",
+    );
+  }
+  return shopifyStoreMarketplaceIntegrationEngine;
+}
+
+export function requirePillowWooCommerceMarketplaceIntegration(): WooCommerceMarketplaceIntegrationEngine {
+  if (!woocommerceMarketplaceIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow WooCommerce Marketplace Integration not ready. Call startPillow() first.",
+    );
+  }
+  return woocommerceMarketplaceIntegrationEngine;
+}
+
+export function requirePillowMarketplaceProductNormalization(): MarketplaceProductNormalizationEngine {
+  if (!marketplaceProductNormalizationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketplace Product Normalization not ready. Call startPillow() first.",
+    );
+  }
+  return marketplaceProductNormalizationEngine;
+}
+
+export function requirePillowMarketplaceOrderNormalization(): MarketplaceOrderNormalizationEngine {
+  if (!marketplaceOrderNormalizationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketplace Order Normalization not ready. Call startPillow() first.",
+    );
+  }
+  return marketplaceOrderNormalizationEngine;
+}
+
+export function requirePillowMarketplaceHealthMonitor(): MarketplaceHealthMonitorEngine {
+  if (!marketplaceHealthMonitorEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketplace Health Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return marketplaceHealthMonitorEngine;
+}
+
+export function requirePillowMarketplaceCertification(): MarketplaceCertificationEngine {
+  if (!marketplaceCertificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketplace Certification not ready. Call startPillow() first.",
+    );
+  }
+  return marketplaceCertificationEngine;
+}
+
+export function requirePillowSupplierFramework(): SupplierFrameworkEngine {
+  if (!supplierFrameworkEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Framework not ready. Call startPillow() first.",
+    );
+  }
+  return supplierFrameworkEngine;
+}
+
+export function requirePillowShippingCarrierIntegration(): ShippingCarrierIntegrationEngine {
+  if (!shippingCarrierIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Shipping Carrier Integration not ready. Call startPillow() first.",
+    );
+  }
+  return shippingCarrierIntegrationEngine;
+}
+
+export function requirePillowShipmentTrackingEngine(): ShipmentTrackingEngine {
+  if (!shipmentTrackingEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Shipment Tracking Engine not ready. Call startPillow() first.",
+    );
+  }
+  return shipmentTrackingEngine;
+}
+
+export function requirePillowReturnManagement(): ReturnManagementEngine {
+  if (!returnManagementEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Return Management not ready. Call startPillow() first.",
+    );
+  }
+  return returnManagementEngine;
+}
+
+export function requirePillowWarehouseIntelligence(): WarehouseIntelligenceEngine {
+  if (!warehouseIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Warehouse Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return warehouseIntelligenceEngine;
+}
+
+export function requirePillowMultiWarehouseSupport(): MultiWarehouseSupportEngine {
+  if (!multiWarehouseSupportEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Multi-Warehouse Support not ready. Call startPillow() first.",
+    );
+  }
+  return multiWarehouseSupportEngine;
+}
+
+export function requirePillowSupplierRiskMonitor(): SupplierRiskMonitorEngine {
+  if (!supplierRiskMonitorEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Risk Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return supplierRiskMonitorEngine;
+}
+
+export function requirePillowLogisticsOptimization(): LogisticsOptimizationEngine {
+  if (!logisticsOptimizationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Logistics Optimization not ready. Call startPillow() first.",
+    );
+  }
+  return logisticsOptimizationEngine;
+}
+
+export function requirePillowFulfilmentSlaMonitor(): FulfilmentSlaMonitorEngine {
+  if (!fulfilmentSlaMonitorEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Fulfilment SLA Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return fulfilmentSlaMonitorEngine;
+}
+
+export function requirePillowProcurementIntelligence(): ProcurementIntelligenceEngine {
+  if (!procurementIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Procurement Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return procurementIntelligenceEngine;
+}
+
+export function requirePillowSupplierOperationsCertification(): SupplierOperationsCertificationEngine {
+  if (!supplierOperationsCertificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Operations Certification not ready. Call startPillow() first.",
+    );
+  }
+  return supplierOperationsCertificationEngine;
+}
+
+export function requirePillowFinancialFramework(): FinancialFrameworkEngine {
+  if (!financialFrameworkEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Financial Framework not ready. Call startPillow() first.",
+    );
+  }
+  return financialFrameworkEngine;
+}
+
+export function requirePillowPaymentGatewayIntegration(): PaymentGatewayIntegrationEngine {
+  if (!paymentGatewayIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Payment Gateway Integration not ready. Call startPillow() first.",
+    );
+  }
+  return paymentGatewayIntegrationEngine;
+}
+
+export function requirePillowBankingIntegration(): BankingIntegrationEngine {
+  if (!bankingIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Banking Integration not ready. Call startPillow() first.",
+    );
+  }
+  return bankingIntegrationEngine;
+}
+
+export function requirePillowRevenueEngine(): RevenueEngine {
+  if (!revenueEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Revenue Engine not ready. Call startPillow() first.",
+    );
+  }
+  return revenueEngine;
+}
+
+export function requirePillowExpenseEngine(): ExpenseEngine {
+  if (!expenseEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Expense Engine not ready. Call startPillow() first.",
+    );
+  }
+  return expenseEngine;
+}
+
+export function requirePillowProfitCalculationEngine(): ProfitCalculationEngine {
+  if (!profitCalculationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Profit Calculation Engine not ready. Call startPillow() first.",
+    );
+  }
+  return profitCalculationEngine;
+}
+
+export function requirePillowCashFlowMonitor(): CashFlowMonitorEngine {
+  if (!cashFlowMonitor) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Cash Flow Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return cashFlowMonitor;
+}
+
+export function requirePillowReconciliationEngine(): ReconciliationEngine {
+  if (!reconciliationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Reconciliation Engine not ready. Call startPillow() first.",
+    );
+  }
+  return reconciliationEngine;
+}
+
+export function requirePillowInvoiceGenerator(): InvoiceGeneratorEngine {
+  if (!invoiceGenerator) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Invoice Generator not ready. Call startPillow() first.",
+    );
+  }
+  return invoiceGenerator;
+}
+
+export function requirePillowRefundEngine(): RefundEngine {
+  if (!refundEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Refund Engine not ready. Call startPillow() first.",
+    );
+  }
+  return refundEngine;
+}
+
+export function requirePillowTaxIntelligenceEngine(): TaxIntelligenceEngine {
+  if (!taxIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Tax Intelligence Engine not ready. Call startPillow() first.",
+    );
+  }
+  return taxIntelligenceEngine;
+}
+
+export function requirePillowMultiCurrencyEngine(): MultiCurrencyEngine {
+  if (!multiCurrencyEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Multi-Currency Engine not ready. Call startPillow() first.",
+    );
+  }
+  return multiCurrencyEngine;
+}
+
+export function requirePillowFinancialForecastEngine(): FinancialForecastEngine {
+  if (!financialForecastEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Financial Forecast Engine not ready. Call startPillow() first.",
+    );
+  }
+  return financialForecastEngine;
+}
+
+export function requirePillowBudgetManagementEngine(): BudgetManagementEngine {
+  if (!budgetManagementEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Budget Management Engine not ready. Call startPillow() first.",
+    );
+  }
+  return budgetManagementEngine;
+}
+
+export function requirePillowFinancialRiskMonitor(): FinancialRiskMonitor {
+  if (!financialRiskMonitor) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Financial Risk Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return financialRiskMonitor;
+}
+
+export function requirePillowExecutiveFinancialDashboard(): ExecutiveFinancialDashboard {
+  if (!executiveFinancialDashboard) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Executive Financial Dashboard not ready. Call startPillow() first.",
+    );
+  }
+  return executiveFinancialDashboard;
+}
+
+export function requirePillowAccountingExportEngine(): AccountingExportEngine {
+  if (!accountingExportEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Accounting Export Engine not ready. Call startPillow() first.",
+    );
+  }
+  return accountingExportEngine;
+}
+
+export function requirePillowFinancialOperationsCertification(): FinancialOperationsCertificationEngine {
+  if (!financialOperationsCertificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Financial Operations Certification not ready. Call startPillow() first.",
+    );
+  }
+  return financialOperationsCertificationEngine;
+}
+
+export function requirePillowCustomerIdentityEngine(): CustomerIdentityEngine {
+  if (!customerIdentityEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Identity Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerIdentityEngine;
+}
+
+export function requirePillowCrmFoundation(): CrmFoundationEngine {
+  if (!crmFoundationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow CRM Foundation not ready. Call startPillow() first.",
+    );
+  }
+  return crmFoundationEngine;
+}
+
+export function requirePillowCustomerTimelineEngine(): CustomerTimelineEngine {
+  if (!customerTimelineEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Timeline Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerTimelineEngine;
+}
+
+export function requirePillowEmailCommunicationEngine(): EmailCommunicationEngine {
+  if (!emailCommunicationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Email Communication Engine not ready. Call startPillow() first.",
+    );
+  }
+  return emailCommunicationEngine;
+}
+
+export function requirePillowSmsCommunicationEngine(): SmsCommunicationEngine {
+  if (!smsCommunicationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow SMS Communication Engine not ready. Call startPillow() first.",
+    );
+  }
+  return smsCommunicationEngine;
+}
+
+export function requirePillowWhatsAppIntegration(): WhatsAppIntegration {
+  if (!whatsAppIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow WhatsApp Integration not ready. Call startPillow() first.",
+    );
+  }
+  return whatsAppIntegration;
+}
+
+export function requirePillowLiveChatIntegration(): LiveChatIntegration {
+  if (!liveChatIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Live Chat Integration not ready. Call startPillow() first.",
+    );
+  }
+  return liveChatIntegration;
+}
+
+export function requirePillowAiCustomerSupport(): AiCustomerSupport {
+  if (!aiCustomerSupport) {
+    throw new PillowNotBootstrappedError(
+      "Pillow AI Customer Support not ready. Call startPillow() first.",
+    );
+  }
+  return aiCustomerSupport;
+}
+
+export function requirePillowTicketManagementEngine(): TicketManagementEngine {
+  if (!ticketManagementEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Ticket Management Engine not ready. Call startPillow() first.",
+    );
+  }
+  return ticketManagementEngine;
+}
+
+export function requirePillowCustomerSentimentEngine(): CustomerSentimentEngine {
+  if (!customerSentimentEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Sentiment Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerSentimentEngine;
+}
+
+export function requirePillowReviewManagementEngine(): ReviewManagementEngine {
+  if (!reviewManagementEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Review Management Engine not ready. Call startPillow() first.",
+    );
+  }
+  return reviewManagementEngine;
+}
+
+export function requirePillowLoyaltyProgrammeEngine(): LoyaltyProgrammeEngine {
+  if (!loyaltyProgrammeEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Loyalty Programme Engine not ready. Call startPillow() first.",
+    );
+  }
+  return loyaltyProgrammeEngine;
+}
+
+export function requirePillowReturnsIntelligenceEngine(): ReturnsIntelligenceEngine {
+  if (!returnsIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Returns Intelligence Engine not ready. Call startPillow() first.",
+    );
+  }
+  return returnsIntelligenceEngine;
+}
+
+export function requirePillowCustomerRiskEngine(): CustomerRiskEngine {
+  if (!customerRiskEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Risk Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerRiskEngine;
+}
+
+export function requirePillowCustomerLifetimeValueEngine(): CustomerLifetimeValueEngine {
+  if (!customerLifetimeValueEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Lifetime Value Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerLifetimeValueEngine;
+}
+
+export function requirePillowCustomerSegmentationEngine(): CustomerSegmentationEngine {
+  if (!customerSegmentationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Segmentation Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerSegmentationEngine;
+}
+
+export function requirePillowCustomerJourneyIntelligenceEngine(): CustomerJourneyIntelligenceEngine {
+  if (!customerJourneyIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Journey Intelligence Engine not ready. Call startPillow() first.",
+    );
+  }
+  return customerJourneyIntelligenceEngine;
+}
+
+export function requirePillowExecutiveCustomerDashboard(): ExecutiveCustomerDashboard {
+  if (!executiveCustomerDashboard) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Executive Customer Dashboard not ready. Call startPillow() first.",
+    );
+  }
+  return executiveCustomerDashboard;
+}
+
+export function requirePillowCustomerOperationsCertification(): CustomerOperationsCertificationEngine {
+  if (!customerOperationsCertificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Customer Operations Certification not ready. Call startPillow() first.",
+    );
+  }
+  return customerOperationsCertificationEngine;
+}
+
+export function requirePillowMarketingFramework(): MarketingFrameworkEngine {
+  if (!marketingFrameworkEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketing Framework not ready. Call startPillow() first.",
+    );
+  }
+  return marketingFrameworkEngine;
+}
+
+export function requirePillowMetaAdsIntegration(): MetaAdsIntegration {
+  if (!metaAdsIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Meta Ads Integration not ready. Call startPillow() first.",
+    );
+  }
+  return metaAdsIntegration;
+}
+
+export function requirePillowGoogleAdsIntegration(): GoogleAdsIntegration {
+  if (!googleAdsIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Google Ads Integration not ready. Call startPillow() first.",
+    );
+  }
+  return googleAdsIntegration;
+}
+
+export function requirePillowTikTokAdsIntegration(): TikTokAdsIntegration {
+  if (!tiktokAdsIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow TikTok Ads Integration not ready. Call startPillow() first.",
+    );
+  }
+  return tiktokAdsIntegration;
+}
+
+export function requirePillowYouTubeAdsIntegration(): YouTubeAdsIntegration {
+  if (!youtubeAdsIntegration) {
+    throw new PillowNotBootstrappedError(
+      "Pillow YouTube Ads Integration not ready. Call startPillow() first.",
+    );
+  }
+  return youtubeAdsIntegration;
+}
+
+export function requirePillowSeoIntelligenceEngine(): SeoIntelligenceEngine {
+  if (!seoIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow SEO Intelligence Engine not ready. Call startPillow() first.",
+    );
+  }
+  return seoIntelligenceEngine;
+}
+
+export function requirePillowCampaignManager(): CampaignManagerEngine {
+  if (!campaignManagerEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Campaign Manager not ready. Call startPillow() first.",
+    );
+  }
+  return campaignManagerEngine;
+}
+
+export function requirePillowAudienceIntelligence(): AudienceIntelligenceEngine {
+  if (!audienceIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Audience Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return audienceIntelligenceEngine;
+}
+
+export function requirePillowAttributionEngine(): AttributionEngine {
+  if (!attributionEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Attribution Engine not ready. Call startPillow() first.",
+    );
+  }
+  return attributionEngine;
+}
+
+export function requirePillowMarketingAnalyticsDashboard(): MarketingAnalyticsDashboard {
+  if (!marketingAnalyticsDashboard) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketing Analytics Dashboard not ready. Call startPillow() first.",
+    );
+  }
+  return marketingAnalyticsDashboard;
+}
+
+export function requirePillowCreativeAssetManager(): CreativeAssetManager {
+  if (!creativeAssetManager) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Creative Asset Manager not ready. Call startPillow() first.",
+    );
+  }
+  return creativeAssetManager;
+}
+
+export function requirePillowAiCampaignGenerator(): AiCampaignGenerator {
+  if (!aiCampaignGenerator) {
+    throw new PillowNotBootstrappedError(
+      "Pillow AI Campaign Generator not ready. Call startPillow() first.",
+    );
+  }
+  return aiCampaignGenerator;
+}
+
+export function requirePillowBudgetOptimizationEngine(): BudgetOptimizationEngine {
+  if (!budgetOptimizationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Budget Optimization Engine not ready. Call startPillow() first.",
+    );
+  }
+  return budgetOptimizationEngine;
+}
+
+export function requirePillowConversionIntelligence(): ConversionIntelligence {
+  if (!conversionIntelligence) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Conversion Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return conversionIntelligence;
+}
+
+export function requirePillowCompetitorMarketingMonitor(): CompetitorMarketingMonitor {
+  if (!competitorMarketingMonitor) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Competitor Marketing Monitor not ready. Call startPillow() first.",
+    );
+  }
+  return competitorMarketingMonitor;
+}
+
+export function requirePillowViralTrendIntelligence(): ViralTrendIntelligence {
+  if (!viralTrendIntelligence) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Viral Trend Intelligence not ready. Call startPillow() first.",
+    );
+  }
+  return viralTrendIntelligence;
+}
+
+export function requirePillowMarketingExperimentEngine(): MarketingExperimentEngine {
+  if (!marketingExperimentEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Marketing Experiment Engine not ready. Call startPillow() first.",
+    );
+  }
+  return marketingExperimentEngine;
+}
+
+export function requirePillowCrossChannelOrchestrator(): CrossChannelOrchestrator {
+  if (!crossChannelOrchestrator) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Cross-Channel Orchestrator not ready. Call startPillow() first.",
+    );
+  }
+  return crossChannelOrchestrator;
+}
+
+export function requirePillowAutonomousMarketingEngine(): AutonomousMarketingEngine {
+  if (!autonomousMarketingEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Autonomous Marketing Engine not ready. Call startPillow() first.",
+    );
+  }
+  return autonomousMarketingEngine;
+}
+
+export function requirePillowRealWorldOperationsCertification(): RealWorldOperationsCertificationEngine {
+  if (!realWorldOperationsCertificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Real World Operations Certification not ready. Call startPillow() first.",
+    );
+  }
+  return realWorldOperationsCertificationEngine;
+}
+
+export function requirePillowCompanyFactoryFramework(): CompanyFactoryFrameworkEngine {
+  if (!companyFactoryFrameworkEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Company Factory Framework not ready. Call startPillow() first.",
+    );
+  }
+  return companyFactoryFrameworkEngine;
+}
+
+export function requirePillowBusinessOpportunityDiscovery(): BusinessOpportunityDiscovery {
+  if (!businessOpportunityDiscovery) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Business Opportunity Discovery not ready. Call startPillow() first.",
+    );
+  }
+  return businessOpportunityDiscovery;
+}
+
+export function requirePillowMarketValidationEngine(): MarketValidationEngine {
+  if (!marketValidationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Market Validation Engine not ready. Call startPillow() first.",
+    );
+  }
+  return marketValidationEngine;
+}
+
+export function requirePillowFulfilmentOrchestrator(): FulfilmentOrchestrator {
+  if (!fulfilmentOrchestrator) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Fulfilment Orchestrator not ready. Call startPillow() first.",
+    );
+  }
+  return fulfilmentOrchestrator;
+}
+
+export function requirePillowProcurementEngine(): ProcurementEngine {
+  if (!procurementEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Procurement Engine not ready. Call startPillow() first.",
+    );
+  }
+  return procurementEngine;
+}
+
+export function requirePillowSupplierRankingEngine(): SupplierRankingEngine {
+  if (!supplierRankingEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Ranking Engine not ready. Call startPillow() first.",
+    );
+  }
+  return supplierRankingEngine;
+}
+
+export function requirePillowSupplierPricingEngine(): SupplierPricingEngine {
+  if (!supplierPricingEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Pricing Engine not ready. Call startPillow() first.",
+    );
+  }
+  return supplierPricingEngine;
+}
+
+export function requirePillowSupplierInventorySync(): SupplierInventorySyncEngine {
+  if (!supplierInventorySyncEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Inventory Sync not ready. Call startPillow() first.",
+    );
+  }
+  return supplierInventorySyncEngine;
+}
+
+export function requirePillowSupplierProductSync(): SupplierProductSyncEngine {
+  if (!supplierProductSyncEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Supplier Product Sync not ready. Call startPillow() first.",
+    );
+  }
+  return supplierProductSyncEngine;
+}
+
+export function requirePillowOss1688Integration(): Oss1688IntegrationEngine {
+  if (!oss1688IntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow 1688 Integration not ready. Call startPillow() first.",
+    );
+  }
+  return oss1688IntegrationEngine;
+}
+
+export function requirePillowAliExpressIntegration(): AliExpressIntegrationEngine {
+  if (!aliExpressIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow AliExpress Integration not ready. Call startPillow() first.",
+    );
+  }
+  return aliExpressIntegrationEngine;
+}
+
+export function requirePillowCjDropshippingIntegration(): CjDropshippingIntegrationEngine {
+  if (!cjDropshippingIntegrationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Pillow CJdropshipping Integration not ready. Call startPillow() first.",
+    );
+  }
+  return cjDropshippingIntegrationEngine;
+}
+
 export function requirePillowEmpireCommander(): EmpireCommanderEngine {
   if (!empireCommanderEngine) {
     throw new PillowNotBootstrappedError(
@@ -3341,6 +5656,94 @@ export function resetPillowSession(): void {
   amazonInventorySyncEngine = null;
   walmartMarketplaceIntegrationEngine = null;
   etsyMarketplaceIntegrationEngine = null;
+  ebayMarketplaceIntegrationEngine = null;
+  tiktokShopMarketplaceIntegrationEngine = null;
+  shopifyStoreMarketplaceIntegrationEngine = null;
+  woocommerceMarketplaceIntegrationEngine = null;
+  marketplaceProductNormalizationEngine = null;
+  marketplaceOrderNormalizationEngine = null;
+  marketplaceHealthMonitorEngine = null;
+  marketplaceCertificationEngine = null;
+  supplierFrameworkEngine = null;
+  cjDropshippingIntegrationEngine = null;
+  aliExpressIntegrationEngine = null;
+  oss1688IntegrationEngine = null;
+  supplierProductSyncEngine = null;
+  supplierInventorySyncEngine = null;
+  supplierPricingEngine = null;
+  supplierRankingEngine = null;
+  procurementEngine = null;
+  fulfilmentOrchestrator = null;
+  shippingCarrierIntegrationEngine = null;
+  shipmentTrackingEngine = null;
+  returnManagementEngine = null;
+  warehouseIntelligenceEngine = null;
+  multiWarehouseSupportEngine = null;
+  supplierRiskMonitorEngine = null;
+  logisticsOptimizationEngine = null;
+  fulfilmentSlaMonitorEngine = null;
+  procurementIntelligenceEngine = null;
+  supplierOperationsCertificationEngine = null;
+  financialFrameworkEngine = null;
+  paymentGatewayIntegrationEngine = null;
+  bankingIntegrationEngine = null;
+  revenueEngine = null;
+  expenseEngine = null;
+  profitCalculationEngine = null;
+  cashFlowMonitor = null;
+  reconciliationEngine = null;
+  invoiceGenerator = null;
+  refundEngine = null;
+  taxIntelligenceEngine = null;
+  multiCurrencyEngine = null;
+  financialForecastEngine = null;
+  budgetManagementEngine = null;
+  financialRiskMonitor = null;
+  executiveFinancialDashboard = null;
+  accountingExportEngine = null;
+  financialOperationsCertificationEngine = null;
+  customerIdentityEngine = null;
+  crmFoundationEngine = null;
+  customerTimelineEngine = null;
+  emailCommunicationEngine = null;
+  smsCommunicationEngine = null;
+  whatsAppIntegration = null;
+  liveChatIntegration = null;
+  aiCustomerSupport = null;
+  ticketManagementEngine = null;
+  customerSentimentEngine = null;
+  reviewManagementEngine = null;
+  loyaltyProgrammeEngine = null;
+  returnsIntelligenceEngine = null;
+  customerRiskEngine = null;
+  customerLifetimeValueEngine = null;
+  customerSegmentationEngine = null;
+  customerJourneyIntelligenceEngine = null;
+  executiveCustomerDashboard = null;
+  customerOperationsCertificationEngine = null;
+  marketingFrameworkEngine = null;
+  metaAdsIntegration = null;
+  googleAdsIntegration = null;
+  tiktokAdsIntegration = null;
+  youtubeAdsIntegration = null;
+  seoIntelligenceEngine = null;
+  campaignManagerEngine = null;
+  audienceIntelligenceEngine = null;
+  attributionEngine = null;
+  marketingAnalyticsDashboard = null;
+  creativeAssetManager = null;
+  aiCampaignGenerator = null;
+  budgetOptimizationEngine = null;
+  conversionIntelligence = null;
+  competitorMarketingMonitor = null;
+  viralTrendIntelligence = null;
+  marketingExperimentEngine = null;
+  crossChannelOrchestrator = null;
+  autonomousMarketingEngine = null;
+  realWorldOperationsCertificationEngine = null;
+  companyFactoryFrameworkEngine = null;
+  businessOpportunityDiscovery = null;
+  marketValidationEngine = null;
   empireCommanderEngine = null;
   empireOperatingSystemEngine = null;
   continuousEvolutionEngine = null;

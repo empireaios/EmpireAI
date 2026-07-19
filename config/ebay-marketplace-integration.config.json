@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "useSandbox": false,
+  "authenticationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "requestsPerMinute": 30,
+  "burstLimit": 5,
+  "rateLimitWindowMs": 60000,
+  "eventHandlingRulesEnabled": true,
+  "eventSignatureVerificationEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://ebay-developer-api",
+  "maskSensitiveValues": true
+}

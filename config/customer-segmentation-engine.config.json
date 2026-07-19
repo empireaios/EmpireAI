@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "segmentationRulesEnabled": true,
+  "classificationRulesEnabled": true,
+  "dynamicUpdateRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "highValueClvThreshold": 500,
+  "frequentPurchaseThreshold": 3,
+  "negativeSentimentThreshold": 40,
+  "highRiskScoreThreshold": 65,
+  "minSegmentConfidence": 50,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

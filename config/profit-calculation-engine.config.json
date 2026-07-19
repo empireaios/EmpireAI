@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "calculationRulesEnabled": true,
+  "marginCalculationRulesEnabled": true,
+  "aggregationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultCurrency": "USD",
+  "operatingExpenseCategories": [
+    "shipping",
+    "advertising",
+    "platform_fee",
+    "operational",
+    "recurring"
+  ],
+  "maskSensitiveValues": true
+}

@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "deliveryRulesEnabled": true,
+  "templateRulesEnabled": true,
+  "queueRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "deliveryRules": [
+    { "ruleId": "transactional", "label": "Transactional delivery", "emailCategory": "transactional", "enabled": true, "maxRetries": 3 },
+    { "ruleId": "marketing", "label": "Marketing delivery", "emailCategory": "marketing", "enabled": true, "maxRetries": 2 },
+    { "ruleId": "notification", "label": "Notification delivery", "emailCategory": "notification", "enabled": true, "maxRetries": 3 },
+    { "ruleId": "support", "label": "Support delivery", "emailCategory": "support", "enabled": true, "maxRetries": 3 }
+  ],
+  "templateRules": [
+    { "ruleId": "require_template", "label": "Require template for send", "requireTemplate": false, "enabled": true }
+  ],
+  "queueRules": [
+    { "ruleId": "default_queue", "label": "Default queue", "maxQueueSize": 10000, "batchSize": 50, "enabled": true }
+  ]
+}

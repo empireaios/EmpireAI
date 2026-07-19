@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "allocationRulesEnabled": true,
+  "reallocationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverModifyActiveBudgetsWithoutValidation": true,
+  "maskSensitiveValues": true,
+  "overspendThresholdPercent": 100,
+  "inefficiencyThresholdPercent": 40,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "dashboardRefreshFrequencyMs": 60000,
+  "kpiSelectionRulesEnabled": true,
+  "executiveSummaryRulesEnabled": true,
+  "alertDisplayRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

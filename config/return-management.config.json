@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "returnEligibilityRulesEnabled": true,
+  "supplierReturnRulesEnabled": true,
+  "carrierReturnRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "maskSensitiveValues": true
+}

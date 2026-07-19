@@ -1,0 +1,111 @@
+{
+  "enabled": true,
+  "classificationRulesEnabled": true,
+  "priorityRulesEnabled": true,
+  "assignmentRulesEnabled": true,
+  "escalationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "overdueThresholdHours": 48,
+  "stalledThresholdHours": 24,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "classificationRules": [
+    {
+      "ruleId": "billing",
+      "label": "Billing issues",
+      "category": "billing",
+      "keywords": ["bill", "payment", "invoice", "refund", "charge"],
+      "enabled": true
+    },
+    {
+      "ruleId": "account",
+      "label": "Account issues",
+      "category": "account",
+      "keywords": ["account", "login", "password", "access"],
+      "enabled": true
+    },
+    {
+      "ruleId": "shipping",
+      "label": "Shipping issues",
+      "category": "shipping",
+      "keywords": ["ship", "delivery", "order", "tracking"],
+      "enabled": true
+    },
+    {
+      "ruleId": "technical",
+      "label": "Technical issues",
+      "category": "technical",
+      "keywords": ["error", "bug", "broken", "crash", "technical"],
+      "enabled": true
+    },
+    {
+      "ruleId": "escalation",
+      "label": "Escalation",
+      "category": "escalation",
+      "keywords": ["urgent", "manager", "escalate", "complaint"],
+      "enabled": true
+    }
+  ],
+  "priorityRules": [
+    {
+      "ruleId": "critical_escalation",
+      "label": "Critical escalation priority",
+      "priority": "critical",
+      "categories": ["escalation"],
+      "enabled": true
+    },
+    {
+      "ruleId": "high_billing",
+      "label": "High billing priority",
+      "priority": "high",
+      "categories": ["billing", "account"],
+      "enabled": true
+    },
+    {
+      "ruleId": "medium_general",
+      "label": "Medium general priority",
+      "priority": "medium",
+      "categories": ["technical", "shipping", "general"],
+      "enabled": true
+    }
+  ],
+  "assignmentRules": [
+    {
+      "ruleId": "default_support",
+      "label": "Default support team",
+      "defaultOwner": "support-team",
+      "categories": ["general", "technical"],
+      "maxTicketsPerOwner": 50,
+      "enabled": true
+    },
+    {
+      "ruleId": "billing_team",
+      "label": "Billing team",
+      "defaultOwner": "billing-team",
+      "categories": ["billing"],
+      "maxTicketsPerOwner": 30,
+      "enabled": true
+    },
+    {
+      "ruleId": "escalation_team",
+      "label": "Escalation team",
+      "defaultOwner": "escalation-team",
+      "categories": ["escalation"],
+      "maxTicketsPerOwner": 20,
+      "enabled": true
+    }
+  ],
+  "escalationRules": [
+    {
+      "ruleId": "critical_escalation",
+      "label": "Auto-escalate critical tickets",
+      "escalatePriorities": ["critical"],
+      "enabled": true
+    }
+  ]
+}

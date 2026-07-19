@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "invoiceNumberingRulesEnabled": true,
+  "invoiceNumberPrefix": "INV",
+  "invoiceLifecycleRulesEnabled": true,
+  "defaultInitialStatus": "issued",
+  "taxCalculationRulesEnabled": true,
+  "defaultTaxRate": 0.1,
+  "validationRulesEnabled": true,
+  "inconsistencyDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultCurrency": "USD",
+  "maskSensitiveValues": true
+}

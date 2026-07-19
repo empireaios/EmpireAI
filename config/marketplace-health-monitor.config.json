@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "healthCheckFrequencyMinutes": 5,
+  "performanceThresholdsEnabled": true,
+  "alertThresholdsEnabled": true,
+  "failureDetectionRulesEnabled": true,
+  "apiLatencyThresholdMs": 2000,
+  "apiErrorRateThreshold": 0.1,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveHealthHistory": true,
+  "maskSensitiveValues": true
+}

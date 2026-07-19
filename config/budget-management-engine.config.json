@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "budgetPeriodRulesEnabled": true,
+  "budgetAllocationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "varianceThresholdPercent": 10,
+  "overrunThresholdPercent": 100,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultBudgetPeriod": "monthly",
+  "defaultBudgetCategory": "operations",
+  "periodRules": [
+    { "period": "monthly", "label": "Monthly budget" },
+    { "period": "quarterly", "label": "Quarterly budget" },
+    { "period": "annual", "label": "Annual budget" }
+  ],
+  "categoryRules": [
+    { "category": "operations", "label": "Operations" },
+    { "category": "marketing", "label": "Marketing" },
+    { "category": "payroll", "label": "Payroll" },
+    { "category": "supplies", "label": "Supplies" },
+    { "category": "overhead", "label": "Overhead" },
+    { "category": "other", "label": "Other" }
+  ]
+}

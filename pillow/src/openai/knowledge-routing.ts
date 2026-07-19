@@ -104,6 +104,47 @@ export function assessKnowledgeRouting(
   };
 }
 
+/** Natural executive dialogue — keeps repository discipline without template labels. */
+export function buildExecutiveConversationKnowledgeSection(
+  assessment: KnowledgeRoutingAssessment,
+  hasRepositoryContext: boolean,
+  userMessage?: string,
+): string {
+  const lines = [
+    "## Executive Conversation",
+    "",
+    "Speak naturally as a professional executive AI assistant to the Grand King.",
+    "- Answer the exact question first; match depth to what was asked.",
+    "- Maintain continuity with prior turns in this session when present.",
+    "- For follow-ups (e.g. tell me more, why, simplify, continue), answer in context of the immediately preceding exchange.",
+    "- For ambiguous requests (e.g. fix it, do it, explain), ask one concise clarifying question — do not web-search or dump blocker lists.",
+    "- Do not prefix answers with [Repository Fact], [General Knowledge], or other template labels.",
+    "- Avoid repetitive certification blockers or executive alerts unless directly relevant.",
+    "- When recommending actions, explain why briefly and note risks or alternatives when useful.",
+    "",
+    "Knowledge discipline:",
+    "- Use repository context when it directly answers the question; never invent repository facts.",
+    "- Answer general-knowledge questions helpfully when the repository has no answer.",
+    "- If live or real-time data is required and unavailable, say so plainly without a label prefix.",
+  ];
+
+  if (assessment.requiresLiveInformation) {
+    lines.push(
+      "",
+      "This question explicitly requests current public information. Answer from available tools if present; otherwise state plainly that live data is unavailable — without a label prefix.",
+    );
+  } else if (userMessage && isHistoricalKnowledgeQuestion(userMessage)) {
+    lines.push("", "Historical question — answer directly without live-information disclaimers.");
+  } else if (assessment.isRepositorySpecificQuestion && !hasRepositoryContext) {
+    lines.push(
+      "",
+      "Repository-specific question: search context below. If absent, say the repository does not contain it — do not fabricate.",
+    );
+  }
+
+  return lines.join("\n");
+}
+
 export function buildKnowledgeRoutingPromptSection(
   assessment: KnowledgeRoutingAssessment,
   hasRepositoryContext: boolean,

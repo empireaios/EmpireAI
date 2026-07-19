@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "retentionRulesEnabled": true,
+  "eventClassificationRulesEnabled": true,
+  "searchRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultSearchLimit": 100,
+  "retentionRules": [
+    { "ruleId": "default_retention", "label": "Default retention", "maxRecordsPerCustomer": 10000, "enabled": true }
+  ],
+  "eventClassificationRules": [
+    { "eventType": "interaction", "label": "Customer interaction", "enabled": true },
+    { "eventType": "purchase", "label": "Purchase", "enabled": true },
+    { "eventType": "support", "label": "Support activity", "enabled": true },
+    { "eventType": "communication", "label": "Communication", "enabled": true },
+    { "eventType": "account_change", "label": "Account change", "enabled": true },
+    { "eventType": "milestone", "label": "Customer milestone", "enabled": true },
+    { "eventType": "event", "label": "Generic event", "enabled": true }
+  ],
+  "searchRules": [
+    { "ruleId": "default_search", "label": "Default search", "minQueryLength": 2, "enabled": true }
+  ]
+}

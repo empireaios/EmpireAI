@@ -24,7 +24,11 @@ export class ConnectorValidator {
       const approved =
         (definition.integrationMissionId === "R1-02" && definition.marketplaceId === "amazon") ||
         (definition.integrationMissionId === "R1-06" && definition.marketplaceId === "walmart") ||
-        (definition.integrationMissionId === "R1-07" && definition.marketplaceId === "etsy");
+        (definition.integrationMissionId === "R1-07" && definition.marketplaceId === "etsy") ||
+        (definition.integrationMissionId === "R1-08" && definition.marketplaceId === "ebay") ||
+        (definition.integrationMissionId === "R1-09" && definition.marketplaceId === "tiktok-shop") ||
+        (definition.integrationMissionId === "R1-10" && definition.marketplaceId === "shopify") ||
+        (definition.integrationMissionId === "R1-11" && definition.marketplaceId === "woocommerce");
       if (!approved) {
         errors.push(
           "Specific marketplace integrations are out of scope for R1-01 — use template connectors or approved integration missions",

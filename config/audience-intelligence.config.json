@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "audienceAnalysisRulesEnabled": true,
+  "audienceScoringRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "redactPiiInRecords": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

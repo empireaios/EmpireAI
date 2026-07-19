@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "deliveryRulesEnabled": true,
+  "templateRulesEnabled": true,
+  "queueRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "deliveryRules": [
+    { "ruleId": "transactional", "label": "Transactional SMS", "smsCategory": "transactional", "enabled": true, "maxRetries": 3 },
+    { "ruleId": "notification", "label": "Notification SMS", "smsCategory": "notification", "enabled": true, "maxRetries": 2 },
+    { "ruleId": "verification", "label": "Verification SMS", "smsCategory": "verification", "enabled": true, "maxRetries": 1 }
+  ],
+  "templateRules": [
+    { "ruleId": "require_template", "label": "Require template for send", "requireTemplate": false, "enabled": true }
+  ],
+  "queueRules": [
+    { "ruleId": "default_queue", "label": "Default queue", "maxQueueSize": 10000, "batchSize": 50, "enabled": true }
+  ]
+}

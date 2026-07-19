@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "optimizationRulesEnabled": true,
+  "automationApprovalRulesEnabled": true,
+  "decisionThresholdsEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExecuteHighImpactActionsWithoutApproval": true,
+  "maskSensitiveValues": true,
+  "performanceDeclineThreshold": 15,
+  "minConfidenceScore": 60,
+  "maxOptimizationsPerCycle": 8,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

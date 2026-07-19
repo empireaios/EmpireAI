@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "assetClassificationRulesEnabled": true,
+  "versionManagementRulesEnabled": true,
+  "approvalWorkflowRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverOverwriteApprovedWithoutValidation": true,
+  "maskSensitiveValues": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -2,23 +2,18 @@ import { access, readdir } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 
+import {
+  auditGovernanceBundle,
+  PILLOW_HOST_REQUIRED_KNOWLEDGE_FILES,
+  type GovernanceBundleAudit,
+} from "@empireai/pillow";
+
 /** Mandatory executive knowledge paths checked before Pillow bootstrap (self-assessment). */
-export const REQUIRED_KNOWLEDGE_FILES = [
-  "EMPIREAI_SOUL.md",
-  "EMPIREAI_CONSTITUTION.md",
-  "PILLOW_ARCHITECTURE_CONTRACT.md",
-  "JOURNEY.md",
-] as const;
+export const REQUIRED_KNOWLEDGE_FILES = PILLOW_HOST_REQUIRED_KNOWLEDGE_FILES;
 
 export const MIN_DOCTRINE_FILES = 2;
 
-export type GovernanceKnowledgeDiagnostics = {
-  resolvedRepoRoot: string;
-  requiredKnowledgeFilesFound: boolean;
-  missingKnowledgeFiles: string[];
-  doctrineFilesFound: number;
-  checkedAt: string;
-};
+export type GovernanceKnowledgeDiagnostics = GovernanceBundleAudit;
 
 async function isReadableFile(root: string, relativePath: string): Promise<boolean> {
   try {
@@ -48,26 +43,16 @@ async function countDoctrineFiles(root: string): Promise<number> {
 export async function auditGovernanceKnowledge(
   repositoryRoot: string,
 ): Promise<GovernanceKnowledgeDiagnostics> {
-  const missingKnowledgeFiles: string[] = [];
-
-  for (const file of REQUIRED_KNOWLEDGE_FILES) {
-    if (!(await isReadableFile(repositoryRoot, file))) {
-      missingKnowledgeFiles.push(file);
-    }
-  }
-
-  const doctrineFilesFound = await countDoctrineFiles(repositoryRoot);
-  if (doctrineFilesFound < MIN_DOCTRINE_FILES) {
-    missingKnowledgeFiles.push(
-      `doctrine_files>=${MIN_DOCTRINE_FILES} (found ${doctrineFilesFound})`,
-    );
-  }
-
-  return {
-    resolvedRepoRoot: repositoryRoot,
-    requiredKnowledgeFilesFound: missingKnowledgeFiles.length === 0,
-    missingKnowledgeFiles,
-    doctrineFilesFound,
-    checkedAt: new Date().toISOString(),
-  };
+  return auditGovernanceBundle(
+    repositoryRoot,
+    async (absolutePath) => {
+      try {
+        await access(absolutePath, constants.R_OK);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    countDoctrineFiles,
+  );
 }

@@ -121,6 +121,94 @@ export interface PillowSubsystemBundle {
   amazonInventorySync?: import("../amazon-inventory-sync/engine.js").AmazonInventorySyncEngine;
   walmartMarketplaceIntegration?: import("../walmart-marketplace-integration/engine.js").WalmartMarketplaceIntegrationEngine;
   etsyMarketplaceIntegration?: import("../etsy-marketplace-integration/engine.js").EtsyMarketplaceIntegrationEngine;
+  ebayMarketplaceIntegration?: import("../ebay-marketplace-integration/engine.js").EbayMarketplaceIntegrationEngine;
+  tiktokShopMarketplaceIntegration?: import("../tiktok-shop-marketplace-integration/engine.js").TikTokShopMarketplaceIntegrationEngine;
+  shopifyStoreMarketplaceIntegration?: import("../shopify-store-marketplace-integration/engine.js").ShopifyStoreMarketplaceIntegrationEngine;
+  woocommerceMarketplaceIntegration?: import("../woocommerce-marketplace-integration/engine.js").WooCommerceMarketplaceIntegrationEngine;
+  marketplaceProductNormalization?: import("../marketplace-product-normalization/engine.js").MarketplaceProductNormalizationEngine;
+  marketplaceOrderNormalization?: import("../marketplace-order-normalization/engine.js").MarketplaceOrderNormalizationEngine;
+  marketplaceHealthMonitor?: import("../marketplace-health-monitor/engine.js").MarketplaceHealthMonitorEngine;
+  marketplaceCertification?: import("../marketplace-certification/engine.js").MarketplaceCertificationEngine;
+  supplierFramework?: import("../supplier-framework/engine.js").SupplierFrameworkEngine;
+  cjDropshippingIntegration?: import("../cj-dropshipping-integration/engine.js").CjDropshippingIntegrationEngine;
+  aliExpressIntegration?: import("../aliexpress-integration/engine.js").AliExpressIntegrationEngine;
+  oss1688Integration?: import("../1688-integration/engine.js").Oss1688IntegrationEngine;
+  supplierProductSync?: import("../supplier-product-sync/engine.js").SupplierProductSyncEngine;
+  supplierInventorySync?: import("../supplier-inventory-sync/engine.js").SupplierInventorySyncEngine;
+  supplierPricingEngine?: import("../supplier-pricing-engine/engine.js").SupplierPricingEngine;
+  supplierRankingEngine?: import("../supplier-ranking-engine/engine.js").SupplierRankingEngine;
+  procurementEngine?: import("../procurement-engine/engine.js").ProcurementEngine;
+  fulfilmentOrchestrator?: import("../fulfilment-orchestrator/engine.js").FulfilmentOrchestrator;
+  shippingCarrierIntegration?: import("../shipping-carrier-integration/engine.js").ShippingCarrierIntegrationEngine;
+  shipmentTrackingEngine?: import("../shipment-tracking-engine/engine.js").ShipmentTrackingEngine;
+  returnManagement?: import("../return-management/engine.js").ReturnManagementEngine;
+  warehouseIntelligence?: import("../warehouse-intelligence/engine.js").WarehouseIntelligenceEngine;
+  multiWarehouseSupport?: import("../multi-warehouse-support/engine.js").MultiWarehouseSupportEngine;
+  supplierRiskMonitor?: import("../supplier-risk-monitor/engine.js").SupplierRiskMonitorEngine;
+  logisticsOptimization?: import("../logistics-optimization/engine.js").LogisticsOptimizationEngine;
+  fulfilmentSlaMonitor?: import("../fulfilment-sla-monitor/engine.js").FulfilmentSlaMonitorEngine;
+  procurementIntelligence?: import("../procurement-intelligence/engine.js").ProcurementIntelligenceEngine;
+  supplierOperationsCertification?: import("../supplier-operations-certification/engine.js").SupplierOperationsCertificationEngine;
+  financialFramework?: import("../financial-framework/engine.js").FinancialFrameworkEngine;
+  paymentGatewayIntegration?: import("../payment-gateway-integration/engine.js").PaymentGatewayIntegrationEngine;
+  bankingIntegration?: import("../banking-integration/engine.js").BankingIntegrationEngine;
+  revenueEngine?: import("../revenue-engine/engine.js").RevenueEngine;
+  expenseEngine?: import("../expense-engine/engine.js").ExpenseEngine;
+  profitCalculationEngine?: import("../profit-calculation-engine/engine.js").ProfitCalculationEngine;
+  cashFlowMonitor?: import("../cash-flow-monitor/engine.js").CashFlowMonitorEngine;
+  reconciliationEngine?: import("../reconciliation-engine/engine.js").ReconciliationEngine;
+  invoiceGenerator?: import("../invoice-generator/engine.js").InvoiceGeneratorEngine;
+  refundEngine?: import("../refund-engine/engine.js").RefundEngine;
+  taxIntelligenceEngine?: import("../tax-intelligence-engine/engine.js").TaxIntelligenceEngine;
+  multiCurrencyEngine?: import("../multi-currency-engine/engine.js").MultiCurrencyEngine;
+  financialForecastEngine?: import("../financial-forecast-engine/engine.js").FinancialForecastEngine;
+  budgetManagementEngine?: import("../budget-management-engine/engine.js").BudgetManagementEngine;
+  financialRiskMonitor?: import("../financial-risk-monitor/engine.js").FinancialRiskMonitor;
+  executiveFinancialDashboard?: import("../executive-financial-dashboard/engine.js").ExecutiveFinancialDashboard;
+  accountingExportEngine?: import("../accounting-export-engine/engine.js").AccountingExportEngine;
+  financialOperationsCertification?: import("../financial-operations-certification/engine.js").FinancialOperationsCertificationEngine;
+  customerIdentityEngine?: import("../customer-identity-engine/engine.js").CustomerIdentityEngine;
+  crmFoundation?: import("../crm-foundation/engine.js").CrmFoundationEngine;
+  customerTimelineEngine?: import("../customer-timeline-engine/engine.js").CustomerTimelineEngine;
+  emailCommunicationEngine?: import("../email-communication-engine/engine.js").EmailCommunicationEngine;
+  smsCommunicationEngine?: import("../sms-communication-engine/engine.js").SmsCommunicationEngine;
+  whatsAppIntegration?: import("../whatsapp-integration/engine.js").WhatsAppIntegration;
+  liveChatIntegration?: import("../live-chat-integration/engine.js").LiveChatIntegration;
+  aiCustomerSupport?: import("../ai-customer-support/engine.js").AiCustomerSupport;
+  ticketManagementEngine?: import("../ticket-management-engine/engine.js").TicketManagementEngine;
+  customerSentimentEngine?: import("../customer-sentiment-engine/engine.js").CustomerSentimentEngine;
+  reviewManagementEngine?: import("../review-management-engine/engine.js").ReviewManagementEngine;
+  loyaltyProgrammeEngine?: import("../loyalty-programme-engine/engine.js").LoyaltyProgrammeEngine;
+  returnsIntelligenceEngine?: import("../returns-intelligence-engine/engine.js").ReturnsIntelligenceEngine;
+  customerRiskEngine?: import("../customer-risk-engine/engine.js").CustomerRiskEngine;
+  customerLifetimeValueEngine?: import("../customer-lifetime-value-engine/engine.js").CustomerLifetimeValueEngine;
+  customerSegmentationEngine?: import("../customer-segmentation-engine/engine.js").CustomerSegmentationEngine;
+  customerJourneyIntelligenceEngine?: import("../customer-journey-intelligence-engine/engine.js").CustomerJourneyIntelligenceEngine;
+  executiveCustomerDashboard?: import("../executive-customer-dashboard/engine.js").ExecutiveCustomerDashboard;
+  customerOperationsCertification?: import("../customer-operations-certification/engine.js").CustomerOperationsCertificationEngine;
+  marketingFramework?: import("../marketing-framework/engine.js").MarketingFrameworkEngine;
+  metaAdsIntegration?: import("../meta-ads-integration/engine.js").MetaAdsIntegration;
+  googleAdsIntegration?: import("../google-ads-integration/engine.js").GoogleAdsIntegration;
+  tiktokAdsIntegration?: import("../tiktok-ads-integration/engine.js").TikTokAdsIntegration;
+  youtubeAdsIntegration?: import("../youtube-ads-integration/engine.js").YouTubeAdsIntegration;
+  seoIntelligenceEngine?: import("../seo-intelligence-engine/engine.js").SeoIntelligenceEngine;
+  campaignManager?: import("../campaign-manager/engine.js").CampaignManagerEngine;
+  audienceIntelligence?: import("../audience-intelligence/engine.js").AudienceIntelligenceEngine;
+  attributionEngine?: import("../attribution-engine/engine.js").AttributionEngine;
+  marketingAnalyticsDashboard?: import("../marketing-analytics-dashboard/engine.js").MarketingAnalyticsDashboard;
+  creativeAssetManager?: import("../creative-asset-manager/engine.js").CreativeAssetManager;
+  aiCampaignGenerator?: import("../ai-campaign-generator/engine.js").AiCampaignGenerator;
+  budgetOptimizationEngine?: import("../budget-optimization-engine/engine.js").BudgetOptimizationEngine;
+  conversionIntelligence?: import("../conversion-intelligence/engine.js").ConversionIntelligence;
+  competitorMarketingMonitor?: import("../competitor-marketing-monitor/engine.js").CompetitorMarketingMonitor;
+  viralTrendIntelligence?: import("../viral-trend-intelligence/engine.js").ViralTrendIntelligence;
+  marketingExperimentEngine?: import("../marketing-experiment-engine/engine.js").MarketingExperimentEngine;
+  crossChannelOrchestrator?: import("../cross-channel-orchestrator/engine.js").CrossChannelOrchestrator;
+  autonomousMarketingEngine?: import("../autonomous-marketing-engine/engine.js").AutonomousMarketingEngine;
+  realWorldOperationsCertification?: import("../real-world-operations-certification/engine.js").RealWorldOperationsCertificationEngine;
+  companyFactoryFramework?: import("../company-factory-framework/engine.js").CompanyFactoryFrameworkEngine;
+  businessOpportunityDiscovery?: import("../business-opportunity-discovery/engine.js").BusinessOpportunityDiscovery;
+  marketValidationEngine?: import("../market-validation-engine/engine.js").MarketValidationEngine;
   empireCommander?: EmpireCommanderEngine;
   empireOperatingSystem?: EmpireOperatingSystemEngine;
   continuousEvolution?: ContinuousEvolutionEngine;
@@ -1541,6 +1629,1326 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.etsyMarketplaceIntegration) return "unavailable";
       try {
         const s = b.etsyMarketplaceIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ebay_marketplace_integration",
+    label: "eBay Marketplace Integration",
+    missionId: "PILLOW-EBAY-001",
+    runtimePath: "pillow/src/ebay-marketplace-integration/",
+    probe: (b) => {
+      if (!b.ebayMarketplaceIntegration) return "unavailable";
+      try {
+        const s = b.ebayMarketplaceIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "tiktok_shop_marketplace_integration",
+    label: "TikTok Shop Marketplace Integration",
+    missionId: "PILLOW-TTS-001",
+    runtimePath: "pillow/src/tiktok-shop-marketplace-integration/",
+    probe: (b) => {
+      if (!b.tiktokShopMarketplaceIntegration) return "unavailable";
+      try {
+        const s = b.tiktokShopMarketplaceIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shopify_store_marketplace_integration",
+    label: "Shopify Store Marketplace Integration",
+    missionId: "PILLOW-SHF-001",
+    runtimePath: "pillow/src/shopify-store-marketplace-integration/",
+    probe: (b) => {
+      if (!b.shopifyStoreMarketplaceIntegration) return "unavailable";
+      try {
+        const s = b.shopifyStoreMarketplaceIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "woocommerce_marketplace_integration",
+    label: "WooCommerce Marketplace Integration",
+    missionId: "PILLOW-WOO-001",
+    runtimePath: "pillow/src/woocommerce-marketplace-integration/",
+    probe: (b) => {
+      if (!b.woocommerceMarketplaceIntegration) return "unavailable";
+      try {
+        const s = b.woocommerceMarketplaceIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketplace_product_normalization",
+    label: "Marketplace Product Normalization",
+    missionId: "PILLOW-MPN-001",
+    runtimePath: "pillow/src/marketplace-product-normalization/",
+    probe: (b) => {
+      if (!b.marketplaceProductNormalization) return "unavailable";
+      try {
+        const s = b.marketplaceProductNormalization.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketplace_order_normalization",
+    label: "Marketplace Order Normalization",
+    missionId: "PILLOW-MON-001",
+    runtimePath: "pillow/src/marketplace-order-normalization/",
+    probe: (b) => {
+      if (!b.marketplaceOrderNormalization) return "unavailable";
+      try {
+        const s = b.marketplaceOrderNormalization.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketplace_health_monitor",
+    label: "Marketplace Health Monitor",
+    missionId: "PILLOW-MHM-001",
+    runtimePath: "pillow/src/marketplace-health-monitor/",
+    probe: (b) => {
+      if (!b.marketplaceHealthMonitor) return "unavailable";
+      try {
+        const s = b.marketplaceHealthMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketplace_certification",
+    label: "Marketplace Certification",
+    missionId: "PILLOW-MCT-001",
+    runtimePath: "pillow/src/marketplace-certification/",
+    probe: (b) => {
+      if (!b.marketplaceCertification) return "unavailable";
+      try {
+        const s = b.marketplaceCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_framework",
+    label: "Supplier Framework",
+    missionId: "PILLOW-SF-001",
+    runtimePath: "pillow/src/supplier-framework/",
+    probe: (b) => {
+      if (!b.supplierFramework) return "unavailable";
+      try {
+        const s = b.supplierFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cj_dropshipping_integration",
+    label: "CJdropshipping Integration",
+    missionId: "PILLOW-CJ-001",
+    runtimePath: "pillow/src/cj-dropshipping-integration/",
+    probe: (b) => {
+      if (!b.cjDropshippingIntegration) return "unavailable";
+      try {
+        const s = b.cjDropshippingIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "aliexpress_integration",
+    label: "AliExpress Integration",
+    missionId: "PILLOW-AEX-001",
+    runtimePath: "pillow/src/aliexpress-integration/",
+    probe: (b) => {
+      if (!b.aliExpressIntegration) return "unavailable";
+      try {
+        const s = b.aliExpressIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "oss1688_integration",
+    label: "1688 Integration",
+    missionId: "PILLOW-1688-001",
+    runtimePath: "pillow/src/1688-integration/",
+    probe: (b) => {
+      if (!b.oss1688Integration) return "unavailable";
+      try {
+        const s = b.oss1688Integration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_product_sync",
+    label: "Supplier Product Sync",
+    missionId: "PILLOW-SPS-001",
+    runtimePath: "pillow/src/supplier-product-sync/",
+    probe: (b) => {
+      if (!b.supplierProductSync) return "unavailable";
+      try {
+        const s = b.supplierProductSync.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_inventory_sync",
+    label: "Supplier Inventory Sync",
+    missionId: "PILLOW-SIS-001",
+    runtimePath: "pillow/src/supplier-inventory-sync/",
+    probe: (b) => {
+      if (!b.supplierInventorySync) return "unavailable";
+      try {
+        const s = b.supplierInventorySync.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_pricing_engine",
+    label: "Supplier Pricing Engine",
+    missionId: "PILLOW-SPE-001",
+    runtimePath: "pillow/src/supplier-pricing-engine/",
+    probe: (b) => {
+      if (!b.supplierPricingEngine) return "unavailable";
+      try {
+        const s = b.supplierPricingEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_ranking_engine",
+    label: "Supplier Ranking Engine",
+    missionId: "PILLOW-SRE-001",
+    runtimePath: "pillow/src/supplier-ranking-engine/",
+    probe: (b) => {
+      if (!b.supplierRankingEngine) return "unavailable";
+      try {
+        const s = b.supplierRankingEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "procurement_engine",
+    label: "Procurement Engine",
+    missionId: "PILLOW-PCE-001",
+    runtimePath: "pillow/src/procurement-engine/",
+    probe: (b) => {
+      if (!b.procurementEngine) return "unavailable";
+      try {
+        const s = b.procurementEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "fulfilment_orchestrator",
+    label: "Fulfilment Orchestrator",
+    missionId: "PILLOW-FO-001",
+    runtimePath: "pillow/src/fulfilment-orchestrator/",
+    probe: (b) => {
+      if (!b.fulfilmentOrchestrator) return "unavailable";
+      try {
+        const s = b.fulfilmentOrchestrator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shipping_carrier_integration",
+    label: "Shipping Carrier Integration",
+    missionId: "PILLOW-SCI-001",
+    runtimePath: "pillow/src/shipping-carrier-integration/",
+    probe: (b) => {
+      if (!b.shippingCarrierIntegration) return "unavailable";
+      try {
+        const s = b.shippingCarrierIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shipment_tracking_engine",
+    label: "Shipment Tracking Engine",
+    missionId: "PILLOW-STE-001",
+    runtimePath: "pillow/src/shipment-tracking-engine/",
+    probe: (b) => {
+      if (!b.shipmentTrackingEngine) return "unavailable";
+      try {
+        const s = b.shipmentTrackingEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "return_management",
+    label: "Return Management",
+    missionId: "PILLOW-RM-001",
+    runtimePath: "pillow/src/return-management/",
+    probe: (b) => {
+      if (!b.returnManagement) return "unavailable";
+      try {
+        const s = b.returnManagement.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "warehouse_intelligence",
+    label: "Warehouse Intelligence",
+    missionId: "PILLOW-WI-001",
+    runtimePath: "pillow/src/warehouse-intelligence/",
+    probe: (b) => {
+      if (!b.warehouseIntelligence) return "unavailable";
+      try {
+        const s = b.warehouseIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "multi_warehouse_support",
+    label: "Multi-Warehouse Support",
+    missionId: "PILLOW-MWS-001",
+    runtimePath: "pillow/src/multi-warehouse-support/",
+    probe: (b) => {
+      if (!b.multiWarehouseSupport) return "unavailable";
+      try {
+        const s = b.multiWarehouseSupport.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_risk_monitor",
+    label: "Supplier Risk Monitor",
+    missionId: "PILLOW-SRM-001",
+    runtimePath: "pillow/src/supplier-risk-monitor/",
+    probe: (b) => {
+      if (!b.supplierRiskMonitor) return "unavailable";
+      try {
+        const s = b.supplierRiskMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "logistics_optimization",
+    label: "Logistics Optimization",
+    missionId: "PILLOW-LO-001",
+    runtimePath: "pillow/src/logistics-optimization/",
+    probe: (b) => {
+      if (!b.logisticsOptimization) return "unavailable";
+      try {
+        const s = b.logisticsOptimization.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "fulfilment_sla_monitor",
+    label: "Fulfilment SLA Monitor",
+    missionId: "PILLOW-FSM-001",
+    runtimePath: "pillow/src/fulfilment-sla-monitor/",
+    probe: (b) => {
+      if (!b.fulfilmentSlaMonitor) return "unavailable";
+      try {
+        const s = b.fulfilmentSlaMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "procurement_intelligence",
+    label: "Procurement Intelligence",
+    missionId: "PILLOW-PI-001",
+    runtimePath: "pillow/src/procurement-intelligence/",
+    probe: (b) => {
+      if (!b.procurementIntelligence) return "unavailable";
+      try {
+        const s = b.procurementIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_operations_certification",
+    label: "Supplier Operations Certification",
+    missionId: "PILLOW-SOC-001",
+    runtimePath: "pillow/src/supplier-operations-certification/",
+    probe: (b) => {
+      if (!b.supplierOperationsCertification) return "unavailable";
+      try {
+        const s = b.supplierOperationsCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial_framework",
+    label: "Financial Framework",
+    missionId: "PILLOW-FF-001",
+    runtimePath: "pillow/src/financial-framework/",
+    probe: (b) => {
+      if (!b.financialFramework) return "unavailable";
+      try {
+        const s = b.financialFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "payment_gateway_integration",
+    label: "Payment Gateway Integration",
+    missionId: "PILLOW-PG-001",
+    runtimePath: "pillow/src/payment-gateway-integration/",
+    probe: (b) => {
+      if (!b.paymentGatewayIntegration) return "unavailable";
+      try {
+        const s = b.paymentGatewayIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "banking_integration",
+    label: "Banking Integration",
+    missionId: "PILLOW-BI-001",
+    runtimePath: "pillow/src/banking-integration/",
+    probe: (b) => {
+      if (!b.bankingIntegration) return "unavailable";
+      try {
+        const s = b.bankingIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "revenue_engine",
+    label: "Revenue Engine",
+    missionId: "PILLOW-RE-001",
+    runtimePath: "pillow/src/revenue-engine/",
+    probe: (b) => {
+      if (!b.revenueEngine) return "unavailable";
+      try {
+        const s = b.revenueEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "expense_engine",
+    label: "Expense Engine",
+    missionId: "PILLOW-EX-001",
+    runtimePath: "pillow/src/expense-engine/",
+    probe: (b) => {
+      if (!b.expenseEngine) return "unavailable";
+      try {
+        const s = b.expenseEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "profit_calculation_engine",
+    label: "Profit Calculation Engine",
+    missionId: "PILLOW-PC-001",
+    runtimePath: "pillow/src/profit-calculation-engine/",
+    probe: (b) => {
+      if (!b.profitCalculationEngine) return "unavailable";
+      try {
+        const s = b.profitCalculationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cash_flow_monitor",
+    label: "Cash Flow Monitor",
+    missionId: "PILLOW-CF-001",
+    runtimePath: "pillow/src/cash-flow-monitor/",
+    probe: (b) => {
+      if (!b.cashFlowMonitor) return "unavailable";
+      try {
+        const s = b.cashFlowMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "reconciliation_engine",
+    label: "Reconciliation Engine",
+    missionId: "PILLOW-RC-001",
+    runtimePath: "pillow/src/reconciliation-engine/",
+    probe: (b) => {
+      if (!b.reconciliationEngine) return "unavailable";
+      try {
+        const s = b.reconciliationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "invoice_generator",
+    label: "Invoice Generator",
+    missionId: "PILLOW-IG-001",
+    runtimePath: "pillow/src/invoice-generator/",
+    probe: (b) => {
+      if (!b.invoiceGenerator) return "unavailable";
+      try {
+        const s = b.invoiceGenerator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "refund_engine",
+    label: "Refund Engine",
+    missionId: "PILLOW-RF-001",
+    runtimePath: "pillow/src/refund-engine/",
+    probe: (b) => {
+      if (!b.refundEngine) return "unavailable";
+      try {
+        const s = b.refundEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "tax_intelligence_engine",
+    label: "Tax Intelligence Engine",
+    missionId: "PILLOW-TX-001",
+    runtimePath: "pillow/src/tax-intelligence-engine/",
+    probe: (b) => {
+      if (!b.taxIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.taxIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "multi_currency_engine",
+    label: "Multi-Currency Engine",
+    missionId: "PILLOW-MC-001",
+    runtimePath: "pillow/src/multi-currency-engine/",
+    probe: (b) => {
+      if (!b.multiCurrencyEngine) return "unavailable";
+      try {
+        const s = b.multiCurrencyEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial_forecast_engine",
+    label: "Financial Forecast Engine",
+    missionId: "PILLOW-FCT-001",
+    runtimePath: "pillow/src/financial-forecast-engine/",
+    probe: (b) => {
+      if (!b.financialForecastEngine) return "unavailable";
+      try {
+        const s = b.financialForecastEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "budget_management_engine",
+    label: "Budget Management Engine",
+    missionId: "PILLOW-BMG-001",
+    runtimePath: "pillow/src/budget-management-engine/",
+    probe: (b) => {
+      if (!b.budgetManagementEngine) return "unavailable";
+      try {
+        const s = b.budgetManagementEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial_risk_monitor",
+    label: "Financial Risk Monitor",
+    missionId: "PILLOW-FRM-001",
+    runtimePath: "pillow/src/financial-risk-monitor/",
+    probe: (b) => {
+      if (!b.financialRiskMonitor) return "unavailable";
+      try {
+        const s = b.financialRiskMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive_financial_dashboard",
+    label: "Executive Financial Dashboard",
+    missionId: "PILLOW-EFD-001",
+    runtimePath: "pillow/src/executive-financial-dashboard/",
+    probe: (b) => {
+      if (!b.executiveFinancialDashboard) return "unavailable";
+      try {
+        const s = b.executiveFinancialDashboard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "accounting_export_engine",
+    label: "Accounting Export Engine",
+    missionId: "PILLOW-AEE-001",
+    runtimePath: "pillow/src/accounting-export-engine/",
+    probe: (b) => {
+      if (!b.accountingExportEngine) return "unavailable";
+      try {
+        const s = b.accountingExportEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial_operations_certification",
+    label: "Financial Operations Certification",
+    missionId: "PILLOW-FOC-001",
+    runtimePath: "pillow/src/financial-operations-certification/",
+    probe: (b) => {
+      if (!b.financialOperationsCertification) return "unavailable";
+      try {
+        const s = b.financialOperationsCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_identity_engine",
+    label: "Customer Identity Engine",
+    missionId: "PILLOW-CIE-001",
+    runtimePath: "pillow/src/customer-identity-engine/",
+    probe: (b) => {
+      if (!b.customerIdentityEngine) return "unavailable";
+      try {
+        const s = b.customerIdentityEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "crm_foundation",
+    label: "CRM Foundation",
+    missionId: "PILLOW-CRM-001",
+    runtimePath: "pillow/src/crm-foundation/",
+    probe: (b) => {
+      if (!b.crmFoundation) return "unavailable";
+      try {
+        const s = b.crmFoundation.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_timeline_engine",
+    label: "Customer Timeline Engine",
+    missionId: "PILLOW-CTE-001",
+    runtimePath: "pillow/src/customer-timeline-engine/",
+    probe: (b) => {
+      if (!b.customerTimelineEngine) return "unavailable";
+      try {
+        const s = b.customerTimelineEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "email_communication_engine",
+    label: "Email Communication Engine",
+    missionId: "PILLOW-ECE-001",
+    runtimePath: "pillow/src/email-communication-engine/",
+    probe: (b) => {
+      if (!b.emailCommunicationEngine) return "unavailable";
+      try {
+        const s = b.emailCommunicationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "sms_communication_engine",
+    label: "SMS Communication Engine",
+    missionId: "PILLOW-SCE-001",
+    runtimePath: "pillow/src/sms-communication-engine/",
+    probe: (b) => {
+      if (!b.smsCommunicationEngine) return "unavailable";
+      try {
+        const s = b.smsCommunicationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "whatsapp_integration",
+    label: "WhatsApp Integration",
+    missionId: "PILLOW-WAI-001",
+    runtimePath: "pillow/src/whatsapp-integration/",
+    probe: (b) => {
+      if (!b.whatsAppIntegration) return "unavailable";
+      try {
+        const s = b.whatsAppIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "live_chat_integration",
+    label: "Live Chat Integration",
+    missionId: "PILLOW-LCI-001",
+    runtimePath: "pillow/src/live-chat-integration/",
+    probe: (b) => {
+      if (!b.liveChatIntegration) return "unavailable";
+      try {
+        const s = b.liveChatIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ai_customer_support",
+    label: "AI Customer Support",
+    missionId: "PILLOW-ACS-001",
+    runtimePath: "pillow/src/ai-customer-support/",
+    probe: (b) => {
+      if (!b.aiCustomerSupport) return "unavailable";
+      try {
+        const s = b.aiCustomerSupport.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ticket_management_engine",
+    label: "Ticket Management Engine",
+    missionId: "PILLOW-TME-001",
+    runtimePath: "pillow/src/ticket-management-engine/",
+    probe: (b) => {
+      if (!b.ticketManagementEngine) return "unavailable";
+      try {
+        const s = b.ticketManagementEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_sentiment_engine",
+    label: "Customer Sentiment Engine",
+    missionId: "PILLOW-CSE-001",
+    runtimePath: "pillow/src/customer-sentiment-engine/",
+    probe: (b) => {
+      if (!b.customerSentimentEngine) return "unavailable";
+      try {
+        const s = b.customerSentimentEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "review_management_engine",
+    label: "Review Management Engine",
+    missionId: "PILLOW-RME-001",
+    runtimePath: "pillow/src/review-management-engine/",
+    probe: (b) => {
+      if (!b.reviewManagementEngine) return "unavailable";
+      try {
+        const s = b.reviewManagementEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "loyalty_programme_engine",
+    label: "Loyalty Programme Engine",
+    missionId: "PILLOW-LPE-001",
+    runtimePath: "pillow/src/loyalty-programme-engine/",
+    probe: (b) => {
+      if (!b.loyaltyProgrammeEngine) return "unavailable";
+      try {
+        const s = b.loyaltyProgrammeEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "returns_intelligence_engine",
+    label: "Returns Intelligence Engine",
+    missionId: "PILLOW-RIE-001",
+    runtimePath: "pillow/src/returns-intelligence-engine/",
+    probe: (b) => {
+      if (!b.returnsIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.returnsIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_risk_engine",
+    label: "Customer Risk Engine",
+    missionId: "PILLOW-CRE-001",
+    runtimePath: "pillow/src/customer-risk-engine/",
+    probe: (b) => {
+      if (!b.customerRiskEngine) return "unavailable";
+      try {
+        const s = b.customerRiskEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_lifetime_value_engine",
+    label: "Customer Lifetime Value Engine",
+    missionId: "PILLOW-CLVE-001",
+    runtimePath: "pillow/src/customer-lifetime-value-engine/",
+    probe: (b) => {
+      if (!b.customerLifetimeValueEngine) return "unavailable";
+      try {
+        const s = b.customerLifetimeValueEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_segmentation_engine",
+    label: "Customer Segmentation Engine",
+    missionId: "PILLOW-CSEG-001",
+    runtimePath: "pillow/src/customer-segmentation-engine/",
+    probe: (b) => {
+      if (!b.customerSegmentationEngine) return "unavailable";
+      try {
+        const s = b.customerSegmentationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_journey_intelligence_engine",
+    label: "Customer Journey Intelligence Engine",
+    missionId: "PILLOW-CJI-001",
+    runtimePath: "pillow/src/customer-journey-intelligence-engine/",
+    probe: (b) => {
+      if (!b.customerJourneyIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.customerJourneyIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive_customer_dashboard",
+    label: "Executive Customer Dashboard",
+    missionId: "PILLOW-ECD-001",
+    runtimePath: "pillow/src/executive-customer-dashboard/",
+    probe: (b) => {
+      if (!b.executiveCustomerDashboard) return "unavailable";
+      try {
+        const s = b.executiveCustomerDashboard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "customer_operations_certification",
+    label: "Customer Operations Certification",
+    missionId: "PILLOW-COC-001",
+    runtimePath: "pillow/src/customer-operations-certification/",
+    probe: (b) => {
+      if (!b.customerOperationsCertification) return "unavailable";
+      try {
+        const s = b.customerOperationsCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketing_framework",
+    label: "Marketing Framework",
+    missionId: "PILLOW-MFW-001",
+    runtimePath: "pillow/src/marketing-framework/",
+    probe: (b) => {
+      if (!b.marketingFramework) return "unavailable";
+      try {
+        const s = b.marketingFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "meta_ads_integration",
+    label: "Meta Ads Integration",
+    missionId: "PILLOW-MAI-001",
+    runtimePath: "pillow/src/meta-ads-integration/",
+    probe: (b) => {
+      if (!b.metaAdsIntegration) return "unavailable";
+      try {
+        const s = b.metaAdsIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "google_ads_integration",
+    label: "Google Ads Integration",
+    missionId: "PILLOW-GAI-001",
+    runtimePath: "pillow/src/google-ads-integration/",
+    probe: (b) => {
+      if (!b.googleAdsIntegration) return "unavailable";
+      try {
+        const s = b.googleAdsIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "tiktok_ads_integration",
+    label: "TikTok Ads Integration",
+    missionId: "PILLOW-TAI-001",
+    runtimePath: "pillow/src/tiktok-ads-integration/",
+    probe: (b) => {
+      if (!b.tiktokAdsIntegration) return "unavailable";
+      try {
+        const s = b.tiktokAdsIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "youtube_ads_integration",
+    label: "YouTube Ads Integration",
+    missionId: "PILLOW-YAI-001",
+    runtimePath: "pillow/src/youtube-ads-integration/",
+    probe: (b) => {
+      if (!b.youtubeAdsIntegration) return "unavailable";
+      try {
+        const s = b.youtubeAdsIntegration.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "seo_intelligence_engine",
+    label: "SEO Intelligence Engine",
+    missionId: "PILLOW-SIE-001",
+    runtimePath: "pillow/src/seo-intelligence-engine/",
+    probe: (b) => {
+      if (!b.seoIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.seoIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "campaign_manager",
+    label: "Campaign Manager",
+    missionId: "PILLOW-CAM-001",
+    runtimePath: "pillow/src/campaign-manager/",
+    probe: (b) => {
+      if (!b.campaignManager) return "unavailable";
+      try {
+        const s = b.campaignManager.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "audience_intelligence",
+    label: "Audience Intelligence",
+    missionId: "PILLOW-AUD-001",
+    runtimePath: "pillow/src/audience-intelligence/",
+    probe: (b) => {
+      if (!b.audienceIntelligence) return "unavailable";
+      try {
+        const s = b.audienceIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "attribution_engine",
+    label: "Attribution Engine",
+    missionId: "PILLOW-ATT-001",
+    runtimePath: "pillow/src/attribution-engine/",
+    probe: (b) => {
+      if (!b.attributionEngine) return "unavailable";
+      try {
+        const s = b.attributionEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketing_analytics_dashboard",
+    label: "Marketing Analytics Dashboard",
+    missionId: "PILLOW-MAD-001",
+    runtimePath: "pillow/src/marketing-analytics-dashboard/",
+    probe: (b) => {
+      if (!b.marketingAnalyticsDashboard) return "unavailable";
+      try {
+        const s = b.marketingAnalyticsDashboard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "creative_asset_manager",
+    label: "Creative Asset Manager",
+    missionId: "PILLOW-CRA-001",
+    runtimePath: "pillow/src/creative-asset-manager/",
+    probe: (b) => {
+      if (!b.creativeAssetManager) return "unavailable";
+      try {
+        const s = b.creativeAssetManager.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ai_campaign_generator",
+    label: "AI Campaign Generator",
+    missionId: "PILLOW-ACG-001",
+    runtimePath: "pillow/src/ai-campaign-generator/",
+    probe: (b) => {
+      if (!b.aiCampaignGenerator) return "unavailable";
+      try {
+        const s = b.aiCampaignGenerator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "budget_optimization_engine",
+    label: "Budget Optimization Engine",
+    missionId: "PILLOW-BOE-001",
+    runtimePath: "pillow/src/budget-optimization-engine/",
+    probe: (b) => {
+      if (!b.budgetOptimizationEngine) return "unavailable";
+      try {
+        const s = b.budgetOptimizationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "conversion_intelligence",
+    label: "Conversion Intelligence",
+    missionId: "PILLOW-CVI-001",
+    runtimePath: "pillow/src/conversion-intelligence/",
+    probe: (b) => {
+      if (!b.conversionIntelligence) return "unavailable";
+      try {
+        const s = b.conversionIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "competitor_marketing_monitor",
+    label: "Competitor Marketing Monitor",
+    missionId: "PILLOW-CMM-001",
+    runtimePath: "pillow/src/competitor-marketing-monitor/",
+    probe: (b) => {
+      if (!b.competitorMarketingMonitor) return "unavailable";
+      try {
+        const s = b.competitorMarketingMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "viral_trend_intelligence",
+    label: "Viral Trend Intelligence",
+    missionId: "PILLOW-VTI-001",
+    runtimePath: "pillow/src/viral-trend-intelligence/",
+    probe: (b) => {
+      if (!b.viralTrendIntelligence) return "unavailable";
+      try {
+        const s = b.viralTrendIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketing_experiment_engine",
+    label: "Marketing Experiment Engine",
+    missionId: "PILLOW-MEE-001",
+    runtimePath: "pillow/src/marketing-experiment-engine/",
+    probe: (b) => {
+      if (!b.marketingExperimentEngine) return "unavailable";
+      try {
+        const s = b.marketingExperimentEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cross_channel_orchestrator",
+    label: "Cross-Channel Orchestrator",
+    missionId: "PILLOW-CCO-001",
+    runtimePath: "pillow/src/cross-channel-orchestrator/",
+    probe: (b) => {
+      if (!b.crossChannelOrchestrator) return "unavailable";
+      try {
+        const s = b.crossChannelOrchestrator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "autonomous_marketing_engine",
+    label: "Autonomous Marketing Engine",
+    missionId: "PILLOW-AME-001",
+    runtimePath: "pillow/src/autonomous-marketing-engine/",
+    probe: (b) => {
+      if (!b.autonomousMarketingEngine) return "unavailable";
+      try {
+        const s = b.autonomousMarketingEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "real_world_operations_certification",
+    label: "Real World Operations Certification",
+    missionId: "PILLOW-RWOC-001",
+    runtimePath: "pillow/src/real-world-operations-certification/",
+    probe: (b) => {
+      if (!b.realWorldOperationsCertification) return "unavailable";
+      try {
+        const s = b.realWorldOperationsCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "company_factory_framework",
+    label: "Company Factory Framework",
+    missionId: "PILLOW-CFF-001",
+    runtimePath: "pillow/src/company-factory-framework/",
+    probe: (b) => {
+      if (!b.companyFactoryFramework) return "unavailable";
+      try {
+        const s = b.companyFactoryFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business_opportunity_discovery",
+    label: "Business Opportunity Discovery",
+    missionId: "PILLOW-BOD-001",
+    runtimePath: "pillow/src/business-opportunity-discovery/",
+    probe: (b) => {
+      if (!b.businessOpportunityDiscovery) return "unavailable";
+      try {
+        const s = b.businessOpportunityDiscovery.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "market_validation_engine",
+    label: "Market Validation Engine",
+    missionId: "PILLOW-MVE-001",
+    runtimePath: "pillow/src/market-validation-engine/",
+    probe: (b) => {
+      if (!b.marketValidationEngine) return "unavailable";
+      try {
+        const s = b.marketValidationEngine.getState();
         return s.health.status === "failed" ? "degraded" : "ready";
       } catch {
         return "unavailable";

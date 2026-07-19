@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "messagingRulesEnabled": true,
+  "templateRulesEnabled": true,
+  "conversationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "messagingRules": [
+    { "ruleId": "transactional", "label": "Transactional WhatsApp", "messageCategory": "transactional", "enabled": true, "maxRetries": 3 },
+    { "ruleId": "notification", "label": "Notification WhatsApp", "messageCategory": "notification", "enabled": true, "maxRetries": 2 },
+    { "ruleId": "template", "label": "Template WhatsApp", "messageCategory": "template", "enabled": true, "maxRetries": 3 },
+    { "ruleId": "inbound", "label": "Inbound WhatsApp", "messageCategory": "inbound", "enabled": true, "maxRetries": 1 }
+  ],
+  "templateRules": [
+    { "ruleId": "require_template", "label": "Require template for send", "requireTemplate": false, "enabled": true }
+  ],
+  "conversationRules": [
+    { "ruleId": "default_conversation", "label": "Default conversation", "maxConversations": 10000, "autoCloseAfterDays": 30, "enabled": true }
+  ]
+}

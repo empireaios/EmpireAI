@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "slaThresholdHours": 72,
+  "breachThresholdScore": 40,
+  "riskThresholdScore": 70,
+  "complianceRulesEnabled": true,
+  "alertRulesEnabled": true,
+  "monitoringFrequencyMs": 300000,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "maskSensitiveValues": true
+}

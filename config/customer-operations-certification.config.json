@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "certificationScope": "full",
+  "requiredValidationRulesEnabled": true,
+  "passThresholdPercent": 85,
+  "failureDetectionRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 120000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "includeSmokeTests": true,
+  "safeTestMode": true
+}

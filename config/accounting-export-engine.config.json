@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exportFormatRulesEnabled": true,
+  "exportSchedulingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "exportFrequencyMs": 60000,
+  "defaultExportFormat": "csv",
+  "defaultExportScope": "all",
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "formatRules": [
+    { "format": "csv", "label": "CSV", "enabled": true },
+    { "format": "json", "label": "JSON", "enabled": true },
+    { "format": "quickbooks", "label": "QuickBooks IIF", "enabled": true },
+    { "format": "xero", "label": "Xero CSV", "enabled": true },
+    { "format": "generic", "label": "Generic Accounting", "enabled": true }
+  ],
+  "scopeRules": [
+    { "scope": "all", "label": "All financial records", "enabled": true },
+    { "scope": "revenue", "label": "Revenue only", "enabled": true },
+    { "scope": "expense", "label": "Expense only", "enabled": true },
+    { "scope": "invoice", "label": "Invoices only", "enabled": true },
+    { "scope": "refund", "label": "Refunds only", "enabled": true },
+    { "scope": "tax", "label": "Tax records only", "enabled": true },
+    { "scope": "reconciliation", "label": "Reconciliation only", "enabled": true },
+    { "scope": "profit", "label": "Profit records only", "enabled": true }
+  ]
+}

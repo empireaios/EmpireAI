@@ -13,6 +13,7 @@ import type {
 } from "./brain-adapter.js";
 import {
   assessKnowledgeRouting,
+  buildExecutiveConversationKnowledgeSection,
   buildKnowledgeRoutingPromptSection,
 } from "./knowledge-routing.js";
 import {
@@ -22,6 +23,11 @@ import {
 } from "./mode-policy.js";
 import type { IntelligencePlatformEngine } from "../intelligence-platform/engine.js";
 import type { EmpireAIArtifact } from "../intelligence-platform/types.js";
+
+export interface PillowPriorConversationTurn {
+  role: "user" | "assistant";
+  content: string;
+}
 
 export interface PillowCompletionRequest {
   operationalContext: OperationalContext;
@@ -33,6 +39,10 @@ export interface PillowCompletionRequest {
   executiveReasoning?: ExecutiveReasoningComposition;
   executiveLearningBundle?: ExecutiveLearningReasoningBundle;
   executiveCouncilRecommendation?: PillowExecutiveRecommendation;
+  /** Prior session turns (excluding the current user message). */
+  priorConversationTurns?: PillowPriorConversationTurn[];
+  /** Natural executive dialogue — suppresses template source labels. */
+  executiveConversationMode?: boolean;
   actor?: string;
 }
 
@@ -90,11 +100,13 @@ export class OpenAIIntegrationLayer {
       request.executiveLearningBundle,
       request.executiveCouncilRecommendation,
       this.intelligencePlatform,
+      request.priorConversationTurns,
+      request.executiveConversationMode,
     );
 
     const systemContext = messages.find((m) => m.role === "system")?.content ?? "";
 
-    if (this.intelligencePlatform) {
+    if (this.intelligencePlatform && !request.executiveConversationMode) {
       const routing = this.intelligencePlatform.assessRouting(
         request.userMessage,
         request.operationalContext,
@@ -193,6 +205,8 @@ function assembleLlmMessages(
   executiveLearningBundle?: ExecutiveLearningReasoningBundle,
   executiveCouncilRecommendation?: PillowExecutiveRecommendation,
   intelligencePlatform?: IntelligencePlatformEngine,
+  priorConversationTurns?: PillowPriorConversationTurn[],
+  executiveConversationMode?: boolean,
 ): BrainLLMMessage[] {
   const snapshot = context.intelligenceSnapshot;
   const hasRepositoryKnowledge = Boolean(context.repositoryKnowledgeAnswer?.trim());
@@ -200,13 +214,19 @@ function assembleLlmMessages(
     hasRepositoryAnswer: hasRepositoryKnowledge,
     contextTask: context.manifest.task,
   });
-  const knowledgeRoutingPolicy = intelligencePlatform
-    ? intelligencePlatform.buildRoutingPromptSection(userMessage, context)
-    : buildKnowledgeRoutingPromptSection(
+  const knowledgeRoutingPolicy = executiveConversationMode
+    ? buildExecutiveConversationKnowledgeSection(
         knowledgeRouting,
         hasRepositoryKnowledge,
         userMessage,
-      );
+      )
+    : intelligencePlatform
+      ? intelligencePlatform.buildRoutingPromptSection(userMessage, context)
+      : buildKnowledgeRoutingPromptSection(
+          knowledgeRouting,
+          hasRepositoryKnowledge,
+          userMessage,
+        );
 
   const systemHeader = [
     "You are Pillow, the AI operating layer inside EmpireAI.",
@@ -275,6 +295,10 @@ function assembleLlmMessages(
     ? `--- Continuous Empire Evolution (Phase 10) ---\n${context.continuousEvolutionBrief}\nPillow continuously evolves the Empire. Never wait for problems — analyse, discover, recommend, and improve continuously.`
     : null;
 
+  const screenAwarenessAnchor = context.screenAwarenessBrief
+    ? `--- Screen Awareness (T-Series) ---\n${context.screenAwarenessBrief}\nAnswer the Grand King's question using this active screen context. Do not substitute unrelated certification blockers unless explicitly asked.`
+    : null;
+
   const systemContent = [
     systemHeader,
     executiveAnchor,
@@ -288,17 +312,26 @@ function assembleLlmMessages(
     empireCommanderAnchor,
     empireOperatingSystemAnchor,
     continuousEvolutionAnchor,
+    screenAwarenessAnchor,
     repositoryKnowledge,
     contextBody,
   ]
     .filter(Boolean)
     .join("\n\n");
 
+  const priorMessages: BrainLLMMessage[] = (priorConversationTurns ?? []).map(
+    (turn) => ({
+      role: turn.role,
+      content: turn.content,
+    }),
+  );
+
   return [
     {
       role: "system",
       content: systemContent,
     },
+    ...priorMessages,
     { role: "user", content: userMessage },
   ];
 }

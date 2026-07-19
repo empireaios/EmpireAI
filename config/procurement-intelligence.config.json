@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "supplierEvaluationRulesEnabled": true,
+  "costOptimizationRulesEnabled": true,
+  "purchasingRecommendationRulesEnabled": true,
+  "confidenceThreshold": 60,
+  "costOptimizationThreshold": 10,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "maskSensitiveValues": true
+}

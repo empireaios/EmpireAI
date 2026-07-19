@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "escalationRulesEnabled": true,
+  "responseGenerationRulesEnabled": true,
+  "channelRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "duplicateDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "escalationRules": [
+    {
+      "ruleId": "complex_enquiry",
+      "label": "Auto-escalate complex enquiries",
+      "autoEscalateIntents": ["escalation_required", "account_issue"],
+      "enabled": true
+    }
+  ],
+  "responseGenerationRules": [
+    {
+      "ruleId": "default_response",
+      "label": "Default response generation",
+      "maxResponseLength": 2000,
+      "requireContext": true,
+      "enabled": true
+    }
+  ],
+  "channelRules": [
+    { "ruleId": "live_chat", "label": "Live chat channel", "channel": "live_chat", "enabled": true },
+    { "ruleId": "email", "label": "Email channel", "channel": "email", "enabled": true },
+    { "ruleId": "sms", "label": "SMS channel", "channel": "sms", "enabled": true },
+    { "ruleId": "whatsapp", "label": "WhatsApp channel", "channel": "whatsapp", "enabled": true }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "lifecycleRulesEnabled": true,
+  "taggingRulesEnabled": true,
+  "searchRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultSearchLimit": 50,
+  "lifecycleRules": [
+    { "status": "prospect", "label": "Prospect", "enabled": true },
+    { "status": "active", "label": "Active", "enabled": true },
+    { "status": "inactive", "label": "Inactive", "enabled": true },
+    { "status": "churned", "label": "Churned", "enabled": true },
+    { "status": "suspended", "label": "Suspended", "enabled": true }
+  ],
+  "taggingRules": [
+    { "ruleId": "default_tags", "label": "Default tagging", "maxTagsPerCustomer": 20, "enabled": true }
+  ],
+  "searchRules": [
+    { "ruleId": "default_search", "label": "Default search", "minQueryLength": 2, "enabled": true }
+  ]
+}

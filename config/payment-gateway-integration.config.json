@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "useSandbox": true,
+  "gatewayRegistrationRulesEnabled": true,
+  "authenticationRulesEnabled": true,
+  "paymentProcessingRulesEnabled": true,
+  "webhookRulesEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "rateLimitEnabled": true,
+  "operationsPerMinute": 60,
+  "burstLimit": 10,
+  "rateLimitWindowMs": 60000,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "credentialRef": "vault://payment-gateway-api",
+  "defaultCurrency": "USD",
+  "maskSensitiveValues": true
+}

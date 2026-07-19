@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "fraudDetectionRulesEnabled": true,
+  "riskThresholdRulesEnabled": true,
+  "alertRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "mediumRiskThreshold": 40,
+  "highRiskThreshold": 65,
+  "criticalRiskThreshold": 85,
+  "maxReturnsForAbuseFlag": 3,
+  "maxTicketsForAbuseFlag": 5,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "maskSensitiveValues": true
+}

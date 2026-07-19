@@ -17,6 +17,13 @@ function normalizeProcessEnv(): NodeJS.ProcessEnv {
     }
   }
 
+  if (!normalized.NODE_ENV?.trim()) {
+    normalized.NODE_ENV =
+      normalized.RAILWAY_ENVIRONMENT || normalized.RAILWAY_SERVICE_NAME
+        ? "production"
+        : "development";
+  }
+
   return normalized;
 }
 

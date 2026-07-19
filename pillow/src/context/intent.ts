@@ -88,6 +88,13 @@ const INTENT_PATTERNS: Array<{ task: ContextTask; patterns: RegExp[] }> = [
       /explain current screen|generate three dashboard/i,
       /floating sidebar|engineering chief|cursor bridge/i,
       /dispatch to cursor|autonomous engineering/i,
+      /help.*cursor/i,
+      /with cursor/i,
+      /cursor (help|assist|assistance|status|mission|progress|output|build|fail)/i,
+      /explain cursor/i,
+      /resume.*mission/i,
+      /build fail/i,
+      /implementation progress/i,
     ],
   },
   {

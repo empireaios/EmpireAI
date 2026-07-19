@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "taxCalculationRulesEnabled": true,
+  "jurisdictionRulesEnabled": true,
+  "taxRateRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "anomalyDetectionEnabled": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "defaultJurisdiction": "US",
+  "defaultTaxRate": 0.08,
+  "jurisdictionRates": [
+    { "jurisdiction": "US", "category": "sales_tax", "rate": 0.08 },
+    { "jurisdiction": "EU", "category": "vat", "rate": 0.2 },
+    { "jurisdiction": "UK", "category": "vat", "rate": 0.2 },
+    { "jurisdiction": "US", "category": "refund_adjustment", "rate": -0.08 }
+  ]
+}

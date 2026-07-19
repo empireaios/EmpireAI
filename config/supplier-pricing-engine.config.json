@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "synchronizationFrequencyMs": 300000,
+  "currencyHandlingRulesEnabled": true,
+  "priceValidationRulesEnabled": true,
+  "priceAnomalyThresholdPercent": 50,
+  "landedCostRulesEnabled": true,
+  "landedCostShippingPercent": 15,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "requestTimeoutMs": 30000,
+  "healthMonitoringRulesEnabled": true,
+  "loggingLevel": "info",
+  "autoRecover": true,
+  "preserveExistingOnValidationFailure": true,
+  "maskSensitiveValues": true
+}

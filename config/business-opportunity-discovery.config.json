@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "marketMonitoringRulesEnabled": true,
+  "opportunityScoringRulesEnabled": true,
+  "rankingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverFabricateMarketInformation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "minOpportunityScore": 50,
+  "minConfidenceScore": 55,
+  "maxOpportunitiesPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

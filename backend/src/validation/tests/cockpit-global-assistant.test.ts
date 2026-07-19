@@ -54,6 +54,14 @@ describe("G4-09 — Global AI Assistant", () => {
     });
     assert.equal(alertResponse.interactionIntent, "explain_alert");
 
+    const screenResponse = handleGlobalAssistantRequest("ws_g409", {
+      action: "ask",
+      screenPath: "/cockpit",
+      query: "What am I looking at?",
+    });
+    assert.equal(screenResponse.interactionIntent, "explain_screen");
+    assert.match(screenResponse.interactionSummary, /Executive Home/i);
+
     const nextResponse = handleGlobalAssistantRequest("ws_g409", {
       action: "next_action",
       screenPath: "/cockpit/command",

@@ -22,7 +22,9 @@ describe("Pillow governance knowledge audit", () => {
   it("passes when required executive knowledge is present", async () => {
     const resolution = await resolvePillowRepositoryRootWithAudit();
     assert.ok(resolution.governanceAudit.requiredKnowledgeFilesFound);
+    assert.ok(resolution.governanceAudit.bootstrapRequiredFilesFound);
     assert.equal(resolution.governanceAudit.missingKnowledgeFiles.length, 0);
+    assert.equal(resolution.governanceAudit.missingBootstrapFiles.length, 0);
     assert.ok(resolution.governanceAudit.doctrineFilesFound >= 2);
   });
 

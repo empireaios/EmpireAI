@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "monitoringFrequencyMinutes": 60,
+  "competitorDiscoveryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverCollectRestrictedOrUnauthorizedInfo": true,
+  "authorizedPublicSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "competitiveAlertThreshold": 70,
+  "emergingCompetitorScoreThreshold": 55,
+  "strategyChangeDeltaThreshold": 15,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}
