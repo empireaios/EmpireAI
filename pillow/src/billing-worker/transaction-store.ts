@@ -1,0 +1,2 @@
+import type { BillingTransaction } from "./types.js";
+export class TransactionStore { private readonly records=new Map<string,BillingTransaction>(); add(value:BillingTransaction){this.records.set(value.transactionId,value);return value;} get(id:string){return this.records.get(id)??null;} list(){return [...this.records.values()];} forInvoice(id:string){return this.list().filter(x=>x.invoiceId===id);} }

@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "analysisRulesEnabled": true,
+  "detectionRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "optimizationTargets": [
+    "worker_assignment",
+    "worker_utilization",
+    "worker_performance",
+    "collaboration",
+    "routing",
+    "queue_efficiency",
+    "throughput",
+    "accuracy",
+    "reliability",
+    "operational_cost"
+  ],
+  "overloadedThreshold": 85,
+  "underutilizedThreshold": 35,
+  "idleThreshold": 15,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverModifyWorkersAutomatically": true,
+  "neverReplacePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverPerformStrategicPlanning": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,40 @@
+{
+  "mission": "X4-17 — Global Expansion Simulator",
+  "programme": "Global Expansion",
+  "primaryDeliverable": "Expansion simulation engine",
+  "completionOutcome": "Validate international expansion before execution",
+  "certifiedAt": "2026-07-27T06:00:00.000Z",
+  "doctrine": "PILLOW-GES-001",
+  "gefRegistrationId": "global-expansion-simulator",
+  "tests": {
+    "file": "pillow/src/validation/tests/global-expansion-simulator.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/global-expansion-simulator-bridge.ts",
+    "routes": "/api/pillow/global-expansion-simulator/*",
+    "requireExport": "requirePillowGlobalExpansionSimulator"
+  },
+  "artifacts": {
+    "module": "pillow/src/global-expansion-simulator/",
+    "config": "config/global-expansion-simulator.config.json",
+    "governance": "docs/governance/EMPIREAI_GLOBAL_EXPANSION_SIMULATOR_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverExecuteSimulatedActionsAgainstProductionSystems": true,
+    "preserveSimulationTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveEnterpriseInformation": true
+  },
+  "prerequisites": {
+    "x4_16": "FINAL PASS"
+  },
+  "verdict": "FINAL PASS"
+}

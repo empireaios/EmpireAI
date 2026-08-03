@@ -1,0 +1,2 @@
+const forbidden=["replaceWorkflowOrchestration","replaceBusinessLogic","exposeSecrets","fabricateDeliveryResults","implementQ613OrLater","overridePillow","overrideGrandKing","overrideApprovedArchitecture"];
+export function validateNotificationInput(input:Record<string,unknown>={}){const issues=forbidden.filter(key=>input[key]===true).map(key=>`Forbidden input: ${key}`);if(input.missionId!==undefined&&input.missionId!=="Q6-12")issues.push("missionId must be Q6-12");return {valid:issues.length===0,issues}}

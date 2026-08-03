@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "dashboardRefreshFrequencyMs": 30000,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "structuralSignalsOnly": true,
+  "neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

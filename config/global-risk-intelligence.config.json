@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "globalRiskRulesEnabled": true,
+  "riskSeverityThreshold": 55,
+  "riskPrioritizationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverMakeDecisionsUsingUnvalidatedRiskIntelligence": true,
+  "preserveRiskTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveOperationalInformation": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,50 @@
+export {
+  CapitalFactoryCore,
+  createCapitalFactoryCore,
+  resetCapitalFactoryCoreForTesting,
+  type CapitalFactoryCoreOptions,
+} from "./engine.js";
+export type { CapitalFactoryCoreDependencies } from "./integrations.js";
+export {
+  buildCapitalFactoryCoreConfiguration,
+  DEFAULT_CAPITAL_FACTORY_CORE_CONFIGURATION,
+  type CapitalFactoryCoreConfiguration,
+} from "./configuration.js";
+export {
+  CAPITAL_FACTORY_CORE_ID,
+  CAPITAL_FACTORY_CORE_SYSTEM_PATH,
+  CAPITAL_FACTORY_CORE_IDENTITY,
+  CAPFC_METADATA_VERSION,
+  CAPITAL_FACTORY_REPORT_VERSION,
+  CAPITAL_PROJECT_VERSION,
+  CAPITAL_FACTORY_VERSION,
+  CAPITAL_CATEGORIES as CAPFC_CAPITAL_CATEGORIES,
+  LIFECYCLE_STATUSES as CAPFC_LIFECYCLE_STATUSES,
+  PROJECT_STATUSES as CAPFC_PROJECT_STATUSES,
+  WORKER_STATUSES as CAPFC_WORKER_STATUSES,
+  READINESS_STATUSES as CAPFC_READINESS_STATUSES,
+  AUDIT_STATUSES as CAPFC_AUDIT_STATUSES,
+  CAPITAL_WORKER_ROLES as CAPFC_CAPITAL_WORKER_ROLES,
+  CAPFC_CAPABILITIES,
+  INTEGRATION_TARGETS as CAPFC_INTEGRATION_TARGETS,
+} from "./paths.js";
+export type {
+  CapitalFactoryCoreState,
+  CapitalProject,
+  CapitalFactoryReport as CapfcCapitalFactoryReport,
+  CapfcInput,
+  CapitalFactoryCoreRunReport,
+  CapitalFactoryCoreCatalog,
+  CapitalFactoryCoreCockpitSnapshot,
+  CapitalFactoryCoreEngineRecord,
+  CapitalFactoryCoreValidationReport,
+  FactoryReadinessSnapshot,
+  Q902ConsumableContract,
+  CapitalCategory,
+  LifecycleStatus,
+  WorkerStatus,
+  WorkerStatusMatrixEntry,
+  WorkerDependencyEdge,
+  ReadinessStatus,
+  IntegrationHandshake,
+} from "./types.js";

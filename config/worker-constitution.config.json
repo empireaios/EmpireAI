@@ -1,0 +1,39 @@
+{
+  "enabled": true,
+  "definitionRulesEnabled": true,
+  "inheritanceRulesEnabled": true,
+  "complianceRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "constitutionVersion": "WCT-CONST-v1",
+  "constitutionalRules": [
+    "governed_by_pillow",
+    "follow_executive_instructions",
+    "never_bypass_pillow",
+    "never_execute_outside_authority",
+    "report_all_work",
+    "preserve_audit_history",
+    "preserve_traceability",
+    "follow_worker_quality_standard",
+    "follow_worker_self_critique_protocol",
+    "participate_peer_review_when_required",
+    "use_approved_tools_only",
+    "escalate_beyond_authority",
+    "remain_certifiable"
+  ],
+  "lifecycleStages": [
+    "registered",
+    "initialized",
+    "active",
+    "suspended",
+    "retired"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkerQualityStandard": true,
+  "neverReplaceGovernance": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

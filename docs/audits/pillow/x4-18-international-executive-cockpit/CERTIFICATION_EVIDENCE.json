@@ -1,0 +1,40 @@
+{
+  "mission": "X4-18 — International Executive Cockpit",
+  "programme": "Global Expansion",
+  "primaryDeliverable": "Global executive control center",
+  "completionOutcome": "Unified worldwide executive command",
+  "certifiedAt": "2026-07-27T06:15:00.000Z",
+  "doctrine": "PILLOW-IEC-001",
+  "gefRegistrationId": "international-executive-cockpit",
+  "tests": {
+    "file": "pillow/src/validation/tests/international-executive-cockpit.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/international-executive-cockpit-bridge.ts",
+    "routes": "/api/pillow/international-executive-cockpit/*",
+    "requireExport": "requirePillowInternationalExecutiveCockpit"
+  },
+  "artifacts": {
+    "module": "pillow/src/international-executive-cockpit/",
+    "config": "config/international-executive-cockpit.config.json",
+    "governance": "docs/governance/EMPIREAI_INTERNATIONAL_EXECUTIVE_COCKPIT_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers": true,
+    "preserveExecutiveTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveEnterpriseInformation": true
+  },
+  "prerequisites": {
+    "x4_17": "FINAL PASS"
+  },
+  "verdict": "FINAL PASS"
+}

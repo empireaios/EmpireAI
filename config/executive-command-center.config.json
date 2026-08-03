@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "routingRulesEnabled": true,
+  "aggregationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "commandTypes": [
+    "executive_query",
+    "executive_planning",
+    "executive_monitoring",
+    "executive_reporting",
+    "executive_routing",
+    "executive_inspection",
+    "executive_review",
+    "executive_approval",
+    "executive_recovery",
+    "executive_coordination"
+  ],
+  "routedServices": [
+    "workers",
+    "tools",
+    "missions",
+    "business_state",
+    "approvals",
+    "execution_memory",
+    "decision_memory",
+    "executive_reports"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerLogic": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverReplaceWorkers": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

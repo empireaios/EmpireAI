@@ -1,0 +1,57 @@
+﻿/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+export function collectExecutiveCommandCenterSnapshot() {
+  const configuration = {
+    enabled: true,
+    routingRulesEnabled: true,
+    aggregationRulesEnabled: true,
+    neverExecuteWorkerLogic: true,
+    neverReplaceWorkforceOrchestrator: true,
+    neverReplaceWorkers: true,
+    neverOverridePillow: true,
+    neverOverrideGrandKing: true,
+    neverExposeCredentials: true,
+    neverExposeAuthenticationTokens: true,
+    structuralSignalsOnly: true,
+    maskSensitiveValues: true,
+    neverLogSensitiveEnterpriseInformation: true,
+  };
+  return {
+    computedAt: new Date().toISOString(),
+    missionId: "Q0-18",
+    live: false,
+    engine: {
+      engineVersion: "PILLOW-PECC-001",
+      missionId: "Q0-18",
+      status: "idle",
+      initializedAt: new Date().toISOString(),
+      configuration,
+      latestReport: null,
+      engineRecord: null,
+      health: {
+        status: "standby",
+        healthScore: 50,
+        engineEnabled: true,
+        lastOperationAt: null,
+        lastValidationDecision: null,
+        totalCommandRecords: 0,
+        registeredWorkerCount: 0,
+        notes: ["Pillow session unavailable — offline snapshot"],
+      },
+    },
+    cockpit: {
+      missionId: "Q0-18",
+      status: "idle",
+      healthStatus: "standby",
+      totalCommandRecords: 0,
+      latestCommandId: null,
+      registeredWorkerCount: 0,
+      neverExecuteWorkerLogic: true,
+      neverReplaceWorkforceOrchestrator: true,
+      neverReplaceWorkers: true,
+      neverOverridePillow: true,
+      neverOverrideGrandKing: true,
+    },
+    latestRecord: null,
+    records: [],
+  };
+}

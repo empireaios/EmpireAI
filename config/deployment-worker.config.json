@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "timeoutMs": 120000,
+  "neverReplaceTesting": true,
+  "neverReplaceCertification": true,
+  "neverFabricateSuccessfulDeploymentResults": true,
+  "neverBypassApprovalGates": true,
+  "neverDeployUnvalidatedBuilds": true,
+  "neverImplementQ615OrLater": true,
+  "neverOverridePillowGrandKingApprovedArchitecture": true
+}

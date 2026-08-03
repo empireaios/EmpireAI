@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "taxUpdateRulesEnabled": true,
+  "taxCalculationRulesEnabled": true,
+  "riskThreshold": 55,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverProvideUnvalidatedTaxAsLegalAdvice": true,
+  "preserveTaxCalculationTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveFinancialInformation": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "kpiCalculationRulesEnabled": true,
+  "companyComparisonRulesEnabled": true,
+  "performanceScoringRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverManipulatePerformanceMetrics": true,
+  "preservePerformanceTraceability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "minOverallScore": 0,
+  "maxCompaniesPerComparison": 50,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

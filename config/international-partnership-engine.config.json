@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "partnerEvaluationRulesEnabled": true,
+  "partnershipGovernanceRulesEnabled": true,
+  "performanceThreshold": 55,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverApproveStrategicPartnershipsWithoutValidation": true,
+  "preservePartnershipTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitivePartnershipInformation": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

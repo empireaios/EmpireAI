@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverDistributeUnvalidatedEnterpriseKnowledge": true,
+  "preserveKnowledgeTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

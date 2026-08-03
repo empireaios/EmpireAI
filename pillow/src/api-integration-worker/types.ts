@@ -1,0 +1,25 @@
+import type { AIW_INTEGRATION_TARGETS, AIW_METADATA_VERSION, API_TYPES, AUTH_METHODS, ENGINE_STATUSES } from "./paths.js";
+
+export type ApiType = (typeof API_TYPES)[number];
+export type AuthMethod = (typeof AUTH_METHODS)[number];
+export type Protocol = "rest" | "graphql" | "webhook";
+export type ConnectionStatus = "registered" | "connected" | "failed";
+export type AuthenticationStatus = "unconfigured" | "authenticated" | "failed";
+export type IntegrationRegistration = { integrationId:string; name:string; providerType:ApiType; protocol:Protocol; baseUrl?:string; validated?:boolean; connectionStatus:ConnectionStatus; authenticationStatus:AuthenticationStatus; credentialId?:string; healthPath?:string; createdAt:string };
+export type Connector = { providerType:ApiType; protocols:Protocol[]; };
+export type CredentialRef = { credentialId:string; providerId:string; authMethod:AuthMethod; createdAt:string };
+export type ApiRequest = { integrationId:string; method?:string; path?:string; graphqlQuery?:string; body?:unknown; headers?:Record<string,string>; validated?:boolean };
+export type ApiRequestRecord = { requestId:string; integrationId:string; method:string; path:string; status:number; success:boolean; attempts:number; timestamp:string; error?:string };
+export type WebhookEvent = { eventId:string; integrationId:string; eventType:string; payload:unknown; signatureValid:boolean; receivedAt:string };
+export type HealthSnapshot = { integrationId:string; status:"healthy"|"degraded"|"unhealthy"; successRate:number; authenticationStatus:AuthenticationStatus; rateLimitStatus:string; computedAt:string };
+export type TransportRequest = { method:string; url:string; headers:Record<string,string>; body?:unknown; timeoutMs:number };
+export type TransportResponse = { status:number; body?:unknown; headers?:Record<string,string> };
+export interface HttpTransport { execute(request:TransportRequest):Promise<TransportResponse>; }
+export type RetryConfiguration = { maxRetries:number; timeoutMs:number; baseDelayMs:number };
+export type RateLimitStatus = { integrationId:string; allowed:boolean; remaining:number; resetAt:string; maxRequests:number; windowMs:number };
+export type ApiIntegrationWorkerInput = Record<string,unknown> & { validated?:boolean; missionId?:string; requirementsReportId?:string; architectureReportId?:string; replacePlatformBusinessLogic?:boolean; exposeSecrets?:boolean; storeSecretsInsecurely?:boolean; fabricateIntegrationSuccess?:boolean; implementQ611OrLater?:boolean; overridePillow?:boolean; overrideGrandKing?:boolean; overrideApprovedArchitecture?:boolean };
+export type ApiIntegrationBuildReport = { buildId:string; timestamp:string; platformId:string; platformName:string; apisConnected:Array<Pick<IntegrationRegistration,"integrationId"|"name"|"providerType"|"protocol"|"connectionStatus">>; authenticationStatus:string; webhookStatus:string; requestSuccessRate:number; retryStatistics:{attempts:number;successes:number;failures:number}; rateLimitStatus:string; integrationHealth:string; auditStatus:string; outstandingIssues:string[]; confidenceScore:number; metadataVersion:typeof AIW_METADATA_VERSION; buildStatus:"draft"|"in_progress"|"complete"|"failed"; requirementsReportId:string|null; architectureReportId:string|null; factoryMissionId:string|null; businessId:string|null; businessObjective:string|null; neverReplacePlatformBusinessLogic:true; neverExposeApiSecretsOrCredentials:true; neverStoreSecretsInsecurely:true; neverFabricateSuccessfulIntegrationTests:true; neverImplementQ611OrLater:true; neverOverridePillowGrandKingApprovedArchitecture:true; followApprovedRequirementsAndArchitecture:true; preserveCompleteTraceability:true; preserveAuditHistory:true; maskSensitiveValues:true; canonicalPaymentGatewayReference:"pillow/src/payment-gateway-integration/"; buildSteps:string[]; selfReview:string; workerId:string; reportVersion:"AIW-RPT-v1"; traceabilityRefs:string[]; submittedToExecutiveReporting:boolean; executiveReportId:string|null };
+export type ApiIntegrationWorkerConfiguration = { enabled:boolean; timeoutMs:number; workerId:string; integrationTargets:(typeof AIW_INTEGRATION_TARGETS)[number][]; neverReplacePlatformBusinessLogic:true; neverExposeApiSecretsOrCredentials:true; neverStoreSecretsInsecurely:true; neverFabricateSuccessfulIntegrationTests:true; neverImplementQ611OrLater:true; neverOverridePillowGrandKingApprovedArchitecture:true; followApprovedRequirementsAndArchitecture:true; preserveCompleteTraceability:true; preserveAuditHistory:true; maskSensitiveValues:true };
+export type ApiIntegrationWorkerState = { engineVersion:"PILLOW-AIW-001"; missionId:"Q6-10"; status:(typeof ENGINE_STATUSES)[number]; initializedAt:string; configuration:ApiIntegrationWorkerConfiguration; latestReport:ApiIntegrationBuildReport|null };
+export type ApiIntegrationWorkerDependencies = { executiveReportingRuntime?:{submitWorkerReport?:(input:Record<string,unknown>)=>unknown}; [key:string]:unknown };
+export type AuditEvent = { eventId:string; type:string; integrationId?:string; timestamp:string; details:Record<string,unknown> };

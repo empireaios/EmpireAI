@@ -1,0 +1,1 @@
+{"enabled":true,"timeoutMs":120000,"neverFabricateSuccessfulTests":true,"neverModifyUnrelatedProductionCode":true,"neverReplaceDeployment":true,"neverReplaceCertification":true,"neverImplementQ614OrLater":true,"neverOverridePillowGrandKingApprovedArchitecture":true}

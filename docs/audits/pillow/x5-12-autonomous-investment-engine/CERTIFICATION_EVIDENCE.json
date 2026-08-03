@@ -1,0 +1,38 @@
+{
+  "doctrine": "PILLOW-AIE-001",
+  "mission": "X5-12",
+  "moduleId": "autonomous-investment-engine",
+  "status": "FINAL PASS",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/autonomous-investment-engine.test.ts\"",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "safety": {
+    "structuralSignalsOnly": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverExecuteInvestmentsWithoutGovernanceApproval": true,
+    "preserveInvestmentTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveFinancialInformation": true
+  },
+  "capabilities": [
+    "investment_opportunity_discovery",
+    "investment_opportunity_evaluation",
+    "expected_return_estimation",
+    "investment_risk_assessment",
+    "investment_opportunity_prioritization",
+    "investment_strategy_recommendation",
+    "governance_approved_strategy_execution",
+    "investment_performance_monitoring",
+    "underperforming_investment_detection",
+    "investment_metadata_generation",
+    "investment_validation",
+    "health_monitoring",
+    "recovery_management"
+  ]
+}

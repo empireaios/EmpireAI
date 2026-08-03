@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "growthPlanningRulesEnabled": true,
+  "revenueMilestoneRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverModifyOperationalConfigWithoutValidation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxPlansPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

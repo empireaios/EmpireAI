@@ -1,0 +1,2 @@
+import { IntegrationManager } from "./integration-manager.js"; import type { ApiIntegrationWorkerConfiguration,ApiIntegrationWorkerDependencies } from "./types.js";
+export class ApiIntegrationWorkerController {manager:IntegrationManager;dependencies:ApiIntegrationWorkerDependencies={};constructor(config:ApiIntegrationWorkerConfiguration){this.manager=new IntegrationManager(config);}bindIntegrations(deps:ApiIntegrationWorkerDependencies={}){this.dependencies={...this.dependencies,...deps};}}

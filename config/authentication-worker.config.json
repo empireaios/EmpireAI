@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "timeoutMs": 5000,
+  "sessionTtlSeconds": 3600,
+  "maxFailedAttempts": 5,
+  "lockoutSeconds": 900
+}

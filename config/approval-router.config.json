@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "routingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "defaultApprovalLevel": "pillow_approval",
+  "pendingQueueLimit": 5000,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverApproveRequests": true,
+  "neverExecuteRequests": true,
+  "neverAssignWorkers": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

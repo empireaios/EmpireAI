@@ -1,0 +1,10 @@
+export const AIW_METADATA_VERSION="AIW-001-v1" as const;
+export const AIW_REPORT_VERSION="AIW-RPT-v1" as const;
+export const AIW_WORKER_ID="wkr-api-integration-01" as const;
+export const AIW_SYSTEM_PATH="docs/governance/EMPIREAI_API_INTEGRATION_WORKER_SYSTEM.md" as const;
+export const AIW_INTEGRATION_TARGETS=["worker_registry","worker_lifecycle","worker_assignment_engine","enterprise_platform_factory_core","backend_worker","database_worker","authentication_worker","authorization_worker","billing_worker","executive_reporting_runtime","audit_runtime","worker_recovery_system","secrets_management_system","worker_performance_review"] as const;
+export const INTEGRATION_TARGETS=AIW_INTEGRATION_TARGETS;
+export const AIW_CAPABILITIES=["register_integrations","secure_credentials","execute_requests","process_webhooks","monitor_health"] as const;
+export const ENGINE_STATUSES=["idle","active","failed"] as const;
+export const API_TYPES=["supplier","marketplace","ai_model","payment","shipping","email","sms","cloud","internal_empireai","custom"] as const;
+export const AUTH_METHODS=["api_key","bearer","basic","oauth_token_ref","none"] as const;

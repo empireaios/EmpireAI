@@ -48,6 +48,7 @@ describe("Executive Direction Context (Bootstrap extension)", () => {
       "executive_briefing",
       "current_conversation",
       "executive_reasoning",
+      "executive_deliberation",
       "response",
     ]);
     assert.ok(composition.briefingAnchor.includes("PILLOW EXECUTIVE BRIEFING"));
@@ -58,12 +59,18 @@ describe("Executive Direction Context (Bootstrap extension)", () => {
       "What is the current strategic priority?",
     );
     assert.ok(composition.executiveReasoningNotes.length >= 3);
+    assert.ok(composition.deliberation);
+    assert.equal(composition.deliberation.neverExposeChainOfThought, true);
+    assert.ok(composition.pipeline.includes("executive_deliberation"));
 
     const llmAnchor = formatExecutiveReasoningForLlm(composition);
     assert.ok(llmAnchor.includes("[1] EXECUTIVE BRIEFING"));
     assert.ok(llmAnchor.includes("[2] EXECUTIVE CONTEXT"));
     assert.ok(llmAnchor.includes("[3] CURRENT CONVERSATION"));
     assert.ok(llmAnchor.includes("[4] EXECUTIVE REASONING"));
+    assert.ok(llmAnchor.includes("EXECUTIVE DELIBERATION"));
+    assert.ok(llmAnchor.includes("[5] RESPONSE"));
+    assert.ok(llmAnchor.includes("Do not expose chain-of-thought"));
   });
 
   test("buildPillowContext attaches executive reasoning when userMessage present", async () => {

@@ -1,0 +1,2 @@
+import type { CaseResult,CoverageSummary } from "./types.js";
+export function computeCoverage(results:CaseResult[],runId?:string):CoverageSummary {const coverage:CoverageSummary={runId,lines:0,branches:0,functions:0,statements:0};for(const result of results)for(const metric of ["lines","branches","functions","statements"] as const)coverage[metric]+=result.coverageDelta?.[metric]??0;return coverage}

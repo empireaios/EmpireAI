@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "neverExecuteCapitalTransfersAutomaticallyWithoutApprovedGovernance": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveFinancialInformation": true
+}

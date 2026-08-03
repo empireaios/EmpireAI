@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "externalKnowledgeAcquisitionRulesEnabled": true,
+  "knowledgeRankingRulesEnabled": true,
+  "strategicRelevanceThreshold": 55,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverIntegrateUnvalidatedExternalKnowledgeIntoEnterpriseDecisionMakingAutomatically": true,
+  "preserveKnowledgeTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

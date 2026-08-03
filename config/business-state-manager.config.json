@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "registryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxBusinesses": 500,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteMissions": true,
+  "neverAssignWorkers": true,
+  "neverApproveActions": true,
+  "neverLaunchBusinesses": true,
+  "neverMakeStrategicDecisions": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "moduleRegistrationRulesEnabled": true,
+  "portfolioLifecycleRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "eventRoutingRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverBypassValidation": true,
+  "preservePortfolioIsolation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "maxRegisteredModules": 50,
+  "maxRegisteredCompanies": 100,
+  "defaultEventsPerMinute": 60,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "generationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "businessModelTypes": [
+    "media_content",
+    "commerce_retail",
+    "local_service",
+    "affiliate_referral",
+    "digital_product",
+    "saas_subscription",
+    "agency_services",
+    "hybrid",
+    "unknown"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverValidateDemand": true,
+  "neverPerformMarketResearch": true,
+  "neverBuildBranding": true,
+  "neverAssignWorkers": true,
+  "neverLaunchBusiness": true,
+  "neverImplementQ204OrLater": true,
+  "structuralSignalsOnly": true
+}

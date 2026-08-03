@@ -1,0 +1,9 @@
+{
+  "mission": "X5-08 — Empire Resilience Engine",
+  "doctrine": "PILLOW-ERS-001",
+  "moduleId": "empire-resilience-engine",
+  "tests": { "file": "pillow/src/validation/tests/empire-resilience-engine.test.ts", "passed": 10, "failed": 0, "verdict": "PASS" },
+  "hostWiring": { "bridge": "backend/src/orchestration/pillow-host/empire-resilience-engine-bridge.ts", "routes": "/api/pillow/empire-resilience-engine/*", "requireExport": "requirePillowEmpireResilienceEngine" },
+  "safetyInvariants": { "neverExposeCredentials": true, "neverExposeAuthenticationTokens": true, "neverExecuteDestructiveRecoveryActionsWithoutApprovedGovernance": true, "approvedForDestructiveRecoveryDefault": false, "preserveResilienceTraceability": true, "preserveAuditability": true, "preserveEnterpriseIntegrity": true, "structuralSignalsOnly": true, "maskSensitiveValues": true, "neverLogSensitiveEnterpriseInformation": true },
+  "verdict": "FINAL PASS"
+}

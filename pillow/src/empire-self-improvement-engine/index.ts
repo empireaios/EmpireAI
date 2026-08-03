@@ -1,0 +1,4 @@
+export { EmpireSelfImprovementEngine, createEmpireSelfImprovementEngine, resetEmpireSelfImprovementEngineForTesting, type EmpireSelfImprovementDependencies, type EmpireSelfImprovementEngineOptions } from "./engine.js";
+export { buildEmpireSelfImprovementEngineConfiguration, DEFAULT_EMPIRE_SELF_IMPROVEMENT_ENGINE_CONFIGURATION, type EmpireSelfImprovementEngineConfiguration } from "./configuration.js";
+export { EMPIRE_SELF_IMPROVEMENT_ENGINE_SYSTEM_PATH, EMPIRE_SELF_IMPROVEMENT_ENGINE_ID, ESI_METADATA_VERSION, ESI_CAPABILITIES } from "./paths.js";
+export type { EmpireSelfImprovementState, EmpireSelfImprovementInput, SelfImprovementRecord, SelfImprovementRecommendation, EmpireSelfImprovementRunReport, EmpireSelfImprovementCockpitSnapshot, EmpireSelfImprovementEngineRecord } from "./types.js";

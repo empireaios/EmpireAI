@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "critiqueRulesEnabled": true,
+  "completenessRulesEnabled": true,
+  "consistencyRulesEnabled": true,
+  "evidenceRulesEnabled": true,
+  "confidenceRulesEnabled": true,
+  "decisionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "critiqueChecks": [
+    "completeness",
+    "correctness",
+    "evidence",
+    "internal_consistency",
+    "assumptions",
+    "risks",
+    "missing_information",
+    "quality",
+    "executive_readiness"
+  ],
+  "submissionDecisions": [
+    "submit",
+    "revise_before_submit",
+    "escalate",
+    "reject_output"
+  ],
+  "minCompletenessScore": 70,
+  "minLogicalConsistency": 70,
+  "minFactualConsistency": 70,
+  "minConfidenceToSubmit": 65,
+  "reviseConfidenceCeiling": 60,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverReplacePeerReviewRuntime": true,
+  "neverReplaceWorkerQualityStandard": true,
+  "neverExecuteWorkerTasks": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

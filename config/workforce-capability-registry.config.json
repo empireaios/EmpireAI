@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "registrationRulesEnabled": true,
+  "lookupRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverAssignWorkers": true,
+  "neverOrchestrateWorkers": true,
+  "neverApproveActions": true,
+  "neverReplacePillow": true,
+  "structuralSignalsOnly": true
+}

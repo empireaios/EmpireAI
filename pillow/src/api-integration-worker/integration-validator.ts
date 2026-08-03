@@ -1,0 +1,2 @@
+import type { ApiIntegrationWorkerInput } from "./types.js";
+export function validateAiwInput(input:ApiIntegrationWorkerInput={}){if(input.missionId&&input.missionId!=="Q6-10")throw new Error("Mission must be Q6-10.");for(const key of ["replacePlatformBusinessLogic","exposeSecrets","storeSecretsInsecurely","fabricateIntegrationSuccess","implementQ611OrLater","overridePillow","overrideGrandKing","overrideApprovedArchitecture"] as const)if(input[key])throw new Error(`Forbidden input: ${key}.`);return input;}

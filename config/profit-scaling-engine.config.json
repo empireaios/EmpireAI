@@ -1,0 +1,80 @@
+{
+
+  "enabled": true,
+
+  "scalingRulesEnabled": true,
+
+  "profitGrowthMonitoringEnabled": true,
+
+  "grossMarginMonitoringEnabled": true,
+
+  "netMarginMonitoringEnabled": true,
+
+  "operatingMarginMonitoringEnabled": true,
+
+  "scalingCostMonitoringEnabled": true,
+
+  "roiMonitoringEnabled": true,
+
+  "profitErosionDetectionEnabled": true,
+
+  "unprofitableGrowthDetectionEnabled": true,
+
+  "profitOptimizationDuringScalingEnabled": true,
+
+  "recommendationRulesEnabled": true,
+
+  "validationRulesEnabled": true,
+
+  "healthMonitoringRulesEnabled": true,
+
+  "neverExposeCredentials": true,
+
+  "neverExposeAuthenticationTokens": true,
+
+  "neverPrioritizeGrowthOverValidatedProfitability": true,
+
+  "preserveProfitTraceability": true,
+
+  "preserveAuditability": true,
+
+  "preserveFinancialIntegrity": true,
+
+  "structuralSignalsOnly": true,
+
+  "maskSensitiveValues": true,
+
+  "neverLogSensitiveFinancialInformation": true,
+
+  "profitOptimizationThreshold": 55,
+
+  "highOptimizationThreshold": 70,
+
+  "criticalOptimizationThreshold": 85,
+
+  "profitGrowthThreshold": 60,
+
+  "grossMarginThreshold": 60,
+
+  "netMarginThreshold": 60,
+
+  "operatingMarginThreshold": 60,
+
+  "scalingCostThreshold": 60,
+
+  "roiThreshold": 60,
+
+  "connectionTimeoutMs": 30000,
+
+  "maxRetryAttempts": 3,
+
+  "retryDelayMs": 500,
+
+  "retryBackoffMultiplier": 2,
+
+  "loggingLevel": "info",
+
+  "autoRecover": true
+
+}
+

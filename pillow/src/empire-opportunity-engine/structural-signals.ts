@@ -1,0 +1,1 @@
+export const EOP_STRUCTURAL_SIGNAL_POLICY = Object.freeze({ structuralSignalsOnly: true, neverRecommendOpportunitiesUsingUnvalidatedIntelligence: true, neverLogSensitiveEnterpriseInformation: true });

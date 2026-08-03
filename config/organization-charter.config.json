@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "definitionRulesEnabled": true,
+  "registrationRulesEnabled": true,
+  "reportingRulesEnabled": true,
+  "escalationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "charterVersion": "OCH-CHARTER-v1",
+  "executiveAuthority": "pillow",
+  "organizationalRules": [
+    "pillow_supreme_executive_authority",
+    "worker_belongs_to_exactly_one_department",
+    "department_belongs_to_one_factory",
+    "factory_reports_to_pillow",
+    "worker_has_reporting_chain",
+    "responsibility_has_owner",
+    "escalation_reaches_pillow",
+    "no_worker_outside_organization"
+  ],
+  "authorityLevels": [
+    "pillow",
+    "factory",
+    "department",
+    "worker"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkforceOperatingSystem": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

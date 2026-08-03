@@ -1,0 +1,39 @@
+{
+  "enabled": true,
+  "reviewRulesEnabled": true,
+  "selectionRulesEnabled": true,
+  "comparisonRulesEnabled": true,
+  "escalationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "reviewOutcomes": [
+    "approved",
+    "approved_with_notes",
+    "revision_required",
+    "rejected",
+    "escalated"
+  ],
+  "reviewCriteria": [
+    "correctness",
+    "completeness",
+    "evidence",
+    "logical_consistency",
+    "compliance",
+    "quality",
+    "risk",
+    "executive_readiness"
+  ],
+  "minReviewerQualification": 55,
+  "minAgreementForApproval": 75,
+  "disagreementEscalationThreshold": 2,
+  "highImpactRequiresReview": true,
+  "criticalImpactRequiresReview": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverReplaceWorkers": true,
+  "neverRewriteCompletedWork": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverExecuteBusinessTasks": true,
+  "structuralSignalsOnly": true
+}

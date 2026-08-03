@@ -1,0 +1,23 @@
+import type { CrossRegionLearningEngineConfiguration } from "./configuration.js";
+import type { CRL_CAPABILITIES, ENGINE_STATUSES, HEALTH_STATUSES, LEARNING_CATEGORIES, OPERATIONAL_STATES, VALIDATION_STATUSES } from "./paths.js";
+export type EngineStatus = (typeof ENGINE_STATUSES)[number];
+export type OperationalState = (typeof OPERATIONAL_STATES)[number];
+export type LearningCategory = (typeof LEARNING_CATEGORIES)[number];
+export type ValidationStatus = (typeof VALIDATION_STATUSES)[number];
+export type HealthStatus = (typeof HEALTH_STATUSES)[number];
+export type CrlCapability = (typeof CRL_CAPABILITIES)[number];
+export type CrossRegionLearningInput = { sourceRegion?: string; targetRegion?: string; knowledgeCategory?: LearningCategory; confidenceHint?: number; reusabilityHint?: number; businessImpact?: string; validated?: boolean };
+export type LearningRecord = {
+  learningRecordId: string; timestamp: string; sourceRegion: string; targetRegion: string;
+  knowledgeCategory: LearningCategory; confidenceScore: number; reusabilityScore: number;
+  businessImpact: string; recommendationSummary: string; validationStatus: ValidationStatus;
+  metadataVersion: string; structuralSignalOnly: true; neverDistributeUnvalidatedOperationalKnowledge: true;
+  preserveLearningTraceability: true; unvalidatedClaim: "none"; learningTraceId: string;
+};
+export type LearningRecommendation = { recommendationId: string; timestamp: string; sourceRegion: string; targetRegion: string; recommendationSummary: string; knowledgeValue: number; structuralSignalOnly: true; neverDistributeUnvalidatedOperationalKnowledge: true; unvalidatedClaim: "none" };
+export type LearningValidationReport = { validationReportId: string; validationTimestamp: string; decision: "pass" | "partial" | "fail"; errors: string[]; warnings: string[]; durationMs: number; metadataVersion: string };
+export type CrossRegionLearningEngineRecord = { engineRecordId: string; timestamp: string; engineId: string; engineVersion: "PILLOW-CRL-001"; currentOperationalState: OperationalState; healthStatus: HealthStatus; validationStatus: ValidationStatus; supportedCapabilities: CrlCapability[]; frameworkModuleId: string | null; dependencyPresence: { globalExpansionFramework: boolean }; metadataVersion: string };
+export type CrlRunReport = { learningRunReportId: string; runTimestamp: string; action: string; engineRecord: CrossRegionLearningEngineRecord; learningRecords: LearningRecord[]; recommendations: LearningRecommendation[]; validation: LearningValidationReport; durationMs: number; metadataVersion: string };
+export type CrlHealthReport = { status: HealthStatus; healthScore: number; engineEnabled: boolean; lastOperationAt: string | null; lastValidationDecision: LearningValidationReport["decision"] | null; totalLearningRecords: number; notes: string[] };
+export type CrossRegionLearningState = { engineVersion: "PILLOW-CRL-001"; missionId: "X4-16"; status: EngineStatus; initializedAt: string; configuration: CrossRegionLearningEngineConfiguration; latestReport: CrlRunReport | null; engineRecord: CrossRegionLearningEngineRecord | null; health: CrlHealthReport };
+export type CrlCockpitSnapshot = { engineStatus: EngineStatus; healthStatus: HealthStatus; operationalState: OperationalState | null; lastDecision: LearningValidationReport["decision"] | null; totalLearningRecords: number; frameworkRegistered: boolean; dependenciesConnected: number; recentLogs: string[] };

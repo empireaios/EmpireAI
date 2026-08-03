@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "recordingRulesEnabled": true,
+  "lookupRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "lookupDimensions": [
+    "decision_id",
+    "business",
+    "mission",
+    "worker",
+    "outcome",
+    "confidence",
+    "date",
+    "approval_status"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverMakeDecisions": true,
+  "neverExecuteWork": true,
+  "neverReplaceExecutionMemory": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

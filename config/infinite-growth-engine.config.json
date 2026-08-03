@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "growthEvaluationRulesEnabled": true,
+  "sustainabilityRulesEnabled": true,
+  "growthPriorityRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverSacrificeConstitutionalGovernanceForGrowth": true,
+  "neverReduceOperationalQualityToIncreaseGrowth": true,
+  "preserveGrowthTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

@@ -1,0 +1,40 @@
+{
+  "mission": "X4-15 — Global Risk Intelligence",
+  "programme": "Global Expansion",
+  "primaryDeliverable": "Worldwide risk intelligence",
+  "completionOutcome": "Safe international expansion",
+  "certifiedAt": "2026-07-27T05:10:00.000Z",
+  "doctrine": "PILLOW-GRI-001",
+  "tests": {
+    "file": "pillow/src/validation/tests/global-risk-intelligence.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/global-risk-intelligence-bridge.ts",
+    "routes": "/api/pillow/global-risk-intelligence/*",
+    "requireExport": "requirePillowGlobalRiskIntelligenceEngine"
+  },
+  "artifacts": {
+    "module": "pillow/src/global-risk-intelligence/",
+    "config": "config/global-risk-intelligence.config.json",
+    "governance": "docs/governance/EMPIREAI_GLOBAL_RISK_INTELLIGENCE_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverSuppressCriticalInternationalRisks": true,
+    "preserveRiskTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveOperationalInformation": true,
+    "neverMakeDecisionsUsingUnvalidatedRiskIntelligence": true
+  },
+  "prerequisites": {
+    "x4_14": "FINAL PASS"
+  },
+  "verdict": "FINAL PASS"
+}

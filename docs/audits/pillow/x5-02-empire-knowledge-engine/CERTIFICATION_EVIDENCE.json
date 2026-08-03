@@ -1,0 +1,41 @@
+{
+  "mission": "X5-02 — Empire Knowledge Engine",
+  "programme": "Empire Intelligence",
+  "primaryDeliverable": "Cross-enterprise knowledge graph",
+  "completionOutcome": "Every company continuously learns from every other company",
+  "certifiedAt": "2026-07-27T07:15:00.000Z",
+  "doctrine": "PILLOW-ENK-001",
+  "moduleId": "empire-knowledge-engine",
+  "note": "Doctrine PILLOW-ENK-001 avoids collision with Executive KPI PILLOW-EKE-001",
+  "tests": {
+    "file": "pillow/src/validation/tests/empire-knowledge-engine.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/empire-knowledge-engine-bridge.ts",
+    "routes": "/api/pillow/empire-knowledge-engine/*",
+    "requireExport": "requirePillowEmpireKnowledgeEngine"
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-knowledge-engine/",
+    "config": "config/empire-knowledge-engine.config.json",
+    "governance": "docs/governance/EMPIREAI_EMPIRE_KNOWLEDGE_ENGINE_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverDistributeUnvalidatedEnterpriseKnowledge": true,
+    "preserveKnowledgeTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveEnterpriseInformation": true
+  },
+  "prerequisites": {
+    "x5_01": "FINAL PASS"
+  },
+  "verdict": "FINAL PASS"
+}

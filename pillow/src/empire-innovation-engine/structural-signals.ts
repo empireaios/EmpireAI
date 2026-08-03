@@ -1,0 +1,1 @@
+export const EIN_STRUCTURAL_SIGNAL_POLICY = Object.freeze({ structuralSignalsOnly: true, neverPromoteUnvalidatedInnovationsIntoProductionAutomatically: true, neverLogSensitiveEnterpriseInformation: true });

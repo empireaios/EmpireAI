@@ -1,0 +1,2 @@
+import type { Invoice } from "./types.js";
+export class InvoiceStore { private readonly records=new Map<string,Invoice>(); private sequence=0; nextNumber(){return `INV-${new Date().getUTCFullYear()}-${String(++this.sequence).padStart(6,"0")}`;} add(value:Invoice){this.records.set(value.invoiceId,value);return value;} get(id:string){return this.records.get(id)??null;} list(){return [...this.records.values()];} }

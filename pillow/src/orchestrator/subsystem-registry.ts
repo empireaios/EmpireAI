@@ -209,6 +209,237 @@ export interface PillowSubsystemBundle {
   companyFactoryFramework?: import("../company-factory-framework/engine.js").CompanyFactoryFrameworkEngine;
   businessOpportunityDiscovery?: import("../business-opportunity-discovery/engine.js").BusinessOpportunityDiscovery;
   marketValidationEngine?: import("../market-validation-engine/engine.js").MarketValidationEngine;
+  businessModelGenerator?: import("../business-model-generator/engine.js").BusinessModelGenerator;
+  brandCreationEngine?: import("../brand-creation-engine/engine.js").BrandCreationEngine;
+  domainDigitalAssetPlanner?: import("../domain-digital-asset-planner/engine.js").DomainDigitalAssetPlanner;
+  storeGenerationEngine?: import("../store-generation-engine/engine.js").StoreGenerationEngine;
+  productPortfolioBuilder?: import("../product-portfolio-builder/engine.js").ProductPortfolioBuilder;
+  pricingStrategyEngine?: import("../pricing-strategy-engine/engine.js").PricingStrategyEngine;
+  launchReadinessValidator?: import("../launch-readiness-validator/engine.js").LaunchReadinessValidator;
+  businessLaunchOrchestrator?: import("../business-launch-orchestrator/engine.js").BusinessLaunchOrchestrator;
+  growthInitializationEngine?: import("../growth-initialization-engine/engine.js").GrowthInitializationEngine;
+  launchMonitoringEngine?: import("../launch-monitoring-engine/engine.js").LaunchMonitoringEngine;
+  firstRevenueOptimizer?: import("../first-revenue-optimizer/engine.js").FirstRevenueOptimizer;
+  companyFactoryCertified?: import("../company-factory-certified/engine.js").CompanyFactoryCertified;
+  enterprisePortfolioFramework?: import("../enterprise-portfolio-framework/engine.js").EnterprisePortfolioFrameworkEngine;
+  multiCompanyRegistry?: import("../multi-company-registry/engine.js").MultiCompanyRegistry;
+  portfolioPerformanceEngine?: import("../portfolio-performance-engine/engine.js").PortfolioPerformanceEngine;
+  crossBusinessKnowledgeEngine?: import("../cross-business-knowledge-engine/engine.js").CrossBusinessKnowledgeEngine;
+  capitalDistributionEngine?: import("../capital-distribution-engine/engine.js").CapitalDistributionEngine;
+  executivePortfolioDashboard?: import("../executive-portfolio-dashboard/engine.js").ExecutivePortfolioDashboard;
+  portfolioRiskEngine?: import("../portfolio-risk-engine/engine.js").PortfolioRiskEngine;
+  portfolioBalanceEngine?: import("../portfolio-balance-engine/engine.js").PortfolioBalanceEngine;
+  businessHealthRanking?: import("../business-health-ranking/engine.js").BusinessHealthRanking;
+  portfolioIntelligenceCertified?: import("../portfolio-intelligence-certified/engine.js").PortfolioIntelligenceCertified;
+  crossCompanyResourceEngine?: import("../cross-company-resource-engine/engine.js").CrossCompanyResourceEngine;
+  sharedCustomerIntelligence?: import("../shared-customer-intelligence/engine.js").SharedCustomerIntelligence;
+  sharedSupplierIntelligence?: import("../shared-supplier-intelligence/engine.js").SharedSupplierIntelligence;
+  portfolioForecastEngine?: import("../portfolio-forecast-engine/engine.js").PortfolioForecastEngine;
+  acquisitionEvaluationEngine?: import("../acquisition-evaluation-engine/engine.js").AcquisitionEvaluationEngine;
+  portfolioOptimizationEngine?: import("../portfolio-optimization-engine/engine.js").PortfolioOptimizationEngine;
+  companyLifecycleManager?: import("../company-lifecycle-manager/engine.js").CompanyLifecycleManager;
+  portfolioExpansionPlanner?: import("../portfolio-expansion-planner/engine.js").PortfolioExpansionPlanner;
+  enterpriseValueEngine?: import("../enterprise-value-engine/engine.js").EnterpriseValueEngine;
+  autonomousPortfolioBoard?: import("../autonomous-portfolio-board/engine.js").AutonomousPortfolioBoard;
+  portfolioCertified?: import("../portfolio-certified/engine.js").PortfolioCertified;
+  autonomousScalingFramework?: import("../autonomous-scaling-framework/engine.js").AutonomousScalingFrameworkEngine;
+  winningProductDetector?: import("../winning-product-detector/engine.js").WinningProductDetectorEngine;
+  scalingDecisionEngine?: import("../scaling-decision-engine/engine.js").ScalingDecisionEngine;
+  capacityPlanningEngine?: import("../capacity-planning-engine/engine.js").CapacityPlanningEngine;
+  marketingScaleEngine?: import("../marketing-scale-engine/engine.js").MarketingScaleEngine;
+  supplierScaleEngine?: import("../supplier-scale-engine/engine.js").SupplierScaleEngine;
+  financialScaleEngine?: import("../financial-scale-engine/engine.js").FinancialScaleEngine;
+  workforceIntelligence?: import("../workforce-intelligence/engine.js").WorkforceIntelligenceEngine;
+  executiveScalingDashboard?: import("../executive-scaling-dashboard/engine.js").ExecutiveScalingDashboardEngine;
+  bottleneckIntelligence?: import("../bottleneck-intelligence/engine.js").BottleneckIntelligenceEngine;
+  operationalElasticityEngine?: import("../operational-elasticity-engine/engine.js").OperationalElasticityEngine;
+  performancePreservationEngine?: import("../performance-preservation-engine/engine.js").PerformancePreservationEngine;
+  scalingRiskMonitor?: import("../scaling-risk-monitor/engine.js").ScalingRiskMonitorEngine;
+  globalScalingPlanner?: import("../global-scaling-planner/engine.js").GlobalScalingPlannerEngine;
+  autonomousGrowthOptimizer?: import("../autonomous-growth-optimizer/engine.js").AutonomousGrowthOptimizerEngine;
+  revenueAccelerationEngine?: import("../revenue-acceleration-engine/engine.js").RevenueAccelerationEngine;
+  profitScalingEngine?: import("../profit-scaling-engine/engine.js").ProfitScalingEngine;
+  scaleSimulationEngine?: import("../scale-simulation-engine/engine.js").ScaleSimulationEngine;
+  selfBalancingEnterprise?: import("../self-balancing-enterprise/engine.js").SelfBalancingEnterprise;
+  globalExpansionFramework?: import("../global-expansion-framework/engine.js").GlobalExpansionFrameworkEngine;
+  empireIntelligenceFramework?: import("../empire-intelligence-framework/engine.js").EmpireIntelligenceFrameworkEngine;
+  countryIntelligenceEngine?: import("../country-intelligence-engine/engine.js").CountryIntelligenceEngine;
+  localizationEngine?: import("../localization-engine/engine.js").LocalizationEngine;
+  languageIntelligenceEngine?: import("../language-intelligence/engine.js").LanguageIntelligenceEngine;
+  currencyIntelligenceEngine?: import("../currency-intelligence/engine.js").CurrencyIntelligenceEngine;
+  regionalComplianceEngine?: import("../regional-compliance-engine/engine.js").RegionalComplianceEngine;
+  globalTaxIntelligenceEngine?: import("../global-tax-intelligence/engine.js").GlobalTaxIntelligenceEngine;
+  internationalLogisticsEngine?: import("../international-logistics-engine/engine.js").InternationalLogisticsEngine;
+  globalMarketIntelligenceEngine?: import("../global-market-intelligence/engine.js").GlobalMarketIntelligenceEngine;
+  executiveGlobalDashboardEngine?: import("../executive-global-dashboard/engine.js").ExecutiveGlobalDashboardEngine;
+  globalBrandManagementEngine?: import("../global-brand-management/engine.js").GlobalBrandManagementEngine;
+  internationalPartnershipEngine?: import("../international-partnership-engine/engine.js").InternationalPartnershipEngine;
+  globalTalentIntelligenceEngine?: import("../global-talent-intelligence/engine.js").GlobalTalentIntelligenceEngine;
+  regionalGrowthOptimizerEngine?: import("../regional-growth-optimizer/engine.js").RegionalGrowthOptimizerEngine;
+  globalRiskIntelligenceEngine?: import("../global-risk-intelligence/engine.js").GlobalRiskIntelligenceEngine;
+  crossRegionLearningEngine?: import("../cross-region-learning-engine/engine.js").CrossRegionLearningEngine;
+  empireKnowledgeEngine?: import("../empire-knowledge-engine/engine.js").EmpireKnowledgeEngine;
+  empireMemoryEngine?: import("../empire-memory-engine/engine.js").EmpireMemoryEngine;
+  empireOptimizationEngine?: import("../empire-optimization-engine/engine.js").EmpireOptimizationEngine;
+  empireCapitalAllocation?: import("../empire-capital-allocation/engine.js").EmpireCapitalAllocation;
+  empireOpportunityEngine?: import("../empire-opportunity-engine/engine.js").EmpireOpportunityEngine;
+  empireInnovationEngine?: import("../empire-innovation-engine/engine.js").EmpireInnovationEngine;
+  empireResilienceEngine?: import("../empire-resilience-engine/engine.js").EmpireResilienceEngine;
+  empireSelfImprovementEngine?: import("../empire-self-improvement-engine/engine.js").EmpireSelfImprovementEngine;
+  executiveEmpireDashboard?: import("../executive-empire-dashboard/engine.js").ExecutiveEmpireDashboardEngine;
+  crossEmpireGovernanceEngine?: import("../cross-empire-governance-engine/engine.js").CrossEmpireGovernanceEngine;
+  autonomousInvestmentEngine?: import("../autonomous-investment-engine/engine.js").AutonomousInvestmentEngine;
+  enterpriseSuccessionEngine?: import("../enterprise-succession-engine/engine.js").EnterpriseSuccessionEngine;
+  empireLegacyEngine?: import("../empire-legacy-engine/engine.js").EmpireLegacyEngine;
+  grandKingAdvisoryEngine?: import("../grand-king-advisory-engine/engine.js").GrandKingAdvisoryEngine;
+  civilizationKnowledgeEngine?: import("../civilization-knowledge-engine/engine.js").CivilizationKnowledgeEngine;
+  autonomousEmpireEvolution?: import("../autonomous-empire-evolution/engine.js").AutonomousEmpireEvolution;
+  empirePerformanceGuardian?: import("../empire-performance-guardian/engine.js").EmpirePerformanceGuardian;
+  infiniteGrowthEngine?: import("../infinite-growth-engine/engine.js").InfiniteGrowthEngine;
+  globalExpansionSimulator?: import("../global-expansion-simulator/engine.js").GlobalExpansionSimulator;
+  internationalExecutiveCockpit?: import("../international-executive-cockpit/engine.js").InternationalExecutiveCockpit;
+  globalOperationsCertified?: import("../global-operations-certified/engine.js").GlobalOperationsCertified;
+  empireCertified?: import("../empire-certified/engine.js").EmpireCertified;
+  executivePlanner?: import("../executive-planner/engine.js").ExecutivePlanner;
+  opportunityScanner?: import("../opportunity-scanner/engine.js").OpportunityScanner;
+  businessStateManager?: import("../business-state-manager/engine.js").BusinessStateManager;
+  executionMemory?: import("../execution-memory/engine.js").ExecutionMemory;
+  decisionEngine?: import("../decision-engine/engine.js").DecisionEngine;
+  approvalRouter?: import("../approval-router/engine.js").ApprovalRouter;
+  strategicRecommendationEngine?: import("../strategic-recommendation-engine/engine.js").StrategicRecommendationEngine;
+  executiveAuditEngine?: import("../executive-audit-engine/engine.js").ExecutiveAuditEngine;
+  workforceOrchestrator?: import("../workforce-orchestrator/engine.js").WorkforceOrchestrator;
+  workforceCapabilityRegistry?: import("../workforce-capability-registry/engine.js").WorkforceCapabilityRegistry;
+  workforceAccessManager?: import("../workforce-access-manager/engine.js").WorkforceAccessManager;
+  skillToolRouter?: import("../skill-tool-router/engine.js").SkillToolRouter;
+  collectiveReasoningEngine?: import("../collective-reasoning-engine/engine.js").CollectiveReasoningEngine;
+  experienceReplayEngine?: import("../experience-replay-engine/engine.js").ExperienceReplayEngine;
+  operationalPlaybookEngine?: import("../operational-playbook-engine/engine.js").OperationalPlaybookEngine;
+  decisionMemory?: import("../decision-memory/engine.js").DecisionMemory;
+  adaptiveWorkforceOptimizer?: import("../adaptive-workforce-optimizer/engine.js").AdaptiveWorkforceOptimizer;
+  executiveCommandCenter?: import("../executive-command-center/engine.js").ExecutiveCommandCenter;
+  workforceOperatingSystem?: import("../workforce-operating-system/engine.js").WorkforceOperatingSystem;
+  taskNegotiationProtocol?: import("../task-negotiation-protocol/engine.js").TaskNegotiationProtocol;
+  peerReviewRuntime?: import("../peer-review-runtime/engine.js").PeerReviewRuntime;
+  escalationFramework?: import("../escalation-framework/engine.js").EscalationFramework;
+  knowledgeSharingBus?: import("../knowledge-sharing-bus/engine.js").KnowledgeSharingBus;
+  interWorkerMessaging?: import("../inter-worker-messaging/engine.js").InterWorkerMessaging;
+  missionCoordinationEngine?: import("../mission-coordination-engine/engine.js").MissionCoordinationEngine;
+  executiveReportingRuntime?: import("../executive-reporting-runtime/engine.js").ExecutiveReportingRuntime;
+  workerQualityStandard?: import("../worker-quality-standard/engine.js").WorkerQualityStandard;
+  workerSelfCritiqueProtocol?: import("../worker-self-critique-protocol/engine.js").WorkerSelfCritiqueProtocol;
+  workforceCertificationMonitor?: import("../workforce-certification-monitor/engine.js").WorkforceCertificationMonitor;
+  unifiedWorkforceCertification?: import("../unified-workforce-certification/engine.js").UnifiedWorkforceCertification;
+  workerConstitution?: import("../worker-constitution/engine.js").WorkerConstitution;
+  organizationCharter?: import("../organization-charter/engine.js").OrganizationCharter;
+  roleTaxonomy?: import("../role-taxonomy/engine.js").RoleTaxonomy;
+  skillTaxonomy?: import("../skill-taxonomy/engine.js").SkillTaxonomy;
+  authorityMatrix?: import("../authority-matrix/engine.js").AuthorityMatrix;
+  responsibilityMatrix?: import("../responsibility-matrix/engine.js").ResponsibilityMatrix;
+  workerRegistry?: import("../worker-registry/engine.js").WorkerRegistry;
+  workerLifecycle?: import("../worker-lifecycle/engine.js").WorkerLifecycle;
+  workerAssignmentEngine?: import("../worker-assignment-engine/engine.js").WorkerAssignmentEngine;
+  workerMonitoring?: import("../worker-monitoring/engine.js").WorkerMonitoring;
+  workerPerformanceReview?: import("../worker-performance-review/engine.js").WorkerPerformanceReview;
+  workerRecoverySystem?: import("../worker-recovery-system/engine.js").WorkerRecoverySystem;
+  workforceFactoryCertification?: import("../workforce-factory-certification/engine.js").WorkforceFactoryCertification;
+  empireBuilderFactoryCore?: import("../empire-builder-factory-core/engine.js").EmpireBuilderFactoryCore;
+  businessIdeaInterpreter?: import("../business-idea-interpreter/engine.js").BusinessIdeaInterpreter;
+  empireBuilderModelGenerator?: import("../empire-builder-model-generator/engine.js").EmpireBuilderModelGenerator;
+  marketResearchWorker?: import("../market-research-worker/engine.js").MarketResearchWorker;
+  opportunityEvaluationWorker?: import("../opportunity-evaluation-worker/engine.js").OpportunityEvaluationWorker;
+  businessBlueprintWorker?: import("../business-blueprint-worker/engine.js").BusinessBlueprintWorker;
+  launchPlanWorker?: import("../launch-plan-worker/engine.js").LaunchPlanWorker;
+  businessRiskWorker?: import("../business-risk-worker/engine.js").BusinessRiskWorker;
+  businessApprovalPackWorker?: import("../business-approval-pack-worker/engine.js").BusinessApprovalPackWorker;
+  empireBuilderCertification?: import("../empire-builder-certification/engine.js").EmpireBuilderCertification;
+  commerceFactoryCore?: import("../commerce-factory-core/engine.js").CommerceFactoryCore;
+  productDiscoveryWorker?: import("../product-discovery-worker/engine.js").ProductDiscoveryWorker;
+  productEvaluationWorker?: import("../product-evaluation-worker/engine.js").ProductEvaluationWorker;
+  supplierDiscoveryWorker?: import("../supplier-discovery-worker/engine.js").SupplierDiscoveryWorker;
+  supplierEvaluationWorker?: import("../supplier-evaluation-worker/engine.js").SupplierEvaluationWorker;
+  supplierNegotiationWorker?: import("../supplier-negotiation-worker/engine.js").SupplierNegotiationWorker;
+  productImageWorker?: import("../product-image-worker/engine.js").ProductImageWorker;
+  productListingWorker?: import("../product-listing-worker/engine.js").ProductListingWorker;
+  pricingWorker?: import("../pricing-worker/engine.js").PricingWorker;
+  inventoryWorker?: import("../inventory-worker/engine.js").InventoryWorker;
+  orderWorker?: import("../order-worker/engine.js").OrderWorker;
+  refundDisputeWorker?: import("../refund-dispute-worker/engine.js").RefundDisputeWorker;
+  commerceAnalyticsWorker?: import("../commerce-analytics-worker/engine.js").CommerceAnalyticsWorker;
+  commerceCertification?: import("../commerce-certification/engine.js").CommerceCertification;
+  mediaFactoryCore?: import("../media-factory-core/engine.js").MediaFactoryCore;
+  editorInChiefWorker?: import("../editor-in-chief-worker/engine.js").EditorInChiefWorker;
+  trendResearchWorker?: import("../trend-research-worker/engine.js").TrendResearchWorker;
+  topicPlannerWorker?: import("../topic-planner-worker/engine.js").TopicPlannerWorker;
+  scriptWorker?: import("../script-worker/engine.js").ScriptWorker;
+  hookWorker?: import("../hook-worker/engine.js").HookWorker;
+  thumbnailWorker?: import("../thumbnail-worker/engine.js").ThumbnailWorker;
+  visualResearchWorker?: import("../visual-research-worker/engine.js").VisualResearchWorker;
+  imageCreativeWorker?: import("../image-creative-worker/engine.js").ImageCreativeWorker;
+  voiceWorker?: import("../voice-worker/engine.js").VoiceWorker;
+  videoAssemblyWorker?: import("../video-assembly-worker/engine.js").VideoAssemblyWorker;
+  subtitleWorker?: import("../subtitle-worker/engine.js").SubtitleWorker;
+  musicSoundWorker?: import("../music-sound-worker/engine.js").MusicSoundWorker;
+  publishingWorker?: import("../publishing-worker/engine.js").PublishingWorker;
+  mediaAnalyticsWorker?: import("../media-analytics-worker/engine.js").MediaAnalyticsWorker;
+  mediaLearningWorker?: import("../media-learning-worker/engine.js").MediaLearningWorker;
+  channelRecommendationWorker?: import("../channel-recommendation-worker/engine.js").ChannelRecommendationWorker;
+  mediaExecutiveReviewWorker?: import("../media-executive-review-worker/engine.js").MediaExecutiveReviewWorker;
+  mediaCertification?: import("../media-certification/engine.js").MediaCertification;
+  digitalProductsFactoryCore?: import("../digital-products-factory-core/engine.js").DigitalProductsFactoryCore;
+  digitalProductResearchWorker?: import("../digital-product-research-worker/engine.js").DigitalProductResearchWorker;
+  ebookWorker?: import("../ebook-worker/engine.js").EbookWorker;
+  promptProductWorker?: import("../prompt-product-worker/engine.js").PromptProductWorker;
+  courseBuilderWorker?: import("../course-builder-worker/engine.js").CourseBuilderWorker;
+  templateBuilderWorker?: import("../template-builder-worker/engine.js").TemplateBuilderWorker;
+  designWorker?: import("../design-worker/engine.js").DesignWorker;
+  salesPageWorker?: import("../sales-page-worker/engine.js").SalesPageWorker;
+  checkoutWorker?: import("../checkout-worker/engine.js").CheckoutWorker;
+  digitalDeliveryWorker?: import("../digital-delivery-worker/engine.js").DigitalDeliveryWorker;
+  digitalProductAnalyticsWorker?: import("../digital-product-analytics-worker/engine.js").DigitalProductAnalyticsWorker;
+  digitalProductsCertification?: import("../digital-products-certification/engine.js").DigitalProductsCertification;
+  enterprisePlatformFactoryCore?: import("../enterprise-platform-factory-core/engine.js").EnterprisePlatformFactoryCore;
+  requirementsWorker?: import("../requirements-worker/engine.js").RequirementsWorker;
+  architectureWorker?: import("../architecture-worker/engine.js").ArchitectureWorker;
+  frontendWorker?: import("../frontend-worker/engine.js").FrontendWorker;
+  backendWorker?: import("../backend-worker/engine.js").BackendWorker;
+  databaseWorker?: import("../database-worker/engine.js").DatabaseWorker;
+  authenticationWorker?: import("../authentication-worker/engine.js").AuthenticationWorker;
+  authorizationWorker?: import("../authorization-worker/engine.js").AuthorizationWorker;
+  billingWorker?: import("../billing-worker/engine.js").BillingWorker;
+  apiIntegrationWorker?: import("../api-integration-worker/engine.js").ApiIntegrationWorker;
+  workflowBuilderWorker?: import("../workflow-builder-worker/engine.js").WorkflowBuilderWorker;
+  notificationWorker?: import("../notification-worker/engine.js").NotificationWorker;
+  testingWorker?: import("../testing-worker/engine.js").TestingWorker;
+  deploymentWorker?: import("../deployment-worker/engine.js").DeploymentWorker;
+  platformCertification?: import("../platform-certification/engine.js").PlatformCertification;
+  localBusinessFactoryCore?: import("../local-business-factory-core/engine.js").LocalBusinessFactoryCore;
+  localMarketResearchWorker?: import("../local-market-research-worker/engine.js").LocalMarketResearchWorker;
+  serviceOfferWorker?: import("../service-offer-worker/engine.js").ServiceOfferWorker;
+  bookingWorker?: import("../booking-worker/engine.js").BookingWorker;
+  crmWorker?: import("../crm-worker/engine.js").CrmWorker;
+  whatsAppWorker?: import("../whatsapp-worker/engine.js").WhatsAppWorker;
+  localSeoWorker?: import("../local-seo-worker/engine.js").LocalSeoWorker;
+  leadGenerationWorker?: import("../lead-generation-worker/engine.js").LeadGenerationWorker;
+  operationsWorker?: import("../operations-worker/engine.js").OperationsWorker;
+  localBusinessLaunchPack?: import("../local-business-launch-pack/engine.js").LocalBusinessLaunchPack;
+  localBusinessCertification?: import("../local-business-certification/engine.js").LocalBusinessCertification;
+  affiliateFactoryCore?: import("../affiliate-factory-core/engine.js").AffiliateFactoryCore;
+  affiliateOpportunityWorker?: import("../affiliate-opportunity-worker/engine.js").AffiliateOpportunityWorker;
+  comparisonSiteWorker?: import("../comparison-site-worker/engine.js").ComparisonSiteWorker;
+  reviewContentWorker?: import("../review-content-worker/engine.js").ReviewContentWorker;
+  seoContentWorker?: import("../seo-content-worker/engine.js").SeoContentWorker;
+  emailFunnelWorker?: import("../email-funnel-worker/engine.js").EmailFunnelWorker;
+  analyticsWorker?: import("../analytics-worker/engine.js").AnalyticsWorker;
+  affiliateComplianceWorker?: import("../affiliate-compliance-worker/engine.js").AffiliateComplianceWorker;
+  affiliateCertification?: import("../affiliate-certification/engine.js").AffiliateCertification;
+  capitalFactoryCore?: import("../capital-factory-core/engine.js").CapitalFactoryCore;
+  accountingWorker?: import("../accounting-worker/engine.js").AccountingWorker;
+  cashflowWorker?: import("../cashflow-worker/engine.js").CashflowWorker;
+  budgetPlanningWorker?: import("../budget-planning-worker/engine.js").BudgetPlanningWorker;
+  profitabilityWorker?: import("../profitability-worker/engine.js").ProfitabilityWorker;
+  forecastingWorker?: import("../forecasting-worker/engine.js").ForecastingWorker;
+  taxSupportWorker?: import("../tax-support-worker/engine.js").TaxSupportWorker;
   empireCommander?: EmpireCommanderEngine;
   empireOperatingSystem?: EmpireOperatingSystemEngine;
   continuousEvolution?: ContinuousEvolutionEngine;
@@ -2949,6 +3180,3353 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.marketValidationEngine) return "unavailable";
       try {
         const s = b.marketValidationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business_model_generator",
+    label: "Business Model Generator",
+    missionId: "PILLOW-BMG-001",
+    runtimePath: "pillow/src/business-model-generator/",
+    probe: (b) => {
+      if (!b.businessModelGenerator) return "unavailable";
+      try {
+        const s = b.businessModelGenerator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "brand_creation_engine",
+    label: "Brand Creation Engine",
+    missionId: "PILLOW-BCE-001",
+    runtimePath: "pillow/src/brand-creation-engine/",
+    probe: (b) => {
+      if (!b.brandCreationEngine) return "unavailable";
+      try {
+        const s = b.brandCreationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "domain_digital_asset_planner",
+    label: "Domain & Digital Asset Planner",
+    missionId: "PILLOW-DAP-001",
+    runtimePath: "pillow/src/domain-digital-asset-planner/",
+    probe: (b) => {
+      if (!b.domainDigitalAssetPlanner) return "unavailable";
+      try {
+        const s = b.domainDigitalAssetPlanner.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "store_generation_engine",
+    label: "Store Generation Engine",
+    missionId: "PILLOW-SGE-001",
+    runtimePath: "pillow/src/store-generation-engine/",
+    probe: (b) => {
+      if (!b.storeGenerationEngine) return "unavailable";
+      try {
+        const s = b.storeGenerationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "product_portfolio_builder",
+    label: "Product Portfolio Builder",
+    missionId: "PILLOW-PPB-001",
+    runtimePath: "pillow/src/product-portfolio-builder/",
+    probe: (b) => {
+      if (!b.productPortfolioBuilder) return "unavailable";
+      try {
+        const s = b.productPortfolioBuilder.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "pricing_strategy_engine",
+    label: "Pricing Strategy Engine",
+    missionId: "PILLOW-PSE-001",
+    runtimePath: "pillow/src/pricing-strategy-engine/",
+    probe: (b) => {
+      if (!b.pricingStrategyEngine) return "unavailable";
+      try {
+        const s = b.pricingStrategyEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "launch_readiness_validator",
+    label: "Launch Readiness Validator",
+    missionId: "PILLOW-LRV-001",
+    runtimePath: "pillow/src/launch-readiness-validator/",
+    probe: (b) => {
+      if (!b.launchReadinessValidator) return "unavailable";
+      try {
+        const s = b.launchReadinessValidator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business_launch_orchestrator",
+    label: "Business Launch Orchestrator",
+    missionId: "PILLOW-BLO-001",
+    runtimePath: "pillow/src/business-launch-orchestrator/",
+    probe: (b) => {
+      if (!b.businessLaunchOrchestrator) return "unavailable";
+      try {
+        const s = b.businessLaunchOrchestrator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "growth_initialization_engine",
+    label: "Growth Initialization Engine",
+    missionId: "PILLOW-GIE-001",
+    runtimePath: "pillow/src/growth-initialization-engine/",
+    probe: (b) => {
+      if (!b.growthInitializationEngine) return "unavailable";
+      try {
+        const s = b.growthInitializationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "launch_monitoring_engine",
+    label: "Launch Monitoring Engine",
+    missionId: "PILLOW-LME-001",
+    runtimePath: "pillow/src/launch-monitoring-engine/",
+    probe: (b) => {
+      if (!b.launchMonitoringEngine) return "unavailable";
+      try {
+        const s = b.launchMonitoringEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "first_revenue_optimizer",
+    label: "First Revenue Optimizer",
+    missionId: "PILLOW-FRO-001",
+    runtimePath: "pillow/src/first-revenue-optimizer/",
+    probe: (b) => {
+      if (!b.firstRevenueOptimizer) return "unavailable";
+      try {
+        const s = b.firstRevenueOptimizer.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "company_factory_certified",
+    label: "Company Factory Certified",
+    missionId: "PILLOW-CFC-001",
+    runtimePath: "pillow/src/company-factory-certified/",
+    probe: (b) => {
+      if (!b.companyFactoryCertified) return "unavailable";
+      try {
+        const s = b.companyFactoryCertified.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "enterprise_portfolio_framework",
+    label: "Enterprise Portfolio Framework",
+    missionId: "PILLOW-EPF-001",
+    runtimePath: "pillow/src/enterprise-portfolio-framework/",
+    probe: (b) => {
+      if (!b.enterprisePortfolioFramework) return "unavailable";
+      try {
+        const s = b.enterprisePortfolioFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "multi_company_registry",
+    label: "Multi-Company Registry",
+    missionId: "PILLOW-MCR-001",
+    runtimePath: "pillow/src/multi-company-registry/",
+    probe: (b) => {
+      if (!b.multiCompanyRegistry) return "unavailable";
+      try {
+        const s = b.multiCompanyRegistry.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_performance_engine",
+    label: "Portfolio Performance Engine",
+    missionId: "PILLOW-PPE-001",
+    runtimePath: "pillow/src/portfolio-performance-engine/",
+    probe: (b) => {
+      if (!b.portfolioPerformanceEngine) return "unavailable";
+      try {
+        const s = b.portfolioPerformanceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cross_business_knowledge_engine",
+    label: "Cross-Business Knowledge Engine",
+    missionId: "PILLOW-CBK-001",
+    runtimePath: "pillow/src/cross-business-knowledge-engine/",
+    probe: (b) => {
+      if (!b.crossBusinessKnowledgeEngine) return "unavailable";
+      try {
+        const s = b.crossBusinessKnowledgeEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "capital_distribution_engine",
+    label: "Capital Distribution Engine",
+    missionId: "PILLOW-CDE-001",
+    runtimePath: "pillow/src/capital-distribution-engine/",
+    probe: (b) => {
+      if (!b.capitalDistributionEngine) return "unavailable";
+      try {
+        const s = b.capitalDistributionEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive_portfolio_dashboard",
+    label: "Executive Portfolio Dashboard",
+    missionId: "PILLOW-EPD-001",
+    runtimePath: "pillow/src/executive-portfolio-dashboard/",
+    probe: (b) => {
+      if (!b.executivePortfolioDashboard) return "unavailable";
+      try {
+        const s = b.executivePortfolioDashboard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_risk_engine",
+    label: "Portfolio Risk Engine",
+    missionId: "PILLOW-PRE-001",
+    runtimePath: "pillow/src/portfolio-risk-engine/",
+    probe: (b) => {
+      if (!b.portfolioRiskEngine) return "unavailable";
+      try {
+        const s = b.portfolioRiskEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_balance_engine",
+    label: "Portfolio Balance Engine",
+    missionId: "PILLOW-PBE-001",
+    runtimePath: "pillow/src/portfolio-balance-engine/",
+    probe: (b) => {
+      if (!b.portfolioBalanceEngine) return "unavailable";
+      try {
+        const s = b.portfolioBalanceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business_health_ranking",
+    label: "Business Health Ranking",
+    missionId: "PILLOW-BHR-001",
+    runtimePath: "pillow/src/business-health-ranking/",
+    probe: (b) => {
+      if (!b.businessHealthRanking) return "unavailable";
+      try {
+        const s = b.businessHealthRanking.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_intelligence_certified",
+    label: "Portfolio Intelligence Certified",
+    missionId: "PILLOW-PIC-001",
+    runtimePath: "pillow/src/portfolio-intelligence-certified/",
+    probe: (b) => {
+      if (!b.portfolioIntelligenceCertified) return "unavailable";
+      try {
+        const s = b.portfolioIntelligenceCertified.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cross_company_resource_engine",
+    label: "Cross-Company Resource Engine",
+    missionId: "PILLOW-CCRE-001",
+    runtimePath: "pillow/src/cross-company-resource-engine/",
+    probe: (b) => {
+      if (!b.crossCompanyResourceEngine) return "unavailable";
+      try {
+        const s = b.crossCompanyResourceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shared_customer_intelligence",
+    label: "Shared Customer Intelligence",
+    missionId: "PILLOW-SCI-001",
+    runtimePath: "pillow/src/shared-customer-intelligence/",
+    probe: (b) => {
+      if (!b.sharedCustomerIntelligence) return "unavailable";
+      try {
+        const s = b.sharedCustomerIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shared_supplier_intelligence",
+    label: "Shared Supplier Intelligence",
+    missionId: "PILLOW-SSI-001",
+    runtimePath: "pillow/src/shared-supplier-intelligence/",
+    probe: (b) => {
+      if (!b.sharedSupplierIntelligence) return "unavailable";
+      try {
+        const s = b.sharedSupplierIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_forecast_engine",
+    label: "Portfolio Forecast Engine",
+    missionId: "PILLOW-PFE-001",
+    runtimePath: "pillow/src/portfolio-forecast-engine/",
+    probe: (b) => {
+      if (!b.portfolioForecastEngine) return "unavailable";
+      try {
+        const s = b.portfolioForecastEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "acquisition_evaluation_engine",
+    label: "Acquisition Evaluation Engine",
+    missionId: "PILLOW-AEE-001",
+    runtimePath: "pillow/src/acquisition-evaluation-engine/",
+    probe: (b) => {
+      if (!b.acquisitionEvaluationEngine) return "unavailable";
+      try {
+        const s = b.acquisitionEvaluationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_optimization_engine",
+    label: "Portfolio Optimization Engine",
+    missionId: "PILLOW-POE-001",
+    runtimePath: "pillow/src/portfolio-optimization-engine/",
+    probe: (b) => {
+      if (!b.portfolioOptimizationEngine) return "unavailable";
+      try {
+        const s = b.portfolioOptimizationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "company_lifecycle_manager",
+    label: "Company Lifecycle Manager",
+    missionId: "PILLOW-CLM-001",
+    runtimePath: "pillow/src/company-lifecycle-manager/",
+    probe: (b) => {
+      if (!b.companyLifecycleManager) return "unavailable";
+      try {
+        const s = b.companyLifecycleManager.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_expansion_planner",
+    label: "Portfolio Expansion Planner",
+    missionId: "PILLOW-PEP-001",
+    runtimePath: "pillow/src/portfolio-expansion-planner/",
+    probe: (b) => {
+      if (!b.portfolioExpansionPlanner) return "unavailable";
+      try {
+        const s = b.portfolioExpansionPlanner.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "enterprise_value_engine",
+    label: "Enterprise Value Engine",
+    missionId: "PILLOW-EVE-001",
+    runtimePath: "pillow/src/enterprise-value-engine/",
+    probe: (b) => {
+      if (!b.enterpriseValueEngine) return "unavailable";
+      try {
+        const s = b.enterpriseValueEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "autonomous_portfolio_board",
+    label: "Autonomous Portfolio Board",
+    missionId: "PILLOW-APB-001",
+    runtimePath: "pillow/src/autonomous-portfolio-board/",
+    probe: (b) => {
+      if (!b.autonomousPortfolioBoard) return "unavailable";
+      try {
+        const s = b.autonomousPortfolioBoard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "portfolio_certified",
+    label: "Portfolio Certified",
+    missionId: "PILLOW-PTC-001",
+    runtimePath: "pillow/src/portfolio-certified/",
+    probe: (b) => {
+      if (!b.portfolioCertified) return "unavailable";
+      try {
+        const s = b.portfolioCertified.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "autonomous_scaling_framework",
+    label: "Autonomous Scaling Framework",
+    missionId: "PILLOW-ASF-001",
+    runtimePath: "pillow/src/autonomous-scaling-framework/",
+    probe: (b) => {
+      if (!b.autonomousScalingFramework) return "unavailable";
+      try {
+        const s = b.autonomousScalingFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "winning_product_detector",
+    label: "Winning Product Detector",
+    missionId: "PILLOW-WPD-001",
+    runtimePath: "pillow/src/winning-product-detector/",
+    probe: (b) => {
+      if (!b.winningProductDetector) return "unavailable";
+      try {
+        const s = b.winningProductDetector.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "scaling_decision_engine",
+    label: "Scaling Decision Engine",
+    missionId: "PILLOW-SDE-001",
+    runtimePath: "pillow/src/scaling-decision-engine/",
+    probe: (b) => {
+      if (!b.scalingDecisionEngine) return "unavailable";
+      try {
+        const s = b.scalingDecisionEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "capacity_planning_engine",
+    label: "Capacity Planning Engine",
+    missionId: "PILLOW-CPE-001",
+    runtimePath: "pillow/src/capacity-planning-engine/",
+    probe: (b) => {
+      if (!b.capacityPlanningEngine) return "unavailable";
+      try {
+        const s = b.capacityPlanningEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "marketing_scale_engine",
+    label: "Marketing Scale Engine",
+    missionId: "PILLOW-MSE-001",
+    runtimePath: "pillow/src/marketing-scale-engine/",
+    probe: (b) => {
+      if (!b.marketingScaleEngine) return "unavailable";
+      try {
+        const s = b.marketingScaleEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier_scale_engine",
+    label: "Supplier Scale Engine",
+    missionId: "PILLOW-SSE-001",
+    runtimePath: "pillow/src/supplier-scale-engine/",
+    probe: (b) => {
+      if (!b.supplierScaleEngine) return "unavailable";
+      try {
+        const s = b.supplierScaleEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial_scale_engine",
+    label: "Financial Scale Engine",
+    missionId: "PILLOW-FSE-001",
+    runtimePath: "pillow/src/financial-scale-engine/",
+    probe: (b) => {
+      if (!b.financialScaleEngine) return "unavailable";
+      try {
+        const s = b.financialScaleEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce_intelligence",
+    label: "Workforce Intelligence",
+    missionId: "PILLOW-WFI-001",
+    runtimePath: "pillow/src/workforce-intelligence/",
+    probe: (b) => {
+      if (!b.workforceIntelligence) return "unavailable";
+      try {
+        const s = b.workforceIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive_scaling_dashboard",
+    label: "Executive Scaling Dashboard",
+    missionId: "PILLOW-ESD-001",
+    runtimePath: "pillow/src/executive-scaling-dashboard/",
+    probe: (b) => {
+      if (!b.executiveScalingDashboard) return "unavailable";
+      try {
+        const s = b.executiveScalingDashboard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "bottleneck_intelligence",
+    label: "Bottleneck Intelligence",
+    missionId: "PILLOW-BNI-001",
+    runtimePath: "pillow/src/bottleneck-intelligence/",
+    probe: (b) => {
+      if (!b.bottleneckIntelligence) return "unavailable";
+      try {
+        const s = b.bottleneckIntelligence.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "operational_elasticity_engine",
+    label: "Operational Elasticity Engine",
+    missionId: "PILLOW-OEE-001",
+    runtimePath: "pillow/src/operational-elasticity-engine/",
+    probe: (b) => {
+      if (!b.operationalElasticityEngine) return "unavailable";
+      try {
+        const s = b.operationalElasticityEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "performance_preservation_engine",
+    label: "Performance Preservation Engine",
+    missionId: "PILLOW-PPE-001",
+    runtimePath: "pillow/src/performance-preservation-engine/",
+    probe: (b) => {
+      if (!b.performancePreservationEngine) return "unavailable";
+      try {
+        const s = b.performancePreservationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "scaling_risk_monitor",
+    label: "Scaling Risk Monitor",
+    missionId: "PILLOW-SRM-001",
+    runtimePath: "pillow/src/scaling-risk-monitor/",
+    probe: (b) => {
+      if (!b.scalingRiskMonitor) return "unavailable";
+      try {
+        const s = b.scalingRiskMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_scaling_planner",
+    label: "Global Scaling Planner",
+    missionId: "PILLOW-GSP-001",
+    runtimePath: "pillow/src/global-scaling-planner/",
+    probe: (b) => {
+      if (!b.globalScalingPlanner) return "unavailable";
+      try {
+        const s = b.globalScalingPlanner.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "autonomous_growth_optimizer",
+    label: "Autonomous Growth Optimizer",
+    missionId: "PILLOW-AGO-001",
+    runtimePath: "pillow/src/autonomous-growth-optimizer/",
+    probe: (b) => {
+      if (!b.autonomousGrowthOptimizer) return "unavailable";
+      try {
+        const s = b.autonomousGrowthOptimizer.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "revenue_acceleration_engine",
+    label: "Revenue Acceleration Engine",
+    missionId: "PILLOW-RAE-001",
+    runtimePath: "pillow/src/revenue-acceleration-engine/",
+    probe: (b) => {
+      if (!b.revenueAccelerationEngine) return "unavailable";
+      try {
+        const s = b.revenueAccelerationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "profit_scaling_engine",
+    label: "Profit Scaling Engine",
+    missionId: "PILLOW-PSE-001",
+    runtimePath: "pillow/src/profit-scaling-engine/",
+    probe: (b) => {
+      if (!b.profitScalingEngine) return "unavailable";
+      try {
+        const s = b.profitScalingEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "scale_simulation_engine",
+    label: "Scale Simulation Engine",
+    missionId: "PILLOW-SSI-001",
+    runtimePath: "pillow/src/scale-simulation-engine/",
+    probe: (b) => {
+      if (!b.scaleSimulationEngine) return "unavailable";
+      try {
+        const s = b.scaleSimulationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "self_balancing_enterprise",
+    label: "Self-Balancing Enterprise",
+    missionId: "PILLOW-SBE-001",
+    runtimePath: "pillow/src/self-balancing-enterprise/",
+    probe: (b) => {
+      if (!b.selfBalancingEnterprise) return "unavailable";
+      try {
+        const s = b.selfBalancingEnterprise.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_expansion_framework",
+    label: "Global Expansion Framework",
+    missionId: "PILLOW-GEF-001",
+    runtimePath: "pillow/src/global-expansion-framework/",
+    probe: (b) => {
+      if (!b.globalExpansionFramework) return "unavailable";
+      try {
+        const s = b.globalExpansionFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire_intelligence_framework",
+    label: "Empire Intelligence Framework",
+    missionId: "PILLOW-EIF-001",
+    runtimePath: "pillow/src/empire-intelligence-framework/",
+    probe: (b) => {
+      if (!b.empireIntelligenceFramework) return "unavailable";
+      try { return b.empireIntelligenceFramework.getState().health.status === "failed" ? "degraded" : "ready"; }
+      catch { return "unavailable"; }
+    },
+  },
+  {
+    id: "country_intelligence_engine",
+    label: "Country Intelligence Engine",
+    missionId: "PILLOW-CIE-001",
+    runtimePath: "pillow/src/country-intelligence-engine/",
+    probe: (b) => {
+      if (!b.countryIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.countryIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "localization_engine",
+    label: "Localization Engine",
+    missionId: "PILLOW-LOC-001",
+    runtimePath: "pillow/src/localization-engine/",
+    probe: (b) => {
+      if (!b.localizationEngine) return "unavailable";
+      try {
+        const s = b.localizationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "language_intelligence",
+    label: "Language Intelligence",
+    missionId: "PILLOW-LI-001",
+    runtimePath: "pillow/src/language-intelligence/",
+    probe: (b) => {
+      if (!b.languageIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.languageIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "currency_intelligence",
+    label: "Currency Intelligence",
+    missionId: "PILLOW-CUR-001",
+    runtimePath: "pillow/src/currency-intelligence/",
+    probe: (b) => {
+      if (!b.currencyIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.currencyIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "regional_compliance_engine",
+    label: "Regional Compliance Engine",
+    missionId: "PILLOW-RCE-001",
+    runtimePath: "pillow/src/regional-compliance-engine/",
+    probe: (b) => {
+      if (!b.regionalComplianceEngine) return "unavailable";
+      try {
+        const s = b.regionalComplianceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_tax_intelligence",
+    label: "Global Tax Intelligence",
+    missionId: "PILLOW-GTI-001",
+    runtimePath: "pillow/src/global-tax-intelligence/",
+    probe: (b) => {
+      if (!b.globalTaxIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.globalTaxIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "international_logistics_engine",
+    label: "International Logistics Engine",
+    missionId: "PILLOW-ILE-001",
+    runtimePath: "pillow/src/international-logistics-engine/",
+    probe: (b) => {
+      if (!b.internationalLogisticsEngine) return "unavailable";
+      try {
+        const s = b.internationalLogisticsEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_market_intelligence",
+    label: "Global Market Intelligence",
+    missionId: "PILLOW-GMI-001",
+    runtimePath: "pillow/src/global-market-intelligence/",
+    probe: (b) => {
+      if (!b.globalMarketIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.globalMarketIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive_global_dashboard",
+    label: "Executive Global Dashboard",
+    missionId: "PILLOW-EGD-001",
+    runtimePath: "pillow/src/executive-global-dashboard/",
+    probe: (b) => {
+      if (!b.executiveGlobalDashboardEngine) return "unavailable";
+      try {
+        const s = b.executiveGlobalDashboardEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_brand_management",
+    label: "Global Brand Management",
+    missionId: "PILLOW-GBM-001",
+    runtimePath: "pillow/src/global-brand-management/",
+    probe: (b) => {
+      if (!b.globalBrandManagementEngine) return "unavailable";
+      try {
+        const s = b.globalBrandManagementEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "international_partnership_engine",
+    label: "International Partnership Engine",
+    missionId: "PILLOW-IPE-001",
+    runtimePath: "pillow/src/international-partnership-engine/",
+    probe: (b) => {
+      if (!b.internationalPartnershipEngine) return "unavailable";
+      try {
+        const s = b.internationalPartnershipEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_talent_intelligence",
+    label: "Global Talent Intelligence",
+    missionId: "PILLOW-TAL-001",
+    runtimePath: "pillow/src/global-talent-intelligence/",
+    probe: (b) => {
+      if (!b.globalTalentIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.globalTalentIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "regional_growth_optimizer",
+    label: "Regional Growth Optimizer",
+    missionId: "PILLOW-RGO-001",
+    runtimePath: "pillow/src/regional-growth-optimizer/",
+    probe: (b) => {
+      if (!b.regionalGrowthOptimizerEngine) return "unavailable";
+      try {
+        const s = b.regionalGrowthOptimizerEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global_risk_intelligence",
+    label: "Global Risk Intelligence",
+    missionId: "X4-15",
+    runtimePath: "pillow/src/global-risk-intelligence/",
+    probe: (b) => {
+      if (!b.globalRiskIntelligenceEngine) return "unavailable";
+      try {
+        const s = b.globalRiskIntelligenceEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cross-region-learning-engine",
+    label: "Cross-Region Learning Engine",
+    missionId: "X4-16",
+    runtimePath: "pillow/src/cross-region-learning-engine/",
+    probe: (b) => {
+      if (!b.crossRegionLearningEngine) return "unavailable";
+      try {
+        return b.crossRegionLearningEngine.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-knowledge-engine",
+    label: "Empire Knowledge Engine",
+    missionId: "X5-02",
+    runtimePath: "pillow/src/empire-knowledge-engine/",
+    probe: (b) => {
+      if (!b.empireKnowledgeEngine) return "unavailable";
+      try {
+        return b.empireKnowledgeEngine.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-memory-engine",
+    label: "Empire Memory Engine",
+    missionId: "X5-03",
+    runtimePath: "pillow/src/empire-memory-engine/",
+    probe: (b) => {
+      if (!b.empireMemoryEngine) return "unavailable";
+      try {
+        return b.empireMemoryEngine.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-optimization-engine",
+    label: "Empire Optimization Engine",
+    missionId: "X5-04",
+    runtimePath: "pillow/src/empire-optimization-engine/",
+    probe: (b) => {
+      if (!b.empireOptimizationEngine) return "unavailable";
+      try {
+        return b.empireOptimizationEngine.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-capital-allocation",
+    label: "Empire Capital Allocation",
+    missionId: "X5-05",
+    runtimePath: "pillow/src/empire-capital-allocation/",
+    probe: (b) => {
+      if (!b.empireCapitalAllocation) return "unavailable";
+      try {
+        return b.empireCapitalAllocation.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-opportunity-engine",
+    label: "Empire Opportunity Engine",
+    missionId: "X5-06",
+    runtimePath: "pillow/src/empire-opportunity-engine/",
+    probe: (b) => {
+      if (!b.empireOpportunityEngine) return "unavailable";
+      try {
+        return b.empireOpportunityEngine.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-innovation-engine",
+    label: "Empire Innovation Engine",
+    missionId: "X5-07",
+    runtimePath: "pillow/src/empire-innovation-engine/",
+    probe: (b) => { if (!b.empireInnovationEngine) return "unavailable"; try { return b.empireInnovationEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "empire-resilience-engine",
+    label: "Empire Resilience Engine",
+    missionId: "X5-08",
+    runtimePath: "pillow/src/empire-resilience-engine/",
+    probe: (b) => { if (!b.empireResilienceEngine) return "unavailable"; try { return b.empireResilienceEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "empire-self-improvement-engine",
+    label: "Empire Self-Improvement Engine",
+    missionId: "X5-09",
+    runtimePath: "pillow/src/empire-self-improvement-engine/",
+    probe: (b) => { if (!b.empireSelfImprovementEngine) return "unavailable"; try { return b.empireSelfImprovementEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "executive-empire-dashboard",
+    label: "Executive Empire Dashboard",
+    missionId: "X5-10",
+    runtimePath: "pillow/src/executive-empire-dashboard/",
+    probe: (b) => { if (!b.executiveEmpireDashboard) return "unavailable"; try { return b.executiveEmpireDashboard.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "cross-empire-governance-engine",
+    label: "Cross-Empire Governance Engine",
+    missionId: "X5-11",
+    runtimePath: "pillow/src/cross-empire-governance-engine/",
+    probe: (b) => { if (!b.crossEmpireGovernanceEngine) return "unavailable"; try { return b.crossEmpireGovernanceEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "autonomous-investment-engine",
+    label: "Autonomous Investment Engine",
+    missionId: "X5-12",
+    runtimePath: "pillow/src/autonomous-investment-engine/",
+    probe: (b) => { if (!b.autonomousInvestmentEngine) return "unavailable"; try { return b.autonomousInvestmentEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "enterprise-succession-engine",
+    label: "Enterprise Succession Engine",
+    missionId: "X5-13",
+    runtimePath: "pillow/src/enterprise-succession-engine/",
+    probe: (b) => { if (!b.enterpriseSuccessionEngine) return "unavailable"; try { return b.enterpriseSuccessionEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "empire-legacy-engine",
+    label: "Empire Legacy Engine",
+    missionId: "X5-14",
+    runtimePath: "pillow/src/empire-legacy-engine/",
+    probe: (b) => { if (!b.empireLegacyEngine) return "unavailable"; try { return b.empireLegacyEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "grand-king-advisory-engine",
+    label: "Grand King Advisory Engine",
+    missionId: "X5-15",
+    runtimePath: "pillow/src/grand-king-advisory-engine/",
+    probe: (b) => { if (!b.grandKingAdvisoryEngine) return "unavailable"; try { return b.grandKingAdvisoryEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "civilization-knowledge-engine",
+    label: "Civilization Knowledge Engine",
+    missionId: "X5-16",
+    runtimePath: "pillow/src/civilization-knowledge-engine/",
+    probe: (b) => { if (!b.civilizationKnowledgeEngine) return "unavailable"; try { return b.civilizationKnowledgeEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "autonomous-empire-evolution",
+    label: "Autonomous Empire Evolution",
+    missionId: "X5-17",
+    runtimePath: "pillow/src/autonomous-empire-evolution/",
+    probe: (b) => { if (!b.autonomousEmpireEvolution) return "unavailable"; try { return b.autonomousEmpireEvolution.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "empire-performance-guardian",
+    label: "Empire Performance Guardian",
+    missionId: "X5-18",
+    runtimePath: "pillow/src/empire-performance-guardian/",
+    probe: (b) => { if (!b.empirePerformanceGuardian) return "unavailable"; try { return b.empirePerformanceGuardian.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "infinite-growth-engine",
+    label: "Infinite Growth Engine",
+    missionId: "X5-19",
+    runtimePath: "pillow/src/infinite-growth-engine/",
+    probe: (b) => { if (!b.infiniteGrowthEngine) return "unavailable"; try { return b.infiniteGrowthEngine.getState().health.status === "failed" ? "degraded" : "ready"; } catch { return "unavailable"; } },
+  },
+  {
+    id: "empire-certified",
+    label: "Empire Certified",
+    missionId: "X5-20",
+    runtimePath: "pillow/src/empire-certified/",
+    probe: (b) => {
+      if (!b.empireCertified) return "unavailable";
+      try {
+        const s = b.empireCertified.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive-planner",
+    label: "Executive Planner",
+    missionId: "Q0-01",
+    runtimePath: "pillow/src/executive-planner/",
+    probe: (b) => {
+      if (!b.executivePlanner) return "unavailable";
+      try {
+        const s = b.executivePlanner.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "opportunity-scanner",
+    label: "Opportunity Scanner",
+    missionId: "Q0-02",
+    runtimePath: "pillow/src/opportunity-scanner/",
+    probe: (b) => {
+      if (!b.opportunityScanner) return "unavailable";
+      try {
+        const s = b.opportunityScanner.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-state-manager",
+    label: "Business State Manager",
+    missionId: "Q0-03",
+    runtimePath: "pillow/src/business-state-manager/",
+    probe: (b) => {
+      if (!b.businessStateManager) return "unavailable";
+      try {
+        const s = b.businessStateManager.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "execution-memory",
+    label: "Execution Memory",
+    missionId: "Q0-04",
+    runtimePath: "pillow/src/execution-memory/",
+    probe: (b) => {
+      if (!b.executionMemory) return "unavailable";
+      try {
+        const s = b.executionMemory.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "decision-engine",
+    label: "Decision Engine",
+    missionId: "Q0-05",
+    runtimePath: "pillow/src/decision-engine/",
+    probe: (b) => {
+      if (!b.decisionEngine) return "unavailable";
+      try {
+        const s = b.decisionEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "approval-router",
+    label: "Approval Router",
+    missionId: "Q0-06",
+    runtimePath: "pillow/src/approval-router/",
+    probe: (b) => {
+      if (!b.approvalRouter) return "unavailable";
+      try {
+        const s = b.approvalRouter.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "strategic-recommendation-engine",
+    label: "Strategic Recommendation Engine",
+    missionId: "Q0-07",
+    runtimePath: "pillow/src/strategic-recommendation-engine/",
+    probe: (b) => {
+      if (!b.strategicRecommendationEngine) return "unavailable";
+      try {
+        const s = b.strategicRecommendationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive-audit-engine",
+    label: "Executive Audit Engine",
+    missionId: "Q0-08",
+    runtimePath: "pillow/src/executive-audit-engine/",
+    probe: (b) => {
+      if (!b.executiveAuditEngine) return "unavailable";
+      try {
+        const s = b.executiveAuditEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-orchestrator",
+    label: "Pillow Workforce Orchestrator",
+    missionId: "Q0-09",
+    runtimePath: "pillow/src/workforce-orchestrator/",
+    probe: (b) => {
+      if (!b.workforceOrchestrator) return "unavailable";
+      try {
+        const s = b.workforceOrchestrator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-capability-registry",
+    label: "Workforce Capability Registry",
+    missionId: "Q0-10",
+    runtimePath: "pillow/src/workforce-capability-registry/",
+    probe: (b) => {
+      if (!b.workforceCapabilityRegistry) return "unavailable";
+      try {
+        const s = b.workforceCapabilityRegistry.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-access-manager",
+    label: "Workforce Access Manager",
+    missionId: "Q0-11",
+    runtimePath: "pillow/src/workforce-access-manager/",
+    probe: (b) => {
+      if (!b.workforceAccessManager) return "unavailable";
+      try {
+        const s = b.workforceAccessManager.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "skill-tool-router",
+    label: "Skill & Tool Router",
+    missionId: "Q0-12",
+    runtimePath: "pillow/src/skill-tool-router/",
+    probe: (b) => {
+      if (!b.skillToolRouter) return "unavailable";
+      try {
+        const s = b.skillToolRouter.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "collective-reasoning-engine",
+    label: "Collective Reasoning Engine",
+    missionId: "Q0-13",
+    runtimePath: "pillow/src/collective-reasoning-engine/",
+    probe: (b) => {
+      if (!b.collectiveReasoningEngine) return "unavailable";
+      try {
+        const s = b.collectiveReasoningEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "experience-replay-engine",
+    label: "Experience Replay Engine",
+    missionId: "Q0-14",
+    runtimePath: "pillow/src/experience-replay-engine/",
+    probe: (b) => {
+      if (!b.experienceReplayEngine) return "unavailable";
+      try {
+        const s = b.experienceReplayEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "operational-playbook-engine",
+    label: "Operational Playbook Engine",
+    missionId: "Q0-15",
+    runtimePath: "pillow/src/operational-playbook-engine/",
+    probe: (b) => {
+      if (!b.operationalPlaybookEngine) return "unavailable";
+      try {
+        const s = b.operationalPlaybookEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "decision-memory",
+    label: "Decision Memory",
+    missionId: "Q0-16",
+    runtimePath: "pillow/src/decision-memory/",
+    probe: (b) => {
+      if (!b.decisionMemory) return "unavailable";
+      try {
+        const s = b.decisionMemory.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "adaptive-workforce-optimizer",
+    label: "Adaptive Workforce Optimizer",
+    missionId: "Q0-17",
+    runtimePath: "pillow/src/adaptive-workforce-optimizer/",
+    probe: (b) => {
+      if (!b.adaptiveWorkforceOptimizer) return "unavailable";
+      try {
+        const s = b.adaptiveWorkforceOptimizer.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive-command-center",
+    label: "Pillow Executive Command Center",
+    missionId: "Q0-18",
+    runtimePath: "pillow/src/executive-command-center/",
+    probe: (b) => {
+      if (!b.executiveCommandCenter) return "unavailable";
+      try {
+        const s = b.executiveCommandCenter.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-operating-system",
+    label: "Workforce Operating System",
+    missionId: "Q0-19",
+    runtimePath: "pillow/src/workforce-operating-system/",
+    probe: (b) => {
+      if (!b.workforceOperatingSystem) return "unavailable";
+      try {
+        const s = b.workforceOperatingSystem.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "task-negotiation-protocol",
+    label: "Task Negotiation Protocol",
+    missionId: "Q0-20",
+    runtimePath: "pillow/src/task-negotiation-protocol/",
+    probe: (b) => {
+      if (!b.taskNegotiationProtocol) return "unavailable";
+      try {
+        const s = b.taskNegotiationProtocol.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "peer-review-runtime",
+    label: "Peer Review Runtime",
+    missionId: "Q0-21",
+    runtimePath: "pillow/src/peer-review-runtime/",
+    probe: (b) => {
+      if (!b.peerReviewRuntime) return "unavailable";
+      try {
+        const s = b.peerReviewRuntime.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "escalation-framework",
+    label: "Escalation Framework",
+    missionId: "Q0-22",
+    runtimePath: "pillow/src/escalation-framework/",
+    probe: (b) => {
+      if (!b.escalationFramework) return "unavailable";
+      try {
+        const s = b.escalationFramework.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "knowledge-sharing-bus",
+    label: "Knowledge Sharing Bus",
+    missionId: "Q0-23",
+    runtimePath: "pillow/src/knowledge-sharing-bus/",
+    probe: (b) => {
+      if (!b.knowledgeSharingBus) return "unavailable";
+      try {
+        const s = b.knowledgeSharingBus.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "inter-worker-messaging",
+    label: "Inter-Worker Messaging",
+    missionId: "Q0-24",
+    runtimePath: "pillow/src/inter-worker-messaging/",
+    probe: (b) => {
+      if (!b.interWorkerMessaging) return "unavailable";
+      try {
+        const s = b.interWorkerMessaging.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "mission-coordination-engine",
+    label: "Mission Coordination Engine",
+    missionId: "Q0-25",
+    runtimePath: "pillow/src/mission-coordination-engine/",
+    probe: (b) => {
+      if (!b.missionCoordinationEngine) return "unavailable";
+      try {
+        const s = b.missionCoordinationEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive-reporting-runtime",
+    label: "Executive Reporting Runtime",
+    missionId: "Q0-26",
+    runtimePath: "pillow/src/executive-reporting-runtime/",
+    probe: (b) => {
+      if (!b.executiveReportingRuntime) return "unavailable";
+      try {
+        const s = b.executiveReportingRuntime.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-quality-standard",
+    label: "Worker Quality Standard",
+    missionId: "Q0-27",
+    runtimePath: "pillow/src/worker-quality-standard/",
+    probe: (b) => {
+      if (!b.workerQualityStandard) return "unavailable";
+      try {
+        const s = b.workerQualityStandard.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-self-critique-protocol",
+    label: "Worker Self-Critique Protocol",
+    missionId: "Q0-28",
+    runtimePath: "pillow/src/worker-self-critique-protocol/",
+    probe: (b) => {
+      if (!b.workerSelfCritiqueProtocol) return "unavailable";
+      try {
+        const s = b.workerSelfCritiqueProtocol.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-certification-monitor",
+    label: "Workforce Certification Monitor",
+    missionId: "Q0-29",
+    runtimePath: "pillow/src/workforce-certification-monitor/",
+    probe: (b) => {
+      if (!b.workforceCertificationMonitor) return "unavailable";
+      try {
+        const s = b.workforceCertificationMonitor.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "unified-workforce-certification",
+    label: "Unified Workforce Certification",
+    missionId: "Q0-30",
+    runtimePath: "pillow/src/unified-workforce-certification/",
+    probe: (b) => {
+      if (!b.unifiedWorkforceCertification) return "unavailable";
+      try {
+        const s = b.unifiedWorkforceCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-constitution",
+    label: "Worker Constitution",
+    missionId: "Q1-01",
+    runtimePath: "pillow/src/worker-constitution/",
+    probe: (b) => {
+      if (!b.workerConstitution) return "unavailable";
+      try {
+        const s = b.workerConstitution.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "organization-charter",
+    label: "Organization Charter",
+    missionId: "Q1-02",
+    runtimePath: "pillow/src/organization-charter/",
+    probe: (b) => {
+      if (!b.organizationCharter) return "unavailable";
+      try {
+        const s = b.organizationCharter.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "role-taxonomy",
+    label: "Role Taxonomy",
+    missionId: "Q1-03",
+    runtimePath: "pillow/src/role-taxonomy/",
+    probe: (b) => {
+      if (!b.roleTaxonomy) return "unavailable";
+      try {
+        const s = b.roleTaxonomy.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "skill-taxonomy",
+    label: "Skill Taxonomy",
+    missionId: "Q1-04",
+    runtimePath: "pillow/src/skill-taxonomy/",
+    probe: (b) => {
+      if (!b.skillTaxonomy) return "unavailable";
+      try {
+        const s = b.skillTaxonomy.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "authority-matrix",
+    label: "Authority Matrix",
+    missionId: "Q1-05",
+    runtimePath: "pillow/src/authority-matrix/",
+    probe: (b) => {
+      if (!b.authorityMatrix) return "unavailable";
+      try {
+        const s = b.authorityMatrix.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "responsibility-matrix",
+    label: "Responsibility Matrix",
+    missionId: "Q1-06",
+    runtimePath: "pillow/src/responsibility-matrix/",
+    probe: (b) => {
+      if (!b.responsibilityMatrix) return "unavailable";
+      try {
+        const s = b.responsibilityMatrix.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-registry",
+    label: "Worker Registry",
+    missionId: "Q1-07",
+    runtimePath: "pillow/src/worker-registry/",
+    probe: (b) => {
+      if (!b.workerRegistry) return "unavailable";
+      try {
+        const s = b.workerRegistry.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-lifecycle",
+    label: "Worker Lifecycle",
+    missionId: "Q1-08",
+    runtimePath: "pillow/src/worker-lifecycle/",
+    probe: (b) => {
+      if (!b.workerLifecycle) return "unavailable";
+      try {
+        const s = b.workerLifecycle.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-assignment-engine",
+    label: "Worker Assignment Engine",
+    missionId: "Q1-09",
+    runtimePath: "pillow/src/worker-assignment-engine/",
+    probe: (b) => {
+      if (!b.workerAssignmentEngine) return "unavailable";
+      try {
+        const s = b.workerAssignmentEngine.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-monitoring",
+    label: "Worker Monitoring",
+    missionId: "Q1-10",
+    runtimePath: "pillow/src/worker-monitoring/",
+    probe: (b) => {
+      if (!b.workerMonitoring) return "unavailable";
+      try {
+        const s = b.workerMonitoring.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-performance-review",
+    label: "Worker Performance Review",
+    missionId: "Q1-11",
+    runtimePath: "pillow/src/worker-performance-review/",
+    probe: (b) => {
+      if (!b.workerPerformanceReview) return "unavailable";
+      try {
+        const s = b.workerPerformanceReview.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-recovery-system",
+    label: "Worker Recovery System",
+    missionId: "Q1-12",
+    runtimePath: "pillow/src/worker-recovery-system/",
+    probe: (b) => {
+      if (!b.workerRecoverySystem) return "unavailable";
+      try {
+        const s = b.workerRecoverySystem.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workforce-factory-certification",
+    label: "Workforce Factory Certification",
+    missionId: "Q1-13",
+    runtimePath: "pillow/src/workforce-factory-certification/",
+    probe: (b) => {
+      if (!b.workforceFactoryCertification) return "unavailable";
+      try {
+        const s = b.workforceFactoryCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-builder-factory-core",
+    label: "Empire Builder Factory Core",
+    missionId: "Q2-01",
+    runtimePath: "pillow/src/empire-builder-factory-core/",
+    probe: (b) => {
+      if (!b.empireBuilderFactoryCore) return "unavailable";
+      try {
+        const s = b.empireBuilderFactoryCore.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-idea-interpreter",
+    label: "Business Idea Interpreter",
+    missionId: "Q2-02",
+    runtimePath: "pillow/src/business-idea-interpreter/",
+    probe: (b) => {
+      if (!b.businessIdeaInterpreter) return "unavailable";
+      try {
+        const s = b.businessIdeaInterpreter.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-builder-model-generator",
+    label: "Empire Builder Model Generator",
+    missionId: "Q2-03",
+    runtimePath: "pillow/src/empire-builder-model-generator/",
+    probe: (b) => {
+      if (!b.empireBuilderModelGenerator) return "unavailable";
+      try {
+        const s = b.empireBuilderModelGenerator.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "market-research-worker",
+    label: "Market Research Worker",
+    missionId: "Q2-04",
+    runtimePath: "pillow/src/market-research-worker/",
+    probe: (b) => {
+      if (!b.marketResearchWorker) return "unavailable";
+      try {
+        const s = b.marketResearchWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "opportunity-evaluation-worker",
+    label: "Opportunity Evaluation Worker",
+    missionId: "Q2-05",
+    runtimePath: "pillow/src/opportunity-evaluation-worker/",
+    probe: (b) => {
+      if (!b.opportunityEvaluationWorker) return "unavailable";
+      try {
+        const s = b.opportunityEvaluationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-blueprint-worker",
+    label: "Business Blueprint Worker",
+    missionId: "Q2-06",
+    runtimePath: "pillow/src/business-blueprint-worker/",
+    probe: (b) => {
+      if (!b.businessBlueprintWorker) return "unavailable";
+      try {
+        const s = b.businessBlueprintWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "launch-plan-worker",
+    label: "Launch Plan Worker",
+    missionId: "Q2-07",
+    runtimePath: "pillow/src/launch-plan-worker/",
+    probe: (b) => {
+      if (!b.launchPlanWorker) return "unavailable";
+      try {
+        const s = b.launchPlanWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-risk-worker",
+    label: "Business Risk Worker",
+    missionId: "Q2-08",
+    runtimePath: "pillow/src/business-risk-worker/",
+    probe: (b) => {
+      if (!b.businessRiskWorker) return "unavailable";
+      try {
+        const s = b.businessRiskWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-approval-pack-worker",
+    label: "Business Approval Pack Worker",
+    missionId: "Q2-09",
+    runtimePath: "pillow/src/business-approval-pack-worker/",
+    probe: (b) => {
+      if (!b.businessApprovalPackWorker) return "unavailable";
+      try {
+        const s = b.businessApprovalPackWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "empire-builder-certification",
+    label: "Empire Builder Certification",
+    missionId: "Q2-10",
+    runtimePath: "pillow/src/empire-builder-certification/",
+    probe: (b) => {
+      if (!b.empireBuilderCertification) return "unavailable";
+      try {
+        const s = b.empireBuilderCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "commerce-factory-core",
+    label: "Commerce Factory Core",
+    missionId: "Q3-01",
+    runtimePath: "pillow/src/commerce-factory-core/",
+    probe: (b) => {
+      if (!b.commerceFactoryCore) return "unavailable";
+      try {
+        const s = b.commerceFactoryCore.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "product-discovery-worker",
+    label: "Product Discovery Worker",
+    missionId: "Q3-02",
+    runtimePath: "pillow/src/product-discovery-worker/",
+    probe: (b) => {
+      if (!b.productDiscoveryWorker) return "unavailable";
+      try {
+        const s = b.productDiscoveryWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "product-evaluation-worker",
+    label: "Product Evaluation Worker",
+    missionId: "Q3-03",
+    runtimePath: "pillow/src/product-evaluation-worker/",
+    probe: (b) => {
+      if (!b.productEvaluationWorker) return "unavailable";
+      try {
+        const s = b.productEvaluationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier-discovery-worker",
+    label: "Supplier Discovery Worker",
+    missionId: "Q3-04",
+    runtimePath: "pillow/src/supplier-discovery-worker/",
+    probe: (b) => {
+      if (!b.supplierDiscoveryWorker) return "unavailable";
+      try {
+        const s = b.supplierDiscoveryWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier-evaluation-worker",
+    label: "Supplier Evaluation Worker",
+    missionId: "Q3-05",
+    runtimePath: "pillow/src/supplier-evaluation-worker/",
+    probe: (b) => {
+      if (!b.supplierEvaluationWorker) return "unavailable";
+      try {
+        const s = b.supplierEvaluationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "supplier-negotiation-worker",
+    label: "Supplier Negotiation Worker",
+    missionId: "Q3-06",
+    runtimePath: "pillow/src/supplier-negotiation-worker/",
+    probe: (b) => {
+      if (!b.supplierNegotiationWorker) return "unavailable";
+      try {
+        const s = b.supplierNegotiationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "product-image-worker",
+    label: "Product Image Worker",
+    missionId: "Q3-07",
+    runtimePath: "pillow/src/product-image-worker/",
+    probe: (b) => {
+      if (!b.productImageWorker) return "unavailable";
+      try {
+        const s = b.productImageWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "product-listing-worker",
+    label: "Product Listing Worker",
+    missionId: "Q3-08",
+    runtimePath: "pillow/src/product-listing-worker/",
+    probe: (b) => {
+      if (!b.productListingWorker) return "unavailable";
+      try {
+        const s = b.productListingWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "pricing-worker",
+    label: "Pricing Worker",
+    missionId: "Q3-09",
+    runtimePath: "pillow/src/pricing-worker/",
+    probe: (b) => {
+      if (!b.pricingWorker) return "unavailable";
+      try {
+        const s = b.pricingWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "inventory-worker",
+    label: "Inventory Worker",
+    missionId: "Q3-10",
+    runtimePath: "pillow/src/inventory-worker/",
+    probe: (b) => {
+      if (!b.inventoryWorker) return "unavailable";
+      try {
+        const s = b.inventoryWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "order-worker",
+    label: "Order Worker",
+    missionId: "Q3-11",
+    runtimePath: "pillow/src/order-worker/",
+    probe: (b) => {
+      if (!b.orderWorker) return "unavailable";
+      try {
+        const s = b.orderWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "refund-dispute-worker",
+    label: "Refund & Dispute Worker",
+    missionId: "Q3-12",
+    runtimePath: "pillow/src/refund-dispute-worker/",
+    probe: (b) => {
+      if (!b.refundDisputeWorker) return "unavailable";
+      try {
+        const s = b.refundDisputeWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "commerce-analytics-worker",
+    label: "Commerce Analytics Worker",
+    missionId: "Q3-13",
+    runtimePath: "pillow/src/commerce-analytics-worker/",
+    probe: (b) => {
+      if (!b.commerceAnalyticsWorker) return "unavailable";
+      try {
+        const s = b.commerceAnalyticsWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "commerce-certification",
+    label: "Commerce Certification",
+    missionId: "Q3-14",
+    runtimePath: "pillow/src/commerce-certification/",
+    probe: (b) => {
+      if (!b.commerceCertification) return "unavailable";
+      try {
+        const s = b.commerceCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "media-factory-core",
+    label: "Media Factory Core",
+    missionId: "Q4-01",
+    runtimePath: "pillow/src/media-factory-core/",
+    probe: (b) => {
+      if (!b.mediaFactoryCore) return "unavailable";
+      try {
+        const s = b.mediaFactoryCore.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "editor-in-chief-worker",
+    label: "Editor-in-Chief Worker",
+    missionId: "Q4-02",
+    runtimePath: "pillow/src/editor-in-chief-worker/",
+    probe: (b) => {
+      if (!b.editorInChiefWorker) return "unavailable";
+      try {
+        const s = b.editorInChiefWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "trend-research-worker",
+    label: "Trend Research Worker",
+    missionId: "Q4-03",
+    runtimePath: "pillow/src/trend-research-worker/",
+    probe: (b) => {
+      if (!b.trendResearchWorker) return "unavailable";
+      try {
+        const s = b.trendResearchWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "topic-planner-worker",
+    label: "Topic Planner Worker",
+    missionId: "Q4-04",
+    runtimePath: "pillow/src/topic-planner-worker/",
+    probe: (b) => {
+      if (!b.topicPlannerWorker) return "unavailable";
+      try {
+        const s = b.topicPlannerWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "script-worker",
+    label: "Script Worker",
+    missionId: "Q4-05",
+    runtimePath: "pillow/src/script-worker/",
+    probe: (b) => {
+      if (!b.scriptWorker) return "unavailable";
+      try {
+        const s = b.scriptWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "hook-worker",
+    label: "Hook Worker",
+    missionId: "Q4-06",
+    runtimePath: "pillow/src/hook-worker/",
+    probe: (b) => {
+      if (!b.hookWorker) return "unavailable";
+      try {
+        const s = b.hookWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "thumbnail-worker",
+    label: "Thumbnail Worker",
+    missionId: "Q4-07",
+    runtimePath: "pillow/src/thumbnail-worker/",
+    probe: (b) => {
+      if (!b.thumbnailWorker) return "unavailable";
+      try {
+        const s = b.thumbnailWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "visual-research-worker",
+    label: "Visual Research Worker",
+    missionId: "Q4-08",
+    runtimePath: "pillow/src/visual-research-worker/",
+    probe: (b) => {
+      if (!b.visualResearchWorker) return "unavailable";
+      try {
+        const s = b.visualResearchWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "image-creative-worker",
+    label: "Image & Creative Worker",
+    missionId: "Q4-09",
+    runtimePath: "pillow/src/image-creative-worker/",
+    probe: (b) => {
+      if (!b.imageCreativeWorker) return "unavailable";
+      try {
+        const s = b.imageCreativeWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "voice-worker",
+    label: "Voice Worker",
+    missionId: "Q4-10",
+    runtimePath: "pillow/src/voice-worker/",
+    probe: (b) => {
+      if (!b.voiceWorker) return "unavailable";
+      try {
+        const s = b.voiceWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "video-assembly-worker",
+    label: "Video Assembly Worker",
+    missionId: "Q4-11",
+    runtimePath: "pillow/src/video-assembly-worker/",
+    probe: (b) => {
+      if (!b.videoAssemblyWorker) return "unavailable";
+      try {
+        const s = b.videoAssemblyWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "subtitle-worker",
+    label: "Subtitle Worker",
+    missionId: "Q4-12",
+    runtimePath: "pillow/src/subtitle-worker/",
+    probe: (b) => {
+      if (!b.subtitleWorker) return "unavailable";
+      try {
+        const s = b.subtitleWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "music-sound-worker",
+    label: "Music & Sound Worker",
+    missionId: "Q4-13",
+    runtimePath: "pillow/src/music-sound-worker/",
+    probe: (b) => {
+      if (!b.musicSoundWorker) return "unavailable";
+      try {
+        const s = b.musicSoundWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "publishing-worker",
+    label: "Publishing Worker",
+    missionId: "Q4-14",
+    runtimePath: "pillow/src/publishing-worker/",
+    probe: (b) => {
+      if (!b.publishingWorker) return "unavailable";
+      try {
+        const s = b.publishingWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "media-analytics-worker",
+    label: "Media Analytics Worker",
+    missionId: "Q4-15",
+    runtimePath: "pillow/src/media-analytics-worker/",
+    probe: (b) => {
+      if (!b.mediaAnalyticsWorker) return "unavailable";
+      try {
+        const s = b.mediaAnalyticsWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "media-learning-worker",
+    label: "Media Learning Worker",
+    missionId: "Q4-16",
+    runtimePath: "pillow/src/media-learning-worker/",
+    probe: (b) => {
+      if (!b.mediaLearningWorker) return "unavailable";
+      try {
+        const s = b.mediaLearningWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "channel-recommendation-worker",
+    label: "Channel Recommendation Worker",
+    missionId: "Q4-17",
+    runtimePath: "pillow/src/channel-recommendation-worker/",
+    probe: (b) => {
+      if (!b.channelRecommendationWorker) return "unavailable";
+      try {
+        const s = b.channelRecommendationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "media-executive-review-worker",
+    label: "Media Executive Review Worker",
+    missionId: "Q4-18",
+    runtimePath: "pillow/src/media-executive-review-worker/",
+    probe: (b) => {
+      if (!b.mediaExecutiveReviewWorker) return "unavailable";
+      try {
+        const s = b.mediaExecutiveReviewWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "media-certification",
+    label: "Media Certification",
+    missionId: "Q4-19",
+    runtimePath: "pillow/src/media-certification/",
+    probe: (b) => {
+      if (!b.mediaCertification) return "unavailable";
+      try {
+        const s = b.mediaCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "digital-products-factory-core",
+    label: "Digital Products Factory Core",
+    missionId: "Q5-01",
+    runtimePath: "pillow/src/digital-products-factory-core/",
+    probe: (b) => {
+      if (!b.digitalProductsFactoryCore) return "unavailable";
+      try {
+        const s = b.digitalProductsFactoryCore.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "digital-product-research-worker",
+    label: "Digital Product Research Worker",
+    missionId: "Q5-02",
+    runtimePath: "pillow/src/digital-product-research-worker/",
+    probe: (b) => {
+      if (!b.digitalProductResearchWorker) return "unavailable";
+      try {
+        const s = b.digitalProductResearchWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ebook-worker",
+    label: "Ebook Worker",
+    missionId: "Q5-03",
+    runtimePath: "pillow/src/ebook-worker/",
+    probe: (b) => {
+      if (!b.ebookWorker) return "unavailable";
+      try {
+        const s = b.ebookWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "prompt-product-worker",
+    label: "Prompt Product Worker",
+    missionId: "Q5-04",
+    runtimePath: "pillow/src/prompt-product-worker/",
+    probe: (b) => {
+      if (!b.promptProductWorker) return "unavailable";
+      try {
+        const s = b.promptProductWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "course-builder-worker",
+    label: "Course Builder Worker",
+    missionId: "Q5-05",
+    runtimePath: "pillow/src/course-builder-worker/",
+    probe: (b) => {
+      if (!b.courseBuilderWorker) return "unavailable";
+      try {
+        const s = b.courseBuilderWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "template-builder-worker",
+    label: "Template Builder Worker",
+    missionId: "Q5-06",
+    runtimePath: "pillow/src/template-builder-worker/",
+    probe: (b) => {
+      if (!b.templateBuilderWorker) return "unavailable";
+      try {
+        const s = b.templateBuilderWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "design-worker",
+    label: "Design Worker",
+    missionId: "Q5-07",
+    runtimePath: "pillow/src/design-worker/",
+    probe: (b) => {
+      if (!b.designWorker) return "unavailable";
+      try {
+        const s = b.designWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "sales-page-worker",
+    label: "Sales Page Worker",
+    missionId: "Q5-08",
+    runtimePath: "pillow/src/sales-page-worker/",
+    probe: (b) => {
+      if (!b.salesPageWorker) return "unavailable";
+      try {
+        const s = b.salesPageWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "checkout-worker",
+    label: "Checkout Worker",
+    missionId: "Q5-09",
+    runtimePath: "pillow/src/checkout-worker/",
+    probe: (b) => {
+      if (!b.checkoutWorker) return "unavailable";
+      try {
+        const s = b.checkoutWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "digital-delivery-worker",
+    label: "Digital Delivery Worker",
+    missionId: "Q5-10",
+    runtimePath: "pillow/src/digital-delivery-worker/",
+    probe: (b) => {
+      if (!b.digitalDeliveryWorker) return "unavailable";
+      try {
+        const s = b.digitalDeliveryWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "digital-product-analytics-worker",
+    label: "Digital Product Analytics Worker",
+    missionId: "Q5-11",
+    runtimePath: "pillow/src/digital-product-analytics-worker/",
+    probe: (b) => {
+      if (!b.digitalProductAnalyticsWorker) return "unavailable";
+      try {
+        const s = b.digitalProductAnalyticsWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "digital-products-certification",
+    label: "Digital Products Certification",
+    missionId: "Q5-12",
+    runtimePath: "pillow/src/digital-products-certification/",
+    probe: (b) => {
+      if (!b.digitalProductsCertification) return "unavailable";
+      try {
+        const s = b.digitalProductsCertification.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "enterprise-platform-factory-core",
+    label: "Enterprise Platform Factory Core",
+    missionId: "Q6-01",
+    runtimePath: "pillow/src/enterprise-platform-factory-core/",
+    probe: (b) => {
+      if (!b.enterprisePlatformFactoryCore) return "unavailable";
+      try {
+        const s = b.enterprisePlatformFactoryCore.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "requirements-worker",
+    label: "Requirements Worker",
+    missionId: "Q6-02",
+    runtimePath: "pillow/src/requirements-worker/",
+    probe: (b) => {
+      if (!b.requirementsWorker) return "unavailable";
+      try {
+        const s = b.requirementsWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "architecture-worker",
+    label: "Architecture Worker",
+    missionId: "Q6-03",
+    runtimePath: "pillow/src/architecture-worker/",
+    probe: (b) => {
+      if (!b.architectureWorker) return "unavailable";
+      try {
+        const s = b.architectureWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "frontend-worker",
+    label: "Frontend Worker",
+    missionId: "Q6-04",
+    runtimePath: "pillow/src/frontend-worker/",
+    probe: (b) => {
+      if (!b.frontendWorker) return "unavailable";
+      try {
+        const s = b.frontendWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "backend-worker",
+    label: "Backend Worker",
+    missionId: "Q6-05",
+    runtimePath: "pillow/src/backend-worker/",
+    probe: (b) => {
+      if (!b.backendWorker) return "unavailable";
+      try {
+        const s = b.backendWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "database-worker",
+    label: "Database Worker",
+    missionId: "Q6-06",
+    runtimePath: "pillow/src/database-worker/",
+    probe: (b) => {
+      if (!b.databaseWorker) return "unavailable";
+      try {
+        const s = b.databaseWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "authentication-worker",
+    label: "Authentication Worker",
+    missionId: "Q6-07",
+    runtimePath: "pillow/src/authentication-worker/",
+    probe: (b) => {
+      if (!b.authenticationWorker) return "unavailable";
+      try {
+        const s = b.authenticationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "authorization-worker",
+    label: "Authorization Worker",
+    missionId: "Q6-08",
+    runtimePath: "pillow/src/authorization-worker/",
+    probe: (b) => {
+      if (!b.authorizationWorker) return "unavailable";
+      try {
+        const s = b.authorizationWorker.getState();
+        return s.health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "billing-worker",
+    label: "Billing Worker",
+    missionId: "Q6-09",
+    runtimePath: "pillow/src/billing-worker/",
+    probe: (b) => {
+      if (!b.billingWorker) return "unavailable";
+      try {
+        return b.billingWorker.getState().status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "api-integration-worker",
+    label: "API Integration Worker",
+    missionId: "Q6-10",
+    runtimePath: "pillow/src/api-integration-worker/",
+    probe: (b) => {
+      if (!b.apiIntegrationWorker) return "unavailable";
+      try {
+        return b.apiIntegrationWorker.getState().status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "workflow-builder-worker",
+    label: "Workflow Builder Worker",
+    missionId: "Q6-11",
+    runtimePath: "pillow/src/workflow-builder-worker/",
+    probe: (b) => {
+      if (!b.workflowBuilderWorker) return "unavailable";
+      try {
+        const status = b.workflowBuilderWorker.getState().status;
+        return status === "failed" || status === "degraded" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "notification-worker",
+    label: "Notification Worker",
+    missionId: "Q6-12",
+    runtimePath: "pillow/src/notification-worker/",
+    probe: (b) => {
+      if (!b.notificationWorker) return "unavailable";
+      try {
+        const status = b.notificationWorker.getState().status;
+        return status === "blocked" || status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "testing-worker",
+    label: "Testing Worker",
+    missionId: "Q6-13",
+    runtimePath: "pillow/src/testing-worker/",
+    probe: (b) => {
+      if (!b.testingWorker) return "unavailable";
+      try {
+        const status = b.testingWorker.getState().status;
+        return status === "blocked" || status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "deployment-worker",
+    label: "Deployment Worker",
+    missionId: "Q6-14",
+    runtimePath: "pillow/src/deployment-worker/",
+    probe: (b) => {
+      if (!b.deploymentWorker) return "unavailable";
+      try {
+        const status = b.deploymentWorker.getState().status;
+        return status === "blocked" || status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "platform-certification",
+    label: "Platform Certification",
+    missionId: "Q6-15",
+    runtimePath: "pillow/src/platform-certification/",
+    probe: (b) => {
+      if (!b.platformCertification) return "unavailable";
+      try {
+        const status = b.platformCertification.getState().status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "local-business-factory-core",
+    label: "Local Business Factory Core",
+    missionId: "Q7-01",
+    runtimePath: "pillow/src/local-business-factory-core/",
+    probe: (b) => {
+      if (!b.localBusinessFactoryCore) return "unavailable";
+      try {
+        const status = b.localBusinessFactoryCore.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "local-market-research-worker",
+    label: "Local Market Research Worker",
+    missionId: "Q7-02",
+    runtimePath: "pillow/src/local-market-research-worker/",
+    probe: (b) => {
+      if (!b.localMarketResearchWorker) return "unavailable";
+      try {
+        const status = b.localMarketResearchWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "service-offer-worker",
+    label: "Service Offer Worker",
+    missionId: "Q7-03",
+    runtimePath: "pillow/src/service-offer-worker/",
+    probe: (b) => {
+      if (!b.serviceOfferWorker) return "unavailable";
+      try {
+        const status = b.serviceOfferWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "booking-worker",
+    label: "Booking Worker",
+    missionId: "Q7-04",
+    runtimePath: "pillow/src/booking-worker/",
+    probe: (b) => {
+      if (!b.bookingWorker) return "unavailable";
+      try {
+        const status = b.bookingWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "crm-worker",
+    label: "CRM Worker",
+    missionId: "Q7-05",
+    runtimePath: "pillow/src/crm-worker/",
+    probe: (b) => {
+      if (!b.crmWorker) return "unavailable";
+      try {
+        const status = b.crmWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "whatsapp-worker",
+    label: "WhatsApp Worker",
+    missionId: "Q7-06",
+    runtimePath: "pillow/src/whatsapp-worker/",
+    probe: (b) => {
+      if (!b.whatsAppWorker) return "unavailable";
+      try {
+        const status = b.whatsAppWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "local-seo-worker",
+    label: "Local SEO Worker",
+    missionId: "Q7-07",
+    runtimePath: "pillow/src/local-seo-worker/",
+    probe: (b) => {
+      if (!b.localSeoWorker) return "unavailable";
+      try {
+        const status = b.localSeoWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "lead-generation-worker",
+    label: "Lead Generation Worker",
+    missionId: "Q7-08",
+    runtimePath: "pillow/src/lead-generation-worker/",
+    probe: (b) => {
+      if (!b.leadGenerationWorker) return "unavailable";
+      try {
+        const status = b.leadGenerationWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "operations-worker",
+    label: "Operations Worker",
+    missionId: "Q7-09",
+    runtimePath: "pillow/src/operations-worker/",
+    probe: (b) => {
+      if (!b.operationsWorker) return "unavailable";
+      try {
+        const status = b.operationsWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "local-business-launch-pack",
+    label: "Local Business Launch Pack",
+    missionId: "Q7-10",
+    runtimePath: "pillow/src/local-business-launch-pack/",
+    probe: (b) => {
+      if (!b.localBusinessLaunchPack) return "unavailable";
+      try {
+        const status = b.localBusinessLaunchPack.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "local-business-certification",
+    label: "Local Business Certification",
+    missionId: "Q7-11",
+    runtimePath: "pillow/src/local-business-certification/",
+    probe: (b) => {
+      if (!b.localBusinessCertification) return "unavailable";
+      try {
+        const status = b.localBusinessCertification.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "affiliate-factory-core",
+    label: "Affiliate Factory Core",
+    missionId: "Q8-01",
+    runtimePath: "pillow/src/affiliate-factory-core/",
+    probe: (b) => {
+      if (!b.affiliateFactoryCore) return "unavailable";
+      try {
+        const status = b.affiliateFactoryCore.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "affiliate-opportunity-worker",
+    label: "Affiliate Opportunity Worker",
+    missionId: "Q8-02",
+    runtimePath: "pillow/src/affiliate-opportunity-worker/",
+    probe: (b) => {
+      if (!b.affiliateOpportunityWorker) return "unavailable";
+      try {
+        const status = b.affiliateOpportunityWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "comparison-site-worker",
+    label: "Comparison Site Worker",
+    missionId: "Q8-03",
+    runtimePath: "pillow/src/comparison-site-worker/",
+    probe: (b) => {
+      if (!b.comparisonSiteWorker) return "unavailable";
+      try {
+        const status = b.comparisonSiteWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "review-content-worker",
+    label: "Review Content Worker",
+    missionId: "Q8-04",
+    runtimePath: "pillow/src/review-content-worker/",
+    probe: (b) => {
+      if (!b.reviewContentWorker) return "unavailable";
+      try {
+        const status = b.reviewContentWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "seo-content-worker",
+    label: "SEO Content Worker",
+    missionId: "Q8-05",
+    runtimePath: "pillow/src/seo-content-worker/",
+    probe: (b) => {
+      if (!b.seoContentWorker) return "unavailable";
+      try {
+        const status = b.seoContentWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "email-funnel-worker",
+    label: "Email Funnel Worker",
+    missionId: "Q8-06",
+    runtimePath: "pillow/src/email-funnel-worker/",
+    probe: (b) => {
+      if (!b.emailFunnelWorker) return "unavailable";
+      try {
+        const status = b.emailFunnelWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "analytics-worker",
+    label: "Analytics Worker",
+    missionId: "Q8-07",
+    runtimePath: "pillow/src/analytics-worker/",
+    probe: (b) => {
+      if (!b.analyticsWorker) return "unavailable";
+      try {
+        const status = b.analyticsWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "affiliate-compliance-worker",
+    label: "Affiliate Compliance Worker",
+    missionId: "Q8-08",
+    runtimePath: "pillow/src/affiliate-compliance-worker/",
+    probe: (b) => {
+      if (!b.affiliateComplianceWorker) return "unavailable";
+      try {
+        const status = b.affiliateComplianceWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "affiliate-certification",
+    label: "Affiliate Certification",
+    missionId: "Q8-09",
+    runtimePath: "pillow/src/affiliate-certification/",
+    probe: (b) => {
+      if (!b.affiliateCertification) return "unavailable";
+      try {
+        const status = b.affiliateCertification.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "capital-factory-core",
+    label: "Capital Factory Core",
+    missionId: "Q9-01",
+    runtimePath: "pillow/src/capital-factory-core/",
+    probe: (b) => {
+      if (!b.capitalFactoryCore) return "unavailable";
+      try {
+        const status = b.capitalFactoryCore.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "accounting-worker",
+    label: "Accounting Worker",
+    missionId: "Q9-02",
+    runtimePath: "pillow/src/accounting-worker/",
+    probe: (b) => {
+      if (!b.accountingWorker) return "unavailable";
+      try {
+        const status = b.accountingWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cashflow-worker",
+    label: "Cashflow Worker",
+    missionId: "Q9-03",
+    runtimePath: "pillow/src/cashflow-worker/",
+    probe: (b) => {
+      if (!b.cashflowWorker) return "unavailable";
+      try {
+        const status = b.cashflowWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "budget-planning-worker",
+    label: "Budget Planning Worker",
+    missionId: "Q9-04",
+    runtimePath: "pillow/src/budget-planning-worker/",
+    probe: (b) => {
+      if (!b.budgetPlanningWorker) return "unavailable";
+      try {
+        const status = b.budgetPlanningWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "profitability-worker",
+    label: "Profitability Worker",
+    missionId: "Q9-05",
+    runtimePath: "pillow/src/profitability-worker/",
+    probe: (b) => {
+      if (!b.profitabilityWorker) return "unavailable";
+      try {
+        const status = b.profitabilityWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "forecasting-worker",
+    label: "Forecasting Worker",
+    missionId: "Q9-06",
+    runtimePath: "pillow/src/forecasting-worker/",
+    probe: (b) => {
+      if (!b.forecastingWorker) return "unavailable";
+      try {
+        const status = b.forecastingWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "tax-support-worker",
+    label: "Tax Support Worker",
+    missionId: "Q9-07",
+    runtimePath: "pillow/src/tax-support-worker/",
+    probe: (b) => {
+      if (!b.taxSupportWorker) return "unavailable";
+      try {
+        const status = b.taxSupportWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global-expansion-simulator",
+    label: "Global Expansion Simulator",
+    missionId: "X4-17",
+    runtimePath: "pillow/src/global-expansion-simulator/",
+    probe: (b) => {
+      if (!b.globalExpansionSimulator) return "unavailable";
+      try {
+        return b.globalExpansionSimulator.getState().health.status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "international-executive-cockpit",
+    label: "International Executive Cockpit",
+    missionId: "X4-18",
+    runtimePath: "pillow/src/international-executive-cockpit/",
+    probe: (b) => {
+      if (!b.internationalExecutiveCockpit) return "unavailable";
+      try {
+        return b.internationalExecutiveCockpit.getState().health.status === "standby" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "global-operations-certified",
+    label: "Global Operations Certified",
+    missionId: "X4-19",
+    runtimePath: "pillow/src/global-operations-certified/",
+    probe: (b) => {
+      if (!b.globalOperationsCertified) return "unavailable";
+      try {
+        const s = b.globalOperationsCertified.getState();
         return s.health.status === "failed" ? "degraded" : "ready";
       } catch {
         return "unavailable";

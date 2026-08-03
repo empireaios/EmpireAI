@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "countryEvaluationRulesEnabled": true,
+  "rankingRulesEnabled": true,
+  "readinessThreshold": 55,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverRecommendUsingUnvalidatedCountryData": true,
+  "preserveEvaluationTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveOperationalInformation": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

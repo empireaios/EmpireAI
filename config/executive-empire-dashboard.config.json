@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "dashboardRefreshFrequencyMs": 60000,
+  "executiveAlertRulesEnabled": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

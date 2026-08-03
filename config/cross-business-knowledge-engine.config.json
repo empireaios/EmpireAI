@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "knowledgeCollectionRulesEnabled": true,
+  "knowledgeSharingRulesEnabled": true,
+  "knowledgeRankingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverShareConfidentialWithoutValidation": true,
+  "preserveKnowledgeTraceability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "minReusabilityScore": 40,
+  "minConfidenceScore": 45,
+  "maxKnowledgeRecords": 500,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

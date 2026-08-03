@@ -1,3 +1,4 @@
+import { sortByRetrievalPriority } from "./governance.js";
 import type {
   ExecutiveKnowledgeEntry,
   ExecutiveLearningReasoningBundle,
@@ -11,11 +12,15 @@ export function buildExecutiveLearningReasoningBundle(input: {
   pendingSessionContext: PendingExecutiveLearning[];
   executivePerspectives?: string[];
 }): ExecutiveLearningReasoningBundle {
-  const approvedExecutiveKnowledge = input.approvedKnowledge.filter(
-    (item) => item.category === "A" && item.status === "approved",
+  const approvedExecutiveKnowledge = sortByRetrievalPriority(
+    input.approvedKnowledge.filter(
+      (item) => item.category === "A" && item.status === "approved",
+    ),
   );
-  const projectWorkingKnowledge = input.approvedKnowledge.filter(
-    (item) => (item.category === "B" || item.category === "C") && item.status === "approved",
+  const projectWorkingKnowledge = sortByRetrievalPriority(
+    input.approvedKnowledge.filter(
+      (item) => (item.category === "B" || item.category === "C") && item.status === "approved",
+    ),
   );
 
   return {
@@ -23,7 +28,9 @@ export function buildExecutiveLearningReasoningBundle(input: {
     executiveConstitutionSummary: input.executiveConstitutionSummary,
     approvedExecutiveKnowledge,
     projectWorkingKnowledge,
-    sessionContext: input.pendingSessionContext.filter((item) => item.category === "D"),
+    sessionContext: input.pendingSessionContext.filter(
+      (item) => item.category === "D" && item.status === "session_active",
+    ),
     executivePerspectives: input.executivePerspectives ?? [],
     loadedAt: new Date().toISOString(),
   };
@@ -80,7 +87,9 @@ export function formatExecutiveLearningForLlm(
 
   sections.push(
     "",
+    "CONSTITUTIONAL OVERRIDE: Executive Constitution always outranks learned knowledge.",
     "Only APPROVED Executive Knowledge influences long-term reasoning. Never treat conversation history as permanent memory.",
+    "Never hallucinate prior Grand King approvals. Category D session context is experimental and expires.",
   );
 
   return sections.join("\n");

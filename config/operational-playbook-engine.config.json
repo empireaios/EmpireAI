@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "playbookRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "supportedCategories": [
+    "business",
+    "commerce",
+    "media",
+    "marketplace",
+    "marketing",
+    "finance",
+    "customer_service",
+    "operations",
+    "recovery",
+    "emergency"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkers": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

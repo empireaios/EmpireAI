@@ -1,0 +1,49 @@
+{
+  "enabled": true,
+  "observationRulesEnabled": true,
+  "anomalyRulesEnabled": true,
+  "alertRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthStates": [
+    "healthy",
+    "warning",
+    "critical",
+    "recovering",
+    "offline",
+    "unknown"
+  ],
+  "monitoringEvents": [
+    "worker_started",
+    "worker_completed",
+    "worker_failed",
+    "worker_stalled",
+    "worker_overloaded",
+    "worker_recovered",
+    "worker_suspended",
+    "worker_offline",
+    "performance_degraded"
+  ],
+  "monitoringRules": [
+    "continuously_monitor_active_workers",
+    "detect_abnormal_behaviour",
+    "detect_execution_drift",
+    "detect_performance_degradation",
+    "report_critical_events_to_pillow",
+    "preserve_monitoring_history",
+    "support_executive_reporting_runtime_integration"
+  ],
+  "stallThresholdMs": 300000,
+  "overloadWorkloadThreshold": 0.85,
+  "driftRatioThreshold": 1.75,
+  "performanceDegradeThreshold": 0.6,
+  "offlineHeartbeatMs": 900000,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverRestartWorkersAutomatically": true,
+  "neverReplaceWorkforceCertificationMonitor": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

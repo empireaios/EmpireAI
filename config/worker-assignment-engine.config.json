@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "discoveryRulesEnabled": true,
+  "evaluationRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "assignmentFactors": [
+    "skills",
+    "certification",
+    "availability",
+    "current_workload",
+    "authority",
+    "required_tools",
+    "dependencies",
+    "risk",
+    "cost",
+    "historical_performance"
+  ],
+  "assignmentRules": [
+    "never_assign_uncertified_workers",
+    "never_assign_unavailable_workers",
+    "never_exceed_worker_authority",
+    "never_violate_authority_matrix",
+    "respect_responsibility_matrix",
+    "respect_worker_lifecycle_status",
+    "respect_worker_certification_status"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverReplaceTaskNegotiationProtocol": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

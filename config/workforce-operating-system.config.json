@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "registrationRulesEnabled": true,
+  "sessionRulesEnabled": true,
+  "communicationRulesEnabled": true,
+  "synchronizationRulesEnabled": true,
+  "monitoringRulesEnabled": true,
+  "recoveryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "services": [
+    "worker_registration",
+    "department_registration",
+    "factory_registration",
+    "session_management",
+    "communication_runtime",
+    "state_synchronization",
+    "runtime_monitoring",
+    "runtime_recovery",
+    "organization_health_monitoring",
+    "runtime_diagnostics"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverReplacePillow": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverExecuteWorkerTasks": true,
+  "neverMakeStrategicDecisions": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

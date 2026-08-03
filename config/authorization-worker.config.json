@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "timeoutMs": 5000,
+  "defaultDeny": true,
+  "leastPrivilege": true,
+  "neverAuthenticateUsers": true,
+  "neverReplaceAuthenticationWorker": true,
+  "neverImplementQ609OrLater": true,
+  "preventPrivilegeEscalation": true
+}

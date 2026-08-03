@@ -1,0 +1,2 @@
+import type { TestCase,TestDomain,TestType } from "./types.js";
+export function testDefinitions(input:{suiteId:string;testType:TestType;domain?:TestDomain;count:number;names?:string[]}):Omit<TestCase,"caseId"|"createdAt">[]{return Array.from({length:input.count},(_,index)=>({suiteId:input.suiteId,name:input.names?.[index]??`${input.testType} case ${index+1}`,testType:input.testType,domain:input.domain,assertion:"Explicit runner assertion required",status:"pending"}))}

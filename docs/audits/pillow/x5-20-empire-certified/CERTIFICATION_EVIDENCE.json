@@ -1,0 +1,64 @@
+{
+  "missionId": "X5-20",
+  "doctrine": "PILLOW-EC-001",
+  "moduleId": "empire-certified",
+  "metadataVersion": "EC-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Final certification",
+  "completionOutcome": "EmpireAI becomes a constitutional AI enterprise operating system capable of discovering opportunities, creating companies, operating them, scaling them globally, sharing intelligence across the portfolio, allocating capital intelligently, and continuously evolving under the Grand King's governance.",
+  "validatedProgrammes": ["X1", "X2", "X3", "X4", "X5"],
+  "validatedEmpireModules": [
+    "empire-intelligence-framework",
+    "empire-knowledge-engine",
+    "empire-memory-engine",
+    "empire-optimization-engine",
+    "empire-capital-allocation",
+    "empire-opportunity-engine",
+    "empire-innovation-engine",
+    "empire-resilience-engine",
+    "empire-self-improvement-engine",
+    "executive-empire-dashboard",
+    "cross-empire-governance-engine",
+    "autonomous-investment-engine",
+    "enterprise-succession-engine",
+    "empire-legacy-engine",
+    "grand-king-advisory-engine",
+    "civilization-knowledge-engine",
+    "autonomous-empire-evolution",
+    "empire-performance-guardian",
+    "infinite-growth-engine"
+  ],
+  "capabilities": [
+    "company-factory-validation",
+    "portfolio-intelligence-validation",
+    "autonomous-scaling-validation",
+    "global-expansion-validation",
+    "empire-intelligence-validation",
+    "cross-programme-validation",
+    "constitutional-governance-validation",
+    "executive-governance-validation",
+    "enterprise-intelligence-validation",
+    "end-to-end-enterprise-validation",
+    "certification-reporting"
+  ],
+  "safety": {
+    "safeTestMode": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "structuralSignalsOnly": true,
+    "neverModifyProductionSystemsDuringCertificationUnlessExplicitSafeTestMode": true,
+    "preserveConstitutionalIntegrity": true
+  },
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/empire-certified.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-certified/",
+    "config": "config/empire-certified.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EMPIRE_CERTIFIED_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/empire-certified-bridge.ts",
+    "tests": "pillow/src/validation/tests/empire-certified.test.ts"
+  }
+}

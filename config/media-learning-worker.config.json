@@ -1,0 +1,53 @@
+{
+  "enabled": true,
+  "learningRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-media-learning-01",
+  "workerName": "Media Learning Worker",
+  "factory": "media-factory",
+  "department": "media",
+  "role": "role-analyst-media-learning",
+  "learningOutcomeKinds": [
+    "measured",
+    "inferred",
+    "assumption"
+  ],
+  "patternDimensions": [
+    "topic",
+    "hook",
+    "thumbnail",
+    "pacing",
+    "retention",
+    "format",
+    "publishing_timing",
+    "engagement"
+  ],
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "media_analytics_worker",
+    "experience_replay_engine",
+    "operational_playbook_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverRewriteExistingContent": true,
+  "neverModifyPublishedVideos": true,
+  "neverChangeEditorialPolicyDirectly": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ417OrLater": true,
+  "neverOverwriteHistoricalLearning": true,
+  "learnOnlyFromVerifiedAnalytics": true,
+  "preserveCompleteTraceability": true,
+  "preserveHistoricalLearningRecords": true,
+  "distinguishMeasuredOutcomesFromAssumptions": true,
+  "preserveAuditHistory": true,
+  "structuralSignalOnly": true
+}

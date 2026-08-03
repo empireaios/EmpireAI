@@ -1,0 +1,38 @@
+{
+  "doctrine": "PILLOW-CEG-001",
+  "mission": "X5-11",
+  "moduleId": "cross-empire-governance-engine",
+  "status": "FINAL PASS",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/cross-empire-governance-engine.test.ts\"",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "safety": {
+    "structuralSignalsOnly": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverBypassConstitutionalGovernance": true,
+    "neverApproveNonCompliantOperationsAutomatically": true,
+    "preserveGovernanceTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveGovernanceInformation": true
+  },
+  "capabilities": [
+    "enterprise_governance_policy_management",
+    "constitutional_rule_management",
+    "governance_compliance_validation",
+    "governance_consistency_monitoring",
+    "governance_violation_detection",
+    "policy_conflict_detection",
+    "governance_risk_evaluation",
+    "governance_recommendation_generation",
+    "governance_metadata_generation",
+    "governance_validation",
+    "health_monitoring",
+    "recovery_management"
+  ]
+}

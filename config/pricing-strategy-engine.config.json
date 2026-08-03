@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "priceCalculationRulesEnabled": true,
+  "marginRulesEnabled": true,
+  "competitorAnalysisRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverAutoPublish": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxPricingRecordsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

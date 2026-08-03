@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "domainPlanningRulesEnabled": true,
+  "namingValidationRulesEnabled": true,
+  "websitePlanningRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverAutoRegisterOrPurchase": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxPlansPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

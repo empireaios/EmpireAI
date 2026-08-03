@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "submissionRulesEnabled": true,
+  "classificationRulesEnabled": true,
+  "publicationRulesEnabled": true,
+  "subscriptionRulesEnabled": true,
+  "versioningRulesEnabled": true,
+  "archivalRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "knowledgeCategories": [
+    "lessons_learned",
+    "best_practice",
+    "business_knowledge",
+    "operational_knowledge",
+    "technical_knowledge",
+    "market_intelligence",
+    "customer_intelligence",
+    "financial_knowledge",
+    "executive_knowledge",
+    "recovery_knowledge"
+  ],
+  "minConfidenceToPublish": 50,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceExecutionMemory": true,
+  "neverReplaceDecisionMemory": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

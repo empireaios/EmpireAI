@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "advisoryGenerationRulesEnabled": true,
+  "priorityRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverExecuteExecutiveDecisionsAutomaticallyWithoutApprovedGovernance": true,
+  "preserveAdvisoryTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

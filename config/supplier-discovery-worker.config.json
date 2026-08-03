@@ -1,0 +1,48 @@
+{
+  "enabled": true,
+  "discoveryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-supplier-discovery-01",
+  "workerName": "Supplier Discovery Worker",
+  "factory": "commerce-factory",
+  "department": "commerce",
+  "role": "role-analyst-supplier-discovery",
+  "approvedSupplierPlatforms": [
+    "alibaba",
+    "aliexpress",
+    "cjdropshipping",
+    "spocket",
+    "local_wholesale"
+  ],
+  "approvedSupplierApis": [
+    "alibaba_open_api",
+    "cj_dropshipping_api",
+    "spocket_api",
+    "internal_supplier_catalog_api"
+  ],
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "product_evaluation_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverEvaluateSuppliers": true,
+  "neverNegotiateSuppliers": true,
+  "neverSelectSuppliers": true,
+  "neverPlaceOrders": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ305OrLater": true,
+  "useOnlyApprovedSupplierPlatformsAndApis": true,
+  "neverModifySupplierData": true,
+  "preserveSupplierTraceability": true,
+  "preserveAuditHistory": true,
+  "structuralSignalsOnly": true
+}

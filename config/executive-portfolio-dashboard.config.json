@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "dashboardRefreshFrequencySeconds": 60,
+  "kpiSelectionRulesEnabled": true,
+  "executiveAlertRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverPermitUnauthorizedAccess": true,
+  "preserveDashboardTraceability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "alertHealthScoreThreshold": 60,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

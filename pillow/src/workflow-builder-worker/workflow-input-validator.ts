@@ -1,0 +1,1 @@
+import type { WorkflowBuilderWorkerEngine } from "./engine.js"; export class WorkflowInputValidator {constructor(private engine:WorkflowBuilderWorkerEngine){} validate(input:Record<string,unknown>={}){return this.engine.validate(input)}}

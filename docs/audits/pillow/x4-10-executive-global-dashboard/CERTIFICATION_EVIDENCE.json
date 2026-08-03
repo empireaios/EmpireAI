@@ -1,0 +1,57 @@
+{
+  "mission": "X4-10 — Executive Global Dashboard",
+  "documentId": "PILLOW-EGD-001",
+  "engineVersion": "PILLOW-EGD-001",
+  "certifiedAt": "2026-07-26T08:45:00.000Z",
+  "verdict": "FINAL PASS",
+  "dependsOn": "X4-09 FINAL PASS",
+  "checkpoint": {
+    "resumeNote": "Implementation and wiring were already complete when X4 expansion was paused. Certified immediately after X4-09 PASS verification; no redesign.",
+    "priorDependenciesPreserved": [
+      "X4-01…X4-09",
+      "Digital Soul",
+      "Executive Deliberation Engine",
+      "Live Executive Judgement",
+      "High-Availability & Executive Continuity",
+      "Executive Learning & Memory FINAL PASS"
+    ]
+  },
+  "structural": {
+    "testsFile": "pillow/src/validation/tests/executive-global-dashboard.test.ts",
+    "pass": 10,
+    "fail": 0,
+    "cases": [
+      "buildExecutiveGlobalDashboardConfiguration locks safety flags",
+      "executive global dashboard initializes with doctrine PILLOW-EGD-001 / X4-10",
+      "connectExecutiveGlobalDashboard registers with GEF via X4-10",
+      "worldwide/country/regional/market/logistics/compliance/tax/localization widgets",
+      "rejects unvalidated path and never exposes restricted information",
+      "refresh preserves dashboard traceability",
+      "executive alerts and global recommendations",
+      "governance safety redacts sensitive values in logs",
+      "validateForSupervisorSync and cockpit snapshot report readiness",
+      "diagnostics and recovery readiness track failures"
+    ]
+  },
+  "wiring": {
+    "module": "pillow/src/executive-global-dashboard/",
+    "exports": "pillow/src/index.ts (DashboardSnapshot aliased as ExecutiveGlobalDashboardSnapshot)",
+    "session": true,
+    "subsystemRegistry": true,
+    "config": "config/executive-global-dashboard.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EXECUTIVE_GLOBAL_DASHBOARD_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/executive-global-dashboard-bridge.ts",
+    "hostRoutes": true
+  },
+  "safetyInvariants": {
+    "neverExposeRestrictedEnterpriseInformation": true,
+    "requireAuthorizedAccess": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true
+  },
+  "blockers": [],
+  "remainingWeaknesses": [
+    "Structural signals only — no live UI rendering APIs in X4-10 (by doctrine)",
+    "Dashboard widgets consume upstream X4 structural signals; live feed integration is out of scope"
+  ]
+}

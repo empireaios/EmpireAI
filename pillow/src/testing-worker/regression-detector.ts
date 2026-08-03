@@ -1,0 +1,2 @@
+import type { CaseResult,RegressionFinding } from "./types.js";
+export function detectNewFailures(current:CaseResult[],baseline:CaseResult[],runId:string,baselineRunId:string):RegressionFinding[]{const passed=new Set(baseline.filter(x=>x.status==="passed").map(x=>x.caseId));return current.filter(x=>x.status==="failed"&&passed.has(x.caseId)).map(x=>({findingId:`tsw-reg-${crypto.randomUUID()}`,runId,caseId:x.caseId,baselineRunId,message:"Case newly failed after baseline pass",createdAt:new Date().toISOString()}))}

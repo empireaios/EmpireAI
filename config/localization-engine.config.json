@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "localizationRulesEnabled": true,
+  "regionalAdaptationRulesEnabled": true,
+  "readinessThreshold": 55,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverOverwriteCanonicalSourceContent": true,
+  "preserveLocalizationTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveOperationalInformation": true,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

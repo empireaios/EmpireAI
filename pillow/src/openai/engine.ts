@@ -3,6 +3,7 @@ import type { ExecutiveReasoningComposition } from "../bootstrap/types.js";
 import type { ExecutiveLearningReasoningBundle } from "../learning/types.js";
 import type { PillowExecutiveRecommendation } from "../executive-perspectives/types.js";
 import { formatExecutiveReasoningForLlm } from "../bootstrap/executive-reasoning-context.js";
+import { buildDigitalSoulPromptBlock } from "../digital-soul/prompt.js";
 import { formatExecutiveLearningForLlm } from "../learning/reasoning-bundle.js";
 import { formatExecutiveRecommendationForLlm } from "../executive-perspectives/synthesis-engine.js";
 import type {
@@ -44,6 +45,15 @@ export interface PillowCompletionRequest {
   /** Natural executive dialogue — suppresses template source labels. */
   executiveConversationMode?: boolean;
   actor?: string;
+  /**
+   * Mandatory attestation that Digital Soul constitutional gate already ran.
+   * Tool / LLM completion refuses without this — no ungated executive path.
+   */
+  constitutionalGateAttestation?: {
+    passed: true;
+    gatedAt: string;
+    purpose: "chat" | "tool" | "memory" | "command" | "assistant_action" | "natural_ux";
+  };
 }
 
 export interface PillowCompletionResult {
@@ -81,6 +91,12 @@ export class OpenAIIntegrationLayer {
   }
 
   async complete(request: PillowCompletionRequest): Promise<PillowCompletionResult> {
+    if (!request.constitutionalGateAttestation?.passed) {
+      throw new Error(
+        "Constitutional gate required: OpenAIIntegrationLayer.complete refused ungated executive completion. Call gateExecutiveConversation before LLM or tool execution.",
+      );
+    }
+
     const mode = resolveOperatingMode(request.operationalContext.manifest.task);
     const budget = budgetForMode(mode);
     const available = this.adapter.listAvailableProviders();
@@ -120,6 +136,7 @@ export class OpenAIIntegrationLayer {
         "code_execution",
       ]);
       if (specialCapabilities.has(routing.primaryCapability)) {
+        // Tools execute only after mandatory Digital Soul gate attestation (checked above).
         const platformResult = await this.intelligencePlatform.execute({
           operationalContext: request.operationalContext,
           userMessage: request.userMessage,
@@ -230,6 +247,7 @@ function assembleLlmMessages(
 
   const systemHeader = [
     "You are Pillow, the AI operating layer inside EmpireAI.",
+    "Constitutional authority: Digital Soul of Pillow V2 (DS-V2-CANONICAL).",
     knowledgeRoutingPolicy,
     `Operating mode: ${mode}`,
     `Context task: ${context.manifest.task}`,
@@ -242,6 +260,10 @@ function assembleLlmMessages(
   ]
     .filter(Boolean)
     .join("\n");
+
+  const digitalSoulAnchor = executiveReasoning
+    ? null
+    : buildDigitalSoulPromptBlock();
 
   const executiveAnchor = executiveReasoning
     ? formatExecutiveReasoningForLlm(executiveReasoning)
@@ -301,6 +323,7 @@ function assembleLlmMessages(
 
   const systemContent = [
     systemHeader,
+    digitalSoulAnchor,
     executiveAnchor,
     learningAnchor,
     councilAnchor,

@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "registrationRulesEnabled": true,
+  "queryRulesEnabled": true,
+  "reportingRulesEnabled": true,
+  "statusRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "registryVersion": "WRG-REG-v1",
+  "workerStates": [
+    "registered",
+    "active",
+    "busy",
+    "idle",
+    "suspended",
+    "retired",
+    "disabled",
+    "offline"
+  ],
+  "registryRules": [
+    "unique_worker_id",
+    "one_primary_role",
+    "one_department",
+    "one_factory",
+    "pillow_governing_authority",
+    "reporting_relationship_defined",
+    "skill_profile_defined",
+    "approved_tools_defined",
+    "authority_level_defined",
+    "certification_status_defined",
+    "no_unregistered_execution"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkforceCapabilityRegistry": true,
+  "neverReplaceOrganizationCharter": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

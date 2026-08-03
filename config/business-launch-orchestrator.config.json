@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "launchWorkflowRulesEnabled": true,
+  "dependencyRulesEnabled": true,
+  "recoveryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverLaunchWithoutReadinessValidation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxLaunchesPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

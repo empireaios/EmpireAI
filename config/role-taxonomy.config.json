@@ -1,0 +1,42 @@
+{
+  "enabled": true,
+  "definitionRulesEnabled": true,
+  "registrationRulesEnabled": true,
+  "inheritanceRulesEnabled": true,
+  "reportingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "taxonomyVersion": "RTX-TAX-v1",
+  "roleCategories": [
+    "executive",
+    "director",
+    "manager",
+    "lead",
+    "specialist",
+    "reviewer",
+    "analyst",
+    "coordinator",
+    "support",
+    "system"
+  ],
+  "roleRules": [
+    "exactly_one_role_category",
+    "purpose_defined",
+    "responsibilities_defined",
+    "decision_authority_defined",
+    "escalation_authority_defined",
+    "reporting_structure_defined",
+    "required_skills_defined",
+    "quality_standard_required",
+    "governance_rules_required",
+    "inherits_from_valid_parent"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceOrganizationCharter": true,
+  "neverReplaceWorkerConstitution": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

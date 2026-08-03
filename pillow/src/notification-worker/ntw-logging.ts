@@ -1,0 +1,2 @@
+const sensitive=/apiKey|secret|token|password|authorization|credential/i;
+export class NotificationLogger { redact(value:unknown):unknown {if(Array.isArray(value))return value.map(x=>this.redact(x));if(value&&typeof value==="object")return Object.fromEntries(Object.entries(value as Record<string,unknown>).map(([k,v])=>[k,sensitive.test(k)?"[REDACTED]":this.redact(v)]));return value} info(event:string,data:Record<string,unknown>={}){return {event,data:this.redact(data)}} }

@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "missionRulesEnabled": true,
+  "lifecycleRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "missionCoordinationEnabled": true,
+  "requireGrandKingApproval": true,
+  "requirePillowCommandConfirmation": true,
+  "channelTypes": [
+    "youtube",
+    "tiktok",
+    "instagram",
+    "podcast",
+    "newsletter",
+    "blog",
+    "linkedin",
+    "x_twitter",
+    "multi_channel",
+    "unknown"
+  ],
+  "pipelineTypes": [
+    "short_form_video",
+    "long_form_video",
+    "podcast_episode",
+    "newsletter_issue",
+    "social_post",
+    "blog_article",
+    "multi_format"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverWriteScripts": true,
+  "neverGenerateImages": true,
+  "neverGenerateVideos": true,
+  "neverPublishDirectly": true,
+  "neverBypassApproval": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ402OrLater": true,
+  "structuralSignalOnly": true
+}

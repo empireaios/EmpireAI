@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverModifyGovernanceApprovedArchitectureAutomatically": true,
+  "neverBypassConstitutionalGovernance": true,
+  "preserveImprovementTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

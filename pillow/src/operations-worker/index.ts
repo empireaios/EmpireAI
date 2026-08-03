@@ -1,0 +1,50 @@
+export {
+  OperationsWorker,
+  createOperationsWorker,
+  resetOperationsWorkerForTesting,
+  type OperationsWorkerOptions,
+} from "./engine.js";
+export type { OperationsWorkerDependencies } from "./integrations.js";
+export {
+  buildOperationsWorkerConfiguration,
+  DEFAULT_OPERATIONS_WORKER_CONFIGURATION,
+  type OperationsWorkerConfiguration,
+} from "./configuration.js";
+export {
+  OPERATIONS_WORKER_ID,
+  OPERATIONS_WORKER_SYSTEM_PATH,
+  OPERATIONS_WORKER_IDENTITY,
+  OPSW_METADATA_VERSION,
+  OPERATIONS_REPORT_VERSION,
+  OPERATIONAL_STAGES,
+  AUDIT_STATUSES,
+  OPSW_CAPABILITIES,
+  INTEGRATION_TARGETS,
+} from "./paths.js";
+export type {
+  OperationsWorkerState,
+  OperationsReport,
+  OpsInput,
+  OperationsWorkerRunReport,
+  OperationsWorkerCatalog,
+  OperationsWorkerCockpitSnapshot,
+  OperationsWorkerEngineRecord,
+  OperationsWorkerValidationReport,
+  ServiceDeliveryWorkflow,
+  OperationalStageDefinition,
+  TechnicianAssignmentWorkflow,
+  FulfilmentChecklist,
+  QaCheckpoints,
+  EscalationWorkflow,
+  CompletionWorkflow,
+  FollowUpWorkflow,
+  CancellationWorkflow,
+  ExceptionManagement,
+  BookingContext,
+  ApprovedBookingFixture,
+  LeadGenerationFixture,
+  OperationalStage,
+  AuditStatus,
+  Q710ConsumableContract,
+  IntegrationHandshake as OpswIntegrationHandshake,
+} from "./types.js";

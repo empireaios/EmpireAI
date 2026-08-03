@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "learningRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "experienceSources": [
+    "successful_missions",
+    "failed_missions",
+    "grand_king_approvals",
+    "grand_king_rejections",
+    "executive_decisions",
+    "audit_reports",
+    "worker_reviews",
+    "production_results"
+  ],
+  "mistakeRepeatThreshold": 2,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverReplaceExecutionMemory": true,
+  "neverReplaceDecisionEngine": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

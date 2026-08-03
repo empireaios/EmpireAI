@@ -1,0 +1,2 @@
+import type { CredentialRef } from "./types.js"; import { SecretVault } from "./secret-vault.js";
+export class AuthManager {constructor(private readonly vault:SecretVault){} attach(headers:Record<string,string>,ref?:CredentialRef){if(!ref||ref.authMethod==="none")return {...headers};const secret=this.vault.getSecretForRequest(ref.credentialId);const result={...headers};if(ref.authMethod==="api_key")result["x-api-key"]=secret;else if(ref.authMethod==="basic")result.authorization=`Basic ${secret}`;else result.authorization=`Bearer ${secret}`;return result;}}

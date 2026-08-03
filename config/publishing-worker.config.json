@@ -1,0 +1,51 @@
+{
+  "enabled": true,
+  "publishingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-publishing-01",
+  "workerName": "Publishing Worker",
+  "factory": "media-factory",
+  "department": "media",
+  "role": "role-creator-publishing",
+  "defaultPlatform": "youtube",
+  "supportedPlatforms": [
+    "youtube",
+    "tiktok",
+    "instagram",
+    "facebook",
+    "x",
+    "linkedin"
+  ],
+  "readinessStatuses": [
+    "ready",
+    "pending_approval",
+    "not_ready",
+    "blocked"
+  ],
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "video_assembly_worker",
+    "thumbnail_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverAutomaticallyPublishContent": true,
+  "neverModifyApprovedMediaAssets": true,
+  "neverOverrideApprovalWorkflows": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ415OrLater": true,
+  "preserveCompleteAssetTraceability": true,
+  "preservePublishingMetadataHistory": true,
+  "validatePlatformRequirements": true,
+  "validateApprovalStatusBeforePublication": true,
+  "preserveAuditHistory": true,
+  "structuralSignalOnly": true
+}

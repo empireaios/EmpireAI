@@ -1,0 +1,2 @@
+import type { CredentialRef } from "./types.js"; const id=()=>`ntw-prv-${crypto.randomUUID()}`;
+export class SecretVault {private secrets=new Map<string,string>();store(providerId:string,secret:string):CredentialRef {const credentialRefId=id();this.secrets.set(credentialRefId,secret);return {credentialRefId,providerId,createdAt:new Date().toISOString()}} listRefs(){return [...this.secrets.keys()].map(credentialRefId=>({credentialRefId,providerId:"masked",createdAt:"masked"}))} }

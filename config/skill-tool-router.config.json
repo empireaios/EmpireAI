@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "routingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "routingFactors": [
+    "worker_capability",
+    "worker_availability",
+    "worker_performance",
+    "worker_authority",
+    "tool_compatibility",
+    "tool_availability",
+    "security",
+    "cost",
+    "risk",
+    "business_context"
+  ],
+  "escalationConfidenceThreshold": 55,
+  "multiWorkerCapabilityThreshold": 3,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverPerformOrchestration": true,
+  "neverReplaceWorkers": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

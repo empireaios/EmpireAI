@@ -17,6 +17,13 @@ export {
   formatExecutiveLearningForLlm,
 } from "./reasoning-bundle.js";
 export { EXECUTIVE_PRINCIPLE_PATTERNS, CATEGORY_LABELS } from "./patterns.js";
+export {
+  assertCannotBypassConstitution,
+  governanceClassForCategory,
+  resolveLearningGovernanceClass,
+  retrievalPriorityRank,
+  sortByRetrievalPriority,
+} from "./governance.js";
 
 export type {
   ConversationLearningInput,
@@ -25,6 +32,7 @@ export type {
   ExecutiveLearningReasoningBundle,
   ExecutiveLearningStatus,
   ExtractedLearningCandidate,
+  LearningGovernanceClass,
   LearningObservation,
   LearningPipelineResult,
   LearningReviewStats,

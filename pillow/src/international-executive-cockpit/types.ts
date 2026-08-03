@@ -1,0 +1,11 @@
+import type { InternationalExecutiveCockpitConfiguration } from "./configuration.js";
+import type { IEC_CAPABILITIES } from "./paths.js";
+export type IecCapability = (typeof IEC_CAPABILITIES)[number];
+export type InternationalExecutiveCockpitInput = { companyReference?: string; region?: string; country?: string; kpiHint?: number; riskHint?: number; opportunityHint?: number; validated?: boolean; };
+export type ExecutiveRecommendation = { recommendationId: string; timestamp: string; recommendationSummary: string; priority: "high" | "medium" | "low"; structuralSignalOnly: true; unvalidatedClaim: "none"; };
+export type InternationalExecutiveCockpitRecord = {
+  cockpitId: string; timestamp: string; companyReference: string; worldwideKpiSummary: Record<string, number>; regionalSummary: Record<string, unknown>; countrySummary: Record<string, unknown>; strategicOpportunitySummary: Record<string, unknown>; globalRiskSummary: Record<string, unknown>; executiveRecommendations: ExecutiveRecommendation[]; validationStatus: "passed" | "partial" | "failed"; metadataVersion: string;
+  structuralSignalOnly: true; neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers: true; preserveExecutiveTraceability: true; preserveAuditability: true; unvalidatedClaim: "none"; cockpitTraceId: string;
+};
+export type IecRunReport = { cockpitRunReportId: string; runTimestamp: string; action: string; cockpitRecord: InternationalExecutiveCockpitRecord; recommendations: ExecutiveRecommendation[]; validation: { decision: "pass" | "partial" | "fail"; errors: string[]; warnings: string[]; metadataVersion: string }; metadataVersion: string; };
+export type InternationalExecutiveCockpitState = { engineVersion: "PILLOW-IEC-001"; missionId: "X4-18"; status: "idle" | "active" | "connecting" | "refreshing" | "failed"; initializedAt: string; configuration: InternationalExecutiveCockpitConfiguration; latestReport: IecRunReport | null; engineRecord: { engineId: string; healthStatus: "healthy" | "degraded" | "standby"; frameworkModuleId: string | null; supportedCapabilities: IecCapability[] } | null; health: { status: "healthy" | "degraded" | "standby"; healthScore: number; totalCockpitRecords: number; notes: string[] }; };

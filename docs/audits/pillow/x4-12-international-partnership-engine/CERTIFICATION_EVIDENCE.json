@@ -1,0 +1,22 @@
+{
+  "mission": "X4-12 — International Partnership Engine",
+  "programme": "Global Expansion",
+  "primaryDeliverable": "Worldwide partnership intelligence",
+  "completionOutcome": "AI-directed international partnership strategy",
+  "certifiedAt": "2026-07-27T04:15:00.000Z",
+  "doctrine": "PILLOW-IPE-001",
+  "tests": {
+    "file": "pillow/src/validation/tests/international-partnership-engine.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "artifacts": {
+    "module": "pillow/src/international-partnership-engine/",
+    "config": "config/international-partnership-engine.config.json",
+    "governance": "docs/governance/EMPIREAI_INTERNATIONAL_PARTNERSHIP_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/international-partnership-engine-bridge.ts",
+    "hostRoutes": "backend/src/orchestration/pillow-host/routes/pillow-routes.ts"
+  },
+  "verdict": "FINAL PASS"
+}

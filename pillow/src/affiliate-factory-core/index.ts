@@ -1,0 +1,50 @@
+export {
+  AffiliateFactoryCore,
+  createAffiliateFactoryCore,
+  resetAffiliateFactoryCoreForTesting,
+  type AffiliateFactoryCoreOptions,
+} from "./engine.js";
+export type { AffiliateFactoryCoreDependencies } from "./integrations.js";
+export {
+  buildAffiliateFactoryCoreConfiguration,
+  DEFAULT_AFFILIATE_FACTORY_CORE_CONFIGURATION,
+  type AffiliateFactoryCoreConfiguration,
+} from "./configuration.js";
+export {
+  AFFILIATE_FACTORY_CORE_ID,
+  AFFILIATE_FACTORY_CORE_SYSTEM_PATH,
+  AFFILIATE_FACTORY_CORE_IDENTITY,
+  AFC_METADATA_VERSION,
+  AFFILIATE_FACTORY_REPORT_VERSION,
+  AFFILIATE_BUSINESS_PROJECT_VERSION,
+  AFFILIATE_FACTORY_VERSION,
+  AFFILIATE_NICHES as AFC_AFFILIATE_NICHES,
+  LIFECYCLE_STATUSES as AFC_LIFECYCLE_STATUSES,
+  PROJECT_STATUSES as AFC_PROJECT_STATUSES,
+  WORKER_STATUSES as AFC_WORKER_STATUSES,
+  READINESS_STATUSES as AFC_READINESS_STATUSES,
+  AUDIT_STATUSES as AFC_AUDIT_STATUSES,
+  AFFILIATE_WORKER_ROLES as AFC_AFFILIATE_WORKER_ROLES,
+  AFC_CAPABILITIES,
+  INTEGRATION_TARGETS as AFC_INTEGRATION_TARGETS,
+} from "./paths.js";
+export type {
+  AffiliateFactoryCoreState,
+  AffiliateBusinessProject as AfcAffiliateBusinessProject,
+  AffiliateFactoryReport as AfcAffiliateFactoryReport,
+  AfcInput,
+  AffiliateFactoryCoreRunReport,
+  AffiliateFactoryCoreCatalog,
+  AffiliateFactoryCoreCockpitSnapshot,
+  AffiliateFactoryCoreEngineRecord,
+  AffiliateFactoryCoreValidationReport,
+  FactoryReadinessSnapshot as AfcFactoryReadinessSnapshot,
+  Q802ConsumableContract,
+  AffiliateNiche as AfcAffiliateNiche,
+  LifecycleStatus as AfcLifecycleStatus,
+  WorkerStatus as AfcWorkerStatus,
+  WorkerStatusMatrixEntry as AfcWorkerStatusMatrixEntry,
+  WorkerDependencyEdge as AfcWorkerDependencyEdge,
+  ReadinessStatus as AfcReadinessStatus,
+  IntegrationHandshake as AfcIntegrationHandshake,
+} from "./types.js";

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "kpiMonitoringRulesEnabled": true,
+  "healthThreshold": 70,
+  "anomalyDetectionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "recommendationThreshold": 55,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverSuppressCriticalEnterpriseAlerts": true,
+  "preservePerformanceTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

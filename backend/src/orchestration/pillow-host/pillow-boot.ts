@@ -6,9 +6,10 @@ import { logger } from "../../config/logger.js";
 import { initializePillowHost, type PillowHost } from "./pillow-host.js";
 
 let pillowBootPromise: Promise<void> | null = null;
-const PILLOW_BOOT_STUCK_MS = Number(process.env.PILLOW_BOOT_STUCK_MS ?? 130_000);
+// Align with HA boot grace (Pillow cold-start with expansion modules can exceed 2 minutes).
+const PILLOW_BOOT_STUCK_MS = Number(process.env.PILLOW_BOOT_STUCK_MS ?? 250_000);
 const PILLOW_BOOT_WAIT_MS = Number(
-  process.env.PILLOW_BOOT_WAIT_MS ?? process.env.PILLOW_BOOT_TIMEOUT_MS ?? 120_000,
+  process.env.PILLOW_BOOT_WAIT_MS ?? process.env.PILLOW_BOOT_TIMEOUT_MS ?? 240_000,
 );
 let pillowBootStartedAt: number | null = null;
 
@@ -146,12 +147,22 @@ export async function ensurePillowHostReadyOrReply(
     return true;
   }
 
+  // Grand King–facing error only — internal lifecycle/lastError stay in logs.
+  const surfaceError =
+    readiness.lifecycle === "starting"
+      ? "Starting Executive Systems…"
+      : "Preparing Executive Intelligence…";
+  logger.warn(
+    {
+      lifecycle: readiness.lifecycle,
+      lastError: readiness.lastError,
+      internalError: readiness.error,
+    },
+    "Pillow host not ready for request",
+  );
   void reply.code(503).send({
-    error: readiness.error,
+    error: surfaceError,
     retryAfterSec: readiness.retryAfterSec,
-    lifecycle: readiness.lifecycle,
-    health: pillowHost.getHealth(),
-    lastError: readiness.lastError,
   });
   return false;
 }
@@ -159,9 +170,8 @@ export async function ensurePillowHostReadyOrReply(
 /** Fast 503 for snapshot routes that should not block on full Pillow boot. */
 export function pillowStartingResponse(reply: FastifyReply) {
   return reply.code(503).send({
-    error: "Pillow host is starting — retry in a moment.",
+    error: "Starting Executive Systems…",
     retryAfterSec: 30,
-    lifecycle: "starting",
   });
 }
 

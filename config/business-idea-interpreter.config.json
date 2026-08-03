@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "interpretationRulesEnabled": true,
+  "missingInformationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "minimumConfidenceScore": 0.35,
+  "businessTypes": [
+    "media",
+    "commerce",
+    "local_cleaning",
+    "affiliate",
+    "digital_product",
+    "local_services",
+    "saas",
+    "agency",
+    "unknown"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverGenerateBusinessModels": true,
+  "neverResearchMarkets": true,
+  "neverBuildBusinesses": true,
+  "neverAssignWorkers": true,
+  "neverExecuteAnything": true,
+  "neverImplementQ203OrLater": true,
+  "structuralSignalsOnly": true
+}

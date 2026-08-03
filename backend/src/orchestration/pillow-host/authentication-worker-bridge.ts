@@ -1,0 +1,5 @@
+/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+export function collectAuthenticationWorkerSnapshot() {
+  const configuration = { enabled: true, neverDefineRoles: true, neverDefinePermissions: true, neverBuildPolicyBasedAccessControl: true, neverImplementQ608OrLater: true, neverStorePlaintextPasswords: true, neverExposeSecretsInLogsOrReports: true, keepAuthenticationSeparateFromAuthorization: true, failClosedWhenAuthStateUnverifiable: true };
+  return { computedAt: new Date().toISOString(), missionId: "Q6-07", live: false, engine: { engineVersion: "PILLOW-ATW-001", missionId: "Q6-07", status: "idle", initializedAt: new Date().toISOString(), configuration, latestReport: null, health: { status: "standby", totalAuthenticationBuildReports: 0, notes: ["Pillow session unavailable — offline snapshot"] } }, cockpit: { missionId: "Q6-07", status: "idle", healthStatus: "standby", totalAuthenticationBuildReports: 0, neverDefineRoles: true, neverDefinePermissions: true, neverBuildPolicyBasedAccessControl: true, neverImplementQ608OrLater: true }, authenticationBuildReports: [] };
+}

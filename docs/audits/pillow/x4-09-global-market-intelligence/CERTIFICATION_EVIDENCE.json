@@ -1,0 +1,63 @@
+{
+  "mission": "X4-09 — Global Market Intelligence",
+  "documentId": "PILLOW-GMI-001",
+  "engineVersion": "PILLOW-GMI-001",
+  "certifiedAt": "2026-07-26T08:45:00.000Z",
+  "verdict": "FINAL PASS",
+  "checkpoint": {
+    "resumeNote": "Implementation and wiring were already complete when X4 expansion was paused for ELM/login missions. Resume verified repository state; no redesign.",
+    "priorDependenciesPreserved": [
+      "X4-01 Global Expansion Framework",
+      "X4-02 Country Intelligence",
+      "X4-03 Localization",
+      "X4-04 Language Intelligence",
+      "X4-05 Currency Intelligence",
+      "X4-06 Regional Compliance",
+      "X4-07 Global Tax Intelligence",
+      "X4-08 International Logistics Engine",
+      "Digital Soul",
+      "Executive Deliberation Engine",
+      "Live Executive Judgement",
+      "High-Availability & Executive Continuity",
+      "Executive Learning & Memory FINAL PASS"
+    ]
+  },
+  "structural": {
+    "testsFile": "pillow/src/validation/tests/global-market-intelligence.test.ts",
+    "pass": 10,
+    "fail": 0,
+    "cases": [
+      "buildGlobalMarketIntelligenceConfiguration locks safety flags",
+      "global market intelligence initializes with doctrine PILLOW-GMI-001 / X4-09",
+      "connectGlobalMarketIntelligence registers with GEF via X4-09",
+      "markets/trends/demand/competitors/products/growth produce gmi-* records",
+      "rejects unvalidated path and never recommends with unvalidated intelligence",
+      "opportunity ranking preserves market traceability",
+      "emerging, declining, and recommendations",
+      "governance safety redacts sensitive values in logs",
+      "validateForSupervisorSync and cockpit snapshot report readiness",
+      "diagnostics and recovery readiness track failures"
+    ]
+  },
+  "wiring": {
+    "module": "pillow/src/global-market-intelligence/",
+    "exports": "pillow/src/index.ts",
+    "session": true,
+    "subsystemRegistry": true,
+    "config": "config/global-market-intelligence.config.json",
+    "doctrine": "docs/governance/EMPIREAI_GLOBAL_MARKET_INTELLIGENCE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/global-market-intelligence-bridge.ts",
+    "hostRoutes": true
+  },
+  "safetyInvariants": {
+    "neverRecommendWithUnvalidatedIntelligence": true,
+    "structuralSignalsOnly": true,
+    "authoritativeLegalAdviceClaim": "none",
+    "maskSensitiveValues": true
+  },
+  "blockers": [],
+  "remainingWeaknesses": [
+    "Structural signals only — no live market feed APIs in X4-09 (by doctrine)",
+    "Production REAL extension HTTP routes remain deferred; GMI is available via Pillow host critical/session path"
+  ]
+}

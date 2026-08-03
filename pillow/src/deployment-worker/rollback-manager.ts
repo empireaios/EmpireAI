@@ -1,0 +1,1 @@
+import type { DeploymentRecord } from "./types.js"; export function previousSuccessfulDeployment(history:DeploymentRecord[],current:DeploymentRecord){return [...history].reverse().find(x=>x.environment===current.environment&&x.platformId===current.platformId&&x.status==="success"&&x.deploymentId!==current.deploymentId)}

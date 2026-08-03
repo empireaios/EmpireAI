@@ -1,0 +1,1 @@
+import type { WorkflowDefinition } from "./types.js"; export class WorkflowStore {private values=new Map<string,WorkflowDefinition>();save(v:WorkflowDefinition){this.values.set(v.workflowId,v);return v}get(id:string){return this.values.get(id)}list(){return [...this.values.values()]}}

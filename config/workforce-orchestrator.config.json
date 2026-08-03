@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "discoveryRulesEnabled": true,
+  "selectionRulesEnabled": true,
+  "coordinationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "defaultCoordinationMode": "sequential",
+  "minWorkers": 1,
+  "maxWorkers": 6,
+  "defaultTimeoutMs": 5000,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverPerformWorkerTasks": true,
+  "neverReplaceWorkerLogic": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverPerformStrategicPlanning": true,
+  "structuralSignalsOnly": true
+}

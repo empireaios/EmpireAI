@@ -1,0 +1,1 @@
+import type { WorkflowBuildReport } from "./types.js"; export class BuildStore {private values:WorkflowBuildReport[]=[];save(v:WorkflowBuildReport){this.values.push(v);return v}latest(){return this.values.at(-1)??null}list(){return [...this.values]}}

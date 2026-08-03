@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "negotiationRulesEnabled": true,
+  "conflictRulesEnabled": true,
+  "escalationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "negotiationOutcomes": [
+    "accepted",
+    "declined",
+    "shared_ownership",
+    "delegated",
+    "escalated",
+    "waiting_dependency",
+    "cancelled"
+  ],
+  "minCapabilityScore": 50,
+  "sharedOwnershipThreshold": 5,
+  "escalateOnTie": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverReplacePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverPerformStrategicPlanning": true,
+  "structuralSignalsOnly": true
+}

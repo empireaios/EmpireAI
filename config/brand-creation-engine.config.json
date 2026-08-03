@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "namingRulesEnabled": true,
+  "identityGenerationRulesEnabled": true,
+  "brandGuidelineRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "preventDuplicateBrandIdentities": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxBrandsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

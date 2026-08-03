@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "opportunityDomains": [
+    "market_expansion",
+    "product_innovation",
+    "revenue_growth",
+    "cost_efficiency",
+    "process_automation",
+    "customer_retention",
+    "supply_chain",
+    "talent_leverage",
+    "compliance_optimization",
+    "capital_allocation"
+  ],
+  "scanningRulesEnabled": true,
+  "scoringRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxOpportunitiesPerScan": 12,
+  "minConfidenceScore": 40,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteOpportunities": true,
+  "neverApproveOpportunities": true,
+  "neverAssignWorkers": true,
+  "neverCreateBusinesses": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "missionRulesEnabled": true,
+  "lifecycleRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "missionCoordinationEnabled": true,
+  "requireGrandKingApproval": true,
+  "requirePillowCommandConfirmation": true,
+  "productTypes": [
+    "template",
+    "toolkit",
+    "printable",
+    "software_tool",
+    "membership",
+    "bundle",
+    "digital_download",
+    "unknown"
+  ],
+  "pipelineTypes": [
+    "product_creation",
+    "design_branding",
+    "sales_page",
+    "checkout",
+    "fulfilment",
+    "customer_delivery",
+    "analytics",
+    "learning",
+    "multi_stage"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverCreateEbooks": true,
+  "neverCreateCourses": true,
+  "neverBuildSalesPages": true,
+  "neverProcessPayments": true,
+  "neverBypassApproval": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ502OrLater": true,
+  "structuralSignalOnly": true
+}

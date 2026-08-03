@@ -1,0 +1,36 @@
+{
+  "enabled": true,
+  "evaluationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "minCandidateOptions": 3,
+  "maxCandidateOptions": 6,
+  "evaluationCriteria": [
+    "business_value",
+    "strategic_alignment",
+    "cost",
+    "complexity",
+    "risk",
+    "time",
+    "resource_requirement",
+    "probability_of_success"
+  ],
+  "criterionWeights": {
+    "business_value": 1.2,
+    "strategic_alignment": 1.1,
+    "cost": 1.0,
+    "complexity": 0.9,
+    "risk": 1.15,
+    "time": 0.95,
+    "resource_requirement": 0.9,
+    "probability_of_success": 1.2
+  },
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverAssignWorkers": true,
+  "neverApproveActions": true,
+  "neverOverridePillow": true,
+  "neverReplaceGrandKingApproval": true,
+  "structuralSignalsOnly": true
+}

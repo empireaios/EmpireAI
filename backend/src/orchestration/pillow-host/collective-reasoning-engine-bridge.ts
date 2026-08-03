@@ -1,0 +1,57 @@
+/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+export function collectCollectiveReasoningEngineSnapshot() {
+  const configuration = {
+    enabled: true,
+    reasoningRulesEnabled: true,
+    neverExecuteWork: true,
+    neverAssignWorkersPermanently: true,
+    neverReplacePillow: true,
+    neverOverrideGrandKing: true,
+    neverApproveActions: true,
+    neverExposeCredentials: true,
+    neverExposeAuthenticationTokens: true,
+    structuralSignalsOnly: true,
+    maskSensitiveValues: true,
+    neverLogSensitiveEnterpriseInformation: true,
+  };
+  return {
+    computedAt: new Date().toISOString(),
+    missionId: "Q0-13",
+    live: false,
+    engine: {
+      engineVersion: "PILLOW-CORE-001",
+      missionId: "Q0-13",
+      status: "idle",
+      initializedAt: new Date().toISOString(),
+      configuration,
+      latestReport: null,
+      engineRecord: null,
+      health: {
+        status: "standby",
+        healthScore: 50,
+        engineEnabled: true,
+        lastOperationAt: null,
+        lastValidationDecision: null,
+        totalReasoningRecords: 0,
+        lastConfidenceScore: null,
+        notes: ["Pillow session unavailable — offline snapshot"],
+      },
+    },
+    cockpit: {
+      missionId: "Q0-13",
+      status: "idle",
+      healthStatus: "standby",
+      totalReasoningRecords: 0,
+      latestReasoningId: null,
+      lastConfidenceScore: null,
+      neverExecuteWork: true,
+      neverAssignWorkersPermanently: true,
+      neverReplacePillow: true,
+      neverOverrideGrandKing: true,
+      neverApproveActions: true,
+    },
+    latestRecord: null,
+    participants: [],
+    records: [],
+  };
+}

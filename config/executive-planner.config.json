@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "planningRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxStages": 8,
+  "maxWorkforceCategories": 10,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverAssignWorkers": true,
+  "neverInvokeTools": true,
+  "neverApproveActions": true,
+  "structuralSignalsOnly": true
+}

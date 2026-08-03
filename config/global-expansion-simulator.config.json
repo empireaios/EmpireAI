@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "minimumRecommendationScore": 55,
+  "neverExecuteSimulatedActionsAgainstProductionSystems": true,
+  "structuralSignalsOnly": true,
+  "neverOptimizeOrExecuteUsingUnvalidatedSimulationIntelligence": true
+}

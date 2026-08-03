@@ -1,0 +1,2 @@
+import type { BillingAuditEvent } from "./types.js";
+export class BillingAudit { private sequence=0; private readonly events:BillingAuditEvent[]=[]; record(type:string,entityId:string,details:Record<string,unknown>={}){const event={eventId:`blw-evt-${++this.sequence}`,type,entityId,timestamp:new Date().toISOString(),details};this.events.push(event);return event;} list(limit?:number){return this.events.slice(-(limit??this.events.length));} }

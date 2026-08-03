@@ -1,0 +1,1 @@
+const redact=(value:unknown):unknown=>typeof value==="string"&&/(secret|token|password|key)/i.test(value)?"[REDACTED]":value; export class DeploymentWorkerLogger { info(event:string,data:Record<string,unknown>={}){return {event,data:Object.fromEntries(Object.entries(data).map(([key,value])=>[key,/(secret|token|password|key)/i.test(key)?"[REDACTED]":redact(value)]))}} }

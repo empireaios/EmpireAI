@@ -1,0 +1,10 @@
+{
+  "workerId": "wkr-billing-01",
+  "missionId": "Q6-09",
+  "doctrine": "PILLOW-BLW-001",
+  "timeoutEnv": "BILLING_WORKER_TIMEOUT_MS",
+  "canonicalPaymentGatewayReference": "pillow/src/payment-gateway-integration/",
+  "neverReplacePaymentGatewayIntegrations": true,
+  "neverFabricateSuccessfulPaymentResults": true,
+  "neverImplementQ610OrLater": true
+}

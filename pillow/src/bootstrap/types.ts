@@ -134,7 +134,11 @@ export interface ExecutiveContext {
 export interface ExecutiveReasoningComposition {
   composedAt: string;
   pipeline: Array<
-    "executive_briefing" | "current_conversation" | "executive_reasoning" | "response"
+    | "executive_briefing"
+    | "current_conversation"
+    | "executive_reasoning"
+    | "executive_deliberation"
+    | "response"
   >;
   briefingAnchor: string;
   identity: ExecutiveIdentity;
@@ -142,6 +146,8 @@ export interface ExecutiveReasoningComposition {
   executiveContext: ExecutiveContext;
   currentConversation: string;
   executiveReasoningNotes: string[];
+  /** Mandatory deliberation conclusions (post–Digital Soul, pre-LLM). Optional until applied. */
+  deliberation?: import("../executive-deliberation/types.js").ExecutiveDeliberationResult;
 }
 
 /** Continuous strategic anchor — Identity + Direction + knowledge summary. */

@@ -1,4 +1,6 @@
 import { DEFAULT_OBJECTIVE_TITLE } from "../objective/criteria.js";
+import { DIGITAL_SOUL_DOCUMENT_ID } from "../digital-soul/version.js";
+import { PILLOW_ROLE, SUPREME_DIRECTIVE } from "../objective/constitution.js";
 import {
   parseCurrentMission,
   parseJourneyPosition,
@@ -19,15 +21,13 @@ import type {
 
 export function buildExecutiveIdentity(input: ExecutiveAssessmentInput): ExecutiveIdentity {
   const soul = input.soulText ?? "";
-  const pillowRole =
-    soul.match(/Pillow[^\n]+/i)?.[0]?.trim() ??
-    "Pillow — strategic AI advisor and mission-authoring intelligence";
+  const pillowRole = PILLOW_ROLE;
   const empirePurpose =
     soul.match(/manufacture companies[^\n]*/i)?.[0]?.trim() ??
-    "EmpireAI manufactures companies — Intelligence Platform, never Automation Platform";
+    "EmpireAI is a persistent owner-governed enterprise that creates legitimate Long-Term Empire Value — Intelligence Platform, never Automation Platform alone";
 
   return {
-    narrative: `${empirePurpose} · ${pillowRole}`,
+    narrative: `${empirePurpose} · ${pillowRole} · ${DIGITAL_SOUL_DOCUMENT_ID}`,
     pillowRole,
     empirePurpose,
     refreshedAt: new Date().toISOString(),
@@ -58,6 +58,7 @@ export function buildExecutiveDirection(input: ExecutiveAssessmentInput): Execut
       "JOURNEY.md",
       "EMPIREAI_STATUS.md",
       "EMPIREAI_SOUL.md",
+      "EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md",
       "PILLOW_ROADMAP.md",
       "docs/governance/PILLOW_ENHANCEMENT_REGISTER.md",
     ],
@@ -215,6 +216,11 @@ function extractSupremeDirective(
   soulText: string | null,
   constitutionText: string | null,
 ): string {
+  // Digital Soul V2 / Pillow constitution runtime authority takes precedence.
+  if (SUPREME_DIRECTIVE.trim()) {
+    return SUPREME_DIRECTIVE;
+  }
+
   const combined = `${soulText ?? ""}\n${constitutionText ?? ""}`;
   const mission = combined.match(/Primary mission[^\n]*/i)?.[0];
   const success = combined.match(/SUCCESS-001[^\n]*/i)?.[0];
@@ -244,6 +250,7 @@ export function shouldRefreshExecutiveDirection(event: {
     /PILLOW_ROADMAP\.md/i,
     /EMPIREAI_ROADMAP\.md/i,
     /EMPIREAI_SOUL\.md/i,
+    /EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2\.md/i,
     /PILLOW_ARCHITECTURE_CONTRACT\.md/i,
   ];
 

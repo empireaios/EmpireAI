@@ -1,0 +1,1 @@
+import type { WorkflowBuilderWorkerEngine } from "./engine.js"; export class WorkflowBuilder {constructor(private engine:WorkflowBuilderWorkerEngine){} produceReport(){return this.engine.produceWorkflowBuildReport()}}

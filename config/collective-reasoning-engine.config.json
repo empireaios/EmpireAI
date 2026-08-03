@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "reasoningRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "supportedModes": [
+    "independent_analysis",
+    "structured_debate",
+    "peer_challenge",
+    "consensus_building",
+    "minority_report"
+  ],
+  "defaultPanelSize": 4,
+  "minPanelSize": 2,
+  "maxPanelSize": 6,
+  "consensusThreshold": 0.6,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWork": true,
+  "neverAssignWorkersPermanently": true,
+  "neverReplacePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverApproveActions": true,
+  "structuralSignalsOnly": true
+}

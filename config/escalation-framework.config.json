@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "detectionRulesEnabled": true,
+  "routingRulesEnabled": true,
+  "trackingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "escalationCategories": [
+    "low_confidence",
+    "missing_information",
+    "conflicting_recommendations",
+    "policy_violation",
+    "authority_limit",
+    "worker_deadlock",
+    "technical_failure",
+    "business_risk",
+    "security_risk",
+    "executive_decision_required"
+  ],
+  "lowConfidenceThreshold": 60,
+  "repeatedFailureThreshold": 3,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverResolveBusinessDisputes": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverReplaceExecutiveJudgement": true,
+  "structuralSignalsOnly": true
+}

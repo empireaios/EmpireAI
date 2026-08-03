@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "websiteGenerationRulesEnabled": true,
+  "navigationRulesEnabled": true,
+  "deploymentPreparationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverAutoDeploy": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxStorefrontsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

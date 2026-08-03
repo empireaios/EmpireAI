@@ -1,0 +1,2 @@
+import type { DashboardRecommendation, ExecutiveDashboardWidget } from "./types.js";
+export class ExecutiveRecommendationEngine { build(widget: ExecutiveDashboardWidget): DashboardRecommendation { return { recommendationId: `eed-rec-${Date.now()}`, timestamp: new Date().toISOString(), widget, summary: "Review authorized structural dashboard signals.", structuralSignalOnly: true, neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers: true }; } }

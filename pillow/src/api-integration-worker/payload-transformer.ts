@@ -1,0 +1,3 @@
+export type SimpleSchema={required?:string[];types?:Record<string,string>};
+export function validatePayload(payload:unknown,schema:SimpleSchema={}){if(!payload||typeof payload!=="object")throw new Error("Payload must be an object.");const value=payload as Record<string,unknown>;for(const key of schema.required??[])if(value[key]===undefined)throw new Error(`Payload field ${key} is required.`);for(const [key,type] of Object.entries(schema.types??{}))if(value[key]!==undefined&&typeof value[key]!==type)throw new Error(`Payload field ${key} must be ${type}.`);return structuredClone(value);}
+export function transformPayload(payload:unknown,schema:SimpleSchema={}){return validatePayload(payload,schema);}

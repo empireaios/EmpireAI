@@ -1,0 +1,2 @@
+const forbidden=["fabricateSuccessfulTests","modifyUnrelatedProductionCode","replaceDeployment","replaceCertification","implementQ614OrLater","overridePillow","overrideGrandKing","overrideApprovedArchitecture"];
+export function validateTestingInput(input:Record<string,unknown>={}){const issues=forbidden.filter(key=>input[key]===true).map(key=>`Forbidden input: ${key}`);if(input.missionId!==undefined&&input.missionId!=="Q6-13")issues.push("missionId must be Q6-13");return {valid:issues.length===0,issues}}

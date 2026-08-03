@@ -1,0 +1,17 @@
+import type { TEST_DOMAINS, TEST_TYPES } from "./paths.js";
+export type TestType=(typeof TEST_TYPES)[number]; export type TestDomain=(typeof TEST_DOMAINS)[number]; export type CaseStatus="pending"|"passed"|"failed"|"skipped"; export type BuildStatus="draft"|"in_progress"|"complete"|"failed";
+export type CoverageDelta={lines?:number;branches?:number;functions?:number;statements?:number};
+export type TestSuite={suiteId:string;name:string;testType:TestType;domain?:TestDomain;validated:boolean;createdAt:string};
+export type TestCase={caseId:string;suiteId:string;name:string;testType:TestType;domain?:TestDomain;assertion?:string;requirementId?:string;status:"pending";createdAt:string};
+export type CaseResult={resultId:string;runId:string;caseId:string;status:Exclude<CaseStatus,"pending">;timestamp:string;evidence?:string;coverageDelta?:CoverageDelta};
+export type TestRun={runId:string;suiteIds:string[];startedAt:string;completedAt?:string;status:"in_progress"|"complete";results:CaseResult[]};
+export type CoverageSummary={runId?:string;lines:number;branches:number;functions:number;statements:number};
+export type RegressionFinding={findingId:string;runId:string;caseId:string;baselineRunId:string;message:string;createdAt:string};
+export type FailureEvidence={failureId:string;runId:string;caseId:string;message:string;evidence?:string;createdAt:string};
+export type RemediationRecommendation={recommendationId:string;runId:string;caseId:string;recommendation:string;createdAt:string};
+export type TestingAuditEvent={eventId:string;event:string;timestamp:string;data:Record<string,unknown>};
+export interface TestRunner { run(testCase:TestCase):Promise<{outcome:"passed"|"failed"|"skipped";evidence?:string;coverageDelta?:CoverageDelta}>|{outcome:"passed"|"failed"|"skipped";evidence?:string;coverageDelta?:CoverageDelta} }
+export type TestingWorkerConfiguration={enabled:boolean;timeoutMs:number;neverFabricateSuccessfulTests:true;neverModifyUnrelatedProductionCode:true;neverReplaceDeployment:true;neverReplaceCertification:true;neverImplementQ614OrLater:true;neverOverridePillowGrandKingApprovedArchitecture:true};
+export type TestingBuildReport={buildId:string;timestamp:string;platformId?:string;platformName:string;testSuites:TestSuite[];testsExecuted:number;passed:number;failed:number;skipped:number;coverageSummary:CoverageSummary|string;regressionFindings:RegressionFinding[];criticalFailures:FailureEvidence[];recommendations:RemediationRecommendation[];auditStatus:string;outstandingIssues?:string[];confidenceScore:number;metadataVersion:"TSW-001-v1";buildStatus:BuildStatus;neverFabricateSuccessfulTests:true;neverModifyUnrelatedProductionCode:true;neverReplaceDeployment:true;neverReplaceCertification:true;neverImplementQ614OrLater:true;neverOverridePillowGrandKingApprovedArchitecture:true;followApprovedRequirementsAndArchitecture:boolean;preserveCompleteTraceability:boolean;preserveAuditHistory:boolean;preserveReproducibleTestExecution:boolean;requirementsReportId?:string;architectureReportId?:string;factoryMissionId:"Q6-13";businessId?:string;businessObjective?:string;buildSteps:string[];selfReview:string;workerId:"wkr-testing-01";reportVersion:"TSW-RPT-v1";traceabilityRefs:string[];submittedToExecutiveReporting:boolean;executiveReportId?:string};
+export type TestingWorkerState={engineVersion:"PILLOW-TSW-001";missionId:"Q6-13";status:string;initializedAt:string|null;configuration:TestingWorkerConfiguration;latestReport:TestingBuildReport|null};
+export type TestingWorkerDependencies=Record<string,unknown>;

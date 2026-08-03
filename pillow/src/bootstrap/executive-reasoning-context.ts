@@ -1,3 +1,8 @@
+import {
+  buildDigitalSoulPromptBlock,
+  buildDigitalSoulReasoningNotes,
+} from "../digital-soul/prompt.js";
+import { formatExecutiveDeliberationForLlm } from "../executive-deliberation/engine.js";
 import { RepositoryReader } from "./repository-reader.js";
 import type { ExecutiveAssessmentInput } from "./executive-self-assessment.js";
 import { gatherExecutiveAssessmentInput } from "./executive-self-assessment.js";
@@ -102,6 +107,7 @@ export class ExecutiveDirectionContext {
       executiveContext: conversation,
       currentConversation: userMessage,
       executiveReasoningNotes: [
+        ...buildDigitalSoulReasoningNotes(),
         "Apply Supreme Directive and current objective before responding.",
         "Treat Executive Briefing as authoritative strategic anchor.",
         "Executive Context is ephemeral — do not treat as permanent memory.",
@@ -156,7 +162,13 @@ function summarizeConversationTurn(message: string): string {
 export function formatExecutiveReasoningForLlm(
   composition: ExecutiveReasoningComposition,
 ): string {
+  const deliberationBlock = composition.deliberation
+    ? ["", formatExecutiveDeliberationForLlm(composition.deliberation), ""]
+    : [];
+
   return [
+    buildDigitalSoulPromptBlock(),
+    "",
     "=== EXECUTIVE REASONING PIPELINE (internal) ===",
     "",
     "[1] EXECUTIVE BRIEFING — continuous strategic anchor",
@@ -173,7 +185,11 @@ export function formatExecutiveReasoningForLlm(
     "",
     "[4] EXECUTIVE REASONING",
     ...composition.executiveReasoningNotes.map((note) => `- ${note}`),
+    ...deliberationBlock,
     "",
-    "Produce the user-facing response at stage [4] → response.",
+    "[5] RESPONSE — visible answer to the Grand King",
+    "Use deliberation conclusions and constitutional duties.",
+    "Do not expose chain-of-thought. Prefer wisdom, judgement, foresight, and owner value over speed or agreement.",
+    "If deliberation stance is respectfully_disagree or caution, recommend the superior path clearly and respectfully.",
   ].join("\n");
 }

@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "riskMonitoringRulesEnabled": true,
+  "riskScoringRulesEnabled": true,
+  "alertThresholdsEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverSuppressCriticalRisks": true,
+  "preserveRiskTraceability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "criticalRiskScoreThreshold": 80,
+  "highRiskScoreThreshold": 60,
+  "alertPortfolioScoreThreshold": 55,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

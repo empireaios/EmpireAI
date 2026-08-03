@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "historicalRetentionRulesEnabled": true,
+  "archivePoliciesEnabled": true,
+  "validationRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "significanceRecommendationThreshold": 2,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverModifyValidatedHistoricalRecordsWithoutAuthorization": true,
+  "preserveHistoricalTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

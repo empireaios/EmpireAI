@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "missionRulesEnabled": true,
+  "classificationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "missionCoordinationEnabled": true,
+  "requireGrandKingApproval": true,
+  "requireProceedRecommendation": true,
+  "businessTypes": [
+    "media",
+    "commerce",
+    "local_cleaning",
+    "affiliate",
+    "digital_product",
+    "local_services",
+    "saas",
+    "agency",
+    "unknown"
+  ],
+  "commerceCategories": [
+    "online_store",
+    "marketplace",
+    "dropshipping",
+    "subscription_commerce",
+    "wholesale",
+    "hybrid_commerce",
+    "unknown"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverBuildStores": true,
+  "neverImportProducts": true,
+  "neverConfigureMarketplaces": true,
+  "neverExecuteCommerceImplementation": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ302OrLater": true,
+  "structuralSignalsOnly": true
+}

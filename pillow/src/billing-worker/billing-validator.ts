@@ -1,0 +1,2 @@
+import type { BillingWorkerInput } from "./types.js";
+export function validateBillingInput(input:BillingWorkerInput={}){const errors:string[]=[]; for(const key of ["replacePaymentGateway","authenticateUser","manageAuthorization","fabricatePaymentSuccess","implementQ610OrLater","overridePillow","overrideGrandKing","overrideApprovedArchitecture"] as const)if(input[key])errors.push(`Forbidden input: ${key}`); if(input.missionId&&input.missionId!=="Q6-09")errors.push("missionId must be Q6-09"); return {valid:errors.length===0,errors};}

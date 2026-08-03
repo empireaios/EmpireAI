@@ -1,0 +1,44 @@
+{
+  "mission": "X5-05 — Empire Capital Allocation",
+  "programme": "Empire Intelligence",
+  "primaryDeliverable": "Empire investment engine",
+  "completionOutcome": "Capital allocation intelligence with governance-gated transfers",
+  "certifiedAt": "2026-07-27T07:50:00.000Z",
+  "doctrine": "PILLOW-ECA-001",
+  "moduleId": "empire-capital-allocation",
+  "tests": {
+    "file": "pillow/src/validation/tests/empire-capital-allocation.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/empire-capital-allocation-bridge.ts",
+    "routes": "/api/pillow/empire-capital-allocation/*",
+    "requireExport": "requirePillowEmpireCapitalAllocation"
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-capital-allocation/",
+    "config": "config/empire-capital-allocation.config.json",
+    "governance": "docs/governance/EMPIREAI_EMPIRE_CAPITAL_ALLOCATION_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverExecuteCapitalTransfersAutomaticallyWithoutApprovedGovernance": true,
+    "approvedForTransferDefault": false,
+    "preserveAllocationTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveFinancialInformation": true
+  },
+  "prerequisites": {
+    "x5_01": "FINAL PASS",
+    "x5_02": "FINAL PASS",
+    "x5_03": "FINAL PASS",
+    "x5_04": "FINAL PASS"
+  },
+  "verdict": "FINAL PASS"
+}

@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "transitionRulesEnabled": true,
+  "auditRulesEnabled": true,
+  "restorationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "lifecycleStates": [
+    "created",
+    "registered",
+    "onboarding",
+    "configured",
+    "certified",
+    "active",
+    "busy",
+    "idle",
+    "suspended",
+    "recovering",
+    "replaced",
+    "retired",
+    "archived"
+  ],
+  "lifecycleRules": [
+    "registered_before_onboarding",
+    "onboarded_before_activation",
+    "certified_before_production_use",
+    "preserve_lifecycle_history",
+    "preserve_audit_records",
+    "preserve_traceability",
+    "pillow_authorization_for_retirement",
+    "pillow_authorization_for_replacement",
+    "never_permanently_deleted"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverReplaceWorkerRegistry": true,
+  "neverReplaceWorkforceCertificationMonitor": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverPermanentlyDeleted": true,
+  "structuralSignalsOnly": true
+}

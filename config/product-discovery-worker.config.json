@@ -1,0 +1,48 @@
+{
+  "enabled": true,
+  "discoveryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-product-discovery-01",
+  "workerName": "Product Discovery Worker",
+  "factory": "commerce-factory",
+  "department": "commerce",
+  "role": "role-analyst-product-discovery",
+  "approvedMarketplaces": [
+    "amazon",
+    "shopify",
+    "etsy",
+    "walmart",
+    "ebay",
+    "tiktok_shop"
+  ],
+  "approvedSupplierPlatforms": [
+    "alibaba",
+    "aliexpress",
+    "cjdropshipping",
+    "spocket",
+    "local_wholesale"
+  ],
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverEvaluateProducts": true,
+  "neverRankProducts": true,
+  "neverSelectSuppliers": true,
+  "neverBuildListings": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ303OrLater": true,
+  "useOnlyApprovedDiscoverySources": true,
+  "preserveSourceTraceability": true,
+  "preserveAuditHistory": true,
+  "structuralSignalsOnly": true
+}

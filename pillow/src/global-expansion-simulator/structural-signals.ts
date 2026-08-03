@@ -1,0 +1,2 @@
+export type StructuralSimulationSignal = { signalId: string; timestamp: string; structuralSignalOnly: true; neverExecuteSimulatedActionsAgainstProductionSystems: true };
+export function createStructuralSimulationSignal(): StructuralSimulationSignal { return { signalId: `ges-signal-${Date.now()}`, timestamp: new Date().toISOString(), structuralSignalOnly: true, neverExecuteSimulatedActionsAgainstProductionSystems: true }; }

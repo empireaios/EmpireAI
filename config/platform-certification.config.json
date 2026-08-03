@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "timeoutMs": 5000,
+  "repositoryEvidenceScanEnabled": true,
+  "neverFabricateCertificationSuccess": true,
+  "neverAutoMarkIncompleteMissionsComplete": true,
+  "neverActivateRealProduction": true,
+  "neverConductRealCustomerBilling": true,
+  "neverOverridePillowGrandKing": true,
+  "neverImplementQ7OrLater": true
+}

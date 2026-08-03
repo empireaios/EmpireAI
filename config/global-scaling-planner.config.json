@@ -1,0 +1,77 @@
+{
+
+  "enabled": true,
+
+  "planningRulesEnabled": true,
+
+  "internationalExpansionReadinessEnabled": true,
+
+  "targetRegionIdentificationEnabled": true,
+
+  "targetCountryIdentificationEnabled": true,
+
+  "regionalDemandEvaluationEnabled": true,
+
+  "regionalOperationalReadinessEnabled": true,
+
+  "supplierReadinessByRegionEnabled": true,
+
+  "financialReadinessForExpansionEnabled": true,
+
+  "opportunityRankingEnabled": true,
+
+  "recommendationRulesEnabled": true,
+
+  "validationRulesEnabled": true,
+
+  "healthMonitoringRulesEnabled": true,
+
+  "neverExposeCredentials": true,
+
+  "neverExposeAuthenticationTokens": true,
+
+  "neverRecommendInternationalExpansionWithoutValidatedReadiness": true,
+
+  "preservePlanningTraceability": true,
+
+  "preserveAuditability": true,
+
+  "preserveEnterpriseIntegrity": true,
+
+  "structuralSignalsOnly": true,
+
+  "maskSensitiveValues": true,
+
+  "neverLogSensitiveOperationalInformation": true,
+
+  "expansionReadinessThreshold": 55,
+
+  "highPriorityThreshold": 70,
+
+  "criticalPriorityThreshold": 85,
+
+  "regionalOpportunityThreshold": 60,
+
+  "regionalDemandThreshold": 60,
+
+  "regionalOperationalThreshold": 60,
+
+  "supplierReadinessThreshold": 60,
+
+  "financialReadinessThreshold": 60,
+
+  "connectionTimeoutMs": 30000,
+
+  "maxRetryAttempts": 3,
+
+  "retryDelayMs": 500,
+
+  "retryBackoffMultiplier": 2,
+
+  "loggingLevel": "info",
+
+  "autoRecover": true
+
+}
+
+

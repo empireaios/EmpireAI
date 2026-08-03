@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "revenueAnalysisRulesEnabled": true,
+  "productEvaluationRulesEnabled": true,
+  "optimizationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "recommendationRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverModifyProductionPricingWithoutValidation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxOptimizationsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

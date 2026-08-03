@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "evolutionEvaluationRulesEnabled": true,
+  "simulationRulesEnabled": true,
+  "priorityThreshold": 55,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverModifyGovernanceApprovedEnterpriseArchitectureAutomatically": true,
+  "neverBypassConstitutionalGovernance": true,
+  "preserveEvolutionTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveEnterpriseInformation": true
+}

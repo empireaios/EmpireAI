@@ -22,6 +22,15 @@ import {
 
 const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..", "..", "..");
 
+/** Tests simulate a prior Digital Soul gate (production: pillow-host only). */
+const DS_ATTEST = {
+  constitutionalGateAttestation: {
+    passed: true as const,
+    gatedAt: "test-harness",
+    purpose: "chat" as const,
+  },
+};
+
 function mockAdapter(onComplete?: (request: BrainLLMCompleteRequest) => void): BrainLLMAdapter {
   return {
     listAvailableProviders() {
@@ -85,6 +94,7 @@ describe("PILLOW-016 OpenAI Integration Layer", () => {
     });
 
     const result = await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: "Where is the empire in Journey?",
       workspaceId: "ws_pillow_test",
@@ -120,6 +130,7 @@ describe("Pillow General Knowledge Routing", () => {
     });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: "What is React?",
       workspaceId: "ws_routing_policy",
@@ -174,8 +185,9 @@ describe("Pillow General Knowledge Routing", () => {
 
       const operationalContext = await contextBuilder.build({ userMessage: question });
 
-      const result = await layer.complete({
-        operationalContext,
+const result = await layer.complete({
+      ...DS_ATTEST,
+      operationalContext,
         userMessage: question,
         workspaceId: "ws_validation",
         correlationId: `corr-${question.slice(0, 12)}`,
@@ -206,6 +218,7 @@ describe("Pillow General Knowledge Routing", () => {
     const operationalContext = await contextBuilder.build({ userMessage: question });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: question,
       workspaceId: "ws_repo_only",
@@ -240,6 +253,7 @@ describe("Pillow General Knowledge Routing", () => {
     const operationalContext = await contextBuilder.build({ userMessage: question });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: question,
       workspaceId: "ws_live",
@@ -278,6 +292,7 @@ describe("Pillow General Knowledge Routing", () => {
     const operationalContext = await contextBuilder.build({ userMessage: question });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: question,
       workspaceId: "ws_missing_repo",
@@ -313,6 +328,7 @@ describe("Executive conversation LLM assembly", () => {
     });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: "Grand King: And what about the risks?",
       priorConversationTurns: [
@@ -347,6 +363,7 @@ describe("Executive conversation LLM assembly", () => {
     });
 
     await layer.complete({
+      ...DS_ATTEST,
       operationalContext,
       userMessage: "What am I looking at?",
       executiveConversationMode: true,

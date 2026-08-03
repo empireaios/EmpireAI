@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "inspectionRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "reportingRulesEnabled": true,
+  "auditTypes": [
+    "executive_audit",
+    "workforce_audit",
+    "business_audit",
+    "mission_audit",
+    "decision_audit",
+    "memory_audit",
+    "approval_audit",
+    "governance_audit",
+    "runtime_audit"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteCorrections": true,
+  "neverApproveMissions": true,
+  "neverAssignWorkers": true,
+  "neverModifyBusinessState": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

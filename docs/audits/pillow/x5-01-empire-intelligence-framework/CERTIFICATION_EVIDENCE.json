@@ -1,0 +1,38 @@
+{
+  "mission": "X5-01 — Empire Intelligence Framework",
+  "programme": "Empire Intelligence",
+  "primaryDeliverable": "Unified empire architecture",
+  "completionOutcome": "One intelligence layer across the entire empire",
+  "certifiedAt": "2026-07-27T07:00:00.000Z",
+  "doctrine": "PILLOW-EIF-001",
+  "subsystemRegistryId": "empire_intelligence_framework",
+  "tests": {
+    "file": "pillow/src/validation/tests/empire-intelligence-framework.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "verdict": "PASS"
+  },
+  "hostWiring": {
+    "bridge": "backend/src/orchestration/pillow-host/empire-intelligence-framework-bridge.ts",
+    "routes": "/api/pillow/empire-intelligence-framework/*",
+    "requireExport": "requirePillowEmpireIntelligenceFramework"
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-intelligence-framework/",
+    "config": "config/empire-intelligence-framework.config.json",
+    "governance": "docs/governance/EMPIREAI_EMPIRE_INTELLIGENCE_FRAMEWORK_SYSTEM.md"
+  },
+  "safetyInvariants": {
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverBypassValidation": true,
+    "preserveModuleIsolation": true,
+    "preserveAuditability": true,
+    "preserveRecoveryCapability": true,
+    "structuralSignalsOnly": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveOperationalInformation": true
+  },
+  "scopeBoundary": "Framework only — later X5 missions not implemented",
+  "verdict": "FINAL PASS"
+}

@@ -1,0 +1,22 @@
+import type { ExecutiveEmpireDashboardConfiguration } from "./configuration.js";
+import type { DASHBOARD_WIDGETS, EED_CAPABILITIES, ENGINE_STATUSES } from "./paths.js";
+export type EngineStatus = (typeof ENGINE_STATUSES)[number];
+export type ExecutiveDashboardWidget = (typeof DASHBOARD_WIDGETS)[number];
+export type ExecutiveEmpireDashboardCapability = (typeof EED_CAPABILITIES)[number];
+export type DashboardAnalysisInput = { companyReference?: string; authorized?: boolean; validated?: boolean; alertHint?: boolean };
+export type ExecutiveAlert = { alertId: string; severity: "critical"|"high"|"medium"|"low"; widget: ExecutiveDashboardWidget; summary: string; timestamp: string };
+export type DashboardRecommendation = { recommendationId: string; timestamp: string; summary: string; widget: ExecutiveDashboardWidget; structuralSignalOnly: true; neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers: true };
+export type DashboardSnapshot = {
+  dashboardId: string; timestamp: string; enterpriseKpiSummary: string; portfolioSummary: string; companySummary: string;
+  capitalAllocationSummary: string; opportunitySummary: string; innovationSummary: string; enterpriseResilienceSummary: string;
+  selfImprovementSummary: string; executiveAlerts: ExecutiveAlert[]; recommendationSummary: string;
+  validationStatus: "passed"|"partial"|"failed"; metadataVersion: string; activeWidgets: ExecutiveDashboardWidget[];
+  structuralSignalOnly: true; neverExposeCredentials: true; neverExposeAuthenticationTokens: true;
+  neverExposeRestrictedEnterpriseInformationToUnauthorizedUsers: true; preserveDashboardTraceability: true;
+  preserveAuditability: true; preserveEnterpriseIntegrity: true; maskSensitiveValues: true; dashboardTraceId: string;
+};
+export type ExecutiveEmpireDashboardEngineRecord = { engineRecordId: string; timestamp: string; engineId: string; engineVersion: "PILLOW-EED-001"; currentOperationalState: "disconnected"|"connected"|"active"; healthStatus: "healthy"|"degraded"|"failed"|"standby"; validationStatus: "passed"|"partial"|"failed"; supportedCapabilities: ExecutiveEmpireDashboardCapability[]; frameworkModuleId: string|null; dependencyPresence: Record<string, boolean>; metadataVersion: string };
+export type DashboardValidationReport = { validationReportId: string; validationTimestamp: string; decision: "pass"|"partial"|"fail"; errors: string[]; warnings: string[]; durationMs: number; metadataVersion: string };
+export type ExecutiveEmpireDashboardRunReport = { dashboardRunReportId: string; runTimestamp: string; action: string; engineRecord: ExecutiveEmpireDashboardEngineRecord; dashboardRecords: DashboardSnapshot[]; recommendations: DashboardRecommendation[]; validation: DashboardValidationReport; durationMs: number; metadataVersion: string };
+export type ExecutiveEmpireDashboardState = { engineVersion: "PILLOW-EED-001"; missionId: "X5-10"; status: EngineStatus; initializedAt: string; configuration: ExecutiveEmpireDashboardConfiguration; latestReport: ExecutiveEmpireDashboardRunReport|null; engineRecord: ExecutiveEmpireDashboardEngineRecord|null; health: { status: "healthy"|"degraded"|"failed"|"standby"; healthScore: number; engineEnabled: boolean; totalDashboardRecords: number; notes: string[] } };
+export type ExecutiveEmpireDashboardCockpitSnapshot = { engineStatus: EngineStatus; healthStatus: "healthy"|"degraded"|"failed"|"standby"; operationalState: string|null; lastDecision: "pass"|"partial"|"fail"|null; totalDashboardRecords: number; alertCount: number; frameworkRegistered: boolean; dependenciesConnected: number; recentLogs: string[] };

@@ -1,0 +1,1 @@
+{"enabled":true,"timeoutMs":120000,"maxRetries":2,"backoffMs":0,"neverReplaceWorkflowOrchestration":true,"neverReplaceBusinessLogic":true,"neverExposeCredentialsOrSecrets":true,"neverFabricateDeliveryResults":true,"neverImplementQ613OrLater":true,"neverOverridePillowGrandKingApprovedArchitecture":true}

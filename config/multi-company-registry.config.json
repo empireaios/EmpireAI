@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "registrationRulesEnabled": true,
+  "classificationRulesEnabled": true,
+  "lifecycleRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverRegisterDuplicatesWithoutValidation": true,
+  "preserveCompanyTraceability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxRegisteredCompanies": 200,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

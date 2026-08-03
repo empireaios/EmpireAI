@@ -1,0 +1,2 @@
+import type { AuditEvent } from "./types.js"; import { redactAiwValue } from "./aiw-logging.js";
+export class IntegrationAudit {private events:AuditEvent[]=[];record(type:string,details:Record<string,unknown>,integrationId?:string){const event={eventId:`aiw-evt-${this.events.length+1}`,type,integrationId,timestamp:new Date().toISOString(),details:redactAiwValue(details) as Record<string,unknown>};this.events.push(event);return event;}list(limit?:number){return this.events.slice(-(limit??this.events.length));}}

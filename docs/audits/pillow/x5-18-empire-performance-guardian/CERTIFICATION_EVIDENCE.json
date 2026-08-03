@@ -1,0 +1,39 @@
+{
+  "doctrine": "PILLOW-EPG-001",
+  "mission": "X5-18",
+  "moduleId": "empire-performance-guardian",
+  "status": "FINAL PASS",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/empire-performance-guardian.test.ts\"",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "safety": {
+    "structuralSignalsOnly": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverSuppressCriticalEnterpriseAlerts": true,
+    "preservePerformanceTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveEnterpriseInformation": true
+  },
+  "capabilities": [
+    "company_continuous_monitoring",
+    "enterprise_kpi_monitoring",
+    "operational_performance_monitoring",
+    "financial_performance_monitoring",
+    "customer_performance_monitoring",
+    "strategic_objective_monitoring",
+    "performance_degradation_detection",
+    "critical_anomaly_detection",
+    "enterprise_priority_ranking",
+    "performance_recommendations",
+    "performance_metadata_generation",
+    "performance_validation",
+    "health_monitoring",
+    "recovery_management"
+  ]
+}

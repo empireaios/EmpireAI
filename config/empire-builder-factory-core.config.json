@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "acceptanceRulesEnabled": true,
+  "classificationRulesEnabled": true,
+  "preparationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "defaultApprovalStatus": "pending_pillow_review",
+  "defaultMissionStatus": "prepared",
+  "businessTypes": [
+    "media",
+    "commerce",
+    "local_cleaning",
+    "affiliate",
+    "digital_product",
+    "local_services",
+    "saas",
+    "agency",
+    "unknown"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverInterpretDetailedBusinessStrategy": true,
+  "neverGenerateBusinessModels": true,
+  "neverResearchMarkets": true,
+  "neverAssignWorkers": true,
+  "neverExecuteBusinesses": true,
+  "neverLaunchBusinesses": true,
+  "neverImplementQ202OrLater": true,
+  "structuralSignalsOnly": true
+}

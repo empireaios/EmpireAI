@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "readinessScoringRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "launchThreshold": 75,
+  "healthMonitoringRulesEnabled": true,
+  "neverExposeCredentials": true,
+  "neverCertifyWithoutValidation": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxReadinessRecordsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

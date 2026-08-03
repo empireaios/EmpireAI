@@ -8,11 +8,25 @@ export type ExecutiveLearningCategory = "A" | "B" | "C" | "D";
 export type ExecutiveLearningStatus =
   | "pending_confirmation"
   | "pending_approval"
+  | "session_active"
   | "approved"
   | "rejected"
   | "archived"
   | "merged"
   | "expired";
+
+/**
+ * Governance classification for certification / review surfaces.
+ * Maps Category A–D + status into Permanent / Strategic / Temporary / etc.
+ */
+export type LearningGovernanceClass =
+  | "Permanent"
+  | "Strategic"
+  | "Temporary"
+  | "Experimental"
+  | "Historical"
+  | "Owner-approved"
+  | "Rejected";
 
 export type ReasoningArea =
   | "decision_principles"

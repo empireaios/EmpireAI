@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "researchRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-market-research-01",
+  "workerName": "Market Research Worker",
+  "factory": "empire-builder-factory",
+  "department": "strategy",
+  "role": "role-analyst-market-research",
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverDecideWhetherToBuild": true,
+  "neverGenerateBranding": true,
+  "neverBuildMarketingPlans": true,
+  "neverLaunchBusiness": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ205OrLater": true,
+  "requireEvidenceBasedFindings": true,
+  "preserveAuditHistory": true,
+  "structuralSignalsOnly": true
+}

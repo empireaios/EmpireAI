@@ -67,7 +67,9 @@ TIER 3 — CONSTITUTION & LAW
 ├── Constitutional Framework    → EMPIREAI_CONSTITUTIONAL_FRAMEWORK.md
 ├── Engineering Constitution    → EMPIREAI_CONSTITUTION.md (+ Cursor standards)
 ├── Domain Constitutions
-│   ├── Pillow Constitution · Pillow EI Constitution
+│   ├── Digital Soul of Pillow V2 (DS-V2-CANONICAL) — executive identity & LTEV
+│   │     → EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md · pillow/src/digital-soul/
+│   ├── Pillow Constitution · Pillow EI Constitution (objective / Cursor sovereignty)
 │   └── BL-C Continuous Improvement Constitution
 ├── Doctrines
 │   ├── Doctrine System (P2-04)   → EMPIREAI_DOCTRINE_SYSTEM.md

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "investmentEvaluationRulesEnabled": true,
+  "investmentExecutionRulesEnabled": true,
+  "riskThreshold": 70,
+  "recommendationPriorityThreshold": 55,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverExecuteInvestmentsWithoutGovernanceApproval": true,
+  "preserveInvestmentTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveFinancialInformation": true
+}

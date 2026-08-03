@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "retentionDays": 3650,
+  "categorizationEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 500,
+  "timeoutMs": 5000,
+  "loggingEnabled": true
+}

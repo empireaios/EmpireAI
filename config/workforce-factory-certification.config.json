@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "certificationRulesEnabled": true,
+  "componentRulesEnabled": true,
+  "integrationRulesEnabled": true,
+  "governanceRulesEnabled": true,
+  "readinessRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "workforceFactoryVersion": "Q1-WFF-v1",
+  "certificationLevels": [
+    "certified",
+    "certified_with_warnings",
+    "provisionally_certified",
+    "failed_certification"
+  ],
+  "maxFailuresForProvisional": 2,
+  "maxWarningsForCertifiedWithWarnings": 5,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerTasks": true,
+  "neverModifyWorkforceComponents": true,
+  "neverRepairFailuresAutomatically": true,
+  "neverBeginQ2Implementation": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

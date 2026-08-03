@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "certificationScope": [
+    "enterprise-portfolio-framework",
+    "multi-company-registry",
+    "portfolio-performance-engine",
+    "cross-business-knowledge-engine",
+    "capital-distribution-engine",
+    "executive-portfolio-dashboard",
+    "portfolio-risk-engine",
+    "portfolio-balance-engine",
+    "business-health-ranking"
+  ],
+  "requiredValidationRulesEnabled": true,
+  "passThresholdPercent": 85,
+  "validationRulesEnabled": true,
+  "endToEndValidationEnabled": true,
+  "safeTestMode": true,
+  "neverExposeCredentials": true,
+  "neverModifyProductionSystemsUnlessSafeTestMode": true,
+  "preserveOperationalTraceability": true,
+  "preserveAuditability": true,
+  "preserveCertificationIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "maxCertificationsPerCycle": 6,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

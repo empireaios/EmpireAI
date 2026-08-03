@@ -1,0 +1,2 @@
+import { NotificationWorkerEngine } from "./engine.js"; import type { NotificationWorkerConfiguration,NotificationWorkerDependencies } from "./types.js";
+export class NotificationWorkerController {engine:NotificationWorkerEngine;constructor(root:string,config?:Partial<NotificationWorkerConfiguration>){this.engine=new NotificationWorkerEngine({repositoryRoot:root},{configuration:config})}bindIntegrations(deps:NotificationWorkerDependencies={}){return this.engine.bindIntegrations(deps)}}

@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "certificationScope": ["global-expansion-framework", "country-intelligence-engine", "localization-engine", "language-intelligence", "currency-intelligence", "regional-compliance-engine", "global-tax-intelligence", "international-logistics-engine", "global-market-intelligence", "executive-global-dashboard", "global-brand-management", "international-partnership-engine", "global-talent-intelligence", "regional-growth-optimizer", "global-risk-intelligence", "cross-region-learning-engine", "global-expansion-simulator", "international-executive-cockpit"],
+  "passThresholdPercent": 85,
+  "safeTestMode": true,
+  "structuralSignalsOnly": true
+}

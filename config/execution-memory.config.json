@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "recordingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "maxRecords": 10000,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverMakeDecisions": true,
+  "neverPlanMissions": true,
+  "neverAssignWorkers": true,
+  "neverExecuteWork": true,
+  "neverReplaceKnowledgeSystems": true,
+  "structuralSignalsOnly": true
+}

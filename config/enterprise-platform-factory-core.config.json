@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "validationRulesEnabled": true,
+  "missionRulesEnabled": true,
+  "lifecycleRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "missionCoordinationEnabled": true,
+  "requireGrandKingApproval": true,
+  "requirePillowCommandConfirmation": true,
+  "platformTypes": [
+    "saas",
+    "paas",
+    "marketplace",
+    "api_platform",
+    "internal_tool",
+    "multi_tenant",
+    "enterprise_suite",
+    "unknown"
+  ],
+  "pipelineTypes": [
+    "software_development",
+    "architecture",
+    "implementation",
+    "testing",
+    "deployment",
+    "production_operations",
+    "multi_stage"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverBuildFrontend": true,
+  "neverBuildBackend": true,
+  "neverDesignDatabases": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ602OrLater": true,
+  "structuralSignalOnly": true
+}

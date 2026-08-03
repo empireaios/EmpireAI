@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "workerReportingEnabled": true,
+  "departmentReportingEnabled": true,
+  "factoryReportingEnabled": true,
+  "executiveReportingEnabled": true,
+  "aggregationRulesEnabled": true,
+  "summaryRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "reportTypes": [
+    "progress_report",
+    "status_report",
+    "completion_report",
+    "blocker_report",
+    "risk_report",
+    "exception_report",
+    "executive_summary",
+    "department_summary",
+    "factory_summary"
+  ],
+  "entityTypes": ["worker", "department", "factory", "executive_component"],
+  "reportingFrequencies": ["real_time", "event_driven", "scheduled", "on_demand"],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerLogic": true,
+  "neverReplaceMonitoringRuntime": true,
+  "neverReplaceMissionCoordination": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

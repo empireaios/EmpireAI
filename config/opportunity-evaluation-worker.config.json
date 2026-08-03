@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "evaluationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-opportunity-evaluation-01",
+  "workerName": "Opportunity Evaluation Worker",
+  "factory": "empire-builder-factory",
+  "department": "strategy",
+  "role": "role-analyst-opportunity-evaluation",
+  "scoreWeights": {
+    "demand": 0.25,
+    "feasibility": 0.2,
+    "profitPotential": 0.2,
+    "risk": 0.15,
+    "strategicFit": 0.2
+  },
+  "proceedThreshold": 70,
+  "improveThreshold": 45,
+  "integrationTargets": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverApproveBusiness": true,
+  "neverModifyBusinessModel": true,
+  "neverLaunchBusiness": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ206OrLater": true,
+  "requireEvidenceBasedScoring": true,
+  "preserveAuditHistory": true,
+  "preserveCompleteTraceability": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "accessRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "supportedActions": [
+    "locate",
+    "invoke",
+    "suspend",
+    "resume",
+    "pause",
+    "continue",
+    "reassign",
+    "inspect",
+    "restart",
+    "stop"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerLogic": true,
+  "neverReplaceWorkerImplementations": true,
+  "neverPerformOrchestration": true,
+  "neverMakeStrategicDecisions": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "routingRulesEnabled": true,
+  "deliveryTrackingEnabled": true,
+  "historyRulesEnabled": true,
+  "broadcastRulesEnabled": true,
+  "priorityRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "messageTypes": [
+    "task_request",
+    "task_response",
+    "information",
+    "review_request",
+    "review_response",
+    "approval_request",
+    "approval_response",
+    "escalation",
+    "broadcast",
+    "system_notification"
+  ],
+  "messagePriorities": ["critical", "high", "medium", "low"],
+  "defaultPriority": "medium",
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerLogic": true,
+  "neverModifyWorkerDecisions": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

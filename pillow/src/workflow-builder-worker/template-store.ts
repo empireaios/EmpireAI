@@ -1,0 +1,1 @@
+import type { WorkflowTemplate } from "./types.js"; export class TemplateStore {private values=new Map<string,WorkflowTemplate>();save(v:WorkflowTemplate){this.values.set(v.templateId,v);return v}get(id:string){return this.values.get(id)}list(){return [...this.values.values()]}}

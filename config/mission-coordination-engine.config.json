@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "planningRulesEnabled": true,
+  "phaseRulesEnabled": true,
+  "dependencyRulesEnabled": true,
+  "approvalRulesEnabled": true,
+  "stallDetectionEnabled": true,
+  "blockageDetectionEnabled": true,
+  "closureRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "missionStates": [
+    "planned",
+    "waiting",
+    "ready",
+    "running",
+    "waiting_approval",
+    "blocked",
+    "paused",
+    "recovering",
+    "completed",
+    "cancelled",
+    "failed"
+  ],
+  "missionPhases": [
+    "planning",
+    "preparation",
+    "execution",
+    "review",
+    "approval",
+    "completion",
+    "closure"
+  ],
+  "stallThresholdMs": 60000,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerLogic": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverReplaceExecutivePlanner": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

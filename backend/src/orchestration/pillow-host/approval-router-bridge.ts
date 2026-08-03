@@ -1,0 +1,57 @@
+/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+export function collectApprovalRouterSnapshot() {
+  const configuration = {
+    enabled: true,
+    routingRulesEnabled: true,
+    neverApproveRequests: true,
+    neverExecuteRequests: true,
+    neverAssignWorkers: true,
+    neverOverridePillow: true,
+    neverOverrideGrandKing: true,
+    neverExposeCredentials: true,
+    neverExposeAuthenticationTokens: true,
+    structuralSignalsOnly: true,
+    maskSensitiveValues: true,
+    neverLogSensitiveEnterpriseInformation: true,
+  };
+  return {
+    computedAt: new Date().toISOString(),
+    missionId: "Q0-06",
+    live: false,
+    engine: {
+      engineVersion: "PILLOW-AR-001",
+      missionId: "Q0-06",
+      status: "idle",
+      initializedAt: new Date().toISOString(),
+      configuration,
+      latestReport: null,
+      engineRecord: null,
+      health: {
+        status: "standby",
+        healthScore: 50,
+        engineEnabled: true,
+        lastOperationAt: null,
+        lastValidationDecision: null,
+        totalRequests: 0,
+        pendingCount: 0,
+        notes: ["Pillow session unavailable — offline snapshot"],
+      },
+    },
+    cockpit: {
+      missionId: "Q0-06",
+      status: "idle",
+      healthStatus: "standby",
+      totalRequests: 0,
+      pendingCount: 0,
+      latestApprovalId: null,
+      neverApproveRequests: true,
+      neverExecuteRequests: true,
+      neverAssignWorkers: true,
+      neverOverridePillow: true,
+      neverOverrideGrandKing: true,
+    },
+    latestRequest: null,
+    pendingQueue: [],
+    requests: [],
+  };
+}

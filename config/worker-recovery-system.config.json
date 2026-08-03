@@ -1,0 +1,48 @@
+{
+  "enabled": true,
+  "detectionRulesEnabled": true,
+  "recoveryRulesEnabled": true,
+  "escalationRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "recoveryStrategies": [
+    "retry",
+    "restart",
+    "resume",
+    "rollback",
+    "reassign",
+    "replace_worker",
+    "pause_mission",
+    "escalate_to_pillow"
+  ],
+  "failureTypes": [
+    "crash",
+    "hang",
+    "timeout",
+    "dependency_failure",
+    "communication_failure",
+    "runtime_failure",
+    "resource_exhaustion",
+    "validation_failure",
+    "unknown_failure"
+  ],
+  "recoveryRules": [
+    "preserve_mission_integrity",
+    "preserve_audit_history",
+    "preserve_execution_history",
+    "prevent_duplicate_execution",
+    "respect_authority_matrix",
+    "respect_worker_lifecycle",
+    "respect_mission_coordination_engine",
+    "escalate_when_automatic_recovery_unsafe"
+  ],
+  "repeatedFailureThreshold": 3,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteWorkerBusinessLogic": true,
+  "neverReplaceWorkerMonitoring": true,
+  "neverReplaceWorkforceOrchestrator": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "analysisRulesEnabled": true,
+  "generationRulesEnabled": true,
+  "rankingRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "recommendationCategories": [
+    "revenue_growth",
+    "cost_reduction",
+    "business_expansion",
+    "product_improvement",
+    "workforce_optimization",
+    "infrastructure_improvement",
+    "security",
+    "customer_experience",
+    "automation",
+    "risk_mitigation",
+    "operational_excellence"
+  ],
+  "minRecommendations": 3,
+  "maxRecommendations": 12,
+  "minConfidenceScore": 40,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExecuteRecommendations": true,
+  "neverAssignWorkers": true,
+  "neverApproveActions": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "structuralSignalsOnly": true
+}

@@ -1,0 +1,38 @@
+{
+  "doctrine": "PILLOW-GKA-001",
+  "mission": "X5-15",
+  "moduleId": "grand-king-advisory-engine",
+  "status": "FINAL PASS",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/grand-king-advisory-engine.test.ts\"",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "safety": {
+    "structuralSignalsOnly": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "neverExecuteExecutiveDecisionsAutomaticallyWithoutApprovedGovernance": true,
+    "preserveAdvisoryTraceability": true,
+    "preserveAuditability": true,
+    "preserveEnterpriseIntegrity": true,
+    "maskSensitiveValues": true,
+    "neverLogSensitiveEnterpriseInformation": true
+  },
+  "capabilities": [
+    "enterprise_performance_analysis",
+    "strategic_opportunity_identification",
+    "strategic_risk_identification",
+    "executive_decision_prioritization",
+    "capital_allocation_recommendations",
+    "growth_initiative_recommendations",
+    "optimization_initiative_recommendations",
+    "governance_action_recommendations",
+    "advisory_outcome_tracking",
+    "advisory_metadata_generation",
+    "advisory_validation",
+    "health_monitoring",
+    "recovery_management"
+  ]
+}

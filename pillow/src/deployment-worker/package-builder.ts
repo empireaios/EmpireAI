@@ -1,0 +1,1 @@
+import type { DeploymentPackage } from "./types.js"; export function buildDeploymentPackage(value:DeploymentPackage){if(!value.artifactRefs.length)throw new Error("Deployment package requires artifact references");return value}

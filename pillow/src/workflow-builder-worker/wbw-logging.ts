@@ -1,0 +1,1 @@
+const redact=(v:unknown):unknown=>typeof v==="string"?v.replace(/(secret|token|password)\s*[:=]\s*\S+/gi,"[REDACTED]"):v; export const logWorkflowBuilderEvent=(event:string,details:unknown={})=>({event,timestamp:new Date().toISOString(),details:redact(details)});

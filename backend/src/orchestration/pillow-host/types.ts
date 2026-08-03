@@ -127,6 +127,31 @@ export interface RoutePromptResult {
     primaryCapability: string;
     rationale: string;
   };
+  /**
+   * Structured executive deliberation conclusions for certification/audit.
+   * Never includes chain-of-thought — conclusions only.
+   */
+  executiveDeliberation?: {
+    deliberationId: string;
+    deliberatedAt: string;
+    significance: string;
+    objectiveInference: string;
+    challengeStance: string;
+    selectedApproachSummary: string;
+    alternatives: Array<{
+      summary: string;
+      selected: boolean;
+      expectedValue: number;
+      risk: number;
+    }>;
+    hiddenRisks: string[];
+    assumptions: string[];
+    uncertaintyLevel: string;
+    uncertaintyNote: string | null;
+    executiveConclusions: string[];
+    neverExposeChainOfThought: true;
+    fidelityAdjusted?: boolean;
+  };
 }
 
 export interface PillowRequestLogEntry {

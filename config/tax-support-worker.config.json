@@ -1,0 +1,102 @@
+{
+  "enabled": true,
+  "taxSupportRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "executiveReportingEnabled": true,
+  "requireGrandKingApproval": true,
+  "requirePillowCommandConfirmation": true,
+  "workerId": "wkr-tax-support-01",
+  "workerName": "Tax Support Worker",
+  "factory": "capital-factory",
+  "department": "capital",
+  "role": "role-analyst-tax-support",
+  "defaultCurrency": "SGD",
+  "taxSupportCategories": [
+    "income_revenue",
+    "income_other",
+    "expense_cogs",
+    "expense_opex",
+    "expense_payroll",
+    "expense_advertising",
+    "expense_fees",
+    "tax_withholding_recorded",
+    "tax_provision_recorded",
+    "capital",
+    "transfer",
+    "other"
+  ],
+  "documentKinds": [
+    "invoice",
+    "receipt",
+    "bank_statement",
+    "payroll_record",
+    "contract",
+    "prior_return",
+    "identity",
+    "other"
+  ],
+  "reminderKinds": [
+    "period_close",
+    "document_gathering",
+    "professional_review",
+    "filing_window",
+    "extension_checkpoint"
+  ],
+  "requiredDocumentKinds": ["invoice", "receipt", "bank_statement"],
+  "filingReminderSchedule": [
+    {
+      "kind": "period_close",
+      "offsetDaysAfterPeriodEnd": 0,
+      "title": "Period close — gather tax-support records"
+    },
+    {
+      "kind": "document_gathering",
+      "offsetDaysAfterPeriodEnd": 14,
+      "title": "Document gathering checkpoint"
+    },
+    {
+      "kind": "professional_review",
+      "offsetDaysAfterPeriodEnd": 30,
+      "title": "Professional review checkpoint"
+    },
+    {
+      "kind": "filing_window",
+      "offsetDaysAfterPeriodEnd": 45,
+      "title": "Filing window reminder (schedule only — not advice)"
+    }
+  ],
+  "highValueTransactionThresholdMinor": 1000000,
+  "integrationTargets": [
+    "capital_factory_core",
+    "accounting_worker",
+    "cashflow_worker",
+    "profitability_worker",
+    "forecasting_worker",
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "audit_runtime",
+    "worker_recovery_system"
+  ],
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverProvideLegalOrTaxAdvice": true,
+  "neverFabricateTaxCalculationsOrObligations": true,
+  "neverSubmitFilingsAutomatically": true,
+  "neverReplaceAccountantsOrTaxProfessionals": true,
+  "neverModifyAccountingRecords": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ908OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveTaxSupportHistory": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "factualRecordsDistinctFromReminders": true
+}

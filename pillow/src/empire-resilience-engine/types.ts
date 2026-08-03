@@ -1,0 +1,18 @@
+import type { EmpireResilienceEngineConfiguration } from "./configuration.js";
+import type { ERS_CAPABILITIES, ENGINE_STATUSES, HEALTH_STATUSES, OPERATIONAL_STATES, VALIDATION_STATUSES } from "./paths.js";
+export type EngineStatus = (typeof ENGINE_STATUSES)[number]; export type OperationalState = (typeof OPERATIONAL_STATES)[number];
+export type ValidationStatus = (typeof VALIDATION_STATUSES)[number]; export type HealthStatus = (typeof HEALTH_STATUSES)[number];
+export type EmpireResilienceCapability = (typeof ERS_CAPABILITIES)[number];
+export type EmpireResilienceInput = { companyReference?: string; failureCategory?: string; severity?: number; resilienceScore?: number; recommendationSummary?: string; validated?: boolean; approvedForDestructiveRecovery?: boolean; };
+export type ResilienceRecord = {
+  resilienceRecordId: string; timestamp: string; companyReference: string; failureCategory: string; severity: number; recoveryStatus: "coordinated" | "assessment_pending" | "recommendation_only";
+  resilienceScore: number; recommendationSummary: string; validationStatus: ValidationStatus; metadataVersion: string; structuralSignalOnly: true;
+  neverExecuteDestructiveRecoveryActionsWithoutApprovedGovernance: true; preserveResilienceTraceability: true; preserveAuditability: true; preserveEnterpriseIntegrity: true;
+  resilienceTraceId: string; unvalidatedClaim: "none"; approvedForDestructiveRecovery: false; maskSensitiveValues: true;
+};
+export type ResilienceRecommendation = { recommendationId: string; timestamp: string; resilienceRecordId: string; recommendationSummary: string; priorityLevel: number; structuralSignalOnly: true; neverExecuteDestructiveRecoveryActionsWithoutApprovedGovernance: true; approvedForDestructiveRecovery: false; unvalidatedClaim: "none"; };
+export type ResilienceValidationReport = { validationReportId: string; validationTimestamp: string; decision: "pass" | "partial" | "fail"; errors: string[]; warnings: string[]; durationMs: number; metadataVersion: string; };
+export type EmpireResilienceEngineRecord = { engineRecordId: string; timestamp: string; engineId: string; engineVersion: "PILLOW-ERS-001"; currentOperationalState: OperationalState; healthStatus: HealthStatus; validationStatus: ValidationStatus; supportedCapabilities: EmpireResilienceCapability[]; frameworkModuleId: string | null; dependencyPresence: { empireIntelligenceFramework: boolean; empireMemoryEngine: boolean; empireKnowledgeEngine: boolean }; metadataVersion: string; };
+export type EmpireResilienceRunReport = { resilienceRunReportId: string; runTimestamp: string; action: string; engineRecord: EmpireResilienceEngineRecord; resilienceRecords: ResilienceRecord[]; recommendations: ResilienceRecommendation[]; validation: ResilienceValidationReport; durationMs: number; metadataVersion: string; };
+export type EmpireResilienceState = { engineVersion: "PILLOW-ERS-001"; missionId: "X5-08"; status: EngineStatus; initializedAt: string; configuration: EmpireResilienceEngineConfiguration; latestReport: EmpireResilienceRunReport | null; engineRecord: EmpireResilienceEngineRecord | null; health: { status: HealthStatus; healthScore: number; engineEnabled: boolean; lastOperationAt: string | null; lastValidationDecision: ResilienceValidationReport["decision"] | null; totalResilienceRecords: number; notes: string[] }; };
+export type EmpireResilienceCockpitSnapshot = { engineStatus: EngineStatus; healthStatus: HealthStatus; operationalState: OperationalState | null; lastDecision: ResilienceValidationReport["decision"] | null; totalResilienceRecords: number; frameworkRegistered: boolean; dependenciesConnected: number; recentLogs: string[]; };

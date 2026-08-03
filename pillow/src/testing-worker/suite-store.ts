@@ -1,0 +1,2 @@
+import type { TestCase,TestSuite } from "./types.js";
+export class SuiteStore { private suites=new Map<string,TestSuite>();private cases=new Map<string,TestCase>();saveSuite(v:TestSuite){this.suites.set(v.suiteId,v);return v}saveCase(v:TestCase){this.cases.set(v.caseId,v);return v}listSuites(){return [...this.suites.values()]}listCases(suiteId?:string){return [...this.cases.values()].filter(x=>!suiteId||x.suiteId===suiteId)} }

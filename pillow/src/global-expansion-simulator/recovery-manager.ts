@@ -1,0 +1,1 @@
+export class GlobalExpansionSimulatorRecoveryManager { recover() { return { recovered: true, structuralSignalOnly: true as const, neverExecuteSimulatedActionsAgainstProductionSystems: true as const }; } }

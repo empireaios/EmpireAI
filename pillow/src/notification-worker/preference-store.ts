@@ -1,0 +1,2 @@
+import type { Channel,UserPreference } from "./types.js";
+export class PreferenceStore {private values=new Map<string,UserPreference>();private key(userId:string,channel:Channel){return `${userId}:${channel}`}set(v:UserPreference){this.values.set(this.key(v.userId,v.channel),v);return v}enabled(userId:string,channel:Channel){return this.values.get(this.key(userId,channel))?.enabled!==false}list(){return [...this.values.values()]}}

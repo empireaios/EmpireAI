@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "revenueModelRulesEnabled": true,
+  "customerSegmentRulesEnabled": true,
+  "businessScoringRulesEnabled": true,
+  "validationRulesEnabled": true,
+  "healthMonitoringRulesEnabled": true,
+  "neverFabricateValidationResults": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "minBusinessModelScore": 55,
+  "maxModelsPerCycle": 12,
+  "connectionTimeoutMs": 30000,
+  "maxRetryAttempts": 3,
+  "retryDelayMs": 1000,
+  "retryBackoffMultiplier": 2,
+  "loggingLevel": "info",
+  "autoRecover": true
+}

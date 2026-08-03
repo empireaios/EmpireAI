@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "continuityPlanningRulesEnabled": true,
+  "successionEvaluationRulesEnabled": true,
+  "readinessThreshold": 70,
+  "validationRulesEnabled": true,
+  "retryPolicyAttempts": 3,
+  "timeoutMs": 5000,
+  "loggingLevel": "info",
+  "neverExposeCredentials": true,
+  "neverExposeAuthenticationTokens": true,
+  "neverModifyGovernanceApprovedSuccessionPlansAutomatically": true,
+  "preserveSuccessionTraceability": true,
+  "preserveAuditability": true,
+  "preserveEnterpriseIntegrity": true,
+  "structuralSignalsOnly": true,
+  "maskSensitiveValues": true,
+  "neverLogSensitiveOrganizationalInformation": true
+}

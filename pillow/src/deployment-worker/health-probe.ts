@@ -1,0 +1,2 @@
+import type { DeploymentRecord,HealthProbe } from "./types.js";
+export class InMemoryHealthProbe implements HealthProbe { private outcomes=new Map<string,boolean>(); configure(key:string,healthy:boolean){this.outcomes.set(key,healthy)} probe(record:DeploymentRecord){const healthy=this.outcomes.get(record.deploymentId)===true||this.outcomes.get(record.environment)===true;return {healthy,evidence:healthy?"configured health probe pass":"health probe has no configured pass"}} }
