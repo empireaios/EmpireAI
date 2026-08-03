@@ -11,6 +11,7 @@
 
 **Vision (WHY):** [`EMPIREAI_VISION.md`](./EMPIREAI_VISION.md)  
 **Law (WHAT MUST BE TRUE):** [`EMPIREAI_CORE_CONSTITUTION_CTD.md`](./EMPIREAI_CORE_CONSTITUTION_CTD.md) (P2-02 ratified)  
+**Digital Soul / Executive Mind (Pillow):** [`EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md`](./EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md) (DS-V2-CANONICAL — supersedes prior Digital Soul drafts)  
 **Governance map (P2-01):** [`docs/governance/EMPIREAI_CONSTITUTION_HIERARCHY.md`](./docs/governance/EMPIREAI_CONSTITUTION_HIERARCHY.md)  
 **Mission-start chain:** [`docs/governance/EMPIREAI_VISION_SYNCHRONIZATION_POLICY.md`](./docs/governance/EMPIREAI_VISION_SYNCHRONIZATION_POLICY.md)  
 **Repository doctrine (P1-09):** [`docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md`](./docs/governance/EMPIREAI_REPOSITORY_STRUCTURE.md)  
