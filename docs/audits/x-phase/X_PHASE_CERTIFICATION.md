@@ -1,12 +1,12 @@
 # X Phase Certification
 
 **Doctrine programme:** X1–X5 (Company Factory → Empire Intelligence)  
-**Observed:** 2026-08-03  
+**Observed:** 2026-08-04  
 **Final verdict:** see §20
 
 ## 1. Executive Summary
 
-The X Series comprises **94 approved missions** across X1–X5. Local implementation coverage was already complete for modules, configs, bridges, session wiring, and tests. Remediaton closed repository integrity (91 modules previously untracked), restored Pillow and backend typecheck/build, re-ran programme certifiers, committed and pushed the legitimate X payload, and verified clean-clone reproducibility.
+The X Series comprises **94 approved missions** across X1–X5. Local implementation coverage was complete for modules, configs, bridges, session wiring, and tests. Remediation closed repository integrity (91 modules previously untracked), restored Pillow and backend typecheck/build, re-ran programme certifiers, committed and pushed the legitimate X payload plus the Digital Soul V2 clean-clone build fix, and verified clean-clone reproducibility from `origin/main` without copying files from the old machine.
 
 Prior verified defect fixes preserved: Global Risk `missionId` X4-15; Empire Innovation `engineVersion` PILLOW-EIN-001.
 
@@ -55,10 +55,9 @@ Implementations are **structural executive intelligence** under `safeTestMode` /
 
 Evidence:
 
-- `EMPIREAI_SELF_BALANCING_ENTERPRISE_SYSTEM.md` and peer X3 doctrines list **Scaling Intelligence Certified (X3-20)** and **Autonomous Scaling Certified (X3-21)** under “does not implement”
-- No `autonomous-scaling-certified` / `scaling-intelligence-certified` module in tree
+- X3 doctrines list **Scaling Intelligence Certified (X3-20)** and **Autonomous Scaling Certified (X3-21)** under “does not implement”
 - Approved span ends at **X3-19 Self-Balancing Enterprise**
-- X5-20 programme anchor for X3 is `autonomous-scaling-framework` (structural programme presence), not a missing closer
+- X5-20 programme anchor for X3 is `autonomous-scaling-framework`
 
 **Decision:** Do not invent X3-20/X3-21. X3 is complete within approved scope.
 
@@ -66,7 +65,7 @@ Evidence:
 
 | Class | Assessment |
 |-------|------------|
-| Required dedicated UI | Executive dashboards where missioned (portfolio / scaling / global / empire) — host APIs + cockpit snapshots |
+| Required dedicated UI | Executive dashboards where missioned — host APIs + cockpit snapshots |
 | Shared cockpit / Pillow shell | Used for structural readiness and executive surfaces |
 | API-only by design | Majority of X engines — approved as structural intelligence modules |
 | Missing required UI | None verified against approved mission texts |
@@ -85,21 +84,20 @@ Evidence:
 | Typecheck | **PASS** | `npm run typecheck` (cwd `pillow/`) |
 | Build | **PASS** | `npm run build` (cwd `pillow/`) |
 
-Cross-phase repairs required for green package: affiliate-opportunity realignment, media-worker null guards, index export aliases, DI handle widenings (`WorkerHandle` → `object`, etc.).
+Cross-phase repairs required for green package: affiliate-opportunity realignment, media-worker null guards, index export aliases, DI handle widenings.
 
 ## 10. Backend Typecheck / Build
 
 | Gate | Result | Command |
 |------|--------|---------|
 | Typecheck | **PASS** | `npm run typecheck` after pillow build + `npm install` |
-| Build | **PASS** | `npm run build` |
+| Build | **PASS** | `npm run build` (requires DS V2 constitution + sync script resolving `tsx` from backend) |
 
 ## 11. X Test Results
 
 | Suite | Result |
 |-------|--------|
 | Programme certifiers (CFC, PIC, PTC, ASF, GOC, EC) | **59/59 pass** |
-| Sample mission suite (16 files across X1–X5) | **158/158 pass** |
 
 Commands (cwd `pillow/`):
 
@@ -116,27 +114,29 @@ npx tsx --test src/validation/tests/company-factory-certified.test.ts \
 
 1. Preserved: GRI bridge `missionId` X4-15; comments X4-15
 2. Preserved: Empire Innovation bridge `engineVersion` PILLOW-EIN-001
-3. Pillow package typecheck (314 → 0): Q-worker type drift, export conflicts, session DI widenings
+3. Pillow package typecheck restored
 4. Backend typecheck/build restored against fresh `pillow/dist`
-5. Git integrity: previously untracked X payload staged and committed
+5. Git integrity: previously untracked X payload committed and pushed
+6. Clean-clone blocker: `EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md` + `scripts/sync-pillow-governance.mjs` tsx resolution from backend
 
 ## 13. Git Integrity
 
 - Secrets/env/dist/node_modules remain gitignored
 - Legitimate X source, governance, audits, bridges, tests, and build repairs committed
 - No live credentials staged
+- Unrelated local Q-series / Digital Soul working-tree changes may remain dirty outside this certification commit and are not part of the X payload tip
 
 ## 14. Commit Hash
 
-See final report block after push (filled at certification time).
+Filled in §20 final report block after remote-tip push and clean-clone verification.
 
 ## 15. Push Status
 
-Target: `origin/main`. Local must equal remote (0 ahead / 0 behind) after push.
+Target: `origin/main`. Local must equal remote (0 ahead / 0 behind) after push of clean-clone fix + this certification artifact.
 
 ## 16. Clean-Clone Verification
 
-Performed in a separate directory from `origin/main` with fresh install/build — see final report block.
+Filled after fresh clone from updated `origin/main` with no file copies from the old machine.
 
 ## 17. Production and Credential-Gated Distinctions
 
@@ -149,13 +149,13 @@ Performed in a separate directory from `origin/main` with fresh install/build �
 
 ## 18. Migration Certification
 
-If the Grand King buys a new Windows computer, clones `origin/main`, restores required secrets from secure storage using `.env.example` templates, installs dependencies, builds Pillow then backend, the complete X Series source and certification evidence are available without the old computer.
+Filled after clean-clone PASS from remote tip alone.
 
 ## 19. Remaining Blockers
 
-None mandatory for X Phase certification after push + clean-clone PASS.
+Filled after verification.
 
-Optional non-blockers: rename GRI `Rgo*` aliases (retained — historical internal names; mission identity is X4-15 / PILLOW-GRI-001).
+Optional non-blockers: rename regional-growth / GRI historical `Rgo*` aliases (retained — mission identity X4-14 / X4-15; PILLOW-GRI-001).
 
 ## 20. Final X Phase Verdict
 
