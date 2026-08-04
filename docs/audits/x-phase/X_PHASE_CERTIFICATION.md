@@ -77,11 +77,11 @@ Secrets/env/dist/node_modules gitignored. No live credentials in X tip. Unrelate
 | Primary X payload | `a15c1546620f360e08331380da95b9a56813612d` |
 | Clean-clone build fix | `5817be1820376251cd3eef2c09ae867a97d6d4f7` |
 | Remote-tip closure artifact (pre-final) | `33f8dfd5e08ca86eb1107919cb9ac7c577d9e930` |
-| Final certification tip | filled after this document commit |
+| Final certification tip | `0a5d01b3c137eeab8db22f4d557853e2992ec2aa` |
 
 ## 15. Push Status
 
-`a15c1546`…`33f8dfd5` pushed to `origin/main`. Local equalled remote at `33f8dfd5` (0/0) before this final cert fill-in commit.
+`a15c1546`…`33f8dfd5` pushed to `origin/main`. Final tip pushed to `origin/main`; clean-clone verified at `33f8dfd5`; certification tip `0a5d01b3c137eeab8db22f4d557853e2992ec2aa`.
 
 ## 16. Clean-Clone Verification
 
