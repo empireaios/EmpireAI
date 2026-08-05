@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "neverFabricateProductionEvidence": true,
+  "neverSuppressCriticalIncidents": true,
+  "neverHideFailures": true,
+  "neverAutoModifyProduction": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1112OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveMonitoringHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicMonitoringBehaviour": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "maskSensitiveValues": true
+}

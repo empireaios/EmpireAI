@@ -440,6 +440,43 @@ export interface PillowSubsystemBundle {
   profitabilityWorker?: import("../profitability-worker/engine.js").ProfitabilityWorker;
   forecastingWorker?: import("../forecasting-worker/engine.js").ForecastingWorker;
   taxSupportWorker?: import("../tax-support-worker/engine.js").TaxSupportWorker;
+  investmentPlanningWorker?: import("../investment-planning-worker/engine.js").InvestmentPlanningWorker;
+  financialReportingWorker?: import("../financial-reporting-worker/engine.js").FinancialReportingWorker;
+  capitalRiskWorker?: import("../capital-risk-worker/engine.js").CapitalRiskWorker;
+  capitalFactoryCertification?: import("../capital-factory-certification/engine.js").CapitalFactoryCertification;
+  sharedRuntimeCore?: import("../shared-runtime-core/engine.js").SharedRuntimeCore;
+  pillowOrchestrationRuntime?: import("../pillow-orchestration-runtime/engine.js").PillowOrchestrationRuntime;
+  missionRuntime?: import("../mission-runtime/engine.js").MissionRuntime;
+  queueRuntime?: import("../queue-runtime/engine.js").QueueRuntime;
+  memoryRuntime?: import("../memory-runtime/engine.js").MemoryRuntime;
+  apiRuntime?: import("../api-runtime/engine.js").ApiRuntime;
+  toolRuntime?: import("../tool-runtime/engine.js").ToolRuntime;
+  communicationRuntime?: import("../communication-runtime/engine.js").CommunicationRuntime;
+  approvalRuntime?: import("../approval-runtime/engine.js").ApprovalRuntime;
+  monitoringRuntime?: import("../monitoring-runtime/engine.js").MonitoringRuntime;
+  recoveryRuntime?: import("../recovery-runtime/engine.js").RecoveryRuntime;
+  schedulingRuntime?: import("../scheduling-runtime/engine.js").SchedulingRuntime;
+  auditRuntime?: import("../audit-runtime/engine.js").AuditRuntime;
+  sharedRuntimeCertification?: import("../shared-runtime-certification/engine.js").SharedRuntimeCertification;
+  productionCertificationCore?: import("../production-certification-core/engine.js").ProductionCertificationCore;
+  workerReadinessAudit?: import("../worker-readiness-audit/engine.js").WorkerReadinessAudit;
+  pillowCommandAudit?: import("../pillow-command-audit/engine.js").PillowCommandAudit;
+  businessFactoryAudit?: import("../business-factory-audit/engine.js").BusinessFactoryAudit;
+  securityAudit?: import("../security-audit/engine.js").SecurityAudit;
+  performanceAudit?: import("../performance-audit/engine.js").PerformanceAudit;
+  recoveryAudit?: import("../recovery-audit/engine.js").RecoveryAudit;
+  executiveAcceptancePack?: import("../executive-acceptance-pack/engine.js").ExecutiveAcceptancePack;
+  grandKingAcceptanceGate?: import("../grand-king-acceptance-gate/engine.js").GrandKingAcceptanceGate;
+  postLaunchMonitoring?: import("../post-launch-monitoring/engine.js").PostLaunchMonitoring;
+  qSeriesCertification?: import("../q-series-certification/engine.js").QSeriesCertification;
+  qSeriesCompletion?: import("../q-series-completion/engine.js").QSeriesCompletion;
+  aiInnovationFactory?: import("../ai-innovation-factory/engine.js").AiInnovationFactory;
+  implementationSpecificationEngine?: import("../implementation-specification-engine/engine.js").ImplementationSpecificationEngine;
+  repositoryIntelligenceEngine?: import("../repository-intelligence-engine/engine.js").RepositoryIntelligenceEngine;
+  missionPlanningEngine?: import("../mission-planning-engine/engine.js").MissionPlanningEngine;
+  cursorSpecificationGenerator?: import("../cursor-specification-generator/engine.js").CursorSpecificationGenerator;
+  implementationRecoveryPlanner?: import("../implementation-recovery-planner/engine.js").ImplementationRecoveryPlanner;
+  programmeCertificationFactory?: import("../programme-certification-factory/engine.js").ProgrammeCertificationFactory;
   empireCommander?: EmpireCommanderEngine;
   empireOperatingSystem?: EmpireOperatingSystemEngine;
   continuousEvolution?: ContinuousEvolutionEngine;
@@ -6484,6 +6521,561 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.taxSupportWorker) return "unavailable";
       try {
         const status = b.taxSupportWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "investment-planning-worker",
+    label: "Investment Planning Worker",
+    missionId: "Q9-08",
+    runtimePath: "pillow/src/investment-planning-worker/",
+    probe: (b) => {
+      if (!b.investmentPlanningWorker) return "unavailable";
+      try {
+        const status = b.investmentPlanningWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial-reporting-worker",
+    label: "Financial Reporting Worker",
+    missionId: "Q9-09",
+    runtimePath: "pillow/src/financial-reporting-worker/",
+    probe: (b) => {
+      if (!b.financialReportingWorker) return "unavailable";
+      try {
+        const status = b.financialReportingWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "capital-risk-worker",
+    label: "Capital Risk Worker",
+    missionId: "Q9-10",
+    runtimePath: "pillow/src/capital-risk-worker/",
+    probe: (b) => {
+      if (!b.capitalRiskWorker) return "unavailable";
+      try {
+        const status = b.capitalRiskWorker.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "capital-factory-certification",
+    label: "Capital Factory Certification",
+    missionId: "Q9-11",
+    runtimePath: "pillow/src/capital-factory-certification/",
+    probe: (b) => {
+      if (!b.capitalFactoryCertification) return "unavailable";
+      try {
+        const status = b.capitalFactoryCertification.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shared-runtime-core",
+    label: "Shared Runtime Core",
+    missionId: "Q10-01",
+    runtimePath: "pillow/src/shared-runtime-core/",
+    probe: (b) => {
+      if (!b.sharedRuntimeCore) return "unavailable";
+      try {
+        const status = b.sharedRuntimeCore.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "pillow-orchestration-runtime",
+    label: "Pillow Orchestration Runtime",
+    missionId: "Q10-02",
+    runtimePath: "pillow/src/pillow-orchestration-runtime/",
+    probe: (b) => {
+      if (!b.pillowOrchestrationRuntime) return "unavailable";
+      try {
+        const status = b.pillowOrchestrationRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "mission-runtime",
+    label: "Mission Runtime",
+    missionId: "Q10-03",
+    runtimePath: "pillow/src/mission-runtime/",
+    probe: (b) => {
+      if (!b.missionRuntime) return "unavailable";
+      try {
+        const status = b.missionRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "queue-runtime",
+    label: "Queue Runtime",
+    missionId: "Q10-04",
+    runtimePath: "pillow/src/queue-runtime/",
+    probe: (b) => {
+      if (!b.queueRuntime) return "unavailable";
+      try {
+        const status = b.queueRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "memory-runtime",
+    label: "Memory Runtime",
+    missionId: "Q10-05",
+    runtimePath: "pillow/src/memory-runtime/",
+    probe: (b) => {
+      if (!b.memoryRuntime) return "unavailable";
+      try {
+        const status = b.memoryRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "api-runtime",
+    label: "API Runtime",
+    missionId: "Q10-06",
+    runtimePath: "pillow/src/api-runtime/",
+    probe: (b) => {
+      if (!b.apiRuntime) return "unavailable";
+      try {
+        const status = b.apiRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "tool-runtime",
+    label: "Tool Runtime",
+    missionId: "Q10-07",
+    runtimePath: "pillow/src/tool-runtime/",
+    probe: (b) => {
+      if (!b.toolRuntime) return "unavailable";
+      try {
+        const status = b.toolRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "communication-runtime",
+    label: "Communication Runtime",
+    missionId: "Q10-08",
+    runtimePath: "pillow/src/communication-runtime/",
+    probe: (b) => {
+      if (!b.communicationRuntime) return "unavailable";
+      try {
+        const status = b.communicationRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "approval-runtime",
+    label: "Approval Runtime",
+    missionId: "Q10-09",
+    runtimePath: "pillow/src/approval-runtime/",
+    probe: (b) => {
+      if (!b.approvalRuntime) return "unavailable";
+      try {
+        const status = b.approvalRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "monitoring-runtime",
+    label: "Monitoring Runtime",
+    missionId: "Q10-10",
+    runtimePath: "pillow/src/monitoring-runtime/",
+    probe: (b) => {
+      if (!b.monitoringRuntime) return "unavailable";
+      try {
+        const status = b.monitoringRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "recovery-runtime",
+    label: "Recovery Runtime",
+    missionId: "Q10-11",
+    runtimePath: "pillow/src/recovery-runtime/",
+    probe: (b) => {
+      if (!b.recoveryRuntime) return "unavailable";
+      try {
+        const status = b.recoveryRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "scheduling-runtime",
+    label: "Scheduling Runtime",
+    missionId: "Q10-12",
+    runtimePath: "pillow/src/scheduling-runtime/",
+    probe: (b) => {
+      if (!b.schedulingRuntime) return "unavailable";
+      try {
+        const status = b.schedulingRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "audit-runtime",
+    label: "Audit Runtime",
+    missionId: "Q10-13",
+    runtimePath: "pillow/src/audit-runtime/",
+    probe: (b) => {
+      if (!b.auditRuntime) return "unavailable";
+      try {
+        const status = b.auditRuntime.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "shared-runtime-certification",
+    label: "Shared Runtime Certification",
+    missionId: "Q10-14",
+    runtimePath: "pillow/src/shared-runtime-certification/",
+    probe: (b) => {
+      if (!b.sharedRuntimeCertification) return "unavailable";
+      try {
+        const status = b.sharedRuntimeCertification.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "production-certification-core",
+    label: "Production Certification Core",
+    missionId: "Q11-01",
+    runtimePath: "pillow/src/production-certification-core/",
+    probe: (b) => {
+      if (!b.productionCertificationCore) return "unavailable";
+      try {
+        const status = b.productionCertificationCore.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "worker-readiness-audit",
+    label: "Worker Readiness Audit",
+    missionId: "Q11-02",
+    runtimePath: "pillow/src/worker-readiness-audit/",
+    probe: (b) => {
+      if (!b.workerReadinessAudit) return "unavailable";
+      try {
+        const status = b.workerReadinessAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "pillow-command-audit",
+    label: "Pillow Command Audit",
+    missionId: "Q11-03",
+    runtimePath: "pillow/src/pillow-command-audit/",
+    probe: (b) => {
+      if (!b.pillowCommandAudit) return "unavailable";
+      try {
+        const status = b.pillowCommandAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "business-factory-audit",
+    label: "Business Factory Audit",
+    missionId: "Q11-04",
+    runtimePath: "pillow/src/business-factory-audit/",
+    probe: (b) => {
+      if (!b.businessFactoryAudit) return "unavailable";
+      try {
+        const status = b.businessFactoryAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "security-audit",
+    label: "Security Audit",
+    missionId: "Q11-05",
+    runtimePath: "pillow/src/security-audit/",
+    probe: (b) => {
+      if (!b.securityAudit) return "unavailable";
+      try {
+        const status = b.securityAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "performance-audit",
+    label: "Performance Audit",
+    missionId: "Q11-06",
+    runtimePath: "pillow/src/performance-audit/",
+    probe: (b) => {
+      if (!b.performanceAudit) return "unavailable";
+      try {
+        const status = b.performanceAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "recovery-audit",
+    label: "Recovery Audit",
+    missionId: "Q11-07",
+    runtimePath: "pillow/src/recovery-audit/",
+    probe: (b) => {
+      if (!b.recoveryAudit) return "unavailable";
+      try {
+        const status = b.recoveryAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "executive-acceptance-pack",
+    label: "Executive Acceptance Pack",
+    missionId: "Q11-09",
+    runtimePath: "pillow/src/executive-acceptance-pack/",
+    probe: (b) => {
+      if (!b.executiveAcceptancePack) return "unavailable";
+      try {
+        const status = b.executiveAcceptancePack.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "grand-king-acceptance-gate",
+    label: "Grand King Acceptance Gate",
+    missionId: "Q11-10",
+    runtimePath: "pillow/src/grand-king-acceptance-gate/",
+    probe: (b) => {
+      if (!b.grandKingAcceptanceGate) return "unavailable";
+      try {
+        const status = b.grandKingAcceptanceGate.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "post-launch-monitoring",
+    label: "Post-Launch Monitoring",
+    missionId: "Q11-11",
+    runtimePath: "pillow/src/post-launch-monitoring/",
+    probe: (b) => {
+      if (!b.postLaunchMonitoring) return "unavailable";
+      try {
+        const status = b.postLaunchMonitoring.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "q-series-certification",
+    label: "Q Series Certification",
+    missionId: "Q11-12",
+    runtimePath: "pillow/src/q-series-certification/",
+    probe: (b) => {
+      if (!b.qSeriesCertification) return "unavailable";
+      try {
+        const status = b.qSeriesCertification.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "q-series-completion",
+    label: "Q Series Completion",
+    missionId: "Q11-13",
+    runtimePath: "pillow/src/q-series-completion/",
+    probe: (b) => {
+      if (!b.qSeriesCompletion) return "unavailable";
+      try {
+        const status = b.qSeriesCompletion.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "ai-innovation-factory",
+    label: "AI Innovation Factory",
+    missionId: "Q12-01",
+    runtimePath: "pillow/src/ai-innovation-factory/",
+    probe: (b) => {
+      if (!b.aiInnovationFactory) return "unavailable";
+      try {
+        const status = b.aiInnovationFactory.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "implementation-specification-engine",
+    label: "Implementation Specification Engine",
+    missionId: "Q13-01",
+    runtimePath: "pillow/src/implementation-specification-engine/",
+    probe: (b) => {
+      if (!b.implementationSpecificationEngine) return "unavailable";
+      try {
+        const status = b.implementationSpecificationEngine.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "repository-intelligence-engine",
+    label: "Repository Intelligence Engine",
+    missionId: "Q13-02",
+    runtimePath: "pillow/src/repository-intelligence-engine/",
+    probe: (b) => {
+      if (!b.repositoryIntelligenceEngine) return "unavailable";
+      try {
+        const status = b.repositoryIntelligenceEngine.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "mission-planning-engine",
+    label: "Mission Planning Engine",
+    missionId: "Q13-03",
+    runtimePath: "pillow/src/mission-planning-engine/",
+    probe: (b) => {
+      if (!b.missionPlanningEngine) return "unavailable";
+      try {
+        const status = b.missionPlanningEngine.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "cursor-specification-generator",
+    label: "Cursor Specification Generator",
+    missionId: "Q13-04",
+    runtimePath: "pillow/src/cursor-specification-generator/",
+    probe: (b) => {
+      if (!b.cursorSpecificationGenerator) return "unavailable";
+      try {
+        const status = b.cursorSpecificationGenerator.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "implementation-recovery-planner",
+    label: "Implementation Recovery Planner",
+    missionId: "Q13-05",
+    runtimePath: "pillow/src/implementation-recovery-planner/",
+    probe: (b) => {
+      if (!b.implementationRecoveryPlanner) return "unavailable";
+      try {
+        const status = b.implementationRecoveryPlanner.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "programme-certification-factory",
+    label: "Programme Certification Factory",
+    missionId: "Q13-06",
+    runtimePath: "pillow/src/programme-certification-factory/",
+    probe: (b) => {
+      if (!b.programmeCertificationFactory) return "unavailable";
+      try {
+        const status = b.programmeCertificationFactory.getState().health.status;
         return status === "failed" ? "degraded" : "ready";
       } catch {
         return "unavailable";

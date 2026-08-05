@@ -1,3 +1,4 @@
+import { wireEngineIntegrations } from "./common/integration-wiring.js";
 import { ExecutiveDirectionContext } from "./bootstrap/executive-reasoning-context.js";
 import { runBootstrap } from "./bootstrap/engine.js";
 import {
@@ -1670,6 +1671,154 @@ import {
   createTaxSupportWorker,
 } from "./tax-support-worker/engine.js";
 import {
+  InvestmentPlanningWorker,
+  createInvestmentPlanningWorker,
+} from "./investment-planning-worker/engine.js";
+import {
+  FinancialReportingWorker,
+  createFinancialReportingWorker,
+} from "./financial-reporting-worker/engine.js";
+import {
+  CapitalRiskWorker,
+  createCapitalRiskWorker,
+} from "./capital-risk-worker/engine.js";
+import {
+  CapitalFactoryCertification,
+  createCapitalFactoryCertification,
+} from "./capital-factory-certification/engine.js";
+import {
+  SharedRuntimeCore,
+  createSharedRuntimeCore,
+} from "./shared-runtime-core/engine.js";
+import {
+  PillowOrchestrationRuntime,
+  createPillowOrchestrationRuntime,
+} from "./pillow-orchestration-runtime/engine.js";
+import {
+  MissionRuntime,
+  createMissionRuntime,
+} from "./mission-runtime/engine.js";
+import {
+  QueueRuntime,
+  createQueueRuntime,
+} from "./queue-runtime/engine.js";
+import {
+  MemoryRuntime,
+  createMemoryRuntime,
+} from "./memory-runtime/engine.js";
+import {
+  ApiRuntime,
+  createApiRuntime,
+} from "./api-runtime/engine.js";
+import {
+  ToolRuntime,
+  createToolRuntime,
+} from "./tool-runtime/engine.js";
+import {
+  CommunicationRuntime,
+  createCommunicationRuntime,
+} from "./communication-runtime/engine.js";
+import {
+  ApprovalRuntime,
+  createApprovalRuntime,
+} from "./approval-runtime/engine.js";
+import {
+  MonitoringRuntime,
+  createMonitoringRuntime,
+} from "./monitoring-runtime/engine.js";
+import {
+  RecoveryRuntime,
+  createRecoveryRuntime,
+} from "./recovery-runtime/engine.js";
+import {
+  SchedulingRuntime,
+  createSchedulingRuntime,
+} from "./scheduling-runtime/engine.js";
+import {
+  AuditRuntime,
+  createAuditRuntime,
+} from "./audit-runtime/engine.js";
+import {
+  SharedRuntimeCertification,
+  createSharedRuntimeCertification,
+} from "./shared-runtime-certification/engine.js";
+import {
+  ProductionCertificationCore,
+  createProductionCertificationCore,
+} from "./production-certification-core/engine.js";
+import {
+  WorkerReadinessAudit,
+  createWorkerReadinessAudit,
+} from "./worker-readiness-audit/engine.js";
+import {
+  PillowCommandAudit,
+  createPillowCommandAudit,
+} from "./pillow-command-audit/engine.js";
+import {
+  BusinessFactoryAudit,
+  createBusinessFactoryAudit,
+} from "./business-factory-audit/engine.js";
+import {
+  SecurityAudit,
+  createSecurityAudit,
+} from "./security-audit/engine.js";
+import {
+  PerformanceAudit,
+  createPerformanceAudit,
+} from "./performance-audit/engine.js";
+import {
+  RecoveryAudit,
+  createRecoveryAudit,
+} from "./recovery-audit/engine.js";
+import {
+  ExecutiveAcceptancePack,
+  createExecutiveAcceptancePack,
+} from "./executive-acceptance-pack/engine.js";
+import {
+  GrandKingAcceptanceGate,
+  createGrandKingAcceptanceGate,
+} from "./grand-king-acceptance-gate/engine.js";
+import {
+  PostLaunchMonitoring,
+  createPostLaunchMonitoring,
+} from "./post-launch-monitoring/engine.js";
+import {
+  QSeriesCertification,
+  createQSeriesCertification,
+} from "./q-series-certification/engine.js";
+import {
+  QSeriesCompletion,
+  createQSeriesCompletion,
+} from "./q-series-completion/engine.js";
+import {
+  AiInnovationFactory,
+  createAiInnovationFactory,
+} from "./ai-innovation-factory/engine.js";
+import {
+  ImplementationSpecificationEngine,
+  createImplementationSpecificationEngine,
+} from "./implementation-specification-engine/engine.js";
+import {
+  RepositoryIntelligenceEngine,
+  createRepositoryIntelligenceEngine,
+} from "./repository-intelligence-engine/engine.js";
+import {
+  MissionPlanningEngine,
+  createMissionPlanningEngine,
+} from "./mission-planning-engine/engine.js";
+import {
+  CursorSpecificationGenerator,
+  createCursorSpecificationGenerator,
+} from "./cursor-specification-generator/engine.js";
+import {
+  ImplementationRecoveryPlanner,
+  createImplementationRecoveryPlanner,
+} from "./implementation-recovery-planner/engine.js";
+import {
+  ProgrammeCertificationFactory,
+  createProgrammeCertificationFactory,
+} from "./programme-certification-factory/engine.js";
+import {
   GlobalExpansionSimulator,
   createGlobalExpansionSimulator,
 } from "./global-expansion-simulator/engine.js";
@@ -2037,6 +2186,43 @@ let budgetPlanningWorker: BudgetPlanningWorker | null = null;
 let profitabilityWorker: ProfitabilityWorker | null = null;
 let forecastingWorker: ForecastingWorker | null = null;
 let taxSupportWorker: TaxSupportWorker | null = null;
+let investmentPlanningWorker: InvestmentPlanningWorker | null = null;
+let financialReportingWorker: FinancialReportingWorker | null = null;
+let capitalRiskWorker: CapitalRiskWorker | null = null;
+let capitalFactoryCertification: CapitalFactoryCertification | null = null;
+let sharedRuntimeCore: SharedRuntimeCore | null = null;
+let pillowOrchestrationRuntime: PillowOrchestrationRuntime | null = null;
+let missionRuntime: MissionRuntime | null = null;
+let queueRuntime: QueueRuntime | null = null;
+let memoryRuntime: MemoryRuntime | null = null;
+let apiRuntime: ApiRuntime | null = null;
+let toolRuntime: ToolRuntime | null = null;
+let communicationRuntime: CommunicationRuntime | null = null;
+let approvalRuntime: ApprovalRuntime | null = null;
+let monitoringRuntime: MonitoringRuntime | null = null;
+let recoveryRuntime: RecoveryRuntime | null = null;
+let schedulingRuntime: SchedulingRuntime | null = null;
+let auditRuntime: AuditRuntime | null = null;
+let sharedRuntimeCertification: SharedRuntimeCertification | null = null;
+let productionCertificationCore: ProductionCertificationCore | null = null;
+let workerReadinessAudit: WorkerReadinessAudit | null = null;
+let pillowCommandAudit: PillowCommandAudit | null = null;
+let businessFactoryAudit: BusinessFactoryAudit | null = null;
+let securityAudit: SecurityAudit | null = null;
+let performanceAudit: PerformanceAudit | null = null;
+let recoveryAudit: RecoveryAudit | null = null;
+let executiveAcceptancePack: ExecutiveAcceptancePack | null = null;
+let grandKingAcceptanceGate: GrandKingAcceptanceGate | null = null;
+let postLaunchMonitoring: PostLaunchMonitoring | null = null;
+let qSeriesCertification: QSeriesCertification | null = null;
+let qSeriesCompletion: QSeriesCompletion | null = null;
+let aiInnovationFactory: AiInnovationFactory | null = null;
+let implementationSpecificationEngine: ImplementationSpecificationEngine | null = null;
+let repositoryIntelligenceEngine: RepositoryIntelligenceEngine | null = null;
+let missionPlanningEngine: MissionPlanningEngine | null = null;
+let cursorSpecificationGenerator: CursorSpecificationGenerator | null = null;
+let implementationRecoveryPlanner: ImplementationRecoveryPlanner | null = null;
+let programmeCertificationFactory: ProgrammeCertificationFactory | null = null;
 let globalExpansionSimulator: GlobalExpansionSimulator | null = null;
 let internationalExecutiveCockpit: InternationalExecutiveCockpit | null = null;
 let globalOperationsCertified: GlobalOperationsCertified | null = null;
@@ -2481,6 +2667,43 @@ export interface PillowSession {
   profitabilityWorker: ProfitabilityWorker;
   forecastingWorker: ForecastingWorker;
   taxSupportWorker: TaxSupportWorker;
+  investmentPlanningWorker: InvestmentPlanningWorker;
+  financialReportingWorker: FinancialReportingWorker;
+  capitalRiskWorker: CapitalRiskWorker;
+  capitalFactoryCertification: CapitalFactoryCertification;
+  sharedRuntimeCore: SharedRuntimeCore;
+  pillowOrchestrationRuntime: PillowOrchestrationRuntime;
+  missionRuntime: MissionRuntime;
+  queueRuntime: QueueRuntime;
+  memoryRuntime: MemoryRuntime;
+  apiRuntime: ApiRuntime;
+  toolRuntime: ToolRuntime;
+  communicationRuntime: CommunicationRuntime;
+  approvalRuntime: ApprovalRuntime;
+  monitoringRuntime: MonitoringRuntime;
+  recoveryRuntime: RecoveryRuntime;
+  schedulingRuntime: SchedulingRuntime;
+  auditRuntime: AuditRuntime;
+  sharedRuntimeCertification: SharedRuntimeCertification;
+  productionCertificationCore: ProductionCertificationCore;
+  workerReadinessAudit: WorkerReadinessAudit;
+  pillowCommandAudit: PillowCommandAudit;
+  businessFactoryAudit: BusinessFactoryAudit;
+  securityAudit: SecurityAudit;
+  performanceAudit: PerformanceAudit;
+  recoveryAudit: RecoveryAudit;
+  executiveAcceptancePack: ExecutiveAcceptancePack;
+  grandKingAcceptanceGate: GrandKingAcceptanceGate;
+  postLaunchMonitoring: PostLaunchMonitoring;
+  qSeriesCertification: QSeriesCertification;
+  qSeriesCompletion: QSeriesCompletion;
+  aiInnovationFactory: AiInnovationFactory;
+  implementationSpecificationEngine: ImplementationSpecificationEngine;
+  repositoryIntelligenceEngine: RepositoryIntelligenceEngine;
+  missionPlanningEngine: MissionPlanningEngine;
+  cursorSpecificationGenerator: CursorSpecificationGenerator;
+  implementationRecoveryPlanner: ImplementationRecoveryPlanner;
+  programmeCertificationFactory: ProgrammeCertificationFactory;
   autonomousScalingFramework: AutonomousScalingFrameworkEngine;
   winningProductDetector: WinningProductDetectorEngine;
   scalingDecisionEngine: ScalingDecisionEngine;
@@ -5284,7 +5507,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   marketResearchWorker = createMarketResearchWorker(result);
   await marketResearchWorker.initialize();
-  marketResearchWorker.bindIntegrations({
+  wireEngineIntegrations(marketResearchWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5295,7 +5518,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   opportunityEvaluationWorker = createOpportunityEvaluationWorker(result);
   await opportunityEvaluationWorker.initialize();
-  opportunityEvaluationWorker.bindIntegrations({
+  wireEngineIntegrations(opportunityEvaluationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5306,7 +5529,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   businessBlueprintWorker = createBusinessBlueprintWorker(result);
   await businessBlueprintWorker.initialize();
-  businessBlueprintWorker.bindIntegrations({
+  wireEngineIntegrations(businessBlueprintWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5317,7 +5540,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   launchPlanWorker = createLaunchPlanWorker(result);
   await launchPlanWorker.initialize();
-  launchPlanWorker.bindIntegrations({
+  wireEngineIntegrations(launchPlanWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5331,7 +5554,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   businessRiskWorker = createBusinessRiskWorker(result);
   await businessRiskWorker.initialize();
-  businessRiskWorker.bindIntegrations({
+  wireEngineIntegrations(businessRiskWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5344,7 +5567,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   businessApprovalPackWorker = createBusinessApprovalPackWorker(result);
   await businessApprovalPackWorker.initialize();
-  businessApprovalPackWorker.bindIntegrations({
+  wireEngineIntegrations(businessApprovalPackWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5364,7 +5587,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   commerceFactoryCore = createCommerceFactoryCore(result);
   await commerceFactoryCore.initialize();
-  commerceFactoryCore.bindIntegrations({
+  wireEngineIntegrations(commerceFactoryCore, {
     workerRegistry,
     missionCoordinationEngine,
     executiveReportingRuntime,
@@ -5376,7 +5599,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   productDiscoveryWorker = createProductDiscoveryWorker(result);
   await productDiscoveryWorker.initialize();
-  productDiscoveryWorker.bindIntegrations({
+  wireEngineIntegrations(productDiscoveryWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5387,7 +5610,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   productEvaluationWorker = createProductEvaluationWorker(result);
   await productEvaluationWorker.initialize();
-  productEvaluationWorker.bindIntegrations({
+  wireEngineIntegrations(productEvaluationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5399,7 +5622,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   supplierDiscoveryWorker = createSupplierDiscoveryWorker(result);
   await supplierDiscoveryWorker.initialize();
-  supplierDiscoveryWorker.bindIntegrations({
+  wireEngineIntegrations(supplierDiscoveryWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5411,7 +5634,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   supplierEvaluationWorker = createSupplierEvaluationWorker(result);
   await supplierEvaluationWorker.initialize();
-  supplierEvaluationWorker.bindIntegrations({
+  wireEngineIntegrations(supplierEvaluationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5423,7 +5646,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   supplierNegotiationWorker = createSupplierNegotiationWorker(result);
   await supplierNegotiationWorker.initialize();
-  supplierNegotiationWorker.bindIntegrations({
+  wireEngineIntegrations(supplierNegotiationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5435,7 +5658,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   productImageWorker = createProductImageWorker(result);
   await productImageWorker.initialize();
-  productImageWorker.bindIntegrations({
+  wireEngineIntegrations(productImageWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5447,7 +5670,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   productListingWorker = createProductListingWorker(result);
   await productListingWorker.initialize();
-  productListingWorker.bindIntegrations({
+  wireEngineIntegrations(productListingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5459,7 +5682,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   pricingWorker = createPricingWorker(result);
   await pricingWorker.initialize();
-  pricingWorker.bindIntegrations({
+  wireEngineIntegrations(pricingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5471,7 +5694,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   inventoryWorker = createInventoryWorker(result);
   await inventoryWorker.initialize();
-  inventoryWorker.bindIntegrations({
+  wireEngineIntegrations(inventoryWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5483,7 +5706,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   orderWorker = createOrderWorker(result);
   await orderWorker.initialize();
-  orderWorker.bindIntegrations({
+  wireEngineIntegrations(orderWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5495,7 +5718,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   refundDisputeWorker = createRefundDisputeWorker(result);
   await refundDisputeWorker.initialize();
-  refundDisputeWorker.bindIntegrations({
+  wireEngineIntegrations(refundDisputeWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5507,7 +5730,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   commerceAnalyticsWorker = createCommerceAnalyticsWorker(result);
   await commerceAnalyticsWorker.initialize();
-  commerceAnalyticsWorker.bindIntegrations({
+  wireEngineIntegrations(commerceAnalyticsWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5525,7 +5748,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   mediaFactoryCore = createMediaFactoryCore(result);
   await mediaFactoryCore.initialize();
-  mediaFactoryCore.bindIntegrations({
+  wireEngineIntegrations(mediaFactoryCore, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5537,7 +5760,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   editorInChiefWorker = createEditorInChiefWorker(result);
   await editorInChiefWorker.initialize();
-  editorInChiefWorker.bindIntegrations({
+  wireEngineIntegrations(editorInChiefWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5549,7 +5772,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   trendResearchWorker = createTrendResearchWorker(result);
   await trendResearchWorker.initialize();
-  trendResearchWorker.bindIntegrations({
+  wireEngineIntegrations(trendResearchWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5562,7 +5785,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   topicPlannerWorker = createTopicPlannerWorker(result);
   await topicPlannerWorker.initialize();
-  topicPlannerWorker.bindIntegrations({
+  wireEngineIntegrations(topicPlannerWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5575,7 +5798,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   scriptWorker = createScriptWorker(result);
   await scriptWorker.initialize();
-  scriptWorker.bindIntegrations({
+  wireEngineIntegrations(scriptWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5588,7 +5811,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   hookWorker = createHookWorker(result);
   await hookWorker.initialize();
-  hookWorker.bindIntegrations({
+  wireEngineIntegrations(hookWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5600,7 +5823,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   thumbnailWorker = createThumbnailWorker(result);
   await thumbnailWorker.initialize();
-  thumbnailWorker.bindIntegrations({
+  wireEngineIntegrations(thumbnailWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5613,7 +5836,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   visualResearchWorker = createVisualResearchWorker(result);
   await visualResearchWorker.initialize();
-  visualResearchWorker.bindIntegrations({
+  wireEngineIntegrations(visualResearchWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5626,7 +5849,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   imageCreativeWorker = createImageCreativeWorker(result);
   await imageCreativeWorker.initialize();
-  imageCreativeWorker.bindIntegrations({
+  wireEngineIntegrations(imageCreativeWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5639,7 +5862,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   voiceWorker = createVoiceWorker(result);
   await voiceWorker.initialize();
-  voiceWorker.bindIntegrations({
+  wireEngineIntegrations(voiceWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5651,7 +5874,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   videoAssemblyWorker = createVideoAssemblyWorker(result);
   await videoAssemblyWorker.initialize();
-  videoAssemblyWorker.bindIntegrations({
+  wireEngineIntegrations(videoAssemblyWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5665,7 +5888,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   subtitleWorker = createSubtitleWorker(result);
   await subtitleWorker.initialize();
-  subtitleWorker.bindIntegrations({
+  wireEngineIntegrations(subtitleWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5679,7 +5902,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   musicSoundWorker = createMusicSoundWorker(result);
   await musicSoundWorker.initialize();
-  musicSoundWorker.bindIntegrations({
+  wireEngineIntegrations(musicSoundWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5692,7 +5915,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   publishingWorker = createPublishingWorker(result);
   await publishingWorker.initialize();
-  publishingWorker.bindIntegrations({
+  wireEngineIntegrations(publishingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5723,7 +5946,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   mediaAnalyticsWorker = createMediaAnalyticsWorker(result);
   await mediaAnalyticsWorker.initialize();
-  mediaAnalyticsWorker.bindIntegrations({
+  wireEngineIntegrations(mediaAnalyticsWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5735,17 +5958,17 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   mediaLearningWorker = createMediaLearningWorker(result);
   await mediaLearningWorker.initialize();
-  mediaLearningWorker.bindIntegrations({
+  wireEngineIntegrations(mediaLearningWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
     mediaAnalyticsWorker,
     experienceReplayEngine: {
-      recordExperience: (input) =>
+      recordExperience: (input: unknown) =>
         experienceReplayEngine?.extractLessons(input as never),
     },
     operationalPlaybookEngine: {
-      registerPlaybookRecommendation: (input) =>
+      registerPlaybookRecommendation: (input: unknown) =>
         operationalPlaybookEngine?.registerPlaybook(input as never),
     },
     executiveReportingRuntime,
@@ -5755,7 +5978,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   channelRecommendationWorker = createChannelRecommendationWorker(result);
   await channelRecommendationWorker.initialize();
-  channelRecommendationWorker.bindIntegrations({
+  wireEngineIntegrations(channelRecommendationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5769,7 +5992,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   mediaExecutiveReviewWorker = createMediaExecutiveReviewWorker(result);
   await mediaExecutiveReviewWorker.initialize();
-  mediaExecutiveReviewWorker.bindIntegrations({
+  wireEngineIntegrations(mediaExecutiveReviewWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5786,7 +6009,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   digitalProductsFactoryCore = createDigitalProductsFactoryCore(result);
   await digitalProductsFactoryCore.initialize();
-  digitalProductsFactoryCore.bindIntegrations({
+  wireEngineIntegrations(digitalProductsFactoryCore, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5798,7 +6021,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   digitalProductResearchWorker = createDigitalProductResearchWorker(result);
   await digitalProductResearchWorker.initialize();
-  digitalProductResearchWorker.bindIntegrations({
+  wireEngineIntegrations(digitalProductResearchWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5810,7 +6033,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   ebookWorker = createEbookWorker(result);
   await ebookWorker.initialize();
-  ebookWorker.bindIntegrations({
+  wireEngineIntegrations(ebookWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5823,7 +6046,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   promptProductWorker = createPromptProductWorker(result);
   await promptProductWorker.initialize();
-  promptProductWorker.bindIntegrations({
+  wireEngineIntegrations(promptProductWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5836,7 +6059,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   courseBuilderWorker = createCourseBuilderWorker(result);
   await courseBuilderWorker.initialize();
-  courseBuilderWorker.bindIntegrations({
+  wireEngineIntegrations(courseBuilderWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5849,7 +6072,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   templateBuilderWorker = createTemplateBuilderWorker(result);
   await templateBuilderWorker.initialize();
-  templateBuilderWorker.bindIntegrations({
+  wireEngineIntegrations(templateBuilderWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5862,7 +6085,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   designWorker = createDesignWorker(result);
   await designWorker.initialize();
-  designWorker.bindIntegrations({
+  wireEngineIntegrations(designWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5875,7 +6098,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   salesPageWorker = createSalesPageWorker(result);
   await salesPageWorker.initialize();
-  salesPageWorker.bindIntegrations({
+  wireEngineIntegrations(salesPageWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5888,7 +6111,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   checkoutWorker = createCheckoutWorker(result);
   await checkoutWorker.initialize();
-  checkoutWorker.bindIntegrations({
+  wireEngineIntegrations(checkoutWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5901,7 +6124,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   digitalDeliveryWorker = createDigitalDeliveryWorker(result);
   await digitalDeliveryWorker.initialize();
-  digitalDeliveryWorker.bindIntegrations({
+  wireEngineIntegrations(digitalDeliveryWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5914,7 +6137,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   digitalProductAnalyticsWorker = createDigitalProductAnalyticsWorker(result);
   await digitalProductAnalyticsWorker.initialize();
-  digitalProductAnalyticsWorker.bindIntegrations({
+  wireEngineIntegrations(digitalProductAnalyticsWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5928,7 +6151,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   digitalProductsCertification = createDigitalProductsCertification(result);
   await digitalProductsCertification.initialize();
-  digitalProductsCertification.bindIntegrations({
+  wireEngineIntegrations(digitalProductsCertification, {
     digitalProductsFactoryCore,
     executiveReportingRuntime,
     workerPerformanceReview,
@@ -5937,7 +6160,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   enterprisePlatformFactoryCore = createEnterprisePlatformFactoryCore(result);
   await enterprisePlatformFactoryCore.initialize();
-  enterprisePlatformFactoryCore.bindIntegrations({
+  wireEngineIntegrations(enterprisePlatformFactoryCore, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5949,7 +6172,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   requirementsWorker = createRequirementsWorker(result);
   await requirementsWorker.initialize();
-  requirementsWorker.bindIntegrations({
+  wireEngineIntegrations(requirementsWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5961,7 +6184,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   architectureWorker = createArchitectureWorker(result);
   await architectureWorker.initialize();
-  architectureWorker.bindIntegrations({
+  wireEngineIntegrations(architectureWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5974,7 +6197,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   frontendWorker = createFrontendWorker(result);
   await frontendWorker.initialize();
-  frontendWorker.bindIntegrations({
+  wireEngineIntegrations(frontendWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -5988,7 +6211,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   backendWorker = createBackendWorker(result);
   await backendWorker.initialize();
-  backendWorker.bindIntegrations({
+  wireEngineIntegrations(backendWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6003,7 +6226,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   databaseWorker = createDatabaseWorker(result);
   await databaseWorker.initialize();
-  databaseWorker.bindIntegrations({
+  wireEngineIntegrations(databaseWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6018,7 +6241,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   authenticationWorker = createAuthenticationWorker(result);
   await authenticationWorker.initialize();
-  authenticationWorker.bindIntegrations({
+  wireEngineIntegrations(authenticationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6034,7 +6257,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   authorizationWorker = createAuthorizationWorker(result);
   await authorizationWorker.initialize();
-  authorizationWorker.bindIntegrations({
+  wireEngineIntegrations(authorizationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6051,7 +6274,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   billingWorker = createBillingWorker(result);
   await billingWorker.initialize();
-  billingWorker.bindIntegrations({
+  wireEngineIntegrations(billingWorker, {
     requirementsWorker,
     architectureWorker,
     authenticationWorker,
@@ -6061,7 +6284,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   apiIntegrationWorker = createApiIntegrationWorker(result);
   await apiIntegrationWorker.initialize();
-  apiIntegrationWorker.bindIntegrations({
+  wireEngineIntegrations(apiIntegrationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6078,7 +6301,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   workflowBuilderWorker = createWorkflowBuilderWorker(result);
   await workflowBuilderWorker.initialize();
-  workflowBuilderWorker.bindIntegrations({
+  wireEngineIntegrations(workflowBuilderWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6099,7 +6322,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   notificationWorker = createNotificationWorker(result);
   await notificationWorker.initialize();
-  notificationWorker.bindIntegrations({
+  wireEngineIntegrations(notificationWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6116,7 +6339,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   testingWorker = createTestingWorker(result);
   await testingWorker.initialize();
-  testingWorker.bindIntegrations({
+  wireEngineIntegrations(testingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6139,7 +6362,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   deploymentWorker = createDeploymentWorker(result);
   await deploymentWorker.initialize();
-  deploymentWorker.bindIntegrations({
+  wireEngineIntegrations(deploymentWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6157,7 +6380,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   platformCertification = createPlatformCertification(result);
   await platformCertification.initialize();
-  platformCertification.bindIntegrations({
+  wireEngineIntegrations(platformCertification, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6182,7 +6405,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   localBusinessFactoryCore = createLocalBusinessFactoryCore(result);
   await localBusinessFactoryCore.initialize();
-  localBusinessFactoryCore.bindIntegrations({
+  wireEngineIntegrations(localBusinessFactoryCore, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6194,7 +6417,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   localMarketResearchWorker = createLocalMarketResearchWorker(result);
   await localMarketResearchWorker.initialize();
-  localMarketResearchWorker.bindIntegrations({
+  wireEngineIntegrations(localMarketResearchWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6206,7 +6429,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   serviceOfferWorker = createServiceOfferWorker(result);
   await serviceOfferWorker.initialize();
-  serviceOfferWorker.bindIntegrations({
+  wireEngineIntegrations(serviceOfferWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6219,7 +6442,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   bookingWorker = createBookingWorker(result);
   await bookingWorker.initialize();
-  bookingWorker.bindIntegrations({
+  wireEngineIntegrations(bookingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6233,7 +6456,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   crmWorker = createCrmWorker(result);
   await crmWorker.initialize();
-  crmWorker.bindIntegrations({
+  wireEngineIntegrations(crmWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6248,7 +6471,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   whatsAppWorker = createWhatsAppWorker(result);
   await whatsAppWorker.initialize();
-  whatsAppWorker.bindIntegrations({
+  wireEngineIntegrations(whatsAppWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6264,7 +6487,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   localSeoWorker = createLocalSeoWorker(result);
   await localSeoWorker.initialize();
-  localSeoWorker.bindIntegrations({
+  wireEngineIntegrations(localSeoWorker, {
     workerRegistry,
     workerLifecycle,
     localBusinessFactoryCore,
@@ -6278,7 +6501,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   leadGenerationWorker = createLeadGenerationWorker(result);
   await leadGenerationWorker.initialize();
-  leadGenerationWorker.bindIntegrations({
+  wireEngineIntegrations(leadGenerationWorker, {
     workerRegistry,
     workerLifecycle,
     localBusinessFactoryCore,
@@ -6293,7 +6516,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   operationsWorker = createOperationsWorker(result);
   await operationsWorker.initialize();
-  operationsWorker.bindIntegrations({
+  wireEngineIntegrations(operationsWorker, {
     workerRegistry,
     workerLifecycle,
     localBusinessFactoryCore,
@@ -6308,7 +6531,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   localBusinessLaunchPack = createLocalBusinessLaunchPack(result);
   await localBusinessLaunchPack.initialize();
-  localBusinessLaunchPack.bindIntegrations({
+  wireEngineIntegrations(localBusinessLaunchPack, {
     workerRegistry,
     workerLifecycle,
     localBusinessFactoryCore,
@@ -6327,7 +6550,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   localBusinessCertification = createLocalBusinessCertification(result);
   await localBusinessCertification.initialize();
-  localBusinessCertification.bindIntegrations({
+  wireEngineIntegrations(localBusinessCertification, {
     workerRegistry,
     workerLifecycle,
     localBusinessFactoryCore,
@@ -6346,7 +6569,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   affiliateFactoryCore = createAffiliateFactoryCore(result);
   await affiliateFactoryCore.initialize();
-  affiliateFactoryCore.bindIntegrations({
+  wireEngineIntegrations(affiliateFactoryCore, {
     workerRegistry,
     workerLifecycle,
     executiveReportingRuntime,
@@ -6355,7 +6578,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   affiliateOpportunityWorker = createAffiliateOpportunityWorker(result);
   await affiliateOpportunityWorker.initialize();
-  affiliateOpportunityWorker.bindIntegrations({
+  wireEngineIntegrations(affiliateOpportunityWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6365,7 +6588,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   comparisonSiteWorker = createComparisonSiteWorker(result);
   await comparisonSiteWorker.initialize();
-  comparisonSiteWorker.bindIntegrations({
+  wireEngineIntegrations(comparisonSiteWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6376,7 +6599,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   reviewContentWorker = createReviewContentWorker(result);
   await reviewContentWorker.initialize();
-  reviewContentWorker.bindIntegrations({
+  wireEngineIntegrations(reviewContentWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6388,7 +6611,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   seoContentWorker = createSeoContentWorker(result);
   await seoContentWorker.initialize();
-  seoContentWorker.bindIntegrations({
+  wireEngineIntegrations(seoContentWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6401,7 +6624,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   emailFunnelWorker = createEmailFunnelWorker(result);
   await emailFunnelWorker.initialize();
-  emailFunnelWorker.bindIntegrations({
+  wireEngineIntegrations(emailFunnelWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6414,7 +6637,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   analyticsWorker = createAnalyticsWorker(result);
   await analyticsWorker.initialize();
-  analyticsWorker.bindIntegrations({
+  wireEngineIntegrations(analyticsWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6429,7 +6652,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   affiliateComplianceWorker = createAffiliateComplianceWorker(result);
   await affiliateComplianceWorker.initialize();
-  affiliateComplianceWorker.bindIntegrations({
+  wireEngineIntegrations(affiliateComplianceWorker, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6445,7 +6668,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   affiliateCertification = createAffiliateCertification(result);
   await affiliateCertification.initialize();
-  affiliateCertification.bindIntegrations({
+  wireEngineIntegrations(affiliateCertification, {
     workerRegistry,
     workerLifecycle,
     affiliateFactoryCore,
@@ -6462,7 +6685,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   capitalFactoryCore = createCapitalFactoryCore(result);
   await capitalFactoryCore.initialize();
-  capitalFactoryCore.bindIntegrations({
+  wireEngineIntegrations(capitalFactoryCore, {
     workerRegistry,
     workerLifecycle,
     executiveReportingRuntime,
@@ -6471,7 +6694,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   accountingWorker = createAccountingWorker(result);
   await accountingWorker.initialize();
-  accountingWorker.bindIntegrations({
+  wireEngineIntegrations(accountingWorker, {
     workerRegistry,
     workerLifecycle,
     capitalFactoryCore,
@@ -6481,7 +6704,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   cashflowWorker = createCashflowWorker(result);
   await cashflowWorker.initialize();
-  cashflowWorker.bindIntegrations({
+  wireEngineIntegrations(cashflowWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6493,7 +6716,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   budgetPlanningWorker = createBudgetPlanningWorker(result);
   await budgetPlanningWorker.initialize();
-  budgetPlanningWorker.bindIntegrations({
+  wireEngineIntegrations(budgetPlanningWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6506,7 +6729,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   profitabilityWorker = createProfitabilityWorker(result);
   await profitabilityWorker.initialize();
-  profitabilityWorker.bindIntegrations({
+  wireEngineIntegrations(profitabilityWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6520,7 +6743,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   forecastingWorker = createForecastingWorker(result);
   await forecastingWorker.initialize();
-  forecastingWorker.bindIntegrations({
+  wireEngineIntegrations(forecastingWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6535,7 +6758,7 @@ export async function startPillow(options?: {
   await yieldEventLoop();
   taxSupportWorker = createTaxSupportWorker(result);
   await taxSupportWorker.initialize();
-  taxSupportWorker.bindIntegrations({
+  wireEngineIntegrations(taxSupportWorker, {
     workerRegistry,
     workerLifecycle,
     workerAssignmentEngine,
@@ -6546,6 +6769,635 @@ export async function startPillow(options?: {
     forecastingWorker,
     executiveReportingRuntime,
     workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  investmentPlanningWorker = createInvestmentPlanningWorker(result);
+  await investmentPlanningWorker.initialize();
+  wireEngineIntegrations(investmentPlanningWorker, {
+    workerRegistry,
+    workerLifecycle,
+    workerAssignmentEngine,
+    capitalFactoryCore,
+    accountingWorker,
+    cashflowWorker,
+    budgetPlanningWorker,
+    profitabilityWorker,
+    forecastingWorker,
+    taxSupportWorker,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  financialReportingWorker = createFinancialReportingWorker(result);
+  await financialReportingWorker.initialize();
+  wireEngineIntegrations(financialReportingWorker, {
+    workerRegistry,
+    workerLifecycle,
+    workerAssignmentEngine,
+    capitalFactoryCore,
+    accountingWorker,
+    cashflowWorker,
+    budgetPlanningWorker,
+    profitabilityWorker,
+    forecastingWorker,
+    taxSupportWorker,
+    investmentPlanningWorker,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  capitalRiskWorker = createCapitalRiskWorker(result);
+  await capitalRiskWorker.initialize();
+  wireEngineIntegrations(capitalRiskWorker, {
+    workerRegistry,
+    workerLifecycle,
+    workerAssignmentEngine,
+    capitalFactoryCore,
+    accountingWorker,
+    cashflowWorker,
+    budgetPlanningWorker,
+    profitabilityWorker,
+    forecastingWorker,
+    taxSupportWorker,
+    investmentPlanningWorker,
+    financialReportingWorker,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  capitalFactoryCertification = createCapitalFactoryCertification(result);
+  await capitalFactoryCertification.initialize();
+  wireEngineIntegrations(capitalFactoryCertification, {
+    workerRegistry,
+    workerLifecycle,
+    capitalFactoryCore,
+    accountingWorker,
+    cashflowWorker,
+    budgetPlanningWorker,
+    profitabilityWorker,
+    forecastingWorker,
+    taxSupportWorker,
+    investmentPlanningWorker,
+    financialReportingWorker,
+    capitalRiskWorker,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  sharedRuntimeCore = createSharedRuntimeCore(result);
+  await sharedRuntimeCore.initialize();
+  wireEngineIntegrations(sharedRuntimeCore, {
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    empireBuilderFactory: empireBuilderFactoryCore,
+    commerceFactory: commerceFactoryCore,
+    mediaFactory: mediaFactoryCore,
+    digitalProductsFactory: digitalProductsFactoryCore,
+    enterprisePlatformFactory: enterprisePlatformFactoryCore,
+    localBusinessFactory: localBusinessFactoryCore,
+    affiliateFactory: affiliateFactoryCore,
+    capitalFactory: capitalFactoryCore,
+    workforceOs: workforceOperatingSystem,
+  });
+  await yieldEventLoop();
+  pillowOrchestrationRuntime = createPillowOrchestrationRuntime(result);
+  await pillowOrchestrationRuntime.initialize();
+  wireEngineIntegrations(pillowOrchestrationRuntime, {
+    sharedRuntimeCore,
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    approvalRouter: approvalRouter ?? undefined,
+    approvalWorkflow: approvalWorkflowEngine ?? undefined,
+  });
+  await yieldEventLoop();
+  missionRuntime = createMissionRuntime(result);
+  await missionRuntime.initialize();
+  wireEngineIntegrations(missionRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  queueRuntime = createQueueRuntime(result);
+  await queueRuntime.initialize();
+  wireEngineIntegrations(queueRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  memoryRuntime = createMemoryRuntime(result);
+  await memoryRuntime.initialize();
+  wireEngineIntegrations(memoryRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  apiRuntime = createApiRuntime(result);
+  await apiRuntime.initialize();
+  wireEngineIntegrations(apiRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    workerRegistry,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  toolRuntime = createToolRuntime(result);
+  await toolRuntime.initialize();
+  wireEngineIntegrations(toolRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  communicationRuntime = createCommunicationRuntime(result);
+  await communicationRuntime.initialize();
+  wireEngineIntegrations(communicationRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  approvalRuntime = createApprovalRuntime(result);
+  await approvalRuntime.initialize();
+  wireEngineIntegrations(approvalRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  monitoringRuntime = createMonitoringRuntime(result);
+  await monitoringRuntime.initialize();
+  wireEngineIntegrations(monitoringRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  recoveryRuntime = createRecoveryRuntime(result);
+  await recoveryRuntime.initialize();
+  wireEngineIntegrations(recoveryRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    monitoringRuntime,
+    executiveReportingRuntime,
+    workerRecoverySystem,
+    auditRuntime: auditReviewer,
+    recovery: workerRecoverySystem ?? undefined,
+  });
+  await yieldEventLoop();
+  schedulingRuntime = createSchedulingRuntime(result);
+  await schedulingRuntime.initialize();
+  wireEngineIntegrations(schedulingRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    executiveReportingRuntime,
+    auditRuntime: auditReviewer,
+  });
+  await yieldEventLoop();
+  auditRuntime = createAuditRuntime(result);
+  await auditRuntime.initialize();
+  wireEngineIntegrations(auditRuntime, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    schedulingRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+  sharedRuntimeCertification = createSharedRuntimeCertification(result);
+  await sharedRuntimeCertification.initialize();
+  wireEngineIntegrations(sharedRuntimeCertification, {
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    schedulingRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    workerLifecycle,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  productionCertificationCore = createProductionCertificationCore(result);
+  await productionCertificationCore.initialize();
+  wireEngineIntegrations(productionCertificationCore, {
+    sharedRuntimeCertification,
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    missionRuntime,
+    queueRuntime,
+    memoryRuntime,
+    apiRuntime,
+    toolRuntime,
+    communicationRuntime,
+    approvalRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    schedulingRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    workerLifecycle,
+    workerRecoverySystem,
+  });
+  await yieldEventLoop();
+  workerReadinessAudit = createWorkerReadinessAudit(result);
+  await workerReadinessAudit.initialize();
+  wireEngineIntegrations(workerReadinessAudit, {
+    productionCertificationCore,
+    workerRegistry,
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    monitoringRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    workerLifecycle,
+  });
+  await yieldEventLoop();
+  pillowCommandAudit = createPillowCommandAudit(result);
+  await pillowCommandAudit.initialize();
+  wireEngineIntegrations(pillowCommandAudit, {
+    workerReadinessAudit,
+    productionCertificationCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+    communicationRuntime,
+    missionRuntime,
+    monitoringRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+  businessFactoryAudit = createBusinessFactoryAudit(result);
+  await businessFactoryAudit.initialize();
+  wireEngineIntegrations(businessFactoryAudit, {
+    pillowCommandAudit,
+    productionCertificationCore,
+    sharedRuntimeCore,
+    workerRegistry,
+    empireBuilderFactoryCore,
+    commerceFactoryCore,
+    mediaFactoryCore,
+    digitalProductsFactoryCore,
+    enterprisePlatformFactoryCore,
+    localBusinessFactoryCore,
+    affiliateFactoryCore,
+    capitalFactoryCore,
+    pillowOrchestrationRuntime,
+    monitoringRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  securityAudit = createSecurityAudit(result);
+  await securityAudit.initialize();
+  wireEngineIntegrations(securityAudit, {
+    businessFactoryAudit,
+    productionCertificationCore,
+    authenticationWorker,
+    authorizationWorker,
+    authorityMatrix,
+    apiRuntime,
+    toolRuntime,
+    monitoringRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+  });
+  await yieldEventLoop();
+
+  performanceAudit = createPerformanceAudit(result);
+  await performanceAudit.initialize();
+  wireEngineIntegrations(performanceAudit, {
+    securityAudit,
+    productionCertificationCore,
+    sharedRuntimeCore,
+    monitoringRuntime,
+    auditRuntime,
+    queueRuntime,
+    apiRuntime,
+    workerRegistry,
+    executiveReportingRuntime,
+    pillowOrchestrationRuntime,
+    schedulingRuntime,
+  });
+  await yieldEventLoop();
+
+  recoveryAudit = createRecoveryAudit(result);
+  await recoveryAudit.initialize();
+  wireEngineIntegrations(recoveryAudit, {
+    performanceAudit,
+    productionCertificationCore,
+    recoveryRuntime,
+    monitoringRuntime,
+    queueRuntime,
+    missionRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+  });
+  await yieldEventLoop();
+
+  executiveAcceptancePack = createExecutiveAcceptancePack(result);
+  await executiveAcceptancePack.initialize();
+  wireEngineIntegrations(executiveAcceptancePack, {
+    productionCertificationCore,
+    sharedRuntimeCertification,
+    workerReadinessAudit,
+    pillowCommandAudit,
+    businessFactoryAudit,
+    securityAudit,
+    performanceAudit,
+    recoveryAudit,
+    executiveReportingRuntime,
+    auditRuntime,
+    monitoringRuntime,
+  });
+  await yieldEventLoop();
+
+  grandKingAcceptanceGate = createGrandKingAcceptanceGate(result);
+  await grandKingAcceptanceGate.initialize();
+  wireEngineIntegrations(grandKingAcceptanceGate, {
+    executiveAcceptancePack,
+    productionCertificationCore,
+    sharedRuntimeCertification,
+    executiveReportingRuntime,
+    approvalRuntime,
+    auditRuntime,
+    monitoringRuntime,
+  });
+  await yieldEventLoop();
+
+  postLaunchMonitoring = createPostLaunchMonitoring(result);
+  await postLaunchMonitoring.initialize();
+  wireEngineIntegrations(postLaunchMonitoring, {
+    grandKingAcceptanceGate,
+    sharedRuntimeCore,
+    pillowOrchestrationRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    workerRegistry,
+    apiRuntime,
+    queueRuntime,
+  });
+  await yieldEventLoop();
+
+  qSeriesCertification = createQSeriesCertification(result);
+  await qSeriesCertification.initialize();
+  wireEngineIntegrations(qSeriesCertification, {
+    postLaunchMonitoring,
+    productionCertificationCore,
+    sharedRuntimeCertification,
+    workerReadinessAudit,
+    pillowCommandAudit,
+    businessFactoryAudit,
+    securityAudit,
+    performanceAudit,
+    recoveryAudit,
+    executiveAcceptancePack,
+    grandKingAcceptanceGate,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+    executiveReportingRuntime,
+    auditRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    apiRuntime,
+    queueRuntime,
+    schedulingRuntime,
+  });
+  await yieldEventLoop();
+
+  qSeriesCompletion = createQSeriesCompletion(result);
+  await qSeriesCompletion.initialize();
+  wireEngineIntegrations(qSeriesCompletion, {
+    qSeriesCertification,
+    productionCertificationCore,
+    sharedRuntimeCertification,
+    workerReadinessAudit,
+    pillowCommandAudit,
+    businessFactoryAudit,
+    securityAudit,
+    performanceAudit,
+    recoveryAudit,
+    executiveAcceptancePack,
+    grandKingAcceptanceGate,
+    postLaunchMonitoring,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+    executiveReportingRuntime,
+    auditRuntime,
+    monitoringRuntime,
+    recoveryRuntime,
+    apiRuntime,
+  });
+  await yieldEventLoop();
+
+  aiInnovationFactory = createAiInnovationFactory(result);
+  await aiInnovationFactory.initialize();
+  wireEngineIntegrations(aiInnovationFactory, {
+    qSeriesCompletion,
+    grandKingAcceptanceGate,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+    monitoringRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  implementationSpecificationEngine = createImplementationSpecificationEngine(result);
+  await implementationSpecificationEngine.initialize();
+  wireEngineIntegrations(implementationSpecificationEngine, {
+    aiInnovationFactory,
+    qSeriesCompletion,
+    intelligenceContext,
+    sharedRuntimeCore,
+    workerRegistry,
+    pillowOrchestrationRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  repositoryIntelligenceEngine = createRepositoryIntelligenceEngine(result);
+  await repositoryIntelligenceEngine.initialize();
+  wireEngineIntegrations(repositoryIntelligenceEngine, {
+    implementationSpecificationEngine,
+    aiInnovationFactory,
+    intelligenceContext,
+    empireKnowledgeEngine,
+    pillowOrchestrationRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+    monitoringRuntime,
+  });
+  await yieldEventLoop();
+
+  missionPlanningEngine = createMissionPlanningEngine(result);
+  await missionPlanningEngine.initialize();
+  wireEngineIntegrations(missionPlanningEngine, {
+    repositoryIntelligenceEngine,
+    implementationSpecificationEngine,
+    intelligenceContext,
+    empireKnowledgeEngine,
+    pillowOrchestrationRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  cursorSpecificationGenerator = createCursorSpecificationGenerator(result);
+  await cursorSpecificationGenerator.initialize();
+  wireEngineIntegrations(cursorSpecificationGenerator, {
+    missionPlanningEngine,
+    repositoryIntelligenceEngine,
+    implementationSpecificationEngine,
+    intelligenceContext,
+    empireKnowledgeEngine,
+    approvalRuntime,
+    grandKingAcceptanceGate,
+    pillowOrchestrationRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  implementationRecoveryPlanner = createImplementationRecoveryPlanner(result);
+  await implementationRecoveryPlanner.initialize();
+  wireEngineIntegrations(implementationRecoveryPlanner, {
+    cursorSpecificationGenerator,
+    repositoryIntelligenceEngine,
+    implementationSpecificationEngine,
+    missionPlanningEngine,
+    empireKnowledgeEngine,
+    pillowOrchestrationRuntime,
+    auditRuntime,
+    executiveReportingRuntime,
+  });
+  await yieldEventLoop();
+
+  programmeCertificationFactory = createProgrammeCertificationFactory(result);
+  await programmeCertificationFactory.initialize();
+  wireEngineIntegrations(programmeCertificationFactory, {
+    implementationRecoveryPlanner,
+    cursorSpecificationGenerator,
+    missionPlanningEngine,
+    repositoryIntelligenceEngine,
+    implementationSpecificationEngine,
+    qSeriesCertification,
+    qSeriesCompletion,
+    productionCertificationCore,
+    empireKnowledgeEngine,
+    auditRuntime,
+    executiveReportingRuntime,
+    pillowOrchestrationRuntime,
   });
   await yieldEventLoop();
   founderShellEngine!.attachSurfaces({
@@ -7020,6 +7872,43 @@ export async function startPillow(options?: {
     profitabilityWorker: profitabilityWorker,
     forecastingWorker: forecastingWorker,
     taxSupportWorker: taxSupportWorker,
+    investmentPlanningWorker: investmentPlanningWorker,
+    financialReportingWorker: financialReportingWorker,
+    capitalRiskWorker: capitalRiskWorker,
+    capitalFactoryCertification: capitalFactoryCertification,
+    sharedRuntimeCore: sharedRuntimeCore,
+    pillowOrchestrationRuntime: pillowOrchestrationRuntime,
+    missionRuntime: missionRuntime,
+    queueRuntime: queueRuntime,
+    memoryRuntime: memoryRuntime,
+    apiRuntime: apiRuntime,
+    toolRuntime: toolRuntime,
+    communicationRuntime: communicationRuntime,
+    approvalRuntime: approvalRuntime,
+    monitoringRuntime: monitoringRuntime,
+    recoveryRuntime: recoveryRuntime,
+    schedulingRuntime: schedulingRuntime,
+    auditRuntime: auditRuntime,
+    sharedRuntimeCertification: sharedRuntimeCertification,
+    productionCertificationCore: productionCertificationCore,
+    workerReadinessAudit: workerReadinessAudit,
+    pillowCommandAudit: pillowCommandAudit,
+    businessFactoryAudit: businessFactoryAudit,
+    securityAudit: securityAudit,
+    performanceAudit: performanceAudit,
+    recoveryAudit: recoveryAudit,
+    executiveAcceptancePack: executiveAcceptancePack,
+    grandKingAcceptanceGate: grandKingAcceptanceGate,
+    postLaunchMonitoring: postLaunchMonitoring,
+    qSeriesCertification: qSeriesCertification,
+    qSeriesCompletion: qSeriesCompletion,
+    aiInnovationFactory: aiInnovationFactory,
+    implementationSpecificationEngine: implementationSpecificationEngine,
+    repositoryIntelligenceEngine: repositoryIntelligenceEngine,
+    missionPlanningEngine: missionPlanningEngine,
+    cursorSpecificationGenerator: cursorSpecificationGenerator,
+    implementationRecoveryPlanner: implementationRecoveryPlanner,
+    programmeCertificationFactory: programmeCertificationFactory,
   });
   await orchestrator.initialize();
   await yieldEventLoop();
@@ -7519,6 +8408,43 @@ export async function startPillow(options?: {
     profitabilityWorker: profitabilityWorker!,
     forecastingWorker: forecastingWorker!,
     taxSupportWorker: taxSupportWorker!,
+    investmentPlanningWorker: investmentPlanningWorker!,
+    financialReportingWorker: financialReportingWorker!,
+    capitalRiskWorker: capitalRiskWorker!,
+    capitalFactoryCertification: capitalFactoryCertification!,
+    sharedRuntimeCore: sharedRuntimeCore!,
+    pillowOrchestrationRuntime: pillowOrchestrationRuntime!,
+    missionRuntime: missionRuntime!,
+    queueRuntime: queueRuntime!,
+    memoryRuntime: memoryRuntime!,
+    apiRuntime: apiRuntime!,
+    toolRuntime: toolRuntime!,
+    communicationRuntime: communicationRuntime!,
+    approvalRuntime: approvalRuntime!,
+    monitoringRuntime: monitoringRuntime!,
+    recoveryRuntime: recoveryRuntime!,
+    schedulingRuntime: schedulingRuntime!,
+    auditRuntime: auditRuntime!,
+    sharedRuntimeCertification: sharedRuntimeCertification!,
+    productionCertificationCore: productionCertificationCore!,
+    workerReadinessAudit: workerReadinessAudit!,
+    pillowCommandAudit: pillowCommandAudit!,
+    businessFactoryAudit: businessFactoryAudit!,
+    securityAudit: securityAudit!,
+    performanceAudit: performanceAudit!,
+    recoveryAudit: recoveryAudit!,
+    executiveAcceptancePack: executiveAcceptancePack!,
+    grandKingAcceptanceGate: grandKingAcceptanceGate!,
+    postLaunchMonitoring: postLaunchMonitoring!,
+    qSeriesCertification: qSeriesCertification!,
+    qSeriesCompletion: qSeriesCompletion!,
+    aiInnovationFactory: aiInnovationFactory!,
+    implementationSpecificationEngine: implementationSpecificationEngine!,
+    repositoryIntelligenceEngine: repositoryIntelligenceEngine!,
+    missionPlanningEngine: missionPlanningEngine!,
+    cursorSpecificationGenerator: cursorSpecificationGenerator!,
+    implementationRecoveryPlanner: implementationRecoveryPlanner!,
+    programmeCertificationFactory: programmeCertificationFactory!,
     globalExpansionSimulator: globalExpansionSimulator!,
     internationalExecutiveCockpit: internationalExecutiveCockpit!,
     regionalGrowthOptimizerEngine: regionalGrowthOptimizerEngine!,
@@ -11288,6 +12214,351 @@ export function requirePillowTaxSupportWorker(): TaxSupportWorker {
   return taxSupportWorker;
 }
 
+export function requirePillowInvestmentPlanningWorker(): InvestmentPlanningWorker {
+  if (!investmentPlanningWorker) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Investment Planning Worker not ready. Call startPillow() first.",
+    );
+  }
+  return investmentPlanningWorker;
+}
+
+export function requirePillowFinancialReportingWorker(): FinancialReportingWorker {
+  if (!financialReportingWorker) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Financial Reporting Worker not ready. Call startPillow() first.",
+    );
+  }
+  return financialReportingWorker;
+}
+
+export function requirePillowCapitalRiskWorker(): CapitalRiskWorker {
+  if (!capitalRiskWorker) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Capital Risk Worker not ready. Call startPillow() first.",
+    );
+  }
+  return capitalRiskWorker;
+}
+
+export function requirePillowCapitalFactoryCertification(): CapitalFactoryCertification {
+  if (!capitalFactoryCertification) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Capital Factory Certification not ready. Call startPillow() first.",
+    );
+  }
+  return capitalFactoryCertification;
+}
+
+export function requirePillowSharedRuntimeCore(): SharedRuntimeCore {
+  if (!sharedRuntimeCore) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Shared Runtime Core not ready. Call startPillow() first.",
+    );
+  }
+  return sharedRuntimeCore;
+}
+
+export function requirePillowOrchestrationRuntime(): PillowOrchestrationRuntime {
+  if (!pillowOrchestrationRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Orchestration Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return pillowOrchestrationRuntime;
+}
+
+export function requireMissionRuntime(): MissionRuntime {
+  if (!missionRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Mission Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return missionRuntime;
+}
+
+export function requireQueueRuntime(): QueueRuntime {
+  if (!queueRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Queue Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return queueRuntime;
+}
+
+export function requireMemoryRuntime(): MemoryRuntime {
+  if (!memoryRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Memory Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return memoryRuntime;
+}
+
+export function requireApiRuntime(): ApiRuntime {
+  if (!apiRuntime) {
+    throw new PillowNotBootstrappedError(
+      "API Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return apiRuntime;
+}
+
+export function requireToolRuntime(): ToolRuntime {
+  if (!toolRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Tool Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return toolRuntime;
+}
+
+export function requireCommunicationRuntime(): CommunicationRuntime {
+  if (!communicationRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Communication Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return communicationRuntime;
+}
+
+export function requireApprovalRuntime(): ApprovalRuntime {
+  if (!approvalRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Approval Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return approvalRuntime;
+}
+
+export function requireMonitoringRuntime(): MonitoringRuntime {
+  if (!monitoringRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Monitoring Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return monitoringRuntime;
+}
+
+export function requireRecoveryRuntime(): RecoveryRuntime {
+  if (!recoveryRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Recovery Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return recoveryRuntime;
+}
+
+export function requireSchedulingRuntime(): SchedulingRuntime {
+  if (!schedulingRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Scheduling Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return schedulingRuntime;
+}
+
+export function requireAuditRuntime(): AuditRuntime {
+  if (!auditRuntime) {
+    throw new PillowNotBootstrappedError(
+      "Audit Runtime not ready. Call startPillow() first.",
+    );
+  }
+  return auditRuntime;
+}
+
+export function requireSharedRuntimeCertification(): SharedRuntimeCertification {
+  if (!sharedRuntimeCertification) {
+    throw new PillowNotBootstrappedError(
+      "Shared Runtime Certification not ready. Call startPillow() first.",
+    );
+  }
+  return sharedRuntimeCertification;
+}
+
+export function requireProductionCertificationCore(): ProductionCertificationCore {
+  if (!productionCertificationCore) {
+    throw new PillowNotBootstrappedError(
+      "Production Certification Core not ready. Call startPillow() first.",
+    );
+  }
+  return productionCertificationCore;
+}
+
+export function requireWorkerReadinessAudit(): WorkerReadinessAudit {
+  if (!workerReadinessAudit) {
+    throw new PillowNotBootstrappedError(
+      "Worker Readiness Audit not ready. Call startPillow() first.",
+    );
+  }
+  return workerReadinessAudit;
+}
+
+export function requirePillowCommandAudit(): PillowCommandAudit {
+  if (!pillowCommandAudit) {
+    throw new PillowNotBootstrappedError(
+      "Pillow Command Audit not ready. Call startPillow() first.",
+    );
+  }
+  return pillowCommandAudit;
+}
+
+export function requireBusinessFactoryAudit(): BusinessFactoryAudit {
+  if (!businessFactoryAudit) {
+    throw new PillowNotBootstrappedError(
+      "Business Factory Audit not ready. Call startPillow() first.",
+    );
+  }
+  return businessFactoryAudit;
+}
+
+export function requireSecurityAudit(): SecurityAudit {
+  if (!securityAudit) {
+    throw new PillowNotBootstrappedError(
+      "Security Audit not ready. Call startPillow() first.",
+    );
+  }
+  return securityAudit;
+}
+
+export function requirePerformanceAudit(): PerformanceAudit {
+  if (!performanceAudit) {
+    throw new PillowNotBootstrappedError(
+      "Performance Audit not ready. Call startPillow() first.",
+    );
+  }
+  return performanceAudit;
+}
+
+export function requireRecoveryAudit(): RecoveryAudit {
+  if (!recoveryAudit) {
+    throw new PillowNotBootstrappedError(
+      "Recovery Audit not ready. Call startPillow() first.",
+    );
+  }
+  return recoveryAudit;
+}
+
+export function requireExecutiveAcceptancePack(): ExecutiveAcceptancePack {
+  if (!executiveAcceptancePack) {
+    throw new PillowNotBootstrappedError(
+      "Executive Acceptance Pack not ready. Call startPillow() first.",
+    );
+  }
+  return executiveAcceptancePack;
+}
+
+export function requireGrandKingAcceptanceGate(): GrandKingAcceptanceGate {
+  if (!grandKingAcceptanceGate) {
+    throw new PillowNotBootstrappedError(
+      "Grand King Acceptance Gate not ready. Call startPillow() first.",
+    );
+  }
+  return grandKingAcceptanceGate;
+}
+
+export function requirePostLaunchMonitoring(): PostLaunchMonitoring {
+  if (!postLaunchMonitoring) {
+    throw new PillowNotBootstrappedError(
+      "Post-Launch Monitoring not ready. Call startPillow() first.",
+    );
+  }
+  return postLaunchMonitoring;
+}
+
+export function requireQSeriesCertification(): QSeriesCertification {
+  if (!qSeriesCertification) {
+    throw new PillowNotBootstrappedError(
+      "Q Series Certification not ready. Call startPillow() first.",
+    );
+  }
+  return qSeriesCertification;
+}
+
+export function requireQSeriesCompletion(): QSeriesCompletion {
+  if (!qSeriesCompletion) {
+    throw new PillowNotBootstrappedError(
+      "Q Series Completion not ready. Call startPillow() first.",
+    );
+  }
+  return qSeriesCompletion;
+}
+
+export function requireAiInnovationFactory(): AiInnovationFactory {
+  if (!aiInnovationFactory) {
+    throw new PillowNotBootstrappedError(
+      "AI Innovation Factory not ready. Call startPillow() first.",
+    );
+  }
+  return aiInnovationFactory;
+}
+
+export function requireImplementationSpecificationEngine(): ImplementationSpecificationEngine {
+  if (!implementationSpecificationEngine) {
+    throw new PillowNotBootstrappedError(
+      "Implementation Specification Engine not ready. Call startPillow() first.",
+    );
+  }
+  return implementationSpecificationEngine;
+}
+
+export function requireRepositoryIntelligenceEngine(): RepositoryIntelligenceEngine {
+  if (!repositoryIntelligenceEngine) {
+    throw new PillowNotBootstrappedError(
+      "Repository Intelligence Engine not ready. Call startPillow() first.",
+    );
+  }
+  return repositoryIntelligenceEngine;
+}
+
+export function requireMissionPlanningEngine(): MissionPlanningEngine {
+  if (!missionPlanningEngine) {
+    throw new PillowNotBootstrappedError(
+      "Mission Planning Engine not ready. Call startPillow() first.",
+    );
+  }
+  return missionPlanningEngine;
+}
+
+export function requireCursorSpecificationGenerator(): CursorSpecificationGenerator {
+  if (!cursorSpecificationGenerator) {
+    throw new PillowNotBootstrappedError(
+      "Cursor Specification Generator not ready. Call startPillow() first.",
+    );
+  }
+  return cursorSpecificationGenerator;
+}
+
+export function getCursorSpecificationGenerator(): CursorSpecificationGenerator | null {
+  return cursorSpecificationGenerator;
+}
+
+export function requireImplementationRecoveryPlanner(): ImplementationRecoveryPlanner {
+  if (!implementationRecoveryPlanner) {
+    throw new PillowNotBootstrappedError(
+      "Implementation Recovery Planner not ready. Call startPillow() first.",
+    );
+  }
+  return implementationRecoveryPlanner;
+}
+
+export function getImplementationRecoveryPlanner(): ImplementationRecoveryPlanner | null {
+  return implementationRecoveryPlanner;
+}
+
+export function requireProgrammeCertificationFactory(): ProgrammeCertificationFactory {
+  if (!programmeCertificationFactory) {
+    throw new PillowNotBootstrappedError(
+      "Programme Certification Factory not ready. Call startPillow() first.",
+    );
+  }
+  return programmeCertificationFactory;
+}
+
+export function getProgrammeCertificationFactory(): ProgrammeCertificationFactory | null {
+  return programmeCertificationFactory;
+}
+
 export function requirePillowEmpireOpportunityEngine(): EmpireOpportunityEngine {
   if (!empireOpportunityEngine) {
     throw new PillowNotBootstrappedError(
@@ -12178,6 +13449,9 @@ export function resetPillowSession(): void {
   profitabilityWorker = null;
   forecastingWorker = null;
   taxSupportWorker = null;
+  investmentPlanningWorker = null;
+  financialReportingWorker = null;
+  capitalRiskWorker = null;
   globalExpansionSimulator = null;
   internationalExecutiveCockpit = null;
   globalOperationsCertified = null;

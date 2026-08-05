@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-implementation-recovery-planner-01",
+  "workerName": "Implementation Recovery Planner",
+  "factory": "implementation-recovery-planner",
+  "department": "implementation_recovery_planner",
+  "role": "role-irpln",
+  "neverExecuteRecovery": true,
+  "neverModifyRepository": true,
+  "neverFabricateRepositoryFindings": true,
+  "neverOverwriteVerifiedImplementations": true,
+  "neverDeleteProductionCodeWithoutEvidence": true,
+  "neverRestartCompletedWorkUnnecessarily": true,
+  "neverImplementQ1306OrLater": true,
+  "neverBypassGovernance": true,
+  "recoveryPlanningOnly": true
+}

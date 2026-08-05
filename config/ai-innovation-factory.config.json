@@ -1,0 +1,41 @@
+{
+
+  "enabled": true,
+
+  "executiveReportingEnabled": true,
+
+  "workerId": "wkr-ai-innovation-factory-01",
+
+  "workerName": "AI Innovation Factory",
+
+  "factory": "ai-innovation-factory",
+
+  "department": "ai_innovation_factory",
+
+  "role": "role-research-innovate",
+
+  "researchCatalogPaths": [
+
+    "config/ai-innovation-factory.config.json",
+
+    "docs/governance/EMPIREAI_AI_INNOVATION_FACTORY_SYSTEM.md"
+
+  ],
+
+  "neverFabricateResearchEvidence": true,
+
+  "neverAutoDeployInnovations": true,
+
+  "neverBypassGovernance": true,
+
+  "neverOverridePillow": true,
+
+  "neverOverrideGrandKing": true,
+
+  "neverImplementQ1301OrLater": true,
+
+  "neverClaimQSeriesCompleteWhenIncomplete": true
+
+}
+
+

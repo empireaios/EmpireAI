@@ -1,0 +1,60 @@
+/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+
+export function collectRepositoryIntelligenceEngineSnapshot() {
+  const configuration = {
+    enabled: true,
+    executiveReportingEnabled: true,
+    neverModifyAnalyzedFiles: true,
+    neverImplementQ1303OrLater: true,
+    neverCertifyQ1301: true,
+    readOnlyRepositoryAnalysis: true,
+    deterministicRepositoryAnalysis: true,
+    evidenceBasedOnly: true,
+    preserveCompleteTraceability: true,
+    preserveRepositoryKnowledgeHistory: true,
+    preserveAuditHistory: true,
+    maskSensitiveValues: true,
+  };
+  return {
+    computedAt: new Date().toISOString(),
+    missionId: "Q13-02",
+    live: false,
+    engine: {
+      engineVersion: "PILLOW-RIENG-001",
+      missionId: "Q13-02",
+      status: "standby",
+      initializedAt: new Date().toISOString(),
+      configuration,
+      latestReport: null,
+      engineRecord: null,
+      health: {
+        status: "standby",
+        healthScore: 0,
+        engineEnabled: true,
+        lastOperationAt: null,
+        lastValidationDecision: null,
+        totalReports: 0,
+        lastReportId: null,
+        lastConfidenceScore: null,
+        lastRepositoryFingerprint: null,
+        notes: ["Pillow session unavailable — offline snapshot; repository intelligence withheld"],
+      },
+    },
+    cockpit: {
+      missionId: "Q13-02",
+      status: "standby",
+      healthStatus: "standby",
+      totalReports: 0,
+      latestReportId: null,
+      lastRepositoryFingerprint: null,
+      workerId: "wkr-repository-intelligence-engine-01",
+      neverModifyAnalyzedFiles: true,
+      neverImplementQ1303OrLater: true,
+      neverCertifyQ1301: true,
+    },
+    catalog: null,
+    reports: [],
+    q1303Contract: null,
+    repositoryKnowledgeHistory: [],
+  };
+}

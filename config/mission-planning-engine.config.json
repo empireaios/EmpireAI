@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-mission-planning-engine-01",
+  "workerName": "Mission Planning Engine",
+  "factory": "mission-planning-engine",
+  "department": "mission_planning_engine",
+  "role": "role-mission-plan",
+  "neverModifyRepository": true,
+  "neverExecuteImplementation": true,
+  "neverFabricateRepositoryState": true,
+  "neverImplementQ1304OrLater": true,
+  "neverBypassGovernance": true,
+  "neverAutoDeploy": true,
+  "planningOnly": true
+}

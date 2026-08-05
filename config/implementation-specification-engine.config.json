@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-implementation-specification-engine-01",
+  "workerName": "Implementation Specification Engine",
+  "factory": "implementation-specification-engine",
+  "department": "implementation_specification_engine",
+  "role": "role-specification-architect",
+  "scanRoots": [
+    "pillow/src",
+    "backend/src",
+    "config"
+  ],
+  "neverFabricateRepositoryState": true,
+  "neverOverwriteVerifiedImplementations": true,
+  "neverExecuteImplementations": true,
+  "neverAutoDeploy": true,
+  "neverBypassGovernance": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1302OrLater": true
+}

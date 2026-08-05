@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "aggregationEnabled": true,
+  "executiveReportingEnabled": true,
+  "neverFabricateAcceptanceEvidence": true,
+  "neverHideFailedAudits": true,
+  "neverApproveProductionDeployment": true,
+  "neverOverrideFailedCertifications": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1110OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveImmutablePackHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicPackBehaviour": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "maskSensitiveValues": true
+}

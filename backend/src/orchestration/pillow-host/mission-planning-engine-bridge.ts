@@ -1,0 +1,62 @@
+/** Safe offline snapshot; live operations are supplied by the Pillow host. */
+
+export function collectMissionPlanningEngineSnapshot() {
+  const configuration = {
+    enabled: true,
+    executiveReportingEnabled: true,
+    neverModifyRepository: true,
+    neverExecuteImplementation: true,
+    neverFabricateRepositoryState: true,
+    neverImplementQ1304OrLater: true,
+    neverBypassGovernance: true,
+    neverAutoDeploy: true,
+    planningOnly: true,
+  };
+  return {
+    computedAt: new Date().toISOString(),
+    missionId: "Q13-03",
+    live: false,
+    engine: {
+      engineVersion: "PILLOW-MPENG-001",
+      missionId: "Q13-03",
+      status: "standby",
+      initializedAt: new Date().toISOString(),
+      configuration,
+      latestReport: null,
+      latestPlan: null,
+      engineRecord: null,
+      health: {
+        status: "standby",
+        healthScore: 0,
+        engineEnabled: true,
+        lastOperationAt: null,
+        lastValidationDecision: null,
+        totalReports: 0,
+        totalPlans: 0,
+        lastReportId: null,
+        lastPlanId: null,
+        lastConfidenceScore: null,
+        notes: ["Pillow session unavailable — offline snapshot; mission planning withheld"],
+      },
+    },
+    cockpit: {
+      missionId: "Q13-03",
+      status: "standby",
+      healthStatus: "standby",
+      totalReports: 0,
+      totalPlans: 0,
+      latestReportId: null,
+      latestPlanId: null,
+      workerId: "wkr-mission-planning-engine-01",
+      neverModifyRepository: true,
+      neverExecuteImplementation: true,
+      neverImplementQ1304OrLater: true,
+      neverBypassGovernance: true,
+    },
+    catalog: null,
+    reports: [],
+    plans: [],
+    q1304Contract: null,
+    planningHistory: [],
+  };
+}

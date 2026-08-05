@@ -539,6 +539,40 @@ import { collectEmailFunnelWorkerSnapshot } from "../email-funnel-worker-bridge.
 import { collectAnalyticsWorkerSnapshot } from "../analytics-worker-bridge.js";
 import { collectAffiliateComplianceWorkerSnapshot } from "../affiliate-compliance-worker-bridge.js";
 import { collectAffiliateCertificationSnapshot } from "../affiliate-certification-bridge.js";
+import { collectCapitalFactoryCertificationSnapshot } from "../capital-factory-certification-bridge.js";
+import { collectSharedRuntimeCoreSnapshot } from "../shared-runtime-core-bridge.js";
+import { collectPillowOrchestrationRuntimeSnapshot } from "../pillow-orchestration-runtime-bridge.js";
+import { collectMissionRuntimeSnapshot } from "../mission-runtime-bridge.js";
+import { collectQueueRuntimeSnapshot } from "../queue-runtime-bridge.js";
+import { collectMemoryRuntimeSnapshot } from "../memory-runtime-bridge.js";
+import { collectApiRuntimeSnapshot } from "../api-runtime-bridge.js";
+import { collectToolRuntimeSnapshot } from "../tool-runtime-bridge.js";
+import { collectCommunicationRuntimeSnapshot } from "../communication-runtime-bridge.js";
+import { collectApprovalRuntimeSnapshot } from "../approval-runtime-bridge.js";
+import { collectMonitoringRuntimeSnapshot } from "../monitoring-runtime-bridge.js";
+import { collectRecoveryRuntimeSnapshot } from "../recovery-runtime-bridge.js";
+import { collectSchedulingRuntimeSnapshot } from "../scheduling-runtime-bridge.js";
+import { collectAuditRuntimeSnapshot } from "../audit-runtime-bridge.js";
+import { collectSharedRuntimeCertificationSnapshot } from "../shared-runtime-certification-bridge.js";
+import { collectProductionCertificationCoreSnapshot } from "../production-certification-core-bridge.js";
+import { collectWorkerReadinessAuditSnapshot } from "../worker-readiness-audit-bridge.js";
+import { collectPillowCommandAuditSnapshot } from "../pillow-command-audit-bridge.js";
+import { collectBusinessFactoryAuditSnapshot } from "../business-factory-audit-bridge.js";
+import { collectSecurityAuditSnapshot } from "../security-audit-bridge.js";
+import { collectPerformanceAuditSnapshot } from "../performance-audit-bridge.js";
+import { collectRecoveryAuditSnapshot } from "../recovery-audit-bridge.js";
+import { collectExecutiveAcceptancePackSnapshot } from "../executive-acceptance-pack-bridge.js";
+import { collectGrandKingAcceptanceGateSnapshot } from "../grand-king-acceptance-gate-bridge.js";
+import { collectPostLaunchMonitoringSnapshot } from "../post-launch-monitoring-bridge.js";
+import { collectQSeriesCertificationSnapshot } from "../q-series-certification-bridge.js";
+import { collectQSeriesCompletionSnapshot } from "../q-series-completion-bridge.js";
+import { collectAiInnovationFactorySnapshot } from "../ai-innovation-factory-bridge.js";
+import { collectImplementationSpecificationEngineSnapshot } from "../implementation-specification-engine-bridge.js";
+import { collectRepositoryIntelligenceEngineSnapshot } from "../repository-intelligence-engine-bridge.js";
+import { collectMissionPlanningEngineSnapshot } from "../mission-planning-engine-bridge.js";
+import { collectCursorSpecificationGeneratorSnapshot } from "../cursor-specification-generator-bridge.js";
+import { collectImplementationRecoveryPlannerSnapshot } from "../implementation-recovery-planner-bridge.js";
+import { collectProgrammeCertificationFactorySnapshot } from "../programme-certification-factory-bridge.js";
 import { collectCapitalFactoryCoreSnapshot } from "../capital-factory-core-bridge.js";
 import { collectAccountingWorkerSnapshot } from "../accounting-worker-bridge.js";
 import { collectCashflowWorkerSnapshot } from "../cashflow-worker-bridge.js";
@@ -546,6 +580,9 @@ import { collectBudgetPlanningWorkerSnapshot } from "../budget-planning-worker-b
 import { collectProfitabilityWorkerSnapshot } from "../profitability-worker-bridge.js";
 import { collectForecastingWorkerSnapshot } from "../forecasting-worker-bridge.js";
 import { collectTaxSupportWorkerSnapshot } from "../tax-support-worker-bridge.js";
+import { collectInvestmentPlanningWorkerSnapshot } from "../investment-planning-worker-bridge.js";
+import { collectFinancialReportingWorkerSnapshot } from "../financial-reporting-worker-bridge.js";
+import { collectCapitalRiskWorkerSnapshot } from "../capital-risk-worker-bridge.js";
 import { collectGlobalExpansionSimulatorSnapshot } from "../global-expansion-simulator-bridge.js";
 import { collectInternationalExecutiveCockpitSnapshot } from "../international-executive-cockpit-bridge.js";
 import {
@@ -34296,6 +34333,2361 @@ export async function registerPillowRoutes(
   app.post("/api/pillow/affiliate-certification/validate", { preHandler: pillowAuth }, affiliateCertificationAction("validate"));
   app.post("/api/pillow/affiliate-certification/diagnostics", { preHandler: pillowAuth }, affiliateCertificationAction("diagnostics"));
 
+  app.get("/api/pillow/capital-factory-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCapitalFactoryCertificationSnapshot());
+    }
+    return reply.send({ capitalFactoryCertification: pillowHost.getCapitalFactoryCertification() });
+  });
+  const capitalFactoryCertificationAction = (
+    method:
+      | "connect"
+      | "collect-evidence"
+      | "probe-runtime"
+      | "audit-workers"
+      | "verify-integrations"
+      | "run-e2e-workflow"
+      | "assess-readiness"
+      | "verify-governance"
+      | "produce-findings"
+      | "produce-report"
+      | "certify"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectCapitalFactoryCertificationSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectCapitalFactoryCertification(body)
+          : method === "collect-evidence" ? pillowHost.collectCapitalFactoryCertificationEvidence()
+            : method === "probe-runtime" ? await pillowHost.probeCapitalFactoryCertificationRuntime()
+              : method === "audit-workers" ? await pillowHost.auditCapitalFactoryCertificationWorkers(body)
+                : method === "verify-integrations" ? await pillowHost.verifyCapitalFactoryCertificationIntegrations()
+                  : method === "run-e2e-workflow" ? await pillowHost.runCapitalFactoryCertificationEndToEndWorkflow(body)
+                    : method === "assess-readiness" ? await pillowHost.assessCapitalFactoryCertificationReadiness(body)
+                      : method === "verify-governance" ? pillowHost.verifyCapitalFactoryCertificationGovernance()
+                        : method === "produce-findings" ? await pillowHost.produceCapitalFactoryCertificationFindings(body)
+                          : method === "produce-report" ? await pillowHost.produceCapitalFactoryCertificationReport(body)
+                            : method === "certify" ? await pillowHost.certifyCapitalFactory(body)
+                              : method === "submit-report" ? await pillowHost.submitCapitalFactoryCertificationReport(body)
+                                : method === "list" ? pillowHost.listCapitalFactoryCertificationReports()
+                                  : method === "validate" ? pillowHost.validateCapitalFactoryCertification(body)
+                                    : pillowHost.runCapitalFactoryCertificationDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/capital-factory-certification/connect", { preHandler: pillowAuth }, capitalFactoryCertificationAction("connect"));
+  app.post("/api/pillow/capital-factory-certification/collect-evidence", { preHandler: pillowAuth }, capitalFactoryCertificationAction("collect-evidence"));
+  app.post("/api/pillow/capital-factory-certification/probe-runtime", { preHandler: pillowAuth }, capitalFactoryCertificationAction("probe-runtime"));
+  app.post("/api/pillow/capital-factory-certification/audit-workers", { preHandler: pillowAuth }, capitalFactoryCertificationAction("audit-workers"));
+  app.post("/api/pillow/capital-factory-certification/verify-integrations", { preHandler: pillowAuth }, capitalFactoryCertificationAction("verify-integrations"));
+  app.post("/api/pillow/capital-factory-certification/run-e2e-workflow", { preHandler: pillowAuth }, capitalFactoryCertificationAction("run-e2e-workflow"));
+  app.post("/api/pillow/capital-factory-certification/assess-readiness", { preHandler: pillowAuth }, capitalFactoryCertificationAction("assess-readiness"));
+  app.post("/api/pillow/capital-factory-certification/verify-governance", { preHandler: pillowAuth }, capitalFactoryCertificationAction("verify-governance"));
+  app.post("/api/pillow/capital-factory-certification/produce-findings", { preHandler: pillowAuth }, capitalFactoryCertificationAction("produce-findings"));
+  app.post("/api/pillow/capital-factory-certification/produce-report", { preHandler: pillowAuth }, capitalFactoryCertificationAction("produce-report"));
+  app.post("/api/pillow/capital-factory-certification/certify", { preHandler: pillowAuth }, capitalFactoryCertificationAction("certify"));
+  app.post("/api/pillow/capital-factory-certification/submit-report", { preHandler: pillowAuth }, capitalFactoryCertificationAction("submit-report"));
+  app.post("/api/pillow/capital-factory-certification/list", { preHandler: pillowAuth }, capitalFactoryCertificationAction("list"));
+  app.post("/api/pillow/capital-factory-certification/validate", { preHandler: pillowAuth }, capitalFactoryCertificationAction("validate"));
+  app.post("/api/pillow/capital-factory-certification/diagnostics", { preHandler: pillowAuth }, capitalFactoryCertificationAction("diagnostics"));
+
+  app.get("/api/pillow/shared-runtime-core", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSharedRuntimeCoreSnapshot());
+    }
+    return reply.send({ sharedRuntimeCore: pillowHost.getSharedRuntimeCore() });
+  });
+  const sharedRuntimeCoreAction = (
+    method:
+      | "connect"
+      | "register-default-factories"
+      | "register-factory"
+      | "register-worker"
+      | "create-execution-context"
+      | "route-request"
+      | "resolve-dependencies"
+      | "collect-diagnostics"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "topology"
+      | "q1002-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectSharedRuntimeCoreSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectSharedRuntimeCore(body)
+          : method === "register-default-factories" ? pillowHost.registerSharedRuntimeDefaultFactories(body)
+            : method === "register-factory" ? pillowHost.registerSharedRuntimeFactory(body)
+              : method === "register-worker" ? pillowHost.registerSharedRuntimeWorker(body)
+                : method === "create-execution-context" ? pillowHost.createSharedRuntimeExecutionContext(body)
+                  : method === "route-request" ? pillowHost.routeSharedRuntimeRequest(body)
+                    : method === "resolve-dependencies" ? pillowHost.resolveSharedRuntimeDependencies(body)
+                      : method === "collect-diagnostics" ? pillowHost.collectSharedRuntimeDiagnostics(body)
+                        : method === "produce-report" ? pillowHost.produceSharedRuntimeReport(body)
+                          : method === "submit-report" ? pillowHost.submitSharedRuntimeReport(body)
+                            : method === "list" ? pillowHost.listSharedRuntimeCore()
+                              : method === "validate" ? pillowHost.validateSharedRuntimeCore(body)
+                                : method === "topology" ? pillowHost.getSharedRuntimeTopology()
+                                  : method === "q1002-contract" ? pillowHost.getSharedRuntimeCoreQ1002Contract()
+                                    : pillowHost.runSharedRuntimeCoreDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/shared-runtime-core/connect", { preHandler: pillowAuth }, sharedRuntimeCoreAction("connect"));
+  app.post("/api/pillow/shared-runtime-core/register-default-factories", { preHandler: pillowAuth }, sharedRuntimeCoreAction("register-default-factories"));
+  app.post("/api/pillow/shared-runtime-core/register-factory", { preHandler: pillowAuth }, sharedRuntimeCoreAction("register-factory"));
+  app.post("/api/pillow/shared-runtime-core/register-worker", { preHandler: pillowAuth }, sharedRuntimeCoreAction("register-worker"));
+  app.post("/api/pillow/shared-runtime-core/create-execution-context", { preHandler: pillowAuth }, sharedRuntimeCoreAction("create-execution-context"));
+  app.post("/api/pillow/shared-runtime-core/route-request", { preHandler: pillowAuth }, sharedRuntimeCoreAction("route-request"));
+  app.post("/api/pillow/shared-runtime-core/resolve-dependencies", { preHandler: pillowAuth }, sharedRuntimeCoreAction("resolve-dependencies"));
+  app.post("/api/pillow/shared-runtime-core/collect-diagnostics", { preHandler: pillowAuth }, sharedRuntimeCoreAction("collect-diagnostics"));
+  app.post("/api/pillow/shared-runtime-core/produce-report", { preHandler: pillowAuth }, sharedRuntimeCoreAction("produce-report"));
+  app.post("/api/pillow/shared-runtime-core/submit-report", { preHandler: pillowAuth }, sharedRuntimeCoreAction("submit-report"));
+  app.post("/api/pillow/shared-runtime-core/list", { preHandler: pillowAuth }, sharedRuntimeCoreAction("list"));
+  app.post("/api/pillow/shared-runtime-core/validate", { preHandler: pillowAuth }, sharedRuntimeCoreAction("validate"));
+  app.post("/api/pillow/shared-runtime-core/diagnostics", { preHandler: pillowAuth }, sharedRuntimeCoreAction("diagnostics"));
+  app.post("/api/pillow/shared-runtime-core/topology", { preHandler: pillowAuth }, sharedRuntimeCoreAction("topology"));
+  app.post("/api/pillow/shared-runtime-core/q1002-contract", { preHandler: pillowAuth }, sharedRuntimeCoreAction("q1002-contract"));
+
+  app.get("/api/pillow/pillow-orchestration-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectPillowOrchestrationRuntimeSnapshot());
+    }
+    return reply.send({ pillowOrchestrationRuntime: pillowHost.getPillowOrchestrationRuntime() });
+  });
+  const pillowOrchestrationRuntimeAction = (
+    method:
+      | "connect"
+      | "create-session"
+      | "invoke-worker"
+      | "invoke-tool"
+      | "invoke-workflow"
+      | "route-approval"
+      | "retrieve-report"
+      | "orchestrate-cross-factory"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1003-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectPillowOrchestrationRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectPillowOrchestrationRuntime(body)
+          : method === "create-session" ? pillowHost.createPillowOrchestrationSession(body)
+            : method === "invoke-worker" ? pillowHost.invokePillowOrchestrationWorker(body)
+              : method === "invoke-tool" ? pillowHost.invokePillowOrchestrationTool(body)
+                : method === "invoke-workflow" ? pillowHost.invokePillowOrchestrationWorkflow(body)
+                  : method === "route-approval" ? pillowHost.routePillowOrchestrationApproval(body)
+                    : method === "retrieve-report" ? pillowHost.retrievePillowOrchestrationReport(body)
+                      : method === "orchestrate-cross-factory" ? pillowHost.orchestratePillowCrossFactory(body)
+                        : method === "produce-report" ? pillowHost.producePillowOrchestrationReport(body)
+                          : method === "submit-report" ? pillowHost.submitPillowOrchestrationReport(body)
+                            : method === "list" ? pillowHost.listPillowOrchestrationRuntime()
+                              : method === "validate" ? pillowHost.validatePillowOrchestrationRuntime(body)
+                                : method === "history" ? pillowHost.getPillowOrchestrationHistory()
+                                  : method === "q1003-contract" ? pillowHost.getPillowOrchestrationRuntimeQ1003Contract()
+                                    : pillowHost.runPillowOrchestrationRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/pillow-orchestration-runtime/connect", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("connect"));
+  app.post("/api/pillow/pillow-orchestration-runtime/create-session", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("create-session"));
+  app.post("/api/pillow/pillow-orchestration-runtime/invoke-worker", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("invoke-worker"));
+  app.post("/api/pillow/pillow-orchestration-runtime/invoke-tool", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("invoke-tool"));
+  app.post("/api/pillow/pillow-orchestration-runtime/invoke-workflow", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("invoke-workflow"));
+  app.post("/api/pillow/pillow-orchestration-runtime/route-approval", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("route-approval"));
+  app.post("/api/pillow/pillow-orchestration-runtime/retrieve-report", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("retrieve-report"));
+  app.post("/api/pillow/pillow-orchestration-runtime/orchestrate-cross-factory", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("orchestrate-cross-factory"));
+  app.post("/api/pillow/pillow-orchestration-runtime/produce-report", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("produce-report"));
+  app.post("/api/pillow/pillow-orchestration-runtime/submit-report", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("submit-report"));
+  app.post("/api/pillow/pillow-orchestration-runtime/list", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("list"));
+  app.post("/api/pillow/pillow-orchestration-runtime/validate", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("validate"));
+  app.post("/api/pillow/pillow-orchestration-runtime/diagnostics", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("diagnostics"));
+  app.post("/api/pillow/pillow-orchestration-runtime/history", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("history"));
+  app.post("/api/pillow/pillow-orchestration-runtime/q1003-contract", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("q1003-contract"));
+
+  app.get("/api/pillow/mission-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMissionRuntimeSnapshot());
+    }
+    return reply.send({ missionRuntime: pillowHost.getMissionRuntime() });
+  });
+  const missionRuntimeAction = (
+    method:
+      | "connect"
+      | "create-mission"
+      | "queue"
+      | "ready"
+      | "execute"
+      | "pause"
+      | "resume"
+      | "retry"
+      | "cancel"
+      | "recover"
+      | "archive"
+      | "monitor"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1004-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectMissionRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectMissionRuntime(body)
+          : method === "create-mission" ? pillowHost.createMissionRuntimeMission(body)
+            : method === "queue" ? pillowHost.queueMissionRuntime(body)
+              : method === "ready" ? pillowHost.readyMissionRuntime(body)
+                : method === "execute" ? pillowHost.executeMissionRuntime(body)
+                  : method === "pause" ? pillowHost.pauseMissionRuntime(body)
+                    : method === "resume" ? pillowHost.resumeMissionRuntime(body)
+                      : method === "retry" ? pillowHost.retryMissionRuntime(body)
+                        : method === "cancel" ? pillowHost.cancelMissionRuntime(body)
+                          : method === "recover" ? pillowHost.recoverMissionRuntime(body)
+                            : method === "archive" ? pillowHost.archiveMissionRuntime(body)
+                              : method === "monitor" ? pillowHost.monitorMissionRuntime(body)
+                                : method === "produce-report" ? pillowHost.produceMissionRuntimeReport(body)
+                                  : method === "submit-report" ? pillowHost.submitMissionRuntimeReport(body)
+                                    : method === "list" ? pillowHost.listMissionRuntime()
+                                      : method === "validate" ? pillowHost.validateMissionRuntime(body)
+                                        : method === "history" ? pillowHost.getMissionRuntimeHistory()
+                                          : method === "q1004-contract" ? pillowHost.getMissionRuntimeQ1004Contract()
+                                            : pillowHost.runMissionRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/mission-runtime/connect", { preHandler: pillowAuth }, missionRuntimeAction("connect"));
+  app.post("/api/pillow/mission-runtime/create-mission", { preHandler: pillowAuth }, missionRuntimeAction("create-mission"));
+  app.post("/api/pillow/mission-runtime/queue", { preHandler: pillowAuth }, missionRuntimeAction("queue"));
+  app.post("/api/pillow/mission-runtime/ready", { preHandler: pillowAuth }, missionRuntimeAction("ready"));
+  app.post("/api/pillow/mission-runtime/execute", { preHandler: pillowAuth }, missionRuntimeAction("execute"));
+  app.post("/api/pillow/mission-runtime/pause", { preHandler: pillowAuth }, missionRuntimeAction("pause"));
+  app.post("/api/pillow/mission-runtime/resume", { preHandler: pillowAuth }, missionRuntimeAction("resume"));
+  app.post("/api/pillow/mission-runtime/retry", { preHandler: pillowAuth }, missionRuntimeAction("retry"));
+  app.post("/api/pillow/mission-runtime/cancel", { preHandler: pillowAuth }, missionRuntimeAction("cancel"));
+  app.post("/api/pillow/mission-runtime/recover", { preHandler: pillowAuth }, missionRuntimeAction("recover"));
+  app.post("/api/pillow/mission-runtime/archive", { preHandler: pillowAuth }, missionRuntimeAction("archive"));
+  app.post("/api/pillow/mission-runtime/monitor", { preHandler: pillowAuth }, missionRuntimeAction("monitor"));
+  app.post("/api/pillow/mission-runtime/produce-report", { preHandler: pillowAuth }, missionRuntimeAction("produce-report"));
+  app.post("/api/pillow/mission-runtime/submit-report", { preHandler: pillowAuth }, missionRuntimeAction("submit-report"));
+  app.post("/api/pillow/mission-runtime/list", { preHandler: pillowAuth }, missionRuntimeAction("list"));
+  app.post("/api/pillow/mission-runtime/validate", { preHandler: pillowAuth }, missionRuntimeAction("validate"));
+  app.post("/api/pillow/mission-runtime/diagnostics", { preHandler: pillowAuth }, missionRuntimeAction("diagnostics"));
+  app.post("/api/pillow/mission-runtime/history", { preHandler: pillowAuth }, missionRuntimeAction("history"));
+  app.post("/api/pillow/mission-runtime/q1004-contract", { preHandler: pillowAuth }, missionRuntimeAction("q1004-contract"));
+
+  app.get("/api/pillow/queue-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectQueueRuntimeSnapshot());
+    }
+    return reply.send({ queueRuntime: pillowHost.getQueueRuntime() });
+  });
+  const queueRuntimeAction = (
+    method:
+      | "connect"
+      | "create-queue"
+      | "enqueue"
+      | "prioritize"
+      | "pause-queue"
+      | "resume-queue"
+      | "cancel-job"
+      | "dispatch-ready"
+      | "retry-failed"
+      | "move-to-dead-letter"
+      | "metrics"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1005-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectQueueRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectQueueRuntime(body)
+          : method === "create-queue" ? pillowHost.createQueueRuntimeQueue(body)
+            : method === "enqueue" ? pillowHost.enqueueQueueRuntime(body)
+              : method === "prioritize" ? pillowHost.prioritizeQueueRuntime(body)
+                : method === "pause-queue" ? pillowHost.pauseQueueRuntime(body)
+                  : method === "resume-queue" ? pillowHost.resumeQueueRuntime(body)
+                    : method === "cancel-job" ? pillowHost.cancelQueueRuntimeJob(body)
+                      : method === "dispatch-ready" ? pillowHost.dispatchQueueRuntimeReady(body)
+                        : method === "retry-failed" ? pillowHost.retryQueueRuntimeFailed(body)
+                          : method === "move-to-dead-letter" ? pillowHost.moveQueueRuntimeToDeadLetter(body)
+                            : method === "metrics" ? pillowHost.metricsQueueRuntime(body)
+                              : method === "produce-report" ? pillowHost.produceQueueRuntimeReport(body)
+                                : method === "submit-report" ? pillowHost.submitQueueRuntimeReport(body)
+                                  : method === "list" ? pillowHost.listQueueRuntime(body)
+                                    : method === "validate" ? pillowHost.validateQueueRuntime(body)
+                                      : method === "history" ? pillowHost.getQueueRuntimeHistory()
+                                        : method === "q1005-contract" ? pillowHost.getQueueRuntimeQ1005Contract()
+                                          : pillowHost.runQueueRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/queue-runtime/connect", { preHandler: pillowAuth }, queueRuntimeAction("connect"));
+  app.post("/api/pillow/queue-runtime/create-queue", { preHandler: pillowAuth }, queueRuntimeAction("create-queue"));
+  app.post("/api/pillow/queue-runtime/enqueue", { preHandler: pillowAuth }, queueRuntimeAction("enqueue"));
+  app.post("/api/pillow/queue-runtime/prioritize", { preHandler: pillowAuth }, queueRuntimeAction("prioritize"));
+  app.post("/api/pillow/queue-runtime/pause-queue", { preHandler: pillowAuth }, queueRuntimeAction("pause-queue"));
+  app.post("/api/pillow/queue-runtime/resume-queue", { preHandler: pillowAuth }, queueRuntimeAction("resume-queue"));
+  app.post("/api/pillow/queue-runtime/cancel-job", { preHandler: pillowAuth }, queueRuntimeAction("cancel-job"));
+  app.post("/api/pillow/queue-runtime/dispatch-ready", { preHandler: pillowAuth }, queueRuntimeAction("dispatch-ready"));
+  app.post("/api/pillow/queue-runtime/retry-failed", { preHandler: pillowAuth }, queueRuntimeAction("retry-failed"));
+  app.post("/api/pillow/queue-runtime/move-to-dead-letter", { preHandler: pillowAuth }, queueRuntimeAction("move-to-dead-letter"));
+  app.post("/api/pillow/queue-runtime/metrics", { preHandler: pillowAuth }, queueRuntimeAction("metrics"));
+  app.post("/api/pillow/queue-runtime/produce-report", { preHandler: pillowAuth }, queueRuntimeAction("produce-report"));
+  app.post("/api/pillow/queue-runtime/submit-report", { preHandler: pillowAuth }, queueRuntimeAction("submit-report"));
+  app.post("/api/pillow/queue-runtime/list", { preHandler: pillowAuth }, queueRuntimeAction("list"));
+  app.post("/api/pillow/queue-runtime/validate", { preHandler: pillowAuth }, queueRuntimeAction("validate"));
+  app.post("/api/pillow/queue-runtime/diagnostics", { preHandler: pillowAuth }, queueRuntimeAction("diagnostics"));
+  app.post("/api/pillow/queue-runtime/history", { preHandler: pillowAuth }, queueRuntimeAction("history"));
+  app.post("/api/pillow/queue-runtime/q1005-contract", { preHandler: pillowAuth }, queueRuntimeAction("q1005-contract"));
+
+  app.get("/api/pillow/memory-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMemoryRuntimeSnapshot());
+    }
+    return reply.send({ memoryRuntime: pillowHost.getMemoryRuntime() });
+  });
+  const memoryRuntimeAction = (
+    method:
+      | "connect"
+      | "store-memory"
+      | "retrieve-memory"
+      | "store-decision"
+      | "retrieve-decision-history"
+      | "retrieve-previous-results"
+      | "provide-runtime-context"
+      | "list-versions"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1006-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectMemoryRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectMemoryRuntime(body)
+          : method === "store-memory" ? pillowHost.storeMemoryRuntime(body)
+            : method === "retrieve-memory" ? pillowHost.retrieveMemoryRuntime(body)
+              : method === "store-decision" ? pillowHost.storeMemoryRuntimeDecision(body)
+                : method === "retrieve-decision-history" ? pillowHost.retrieveMemoryRuntimeDecisionHistory(body)
+                  : method === "retrieve-previous-results" ? pillowHost.retrieveMemoryRuntimePreviousResults(body)
+                    : method === "provide-runtime-context" ? pillowHost.provideMemoryRuntimeContext(body)
+                      : method === "list-versions" ? pillowHost.listMemoryRuntimeVersions(body)
+                        : method === "produce-report" ? pillowHost.produceMemoryRuntimeReport(body)
+                          : method === "submit-report" ? pillowHost.submitMemoryRuntimeReport(body)
+                            : method === "list" ? pillowHost.listMemoryRuntime(body)
+                              : method === "validate" ? pillowHost.validateMemoryRuntime(body)
+                                : method === "history" ? pillowHost.getMemoryRuntimeHistory()
+                                  : method === "q1006-contract" ? pillowHost.getMemoryRuntimeQ1006Contract()
+                                    : pillowHost.runMemoryRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/memory-runtime/connect", { preHandler: pillowAuth }, memoryRuntimeAction("connect"));
+  app.post("/api/pillow/memory-runtime/store-memory", { preHandler: pillowAuth }, memoryRuntimeAction("store-memory"));
+  app.post("/api/pillow/memory-runtime/retrieve-memory", { preHandler: pillowAuth }, memoryRuntimeAction("retrieve-memory"));
+  app.post("/api/pillow/memory-runtime/store-decision", { preHandler: pillowAuth }, memoryRuntimeAction("store-decision"));
+  app.post("/api/pillow/memory-runtime/retrieve-decision-history", { preHandler: pillowAuth }, memoryRuntimeAction("retrieve-decision-history"));
+  app.post("/api/pillow/memory-runtime/retrieve-previous-results", { preHandler: pillowAuth }, memoryRuntimeAction("retrieve-previous-results"));
+  app.post("/api/pillow/memory-runtime/provide-runtime-context", { preHandler: pillowAuth }, memoryRuntimeAction("provide-runtime-context"));
+  app.post("/api/pillow/memory-runtime/list-versions", { preHandler: pillowAuth }, memoryRuntimeAction("list-versions"));
+  app.post("/api/pillow/memory-runtime/produce-report", { preHandler: pillowAuth }, memoryRuntimeAction("produce-report"));
+  app.post("/api/pillow/memory-runtime/submit-report", { preHandler: pillowAuth }, memoryRuntimeAction("submit-report"));
+  app.post("/api/pillow/memory-runtime/list", { preHandler: pillowAuth }, memoryRuntimeAction("list"));
+  app.post("/api/pillow/memory-runtime/validate", { preHandler: pillowAuth }, memoryRuntimeAction("validate"));
+  app.post("/api/pillow/memory-runtime/diagnostics", { preHandler: pillowAuth }, memoryRuntimeAction("diagnostics"));
+  app.post("/api/pillow/memory-runtime/history", { preHandler: pillowAuth }, memoryRuntimeAction("history"));
+  app.post("/api/pillow/memory-runtime/q1006-contract", { preHandler: pillowAuth }, memoryRuntimeAction("q1006-contract"));
+
+  app.get("/api/pillow/api-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectApiRuntimeSnapshot());
+    }
+    return reply.send({ apiRuntime: pillowHost.getApiRuntime() });
+  });
+  const apiRuntimeAction = (
+    method:
+      | "connect"
+      | "register-provider"
+      | "manage-connection"
+      | "authenticate"
+      | "route-request"
+      | "check-health"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1007-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectApiRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectApiRuntime(body)
+          : method === "register-provider" ? pillowHost.registerApiRuntimeProvider(body)
+            : method === "manage-connection" ? pillowHost.manageApiRuntimeConnection(body)
+              : method === "authenticate" ? pillowHost.authenticateApiRuntime(body)
+                : method === "route-request" ? pillowHost.routeApiRuntimeRequest(body)
+                  : method === "check-health" ? pillowHost.checkApiRuntimeHealth(body)
+                    : method === "produce-report" ? pillowHost.produceApiRuntimeReport(body)
+                      : method === "submit-report" ? pillowHost.submitApiRuntimeReport(body)
+                        : method === "list" ? pillowHost.listApiRuntime(body)
+                          : method === "validate" ? pillowHost.validateApiRuntime(body)
+                            : method === "history" ? pillowHost.getApiRuntimeHistory()
+                              : method === "q1007-contract" ? pillowHost.getApiRuntimeQ1007Contract()
+                                : pillowHost.runApiRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/api-runtime/connect", { preHandler: pillowAuth }, apiRuntimeAction("connect"));
+  app.post("/api/pillow/api-runtime/register-provider", { preHandler: pillowAuth }, apiRuntimeAction("register-provider"));
+  app.post("/api/pillow/api-runtime/manage-connection", { preHandler: pillowAuth }, apiRuntimeAction("manage-connection"));
+  app.post("/api/pillow/api-runtime/authenticate", { preHandler: pillowAuth }, apiRuntimeAction("authenticate"));
+  app.post("/api/pillow/api-runtime/route-request", { preHandler: pillowAuth }, apiRuntimeAction("route-request"));
+  app.post("/api/pillow/api-runtime/check-health", { preHandler: pillowAuth }, apiRuntimeAction("check-health"));
+  app.post("/api/pillow/api-runtime/produce-report", { preHandler: pillowAuth }, apiRuntimeAction("produce-report"));
+  app.post("/api/pillow/api-runtime/submit-report", { preHandler: pillowAuth }, apiRuntimeAction("submit-report"));
+  app.post("/api/pillow/api-runtime/list", { preHandler: pillowAuth }, apiRuntimeAction("list"));
+  app.post("/api/pillow/api-runtime/validate", { preHandler: pillowAuth }, apiRuntimeAction("validate"));
+  app.post("/api/pillow/api-runtime/diagnostics", { preHandler: pillowAuth }, apiRuntimeAction("diagnostics"));
+  app.post("/api/pillow/api-runtime/history", { preHandler: pillowAuth }, apiRuntimeAction("history"));
+  app.post("/api/pillow/api-runtime/q1007-contract", { preHandler: pillowAuth }, apiRuntimeAction("q1007-contract"));
+
+  app.get("/api/pillow/tool-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectToolRuntimeSnapshot());
+    }
+    return reply.send({ toolRuntime: pillowHost.getToolRuntime() });
+  });
+  const toolRuntimeAction = (
+    method:
+      | "connect"
+      | "register-tool"
+      | "discover-tools"
+      | "authenticate"
+      | "invoke-tool"
+      | "check-availability"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1008-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectToolRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectToolRuntime(body)
+          : method === "register-tool" ? pillowHost.registerToolRuntimeTool(body)
+            : method === "discover-tools" ? pillowHost.discoverToolRuntimeTools(body)
+              : method === "authenticate" ? pillowHost.authenticateToolRuntime(body)
+                : method === "invoke-tool" ? pillowHost.invokeToolRuntime(body)
+                  : method === "check-availability" ? pillowHost.checkToolRuntimeAvailability(body)
+                    : method === "produce-report" ? pillowHost.produceToolRuntimeReport(body)
+                      : method === "submit-report" ? pillowHost.submitToolRuntimeReport(body)
+                        : method === "list" ? pillowHost.listToolRuntime(body)
+                          : method === "validate" ? pillowHost.validateToolRuntime(body)
+                            : method === "history" ? pillowHost.getToolRuntimeHistory()
+                              : method === "q1008-contract" ? pillowHost.getToolRuntimeQ1008Contract()
+                                : pillowHost.runToolRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/tool-runtime/connect", { preHandler: pillowAuth }, toolRuntimeAction("connect"));
+  app.post("/api/pillow/tool-runtime/register-tool", { preHandler: pillowAuth }, toolRuntimeAction("register-tool"));
+  app.post("/api/pillow/tool-runtime/discover-tools", { preHandler: pillowAuth }, toolRuntimeAction("discover-tools"));
+  app.post("/api/pillow/tool-runtime/authenticate", { preHandler: pillowAuth }, toolRuntimeAction("authenticate"));
+  app.post("/api/pillow/tool-runtime/invoke-tool", { preHandler: pillowAuth }, toolRuntimeAction("invoke-tool"));
+  app.post("/api/pillow/tool-runtime/check-availability", { preHandler: pillowAuth }, toolRuntimeAction("check-availability"));
+  app.post("/api/pillow/tool-runtime/produce-report", { preHandler: pillowAuth }, toolRuntimeAction("produce-report"));
+  app.post("/api/pillow/tool-runtime/submit-report", { preHandler: pillowAuth }, toolRuntimeAction("submit-report"));
+  app.post("/api/pillow/tool-runtime/list", { preHandler: pillowAuth }, toolRuntimeAction("list"));
+  app.post("/api/pillow/tool-runtime/validate", { preHandler: pillowAuth }, toolRuntimeAction("validate"));
+  app.post("/api/pillow/tool-runtime/diagnostics", { preHandler: pillowAuth }, toolRuntimeAction("diagnostics"));
+  app.post("/api/pillow/tool-runtime/history", { preHandler: pillowAuth }, toolRuntimeAction("history"));
+  app.post("/api/pillow/tool-runtime/q1008-contract", { preHandler: pillowAuth }, toolRuntimeAction("q1008-contract"));
+
+  app.get("/api/pillow/communication-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCommunicationRuntimeSnapshot());
+    }
+    return reply.send({ communicationRuntime: pillowHost.getCommunicationRuntime() });
+  });
+  const communicationRuntimeAction = (
+    method:
+      | "connect"
+      | "open-channel"
+      | "send-message"
+      | "acknowledge-message"
+      | "open-collaboration-session"
+      | "close-collaboration-session"
+      | "retry-failed"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1009-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectCommunicationRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectCommunicationRuntime(body)
+          : method === "open-channel" ? pillowHost.openCommunicationRuntimeChannel(body)
+            : method === "send-message" ? pillowHost.sendCommunicationRuntimeMessage(body)
+              : method === "acknowledge-message" ? pillowHost.acknowledgeCommunicationRuntimeMessage(body)
+                : method === "open-collaboration-session" ? pillowHost.openCommunicationRuntimeCollaborationSession(body)
+                  : method === "close-collaboration-session" ? pillowHost.closeCommunicationRuntimeCollaborationSession(body)
+                    : method === "retry-failed" ? pillowHost.retryCommunicationRuntimeFailed(body)
+                      : method === "produce-report" ? pillowHost.produceCommunicationRuntimeReport(body)
+                        : method === "submit-report" ? pillowHost.submitCommunicationRuntimeReport(body)
+                          : method === "list" ? pillowHost.listCommunicationRuntime(body)
+                            : method === "validate" ? pillowHost.validateCommunicationRuntime(body)
+                              : method === "history" ? pillowHost.getCommunicationRuntimeHistory()
+                                : method === "q1009-contract" ? pillowHost.getCommunicationRuntimeQ1009Contract()
+                                  : pillowHost.runCommunicationRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/communication-runtime/connect", { preHandler: pillowAuth }, communicationRuntimeAction("connect"));
+  app.post("/api/pillow/communication-runtime/open-channel", { preHandler: pillowAuth }, communicationRuntimeAction("open-channel"));
+  app.post("/api/pillow/communication-runtime/send-message", { preHandler: pillowAuth }, communicationRuntimeAction("send-message"));
+  app.post("/api/pillow/communication-runtime/acknowledge-message", { preHandler: pillowAuth }, communicationRuntimeAction("acknowledge-message"));
+  app.post("/api/pillow/communication-runtime/open-collaboration-session", { preHandler: pillowAuth }, communicationRuntimeAction("open-collaboration-session"));
+  app.post("/api/pillow/communication-runtime/close-collaboration-session", { preHandler: pillowAuth }, communicationRuntimeAction("close-collaboration-session"));
+  app.post("/api/pillow/communication-runtime/retry-failed", { preHandler: pillowAuth }, communicationRuntimeAction("retry-failed"));
+  app.post("/api/pillow/communication-runtime/produce-report", { preHandler: pillowAuth }, communicationRuntimeAction("produce-report"));
+  app.post("/api/pillow/communication-runtime/submit-report", { preHandler: pillowAuth }, communicationRuntimeAction("submit-report"));
+  app.post("/api/pillow/communication-runtime/list", { preHandler: pillowAuth }, communicationRuntimeAction("list"));
+  app.post("/api/pillow/communication-runtime/validate", { preHandler: pillowAuth }, communicationRuntimeAction("validate"));
+  app.post("/api/pillow/communication-runtime/diagnostics", { preHandler: pillowAuth }, communicationRuntimeAction("diagnostics"));
+  app.post("/api/pillow/communication-runtime/history", { preHandler: pillowAuth }, communicationRuntimeAction("history"));
+  app.post("/api/pillow/communication-runtime/q1009-contract", { preHandler: pillowAuth }, communicationRuntimeAction("q1009-contract"));
+
+  app.get("/api/pillow/approval-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectApprovalRuntimeSnapshot());
+    }
+    return reply.send({ approvalRuntime: pillowHost.getApprovalRuntime() });
+  });
+  const approvalRuntimeAction = (
+    method:
+      | "connect"
+      | "register-policy"
+      | "determine-requirements"
+      | "submit-request"
+      | "route-approval"
+      | "decide"
+      | "resume-execution"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1010-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectApprovalRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectApprovalRuntime(body)
+          : method === "register-policy" ? pillowHost.registerApprovalRuntimePolicy(body)
+            : method === "determine-requirements" ? pillowHost.determineApprovalRuntimeRequirements(body)
+              : method === "submit-request" ? pillowHost.submitApprovalRuntimeRequest(body)
+                : method === "route-approval" ? pillowHost.routeApprovalRuntime(body)
+                  : method === "decide" ? pillowHost.decideApprovalRuntime(body)
+                    : method === "resume-execution" ? pillowHost.resumeApprovalRuntimeExecution(body)
+                      : method === "produce-report" ? pillowHost.produceApprovalRuntimeReport(body)
+                        : method === "submit-report" ? pillowHost.submitApprovalRuntimeReport(body)
+                          : method === "list" ? pillowHost.listApprovalRuntime(body)
+                            : method === "validate" ? pillowHost.validateApprovalRuntime(body)
+                              : method === "history" ? pillowHost.getApprovalRuntimeHistory()
+                                : method === "q1010-contract" ? pillowHost.getApprovalRuntimeQ1010Contract()
+                                  : pillowHost.runApprovalRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/approval-runtime/connect", { preHandler: pillowAuth }, approvalRuntimeAction("connect"));
+  app.post("/api/pillow/approval-runtime/register-policy", { preHandler: pillowAuth }, approvalRuntimeAction("register-policy"));
+  app.post("/api/pillow/approval-runtime/determine-requirements", { preHandler: pillowAuth }, approvalRuntimeAction("determine-requirements"));
+  app.post("/api/pillow/approval-runtime/submit-request", { preHandler: pillowAuth }, approvalRuntimeAction("submit-request"));
+  app.post("/api/pillow/approval-runtime/route-approval", { preHandler: pillowAuth }, approvalRuntimeAction("route-approval"));
+  app.post("/api/pillow/approval-runtime/decide", { preHandler: pillowAuth }, approvalRuntimeAction("decide"));
+  app.post("/api/pillow/approval-runtime/resume-execution", { preHandler: pillowAuth }, approvalRuntimeAction("resume-execution"));
+  app.post("/api/pillow/approval-runtime/produce-report", { preHandler: pillowAuth }, approvalRuntimeAction("produce-report"));
+  app.post("/api/pillow/approval-runtime/submit-report", { preHandler: pillowAuth }, approvalRuntimeAction("submit-report"));
+  app.post("/api/pillow/approval-runtime/list", { preHandler: pillowAuth }, approvalRuntimeAction("list"));
+  app.post("/api/pillow/approval-runtime/validate", { preHandler: pillowAuth }, approvalRuntimeAction("validate"));
+  app.post("/api/pillow/approval-runtime/diagnostics", { preHandler: pillowAuth }, approvalRuntimeAction("diagnostics"));
+  app.post("/api/pillow/approval-runtime/history", { preHandler: pillowAuth }, approvalRuntimeAction("history"));
+  app.post("/api/pillow/approval-runtime/q1010-contract", { preHandler: pillowAuth }, approvalRuntimeAction("q1010-contract"));
+
+  app.get("/api/pillow/monitoring-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMonitoringRuntimeSnapshot());
+    }
+    return reply.send({ monitoringRuntime: pillowHost.getMonitoringRuntime() });
+  });
+  const monitoringRuntimeAction = (
+    method:
+      | "connect"
+      | "register-component"
+      | "record-heartbeat"
+      | "monitor-workers"
+      | "monitor-factories"
+      | "monitor-runtimes"
+      | "monitor-apis"
+      | "monitor-queues"
+      | "monitor-missions"
+      | "monitor-tools"
+      | "detect-anomalies"
+      | "generate-alerts"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "dashboard"
+      | "q1011-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectMonitoringRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectMonitoringRuntime(body)
+          : method === "register-component" ? pillowHost.registerMonitoringRuntimeComponent(body)
+            : method === "record-heartbeat" ? pillowHost.recordMonitoringRuntimeHeartbeat(body)
+              : method === "monitor-workers" ? pillowHost.monitorMonitoringRuntimeWorkers(body)
+                : method === "monitor-factories" ? pillowHost.monitorMonitoringRuntimeFactories(body)
+                  : method === "monitor-runtimes" ? pillowHost.monitorMonitoringRuntimeRuntimes(body)
+                    : method === "monitor-apis" ? pillowHost.monitorMonitoringRuntimeApis(body)
+                      : method === "monitor-queues" ? pillowHost.monitorMonitoringRuntimeQueues(body)
+                        : method === "monitor-missions" ? pillowHost.monitorMonitoringRuntimeMissions(body)
+                          : method === "monitor-tools" ? pillowHost.monitorMonitoringRuntimeTools(body)
+                            : method === "detect-anomalies" ? pillowHost.detectMonitoringRuntimeAnomalies(body)
+                              : method === "generate-alerts" ? pillowHost.generateMonitoringRuntimeAlerts(body)
+                                : method === "produce-report" ? pillowHost.produceMonitoringRuntimeReport(body)
+                                  : method === "submit-report" ? pillowHost.submitMonitoringRuntimeReport(body)
+                                    : method === "list" ? pillowHost.listMonitoringRuntime(body)
+                                      : method === "validate" ? pillowHost.validateMonitoringRuntime(body)
+                                        : method === "history" ? pillowHost.getMonitoringRuntimeHistory()
+                                          : method === "dashboard" ? pillowHost.getMonitoringRuntimeDashboard()
+                                            : method === "q1011-contract" ? pillowHost.getMonitoringRuntimeQ1011Contract()
+                                              : pillowHost.runMonitoringRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/monitoring-runtime/connect", { preHandler: pillowAuth }, monitoringRuntimeAction("connect"));
+  app.post("/api/pillow/monitoring-runtime/register-component", { preHandler: pillowAuth }, monitoringRuntimeAction("register-component"));
+  app.post("/api/pillow/monitoring-runtime/record-heartbeat", { preHandler: pillowAuth }, monitoringRuntimeAction("record-heartbeat"));
+  app.post("/api/pillow/monitoring-runtime/monitor-workers", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-workers"));
+  app.post("/api/pillow/monitoring-runtime/monitor-factories", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-factories"));
+  app.post("/api/pillow/monitoring-runtime/monitor-runtimes", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-runtimes"));
+  app.post("/api/pillow/monitoring-runtime/monitor-apis", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-apis"));
+  app.post("/api/pillow/monitoring-runtime/monitor-queues", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-queues"));
+  app.post("/api/pillow/monitoring-runtime/monitor-missions", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-missions"));
+  app.post("/api/pillow/monitoring-runtime/monitor-tools", { preHandler: pillowAuth }, monitoringRuntimeAction("monitor-tools"));
+  app.post("/api/pillow/monitoring-runtime/detect-anomalies", { preHandler: pillowAuth }, monitoringRuntimeAction("detect-anomalies"));
+  app.post("/api/pillow/monitoring-runtime/generate-alerts", { preHandler: pillowAuth }, monitoringRuntimeAction("generate-alerts"));
+  app.post("/api/pillow/monitoring-runtime/produce-report", { preHandler: pillowAuth }, monitoringRuntimeAction("produce-report"));
+  app.post("/api/pillow/monitoring-runtime/submit-report", { preHandler: pillowAuth }, monitoringRuntimeAction("submit-report"));
+  app.post("/api/pillow/monitoring-runtime/list", { preHandler: pillowAuth }, monitoringRuntimeAction("list"));
+  app.post("/api/pillow/monitoring-runtime/validate", { preHandler: pillowAuth }, monitoringRuntimeAction("validate"));
+  app.post("/api/pillow/monitoring-runtime/diagnostics", { preHandler: pillowAuth }, monitoringRuntimeAction("diagnostics"));
+  app.post("/api/pillow/monitoring-runtime/history", { preHandler: pillowAuth }, monitoringRuntimeAction("history"));
+  app.post("/api/pillow/monitoring-runtime/dashboard", { preHandler: pillowAuth }, monitoringRuntimeAction("dashboard"));
+  app.post("/api/pillow/monitoring-runtime/q1011-contract", { preHandler: pillowAuth }, monitoringRuntimeAction("q1011-contract"));
+
+  app.get("/api/pillow/recovery-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRecoveryRuntimeSnapshot());
+    }
+    return reply.send({ recoveryRuntime: pillowHost.getRecoveryRuntime() });
+  });
+  const recoveryRuntimeAction = (
+    method:
+      | "connect"
+      | "detect-failure"
+      | "classify-failure"
+      | "select-strategy"
+      | "restore-state"
+      | "restart-job"
+      | "resume-workflow"
+      | "rollback"
+      | "escalate"
+      | "run-recovery"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1012-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectRecoveryRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectRecoveryRuntime(body)
+          : method === "detect-failure" ? pillowHost.detectRecoveryRuntimeFailure(body)
+            : method === "classify-failure" ? pillowHost.classifyRecoveryRuntimeFailure(body)
+              : method === "select-strategy" ? pillowHost.selectRecoveryRuntimeStrategy(body)
+                : method === "restore-state" ? pillowHost.restoreRecoveryRuntimeState(body)
+                  : method === "restart-job" ? pillowHost.restartRecoveryRuntimeJob(body)
+                    : method === "resume-workflow" ? pillowHost.resumeRecoveryRuntimeWorkflow(body)
+                      : method === "rollback" ? pillowHost.rollbackRecoveryRuntime(body)
+                        : method === "escalate" ? pillowHost.escalateRecoveryRuntime(body)
+                          : method === "run-recovery" ? pillowHost.runRecoveryRuntime(body)
+                            : method === "produce-report" ? pillowHost.produceRecoveryRuntimeReport(body)
+                              : method === "submit-report" ? pillowHost.submitRecoveryRuntimeReport(body)
+                                : method === "list" ? pillowHost.listRecoveryRuntime(body)
+                                  : method === "validate" ? pillowHost.validateRecoveryRuntime(body)
+                                    : method === "history" ? pillowHost.getRecoveryRuntimeHistory()
+                                      : method === "q1012-contract" ? pillowHost.getRecoveryRuntimeQ1012Contract()
+                                        : pillowHost.runRecoveryRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/recovery-runtime/connect", { preHandler: pillowAuth }, recoveryRuntimeAction("connect"));
+  app.post("/api/pillow/recovery-runtime/detect-failure", { preHandler: pillowAuth }, recoveryRuntimeAction("detect-failure"));
+  app.post("/api/pillow/recovery-runtime/classify-failure", { preHandler: pillowAuth }, recoveryRuntimeAction("classify-failure"));
+  app.post("/api/pillow/recovery-runtime/select-strategy", { preHandler: pillowAuth }, recoveryRuntimeAction("select-strategy"));
+  app.post("/api/pillow/recovery-runtime/restore-state", { preHandler: pillowAuth }, recoveryRuntimeAction("restore-state"));
+  app.post("/api/pillow/recovery-runtime/restart-job", { preHandler: pillowAuth }, recoveryRuntimeAction("restart-job"));
+  app.post("/api/pillow/recovery-runtime/resume-workflow", { preHandler: pillowAuth }, recoveryRuntimeAction("resume-workflow"));
+  app.post("/api/pillow/recovery-runtime/rollback", { preHandler: pillowAuth }, recoveryRuntimeAction("rollback"));
+  app.post("/api/pillow/recovery-runtime/escalate", { preHandler: pillowAuth }, recoveryRuntimeAction("escalate"));
+  app.post("/api/pillow/recovery-runtime/run-recovery", { preHandler: pillowAuth }, recoveryRuntimeAction("run-recovery"));
+  app.post("/api/pillow/recovery-runtime/produce-report", { preHandler: pillowAuth }, recoveryRuntimeAction("produce-report"));
+  app.post("/api/pillow/recovery-runtime/submit-report", { preHandler: pillowAuth }, recoveryRuntimeAction("submit-report"));
+  app.post("/api/pillow/recovery-runtime/list", { preHandler: pillowAuth }, recoveryRuntimeAction("list"));
+  app.post("/api/pillow/recovery-runtime/validate", { preHandler: pillowAuth }, recoveryRuntimeAction("validate"));
+  app.post("/api/pillow/recovery-runtime/diagnostics", { preHandler: pillowAuth }, recoveryRuntimeAction("diagnostics"));
+  app.post("/api/pillow/recovery-runtime/history", { preHandler: pillowAuth }, recoveryRuntimeAction("history"));
+  app.post("/api/pillow/recovery-runtime/q1012-contract", { preHandler: pillowAuth }, recoveryRuntimeAction("q1012-contract"));
+
+  app.get("/api/pillow/scheduling-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSchedulingRuntimeSnapshot());
+    }
+    return reply.send({ schedulingRuntime: pillowHost.getSchedulingRuntime() });
+  });
+  const schedulingRuntimeAction = (
+    method:
+      | "connect"
+      | "create-schedule"
+      | "update-schedule"
+      | "pause-schedule"
+      | "resume-schedule"
+      | "cancel-schedule"
+      | "trigger-event"
+      | "evaluate-due"
+      | "detect-conflicts"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1013-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectSchedulingRuntimeSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectSchedulingRuntime(body)
+          : method === "create-schedule" ? pillowHost.createSchedulingRuntimeSchedule(body)
+            : method === "update-schedule" ? pillowHost.updateSchedulingRuntimeSchedule(body)
+              : method === "pause-schedule" ? pillowHost.pauseSchedulingRuntimeSchedule(body)
+                : method === "resume-schedule" ? pillowHost.resumeSchedulingRuntimeSchedule(body)
+                  : method === "cancel-schedule" ? pillowHost.cancelSchedulingRuntimeSchedule(body)
+                    : method === "trigger-event" ? pillowHost.triggerSchedulingRuntimeEvent(body)
+                      : method === "evaluate-due" ? pillowHost.evaluateSchedulingRuntimeDue(body)
+                        : method === "detect-conflicts" ? pillowHost.detectSchedulingRuntimeConflicts(body)
+                          : method === "produce-report" ? pillowHost.produceSchedulingRuntimeReport(body)
+                            : method === "submit-report" ? pillowHost.submitSchedulingRuntimeReport(body)
+                              : method === "list" ? pillowHost.listSchedulingRuntime(body)
+                                : method === "validate" ? pillowHost.validateSchedulingRuntime(body)
+                                  : method === "history" ? pillowHost.getSchedulingRuntimeHistory()
+                                    : method === "q1013-contract" ? pillowHost.getSchedulingRuntimeQ1013Contract()
+                                      : pillowHost.runSchedulingRuntimeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/scheduling-runtime/connect", { preHandler: pillowAuth }, schedulingRuntimeAction("connect"));
+  app.post("/api/pillow/scheduling-runtime/create-schedule", { preHandler: pillowAuth }, schedulingRuntimeAction("create-schedule"));
+  app.post("/api/pillow/scheduling-runtime/update-schedule", { preHandler: pillowAuth }, schedulingRuntimeAction("update-schedule"));
+  app.post("/api/pillow/scheduling-runtime/pause-schedule", { preHandler: pillowAuth }, schedulingRuntimeAction("pause-schedule"));
+  app.post("/api/pillow/scheduling-runtime/resume-schedule", { preHandler: pillowAuth }, schedulingRuntimeAction("resume-schedule"));
+  app.post("/api/pillow/scheduling-runtime/cancel-schedule", { preHandler: pillowAuth }, schedulingRuntimeAction("cancel-schedule"));
+  app.post("/api/pillow/scheduling-runtime/trigger-event", { preHandler: pillowAuth }, schedulingRuntimeAction("trigger-event"));
+  app.post("/api/pillow/scheduling-runtime/evaluate-due", { preHandler: pillowAuth }, schedulingRuntimeAction("evaluate-due"));
+  app.post("/api/pillow/scheduling-runtime/detect-conflicts", { preHandler: pillowAuth }, schedulingRuntimeAction("detect-conflicts"));
+  app.post("/api/pillow/scheduling-runtime/produce-report", { preHandler: pillowAuth }, schedulingRuntimeAction("produce-report"));
+  app.post("/api/pillow/scheduling-runtime/submit-report", { preHandler: pillowAuth }, schedulingRuntimeAction("submit-report"));
+  app.post("/api/pillow/scheduling-runtime/list", { preHandler: pillowAuth }, schedulingRuntimeAction("list"));
+  app.post("/api/pillow/scheduling-runtime/validate", { preHandler: pillowAuth }, schedulingRuntimeAction("validate"));
+  app.post("/api/pillow/scheduling-runtime/diagnostics", { preHandler: pillowAuth }, schedulingRuntimeAction("diagnostics"));
+  app.post("/api/pillow/scheduling-runtime/history", { preHandler: pillowAuth }, schedulingRuntimeAction("history"));
+  app.post("/api/pillow/scheduling-runtime/q1013-contract", { preHandler: pillowAuth }, schedulingRuntimeAction("q1013-contract"));
+
+  app.get("/api/pillow/audit-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAuditRuntimeSnapshot());
+    }
+    return reply.send({ auditRuntime: pillowHost.getAuditRuntime() });
+  });
+  const auditRuntimeAction = (
+    method:
+      | "connect"
+      | "record-event"
+      | "record-worker-action"
+      | "record-mission-lifecycle"
+      | "record-approval"
+      | "record-recovery"
+      | "record-scheduling"
+      | "attach-evidence"
+      | "query"
+      | "verify-integrity"
+      | "export"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "history"
+      | "q1014-contract",
+  ) => async (request: { body?: unknown }, reply: {
+    send: (payload: unknown) => unknown;
+    code: (statusCode: number) => { send: (payload: unknown) => unknown };
+  }) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.code(503).send(collectAuditRuntimeSnapshot());
+    }
+    const body = (request.body ?? {}) as Record<string, unknown>;
+    const result =
+      method === "connect" ? pillowHost.connectAuditRuntime(body)
+        : method === "record-event" ? pillowHost.recordAuditRuntimeEvent(body)
+          : method === "record-worker-action" ? pillowHost.recordAuditRuntimeWorkerAction(body)
+            : method === "record-mission-lifecycle" ? pillowHost.recordAuditRuntimeMissionLifecycle(body)
+              : method === "record-approval" ? pillowHost.recordAuditRuntimeApproval(body)
+                : method === "record-recovery" ? pillowHost.recordAuditRuntimeRecovery(body)
+                  : method === "record-scheduling" ? pillowHost.recordAuditRuntimeScheduling(body)
+                    : method === "attach-evidence" ? pillowHost.attachAuditRuntimeEvidence(body)
+                      : method === "query" ? pillowHost.queryAuditRuntime(body)
+                        : method === "verify-integrity" ? pillowHost.verifyAuditRuntimeIntegrity(body)
+                          : method === "export" ? pillowHost.exportAuditRuntimeRecords(body)
+                            : method === "produce-report" ? pillowHost.produceAuditRuntimeReport(body)
+                              : method === "submit-report" ? pillowHost.submitAuditRuntimeReport(body)
+                                : method === "list" ? pillowHost.listAuditRuntime(body)
+                                  : method === "validate" ? pillowHost.validateAuditRuntime(body)
+                                    : method === "history" ? pillowHost.getAuditRuntimeHistory()
+                                      : method === "q1014-contract" ? pillowHost.getAuditRuntimeQ1014Contract()
+                                        : pillowHost.runAuditRuntimeDiagnostics();
+    return reply.send(result);
+  };
+  app.post("/api/pillow/audit-runtime/connect", { preHandler: pillowAuth }, auditRuntimeAction("connect"));
+  app.post("/api/pillow/audit-runtime/record-event", { preHandler: pillowAuth }, auditRuntimeAction("record-event"));
+  app.post("/api/pillow/audit-runtime/record-worker-action", { preHandler: pillowAuth }, auditRuntimeAction("record-worker-action"));
+  app.post("/api/pillow/audit-runtime/record-mission-lifecycle", { preHandler: pillowAuth }, auditRuntimeAction("record-mission-lifecycle"));
+  app.post("/api/pillow/audit-runtime/record-approval", { preHandler: pillowAuth }, auditRuntimeAction("record-approval"));
+  app.post("/api/pillow/audit-runtime/record-recovery", { preHandler: pillowAuth }, auditRuntimeAction("record-recovery"));
+  app.post("/api/pillow/audit-runtime/record-scheduling", { preHandler: pillowAuth }, auditRuntimeAction("record-scheduling"));
+  app.post("/api/pillow/audit-runtime/attach-evidence", { preHandler: pillowAuth }, auditRuntimeAction("attach-evidence"));
+  app.post("/api/pillow/audit-runtime/query", { preHandler: pillowAuth }, auditRuntimeAction("query"));
+  app.post("/api/pillow/audit-runtime/verify-integrity", { preHandler: pillowAuth }, auditRuntimeAction("verify-integrity"));
+  app.post("/api/pillow/audit-runtime/export", { preHandler: pillowAuth }, auditRuntimeAction("export"));
+  app.post("/api/pillow/audit-runtime/produce-report", { preHandler: pillowAuth }, auditRuntimeAction("produce-report"));
+  app.post("/api/pillow/audit-runtime/submit-report", { preHandler: pillowAuth }, auditRuntimeAction("submit-report"));
+  app.post("/api/pillow/audit-runtime/list", { preHandler: pillowAuth }, auditRuntimeAction("list"));
+  app.post("/api/pillow/audit-runtime/validate", { preHandler: pillowAuth }, auditRuntimeAction("validate"));
+  app.post("/api/pillow/audit-runtime/diagnostics", { preHandler: pillowAuth }, auditRuntimeAction("diagnostics"));
+  app.post("/api/pillow/audit-runtime/history", { preHandler: pillowAuth }, auditRuntimeAction("history"));
+  app.post("/api/pillow/audit-runtime/q1014-contract", { preHandler: pillowAuth }, auditRuntimeAction("q1014-contract"));
+
+  app.get("/api/pillow/shared-runtime-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSharedRuntimeCertificationSnapshot());
+    }
+    return reply.send({ sharedRuntimeCertification: pillowHost.getSharedRuntimeCertification() });
+  });
+  const sharedRuntimeCertificationAction = (
+    method:
+      | "connect"
+      | "collect-evidence"
+      | "probe-runtime"
+      | "audit-runtimes"
+      | "verify-integrations"
+      | "assess-readiness"
+      | "verify-governance"
+      | "verify-monitoring"
+      | "verify-recovery"
+      | "verify-auditability"
+      | "verify-reporting"
+      | "produce-findings"
+      | "produce-report"
+      | "certify"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1101-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectSharedRuntimeCertificationSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectSharedRuntimeCertification(body)
+          : method === "collect-evidence" ? await pillowHost.collectSharedRuntimeCertificationEvidence()
+            : method === "probe-runtime" ? await pillowHost.probeSharedRuntimeCertificationRuntime()
+              : method === "audit-runtimes" ? await pillowHost.auditSharedRuntimeCertificationRuntimes(body)
+                : method === "verify-integrations" ? await pillowHost.verifySharedRuntimeCertificationIntegrations()
+                  : method === "assess-readiness" ? await pillowHost.assessSharedRuntimeCertificationReadiness(body)
+                    : method === "verify-governance" ? pillowHost.verifySharedRuntimeCertificationGovernance()
+                      : method === "verify-monitoring" ? await pillowHost.verifySharedRuntimeCertificationMonitoring()
+                        : method === "verify-recovery" ? await pillowHost.verifySharedRuntimeCertificationRecovery()
+                          : method === "verify-auditability" ? await pillowHost.verifySharedRuntimeCertificationAuditability()
+                            : method === "verify-reporting" ? await pillowHost.verifySharedRuntimeCertificationReporting()
+                              : method === "produce-findings" ? await pillowHost.produceSharedRuntimeCertificationFindings(body)
+                                : method === "produce-report" ? await pillowHost.produceSharedRuntimeCertificationReport(body)
+                                  : method === "certify" ? await pillowHost.certifySharedRuntime(body)
+                                    : method === "submit-report" ? await pillowHost.submitSharedRuntimeCertificationReport(body)
+                                      : method === "list" ? pillowHost.listSharedRuntimeCertificationReports()
+                                        : method === "validate" ? pillowHost.validateSharedRuntimeCertification(body)
+                                          : method === "q1101-contract" ? pillowHost.getSharedRuntimeCertificationQ1101Contract()
+                                            : pillowHost.runSharedRuntimeCertificationDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/shared-runtime-certification/connect", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("connect"));
+  app.post("/api/pillow/shared-runtime-certification/collect-evidence", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("collect-evidence"));
+  app.post("/api/pillow/shared-runtime-certification/probe-runtime", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("probe-runtime"));
+  app.post("/api/pillow/shared-runtime-certification/audit-runtimes", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("audit-runtimes"));
+  app.post("/api/pillow/shared-runtime-certification/verify-integrations", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-integrations"));
+  app.post("/api/pillow/shared-runtime-certification/assess-readiness", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("assess-readiness"));
+  app.post("/api/pillow/shared-runtime-certification/verify-governance", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-governance"));
+  app.post("/api/pillow/shared-runtime-certification/verify-monitoring", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-monitoring"));
+  app.post("/api/pillow/shared-runtime-certification/verify-recovery", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-recovery"));
+  app.post("/api/pillow/shared-runtime-certification/verify-auditability", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-auditability"));
+  app.post("/api/pillow/shared-runtime-certification/verify-reporting", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("verify-reporting"));
+  app.post("/api/pillow/shared-runtime-certification/produce-findings", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("produce-findings"));
+  app.post("/api/pillow/shared-runtime-certification/produce-report", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("produce-report"));
+  app.post("/api/pillow/shared-runtime-certification/certify", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("certify"));
+  app.post("/api/pillow/shared-runtime-certification/submit-report", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("submit-report"));
+  app.post("/api/pillow/shared-runtime-certification/list", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("list"));
+  app.post("/api/pillow/shared-runtime-certification/validate", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("validate"));
+  app.post("/api/pillow/shared-runtime-certification/diagnostics", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("diagnostics"));
+  app.post("/api/pillow/shared-runtime-certification/q1101-contract", { preHandler: pillowAuth }, sharedRuntimeCertificationAction("q1101-contract"));
+
+  app.get("/api/pillow/production-certification-core", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectProductionCertificationCoreSnapshot());
+    }
+    return reply.send({ productionCertificationCore: pillowHost.getProductionCertificationCore() });
+  });
+  const productionCertificationCoreAction = (
+    method:
+      | "connect"
+      | "register-programmes"
+      | "discover-factories"
+      | "discover-workers"
+      | "discover-runtimes"
+      | "aggregate-evidence"
+      | "verify-integrations"
+      | "verify-governance"
+      | "verify-reporting"
+      | "produce-findings"
+      | "produce-report"
+      | "certify"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1102-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectProductionCertificationCoreSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectProductionCertificationCore(body)
+          : method === "register-programmes" ? pillowHost.registerProductionCertificationProgrammes()
+            : method === "discover-factories" ? await pillowHost.discoverProductionCertificationFactories()
+              : method === "discover-workers" ? await pillowHost.discoverProductionCertificationWorkers()
+                : method === "discover-runtimes" ? await pillowHost.discoverProductionCertificationRuntimes()
+                  : method === "aggregate-evidence" ? await pillowHost.aggregateProductionCertificationEvidence(body)
+                    : method === "verify-integrations" ? pillowHost.verifyProductionCertificationIntegrations()
+                      : method === "verify-governance" ? pillowHost.verifyProductionCertificationGovernance()
+                        : method === "verify-reporting" ? pillowHost.verifyProductionCertificationReporting()
+                          : method === "produce-findings" ? await pillowHost.produceProductionCertificationFindings(body)
+                            : method === "produce-report" ? await pillowHost.produceProductionCertificationCoreReport(body)
+                              : method === "certify" ? await pillowHost.certifyProductionReadiness(body)
+                                : method === "submit-report" ? await pillowHost.submitProductionCertificationCoreReport(body)
+                                  : method === "list" ? pillowHost.listProductionCertificationCoreReports()
+                                    : method === "validate" ? pillowHost.validateProductionCertificationCore(body)
+                                      : method === "q1102-contract" ? pillowHost.getProductionCertificationCoreQ1102Contract()
+                                        : pillowHost.runProductionCertificationCoreDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/production-certification-core/connect", { preHandler: pillowAuth }, productionCertificationCoreAction("connect"));
+  app.post("/api/pillow/production-certification-core/register-programmes", { preHandler: pillowAuth }, productionCertificationCoreAction("register-programmes"));
+  app.post("/api/pillow/production-certification-core/discover-factories", { preHandler: pillowAuth }, productionCertificationCoreAction("discover-factories"));
+  app.post("/api/pillow/production-certification-core/discover-workers", { preHandler: pillowAuth }, productionCertificationCoreAction("discover-workers"));
+  app.post("/api/pillow/production-certification-core/discover-runtimes", { preHandler: pillowAuth }, productionCertificationCoreAction("discover-runtimes"));
+  app.post("/api/pillow/production-certification-core/aggregate-evidence", { preHandler: pillowAuth }, productionCertificationCoreAction("aggregate-evidence"));
+  app.post("/api/pillow/production-certification-core/verify-integrations", { preHandler: pillowAuth }, productionCertificationCoreAction("verify-integrations"));
+  app.post("/api/pillow/production-certification-core/verify-governance", { preHandler: pillowAuth }, productionCertificationCoreAction("verify-governance"));
+  app.post("/api/pillow/production-certification-core/verify-reporting", { preHandler: pillowAuth }, productionCertificationCoreAction("verify-reporting"));
+  app.post("/api/pillow/production-certification-core/produce-findings", { preHandler: pillowAuth }, productionCertificationCoreAction("produce-findings"));
+  app.post("/api/pillow/production-certification-core/produce-report", { preHandler: pillowAuth }, productionCertificationCoreAction("produce-report"));
+  app.post("/api/pillow/production-certification-core/certify", { preHandler: pillowAuth }, productionCertificationCoreAction("certify"));
+  app.post("/api/pillow/production-certification-core/submit-report", { preHandler: pillowAuth }, productionCertificationCoreAction("submit-report"));
+  app.post("/api/pillow/production-certification-core/list", { preHandler: pillowAuth }, productionCertificationCoreAction("list"));
+  app.post("/api/pillow/production-certification-core/validate", { preHandler: pillowAuth }, productionCertificationCoreAction("validate"));
+  app.post("/api/pillow/production-certification-core/diagnostics", { preHandler: pillowAuth }, productionCertificationCoreAction("diagnostics"));
+  app.post("/api/pillow/production-certification-core/q1102-contract", { preHandler: pillowAuth }, productionCertificationCoreAction("q1102-contract"));
+
+  app.get("/api/pillow/worker-readiness-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectWorkerReadinessAuditSnapshot());
+    }
+    return reply.send({ workerReadinessAudit: pillowHost.getWorkerReadinessAudit() });
+  });
+  const workerReadinessAuditAction = (
+    method:
+      | "connect"
+      | "discover-workers"
+      | "verify-registration"
+      | "verify-reachability"
+      | "verify-configuration"
+      | "verify-governance"
+      | "verify-permissions"
+      | "verify-runtime-connectivity"
+      | "verify-operational-capability"
+      | "verify-integrations"
+      | "classify-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1103-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectWorkerReadinessAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectWorkerReadinessAudit(body)
+          : method === "discover-workers" ? await pillowHost.discoverWorkerReadinessAuditWorkers()
+            : method === "verify-registration" ? await pillowHost.verifyWorkerReadinessAuditRegistration()
+              : method === "verify-reachability" ? await pillowHost.verifyWorkerReadinessAuditReachability()
+                : method === "verify-configuration" ? await pillowHost.verifyWorkerReadinessAuditConfiguration()
+                  : method === "verify-governance" ? await pillowHost.verifyWorkerReadinessAuditGovernance()
+                    : method === "verify-permissions" ? await pillowHost.verifyWorkerReadinessAuditPermissions()
+                      : method === "verify-runtime-connectivity" ? await pillowHost.verifyWorkerReadinessAuditRuntimeConnectivity()
+                        : method === "verify-operational-capability" ? await pillowHost.verifyWorkerReadinessAuditOperationalCapability()
+                          : method === "verify-integrations" ? pillowHost.verifyWorkerReadinessAuditIntegrations()
+                            : method === "classify-readiness" ? await pillowHost.classifyWorkerReadinessAudit()
+                              : method === "produce-findings" ? await pillowHost.produceWorkerReadinessAuditFindings(body)
+                                : method === "produce-report" ? await pillowHost.produceWorkerReadinessAuditReport(body)
+                                  : method === "audit" ? await pillowHost.auditWorkerReadiness(body)
+                                    : method === "submit-report" ? await pillowHost.submitWorkerReadinessAuditReport(body)
+                                      : method === "list" ? pillowHost.listWorkerReadinessAuditReports()
+                                        : method === "validate" ? pillowHost.validateWorkerReadinessAudit(body)
+                                          : method === "q1103-contract" ? pillowHost.getWorkerReadinessAuditQ1103Contract()
+                                            : pillowHost.runWorkerReadinessAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/worker-readiness-audit/connect", { preHandler: pillowAuth }, workerReadinessAuditAction("connect"));
+  app.post("/api/pillow/worker-readiness-audit/discover-workers", { preHandler: pillowAuth }, workerReadinessAuditAction("discover-workers"));
+  app.post("/api/pillow/worker-readiness-audit/verify-registration", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-registration"));
+  app.post("/api/pillow/worker-readiness-audit/verify-reachability", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-reachability"));
+  app.post("/api/pillow/worker-readiness-audit/verify-configuration", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-configuration"));
+  app.post("/api/pillow/worker-readiness-audit/verify-governance", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-governance"));
+  app.post("/api/pillow/worker-readiness-audit/verify-permissions", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-permissions"));
+  app.post("/api/pillow/worker-readiness-audit/verify-runtime-connectivity", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-runtime-connectivity"));
+  app.post("/api/pillow/worker-readiness-audit/verify-operational-capability", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-operational-capability"));
+  app.post("/api/pillow/worker-readiness-audit/verify-integrations", { preHandler: pillowAuth }, workerReadinessAuditAction("verify-integrations"));
+  app.post("/api/pillow/worker-readiness-audit/classify-readiness", { preHandler: pillowAuth }, workerReadinessAuditAction("classify-readiness"));
+  app.post("/api/pillow/worker-readiness-audit/produce-findings", { preHandler: pillowAuth }, workerReadinessAuditAction("produce-findings"));
+  app.post("/api/pillow/worker-readiness-audit/produce-report", { preHandler: pillowAuth }, workerReadinessAuditAction("produce-report"));
+  app.post("/api/pillow/worker-readiness-audit/audit", { preHandler: pillowAuth }, workerReadinessAuditAction("audit"));
+  app.post("/api/pillow/worker-readiness-audit/submit-report", { preHandler: pillowAuth }, workerReadinessAuditAction("submit-report"));
+  app.post("/api/pillow/worker-readiness-audit/list", { preHandler: pillowAuth }, workerReadinessAuditAction("list"));
+  app.post("/api/pillow/worker-readiness-audit/validate", { preHandler: pillowAuth }, workerReadinessAuditAction("validate"));
+  app.post("/api/pillow/worker-readiness-audit/diagnostics", { preHandler: pillowAuth }, workerReadinessAuditAction("diagnostics"));
+  app.post("/api/pillow/worker-readiness-audit/q1103-contract", { preHandler: pillowAuth }, workerReadinessAuditAction("q1103-contract"));
+
+  app.get("/api/pillow/pillow-command-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectPillowCommandAuditSnapshot());
+    }
+    return reply.send({ pillowCommandAudit: pillowHost.getPillowCommandAudit() });
+  });
+  const pillowCommandAuditAction = (
+    method:
+      | "connect"
+      | "discover-workers"
+      | "verify-assignment"
+      | "verify-command-dispatch"
+      | "verify-communication"
+      | "verify-supervision"
+      | "verify-governance"
+      | "verify-integrations"
+      | "classify-command-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1104-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectPillowCommandAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectPillowCommandAudit(body)
+          : method === "discover-workers" ? pillowHost.discoverPillowCommandAuditWorkers()
+            : method === "verify-assignment" ? pillowHost.verifyPillowCommandAuditAssignment()
+              : method === "verify-command-dispatch" ? pillowHost.verifyPillowCommandAuditDispatch()
+                : method === "verify-communication" ? pillowHost.verifyPillowCommandAuditCommunication()
+                  : method === "verify-supervision" ? pillowHost.verifyPillowCommandAuditSupervision()
+                    : method === "verify-governance" ? pillowHost.verifyPillowCommandAuditGovernance()
+                      : method === "verify-integrations" ? pillowHost.verifyPillowCommandAuditIntegrations()
+                        : method === "classify-command-readiness" ? pillowHost.classifyPillowCommandAuditReadiness()
+                          : method === "produce-findings" ? pillowHost.producePillowCommandAuditFindings(body)
+                            : method === "produce-report" ? pillowHost.producePillowCommandAuditReport(body)
+                              : method === "audit" ? pillowHost.auditPillowCommand(body)
+                                : method === "submit-report" ? pillowHost.submitPillowCommandAuditReport(body)
+                                  : method === "list" ? pillowHost.listPillowCommandAuditReports()
+                                    : method === "validate" ? pillowHost.validatePillowCommandAudit(body)
+                                      : method === "q1104-contract" ? pillowHost.getPillowCommandAuditQ1104Contract()
+                                        : pillowHost.runPillowCommandAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/pillow-command-audit/connect", { preHandler: pillowAuth }, pillowCommandAuditAction("connect"));
+  app.post("/api/pillow/pillow-command-audit/discover-workers", { preHandler: pillowAuth }, pillowCommandAuditAction("discover-workers"));
+  app.post("/api/pillow/pillow-command-audit/verify-assignment", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-assignment"));
+  app.post("/api/pillow/pillow-command-audit/verify-command-dispatch", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-command-dispatch"));
+  app.post("/api/pillow/pillow-command-audit/verify-communication", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-communication"));
+  app.post("/api/pillow/pillow-command-audit/verify-supervision", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-supervision"));
+  app.post("/api/pillow/pillow-command-audit/verify-governance", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-governance"));
+  app.post("/api/pillow/pillow-command-audit/verify-integrations", { preHandler: pillowAuth }, pillowCommandAuditAction("verify-integrations"));
+  app.post("/api/pillow/pillow-command-audit/classify-command-readiness", { preHandler: pillowAuth }, pillowCommandAuditAction("classify-command-readiness"));
+  app.post("/api/pillow/pillow-command-audit/produce-findings", { preHandler: pillowAuth }, pillowCommandAuditAction("produce-findings"));
+  app.post("/api/pillow/pillow-command-audit/produce-report", { preHandler: pillowAuth }, pillowCommandAuditAction("produce-report"));
+  app.post("/api/pillow/pillow-command-audit/audit", { preHandler: pillowAuth }, pillowCommandAuditAction("audit"));
+  app.post("/api/pillow/pillow-command-audit/submit-report", { preHandler: pillowAuth }, pillowCommandAuditAction("submit-report"));
+  app.post("/api/pillow/pillow-command-audit/list", { preHandler: pillowAuth }, pillowCommandAuditAction("list"));
+  app.post("/api/pillow/pillow-command-audit/validate", { preHandler: pillowAuth }, pillowCommandAuditAction("validate"));
+  app.post("/api/pillow/pillow-command-audit/diagnostics", { preHandler: pillowAuth }, pillowCommandAuditAction("diagnostics"));
+  app.post("/api/pillow/pillow-command-audit/q1104-contract", { preHandler: pillowAuth }, pillowCommandAuditAction("q1104-contract"));
+
+  app.get("/api/pillow/business-factory-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectBusinessFactoryAuditSnapshot());
+    }
+    return reply.send({ businessFactoryAudit: pillowHost.getBusinessFactoryAudit() });
+  });
+  const businessFactoryAuditAction = (
+    method:
+      | "connect"
+      | "discover-factories"
+      | "verify-registration"
+      | "verify-workers"
+      | "verify-workflows"
+      | "verify-runtime-integration"
+      | "verify-external-integrations"
+      | "verify-governance"
+      | "verify-operational-readiness"
+      | "verify-integrations"
+      | "classify-business-factory-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1105-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectBusinessFactoryAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectBusinessFactoryAudit(body)
+          : method === "discover-factories" ? pillowHost.discoverBusinessFactoryAuditFactories()
+            : method === "verify-registration" ? pillowHost.verifyBusinessFactoryAuditRegistration()
+              : method === "verify-workers" ? pillowHost.verifyBusinessFactoryAuditWorkers()
+                : method === "verify-workflows" ? pillowHost.verifyBusinessFactoryAuditWorkflows()
+                  : method === "verify-runtime-integration" ? pillowHost.verifyBusinessFactoryAuditRuntimeIntegration()
+                    : method === "verify-external-integrations" ? pillowHost.verifyBusinessFactoryAuditExternalIntegrations()
+                      : method === "verify-governance" ? pillowHost.verifyBusinessFactoryAuditGovernance()
+                        : method === "verify-operational-readiness" ? pillowHost.verifyBusinessFactoryAuditOperationalReadiness()
+                          : method === "verify-integrations" ? pillowHost.verifyBusinessFactoryAuditIntegrations()
+                            : method === "classify-business-factory-readiness" ? pillowHost.classifyBusinessFactoryAuditReadiness()
+                              : method === "produce-findings" ? pillowHost.produceBusinessFactoryAuditFindings(body)
+                                : method === "produce-report" ? pillowHost.produceBusinessFactoryAuditReport(body)
+                                  : method === "audit" ? pillowHost.auditBusinessFactories(body)
+                                    : method === "submit-report" ? pillowHost.submitBusinessFactoryAuditReport(body)
+                                      : method === "list" ? pillowHost.listBusinessFactoryAuditReports()
+                                        : method === "validate" ? pillowHost.validateBusinessFactoryAudit(body)
+                                          : method === "q1105-contract" ? pillowHost.getBusinessFactoryAuditQ1105Contract()
+                                            : pillowHost.runBusinessFactoryAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/business-factory-audit/connect", { preHandler: pillowAuth }, businessFactoryAuditAction("connect"));
+  app.post("/api/pillow/business-factory-audit/discover-factories", { preHandler: pillowAuth }, businessFactoryAuditAction("discover-factories"));
+  app.post("/api/pillow/business-factory-audit/verify-registration", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-registration"));
+  app.post("/api/pillow/business-factory-audit/verify-workers", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-workers"));
+  app.post("/api/pillow/business-factory-audit/verify-workflows", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-workflows"));
+  app.post("/api/pillow/business-factory-audit/verify-runtime-integration", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-runtime-integration"));
+  app.post("/api/pillow/business-factory-audit/verify-external-integrations", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-external-integrations"));
+  app.post("/api/pillow/business-factory-audit/verify-governance", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-governance"));
+  app.post("/api/pillow/business-factory-audit/verify-operational-readiness", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-operational-readiness"));
+  app.post("/api/pillow/business-factory-audit/verify-integrations", { preHandler: pillowAuth }, businessFactoryAuditAction("verify-integrations"));
+  app.post("/api/pillow/business-factory-audit/classify-business-factory-readiness", { preHandler: pillowAuth }, businessFactoryAuditAction("classify-business-factory-readiness"));
+  app.post("/api/pillow/business-factory-audit/produce-findings", { preHandler: pillowAuth }, businessFactoryAuditAction("produce-findings"));
+  app.post("/api/pillow/business-factory-audit/produce-report", { preHandler: pillowAuth }, businessFactoryAuditAction("produce-report"));
+  app.post("/api/pillow/business-factory-audit/audit", { preHandler: pillowAuth }, businessFactoryAuditAction("audit"));
+  app.post("/api/pillow/business-factory-audit/submit-report", { preHandler: pillowAuth }, businessFactoryAuditAction("submit-report"));
+  app.post("/api/pillow/business-factory-audit/list", { preHandler: pillowAuth }, businessFactoryAuditAction("list"));
+  app.post("/api/pillow/business-factory-audit/validate", { preHandler: pillowAuth }, businessFactoryAuditAction("validate"));
+  app.post("/api/pillow/business-factory-audit/diagnostics", { preHandler: pillowAuth }, businessFactoryAuditAction("diagnostics"));
+  app.post("/api/pillow/business-factory-audit/q1105-contract", { preHandler: pillowAuth }, businessFactoryAuditAction("q1105-contract"));
+
+  app.get("/api/pillow/security-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectSecurityAuditSnapshot());
+    }
+    return reply.send({ securityAudit: pillowHost.getSecurityAudit() });
+  });
+  const securityAuditAction = (
+    method:
+      | "connect"
+      | "discover-components"
+      | "verify-authentication"
+      | "verify-authorization"
+      | "verify-role-permission-enforcement"
+      | "verify-secret-management"
+      | "verify-api-security"
+      | "verify-data-protection"
+      | "verify-runtime-security"
+      | "verify-operational-security"
+      | "verify-integrations"
+      | "classify-security-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1106-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectSecurityAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectSecurityAudit(body)
+          : method === "discover-components" ? pillowHost.discoverSecurityAuditComponents()
+            : method === "verify-authentication" ? pillowHost.verifySecurityAuditAuthentication()
+              : method === "verify-authorization" ? pillowHost.verifySecurityAuditAuthorization()
+                : method === "verify-role-permission-enforcement" ? pillowHost.verifySecurityAuditRolePermissionEnforcement()
+                  : method === "verify-secret-management" ? pillowHost.verifySecurityAuditSecretManagement()
+                    : method === "verify-api-security" ? pillowHost.verifySecurityAuditApiSecurity()
+                      : method === "verify-data-protection" ? pillowHost.verifySecurityAuditDataProtection()
+                        : method === "verify-runtime-security" ? pillowHost.verifySecurityAuditRuntimeSecurity()
+                          : method === "verify-operational-security" ? pillowHost.verifySecurityAuditOperationalSecurity()
+                            : method === "verify-integrations" ? pillowHost.verifySecurityAuditIntegrations()
+                              : method === "classify-security-readiness" ? pillowHost.classifySecurityAuditReadiness()
+                                : method === "produce-findings" ? pillowHost.produceSecurityAuditFindings(body)
+                                  : method === "produce-report" ? pillowHost.produceSecurityAuditReport(body)
+                                    : method === "audit" ? pillowHost.auditSecurity(body)
+                                      : method === "submit-report" ? pillowHost.submitSecurityAuditReport(body)
+                                        : method === "list" ? pillowHost.listSecurityAuditReports()
+                                          : method === "validate" ? pillowHost.validateSecurityAudit(body)
+                                            : method === "q1106-contract" ? pillowHost.getSecurityAuditQ1106Contract()
+                                              : pillowHost.runSecurityAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/security-audit/connect", { preHandler: pillowAuth }, securityAuditAction("connect"));
+  app.post("/api/pillow/security-audit/discover-components", { preHandler: pillowAuth }, securityAuditAction("discover-components"));
+  app.post("/api/pillow/security-audit/verify-authentication", { preHandler: pillowAuth }, securityAuditAction("verify-authentication"));
+  app.post("/api/pillow/security-audit/verify-authorization", { preHandler: pillowAuth }, securityAuditAction("verify-authorization"));
+  app.post("/api/pillow/security-audit/verify-role-permission-enforcement", { preHandler: pillowAuth }, securityAuditAction("verify-role-permission-enforcement"));
+  app.post("/api/pillow/security-audit/verify-secret-management", { preHandler: pillowAuth }, securityAuditAction("verify-secret-management"));
+  app.post("/api/pillow/security-audit/verify-api-security", { preHandler: pillowAuth }, securityAuditAction("verify-api-security"));
+  app.post("/api/pillow/security-audit/verify-data-protection", { preHandler: pillowAuth }, securityAuditAction("verify-data-protection"));
+  app.post("/api/pillow/security-audit/verify-runtime-security", { preHandler: pillowAuth }, securityAuditAction("verify-runtime-security"));
+  app.post("/api/pillow/security-audit/verify-operational-security", { preHandler: pillowAuth }, securityAuditAction("verify-operational-security"));
+  app.post("/api/pillow/security-audit/verify-integrations", { preHandler: pillowAuth }, securityAuditAction("verify-integrations"));
+  app.post("/api/pillow/security-audit/classify-security-readiness", { preHandler: pillowAuth }, securityAuditAction("classify-security-readiness"));
+  app.post("/api/pillow/security-audit/produce-findings", { preHandler: pillowAuth }, securityAuditAction("produce-findings"));
+  app.post("/api/pillow/security-audit/produce-report", { preHandler: pillowAuth }, securityAuditAction("produce-report"));
+  app.post("/api/pillow/security-audit/audit", { preHandler: pillowAuth }, securityAuditAction("audit"));
+  app.post("/api/pillow/security-audit/submit-report", { preHandler: pillowAuth }, securityAuditAction("submit-report"));
+  app.post("/api/pillow/security-audit/list", { preHandler: pillowAuth }, securityAuditAction("list"));
+  app.post("/api/pillow/security-audit/validate", { preHandler: pillowAuth }, securityAuditAction("validate"));
+  app.post("/api/pillow/security-audit/diagnostics", { preHandler: pillowAuth }, securityAuditAction("diagnostics"));
+  app.post("/api/pillow/security-audit/q1106-contract", { preHandler: pillowAuth }, securityAuditAction("q1106-contract"));
+
+  app.get("/api/pillow/performance-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectPerformanceAuditSnapshot());
+    }
+    return reply.send({ performanceAudit: pillowHost.getPerformanceAudit() });
+  });
+  const performanceAuditAction = (
+    method:
+      | "connect"
+      | "discover-components"
+      | "execute-workload-benchmarks"
+      | "measure-response-times"
+      | "measure-throughput"
+      | "measure-resource-utilisation"
+      | "measure-scalability"
+      | "detect-bottlenecks"
+      | "verify-sustained-stability"
+      | "verify-integrations"
+      | "classify-performance-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1107-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectPerformanceAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectPerformanceAudit(body)
+          : method === "discover-components" ? pillowHost.discoverPerformanceAuditComponents()
+            : method === "execute-workload-benchmarks" ? pillowHost.executePerformanceAuditWorkloadBenchmarks()
+              : method === "measure-response-times" ? pillowHost.measurePerformanceAuditResponseTimes()
+                : method === "measure-throughput" ? await pillowHost.measurePerformanceAuditThroughput()
+                  : method === "measure-resource-utilisation" ? await pillowHost.measurePerformanceAuditResourceUtilisation()
+                    : method === "measure-scalability" ? await pillowHost.measurePerformanceAuditScalability()
+                      : method === "detect-bottlenecks" ? await pillowHost.detectPerformanceAuditBottlenecks()
+                        : method === "verify-sustained-stability" ? pillowHost.verifyPerformanceAuditSustainedStability()
+                          : method === "verify-integrations" ? pillowHost.verifyPerformanceAuditIntegrations()
+                            : method === "classify-performance-readiness" ? await pillowHost.classifyPerformanceAuditReadiness()
+                              : method === "produce-findings" ? await pillowHost.producePerformanceAuditFindings(body)
+                                : method === "produce-report" ? await pillowHost.producePerformanceAuditReport(body)
+                                  : method === "audit" ? await pillowHost.auditPerformance(body)
+                                    : method === "submit-report" ? await pillowHost.submitPerformanceAuditReport(body)
+                                      : method === "list" ? pillowHost.listPerformanceAuditReports()
+                                        : method === "validate" ? pillowHost.validatePerformanceAudit(body)
+                                          : method === "q1107-contract" ? pillowHost.getPerformanceAuditQ1107Contract()
+                                            : pillowHost.runPerformanceAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/performance-audit/connect", { preHandler: pillowAuth }, performanceAuditAction("connect"));
+  app.post("/api/pillow/performance-audit/discover-components", { preHandler: pillowAuth }, performanceAuditAction("discover-components"));
+  app.post("/api/pillow/performance-audit/execute-workload-benchmarks", { preHandler: pillowAuth }, performanceAuditAction("execute-workload-benchmarks"));
+  app.post("/api/pillow/performance-audit/measure-response-times", { preHandler: pillowAuth }, performanceAuditAction("measure-response-times"));
+  app.post("/api/pillow/performance-audit/measure-throughput", { preHandler: pillowAuth }, performanceAuditAction("measure-throughput"));
+  app.post("/api/pillow/performance-audit/measure-resource-utilisation", { preHandler: pillowAuth }, performanceAuditAction("measure-resource-utilisation"));
+  app.post("/api/pillow/performance-audit/measure-scalability", { preHandler: pillowAuth }, performanceAuditAction("measure-scalability"));
+  app.post("/api/pillow/performance-audit/detect-bottlenecks", { preHandler: pillowAuth }, performanceAuditAction("detect-bottlenecks"));
+  app.post("/api/pillow/performance-audit/verify-sustained-stability", { preHandler: pillowAuth }, performanceAuditAction("verify-sustained-stability"));
+  app.post("/api/pillow/performance-audit/verify-integrations", { preHandler: pillowAuth }, performanceAuditAction("verify-integrations"));
+  app.post("/api/pillow/performance-audit/classify-performance-readiness", { preHandler: pillowAuth }, performanceAuditAction("classify-performance-readiness"));
+  app.post("/api/pillow/performance-audit/produce-findings", { preHandler: pillowAuth }, performanceAuditAction("produce-findings"));
+  app.post("/api/pillow/performance-audit/produce-report", { preHandler: pillowAuth }, performanceAuditAction("produce-report"));
+  app.post("/api/pillow/performance-audit/audit", { preHandler: pillowAuth }, performanceAuditAction("audit"));
+  app.post("/api/pillow/performance-audit/submit-report", { preHandler: pillowAuth }, performanceAuditAction("submit-report"));
+  app.post("/api/pillow/performance-audit/list", { preHandler: pillowAuth }, performanceAuditAction("list"));
+  app.post("/api/pillow/performance-audit/validate", { preHandler: pillowAuth }, performanceAuditAction("validate"));
+  app.post("/api/pillow/performance-audit/diagnostics", { preHandler: pillowAuth }, performanceAuditAction("diagnostics"));
+  app.post("/api/pillow/performance-audit/q1107-contract", { preHandler: pillowAuth }, performanceAuditAction("q1107-contract"));
+
+  app.get("/api/pillow/recovery-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRecoveryAuditSnapshot());
+    }
+    return reply.send({ recoveryAudit: pillowHost.getRecoveryAudit() });
+  });
+  const recoveryAuditAction = (
+    method:
+      | "connect"
+      | "discover-components"
+      | "verify-failure-detection"
+      | "verify-automatic-recovery"
+      | "verify-manual-recovery"
+      | "verify-rollback-capability"
+      | "verify-workflow-restart"
+      | "verify-checkpoint-restoration"
+      | "verify-recovery-escalation"
+      | "verify-enterprise-resilience"
+      | "verify-integrations"
+      | "classify-recovery-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1108-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectRecoveryAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectRecoveryAudit(body)
+          : method === "discover-components" ? pillowHost.discoverRecoveryAuditComponents()
+            : method === "verify-failure-detection" ? pillowHost.verifyRecoveryAuditFailureDetection()
+              : method === "verify-automatic-recovery" ? pillowHost.verifyRecoveryAuditAutomaticRecovery()
+                : method === "verify-manual-recovery" ? pillowHost.verifyRecoveryAuditManualRecovery()
+                  : method === "verify-rollback-capability" ? pillowHost.verifyRecoveryAuditRollbackCapability()
+                    : method === "verify-workflow-restart" ? pillowHost.verifyRecoveryAuditWorkflowRestart()
+                      : method === "verify-checkpoint-restoration" ? pillowHost.verifyRecoveryAuditCheckpointRestoration()
+                        : method === "verify-recovery-escalation" ? pillowHost.verifyRecoveryAuditRecoveryEscalation()
+                          : method === "verify-enterprise-resilience" ? pillowHost.verifyRecoveryAuditEnterpriseResilience()
+                            : method === "verify-integrations" ? pillowHost.verifyRecoveryAuditIntegrations()
+                              : method === "classify-recovery-readiness" ? pillowHost.classifyRecoveryAuditReadiness()
+                                : method === "produce-findings" ? pillowHost.produceRecoveryAuditFindings(body)
+                                  : method === "produce-report" ? await pillowHost.produceRecoveryAuditReport(body)
+                                    : method === "audit" ? await pillowHost.auditRecovery(body)
+                                      : method === "submit-report" ? await pillowHost.submitRecoveryAuditReport(body)
+                                        : method === "list" ? pillowHost.listRecoveryAuditReports()
+                                          : method === "validate" ? pillowHost.validateRecoveryAudit(body)
+                                            : method === "q1108-contract" ? pillowHost.getRecoveryAuditQ1108Contract()
+                                              : pillowHost.runRecoveryAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/recovery-audit/connect", { preHandler: pillowAuth }, recoveryAuditAction("connect"));
+  app.post("/api/pillow/recovery-audit/discover-components", { preHandler: pillowAuth }, recoveryAuditAction("discover-components"));
+  app.post("/api/pillow/recovery-audit/verify-failure-detection", { preHandler: pillowAuth }, recoveryAuditAction("verify-failure-detection"));
+  app.post("/api/pillow/recovery-audit/verify-automatic-recovery", { preHandler: pillowAuth }, recoveryAuditAction("verify-automatic-recovery"));
+  app.post("/api/pillow/recovery-audit/verify-manual-recovery", { preHandler: pillowAuth }, recoveryAuditAction("verify-manual-recovery"));
+  app.post("/api/pillow/recovery-audit/verify-rollback-capability", { preHandler: pillowAuth }, recoveryAuditAction("verify-rollback-capability"));
+  app.post("/api/pillow/recovery-audit/verify-workflow-restart", { preHandler: pillowAuth }, recoveryAuditAction("verify-workflow-restart"));
+  app.post("/api/pillow/recovery-audit/verify-checkpoint-restoration", { preHandler: pillowAuth }, recoveryAuditAction("verify-checkpoint-restoration"));
+  app.post("/api/pillow/recovery-audit/verify-recovery-escalation", { preHandler: pillowAuth }, recoveryAuditAction("verify-recovery-escalation"));
+  app.post("/api/pillow/recovery-audit/verify-enterprise-resilience", { preHandler: pillowAuth }, recoveryAuditAction("verify-enterprise-resilience"));
+  app.post("/api/pillow/recovery-audit/verify-integrations", { preHandler: pillowAuth }, recoveryAuditAction("verify-integrations"));
+  app.post("/api/pillow/recovery-audit/classify-recovery-readiness", { preHandler: pillowAuth }, recoveryAuditAction("classify-recovery-readiness"));
+  app.post("/api/pillow/recovery-audit/produce-findings", { preHandler: pillowAuth }, recoveryAuditAction("produce-findings"));
+  app.post("/api/pillow/recovery-audit/produce-report", { preHandler: pillowAuth }, recoveryAuditAction("produce-report"));
+  app.post("/api/pillow/recovery-audit/audit", { preHandler: pillowAuth }, recoveryAuditAction("audit"));
+  app.post("/api/pillow/recovery-audit/submit-report", { preHandler: pillowAuth }, recoveryAuditAction("submit-report"));
+  app.post("/api/pillow/recovery-audit/list", { preHandler: pillowAuth }, recoveryAuditAction("list"));
+  app.post("/api/pillow/recovery-audit/validate", { preHandler: pillowAuth }, recoveryAuditAction("validate"));
+  app.post("/api/pillow/recovery-audit/diagnostics", { preHandler: pillowAuth }, recoveryAuditAction("diagnostics"));
+  app.post("/api/pillow/recovery-audit/q1108-contract", { preHandler: pillowAuth }, recoveryAuditAction("q1108-contract"));
+
+  app.get("/api/pillow/executive-acceptance-pack", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectExecutiveAcceptancePackSnapshot());
+    }
+    return reply.send({ executiveAcceptancePack: pillowHost.getExecutiveAcceptancePack() });
+  });
+  const executiveAcceptancePackAction = (
+    method:
+      | "connect"
+      | "collect-certifications"
+      | "collect-audits"
+      | "collect-readiness-evidence"
+      | "generate-executive-summary"
+      | "generate-outstanding-issues"
+      | "generate-deployment-recommendation"
+      | "classify-readiness"
+      | "produce-checklist"
+      | "produce-report"
+      | "assemble-pack"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1110-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectExecutiveAcceptancePackSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectExecutiveAcceptancePack(body)
+          : method === "collect-certifications" ? pillowHost.collectExecutiveAcceptancePackCertifications()
+            : method === "collect-audits" ? pillowHost.collectExecutiveAcceptancePackAudits()
+              : method === "collect-readiness-evidence" ? pillowHost.collectExecutiveAcceptancePackReadinessEvidence()
+                : method === "generate-executive-summary" ? pillowHost.generateExecutiveAcceptancePackSummary(body)
+                  : method === "generate-outstanding-issues" ? pillowHost.generateExecutiveAcceptancePackOutstandingIssues(body)
+                    : method === "generate-deployment-recommendation" ? pillowHost.generateExecutiveAcceptancePackDeploymentRecommendation(body)
+                      : method === "classify-readiness" ? pillowHost.classifyExecutiveAcceptancePackReadiness()
+                        : method === "produce-checklist" ? pillowHost.produceExecutiveAcceptancePackChecklist()
+                          : method === "produce-report" ? await pillowHost.produceExecutiveAcceptancePackReport(body)
+                            : method === "assemble-pack" ? await pillowHost.assembleExecutiveAcceptancePack(body)
+                              : method === "submit-report" ? await pillowHost.submitExecutiveAcceptancePackReport(body)
+                                : method === "list" ? pillowHost.listExecutiveAcceptancePackReports()
+                                  : method === "validate" ? pillowHost.validateExecutiveAcceptancePack(body)
+                                    : method === "q1110-contract" ? pillowHost.getExecutiveAcceptancePackQ1110Contract()
+                                      : pillowHost.runExecutiveAcceptancePackDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/executive-acceptance-pack/connect", { preHandler: pillowAuth }, executiveAcceptancePackAction("connect"));
+  app.post("/api/pillow/executive-acceptance-pack/collect-certifications", { preHandler: pillowAuth }, executiveAcceptancePackAction("collect-certifications"));
+  app.post("/api/pillow/executive-acceptance-pack/collect-audits", { preHandler: pillowAuth }, executiveAcceptancePackAction("collect-audits"));
+  app.post("/api/pillow/executive-acceptance-pack/collect-readiness-evidence", { preHandler: pillowAuth }, executiveAcceptancePackAction("collect-readiness-evidence"));
+  app.post("/api/pillow/executive-acceptance-pack/generate-executive-summary", { preHandler: pillowAuth }, executiveAcceptancePackAction("generate-executive-summary"));
+  app.post("/api/pillow/executive-acceptance-pack/generate-outstanding-issues", { preHandler: pillowAuth }, executiveAcceptancePackAction("generate-outstanding-issues"));
+  app.post("/api/pillow/executive-acceptance-pack/generate-deployment-recommendation", { preHandler: pillowAuth }, executiveAcceptancePackAction("generate-deployment-recommendation"));
+  app.post("/api/pillow/executive-acceptance-pack/classify-readiness", { preHandler: pillowAuth }, executiveAcceptancePackAction("classify-readiness"));
+  app.post("/api/pillow/executive-acceptance-pack/produce-checklist", { preHandler: pillowAuth }, executiveAcceptancePackAction("produce-checklist"));
+  app.post("/api/pillow/executive-acceptance-pack/produce-report", { preHandler: pillowAuth }, executiveAcceptancePackAction("produce-report"));
+  app.post("/api/pillow/executive-acceptance-pack/assemble-pack", { preHandler: pillowAuth }, executiveAcceptancePackAction("assemble-pack"));
+  app.post("/api/pillow/executive-acceptance-pack/submit-report", { preHandler: pillowAuth }, executiveAcceptancePackAction("submit-report"));
+  app.post("/api/pillow/executive-acceptance-pack/list", { preHandler: pillowAuth }, executiveAcceptancePackAction("list"));
+  app.post("/api/pillow/executive-acceptance-pack/validate", { preHandler: pillowAuth }, executiveAcceptancePackAction("validate"));
+  app.post("/api/pillow/executive-acceptance-pack/diagnostics", { preHandler: pillowAuth }, executiveAcceptancePackAction("diagnostics"));
+  app.post("/api/pillow/executive-acceptance-pack/q1110-contract", { preHandler: pillowAuth }, executiveAcceptancePackAction("q1110-contract"));
+
+  app.get("/api/pillow/grand-king-acceptance-gate", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectGrandKingAcceptanceGateSnapshot());
+    }
+    return reply.send({ grandKingAcceptanceGate: pillowHost.getGrandKingAcceptanceGate() });
+  });
+  const grandKingAcceptanceGateAction = (
+    method:
+      | "connect"
+      | "collect-pack"
+      | "verify-prerequisites"
+      | "present-readiness"
+      | "record-decision"
+      | "deployment-status"
+      | "generate-authorisation"
+      | "request-re-review"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1201-contract"
+      | "q1111-contract"
+      | "approval-history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectGrandKingAcceptanceGateSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectGrandKingAcceptanceGate(body)
+          : method === "collect-pack" ? pillowHost.collectGrandKingAcceptanceGatePack()
+            : method === "verify-prerequisites" ? pillowHost.verifyGrandKingAcceptanceGatePrerequisites()
+              : method === "present-readiness" ? pillowHost.presentGrandKingAcceptanceGateReadiness()
+                : method === "record-decision" ? pillowHost.recordGrandKingAcceptanceGateDecision(body)
+                  : method === "deployment-status" ? pillowHost.getGrandKingAcceptanceGateDeploymentStatus()
+                    : method === "generate-authorisation" ? pillowHost.generateGrandKingAcceptanceGateAuthorisation(body)
+                      : method === "request-re-review" ? pillowHost.requestGrandKingAcceptanceGateReReview(body)
+                        : method === "produce-report" ? await pillowHost.produceGrandKingAcceptanceGateReport(body)
+                          : method === "submit-report" ? await pillowHost.submitGrandKingAcceptanceGateReport(body)
+                            : method === "list" ? pillowHost.listGrandKingAcceptanceGateReports()
+                              : method === "validate" ? pillowHost.validateGrandKingAcceptanceGate(body)
+                                : method === "q1201-contract" ? pillowHost.getGrandKingAcceptanceGateQ1201Contract()
+                                  : method === "q1111-contract" ? pillowHost.getGrandKingAcceptanceGateQ1111Contract()
+                                    : method === "approval-history" ? pillowHost.getGrandKingAcceptanceGateApprovalHistory()
+                                    : pillowHost.runGrandKingAcceptanceGateDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/grand-king-acceptance-gate/connect", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("connect"));
+  app.post("/api/pillow/grand-king-acceptance-gate/collect-pack", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("collect-pack"));
+  app.post("/api/pillow/grand-king-acceptance-gate/verify-prerequisites", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("verify-prerequisites"));
+  app.post("/api/pillow/grand-king-acceptance-gate/present-readiness", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("present-readiness"));
+  app.post("/api/pillow/grand-king-acceptance-gate/record-decision", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("record-decision"));
+  app.post("/api/pillow/grand-king-acceptance-gate/deployment-status", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("deployment-status"));
+  app.post("/api/pillow/grand-king-acceptance-gate/generate-authorisation", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("generate-authorisation"));
+  app.post("/api/pillow/grand-king-acceptance-gate/request-re-review", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("request-re-review"));
+  app.post("/api/pillow/grand-king-acceptance-gate/produce-report", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("produce-report"));
+  app.post("/api/pillow/grand-king-acceptance-gate/submit-report", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("submit-report"));
+  app.post("/api/pillow/grand-king-acceptance-gate/list", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("list"));
+  app.post("/api/pillow/grand-king-acceptance-gate/validate", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("validate"));
+  app.post("/api/pillow/grand-king-acceptance-gate/diagnostics", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("diagnostics"));
+  app.post("/api/pillow/grand-king-acceptance-gate/q1201-contract", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("q1201-contract"));
+  app.post("/api/pillow/grand-king-acceptance-gate/q1111-contract", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("q1111-contract"));
+  app.post("/api/pillow/grand-king-acceptance-gate/approval-history", { preHandler: pillowAuth }, grandKingAcceptanceGateAction("approval-history"));
+
+  app.get("/api/pillow/post-launch-monitoring", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectPostLaunchMonitoringSnapshot());
+    }
+    return reply.send({ postLaunchMonitoring: pillowHost.getPostLaunchMonitoring() });
+  });
+  const postLaunchMonitoringAction = (
+    method:
+      | "connect"
+      | "verify-gk-acceptance"
+      | "start-session"
+      | "monitor-workers"
+      | "monitor-factories"
+      | "monitor-workflows"
+      | "monitor-runtimes"
+      | "monitor-apis"
+      | "detect-incidents"
+      | "detect-abnormal-workers"
+      | "generate-alerts"
+      | "health-summary"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1112-contract"
+      | "monitoring-history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectPostLaunchMonitoringSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectPostLaunchMonitoring(body)
+          : method === "verify-gk-acceptance" ? pillowHost.verifyPostLaunchMonitoringGrandKingAcceptance()
+            : method === "start-session" ? pillowHost.startPostLaunchMonitoringSession(body)
+              : method === "monitor-workers" ? pillowHost.monitorPostLaunchWorkers()
+                : method === "monitor-factories" ? pillowHost.monitorPostLaunchFactories()
+                  : method === "monitor-workflows" ? pillowHost.monitorPostLaunchWorkflows()
+                    : method === "monitor-runtimes" ? pillowHost.monitorPostLaunchRuntimeServices()
+                      : method === "monitor-apis" ? pillowHost.monitorPostLaunchApiIntegrations()
+                        : method === "detect-incidents" ? pillowHost.detectPostLaunchIncidents()
+                          : method === "detect-abnormal-workers" ? pillowHost.detectPostLaunchAbnormalWorkerBehaviour()
+                            : method === "generate-alerts" ? pillowHost.generatePostLaunchAlerts()
+                              : method === "health-summary" ? pillowHost.producePostLaunchHealthSummary()
+                                : method === "produce-report" ? await pillowHost.producePostLaunchMonitoringReport(body)
+                                  : method === "submit-report" ? await pillowHost.submitPostLaunchMonitoringReport(body)
+                                    : method === "list" ? pillowHost.listPostLaunchMonitoringReports()
+                                      : method === "validate" ? pillowHost.validatePostLaunchMonitoring(body)
+                                        : method === "q1112-contract" ? pillowHost.getPostLaunchMonitoringQ1112Contract()
+                                          : method === "monitoring-history" ? pillowHost.getPostLaunchMonitoringHistory()
+                                            : pillowHost.runPostLaunchMonitoringDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/post-launch-monitoring/connect", { preHandler: pillowAuth }, postLaunchMonitoringAction("connect"));
+  app.post("/api/pillow/post-launch-monitoring/verify-gk-acceptance", { preHandler: pillowAuth }, postLaunchMonitoringAction("verify-gk-acceptance"));
+  app.post("/api/pillow/post-launch-monitoring/start-session", { preHandler: pillowAuth }, postLaunchMonitoringAction("start-session"));
+  app.post("/api/pillow/post-launch-monitoring/monitor-workers", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitor-workers"));
+  app.post("/api/pillow/post-launch-monitoring/monitor-factories", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitor-factories"));
+  app.post("/api/pillow/post-launch-monitoring/monitor-workflows", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitor-workflows"));
+  app.post("/api/pillow/post-launch-monitoring/monitor-runtimes", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitor-runtimes"));
+  app.post("/api/pillow/post-launch-monitoring/monitor-apis", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitor-apis"));
+  app.post("/api/pillow/post-launch-monitoring/detect-incidents", { preHandler: pillowAuth }, postLaunchMonitoringAction("detect-incidents"));
+  app.post("/api/pillow/post-launch-monitoring/detect-abnormal-workers", { preHandler: pillowAuth }, postLaunchMonitoringAction("detect-abnormal-workers"));
+  app.post("/api/pillow/post-launch-monitoring/generate-alerts", { preHandler: pillowAuth }, postLaunchMonitoringAction("generate-alerts"));
+  app.post("/api/pillow/post-launch-monitoring/health-summary", { preHandler: pillowAuth }, postLaunchMonitoringAction("health-summary"));
+  app.post("/api/pillow/post-launch-monitoring/produce-report", { preHandler: pillowAuth }, postLaunchMonitoringAction("produce-report"));
+  app.post("/api/pillow/post-launch-monitoring/submit-report", { preHandler: pillowAuth }, postLaunchMonitoringAction("submit-report"));
+  app.post("/api/pillow/post-launch-monitoring/list", { preHandler: pillowAuth }, postLaunchMonitoringAction("list"));
+  app.post("/api/pillow/post-launch-monitoring/validate", { preHandler: pillowAuth }, postLaunchMonitoringAction("validate"));
+  app.post("/api/pillow/post-launch-monitoring/diagnostics", { preHandler: pillowAuth }, postLaunchMonitoringAction("diagnostics"));
+  app.post("/api/pillow/post-launch-monitoring/q1112-contract", { preHandler: pillowAuth }, postLaunchMonitoringAction("q1112-contract"));
+  app.post("/api/pillow/post-launch-monitoring/monitoring-history", { preHandler: pillowAuth }, postLaunchMonitoringAction("monitoring-history"));
+
+  app.get("/api/pillow/q-series-certification", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectQSeriesCertificationSnapshot());
+    }
+    return reply.send({ qSeriesCertification: pillowHost.getQSeriesCertification() });
+  });
+  const qSeriesCertificationAction = (
+    method:
+      | "connect"
+      | "discover-factories"
+      | "verify-workers"
+      | "verify-runtimes"
+      | "verify-orchestration"
+      | "verify-governance"
+      | "verify-production-readiness"
+      | "aggregate-evidence"
+      | "classify-readiness"
+      | "produce-report"
+      | "certify"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1113-contract"
+      | "certification-history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectQSeriesCertificationSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectQSeriesCertification(body)
+          : method === "discover-factories" ? pillowHost.discoverQSeriesFactories()
+            : method === "verify-workers" ? pillowHost.verifyQSeriesWorkers()
+              : method === "verify-runtimes" ? pillowHost.verifyQSeriesRuntimes()
+                : method === "verify-orchestration" ? pillowHost.verifyQSeriesOrchestration()
+                  : method === "verify-governance" ? pillowHost.verifyQSeriesGovernance()
+                    : method === "verify-production-readiness" ? pillowHost.verifyQSeriesProductionReadiness()
+                      : method === "aggregate-evidence" ? pillowHost.aggregateQSeriesEvidence()
+                        : method === "classify-readiness" ? pillowHost.classifyQSeriesReadiness(body)
+                          : method === "produce-report" ? await pillowHost.produceQSeriesCertificationReport(body)
+                            : method === "certify" ? await pillowHost.certifyQSeries(body)
+                              : method === "submit-report" ? await pillowHost.submitQSeriesCertificationReport(body)
+                                : method === "list" ? pillowHost.listQSeriesCertificationReports()
+                                  : method === "validate" ? pillowHost.validateQSeriesCertification(body)
+                                    : method === "q1113-contract" ? pillowHost.getQSeriesCertificationQ1113Contract()
+                                      : method === "certification-history" ? pillowHost.getQSeriesCertificationHistory()
+                                        : pillowHost.runQSeriesCertificationDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/q-series-certification/connect", { preHandler: pillowAuth }, qSeriesCertificationAction("connect"));
+  app.post("/api/pillow/q-series-certification/discover-factories", { preHandler: pillowAuth }, qSeriesCertificationAction("discover-factories"));
+  app.post("/api/pillow/q-series-certification/verify-workers", { preHandler: pillowAuth }, qSeriesCertificationAction("verify-workers"));
+  app.post("/api/pillow/q-series-certification/verify-runtimes", { preHandler: pillowAuth }, qSeriesCertificationAction("verify-runtimes"));
+  app.post("/api/pillow/q-series-certification/verify-orchestration", { preHandler: pillowAuth }, qSeriesCertificationAction("verify-orchestration"));
+  app.post("/api/pillow/q-series-certification/verify-governance", { preHandler: pillowAuth }, qSeriesCertificationAction("verify-governance"));
+  app.post("/api/pillow/q-series-certification/verify-production-readiness", { preHandler: pillowAuth }, qSeriesCertificationAction("verify-production-readiness"));
+  app.post("/api/pillow/q-series-certification/aggregate-evidence", { preHandler: pillowAuth }, qSeriesCertificationAction("aggregate-evidence"));
+  app.post("/api/pillow/q-series-certification/classify-readiness", { preHandler: pillowAuth }, qSeriesCertificationAction("classify-readiness"));
+  app.post("/api/pillow/q-series-certification/produce-report", { preHandler: pillowAuth }, qSeriesCertificationAction("produce-report"));
+  app.post("/api/pillow/q-series-certification/certify", { preHandler: pillowAuth }, qSeriesCertificationAction("certify"));
+  app.post("/api/pillow/q-series-certification/submit-report", { preHandler: pillowAuth }, qSeriesCertificationAction("submit-report"));
+  app.post("/api/pillow/q-series-certification/list", { preHandler: pillowAuth }, qSeriesCertificationAction("list"));
+  app.post("/api/pillow/q-series-certification/validate", { preHandler: pillowAuth }, qSeriesCertificationAction("validate"));
+  app.post("/api/pillow/q-series-certification/diagnostics", { preHandler: pillowAuth }, qSeriesCertificationAction("diagnostics"));
+  app.post("/api/pillow/q-series-certification/q1113-contract", { preHandler: pillowAuth }, qSeriesCertificationAction("q1113-contract"));
+  app.post("/api/pillow/q-series-certification/certification-history", { preHandler: pillowAuth }, qSeriesCertificationAction("certification-history"));
+
+  app.get("/api/pillow/q-series-completion", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectQSeriesCompletionSnapshot());
+    }
+    return reply.send({ qSeriesCompletion: pillowHost.getQSeriesCompletion() });
+  });
+  const qSeriesCompletionAction = (
+    method:
+      | "connect"
+      | "verify-missions"
+      | "verify-workforce"
+      | "verify-runtimes"
+      | "verify-governance"
+      | "verify-certification"
+      | "verify-production-readiness"
+      | "aggregate-evidence"
+      | "produce-decision"
+      | "produce-report"
+      | "complete"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1201-contract"
+      | "completion-history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectQSeriesCompletionSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectQSeriesCompletion(body)
+          : method === "verify-missions" ? pillowHost.verifyQSeriesMissionCompletion()
+            : method === "verify-workforce" ? pillowHost.verifyQSeriesWorkforceCapabilities()
+              : method === "verify-runtimes" ? pillowHost.verifyQSeriesRuntimeIntegration()
+                : method === "verify-governance" ? pillowHost.verifyQSeriesCompletionGovernance()
+                  : method === "verify-certification" ? pillowHost.verifyQSeriesCertificationCompletion()
+                    : method === "verify-production-readiness" ? pillowHost.verifyQSeriesCompletionProductionReadiness()
+                      : method === "aggregate-evidence" ? pillowHost.aggregateQSeriesCompletionEvidence()
+                        : method === "produce-decision" ? pillowHost.produceQSeriesFinalCompletionDecision(body)
+                          : method === "produce-report" ? await pillowHost.produceQSeriesCompletionReport(body)
+                            : method === "complete" ? await pillowHost.completeQSeries(body)
+                              : method === "submit-report" ? await pillowHost.submitQSeriesCompletionReport(body)
+                                : method === "list" ? pillowHost.listQSeriesCompletionReports()
+                                  : method === "validate" ? pillowHost.validateQSeriesCompletion(body)
+                                    : method === "q1201-contract" ? pillowHost.getQSeriesCompletionQ1201Contract()
+                                      : method === "completion-history" ? pillowHost.getQSeriesCompletionHistory()
+                                        : pillowHost.runQSeriesCompletionDiagnostics();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/q-series-completion/connect", { preHandler: pillowAuth }, qSeriesCompletionAction("connect"));
+  app.post("/api/pillow/q-series-completion/verify-missions", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-missions"));
+  app.post("/api/pillow/q-series-completion/verify-workforce", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-workforce"));
+  app.post("/api/pillow/q-series-completion/verify-runtimes", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-runtimes"));
+  app.post("/api/pillow/q-series-completion/verify-governance", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-governance"));
+  app.post("/api/pillow/q-series-completion/verify-certification", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-certification"));
+  app.post("/api/pillow/q-series-completion/verify-production-readiness", { preHandler: pillowAuth }, qSeriesCompletionAction("verify-production-readiness"));
+  app.post("/api/pillow/q-series-completion/aggregate-evidence", { preHandler: pillowAuth }, qSeriesCompletionAction("aggregate-evidence"));
+  app.post("/api/pillow/q-series-completion/produce-decision", { preHandler: pillowAuth }, qSeriesCompletionAction("produce-decision"));
+  app.post("/api/pillow/q-series-completion/produce-report", { preHandler: pillowAuth }, qSeriesCompletionAction("produce-report"));
+  app.post("/api/pillow/q-series-completion/complete", { preHandler: pillowAuth }, qSeriesCompletionAction("complete"));
+  app.post("/api/pillow/q-series-completion/submit-report", { preHandler: pillowAuth }, qSeriesCompletionAction("submit-report"));
+  app.post("/api/pillow/q-series-completion/list", { preHandler: pillowAuth }, qSeriesCompletionAction("list"));
+  app.post("/api/pillow/q-series-completion/validate", { preHandler: pillowAuth }, qSeriesCompletionAction("validate"));
+  app.post("/api/pillow/q-series-completion/diagnostics", { preHandler: pillowAuth }, qSeriesCompletionAction("diagnostics"));
+  app.post("/api/pillow/q-series-completion/q1201-contract", { preHandler: pillowAuth }, qSeriesCompletionAction("q1201-contract"));
+  app.post("/api/pillow/q-series-completion/completion-history", { preHandler: pillowAuth }, qSeriesCompletionAction("completion-history"));
+
+  app.get("/api/pillow/ai-innovation-factory", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectAiInnovationFactorySnapshot());
+    }
+    return reply.send({ aiInnovationFactory: pillowHost.getAiInnovationFactory() });
+  });
+  const aiInnovationFactoryAction = (
+    method:
+      | "connect"
+      | "verify-series-prerequisite"
+      | "research-technologies"
+      | "track-models-apis"
+      | "discover-opportunities"
+      | "evaluate-architecture"
+      | "analyse-operations"
+      | "produce-report"
+      | "research-innovations"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1301-contract"
+      | "innovation-history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectAiInnovationFactorySnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectAiInnovationFactory(body)
+          : method === "verify-series-prerequisite" ? pillowHost.verifyAiInnovationSeriesCompletePrerequisite()
+            : method === "research-technologies" ? pillowHost.researchEmergingTechnologies()
+              : method === "track-models-apis" ? pillowHost.trackModelsAndApis()
+                : method === "discover-opportunities" ? pillowHost.discoverBusinessOpportunities()
+                  : method === "evaluate-architecture" ? pillowHost.evaluateArchitecturalImprovements()
+                    : method === "analyse-operations" ? pillowHost.analyseOperationalImprovements()
+                      : method === "produce-report" ? await pillowHost.produceAiInnovationReport(body)
+                        : method === "research-innovations" ? await pillowHost.researchInnovations(body)
+                          : method === "submit-report" ? await pillowHost.submitAiInnovationReport(body)
+                            : method === "list" ? pillowHost.listAiInnovationReports()
+                              : method === "validate" ? pillowHost.validateAiInnovationFactory(body)
+                                : method === "q1301-contract" ? pillowHost.getAiInnovationFactoryQ1301Contract()
+                                  : method === "innovation-history" ? pillowHost.getAiInnovationHistory()
+                                    : pillowHost.runAiInnovationFactoryDiagnostics();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/ai-innovation-factory/connect", { preHandler: pillowAuth }, aiInnovationFactoryAction("connect"));
+  app.post("/api/pillow/ai-innovation-factory/verify-series-prerequisite", { preHandler: pillowAuth }, aiInnovationFactoryAction("verify-series-prerequisite"));
+  app.post("/api/pillow/ai-innovation-factory/research-technologies", { preHandler: pillowAuth }, aiInnovationFactoryAction("research-technologies"));
+  app.post("/api/pillow/ai-innovation-factory/track-models-apis", { preHandler: pillowAuth }, aiInnovationFactoryAction("track-models-apis"));
+  app.post("/api/pillow/ai-innovation-factory/discover-opportunities", { preHandler: pillowAuth }, aiInnovationFactoryAction("discover-opportunities"));
+  app.post("/api/pillow/ai-innovation-factory/evaluate-architecture", { preHandler: pillowAuth }, aiInnovationFactoryAction("evaluate-architecture"));
+  app.post("/api/pillow/ai-innovation-factory/analyse-operations", { preHandler: pillowAuth }, aiInnovationFactoryAction("analyse-operations"));
+  app.post("/api/pillow/ai-innovation-factory/produce-report", { preHandler: pillowAuth }, aiInnovationFactoryAction("produce-report"));
+  app.post("/api/pillow/ai-innovation-factory/research-innovations", { preHandler: pillowAuth }, aiInnovationFactoryAction("research-innovations"));
+  app.post("/api/pillow/ai-innovation-factory/submit-report", { preHandler: pillowAuth }, aiInnovationFactoryAction("submit-report"));
+  app.post("/api/pillow/ai-innovation-factory/list", { preHandler: pillowAuth }, aiInnovationFactoryAction("list"));
+  app.post("/api/pillow/ai-innovation-factory/validate", { preHandler: pillowAuth }, aiInnovationFactoryAction("validate"));
+  app.post("/api/pillow/ai-innovation-factory/diagnostics", { preHandler: pillowAuth }, aiInnovationFactoryAction("diagnostics"));
+  app.post("/api/pillow/ai-innovation-factory/q1301-contract", { preHandler: pillowAuth }, aiInnovationFactoryAction("q1301-contract"));
+  app.post("/api/pillow/ai-innovation-factory/innovation-history", { preHandler: pillowAuth }, aiInnovationFactoryAction("innovation-history"));
+
+  app.get("/api/pillow/implementation-specification-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectImplementationSpecificationEngineSnapshot());
+    }
+    return reply.send({ implementationSpecificationEngine: pillowHost.getImplementationSpecificationEngine() });
+  });
+  const implementationSpecificationEngineAction = (
+    method:
+      | "connect"
+      | "parse-mission"
+      | "analyse-architecture"
+      | "discover-dependencies"
+      | "detect-preservations"
+      | "generate-specification"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1302-contract"
+      | "history",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectImplementationSpecificationEngineSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectImplementationSpecificationEngine(body)
+          : method === "parse-mission" ? pillowHost.parseImplementationSpecificationMission(body)
+            : method === "analyse-architecture" ? pillowHost.analyseImplementationSpecificationArchitecture(body)
+              : method === "discover-dependencies" ? pillowHost.discoverImplementationSpecificationDependencies(body)
+                : method === "detect-preservations" ? pillowHost.detectImplementationSpecificationPreservations(body)
+                  : method === "generate-specification" ? pillowHost.generateImplementationSpecificationDocument(body)
+                    : method === "produce-report" ? await pillowHost.produceImplementationSpecificationReport(body)
+                      : method === "submit-report" ? await pillowHost.submitImplementationSpecificationReport(body)
+                        : method === "list" ? pillowHost.listImplementationSpecificationReports()
+                          : method === "validate" ? pillowHost.validateImplementationSpecificationEngine(body)
+                            : method === "q1302-contract" ? pillowHost.getImplementationSpecificationEngineQ1302Contract()
+                              : method === "history" ? pillowHost.getImplementationSpecificationHistory()
+                                : pillowHost.runImplementationSpecificationEngineDiagnostics();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/implementation-specification-engine/connect", { preHandler: pillowAuth }, implementationSpecificationEngineAction("connect"));
+  app.post("/api/pillow/implementation-specification-engine/parse-mission", { preHandler: pillowAuth }, implementationSpecificationEngineAction("parse-mission"));
+  app.post("/api/pillow/implementation-specification-engine/analyse-architecture", { preHandler: pillowAuth }, implementationSpecificationEngineAction("analyse-architecture"));
+  app.post("/api/pillow/implementation-specification-engine/discover-dependencies", { preHandler: pillowAuth }, implementationSpecificationEngineAction("discover-dependencies"));
+  app.post("/api/pillow/implementation-specification-engine/detect-preservations", { preHandler: pillowAuth }, implementationSpecificationEngineAction("detect-preservations"));
+  app.post("/api/pillow/implementation-specification-engine/generate-specification", { preHandler: pillowAuth }, implementationSpecificationEngineAction("generate-specification"));
+  app.post("/api/pillow/implementation-specification-engine/produce-report", { preHandler: pillowAuth }, implementationSpecificationEngineAction("produce-report"));
+  app.post("/api/pillow/implementation-specification-engine/submit-report", { preHandler: pillowAuth }, implementationSpecificationEngineAction("submit-report"));
+  app.post("/api/pillow/implementation-specification-engine/list", { preHandler: pillowAuth }, implementationSpecificationEngineAction("list"));
+  app.post("/api/pillow/implementation-specification-engine/validate", { preHandler: pillowAuth }, implementationSpecificationEngineAction("validate"));
+  app.post("/api/pillow/implementation-specification-engine/diagnostics", { preHandler: pillowAuth }, implementationSpecificationEngineAction("diagnostics"));
+  app.post("/api/pillow/implementation-specification-engine/q1302-contract", { preHandler: pillowAuth }, implementationSpecificationEngineAction("q1302-contract"));
+  app.post("/api/pillow/implementation-specification-engine/history", { preHandler: pillowAuth }, implementationSpecificationEngineAction("history"));
+
+  app.get("/api/pillow/repository-intelligence-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectRepositoryIntelligenceEngineSnapshot());
+    }
+    return reply.send({ repositoryIntelligenceEngine: pillowHost.getRepositoryIntelligenceEngine() });
+  });
+  const repositoryIntelligenceEngineAction = (
+    method:
+      | "connect"
+      | "discover"
+      | "analyze-modules"
+      | "dependency-graph"
+      | "implementation-relationships"
+      | "architectural-boundaries"
+      | "existing-implementations"
+      | "reusable-components"
+      | "conflicts"
+      | "analyze"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "q1303-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectRepositoryIntelligenceEngineSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectRepositoryIntelligenceEngine(body)
+          : method === "discover" ? pillowHost.discoverRepositoryIntelligenceStructure()
+            : method === "analyze-modules" ? pillowHost.analyzeRepositoryIntelligenceModules()
+              : method === "dependency-graph" ? pillowHost.buildRepositoryIntelligenceDependencyGraph()
+                : method === "implementation-relationships" ? pillowHost.detectRepositoryIntelligenceImplementationRelationships()
+                  : method === "architectural-boundaries" ? pillowHost.discoverRepositoryIntelligenceArchitecturalBoundaries()
+                    : method === "existing-implementations" ? pillowHost.detectRepositoryIntelligenceExistingImplementations()
+                      : method === "reusable-components" ? pillowHost.identifyRepositoryIntelligenceReusableComponents()
+                        : method === "conflicts" ? pillowHost.detectRepositoryIntelligenceConflicts()
+                          : method === "analyze" ? pillowHost.analyzeRepositoryIntelligenceRepository()
+                            : method === "produce-report" ? await pillowHost.produceRepositoryIntelligenceReport(body)
+                              : method === "submit-report" ? await pillowHost.submitRepositoryIntelligenceReport(body)
+                                : method === "list" ? pillowHost.listRepositoryIntelligenceReports()
+                                  : method === "validate" ? pillowHost.validateRepositoryIntelligenceEngine(body)
+                                    : method === "q1303-contract" ? pillowHost.getRepositoryIntelligenceEngineQ1303Contract()
+                                      : method === "history" ? pillowHost.getRepositoryIntelligenceKnowledgeHistory()
+                                        : pillowHost.runRepositoryIntelligenceEngineDiagnostics();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/repository-intelligence-engine/connect", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("connect"));
+  app.post("/api/pillow/repository-intelligence-engine/discover", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("discover"));
+  app.post("/api/pillow/repository-intelligence-engine/analyze-modules", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("analyze-modules"));
+  app.post("/api/pillow/repository-intelligence-engine/dependency-graph", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("dependency-graph"));
+  app.post("/api/pillow/repository-intelligence-engine/implementation-relationships", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("implementation-relationships"));
+  app.post("/api/pillow/repository-intelligence-engine/architectural-boundaries", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("architectural-boundaries"));
+  app.post("/api/pillow/repository-intelligence-engine/existing-implementations", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("existing-implementations"));
+  app.post("/api/pillow/repository-intelligence-engine/reusable-components", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("reusable-components"));
+  app.post("/api/pillow/repository-intelligence-engine/conflicts", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("conflicts"));
+  app.post("/api/pillow/repository-intelligence-engine/analyze", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("analyze"));
+  app.post("/api/pillow/repository-intelligence-engine/produce-report", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("produce-report"));
+  app.post("/api/pillow/repository-intelligence-engine/submit-report", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("submit-report"));
+  app.post("/api/pillow/repository-intelligence-engine/list", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("list"));
+  app.post("/api/pillow/repository-intelligence-engine/history", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("history"));
+  app.post("/api/pillow/repository-intelligence-engine/validate", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("validate"));
+  app.post("/api/pillow/repository-intelligence-engine/diagnostics", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("diagnostics"));
+  app.post("/api/pillow/repository-intelligence-engine/q1303-contract", { preHandler: pillowAuth }, repositoryIntelligenceEngineAction("q1303-contract"));
+
+  app.get("/api/pillow/mission-planning-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectMissionPlanningEngineSnapshot());
+    }
+    return reply.send({ missionPlanningEngine: pillowHost.getMissionPlanningEngine() });
+  });
+  const missionPlanningEngineAction = (
+    method:
+      | "connect"
+      | "analyse-mission"
+      | "consume-repository-intelligence"
+      | "identify-dependencies"
+      | "determine-execution-sequence"
+      | "identify-integration-points"
+      | "produce-validation-strategy"
+      | "produce-acceptance-criteria"
+      | "estimate-risks"
+      | "generate-plan"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "q1304-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectMissionPlanningEngineSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectMissionPlanningEngine(body)
+          : method === "analyse-mission" ? pillowHost.analyseMissionPlanningMission(body)
+            : method === "consume-repository-intelligence" ? pillowHost.consumeMissionPlanningRepositoryIntelligence()
+              : method === "identify-dependencies" ? pillowHost.identifyMissionPlanningDependencies(body)
+                : method === "determine-execution-sequence" ? pillowHost.determineMissionPlanningExecutionSequence()
+                  : method === "identify-integration-points" ? pillowHost.identifyMissionPlanningIntegrationPoints()
+                    : method === "produce-validation-strategy" ? pillowHost.produceMissionPlanningValidationStrategy(body)
+                      : method === "produce-acceptance-criteria" ? pillowHost.produceMissionPlanningAcceptanceCriteria(body)
+                        : method === "estimate-risks" ? pillowHost.estimateMissionPlanningRisks()
+                          : method === "generate-plan" ? pillowHost.generateMissionPlanningPlan(body)
+                            : method === "produce-report" ? await pillowHost.produceMissionPlanningReport(body)
+                              : method === "submit-report" ? await pillowHost.submitMissionPlanningReport(body)
+                                : method === "list" ? pillowHost.listMissionPlanningReports()
+                                  : method === "validate" ? pillowHost.validateMissionPlanningEngine(body)
+                                    : method === "q1304-contract" ? pillowHost.getMissionPlanningEngineQ1304Contract()
+                                      : method === "history" ? pillowHost.getMissionPlanningHistory()
+                                        : pillowHost.runMissionPlanningEngineDiagnostics();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/mission-planning-engine/connect", { preHandler: pillowAuth }, missionPlanningEngineAction("connect"));
+  app.post("/api/pillow/mission-planning-engine/analyse-mission", { preHandler: pillowAuth }, missionPlanningEngineAction("analyse-mission"));
+  app.post("/api/pillow/mission-planning-engine/consume-repository-intelligence", { preHandler: pillowAuth }, missionPlanningEngineAction("consume-repository-intelligence"));
+  app.post("/api/pillow/mission-planning-engine/identify-dependencies", { preHandler: pillowAuth }, missionPlanningEngineAction("identify-dependencies"));
+  app.post("/api/pillow/mission-planning-engine/determine-execution-sequence", { preHandler: pillowAuth }, missionPlanningEngineAction("determine-execution-sequence"));
+  app.post("/api/pillow/mission-planning-engine/identify-integration-points", { preHandler: pillowAuth }, missionPlanningEngineAction("identify-integration-points"));
+  app.post("/api/pillow/mission-planning-engine/produce-validation-strategy", { preHandler: pillowAuth }, missionPlanningEngineAction("produce-validation-strategy"));
+  app.post("/api/pillow/mission-planning-engine/produce-acceptance-criteria", { preHandler: pillowAuth }, missionPlanningEngineAction("produce-acceptance-criteria"));
+  app.post("/api/pillow/mission-planning-engine/estimate-risks", { preHandler: pillowAuth }, missionPlanningEngineAction("estimate-risks"));
+  app.post("/api/pillow/mission-planning-engine/generate-plan", { preHandler: pillowAuth }, missionPlanningEngineAction("generate-plan"));
+  app.post("/api/pillow/mission-planning-engine/produce-report", { preHandler: pillowAuth }, missionPlanningEngineAction("produce-report"));
+  app.post("/api/pillow/mission-planning-engine/submit-report", { preHandler: pillowAuth }, missionPlanningEngineAction("submit-report"));
+  app.post("/api/pillow/mission-planning-engine/list", { preHandler: pillowAuth }, missionPlanningEngineAction("list"));
+  app.post("/api/pillow/mission-planning-engine/history", { preHandler: pillowAuth }, missionPlanningEngineAction("history"));
+  app.post("/api/pillow/mission-planning-engine/validate", { preHandler: pillowAuth }, missionPlanningEngineAction("validate"));
+  app.post("/api/pillow/mission-planning-engine/diagnostics", { preHandler: pillowAuth }, missionPlanningEngineAction("diagnostics"));
+  app.post("/api/pillow/mission-planning-engine/q1304-contract", { preHandler: pillowAuth }, missionPlanningEngineAction("q1304-contract"));
+
+  app.get("/api/pillow/cursor-specification-generator", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCursorSpecificationGeneratorSnapshot());
+    }
+    return reply.send({ cursorSpecificationGenerator: pillowHost.getCursorSpecificationGenerator() });
+  });
+  const cursorSpecificationGeneratorAction = (
+    method:
+      | "connect"
+      | "consume-mission"
+      | "consume-repository-intelligence"
+      | "consume-mission-planning"
+      | "consume-implementation-specification"
+      | "generate-specification"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "q1305-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectCursorSpecificationGeneratorSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectCursorSpecificationGenerator(body)
+          : method === "consume-mission" ? pillowHost.consumeCursorSpecificationRoadmapMission(body)
+            : method === "consume-repository-intelligence" ? pillowHost.consumeCursorSpecificationRepositoryIntelligence()
+              : method === "consume-mission-planning" ? pillowHost.consumeCursorSpecificationMissionPlanning()
+                : method === "consume-implementation-specification" ? pillowHost.consumeCursorSpecificationImplementationSpecification()
+                  : method === "generate-specification" ? pillowHost.generateCursorSpecification(body)
+                    : method === "produce-report" ? await pillowHost.produceCursorSpecificationReport(body)
+                      : method === "submit-report" ? await pillowHost.submitCursorSpecificationReport(body)
+                        : method === "list" ? pillowHost.listCursorSpecificationReports()
+                          : method === "history" ? pillowHost.getCursorSpecificationHistory()
+                            : method === "validate" ? pillowHost.validateCursorSpecificationGenerator(body)
+                              : method === "diagnostics" ? pillowHost.runCursorSpecificationGeneratorDiagnostics()
+                                : pillowHost.getCursorSpecificationGeneratorQ1305Contract();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/cursor-specification-generator/connect", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("connect"));
+  app.post("/api/pillow/cursor-specification-generator/consume-mission", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("consume-mission"));
+  app.post("/api/pillow/cursor-specification-generator/consume-repository-intelligence", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("consume-repository-intelligence"));
+  app.post("/api/pillow/cursor-specification-generator/consume-mission-planning", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("consume-mission-planning"));
+  app.post("/api/pillow/cursor-specification-generator/consume-implementation-specification", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("consume-implementation-specification"));
+  app.post("/api/pillow/cursor-specification-generator/generate-specification", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("generate-specification"));
+  app.post("/api/pillow/cursor-specification-generator/produce-report", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("produce-report"));
+  app.post("/api/pillow/cursor-specification-generator/submit-report", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("submit-report"));
+  app.post("/api/pillow/cursor-specification-generator/list", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("list"));
+  app.post("/api/pillow/cursor-specification-generator/history", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("history"));
+  app.post("/api/pillow/cursor-specification-generator/validate", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("validate"));
+  app.post("/api/pillow/cursor-specification-generator/diagnostics", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("diagnostics"));
+  app.post("/api/pillow/cursor-specification-generator/q1305-contract", { preHandler: pillowAuth }, cursorSpecificationGeneratorAction("q1305-contract"));
+
+  app.get("/api/pillow/implementation-recovery-planner", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectImplementationRecoveryPlannerSnapshot());
+    }
+    return reply.send({ implementationRecoveryPlanner: pillowHost.getImplementationRecoveryPlanner() });
+  });
+  const implementationRecoveryPlannerAction = (
+    method:
+      | "connect"
+      | "detect-interrupted"
+      | "analyse-repository"
+      | "compare-specification"
+      | "detect-completed"
+      | "detect-partial"
+      | "detect-missing"
+      | "detect-conflicts"
+      | "generate-strategy"
+      | "generate-plan"
+      | "generate-specification"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "q1306-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectImplementationRecoveryPlannerSnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectImplementationRecoveryPlanner(body)
+          : method === "detect-interrupted" ? pillowHost.detectImplementationRecoveryInterruptedMission(body)
+            : method === "analyse-repository" ? pillowHost.analyseImplementationRecoveryRepository(body)
+              : method === "compare-specification" ? pillowHost.compareImplementationRecoverySpecification(body)
+                : method === "detect-completed" ? pillowHost.detectImplementationRecoveryCompletedWork()
+                  : method === "detect-partial" ? pillowHost.detectImplementationRecoveryPartialWork()
+                    : method === "detect-missing" ? pillowHost.detectImplementationRecoveryMissingWork()
+                      : method === "detect-conflicts" ? pillowHost.detectImplementationRecoveryConflicts()
+                        : method === "generate-strategy" ? pillowHost.generateImplementationRecoveryStrategy()
+                          : method === "generate-plan" ? pillowHost.generateImplementationRecoveryPlan(body)
+                            : method === "generate-specification" ? pillowHost.generateImplementationRecoverySpecification(body)
+                              : method === "produce-report" ? await pillowHost.produceImplementationRecoveryReport(body)
+                                : method === "submit-report" ? await pillowHost.submitImplementationRecoveryReport(body)
+                                  : method === "list" ? pillowHost.listImplementationRecoveryReports()
+                                    : method === "history" ? pillowHost.getImplementationRecoveryHistory()
+                                      : method === "validate" ? pillowHost.validateImplementationRecoveryPlanner(body)
+                                        : method === "diagnostics" ? pillowHost.runImplementationRecoveryPlannerDiagnostics()
+                                          : pillowHost.getImplementationRecoveryPlannerQ1306Contract();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/implementation-recovery-planner/connect", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("connect"));
+  app.post("/api/pillow/implementation-recovery-planner/detect-interrupted", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("detect-interrupted"));
+  app.post("/api/pillow/implementation-recovery-planner/analyse-repository", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("analyse-repository"));
+  app.post("/api/pillow/implementation-recovery-planner/compare-specification", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("compare-specification"));
+  app.post("/api/pillow/implementation-recovery-planner/detect-completed", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("detect-completed"));
+  app.post("/api/pillow/implementation-recovery-planner/detect-partial", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("detect-partial"));
+  app.post("/api/pillow/implementation-recovery-planner/detect-missing", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("detect-missing"));
+  app.post("/api/pillow/implementation-recovery-planner/detect-conflicts", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("detect-conflicts"));
+  app.post("/api/pillow/implementation-recovery-planner/generate-strategy", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("generate-strategy"));
+  app.post("/api/pillow/implementation-recovery-planner/generate-plan", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("generate-plan"));
+  app.post("/api/pillow/implementation-recovery-planner/generate-specification", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("generate-specification"));
+  app.post("/api/pillow/implementation-recovery-planner/produce-report", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("produce-report"));
+  app.post("/api/pillow/implementation-recovery-planner/submit-report", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("submit-report"));
+  app.post("/api/pillow/implementation-recovery-planner/list", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("list"));
+  app.post("/api/pillow/implementation-recovery-planner/history", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("history"));
+  app.post("/api/pillow/implementation-recovery-planner/validate", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("validate"));
+  app.post("/api/pillow/implementation-recovery-planner/diagnostics", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("diagnostics"));
+  app.post("/api/pillow/implementation-recovery-planner/q1306-contract", { preHandler: pillowAuth }, implementationRecoveryPlannerAction("q1306-contract"));
+
+  app.get("/api/pillow/programme-certification-factory", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectProgrammeCertificationFactorySnapshot());
+    }
+    return reply.send({ programmeCertificationFactory: pillowHost.getProgrammeCertificationFactory() });
+  });
+  const programmeCertificationFactoryAction = (
+    method:
+      | "connect"
+      | "discover-programmes"
+      | "audit-programme"
+      | "classify-missions"
+      | "gap-analysis"
+      | "completion-recommendations"
+      | "verify-completion"
+      | "certify-programme"
+      | "produce-programme-report"
+      | "produce-final-certification"
+      | "submit-report"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "q-series-completion-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+        return reply.code(503).send(collectProgrammeCertificationFactorySnapshot());
+      }
+      const result =
+        method === "connect" ? pillowHost.connectProgrammeCertificationFactory(body)
+          : method === "discover-programmes" ? pillowHost.discoverProgrammeCertificationProgrammes()
+            : method === "audit-programme" ? pillowHost.auditProgrammeCertificationRepository(body)
+              : method === "classify-missions" ? pillowHost.classifyProgrammeCertificationMissions(body)
+                : method === "gap-analysis" ? pillowHost.produceProgrammeCertificationGapAnalysis(body)
+                  : method === "completion-recommendations" ? pillowHost.generateProgrammeCertificationRecommendations(body)
+                    : method === "verify-completion" ? pillowHost.verifyProgrammeCertificationCompletion(body)
+                      : method === "certify-programme" ? pillowHost.certifyProgrammeCertificationProgramme(body)
+                        : method === "produce-programme-report" ? await pillowHost.produceProgrammeCertificationReport(body)
+                          : method === "produce-final-certification" ? pillowHost.produceFinalRepositoryConstitutionalCertification(body)
+                            : method === "submit-report" ? await pillowHost.submitProgrammeCertificationReport(body)
+                              : method === "list" ? pillowHost.listProgrammeCertificationReports()
+                                : method === "history" ? pillowHost.getProgrammeCertificationHistory()
+                                  : method === "validate" ? pillowHost.validateProgrammeCertificationFactory(body)
+                                    : method === "diagnostics" ? pillowHost.runProgrammeCertificationFactoryDiagnostics()
+                                      : pillowHost.getProgrammeCertificationQSeriesCompletionContract();
+      return reply.send(result);
+    };
+  app.post("/api/pillow/programme-certification-factory/connect", { preHandler: pillowAuth }, programmeCertificationFactoryAction("connect"));
+  app.post("/api/pillow/programme-certification-factory/discover-programmes", { preHandler: pillowAuth }, programmeCertificationFactoryAction("discover-programmes"));
+  app.post("/api/pillow/programme-certification-factory/audit-programme", { preHandler: pillowAuth }, programmeCertificationFactoryAction("audit-programme"));
+  app.post("/api/pillow/programme-certification-factory/classify-missions", { preHandler: pillowAuth }, programmeCertificationFactoryAction("classify-missions"));
+  app.post("/api/pillow/programme-certification-factory/gap-analysis", { preHandler: pillowAuth }, programmeCertificationFactoryAction("gap-analysis"));
+  app.post("/api/pillow/programme-certification-factory/completion-recommendations", { preHandler: pillowAuth }, programmeCertificationFactoryAction("completion-recommendations"));
+  app.post("/api/pillow/programme-certification-factory/verify-completion", { preHandler: pillowAuth }, programmeCertificationFactoryAction("verify-completion"));
+  app.post("/api/pillow/programme-certification-factory/certify-programme", { preHandler: pillowAuth }, programmeCertificationFactoryAction("certify-programme"));
+  app.post("/api/pillow/programme-certification-factory/produce-programme-report", { preHandler: pillowAuth }, programmeCertificationFactoryAction("produce-programme-report"));
+  app.post("/api/pillow/programme-certification-factory/produce-final-certification", { preHandler: pillowAuth }, programmeCertificationFactoryAction("produce-final-certification"));
+  app.post("/api/pillow/programme-certification-factory/submit-report", { preHandler: pillowAuth }, programmeCertificationFactoryAction("submit-report"));
+  app.post("/api/pillow/programme-certification-factory/list", { preHandler: pillowAuth }, programmeCertificationFactoryAction("list"));
+  app.post("/api/pillow/programme-certification-factory/history", { preHandler: pillowAuth }, programmeCertificationFactoryAction("history"));
+  app.post("/api/pillow/programme-certification-factory/validate", { preHandler: pillowAuth }, programmeCertificationFactoryAction("validate"));
+  app.post("/api/pillow/programme-certification-factory/diagnostics", { preHandler: pillowAuth }, programmeCertificationFactoryAction("diagnostics"));
+  app.post("/api/pillow/programme-certification-factory/q-series-completion-contract", { preHandler: pillowAuth }, programmeCertificationFactoryAction("q-series-completion-contract"));
+
   app.get("/api/pillow/capital-factory-core", { preHandler: pillowAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") {
       schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
@@ -34806,6 +37198,216 @@ export async function registerPillowRoutes(
   app.post("/api/pillow/tax-support-worker/validate", { preHandler: pillowAuth }, taxSupportWorkerAction("validate"));
   app.post("/api/pillow/tax-support-worker/diagnostics", { preHandler: pillowAuth }, taxSupportWorkerAction("diagnostics"));
   app.post("/api/pillow/tax-support-worker/q908-contract", { preHandler: pillowAuth }, taxSupportWorkerAction("q908-contract"));
+
+  app.get("/api/pillow/investment-planning-worker", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectInvestmentPlanningWorkerSnapshot());
+    }
+    return reply.send({ investmentPlanningWorker: pillowHost.getInvestmentPlanningWorker() });
+  });
+  const investmentPlanningWorkerAction = (
+    method:
+      | "connect"
+      | "consume-accounting"
+      | "consume-cashflow"
+      | "consume-profitability"
+      | "consume-forecasting"
+      | "consume-tax-support"
+      | "consume-budget"
+      | "evaluate-opportunities"
+      | "compare-alternatives"
+      | "rank-opportunities"
+      | "assess-risks"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q909-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectInvestmentPlanningWorkerSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectInvestmentPlanningWorker(body)
+          : method === "consume-accounting" ? pillowHost.consumeInvestmentPlanningAccountingRecords(body)
+            : method === "consume-cashflow" ? pillowHost.consumeInvestmentPlanningCashflowReports(body)
+              : method === "consume-profitability" ? pillowHost.consumeInvestmentPlanningProfitabilityReports(body)
+                : method === "consume-forecasting" ? pillowHost.consumeInvestmentPlanningForecastingReports(body)
+                  : method === "consume-tax-support" ? pillowHost.consumeInvestmentPlanningTaxSupportReports(body)
+                    : method === "consume-budget" ? pillowHost.consumeInvestmentPlanningBudgetReports(body)
+                      : method === "evaluate-opportunities" ? pillowHost.evaluateInvestmentPlanningOpportunities(body)
+                        : method === "compare-alternatives" ? pillowHost.compareInvestmentPlanningAlternatives(body)
+                          : method === "rank-opportunities" ? pillowHost.rankInvestmentPlanningOpportunities(body)
+                            : method === "assess-risks" ? pillowHost.assessInvestmentPlanningRisks(body)
+                              : method === "produce-report" ? pillowHost.produceInvestmentPlanningReport(body)
+                                : method === "submit-report" ? pillowHost.submitInvestmentPlanningReport(body)
+                                  : method === "list" ? pillowHost.listInvestmentPlanningWorkerReports()
+                                    : method === "validate" ? pillowHost.validateInvestmentPlanningWorker(body)
+                                      : method === "q909-contract" ? pillowHost.getInvestmentPlanningWorkerQ909Contract()
+                                        : pillowHost.runInvestmentPlanningWorkerDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/investment-planning-worker/connect", { preHandler: pillowAuth }, investmentPlanningWorkerAction("connect"));
+  app.post("/api/pillow/investment-planning-worker/consume-accounting", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-accounting"));
+  app.post("/api/pillow/investment-planning-worker/consume-cashflow", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-cashflow"));
+  app.post("/api/pillow/investment-planning-worker/consume-profitability", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-profitability"));
+  app.post("/api/pillow/investment-planning-worker/consume-forecasting", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-forecasting"));
+  app.post("/api/pillow/investment-planning-worker/consume-tax-support", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-tax-support"));
+  app.post("/api/pillow/investment-planning-worker/consume-budget", { preHandler: pillowAuth }, investmentPlanningWorkerAction("consume-budget"));
+  app.post("/api/pillow/investment-planning-worker/evaluate-opportunities", { preHandler: pillowAuth }, investmentPlanningWorkerAction("evaluate-opportunities"));
+  app.post("/api/pillow/investment-planning-worker/compare-alternatives", { preHandler: pillowAuth }, investmentPlanningWorkerAction("compare-alternatives"));
+  app.post("/api/pillow/investment-planning-worker/rank-opportunities", { preHandler: pillowAuth }, investmentPlanningWorkerAction("rank-opportunities"));
+  app.post("/api/pillow/investment-planning-worker/assess-risks", { preHandler: pillowAuth }, investmentPlanningWorkerAction("assess-risks"));
+  app.post("/api/pillow/investment-planning-worker/produce-report", { preHandler: pillowAuth }, investmentPlanningWorkerAction("produce-report"));
+  app.post("/api/pillow/investment-planning-worker/submit-report", { preHandler: pillowAuth }, investmentPlanningWorkerAction("submit-report"));
+  app.post("/api/pillow/investment-planning-worker/list", { preHandler: pillowAuth }, investmentPlanningWorkerAction("list"));
+  app.post("/api/pillow/investment-planning-worker/validate", { preHandler: pillowAuth }, investmentPlanningWorkerAction("validate"));
+  app.post("/api/pillow/investment-planning-worker/diagnostics", { preHandler: pillowAuth }, investmentPlanningWorkerAction("diagnostics"));
+  app.post("/api/pillow/investment-planning-worker/q909-contract", { preHandler: pillowAuth }, investmentPlanningWorkerAction("q909-contract"));
+
+  app.get("/api/pillow/financial-reporting-worker", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialReportingWorkerSnapshot());
+    }
+    return reply.send({ financialReportingWorker: pillowHost.getFinancialReportingWorker() });
+  });
+  const financialReportingWorkerAction = (
+    method:
+      | "connect"
+      | "consume-accounting"
+      | "consume-cashflow"
+      | "consume-budget"
+      | "consume-profitability"
+      | "consume-forecasting"
+      | "consume-tax-support"
+      | "consume-investment-planning"
+      | "generate-executive-dashboard"
+      | "generate-capital-summary"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q910-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectFinancialReportingWorkerSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectFinancialReportingWorker(body)
+          : method === "consume-accounting" ? pillowHost.consumeFinancialReportingAccountingRecords(body)
+            : method === "consume-cashflow" ? pillowHost.consumeFinancialReportingCashflowReports(body)
+              : method === "consume-budget" ? pillowHost.consumeFinancialReportingBudgetReports(body)
+                : method === "consume-profitability" ? pillowHost.consumeFinancialReportingProfitabilityReports(body)
+                  : method === "consume-forecasting" ? pillowHost.consumeFinancialReportingForecastingReports(body)
+                    : method === "consume-tax-support" ? pillowHost.consumeFinancialReportingTaxSupportReports(body)
+                      : method === "consume-investment-planning" ? pillowHost.consumeFinancialReportingInvestmentPlanningReports(body)
+                        : method === "generate-executive-dashboard" ? pillowHost.generateFinancialReportingExecutiveDashboard(body)
+                          : method === "generate-capital-summary" ? pillowHost.generateFinancialReportingCapitalSummary(body)
+                            : method === "produce-report" ? pillowHost.produceFinancialReportingReport(body)
+                              : method === "submit-report" ? pillowHost.submitFinancialReportingReport(body)
+                                : method === "list" ? pillowHost.listFinancialReportingWorkerReports()
+                                  : method === "validate" ? pillowHost.validateFinancialReportingWorker(body)
+                                    : method === "q910-contract" ? pillowHost.getFinancialReportingWorkerQ910Contract()
+                                      : pillowHost.runFinancialReportingWorkerDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/financial-reporting-worker/connect", { preHandler: pillowAuth }, financialReportingWorkerAction("connect"));
+  app.post("/api/pillow/financial-reporting-worker/consume-accounting", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-accounting"));
+  app.post("/api/pillow/financial-reporting-worker/consume-cashflow", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-cashflow"));
+  app.post("/api/pillow/financial-reporting-worker/consume-budget", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-budget"));
+  app.post("/api/pillow/financial-reporting-worker/consume-profitability", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-profitability"));
+  app.post("/api/pillow/financial-reporting-worker/consume-forecasting", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-forecasting"));
+  app.post("/api/pillow/financial-reporting-worker/consume-tax-support", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-tax-support"));
+  app.post("/api/pillow/financial-reporting-worker/consume-investment-planning", { preHandler: pillowAuth }, financialReportingWorkerAction("consume-investment-planning"));
+  app.post("/api/pillow/financial-reporting-worker/generate-executive-dashboard", { preHandler: pillowAuth }, financialReportingWorkerAction("generate-executive-dashboard"));
+  app.post("/api/pillow/financial-reporting-worker/generate-capital-summary", { preHandler: pillowAuth }, financialReportingWorkerAction("generate-capital-summary"));
+  app.post("/api/pillow/financial-reporting-worker/produce-report", { preHandler: pillowAuth }, financialReportingWorkerAction("produce-report"));
+  app.post("/api/pillow/financial-reporting-worker/submit-report", { preHandler: pillowAuth }, financialReportingWorkerAction("submit-report"));
+  app.post("/api/pillow/financial-reporting-worker/list", { preHandler: pillowAuth }, financialReportingWorkerAction("list"));
+  app.post("/api/pillow/financial-reporting-worker/validate", { preHandler: pillowAuth }, financialReportingWorkerAction("validate"));
+  app.post("/api/pillow/financial-reporting-worker/diagnostics", { preHandler: pillowAuth }, financialReportingWorkerAction("diagnostics"));
+  app.post("/api/pillow/financial-reporting-worker/q910-contract", { preHandler: pillowAuth }, financialReportingWorkerAction("q910-contract"));
+
+  app.get("/api/pillow/capital-risk-worker", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectCapitalRiskWorkerSnapshot());
+    }
+    return reply.send({ capitalRiskWorker: pillowHost.getCapitalRiskWorker() });
+  });
+  const capitalRiskWorkerAction = (
+    method:
+      | "connect"
+      | "consume-accounting"
+      | "consume-cashflow"
+      | "consume-budget"
+      | "consume-profitability"
+      | "consume-forecasting"
+      | "consume-tax-support"
+      | "consume-investment-planning"
+      | "consume-financial-reporting"
+      | "detect-risks"
+      | "prioritise-risks"
+      | "generate-executive-dashboard"
+      | "produce-report"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q911-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectCapitalRiskWorkerSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectCapitalRiskWorker(body)
+          : method === "consume-accounting" ? pillowHost.consumeCapitalRiskAccountingRecords(body)
+            : method === "consume-cashflow" ? pillowHost.consumeCapitalRiskCashflowReports(body)
+              : method === "consume-budget" ? pillowHost.consumeCapitalRiskBudgetReports(body)
+                : method === "consume-profitability" ? pillowHost.consumeCapitalRiskProfitabilityReports(body)
+                  : method === "consume-forecasting" ? pillowHost.consumeCapitalRiskForecastingReports(body)
+                    : method === "consume-tax-support" ? pillowHost.consumeCapitalRiskTaxSupportReports(body)
+                      : method === "consume-investment-planning" ? pillowHost.consumeCapitalRiskInvestmentPlanningReports(body)
+                        : method === "consume-financial-reporting" ? pillowHost.consumeCapitalRiskFinancialReportingReports(body)
+                          : method === "detect-risks" ? pillowHost.detectCapitalRisks(body)
+                            : method === "prioritise-risks" ? pillowHost.prioritiseCapitalRisks(body)
+                              : method === "generate-executive-dashboard" ? pillowHost.generateCapitalRiskExecutiveDashboard(body)
+                                : method === "produce-report" ? pillowHost.produceCapitalRiskReport(body)
+                                  : method === "submit-report" ? pillowHost.submitCapitalRiskReport(body)
+                                    : method === "list" ? pillowHost.listCapitalRiskWorkerReports()
+                                      : method === "validate" ? pillowHost.validateCapitalRiskWorker(body)
+                                        : method === "q911-contract" ? pillowHost.getCapitalRiskWorkerQ911Contract()
+                                          : pillowHost.runCapitalRiskWorkerDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/capital-risk-worker/connect", { preHandler: pillowAuth }, capitalRiskWorkerAction("connect"));
+  app.post("/api/pillow/capital-risk-worker/consume-accounting", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-accounting"));
+  app.post("/api/pillow/capital-risk-worker/consume-cashflow", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-cashflow"));
+  app.post("/api/pillow/capital-risk-worker/consume-budget", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-budget"));
+  app.post("/api/pillow/capital-risk-worker/consume-profitability", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-profitability"));
+  app.post("/api/pillow/capital-risk-worker/consume-forecasting", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-forecasting"));
+  app.post("/api/pillow/capital-risk-worker/consume-tax-support", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-tax-support"));
+  app.post("/api/pillow/capital-risk-worker/consume-investment-planning", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-investment-planning"));
+  app.post("/api/pillow/capital-risk-worker/consume-financial-reporting", { preHandler: pillowAuth }, capitalRiskWorkerAction("consume-financial-reporting"));
+  app.post("/api/pillow/capital-risk-worker/detect-risks", { preHandler: pillowAuth }, capitalRiskWorkerAction("detect-risks"));
+  app.post("/api/pillow/capital-risk-worker/prioritise-risks", { preHandler: pillowAuth }, capitalRiskWorkerAction("prioritise-risks"));
+  app.post("/api/pillow/capital-risk-worker/generate-executive-dashboard", { preHandler: pillowAuth }, capitalRiskWorkerAction("generate-executive-dashboard"));
+  app.post("/api/pillow/capital-risk-worker/produce-report", { preHandler: pillowAuth }, capitalRiskWorkerAction("produce-report"));
+  app.post("/api/pillow/capital-risk-worker/submit-report", { preHandler: pillowAuth }, capitalRiskWorkerAction("submit-report"));
+  app.post("/api/pillow/capital-risk-worker/list", { preHandler: pillowAuth }, capitalRiskWorkerAction("list"));
+  app.post("/api/pillow/capital-risk-worker/validate", { preHandler: pillowAuth }, capitalRiskWorkerAction("validate"));
+  app.post("/api/pillow/capital-risk-worker/diagnostics", { preHandler: pillowAuth }, capitalRiskWorkerAction("diagnostics"));
+  app.post("/api/pillow/capital-risk-worker/q911-contract", { preHandler: pillowAuth }, capitalRiskWorkerAction("q911-contract"));
 
   app.get("/api/pillow/global-expansion-simulator", { preHandler: pillowAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") return reply.send(collectGlobalExpansionSimulatorSnapshot());

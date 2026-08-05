@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-programme-certification-factory-01",
+  "workerName": "Programme Certification Factory",
+  "factory": "programme-certification-factory",
+  "department": "programme_certification_factory",
+  "role": "role-pcfct",
+  "neverFabricateFindings": true,
+  "neverAutoModifyProduction": true,
+  "neverCertifyFromClaimsAlone": true,
+  "neverImplementFutureProgramme": true,
+  "neverImplementQ1307OrLater": true,
+  "neverBypassGovernance": true,
+  "programmeCertificationOnly": true
+}

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "neverFabricateApprovalEvidence": true,
+  "neverBypassGrandKingApproval": true,
+  "neverAuthoriseWithoutApproval": true,
+  "neverOverrideFailedCertifications": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1201OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveImmutableApprovalHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicGateBehaviour": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "maskSensitiveValues": true
+}

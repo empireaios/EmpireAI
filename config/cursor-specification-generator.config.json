@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-cursor-specification-generator-01",
+  "workerName": "Cursor Specification Generator",
+  "factory": "cursor-specification-generator",
+  "department": "cursor_specification_generator",
+  "role": "role-cursor-spec",
+  "neverImplementCode": true,
+  "neverExecuteCursorMissions": true,
+  "neverFabricateRepositoryFindings": true,
+  "neverInventMissions": true,
+  "neverImplementQ1305OrLater": true,
+  "neverSelfApprove": true,
+  "neverBypassGovernance": true,
+  "specificationOnly": true
+}

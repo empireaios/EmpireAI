@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-q-series-completion-01",
+  "workerName": "Q Series Completion",
+  "factory": "q-series-completion",
+  "department": "q_series_completion",
+  "role": "role-complete-q-series",
+  "neverFabricateCompletionEvidence": true,
+  "neverMarkCompleteWhenUnmet": true,
+  "neverBypassGovernance": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1201OrLater": true
+}

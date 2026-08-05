@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "executiveReportingEnabled": true,
+  "workerId": "wkr-repository-intelligence-engine-01",
+  "workerName": "Repository Intelligence Engine",
+  "factory": "repository-intelligence-engine",
+  "department": "repository_intelligence_engine",
+  "role": "role-repository-analyze",
+  "includeRoots": [
+    "pillow/src",
+    "backend/src",
+    "empireai-web/src",
+    "config",
+    "docs/governance"
+  ],
+  "excludeDirs": [
+    "node_modules",
+    "dist",
+    ".git",
+    ".tmp-ds",
+    "artifacts",
+    "coverage",
+    ".next"
+  ],
+  "neverModifyAnalyzedFiles": true,
+  "neverImplementQ1303OrLater": true,
+  "neverCertifyQ1301": true,
+  "readOnlyRepositoryAnalysis": true,
+  "deterministicRepositoryAnalysis": true,
+  "evidenceBasedOnly": true
+}

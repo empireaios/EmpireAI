@@ -20667,6 +20667,3079 @@ export class PillowHost {
         this.ensureRunning();
         return this.pillowSession.taxSupportWorker.getQ908ConsumableContract();
     }
+    getInvestmentPlanningWorker() {
+        this.ensureRunning();
+        const engine = this.pillowSession.investmentPlanningWorker;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q9-08",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            opportunities: engine.getOpportunities(),
+            rankings: engine.getRankings(),
+            recommendations: engine.getRecommendations(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q909Contract: engine.getQ909ConsumableContract(),
+        };
+    }
+    connectInvestmentPlanningWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.connect(input ?? {});
+    }
+    consumeInvestmentPlanningAccountingRecords(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeAccountingRecords(input ?? {});
+    }
+    consumeInvestmentPlanningCashflowReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeCashflowReports(input ?? {});
+    }
+    consumeInvestmentPlanningProfitabilityReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeProfitabilityReports(input ?? {});
+    }
+    consumeInvestmentPlanningForecastingReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeForecastingReports(input ?? {});
+    }
+    consumeInvestmentPlanningTaxSupportReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeTaxSupportReports(input ?? {});
+    }
+    consumeInvestmentPlanningBudgetReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.consumeBudgetReports(input ?? {});
+    }
+    evaluateInvestmentPlanningOpportunities(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.evaluateOpportunities(input ?? {});
+    }
+    compareInvestmentPlanningAlternatives(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.compareAlternatives(input ?? {});
+    }
+    rankInvestmentPlanningOpportunities(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.rankOpportunities(input ?? {});
+    }
+    assessInvestmentPlanningRisks(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.assessRisks(input ?? {});
+    }
+    produceInvestmentPlanningReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.produceInvestmentPlanningReport(input ?? {});
+    }
+    submitInvestmentPlanningReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.submitReport(input ?? {});
+    }
+    listInvestmentPlanningWorkerReports() {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.list();
+    }
+    validateInvestmentPlanningWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.validate(input ?? {});
+    }
+    runInvestmentPlanningWorkerDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.runDiagnostics();
+    }
+    getInvestmentPlanningWorkerQ909Contract() {
+        this.ensureRunning();
+        return this.pillowSession.investmentPlanningWorker.getQ909ConsumableContract();
+    }
+    getFinancialReportingWorker() {
+        this.ensureRunning();
+        const engine = this.pillowSession.financialReportingWorker;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q9-09",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            dashboards: engine.getDashboards(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q910Contract: engine.getQ910ConsumableContract(),
+        };
+    }
+    connectFinancialReportingWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.connect(input ?? {});
+    }
+    consumeFinancialReportingAccountingRecords(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeAccountingRecords(input ?? {});
+    }
+    consumeFinancialReportingCashflowReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeCashflowReports(input ?? {});
+    }
+    consumeFinancialReportingBudgetReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeBudgetReports(input ?? {});
+    }
+    consumeFinancialReportingProfitabilityReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeProfitabilityReports(input ?? {});
+    }
+    consumeFinancialReportingForecastingReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeForecastingReports(input ?? {});
+    }
+    consumeFinancialReportingTaxSupportReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeTaxSupportReports(input ?? {});
+    }
+    consumeFinancialReportingInvestmentPlanningReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.consumeInvestmentPlanningReports(input ?? {});
+    }
+    generateFinancialReportingExecutiveDashboard(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.generateExecutiveDashboard(input ?? {});
+    }
+    generateFinancialReportingCapitalSummary(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.generateCapitalSummary(input ?? {});
+    }
+    produceFinancialReportingReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.produceFinancialReport(input ?? {});
+    }
+    submitFinancialReportingReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.submitReport(input ?? {});
+    }
+    listFinancialReportingWorkerReports() {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.list();
+    }
+    validateFinancialReportingWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.validate(input ?? {});
+    }
+    runFinancialReportingWorkerDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.runDiagnostics();
+    }
+    getFinancialReportingWorkerQ910Contract() {
+        this.ensureRunning();
+        return this.pillowSession.financialReportingWorker.getQ910ConsumableContract();
+    }
+    getCapitalRiskWorker() {
+        this.ensureRunning();
+        const engine = this.pillowSession.capitalRiskWorker;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q9-10",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            dashboards: engine.getDashboards(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q911Contract: engine.getQ911ConsumableContract(),
+        };
+    }
+    connectCapitalRiskWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.connect(input ?? {});
+    }
+    consumeCapitalRiskAccountingRecords(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeAccountingRecords(input ?? {});
+    }
+    consumeCapitalRiskCashflowReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeCashflowReports(input ?? {});
+    }
+    consumeCapitalRiskBudgetReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeBudgetReports(input ?? {});
+    }
+    consumeCapitalRiskProfitabilityReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeProfitabilityReports(input ?? {});
+    }
+    consumeCapitalRiskForecastingReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeForecastingReports(input ?? {});
+    }
+    consumeCapitalRiskTaxSupportReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeTaxSupportReports(input ?? {});
+    }
+    consumeCapitalRiskInvestmentPlanningReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeInvestmentPlanningReports(input ?? {});
+    }
+    consumeCapitalRiskFinancialReportingReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.consumeFinancialReportingReports(input ?? {});
+    }
+    detectCapitalRisks(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.detectRisks(input ?? {});
+    }
+    prioritiseCapitalRisks(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.prioritiseRisks(input ?? {});
+    }
+    generateCapitalRiskExecutiveDashboard(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.generateExecutiveRiskDashboard(input ?? {});
+    }
+    produceCapitalRiskReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.produceCapitalRiskReport(input ?? {});
+    }
+    submitCapitalRiskReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.submitReport(input ?? {});
+    }
+    listCapitalRiskWorkerReports() {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.list();
+    }
+    validateCapitalRiskWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.validate(input ?? {});
+    }
+    runCapitalRiskWorkerDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.runDiagnostics();
+    }
+    getCapitalRiskWorkerQ911Contract() {
+        this.ensureRunning();
+        return this.pillowSession.capitalRiskWorker.getQ911ConsumableContract();
+    }
+    getCapitalFactoryCertification() {
+        this.ensureRunning();
+        const engine = this.pillowSession.capitalFactoryCertification;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q9-11",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            workerCertificationMatrix: engine.getWorkerCertificationMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+        };
+    }
+    connectCapitalFactoryCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.connect(input ?? {});
+    }
+    collectCapitalFactoryCertificationEvidence() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.collectEvidence();
+    }
+    probeCapitalFactoryCertificationRuntime() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.probeRuntime();
+    }
+    auditCapitalFactoryCertificationWorkers(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.auditQ9Workers(input ?? {});
+    }
+    verifyCapitalFactoryCertificationIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.verifyIntegrations();
+    }
+    runCapitalFactoryCertificationEndToEndWorkflow(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.runEndToEndWorkflow(input ?? {});
+    }
+    assessCapitalFactoryCertificationReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.assessReadiness(input ?? {});
+    }
+    verifyCapitalFactoryCertificationGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.verifyGovernanceCompliance();
+    }
+    produceCapitalFactoryCertificationFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.produceCertificationFindings(input ?? {});
+    }
+    produceCapitalFactoryCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.produceCapitalCertificationReport(input ?? {});
+    }
+    certifyCapitalFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.certifyCapitalFactory(input ?? {});
+    }
+    submitCapitalFactoryCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.submitReport(input ?? {});
+    }
+    listCapitalFactoryCertificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.list();
+    }
+    validateCapitalFactoryCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.validate(input ?? {});
+    }
+    runCapitalFactoryCertificationDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.capitalFactoryCertification.runDiagnostics();
+    }
+    getSharedRuntimeCore() {
+        this.ensureRunning();
+        const engine = this.pillowSession.sharedRuntimeCore;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-01",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            topology: engine.getTopology(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1002Contract: engine.getQ1002ConsumableContract(),
+        };
+    }
+    connectSharedRuntimeCore(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.connect(input ?? {});
+    }
+    registerSharedRuntimeDefaultFactories(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.registerDefaultFactories(input ?? {});
+    }
+    registerSharedRuntimeFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.registerFactory(input ?? {});
+    }
+    registerSharedRuntimeWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.registerWorker(input ?? {});
+    }
+    createSharedRuntimeExecutionContext(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.createExecutionContext(input ?? {});
+    }
+    routeSharedRuntimeRequest(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.routeRequest(input ?? {});
+    }
+    resolveSharedRuntimeDependencies(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.resolveDependencies(input ?? {});
+    }
+    collectSharedRuntimeDiagnostics(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.collectDiagnostics(input ?? {});
+    }
+    produceSharedRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.produceSharedRuntimeReport(input ?? {});
+    }
+    submitSharedRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.submitReport(input ?? {});
+    }
+    listSharedRuntimeCore() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.list();
+    }
+    validateSharedRuntimeCore(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.validate(input ?? {});
+    }
+    runSharedRuntimeCoreDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.runDiagnostics();
+    }
+    getSharedRuntimeTopology() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.getTopology();
+    }
+    getSharedRuntimeCoreQ1002Contract() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCore.getQ1002ConsumableContract();
+    }
+    getPillowOrchestrationRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.pillowOrchestrationRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-02",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1003Contract: engine.getQ1003ConsumableContract(),
+        };
+    }
+    connectPillowOrchestrationRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.connect(input ?? {});
+    }
+    createPillowOrchestrationSession(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.createSession(input ?? {});
+    }
+    invokePillowOrchestrationWorker(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.invokeWorker(input ?? {});
+    }
+    invokePillowOrchestrationTool(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.invokeTool(input ?? {});
+    }
+    invokePillowOrchestrationWorkflow(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.invokeWorkflow(input ?? {});
+    }
+    routePillowOrchestrationApproval(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.routeApproval(input ?? {});
+    }
+    retrievePillowOrchestrationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.retrieveReport(input ?? {});
+    }
+    orchestratePillowCrossFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.orchestrateCrossFactory(input ?? {});
+    }
+    producePillowOrchestrationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.produceOrchestrationReport(input ?? {});
+    }
+    submitPillowOrchestrationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.submitReport(input ?? {});
+    }
+    listPillowOrchestrationRuntime() {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.list();
+    }
+    validatePillowOrchestrationRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.validate(input ?? {});
+    }
+    runPillowOrchestrationRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.runDiagnostics();
+    }
+    getPillowOrchestrationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.getHistory();
+    }
+    getPillowOrchestrationRuntimeQ1003Contract() {
+        this.ensureRunning();
+        return this.pillowSession.pillowOrchestrationRuntime.getQ1003ConsumableContract();
+    }
+    getMissionRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.missionRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-03",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1004Contract: engine.getQ1004ConsumableContract(),
+        };
+    }
+    connectMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.connect(input ?? {});
+    }
+    createMissionRuntimeMission(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.createMission(input ?? {});
+    }
+    queueMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.queue(input ?? {});
+    }
+    readyMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.ready(input ?? {});
+    }
+    executeMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.execute(input ?? {});
+    }
+    pauseMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.pause(input ?? {});
+    }
+    resumeMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.resume(input ?? {});
+    }
+    retryMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.retry(input ?? {});
+    }
+    cancelMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.cancel(input ?? {});
+    }
+    recoverMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.recover(input ?? {});
+    }
+    archiveMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.archive(input ?? {});
+    }
+    monitorMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.monitor(input ?? {});
+    }
+    produceMissionRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.produceReport(input ?? {});
+    }
+    submitMissionRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.submitReport(input ?? {});
+    }
+    listMissionRuntime() {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.list();
+    }
+    validateMissionRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.validate(input ?? {});
+    }
+    runMissionRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.runDiagnostics();
+    }
+    getMissionRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.getHistory();
+    }
+    getMissionRuntimeQ1004Contract() {
+        this.ensureRunning();
+        return this.pillowSession.missionRuntime.getQ1004ConsumableContract();
+    }
+    getQueueRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.queueRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-04",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1005Contract: engine.getQ1005ConsumableContract(),
+        };
+    }
+    connectQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.connect(input ?? {});
+    }
+    createQueueRuntimeQueue(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.createQueue(input ?? {});
+    }
+    enqueueQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.enqueue(input ?? {});
+    }
+    prioritizeQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.prioritize(input ?? {});
+    }
+    pauseQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.pauseQueue(input ?? {});
+    }
+    resumeQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.resumeQueue(input ?? {});
+    }
+    cancelQueueRuntimeJob(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.cancelJob(input ?? {});
+    }
+    dispatchQueueRuntimeReady(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.dispatchReady(input ?? {});
+    }
+    retryQueueRuntimeFailed(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.retryFailed(input ?? {});
+    }
+    moveQueueRuntimeToDeadLetter(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.moveToDeadLetter(input ?? {});
+    }
+    metricsQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.metrics(input ?? {});
+    }
+    produceQueueRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.produceReport(input ?? {});
+    }
+    submitQueueRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.submitReport(input ?? {});
+    }
+    listQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.list(input ?? {});
+    }
+    validateQueueRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.validate(input ?? {});
+    }
+    runQueueRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.runDiagnostics();
+    }
+    getQueueRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.getHistory();
+    }
+    getQueueRuntimeQ1005Contract() {
+        this.ensureRunning();
+        return this.pillowSession.queueRuntime.getQ1005ConsumableContract();
+    }
+    getMemoryRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.memoryRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-05",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1006Contract: engine.getQ1006ConsumableContract(),
+        };
+    }
+    connectMemoryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.connect(input ?? {});
+    }
+    storeMemoryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.storeMemory(input ?? {});
+    }
+    retrieveMemoryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.retrieveMemory(input ?? {});
+    }
+    storeMemoryRuntimeDecision(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.storeDecision(input ?? {});
+    }
+    retrieveMemoryRuntimeDecisionHistory(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.retrieveDecisionHistory(input ?? {});
+    }
+    retrieveMemoryRuntimePreviousResults(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.retrievePreviousResults(input ?? {});
+    }
+    provideMemoryRuntimeContext(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.provideRuntimeContext(input ?? {});
+    }
+    listMemoryRuntimeVersions(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.listVersions(input ?? {});
+    }
+    produceMemoryRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.produceReport(input ?? {});
+    }
+    submitMemoryRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.submitReport(input ?? {});
+    }
+    listMemoryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.list(input ?? {});
+    }
+    validateMemoryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.validate(input ?? {});
+    }
+    runMemoryRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.runDiagnostics();
+    }
+    getMemoryRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.getHistory();
+    }
+    getMemoryRuntimeQ1006Contract() {
+        this.ensureRunning();
+        return this.pillowSession.memoryRuntime.getQ1006ConsumableContract();
+    }
+    getApiRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.apiRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-06",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1007Contract: engine.getQ1007ConsumableContract(),
+        };
+    }
+    connectApiRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.connect(input ?? {});
+    }
+    registerApiRuntimeProvider(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.registerProvider(input ?? {});
+    }
+    manageApiRuntimeConnection(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.manageConnection(input ?? {});
+    }
+    authenticateApiRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.authenticate(input ?? {});
+    }
+    routeApiRuntimeRequest(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.routeRequest(input ?? {});
+    }
+    checkApiRuntimeHealth(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.checkHealth(input ?? {});
+    }
+    produceApiRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.produceReport(input ?? {});
+    }
+    submitApiRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.submitReport(input ?? {});
+    }
+    listApiRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.list(input ?? {});
+    }
+    validateApiRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.validate(input ?? {});
+    }
+    runApiRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.runDiagnostics();
+    }
+    getApiRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.getHistory();
+    }
+    getApiRuntimeQ1007Contract() {
+        this.ensureRunning();
+        return this.pillowSession.apiRuntime.getQ1007ConsumableContract();
+    }
+    getToolRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.toolRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-07",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1008Contract: engine.getQ1008ConsumableContract(),
+        };
+    }
+    connectToolRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.connect(input ?? {});
+    }
+    registerToolRuntimeTool(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.registerTool(input ?? {});
+    }
+    discoverToolRuntimeTools(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.discoverTools(input ?? {});
+    }
+    authenticateToolRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.authenticate(input ?? {});
+    }
+    invokeToolRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.invokeTool(input ?? {});
+    }
+    checkToolRuntimeAvailability(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.checkAvailability(input ?? {});
+    }
+    produceToolRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.produceReport(input ?? {});
+    }
+    submitToolRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.submitReport(input ?? {});
+    }
+    listToolRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.list(input ?? {});
+    }
+    validateToolRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.validate(input ?? {});
+    }
+    runToolRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.runDiagnostics();
+    }
+    getToolRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.getHistory();
+    }
+    getToolRuntimeQ1008Contract() {
+        this.ensureRunning();
+        return this.pillowSession.toolRuntime.getQ1008ConsumableContract();
+    }
+    getCommunicationRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.communicationRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-08",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1009Contract: engine.getQ1009ConsumableContract(),
+        };
+    }
+    connectCommunicationRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.connect(input ?? {});
+    }
+    openCommunicationRuntimeChannel(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.openChannel(input ?? {});
+    }
+    sendCommunicationRuntimeMessage(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.sendMessage(input ?? {});
+    }
+    acknowledgeCommunicationRuntimeMessage(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.acknowledgeMessage(input ?? {});
+    }
+    openCommunicationRuntimeCollaborationSession(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.openCollaborationSession(input ?? {});
+    }
+    closeCommunicationRuntimeCollaborationSession(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.closeCollaborationSession(input ?? {});
+    }
+    retryCommunicationRuntimeFailed(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.retryFailed(input ?? {});
+    }
+    produceCommunicationRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.produceReport(input ?? {});
+    }
+    submitCommunicationRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.submitReport(input ?? {});
+    }
+    listCommunicationRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.list(input ?? {});
+    }
+    validateCommunicationRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.validate(input ?? {});
+    }
+    runCommunicationRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.runDiagnostics();
+    }
+    getCommunicationRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.getHistory();
+    }
+    getCommunicationRuntimeQ1009Contract() {
+        this.ensureRunning();
+        return this.pillowSession.communicationRuntime.getQ1009ConsumableContract();
+    }
+    getApprovalRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.approvalRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-09",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1010Contract: engine.getQ1010ConsumableContract(),
+        };
+    }
+    connectApprovalRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.connect(input ?? {});
+    }
+    registerApprovalRuntimePolicy(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.registerPolicy(input ?? {});
+    }
+    determineApprovalRuntimeRequirements(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.determineRequirements(input ?? {});
+    }
+    submitApprovalRuntimeRequest(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.submitApprovalRequest(input ?? {});
+    }
+    routeApprovalRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.routeApproval(input ?? {});
+    }
+    decideApprovalRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.decide(input ?? {});
+    }
+    resumeApprovalRuntimeExecution(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.resumeExecution(input ?? {});
+    }
+    produceApprovalRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.produceReport(input ?? {});
+    }
+    submitApprovalRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.submitReport(input ?? {});
+    }
+    listApprovalRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.list(input ?? {});
+    }
+    validateApprovalRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.validate(input ?? {});
+    }
+    runApprovalRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.runDiagnostics();
+    }
+    getApprovalRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.getHistory();
+    }
+    getApprovalRuntimeQ1010Contract() {
+        this.ensureRunning();
+        return this.pillowSession.approvalRuntime.getQ1010ConsumableContract();
+    }
+    getMonitoringRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.monitoringRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-10",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            dashboard: engine.getDashboard(),
+            q1011Contract: engine.getQ1011ConsumableContract(),
+        };
+    }
+    connectMonitoringRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.connect(input ?? {});
+    }
+    registerMonitoringRuntimeComponent(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.registerComponent(input ?? {});
+    }
+    recordMonitoringRuntimeHeartbeat(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.recordHeartbeat(input ?? {});
+    }
+    monitorMonitoringRuntimeWorkers(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorWorkers(input ?? {});
+    }
+    monitorMonitoringRuntimeFactories(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorFactories(input ?? {});
+    }
+    monitorMonitoringRuntimeRuntimes(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorRuntimes(input ?? {});
+    }
+    monitorMonitoringRuntimeApis(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorApis(input ?? {});
+    }
+    monitorMonitoringRuntimeQueues(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorQueues(input ?? {});
+    }
+    monitorMonitoringRuntimeMissions(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorMissions(input ?? {});
+    }
+    monitorMonitoringRuntimeTools(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.monitorTools(input ?? {});
+    }
+    detectMonitoringRuntimeAnomalies(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.detectAnomalies(input ?? {});
+    }
+    generateMonitoringRuntimeAlerts(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.generateAlerts(input ?? {});
+    }
+    produceMonitoringRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.produceReport(input ?? {});
+    }
+    submitMonitoringRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.submitReport(input ?? {});
+    }
+    listMonitoringRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.list(input ?? {});
+    }
+    validateMonitoringRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.validate(input ?? {});
+    }
+    runMonitoringRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.runDiagnostics();
+    }
+    getMonitoringRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.getHistory();
+    }
+    getMonitoringRuntimeDashboard() {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.getDashboard();
+    }
+    getMonitoringRuntimeQ1011Contract() {
+        this.ensureRunning();
+        return this.pillowSession.monitoringRuntime.getQ1011ConsumableContract();
+    }
+    getRecoveryRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.recoveryRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-11",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1012Contract: engine.getQ1012ConsumableContract(),
+        };
+    }
+    connectRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.connect(input ?? {});
+    }
+    detectRecoveryRuntimeFailure(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.detectFailure(input ?? {});
+    }
+    classifyRecoveryRuntimeFailure(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.classifyFailure(input ?? {});
+    }
+    selectRecoveryRuntimeStrategy(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.selectStrategy(input ?? {});
+    }
+    restoreRecoveryRuntimeState(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.restoreState(input ?? {});
+    }
+    restartRecoveryRuntimeJob(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.restartJob(input ?? {});
+    }
+    resumeRecoveryRuntimeWorkflow(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.resumeWorkflow(input ?? {});
+    }
+    rollbackRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.rollback(input ?? {});
+    }
+    escalateRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.escalate(input ?? {});
+    }
+    runRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.runRecovery(input ?? {});
+    }
+    produceRecoveryRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.produceReport(input ?? {});
+    }
+    submitRecoveryRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.submitReport(input ?? {});
+    }
+    listRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.list(input ?? {});
+    }
+    validateRecoveryRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.validate(input ?? {});
+    }
+    runRecoveryRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.runDiagnostics();
+    }
+    getRecoveryRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.getHistory();
+    }
+    getRecoveryRuntimeQ1012Contract() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryRuntime.getQ1012ConsumableContract();
+    }
+    getSchedulingRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.schedulingRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-12",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1013Contract: engine.getQ1013ConsumableContract(),
+        };
+    }
+    connectSchedulingRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.connect(input ?? {});
+    }
+    createSchedulingRuntimeSchedule(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.createSchedule(input ?? {});
+    }
+    updateSchedulingRuntimeSchedule(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.updateSchedule(input ?? {});
+    }
+    pauseSchedulingRuntimeSchedule(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.pauseSchedule(input ?? {});
+    }
+    resumeSchedulingRuntimeSchedule(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.resumeSchedule(input ?? {});
+    }
+    cancelSchedulingRuntimeSchedule(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.cancelSchedule(input ?? {});
+    }
+    triggerSchedulingRuntimeEvent(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.triggerEvent(input ?? {});
+    }
+    evaluateSchedulingRuntimeDue(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.evaluateDue(input ?? {});
+    }
+    detectSchedulingRuntimeConflicts(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.detectConflicts(input ?? {});
+    }
+    produceSchedulingRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.produceReport(input ?? {});
+    }
+    submitSchedulingRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.submitReport(input ?? {});
+    }
+    listSchedulingRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.list(input ?? {});
+    }
+    validateSchedulingRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.validate(input ?? {});
+    }
+    runSchedulingRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.runDiagnostics();
+    }
+    getSchedulingRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.getHistory();
+    }
+    getSchedulingRuntimeQ1013Contract() {
+        this.ensureRunning();
+        return this.pillowSession.schedulingRuntime.getQ1013ConsumableContract();
+    }
+    getAuditRuntime() {
+        this.ensureRunning();
+        const engine = this.pillowSession.auditRuntime;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-13",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            history: engine.getHistory(),
+            reports: engine.getReports(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1014Contract: engine.getQ1014ConsumableContract(),
+        };
+    }
+    connectAuditRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.connect(input ?? {});
+    }
+    recordAuditRuntimeEvent(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordEvent(input ?? {});
+    }
+    recordAuditRuntimeWorkerAction(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordWorkerAction(input ?? {});
+    }
+    recordAuditRuntimeMissionLifecycle(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordMissionLifecycle(input ?? {});
+    }
+    recordAuditRuntimeApproval(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordApproval(input ?? {});
+    }
+    recordAuditRuntimeRecovery(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordRecovery(input ?? {});
+    }
+    recordAuditRuntimeScheduling(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.recordScheduling(input ?? {});
+    }
+    attachAuditRuntimeEvidence(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.attachEvidence(input ?? {});
+    }
+    queryAuditRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.query(input ?? {});
+    }
+    verifyAuditRuntimeIntegrity(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.verifyIntegrity(input ?? {});
+    }
+    exportAuditRuntimeRecords(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.exportRecords(input ?? {});
+    }
+    produceAuditRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.produceReport(input ?? {});
+    }
+    submitAuditRuntimeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.submitReport(input ?? {});
+    }
+    listAuditRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.list(input ?? {});
+    }
+    validateAuditRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.validate(input ?? {});
+    }
+    runAuditRuntimeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.runDiagnostics();
+    }
+    getAuditRuntimeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.getHistory();
+    }
+    getAuditRuntimeQ1014Contract() {
+        this.ensureRunning();
+        return this.pillowSession.auditRuntime.getQ1014ConsumableContract();
+    }
+    getSharedRuntimeCertification() {
+        this.ensureRunning();
+        const engine = this.pillowSession.sharedRuntimeCertification;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q10-14",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            runtimeCertificationMatrix: engine.getRuntimeCertificationMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1101Contract: engine.getQ1101ConsumableContract(),
+        };
+    }
+    connectSharedRuntimeCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.connect(input ?? {});
+    }
+    collectSharedRuntimeCertificationEvidence() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.collectEvidence();
+    }
+    probeSharedRuntimeCertificationRuntime() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.probeRuntime();
+    }
+    auditSharedRuntimeCertificationRuntimes(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.auditQ10Runtimes(input ?? {});
+    }
+    verifySharedRuntimeCertificationIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyIntegrations();
+    }
+    assessSharedRuntimeCertificationReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.assessReadiness(input ?? {});
+    }
+    verifySharedRuntimeCertificationGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyGovernanceCompliance();
+    }
+    verifySharedRuntimeCertificationMonitoring() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyMonitoring();
+    }
+    verifySharedRuntimeCertificationRecovery() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyRecovery();
+    }
+    verifySharedRuntimeCertificationAuditability() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyAuditability();
+    }
+    verifySharedRuntimeCertificationReporting() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.verifyReporting();
+    }
+    produceSharedRuntimeCertificationFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.produceCertificationFindings(input ?? {});
+    }
+    produceSharedRuntimeCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.produceSharedRuntimeCertificationReport(input ?? {});
+    }
+    certifySharedRuntime(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.certifySharedRuntime(input ?? {});
+    }
+    submitSharedRuntimeCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.submitReport(input ?? {});
+    }
+    listSharedRuntimeCertificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.list();
+    }
+    validateSharedRuntimeCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.validate(input ?? {});
+    }
+    runSharedRuntimeCertificationDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.runDiagnostics();
+    }
+    getSharedRuntimeCertificationQ1101Contract() {
+        this.ensureRunning();
+        return this.pillowSession.sharedRuntimeCertification.getQ1101ConsumableContract();
+    }
+    getProductionCertificationCore() {
+        this.ensureRunning();
+        const engine = this.pillowSession.productionCertificationCore;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-01",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            certificationResults: engine.getCertificationResults(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1102Contract: engine.getQ1102ConsumableContract(),
+        };
+    }
+    connectProductionCertificationCore(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.connect(input ?? {});
+    }
+    registerProductionCertificationProgrammes() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.registerCertificationProgrammes();
+    }
+    discoverProductionCertificationFactories() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.discoverFactories();
+    }
+    discoverProductionCertificationWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.discoverWorkers();
+    }
+    discoverProductionCertificationRuntimes() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.discoverRuntimes();
+    }
+    aggregateProductionCertificationEvidence(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.aggregateCertificationEvidence(input ?? {});
+    }
+    verifyProductionCertificationIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.verifyIntegrations();
+    }
+    verifyProductionCertificationGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.verifyGovernanceCompliance();
+    }
+    verifyProductionCertificationReporting() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.verifyReporting();
+    }
+    produceProductionCertificationFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.produceCertificationFindings(input ?? {});
+    }
+    produceProductionCertificationCoreReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.produceProductionCertificationReport(input ?? {});
+    }
+    certifyProductionReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.certifyProductionReadiness(input ?? {});
+    }
+    submitProductionCertificationCoreReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.submitReport(input ?? {});
+    }
+    listProductionCertificationCoreReports() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.list();
+    }
+    validateProductionCertificationCore(input) {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.validate(input ?? {});
+    }
+    runProductionCertificationCoreDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.runDiagnostics();
+    }
+    getProductionCertificationCoreQ1102Contract() {
+        this.ensureRunning();
+        return this.pillowSession.productionCertificationCore.getQ1102ConsumableContract();
+    }
+    getWorkerReadinessAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.workerReadinessAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-02",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            readinessMatrix: engine.getReadinessMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1103Contract: engine.getQ1103ConsumableContract(),
+        };
+    }
+    connectWorkerReadinessAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.connect(input ?? {});
+    }
+    discoverWorkerReadinessAuditWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.discoverWorkers();
+    }
+    verifyWorkerReadinessAuditRegistration() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyRegistration();
+    }
+    verifyWorkerReadinessAuditReachability() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyReachability();
+    }
+    verifyWorkerReadinessAuditConfiguration() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyConfiguration();
+    }
+    verifyWorkerReadinessAuditGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyGovernance();
+    }
+    verifyWorkerReadinessAuditPermissions() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyPermissions();
+    }
+    verifyWorkerReadinessAuditRuntimeConnectivity() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyRuntimeConnectivity();
+    }
+    verifyWorkerReadinessAuditOperationalCapability() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyOperationalCapability();
+    }
+    verifyWorkerReadinessAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.verifyIntegrations();
+    }
+    classifyWorkerReadinessAudit() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.classifyReadiness();
+    }
+    produceWorkerReadinessAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.produceReadinessFindings(input ?? {});
+    }
+    produceWorkerReadinessAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.produceWorkerReadinessAuditReport(input ?? {});
+    }
+    auditWorkerReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.auditWorkerReadiness(input ?? {});
+    }
+    submitWorkerReadinessAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.submitReport(input ?? {});
+    }
+    listWorkerReadinessAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.list();
+    }
+    validateWorkerReadinessAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.validate(input ?? {});
+    }
+    runWorkerReadinessAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.runDiagnostics();
+    }
+    getWorkerReadinessAuditQ1103Contract() {
+        this.ensureRunning();
+        return this.pillowSession.workerReadinessAudit.getQ1103ConsumableContract();
+    }
+    getPillowCommandAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.pillowCommandAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-03",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            commandMatrix: engine.getCommandMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1104Contract: engine.getQ1104ConsumableContract(),
+        };
+    }
+    connectPillowCommandAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.connect(input ?? {});
+    }
+    discoverPillowCommandAuditWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.discoverWorkers();
+    }
+    verifyPillowCommandAuditAssignment() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifyAssignment();
+    }
+    verifyPillowCommandAuditDispatch() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifyCommandDispatch();
+    }
+    verifyPillowCommandAuditCommunication() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifyCommunication();
+    }
+    verifyPillowCommandAuditSupervision() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifySupervision();
+    }
+    verifyPillowCommandAuditGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifyGovernance();
+    }
+    verifyPillowCommandAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.verifyIntegrations();
+    }
+    classifyPillowCommandAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.classifyCommandReadiness();
+    }
+    producePillowCommandAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.produceCommandReadinessFindings(input ?? {});
+    }
+    producePillowCommandAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.producePillowCommandAuditReport(input ?? {});
+    }
+    auditPillowCommand(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.auditPillowCommand(input ?? {});
+    }
+    submitPillowCommandAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.submitReport(input ?? {});
+    }
+    listPillowCommandAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.list();
+    }
+    validatePillowCommandAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.validate(input ?? {});
+    }
+    runPillowCommandAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.runDiagnostics();
+    }
+    getPillowCommandAuditQ1104Contract() {
+        this.ensureRunning();
+        return this.pillowSession.pillowCommandAudit.getQ1104ConsumableContract();
+    }
+    getBusinessFactoryAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.businessFactoryAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-04",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            businessFactoryMatrix: engine.getBusinessFactoryMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1105Contract: engine.getQ1105ConsumableContract(),
+        };
+    }
+    connectBusinessFactoryAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.connect(input ?? {});
+    }
+    discoverBusinessFactoryAuditFactories() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.discoverFactories();
+    }
+    verifyBusinessFactoryAuditRegistration() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyRegistration();
+    }
+    verifyBusinessFactoryAuditWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyWorkers();
+    }
+    verifyBusinessFactoryAuditWorkflows() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyWorkflows();
+    }
+    verifyBusinessFactoryAuditRuntimeIntegration() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyRuntimeIntegration();
+    }
+    verifyBusinessFactoryAuditExternalIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyExternalIntegrations();
+    }
+    verifyBusinessFactoryAuditGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyGovernance();
+    }
+    verifyBusinessFactoryAuditOperationalReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyOperationalReadiness();
+    }
+    verifyBusinessFactoryAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.verifyIntegrations();
+    }
+    classifyBusinessFactoryAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.classifyBusinessFactoryReadiness();
+    }
+    produceBusinessFactoryAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.produceBusinessFactoryReadinessFindings(input ?? {});
+    }
+    produceBusinessFactoryAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.produceBusinessFactoryAuditReport(input ?? {});
+    }
+    auditBusinessFactories(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.auditBusinessFactories(input ?? {});
+    }
+    submitBusinessFactoryAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.submitReport(input ?? {});
+    }
+    listBusinessFactoryAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.list();
+    }
+    validateBusinessFactoryAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.validate(input ?? {});
+    }
+    runBusinessFactoryAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.runDiagnostics();
+    }
+    getBusinessFactoryAuditQ1105Contract() {
+        this.ensureRunning();
+        return this.pillowSession.businessFactoryAudit.getQ1105ConsumableContract();
+    }
+    getSecurityAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.securityAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-05",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            securityMatrix: engine.getSecurityMatrix(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1106Contract: engine.getQ1106ConsumableContract(),
+        };
+    }
+    connectSecurityAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.connect(input ?? {});
+    }
+    discoverSecurityAuditComponents() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.discoverSecurityComponents();
+    }
+    verifySecurityAuditAuthentication() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyAuthentication();
+    }
+    verifySecurityAuditAuthorization() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyAuthorization();
+    }
+    verifySecurityAuditRolePermissionEnforcement() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyRolePermissionEnforcement();
+    }
+    verifySecurityAuditSecretManagement() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifySecretManagement();
+    }
+    verifySecurityAuditApiSecurity() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyApiSecurity();
+    }
+    verifySecurityAuditDataProtection() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyDataProtection();
+    }
+    verifySecurityAuditRuntimeSecurity() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyRuntimeSecurity();
+    }
+    verifySecurityAuditOperationalSecurity() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyOperationalSecurity();
+    }
+    verifySecurityAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.verifyIntegrations();
+    }
+    classifySecurityAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.classifySecurityReadiness();
+    }
+    produceSecurityAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.produceSecurityReadinessFindings(input ?? {});
+    }
+    produceSecurityAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.produceSecurityAuditReport(input ?? {});
+    }
+    auditSecurity(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.auditSecurity(input ?? {});
+    }
+    submitSecurityAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.submitReport(input ?? {});
+    }
+    listSecurityAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.list();
+    }
+    validateSecurityAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.validate(input ?? {});
+    }
+    runSecurityAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.runDiagnostics();
+    }
+    getSecurityAuditQ1106Contract() {
+        this.ensureRunning();
+        return this.pillowSession.securityAudit.getQ1106ConsumableContract();
+    }
+    getPerformanceAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.performanceAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-06",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            performanceMatrix: engine.getPerformanceMatrix(),
+            benchmarkHistory: engine.getBenchmarkHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1107Contract: engine.getQ1107ConsumableContract(),
+        };
+    }
+    connectPerformanceAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.connect(input ?? {});
+    }
+    discoverPerformanceAuditComponents() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.discoverPerformanceComponents();
+    }
+    executePerformanceAuditWorkloadBenchmarks() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.executeWorkloadBenchmarks();
+    }
+    measurePerformanceAuditResponseTimes() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.measureResponseTimes();
+    }
+    measurePerformanceAuditThroughput() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.measureThroughput();
+    }
+    measurePerformanceAuditResourceUtilisation() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.measureResourceUtilisation();
+    }
+    measurePerformanceAuditScalability() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.measureScalability();
+    }
+    detectPerformanceAuditBottlenecks() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.detectBottlenecks();
+    }
+    verifyPerformanceAuditSustainedStability() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.verifySustainedStability();
+    }
+    verifyPerformanceAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.verifyIntegrations();
+    }
+    classifyPerformanceAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.classifyPerformanceReadiness();
+    }
+    producePerformanceAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.producePerformanceReadinessFindings(input ?? {});
+    }
+    producePerformanceAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.producePerformanceAuditReport(input ?? {});
+    }
+    auditPerformance(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.auditPerformance(input ?? {});
+    }
+    submitPerformanceAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.submitReport(input ?? {});
+    }
+    listPerformanceAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.list();
+    }
+    validatePerformanceAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.validate(input ?? {});
+    }
+    runPerformanceAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.runDiagnostics();
+    }
+    getPerformanceAuditQ1107Contract() {
+        this.ensureRunning();
+        return this.pillowSession.performanceAudit.getQ1107ConsumableContract();
+    }
+    getRecoveryAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.recoveryAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-07",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            recoveryMatrix: engine.getRecoveryMatrix(),
+            recoveryHistory: engine.getRecoveryHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1108Contract: engine.getQ1108ConsumableContract(),
+        };
+    }
+    connectRecoveryAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.connect(input ?? {});
+    }
+    discoverRecoveryAuditComponents() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.discoverRecoveryComponents();
+    }
+    verifyRecoveryAuditFailureDetection() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyFailureDetection();
+    }
+    verifyRecoveryAuditAutomaticRecovery() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyAutomaticRecovery();
+    }
+    verifyRecoveryAuditManualRecovery() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyManualRecovery();
+    }
+    verifyRecoveryAuditRollbackCapability() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyRollbackCapability();
+    }
+    verifyRecoveryAuditWorkflowRestart() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyWorkflowRestart();
+    }
+    verifyRecoveryAuditCheckpointRestoration() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyCheckpointRestoration();
+    }
+    verifyRecoveryAuditRecoveryEscalation() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyRecoveryEscalation();
+    }
+    verifyRecoveryAuditEnterpriseResilience() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyEnterpriseResilience();
+    }
+    verifyRecoveryAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.verifyIntegrations();
+    }
+    classifyRecoveryAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.classifyRecoveryReadiness();
+    }
+    produceRecoveryAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.produceRecoveryReadinessFindings(input ?? {});
+    }
+    produceRecoveryAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.produceRecoveryAuditReport(input ?? {});
+    }
+    auditRecovery(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.auditRecovery(input ?? {});
+    }
+    submitRecoveryAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.submitReport(input ?? {});
+    }
+    listRecoveryAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.list();
+    }
+    validateRecoveryAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.validate(input ?? {});
+    }
+    runRecoveryAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.runDiagnostics();
+    }
+    getRecoveryAuditQ1108Contract() {
+        this.ensureRunning();
+        return this.pillowSession.recoveryAudit.getQ1108ConsumableContract();
+    }
+    getExecutiveAcceptancePack() {
+        this.ensureRunning();
+        const engine = this.pillowSession.executiveAcceptancePack;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-09",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            packHistory: engine.getPackHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1110Contract: engine.getQ1110ConsumableContract(),
+        };
+    }
+    connectExecutiveAcceptancePack(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.connect(input ?? {});
+    }
+    collectExecutiveAcceptancePackCertifications() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.collectCertificationReports();
+    }
+    collectExecutiveAcceptancePackAudits() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.collectAuditReports();
+    }
+    collectExecutiveAcceptancePackReadinessEvidence() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.collectProductionReadinessEvidence();
+    }
+    generateExecutiveAcceptancePackSummary(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.generateExecutiveSummary(input ?? {});
+    }
+    generateExecutiveAcceptancePackOutstandingIssues(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.generateOutstandingIssueSummary(input ?? {});
+    }
+    generateExecutiveAcceptancePackDeploymentRecommendation(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.generateDeploymentRecommendation(input ?? {});
+    }
+    classifyExecutiveAcceptancePackReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.classifyProductionReadiness();
+    }
+    produceExecutiveAcceptancePackChecklist() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.produceExecutiveChecklist();
+    }
+    produceExecutiveAcceptancePackReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.produceExecutiveAcceptancePackReport(input ?? {});
+    }
+    assembleExecutiveAcceptancePack(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.assemblePack(input ?? {});
+    }
+    submitExecutiveAcceptancePackReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.submitReport(input ?? {});
+    }
+    listExecutiveAcceptancePackReports() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.list();
+    }
+    validateExecutiveAcceptancePack(input) {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.validate(input ?? {});
+    }
+    runExecutiveAcceptancePackDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.runDiagnostics();
+    }
+    getExecutiveAcceptancePackQ1110Contract() {
+        this.ensureRunning();
+        return this.pillowSession.executiveAcceptancePack.getQ1110ConsumableContract();
+    }
+    getGrandKingAcceptanceGate() {
+        this.ensureRunning();
+        const engine = this.pillowSession.grandKingAcceptanceGate;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-10",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            approvalHistory: engine.getApprovalHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1201Contract: engine.getQ1201ConsumableContract(),
+        };
+    }
+    connectGrandKingAcceptanceGate(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.connect(input ?? {});
+    }
+    collectGrandKingAcceptanceGatePack() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.collectExecutiveAcceptancePack();
+    }
+    verifyGrandKingAcceptanceGatePrerequisites() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.verifyPrerequisiteCertifications();
+    }
+    presentGrandKingAcceptanceGateReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.presentProductionReadiness();
+    }
+    recordGrandKingAcceptanceGateDecision(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.recordGrandKingDecision(input ?? {});
+    }
+    getGrandKingAcceptanceGateDeploymentStatus() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.preventDeploymentWithoutApproval();
+    }
+    generateGrandKingAcceptanceGateAuthorisation(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.generateDeploymentAuthorisation(input ?? {});
+    }
+    requestGrandKingAcceptanceGateReReview(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.requestReReview(input ?? {});
+    }
+    produceGrandKingAcceptanceGateReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.produceGrandKingAcceptanceReport(input ?? {});
+    }
+    submitGrandKingAcceptanceGateReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.submitReport(input ?? {});
+    }
+    listGrandKingAcceptanceGateReports() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.list();
+    }
+    validateGrandKingAcceptanceGate(input) {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.validate(input ?? {});
+    }
+    runGrandKingAcceptanceGateDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.runDiagnostics();
+    }
+    getGrandKingAcceptanceGateQ1201Contract() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.getQ1201ConsumableContract();
+    }
+    getGrandKingAcceptanceGateQ1111Contract() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.getQ1111ConsumableContract();
+    }
+    getGrandKingAcceptanceGateApprovalHistory() {
+        this.ensureRunning();
+        return this.pillowSession.grandKingAcceptanceGate.getApprovalHistory();
+    }
+    getPostLaunchMonitoring() {
+        this.ensureRunning();
+        const engine = this.pillowSession.postLaunchMonitoring;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-11",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            monitoringHistory: engine.getMonitoringHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1112Contract: engine.getQ1112ConsumableContract(),
+        };
+    }
+    connectPostLaunchMonitoring(input) {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.connect(input ?? {});
+    }
+    verifyPostLaunchMonitoringGrandKingAcceptance() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.verifyGrandKingAcceptanceGranted();
+    }
+    startPostLaunchMonitoringSession(input) {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.startMonitoringSession(input ?? {});
+    }
+    monitorPostLaunchWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.monitorWorkers();
+    }
+    monitorPostLaunchFactories() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.monitorFactories();
+    }
+    monitorPostLaunchWorkflows() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.monitorWorkflows();
+    }
+    monitorPostLaunchRuntimeServices() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.monitorRuntimeServices();
+    }
+    monitorPostLaunchApiIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.monitorApiIntegrations();
+    }
+    detectPostLaunchIncidents() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.detectIncidents();
+    }
+    detectPostLaunchAbnormalWorkerBehaviour() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.detectAbnormalWorkerBehaviour();
+    }
+    generatePostLaunchAlerts() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.generateAlerts();
+    }
+    producePostLaunchHealthSummary() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.produceProductionHealthSummary();
+    }
+    producePostLaunchMonitoringReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.producePostLaunchMonitoringReport(input ?? {});
+    }
+    submitPostLaunchMonitoringReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.submitReport(input ?? {});
+    }
+    listPostLaunchMonitoringReports() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.list();
+    }
+    validatePostLaunchMonitoring(input) {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.validate(input ?? {});
+    }
+    runPostLaunchMonitoringDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.runDiagnostics();
+    }
+    getPostLaunchMonitoringQ1112Contract() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.getQ1112ConsumableContract();
+    }
+    getPostLaunchMonitoringHistory() {
+        this.ensureRunning();
+        return this.pillowSession.postLaunchMonitoring.getMonitoringHistory();
+    }
+    getQSeriesCertification() {
+        this.ensureRunning();
+        const engine = this.pillowSession.qSeriesCertification;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-12",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            certificationHistory: engine.getCertificationHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1113Contract: engine.getQ1113ConsumableContract(),
+        };
+    }
+    connectQSeriesCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.connect(input ?? {});
+    }
+    discoverQSeriesFactories() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.discoverFactories();
+    }
+    verifyQSeriesWorkers() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.verifyWorkers();
+    }
+    verifyQSeriesRuntimes() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.verifyRuntimes();
+    }
+    verifyQSeriesOrchestration() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.verifyCrossFactoryOrchestration();
+    }
+    verifyQSeriesGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.verifyGovernanceCompliance();
+    }
+    verifyQSeriesProductionReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.verifyProductionReadiness();
+    }
+    aggregateQSeriesEvidence() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.aggregateCertificationEvidence();
+    }
+    classifyQSeriesReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.classifyQSeriesReadiness(input ?? {});
+    }
+    produceQSeriesCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.produceQSeriesCertificationReport(input ?? {});
+    }
+    certifyQSeries(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.certifyQSeries(input ?? {});
+    }
+    submitQSeriesCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.submitReport(input ?? {});
+    }
+    listQSeriesCertificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.list();
+    }
+    validateQSeriesCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.validate(input ?? {});
+    }
+    runQSeriesCertificationDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.runDiagnostics();
+    }
+    getQSeriesCertificationQ1113Contract() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.getQ1113ConsumableContract();
+    }
+    getQSeriesCertificationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCertification.getCertificationHistory();
+    }
+    getQSeriesCompletion() {
+        this.ensureRunning();
+        const engine = this.pillowSession.qSeriesCompletion;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-13",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            completionHistory: engine.getCompletionHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1201Contract: engine.getQ1201ConsumableContract(),
+        };
+    }
+    connectQSeriesCompletion(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.connect(input ?? {});
+    }
+    verifyQSeriesMissionCompletion() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyMissionCompletion();
+    }
+    verifyQSeriesWorkforceCapabilities() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyWorkforceCapabilities();
+    }
+    verifyQSeriesRuntimeIntegration() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyRuntimeIntegration();
+    }
+    verifyQSeriesCompletionGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyGovernanceCompliance();
+    }
+    verifyQSeriesCertificationCompletion() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyCertificationCompletion();
+    }
+    verifyQSeriesCompletionProductionReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.verifyProductionReadiness();
+    }
+    aggregateQSeriesCompletionEvidence() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.aggregateFinalCompletionEvidence();
+    }
+    produceQSeriesFinalCompletionDecision(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.produceFinalCompletionDecision(input ?? {});
+    }
+    async produceQSeriesCompletionReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.produceQSeriesCompletionReport(input ?? {});
+    }
+    async completeQSeries(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.completeQSeries(input ?? {});
+    }
+    async submitQSeriesCompletionReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.submitReport(input ?? {});
+    }
+    listQSeriesCompletionReports() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.list();
+    }
+    validateQSeriesCompletion(input) {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.validate(input ?? {});
+    }
+    runQSeriesCompletionDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.runDiagnostics();
+    }
+    getQSeriesCompletionQ1201Contract() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.getQ1201ConsumableContract();
+    }
+    getQSeriesCompletionHistory() {
+        this.ensureRunning();
+        return this.pillowSession.qSeriesCompletion.getCompletionHistory();
+    }
+    getAiInnovationFactory() {
+        this.ensureRunning();
+        const engine = this.pillowSession.aiInnovationFactory;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q12-01",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            innovationHistory: engine.getInnovationHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1301Contract: engine.getQ1301ConsumableContract(),
+        };
+    }
+    connectAiInnovationFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.connect(input ?? {});
+    }
+    verifyAiInnovationSeriesCompletePrerequisite() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.verifySeriesCompletePrerequisite();
+    }
+    researchEmergingTechnologies() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.researchEmergingTechnologies();
+    }
+    trackModelsAndApis() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.trackModelsAndApis();
+    }
+    discoverBusinessOpportunities() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.discoverBusinessOpportunities();
+    }
+    evaluateArchitecturalImprovements() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.evaluateArchitecturalImprovements();
+    }
+    analyseOperationalImprovements() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.analyseOperationalImprovements();
+    }
+    async produceAiInnovationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.produceAiInnovationReport(input ?? {});
+    }
+    async researchInnovations(input) {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.researchInnovations(input ?? {});
+    }
+    async submitAiInnovationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.submitReport(input ?? {});
+    }
+    listAiInnovationReports() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.list();
+    }
+    validateAiInnovationFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.validate(input ?? {});
+    }
+    runAiInnovationFactoryDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.runDiagnostics();
+    }
+    getAiInnovationFactoryQ1301Contract() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.getQ1301ConsumableContract();
+    }
+    getAiInnovationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.aiInnovationFactory.getInnovationHistory();
+    }
+    getImplementationSpecificationEngine() {
+        this.ensureRunning();
+        const engine = this.pillowSession.implementationSpecificationEngine;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-01",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            specificationHistory: engine.getSpecificationHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1302Contract: engine.getQ1302ConsumableContract(),
+        };
+    }
+    connectImplementationSpecificationEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.connect(input ?? {});
+    }
+    parseImplementationSpecificationMission(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.parseApprovedRoadmapMission(input ?? {});
+    }
+    analyseImplementationSpecificationArchitecture(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.analyseRepositoryArchitecture(input ?? {});
+    }
+    discoverImplementationSpecificationDependencies(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.discoverImplementationDependencies(input ?? {});
+    }
+    detectImplementationSpecificationPreservations(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.detectExistingImplementationsToPreserve(input ?? {});
+    }
+    generateImplementationSpecificationDocument(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.generateImplementationSpecification(input ?? {});
+    }
+    async produceImplementationSpecificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.produceSpecificationReport(input ?? {});
+    }
+    async submitImplementationSpecificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.submitReport(input ?? {});
+    }
+    listImplementationSpecificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.list();
+    }
+    validateImplementationSpecificationEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.validate(input ?? {});
+    }
+    runImplementationSpecificationEngineDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.runDiagnostics();
+    }
+    getImplementationSpecificationEngineQ1302Contract() {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.getQ1302ConsumableContract();
+    }
+    getImplementationSpecificationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.implementationSpecificationEngine.getSpecificationHistory();
+    }
+    getRepositoryIntelligenceEngine() {
+        this.ensureRunning();
+        const engine = this.pillowSession.repositoryIntelligenceEngine;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-02",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            repositoryKnowledgeHistory: engine.getRepositoryKnowledgeHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1303Contract: engine.getQ1303ConsumableContract(),
+        };
+    }
+    connectRepositoryIntelligenceEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.connect(input ?? {});
+    }
+    discoverRepositoryIntelligenceStructure() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.discoverRepositoryStructure();
+    }
+    analyzeRepositoryIntelligenceModules() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.analyzeModulesAndServices();
+    }
+    buildRepositoryIntelligenceDependencyGraph() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.buildDependencyGraph();
+    }
+    detectRepositoryIntelligenceImplementationRelationships() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.detectImplementationRelationships();
+    }
+    discoverRepositoryIntelligenceArchitecturalBoundaries() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.discoverArchitecturalBoundaries();
+    }
+    detectRepositoryIntelligenceExistingImplementations() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.detectExistingImplementations();
+    }
+    identifyRepositoryIntelligenceReusableComponents() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.identifyReusableComponents();
+    }
+    detectRepositoryIntelligenceConflicts() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.detectConflictsAndDuplicates();
+    }
+    analyzeRepositoryIntelligenceRepository() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.analyzeRepository();
+    }
+    async produceRepositoryIntelligenceReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.produceRepositoryIntelligenceReport(input ?? {});
+    }
+    async submitRepositoryIntelligenceReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.submitReport(input ?? {});
+    }
+    listRepositoryIntelligenceReports() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.list();
+    }
+    validateRepositoryIntelligenceEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.validate(input ?? {});
+    }
+    runRepositoryIntelligenceEngineDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.runDiagnostics();
+    }
+    getRepositoryIntelligenceEngineQ1303Contract() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.getQ1303ConsumableContract();
+    }
+    getRepositoryIntelligenceKnowledgeHistory() {
+        this.ensureRunning();
+        return this.pillowSession.repositoryIntelligenceEngine.getRepositoryKnowledgeHistory();
+    }
+    getMissionPlanningEngine() {
+        this.ensureRunning();
+        const engine = this.pillowSession.missionPlanningEngine;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-03",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            plans: engine.getPlans(),
+            planningHistory: engine.getPlanningHistory(),
+            latestReport: engine.getState().latestReport,
+            latestPlan: engine.getState().latestPlan,
+            auditTrail: engine.getAuditTrail(),
+            q1304Contract: engine.getQ1304ConsumableContract(),
+        };
+    }
+    connectMissionPlanningEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.connect(input ?? {});
+    }
+    analyseMissionPlanningMission(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.analyseApprovedMission(input ?? {});
+    }
+    consumeMissionPlanningRepositoryIntelligence() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.consumeRepositoryIntelligence();
+    }
+    identifyMissionPlanningDependencies(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.identifyImplementationDependencies(input ?? {});
+    }
+    determineMissionPlanningExecutionSequence() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.determineExecutionSequence();
+    }
+    identifyMissionPlanningIntegrationPoints() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.identifyIntegrationPoints();
+    }
+    produceMissionPlanningValidationStrategy(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.produceValidationStrategy(input ?? {});
+    }
+    produceMissionPlanningAcceptanceCriteria(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.produceAcceptanceCriteria(input ?? {});
+    }
+    estimateMissionPlanningRisks() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.estimateImplementationRisks();
+    }
+    generateMissionPlanningPlan(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.generateMissionPlan(input ?? {});
+    }
+    async produceMissionPlanningReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.produceMissionPlanningReport(input ?? {});
+    }
+    async submitMissionPlanningReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.submitReport(input ?? {});
+    }
+    listMissionPlanningReports() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.list();
+    }
+    validateMissionPlanningEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.validate(input ?? {});
+    }
+    runMissionPlanningEngineDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.runDiagnostics();
+    }
+    getMissionPlanningEngineQ1304Contract() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.getQ1304ConsumableContract();
+    }
+    getMissionPlanningHistory() {
+        this.ensureRunning();
+        return this.pillowSession.missionPlanningEngine.getPlanningHistory();
+    }
+    getCursorSpecificationGenerator() {
+        this.ensureRunning();
+        const engine = this.pillowSession.cursorSpecificationGenerator;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-04",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            specifications: engine.getSpecifications(),
+            specificationHistory: engine.getSpecificationHistory(),
+            latestReport: engine.getState().latestReport,
+            latestSpecification: engine.getState().latestSpecification,
+            auditTrail: engine.getAuditTrail(),
+            q1305Contract: engine.getQ1305ConsumableContract(),
+        };
+    }
+    connectCursorSpecificationGenerator(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.connect(input ?? {});
+    }
+    consumeCursorSpecificationRoadmapMission(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.consumeApprovedRoadmapMission(input ?? {});
+    }
+    consumeCursorSpecificationRepositoryIntelligence() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.consumeRepositoryIntelligence();
+    }
+    consumeCursorSpecificationMissionPlanning() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.consumeMissionPlanning();
+    }
+    consumeCursorSpecificationImplementationSpecification() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.consumeImplementationSpecification();
+    }
+    generateCursorSpecification(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.generateCursorSpecification(input ?? {});
+    }
+    validateCursorSpecificationBoundaries() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.validateBoundaries();
+    }
+    validateCursorSpecificationGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.validateGovernance();
+    }
+    validateCursorSpecificationCompleteness(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.validateCompleteness(input ?? {});
+    }
+    async produceCursorSpecificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.produceCursorSpecificationReport(input ?? {});
+    }
+    async submitCursorSpecificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.submitReport(input ?? {});
+    }
+    listCursorSpecificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.list();
+    }
+    validateCursorSpecificationGenerator(input) {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.validate(input ?? {});
+    }
+    runCursorSpecificationGeneratorDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.runDiagnostics();
+    }
+    getCursorSpecificationGeneratorQ1305Contract() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.getQ1305ConsumableContract();
+    }
+    getCursorSpecificationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.cursorSpecificationGenerator.getSpecificationHistory();
+    }
+    getImplementationRecoveryPlanner() {
+        this.ensureRunning();
+        const engine = this.pillowSession.implementationRecoveryPlanner;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-05",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            plans: engine.getPlans(),
+            recoveryHistory: engine.getRecoveryHistory(),
+            latestReport: engine.getState().latestReport,
+            latestPlan: engine.getState().latestPlan,
+            latestRecoverySpecification: engine.getState().latestRecoverySpecification,
+            auditTrail: engine.getAuditTrail(),
+            q1306Contract: engine.getQ1306ConsumableContract(),
+        };
+    }
+    connectImplementationRecoveryPlanner(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.connect(input ?? {});
+    }
+    detectImplementationRecoveryInterruptedMission(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.detectInterruptedOrIncompleteMission(input ?? {});
+    }
+    analyseImplementationRecoveryRepository(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.analyseCurrentRepositoryState(input ?? {});
+    }
+    compareImplementationRecoverySpecification(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.compareAgainstApprovedSpecification(input ?? {});
+    }
+    detectImplementationRecoveryCompletedWork() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.detectCompletedWork();
+    }
+    detectImplementationRecoveryPartialWork() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.detectPartialWork();
+    }
+    detectImplementationRecoveryMissingWork() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.detectMissingImplementation();
+    }
+    detectImplementationRecoveryConflicts() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.detectConflictingImplementation();
+    }
+    generateImplementationRecoveryStrategy() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.generateRecoveryStrategy();
+    }
+    generateImplementationRecoveryPlan(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.generateRecoveryPlan(input ?? {});
+    }
+    generateImplementationRecoverySpecification(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.generateRecoverySpecification(input ?? {});
+    }
+    async produceImplementationRecoveryReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.produceRecoveryReport(input ?? {});
+    }
+    async submitImplementationRecoveryReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.submitReport(input ?? {});
+    }
+    listImplementationRecoveryReports() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.list();
+    }
+    validateImplementationRecoveryPlanner(input) {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.validate(input ?? {});
+    }
+    runImplementationRecoveryPlannerDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.runDiagnostics();
+    }
+    getImplementationRecoveryPlannerQ1306Contract() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.getQ1306ConsumableContract();
+    }
+    getImplementationRecoveryHistory() {
+        this.ensureRunning();
+        return this.pillowSession.implementationRecoveryPlanner.getRecoveryHistory();
+    }
+    getProgrammeCertificationFactory() {
+        this.ensureRunning();
+        const engine = this.pillowSession.programmeCertificationFactory;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q13-06",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            certifications: engine.getCertifications(),
+            certificationHistory: engine.getCertificationHistory(),
+            latestReport: engine.getState().latestReport,
+            latestFinalCertification: engine.getState().latestFinalCertification,
+            auditTrail: engine.getAuditTrail(),
+            qSeriesCompletionContract: engine.getQSeriesConstitutionalCompletionContract(),
+        };
+    }
+    connectProgrammeCertificationFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.connect(input ?? {});
+    }
+    discoverProgrammeCertificationProgrammes() {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.discoverApprovedProgrammes();
+    }
+    auditProgrammeCertificationRepository(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.auditProgrammeRepository(input ?? {});
+    }
+    classifyProgrammeCertificationMissions(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.classifyMissions(input ?? {});
+    }
+    produceProgrammeCertificationGapAnalysis(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.produceProgrammeGapAnalysis(input ?? {});
+    }
+    generateProgrammeCertificationRecommendations(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.generateCompletionRecommendations(input ?? {});
+    }
+    verifyProgrammeCertificationCompletion(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.verifyCompletionAfterCorrections(input ?? {});
+    }
+    certifyProgrammeCertificationProgramme(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.certifyProgramme(input ?? {});
+    }
+    async produceProgrammeCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.produceProgrammeCertificationReport(input ?? {});
+    }
+    produceFinalRepositoryConstitutionalCertification(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.produceFinalRepositoryConstitutionalCertification(input ?? {});
+    }
+    async submitProgrammeCertificationReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.submitReport(input ?? {});
+    }
+    listProgrammeCertificationReports() {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.list();
+    }
+    validateProgrammeCertificationFactory(input) {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.validate(input ?? {});
+    }
+    runProgrammeCertificationFactoryDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.runDiagnostics();
+    }
+    getProgrammeCertificationQSeriesCompletionContract() {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.getQSeriesConstitutionalCompletionContract();
+    }
+    getProgrammeCertificationHistory() {
+        this.ensureRunning();
+        return this.pillowSession.programmeCertificationFactory.getCertificationHistory();
+    }
     getGlobalExpansionSimulator() {
         this.ensureRunning();
         const engine = this.pillowSession.globalExpansionSimulator;
