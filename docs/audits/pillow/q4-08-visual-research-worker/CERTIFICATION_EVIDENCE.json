@@ -1,0 +1,64 @@
+{
+  "missionId": "Q4-08",
+  "doctrine": "PILLOW-VRW-001",
+  "moduleId": "visual-research-worker",
+  "metadataVersion": "VRW-001-v1",
+  "reportVersion": "VRW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Find or generate safe visual references, stock assets, public-domain assets, and original supporting visuals.",
+  "prerequisites": [
+    { "missionId": "Q4-07", "doctrine": "PILLOW-THW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-05", "doctrine": "PILLOW-SCW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverGenerateFinalCreativeAssets": true,
+    "neverEditImages": true,
+    "neverAssembleVideos": true,
+    "neverPublishContent": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ409OrLater": true,
+    "useOnlyApprovedVisualSources": true
+  },
+  "visualResearchReportFields": [
+    "visualResearchId",
+    "timestamp",
+    "scriptId",
+    "sceneNumber",
+    "requiredVisual",
+    "visualSource",
+    "assetType",
+    "copyrightStatus",
+    "usageRights",
+    "timelinePosition",
+    "coverageStatus",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "script_worker",
+    "thumbnail_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/visual-research-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/visual-research-worker/",
+    "config": "config/visual-research-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_VISUAL_RESEARCH_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/visual-research-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/visual-research-worker.test.ts"
+  },
+  "notes": [
+    "Research-only: prepares visual references with copyright/usage classification; does not assemble videos or generate final creative assets."
+  ]
+}

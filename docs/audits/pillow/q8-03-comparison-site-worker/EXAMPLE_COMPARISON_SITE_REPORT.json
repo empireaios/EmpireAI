@@ -1,0 +1,360 @@
+{
+  "reportId": "csw-rpt-0001",
+  "timestamp": "2026-08-02T12:25:55.280Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "comparisonTopic": "travel_gear",
+  "productsCompared": [
+    {
+      "productId": "prod-backpack-01",
+      "name": "TrailBackpack Pro",
+      "category": "travel_gear",
+      "programmeId": "prog-travel-gear-01",
+      "price": 129,
+      "currency": "USD",
+      "features": [
+        "waterproof",
+        "laptop_sleeve"
+      ],
+      "specs": {
+        "capacity_l": "40",
+        "weight_kg": "1.2"
+      },
+      "pros": [
+        "Durable shell",
+        "Comfortable harness"
+      ],
+      "cons": [
+        "Premium price"
+      ],
+      "bestFor": "weekend hikers",
+      "source": "fixture",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "productId": "prod-duffel-01",
+      "name": "CityDuffel Lite",
+      "category": "travel_gear",
+      "programmeId": "prog-travel-gear-01",
+      "price": 89,
+      "currency": "USD",
+      "features": [
+        "carry_on",
+        "shoe_pocket"
+      ],
+      "specs": {
+        "capacity_l": "35",
+        "weight_kg": "0.9"
+      },
+      "pros": [
+        "Lightweight"
+      ],
+      "cons": [
+        "Less padding"
+      ],
+      "bestFor": "city travelers",
+      "source": "fixture",
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "rankingResults": [
+    {
+      "rank": 1,
+      "productId": "prod-backpack-01",
+      "productName": "TrailBackpack Pro",
+      "score": 78,
+      "bestFor": "weekend hikers",
+      "rationale": [
+        "opportunity_score=78",
+        "commission=8",
+        "demand=medium",
+        "observed_price=129",
+        "feature_evidence_count=4"
+      ],
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "rank": 2,
+      "productId": "prod-duffel-01",
+      "productName": "CityDuffel Lite",
+      "score": 78,
+      "bestFor": "city travelers",
+      "rationale": [
+        "opportunity_score=78",
+        "commission=8",
+        "demand=medium",
+        "observed_price=89",
+        "feature_evidence_count=4"
+      ],
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "comparisonTables": [
+    {
+      "tableId": "csw-table-feat-0031",
+      "title": "Feature comparison",
+      "columns": [
+        "feature",
+        "TrailBackpack Pro",
+        "CityDuffel Lite"
+      ],
+      "rows": [
+        {
+          "feature": "waterproof",
+          "TrailBackpack Pro": "yes",
+          "CityDuffel Lite": "not evidenced"
+        },
+        {
+          "feature": "laptop_sleeve",
+          "TrailBackpack Pro": "yes",
+          "CityDuffel Lite": "not evidenced"
+        },
+        {
+          "feature": "capacity_l",
+          "TrailBackpack Pro": "40",
+          "CityDuffel Lite": "35"
+        },
+        {
+          "feature": "weight_kg",
+          "TrailBackpack Pro": "1.2",
+          "CityDuffel Lite": "0.9"
+        },
+        {
+          "feature": "carry_on",
+          "TrailBackpack Pro": "not evidenced",
+          "CityDuffel Lite": "yes"
+        },
+        {
+          "feature": "shoe_pocket",
+          "TrailBackpack Pro": "not evidenced",
+          "CityDuffel Lite": "yes"
+        }
+      ],
+      "fabricated": false,
+      "derivedFromEvidence": true
+    },
+    {
+      "tableId": "csw-table-price-0032",
+      "title": "Pricing comparison",
+      "columns": [
+        "product",
+        "price",
+        "currency",
+        "value_notes"
+      ],
+      "rows": [
+        {
+          "product": "TrailBackpack Pro",
+          "price": "129",
+          "currency": "USD",
+          "value_notes": "Observed price; best for weekend hikers"
+        },
+        {
+          "product": "CityDuffel Lite",
+          "price": "89",
+          "currency": "USD",
+          "value_notes": "Observed price; best for city travelers"
+        }
+      ],
+      "fabricated": false,
+      "derivedFromEvidence": true
+    }
+  ],
+  "buyerGuide": {
+    "guideId": "csw-guide-0036",
+    "title": "travel_gear buyer guide",
+    "topic": "travel_gear",
+    "buyingFactors": [
+      "observed features and specifications",
+      "observed pricing and value signals",
+      "best-for fit from fixture labels",
+      "opportunity ranking signals when available"
+    ],
+    "bestForRecommendations": [
+      {
+        "label": "Best for weekend hikers",
+        "productId": "prod-backpack-01",
+        "productName": "TrailBackpack Pro",
+        "reason": "Fixture bestFor label: weekend hikers"
+      },
+      {
+        "label": "Best for city travelers",
+        "productId": "prod-duffel-01",
+        "productName": "CityDuffel Lite",
+        "reason": "Fixture bestFor label: city travelers"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How were travel_gear products ranked?",
+        "answer": "Only from Affiliate Opportunity scores and product fixture evidence. Missing data stays unknown."
+      },
+      {
+        "question": "Are prices guaranteed?",
+        "answer": "No. Prices shown only when present in fixtures; otherwise marked unknown."
+      },
+      {
+        "question": "Is this published live?",
+        "answer": "No. Comparison Site Worker produces structural content packages only and never publishes websites."
+      }
+    ],
+    "prosConsByProduct": [
+      {
+        "productId": "prod-backpack-01",
+        "productName": "TrailBackpack Pro",
+        "pros": [
+          "Durable shell",
+          "Comfortable harness"
+        ],
+        "cons": [
+          "Premium price"
+        ]
+      },
+      {
+        "productId": "prod-duffel-01",
+        "productName": "CityDuffel Lite",
+        "pros": [
+          "Lightweight"
+        ],
+        "cons": [
+          "Less padding"
+        ]
+      }
+    ],
+    "fabricated": false
+  },
+  "methodologySummary": {
+    "methodologyId": "csw-method-0033",
+    "summary": "Rankings and comparisons are derived only from Affiliate Opportunity Report fields and supplied product fixtures. Missing prices, features, or scores remain unknown — never fabricated.",
+    "factors": [
+      "opportunity_score_from_q802_when_present",
+      "observed_feature_and_spec_evidence",
+      "observed_price_evidence",
+      "best_for_labels_from_fixtures"
+    ],
+    "evidenceRules": [
+      "Empty evidence yields unknown cells / unknown scores",
+      "Top-N order uses observed scores when present, otherwise fixture order",
+      "At least one observed score or feature/price signal was available"
+    ],
+    "neverFabricatedRankings": true
+  },
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "fixtureProducts",
+    "affiliate_opportunity_worker",
+    "feature_table",
+    "pricing_table",
+    "methodology"
+  ],
+  "auditStatus": "ready_for_q804",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "CSW-001-v1",
+  "reportVersion": "CSW-RPT-v1",
+  "workerId": "wkr-comparison-site-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "comparisonPage": {
+    "pageId": "csw-cmp-0034",
+    "pageType": "comparison",
+    "title": "travel_gear comparison",
+    "topic": "travel_gear",
+    "productsCompared": [
+      "TrailBackpack Pro",
+      "CityDuffel Lite"
+    ],
+    "summary": "Structural comparison of 2 product(s) for travel_gear based on verified fixture/opportunity evidence.",
+    "sections": [
+      {
+        "heading": "Overview",
+        "body": "Products compared: TrailBackpack Pro, CityDuffel Lite."
+      },
+      {
+        "heading": "Tables",
+        "body": "Includes 2 evidence-derived comparison table(s)."
+      },
+      {
+        "heading": "Transparency",
+        "body": "Cells marked unknown or not evidenced were never invented."
+      }
+    ],
+    "fabricated": false
+  },
+  "rankingPage": {
+    "pageId": "csw-rank-0035",
+    "pageType": "ranking",
+    "title": "Top 2 travel_gear",
+    "topic": "travel_gear",
+    "topN": 2,
+    "rankings": [
+      {
+        "rank": 1,
+        "productId": "prod-backpack-01",
+        "productName": "TrailBackpack Pro",
+        "score": 78,
+        "bestFor": "weekend hikers",
+        "rationale": [
+          "opportunity_score=78",
+          "commission=8",
+          "demand=medium",
+          "observed_price=129",
+          "feature_evidence_count=4"
+        ],
+        "fabricated": false,
+        "evidencePresent": true
+      },
+      {
+        "rank": 2,
+        "productId": "prod-duffel-01",
+        "productName": "CityDuffel Lite",
+        "score": 78,
+        "bestFor": "city travelers",
+        "rationale": [
+          "opportunity_score=78",
+          "commission=8",
+          "demand=medium",
+          "observed_price=89",
+          "feature_evidence_count=4"
+        ],
+        "fabricated": false,
+        "evidencePresent": true
+      }
+    ],
+    "methodologyRef": "csw-method-0033",
+    "fabricated": false
+  },
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T12:25:55.280Z",
+  "consumableByQ804": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-03:affiliate_business:afc-biz-travel-gear-01",
+    "q8-03:affiliate_project:afc-prj-travel-gear-01",
+    "q8-03:topic:travel_gear",
+    "q8-03:products:2",
+    "q8-03:rankings:2",
+    "q8-02:opportunity:aow-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverFabricateRankingsOrProductInformation": true,
+  "neverPublishWebsites": true,
+  "neverManipulateRankingsWithoutEvidence": true,
+  "neverReplaceReviewContentWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ804OrLater": true
+}

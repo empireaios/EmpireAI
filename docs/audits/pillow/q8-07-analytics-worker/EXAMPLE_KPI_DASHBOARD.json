@@ -1,0 +1,67 @@
+{
+  "dashboardId": "anw-kpi-0090",
+  "periodLabel": "2026-Q2",
+  "kpis": [
+    {
+      "key": "clicks",
+      "label": "Clicks",
+      "value": 1200,
+      "unit": "count",
+      "evidencePresent": true
+    },
+    {
+      "key": "ctr",
+      "label": "CTR",
+      "value": 0.03,
+      "unit": "ratio",
+      "evidencePresent": true
+    },
+    {
+      "key": "conversions",
+      "label": "Conversions",
+      "value": 36,
+      "unit": "count",
+      "evidencePresent": true
+    },
+    {
+      "key": "commission",
+      "label": "Commission",
+      "value": 288,
+      "unit": "USD",
+      "evidencePresent": true
+    },
+    {
+      "key": "epc",
+      "label": "EPC",
+      "value": 0.24,
+      "unit": "amount_per_click",
+      "evidencePresent": true
+    },
+    {
+      "key": "revenue",
+      "label": "Revenue",
+      "value": 3600,
+      "unit": "USD",
+      "evidencePresent": true
+    },
+    {
+      "key": "organic_sessions",
+      "label": "Organic sessions",
+      "value": 5400,
+      "unit": "count",
+      "evidencePresent": true
+    },
+    {
+      "key": "funnel_completion_rate",
+      "label": "Funnel completion rate",
+      "value": 0.12,
+      "unit": "ratio",
+      "evidencePresent": true
+    }
+  ],
+  "notes": [
+    "KPI values reflect evidenced fixture/snapshot metrics only",
+    "Null values mean not evidenced — never fabricated",
+    "Analytics Worker never modifies campaigns automatically"
+  ]
+}

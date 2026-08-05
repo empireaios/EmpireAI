@@ -1,0 +1,63 @@
+{
+  "contractId": "recrt-q1012-contract-v1",
+  "contractVersion": "RECRT-001-v1",
+  "producedBy": "recovery-runtime",
+  "missionId": "Q10-11",
+  "consumerMissionId": "Q10-12",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "recoverySummary",
+    "activeRecoveries",
+    "completedRecoveries",
+    "failedRecoveries",
+    "restartSummary",
+    "rollbackSummary",
+    "escalationSummary",
+    "recoveryMetrics",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "failureClassificationCatalog": [
+    "transient",
+    "timeout",
+    "dependency",
+    "resource",
+    "state_corruption",
+    "unrecoverable",
+    "custom_extension"
+  ],
+  "recoveryStrategyCatalog": [
+    "restart_job",
+    "resume_workflow",
+    "restore_checkpoint",
+    "rollback_partial",
+    "escalate_only",
+    "manual_recovery",
+    "automatic_recovery",
+    "custom_extension"
+  ],
+  "recoveryStatusCatalog": [
+    "detected",
+    "classified",
+    "restoring",
+    "restarting",
+    "rolling_back",
+    "resumed",
+    "completed",
+    "failed",
+    "escalated",
+    "awaiting_approval",
+    "cancelled"
+  ],
+  "notes": [
+    "Structural contract for Q10-12 Scheduling Runtime — recovery evidence only",
+    "Recovery Runtime never fabricates recovery success",
+    "neverImplementQ1012OrLater remains locked — this module does not implement Scheduling Runtime",
+    "Distinct from worker-recovery-system / autonomous-recovery-engine"
+  ],
+  "neverImplementQ1012OrLater": true,
+  "structuralSignalOnly": true
+}

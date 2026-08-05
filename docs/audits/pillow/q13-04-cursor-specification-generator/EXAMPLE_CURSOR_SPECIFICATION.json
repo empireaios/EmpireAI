@@ -1,0 +1,14 @@
+{
+  "cursorSpecificationId": "csgen-spec-0001",
+  "programmeId": "Q13",
+  "teamId": "pillow",
+  "missionId": "Q13-04",
+  "missionName": "Cursor Specification Generator",
+  "deliverable": "Governed Cursor specification generation module at pillow/src/cursor-specification-generator/",
+  "sourceOfTruth": "docs/governance/EMPIREAI_CURSOR_SPECIFICATION_GENERATOR_SYSTEM.md",
+  "specificationVersion": "CSGEN-001-v1",
+  "governanceStatus": "pending_governance_review",
+  "approvalStatus": "pending_grand_king",
+  "stopBoundary": "Stop after Q13-04. Emit Q1305 contract as structural signal only.",
+  "constitutionalBody": "## Mission\n\nImplement **Q13-04 Cursor Specification Generator**.\n\n## Source of truth\n\nEmpireAI repository governance doc.\n\n## Roadmap row\n\nProgramme Q13 | Mission Q13-04\n\n## Implement ONLY this mission\n\nImplement ONLY Q13-04. Do NOT implement Q13-05 or later.\n\n## Repository audit\n\nRIENG snapshot reference.\n\n## Objective\n\nGenerate governed Cursor specifications.\n\n## Required capabilities\n\nconsumeApprovedRoadmapMission, generateCursorSpecification\n\n## Supported features\n\nConstitutional markdown body, CursorSpecification model\n\n## Model/schema\n\nCursorSpecification all locked minimum fields\n\n## Report schema\n\nCursorSpecificationReport CSGEN-RPT-v1\n\n## Mandatory rules\n\nNever implement code. Never execute Cursor missions.\n\n## Boundaries\n\nSpecification generation only — Q13-04\n\n## Architecture\n\nCRT structure at pillow/src/cursor-specification-generator/\n\n## Implementation rules\n\nFollow MPENG pattern\n\n## Validation\n\n24/24 tests\n\n## Mission completion\n\nCert pack complete\n\n## Stop before next mission\n\nStop after Q13-04. Never implement Q13-05."
+}

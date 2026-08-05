@@ -1,0 +1,55 @@
+{
+  "missionId": "Q0-15",
+  "doctrine": "PILLOW-OPBK-001",
+  "moduleId": "operational-playbook-engine",
+  "metadataVersion": "OPBK-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Executes approved SOPs, business playbooks, marketplace playbooks, marketing playbooks and finance playbooks.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkers": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "playbookRecordFields": [
+    "playbookId",
+    "version",
+    "category",
+    "name",
+    "purpose",
+    "preconditions",
+    "executionSteps",
+    "requiredCapabilities",
+    "requiredTools",
+    "approvalRequirements",
+    "successCriteria",
+    "failureCriteria",
+    "metadataVersion"
+  ],
+  "playbookCategories": [
+    "business",
+    "commerce",
+    "media",
+    "marketplace",
+    "marketing",
+    "finance",
+    "customer_service",
+    "operations",
+    "recovery",
+    "emergency"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/operational-playbook-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/operational-playbook-engine/",
+    "config": "config/operational-playbook-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_OPERATIONAL_PLAYBOOK_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/operational-playbook-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/operational-playbook-engine.test.ts"
+  },
+  "idCollisionNote": "PILLOW-OPE-001 and PILLOW-PBE-001 reserved; Q0-15 uses PILLOW-OPBK-001; distinct from empire-playbook-engine"
+}

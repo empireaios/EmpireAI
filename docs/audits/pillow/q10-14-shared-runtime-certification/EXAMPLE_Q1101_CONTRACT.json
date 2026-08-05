@@ -1,0 +1,44 @@
+{
+  "contractId": "srcrt-q1101-contract-v1",
+  "contractVersion": "SRCRT-001-v1",
+  "producedBy": "shared-runtime-certification",
+  "missionId": "Q10-14",
+  "consumerMissionId": "Q11-01",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "runtimeInventory",
+    "integrationSummary",
+    "certificationSummary",
+    "passedComponents",
+    "failedComponents",
+    "missingComponents",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore",
+    "certificationDecision",
+    "runtimeCertificationMatrix"
+  ],
+  "runtimeCertificationCatalog": [
+    "Certified",
+    "Partially Certified",
+    "Failed Certification",
+    "Blocked",
+    "Deferred"
+  ],
+  "certificationDecisionCatalog": [
+    "Certified",
+    "Conditionally_Certified",
+    "Not_Certified",
+    "Failed",
+    "Deferred"
+  ],
+  "notes": [
+    "Structural contract for Q11-01 Production Certification Core — shared runtime certification evidence only",
+    "Shared Runtime Certification never fabricates certification evidence and never certifies missing functionality",
+    "neverImplementQ1101OrLater remains locked — this module does not implement Production Certification Core",
+    "Certifies Q10-01..Q10-13 collectively under Pillow; does not implement Q11+"
+  ],
+  "neverImplementQ1101OrLater": true
+}

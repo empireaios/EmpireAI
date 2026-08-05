@@ -1,0 +1,50 @@
+{
+  "missionId": "Q6-14",
+  "doctrine": "PILLOW-DPW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/deployment-worker/",
+  "metadataVersion": "DPW-001-v1",
+  "reportVersion": "DPW-RPT-v1",
+  "workerId": "wkr-deployment-01",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS",
+    "Q6-10": "FINAL PASS",
+    "Q6-11": "FINAL PASS",
+    "Q6-12": "FINAL PASS",
+    "Q6-13": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverReplaceTesting": true,
+    "neverReplaceCertification": true,
+    "neverFabricateSuccessfulDeploymentResults": true,
+    "neverBypassApprovalGates": true,
+    "neverDeployUnvalidatedBuilds": true,
+    "neverImplementQ615OrLater": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowDeploymentWorker": true,
+    "subsystemRegistry": "deployment-worker",
+    "hostRoutes": "/api/pillow/deployment-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/deployment-worker-bridge.ts"
+  },
+  "evidence": [
+    "pillow/src/validation/tests/deployment-worker.test.ts",
+    "validated-build + readiness gates",
+    "explicit executor/health probe outcomes",
+    "production approval + rollback history"
+  ],
+  "tests": {
+    "deploymentWorker": "12/12",
+    "testingWorkerRegression": "12/12"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "dashboardId": "frw-dash-000001",
+  "timestamp": "2026-08-04T00:00:00.000Z",
+  "widgets": [
+    {
+      "widgetId": "frw-wgt-000001",
+      "kind": "revenue_kpi",
+      "title": "Total Revenue",
+      "valueMinor": 5000000,
+      "currency": "SGD",
+      "recordKind": "factual_measured",
+      "sourceRefs": ["acct-rev-2026-q2"]
+    },
+    {
+      "widgetId": "frw-wgt-000002",
+      "kind": "expense_kpi",
+      "title": "Total Expense",
+      "valueMinor": 3200000,
+      "currency": "SGD",
+      "recordKind": "factual_measured",
+      "sourceRefs": ["acct-exp-2026-q2"]
+    },
+    {
+      "widgetId": "frw-wgt-000003",
+      "kind": "cashflow_kpi",
+      "title": "Net Cashflow",
+      "valueMinor": 800000,
+      "currency": "SGD",
+      "recordKind": "factual_measured",
+      "sourceRefs": ["cf-report-2026-q2"]
+    },
+    {
+      "widgetId": "frw-wgt-000004",
+      "kind": "net_profit_kpi",
+      "title": "Net Profit",
+      "valueMinor": 900000,
+      "currency": "SGD",
+      "recordKind": "factual_measured",
+      "sourceRefs": ["profit-report-2026-q2"]
+    },
+    {
+      "widgetId": "frw-wgt-000005",
+      "kind": "capital_kpi",
+      "title": "Capital Position",
+      "valueMinor": 2500000,
+      "currency": "SGD",
+      "recordKind": "factual_measured",
+      "sourceRefs": ["cf-report-2026-q2", "ipw-report-2026-q2"]
+    }
+  ],
+  "kpis": {
+    "totalRevenueMinor": 5000000,
+    "totalExpenseMinor": 3200000,
+    "netCashflowMinor": 800000,
+    "netProfitMinor": 900000,
+    "grossMarginBps": 1800,
+    "currency": "SGD",
+    "factualSourceCount": 4,
+    "projectedSourceCount": 0,
+    "recordKind": "computed_from_factual_summaries",
+    "fabricated": false
+  }
+}

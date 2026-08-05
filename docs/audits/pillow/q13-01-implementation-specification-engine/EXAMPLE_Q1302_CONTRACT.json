@@ -1,0 +1,35 @@
+{
+  "contractId": "q1302-contract-ISENG-001-v1",
+  "contractVersion": "ISENG-001-v1",
+  "producedBy": "implementation-specification-engine",
+  "missionId": "Q13-01",
+  "consumerMissionId": "Q13-02",
+  "exposedFields": [
+    "missionSummary",
+    "repositoryAuditSummary",
+    "architectureSummary",
+    "dependencySummary",
+    "preservationSummary",
+    "generatedSpecificationSummary",
+    "specifications",
+    "validationSummary",
+    "confidenceScore",
+    "q1301ContractConsumed"
+  ],
+  "specificationCatalog": [
+    "implementation_specification",
+    "architecture_audit",
+    "dependency_map",
+    "preservation_registry",
+    "validation_plan",
+    "integration_plan"
+  ],
+  "notes": [
+    "Implementation Specification Engine Q13-01 — exposes Q1302ConsumableContract for Q13-02 without implementing Q13-02",
+    "Repository Intelligence Engine (Q13-02) is explicitly out of scope for ISENG",
+    "neverImplementQ1302OrLater=true — contract is structural signal only"
+  ],
+  "neverImplementQ1302OrLater": true,
+  "structuralSignalOnly": true,
+  "specificationPrerequisite": true
+}

@@ -1,0 +1,53 @@
+{
+  "missionId": "Q0-12",
+  "doctrine": "PILLOW-STR-001",
+  "moduleId": "skill-tool-router",
+  "metadataVersion": "STR-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Routes tasks to the correct worker and approved tool based on capability, context, risk and cost.",
+  "boundaries": {
+    "neverExecuteWork": true,
+    "neverPerformOrchestration": true,
+    "neverReplaceWorkers": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "routingRecordFields": [
+    "routingId",
+    "timestamp",
+    "executiveRequest",
+    "requiredCapabilities",
+    "selectedWorkers",
+    "selectedTools",
+    "routingReason",
+    "riskAssessment",
+    "costAssessment",
+    "confidenceScore",
+    "alternativeRoutes",
+    "metadataVersion"
+  ],
+  "routingFactors": [
+    "worker_capability",
+    "worker_availability",
+    "worker_performance",
+    "worker_authority",
+    "tool_compatibility",
+    "tool_availability",
+    "security",
+    "cost",
+    "risk",
+    "business_context"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/skill-tool-router.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/skill-tool-router/",
+    "config": "config/skill-tool-router.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SKILL_TOOL_ROUTER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/skill-tool-router-bridge.ts",
+    "tests": "pillow/src/validation/tests/skill-tool-router.test.ts"
+  }
+}

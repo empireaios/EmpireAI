@@ -1,0 +1,98 @@
+{
+  "missionId": "Q1-12",
+  "doctrine": "PILLOW-WRS-001",
+  "moduleId": "worker-recovery-system",
+  "metadataVersion": "WRS-001-v1",
+  "recoveryVersion": "WRS-REC-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Restart, reassign, rollback or escalate failed and stalled workers.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-06", "doctrine": "PILLOW-RMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-07", "doctrine": "PILLOW-WRG-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-08", "doctrine": "PILLOW-WLC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-09", "doctrine": "PILLOW-WAE-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-10", "doctrine": "PILLOW-WMO-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-11", "doctrine": "PILLOW-WPR-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerBusinessLogic": true,
+    "neverReplaceWorkerMonitoring": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "respects": {
+    "authorityMatrix": true,
+    "workerLifecycle": true,
+    "missionCoordinationEngine": true
+  },
+  "recoveryRecordFields": [
+    "recoveryId",
+    "timestamp",
+    "workerId",
+    "workerName",
+    "missionId",
+    "failureType",
+    "failureCause",
+    "recoveryStrategy",
+    "recoveryAction",
+    "recoveryStatus",
+    "escalationStatus",
+    "recoveryDurationMs",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "recoveryStrategies": [
+    "retry",
+    "restart",
+    "resume",
+    "rollback",
+    "reassign",
+    "replace_worker",
+    "pause_mission",
+    "escalate_to_pillow"
+  ],
+  "failureTypes": [
+    "crash",
+    "hang",
+    "timeout",
+    "dependency_failure",
+    "communication_failure",
+    "runtime_failure",
+    "resource_exhaustion",
+    "validation_failure",
+    "unknown_failure"
+  ],
+  "recoveryRules": [
+    "preserve_mission_integrity",
+    "preserve_audit_history",
+    "preserve_execution_history",
+    "prevent_duplicate_execution",
+    "respect_authority_matrix",
+    "respect_worker_lifecycle",
+    "respect_mission_coordination_engine",
+    "escalate_when_automatic_recovery_unsafe"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-recovery-system.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-recovery-system/",
+    "config": "config/worker-recovery-system.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_RECOVERY_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-recovery-system-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-recovery-system.test.ts"
+  },
+  "notes": [
+    "Isolated continuity-recovery service; public pillow index aliases WrsRecoveryRecord to avoid collision with other RecoveryRecord types.",
+    "Q1-10 Worker Monitoring observes only and never restarts; Q1-12 Recovery may restart/resume/reassign as structural continuity actions."
+  ]
+}

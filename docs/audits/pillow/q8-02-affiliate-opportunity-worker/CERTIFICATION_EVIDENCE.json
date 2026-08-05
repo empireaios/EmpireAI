@@ -1,0 +1,56 @@
+{
+  "missionId": "Q8-02",
+  "doctrine": "PILLOW-AOW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/affiliate-opportunity-worker/",
+  "metadataVersion": "AOW-001-v1",
+  "reportVersion": "AOW-RPT-v1",
+  "workerId": "wkr-affiliate-opportunity-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateCommissionOrDemandData": true,
+    "neverCreateAffiliateContent": true,
+    "neverPublishWebsites": true,
+    "neverJoinAffiliateProgrammesAutomatically": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ803OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveResearchEvidence": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowAffiliateOpportunityWorker": true,
+    "subsystemRegistry": "affiliate-opportunity-worker",
+    "hostRoutes": "/api/pillow/affiliate-opportunity-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/affiliate-opportunity-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_AFFILIATE_OPPORTUNITY_WORKER_SYSTEM.md",
+    "config": "config/affiliate-opportunity-worker.config.json",
+    "bindsAffiliateFactoryCore": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/affiliate-opportunity-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateFactoryCore": "12/12"
+  },
+  "evidence": [
+    "programme/product/niche discovery from fixtures only — empty yields empty/unknown",
+    "commission comparison + demand estimation never fabricated",
+    "opportunity ranking score from observed commission/demand/competition components",
+    "Affiliate Opportunity Report with consumableByQ803",
+    "ERR submit when executiveReportingRuntime injected",
+    "AFC untouched (neverImplementQ802OrLater preserved on AFC)",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "affiliateOpportunityWorker": "12/12",
+    "affiliateFactoryCoreRegression": "12/12"
+  }
+}

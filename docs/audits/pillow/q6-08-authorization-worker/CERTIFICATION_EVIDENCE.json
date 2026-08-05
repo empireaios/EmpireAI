@@ -1,0 +1,36 @@
+{
+  "missionId": "Q6-08",
+  "doctrineId": "PILLOW-AZW-001",
+  "moduleId": "authorization-worker",
+  "status": "FINAL PASS",
+  "metadataVersion": "AZW-001-v1",
+  "reportVersion": "AZW-RPT-v1",
+  "workerId": "wkr-authorization-01",
+  "canonicalAuthzReference": "backend/src/auth/permissions.ts",
+  "priors": [
+    { "missionId": "Q6-01", "doctrine": "PILLOW-EPFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-02", "doctrine": "PILLOW-RQW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-03", "doctrine": "PILLOW-ARW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-04", "doctrine": "PILLOW-FEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-05", "doctrine": "PILLOW-BEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-06", "doctrine": "PILLOW-DBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-07", "doctrine": "PILLOW-ATW-001", "status": "FINAL PASS" }
+  ],
+  "tests": {
+    "path": "pillow/src/validation/tests/authorization-worker.test.ts",
+    "result": "12/12 pass"
+  },
+  "security": {
+    "defaultDeny": true,
+    "leastPrivilege": true,
+    "explicitDenyOverridesAllow": true,
+    "neverAuthenticateUsers": true,
+    "neverReplaceAuthenticationWorker": true
+  },
+  "boundaries": [
+    "Does not authenticate users",
+    "Does not replace Authentication Worker",
+    "Does not override Pillow or Grand King",
+    "Does not implement Q6-09 or later"
+  ]
+}

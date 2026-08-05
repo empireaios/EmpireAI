@@ -1,0 +1,187 @@
+{
+  "reportId": "rcw-rpt-0001",
+  "timestamp": "2026-08-02T12:48:08.211Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "productOrServiceReviewed": "TrailBackpack Pro",
+  "reviewSummary": "Evidence-based review of TrailBackpack Pro covering features, pros/cons, and buying guidance.",
+  "pros": [
+    "Durable shell",
+    "Comfortable harness"
+  ],
+  "cons": [
+    "Premium price"
+  ],
+  "alternatives": [
+    {
+      "alternativeId": "rcw-alt-0026",
+      "productId": "prod-duffel-01",
+      "productName": "CityDuffel Lite",
+      "relativeToProductId": "prod-backpack-01",
+      "reason": "Evidence-backed alternative: best for city travelers; observed price 89; comparison score 70",
+      "tradeOff": "Less padding",
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "buyingRecommendation": {
+    "recommendationId": "rcw-buy-0027",
+    "productId": "prod-backpack-01",
+    "productName": "TrailBackpack Pro",
+    "verdict": "buy_with_conditions",
+    "summary": "TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals",
+    "conditions": [
+      "Review cons: Premium price",
+      "Best suited for weekend hikers"
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "comparison_site_report:csw-rpt-0001",
+    "fixtureProduct",
+    "fixtureAlternatives",
+    "pros_cons",
+    "buying_recommendation",
+    "version_history"
+  ],
+  "auditStatus": "ready_for_q805",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "RCW-001-v1",
+  "reportVersion": "RCW-RPT-v1",
+  "workerId": "wkr-review-content-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "productId": "prod-backpack-01",
+  "reviewArticle": {
+    "articleId": "rcw-article-0030",
+    "reviewType": "product",
+    "title": "TrailBackpack Pro review",
+    "productOrServiceReviewed": "TrailBackpack Pro",
+    "productId": "prod-backpack-01",
+    "summary": "Evidence-based review of TrailBackpack Pro covering features, pros/cons, and buying guidance.",
+    "keyFeatures": [
+      "waterproof",
+      "laptop_sleeve"
+    ],
+    "performanceSummary": "Observed specs: capacity_l=40",
+    "verdictSection": "buy with conditions — TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals",
+    "faqs": [
+      {
+        "question": "Who is TrailBackpack Pro best for?",
+        "answer": "Ideal for weekend hikers"
+      },
+      {
+        "question": "What are the main drawbacks?",
+        "answer": "Not ideal for ultra-light thru-hiking"
+      },
+      {
+        "question": "Is this review published live?",
+        "answer": "No. Review Content Worker produces structural review packages only and never publishes websites."
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "body": "Review of TrailBackpack Pro (travel_gear) derived from verified fixtures/opportunity/comparison evidence."
+      },
+      {
+        "heading": "Pros and cons",
+        "body": "Pros: Durable shell; Comfortable harness. Cons: Premium price."
+      },
+      {
+        "heading": "Limitations and trade-offs",
+        "body": "Not ideal for ultra-light thru-hiking. Trade-offs: Observed price 129 vs feature set; Strengths must be weighed against evidenced cons."
+      },
+      {
+        "heading": "Buying recommendation",
+        "body": "TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals"
+      }
+    ],
+    "version": 1,
+    "fabricated": false
+  },
+  "prosCons": {
+    "sectionId": "rcw-proscons-0025",
+    "productId": "prod-backpack-01",
+    "productName": "TrailBackpack Pro",
+    "pros": [
+      "Durable shell",
+      "Comfortable harness"
+    ],
+    "cons": [
+      "Premium price"
+    ],
+    "fabricated": false,
+    "derivedFromEvidence": true
+  },
+  "idealCustomerProfile": {
+    "profileId": "rcw-icp-0028",
+    "productId": "prod-backpack-01",
+    "productName": "TrailBackpack Pro",
+    "summary": "Ideal for weekend hikers",
+    "traits": [
+      "Seeking fit for weekend hikers",
+      "Values: waterproof, laptop_sleeve",
+      "Budget around observed USD 129"
+    ],
+    "fabricated": false,
+    "derivedFromEvidence": true
+  },
+  "limitations": {
+    "sectionId": "rcw-limit-0029",
+    "productId": "prod-backpack-01",
+    "productName": "TrailBackpack Pro",
+    "limitations": [
+      "Not ideal for ultra-light thru-hiking"
+    ],
+    "tradeOffs": [
+      "Observed price 129 vs feature set",
+      "Strengths must be weighed against evidenced cons"
+    ],
+    "fabricated": false,
+    "derivedFromEvidence": true
+  },
+  "versionHistory": [
+    {
+      "version": 1,
+      "articleId": "rcw-article-0030",
+      "reportId": "rcw-rpt-0001",
+      "timestamp": "2026-08-02T12:48:08.211Z",
+      "changeSummary": "Review v1 for TrailBackpack Pro"
+    }
+  ],
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "sourceComparisonReportId": "csw-rpt-0001",
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T12:48:08.211Z",
+  "consumableByQ805": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-04:affiliate_business:afc-biz-travel-gear-01",
+    "q8-04:affiliate_project:afc-prj-travel-gear-01",
+    "q8-04:product:prod-backpack-01",
+    "q8-04:article:rcw-article-0030",
+    "q8-04:version:1",
+    "q8-02:opportunity:aow-rpt-0001",
+    "q8-03:comparison:csw-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverFabricateReviewsRatingsOrProductInformation": true,
+  "neverPublishWebsites": true,
+  "neverManipulateRatings": true,
+  "neverReplaceComparisonSiteWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ805OrLater": true
+}

@@ -1,0 +1,47 @@
+{
+  "computedAt": "2026-08-04T14:45:00.000Z",
+  "missionId": "Q10-12",
+  "engineVersion": "PILLOW-SCHRT-001",
+  "runtimeVersion": "Q10-SCHRT-v1",
+  "metadataVersion": "SCHRT-001-v1",
+  "reportVersion": "SCHRT-RPT-v1",
+  "workerId": "wkr-scheduling-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionRecoveryRuntime": {
+    "missionId": "Q10-11",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverFabricateExecutionTimes": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverReplaceQueueRuntime": true,
+    "neverReplaceMissionRuntime": true,
+    "neverExecuteUnauthorizedWork": true,
+    "neverImplementQ1013OrLater": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "deterministicSchedulingBehaviour": true,
+    "structuralSignalOnly": true
+  },
+  "seedSchedules": [
+    "sched-daily-01",
+    "sched-weekly-01",
+    "sched-onetime-01",
+    "sched-event-01",
+    "sched-cron-01"
+  ],
+  "q1013ContractExposed": true,
+  "consumableByQ1013": true,
+  "recoveryQ1012NotesCorrected": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Scheduling Runtime Q10-12 certified — stops at Q10-12, exposes Q1013ConsumableContract for Q10-13",
+    "Never fabricates execution times; deterministic nextExecution computation",
+    "Structural mission/queue signals only — does not replace Queue or Mission Runtime",
+    "Distinct from queue-runtime/scheduler.ts"
+  ]
+}

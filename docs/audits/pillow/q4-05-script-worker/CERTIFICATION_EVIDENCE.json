@@ -1,0 +1,74 @@
+{
+  "missionId": "Q4-05",
+  "doctrine": "PILLOW-SCW-001",
+  "moduleId": "script-worker",
+  "metadataVersion": "SCW-001-v1",
+  "reportVersion": "SCW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Write scripts for long-form videos, shorts, reels, documentaries, explainers, and social content.",
+  "prerequisites": [
+    { "missionId": "Q4-04", "doctrine": "PILLOW-TPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-02", "doctrine": "PILLOW-ECW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverGenerateVisuals": true,
+    "neverGenerateVoiceovers": true,
+    "neverAssembleVideos": true,
+    "neverPublishContent": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ406OrLater": true
+  },
+  "scriptReportFields": [
+    "scriptId",
+    "timestamp",
+    "channelId",
+    "topicId",
+    "contentFormat",
+    "targetAudience",
+    "scriptTitle",
+    "scriptSections",
+    "estimatedDuration",
+    "editorialCompliance",
+    "selfReviewSummary",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "contentFormats": [
+    "long_form_video",
+    "short",
+    "reel",
+    "documentary",
+    "explainer",
+    "educational",
+    "news",
+    "list_video",
+    "social_content"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "editor_in_chief_worker",
+    "topic_planner_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/script-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/script-worker/",
+    "config": "config/script-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SCRIPT_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/script-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/script-worker.test.ts"
+  },
+  "notes": [
+    "Creates production-ready scripts only; does not generate visuals, voiceovers, assemble videos, or publish."
+  ]
+}

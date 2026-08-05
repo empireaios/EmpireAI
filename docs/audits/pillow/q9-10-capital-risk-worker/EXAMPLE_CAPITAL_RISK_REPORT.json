@@ -1,0 +1,23 @@
+{
+  "reportId": "caprw-rpt-000001",
+  "metadataVersion": "CAPRW-001-v1",
+  "reportVersion": "CAPRW-RPT-v1",
+  "workerId": "wkr-capital-risk-01",
+  "missionId": "Q9-10",
+  "capitalBusinessId": "caprw-biz-alpha-01",
+  "capitalProjectId": "cap-proj-caprw-01",
+  "reportingPeriod": "2026-Q2",
+  "currency": "SGD",
+  "consumableByQ911": true,
+  "neverApproveFinancialDecisions": true,
+  "neverExecuteInvestments": true,
+  "neverMoveCapital": true,
+  "neverModifyAccountingRecords": true,
+  "neverFabricateRisksOrEvidence": true,
+  "neverAutomaticallyExecuteMitigation": true,
+  "neverImplementQ911OrLater": true,
+  "observedRisksDistinctFromPredictions": true,
+  "detectedRisksCount": 6,
+  "confidenceScore": 85,
+  "auditStatus": "pending"
+}

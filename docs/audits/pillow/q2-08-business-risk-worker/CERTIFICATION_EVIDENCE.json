@@ -1,0 +1,81 @@
+{
+  "missionId": "Q2-08",
+  "doctrine": "PILLOW-BRW-001",
+  "moduleId": "business-risk-worker",
+  "metadataVersion": "BRW-001-v1",
+  "reportVersion": "BRW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Identify legal, operational, financial, brand, platform, and execution risks.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-05", "doctrine": "PILLOW-OEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-06", "doctrine": "PILLOW-BBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-07", "doctrine": "PILLOW-LPW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverRemoveRisksAutomatically": true,
+    "neverApproveBusiness": true,
+    "neverRejectBusiness": true,
+    "neverLaunchBusiness": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ209OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "business_blueprint_worker",
+    "launch_plan_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "riskCategories": [
+    "legal",
+    "operational",
+    "financial",
+    "brand",
+    "marketplace_platform",
+    "supplier",
+    "technical",
+    "security",
+    "compliance",
+    "execution"
+  ],
+  "riskReportFields": [
+    "riskReportId",
+    "timestamp",
+    "businessBuildMissionId",
+    "businessBlueprintId",
+    "launchPlanId",
+    "riskCategory",
+    "riskDescription",
+    "likelihood",
+    "impact",
+    "overallRiskRating",
+    "recommendedMitigation",
+    "residualRisk",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "namingNote": "Public type aliased as BrwBusinessRiskReport to avoid collision with global/cross-business risk types.",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/business-risk-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/business-risk-worker/",
+    "config": "config/business-risk-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_BUSINESS_RISK_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/business-risk-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/business-risk-worker.test.ts"
+  },
+  "notes": [
+    "Assessment-only worker: recommends mitigations but never removes, approves, rejects, or launches."
+  ]
+}

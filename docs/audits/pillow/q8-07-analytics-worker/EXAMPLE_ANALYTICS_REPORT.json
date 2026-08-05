@@ -1,0 +1,253 @@
+{
+  "reportId": "anw-rpt-0001",
+  "timestamp": "2026-08-02T15:33:47.877Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "clickMetrics": {
+    "metricsId": "anw-clicks-0081",
+    "clicks": 1200,
+    "uniqueClicks": 980,
+    "impressions": 40000,
+    "ctr": 0.03,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "conversionMetrics": {
+    "metricsId": "anw-conv-0082",
+    "conversions": 36,
+    "conversionRate": 0.03,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "commissionSummary": {
+    "summaryId": "anw-comm-0083",
+    "commissionAmount": 288,
+    "currency": "USD",
+    "epc": 0.24,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "revenueSummary": {
+    "summaryId": "anw-rev-0084",
+    "revenueAmount": 3600,
+    "currency": "USD",
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "seoPerformance": {
+    "summaryId": "anw-seo-0085",
+    "organicSessions": 5400,
+    "averageRank": 18.5,
+    "rankingKeywords": 42,
+    "contentCompleteness": 0.85,
+    "notes": [
+      "SEO content completeness=0.85"
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "funnelPerformance": {
+    "summaryId": "anw-funnel-0086",
+    "funnelStarts": 800,
+    "funnelCompletions": 96,
+    "completionRate": 0.12,
+    "emailOpens": 420,
+    "emailClicks": 88,
+    "stageCount": 3,
+    "notes": [
+      "funnel=travel_gear email funnel"
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "optimisationOpportunities": [
+    {
+      "opportunityId": "anw-opt-0088",
+      "area": "conversions",
+      "recommendation": "Address downward conversions trend before scaling spend",
+      "rationale": "conversions moved down by -4 vs prior period (40 → 36)",
+      "priority": "medium",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "opportunityId": "anw-opt-0089",
+      "area": "commissions",
+      "recommendation": "Address downward commissionAmount trend before scaling spend",
+      "rationale": "commissionAmount moved down by -32 vs prior period (320 → 288)",
+      "priority": "medium",
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "trendAnalysis": {
+    "analysisId": "anw-trend-0087",
+    "trends": [
+      {
+        "metric": "clicks",
+        "direction": "up",
+        "current": 1200,
+        "prior": 900,
+        "delta": 300,
+        "evidencePresent": true
+      },
+      {
+        "metric": "conversions",
+        "direction": "down",
+        "current": 36,
+        "prior": 40,
+        "delta": -4,
+        "evidencePresent": true
+      },
+      {
+        "metric": "commissionAmount",
+        "direction": "down",
+        "current": 288,
+        "prior": 320,
+        "delta": -32,
+        "evidencePresent": true
+      },
+      {
+        "metric": "organicSessions",
+        "direction": "up",
+        "current": 5400,
+        "prior": 5000,
+        "delta": 400,
+        "evidencePresent": true
+      }
+    ],
+    "anomalies": [],
+    "summary": "Observed 4 metric trend(s); 0 anomaly signal(s).",
+    "fabricated": false
+  },
+  "auditStatus": "ready_for_q808",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "ANW-001-v1",
+  "reportVersion": "ANW-RPT-v1",
+  "workerId": "wkr-analytics-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "kpiDashboard": {
+    "dashboardId": "anw-kpi-0090",
+    "periodLabel": "2026-Q2",
+    "kpis": [
+      {
+        "key": "clicks",
+        "label": "Clicks",
+        "value": 1200,
+        "unit": "count",
+        "evidencePresent": true
+      },
+      {
+        "key": "ctr",
+        "label": "CTR",
+        "value": 0.03,
+        "unit": "ratio",
+        "evidencePresent": true
+      },
+      {
+        "key": "conversions",
+        "label": "Conversions",
+        "value": 36,
+        "unit": "count",
+        "evidencePresent": true
+      },
+      {
+        "key": "commission",
+        "label": "Commission",
+        "value": 288,
+        "unit": "USD",
+        "evidencePresent": true
+      },
+      {
+        "key": "epc",
+        "label": "EPC",
+        "value": 0.24,
+        "unit": "amount_per_click",
+        "evidencePresent": true
+      },
+      {
+        "key": "revenue",
+        "label": "Revenue",
+        "value": 3600,
+        "unit": "USD",
+        "evidencePresent": true
+      },
+      {
+        "key": "organic_sessions",
+        "label": "Organic sessions",
+        "value": 5400,
+        "unit": "count",
+        "evidencePresent": true
+      },
+      {
+        "key": "funnel_completion_rate",
+        "label": "Funnel completion rate",
+        "value": 0.12,
+        "unit": "ratio",
+        "evidencePresent": true
+      }
+    ],
+    "notes": [
+      "KPI values reflect evidenced fixture/snapshot metrics only",
+      "Null values mean not evidenced — never fabricated",
+      "Analytics Worker never modifies campaigns automatically"
+    ]
+  },
+  "history": [
+    {
+      "entryId": "anw-hist-0091",
+      "reportId": "anw-rpt-0001",
+      "timestamp": "2026-08-02T15:33:47.877Z",
+      "clicks": 1200,
+      "conversions": 36,
+      "commissionAmount": 288,
+      "revenueAmount": 3600
+    }
+  ],
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "seo_content_report:seow-rpt-0001",
+    "email_funnel_report:efw-rpt-0001",
+    "metricSnapshot",
+    "click_metrics",
+    "conversion_metrics",
+    "commission_summary",
+    "seo_performance",
+    "funnel_performance",
+    "trend_analysis",
+    "analytics_history"
+  ],
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "sourceSeoReportId": "seow-rpt-0001",
+  "sourceFunnelReportId": "efw-rpt-0001",
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T15:33:47.877Z",
+  "consumableByQ808": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-07:affiliate_business:afc-biz-travel-gear-01",
+    "q8-07:affiliate_project:afc-prj-travel-gear-01",
+    "q8-07:period:2026-Q2",
+    "q8-02:opportunity:aow-rpt-0001",
+    "q8-05:seo:seow-rpt-0001",
+    "q8-06:funnel:efw-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAnalyticsHistory": true,
+  "neverFabricateAnalyticsOrPerformanceResults": true,
+  "neverModifyCampaignsAutomatically": true,
+  "neverManipulateAnalytics": true,
+  "neverReplaceAffiliateComplianceWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ808OrLater": true
+}

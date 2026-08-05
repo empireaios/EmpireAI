@@ -1,0 +1,53 @@
+{
+  "computedAt": "2026-08-05T01:00:00.000Z",
+  "missionId": "Q11-01",
+  "engineVersion": "PILLOW-PCCRT-001",
+  "runtimeVersion": "Q11-PCCRT-v1",
+  "metadataVersion": "PCCRT-001-v1",
+  "reportVersion": "PCCRT-RPT-v1",
+  "workerId": "wkr-production-certification-core-01",
+  "certificationStatus": "passed",
+  "decision": "Certified",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionSharedRuntimeCertification": {
+    "missionId": "Q10-14",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "programmesRegistered": 12,
+  "factoriesDiscovered": 10,
+  "runtimesDiscovered": 13,
+  "boundaryLocks": {
+    "neverFabricateCertificationEvidence": true,
+    "neverCertifyMissingCapabilities": true,
+    "neverAssumeImplementation": true,
+    "neverImplementMissingCapabilities": true,
+    "neverModifyProductionLogic": true,
+    "neverReplaceIndividualAuditProgrammes": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ1102OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveImmutableCertificationHistory": true,
+    "evidenceBasedOnly": true,
+    "structuralSignalOnly": true
+  },
+  "q1102ContractExposed": true,
+  "consumableByQ1102": true,
+  "q1101ContractConsumed": true,
+  "finalQ11CoreGate": true,
+  "distinctFrom": [
+    "backend/src/orchestration/production-certification",
+    "profit-calculation-engine"
+  ],
+  "notes": [
+    "Production Certification Core Q11-01 certified — stops at Q11-01, exposes Q1102ConsumableContract for Q11-02",
+    "Programmes registered; factories/workers/runtimes discovered from evidence — never fabricated",
+    "Consumes Q1101 from Shared Runtime Certification structurally",
+    "Wired into Pillow session, orchestrator subsystem registry, and host API routes"
+  ]
+}

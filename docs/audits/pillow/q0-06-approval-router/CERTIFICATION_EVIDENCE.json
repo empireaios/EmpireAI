@@ -1,0 +1,57 @@
+{
+  "missionId": "Q0-06",
+  "doctrine": "PILLOW-AR-001",
+  "moduleId": "approval-router",
+  "metadataVersion": "AR-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Routes actions requiring Grand King approval before execution.",
+  "boundaries": {
+    "neverApproveRequests": true,
+    "neverExecuteRequests": true,
+    "neverAssignWorkers": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "approvalRequestFields": [
+    "approvalId",
+    "timestamp",
+    "requestId",
+    "relatedBusiness",
+    "relatedMission",
+    "requestSummary",
+    "requestedAction",
+    "approvalLevel",
+    "reasonApprovalIsRequired",
+    "riskAssessment",
+    "expectedImpact",
+    "currentStatus",
+    "approvalHistory",
+    "metadataVersion"
+  ],
+  "approvalLevels": [
+    "autonomous",
+    "pillow_approval",
+    "grand_king_approval",
+    "multi_stage_approval"
+  ],
+  "approvalStates": [
+    "pending",
+    "approved",
+    "rejected",
+    "cancelled",
+    "expired",
+    "escalated"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/approval-router.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/approval-router/",
+    "config": "config/approval-router.config.json",
+    "doctrine": "docs/governance/EMPIREAI_APPROVAL_ROUTER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/approval-router-bridge.ts",
+    "tests": "pillow/src/validation/tests/approval-router.test.ts"
+  }
+}

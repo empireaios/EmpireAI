@@ -1,0 +1,64 @@
+{
+  "reportId": "por-rpt-example-001",
+  "timestamp": "2026-08-04T01:15:00.000Z",
+  "runtimeVersion": "Q10-POR-v1",
+  "sessionId": "por-session-example-001",
+  "requestId": "por-req-example-001",
+  "invokedWorkers": [
+    {
+      "invocationId": "por-inv-worker-example-001",
+      "kind": "worker",
+      "status": "structural_recorded",
+      "handlerInvoked": false,
+      "fabricated": false,
+      "evidence": ["worker_structural:wkr-capital-factory-core-01"],
+      "structuralSignalOnly": true
+    }
+  ],
+  "invokedTools": [
+    {
+      "invocationId": "por-inv-tool-example-001",
+      "kind": "tool",
+      "status": "structural_recorded",
+      "handlerInvoked": false,
+      "fabricated": false,
+      "evidence": ["tool_structural:factory_registry"],
+      "structuralSignalOnly": true
+    }
+  ],
+  "invokedWorkflows": [],
+  "approvalActions": [],
+  "reportsGenerated": [],
+  "executionTimeline": [
+    {
+      "entryId": "por-event-example-001",
+      "timestamp": "2026-08-04T01:15:00.000Z",
+      "kind": "session",
+      "label": "session_created",
+      "status": "succeeded"
+    }
+  ],
+  "runtimeState": "active",
+  "successFailureStatus": "success",
+  "supportingEvidence": [
+    "Pillow Orchestration Runtime structural orchestration records",
+    "config/pillow-orchestration-runtime.config.json"
+  ],
+  "auditStatus": "partial",
+  "outstandingIssues": [],
+  "confidenceScore": 78,
+  "metadataVersion": "POR-001-v1",
+  "reportVersion": "POR-RPT-v1",
+  "workerId": "wkr-pillow-orchestration-runtime-01",
+  "consumableByQ1003": true,
+  "neverReplaceWorkerImplementations": true,
+  "neverReplaceToolImplementations": true,
+  "neverExecuteUnauthorisedActions": true,
+  "neverFabricateExecutionResults": true,
+  "neverBypassApprovalRuntime": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ1003OrLater": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

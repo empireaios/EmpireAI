@@ -1,0 +1,906 @@
+{
+  "reportId": "perfart-rpt-0001",
+  "timestamp": "2026-08-04T23:35:18.626Z",
+  "auditVersion": "Q11-PERFART-v1",
+  "engineId": "PILLOW-PERFART-001",
+  "missionId": "Q11-06",
+  "totalPerformanceComponents": 10,
+  "certifiedComponents": 10,
+  "partiallyCertifiedComponents": 0,
+  "failedComponents": 0,
+  "missingComponents": 0,
+  "blockedComponents": 0,
+  "deferredComponents": 0,
+  "benchmarkSummary": {
+    "totalBenchmarks": 10,
+    "passedCount": 10,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "averageResponseTimeMs": 0,
+    "averageThroughput": 1009,
+    "averageErrorRate": 0,
+    "evidence": [
+      "benchmarks: passed=10 partial=0 failed=0 missing=0 of 10",
+      "averageResponseTimeMs=0",
+      "averageThroughput=1009",
+      "averageErrorRate=0"
+    ]
+  },
+  "workerPerformanceSummary": {
+    "segment": "worker",
+    "passedCount": 1,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "totalComponents": 1,
+    "evidence": [
+      "worker: passed=1 partial=0 failed=0 missing=0 of 1"
+    ]
+  },
+  "factoryPerformanceSummary": {
+    "segment": "factory",
+    "passedCount": 1,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "totalComponents": 1,
+    "evidence": [
+      "factory: passed=1 partial=0 failed=0 missing=0 of 1"
+    ]
+  },
+  "runtimePerformanceSummary": {
+    "segment": "runtime",
+    "passedCount": 6,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "totalComponents": 6,
+    "evidence": [
+      "runtime: passed=6 partial=0 failed=0 missing=0 of 6"
+    ]
+  },
+  "apiPerformanceSummary": {
+    "segment": "api",
+    "passedCount": 1,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "totalComponents": 1,
+    "evidence": [
+      "api: passed=1 partial=0 failed=0 missing=0 of 1"
+    ]
+  },
+  "queuePerformanceSummary": {
+    "segment": "queue",
+    "passedCount": 1,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "totalComponents": 1,
+    "evidence": [
+      "queue: passed=1 partial=0 failed=0 missing=0 of 1"
+    ]
+  },
+  "bottleneckSummary": {
+    "computedAt": "2026-08-04T23:35:18.623Z",
+    "totalBottlenecks": 0,
+    "rows": [],
+    "evidence": []
+  },
+  "resourceUtilisationSummary": {
+    "computedAt": "2026-08-04T23:35:18.624Z",
+    "heapUsedMb": 17.12,
+    "heapTotalMb": 30.2,
+    "rssMb": 87.82,
+    "cpuUserMs": 0,
+    "cpuSystemMs": 0,
+    "rows": [
+      {
+        "componentId": "worker-registry",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "worker-registry: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "shared-runtime-core",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "shared-runtime-core: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "monitoring-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "monitoring-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "api-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "api-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "queue-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "queue-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "scheduling-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "scheduling-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "audit-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "audit-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "executive-reporting-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "executive-reporting-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "production-certification-core",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "production-certification-core: memoryUsage=16.89 cpuUsage=0"
+        ]
+      },
+      {
+        "componentId": "pillow-orchestration-runtime",
+        "memoryUsageMb": 16.89,
+        "cpuUsagePercent": 0,
+        "evidence": [
+          "pillow-orchestration-runtime: memoryUsage=16.89 cpuUsage=0"
+        ]
+      }
+    ],
+    "evidence": [
+      "heapUsed before=17.12MB after=17.12MB",
+      "rss=87.82MB",
+      "cpu user=0ms system=0ms (measured via process.cpuUsage() delta around the benchmark batch)"
+    ]
+  },
+  "sustainedStabilitySummary": {
+    "computedAt": "2026-08-04T23:35:18.625Z",
+    "repeats": 3,
+    "rows": [
+      {
+        "componentId": "worker-registry",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "worker-registry: 3/3 repeated listWorkers() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "shared-runtime-core",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "shared-runtime-core: 3/3 repeated getCatalog() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "monitoring-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "monitoring-runtime: 3/3 repeated getDashboard() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "api-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "api-runtime: 3/3 repeated checkHealth() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "queue-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "queue-runtime: 3/3 repeated getState() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "scheduling-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "scheduling-runtime: 3/3 repeated getState() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "audit-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "audit-runtime: 3/3 repeated query() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "executive-reporting-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "executive-reporting-runtime: 3/3 repeated getState() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "production-certification-core",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "production-certification-core: 3/3 repeated getCertificationResults() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      },
+      {
+        "componentId": "pillow-orchestration-runtime",
+        "samples": [
+          0,
+          0,
+          0
+        ],
+        "meanMs": 0,
+        "varianceMs": 0,
+        "errorCount": 0,
+        "stabilityStatus": "Passed",
+        "stabilityLabel": "stable",
+        "evidence": [
+          "pillow-orchestration-runtime: 3/3 repeated getState() probes succeeded, mean=0ms variance=0ms (threshold=100ms)"
+        ]
+      }
+    ],
+    "overallStabilityStatus": "Passed",
+    "evidence": [
+      "worker-registry: stable (mean=0ms variance=0ms)",
+      "shared-runtime-core: stable (mean=0ms variance=0ms)",
+      "monitoring-runtime: stable (mean=0ms variance=0ms)",
+      "api-runtime: stable (mean=0ms variance=0ms)",
+      "queue-runtime: stable (mean=0ms variance=0ms)",
+      "scheduling-runtime: stable (mean=0ms variance=0ms)",
+      "audit-runtime: stable (mean=0ms variance=0ms)",
+      "executive-reporting-runtime: stable (mean=0ms variance=0ms)",
+      "production-certification-core: stable (mean=0ms variance=0ms)",
+      "pillow-orchestration-runtime: stable (mean=0ms variance=0ms)"
+    ]
+  },
+  "integrationSummary": {
+    "verifiedAt": "2026-08-04T23:35:18.625Z",
+    "rows": [
+      {
+        "target": "security_audit",
+        "bound": true,
+        "evidence": "security_audit: bound"
+      },
+      {
+        "target": "production_certification_core",
+        "bound": true,
+        "evidence": "production_certification_core: bound"
+      },
+      {
+        "target": "shared_runtime_core",
+        "bound": true,
+        "evidence": "shared_runtime_core: bound"
+      },
+      {
+        "target": "monitoring_runtime",
+        "bound": true,
+        "evidence": "monitoring_runtime: bound"
+      },
+      {
+        "target": "audit_runtime",
+        "bound": true,
+        "evidence": "audit_runtime: bound"
+      },
+      {
+        "target": "queue_runtime",
+        "bound": true,
+        "evidence": "queue_runtime: bound"
+      },
+      {
+        "target": "api_runtime",
+        "bound": true,
+        "evidence": "api_runtime: bound"
+      },
+      {
+        "target": "worker_registry",
+        "bound": true,
+        "evidence": "worker_registry: bound"
+      },
+      {
+        "target": "executive_reporting_runtime",
+        "bound": true,
+        "evidence": "executive_reporting_runtime: bound"
+      },
+      {
+        "target": "pillow_orchestration_runtime",
+        "bound": true,
+        "evidence": "pillow_orchestration_runtime: bound"
+      },
+      {
+        "target": "scheduling_runtime",
+        "bound": true,
+        "evidence": "scheduling_runtime: bound"
+      }
+    ],
+    "totalTargets": 11,
+    "boundCount": 11,
+    "allBound": true,
+    "evidence": [
+      "security_audit: bound",
+      "production_certification_core: bound",
+      "shared_runtime_core: bound",
+      "monitoring_runtime: bound",
+      "audit_runtime: bound",
+      "queue_runtime: bound",
+      "api_runtime: bound",
+      "worker_registry: bound",
+      "executive_reporting_runtime: bound",
+      "pillow_orchestration_runtime: bound",
+      "scheduling_runtime: bound"
+    ]
+  },
+  "governanceSummary": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "performanceAuditRequired": true,
+    "selfDocPresent": true,
+    "selfDocPath": "docs/governance/EMPIREAI_PERFORMANCE_AUDIT_SYSTEM.md",
+    "boundaryLocksHonoured": true,
+    "requiredComponentsBoundCount": 3,
+    "totalRequiredComponents": 3,
+    "evidence": [
+      "selfDocPresent=true",
+      "containsExpectedLabel=true",
+      "boundaryLocksHonoured=true",
+      "requiredComponentsBoundCount=3/3"
+    ]
+  },
+  "outstandingIssues": [],
+  "supportingEvidence": [
+    "worker-registry: worker-registry: discovered=true",
+    "worker-registry: worker-registry: measured listWorkers() responseTime=0ms (threshold=250ms)",
+    "worker-registry: worker-registry: worker-registry: 10/10 listWorkers() calls succeeded across 1ms (10000 ops/sec)",
+    "worker-registry: worker-registry: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "shared-runtime-core: shared-runtime-core: discovered=true",
+    "shared-runtime-core: shared-runtime-core: measured getCatalog() responseTime=0ms (threshold=250ms)",
+    "shared-runtime-core: shared-runtime-core: shared-runtime-core: 10/10 getCatalog() calls succeeded across 0ms (10 ops/sec)",
+    "shared-runtime-core: shared-runtime-core: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "monitoring-runtime: monitoring-runtime: discovered=true",
+    "monitoring-runtime: monitoring-runtime: measured getDashboard() responseTime=0ms (threshold=250ms)",
+    "monitoring-runtime: monitoring-runtime: monitoring-runtime: 10/10 getDashboard() calls succeeded across 0ms (10 ops/sec)",
+    "monitoring-runtime: monitoring-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "api-runtime: api-runtime: discovered=true",
+    "api-runtime: api-runtime: measured checkHealth() responseTime=0ms (threshold=250ms)",
+    "api-runtime: api-runtime: api-runtime: 10/10 checkHealth() calls succeeded across 0ms (10 ops/sec)",
+    "api-runtime: api-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "queue-runtime: queue-runtime: discovered=true",
+    "queue-runtime: queue-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+    "queue-runtime: queue-runtime: queue-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+    "queue-runtime: queue-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "scheduling-runtime: scheduling-runtime: discovered=true",
+    "scheduling-runtime: scheduling-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+    "scheduling-runtime: scheduling-runtime: scheduling-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+    "scheduling-runtime: scheduling-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "audit-runtime: audit-runtime: discovered=true",
+    "audit-runtime: audit-runtime: measured query() responseTime=0ms (threshold=250ms)",
+    "audit-runtime: audit-runtime: audit-runtime: 10/10 query() calls succeeded across 0ms (10 ops/sec)",
+    "audit-runtime: audit-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "executive-reporting-runtime: executive-reporting-runtime: discovered=true",
+    "executive-reporting-runtime: executive-reporting-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+    "executive-reporting-runtime: executive-reporting-runtime: executive-reporting-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+    "executive-reporting-runtime: executive-reporting-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "production-certification-core: production-certification-core: discovered=true",
+    "production-certification-core: production-certification-core: measured getCertificationResults() responseTime=0ms (threshold=250ms)",
+    "production-certification-core: production-certification-core: production-certification-core: 10/10 getCertificationResults() calls succeeded across 0ms (10 ops/sec)",
+    "production-certification-core: production-certification-core: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate",
+    "pillow-orchestration-runtime: pillow-orchestration-runtime: discovered=true",
+    "pillow-orchestration-runtime: pillow-orchestration-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+    "pillow-orchestration-runtime: pillow-orchestration-runtime: pillow-orchestration-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+    "pillow-orchestration-runtime: pillow-orchestration-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+  ],
+  "confidenceScore": 1,
+  "metadataVersion": "PERFART-001-v1",
+  "reportVersion": "PERFART-RPT-v1",
+  "workerId": "wkr-performance-audit-01",
+  "findings": [
+    "worker-registry: certified",
+    "shared-runtime-core: certified",
+    "monitoring-runtime: certified",
+    "api-runtime: certified",
+    "queue-runtime: certified",
+    "scheduling-runtime: certified",
+    "audit-runtime: certified",
+    "executive-reporting-runtime: certified",
+    "production-certification-core: certified",
+    "pillow-orchestration-runtime: certified"
+  ],
+  "assessments": [
+    {
+      "benchmarkId": "perfart-bench-0001",
+      "componentId": "worker-registry",
+      "componentType": "worker_performance_benchmark",
+      "testScenario": "worker-registry: structural workload benchmark via listWorkers()",
+      "responseTime": 0,
+      "throughput": 10000,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "worker-registry: discovered=true",
+        "worker-registry: measured listWorkers() responseTime=0ms (threshold=250ms)",
+        "worker-registry: worker-registry: 10/10 listWorkers() calls succeeded across 1ms (10000 ops/sec)",
+        "worker-registry: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:worker-registry",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0002",
+      "componentId": "shared-runtime-core",
+      "componentType": "factory_performance_benchmark",
+      "testScenario": "shared-runtime-core: structural workload benchmark via getCatalog()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "shared-runtime-core: discovered=true",
+        "shared-runtime-core: measured getCatalog() responseTime=0ms (threshold=250ms)",
+        "shared-runtime-core: shared-runtime-core: 10/10 getCatalog() calls succeeded across 0ms (10 ops/sec)",
+        "shared-runtime-core: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:shared-runtime-core",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0003",
+      "componentId": "monitoring-runtime",
+      "componentType": "resource_stability_benchmark",
+      "testScenario": "monitoring-runtime: structural workload benchmark via getDashboard()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "monitoring-runtime: discovered=true",
+        "monitoring-runtime: measured getDashboard() responseTime=0ms (threshold=250ms)",
+        "monitoring-runtime: monitoring-runtime: 10/10 getDashboard() calls succeeded across 0ms (10 ops/sec)",
+        "monitoring-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:monitoring-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0004",
+      "componentId": "api-runtime",
+      "componentType": "api_load_benchmark",
+      "testScenario": "api-runtime: structural workload benchmark via checkHealth()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "api-runtime: discovered=true",
+        "api-runtime: measured checkHealth() responseTime=0ms (threshold=250ms)",
+        "api-runtime: api-runtime: 10/10 checkHealth() calls succeeded across 0ms (10 ops/sec)",
+        "api-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:api-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0005",
+      "componentId": "queue-runtime",
+      "componentType": "queue_throughput_benchmark",
+      "testScenario": "queue-runtime: structural workload benchmark via getState()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "queue-runtime: discovered=true",
+        "queue-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+        "queue-runtime: queue-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+        "queue-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:queue-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0006",
+      "componentId": "scheduling-runtime",
+      "componentType": "schedule_execution_benchmark",
+      "testScenario": "scheduling-runtime: structural workload benchmark via getState()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "scheduling-runtime: discovered=true",
+        "scheduling-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+        "scheduling-runtime: scheduling-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+        "scheduling-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:scheduling-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0007",
+      "componentId": "audit-runtime",
+      "componentType": "audit_trail_benchmark",
+      "testScenario": "audit-runtime: structural workload benchmark via query()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "audit-runtime: discovered=true",
+        "audit-runtime: measured query() responseTime=0ms (threshold=250ms)",
+        "audit-runtime: audit-runtime: 10/10 query() calls succeeded across 0ms (10 ops/sec)",
+        "audit-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:audit-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0008",
+      "componentId": "executive-reporting-runtime",
+      "componentType": "reporting_benchmark",
+      "testScenario": "executive-reporting-runtime: structural workload benchmark via getState()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "executive-reporting-runtime: discovered=true",
+        "executive-reporting-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+        "executive-reporting-runtime: executive-reporting-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+        "executive-reporting-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:executive-reporting-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0009",
+      "componentId": "production-certification-core",
+      "componentType": "certification_signal_benchmark",
+      "testScenario": "production-certification-core: structural workload benchmark via getCertificationResults()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "production-certification-core: discovered=true",
+        "production-certification-core: measured getCertificationResults() responseTime=0ms (threshold=250ms)",
+        "production-certification-core: production-certification-core: 10/10 getCertificationResults() calls succeeded across 0ms (10 ops/sec)",
+        "production-certification-core: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:production-certification-core",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    },
+    {
+      "benchmarkId": "perfart-bench-0010",
+      "componentId": "pillow-orchestration-runtime",
+      "componentType": "workflow_benchmark",
+      "testScenario": "pillow-orchestration-runtime: structural workload benchmark via getState()",
+      "responseTime": 0,
+      "throughput": 10,
+      "latency": 0,
+      "cpuUsage": 0,
+      "memoryUsage": 16.89,
+      "errorRate": 0,
+      "stabilityStatus": "Passed",
+      "performanceClassification": "certified",
+      "supportingEvidence": [
+        "pillow-orchestration-runtime: discovered=true",
+        "pillow-orchestration-runtime: measured getState() responseTime=0ms (threshold=250ms)",
+        "pillow-orchestration-runtime: pillow-orchestration-runtime: 10/10 getState() calls succeeded across 0ms (10 ops/sec)",
+        "pillow-orchestration-runtime: cpuUsage/memoryUsage reflect a process-level structural signal measured once per audit run (Node does not expose reliable per-call attribution); never a fabricated per-component estimate"
+      ],
+      "auditReference": "component:pillow-orchestration-runtime",
+      "auditTimestamp": "2026-08-04T23:35:18.620Z"
+    }
+  ],
+  "decision": "certify",
+  "auditStatus": "certified",
+  "validation": {
+    "validationReportId": "perfart-val-1785886518626",
+    "validationTimestamp": "2026-08-04T23:35:18.626Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 9,
+    "metadataVersion": "PERFART-001-v1"
+  },
+  "performanceReadinessSummary": {
+    "computedAt": "2026-08-04T23:35:18.621Z",
+    "totalComponents": 10,
+    "certifiedCount": 10,
+    "partiallyCertifiedCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "overallReadinessScore": 1,
+    "allCertified": true,
+    "notes": [
+      "All catalogued performance components observed certified"
+    ],
+    "evidence": [
+      "worker-registry:certified",
+      "shared-runtime-core:certified",
+      "monitoring-runtime:certified",
+      "api-runtime:certified",
+      "queue-runtime:certified",
+      "scheduling-runtime:certified",
+      "audit-runtime:certified",
+      "executive-reporting-runtime:certified",
+      "production-certification-core:certified",
+      "pillow-orchestration-runtime:certified"
+    ]
+  },
+  "componentInventory": [
+    {
+      "componentKey": "worker-registry",
+      "componentName": "Worker Registry",
+      "componentType": "worker_performance_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "shared-runtime-core",
+      "componentName": "Shared Runtime Core",
+      "componentType": "factory_performance_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "monitoring-runtime",
+      "componentName": "Monitoring Runtime",
+      "componentType": "resource_stability_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "api-runtime",
+      "componentName": "API Runtime",
+      "componentType": "api_load_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "queue-runtime",
+      "componentName": "Queue Runtime",
+      "componentType": "queue_throughput_benchmark",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "scheduling-runtime",
+      "componentName": "Scheduling Runtime",
+      "componentType": "schedule_execution_benchmark",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "audit-runtime",
+      "componentName": "Audit Runtime",
+      "componentType": "audit_trail_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "executive-reporting-runtime",
+      "componentName": "Executive Reporting Runtime",
+      "componentType": "reporting_benchmark",
+      "bound": true,
+      "healthStatus": "active",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "production-certification-core",
+      "componentName": "Production Certification Core",
+      "componentType": "certification_signal_benchmark",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "pillow-orchestration-runtime",
+      "componentName": "Pillow Orchestration Runtime",
+      "componentType": "workflow_benchmark",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    }
+  ],
+  "q1106ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "SECART-001-v1",
+    "fields": [
+      "assessments",
+      "decision"
+    ],
+    "evidence": "Injected Q11-05 security-audit handshake returned explicit consumableByQ1106 contract"
+  },
+  "consumableByQ1107": true,
+  "neverImplementQ1107OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "sixthQ11Gate": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q11-06:performance-audit",
+    "q11-05:security-audit",
+    "component:worker-registry:classification:certified",
+    "component:shared-runtime-core:classification:certified",
+    "component:monitoring-runtime:classification:certified",
+    "component:api-runtime:classification:certified",
+    "component:queue-runtime:classification:certified",
+    "component:scheduling-runtime:classification:certified",
+    "component:audit-runtime:classification:certified",
+    "component:executive-reporting-runtime:classification:certified",
+    "component:production-certification-core:classification:certified",
+    "component:pillow-orchestration-runtime:classification:certified"
+  ],
+  "runTimestamp": "2026-08-04T23:35:18.626Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutableBenchmarkHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicAuditBehaviour": true,
+  "maskSensitiveValues": true,
+  "neverFabricatePerformanceEvidence": true,
+  "neverCertifyUntestedPerformance": true,
+  "neverOptimizeOrModifyProductionSystems": true,
+  "neverAssumeImplementation": true,
+  "neverModifyPerformanceImplementations": true,
+  "neverRepairFailedPerformanceComponents": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

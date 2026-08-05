@@ -1,0 +1,40 @@
+{
+  "scheduleId": "sched-daily-01",
+  "missionId": "M-SCHRT-DAILY",
+  "workerId": "wkr-scheduling-runtime-01",
+  "factoryId": "pillow-scheduling",
+  "scheduleType": "daily",
+  "triggerType": "time",
+  "timeZone": "UTC",
+  "executionWindow": null,
+  "cronExpression": null,
+  "eventKey": null,
+  "nextExecution": "2026-08-05T09:00:00.000Z",
+  "previousExecution": "2026-08-04T09:00:00.000Z",
+  "currentStatus": "active",
+  "retryPolicy": {
+    "maxRetries": 3,
+    "backoffMs": 1000
+  },
+  "priority": 100,
+  "paused": false,
+  "pillowConfirmed": true,
+  "grandKingApproved": true,
+  "highRisk": false,
+  "auditReference": "audit://scheduling/sched-daily-01",
+  "fabricated": false,
+  "structuralSignalOnly": true,
+  "lifecycle": [
+    "createSchedule",
+    "evaluateDue(now >= nextExecution)",
+    "record completed execution",
+    "advance nextExecution +1 day deterministically",
+    "structural mission trigger + queue signal"
+  ],
+  "relatedSeeds": {
+    "weekly": "sched-weekly-01",
+    "oneTime": "sched-onetime-01",
+    "eventDriven": "sched-event-01",
+    "cron": "sched-cron-01"
+  }
+}

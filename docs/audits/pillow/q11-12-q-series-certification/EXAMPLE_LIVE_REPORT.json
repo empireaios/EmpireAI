@@ -1,0 +1,43 @@
+{
+  "reportId": "qscrt-rpt-live-example",
+  "timestamp": "2026-08-05T02:21:00.000Z",
+  "certificationVersion": "Q11-QSCRT-v1",
+  "engineId": "PILLOW-QSCRT-001",
+  "missionId": "Q11-12",
+  "certificationDecision": "withhold",
+  "confidenceScore": 0.2,
+  "metadataVersion": "QSCRT-001-v1",
+  "reportVersion": "QSCRT-RPT-v1",
+  "workerId": "wkr-q-series-certification-01",
+  "q1112ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "PLMRT-001-v1",
+    "evidence": "Injected Q11-11 post-launch-monitoring handshake returned explicit consumableByQ1112 contract"
+  },
+  "consumableByQ1113": true,
+  "neverImplementQ1113OrLater": true,
+  "productionReadinessSummary": {
+    "eaprtDecision": "withhold",
+    "gkAuthorised": false,
+    "plmrtProductionActive": false,
+    "finartConsumable": false,
+    "classification": "blocked"
+  },
+  "governanceSummary": {
+    "gkDecision": "pending",
+    "gkAuthorisation": "blocked",
+    "gkAuthorised": false,
+    "classification": "blocked"
+  },
+  "outstandingIssues": [
+    "Q11-08 Financial Readiness Audit (FINART) missing or not consumable",
+    "Executive Acceptance Pack decision not certify (withhold)",
+    "Grand King not approve+authorised (pending/blocked)",
+    "Post-Launch Monitoring productionActiveMonitoring !== true",
+    "production readiness chain blocked (FINART/EAPRT/GK/PLMRT)"
+  ],
+  "validation": {
+    "decision": "pass"
+  }
+}

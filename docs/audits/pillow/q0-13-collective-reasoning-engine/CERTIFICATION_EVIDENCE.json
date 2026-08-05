@@ -1,0 +1,49 @@
+{
+  "missionId": "Q0-13",
+  "doctrine": "PILLOW-CORE-001",
+  "moduleId": "collective-reasoning-engine",
+  "metadataVersion": "CORE-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Coordinates multi-worker reasoning, debate, challenge, review and consensus.",
+  "boundaries": {
+    "neverExecuteWork": true,
+    "neverAssignWorkersPermanently": true,
+    "neverReplacePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverApproveActions": true
+  },
+  "reasoningRecordFields": [
+    "reasoningId",
+    "timestamp",
+    "executiveQuestion",
+    "participants",
+    "independentOpinions",
+    "challengesRaised",
+    "supportingEvidence",
+    "consensusPosition",
+    "minorityOpinions",
+    "confidenceScore",
+    "recommendedAction",
+    "metadataVersion"
+  ],
+  "reasoningModes": [
+    "independent_analysis",
+    "structured_debate",
+    "peer_challenge",
+    "consensus_building",
+    "minority_report"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/collective-reasoning-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/collective-reasoning-engine/",
+    "config": "config/collective-reasoning-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_COLLECTIVE_REASONING_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/collective-reasoning-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/collective-reasoning-engine.test.ts"
+  },
+  "idCollisionNote": "PILLOW-CRE-001 reserved by Customer/Capital Risk; Q0-13 uses PILLOW-CORE-001"
+}

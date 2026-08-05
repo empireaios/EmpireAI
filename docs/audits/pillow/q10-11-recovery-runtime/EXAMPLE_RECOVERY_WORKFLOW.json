@@ -1,0 +1,43 @@
+{
+  "flow": [
+    "detect_failure",
+    "classify_failure",
+    "select_strategy",
+    "restore_state_or_restart_or_rollback",
+    "escalate_if_unrecoverable",
+    "preserve_history",
+    "produce_report"
+  ],
+  "restartJob": {
+    "classification": "transient",
+    "strategy": "restart_job",
+    "steps": ["detect", "classify", "selectStrategy", "restartJob"],
+    "recoveryStatusAfter": "completed",
+    "fabricated": false
+  },
+  "restoreCheckpoint": {
+    "classification": "state_corruption",
+    "strategy": "restore_checkpoint",
+    "requiresCheckpointRef": true,
+    "checkpointRefPreserved": true,
+    "neverLoseRecoverableExecutionState": true
+  },
+  "rollback": {
+    "classification": "state_corruption",
+    "strategy": "rollback_partial",
+    "rollbackStatusAfter": "completed"
+  },
+  "escalation": {
+    "classification": "unrecoverable",
+    "strategy": "escalate_only",
+    "restartBlocked": true,
+    "resumeBlocked": true,
+    "escalationStatusAfter": "escalated"
+  },
+  "governance": {
+    "highRiskRequiresGrandKing": true,
+    "automaticRecoveryRequiresPillowAndPermission": true,
+    "neverFabricateRecoverySuccess": true
+  },
+  "structuralSignalOnly": true
+}

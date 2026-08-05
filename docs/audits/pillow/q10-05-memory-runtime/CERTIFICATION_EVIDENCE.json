@@ -1,0 +1,34 @@
+{
+  "computedAt": "2026-08-04T01:46:00.000Z",
+  "missionId": "Q10-05",
+  "engineVersion": "PILLOW-MEMRT-001",
+  "runtimeVersion": "Q10-MEMRT-v1",
+  "metadataVersion": "MEMRT-001-v1",
+  "reportVersion": "MEMRT-RPT-v1",
+  "workerId": "wkr-memory-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionQueueRuntime": {
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverReplaceEkls": true,
+    "neverReplaceApplicationDatabases": true,
+    "neverModifyHistoricalRecords": true,
+    "neverFabricateMemory": true,
+    "neverSilentlyOverwriteHistoricalDecisions": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1006OrLater": true,
+    "deterministicRetrievalOnly": true,
+    "structuralSignalOnly": true
+  },
+  "q1006ContractExposed": true,
+  "consumableByQ1006": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Memory Runtime Q10-05 certified — stops at Q10-05, exposes Q1006ConsumableContract for Q10-06",
+    "Append-only versioning preserves historical version payloads"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "recommendationId": "rcw-buy-0027",
+  "productId": "prod-backpack-01",
+  "productName": "TrailBackpack Pro",
+  "verdict": "buy_with_conditions",
+  "summary": "TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals",
+  "conditions": [
+    "Review cons: Premium price",
+    "Best suited for weekend hikers"
+  ],
+  "fabricated": false,
+  "evidencePresent": true
+}

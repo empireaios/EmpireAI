@@ -1,0 +1,76 @@
+{
+  "missionId": "Q2-07",
+  "doctrine": "PILLOW-LPW-001",
+  "moduleId": "launch-plan-worker",
+  "metadataVersion": "LPW-001-v1",
+  "planVersion": "LPW-PLN-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Create staged launch plan, dependencies, milestones, and approval checkpoints.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-05", "doctrine": "PILLOW-OEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-06", "doctrine": "PILLOW-BBW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteLaunchTasks": true,
+    "neverAssignWorkersDirectly": true,
+    "neverCreateBusinessAssets": true,
+    "neverConnectExternalAccounts": true,
+    "neverLaunchBusiness": true,
+    "neverApproveLaunch": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ208OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "business_blueprint_worker",
+    "mission_coordination_engine",
+    "approval_router",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "launchPlanFields": [
+    "launchPlanId",
+    "timestamp",
+    "businessBuildMissionId",
+    "businessBlueprintId",
+    "businessType",
+    "launchObjective",
+    "launchStages",
+    "milestones",
+    "tasks",
+    "dependencies",
+    "requiredWorkforce",
+    "requiredTools",
+    "approvalCheckpoints",
+    "validationCheckpoints",
+    "launchPrerequisites",
+    "blockers",
+    "rollbackConditions",
+    "completionCriteria",
+    "metadataVersion"
+  ],
+  "namingNote": "Public type aliased as LpwLaunchPlan to avoid collision with commerce-intelligence BusinessLaunchPlan.",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/launch-plan-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/launch-plan-worker/",
+    "config": "config/launch-plan-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_LAUNCH_PLAN_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/launch-plan-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/launch-plan-worker.test.ts"
+  },
+  "notes": [
+    "Stages are derived from Business Blueprint content and business type; catalog supports preparation through post-launch validation without hard-coding identical stages for every business."
+  ]
+}

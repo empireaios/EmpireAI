@@ -1,0 +1,59 @@
+{
+  "missionId": "Q0-21",
+  "doctrine": "PILLOW-PRR-001",
+  "moduleId": "peer-review-runtime",
+  "metadataVersion": "PRR-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Requires automatic peer review for high-impact outputs before completion or escalation.",
+  "boundaries": {
+    "neverReplaceWorkers": true,
+    "neverRewriteCompletedWork": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverExecuteBusinessTasks": true
+  },
+  "peerReviewRecordFields": [
+    "reviewId",
+    "timestamp",
+    "missionId",
+    "taskId",
+    "originalWorker",
+    "reviewers",
+    "reviewFindings",
+    "agreementLevel",
+    "issuesFound",
+    "requiredRevisions",
+    "reviewOutcome",
+    "escalationStatus",
+    "metadataVersion"
+  ],
+  "reviewOutcomes": [
+    "approved",
+    "approved_with_notes",
+    "revision_required",
+    "rejected",
+    "escalated"
+  ],
+  "reviewCriteria": [
+    "correctness",
+    "completeness",
+    "evidence",
+    "logical_consistency",
+    "compliance",
+    "quality",
+    "risk",
+    "executive_readiness"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/peer-review-runtime.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/peer-review-runtime/",
+    "config": "config/peer-review-runtime.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PEER_REVIEW_RUNTIME_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/peer-review-runtime-bridge.ts",
+    "tests": "pillow/src/validation/tests/peer-review-runtime.test.ts"
+  }
+}

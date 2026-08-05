@@ -1,0 +1,36 @@
+{
+  "contractId": "q1103-contract-WRART-001-v1",
+  "contractVersion": "WRART-001-v1",
+  "producedBy": "worker-readiness-audit",
+  "missionId": "Q11-02",
+  "consumerMissionId": "Q11-03",
+  "exposedFields": [
+    "readinessMatrix",
+    "readinessSummary",
+    "readinessDecision",
+    "workerInventory",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "Ready",
+    "Partially Ready",
+    "Failed",
+    "Missing",
+    "Blocked",
+    "Deferred"
+  ],
+  "readinessDecisionCatalog": [
+    "Ready",
+    "Conditionally_Ready",
+    "Not_Ready",
+    "Failed",
+    "Deferred"
+  ],
+  "notes": [
+    "Worker Readiness Audit Q11-02 certified — stops at Q11-02, exposes Q1103ConsumableContract for Q11-03 (Pillow Command Audit)",
+    "This contract is structural-signal-only; Q11-02 never implements Q11-03 or any later mission itself"
+  ],
+  "neverImplementQ1103OrLater": true,
+  "structuralSignalOnly": true
+}

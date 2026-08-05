@@ -1,0 +1,81 @@
+{
+  "missionId": "Q1-04",
+  "doctrine": "PILLOW-STX-001",
+  "moduleId": "skill-taxonomy",
+  "metadataVersion": "STX-001-v1",
+  "taxonomyVersion": "STX-TAX-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Define skills, proficiency levels, required tools, capability limits and validation standards.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceRoleTaxonomy": true,
+    "neverReplaceWorkforceCapabilityRegistry": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "skillDefinitionFields": [
+    "taxonomyVersion",
+    "skillId",
+    "skillName",
+    "skillCategory",
+    "parentSkill",
+    "description",
+    "proficiencyLevel",
+    "requiredTools",
+    "capabilityLimits",
+    "validationRules",
+    "certificationRequirements",
+    "metadataVersion"
+  ],
+  "skillCategories": [
+    "executive",
+    "business",
+    "commerce",
+    "media",
+    "engineering",
+    "finance",
+    "operations",
+    "marketing",
+    "research",
+    "customer_support",
+    "analytics",
+    "security"
+  ],
+  "proficiencyLevels": [
+    "beginner",
+    "intermediate",
+    "advanced",
+    "expert",
+    "master"
+  ],
+  "skillRules": [
+    "exactly_one_skill_category",
+    "purpose_defined",
+    "required_knowledge_defined",
+    "required_tools_defined",
+    "validation_method_defined",
+    "dependencies_defined",
+    "capability_limits_defined",
+    "certification_requirements_defined",
+    "proficiency_level_valid",
+    "inherits_from_valid_parent"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/skill-taxonomy.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/skill-taxonomy/",
+    "config": "config/skill-taxonomy.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SKILL_TAXONOMY_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/skill-taxonomy-bridge.ts",
+    "tests": "pillow/src/validation/tests/skill-taxonomy.test.ts"
+  }
+}

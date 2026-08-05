@@ -1,0 +1,83 @@
+{
+  "missionId": "Q1-13",
+  "doctrine": "PILLOW-WFC-001",
+  "moduleId": "workforce-factory-certification",
+  "metadataVersion": "WFC-001-v1",
+  "workforceFactoryVersion": "Q1-WFF-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Certify EmpireAI can manufacture, register, assign, monitor and recover workers under Pillow.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-06", "doctrine": "PILLOW-RMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-07", "doctrine": "PILLOW-WRG-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-08", "doctrine": "PILLOW-WLC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-09", "doctrine": "PILLOW-WAE-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-10", "doctrine": "PILLOW-WMO-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-11", "doctrine": "PILLOW-WPR-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-12", "doctrine": "PILLOW-WRS-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverModifyWorkforceComponents": true,
+    "neverRepairFailuresAutomatically": true,
+    "neverBeginQ2Implementation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "componentsCertified": [
+    "worker-constitution",
+    "organization-charter",
+    "role-taxonomy",
+    "skill-taxonomy",
+    "authority-matrix",
+    "responsibility-matrix",
+    "worker-registry",
+    "worker-lifecycle",
+    "worker-assignment-engine",
+    "worker-monitoring",
+    "worker-performance-review",
+    "worker-recovery-system"
+  ],
+  "certificationReportFields": [
+    "certificationId",
+    "timestamp",
+    "workforceFactoryVersion",
+    "componentsTested",
+    "componentsPassed",
+    "componentsFailed",
+    "integrationStatus",
+    "workforceReadiness",
+    "governanceCompliance",
+    "remainingRisks",
+    "recommendations",
+    "finalCertificationResult",
+    "metadataVersion"
+  ],
+  "certificationLevels": [
+    "certified",
+    "certified_with_warnings",
+    "provisionally_certified",
+    "failed_certification"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/workforce-factory-certification.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/workforce-factory-certification/",
+    "config": "config/workforce-factory-certification.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKFORCE_FACTORY_CERTIFICATION_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/workforce-factory-certification-bridge.ts",
+    "tests": "pillow/src/validation/tests/workforce-factory-certification.test.ts"
+  },
+  "notes": [
+    "Isolated acceptance-gate service; public pillow index aliases WfcCertificationReport and WFC_CERTIFICATION_LEVELS to avoid collision with Q0-30 UWC types.",
+    "Final Q1 gate: q1ProductionReady and q2ReadinessConfirmed require certified or certified_with_warnings."
+  ]
+}

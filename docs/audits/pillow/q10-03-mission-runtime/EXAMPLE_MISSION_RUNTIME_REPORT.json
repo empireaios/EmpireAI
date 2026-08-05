@@ -1,0 +1,58 @@
+{
+  "reportId": "msr-rpt-example-001",
+  "timestamp": "2026-08-04T01:20:03.000Z",
+  "runtimeVersion": "Q10-MSR-v1",
+  "missionId": "msr-mission-example-001",
+  "missionType": "enterprise",
+  "currentStatus": "Completed",
+  "executionTimeline": [
+    {
+      "entryId": "msr-trn-example-001",
+      "timestamp": "2026-08-04T01:20:00.000Z",
+      "label": "Created→Queued",
+      "state": "Queued",
+      "notes": ["Auto-queue for execute"]
+    },
+    {
+      "entryId": "msr-trn-example-004",
+      "timestamp": "2026-08-04T01:20:03.000Z",
+      "label": "Running→Completed",
+      "state": "Completed",
+      "notes": ["Execution completed"]
+    }
+  ],
+  "progress": 100,
+  "activeWorkers": ["wkr-capital-factory-core-01"],
+  "dependencies": [],
+  "checkpoints": [],
+  "retryHistory": [],
+  "recoveryHistory": [],
+  "failureSummary": null,
+  "supportingEvidence": [
+    "Mission Runtime structural mission lifecycle records",
+    "config/mission-runtime.config.json"
+  ],
+  "auditStatus": "partial",
+  "outstandingIssues": [],
+  "confidenceScore": 85,
+  "metadataVersion": "MSR-001-v1",
+  "reportVersion": "MSR-RPT-v1",
+  "workerId": "wkr-mission-runtime-01",
+  "consumableByQ1004": true,
+  "neverReplaceWorkerLogic": true,
+  "neverReplaceOrchestrationLogic": true,
+  "neverExecuteUnauthorisedMissions": true,
+  "neverFabricateMissionState": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1004OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveMissionHistory": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

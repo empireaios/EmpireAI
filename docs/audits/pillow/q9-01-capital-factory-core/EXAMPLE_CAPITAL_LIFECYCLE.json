@@ -1,0 +1,679 @@
+{
+  "project": {
+    "factoryProjectId": "capfc-prj-1785728528797-1",
+    "capitalProjectId": "capfc-prj-1785728528797-1",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "timestamp": "2026-08-03T03:42:08.797Z",
+    "financialPeriod": "2026-Q3",
+    "capitalProjectName": "Empire Growth Capital Pool",
+    "capitalCategory": "growth_allocation",
+    "capitalStatus": "ready",
+    "region": "SG",
+    "capitalObjective": "Coordinate growth capital allocation from registration to operations.",
+    "lifecycleStatus": "operating",
+    "currentStatus": "operating",
+    "workerStatusMatrix": [
+      {
+        "workerRole": "accounting_worker",
+        "workerId": "wkr-capfc-acct-01",
+        "status": "assigned",
+        "notes": "registered_structural_role_slot"
+      },
+      {
+        "workerRole": "forecasting_worker",
+        "workerId": "wkr-capfc-fcst-01",
+        "status": "assigned",
+        "notes": "registered_structural_role_slot"
+      },
+      {
+        "workerRole": "allocation_worker",
+        "workerId": "wkr-capfc-alloc-01",
+        "status": "assigned",
+        "notes": "registered_structural_role_slot"
+      }
+    ],
+    "dependencyGraph": [
+      {
+        "fromRole": "accounting_worker",
+        "toRole": "forecasting_worker",
+        "dependencyType": "sequential",
+        "notes": "dependency_edge_recorded"
+      },
+      {
+        "fromRole": "forecasting_worker",
+        "toRole": "allocation_worker",
+        "dependencyType": "sequential",
+        "notes": "dependency_edge_recorded"
+      }
+    ],
+    "capitalAllocationSummary": {
+      "capitalBusinessId": "capfc-biz-growth-01",
+      "capitalCategory": "growth_allocation",
+      "region": "SG",
+      "lifecycleStatus": "operating",
+      "allocationNotes": [
+        "Structural capital allocation registry only — no accounting or investment execution",
+        "Lifecycle advanced to preparation",
+        "Lifecycle advanced to readiness_review",
+        "Lifecycle advanced to operating"
+      ],
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    "readinessStatus": "partial",
+    "outstandingTasks": [],
+    "risks": [],
+    "executiveSummary": "Capital Factory orchestration mission.",
+    "auditStatus": "not_audited",
+    "confidenceScore": 79,
+    "metadata": {},
+    "progressSummary": {
+      "stagesCompleted": 5,
+      "totalStages": 8,
+      "percentComplete": 63,
+      "workersReady": 0,
+      "workersTotal": 3
+    },
+    "submittedToExecutiveReporting": false,
+    "executiveReportId": null,
+    "traceabilityRefs": [
+      "q9-01:capital_business:capfc-biz-growth-01",
+      "q9-01:worker_coordination:3_roles",
+      "q9-01:lifecycle_status:preparation",
+      "q9-01:lifecycle_status:readiness_review",
+      "q9-01:lifecycle_status:operating",
+      "q9-01:dependency_graph:2_edges"
+    ],
+    "metadataVersion": "CAPFC-001-v1",
+    "projectVersion": "CAPFC-CP-v1",
+    "workerId": "wkr-capital-factory-core-01",
+    "neverPerformAccounting": true,
+    "neverForecastFinances": true,
+    "neverExecuteInvestmentsAutomatically": true,
+    "neverFabricateFinancialStatus": true,
+    "neverFabricateWorkerStatus": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ902OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveFactoryAuditHistory": true,
+    "neverExposeCredentials": true,
+    "neverExposeAuthenticationTokens": true,
+    "structuralSignalOnly": true,
+    "maskSensitiveValues": true
+  },
+  "lifecycleStatus": "operating",
+  "capitalStatus": "ready",
+  "readiness": {
+    "capitalFactoryRunReportId": "capfc-run-1785728528800",
+    "runTimestamp": "2026-08-03T03:42:08.800Z",
+    "action": "monitor_factory_readiness",
+    "engineRecord": {
+      "engineRecordId": "capfc-eng-1785728528795",
+      "timestamp": "2026-08-03T03:42:08.800Z",
+      "engineId": "capital-factory-core",
+      "engineVersion": "PILLOW-CAPFC-001",
+      "currentOperationalState": "active",
+      "healthStatus": "healthy",
+      "validationStatus": "passed",
+      "supportedCapabilities": [
+        "create_capital_projects",
+        "register_capital_projects",
+        "maintain_enterprise_capital_state",
+        "coordinate_capital_lifecycle",
+        "coordinate_workers",
+        "assign_workers",
+        "manage_worker_dependencies",
+        "track_financial_readiness",
+        "monitor_capital_allocation_status",
+        "maintain_financial_metadata",
+        "produce_executive_financial_summaries",
+        "support_multiple_businesses_simultaneously",
+        "produce_machine_readable_capital_factory_reports",
+        "coordinate_downstream_capital_workers",
+        "preserve_complete_financial_traceability",
+        "preserve_factory_audit_history",
+        "submit_through_executive_reporting_runtime",
+        "integrate_worker_registry",
+        "integrate_worker_lifecycle",
+        "integrate_executive_reporting_runtime",
+        "integrate_worker_recovery_system",
+        "integrate_audit_runtime",
+        "integrate_mission_runtime",
+        "integrate_queue_runtime",
+        "integrate_memory_runtime",
+        "capital_factory_core_validation",
+        "health_monitoring",
+        "recovery_management",
+        "q902_consumable_contract"
+      ],
+      "totalProjects": 1,
+      "lastBusinessCategory": "growth_allocation",
+      "lastProjectId": "capfc-biz-growth-01",
+      "workerId": "wkr-capital-factory-core-01",
+      "integrationTargets": [
+        "worker_registry",
+        "worker_lifecycle",
+        "executive_reporting_runtime",
+        "worker_recovery_system",
+        "audit_runtime",
+        "mission_runtime",
+        "queue_runtime",
+        "memory_runtime",
+        "capital_factory_core_validation"
+      ],
+      "metadataVersion": "CAPFC-001-v1"
+    },
+    "catalog": {
+      "projectVersion": "CAPFC-CP-v1",
+      "reportVersion": "CAPFC-RPT-v1",
+      "workerId": "wkr-capital-factory-core-01",
+      "capitalCategories": [
+        "operating_reserves",
+        "growth_allocation",
+        "working_capital",
+        "factory_investment",
+        "emergency_buffer",
+        "treasury",
+        "multi_business_pool",
+        "strategic_reserve",
+        "unknown"
+      ],
+      "lifecycleStatuses": [
+        "project_registered",
+        "workers_coordinated",
+        "preparation",
+        "readiness_review",
+        "operating",
+        "paused",
+        "completed",
+        "archived"
+      ],
+      "workerRoles": [
+        "accounting_worker",
+        "forecasting_worker",
+        "investment_analysis_worker",
+        "capital_allocation_worker",
+        "treasury_worker",
+        "financial_reporting_worker",
+        "risk_review_worker",
+        "unknown"
+      ],
+      "projects": [
+        {
+          "factoryProjectId": "capfc-prj-1785728528797-1",
+          "capitalProjectId": "capfc-prj-1785728528797-1",
+          "capitalBusinessId": "capfc-biz-growth-01",
+          "timestamp": "2026-08-03T03:42:08.797Z",
+          "financialPeriod": "2026-Q3",
+          "capitalProjectName": "Empire Growth Capital Pool",
+          "capitalCategory": "growth_allocation",
+          "capitalStatus": "ready",
+          "region": "SG",
+          "capitalObjective": "Coordinate growth capital allocation from registration to operations.",
+          "lifecycleStatus": "operating",
+          "currentStatus": "operating",
+          "workerStatusMatrix": [
+            {
+              "workerRole": "accounting_worker",
+              "workerId": "wkr-capfc-acct-01",
+              "status": "assigned",
+              "notes": "registered_structural_role_slot"
+            },
+            {
+              "workerRole": "forecasting_worker",
+              "workerId": "wkr-capfc-fcst-01",
+              "status": "assigned",
+              "notes": "registered_structural_role_slot"
+            },
+            {
+              "workerRole": "allocation_worker",
+              "workerId": "wkr-capfc-alloc-01",
+              "status": "assigned",
+              "notes": "registered_structural_role_slot"
+            }
+          ],
+          "dependencyGraph": [
+            {
+              "fromRole": "accounting_worker",
+              "toRole": "forecasting_worker",
+              "dependencyType": "sequential",
+              "notes": "dependency_edge_recorded"
+            },
+            {
+              "fromRole": "forecasting_worker",
+              "toRole": "allocation_worker",
+              "dependencyType": "sequential",
+              "notes": "dependency_edge_recorded"
+            }
+          ],
+          "capitalAllocationSummary": {
+            "capitalBusinessId": "capfc-biz-growth-01",
+            "capitalCategory": "growth_allocation",
+            "region": "SG",
+            "lifecycleStatus": "operating",
+            "allocationNotes": [
+              "Structural capital allocation registry only — no accounting or investment execution",
+              "Lifecycle advanced to preparation",
+              "Lifecycle advanced to readiness_review",
+              "Lifecycle advanced to operating"
+            ],
+            "fabricated": false,
+            "evidencePresent": true
+          },
+          "readinessStatus": "partial",
+          "outstandingTasks": [],
+          "risks": [],
+          "executiveSummary": "Capital Factory orchestration mission.",
+          "auditStatus": "not_audited",
+          "confidenceScore": 79,
+          "metadata": {},
+          "progressSummary": {
+            "stagesCompleted": 5,
+            "totalStages": 8,
+            "percentComplete": 63,
+            "workersReady": 0,
+            "workersTotal": 3
+          },
+          "submittedToExecutiveReporting": false,
+          "executiveReportId": null,
+          "traceabilityRefs": [
+            "q9-01:capital_business:capfc-biz-growth-01",
+            "q9-01:worker_coordination:3_roles",
+            "q9-01:lifecycle_status:preparation",
+            "q9-01:lifecycle_status:readiness_review",
+            "q9-01:lifecycle_status:operating",
+            "q9-01:dependency_graph:2_edges"
+          ],
+          "metadataVersion": "CAPFC-001-v1",
+          "projectVersion": "CAPFC-CP-v1",
+          "workerId": "wkr-capital-factory-core-01",
+          "neverPerformAccounting": true,
+          "neverForecastFinances": true,
+          "neverExecuteInvestmentsAutomatically": true,
+          "neverFabricateFinancialStatus": true,
+          "neverFabricateWorkerStatus": true,
+          "neverOverrideApprovedArchitecture": true,
+          "neverOverridePillow": true,
+          "neverOverrideGrandKing": true,
+          "neverBypassGrandKingApproval": true,
+          "neverImplementQ902OrLater": true,
+          "preserveCompleteTraceability": true,
+          "preserveFactoryAuditHistory": true,
+          "neverExposeCredentials": true,
+          "neverExposeAuthenticationTokens": true,
+          "structuralSignalOnly": true,
+          "maskSensitiveValues": true
+        }
+      ],
+      "reports": [],
+      "integrations": [
+        {
+          "target": "worker_registry",
+          "status": "ready",
+          "details": "worker_registry integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "worker_lifecycle",
+          "status": "ready",
+          "details": "worker_lifecycle integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "executive_reporting_runtime",
+          "status": "ready",
+          "details": "executive_reporting_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "worker_recovery_system",
+          "status": "ready",
+          "details": "worker_recovery_system integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "audit_runtime",
+          "status": "ready",
+          "details": "audit_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "mission_runtime",
+          "status": "ready",
+          "details": "mission_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "queue_runtime",
+          "status": "ready",
+          "details": "queue_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "memory_runtime",
+          "status": "ready",
+          "details": "memory_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        },
+        {
+          "target": "capital_factory_core_validation",
+          "status": "bound",
+          "details": "capital_factory_core_validation integration bound for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+          "timestamp": "2026-08-03T03:42:08.795Z"
+        }
+      ],
+      "metadataVersion": "CAPFC-001-v1",
+      "executiveAuthority": "pillow",
+      "neverPerformAccounting": true,
+      "neverForecastFinances": true,
+      "neverExecuteInvestmentsAutomatically": true,
+      "neverFabricateWorkerStatus": true,
+      "neverBypassGrandKingApproval": true,
+      "neverOverridePillow": true,
+      "neverOverrideGrandKing": true,
+      "neverImplementQ902OrLater": true
+    },
+    "projects": [
+      {
+        "factoryProjectId": "capfc-prj-1785728528797-1",
+        "capitalProjectId": "capfc-prj-1785728528797-1",
+        "capitalBusinessId": "capfc-biz-growth-01",
+        "timestamp": "2026-08-03T03:42:08.797Z",
+        "financialPeriod": "2026-Q3",
+        "capitalProjectName": "Empire Growth Capital Pool",
+        "capitalCategory": "growth_allocation",
+        "capitalStatus": "ready",
+        "region": "SG",
+        "capitalObjective": "Coordinate growth capital allocation from registration to operations.",
+        "lifecycleStatus": "operating",
+        "currentStatus": "operating",
+        "workerStatusMatrix": [
+          {
+            "workerRole": "accounting_worker",
+            "workerId": "wkr-capfc-acct-01",
+            "status": "assigned",
+            "notes": "registered_structural_role_slot"
+          },
+          {
+            "workerRole": "forecasting_worker",
+            "workerId": "wkr-capfc-fcst-01",
+            "status": "assigned",
+            "notes": "registered_structural_role_slot"
+          },
+          {
+            "workerRole": "allocation_worker",
+            "workerId": "wkr-capfc-alloc-01",
+            "status": "assigned",
+            "notes": "registered_structural_role_slot"
+          }
+        ],
+        "dependencyGraph": [
+          {
+            "fromRole": "accounting_worker",
+            "toRole": "forecasting_worker",
+            "dependencyType": "sequential",
+            "notes": "dependency_edge_recorded"
+          },
+          {
+            "fromRole": "forecasting_worker",
+            "toRole": "allocation_worker",
+            "dependencyType": "sequential",
+            "notes": "dependency_edge_recorded"
+          }
+        ],
+        "capitalAllocationSummary": {
+          "capitalBusinessId": "capfc-biz-growth-01",
+          "capitalCategory": "growth_allocation",
+          "region": "SG",
+          "lifecycleStatus": "operating",
+          "allocationNotes": [
+            "Structural capital allocation registry only — no accounting or investment execution",
+            "Lifecycle advanced to preparation",
+            "Lifecycle advanced to readiness_review",
+            "Lifecycle advanced to operating"
+          ],
+          "fabricated": false,
+          "evidencePresent": true
+        },
+        "readinessStatus": "partial",
+        "outstandingTasks": [],
+        "risks": [],
+        "executiveSummary": "Capital Factory orchestration mission.",
+        "auditStatus": "not_audited",
+        "confidenceScore": 79,
+        "metadata": {},
+        "progressSummary": {
+          "stagesCompleted": 5,
+          "totalStages": 8,
+          "percentComplete": 63,
+          "workersReady": 0,
+          "workersTotal": 3
+        },
+        "submittedToExecutiveReporting": false,
+        "executiveReportId": null,
+        "traceabilityRefs": [
+          "q9-01:capital_business:capfc-biz-growth-01",
+          "q9-01:worker_coordination:3_roles",
+          "q9-01:lifecycle_status:preparation",
+          "q9-01:lifecycle_status:readiness_review",
+          "q9-01:lifecycle_status:operating",
+          "q9-01:dependency_graph:2_edges"
+        ],
+        "metadataVersion": "CAPFC-001-v1",
+        "projectVersion": "CAPFC-CP-v1",
+        "workerId": "wkr-capital-factory-core-01",
+        "neverPerformAccounting": true,
+        "neverForecastFinances": true,
+        "neverExecuteInvestmentsAutomatically": true,
+        "neverFabricateFinancialStatus": true,
+        "neverFabricateWorkerStatus": true,
+        "neverOverrideApprovedArchitecture": true,
+        "neverOverridePillow": true,
+        "neverOverrideGrandKing": true,
+        "neverBypassGrandKingApproval": true,
+        "neverImplementQ902OrLater": true,
+        "preserveCompleteTraceability": true,
+        "preserveFactoryAuditHistory": true,
+        "neverExposeCredentials": true,
+        "neverExposeAuthenticationTokens": true,
+        "structuralSignalOnly": true,
+        "maskSensitiveValues": true
+      }
+    ],
+    "latestProject": {
+      "factoryProjectId": "capfc-prj-1785728528797-1",
+      "capitalProjectId": "capfc-prj-1785728528797-1",
+      "capitalBusinessId": "capfc-biz-growth-01",
+      "timestamp": "2026-08-03T03:42:08.797Z",
+      "financialPeriod": "2026-Q3",
+      "capitalProjectName": "Empire Growth Capital Pool",
+      "capitalCategory": "growth_allocation",
+      "capitalStatus": "ready",
+      "region": "SG",
+      "capitalObjective": "Coordinate growth capital allocation from registration to operations.",
+      "lifecycleStatus": "operating",
+      "currentStatus": "operating",
+      "workerStatusMatrix": [
+        {
+          "workerRole": "accounting_worker",
+          "workerId": "wkr-capfc-acct-01",
+          "status": "assigned",
+          "notes": "registered_structural_role_slot"
+        },
+        {
+          "workerRole": "forecasting_worker",
+          "workerId": "wkr-capfc-fcst-01",
+          "status": "assigned",
+          "notes": "registered_structural_role_slot"
+        },
+        {
+          "workerRole": "allocation_worker",
+          "workerId": "wkr-capfc-alloc-01",
+          "status": "assigned",
+          "notes": "registered_structural_role_slot"
+        }
+      ],
+      "dependencyGraph": [
+        {
+          "fromRole": "accounting_worker",
+          "toRole": "forecasting_worker",
+          "dependencyType": "sequential",
+          "notes": "dependency_edge_recorded"
+        },
+        {
+          "fromRole": "forecasting_worker",
+          "toRole": "allocation_worker",
+          "dependencyType": "sequential",
+          "notes": "dependency_edge_recorded"
+        }
+      ],
+      "capitalAllocationSummary": {
+        "capitalBusinessId": "capfc-biz-growth-01",
+        "capitalCategory": "growth_allocation",
+        "region": "SG",
+        "lifecycleStatus": "operating",
+        "allocationNotes": [
+          "Structural capital allocation registry only — no accounting or investment execution",
+          "Lifecycle advanced to preparation",
+          "Lifecycle advanced to readiness_review",
+          "Lifecycle advanced to operating"
+        ],
+        "fabricated": false,
+        "evidencePresent": true
+      },
+      "readinessStatus": "partial",
+      "outstandingTasks": [],
+      "risks": [],
+      "executiveSummary": "Capital Factory orchestration mission.",
+      "auditStatus": "not_audited",
+      "confidenceScore": 79,
+      "metadata": {},
+      "progressSummary": {
+        "stagesCompleted": 5,
+        "totalStages": 8,
+        "percentComplete": 63,
+        "workersReady": 0,
+        "workersTotal": 3
+      },
+      "submittedToExecutiveReporting": false,
+      "executiveReportId": null,
+      "traceabilityRefs": [
+        "q9-01:capital_business:capfc-biz-growth-01",
+        "q9-01:worker_coordination:3_roles",
+        "q9-01:lifecycle_status:preparation",
+        "q9-01:lifecycle_status:readiness_review",
+        "q9-01:lifecycle_status:operating",
+        "q9-01:dependency_graph:2_edges"
+      ],
+      "metadataVersion": "CAPFC-001-v1",
+      "projectVersion": "CAPFC-CP-v1",
+      "workerId": "wkr-capital-factory-core-01",
+      "neverPerformAccounting": true,
+      "neverForecastFinances": true,
+      "neverExecuteInvestmentsAutomatically": true,
+      "neverFabricateFinancialStatus": true,
+      "neverFabricateWorkerStatus": true,
+      "neverOverrideApprovedArchitecture": true,
+      "neverOverridePillow": true,
+      "neverOverrideGrandKing": true,
+      "neverBypassGrandKingApproval": true,
+      "neverImplementQ902OrLater": true,
+      "preserveCompleteTraceability": true,
+      "preserveFactoryAuditHistory": true,
+      "neverExposeCredentials": true,
+      "neverExposeAuthenticationTokens": true,
+      "structuralSignalOnly": true,
+      "maskSensitiveValues": true
+    },
+    "latestReport": null,
+    "factoryReadiness": {
+      "totalProjects": 1,
+      "readinessBreakdown": {
+        "not_ready": 0,
+        "partial": 1,
+        "ready": 0,
+        "blocked": 0,
+        "unknown": 0
+      },
+      "overallReadiness": "partial",
+      "projects": [
+        {
+          "capitalBusinessId": "capfc-biz-growth-01",
+          "capitalProjectName": "Empire Growth Capital Pool",
+          "readinessStatus": "partial",
+          "lifecycleStatus": "operating"
+        }
+      ]
+    },
+    "integrations": [
+      {
+        "target": "worker_registry",
+        "status": "ready",
+        "details": "worker_registry integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "worker_lifecycle",
+        "status": "ready",
+        "details": "worker_lifecycle integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "executive_reporting_runtime",
+        "status": "ready",
+        "details": "executive_reporting_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "worker_recovery_system",
+        "status": "ready",
+        "details": "worker_recovery_system integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "audit_runtime",
+        "status": "ready",
+        "details": "audit_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "mission_runtime",
+        "status": "ready",
+        "details": "mission_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "queue_runtime",
+        "status": "ready",
+        "details": "queue_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "memory_runtime",
+        "status": "ready",
+        "details": "memory_runtime integration ready for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      },
+      {
+        "target": "capital_factory_core_validation",
+        "status": "bound",
+        "details": "capital_factory_core_validation integration bound for wkr-capital-factory-core-01; orchestration-only capital factory core under Pillow.",
+        "timestamp": "2026-08-03T03:42:08.795Z"
+      }
+    ],
+    "validation": {
+      "validationReportId": "capfc-val-1785728528800",
+      "validationTimestamp": "2026-08-03T03:42:08.800Z",
+      "decision": "pass",
+      "errors": [],
+      "warnings": [],
+      "durationMs": 0,
+      "metadataVersion": "CAPFC-001-v1"
+    },
+    "durationMs": 0,
+    "metadataVersion": "CAPFC-001-v1"
+  }
+}

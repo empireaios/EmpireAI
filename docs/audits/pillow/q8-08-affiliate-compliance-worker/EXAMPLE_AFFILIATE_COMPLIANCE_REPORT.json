@@ -1,0 +1,135 @@
+{
+  "reportId": "acw-rpt-0001",
+  "timestamp": "2026-08-03T00:13:14.684Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "complianceScope": {
+    "scopeId": "acw-scope-0046",
+    "affiliateProjectId": "afc-prj-travel-gear-01",
+    "platforms": [
+      "amazon_associates"
+    ],
+    "frameworks": [
+      "affiliate_disclosure",
+      "platform_policy",
+      "required_disclaimer"
+    ],
+    "evidencePresent": true,
+    "fabricated": false
+  },
+  "disclosureValidation": {
+    "validationId": "acw-disc-0047",
+    "status": "pass",
+    "disclosurePresent": true,
+    "disclosureTextObserved": true,
+    "placement": "above_fold",
+    "linkDisclosurePresent": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "platformRuleValidation": {
+    "validationId": "acw-plat-0048",
+    "status": "pass",
+    "platform": "amazon_associates",
+    "rulesAcknowledged": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "disclaimerValidation": {
+    "validationId": "acw-disclaim-0049",
+    "status": "pass",
+    "requiredDisclaimerPresent": true,
+    "disclaimerTextObserved": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "policyFindings": [],
+  "complianceRisks": [],
+  "recommendedCorrections": [],
+  "readinessStatus": "approval_ready",
+  "readinessAssessment": {
+    "assessmentId": "acw-ready-0050",
+    "status": "approval_ready",
+    "riskScore": 0,
+    "blockers": [],
+    "notes": [
+      "Readiness is an evidence-based operational assessment only",
+      "Does not publish content or provide legal advice",
+      "Does not automatically approve non-compliant assets"
+    ],
+    "fabricated": false,
+    "evidencePresent": true,
+    "autoApproved": false,
+    "legalConclusion": "not_legal_advice"
+  },
+  "auditStatus": "ready_for_q809",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "ACW-001-v1",
+  "reportVersion": "ACW-RPT-v1",
+  "workerId": "wkr-affiliate-compliance-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "history": [
+    {
+      "entryId": "acw-hist-0051",
+      "reportId": "acw-rpt-0001",
+      "timestamp": "2026-08-03T00:13:14.684Z",
+      "readinessStatus": "approval_ready",
+      "riskScore": 0,
+      "findingCount": 0
+    }
+  ],
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "review_content_report:rcw-rpt-0001",
+    "seo_content_report:seow-rpt-0001",
+    "analytics_report:anw-rpt-0001",
+    "complianceEvidence",
+    "disclosure_validation",
+    "platform_rule_validation",
+    "disclaimer_validation",
+    "policy_findings",
+    "compliance_history"
+  ],
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "sourceReviewReportId": "rcw-rpt-0001",
+  "sourceSeoReportId": "seow-rpt-0001",
+  "sourceAnalyticsReportId": "anw-rpt-0001",
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-03T00:13:14.684Z",
+  "consumableByQ809": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-08:affiliate_business:afc-biz-travel-gear-01",
+    "q8-08:affiliate_project:afc-prj-travel-gear-01",
+    "q8-02:opportunity:aow-rpt-0001",
+    "q8-04:review:rcw-rpt-0001",
+    "q8-05:seo:seow-rpt-0001",
+    "q8-07:analytics:anw-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveComplianceAuditHistory": true,
+  "neverFabricateComplianceResults": true,
+  "neverProvideUnverifiedLegalConclusions": true,
+  "neverPublishAffiliateContent": true,
+  "neverReplaceLegalProfessionals": true,
+  "neverOverrideProgrammeRequirements": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ809OrLater": true,
+  "legalConclusion": "not_legal_advice"
+}

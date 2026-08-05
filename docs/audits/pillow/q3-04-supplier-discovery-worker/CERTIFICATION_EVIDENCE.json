@@ -1,0 +1,53 @@
+﻿{
+  "missionId": "Q3-04",
+  "doctrine": "PILLOW-SDW-001",
+  "moduleId": "supplier-discovery-worker",
+  "metadataVersion": "SDW-001-v1",
+  "reportVersion": "SDW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Find suppliers through approved supplier platforms and APIs.",
+  "prerequisites": [
+    { "missionId": "Q3-03", "doctrine": "PILLOW-PEW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverEvaluateSuppliers": true,
+    "neverNegotiateSuppliers": true,
+    "neverSelectSuppliers": true,
+    "neverPlaceOrders": true,
+    "neverModifySupplierData": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ305OrLater": true
+  },
+  "supplierDiscoveryReportFields": [
+    "discoveryId",
+    "timestamp",
+    "productId",
+    "productName",
+    "supplierId",
+    "supplierName",
+    "supplierPlatform",
+    "productCost",
+    "moq",
+    "shippingAvailability",
+    "supplierLocation",
+    "sourceReference",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/supplier-discovery-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/supplier-discovery-worker/",
+    "config": "config/supplier-discovery-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SUPPLIER_DISCOVERY_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/supplier-discovery-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/supplier-discovery-worker.test.ts"
+  },
+  "notes": [
+    "Supplier-discovery-only Commerce Factory worker; public pillow index aliases SdwSupplierDiscoveryReport."
+  ]
+}

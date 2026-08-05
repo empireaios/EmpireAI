@@ -1,0 +1,80 @@
+{
+  "reportId": "frw-rpt-000001",
+  "timestamp": "2026-08-04T00:00:00.000Z",
+  "capitalProjectId": "cap-proj-frw-01",
+  "reportingPeriod": "2026-Q2",
+  "capitalBusinessId": "frw-biz-alpha-01",
+  "currency": "SGD",
+  "metadataVersion": "FRW-001-v1",
+  "reportVersion": "FRW-RPT-v1",
+  "workerId": "wkr-financial-reporting-01",
+  "consumableByQ910": true,
+  "confidenceScore": 85,
+  "auditStatus": "pending",
+  "outstandingIssues": [],
+  "neverExecuteFinancialTransactions": true,
+  "neverApproveFinancialDecisions": true,
+  "neverModifyAccountingRecords": true,
+  "neverFabricateFinancialFigures": true,
+  "neverImplementQ910OrLater": true,
+  "measuredDataDistinctFromProjections": true,
+  "revenueSummary": {
+    "totalRevenue": { "currency": "SGD", "minorUnits": 5000000 },
+    "recordKind": "factual_measured",
+    "sourceRefs": ["acct-rev-2026-q2"],
+    "status": "available",
+    "fabricated": false
+  },
+  "expenseSummary": {
+    "totalExpense": { "currency": "SGD", "minorUnits": 3200000 },
+    "recordKind": "factual_measured",
+    "sourceRefs": ["acct-exp-2026-q2"],
+    "status": "available",
+    "fabricated": false
+  },
+  "cashflowSummary": {
+    "netCashflow": { "currency": "SGD", "minorUnits": 800000 },
+    "closingCashBalance": { "currency": "SGD", "minorUnits": 2500000 },
+    "openingCashBalance": { "currency": "SGD", "minorUnits": 1700000 },
+    "recordKind": "factual_measured",
+    "sourceRefs": ["cf-report-2026-q2"],
+    "status": "available",
+    "fabricated": false
+  },
+  "profitabilitySummary": {
+    "grossProfit": { "currency": "SGD", "minorUnits": 1800000 },
+    "operatingProfit": { "currency": "SGD", "minorUnits": 1200000 },
+    "netProfit": { "currency": "SGD", "minorUnits": 900000 },
+    "recordKind": "factual_measured",
+    "sourceRefs": ["profit-report-2026-q2"],
+    "status": "available",
+    "fabricated": false
+  },
+  "forecastSummary": {
+    "projectedRevenue": { "currency": "SGD", "minorUnits": 5500000 },
+    "projectedExpenses": { "currency": "SGD", "minorUnits": 3400000 },
+    "recordKind": "projected_caller_supplied",
+    "sourceRefs": ["forecast-report-2026-q3"],
+    "status": "available",
+    "fabricated": false
+  },
+  "enterpriseKpis": {
+    "totalRevenueMinor": 5000000,
+    "totalExpenseMinor": 3200000,
+    "netCashflowMinor": 800000,
+    "netProfitMinor": 900000,
+    "grossMarginBps": 1800,
+    "currency": "SGD",
+    "factualSourceCount": 4,
+    "projectedSourceCount": 0,
+    "recordKind": "computed_from_factual_summaries",
+    "fabricated": false
+  },
+  "supportingEvidence": [
+    "acct-rev-2026-q2",
+    "acct-exp-2026-q2",
+    "cf-report-2026-q2",
+    "profit-report-2026-q2",
+    "forecast-report-2026-q3"
+  ]
+}

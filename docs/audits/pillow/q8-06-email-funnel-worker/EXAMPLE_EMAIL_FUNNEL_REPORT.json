@@ -1,0 +1,376 @@
+{
+  "reportId": "efw-rpt-0001",
+  "timestamp": "2026-08-02T13:58:31.113Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "funnelName": "travel_gear email funnel",
+  "leadMagnet": {
+    "magnetId": "efw-magnet-0069",
+    "name": "TrailBackpack Pro buyer checklist",
+    "format": "checklist",
+    "topic": "travel_gear",
+    "offerSummary": "Free TrailBackpack Pro buyer checklist helping subscribers evaluate travel_gear options using verified review/SEO evidence.",
+    "deliveryPromise": "Delivered as a structural lead-magnet package only — Email Funnel Worker never sends live emails.",
+    "evidenceBasis": [
+      "seo_report:seow-rpt-0001",
+      "review_report:rcw-rpt-0001",
+      "primary_keyword:best travel backpack",
+      "review_pros"
+    ],
+    "fabricated": false
+  },
+  "funnelStages": [
+    {
+      "stageId": "efw-stage-0071",
+      "stageType": "awareness",
+      "name": "Awareness",
+      "objective": "Attract readers researching travel_gear",
+      "entryCriteria": "Visitor lands on SEO/content asset",
+      "exitCriteria": "Visitor sees lead magnet offer",
+      "order": 1
+    },
+    {
+      "stageId": "efw-stage-0072",
+      "stageType": "capture",
+      "name": "Capture",
+      "objective": "Convert visitors into subscribers via lead magnet",
+      "entryCriteria": "Visitor engages opt-in concept",
+      "exitCriteria": "Subscriber recorded structurally (not live-sent)",
+      "order": 2
+    },
+    {
+      "stageId": "efw-stage-0073",
+      "stageType": "welcome",
+      "name": "Welcome",
+      "objective": "Deliver magnet and set expectations",
+      "entryCriteria": "Subscriber enters welcome sequence",
+      "exitCriteria": "Welcome sequence complete",
+      "order": 3
+    },
+    {
+      "stageId": "efw-stage-0074",
+      "stageType": "nurture",
+      "name": "Nurture",
+      "objective": "Educate with evidenced tips and comparisons",
+      "entryCriteria": "Subscriber completes welcome",
+      "exitCriteria": "Ready for product recommendations",
+      "order": 4
+    },
+    {
+      "stageId": "efw-stage-0075",
+      "stageType": "recommend",
+      "name": "Recommend",
+      "objective": "Present evidenced product/service recommendations",
+      "entryCriteria": "Nurture milestones met",
+      "exitCriteria": "Subscriber engages recommendation CTA",
+      "order": 5
+    },
+    {
+      "stageId": "efw-stage-0076",
+      "stageType": "convert",
+      "name": "Convert",
+      "objective": "Guide toward affiliate conversion decision",
+      "entryCriteria": "Recommendation interest shown",
+      "exitCriteria": "Conversion objective reached or declined",
+      "order": 6
+    },
+    {
+      "stageId": "efw-stage-0077",
+      "stageType": "reengage",
+      "name": "Re-engage",
+      "objective": "Win back inactive subscribers structurally",
+      "entryCriteria": "Inactivity signal (extension point)",
+      "exitCriteria": "Re-engaged or archived (extension point)",
+      "order": 7
+    }
+  ],
+  "emailSequence": [
+    {
+      "sequenceId": "efw-seq-0080",
+      "name": "travel_gear welcome sequence",
+      "sequenceType": "welcome",
+      "emails": [
+        {
+          "emailId": "efw-email-0078",
+          "sequenceType": "welcome",
+          "dayOffset": 0,
+          "subject": "Your TrailBackpack Pro buyer checklist is ready",
+          "previewText": "Start with the travel_gear checklist",
+          "bodyOutline": [
+            "Thank subscriber",
+            "Deliver TrailBackpack Pro buyer checklist (structural delivery note)",
+            "Set expectations for upcoming tips"
+          ],
+          "cta": "Download TrailBackpack Pro buyer checklist",
+          "fabricated": false
+        },
+        {
+          "emailId": "efw-email-0079",
+          "sequenceType": "welcome",
+          "dayOffset": 1,
+          "subject": "How to use your travel_gear checklist",
+          "previewText": "Quick start guide",
+          "bodyOutline": [
+            "Walk through checklist sections",
+            "Highlight evidenced strengths: Durable shell",
+            "Invite reply / preference capture (extension point)"
+          ],
+          "cta": "Open TrailBackpack Pro research notes",
+          "fabricated": false
+        }
+      ],
+      "fabricated": false
+    },
+    {
+      "sequenceId": "efw-seq-0084",
+      "name": "travel_gear nurture sequence",
+      "sequenceType": "nurture",
+      "emails": [
+        {
+          "emailId": "efw-email-0081",
+          "sequenceType": "nurture",
+          "dayOffset": 3,
+          "subject": "travel_gear mistakes to avoid",
+          "previewText": "Evidence-based buying pitfalls",
+          "bodyOutline": [
+            "Discuss evidenced cons/trade-offs: Premium price",
+            "Link structurally to SEO supporting content when available"
+          ],
+          "cta": "Read best travel backpack guide",
+          "fabricated": false
+        },
+        {
+          "emailId": "efw-email-0082",
+          "sequenceType": "nurture",
+          "dayOffset": 5,
+          "subject": "How we evaluate TrailBackpack Pro",
+          "previewText": "Transparent criteria",
+          "bodyOutline": [
+            "Share evaluation framework from review/SEO packages",
+            "Reference buying note: Buy with conditions"
+          ],
+          "cta": "See TrailBackpack Pro recommendation criteria",
+          "fabricated": false
+        },
+        {
+          "emailId": "efw-email-0083",
+          "sequenceType": "recommend",
+          "dayOffset": 7,
+          "subject": "TrailBackpack Pro: who it is for",
+          "previewText": "Fit and next steps",
+          "bodyOutline": [
+            "Summarize ideal fit from evidence",
+            "Present conversion-focused but non-live CTA",
+            "No fabricated open/click/conversion rates"
+          ],
+          "cta": "Consider TrailBackpack Pro",
+          "fabricated": false
+        }
+      ],
+      "fabricated": false
+    }
+  ],
+  "callToActionStrategy": {
+    "strategyId": "efw-cta-0085",
+    "primaryCta": "Get the free TrailBackpack Pro buyer checklist",
+    "secondaryCtas": [
+      "Read travel_gear buying guide",
+      "Consider TrailBackpack Pro",
+      "Reply with your use case (extension point)"
+    ],
+    "placementByStage": [
+      {
+        "stageType": "capture",
+        "cta": "Get the free TrailBackpack Pro buyer checklist"
+      },
+      {
+        "stageType": "welcome",
+        "cta": "Open TrailBackpack Pro buyer checklist"
+      },
+      {
+        "stageType": "nurture",
+        "cta": "Read travel_gear guide"
+      },
+      {
+        "stageType": "recommend",
+        "cta": "Consider TrailBackpack Pro"
+      },
+      {
+        "stageType": "convert",
+        "cta": "Review TrailBackpack Pro offer details"
+      }
+    ],
+    "conversionObjectives": [
+      "Capture subscriber via lead magnet (structural)",
+      "Educate subscriber through welcome + nurture sequences",
+      "Guide toward evidenced consideration of TrailBackpack Pro"
+    ],
+    "fabricated": false,
+    "neverFabricatePerformanceClaims": true
+  },
+  "conversionObjectives": [
+    "Capture subscriber via lead magnet (structural)",
+    "Educate subscriber through welcome + nurture sequences",
+    "Guide toward evidenced consideration of TrailBackpack Pro"
+  ],
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "seo_content_report:seow-rpt-0001",
+    "fixtureLeadMagnetName",
+    "lead_magnet",
+    "email_capture_strategy",
+    "welcome_sequence",
+    "nurture_sequence",
+    "cta_strategy",
+    "version_history"
+  ],
+  "auditStatus": "ready_for_q807",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "EFW-001-v1",
+  "reportVersion": "EFW-RPT-v1",
+  "workerId": "wkr-email-funnel-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "topic": "travel_gear",
+  "emailCaptureStrategy": {
+    "strategyId": "efw-capture-0070",
+    "optInPageConcept": "travel_gear opt-in page offering TrailBackpack Pro buyer checklist",
+    "headline": "Get the free TrailBackpack Pro buyer checklist",
+    "formFields": [
+      "email",
+      "first_name_optional"
+    ],
+    "incentive": "TrailBackpack Pro buyer checklist",
+    "placementNotes": [
+      "Place capture CTA near pillar: travel_gear ultimate guide",
+      "Align with keyword intent around best travel backpack",
+      "Structural strategy only — never publishes opt-in pages live"
+    ],
+    "fabricated": false
+  },
+  "welcomeSequence": {
+    "sequenceId": "efw-seq-0080",
+    "name": "travel_gear welcome sequence",
+    "sequenceType": "welcome",
+    "emails": [
+      {
+        "emailId": "efw-email-0078",
+        "sequenceType": "welcome",
+        "dayOffset": 0,
+        "subject": "Your TrailBackpack Pro buyer checklist is ready",
+        "previewText": "Start with the travel_gear checklist",
+        "bodyOutline": [
+          "Thank subscriber",
+          "Deliver TrailBackpack Pro buyer checklist (structural delivery note)",
+          "Set expectations for upcoming tips"
+        ],
+        "cta": "Download TrailBackpack Pro buyer checklist",
+        "fabricated": false
+      },
+      {
+        "emailId": "efw-email-0079",
+        "sequenceType": "welcome",
+        "dayOffset": 1,
+        "subject": "How to use your travel_gear checklist",
+        "previewText": "Quick start guide",
+        "bodyOutline": [
+          "Walk through checklist sections",
+          "Highlight evidenced strengths: Durable shell",
+          "Invite reply / preference capture (extension point)"
+        ],
+        "cta": "Open TrailBackpack Pro research notes",
+        "fabricated": false
+      }
+    ],
+    "fabricated": false
+  },
+  "nurtureSequence": {
+    "sequenceId": "efw-seq-0084",
+    "name": "travel_gear nurture sequence",
+    "sequenceType": "nurture",
+    "emails": [
+      {
+        "emailId": "efw-email-0081",
+        "sequenceType": "nurture",
+        "dayOffset": 3,
+        "subject": "travel_gear mistakes to avoid",
+        "previewText": "Evidence-based buying pitfalls",
+        "bodyOutline": [
+          "Discuss evidenced cons/trade-offs: Premium price",
+          "Link structurally to SEO supporting content when available"
+        ],
+        "cta": "Read best travel backpack guide",
+        "fabricated": false
+      },
+      {
+        "emailId": "efw-email-0082",
+        "sequenceType": "nurture",
+        "dayOffset": 5,
+        "subject": "How we evaluate TrailBackpack Pro",
+        "previewText": "Transparent criteria",
+        "bodyOutline": [
+          "Share evaluation framework from review/SEO packages",
+          "Reference buying note: Buy with conditions"
+        ],
+        "cta": "See TrailBackpack Pro recommendation criteria",
+        "fabricated": false
+      },
+      {
+        "emailId": "efw-email-0083",
+        "sequenceType": "recommend",
+        "dayOffset": 7,
+        "subject": "TrailBackpack Pro: who it is for",
+        "previewText": "Fit and next steps",
+        "bodyOutline": [
+          "Summarize ideal fit from evidence",
+          "Present conversion-focused but non-live CTA",
+          "No fabricated open/click/conversion rates"
+        ],
+        "cta": "Consider TrailBackpack Pro",
+        "fabricated": false
+      }
+    ],
+    "fabricated": false
+  },
+  "versionHistory": [
+    {
+      "version": 1,
+      "funnelId": "efw-sess-0007",
+      "reportId": "efw-rpt-0001",
+      "timestamp": "2026-08-02T13:58:31.113Z",
+      "changeSummary": "Funnel v1 for travel_gear email funnel"
+    }
+  ],
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "sourceSeoReportId": "seow-rpt-0001",
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T13:58:31.113Z",
+  "consumableByQ807": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-06:affiliate_business:afc-biz-travel-gear-01",
+    "q8-06:affiliate_project:afc-prj-travel-gear-01",
+    "q8-06:funnel:travel_gear email funnel",
+    "q8-06:magnet:efw-magnet-0069",
+    "q8-06:version:1",
+    "q8-02:opportunity:aow-rpt-0001",
+    "q8-05:seo:seow-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverFabricateConversionOrPerformanceClaims": true,
+  "neverSendLiveMarketingEmails": true,
+  "neverManageEmailInfrastructure": true,
+  "neverReplaceAnalyticsWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ807OrLater": true
+}

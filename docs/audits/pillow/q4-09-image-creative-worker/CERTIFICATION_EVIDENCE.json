@@ -1,0 +1,53 @@
+{
+  "missionId": "Q4-09",
+  "missionName": "Image & Creative Worker",
+  "doctrineId": "PILLOW-ICW-001",
+  "moduleId": "image-creative-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-07-24T00:00:00.000Z",
+  "metadataVersion": "ICW-001-v1",
+  "reportSchemaVersion": "ICW-RPT-v1",
+  "validation": {
+    "testFile": "pillow/src/validation/tests/image-creative-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive Visual Research Reports",
+    "Receive Thumbnail specifications",
+    "Generate original graphics",
+    "Edit existing images",
+    "Create diagrams and infographics",
+    "Create covers and banners",
+    "Create social media assets",
+    "Generate multiple creative variants",
+    "Validate asset quality and compliance",
+    "Produce machine-readable Creative Asset Reports"
+  ],
+  "boundariesVerified": [
+    "Does not assemble videos",
+    "Does not generate voiceovers",
+    "Does not publish media",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q4-10 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Visual Research Worker",
+    "Thumbnail Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/image-creative-worker/",
+    "config/image-creative-worker.config.json",
+    "docs/governance/EMPIREAI_IMAGE_CREATIVE_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q4-09-image-creative-worker/Q4_09_IMAGE_CREATIVE_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/image-creative-worker-bridge.ts"
+  ]
+}

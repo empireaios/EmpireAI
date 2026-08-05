@@ -1,0 +1,67 @@
+{
+  "missionId": "Q4-01",
+  "doctrine": "PILLOW-MFC-001",
+  "moduleId": "media-factory-core",
+  "metadataVersion": "MFC-001-v1",
+  "reportVersion": "MFC-MFR-v1",
+  "missionVersion": "MFC-MBM-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Operate media businesses, channels, content pipelines, approvals, publishing, and learning.",
+  "prerequisites": [
+    { "missionId": "Q3-14", "doctrine": "PILLOW-CMC-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-01", "doctrine": "PILLOW-CMF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-10", "doctrine": "PILLOW-EBC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-09", "doctrine": "PILLOW-WAE-001", "status": "FINAL PASS" },
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverWriteScripts": true,
+    "neverGenerateImages": true,
+    "neverGenerateVideos": true,
+    "neverPublishDirectly": true,
+    "neverBypassApproval": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ402OrLater": true
+  },
+  "mediaFactoryReportFields": [
+    "mediaMissionId",
+    "timestamp",
+    "mediaBusinessId",
+    "channelId",
+    "channelType",
+    "contentPipeline",
+    "currentStage",
+    "assignedWorkers",
+    "approvalStatus",
+    "publishingStatus",
+    "learningStatus",
+    "executiveSummary",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "mission_coordination_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/media-factory-core.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/media-factory-core/",
+    "config": "config/media-factory-core.config.json",
+    "doctrine": "docs/governance/EMPIREAI_MEDIA_FACTORY_CORE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/media-factory-core-bridge.ts",
+    "tests": "pillow/src/validation/tests/media-factory-core.test.ts"
+  },
+  "notes": [
+    "Orchestration-only Q4 entrypoint under Pillow; does not write scripts, generate media, or publish directly.",
+    "Public pillow index aliases MfcMediaFactoryReport / MfcMediaBusinessMission."
+  ]
+}

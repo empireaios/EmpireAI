@@ -1,0 +1,16 @@
+{
+  "reportId": "pcfct-final-0001",
+  "metadataVersion": "PCFCT-001-v1",
+  "engineId": "PILLOW-PCFCT-001",
+  "missionId": "Q13-06",
+  "repositorySummary": "Constitutional programme certification across 8 programmes from repository evidence",
+  "certifiedProgrammes": ["G Series", "P Series", "E Series", "T Series", "R Series", "X Series", "Q Series"],
+  "deferredProgrammes": ["K Series"],
+  "finalConstitutionalDecision": "constitutionally_complete_with_exceptions",
+  "remainingConstitutionalExceptions": ["Q11-08 FINART stub absent from repository evidence"],
+  "q1306ContractConsumed": true,
+  "neverImplementFutureProgramme": true,
+  "neverImplementQ1307OrLater": true,
+  "structuralSignalOnly": true,
+  "repositoryCertificationTimestamp": "2026-08-05T08:00:00.000Z"
+}

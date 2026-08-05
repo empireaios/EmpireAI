@@ -1,0 +1,46 @@
+{
+  "missionId": "Q6-10",
+  "doctrine": "PILLOW-AIW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/api-integration-worker/",
+  "metadataVersion": "AIW-001-v1",
+  "reportVersion": "AIW-RPT-v1",
+  "workerId": "wkr-api-integration-01",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverReplacePlatformBusinessLogic": true,
+    "neverExposeApiSecretsOrCredentials": true,
+    "neverStoreSecretsInsecurely": true,
+    "neverFabricateSuccessfulIntegrationTests": true,
+    "neverImplementQ611OrLater": true,
+    "canonicalPaymentGatewayReference": "pillow/src/payment-gateway-integration/"
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowApiIntegrationWorker": true,
+    "subsystemRegistry": "api-integration-worker",
+    "hostRoutes": "/api/pillow/api-integration-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/api-integration-worker-bridge.ts"
+  },
+  "evidence": [
+    "pillow/src/validation/tests/api-integration-worker.test.ts",
+    "credential redaction / CredentialRef only",
+    "explicit transport-driven request outcomes",
+    "retry + rate-limit + webhook + health + API Integration Report"
+  ],
+  "tests": {
+    "apiIntegrationWorker": "12/12",
+    "billingWorkerRegression": "12/12"
+  }
+}

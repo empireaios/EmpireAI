@@ -1,0 +1,10 @@
+{
+  "contractId": "q1306-contract-IRPLN-001-v1",
+  "contractVersion": "IRPLN-001-v1",
+  "producedBy": "implementation-recovery-planner",
+  "missionId": "Q13-05",
+  "consumerMissionId": "Q13-06",
+  "neverImplementQ1306OrLater": true,
+  "structuralSignalOnly": true,
+  "recoveryPrerequisite": true
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "opportunityId": "anw-opt-0088",
+    "area": "conversions",
+    "recommendation": "Address downward conversions trend before scaling spend",
+    "rationale": "conversions moved down by -4 vs prior period (40 → 36)",
+    "priority": "medium",
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  {
+    "opportunityId": "anw-opt-0089",
+    "area": "commissions",
+    "recommendation": "Address downward commissionAmount trend before scaling spend",
+    "rationale": "commissionAmount moved down by -32 vs prior period (320 → 288)",
+    "priority": "medium",
+    "fabricated": false,
+    "evidencePresent": true
+  }
+]

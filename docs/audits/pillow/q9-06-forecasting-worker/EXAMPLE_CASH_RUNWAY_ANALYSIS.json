@@ -1,0 +1,194 @@
+{
+  "cashRunway": {
+    "estimateId": "frcw-runway-0001",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "openingCashMinor": {
+      "currency": "SGD",
+      "minorUnits": 2500000
+    },
+    "monthlyNetBurnMinor": {
+      "currency": "SGD",
+      "minorUnits": 150000
+    },
+    "monthlySurplusMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "runwayStatus": "burning",
+    "runwayMonths": 16,
+    "runwayDays": 500,
+    "currency": "SGD",
+    "scenario": "expected",
+    "assumptions": [
+      {
+        "assumptionId": "frcw-assumption-0003",
+        "key": "cash_runway",
+        "description": "Average net monthly cashflow derived directly from verified net_cashflow historical points.",
+        "valueBps": null,
+        "valueMinor": -150000,
+        "source": "historical_net_cashflow_points",
+        "fabricated": false
+      },
+      {
+        "assumptionId": "frcw-assumption-0004",
+        "key": "cash_runway",
+        "description": "runwayDays approximates each calendar month as exactly 30 days.",
+        "valueBps": null,
+        "valueMinor": null,
+        "source": "fixed_30_day_month_approximation",
+        "fabricated": false
+      }
+    ],
+    "supportingEvidence": [
+      "frcw-ev-cf1",
+      "frcw-ev-cf2",
+      "frcw-ev-cf3"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "reinvestmentOptions": [],
+  "scenarioComparison": {
+    "comparisonId": "frcw-comparison-0001",
+    "currency": "SGD",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "horizonPeriods": 3,
+    "scenarios": [
+      {
+        "scenario": "best_case",
+        "growthRateBps": 1409,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1782066
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 926243
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 855823
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 630247
+        },
+        "runwayMonths": null
+      },
+      {
+        "scenario": "expected",
+        "growthRateBps": 909,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1557887
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 803212
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 754675
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 555691
+        },
+        "runwayMonths": null
+      },
+      {
+        "scenario": "worst_case",
+        "growthRateBps": 409,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1353343
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 691590
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 661753
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 487259
+        },
+        "runwayMonths": null
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0005",
+      "frcw-assumption-0006",
+      "frcw-assumption-0007",
+      "frcw-assumption-0008",
+      "frcw-assumption-0009",
+      "frcw-assumption-0010"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "q907Contract": {
+    "contractId": "frcw-q907-contract-FRCW-001-v1",
+    "contractVersion": "FRCW-001-v1",
+    "producedBy": "forecasting-worker",
+    "missionId": "Q9-06",
+    "consumerMissionId": "Q9-07",
+    "exposedFields": [
+      "capitalBusinessId",
+      "forecastPeriod",
+      "revenueForecast",
+      "costForecast",
+      "cashflowForecast",
+      "cashRunway",
+      "profitForecast",
+      "reinvestmentOptions",
+      "forecastAssumptions",
+      "confidenceAssessment",
+      "scenarioComparison",
+      "historicalBaseline",
+      "confidenceScore",
+      "metadataVersion"
+    ],
+    "forecastModelCatalog": [
+      "historical_trend",
+      "rolling",
+      "scenario",
+      "sensitivity",
+      "growth_assumption",
+      "cost_assumption",
+      "cash_runway",
+      "profit_projection",
+      "reinvestment"
+    ],
+    "scenarioKindCatalog": [
+      "best_case",
+      "expected",
+      "worst_case"
+    ],
+    "forecastMetricCatalog": [
+      "revenue",
+      "cost",
+      "cash",
+      "profit",
+      "net_cashflow",
+      "closing_cash"
+    ],
+    "currencyCatalog": [
+      "USD",
+      "SGD",
+      "EUR",
+      "GBP",
+      "PHP",
+      "UNKNOWN"
+    ],
+    "notes": [
+      "Forecasting Worker (Q9-06) projects revenue, cost, cashflow, profit, cash runway, and structural reinvestment suggestions from verified historical evidence only — it never fabricates historical financial data and never presents a forecast as a guaranteed outcome.",
+      "It does not execute investments, approve budgets, replace the Investment Planning Worker, or modify accounting records.",
+      "Q9-07 (Tax Support Worker) and later workers must consume this contract rather than reimplement Q9-06 forecasting logic."
+    ],
+    "neverImplementQ907OrLater": true,
+    "structuralSignalOnly": true
+  }
+}

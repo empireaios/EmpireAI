@@ -1,0 +1,37 @@
+{
+  "contractId": "q1108-contract-RECART-001-v1",
+  "contractVersion": "RECART-001-v1",
+  "producedBy": "recovery-audit",
+  "missionId": "Q11-07",
+  "consumerMissionId": "Q11-08",
+  "exposedFields": [
+    "assessments",
+    "recoverySummary",
+    "decision",
+    "componentInventory",
+    "resilienceSummary",
+    "outstandingRisks",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "decisionCatalog": [
+    "certify",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Recovery Audit Q11-07 certified — stops at Q11-07, exposes Q1108ConsumableContract for Q11-08 (Financial Readiness Audit)",
+    "This contract is structural-signal-only; Q11-07 never implements Q11-08 or any later mission itself",
+    "Audit verifies recovery CAPABILITY presence only — destructive recovery methods are NEVER invoked during audit"
+  ],
+  "neverImplementQ1108OrLater": true,
+  "structuralSignalOnly": true
+}

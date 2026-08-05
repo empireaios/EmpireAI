@@ -1,0 +1,50 @@
+{
+  "budgetId": "bpw-budget-0001",
+  "budgetOwner": "capital-factory",
+  "businessOrProject": {
+    "businessId": "capfc-biz-growth-01",
+    "projectId": "prj-growth-launch",
+    "name": null
+  },
+  "budgetCategory": "project",
+  "budgetPeriod": "quarterly",
+  "periodLabel": "2026-Q3",
+  "periodStart": "2026-07-01T00:00:00.000Z",
+  "periodEnd": "2026-09-30T23:59:59.999Z",
+  "plannedAmount": {
+    "currency": "SGD",
+    "minorUnits": 1000000
+  },
+  "actualExpenditure": {
+    "currency": "SGD",
+    "minorUnits": 1125000
+  },
+  "remainingBudget": {
+    "currency": "SGD",
+    "minorUnits": -125000
+  },
+  "budgetUtilisationPercentage": 112.5,
+  "varianceAmount": {
+    "currency": "SGD",
+    "minorUnits": 125000
+  },
+  "variancePercentage": 12.5,
+  "approvalStatus": "draft",
+  "supportingNotes": [
+    "Launch project media and tooling"
+  ],
+  "currency": "SGD",
+  "capitalProjectId": "capfc-prj-growth-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "revisionNumber": 1,
+  "revisionHistory": [],
+  "actualExpenditureEvidencePresent": true,
+  "fabricated": false,
+  "traceabilityRefs": [
+    "q9-04:budget:bpw-budget-0001",
+    "q9-04:category:project",
+    "q9-04:period:2026-Q3"
+  ],
+  "createdAt": "2026-08-03T07:22:29.400Z",
+  "updatedAt": "2026-08-03T07:22:29.400Z"
+}

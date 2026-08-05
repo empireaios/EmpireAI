@@ -1,0 +1,46 @@
+{
+  "missionId": "Q6-11",
+  "doctrine": "PILLOW-WBW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/workflow-builder-worker/",
+  "metadataVersion": "WBW-001-v1",
+  "reportVersion": "WBW-RPT-v1",
+  "workerId": "wkr-workflow-builder-01",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS",
+    "Q6-10": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverReplaceWorkerBusinessLogic": true,
+    "neverReplaceRuntimeScheduling": true,
+    "neverReplaceApprovalGovernance": true,
+    "neverFabricateSuccessfulWorkflowExecution": true,
+    "neverImplementQ612OrLater": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowWorkflowBuilderWorker": true,
+    "subsystemRegistry": "workflow-builder-worker",
+    "hostRoutes": "/api/pillow/workflow-builder-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/workflow-builder-worker-bridge.ts"
+  },
+  "evidence": [
+    "pillow/src/validation/tests/workflow-builder-worker.test.ts",
+    "explicit StepHandler outcomes only",
+    "approval gates require explicit approve/reject",
+    "sequential + parallel + branch + retry + recovery + report"
+  ],
+  "tests": {
+    "workflowBuilderWorker": "12/12",
+    "apiIntegrationWorkerRegression": "12/12"
+  }
+}

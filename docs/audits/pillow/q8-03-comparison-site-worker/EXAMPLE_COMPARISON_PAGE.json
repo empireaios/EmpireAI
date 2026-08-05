@@ -1,0 +1,26 @@
+{
+  "pageId": "csw-cmp-0034",
+  "pageType": "comparison",
+  "title": "travel_gear comparison",
+  "topic": "travel_gear",
+  "productsCompared": [
+    "TrailBackpack Pro",
+    "CityDuffel Lite"
+  ],
+  "summary": "Structural comparison of 2 product(s) for travel_gear based on verified fixture/opportunity evidence.",
+  "sections": [
+    {
+      "heading": "Overview",
+      "body": "Products compared: TrailBackpack Pro, CityDuffel Lite."
+    },
+    {
+      "heading": "Tables",
+      "body": "Includes 2 evidence-derived comparison table(s)."
+    },
+    {
+      "heading": "Transparency",
+      "body": "Cells marked unknown or not evidenced were never invented."
+    }
+  ],
+  "fabricated": false
+}

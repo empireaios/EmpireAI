@@ -1,0 +1,425 @@
+{
+  "reportId": "opsw-rpt-0001",
+  "timestamp": "2026-08-02T06:56:24.815Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "workflowId": "opsw-wf-0001",
+  "serviceType": "residential_cleaning",
+  "operationalStages": [
+    {
+      "stageId": "opsw-stage-0001",
+      "workflowId": "opsw-wf-0001",
+      "stage": "job_preparation",
+      "sequence": 1,
+      "name": "Job Preparation",
+      "description": "Prepare the job brief, required materials list, and confirm scope from the approved booking.",
+      "dependencies": [],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0002",
+      "workflowId": "opsw-wf-0001",
+      "stage": "technician_assignment",
+      "sequence": 2,
+      "name": "Technician Assignment",
+      "description": "Design the criteria and steps for assigning a qualified technician to the job.",
+      "dependencies": ["opsw-stage-0001"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0003",
+      "workflowId": "opsw-wf-0001",
+      "stage": "dispatch",
+      "sequence": 3,
+      "name": "Dispatch",
+      "description": "Define dispatch notification and travel-window structure ahead of arrival.",
+      "dependencies": ["opsw-stage-0002"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0004",
+      "workflowId": "opsw-wf-0001",
+      "stage": "arrival",
+      "sequence": 4,
+      "name": "Arrival",
+      "description": "Define on-site arrival check-in and customer verification steps.",
+      "dependencies": ["opsw-stage-0003"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0005",
+      "workflowId": "opsw-wf-0001",
+      "stage": "service_execution",
+      "sequence": 5,
+      "name": "Service Execution",
+      "description": "Define the structural sequence of service execution steps for the booked service type.",
+      "dependencies": ["opsw-stage-0004"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0006",
+      "workflowId": "opsw-wf-0001",
+      "stage": "quality_inspection",
+      "sequence": 6,
+      "name": "Quality Inspection",
+      "description": "Define quality inspection checkpoints against the fulfilment checklist.",
+      "dependencies": ["opsw-stage-0005"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0007",
+      "workflowId": "opsw-wf-0001",
+      "stage": "customer_sign_off",
+      "sequence": 7,
+      "name": "Customer Sign Off",
+      "description": "Define customer sign-off collection steps confirming work is accepted.",
+      "dependencies": ["opsw-stage-0006"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0008",
+      "workflowId": "opsw-wf-0001",
+      "stage": "completion",
+      "sequence": 8,
+      "name": "Completion",
+      "description": "Define closure steps that mark the booking lifecycle as operationally complete.",
+      "dependencies": ["opsw-stage-0007"],
+      "status": "planned",
+      "notes": []
+    },
+    {
+      "stageId": "opsw-stage-0009",
+      "workflowId": "opsw-wf-0001",
+      "stage": "follow_up",
+      "sequence": 9,
+      "name": "Follow Up",
+      "description": "Define post-service follow-up touchpoints and satisfaction check timing.",
+      "dependencies": ["opsw-stage-0008"],
+      "status": "planned",
+      "notes": []
+    }
+  ],
+  "assignmentWorkflow": {
+    "assignmentWorkflowId": "opsw-assign-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "serviceType": "residential_cleaning",
+    "assignmentCriteria": [
+      "skill_match_for_service_type",
+      "geographic_proximity_to_service_area",
+      "availability_within_scheduled_window",
+      "workload_balance_across_technicians"
+    ],
+    "candidateRoles": ["role-technician-residential_cleaning", "role-technician-general"],
+    "steps": [
+      {
+        "stepId": "opsw-wf-0001-assign-1",
+        "sequence": 1,
+        "description": "Identify eligible technicians matching required skills and service area."
+      },
+      {
+        "stepId": "opsw-wf-0001-assign-2",
+        "sequence": 2,
+        "description": "Rank eligible technicians by availability and workload balance."
+      },
+      {
+        "stepId": "opsw-wf-0001-assign-3",
+        "sequence": 3,
+        "description": "Propose top-ranked technician for dispatch confirmation."
+      },
+      {
+        "stepId": "opsw-wf-0001-assign-4",
+        "sequence": 4,
+        "description": "Apply fallback strategy if no technician is available within window."
+      }
+    ],
+    "fallbackStrategy": "Escalate to supervisor queue for manual assignment when no eligible technician is available.",
+    "createdAt": "2026-08-02T06:56:24.813Z",
+    "designOnly": true,
+    "notes": ["Design only — never performs the actual assignment or dispatch."]
+  },
+  "fulfilmentChecklist": {
+    "checklistId": "opsw-checklist-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "items": [
+      {
+        "itemId": "opsw-wf-0001-item-1",
+        "sequence": 1,
+        "stage": "job_preparation",
+        "description": "Confirm booking scope and required materials list.",
+        "required": true
+      },
+      {
+        "itemId": "opsw-wf-0001-item-2",
+        "sequence": 2,
+        "stage": "dispatch",
+        "description": "Confirm technician dispatch notification sent structurally.",
+        "required": true
+      },
+      {
+        "itemId": "opsw-wf-0001-item-3",
+        "sequence": 3,
+        "stage": "arrival",
+        "description": "Confirm on-site arrival check-in recorded.",
+        "required": true
+      },
+      {
+        "itemId": "opsw-wf-0001-item-4",
+        "sequence": 4,
+        "stage": "service_execution",
+        "description": "Confirm each service execution step is completed in sequence.",
+        "required": true
+      },
+      {
+        "itemId": "opsw-wf-0001-item-5",
+        "sequence": 5,
+        "stage": "quality_inspection",
+        "description": "Confirm quality inspection checkpoints are reviewed.",
+        "required": true
+      },
+      {
+        "itemId": "opsw-wf-0001-item-6",
+        "sequence": 6,
+        "stage": "customer_sign_off",
+        "description": "Confirm customer sign-off is collected before completion.",
+        "required": true
+      }
+    ],
+    "createdAt": "2026-08-02T06:56:24.814Z",
+    "designOnly": true,
+    "notes": ["Structural fulfilment checklist — completion of items is never fabricated."]
+  },
+  "qaCheckpoints": {
+    "qaCheckpointsId": "opsw-qa-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "checkpoints": [
+      {
+        "checkpointId": "opsw-wf-0001-qa-1",
+        "sequence": 1,
+        "stage": "service_execution",
+        "criterion": "Service execution follows the approved sequence for the booked service type.",
+        "required": true
+      },
+      {
+        "checkpointId": "opsw-wf-0001-qa-2",
+        "sequence": 2,
+        "stage": "quality_inspection",
+        "criterion": "Workmanship meets the documented quality standard for the service category.",
+        "required": true
+      },
+      {
+        "checkpointId": "opsw-wf-0001-qa-3",
+        "sequence": 3,
+        "stage": "quality_inspection",
+        "criterion": "No outstanding defects remain unresolved before sign-off.",
+        "required": true
+      },
+      {
+        "checkpointId": "opsw-wf-0001-qa-4",
+        "sequence": 4,
+        "stage": "customer_sign_off",
+        "criterion": "Customer sign-off confirms acceptance of delivered work.",
+        "required": true
+      }
+    ],
+    "createdAt": "2026-08-02T06:56:24.814Z",
+    "designOnly": true,
+    "notes": ["Structural QA checkpoint design — never asserts an inspection outcome occurred."]
+  },
+  "escalationWorkflow": {
+    "escalationWorkflowId": "opsw-escalation-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "rules": [
+      {
+        "ruleId": "opsw-wf-0001-esc-1",
+        "sequence": 1,
+        "triggerStage": "dispatch",
+        "triggerCondition": "No technician accepted assignment within the dispatch window.",
+        "escalateTo": "supervisor_queue"
+      },
+      {
+        "ruleId": "opsw-wf-0001-esc-2",
+        "sequence": 2,
+        "triggerStage": "arrival",
+        "triggerCondition": "Technician fails to arrive within the scheduled arrival window.",
+        "escalateTo": "supervisor_queue"
+      },
+      {
+        "ruleId": "opsw-wf-0001-esc-3",
+        "sequence": 3,
+        "triggerStage": "service_execution",
+        "triggerCondition": "Blocking issue reported during service execution.",
+        "escalateTo": "operations_supervisor"
+      },
+      {
+        "ruleId": "opsw-wf-0001-esc-4",
+        "sequence": 4,
+        "triggerStage": "quality_inspection",
+        "triggerCondition": "Quality inspection identifies a defect requiring rework.",
+        "escalateTo": "operations_supervisor"
+      },
+      {
+        "ruleId": "opsw-wf-0001-esc-5",
+        "sequence": 5,
+        "triggerStage": "exception",
+        "triggerCondition": "Exception outside the standard delivery path is recorded.",
+        "escalateTo": "grand_king_advisory"
+      }
+    ],
+    "createdAt": "2026-08-02T06:56:24.814Z",
+    "designOnly": true,
+    "notes": ["Structural escalation routing design — never executes an escalation itself."]
+  },
+  "completionWorkflow": {
+    "completionWorkflowId": "opsw-completion-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "steps": [
+      {
+        "stepId": "opsw-wf-0001-complete-1",
+        "sequence": 1,
+        "stage": "customer_sign_off",
+        "description": "Verify customer sign-off is recorded for the completed work."
+      },
+      {
+        "stepId": "opsw-wf-0001-complete-2",
+        "sequence": 2,
+        "stage": "completion",
+        "description": "Verify all required fulfilment checklist items are marked resolved."
+      },
+      {
+        "stepId": "opsw-wf-0001-complete-3",
+        "sequence": 3,
+        "stage": "completion",
+        "description": "Close the booking lifecycle as operationally complete (not a service-performance claim)."
+      }
+    ],
+    "signOffRequired": true,
+    "createdAt": "2026-08-02T06:56:24.814Z",
+    "designOnly": true,
+    "notes": ["Design only — completion status is a lifecycle marker, never a fabricated performance claim."]
+  },
+  "followUpWorkflow": {
+    "followUpWorkflowId": "opsw-followup-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "steps": [
+      {
+        "stepId": "opsw-wf-0001-followup-1",
+        "sequence": 1,
+        "description": "Send structural satisfaction check-in touchpoint.",
+        "timingOffsetDays": 1
+      },
+      {
+        "stepId": "opsw-wf-0001-followup-2",
+        "sequence": 2,
+        "description": "Review for repeat-service or referral opportunity signal.",
+        "timingOffsetDays": 7
+      },
+      {
+        "stepId": "opsw-wf-0001-followup-3",
+        "sequence": 3,
+        "description": "Archive follow-up outcome into workflow audit history.",
+        "timingOffsetDays": 14
+      }
+    ],
+    "createdAt": "2026-08-02T06:56:24.814Z",
+    "designOnly": true,
+    "notes": ["Structural follow-up touchpoint design — never claims a follow-up was actually sent."]
+  },
+  "cancellationWorkflow": null,
+  "exceptionManagement": {
+    "exceptionManagementId": "opsw-exception-0001",
+    "workflowId": "opsw-wf-0001",
+    "bookingId": "bkw-booking-0001",
+    "handledExceptionTypes": [
+      "technician_unavailable",
+      "customer_unreachable",
+      "access_denied_on_site",
+      "safety_concern_identified",
+      "material_shortage"
+    ],
+    "steps": [
+      {
+        "stepId": "opsw-wf-0001-exception-1",
+        "sequence": 1,
+        "description": "Detect deviation from the designed operational stage sequence."
+      },
+      {
+        "stepId": "opsw-wf-0001-exception-2",
+        "sequence": 2,
+        "description": "Classify the exception against known handled exception types."
+      },
+      {
+        "stepId": "opsw-wf-0001-exception-3",
+        "sequence": 3,
+        "description": "Route the exception to the escalation workflow for resolution."
+      },
+      {
+        "stepId": "opsw-wf-0001-exception-4",
+        "sequence": 4,
+        "description": "Record the exception outcome in the workflow audit history."
+      }
+    ],
+    "createdAt": "2026-08-02T06:56:24.815Z",
+    "designOnly": true,
+    "notes": ["Structural exception-handling design — never asserts an exception actually occurred."]
+  },
+  "auditStatus": "ready_for_q710",
+  "outstandingIssues": ["No source Lead Generation report linked"],
+  "confidenceScore": 0.95,
+  "metadataVersion": "OPSW-001-v1",
+  "reportVersion": "OPSW-RPT-v1",
+  "workerId": "wkr-operations-01",
+  "sourceBookingId": "bkw-booking-0001",
+  "sourceLeadGenReportId": null,
+  "validation": {
+    "validationReportId": "opsw-val-1785653784815",
+    "validationTimestamp": "2026-08-02T06:56:24.815Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 3,
+    "metadataVersion": "OPSW-001-v1"
+  },
+  "runTimestamp": "2026-08-02T06:56:24.815Z",
+  "consumableByQ710": true,
+  "neverFabricateOperationalEvidence": true,
+  "neverPerformCustomerServices": true,
+  "neverReplaceBookingWorker": true,
+  "neverReplaceCrmWorker": true,
+  "neverReplaceLeadGenerationWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ710OrLater": true,
+  "preserveCompleteOperationalTraceability": true,
+  "preserveWorkflowAuditHistory": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-09:operations:opsw-wf-0001",
+    "source_booking:bkw-booking-0001",
+    "stage:opsw-stage-0001",
+    "stage:opsw-stage-0002",
+    "stage:opsw-stage-0003",
+    "stage:opsw-stage-0004",
+    "stage:opsw-stage-0005",
+    "stage:opsw-stage-0006",
+    "stage:opsw-stage-0007",
+    "stage:opsw-stage-0008",
+    "stage:opsw-stage-0009"
+  ]
+}

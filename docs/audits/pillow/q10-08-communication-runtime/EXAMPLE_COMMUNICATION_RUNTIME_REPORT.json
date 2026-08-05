@@ -1,0 +1,96 @@
+{
+  "reportId": "comrt-rpt-example-001",
+  "timestamp": "2026-08-04T05:10:00.000Z",
+  "runtimeVersion": "Q10-COMRT-v1",
+  "activeCommunicationChannels": [
+    {
+      "channelId": "chan-wkr-alpha-beta",
+      "channelType": "worker_to_worker",
+      "participants": ["wkr-alpha", "wkr-beta"],
+      "status": "active",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "channelId": "chan-factory-pillow-capital",
+      "channelType": "factory_to_factory",
+      "participants": ["factory-pillow", "factory-capital"],
+      "status": "active",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "channelId": "chan-runtime-service-01",
+      "channelType": "runtime_service",
+      "participants": ["runtime-comrt", "runtime-orchestration"],
+      "status": "active",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    }
+  ],
+  "messageStatistics": {
+    "totalMessages": 4,
+    "requestCount": 2,
+    "responseCount": 1,
+    "eventCount": 1,
+    "acknowledgedCount": 1,
+    "failedCount": 0,
+    "lastMessageAt": "2026-08-04T05:10:00.000Z"
+  },
+  "deliverySummary": {
+    "delivered": 3,
+    "acknowledged": 1,
+    "pending": 0,
+    "failed": 0,
+    "deadLettered": 0
+  },
+  "retrySummary": {
+    "totalRetries": 1,
+    "messagesRetried": 1,
+    "messagesDeadLettered": 0,
+    "maxRetriesObserved": 1
+  },
+  "failedDeliveries": [],
+  "collaborationSessions": [
+    {
+      "sessionId": "sess-collab-template-01",
+      "participants": ["wkr-alpha", "wkr-beta"],
+      "status": "idle",
+      "contextReference": "ctx://structural/session/sess-collab-template-01",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    }
+  ],
+  "runtimeHealth": {
+    "status": "healthy",
+    "healthScore": 85,
+    "activeChannels": 5,
+    "openSessions": 1,
+    "notes": ["Enterprise communication layer operational — structural messaging only"]
+  },
+  "supportingEvidence": [
+    "communication-runtime operational evidence",
+    "config/communication-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 90,
+  "metadataVersion": "COMRT-001-v1",
+  "reportVersion": "COMRT-RPT-v1",
+  "workerId": "wkr-communication-runtime-01",
+  "consumableByQ1009": true,
+  "neverFabricateMessages": true,
+  "neverLoseAcknowledgedMessages": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ1009OrLater": true,
+  "neverExecuteBusinessLogic": true,
+  "neverReplaceWorkerImplementations": true,
+  "neverReplaceOrchestrationLogic": true,
+  "deterministicMessageRouting": true,
+  "preserveCompleteTraceability": true,
+  "preserveCommunicationHistory": true,
+  "preserveAuditHistory": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

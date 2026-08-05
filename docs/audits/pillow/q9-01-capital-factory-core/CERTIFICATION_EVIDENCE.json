@@ -1,0 +1,67 @@
+{
+  "missionId": "Q9-01",
+  "doctrine": "PILLOW-CAPFC-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/capital-factory-core/",
+  "metadataVersion": "CAPFC-001-v1",
+  "reportVersion": "CAPFC-RPT-v1",
+  "projectVersion": "CAPFC-CP-v1",
+  "factoryVersion": "Q9-CAPFC-v1",
+  "workerId": "wkr-capital-factory-core-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS",
+    "Q8-02": "FINAL PASS",
+    "Q8-03": "FINAL PASS",
+    "Q8-04": "FINAL PASS",
+    "Q8-05": "FINAL PASS",
+    "Q8-06": "FINAL PASS",
+    "Q8-07": "FINAL PASS",
+    "Q8-08": "FINAL PASS",
+    "Q8-09": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverPerformAccounting": true,
+    "neverForecastFinances": true,
+    "neverExecuteInvestmentsAutomatically": true,
+    "neverFabricateWorkerStatus": true,
+    "neverFabricateFinancialStatus": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ902OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveFactoryAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowCapitalFactoryCore": true,
+    "subsystemRegistry": "capital-factory-core",
+    "hostRoutes": "/api/pillow/capital-factory-core/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/capital-factory-core-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_CAPITAL_FACTORY_CORE_SYSTEM.md",
+    "config": "config/capital-factory-core.config.json"
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/capital-factory-core.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateCertification": "12/12",
+    "affiliateComplianceWorker": "12/12"
+  },
+  "evidence": [
+    "capital project create/register + lifecycle with operating gate after workers_coordinated",
+    "structural capital worker role slots only — never fabricates Q9-02+ worker health or financial status",
+    "enterprise capital state + multi-business concurrent projects",
+    "Capital Factory Report with consumableByQ902",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q8 modules untouched; CAPFC rejects Q9-02 from inside itself",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "capitalFactoryCore": "12/12",
+    "affiliateCertificationRegression": "12/12",
+    "affiliateComplianceWorkerRegression": "12/12"
+  }
+}

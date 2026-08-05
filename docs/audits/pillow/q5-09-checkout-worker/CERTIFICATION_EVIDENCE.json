@@ -1,0 +1,66 @@
+{
+  "missionId": "Q5-09",
+  "missionName": "Checkout Worker",
+  "doctrineId": "PILLOW-CKW-001",
+  "moduleId": "checkout-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "CKW-001-v1",
+  "reportSchemaVersion": "CKW-RPT-v1",
+  "primaryDeliverable": "Prepare payment flow and digital delivery workflow.",
+  "prerequisites": [
+    { "missionId": "Q5-08", "doctrine": "PILLOW-SPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-07", "doctrine": "PILLOW-DW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-06", "doctrine": "PILLOW-TBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-05", "doctrine": "PILLOW-CBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-04", "doctrine": "PILLOW-PPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-03", "doctrine": "PILLOW-EBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-02", "doctrine": "PILLOW-DPR-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/checkout-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved digital product information",
+    "Generate checkout workflow",
+    "Prepare payment provider configuration",
+    "Generate order summary",
+    "Generate customer confirmation workflow",
+    "Validate required purchase information",
+    "Prepare post-payment handoff",
+    "Support multiple payment providers through abstraction",
+    "Validate checkout readiness",
+    "Produce machine-readable Checkout Reports"
+  ],
+  "boundariesVerified": [
+    "Does not charge customers",
+    "Does not execute payment transactions",
+    "Does not deliver products",
+    "Does not publish storefronts",
+    "Does not store sensitive payment credentials",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-10 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Sales Page Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/checkout-worker/",
+    "config/checkout-worker.config.json",
+    "docs/governance/EMPIREAI_CHECKOUT_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-09-checkout-worker/Q5_09_CHECKOUT_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/checkout-worker-bridge.ts"
+  ]
+}

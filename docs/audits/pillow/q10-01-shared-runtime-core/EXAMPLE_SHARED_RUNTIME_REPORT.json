@@ -1,0 +1,48 @@
+{
+  "reportId": "srtc-rpt-example-v1",
+  "timestamp": "2026-08-04T01:00:00.000Z",
+  "runtimeVersion": "Q10-SRTC-v1",
+  "metadataVersion": "SRTC-001-v1",
+  "reportVersion": "SRTC-RPT-v1",
+  "workerId": "wkr-shared-runtime-core-01",
+  "registeredFactories": 9,
+  "registeredWorkers": 3,
+  "runtimeServices": 12,
+  "activeRuntimeState": "active",
+  "dependencyStatus": "partial",
+  "routingStatus": "routed",
+  "healthStatus": "degraded",
+  "auditStatus": "partial",
+  "confidenceScore": 72,
+  "consumableByQ1002": true,
+  "outstandingIssues": [
+    "worker_registry unavailable",
+    "executive_reporting_runtime unavailable"
+  ],
+  "supportingEvidence": [
+    "docs/governance/EMPIREAI_SHARED_RUNTIME_CORE_SYSTEM.md",
+    "config/shared-runtime-core.config.json"
+  ],
+  "neverReplaceFactoryLogic": true,
+  "neverReplaceWorkerLogic": true,
+  "neverExecuteBusinessSpecificDecisions": true,
+  "neverFabricateRuntimeState": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ1002OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveRuntimeHistory": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "runtimeDiagnostics": {
+    "totalFactories": 9,
+    "totalWorkers": 3,
+    "totalServices": 12,
+    "totalRoutes": 1,
+    "notes": ["Diagnostics from observed registrations only"]
+  }
+}

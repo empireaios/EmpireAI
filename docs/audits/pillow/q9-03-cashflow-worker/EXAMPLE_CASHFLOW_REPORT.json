@@ -1,0 +1,351 @@
+{
+  "reportId": "cfw-rpt-0001",
+  "timestamp": "2026-08-03T06:19:59.732Z",
+  "capitalProjectId": "capfc-prj-growth-01",
+  "reportingPeriod": "2026-08",
+  "reportingFrequency": "monthly",
+  "currency": "SGD",
+  "openingCashBalance": {
+    "currency": "SGD",
+    "minorUnits": 1000000
+  },
+  "cashInflowSummary": {
+    "totalMinor": {
+      "currency": "SGD",
+      "minorUnits": 1250000
+    },
+    "recordedMinor": {
+      "currency": "SGD",
+      "minorUnits": 1250000
+    },
+    "reconciledMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "pendingMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "disputedMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "movementCount": 1,
+    "byCategory": [
+      {
+        "category": "income",
+        "totalMinor": {
+          "currency": "SGD",
+          "minorUnits": 1250000
+        },
+        "fabricated": false
+      }
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "cashOutflowSummary": {
+    "totalMinor": {
+      "currency": "SGD",
+      "minorUnits": 320000
+    },
+    "recordedMinor": {
+      "currency": "SGD",
+      "minorUnits": 320000
+    },
+    "reconciledMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "pendingMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "disputedMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "movementCount": 1,
+    "byCategory": [
+      {
+        "category": "expense",
+        "totalMinor": {
+          "currency": "SGD",
+          "minorUnits": 320000
+        },
+        "fabricated": false
+      }
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "netCashflow": {
+    "currency": "SGD",
+    "minorUnits": 930000
+  },
+  "transfersSummary": {
+    "transferInTotal": {
+      "currency": "SGD",
+      "minorUnits": 50000
+    },
+    "transferOutTotal": {
+      "currency": "SGD",
+      "minorUnits": 50000
+    },
+    "netTransfers": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "transferCount": 2,
+    "fabricated": false
+  },
+  "restrictedCash": {
+    "amountMinor": {
+      "currency": "SGD",
+      "minorUnits": 50000
+    },
+    "evidencePresent": true,
+    "fabricated": false
+  },
+  "availableCash": {
+    "currency": "SGD",
+    "minorUnits": 1880000
+  },
+  "closingCashBalance": {
+    "currency": "SGD",
+    "minorUnits": 1930000
+  },
+  "periodComparison": {
+    "priorPeriodLabel": null,
+    "priorNetCashflow": null,
+    "changeInNetCashflow": null,
+    "percentChange": null,
+    "evidencePresent": false
+  },
+  "liquidityStatus": "healthy",
+  "sourceRecordReferences": [
+    "accw:entry:accw-entry-inc-1",
+    "cfw:movement:accw-entry-inc-1:acct-cash-01:inflow",
+    "accw:entry:accw-entry-exp-1",
+    "cfw:movement:accw-entry-exp-1:acct-cash-01:outflow",
+    "accw:entry:accw-entry-xfer-1",
+    "cfw:movement:accw-entry-xfer-1:acct-cash-01:transfer_out",
+    "cfw:movement:accw-entry-xfer-1:acct-cash-02:transfer_in"
+  ],
+  "reconciliationStatus": "reconciled",
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 100,
+  "metadataVersion": "CFW-001-v1",
+  "reportVersion": "CFW-RPT-v1",
+  "workerId": "wkr-cashflow-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "views": {
+    "daily": [
+      {
+        "viewId": "cfw-view-0001",
+        "reportingFrequency": "daily",
+        "periodStart": "2026-08-03T00:00:00.000Z",
+        "periodEnd": "2026-08-03T23:59:59.999Z",
+        "periodLabel": "2026-08-03",
+        "scope": "business",
+        "scopeId": "capfc-biz-growth-01",
+        "currency": "SGD",
+        "openingCashBalance": {
+          "currency": "SGD",
+          "minorUnits": 1000000
+        },
+        "openingBalanceEvidencePresent": true,
+        "cashInflows": {
+          "currency": "SGD",
+          "minorUnits": 1250000
+        },
+        "cashOutflows": {
+          "currency": "SGD",
+          "minorUnits": 320000
+        },
+        "netCashflow": {
+          "currency": "SGD",
+          "minorUnits": 930000
+        },
+        "transfersSummary": {
+          "transferInTotal": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "transferOutTotal": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "netTransfers": {
+            "currency": "SGD",
+            "minorUnits": 0
+          },
+          "transferCount": 2,
+          "fabricated": false
+        },
+        "restrictedCash": {
+          "amountMinor": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "evidencePresent": true,
+          "fabricated": false
+        },
+        "availableCash": {
+          "currency": "SGD",
+          "minorUnits": 1880000
+        },
+        "closingCashBalance": {
+          "currency": "SGD",
+          "minorUnits": 1930000
+        },
+        "periodComparison": {
+          "priorPeriodLabel": null,
+          "priorNetCashflow": null,
+          "changeInNetCashflow": null,
+          "percentChange": null,
+          "evidencePresent": false
+        },
+        "liquidityStatus": "healthy",
+        "reconciliationStatus": "reconciled",
+        "unreconciledMovements": [],
+        "sourceRecordRefs": [
+          "accw:entry:accw-entry-inc-1",
+          "cfw:movement:accw-entry-inc-1:acct-cash-01:inflow",
+          "accw:entry:accw-entry-exp-1",
+          "cfw:movement:accw-entry-exp-1:acct-cash-01:outflow",
+          "accw:entry:accw-entry-xfer-1",
+          "cfw:movement:accw-entry-xfer-1:acct-cash-01:transfer_out",
+          "cfw:movement:accw-entry-xfer-1:acct-cash-02:transfer_in"
+        ],
+        "fabricated": false
+      }
+    ],
+    "weekly": [],
+    "monthly": [
+      {
+        "viewId": "cfw-view-0004",
+        "reportingFrequency": "monthly",
+        "periodStart": "2026-08-01T00:00:00.000Z",
+        "periodEnd": "2026-08-31T23:59:59.999Z",
+        "periodLabel": "2026-08",
+        "scope": "business",
+        "scopeId": "capfc-biz-growth-01",
+        "currency": "SGD",
+        "openingCashBalance": {
+          "currency": "SGD",
+          "minorUnits": 1000000
+        },
+        "openingBalanceEvidencePresent": true,
+        "cashInflows": {
+          "currency": "SGD",
+          "minorUnits": 1250000
+        },
+        "cashOutflows": {
+          "currency": "SGD",
+          "minorUnits": 320000
+        },
+        "netCashflow": {
+          "currency": "SGD",
+          "minorUnits": 930000
+        },
+        "transfersSummary": {
+          "transferInTotal": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "transferOutTotal": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "netTransfers": {
+            "currency": "SGD",
+            "minorUnits": 0
+          },
+          "transferCount": 2,
+          "fabricated": false
+        },
+        "restrictedCash": {
+          "amountMinor": {
+            "currency": "SGD",
+            "minorUnits": 50000
+          },
+          "evidencePresent": true,
+          "fabricated": false
+        },
+        "availableCash": {
+          "currency": "SGD",
+          "minorUnits": 1880000
+        },
+        "closingCashBalance": {
+          "currency": "SGD",
+          "minorUnits": 1930000
+        },
+        "periodComparison": {
+          "priorPeriodLabel": null,
+          "priorNetCashflow": null,
+          "changeInNetCashflow": null,
+          "percentChange": null,
+          "evidencePresent": false
+        },
+        "liquidityStatus": "healthy",
+        "reconciliationStatus": "reconciled",
+        "unreconciledMovements": [],
+        "sourceRecordRefs": [
+          "accw:entry:accw-entry-inc-1",
+          "cfw:movement:accw-entry-inc-1:acct-cash-01:inflow",
+          "accw:entry:accw-entry-exp-1",
+          "cfw:movement:accw-entry-exp-1:acct-cash-01:outflow",
+          "accw:entry:accw-entry-xfer-1",
+          "cfw:movement:accw-entry-xfer-1:acct-cash-01:transfer_out",
+          "cfw:movement:accw-entry-xfer-1:acct-cash-02:transfer_in"
+        ],
+        "fabricated": false
+      }
+    ],
+    "annual": [],
+    "custom": []
+  },
+  "validation": {
+    "validationReportId": "cfw-val-1785737999733",
+    "validationTimestamp": "2026-08-03T06:19:59.733Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 2,
+    "metadataVersion": "CFW-001-v1"
+  },
+  "runTimestamp": "2026-08-03T06:19:59.732Z",
+  "consumableByQ904": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-03:report:cfw-rpt-0001",
+    "q9-03:capital_business:capfc-biz-growth-01",
+    "q9-03:reporting_period:2026-08",
+    "accw:entry:accw-entry-inc-1",
+    "cfw:movement:accw-entry-inc-1:acct-cash-01:inflow",
+    "accw:entry:accw-entry-exp-1",
+    "cfw:movement:accw-entry-exp-1:acct-cash-01:outflow",
+    "accw:entry:accw-entry-xfer-1",
+    "cfw:movement:accw-entry-xfer-1:acct-cash-01:transfer_out",
+    "cfw:movement:accw-entry-xfer-1:acct-cash-02:transfer_in"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveHistoricalReports": true,
+  "neverFabricateBalancesOrFlows": true,
+  "neverCreateBudgets": true,
+  "neverForecastFutureCashflow": true,
+  "neverCalculateCompleteBusinessProfitability": true,
+  "neverApproveSpending": true,
+  "neverMoveMoney": true,
+  "neverModifyVerifiedAccountingRecords": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ904OrLater": true
+}

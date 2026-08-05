@@ -1,0 +1,187 @@
+{
+  "reportId": "lseo-rpt-0001",
+  "timestamp": "2026-08-02T04:00:00.000Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "targetLocation": "Orchard, Singapore",
+  "serviceCategory": "cleaning",
+  "landingPagesGenerated": [
+    {
+      "pageId": "lseo-page-001",
+      "pageType": "landing",
+      "title": "Orchard Sparkle Clean — cleaning in Orchard",
+      "metaDescription": "Orchard Sparkle Clean offers cleaning services in Orchard, Singapore. Structural SEO asset only — not published.",
+      "headings": [
+        "Professional cleaning in Orchard",
+        "Why choose Orchard Sparkle Clean",
+        "Service packages"
+      ],
+      "bodyOutline": [
+        "Hero: local cleaning for Orchard residents and offices",
+        "Packages: residential cleaning — Basic; Premium; weekly recurring"
+      ],
+      "urlRecommendation": "/singapore/orchard/cleaning",
+      "imageAltText": ["Orchard Sparkle Clean cleaning team in Orchard"],
+      "faq": [
+        {
+          "question": "Do you offer cleaning in Orchard?",
+          "answer": "Yes — Orchard Sparkle Clean prepares local SEO assets for cleaning coverage in Orchard, Singapore."
+        }
+      ],
+      "serviceName": "cleaning",
+      "locationLabel": "Orchard, Singapore",
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "googleBusinessRecommendations": [
+    {
+      "recommendationId": "lseo-gbp-001",
+      "category": "primary_profile",
+      "primaryCategorySuggestion": "cleaning service",
+      "secondaryCategorySuggestions": ["cleaning contractor", "home cleaning"],
+      "businessDescription": "Orchard Sparkle Clean provides cleaning services in Orchard, Singapore.",
+      "serviceItems": ["residential cleaning", "office cleaning", "move-out cleaning"],
+      "photoSuggestions": ["cleaning team at work in Orchard"],
+      "postIdeas": ["Seasonal cleaning tips for Singapore"],
+      "hoursSuggestion": "Mon–Sat 09:00–18:00 (confirm with operations; structural suggestion only)",
+      "napChecklist": [
+        "Name: Orchard Sparkle Clean",
+        "Address: Orchard Road, Singapore",
+        "Phone: +65-6123-4567"
+      ],
+      "neverModifyLiveGbpAutomatically": true,
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "localKeywords": [
+    {
+      "keywordId": "lseo-kw-001",
+      "phrase": "cleaning near me",
+      "intent": "local",
+      "locationModifier": "Orchard",
+      "serviceModifier": "cleaning",
+      "priority": "high",
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    },
+    {
+      "keywordId": "lseo-kw-002",
+      "phrase": "cleaning Orchard",
+      "intent": "transactional",
+      "locationModifier": "Orchard",
+      "serviceModifier": "cleaning",
+      "priority": "high",
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "metadata": [
+    {
+      "metadataId": "lseo-meta-001",
+      "pageId": "lseo-page-001",
+      "titleTag": "Orchard Sparkle Clean — cleaning in Orchard",
+      "metaDescription": "Orchard Sparkle Clean offers cleaning services in Orchard, Singapore.",
+      "ogTitle": "Orchard Sparkle Clean — cleaning in Orchard",
+      "ogDescription": "Orchard Sparkle Clean offers cleaning services in Orchard, Singapore.",
+      "canonicalUrlRecommendation": "/singapore/orchard/cleaning",
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "structuredDataRecommendations": [
+    {
+      "schemaId": "lseo-schema-001",
+      "schemaType": "LocalBusiness",
+      "jsonLdOutline": {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Orchard Sparkle Clean",
+        "areaServed": "Orchard, Singapore"
+      },
+      "notes": ["Structural LocalBusiness outline — never claims live rich-result performance"],
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "citationRecommendations": [
+    {
+      "citationId": "lseo-cit-001",
+      "directoryName": "Google Business Profile (manual owner action)",
+      "napFields": ["name", "address", "phone", "website", "category"],
+      "submissionNotes": "Recommend consistent NAP. Manual submission only — never purchase backlinks.",
+      "neverPurchaseBacklinks": true,
+      "sourceOfferRefs": ["sow-rpt-fixture-001"]
+    }
+  ],
+  "seoCompletenessStatus": {
+    "evaluationId": "lseo-eval-example",
+    "checklist": [
+      { "item": "landing_pages", "present": true, "weight": 0.15, "notes": "Primary landing page asset" },
+      { "item": "google_business_recommendations", "present": true, "weight": 0.15, "notes": "GBP recommendations" },
+      { "item": "local_keywords", "present": true, "weight": 0.12, "notes": "Keyword phrases" },
+      { "item": "metadata", "present": true, "weight": 0.12, "notes": "Title/meta recommendations" },
+      { "item": "structured_data", "present": true, "weight": 0.1, "notes": "Schema outlines" },
+      { "item": "citations", "present": true, "weight": 0.07, "notes": "Citation recommendations" }
+    ],
+    "score": 0.95,
+    "status": "complete",
+    "neverClaimsLiveRankingOrTraffic": true,
+    "outstandingGaps": []
+  },
+  "auditStatus": "ready_for_q708",
+  "outstandingIssues": [
+    "Live ranking/traffic results are never claimed by Local SEO Worker",
+    "Websites are never published; GBP is never modified live by this worker"
+  ],
+  "confidenceScore": 0.95,
+  "metadataVersion": "LSEO-001-v1",
+  "reportVersion": "LSEO-RPT-v1",
+  "workerId": "wkr-local-seo-01",
+  "internalLinkingRecommendations": [
+    {
+      "linkId": "lseo-link-001",
+      "fromPageId": "lseo-page-001",
+      "toPageId": "lseo-page-city-001",
+      "anchorText": "See all Singapore coverage",
+      "rationale": "Landing → city hub"
+    }
+  ],
+  "napConsistencyRecommendations": [
+    {
+      "napId": "lseo-nap-001",
+      "recommendedName": "Orchard Sparkle Clean",
+      "recommendedAddress": "Orchard Road, Singapore",
+      "recommendedPhone": "+65-6123-4567",
+      "recommendedWebsite": "https://example.local/singapore/orchard/cleaning",
+      "consistencyNotes": ["Use identical NAP across GBP, citations, and page footers"],
+      "sourceChannels": ["service_offer", "crm_optional", "whatsapp_optional"]
+    }
+  ],
+  "faqAssets": [
+    {
+      "question": "Do you offer cleaning in Orchard?",
+      "answer": "Yes — Orchard Sparkle Clean prepares local SEO assets for cleaning coverage in Orchard, Singapore.",
+      "pageId": "lseo-page-001"
+    }
+  ],
+  "sourceOfferReportId": "sow-rpt-fixture-001",
+  "consumableByQ708": true,
+  "neverPublishWebsites": true,
+  "neverPurchaseBacklinks": true,
+  "neverManipulateSearchRankings": true,
+  "neverModifyLiveGoogleBusinessProfilesAutomatically": true,
+  "neverModifyUnrelatedPlatformComponents": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverFabricateSeoPerformanceResults": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ708OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-07:local_seo:lseo-rpt-0001",
+    "q7-07:source_offer:sow-rpt-fixture-001",
+    "q7-07:business_project:lbfc-prj-cleaning-01"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "reportId": "schrt-rpt-example-001",
+  "timestamp": "2026-08-04T14:45:00.000Z",
+  "runtimeVersion": "Q10-SCHRT-v1",
+  "activeSchedules": [
+    {
+      "scheduleId": "sched-daily-01",
+      "scheduleType": "daily",
+      "currentStatus": "active",
+      "nextExecution": "2026-08-05T09:00:00.000Z",
+      "fabricated": false
+    },
+    {
+      "scheduleId": "sched-weekly-01",
+      "scheduleType": "weekly",
+      "currentStatus": "active",
+      "fabricated": false
+    },
+    {
+      "scheduleId": "sched-cron-01",
+      "scheduleType": "cron",
+      "cronExpression": "0 9 * * *",
+      "currentStatus": "active",
+      "fabricated": false
+    },
+    {
+      "scheduleId": "sched-event-01",
+      "scheduleType": "event_driven",
+      "eventKey": "mission.ready",
+      "currentStatus": "active",
+      "fabricated": false
+    }
+  ],
+  "upcomingExecutions": [
+    {
+      "scheduleId": "sched-daily-01",
+      "nextExecution": "2026-08-05T09:00:00.000Z"
+    }
+  ],
+  "completedExecutions": [
+    {
+      "executionId": "schrt-exec-example-01",
+      "scheduleId": "sched-onetime-01",
+      "scheduleType": "one_time",
+      "executedAt": "2026-08-04T14:40:00.000Z",
+      "status": "completed",
+      "missionTriggerRef": "mission://structural/trigger/sched-onetime-01",
+      "queueSignalRef": "queue://structural/enqueue/sched-onetime-01",
+      "fabricated": false
+    }
+  ],
+  "missedExecutions": [],
+  "eventTriggers": [
+    {
+      "triggerId": "schrt-evt-example-01",
+      "eventKey": "mission.ready",
+      "scheduleId": "sched-event-01",
+      "timestamp": "2026-08-04T14:41:00.000Z",
+      "fabricated": false
+    }
+  ],
+  "schedulingStatistics": {
+    "totalSchedules": 5,
+    "activeCount": 4,
+    "pausedCount": 0,
+    "completedExecutions": 1,
+    "eventTriggers": 1,
+    "conflictsDetected": 1
+  },
+  "conflictSummary": {
+    "totalConflicts": 1,
+    "openConflicts": 1,
+    "resolvedConflicts": 0,
+    "notes": ["Overlapping mission/worker windows detected deterministically"]
+  },
+  "supportingEvidence": [
+    "scheduling-runtime operational evidence",
+    "config/scheduling-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 90,
+  "metadataVersion": "SCHRT-001-v1",
+  "reportVersion": "SCHRT-RPT-v1",
+  "workerId": "wkr-scheduling-runtime-01",
+  "consumableByQ1013": true,
+  "neverFabricateExecutionTimes": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverReplaceQueueRuntime": true,
+  "neverReplaceMissionRuntime": true,
+  "neverExecuteUnauthorizedWork": true,
+  "neverImplementQ1013OrLater": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "preserveCompleteTraceability": true,
+  "preserveSchedulingHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicSchedulingBehaviour": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

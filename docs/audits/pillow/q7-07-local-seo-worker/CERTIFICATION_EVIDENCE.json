@@ -1,0 +1,67 @@
+{
+  "missionId": "Q7-07",
+  "doctrine": "PILLOW-LSEO-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/local-seo-worker/",
+  "metadataVersion": "LSEO-001-v1",
+  "reportVersion": "LSEO-RPT-v1",
+  "workerId": "wkr-local-seo-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS",
+    "Q7-04": "FINAL PASS",
+    "Q7-05": "FINAL PASS",
+    "Q7-06": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverPublishWebsites": true,
+    "neverPurchaseBacklinks": true,
+    "neverManipulateSearchRankings": true,
+    "neverModifyLiveGoogleBusinessProfilesAutomatically": true,
+    "neverModifyUnrelatedPlatformComponents": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricateSeoPerformanceResults": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ708OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowLocalSeoWorker": true,
+    "subsystemRegistry": "local-seo-worker",
+    "hostRoutes": "/api/pillow/local-seo-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/local-seo-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_LOCAL_SEO_WORKER_SYSTEM.md",
+    "config": "config/local-seo-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsServiceOfferWorker": true,
+    "bindsCrmWorker": true,
+    "bindsWhatsAppWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/local-seo-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "whatsappWorker": "13/13",
+    "crmWorker": "12/12",
+    "serviceOfferWorker": "12/12"
+  },
+  "evidence": [
+    "consumes approved Q7-03 service offer fixtures",
+    "GBP recommendations + landing pages + keywords + metadata + schema",
+    "completeness from asset presence only — no fabricated rankings",
+    "Local SEO Report with consumableByQ708",
+    "ERR submit when executiveReportingRuntime injected"
+  ],
+  "tests": {
+    "localSeoWorker": "12/12",
+    "whatsappWorkerRegression": "13/13",
+    "crmWorkerRegression": "12/12",
+    "serviceOfferWorkerRegression": "12/12"
+  }
+}

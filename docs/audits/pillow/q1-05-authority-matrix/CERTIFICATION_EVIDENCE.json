@@ -1,0 +1,81 @@
+{
+  "missionId": "Q1-05",
+  "doctrine": "PILLOW-AMX-001",
+  "moduleId": "authority-matrix",
+  "metadataVersion": "AMX-001-v1",
+  "matrixVersion": "AMX-MATRIX-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Define what workers may decide alone, what requires Pillow, and what requires Grand King approval.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceApprovalRouter": true,
+    "neverReplaceOrganizationCharter": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "authorityRuleFields": [
+    "matrixVersion",
+    "authorityId",
+    "decisionCategory",
+    "workerRole",
+    "permittedActions",
+    "restrictedActions",
+    "requiredApproval",
+    "escalationTarget",
+    "riskClassification",
+    "metadataVersion"
+  ],
+  "authorityLevels": [
+    "autonomous_worker_decision",
+    "manager_approval",
+    "department_approval",
+    "factory_approval",
+    "pillow_approval",
+    "grand_king_approval"
+  ],
+  "decisionCategories": [
+    "information_retrieval",
+    "planning",
+    "business_operations",
+    "financial_decisions",
+    "marketplace_actions",
+    "media_publishing",
+    "infrastructure_changes",
+    "security",
+    "data_management",
+    "customer_communications",
+    "external_integrations"
+  ],
+  "authorityRules": [
+    "who_may_perform_defined",
+    "approval_required_defined",
+    "maximum_authority_defined",
+    "escalation_path_defined",
+    "risk_level_defined",
+    "audit_requirements_defined",
+    "required_approval_valid",
+    "no_bypass_authority_matrix",
+    "inherits_from_valid_parent",
+    "pillow_executive_authority",
+    "grand_king_supreme_authority"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/authority-matrix.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/authority-matrix/",
+    "config": "config/authority-matrix.config.json",
+    "doctrine": "docs/governance/EMPIREAI_AUTHORITY_MATRIX_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/authority-matrix-bridge.ts",
+    "tests": "pillow/src/validation/tests/authority-matrix.test.ts"
+  }
+}

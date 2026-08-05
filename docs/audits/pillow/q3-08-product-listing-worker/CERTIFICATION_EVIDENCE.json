@@ -1,0 +1,50 @@
+{
+  "missionId": "Q3-08",
+  "doctrine": "PILLOW-PLW-001",
+  "moduleId": "product-listing-worker",
+  "metadataVersion": "PLW-001-v1",
+  "reportVersion": "PLW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Create product titles, descriptions, attributes, variants, SEO, and marketplace listings.",
+  "prerequisites": [
+    { "missionId": "Q3-07", "doctrine": "PILLOW-PIW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverPublishListings": true,
+    "neverModifySupplierInformation": true,
+    "neverModifyPricing": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ309OrLater": true
+  },
+  "productListingReportFields": [
+    "listingId",
+    "timestamp",
+    "productId",
+    "marketplace",
+    "productTitle",
+    "productDescription",
+    "bulletPoints",
+    "attributes",
+    "variants",
+    "seoFields",
+    "listingValidationStatus",
+    "listingPackage",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/product-listing-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/product-listing-worker/",
+    "config": "config/product-listing-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PRODUCT_LISTING_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/product-listing-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/product-listing-worker.test.ts"
+  },
+  "notes": [
+    "Product-listing-preparation-only Commerce Factory worker; public pillow index aliases PlwProductListingReport."
+  ]
+}

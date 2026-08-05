@@ -1,0 +1,137 @@
+{
+  "reportId": "ipw-rpt-000001",
+  "timestamp": "2026-08-04T00:00:00.000Z",
+  "capitalProjectId": "cap-proj-ipw-01",
+  "evaluationPeriod": "2026-Q2",
+  "planningPeriod": "2026-Q2",
+  "availableCapital": { "currency": "SGD", "minorUnits": 2000000 },
+  "availableCapitalSource": "measured_input",
+  "investmentOpportunities": [
+    {
+      "opportunityId": "opp-beta",
+      "opportunityType": "internal_project",
+      "businessOrProject": "project-opp-beta",
+      "capitalRequiredMinor": 500000,
+      "currency": "SGD",
+      "expectedRoiBps": 4500,
+      "expectedPaybackPeriods": 24,
+      "strategicAlignmentBps": 5000,
+      "riskScoreBps": 2000,
+      "opportunityScore": 6825,
+      "recommendation": "recommend",
+      "capitalFit": true,
+      "supportingEvidence": ["evidence-opp-beta"],
+      "measuredVsProjected": {
+        "roiIsProjected": true,
+        "paybackIsProjected": false,
+        "paybackSource": "caller_supplied",
+        "availableCapitalIsMeasured": true,
+        "capitalRequiredIsCallerSupplied": true
+      },
+      "fabricated": false
+    },
+    {
+      "opportunityId": "opp-alpha",
+      "opportunityType": "internal_project",
+      "businessOrProject": "project-opp-alpha",
+      "capitalRequiredMinor": 500000,
+      "currency": "SGD",
+      "expectedRoiBps": 2500,
+      "expectedPaybackPeriods": 24,
+      "strategicAlignmentBps": 7000,
+      "riskScoreBps": 2000,
+      "opportunityScore": 6475,
+      "recommendation": "recommend",
+      "capitalFit": true,
+      "supportingEvidence": ["evidence-opp-alpha"],
+      "measuredVsProjected": {
+        "roiIsProjected": true,
+        "paybackIsProjected": false,
+        "paybackSource": "caller_supplied",
+        "availableCapitalIsMeasured": true,
+        "capitalRequiredIsCallerSupplied": true
+      },
+      "fabricated": false
+    }
+  ],
+  "capitalAllocationRecommendations": [
+    {
+      "recommendationId": "ipw-rec-000001",
+      "opportunityId": "opp-beta",
+      "recommendedCapitalMinor": 500000,
+      "currency": "SGD",
+      "rank": 1,
+      "opportunityScore": 6825,
+      "recommendation": "recommend",
+      "signalKind": "capital_allocation_recommendation",
+      "isExecution": false,
+      "isApproval": false,
+      "fabricated": false
+    },
+    {
+      "recommendationId": "ipw-rec-000002",
+      "opportunityId": "opp-alpha",
+      "recommendedCapitalMinor": 500000,
+      "currency": "SGD",
+      "rank": 2,
+      "opportunityScore": 6475,
+      "recommendation": "recommend",
+      "signalKind": "capital_allocation_recommendation",
+      "isExecution": false,
+      "isApproval": false,
+      "fabricated": false
+    }
+  ],
+  "opportunityRankings": ["opp-beta", "opp-alpha"],
+  "expectedRoiSummary": {
+    "opportunityCountWithRoi": 2,
+    "averageExpectedRoiBps": 3500,
+    "highestExpectedRoiBps": 4500,
+    "highestRoiOpportunityId": "opp-beta",
+    "recordKind": "projected_caller_supplied",
+    "fabricated": false
+  },
+  "paybackSummary": {
+    "opportunityCountWithPayback": 2,
+    "averagePaybackPeriods": 24,
+    "shortestPaybackPeriods": 24,
+    "shortestPaybackOpportunityId": "opp-beta",
+    "callerSuppliedCount": 2,
+    "projectedDerivedCount": 0,
+    "recordKind": "mixed_projected_payback",
+    "fabricated": false
+  },
+  "strategicAlignmentSummary": {
+    "opportunityCountWithAlignment": 2,
+    "averageStrategicAlignmentBps": 6000,
+    "highestStrategicAlignmentBps": 7000,
+    "highestAlignmentOpportunityId": "opp-alpha",
+    "recordKind": "caller_supplied_alignment",
+    "fabricated": false
+  },
+  "riskAssessment": {
+    "assessedOpportunityCount": 2,
+    "elevatedRiskCount": 0,
+    "averageRiskScoreBps": 2000,
+    "highestRiskOpportunityId": "opp-alpha",
+    "signalKind": "risk_assessment_summary",
+    "fabricated": false
+  },
+  "supportingEvidence": ["evidence-opp-alpha", "evidence-opp-beta"],
+  "auditStatus": "pending",
+  "outstandingIssues": [],
+  "confidenceScore": 82,
+  "metadataVersion": "IPW-001-v1",
+  "reportVersion": "IPW-RPT-v1",
+  "workerId": "wkr-investment-planning-01",
+  "capitalBusinessId": "ipw-biz-alpha-01",
+  "currency": "SGD",
+  "consumableByQ909": true,
+  "neverExecuteInvestments": true,
+  "neverApproveInvestments": true,
+  "neverMoveOrAllocateCapital": true,
+  "neverModifyAccountingRecords": true,
+  "neverFabricateRoiOrPaybackOrRecommendations": true,
+  "neverImplementQ909OrLater": true,
+  "measuredDataDistinctFromProjections": true
+}

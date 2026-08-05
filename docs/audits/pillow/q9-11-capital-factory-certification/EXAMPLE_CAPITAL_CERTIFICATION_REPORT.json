@@ -1,0 +1,56 @@
+{
+  "certificationId": "capcrt-rpt-example-0001",
+  "timestamp": "2026-08-04T00:53:00.000Z",
+  "capitalFactoryVersion": "Q9-CAPFC-v1",
+  "factoryName": "Capital Factory",
+  "certificationDecision": "Certified",
+  "confidenceScore": 1,
+  "metadataVersion": "CAPCRT-001-v1",
+  "reportVersion": "CAPCRT-RPT-v1",
+  "workerId": "wkr-capital-factory-certification-01",
+  "certificationScope": [
+    "Q9-01", "Q9-02", "Q9-03", "Q9-04", "Q9-05",
+    "Q9-06", "Q9-07", "Q9-08", "Q9-09", "Q9-10"
+  ],
+  "workerCertificationMatrixSummary": {
+    "Certified": 10,
+    "Partially Certified": 0,
+    "Failed Certification": 0,
+    "Blocked": 0,
+    "Deferred": 0
+  },
+  "repositoryAudit": {
+    "missionsScanned": 10,
+    "evidenceComplete": 10
+  },
+  "runtimeAudit": {
+    "probesAttempted": 10,
+    "probesReachable": 10
+  },
+  "endToEndWorkflowResults": {
+    "complete": true,
+    "currencyPrecisionVerified": true,
+    "traceabilityVerified": true
+  },
+  "governanceResults": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "pillowCommandRequired": true
+  },
+  "financialTraceabilityResults": {
+    "traceable": true,
+    "currencyPrecisionEnforced": true,
+    "auditHistoryPreserved": true
+  },
+  "productionReadinessAssessment": {
+    "ready": true,
+    "certifiedWorkers": 10,
+    "certifiedWorkersTotal": 10
+  },
+  "openIssues": [],
+  "risks": [],
+  "finalQ9Gate": true,
+  "neverImplementQ10OrLater": true,
+  "evidenceBasedOnly": true,
+  "structuralSignalOnly": true
+}

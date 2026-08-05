@@ -1,0 +1,82 @@
+{
+  "missionId": "Q8-07",
+  "doctrine": "PILLOW-ANW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/analytics-worker/",
+  "metadataVersion": "ANW-001-v1",
+  "reportVersion": "ANW-RPT-v1",
+  "workerId": "wkr-analytics-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS",
+    "Q8-02": "FINAL PASS",
+    "Q8-03": "FINAL PASS",
+    "Q8-04": "FINAL PASS",
+    "Q8-05": "FINAL PASS",
+    "Q8-06": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateAnalyticsOrPerformanceResults": true,
+    "neverModifyCampaignsAutomatically": true,
+    "neverManipulateAnalytics": true,
+    "neverReplaceAffiliateComplianceWorker": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ808OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAnalyticsHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowAnalyticsWorker": true,
+    "subsystemRegistry": "analytics-worker",
+    "hostRoutes": "/api/pillow/analytics-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/analytics-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_ANALYTICS_WORKER_SYSTEM.md",
+    "config": "config/analytics-worker.config.json",
+    "bindsAffiliateFactoryCore": true,
+    "bindsAffiliateOpportunityWorker": true,
+    "bindsComparisonSiteWorker": true,
+    "bindsReviewContentWorker": true,
+    "bindsSeoContentWorker": true,
+    "bindsEmailFunnelWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/analytics-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateFactoryCore": "12/12",
+    "affiliateOpportunityWorker": "12/12",
+    "comparisonSiteWorker": "12/12",
+    "reviewContentWorker": "12/12",
+    "seoContentWorker": "12/12",
+    "emailFunnelWorker": "12/12"
+  },
+  "evidence": [
+    "click/conversion/commission/revenue/SEO/funnel metrics from evidenced snapshots only",
+    "CTR/EPC/conversion rates computed only when numerator and denominator evidenced",
+    "trend + anomaly analysis vs priorPeriod evidence",
+    "optimisation opportunities recommended without campaign mutation",
+    "historical analytics preserved across report productions",
+    "Analytics Report with consumableByQ808 and ANW-RPT-v1 / ANW-001-v1",
+    "ERR submit when executiveReportingRuntime injected",
+    "prior Q8 workers untouched",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "analyticsWorker": "12/12",
+    "emailFunnelWorkerRegression": "12/12",
+    "seoContentWorkerRegression": "12/12",
+    "reviewContentWorkerRegression": "12/12",
+    "comparisonSiteWorkerRegression": "12/12",
+    "affiliateOpportunityWorkerRegression": "12/12",
+    "affiliateFactoryCoreRegression": "12/12"
+  },
+  "exampleArtifacts": [
+    "EXAMPLE_KPI_DASHBOARD.json",
+    "EXAMPLE_OPTIMISATION_RECOMMENDATIONS.json",
+    "EXAMPLE_ANALYTICS_REPORT.json"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "summary": {
+    "totalsByCurrency": [
+      {
+        "currency": "SGD",
+        "total": 12500,
+        "fabricated": false
+      },
+      {
+        "currency": "SGD",
+        "total": 3200,
+        "fabricated": false
+      },
+      {
+        "currency": "SGD",
+        "total": 13800,
+        "fabricated": false
+      },
+      {
+        "currency": "SGD",
+        "total": 1500,
+        "fabricated": false
+      }
+    ],
+    "totalsByBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 12500,
+        "fabricated": false
+      },
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 3200,
+        "fabricated": false
+      },
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 13800,
+        "fabricated": false
+      },
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 1500,
+        "fabricated": false
+      }
+    ],
+    "grandTotal": 21600,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "ledgerBalance": {
+    "balanced": true,
+    "totalDebits": 16200,
+    "totalCredits": 16200,
+    "difference": 0,
+    "currency": "SGD"
+  },
+  "q903Contract": {
+    "contractId": "accw-q903-contract-ACCW-001-v1",
+    "contractVersion": "ACCW-001-v1",
+    "producedBy": "accounting-worker",
+    "missionId": "Q9-02",
+    "consumerMissionId": "Q9-03",
+    "exposedFields": [
+      "capitalBusinessId",
+      "accountingPeriod",
+      "incomeSummary",
+      "expenseSummary",
+      "assetSummary",
+      "liabilitySummary",
+      "equitySummary",
+      "ledgerBalance",
+      "accountBalances",
+      "financialEvents",
+      "auditStatus",
+      "confidenceScore",
+      "metadataVersion"
+    ],
+    "accountTypeCatalog": [
+      "income",
+      "expense",
+      "asset",
+      "liability",
+      "equity"
+    ],
+    "entryTypeCatalog": [
+      "income",
+      "expense",
+      "asset",
+      "liability",
+      "transfer",
+      "journal"
+    ],
+    "currencyCatalog": [
+      "USD",
+      "SGD",
+      "EUR",
+      "GBP",
+      "PHP",
+      "UNKNOWN"
+    ],
+    "notes": [
+      "Accounting Worker (Q9-02) maintains a real, append-only ledger from observed inputs only.",
+      "It does not forecast finances, approve investments, or replace the Budget Planning Worker.",
+      "Q9-03 and later workers must consume this contract rather than reimplement Q9-02 ledger logic."
+    ],
+    "neverImplementQ903OrLater": true,
+    "structuralSignalOnly": true
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "reportId": "seow-rpt-0001",
+  "timestamp": "2026-08-02T13:09:59.557Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "contentPlan": {
+    "planId": "seow-plan-0046",
+    "title": "travel_gear SEO content plan",
+    "topic": "travel_gear",
+    "pillarPage": "travel_gear ultimate guide",
+    "clusters": [
+      {
+        "clusterId": "seow-cluster-0047",
+        "name": "travel_gear cluster",
+        "pillarTopic": "travel_gear ultimate guide",
+        "supportingTopics": [
+          "travel_gear comparison",
+          "travel_gear review"
+        ]
+      }
+    ],
+    "supportingArticles": [
+      "travel_gear comparison",
+      "travel_gear review"
+    ],
+    "targetKeywords": [
+      "best travel backpack",
+      "TrailBackpack Pro review"
+    ],
+    "searchIntent": "commercial",
+    "notes": [
+      "Plan derived from opportunity/review/keyword evidence only",
+      "No SEO performance claims fabricated",
+      "Articles are structural packages — never published by this worker"
+    ],
+    "fabricated": false
+  },
+  "targetKeywords": [
+    {
+      "keyword": "best travel backpack",
+      "intent": "commercial",
+      "cluster": "travel_gear",
+      "role": "primary",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "keyword": "TrailBackpack Pro review",
+      "intent": "commercial",
+      "cluster": "travel_gear",
+      "role": "secondary",
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "searchIntent": "commercial",
+  "articleBrief": {
+    "briefId": "seow-brief-0048",
+    "title": "TrailBackpack Pro SEO article brief",
+    "primaryKeyword": "best travel backpack",
+    "secondaryKeywords": [
+      "TrailBackpack Pro review"
+    ],
+    "searchIntent": "commercial",
+    "audience": "buyers evaluating evidenced recommendations",
+    "outline": [
+      "Introduction to TrailBackpack Pro",
+      "Key features and evidence",
+      "Pros and cons",
+      "Who it is for",
+      "Buying considerations",
+      "FAQ",
+      "Conclusion"
+    ],
+    "metaTitle": "best travel backpack",
+    "metaDescription": "Evidence-based review of TrailBackpack Pro.",
+    "faqPrompts": [
+      "What is the best travel_gear?",
+      "Who should buy TrailBackpack Pro?",
+      "What are the main drawbacks of TrailBackpack Pro?"
+    ],
+    "evidenceNotes": [
+      "review_report:rcw-rpt-0001",
+      "primary_keyword:best travel backpack",
+      "No ranking/traffic performance claims included"
+    ],
+    "fabricated": false
+  },
+  "seoArticle": {
+    "articleId": "seow-article-0049",
+    "title": "TrailBackpack Pro SEO article",
+    "metaTitle": "best travel backpack",
+    "metaDescription": "Evidence-based review of TrailBackpack Pro.",
+    "primaryKeyword": "best travel backpack",
+    "headingStructure": [
+      "H1: best travel backpack",
+      "H2: Key features",
+      "H2: Pros and cons",
+      "H2: Buying considerations",
+      "H2: Conclusion"
+    ],
+    "bodySections": [
+      {
+        "heading": "H1: best travel backpack",
+        "body": "This structural SEO article covers TrailBackpack Pro using verified opportunity and review evidence only."
+      },
+      {
+        "heading": "H2: Key features",
+        "body": "Observed features: waterproof."
+      },
+      {
+        "heading": "H2: Pros and cons",
+        "body": "Pros: Durable shell. Cons: Premium price."
+      },
+      {
+        "heading": "H2: Buying considerations",
+        "body": "Buy with conditions"
+      },
+      {
+        "heading": "H2: Conclusion",
+        "body": "Use the best travel backpack research path as a planning asset only. This worker never publishes articles or manipulates rankings."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Who?",
+        "answer": "Weekend hikers"
+      }
+    ],
+    "wordCountEstimate": 46,
+    "version": 1,
+    "fabricated": false
+  },
+  "internalLinkingPlan": [
+    {
+      "linkId": "seow-link-0050",
+      "fromPage": "TrailBackpack Pro SEO article",
+      "toPage": "travel_gear ultimate guide",
+      "anchorText": "travel_gear ultimate guide",
+      "reason": "Link supporting article to pillar page in the evidenced cluster",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "linkId": "seow-link-0051",
+      "fromPage": "travel_gear ultimate guide",
+      "toPage": "travel_gear comparison",
+      "anchorText": "travel_gear comparison",
+      "reason": "Cluster internal link from pillar to supporting topic",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "linkId": "seow-link-0052",
+      "fromPage": "travel_gear ultimate guide",
+      "toPage": "travel_gear review",
+      "anchorText": "travel_gear review",
+      "reason": "Cluster internal link from pillar to supporting topic",
+      "fabricated": false,
+      "evidencePresent": true
+    },
+    {
+      "linkId": "seow-link-0053",
+      "fromPage": "TrailBackpack Pro SEO article",
+      "toPage": "TrailBackpack Pro review guide",
+      "anchorText": "TrailBackpack Pro review",
+      "reason": "Secondary keyword contextual link within cluster",
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "contentQualitySummary": {
+    "summaryId": "seow-quality-0054",
+    "completenessScore": 1,
+    "hasPlan": true,
+    "hasBrief": true,
+    "hasArticle": true,
+    "hasKeywordMapping": true,
+    "hasInternalLinks": true,
+    "hasMeta": true,
+    "issues": [],
+    "notes": [
+      "Completeness reflects structural asset presence only",
+      "No traffic, ranking, or CTR performance claims are made"
+    ]
+  },
+  "auditStatus": "ready_for_q806",
+  "outstandingIssues": [],
+  "confidenceScore": 1,
+  "metadataVersion": "SEOW-001-v1",
+  "reportVersion": "SEOW-RPT-v1",
+  "workerId": "wkr-seo-content-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "topic": "travel_gear",
+  "versionHistory": [
+    {
+      "version": 1,
+      "articleId": "seow-article-0049",
+      "reportId": "seow-rpt-0001",
+      "timestamp": "2026-08-02T13:09:59.557Z",
+      "changeSummary": "SEO article v1 for travel_gear"
+    }
+  ],
+  "sourceOpportunityReportId": "aow-rpt-0001",
+  "sourceReviewReportId": "rcw-rpt-0001",
+  "supportingEvidence": [
+    "opportunity_report:aow-rpt-0001",
+    "review_content_report:rcw-rpt-0001",
+    "fixtureKeywords",
+    "content_plan",
+    "keyword_mapping",
+    "article_brief",
+    "seo_article",
+    "internal_linking_plan",
+    "version_history"
+  ],
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T13:09:59.557Z",
+  "consumableByQ806": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-05:affiliate_business:afc-biz-travel-gear-01",
+    "q8-05:affiliate_project:afc-prj-travel-gear-01",
+    "q8-05:topic:travel_gear",
+    "q8-05:article:seow-article-0049",
+    "q8-05:version:1",
+    "q8-02:opportunity:aow-rpt-0001",
+    "q8-04:review:rcw-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverFabricateSeoPerformanceClaims": true,
+  "neverPublishArticles": true,
+  "neverManipulateSearchRankings": true,
+  "neverReplaceAnalyticsWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ806OrLater": true
+}

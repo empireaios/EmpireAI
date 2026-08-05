@@ -1,0 +1,76 @@
+{
+  "missionId": "Q2-10",
+  "doctrine": "PILLOW-EBC-001",
+  "moduleId": "empire-builder-certification",
+  "metadataVersion": "EBC-001-v1",
+  "empireBuilderFactoryVersion": "Q2-EBF-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Certify that Empire Builder Factory can transform a Grand King business idea into a complete, approved business package ready for implementation.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-05", "doctrine": "PILLOW-OEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-06", "doctrine": "PILLOW-BBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-07", "doctrine": "PILLOW-LPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-08", "doctrine": "PILLOW-BRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-09", "doctrine": "PILLOW-BAP-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteBusinessImplementation": true,
+    "neverModifyFactoryComponents": true,
+    "neverRepairFailuresAutomatically": true,
+    "neverBeginQ3Implementation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "components": [
+    "empire-builder-factory-core",
+    "business-idea-interpreter",
+    "empire-builder-model-generator",
+    "market-research-worker",
+    "opportunity-evaluation-worker",
+    "business-blueprint-worker",
+    "launch-plan-worker",
+    "business-risk-worker",
+    "business-approval-pack-worker"
+  ],
+  "certificationLevels": [
+    "certified",
+    "certified_with_warnings",
+    "provisionally_certified",
+    "failed_certification"
+  ],
+  "reportFields": [
+    "certificationId",
+    "timestamp",
+    "empireBuilderFactoryVersion",
+    "originalGrandKingCommand",
+    "componentsTested",
+    "componentsPassed",
+    "componentsFailed",
+    "integrationStatus",
+    "planningCompleteness",
+    "governanceCompliance",
+    "outstandingRisks",
+    "recommendations",
+    "finalCertificationResult",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/empire-builder-certification.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-builder-certification/",
+    "config": "config/empire-builder-certification.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EMPIRE_BUILDER_CERTIFICATION_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/empire-builder-certification-bridge.ts",
+    "tests": "pillow/src/validation/tests/empire-builder-certification.test.ts"
+  },
+  "notes": [
+    "Q2 is complete only when Empire Builder Certification passes successfully. Q3 must not begin until founder authorization after certification."
+  ]
+}

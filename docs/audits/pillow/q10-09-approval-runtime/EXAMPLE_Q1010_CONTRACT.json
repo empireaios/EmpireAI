@@ -1,0 +1,58 @@
+{
+  "contractId": "apvrt-q1010-contract-v1",
+  "contractVersion": "APVRT-001-v1",
+  "producedBy": "approval-runtime",
+  "missionId": "Q10-09",
+  "consumerMissionId": "Q10-10",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "activeApprovalRequests",
+    "pendingApprovals",
+    "approvedRequests",
+    "rejectedRequests",
+    "escalatedRequests",
+    "approvalTimelines",
+    "governanceSummary",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "approvalTypeCatalog": [
+    "pillow",
+    "grand_king",
+    "multi_stage",
+    "conditional",
+    "delegated",
+    "escalated",
+    "custom_extension"
+  ],
+  "approvalStatusCatalog": [
+    "pending",
+    "routed",
+    "awaiting_pillow",
+    "awaiting_grand_king",
+    "approved",
+    "rejected",
+    "escalated",
+    "delegated",
+    "timed_out",
+    "resumed",
+    "cancelled"
+  ],
+  "policyScopeCatalog": [
+    "mission",
+    "factory",
+    "worker",
+    "enterprise",
+    "custom_extension"
+  ],
+  "notes": [
+    "Structural contract for Q10-10 Monitoring Runtime — approval evidence only",
+    "Approval Runtime never fabricates decisions or auto-approves restricted actions",
+    "neverImplementQ1010OrLater remains locked — this module does not implement Monitoring Runtime"
+  ],
+  "neverImplementQ1010OrLater": true,
+  "structuralSignalOnly": true
+}

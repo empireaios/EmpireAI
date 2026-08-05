@@ -1,0 +1,32 @@
+{
+  "planId": "seow-plan-0046",
+  "title": "travel_gear SEO content plan",
+  "topic": "travel_gear",
+  "pillarPage": "travel_gear ultimate guide",
+  "clusters": [
+    {
+      "clusterId": "seow-cluster-0047",
+      "name": "travel_gear cluster",
+      "pillarTopic": "travel_gear ultimate guide",
+      "supportingTopics": [
+        "travel_gear comparison",
+        "travel_gear review"
+      ]
+    }
+  ],
+  "supportingArticles": [
+    "travel_gear comparison",
+    "travel_gear review"
+  ],
+  "targetKeywords": [
+    "best travel backpack",
+    "TrailBackpack Pro review"
+  ],
+  "searchIntent": "commercial",
+  "notes": [
+    "Plan derived from opportunity/review/keyword evidence only",
+    "No SEO performance claims fabricated",
+    "Articles are structural packages — never published by this worker"
+  ],
+  "fabricated": false
+}

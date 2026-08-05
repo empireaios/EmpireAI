@@ -1,0 +1,20 @@
+{
+  "reportId": "csgen-rpt-0001",
+  "reportVersion": "CSGEN-RPT-v1",
+  "metadataVersion": "CSGEN-001-v1",
+  "engineId": "PILLOW-CSGEN-001",
+  "missionId": "Q13-04",
+  "consumableByQ1305": true,
+  "neverImplementQ1305OrLater": true,
+  "neverImplementCode": true,
+  "neverExecuteCursorMissions": true,
+  "neverSelfApprove": true,
+  "q1304ContractConsumed": {
+    "consumed": true,
+    "consumerMissionId": "Q13-04"
+  },
+  "governanceValidation": {
+    "approvalStatus": "pending_grand_king"
+  },
+  "confidenceScore": 0.85
+}

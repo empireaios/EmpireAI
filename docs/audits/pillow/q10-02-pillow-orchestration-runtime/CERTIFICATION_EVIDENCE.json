@@ -1,0 +1,33 @@
+{
+  "computedAt": "2026-08-04T01:15:00.000Z",
+  "missionId": "Q10-02",
+  "engineVersion": "PILLOW-POR-001",
+  "runtimeVersion": "Q10-POR-v1",
+  "metadataVersion": "POR-001-v1",
+  "reportVersion": "POR-RPT-v1",
+  "workerId": "wkr-pillow-orchestration-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionSharedRuntimeCore": {
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverReplaceWorkerImplementations": true,
+    "neverReplaceToolImplementations": true,
+    "neverExecuteUnauthorisedActions": true,
+    "neverFabricateExecutionResults": true,
+    "neverBypassApprovalRuntime": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1003OrLater": true,
+    "structuralSignalOnly": true
+  },
+  "q1003ContractExposed": true,
+  "consumableByQ1003": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Pillow Orchestration Runtime Q10-02 certified — stops at Q10-02, exposes Q1003ConsumableContract for Q10-03",
+    "Never fabricates execution success without DI handler evidence"
+  ]
+}

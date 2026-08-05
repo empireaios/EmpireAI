@@ -1,0 +1,42 @@
+{
+  "missionId": "Q0-02",
+  "doctrine": "PILLOW-OSC-001",
+  "moduleId": "opportunity-scanner",
+  "metadataVersion": "OSC-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Continuously discovers profitable business and operational opportunities for Pillow review.",
+  "boundaries": {
+    "neverExecuteOpportunities": true,
+    "neverApproveOpportunities": true,
+    "neverAssignWorkers": true,
+    "neverCreateBusinesses": true
+  },
+  "opportunityRecordFields": [
+    "opportunityId",
+    "timestamp",
+    "opportunityCategory",
+    "sourceSignal",
+    "summary",
+    "businessValueHypothesis",
+    "feasibilityScore",
+    "profitPotentialScore",
+    "riskScore",
+    "confidenceScore",
+    "recommendedNextStep",
+    "reviewStatus",
+    "validationStatus",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/opportunity-scanner.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/opportunity-scanner/",
+    "config": "config/opportunity-scanner.config.json",
+    "doctrine": "docs/governance/EMPIREAI_OPPORTUNITY_SCANNER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/opportunity-scanner-bridge.ts",
+    "tests": "pillow/src/validation/tests/opportunity-scanner.test.ts"
+  }
+}

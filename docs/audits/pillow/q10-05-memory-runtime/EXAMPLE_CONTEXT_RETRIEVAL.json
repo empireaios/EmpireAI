@@ -1,0 +1,43 @@
+{
+  "exampleType": "context_retrieval",
+  "missionId": "Q10-05",
+  "runtimeVersion": "Q10-MEMRT-v1",
+  "metadataVersion": "MEMRT-001-v1",
+  "contextBundle": {
+    "bundleId": "memrt-ctx-example",
+    "worker": "wkr-memory-runtime-01",
+    "factory": "pillow-memory",
+    "missionId": "M-CTX-001",
+    "sessionId": "sess-001",
+    "contextId": "ctx-001",
+    "operationalMemories": [
+      {
+        "memoryId": "memrt-mem-example-001",
+        "memoryType": "operational",
+        "contentRef": "content://operational/example",
+        "summary": "Example operational memory",
+        "fabricated": false,
+        "structuralSignalOnly": true
+      }
+    ],
+    "decisionHistory": [
+      {
+        "memoryId": "memrt-mem-example-002",
+        "memoryType": "decision_history",
+        "contentRef": "content://decision/example",
+        "summary": "Example decision record",
+        "fabricated": false,
+        "structuralSignalOnly": true
+      }
+    ],
+    "previousResults": [],
+    "runtimeContext": [],
+    "assembledAt": "2026-08-04T01:46:00.000Z",
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "notes": [
+    "ContextBundle assembled from related memories by factory/worker/mission/session",
+    "No secrets stored — contentRef/summary strings only"
+  ]
+}

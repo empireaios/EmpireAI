@@ -1,0 +1,47 @@
+{
+  "computedAt": "2026-08-04T14:20:00.000Z",
+  "missionId": "Q10-11",
+  "engineVersion": "PILLOW-RECRT-001",
+  "runtimeVersion": "Q10-RECRT-v1",
+  "metadataVersion": "RECRT-001-v1",
+  "reportVersion": "RECRT-RPT-v1",
+  "workerId": "wkr-recovery-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionMonitoringRuntime": {
+    "missionId": "Q10-10",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverFabricateRecoverySuccess": true,
+    "neverLoseRecoverableExecutionState": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverModifyValidatedBusinessData": true,
+    "neverReplaceBusinessLogic": true,
+    "neverImplementQ1012OrLater": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "deterministicRecoveryBehaviour": true,
+    "structuralSignalOnly": true
+  },
+  "strategies": [
+    "restart_job",
+    "resume_workflow",
+    "restore_checkpoint",
+    "rollback_partial",
+    "escalate_only",
+    "manual_recovery",
+    "automatic_recovery"
+  ],
+  "q1012ContractExposed": true,
+  "consumableByQ1012": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Recovery Runtime Q10-11 certified — stops at Q10-11, exposes Q1012ConsumableContract for Q10-12",
+    "Never fabricates recovery success; checkpoints/state refs never deleted",
+    "Distinct from worker-recovery-system / autonomous-recovery-engine / recovery / recovery-doctrine"
+  ]
+}

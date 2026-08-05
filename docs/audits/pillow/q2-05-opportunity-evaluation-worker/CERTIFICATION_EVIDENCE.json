@@ -1,0 +1,63 @@
+{
+  "missionId": "Q2-05",
+  "doctrine": "PILLOW-OEW-001",
+  "moduleId": "opportunity-evaluation-worker",
+  "metadataVersion": "OEW-001-v1",
+  "reportVersion": "OEW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Score opportunities by demand, feasibility, profit potential, risk, and strategic fit; recommend Proceed / Improve / Reject.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverApproveBusiness": true,
+    "neverModifyBusinessModel": true,
+    "neverLaunchBusiness": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ206OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "reportFields": [
+    "evaluationId",
+    "timestamp",
+    "businessBuildMissionId",
+    "businessType",
+    "demandScore",
+    "feasibilityScore",
+    "profitPotentialScore",
+    "riskScore",
+    "strategicFitScore",
+    "overallOpportunityScore",
+    "recommendation",
+    "supportingEvidence",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "recommendations": ["Proceed", "Improve", "Reject"],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/opportunity-evaluation-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/opportunity-evaluation-worker/",
+    "config": "config/opportunity-evaluation-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_OPPORTUNITY_EVALUATION_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/opportunity-evaluation-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/opportunity-evaluation-worker.test.ts"
+  },
+  "notes": [
+    "Isolated evaluation-only Q2 worker; recommends but never approves; distinct from opportunity-discovery-engine and opportunity-prioritization-engine."
+  ]
+}

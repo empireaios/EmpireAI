@@ -1,0 +1,66 @@
+{
+  "missionId": "Q5-08",
+  "missionName": "Sales Page Worker",
+  "doctrineId": "PILLOW-SPW-001",
+  "moduleId": "sales-page-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "SPW-001-v1",
+  "reportSchemaVersion": "SPW-RPT-v1",
+  "primaryDeliverable": "Build complete sales pages and product landing pages.",
+  "prerequisites": [
+    { "missionId": "Q5-07", "doctrine": "PILLOW-DW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-06", "doctrine": "PILLOW-TBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-05", "doctrine": "PILLOW-CBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-04", "doctrine": "PILLOW-PPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-03", "doctrine": "PILLOW-EBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-02", "doctrine": "PILLOW-DPR-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/sales-page-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved digital product information",
+    "Generate complete landing page structure",
+    "Generate compelling headlines",
+    "Generate benefit-driven copy",
+    "Generate feature sections",
+    "Generate pricing presentation",
+    "Generate testimonials/placeholders where approved",
+    "Generate FAQ sections",
+    "Generate call-to-action sections",
+    "Generate guarantee sections where applicable",
+    "Optimize page structure for readability and conversion",
+    "Produce machine-readable Sales Page Reports"
+  ],
+  "boundariesVerified": [
+    "Does not process payments",
+    "Does not deliver products",
+    "Does not publish websites or pages",
+    "Does not fabricate testimonials",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-09 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Design Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/sales-page-worker/",
+    "config/sales-page-worker.config.json",
+    "docs/governance/EMPIREAI_SALES_PAGE_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-08-sales-page-worker/Q5_08_SALES_PAGE_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/sales-page-worker-bridge.ts"
+  ]
+}

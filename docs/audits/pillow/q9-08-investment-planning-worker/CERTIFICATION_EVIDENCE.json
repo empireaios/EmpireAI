@@ -1,0 +1,77 @@
+{
+  "missionId": "Q9-08",
+  "doctrine": "PILLOW-IPW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/investment-planning-worker/",
+  "metadataVersion": "IPW-001-v1",
+  "reportVersion": "IPW-RPT-v1",
+  "workerId": "wkr-investment-planning-01",
+  "observedAt": "2026-08-04",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS",
+    "Q9-04": "FINAL PASS",
+    "Q9-05": "FINAL PASS",
+    "Q9-06": "FINAL PASS",
+    "Q9-07": "FINAL PASS"
+  },
+  "investmentPlanningModel": {
+    "moneyRepresentation": "MoneyMinor.minorUnits integer cents",
+    "measuredDataDistinctFromProjections": true,
+    "neverFabricateRoiOrPaybackOrRecommendations": true,
+    "neverExecuteInvestments": true,
+    "neverMoveOrAllocateCapital": true
+  },
+  "boundaries": {
+    "neverExecuteInvestments": true,
+    "neverApproveInvestments": true,
+    "neverMoveOrAllocateCapital": true,
+    "neverModifyAccountingRecords": true,
+    "neverFabricateRoiOrPaybackOrRecommendations": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ909OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveInvestmentHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowInvestmentPlanningWorker": true,
+    "subsystemRegistry": "investment-planning-worker",
+    "hostRoutes": "/api/pillow/investment-planning-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/investment-planning-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_INVESTMENT_PLANNING_WORKER_SYSTEM.md",
+    "config": "config/investment-planning-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "budgetPlanningWorkerBinding": true,
+    "profitabilityWorkerBinding": true,
+    "forecastingWorkerBinding": true,
+    "taxSupportWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/investment-planning-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "taxSupportWorker": "12/12"
+  },
+  "evidence": [
+    "caller-supplied opportunities evaluated with deterministic scoring — never fabricated",
+    "capital allocation recommendations generated as signals only — isExecution:false isApproval:false",
+    "risk-adjusted and strategic-alignment ranking deterministic by score then opportunityId",
+    "supporting evidence linked from caller evidenceRefs",
+    "Investment Planning Report with consumableByQ909 and never* locks",
+    "Q9-09+ missions rejected; Q909 consumable contract exposed",
+    "Q9-01..Q9-07 untouched and still FINAL PASS",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "investmentPlanningWorker": "12/12",
+    "taxSupportWorkerRegression": "12/12"
+  }
+}

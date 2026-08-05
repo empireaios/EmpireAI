@@ -1,0 +1,63 @@
+﻿{
+  "missionId": "Q0-18",
+  "doctrine": "PILLOW-PECC-001",
+  "moduleId": "executive-command-center",
+  "metadataVersion": "PECC-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Provides Pillow with one unified command layer over all workers, tools, missions, approvals and reports.",
+  "boundaries": {
+    "neverExecuteWorkerLogic": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverReplaceWorkers": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "commandRecordFields": [
+    "commandId",
+    "timestamp",
+    "executiveRequest",
+    "requestedCapability",
+    "routedService",
+    "relatedBusiness",
+    "relatedMission",
+    "currentStatus",
+    "result",
+    "executionReference",
+    "metadataVersion"
+  ],
+  "commandTypes": [
+    "executive_query",
+    "executive_planning",
+    "executive_monitoring",
+    "executive_reporting",
+    "executive_routing",
+    "executive_inspection",
+    "executive_review",
+    "executive_approval",
+    "executive_recovery",
+    "executive_coordination"
+  ],
+  "routedServices": [
+    "workers",
+    "tools",
+    "missions",
+    "business_state",
+    "approvals",
+    "execution_memory",
+    "decision_memory",
+    "executive_reports"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/executive-command-center.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/executive-command-center/",
+    "config": "config/executive-command-center.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EXECUTIVE_COMMAND_CENTER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/executive-command-center-bridge.ts",
+    "tests": "pillow/src/validation/tests/executive-command-center.test.ts"
+  },
+  "idCollisionNote": "PILLOW-ECC-001 reserved for Execution Control Center (P6-01); Q0-18 uses PILLOW-PECC-001"
+}

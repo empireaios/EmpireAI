@@ -1,0 +1,50 @@
+﻿{
+  "missionId": "Q0-20",
+  "doctrine": "PILLOW-TNP-001",
+  "moduleId": "task-negotiation-protocol",
+  "metadataVersion": "TNP-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Allows workers to negotiate task ownership, dependencies, handoffs and required support.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverReplacePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverPerformStrategicPlanning": true
+  },
+  "negotiationRecordFields": [
+    "negotiationId",
+    "timestamp",
+    "missionId",
+    "taskId",
+    "candidateWorkers",
+    "capabilityAssessment",
+    "ownershipDecision",
+    "supportingWorkers",
+    "dependencyGraph",
+    "negotiationResult",
+    "escalationStatus",
+    "metadataVersion"
+  ],
+  "negotiationOutcomes": [
+    "accepted",
+    "declined",
+    "shared_ownership",
+    "delegated",
+    "escalated",
+    "waiting_dependency",
+    "cancelled"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/task-negotiation-protocol.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/task-negotiation-protocol/",
+    "config": "config/task-negotiation-protocol.config.json",
+    "doctrine": "docs/governance/EMPIREAI_TASK_NEGOTIATION_PROTOCOL_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/task-negotiation-protocol-bridge.ts",
+    "tests": "pillow/src/validation/tests/task-negotiation-protocol.test.ts"
+  }
+}

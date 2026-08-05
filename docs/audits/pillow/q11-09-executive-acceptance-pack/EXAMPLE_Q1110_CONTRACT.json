@@ -1,0 +1,41 @@
+{
+  "contractId": "q1110-contract-EAPRT-001-v1",
+  "contractVersion": "EAPRT-001-v1",
+  "producedBy": "executive-acceptance-pack",
+  "missionId": "Q11-09",
+  "consumerMissionId": "Q11-10",
+  "exposedFields": [
+    "acceptancePack",
+    "executiveSummary",
+    "certificationSummary",
+    "auditSummary",
+    "productionReadinessSummary",
+    "riskSummary",
+    "outstandingIssues",
+    "deploymentRecommendation",
+    "executiveChecklist",
+    "decision",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "decisionCatalog": [
+    "certify",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Executive Acceptance Pack Q11-09 certified — stops at Q11-09, exposes Q1110ConsumableContract for Q11-10 (Grand King Acceptance Gate)",
+    "This contract is structural-signal-only; Q11-09 never implements Q11-10 or any later mission itself",
+    "Pack aggregates Q11 certification and audit evidence only — never approves production deployment"
+  ],
+  "neverImplementQ1110OrLater": true,
+  "structuralSignalOnly": true
+}

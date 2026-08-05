@@ -1,0 +1,132 @@
+{
+  "reportId": "pccrt-rpt-example-q1101-01",
+  "timestamp": "2026-08-05T01:00:00.000Z",
+  "runtimeVersion": "Q11-PCCRT-v1",
+  "certificationScope": [
+    "workforce_certification",
+    "runtime_certification",
+    "factory_certification",
+    "governance_certification",
+    "reporting_certification",
+    "integration_certification",
+    "security_certification",
+    "performance_certification",
+    "recovery_certification",
+    "financial_readiness_certification",
+    "executive_certification",
+    "custom_extension"
+  ],
+  "factorySummary": {
+    "discoveredCount": 10,
+    "factoryIds": [
+      "workforce-os",
+      "workforce",
+      "empire-builder-factory",
+      "commerce-factory",
+      "media-factory",
+      "digital-products-factory",
+      "enterprise-platform-factory",
+      "local-business-factory",
+      "affiliate-factory",
+      "capital-factory"
+    ],
+    "evidence": ["factory:discovered=10"]
+  },
+  "workerSummary": {
+    "discoveredCount": 5,
+    "workerIds": ["worker-seed-01", "worker-seed-02", "worker-seed-03", "worker-seed-04", "worker-seed-05"],
+    "evidence": ["worker:discovered=5"]
+  },
+  "runtimeSummary": {
+    "discoveredCount": 13,
+    "runtimeIds": [
+      "Q10-01", "Q10-02", "Q10-03", "Q10-04", "Q10-05", "Q10-06", "Q10-07",
+      "Q10-08", "Q10-09", "Q10-10", "Q10-11", "Q10-12", "Q10-13"
+    ],
+    "evidence": ["runtime:discovered=13"]
+  },
+  "governanceSummary": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "pillowCommandRequired": true,
+    "checks": [],
+    "missingDocs": [],
+    "evidence": ["governance:compliant=true"]
+  },
+  "readinessSummary": {
+    "overallReadinessScore": 0.92,
+    "ready": true,
+    "notes": ["Production readiness derived from discovered factories/workers/runtimes and programme statuses"],
+    "evidence": ["readiness:score=0.92"]
+  },
+  "evidenceSummary": {
+    "totalEvidenceRefs": 28,
+    "uniqueEvidenceRefs": 28,
+    "fabricated": false,
+    "structuralSignalOnly": true,
+    "supportingEvidence": ["evidence:total=28", "evidence:never_fabricated"]
+  },
+  "failedItems": [],
+  "outstandingRisks": [],
+  "auditStatus": "certified",
+  "confidenceScore": 0.92,
+  "metadataVersion": "PCCRT-001-v1",
+  "reportVersion": "PCCRT-RPT-v1",
+  "workerId": "wkr-production-certification-core-01",
+  "certificationDecision": "Certified",
+  "validation": {
+    "validationReportId": "pccrt-val-example-01",
+    "validationTimestamp": "2026-08-05T01:00:00.000Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 0,
+    "metadataVersion": "PCCRT-001-v1"
+  },
+  "consumableByQ1102": true,
+  "neverImplementQ1102OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "finalQ11CoreGate": true,
+  "q1101ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "SRCRT-001-v1",
+    "fields": ["runtimeInventory", "certificationDecision"],
+    "evidence": "Consumed Q1101ConsumableContract from shared-runtime-certification"
+  },
+  "programmeInventory": [],
+  "certificationResults": [],
+  "reportingSummary": {
+    "verified": true,
+    "executiveReportingAvailable": true,
+    "evidence": ["reporting:err_submit_available"]
+  },
+  "integrationSummary": {
+    "verifiedAt": "2026-08-05T01:00:00.000Z",
+    "rows": [],
+    "allBound": true,
+    "evidence": ["integration:allBound=true"]
+  },
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": ["audit://pccrt/q11-01/example"],
+  "runTimestamp": "2026-08-05T01:00:00.000Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutableCertificationHistory": true,
+  "preserveCertificationHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicCertification": true,
+  "maskSensitiveValues": true,
+  "neverFabricateCertificationEvidence": true,
+  "neverCertifyMissingCapabilities": true,
+  "neverAssumeImplementation": true,
+  "neverImplementMissingCapabilities": true,
+  "neverModifyProductionLogic": true,
+  "neverReplaceIndividualAuditProgrammes": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

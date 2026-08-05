@@ -1,0 +1,55 @@
+{
+  "missionId": "Q3-05",
+  "doctrine": "PILLOW-SEW-001",
+  "moduleId": "supplier-evaluation-worker",
+  "metadataVersion": "SEW-001-v1",
+  "reportVersion": "SEW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Evaluate supplier reliability, price, shipping, refund policy, fulfilment quality, and risk.",
+  "prerequisites": [
+    { "missionId": "Q3-04", "doctrine": "PILLOW-SDW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverDiscoverSuppliers": true,
+    "neverNegotiateSuppliers": true,
+    "neverPlaceSupplierOrders": true,
+    "neverModifySupplierInformation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ306OrLater": true
+  },
+  "supplierEvaluationReportFields": [
+    "evaluationId",
+    "timestamp",
+    "supplierId",
+    "supplierName",
+    "productId",
+    "reliabilityScore",
+    "priceScore",
+    "shippingScore",
+    "refundPolicyScore",
+    "fulfilmentQualityScore",
+    "communicationScore",
+    "riskScore",
+    "overallScore",
+    "recommendation",
+    "supportingEvidence",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/supplier-evaluation-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/supplier-evaluation-worker/",
+    "config": "config/supplier-evaluation-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SUPPLIER_EVALUATION_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/supplier-evaluation-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/supplier-evaluation-worker.test.ts"
+  },
+  "notes": [
+    "Supplier-evaluation-only Commerce Factory worker; public pillow index aliases SewSupplierEvaluationReport."
+  ]
+}

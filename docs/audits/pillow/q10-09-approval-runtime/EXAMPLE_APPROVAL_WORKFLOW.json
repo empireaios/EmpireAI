@@ -1,0 +1,50 @@
+{
+  "flow": [
+    "register_or_resolve_policy",
+    "determine_requirements",
+    "submit_approval_request",
+    "route_to_current_approver",
+    "decide_approve_or_reject",
+    "advance_multi_stage_or_complete",
+    "resume_execution_if_approved",
+    "preserve_decision_history"
+  ],
+  "pillowApproval": {
+    "policyId": "pol-pillow-standard",
+    "approvalType": "pillow",
+    "stages": ["pillow"],
+    "requiresPillow": true,
+    "requiresGrandKing": false,
+    "decision": "approve",
+    "currentStatusAfter": "approved",
+    "resumeAllowed": true
+  },
+  "grandKingApproval": {
+    "policyId": "pol-grand-king-restricted",
+    "approvalType": "grand_king",
+    "stages": ["pillow", "grand_king"],
+    "requiresPillow": true,
+    "requiresGrandKing": true,
+    "highRisk": true,
+    "flow": [
+      { "stage": "pillow", "decision": "approve", "status": "awaiting_grand_king" },
+      { "stage": "grand_king", "decision": "approve", "status": "approved" }
+    ],
+    "autoApproveForbidden": true,
+    "delegationOfGrandKingForbidden": true
+  },
+  "multiStage": {
+    "policyId": "pol-multi-stage-ops",
+    "stages": ["pillow", "factory_lead", "grand_king"],
+    "highRisk": true
+  },
+  "rejectionBlocksResume": {
+    "decision": "reject",
+    "currentStatusAfter": "rejected",
+    "resumeAllowed": false,
+    "preventUnauthorizedExecution": true
+  },
+  "auditReferencePattern": "audit://approval/...",
+  "fabricated": false,
+  "structuralSignalOnly": true
+}

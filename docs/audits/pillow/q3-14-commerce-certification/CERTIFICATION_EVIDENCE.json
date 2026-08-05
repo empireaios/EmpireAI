@@ -1,0 +1,68 @@
+﻿{
+  "missionId": "Q3-14",
+  "doctrine": "PILLOW-CMC-001",
+  "moduleId": "commerce-certification",
+  "metadataVersion": "CMC-001-v1",
+  "commerceFactoryVersion": "Q3-CMF-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Certify commerce workforce can operate a product business under Pillow.",
+  "prerequisites": [
+    { "missionId": "Q3-01", "doctrine": "PILLOW-CMF-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-02", "doctrine": "PILLOW-PDW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-03", "doctrine": "PILLOW-PEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-04", "doctrine": "PILLOW-SDW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-05", "doctrine": "PILLOW-SEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-06", "doctrine": "PILLOW-SNW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-07", "doctrine": "PILLOW-PIW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-08", "doctrine": "PILLOW-PLW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-09", "doctrine": "PILLOW-PRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-10", "doctrine": "PILLOW-INW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-11", "doctrine": "PILLOW-ORW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-12", "doctrine": "PILLOW-RDW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-13", "doctrine": "PILLOW-CAW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverOperateLiveCommerceBusiness": true,
+    "neverModifyCommerceFactoryComponents": true,
+    "neverRepairFailuresAutomatically": true,
+    "neverBeginQ4Implementation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "commerceCertificationReportFields": [
+    "certificationId",
+    "timestamp",
+    "commerceFactoryVersion",
+    "componentsTested",
+    "componentsPassed",
+    "componentsFailed",
+    "integrationStatus",
+    "operationalReadiness",
+    "governanceCompliance",
+    "outstandingRisks",
+    "recommendations",
+    "finalCertificationResult",
+    "metadataVersion"
+  ],
+  "certificationLevels": [
+    "certified",
+    "certified_with_warnings",
+    "provisionally_certified",
+    "failed_certification"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/commerce-certification.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/commerce-certification/",
+    "config": "config/commerce-certification.config.json",
+    "doctrine": "docs/governance/EMPIREAI_COMMERCE_CERTIFICATION_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/commerce-certification-bridge.ts",
+    "tests": "pillow/src/validation/tests/commerce-certification.test.ts"
+  },
+  "notes": [
+    "Final Q3 acceptance gate; public pillow index aliases CmcCommerceCertificationReport."
+  ]
+}

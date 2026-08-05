@@ -1,0 +1,64 @@
+{
+  "missionId": "Q2-04",
+  "doctrine": "PILLOW-MRW-001",
+  "moduleId": "market-research-worker",
+  "metadataVersion": "MRW-001-v1",
+  "reportVersion": "MRW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Research market demand, competitors, customer problems, and opportunity size; produce machine-readable Market Research Reports.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverDecideWhetherToBuild": true,
+    "neverGenerateBranding": true,
+    "neverBuildMarketingPlans": true,
+    "neverLaunchBusiness": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ205OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "reportFields": [
+    "reportId",
+    "timestamp",
+    "businessBuildMissionId",
+    "businessType",
+    "targetMarket",
+    "customerProblems",
+    "marketDemand",
+    "marketSize",
+    "competitorAnalysis",
+    "industryTrends",
+    "opportunitySize",
+    "risks",
+    "confidenceScore",
+    "supportingEvidence",
+    "recommendations",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/market-research-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/market-research-worker/",
+    "config": "config/market-research-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_MARKET_RESEARCH_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/market-research-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/market-research-worker.test.ts"
+  },
+  "notes": [
+    "Isolated research-only Q2 worker; reports to Pillow; does not decide build/brand/marketing/launch outcomes."
+  ]
+}

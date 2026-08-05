@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-08-04T00:53:00.000Z",
+  "missionId": "Q9-11",
+  "engineVersion": "PILLOW-CAPCRT-001",
+  "overallDecision": "Certified",
+  "confidenceScore": 1,
+  "rows": [
+    { "missionId": "Q9-01", "missionName": "capital-factory-core", "engineVersion": "PILLOW-CAPFC-001", "status": "Certified" },
+    { "missionId": "Q9-02", "missionName": "accounting-worker", "engineVersion": "PILLOW-ACCW-001", "status": "Certified" },
+    { "missionId": "Q9-03", "missionName": "cashflow-worker", "engineVersion": "PILLOW-CFW-001", "status": "Certified" },
+    { "missionId": "Q9-04", "missionName": "budget-planning-worker", "engineVersion": "PILLOW-BPW-001", "status": "Certified" },
+    { "missionId": "Q9-05", "missionName": "profitability-worker", "engineVersion": "PILLOW-PRFW-001", "status": "Certified" },
+    { "missionId": "Q9-06", "missionName": "forecasting-worker", "engineVersion": "PILLOW-FRCW-001", "status": "Certified" },
+    { "missionId": "Q9-07", "missionName": "tax-support-worker", "engineVersion": "PILLOW-TSW-001", "status": "Certified" },
+    { "missionId": "Q9-08", "missionName": "investment-planning-worker", "engineVersion": "PILLOW-IPW-001", "status": "Certified" },
+    { "missionId": "Q9-09", "missionName": "financial-reporting-worker", "engineVersion": "PILLOW-FRW-001", "status": "Certified" },
+    { "missionId": "Q9-10", "missionName": "capital-risk-worker", "engineVersion": "PILLOW-CAPRW-001", "status": "Certified" }
+  ]
+}

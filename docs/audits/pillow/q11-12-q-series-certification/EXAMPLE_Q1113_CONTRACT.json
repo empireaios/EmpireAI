@@ -1,0 +1,50 @@
+{
+  "contractId": "q1113-contract-QSCRT-001-v1",
+  "contractVersion": "QSCRT-001-v1",
+  "producedBy": "q-series-certification",
+  "missionId": "Q11-12",
+  "consumerMissionId": "Q11-13",
+  "exposedFields": [
+    "factorySummary",
+    "workerSummary",
+    "runtimeSummary",
+    "integrationSummary",
+    "governanceSummary",
+    "productionReadinessSummary",
+    "certificationDecision",
+    "assessments",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "certificationClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "certificationDecisionCatalog": [
+    "certify",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Q Series Certification Q11-12 certified — stops at Q11-12, exposes Q1113ConsumableContract for Q11-13 Q Series Complete",
+    "This contract is structural-signal-only; Q11-12 never implements Q11-13 or any later mission itself",
+    "Honest certify rule: certify decision only when FINART consumable, EAPRT certify, GK approve+authorised, PLMRT productionActive",
+    "Live run expected withhold when FINART/EAPRT/GK/PLMRT chain incomplete"
+  ],
+  "neverImplementQ1113OrLater": true,
+  "structuralSignalOnly": true,
+  "exampleLiveRun": {
+    "certificationDecision": "withhold",
+    "outstandingIssues": [
+      "Q11-08 Financial Readiness Audit (FINART) missing or not consumable",
+      "Executive Acceptance Pack decision not certify (withhold)",
+      "Grand King not approve+authorised (pending/blocked)",
+      "Post-Launch Monitoring productionActiveMonitoring !== true"
+    ]
+  }
+}

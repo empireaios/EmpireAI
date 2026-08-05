@@ -1,0 +1,77 @@
+{
+  "missionId": "Q9-09",
+  "doctrine": "PILLOW-FRW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/financial-reporting-worker/",
+  "metadataVersion": "FRW-001-v1",
+  "reportVersion": "FRW-RPT-v1",
+  "workerId": "wkr-financial-reporting-01",
+  "observedAt": "2026-08-04",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS",
+    "Q9-04": "FINAL PASS",
+    "Q9-05": "FINAL PASS",
+    "Q9-06": "FINAL PASS",
+    "Q9-07": "FINAL PASS",
+    "Q9-08": "FINAL PASS"
+  },
+  "financialReportingModel": {
+    "moneyRepresentation": "MoneyMinor.minorUnits integer cents",
+    "measuredDataDistinctFromProjections": true,
+    "neverFabricateFinancialFigures": true,
+    "neverExecuteFinancialTransactions": true,
+    "neverApproveFinancialDecisions": true,
+    "neverModifyAccountingRecords": true
+  },
+  "boundaries": {
+    "neverExecuteFinancialTransactions": true,
+    "neverApproveFinancialDecisions": true,
+    "neverModifyAccountingRecords": true,
+    "neverFabricateFinancialFigures": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ910OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveReportHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowFinancialReportingWorker": true,
+    "subsystemRegistry": "financial-reporting-worker",
+    "hostRoutes": "/api/pillow/financial-reporting-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/financial-reporting-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_FINANCIAL_REPORTING_WORKER_SYSTEM.md",
+    "config": "config/financial-reporting-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "budgetPlanningWorkerBinding": true,
+    "profitabilityWorkerBinding": true,
+    "forecastingWorkerBinding": true,
+    "taxSupportWorkerBinding": true,
+    "investmentPlanningWorkerBinding": true
+  },
+  "validation": {
+    "testFile": "pillow/src/validation/tests/financial-reporting-worker.test.ts",
+    "testsRun": 12,
+    "testsPassed": 12,
+    "testsFailed": 0,
+    "regression": {
+      "investmentPlanningWorker": {
+        "testsRun": 12,
+        "testsPassed": 12,
+        "testsFailed": 0
+      }
+    }
+  },
+  "q910ConsumableContract": {
+    "exposed": true,
+    "consumerMissionId": "Q9-10",
+    "neverImplementQ910OrLater": true
+  }
+}

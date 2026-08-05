@@ -1,0 +1,63 @@
+{
+  "missionId": "Q3-12",
+  "doctrine": "PILLOW-RDW-001",
+  "moduleId": "refund-dispute-worker",
+  "metadataVersion": "RDW-001-v1",
+  "reportVersion": "RDW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Handle refund, return, dispute, and support workflows under policy.",
+  "prerequisites": [
+    { "missionId": "Q3-11", "doctrine": "PILLOW-ORW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverModifyFinancialLedgersDirectly": true,
+    "neverOverrideMarketplacePolicies": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ313OrLater": true,
+    "neverAuthorizeOutsideAuthorityMatrix": true
+  },
+  "refundDisputeReportFields": [
+    "caseId",
+    "timestamp",
+    "orderId",
+    "customerId",
+    "supplierId",
+    "caseType",
+    "reason",
+    "policyEvaluation",
+    "currentStatus",
+    "actionsTaken",
+    "customerCommunications",
+    "resolution",
+    "escalationStatus",
+    "metadataVersion"
+  ],
+  "caseTypes": [
+    "refund",
+    "return",
+    "exchange",
+    "supplier_issue",
+    "shipping_issue",
+    "damaged_product",
+    "missing_item",
+    "customer_dispute",
+    "chargeback",
+    "general_support"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/refund-dispute-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/refund-dispute-worker/",
+    "config": "config/refund-dispute-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_REFUND_DISPUTE_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/refund-dispute-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/refund-dispute-worker.test.ts"
+  },
+  "notes": [
+    "Refund-and-dispute-workflow-only Commerce Factory worker; public pillow index aliases RdwRefundDisputeReport."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "reportId": "aifrt-rpt-0001",
+  "timestamp": "2026-08-05T02:54:00.000Z",
+  "innovationVersion": "Q12-AIFRT-v1",
+  "engineId": "PILLOW-AIFRT-001",
+  "missionId": "Q12-01",
+  "metadataVersion": "AIFRT-001-v1",
+  "reportVersion": "AIFRT-RPT-v1",
+  "workerId": "wkr-ai-innovation-factory-01",
+  "seriesCompleteActivation": false,
+  "consumableByQ1301": true,
+  "neverImplementQ1301OrLater": true,
+  "neverAutoDeployInnovations": true,
+  "confidenceScore": 0.55,
+  "q1201ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "QSCPT-001-v1",
+    "finalCompletionDecision": "withhold",
+    "seriesCompletePrerequisite": true,
+    "evidence": "Injected Q11-13 q-series-completion Q1201 handshake consumerMissionId=Q12-01 finalCompletionDecision=withhold"
+  },
+  "gkQ1201Observation": {
+    "observed": true,
+    "grandKingDecision": "pending",
+    "deploymentAuthorisationStatus": "blocked",
+    "evidence": "GKAGT Q1201 observed for approval context — not required for research"
+  },
+  "outstandingIssues": [
+    "Q Series not complete — finalCompletionDecision=withhold",
+    "seriesCompleteActivation=false — Q Series completion gate not satisfied"
+  ],
+  "proposals": [
+    {
+      "innovationId": "innov-0001",
+      "category": "ai_model",
+      "opportunity": "Structured LLM routing",
+      "priority": "high",
+      "approvalStatus": "pending",
+      "recommendation": "Governed recommendation — pending Pillow/GK approval; never auto-deploy"
+    }
+  ],
+  "priorityRanking": {
+    "ranking": [{ "innovationId": "innov-0001", "priority": "high", "score": 28 }]
+  },
+  "validation": { "decision": "pass" }
+}

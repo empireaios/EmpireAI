@@ -1,0 +1,43 @@
+{
+  "computedAt": "2026-08-04T04:06:00.000Z",
+  "missionId": "Q10-06",
+  "engineVersion": "PILLOW-APIRT-001",
+  "runtimeVersion": "Q10-APIRT-v1",
+  "metadataVersion": "APIRT-001-v1",
+  "reportVersion": "APIRT-RPT-v1",
+  "workerId": "wkr-api-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionMemoryRuntime": {
+    "missionId": "Q10-05",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverExposeSecrets": true,
+    "neverExposeCredentials": true,
+    "neverFabricateApiResponses": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1007OrLater": true,
+    "deterministicRoutingOnly": true,
+    "structuralSignalOnly": true,
+    "credentialReferenceOnly": true
+  },
+  "seedProviders": [
+    "api-supplier-01",
+    "api-marketplace-01",
+    "api-ai-01",
+    "api-payment-01",
+    "api-comms-01",
+    "api-internal-01"
+  ],
+  "q1007ContractExposed": true,
+  "consumableByQ1007": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "API Runtime Q10-06 certified — stops at Q10-06, exposes Q1007ConsumableContract for Q10-07",
+    "Credential references only; secrets never logged or reported",
+    "Structural routing without fabricated response bodies when transport unbound"
+  ]
+}

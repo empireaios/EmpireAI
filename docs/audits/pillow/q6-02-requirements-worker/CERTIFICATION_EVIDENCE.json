@@ -1,0 +1,80 @@
+{
+  "missionId": "Q6-02",
+  "missionName": "Requirements Worker",
+  "doctrineId": "PILLOW-RQW-001",
+  "moduleId": "requirements-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T03:30:00.000Z",
+  "metadataVersion": "RQW-001-v1",
+  "reportSchemaVersion": "RQW-RPT-v1",
+  "factoryVersion": "Q6-RQW-v1",
+  "primaryDeliverable": "Transform approved business intent into structured implementation-ready software requirements.",
+  "prerequisites": [
+    { "missionId": "Q6-01", "doctrine": "PILLOW-EPFC-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/requirements-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved business intent",
+    "Identify stakeholders",
+    "Define business objectives",
+    "Produce functional requirements",
+    "Produce non-functional requirements",
+    "Generate user stories",
+    "Generate use cases",
+    "Generate acceptance criteria",
+    "Identify assumptions, risks, and constraints",
+    "Produce machine-readable Requirements Reports"
+  ],
+  "boundariesVerified": [
+    "Does not design architecture",
+    "Does not write application code",
+    "Does not deploy software",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not invent unsupported business requirements",
+    "Does not implement Q6-03 or later",
+    "Distinguishes requirements from assumptions",
+    "Preserves complete traceability and audit history"
+  ],
+  "reportFields": [
+    "requirementsId",
+    "timestamp",
+    "platformId",
+    "platformName",
+    "businessObjective",
+    "stakeholders",
+    "functionalRequirements",
+    "nonFunctionalRequirements",
+    "userStories",
+    "useCases",
+    "acceptanceCriteria",
+    "assumptions",
+    "constraints",
+    "technicalConstraints",
+    "regulatoryConstraints",
+    "risks",
+    "businessRules",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Enterprise Platform Factory Core",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/requirements-worker/",
+    "config/requirements-worker.config.json",
+    "docs/governance/EMPIREAI_REQUIREMENTS_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q6-02-requirements-worker/Q6_02_REQUIREMENTS_WORKER_CERTIFICATION.md"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "missionId": "Q0-14",
+  "doctrine": "PILLOW-XPL-001",
+  "moduleId": "experience-replay-engine",
+  "metadataVersion": "XPL-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Learns from completed missions, successes, failures, rejected outputs and Grand King feedback.",
+  "boundaries": {
+    "neverExecuteWork": true,
+    "neverReplaceExecutionMemory": true,
+    "neverReplaceDecisionEngine": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "experienceRecordFields": [
+    "experienceId",
+    "timestamp",
+    "missionId",
+    "businessId",
+    "eventType",
+    "outcome",
+    "successFactors",
+    "failureFactors",
+    "lessonsLearned",
+    "recommendedFutureBehaviour",
+    "confidenceScore",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "experienceSources": [
+    "successful_missions",
+    "failed_missions",
+    "grand_king_approvals",
+    "grand_king_rejections",
+    "executive_decisions",
+    "audit_reports",
+    "worker_reviews",
+    "production_results"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/experience-replay-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/experience-replay-engine/",
+    "config": "config/experience-replay-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EXPERIENCE_REPLAY_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/experience-replay-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/experience-replay-engine.test.ts"
+  },
+  "idCollisionNote": "PILLOW-ERE-001 reserved by Executive Roadmap/Recommendation; Q0-14 uses PILLOW-XPL-001"
+}

@@ -1,0 +1,48 @@
+{
+  "contractId": "apirt-q1007-contract-v1",
+  "contractVersion": "APIRT-001-v1",
+  "producedBy": "api-runtime",
+  "missionId": "Q10-06",
+  "consumerMissionId": "Q10-07",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "registeredApis",
+    "activeConnections",
+    "providerHealth",
+    "requestStatistics",
+    "failureSummary",
+    "retrySummary",
+    "authenticationStatus",
+    "rateLimitStatus",
+    "apiDiagnostics",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "serviceTypeCatalog": [
+    "supplier",
+    "marketplace",
+    "ai_model",
+    "payment",
+    "communication",
+    "internal_service",
+    "custom_extension"
+  ],
+  "authMethodCatalog": [
+    "api_key",
+    "oauth",
+    "bearer_token",
+    "basic",
+    "none",
+    "custom_extension"
+  ],
+  "notes": [
+    "Structural contract for Q10-07 Tool Runtime — API routing and credential references only",
+    "API Runtime never fabricates response bodies or exposes secrets",
+    "neverImplementQ1007OrLater remains locked — this module does not implement Tool Runtime"
+  ],
+  "neverImplementQ1007OrLater": true,
+  "structuralSignalOnly": true
+}

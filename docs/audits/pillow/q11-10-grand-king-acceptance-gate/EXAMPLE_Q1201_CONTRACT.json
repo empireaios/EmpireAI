@@ -1,0 +1,37 @@
+{
+  "contractId": "q1201-contract-GKAGT-001-v1",
+  "contractVersion": "GKAGT-001-v1",
+  "producedBy": "grand-king-acceptance-gate",
+  "missionId": "Q11-10",
+  "consumerMissionId": "Q12-01",
+  "exposedFields": [
+    "acceptance",
+    "executiveAcceptanceSummary",
+    "certificationSummary",
+    "productionReadinessSummary",
+    "grandKingDecision",
+    "deploymentAuthorisationStatus",
+    "deploymentAuthorisation",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "grandKingDecisionCatalog": [
+    "approve",
+    "reject",
+    "defer",
+    "pending"
+  ],
+  "deploymentAuthorisationCatalog": [
+    "authorised",
+    "blocked",
+    "revoked",
+    "pending"
+  ],
+  "notes": [
+    "Grand King Acceptance Gate Q11-10 certified — stops at Q11-10, exposes Q1201ConsumableContract for Q12-01",
+    "This contract is structural-signal-only; Q11-10 never implements Q12-01 or any later mission itself",
+    "Constitutional approval evidence only — Grand King retains final deployment authority"
+  ],
+  "neverImplementQ1201OrLater": true,
+  "structuralSignalOnly": true
+}

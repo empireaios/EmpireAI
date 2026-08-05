@@ -1,0 +1,110 @@
+{
+  "reportId": "wrart-rpt-example-q1102-01",
+  "timestamp": "2026-08-05T02:00:00.000Z",
+  "auditVersion": "Q11-WRART-v1",
+  "totalWorkers": 5,
+  "readyWorkers": 4,
+  "partiallyReadyWorkers": 1,
+  "failedWorkers": 0,
+  "missingWorkers": 0,
+  "blockedWorkers": 0,
+  "deferredWorkers": 0,
+  "governanceSummary": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "pillowCommandRequired": true,
+    "selfDocPresent": true,
+    "selfDocPath": "docs/governance/EMPIREAI_WORKER_READINESS_AUDIT_SYSTEM.md",
+    "boundaryLocksHonoured": true,
+    "governedWorkerCount": 5,
+    "totalWorkers": 5,
+    "evidence": ["governance:compliant=true"]
+  },
+  "runtimeSummary": {
+    "sharedRuntimeCoreBound": true,
+    "pillowOrchestrationRuntimeBound": true,
+    "reachableWorkerCount": 5,
+    "totalWorkers": 5,
+    "evidence": ["runtime:reachable=5/5"]
+  },
+  "capabilitySummary": {
+    "capableWorkerCount": 5,
+    "totalWorkers": 5,
+    "evidence": ["capability:capable=5/5"]
+  },
+  "supportingEvidence": [
+    "evidence:registry_discovered=5",
+    "evidence:never_fabricated",
+    "evidence:q1102_contract_consumed=true"
+  ],
+  "outstandingIssues": [
+    "wkr-eng-01: Partially Ready — certificationStatus pending / operationalStatus registered"
+  ],
+  "confidenceScore": 0.8,
+  "metadataVersion": "WRART-001-v1",
+  "reportVersion": "WRART-RPT-v1",
+  "workerId": "wkr-worker-readiness-audit-01",
+  "readinessDecision": "Conditionally_Ready",
+  "validation": {
+    "validationReportId": "wrart-val-example-01",
+    "validationTimestamp": "2026-08-05T02:00:00.000Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 0,
+    "metadataVersion": "WRART-001-v1"
+  },
+  "consumableByQ1103": true,
+  "neverImplementQ1103OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "firstWorkerReadinessGate": true,
+  "q1102ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "PCCRT-001-v1",
+    "fields": ["programmeInventory", "certificationDecision"],
+    "evidence": "Consumed Q1102ConsumableContract from production-certification-core"
+  },
+  "workerInventory": [],
+  "readinessMatrix": [],
+  "readinessSummary": {
+    "computedAt": "2026-08-05T02:00:00.000Z",
+    "totalWorkers": 5,
+    "readyCount": 4,
+    "partiallyReadyCount": 1,
+    "failedCount": 0,
+    "missingCount": 0,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "notes": ["4 Ready, 1 Partially Ready from registry evidence"],
+    "evidence": ["summary:ready=4/5"]
+  },
+  "integrationSummary": {
+    "verifiedAt": "2026-08-05T02:00:00.000Z",
+    "rows": [],
+    "allBound": true,
+    "evidence": ["integration:allBound=true"]
+  },
+  "auditStatus": "conditionally_certified",
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": ["audit://wrart/q11-02/example"],
+  "runTimestamp": "2026-08-05T02:00:00.000Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutableAuditHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicAuditBehaviour": true,
+  "maskSensitiveValues": true,
+  "neverFabricateAuditEvidence": true,
+  "neverCertifyMissingWorkers": true,
+  "neverCertifyUnreachableWorkers": true,
+  "neverAssumeImplementation": true,
+  "neverModifyWorkerImplementations": true,
+  "neverRepairFailedWorkers": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

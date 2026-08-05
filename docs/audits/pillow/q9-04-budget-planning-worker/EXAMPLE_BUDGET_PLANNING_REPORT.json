@@ -1,0 +1,197 @@
+{
+  "reportId": "bpw-rpt-0001",
+  "timestamp": "2026-08-03T07:22:29.409Z",
+  "capitalProjectId": "capfc-prj-growth-01",
+  "budgetPeriod": "quarterly",
+  "budgetScope": "project",
+  "budgetCategories": [
+    "project"
+  ],
+  "plannedBudget": {
+    "currency": "SGD",
+    "minorUnits": 1000000
+  },
+  "actualSpending": {
+    "currency": "SGD",
+    "minorUnits": 1125000
+  },
+  "remainingBudget": {
+    "currency": "SGD",
+    "minorUnits": -125000
+  },
+  "budgetUtilisation": 112.5,
+  "varianceSummary": {
+    "totalVarianceMinor": {
+      "currency": "SGD",
+      "minorUnits": 125000
+    },
+    "totalVariancePercent": 12.5,
+    "overspendingCount": 1,
+    "underspendingCount": 0,
+    "depletionRiskCount": 0,
+    "findings": [
+      {
+        "findingId": "bpw-finding-0014",
+        "signal": "overspending",
+        "severity": "medium",
+        "description": "Budget bpw-budget-0001 (project) is overspent by 125000 SGD minor units (112.50% utilised).",
+        "budgetId": "bpw-budget-0001",
+        "category": "project",
+        "period": "2026-Q3",
+        "amountMinor": {
+          "currency": "SGD",
+          "minorUnits": 125000
+        },
+        "percent": 12.5,
+        "sourceRefs": [
+          "q9-04:budget:bpw-budget-0001",
+          "q9-04:category:project",
+          "q9-04:period:2026-Q3"
+        ],
+        "fabricated": false
+      }
+    ],
+    "fabricated": false
+  },
+  "budgetRisks": [
+    {
+      "findingId": "bpw-finding-0014",
+      "signal": "overspending",
+      "severity": "medium",
+      "description": "Budget bpw-budget-0001 (project) is overspent by 125000 SGD minor units (112.50% utilised).",
+      "budgetId": "bpw-budget-0001",
+      "category": "project",
+      "period": "2026-Q3",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 125000
+      },
+      "percent": 12.5,
+      "sourceRefs": [
+        "q9-04:budget:bpw-budget-0001",
+        "q9-04:category:project",
+        "q9-04:period:2026-Q3"
+      ],
+      "fabricated": false
+    }
+  ],
+  "adjustmentRecommendations": [
+    {
+      "recommendationId": "bpw-rec-0008",
+      "budgetId": "bpw-budget-0001",
+      "action": "decrease",
+      "rationale": "Budget bpw-budget-0001 (project) is overspent by 125000 SGD minor units (112.50% utilised).",
+      "suggestedDeltaMinor": {
+        "currency": "SGD",
+        "minorUnits": 125000
+      },
+      "evidenceRefs": [
+        "bpw:finding:bpw-finding-0014",
+        "q9-04:budget:bpw-budget-0001",
+        "q9-04:category:project",
+        "q9-04:period:2026-Q3"
+      ],
+      "fabricated": false
+    }
+  ],
+  "supportingEvidence": [
+    "q9-04:budget:bpw-budget-0001",
+    "q9-04:category:project",
+    "q9-04:period:2026-Q3"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 100,
+  "metadataVersion": "BPW-001-v1",
+  "reportVersion": "BPW-RPT-v1",
+  "workerId": "wkr-budget-planning-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "budgets": [
+    {
+      "budgetId": "bpw-budget-0001",
+      "budgetOwner": "capital-factory",
+      "businessOrProject": {
+        "businessId": "capfc-biz-growth-01",
+        "projectId": "prj-growth-launch",
+        "name": null
+      },
+      "budgetCategory": "project",
+      "budgetPeriod": "quarterly",
+      "periodLabel": "2026-Q3",
+      "periodStart": "2026-07-01T00:00:00.000Z",
+      "periodEnd": "2026-09-30T23:59:59.999Z",
+      "plannedAmount": {
+        "currency": "SGD",
+        "minorUnits": 1000000
+      },
+      "actualExpenditure": {
+        "currency": "SGD",
+        "minorUnits": 1125000
+      },
+      "remainingBudget": {
+        "currency": "SGD",
+        "minorUnits": -125000
+      },
+      "budgetUtilisationPercentage": 112.5,
+      "varianceAmount": {
+        "currency": "SGD",
+        "minorUnits": 125000
+      },
+      "variancePercentage": 12.5,
+      "approvalStatus": "draft",
+      "supportingNotes": [
+        "Launch project media and tooling"
+      ],
+      "currency": "SGD",
+      "capitalProjectId": "capfc-prj-growth-01",
+      "capitalBusinessId": "capfc-biz-growth-01",
+      "revisionNumber": 1,
+      "revisionHistory": [],
+      "actualExpenditureEvidencePresent": true,
+      "fabricated": false,
+      "traceabilityRefs": [
+        "q9-04:budget:bpw-budget-0001",
+        "q9-04:category:project",
+        "q9-04:period:2026-Q3"
+      ],
+      "createdAt": "2026-08-03T07:22:29.400Z",
+      "updatedAt": "2026-08-03T07:22:29.400Z"
+    }
+  ],
+  "validation": {
+    "validationReportId": "bpw-val-1785741749409",
+    "validationTimestamp": "2026-08-03T07:22:29.409Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 2,
+    "metadataVersion": "BPW-001-v1"
+  },
+  "runTimestamp": "2026-08-03T07:22:29.409Z",
+  "consumableByQ905": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-04:report:bpw-rpt-0001",
+    "q9-04:capital_business:capfc-biz-growth-01",
+    "q9-04:scope:project",
+    "q9-04:budget:bpw-budget-0001",
+    "q9-04:category:project",
+    "q9-04:period:2026-Q3"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveHistoricalBudgetRevisions": true,
+  "neverFabricateBudgetValuesOrSpendingData": true,
+  "neverApproveExpenditure": true,
+  "neverExecutePayments": true,
+  "neverForecastRevenue": true,
+  "neverReplaceProfitabilityWorker": true,
+  "neverModifyAccountingRecords": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ905OrLater": true
+}

@@ -1,0 +1,63 @@
+{
+  "reportId": "memrt-rpt-example",
+  "timestamp": "2026-08-04T01:46:00.000Z",
+  "runtimeVersion": "Q10-MEMRT-v1",
+  "metadataVersion": "MEMRT-001-v1",
+  "reportVersion": "MEMRT-RPT-v1",
+  "workerId": "wkr-memory-runtime-01",
+  "memoryInventory": [],
+  "activeContexts": [],
+  "decisionHistorySummary": {
+    "totalDecisions": 0,
+    "byMission": {},
+    "latestDecisionAt": null
+  },
+  "previousResultSummary": {
+    "totalResults": 0,
+    "byWorker": {},
+    "latestResultAt": null
+  },
+  "retrievalStatistics": {
+    "totalQueries": 0,
+    "totalRetrievals": 0,
+    "lastRetrievalAt": null,
+    "averageMatchCount": 0
+  },
+  "versionSummary": {
+    "totalVersions": 0,
+    "entriesWithMultipleVersions": 0,
+    "maxVersionNumber": 0
+  },
+  "memoryHealth": {
+    "status": "standby",
+    "healthScore": 100,
+    "totalEntries": 0,
+    "activeEntries": 0,
+    "archivedEntries": 0,
+    "totalVersions": 0,
+    "notes": ["Example report — no live memory entries"]
+  },
+  "supportingEvidence": ["config/memory-runtime.config.json"],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 85,
+  "consumableByQ1006": true,
+  "neverReplaceEkls": true,
+  "neverReplaceApplicationDatabases": true,
+  "neverModifyHistoricalRecords": true,
+  "neverFabricateMemory": true,
+  "neverSilentlyOverwriteHistoricalDecisions": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1006OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveHistoricalMemory": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "deterministicRetrievalOnly": true
+}

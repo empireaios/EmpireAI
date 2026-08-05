@@ -1,0 +1,43 @@
+{
+  "computedAt": "2026-08-04T05:10:00.000Z",
+  "missionId": "Q10-08",
+  "engineVersion": "PILLOW-COMRT-001",
+  "runtimeVersion": "Q10-COMRT-v1",
+  "metadataVersion": "COMRT-001-v1",
+  "reportVersion": "COMRT-RPT-v1",
+  "workerId": "wkr-communication-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionToolRuntime": {
+    "missionId": "Q10-07",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverFabricateMessages": true,
+    "neverLoseAcknowledgedMessages": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1009OrLater": true,
+    "neverExecuteBusinessLogic": true,
+    "neverReplaceWorkerImplementations": true,
+    "neverReplaceOrchestrationLogic": true,
+    "deterministicMessageRouting": true,
+    "structuralSignalOnly": true
+  },
+  "seedChannels": [
+    "chan-wkr-alpha-beta",
+    "chan-wkr-gamma-delta",
+    "chan-factory-pillow-capital",
+    "chan-factory-commerce-runtime",
+    "chan-runtime-service-01"
+  ],
+  "q1009ContractExposed": true,
+  "consumableByQ1009": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Communication Runtime Q10-08 certified — stops at Q10-08, exposes Q1009ConsumableContract for Q10-09",
+    "Acknowledged messages remain in history; messages never fabricated",
+    "ctx:// context references only — no raw payloads or secrets"
+  ]
+}

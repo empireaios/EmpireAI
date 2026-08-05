@@ -1,0 +1,56 @@
+{
+  "reportId": "qscpt-rpt-live-example",
+  "timestamp": "2026-08-05T02:30:00.000Z",
+  "completionVersion": "Q11-QSCPT-v1",
+  "engineId": "PILLOW-QSCPT-001",
+  "missionId": "Q11-13",
+  "finalCompletionDecision": "withhold",
+  "confidenceScore": 0.2,
+  "metadataVersion": "QSCPT-001-v1",
+  "reportVersion": "QSCPT-RPT-v1",
+  "workerId": "wkr-q-series-completion-01",
+  "q1113ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "QSCRT-001-v1",
+    "evidence": "Injected Q11-12 q-series-certification handshake returned explicit consumableByQ1113 contract"
+  },
+  "consumableByQ1201": true,
+  "neverImplementQ1201OrLater": true,
+  "missionSummary": {
+    "requiredMissions": 12,
+    "presentCount": 11,
+    "finartMissing": true,
+    "classification": "partially_complete"
+  },
+  "certificationSummary": {
+    "qscrtCertificationDecision": "withhold",
+    "q1113ContractConsumed": true,
+    "classification": "blocked"
+  },
+  "productionReadinessSummary": {
+    "eaprtDecision": "withhold",
+    "gkAuthorised": false,
+    "plmrtProductionActive": false,
+    "finartPresent": false,
+    "classification": "blocked"
+  },
+  "governanceSummary": {
+    "gkDecision": "pending",
+    "gkAuthorisation": "blocked",
+    "gkAuthorised": false,
+    "classification": "blocked"
+  },
+  "outstandingIssues": [
+    "Q11-08 Financial Readiness Audit (FINART) missing from mission inventory",
+    "Q Series Certification decision not certify (withhold)",
+    "Executive Acceptance Pack decision not certify (withhold)",
+    "Grand King not approve+authorised (pending/blocked)",
+    "Post-Launch Monitoring productionActiveMonitoring !== true",
+    "Q11-08 FINART missing — mission inventory incomplete",
+    "production readiness chain blocked (FINART/EAPRT/GK/PLMRT/QSCRT)"
+  ],
+  "validation": {
+    "decision": "pass"
+  }
+}

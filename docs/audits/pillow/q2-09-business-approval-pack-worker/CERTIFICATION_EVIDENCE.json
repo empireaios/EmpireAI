@@ -1,0 +1,76 @@
+{
+  "missionId": "Q2-09",
+  "doctrine": "PILLOW-BAP-001",
+  "moduleId": "business-approval-pack-worker",
+  "metadataVersion": "BAP-001-v1",
+  "packVersion": "BAP-PCK-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Prepare executive summary for Grand King approval before build or launch.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-05", "doctrine": "PILLOW-OEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-06", "doctrine": "PILLOW-BBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-07", "doctrine": "PILLOW-LPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-08", "doctrine": "PILLOW-BRW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverApproveBusiness": true,
+    "neverLaunchBusiness": true,
+    "neverModifyPreviousReports": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ210OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "business_model_generator",
+    "market_research_worker",
+    "opportunity_evaluation_worker",
+    "business_blueprint_worker",
+    "launch_plan_worker",
+    "business_risk_worker",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "approvalPackFields": [
+    "approvalPackId",
+    "timestamp",
+    "businessBuildMissionId",
+    "executiveSummary",
+    "businessOverview",
+    "opportunitySummary",
+    "marketSummary",
+    "businessModelSummary",
+    "blueprintSummary",
+    "launchSummary",
+    "riskSummary",
+    "outstandingIssues",
+    "recommendation",
+    "requiredGrandKingDecisions",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "recommendations": ["Proceed", "Revise", "Reject"],
+  "namingNote": "Public type aliased as BapBusinessApprovalPack.",
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/business-approval-pack-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/business-approval-pack-worker/",
+    "config": "config/business-approval-pack-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_BUSINESS_APPROVAL_PACK_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/business-approval-pack-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/business-approval-pack-worker.test.ts"
+  },
+  "notes": [
+    "Packaging-only worker: consolidates upstream factory outputs and recommends Proceed/Revise/Reject without approving or launching."
+  ]
+}

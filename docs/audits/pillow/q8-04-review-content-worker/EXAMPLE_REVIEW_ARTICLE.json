@@ -1,0 +1,48 @@
+{
+  "articleId": "rcw-article-0030",
+  "reviewType": "product",
+  "title": "TrailBackpack Pro review",
+  "productOrServiceReviewed": "TrailBackpack Pro",
+  "productId": "prod-backpack-01",
+  "summary": "Evidence-based review of TrailBackpack Pro covering features, pros/cons, and buying guidance.",
+  "keyFeatures": [
+    "waterproof",
+    "laptop_sleeve"
+  ],
+  "performanceSummary": "Observed specs: capacity_l=40",
+  "verdictSection": "buy with conditions — TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals",
+  "faqs": [
+    {
+      "question": "Who is TrailBackpack Pro best for?",
+      "answer": "Ideal for weekend hikers"
+    },
+    {
+      "question": "What are the main drawbacks?",
+      "answer": "Not ideal for ultra-light thru-hiking"
+    },
+    {
+      "question": "Is this review published live?",
+      "answer": "No. Review Content Worker produces structural review packages only and never publishes websites."
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Overview",
+      "body": "Review of TrailBackpack Pro (travel_gear) derived from verified fixtures/opportunity/comparison evidence."
+    },
+    {
+      "heading": "Pros and cons",
+      "body": "Pros: Durable shell; Comfortable harness. Cons: Premium price."
+    },
+    {
+      "heading": "Limitations and trade-offs",
+      "body": "Not ideal for ultra-light thru-hiking. Trade-offs: Observed price 129 vs feature set; Strengths must be weighed against evidenced cons."
+    },
+    {
+      "heading": "Buying recommendation",
+      "body": "TrailBackpack Pro: buy with conditions based on observed pros/cons and ranking signals"
+    }
+  ],
+  "version": 1,
+  "fabricated": false
+}

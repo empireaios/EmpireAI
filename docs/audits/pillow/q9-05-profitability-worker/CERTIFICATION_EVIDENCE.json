@@ -1,0 +1,75 @@
+{
+  "missionId": "Q9-05",
+  "doctrine": "PILLOW-PRFW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/profitability-worker/",
+  "metadataVersion": "PRFW-001-v1",
+  "reportVersion": "PRFW-RPT-v1",
+  "workerId": "wkr-profitability-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS",
+    "Q9-04": "FINAL PASS"
+  },
+  "moneyModel": {
+    "representation": "MoneyMinor.minorUnits integer cents",
+    "noFloatingPointArithmetic": true,
+    "marginsBasisPoints": true,
+    "sharedCostAllocation": "integer proportional by net-revenue weight"
+  },
+  "boundaries": {
+    "neverFabricateRevenueCostFeeRefundOrProfitabilityFigures": true,
+    "neverForecastFutureProfitability": true,
+    "neverApproveSpending": true,
+    "neverExecuteFinancialTransactions": true,
+    "neverReplaceForecastingWorker": true,
+    "neverModifyAccountingRecords": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ906OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveHistoricalProfitabilityReports": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowProfitabilityWorker": true,
+    "subsystemRegistry": "profitability-worker",
+    "hostRoutes": "/api/pillow/profitability-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/profitability-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_PROFITABILITY_WORKER_SYSTEM.md",
+    "config": "config/profitability-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "budgetPlanningWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/profitability-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "budgetPlanningWorker": "12/12",
+    "cashflowWorker": "13/13"
+  },
+  "evidence": [
+    "revenue/discounts/refunds aggregated from verified financial line items",
+    "shared operational costs allocated by integer net-revenue weight",
+    "platform and payment fees included in operating profit",
+    "refunds deducted from net revenue; taxes from explicit lines or supplied rate only",
+    "gross, operating, and net profit with integer-basis-point margins",
+    "profitability rankings and profit/loss drivers generated",
+    "Profitability Report with consumableByQ906",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q9-01..Q9-04 untouched and still FINAL PASS",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "profitabilityWorker": "12/12",
+    "budgetPlanningWorkerRegression": "12/12",
+    "cashflowWorkerRegression": "13/13"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "computedAt": "2026-08-05T03:00:00.000Z",
+  "missionId": "Q11-03",
+  "totalWorkersAudited": 5,
+  "matrix": [
+    {
+      "workerId": "wkr-strategy-01",
+      "factoryId": "workforce-factory",
+      "commandId": "pcart-cmd-wkr-strategy-01",
+      "assignmentStatus": "Passed",
+      "communicationStatus": "Passed",
+      "supervisionStatus": "Passed",
+      "progressStatus": "Passed",
+      "resultStatus": "Passed",
+      "governanceStatus": "Passed",
+      "readinessClassification": "Ready",
+      "supportingEvidence": [
+        "discovery=registry",
+        "invokeWorker=present",
+        "sendMessage=present",
+        "acknowledgeMessage=present",
+        "createMission=present"
+      ],
+      "auditReference": "audit://pcart/command/wkr-strategy-01",
+      "auditTimestamp": "2026-08-05T03:00:00.000Z"
+    },
+    {
+      "workerId": "wkr-ops-01",
+      "factoryId": "workforce-factory",
+      "commandId": "pcart-cmd-wkr-ops-01",
+      "assignmentStatus": "Passed",
+      "communicationStatus": "Passed",
+      "supervisionStatus": "Passed",
+      "progressStatus": "Passed",
+      "resultStatus": "Passed",
+      "governanceStatus": "Passed",
+      "readinessClassification": "Ready",
+      "supportingEvidence": ["discovery=registry", "invokeWorker=present"],
+      "auditReference": "audit://pcart/command/wkr-ops-01",
+      "auditTimestamp": "2026-08-05T03:00:00.000Z"
+    },
+    {
+      "workerId": "wkr-commerce-01",
+      "factoryId": "commerce-factory",
+      "commandId": "pcart-cmd-wkr-commerce-01",
+      "assignmentStatus": "Passed",
+      "communicationStatus": "Passed",
+      "supervisionStatus": "Passed",
+      "progressStatus": "Passed",
+      "resultStatus": "Passed",
+      "governanceStatus": "Passed",
+      "readinessClassification": "Ready",
+      "supportingEvidence": ["discovery=registry", "invokeWorker=present"],
+      "auditReference": "audit://pcart/command/wkr-commerce-01",
+      "auditTimestamp": "2026-08-05T03:00:00.000Z"
+    },
+    {
+      "workerId": "wkr-eng-01",
+      "factoryId": "workforce-factory",
+      "commandId": "pcart-cmd-wkr-eng-01",
+      "assignmentStatus": "Passed",
+      "communicationStatus": "Passed",
+      "supervisionStatus": "Passed",
+      "progressStatus": "Passed",
+      "resultStatus": "Passed",
+      "governanceStatus": "Passed",
+      "readinessClassification": "Ready",
+      "supportingEvidence": ["discovery=registry", "invokeWorker=present"],
+      "auditReference": "audit://pcart/command/wkr-eng-01",
+      "auditTimestamp": "2026-08-05T03:00:00.000Z"
+    },
+    {
+      "workerId": "wkr-support-01",
+      "factoryId": "workforce-factory",
+      "commandId": "pcart-cmd-wkr-support-01",
+      "assignmentStatus": "Passed",
+      "communicationStatus": "Passed",
+      "supervisionStatus": "Passed",
+      "progressStatus": "Passed",
+      "resultStatus": "Passed",
+      "governanceStatus": "Passed",
+      "readinessClassification": "Ready",
+      "supportingEvidence": ["discovery=registry", "invokeWorker=present"],
+      "auditReference": "audit://pcart/command/wkr-support-01",
+      "auditTimestamp": "2026-08-05T03:00:00.000Z"
+    }
+  ]
+}

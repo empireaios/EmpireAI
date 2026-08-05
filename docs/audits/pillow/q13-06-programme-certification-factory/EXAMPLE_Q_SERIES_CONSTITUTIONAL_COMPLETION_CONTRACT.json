@@ -1,0 +1,31 @@
+{
+  "contractId": "q-series-completion-contract-PCFCT-001-v1",
+  "contractVersion": "PCFCT-001-v1",
+  "producedBy": "programme-certification-factory",
+  "missionId": "Q13-06",
+  "qSeriesConstitutionallyComplete": true,
+  "neverImplementFutureProgramme": true,
+  "neverImplementQ1307OrLater": true,
+  "structuralSignalOnly": true,
+  "finalConstitutionalDecision": "constitutionally_complete_with_exceptions",
+  "certifiedProgrammes": ["G Series", "P Series", "E Series", "T Series", "R Series", "X Series", "Q Series"],
+  "deferredProgrammes": ["K Series"],
+  "remainingConstitutionalExceptions": ["Q11-08 FINART stub absent from repository evidence"],
+  "exposedFields": [
+    "repositorySummary",
+    "certifiedProgrammes",
+    "deferredProgrammes",
+    "overallMissionInventory",
+    "repositoryCompletenessMatrix",
+    "finalConstitutionalDecision",
+    "remainingConstitutionalExceptions",
+    "repositoryCertificationTimestamp"
+  ],
+  "notes": [
+    "Programme Certification Factory Q13-06 — FINAL Q Series mission",
+    "Emits Q Series constitutional completion contract — NOT a Q13-07 consumer",
+    "Never implements Q13-07 or any future programme",
+    "Repository evidence only — never certify from claims alone"
+  ],
+  "certificationPrerequisite": true
+}

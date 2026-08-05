@@ -1,0 +1,42 @@
+{
+  "dashboardId": "monrt-dash-example-001",
+  "timestamp": "2026-08-04T07:10:00.000Z",
+  "enterpriseHealthSummary": {
+    "overallStatus": "degraded",
+    "overallHealthScore": 72,
+    "componentCount": 12,
+    "healthyCount": 8,
+    "degradedCount": 2,
+    "criticalCount": 1,
+    "standbyCount": 1,
+    "activeCriticalAlerts": 1,
+    "notes": [
+      "Health derived from observed heartbeats and metrics only — never fabricated",
+      "Critical alerts retained and never suppressed"
+    ]
+  },
+  "categories": {
+    "worker": { "status": "healthy", "healthScore": 85, "components": ["wkr-alpha", "wkr-beta"] },
+    "factory": { "status": "healthy", "healthScore": 82, "components": ["factory-pillow", "factory-capital"] },
+    "runtime_service": { "status": "degraded", "healthScore": 68, "components": ["runtime-srtc", "runtime-por", "runtime-msr", "runtime-qrt"] },
+    "api": { "status": "healthy", "healthScore": 90, "components": ["api-supplier-01"] },
+    "queue": { "status": "warning", "healthScore": 55, "components": ["queue-default-01"] },
+    "mission": { "status": "healthy", "healthScore": 88, "components": ["mission-demo-01"] },
+    "tool": { "status": "standby", "healthScore": 50, "components": ["tool-cursor-01"] }
+  },
+  "activeAlerts": [
+    {
+      "alertId": "monrt-alert-example-01",
+      "componentId": "queue-default-01",
+      "componentType": "queue",
+      "severity": "critical",
+      "messageRef": "alert://structural/queue-backlog",
+      "suppressed": false,
+      "acknowledged": false
+    }
+  ],
+  "neverFabricateHealthInformation": true,
+  "neverSuppressCriticalAlerts": true,
+  "neverAutomaticallyRepairFailures": true,
+  "structuralSignalOnly": true
+}

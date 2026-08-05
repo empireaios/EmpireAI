@@ -1,0 +1,39 @@
+{
+  "contractId": "q1301-contract-AIFRT-001-v1",
+  "contractVersion": "AIFRT-001-v1",
+  "producedBy": "ai-innovation-factory",
+  "missionId": "Q12-01",
+  "consumerMissionId": "Q13-01",
+  "exposedFields": [
+    "technologySummary",
+    "businessOpportunitySummary",
+    "architectureRecommendations",
+    "operationalImprovements",
+    "costOptimisationSummary",
+    "riskSummary",
+    "priorityRanking",
+    "proposals",
+    "outstandingIssues",
+    "confidenceScore",
+    "seriesCompleteActivation"
+  ],
+  "innovationCatalog": [
+    "ai_model",
+    "framework",
+    "api",
+    "architecture",
+    "operations",
+    "cost_optimisation",
+    "business_opportunity",
+    "research"
+  ],
+  "notes": [
+    "AI Innovation Factory Q12-01 — exposes Q1301ConsumableContract for Q13-01 without implementing Q13-01",
+    "Governed innovation research/recommend only — never auto-deploy",
+    "seriesCompleteActivation=true only when QSCPT Q1201 consumed AND finalCompletionDecision=complete",
+    "Research may proceed with seriesCompleteActivation=false when Q Series incomplete"
+  ],
+  "neverImplementQ1301OrLater": true,
+  "structuralSignalOnly": true,
+  "innovationPrerequisite": true
+}

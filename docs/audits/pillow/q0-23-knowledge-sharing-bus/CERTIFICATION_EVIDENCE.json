@@ -1,0 +1,55 @@
+{
+  "missionId": "Q0-23",
+  "doctrine": "PILLOW-KSB-001",
+  "moduleId": "knowledge-sharing-bus",
+  "metadataVersion": "KSB-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Allows workers to share discoveries, patterns, lessons, playbooks and reusable context.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceExecutionMemory": true,
+    "neverReplaceDecisionMemory": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "knowledgeRecordFields": [
+    "knowledgeId",
+    "timestamp",
+    "sourceWorker",
+    "businessId",
+    "missionId",
+    "knowledgeCategory",
+    "knowledgeTitle",
+    "knowledgeSummary",
+    "supportingEvidence",
+    "relatedPlaybooks",
+    "confidenceScore",
+    "version",
+    "publicationStatus",
+    "metadataVersion"
+  ],
+  "knowledgeCategories": [
+    "lessons_learned",
+    "best_practice",
+    "business_knowledge",
+    "operational_knowledge",
+    "technical_knowledge",
+    "market_intelligence",
+    "customer_intelligence",
+    "financial_knowledge",
+    "executive_knowledge",
+    "recovery_knowledge"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/knowledge-sharing-bus.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/knowledge-sharing-bus/",
+    "config": "config/knowledge-sharing-bus.config.json",
+    "doctrine": "docs/governance/EMPIREAI_KNOWLEDGE_SHARING_BUS_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/knowledge-sharing-bus-bridge.ts",
+    "tests": "pillow/src/validation/tests/knowledge-sharing-bus.test.ts"
+  }
+}

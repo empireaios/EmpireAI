@@ -1,0 +1,71 @@
+{
+  "missionId": "Q9-03",
+  "doctrine": "PILLOW-CFW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/cashflow-worker/",
+  "metadataVersion": "CFW-001-v1",
+  "reportVersion": "CFW-RPT-v1",
+  "workerId": "wkr-cashflow-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS"
+  },
+  "moneyModel": {
+    "representation": "MoneyMinor.minorUnits integer cents",
+    "noFloatingPointArithmetic": true,
+    "example": "10.50 -> 1050 cents"
+  },
+  "boundaries": {
+    "neverFabricateBalancesOrFlows": true,
+    "neverCreateBudgets": true,
+    "neverForecastFutureCashflow": true,
+    "neverCalculateCompleteBusinessProfitability": true,
+    "neverApproveSpending": true,
+    "neverMoveMoney": true,
+    "neverModifyVerifiedAccountingRecords": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ904OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveHistoricalReports": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowCashflowWorker": true,
+    "subsystemRegistry": "cashflow-worker",
+    "hostRoutes": "/api/pillow/cashflow-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/cashflow-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_CASHFLOW_WORKER_SYSTEM.md",
+    "config": "config/cashflow-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/cashflow-worker.test.ts\"",
+  "validationResult": { "tests": 13, "passed": 13, "failed": 0 },
+  "regressionResult": {
+    "capitalFactoryCore": "12/12",
+    "accountingWorker": "12/12"
+  },
+  "evidence": [
+    "verified Accounting Worker journal entries consumed (income/expense/transfer)",
+    "internal transfers excluded from enterprise income/expense; tracked in transfersSummary",
+    "net cashflow and opening/closing balances reconcile in integer minor units",
+    "daily, weekly, monthly, annual, custom deterministic UTC period views",
+    "business-level and consolidated enterprise views",
+    "unreconciled/pending/disputed movements surfaced, never silently excluded",
+    "Cashflow Report with consumableByQ904",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q9-01 and Q9-02 untouched and still FINAL PASS / 12/12 each",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "cashflowWorker": "13/13",
+    "capitalFactoryCoreRegression": "12/12",
+    "accountingWorkerRegression": "12/12"
+  }
+}

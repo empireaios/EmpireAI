@@ -1,0 +1,55 @@
+{
+  "missionId": "Q4-12",
+  "missionName": "Subtitle Worker",
+  "doctrineId": "PILLOW-STW-001",
+  "moduleId": "subtitle-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-07-24T00:00:00.000Z",
+  "metadataVersion": "STW-001-v1",
+  "reportSchemaVersion": "STW-RPT-v1",
+  "validation": {
+    "testFile": "pillow/src/validation/tests/subtitle-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved scripts",
+    "Receive approved voice assets",
+    "Generate complete transcripts",
+    "Generate synchronized captions",
+    "Generate subtitle timing",
+    "Support multiple subtitle languages",
+    "Validate subtitle timing accuracy",
+    "Detect synchronization issues",
+    "Produce exportable subtitle files",
+    "Produce machine-readable Subtitle Reports"
+  ],
+  "boundariesVerified": [
+    "Does not rewrite scripts",
+    "Does not modify approved scripts",
+    "Does not assemble videos",
+    "Does not publish content",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q4-13 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Script Worker",
+    "Voice Worker",
+    "Video Assembly Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/subtitle-worker/",
+    "config/subtitle-worker.config.json",
+    "docs/governance/EMPIREAI_SUBTITLE_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q4-12-subtitle-worker/Q4_12_SUBTITLE_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/subtitle-worker-bridge.ts"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "planId": "mpeng-plan-0001",
+  "version": "MPENG-001-v1",
+  "missionId": "Q13-03",
+  "missionName": "Mission Planning Engine",
+  "repositorySnapshot": {
+    "repositorySnapshotId": "snap-1",
+    "repositoryFingerprint": "fp1",
+    "repositoryVersion": "v1",
+    "status": "available"
+  },
+  "dependencies": [
+    {
+      "dependencyId": "dep-q1303-rieng",
+      "kind": "repository_intelligence",
+      "description": "Q1303 consumable contract from Repository Intelligence Engine",
+      "source": "repositoryIntelligenceEngine.getQ1303ConsumableContract",
+      "required": true,
+      "evidence": ["q1303_contract consumer=Q13-03"]
+    }
+  ],
+  "executionOrder": [
+    { "stepId": "parse_mission", "order": 1, "label": "Parse Mission", "description": "Parse mission from explicit input", "deterministic": true },
+    { "stepId": "preserve_existing", "order": 2, "label": "Preserve Existing", "description": "Preserve existing implementations", "deterministic": true },
+    { "stepId": "scaffold", "order": 3, "label": "Scaffold", "description": "Plan scaffold structure", "deterministic": true },
+    { "stepId": "integrate", "order": 4, "label": "Integrate", "description": "Plan integrations", "deterministic": true },
+    { "stepId": "validate", "order": 5, "label": "Validate", "description": "Plan validation", "deterministic": true },
+    { "stepId": "accept", "order": 6, "label": "Accept", "description": "Plan acceptance criteria", "deterministic": true }
+  ],
+  "integrationPoints": [
+    {
+      "pointId": "int-pillow-session",
+      "target": "pillow/src/session.ts",
+      "kind": "session",
+      "description": "Pillow session wiring",
+      "evidence": ["session.ts wiring pattern"]
+    }
+  ],
+  "validationStrategy": [
+    {
+      "itemId": "val-unit-tests",
+      "category": "unit_test",
+      "description": "12 validation tests",
+      "required": true
+    }
+  ],
+  "acceptanceCriteria": [
+    {
+      "criterionId": "acc-engine-init",
+      "section": "Engine Initialization",
+      "description": "PILLOW-MPENG-001 initializes",
+      "mappedTo": "Q13-03:engine-init",
+      "required": true
+    }
+  ],
+  "risks": [
+    {
+      "riskId": "risk-fabrication",
+      "category": "fabrication",
+      "description": "Fabricating repository state",
+      "severity": "high",
+      "mitigation": "Consume RIENG reports only",
+      "evidence": ["neverFabricateRepositoryState=true"]
+    }
+  ],
+  "constraints": ["neverModifyRepository", "neverExecuteImplementation", "planningOnly"],
+  "estimatedScope": {
+    "complexity": "medium",
+    "stepCount": 6,
+    "dependencyCount": 1,
+    "integrationPointCount": 1
+  },
+  "governanceRequirements": [
+    "Pillow session wiring after repositoryIntelligenceEngine",
+    "Authenticated host routes"
+  ],
+  "timestamp": "2026-08-05T00:00:00.000Z"
+}

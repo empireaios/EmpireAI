@@ -1,0 +1,402 @@
+{
+  "reportId": "prfw-rpt-0001",
+  "timestamp": "2026-08-03T08:39:30.175Z",
+  "capitalProjectId": "capfc-prj-growth-01",
+  "reportingPeriod": "2026-Q3",
+  "revenueSummary": {
+    "grossRevenue": {
+      "currency": "SGD",
+      "minorUnits": 1250000
+    },
+    "discounts": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "refunds": {
+      "currency": "SGD",
+      "minorUnits": 20000
+    },
+    "netRevenue": {
+      "currency": "SGD",
+      "minorUnits": 1230000
+    },
+    "lineItemCount": 8,
+    "fabricated": false
+  },
+  "costSummary": {
+    "cogs": {
+      "currency": "SGD",
+      "minorUnits": 400000
+    },
+    "operatingExpenses": {
+      "currency": "SGD",
+      "minorUnits": 150000
+    },
+    "advertisingCosts": {
+      "currency": "SGD",
+      "minorUnits": 80000
+    },
+    "sharedCostAllocation": {
+      "currency": "SGD",
+      "minorUnits": 36535
+    },
+    "totalCosts": {
+      "currency": "SGD",
+      "minorUnits": 666535
+    },
+    "fabricated": false
+  },
+  "feeSummary": {
+    "platformFees": {
+      "currency": "SGD",
+      "minorUnits": 25000
+    },
+    "paymentFees": {
+      "currency": "SGD",
+      "minorUnits": 15000
+    },
+    "totalFees": {
+      "currency": "SGD",
+      "minorUnits": 40000
+    },
+    "fabricated": false
+  },
+  "refundSummary": {
+    "refunds": {
+      "currency": "SGD",
+      "minorUnits": 20000
+    },
+    "refundCount": 1,
+    "fabricated": false
+  },
+  "taxSummary": {
+    "taxProvisions": {
+      "currency": "SGD",
+      "minorUnits": 50000
+    },
+    "taxRateBpsUsed": null,
+    "estimated": false,
+    "fabricated": false
+  },
+  "grossProfit": {
+    "currency": "SGD",
+    "minorUnits": 830000
+  },
+  "operatingProfit": {
+    "currency": "SGD",
+    "minorUnits": 523465
+  },
+  "netProfit": {
+    "currency": "SGD",
+    "minorUnits": 473465
+  },
+  "profitMargins": {
+    "grossMarginPercent": 67.47,
+    "operatingMarginPercent": 42.55,
+    "netMarginPercent": 38.49,
+    "fabricated": false
+  },
+  "profitabilityRankings": [
+    {
+      "rank": 1,
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "name": "capfc-biz-growth-01",
+      "netProfit": {
+        "currency": "SGD",
+        "minorUnits": 473465
+      },
+      "netMarginPercent": 38.49,
+      "fabricated": false
+    }
+  ],
+  "profitDrivers": [
+    {
+      "driverId": "prfw-driver-0013",
+      "label": "Gross revenue contributed 1250000 SGD minor units",
+      "category": "revenue",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 1250000
+      },
+      "percentOfNet": 101.62,
+      "direction": "positive",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    }
+  ],
+  "lossDrivers": [
+    {
+      "driverId": "prfw-driver-0014",
+      "label": "Cost of goods sold consumed 400000 SGD minor units",
+      "category": "cogs",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 400000
+      },
+      "percentOfNet": 32.52,
+      "direction": "negative",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    },
+    {
+      "driverId": "prfw-driver-0015",
+      "label": "Operating expenses consumed 150000 SGD minor units",
+      "category": "opex",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 150000
+      },
+      "percentOfNet": 12.19,
+      "direction": "negative",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    },
+    {
+      "driverId": "prfw-driver-0016",
+      "label": "Advertising costs consumed 80000 SGD minor units",
+      "category": "advertising",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 80000
+      },
+      "percentOfNet": 6.5,
+      "direction": "negative",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    },
+    {
+      "driverId": "prfw-driver-0017",
+      "label": "Tax provisions consumed 50000 SGD minor units",
+      "category": "tax",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 50000
+      },
+      "percentOfNet": 4.06,
+      "direction": "negative",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    },
+    {
+      "driverId": "prfw-driver-0018",
+      "label": "Allocated shared operational costs consumed 36535 SGD minor units",
+      "category": "shared_cost",
+      "amountMinor": {
+        "currency": "SGD",
+        "minorUnits": 36535
+      },
+      "percentOfNet": 2.97,
+      "direction": "negative",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "evidenceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "fabricated": false
+    }
+  ],
+  "supportingEvidence": [
+    "accw:capfc-biz-growth-01:revenue",
+    "accw:capfc-biz-growth-01:cogs",
+    "accw:capfc-biz-growth-01:opex",
+    "accw:capfc-biz-growth-01:advertising",
+    "accw:capfc-biz-growth-01:platform_fee",
+    "accw:capfc-biz-growth-01:payment_fee",
+    "accw:capfc-biz-growth-01:refund",
+    "accw:capfc-biz-growth-01:tax"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 100,
+  "metadataVersion": "PRFW-001-v1",
+  "reportVersion": "PRFW-RPT-v1",
+  "workerId": "wkr-profitability-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "analyses": [
+    {
+      "grossRevenue": {
+        "currency": "SGD",
+        "minorUnits": 1250000
+      },
+      "discounts": {
+        "currency": "SGD",
+        "minorUnits": 0
+      },
+      "refunds": {
+        "currency": "SGD",
+        "minorUnits": 20000
+      },
+      "netRevenue": {
+        "currency": "SGD",
+        "minorUnits": 1230000
+      },
+      "cogs": {
+        "currency": "SGD",
+        "minorUnits": 400000
+      },
+      "operatingExpenses": {
+        "currency": "SGD",
+        "minorUnits": 150000
+      },
+      "advertisingCosts": {
+        "currency": "SGD",
+        "minorUnits": 80000
+      },
+      "platformFees": {
+        "currency": "SGD",
+        "minorUnits": 25000
+      },
+      "paymentFees": {
+        "currency": "SGD",
+        "minorUnits": 15000
+      },
+      "taxProvisions": {
+        "currency": "SGD",
+        "minorUnits": 50000
+      },
+      "sharedCostAllocation": {
+        "currency": "SGD",
+        "minorUnits": 36535
+      },
+      "grossProfit": {
+        "currency": "SGD",
+        "minorUnits": 830000
+      },
+      "operatingProfit": {
+        "currency": "SGD",
+        "minorUnits": 523465
+      },
+      "netProfit": {
+        "currency": "SGD",
+        "minorUnits": 473465
+      },
+      "grossMarginPercent": 67.47,
+      "operatingMarginPercent": 42.55,
+      "netMarginPercent": 38.49,
+      "currency": "SGD",
+      "scope": "business",
+      "scopeId": "capfc-biz-growth-01",
+      "reportingPeriod": "2026-Q3",
+      "realisedOnly": true,
+      "fabricated": false,
+      "sourceRefs": [
+        "accw:capfc-biz-growth-01:revenue",
+        "accw:capfc-biz-growth-01:cogs",
+        "accw:capfc-biz-growth-01:opex",
+        "accw:capfc-biz-growth-01:advertising",
+        "accw:capfc-biz-growth-01:platform_fee",
+        "accw:capfc-biz-growth-01:payment_fee",
+        "accw:capfc-biz-growth-01:refund",
+        "accw:capfc-biz-growth-01:tax"
+      ],
+      "analysisId": "prfw-analysis-0001",
+      "name": "capfc-biz-growth-01",
+      "taxEstimated": false,
+      "outstandingIssues": []
+    }
+  ],
+  "validation": {
+    "validationReportId": "prfw-val-1785746370176",
+    "validationTimestamp": "2026-08-03T08:39:30.176Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 3,
+    "metadataVersion": "PRFW-001-v1"
+  },
+  "runTimestamp": "2026-08-03T08:39:30.175Z",
+  "consumableByQ906": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-05:report:prfw-rpt-0001",
+    "q9-05:capital_business:capfc-biz-growth-01",
+    "q9-05:scope:business:capfc-biz-growth-01",
+    "accw:capfc-biz-growth-01:revenue",
+    "accw:capfc-biz-growth-01:cogs",
+    "accw:capfc-biz-growth-01:opex",
+    "accw:capfc-biz-growth-01:advertising",
+    "accw:capfc-biz-growth-01:platform_fee",
+    "accw:capfc-biz-growth-01:payment_fee",
+    "accw:capfc-biz-growth-01:refund",
+    "accw:capfc-biz-growth-01:tax"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveHistoricalProfitabilityReports": true,
+  "neverFabricateRevenueCostFeeRefundOrProfitabilityFigures": true,
+  "neverForecastFutureProfitability": true,
+  "neverApproveSpending": true,
+  "neverExecuteFinancialTransactions": true,
+  "neverReplaceForecastingWorker": true,
+  "neverModifyAccountingRecords": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ906OrLater": true
+}

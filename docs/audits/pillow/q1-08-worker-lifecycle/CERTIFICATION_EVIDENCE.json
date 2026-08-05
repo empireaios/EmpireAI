@@ -1,0 +1,83 @@
+{
+  "missionId": "Q1-08",
+  "doctrine": "PILLOW-WLC-001",
+  "moduleId": "worker-lifecycle",
+  "metadataVersion": "WLC-001-v1",
+  "lifecycleVersion": "WLC-LIFE-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Create, onboard, activate, pause, retire, replace and audit workers.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-06", "doctrine": "PILLOW-RMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-07", "doctrine": "PILLOW-WRG-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkerRegistry": true,
+    "neverReplaceWorkforceCertificationMonitor": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverPermanentlyDeleted": true
+  },
+  "lifecycleRecordFields": [
+    "lifecycleId",
+    "timestamp",
+    "workerId",
+    "workerName",
+    "lifecycleEvent",
+    "previousState",
+    "newState",
+    "triggerReason",
+    "requestedBy",
+    "approvedBy",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "lifecycleStates": [
+    "created",
+    "registered",
+    "onboarding",
+    "configured",
+    "certified",
+    "active",
+    "busy",
+    "idle",
+    "suspended",
+    "recovering",
+    "replaced",
+    "retired",
+    "archived"
+  ],
+  "lifecycleRules": [
+    "registered_before_onboarding",
+    "onboarded_before_activation",
+    "certified_before_production_use",
+    "preserve_lifecycle_history",
+    "preserve_audit_records",
+    "preserve_traceability",
+    "pillow_authorization_for_retirement",
+    "pillow_authorization_for_replacement",
+    "never_permanently_deleted"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-lifecycle.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-lifecycle/",
+    "config": "config/worker-lifecycle.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_LIFECYCLE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-lifecycle-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-lifecycle.test.ts"
+  },
+  "notes": [
+    "Isolated from Workforce Operating System WORKER_LIFECYCLE_STATES and Worker Constitution WORKER_LIFECYCLE_STAGES.",
+    "Public pillow index aliases WLC_* to avoid collisions with WFOS WorkerLifecycleState."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "computedAt": "2026-08-04T01:20:00.000Z",
+  "missionId": "Q10-03",
+  "engineVersion": "PILLOW-MSR-001",
+  "runtimeVersion": "Q10-MSR-v1",
+  "metadataVersion": "MSR-001-v1",
+  "reportVersion": "MSR-RPT-v1",
+  "workerId": "wkr-mission-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionPillowOrchestrationRuntime": {
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverReplaceWorkerLogic": true,
+    "neverReplaceOrchestrationLogic": true,
+    "neverExecuteUnauthorisedMissions": true,
+    "neverFabricateMissionState": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1004OrLater": true,
+    "deterministicTransitionsOnly": true,
+    "structuralSignalOnly": true
+  },
+  "q1004ContractExposed": true,
+  "consumableByQ1004": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Mission Runtime Q10-03 certified — stops at Q10-03, exposes Q1004ConsumableContract for Q10-04",
+    "Never fabricates mission state without deterministic transition path"
+  ]
+}

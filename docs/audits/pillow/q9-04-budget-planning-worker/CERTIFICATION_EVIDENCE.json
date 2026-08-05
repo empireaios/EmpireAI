@@ -1,0 +1,72 @@
+{
+  "missionId": "Q9-04",
+  "doctrine": "PILLOW-BPW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/budget-planning-worker/",
+  "metadataVersion": "BPW-001-v1",
+  "reportVersion": "BPW-RPT-v1",
+  "workerId": "wkr-budget-planning-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS"
+  },
+  "moneyModel": {
+    "representation": "MoneyMinor.minorUnits integer cents",
+    "noFloatingPointArithmetic": true,
+    "utilisationBasisPoints": true
+  },
+  "boundaries": {
+    "neverFabricateBudgetValuesOrSpendingData": true,
+    "neverApproveExpenditure": true,
+    "neverExecutePayments": true,
+    "neverForecastRevenue": true,
+    "neverReplaceProfitabilityWorker": true,
+    "neverModifyAccountingRecords": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ905OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveHistoricalBudgetRevisions": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowBudgetPlanningWorker": true,
+    "subsystemRegistry": "budget-planning-worker",
+    "hostRoutes": "/api/pillow/budget-planning-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/budget-planning-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_BUDGET_PLANNING_WORKER_SYSTEM.md",
+    "config": "config/budget-planning-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/budget-planning-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "accountingWorker": "12/12",
+    "cashflowWorker": "13/13"
+  },
+  "evidence": [
+    "project, business, advertising, and infrastructure budgets created with planned amounts",
+    "utilisation/remaining/variance computed with integer minor units and basis points",
+    "overspend and underspend variances detected with traceable evidence",
+    "adjustment recommendations generated from variance findings only",
+    "Budget Planning Report with consumableByQ905",
+    "ERR submit when executiveReportingRuntime injected",
+    "revision history preserved on budget updates",
+    "existing budget-management-engine left untouched",
+    "Q9-01..Q9-03 untouched and still FINAL PASS",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "budgetPlanningWorker": "12/12",
+    "accountingWorkerRegression": "12/12",
+    "cashflowWorkerRegression": "13/13"
+  }
+}

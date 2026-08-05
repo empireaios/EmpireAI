@@ -1,0 +1,75 @@
+{
+  "missionId": "Q4-19",
+  "doctrine": "PILLOW-MDC-001",
+  "moduleId": "media-certification",
+  "metadataVersion": "MDC-001-v1",
+  "mediaFactoryVersion": "Q4-MFC-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Certify the Media Factory can autonomously operate profitable media businesses under Pillow.",
+  "prerequisites": [
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-02", "doctrine": "PILLOW-EIC-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-03", "doctrine": "PILLOW-TRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-04", "doctrine": "PILLOW-TPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-05", "doctrine": "PILLOW-SCW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-06", "doctrine": "PILLOW-HKW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-07", "doctrine": "PILLOW-THW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-08", "doctrine": "PILLOW-VRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-09", "doctrine": "PILLOW-ICW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-10", "doctrine": "PILLOW-VCW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-11", "doctrine": "PILLOW-VAW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-12", "doctrine": "PILLOW-SBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-13", "doctrine": "PILLOW-MSW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-14", "doctrine": "PILLOW-PBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-15", "doctrine": "PILLOW-MAW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-16", "doctrine": "PILLOW-MLW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-17", "doctrine": "PILLOW-CRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-18", "doctrine": "PILLOW-MER-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverPublishMedia": true,
+    "neverModifyMediaFactoryComponents": true,
+    "neverRepairFailuresAutomatically": true,
+    "neverBeginQ5Implementation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "mediaCertificationReportFields": [
+    "certificationId",
+    "timestamp",
+    "mediaFactoryVersion",
+    "mediaBusinessesTested",
+    "componentsTested",
+    "componentsPassed",
+    "componentsFailed",
+    "integrationStatus",
+    "autonomousOperationStatus",
+    "governanceCompliance",
+    "outstandingRisks",
+    "recommendations",
+    "finalCertificationResult",
+    "metadataVersion"
+  ],
+  "certificationLevels": [
+    "certified",
+    "certified_with_warnings",
+    "provisionally_certified",
+    "failed_certification"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/media-certification.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/media-certification/",
+    "config": "config/media-certification.config.json",
+    "doctrine": "docs/governance/EMPIREAI_MEDIA_CERTIFICATION_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/media-certification-bridge.ts",
+    "tests": "pillow/src/validation/tests/media-certification.test.ts"
+  },
+  "notes": [
+    "Final Q4 acceptance gate; public pillow index aliases MDC_CERTIFICATION_LEVELS and MdcMediaCertificationReport.",
+    "Q5 must not begin until this certification passes."
+  ]
+}

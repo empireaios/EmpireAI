@@ -1,0 +1,141 @@
+{
+  "reportId": "lgw-rpt-0001",
+  "timestamp": "2026-08-02T05:00:00.000Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "funnelId": "lgw-funnel-0001",
+  "leadSource": "landing_page",
+  "leadQualificationStatus": "qualified",
+  "leadScore": {
+    "scoreId": "lgw-score-0001",
+    "leadId": "lgw-lead-0001",
+    "value": 0.8,
+    "band": "high",
+    "factors": ["named_contact", "phone_present", "interest_stated", "qualification_positive"],
+    "scoredAt": "2026-08-02T05:00:00.000Z",
+    "fabricated": false
+  },
+  "crmIntegrationStatus": "routed",
+  "bookingIntegrationStatus": "routed",
+  "conversionStage": "booking_requested",
+  "funnelPerformanceSummary": {
+    "metricsId": "lgw-metrics-0001",
+    "funnelId": "lgw-funnel-0001",
+    "businessProjectId": "lbfc-prj-cleaning-01",
+    "generatedAt": "2026-08-02T05:00:00.000Z",
+    "totalCapturedLeads": 1,
+    "leadsBySource": { "landing_page": 1 },
+    "leadsByQualification": { "routed_to_booking": 1 },
+    "leadsByConversionStage": { "booking_requested": 1 },
+    "qualifiedCount": 1,
+    "routedToCrmCount": 1,
+    "routedToBookingCount": 1,
+    "averageScore": 0.8,
+    "confidenceScore": 0.5,
+    "derivedFromObservedCapturesOnly": true,
+    "neverFabricated": true,
+    "notes": ["Derived from 1 observed capture(s) only"]
+  },
+  "auditStatus": "leads_captured",
+  "outstandingIssues": [],
+  "confidenceScore": 0.7,
+  "metadataVersion": "LGW-001-v1",
+  "reportVersion": "LGW-RPT-v1",
+  "workerId": "wkr-lead-generation-01",
+  "forms": [
+    {
+      "formId": "lgw-form-0001",
+      "funnelId": "lgw-funnel-0001",
+      "businessProjectId": "lbfc-prj-cleaning-01",
+      "name": "cleaning enquiry form — Orchard, Singapore",
+      "leadSource": "landing_page",
+      "fields": [
+        {
+          "fieldId": "fld-name",
+          "name": "contactName",
+          "label": "Full name",
+          "fieldType": "text",
+          "required": true
+        }
+      ],
+      "submitLabel": "Request quote",
+      "landingPageRef": "/singapore/orchard/cleaning",
+      "createdAt": "2026-08-02T04:55:00.000Z",
+      "updatedAt": "2026-08-02T04:55:00.000Z",
+      "neverExposeProhibitedPersonalData": true
+    }
+  ],
+  "capturedLeads": [
+    {
+      "leadId": "lgw-lead-0001",
+      "funnelId": "lgw-funnel-0001",
+      "formId": "lgw-form-0001",
+      "businessProjectId": "lbfc-prj-cleaning-01",
+      "leadSource": "landing_page",
+      "qualificationStatus": "routed_to_booking",
+      "conversionStage": "booking_requested",
+      "contactName": "Alex Orchard",
+      "contactChannel": "form",
+      "contactEmail": "alex@example.local",
+      "contactPhone": "+65-6000-1111",
+      "interest": "residential cleaning",
+      "message": "Need a deep clean next week",
+      "capturedAt": "2026-08-02T04:58:00.000Z",
+      "updatedAt": "2026-08-02T05:00:00.000Z",
+      "score": {
+        "scoreId": "lgw-score-0001",
+        "leadId": "lgw-lead-0001",
+        "value": 0.8,
+        "band": "high",
+        "factors": ["named_contact", "phone_present", "interest_stated", "qualification_positive"],
+        "scoredAt": "2026-08-02T05:00:00.000Z",
+        "fabricated": false
+      },
+      "crmLeadRef": "crmw-lead-0001",
+      "bookingRef": "bkw-bk-0001",
+      "crmIntegrationStatus": "routed",
+      "bookingIntegrationStatus": "routed",
+      "formSubmission": {
+        "contactName": "Alex Orchard",
+        "contactPhone": "+65-6000-1111",
+        "contactEmail": "alex@example.local",
+        "interest": "residential cleaning",
+        "message": "Need a deep clean next week"
+      },
+      "sourceSeoReportId": "lseo-rpt-fixture-001",
+      "tags": ["orchard"],
+      "fabricated": false
+    }
+  ],
+  "sourceAttribution": {
+    "leadSource": "landing_page",
+    "landingPageRef": "/singapore/orchard/cleaning",
+    "formId": "lgw-form-0001",
+    "seoKeywordHints": ["cleaning near me", "orchard cleaning"],
+    "utmCampaign": null
+  },
+  "sourceSeoReportId": "lseo-rpt-fixture-001",
+  "consumableByQ709": true,
+  "neverExecuteAdvertisingCampaigns": true,
+  "neverReplaceCrm": true,
+  "neverReplaceBookingWorker": true,
+  "neverDeliverCustomerJobs": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverFabricateLeadOrConversionResults": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ709OrLater": true,
+  "preserveCompleteLeadTraceability": true,
+  "preserveFunnelAuditHistory": true,
+  "neverExposeCredentials": true,
+  "neverExposeProhibitedPersonalData": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-08:lead_generation:lgw-funnel-0001",
+    "source_seo:lseo-rpt-fixture-001",
+    "lead:lgw-lead-0001"
+  ]
+}

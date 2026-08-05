@@ -1,0 +1,112 @@
+{
+  "reportId": "capfc-rpt-1785728528801",
+  "timestamp": "2026-08-03T03:42:08.801Z",
+  "capitalProjectId": "capfc-prj-1785728528797-1",
+  "financialPeriod": "2026-Q3",
+  "capitalStatus": "ready",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "capitalProjectName": "Empire Growth Capital Pool",
+  "lifecycleStatus": "operating",
+  "workerStatusMatrix": [
+    {
+      "workerRole": "accounting_worker",
+      "workerId": "wkr-capfc-acct-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    },
+    {
+      "workerRole": "forecasting_worker",
+      "workerId": "wkr-capfc-fcst-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    },
+    {
+      "workerRole": "allocation_worker",
+      "workerId": "wkr-capfc-alloc-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    }
+  ],
+  "capitalAllocationSummary": {
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "capitalCategory": "growth_allocation",
+    "region": "SG",
+    "lifecycleStatus": "operating",
+    "allocationNotes": [
+      "Structural capital allocation registry only — no accounting or investment execution",
+      "Lifecycle advanced to preparation",
+      "Lifecycle advanced to readiness_review",
+      "Lifecycle advanced to operating"
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "readinessStatus": "partial",
+  "outstandingTasks": [],
+  "risks": [],
+  "executiveSummary": "Capital Factory orchestration mission.",
+  "auditStatus": "not_audited",
+  "confidenceScore": 79,
+  "metadataVersion": "CAPFC-001-v1",
+  "reportVersion": "CAPFC-RPT-v1",
+  "workerId": "wkr-capital-factory-core-01",
+  "factoryId": "capital-factory-core",
+  "capitalCategory": "growth_allocation",
+  "metadata": {},
+  "dependencyGraph": [
+    {
+      "fromRole": "accounting_worker",
+      "toRole": "forecasting_worker",
+      "dependencyType": "sequential",
+      "notes": "dependency_edge_recorded"
+    },
+    {
+      "fromRole": "forecasting_worker",
+      "toRole": "allocation_worker",
+      "dependencyType": "sequential",
+      "notes": "dependency_edge_recorded"
+    }
+  ],
+  "progressSummary": {
+    "stagesCompleted": 5,
+    "totalStages": 8,
+    "percentComplete": 63,
+    "workersReady": 0,
+    "workersTotal": 3
+  },
+  "validation": {
+    "validationReportId": "capfc-val-1785728528801",
+    "validationTimestamp": "2026-08-03T03:42:08.801Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 0,
+    "metadataVersion": "CAPFC-001-v1"
+  },
+  "runTimestamp": "2026-08-03T03:42:08.801Z",
+  "consumableByQ902": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-01:capital_business:capfc-biz-growth-01",
+    "q9-01:worker_coordination:3_roles",
+    "q9-01:lifecycle_status:preparation",
+    "q9-01:lifecycle_status:readiness_review",
+    "q9-01:lifecycle_status:operating",
+    "q9-01:dependency_graph:2_edges"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveFactoryAuditHistory": true,
+  "neverPerformAccounting": true,
+  "neverForecastFinances": true,
+  "neverExecuteInvestmentsAutomatically": true,
+  "neverFabricateFinancialStatus": true,
+  "neverFabricateWorkerStatus": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ902OrLater": true
+}

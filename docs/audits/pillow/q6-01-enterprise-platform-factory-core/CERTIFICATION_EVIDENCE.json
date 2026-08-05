@@ -1,0 +1,77 @@
+{
+  "missionId": "Q6-01",
+  "missionName": "Enterprise Platform Factory Core",
+  "doctrineId": "PILLOW-EPFC-001",
+  "moduleId": "enterprise-platform-factory-core",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T02:43:00.000Z",
+  "metadataVersion": "EPFC-001-v1",
+  "reportSchemaVersion": "EPFC-RPT-v1",
+  "missionSchemaVersion": "EPFC-EPM-v1",
+  "factoryVersion": "Q6-EPFC-v1",
+  "primaryDeliverable": "Build and operate complete software platforms and SaaS businesses.",
+  "prerequisites": [
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-19", "doctrine": "PILLOW-MDC-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-14", "doctrine": "PILLOW-CMC-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-10", "doctrine": "PILLOW-EBC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-13", "doctrine": "PILLOW-WFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/enterprise-platform-factory-core.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Create Enterprise Platform Missions",
+    "Register software platform projects",
+    "Coordinate software development lifecycle",
+    "Coordinate architecture decisions",
+    "Coordinate implementation workers",
+    "Coordinate testing workflows",
+    "Coordinate deployment workflows",
+    "Coordinate production operations",
+    "Track platform lifecycle",
+    "Produce machine-readable Enterprise Platform Factory Reports"
+  ],
+  "boundariesVerified": [
+    "Does not build frontend",
+    "Does not build backend",
+    "Does not design databases",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not bypass Grand King approval",
+    "Does not implement Q6-02 or later"
+  ],
+  "reportFields": [
+    "factoryMissionId",
+    "timestamp",
+    "platformId",
+    "platformName",
+    "businessObjective",
+    "currentLifecycleStage",
+    "assignedWorkers",
+    "activeDependencies",
+    "testingStatus",
+    "deploymentStatus",
+    "executiveSummary",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Mission Coordination Engine",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/enterprise-platform-factory-core/",
+    "config/enterprise-platform-factory-core.config.json",
+    "docs/governance/EMPIREAI_ENTERPRISE_PLATFORM_FACTORY_CORE_SYSTEM.md",
+    "docs/audits/pillow/q6-01-enterprise-platform-factory-core/Q6_01_ENTERPRISE_PLATFORM_FACTORY_CORE_CERTIFICATION.md"
+  ]
+}

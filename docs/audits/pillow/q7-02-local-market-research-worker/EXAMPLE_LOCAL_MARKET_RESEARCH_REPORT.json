@@ -1,0 +1,234 @@
+{
+  "researchId": "lmrw-res-0001",
+  "timestamp": "2026-08-02T00:00:00.000Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "targetCountry": "Singapore",
+  "targetCity": "Singapore",
+  "targetServiceArea": "Orchard",
+  "serviceCategory": "cleaning",
+  "customerSegments": ["busy homeowners", "small offices"],
+  "demandFindings": {
+    "demandIndicators": [
+      { "value": "Recurring residential cleaning searches rising", "evidenceClass": "verified" }
+    ],
+    "searchPatterns": [
+      { "value": "cleaning near me same day", "evidenceClass": "verified" }
+    ],
+    "frequencySignals": [
+      { "value": "weekly residential / monthly commercial", "evidenceClass": "estimated" }
+    ],
+    "urgencySignals": [
+      { "value": "same-day spill cleanup spikes", "evidenceClass": "inference" }
+    ],
+    "seasonalPatterns": [
+      { "value": "pre-holiday deep cleans", "evidenceClass": "estimated" }
+    ],
+    "residentialVsCommercial": [
+      { "value": "residential-dominant with commercial pockets", "evidenceClass": "verified" }
+    ],
+    "segmentDifferences": [
+      { "value": "homeowners prioritize trust; offices prioritize scheduling", "evidenceClass": "inference" }
+    ],
+    "geographicConcentration": [
+      { "value": "demand denser in CBD fringe apartments", "evidenceClass": "estimated" }
+    ],
+    "repeatPotential": [
+      { "value": "high for weekly residential", "evidenceClass": "verified" }
+    ],
+    "emergencyPotential": [
+      { "value": "moderate for post-event cleanup", "evidenceClass": "estimated" }
+    ]
+  },
+  "competitorProfiles": [
+    {
+      "competitorId": "lmrw-cmp-001",
+      "name": "Sparkle District Clean",
+      "serviceArea": "Orchard",
+      "services": ["residential cleaning", "move-out cleaning"],
+      "pricingModel": "fixed_package",
+      "positioning": "premium trusted local",
+      "availability": "weekday_evenings",
+      "bookingMethod": "whatsapp",
+      "channels": ["google_maps", "instagram"],
+      "ratings": "4.6/5",
+      "strengths": ["local_reviews", "fast_response"],
+      "weaknesses": ["limited_weekend_slots"],
+      "gaps": ["no_eco_products_option"],
+      "evidenceSource": "fixture_directory",
+      "researchTimestamp": "2026-08-02T00:00:00.000Z",
+      "evidenceClass": "verified"
+    }
+  ],
+  "pricingFindings": {
+    "typicalPriceRange": { "value": "SGD 80-150 per visit", "evidenceClass": "verified" },
+    "minObservedPrice": { "value": "SGD 60", "evidenceClass": "estimated" },
+    "maxObservedPrice": { "value": "SGD 220", "evidenceClass": "estimated" },
+    "callOutFees": [{ "value": "SGD 20-40", "evidenceClass": "estimated" }],
+    "hourlyRates": [{ "value": "SGD 35-55/hr", "evidenceClass": "verified" }],
+    "fixedPackages": [{ "value": "2BR flat clean SGD 120", "evidenceClass": "verified" }],
+    "emergencySurcharges": [{ "value": "+30% after 9pm", "evidenceClass": "inference" }],
+    "materialFees": [{ "value": "supplies usually included", "evidenceClass": "estimated" }],
+    "transportFees": [{ "value": "rarely itemized within Orchard", "evidenceClass": "unknown" }],
+    "inspectionFees": [{ "value": "not commonly charged", "evidenceClass": "inference" }],
+    "recurringPricing": [{ "value": "10% weekly discount", "evidenceClass": "estimated" }],
+    "promotions": [{ "value": "first-visit 15% off", "evidenceClass": "verified" }],
+    "refundGuaranteePractices": [{ "value": "re-clean within 24h", "evidenceClass": "estimated" }],
+    "currency": "SGD",
+    "taxInclusionStatus": { "value": "prices typically include GST ambiguity", "evidenceClass": "unknown" }
+  },
+  "customerPainPoints": [
+    {
+      "painPointId": "lmrw-res-pain-001",
+      "description": "Hard to book reliable same-week cleaners",
+      "affectedSegment": "busy homeowners",
+      "severity": "high",
+      "evidenceClass": "verified",
+      "supportingEvidence": ["fixture_reviews_cluster"]
+    }
+  ],
+  "serviceGaps": [
+    {
+      "gapId": "lmrw-res-gap-001",
+      "description": "Few eco-certified cleaning packages in Orchard",
+      "geographicArea": "Orchard",
+      "unmetNeed": "eco_friendly_recurring_clean",
+      "evidenceClass": "estimated",
+      "supportingEvidence": ["fixture_competitor_gap_scan"]
+    }
+  ],
+  "opportunityFindings": [
+    {
+      "opportunityId": "lmrw-opp-001",
+      "description": "Eco recurring residential cleaning for Orchard apartments",
+      "supportingEvidence": ["lmrw-res-gap-001", "lmrw-res-pain-001"],
+      "targetCustomer": "busy homeowners",
+      "geographicArea": "Orchard",
+      "demandIndication": "moderate_to_high",
+      "competitionLevel": "moderate",
+      "pricingIndication": "SGD 100-160 recurring",
+      "operationalConsiderations": ["supply_eco_consumables", "evening_slots"],
+      "risks": ["price_sensitivity"],
+      "confidenceLevel": 0.62,
+      "evidenceClass": "inference"
+    }
+  ],
+  "marketAttractivenessAssessment": {
+    "demandStrength": {
+      "score": 0.7,
+      "evidenceClass": "verified",
+      "explanation": "Verified search and repeat indicators",
+      "evidenceRefs": ["demand.demandIndicators"]
+    },
+    "competitionIntensity": {
+      "score": 0.55,
+      "evidenceClass": "estimated",
+      "explanation": "Multiple local operators observed",
+      "evidenceRefs": ["competitors"]
+    },
+    "pricingPotential": {
+      "score": 0.6,
+      "evidenceClass": "estimated",
+      "explanation": "Observed ranges support mid-tier packages",
+      "evidenceRefs": ["pricing.typicalPriceRange"]
+    },
+    "repeatPurchasePotential": {
+      "score": 0.75,
+      "evidenceClass": "verified",
+      "explanation": "Weekly residential repeat signal",
+      "evidenceRefs": ["demand.repeatPotential"]
+    },
+    "customerUrgency": {
+      "score": 0.45,
+      "evidenceClass": "inference",
+      "explanation": "Same-day spikes are secondary",
+      "evidenceRefs": ["demand.urgencySignals"]
+    },
+    "easeOfAcquisition": {
+      "score": 0.5,
+      "evidenceClass": "estimated",
+      "explanation": "Channel competition moderate",
+      "evidenceRefs": ["competitors"]
+    },
+    "operationalComplexity": {
+      "score": 0.4,
+      "evidenceClass": "inference",
+      "explanation": "Standard cleaning ops",
+      "evidenceRefs": []
+    },
+    "entryBarriers": {
+      "score": 0.35,
+      "evidenceClass": "estimated",
+      "explanation": "Low capital; trust/reviews matter",
+      "evidenceRefs": ["competitors"]
+    },
+    "regulatoryUncertainty": {
+      "score": null,
+      "evidenceClass": "unknown",
+      "explanation": "Licensing details not in fixture",
+      "evidenceRefs": []
+    },
+    "overallOpportunityConfidence": {
+      "score": 0.64,
+      "evidenceClass": "estimated",
+      "explanation": "Balanced demand vs competition with evidence gaps remaining",
+      "evidenceRefs": ["demand", "competitors", "pricing"]
+    }
+  },
+  "risks": ["review_density_may_lag_new_entrants"],
+  "assumptions": ["fixture mirrors near-term Orchard conditions"],
+  "unknowns": ["licensing_requirements"],
+  "evidenceSources": [
+    {
+      "evidenceId": "lmrw-ev-0001",
+      "sourceReference": "fixture_local_directory",
+      "sourceType": "fixture",
+      "sourceDate": "2026-08-01",
+      "retrievalTimestamp": "2026-08-02T00:00:00.000Z",
+      "geographicRelevance": "Singapore/Orchard",
+      "serviceRelevance": "cleaning",
+      "evidenceStrength": "moderate",
+      "confidenceLevel": 0.7,
+      "inferenceMade": false,
+      "evidenceClass": "verified",
+      "evidenceMode": "fixture",
+      "claim": "Local cleaning operators and pricing signals observed in fixture set"
+    }
+  ],
+  "confidenceScore": 0.88,
+  "recommendedResearchFollowUps": [
+    "Hand off structural findings to Q7-03 Service Offer Worker when approved"
+  ],
+  "executiveSummary": "Local market research for cleaning in Singapore/Orchard, Singapore. Evidence mode=fixture; competitors=1; gaps=1; opportunities=1; confidence=0.88. Structural signals only — no final packages, final prices, or launch decisions.",
+  "metadataVersion": "LMRW-001-v1",
+  "reportVersion": "LMRW-RPT-v1",
+  "workerId": "wkr-local-market-research-01",
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-02:local_market_research:lmrw-res-0001",
+    "q7-02:business_project:lbfc-prj-cleaning-01",
+    "q7-02:location:Singapore/Singapore/Orchard",
+    "q7-02:service_category:cleaning",
+    "q7-02:evidence_mode:fixture"
+  ],
+  "evidenceMode": "fixture",
+  "consumableByQ703": true,
+  "neverFinalizeServicePackages": true,
+  "neverSetFinalPrices": true,
+  "neverMakeLaunchDecisions": true,
+  "neverBuildBookingSystems": true,
+  "neverBuildWebsites": true,
+  "neverContactCustomersOrCompetitorsWithoutApproval": true,
+  "neverPurchaseDataOrAdvertisingWithoutApproval": true,
+  "neverFabricateDemandPricingOrCompetitorData": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ703OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "neverExposeProhibitedPersonalData": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

@@ -1,0 +1,31 @@
+{
+  "reportId": "mpeng-rpt-0001",
+  "reportVersion": "MPENG-RPT-v1",
+  "metadataVersion": "MPENG-001-v1",
+  "engineId": "PILLOW-MPENG-001",
+  "timestamp": "2026-08-05T00:00:00.000Z",
+  "missionId": "Q13-03",
+  "missionSummary": {
+    "missionId": "Q13-03",
+    "missionName": "Mission Planning Engine",
+    "programme": "Q13",
+    "evidenceProvided": true
+  },
+  "repositoryIntelligenceSummary": {
+    "reportId": "rieng-rpt-01",
+    "confidenceScore": 0.85,
+    "repositorySnapshot": {
+      "repositorySnapshotId": "snap-1",
+      "repositoryFingerprint": "fp1",
+      "repositoryVersion": "v1",
+      "status": "available"
+    },
+    "dependencyNodeCount": 5
+  },
+  "confidenceScore": 0.85,
+  "consumableByQ1304": true,
+  "neverImplementQ1304OrLater": true,
+  "neverModifyRepository": true,
+  "neverExecuteImplementation": true,
+  "planningOnly": true
+}

@@ -1,0 +1,71 @@
+{
+  "missionId": "Q1-03",
+  "doctrine": "PILLOW-RTX-001",
+  "moduleId": "role-taxonomy",
+  "metadataVersion": "RTX-001-v1",
+  "taxonomyVersion": "RTX-TAX-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Define worker categories, executive roles, manager roles, specialist roles, reviewer roles and support roles.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceOrganizationCharter": true,
+    "neverReplaceWorkerConstitution": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "roleDefinitionFields": [
+    "taxonomyVersion",
+    "roleId",
+    "roleName",
+    "roleCategory",
+    "parentRole",
+    "responsibilities",
+    "authorityLevel",
+    "reportingRelationship",
+    "collaborationRules",
+    "escalationRules",
+    "governanceRules",
+    "metadataVersion"
+  ],
+  "roleCategories": [
+    "executive",
+    "director",
+    "manager",
+    "lead",
+    "specialist",
+    "reviewer",
+    "analyst",
+    "coordinator",
+    "support",
+    "system"
+  ],
+  "roleRules": [
+    "exactly_one_role_category",
+    "purpose_defined",
+    "responsibilities_defined",
+    "decision_authority_defined",
+    "escalation_authority_defined",
+    "reporting_structure_defined",
+    "required_skills_defined",
+    "quality_standard_required",
+    "governance_rules_required",
+    "inherits_from_valid_parent"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/role-taxonomy.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/role-taxonomy/",
+    "config": "config/role-taxonomy.config.json",
+    "doctrine": "docs/governance/EMPIREAI_ROLE_TAXONOMY_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/role-taxonomy-bridge.ts",
+    "tests": "pillow/src/validation/tests/role-taxonomy.test.ts"
+  }
+}

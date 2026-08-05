@@ -1,0 +1,46 @@
+{
+  "computedAt": "2026-08-04T06:40:00.000Z",
+  "missionId": "Q10-09",
+  "engineVersion": "PILLOW-APVRT-001",
+  "runtimeVersion": "Q10-APVRT-v1",
+  "metadataVersion": "APVRT-001-v1",
+  "reportVersion": "APVRT-RPT-v1",
+  "workerId": "wkr-approval-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionCommunicationRuntime": {
+    "missionId": "Q10-08",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverFabricateApprovalDecisions": true,
+    "neverAutoApproveRestrictedActions": true,
+    "neverImplementQ1010OrLater": true,
+    "neverReplaceBusinessLogic": true,
+    "neverReplaceWorkerImplementations": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "preventUnauthorizedExecution": true,
+    "deterministicApprovalRouting": true,
+    "structuralSignalOnly": true
+  },
+  "seedPolicies": [
+    "pol-pillow-standard",
+    "pol-grand-king-restricted",
+    "pol-multi-stage-ops",
+    "pol-conditional-escalation",
+    "pol-delegated-ops"
+  ],
+  "q1010ContractExposed": true,
+  "consumableByQ1010": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Approval Runtime Q10-09 certified — stops at Q10-09, exposes Q1010ConsumableContract for Q10-10",
+    "Rejection blocks resume; grand_king never auto-approved or delegated by default",
+    "Distinct from approval-router / approval-workflow workers"
+  ]
+}

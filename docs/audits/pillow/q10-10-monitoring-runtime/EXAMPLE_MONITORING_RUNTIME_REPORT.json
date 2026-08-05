@@ -1,0 +1,133 @@
+{
+  "reportId": "monrt-rpt-example-001",
+  "timestamp": "2026-08-04T07:10:00.000Z",
+  "runtimeVersion": "Q10-MONRT-v1",
+  "enterpriseHealthSummary": {
+    "overallStatus": "degraded",
+    "overallHealthScore": 72,
+    "componentCount": 12,
+    "healthyCount": 8,
+    "degradedCount": 2,
+    "criticalCount": 1,
+    "standbyCount": 1,
+    "activeCriticalAlerts": 1,
+    "notes": ["Enterprise monitoring operational — observed evidence only"]
+  },
+  "workerHealth": [
+    {
+      "monitoringId": "monrt-cmp-wkr-alpha",
+      "componentId": "wkr-alpha",
+      "componentType": "worker",
+      "currentStatus": "healthy",
+      "healthScore": 85,
+      "availability": 100,
+      "latencyMs": 40,
+      "errorCount": 0,
+      "warningCount": 0,
+      "criticalAlertCount": 0,
+      "lastSuccessfulHeartbeat": "2026-08-04T07:09:00.000Z",
+      "auditReference": "audit://monitoring/wkr-alpha",
+      "fabricated": false,
+      "structuralSignalOnly": true
+    }
+  ],
+  "factoryHealth": [
+    {
+      "componentId": "factory-pillow",
+      "componentType": "factory",
+      "currentStatus": "healthy",
+      "healthScore": 82,
+      "fabricated": false
+    }
+  ],
+  "runtimeHealth": [
+    {
+      "componentId": "runtime-srtc",
+      "componentType": "runtime_service",
+      "currentStatus": "degraded",
+      "healthScore": 68,
+      "fabricated": false
+    }
+  ],
+  "apiHealth": [
+    {
+      "componentId": "api-supplier-01",
+      "componentType": "api",
+      "currentStatus": "healthy",
+      "healthScore": 90,
+      "fabricated": false
+    }
+  ],
+  "queueHealth": [
+    {
+      "componentId": "queue-default-01",
+      "componentType": "queue",
+      "currentStatus": "warning",
+      "healthScore": 55,
+      "criticalAlertCount": 1,
+      "fabricated": false
+    }
+  ],
+  "missionHealth": [
+    {
+      "componentId": "mission-demo-01",
+      "componentType": "mission",
+      "currentStatus": "healthy",
+      "healthScore": 88,
+      "fabricated": false
+    }
+  ],
+  "toolHealth": [
+    {
+      "componentId": "tool-cursor-01",
+      "componentType": "tool",
+      "currentStatus": "standby",
+      "healthScore": 50,
+      "fabricated": false
+    }
+  ],
+  "activeAlerts": [
+    {
+      "alertId": "monrt-alert-example-01",
+      "componentId": "queue-default-01",
+      "severity": "critical",
+      "suppressed": false,
+      "fabricated": false
+    }
+  ],
+  "criticalEvents": [
+    {
+      "alertId": "monrt-alert-example-01",
+      "severity": "critical",
+      "suppressed": false
+    }
+  ],
+  "supportingEvidence": [
+    "monitoring-runtime operational evidence",
+    "config/monitoring-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": ["queue-default-01 critical alert open"],
+  "confidenceScore": 88,
+  "metadataVersion": "MONRT-001-v1",
+  "reportVersion": "MONRT-RPT-v1",
+  "workerId": "wkr-monitoring-runtime-01",
+  "consumableByQ1011": true,
+  "neverFabricateHealthInformation": true,
+  "neverSuppressCriticalAlerts": true,
+  "neverReplaceRecoverySystems": true,
+  "neverAutomaticallyRepairFailures": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ1011OrLater": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverExecuteBusinessLogic": true,
+  "preserveCompleteTraceability": true,
+  "preserveMonitoringHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicHealthCalculations": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

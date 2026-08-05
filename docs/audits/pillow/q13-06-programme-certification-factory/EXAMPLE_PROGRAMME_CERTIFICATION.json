@@ -1,0 +1,35 @@
+{
+  "certificationId": "pcfct-cert-0001",
+  "programmeName": "Q Series",
+  "programmeCode": "Q",
+  "roadmapVersion": "constitutional-catalog-v1",
+  "repositorySnapshot": {
+    "repositorySnapshotId": "snap-1",
+    "repositoryFingerprint": "fp1",
+    "repositoryVersion": "v1",
+    "analysedAt": "2026-08-05T08:00:00.000Z",
+    "readOnly": true
+  },
+  "missionInventory": [
+    {
+      "missionId": "Q13-06",
+      "programmeCode": "Q",
+      "classification": "Completed",
+      "evidenceReferences": ["docs/audits/pillow/q13-06-programme-certification-factory/CERTIFICATION_PACK.md"],
+      "modulePath": "pillow/src/programme-certification-factory/",
+      "auditPath": "docs/audits/pillow/q13-06-programme-certification-factory/"
+    }
+  ],
+  "completedMissions": ["Q13-06"],
+  "partiallyImplementedMissions": [],
+  "missingMissions": [],
+  "brokenOrDeviatingMissions": [],
+  "duplicateMissions": [],
+  "intentionallyDeferredMissions": [],
+  "evidenceReferences": ["docs/audits/pillow/"],
+  "gapSummary": ["No significant gaps detected from repository evidence"],
+  "completionStatus": "Completed",
+  "certificationStatus": "certified",
+  "confidenceScore": 0.85,
+  "timestamp": "2026-08-05T08:00:00.000Z"
+}

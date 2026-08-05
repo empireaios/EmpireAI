@@ -1,0 +1,39 @@
+{
+  "analysisId": "ipw-cap-alloc-000001",
+  "planningPeriod": "2026-Q2",
+  "capitalBusinessId": "ipw-biz-alpha-01",
+  "availableCapital": { "currency": "SGD", "minorUnits": 2000000 },
+  "availableCapitalSource": "measured_input",
+  "greedyAllocationWithinMeasuredCapital": true,
+  "recommendations": [
+    {
+      "recommendationId": "ipw-rec-000001",
+      "opportunityId": "opp-beta",
+      "businessOrProject": "project-opp-beta",
+      "recommendedCapitalMinor": 500000,
+      "rank": 1,
+      "opportunityScore": 6825,
+      "recommendation": "recommend",
+      "isExecution": false,
+      "isApproval": false,
+      "signalKind": "capital_allocation_recommendation"
+    },
+    {
+      "recommendationId": "ipw-rec-000002",
+      "opportunityId": "opp-alpha",
+      "businessOrProject": "project-opp-alpha",
+      "recommendedCapitalMinor": 500000,
+      "rank": 2,
+      "opportunityScore": 6475,
+      "recommendation": "recommend",
+      "isExecution": false,
+      "isApproval": false,
+      "signalKind": "capital_allocation_recommendation"
+    }
+  ],
+  "remainingCapitalMinor": 1000000,
+  "notes": [
+    "Capital allocation analysis is recommendation-only — never execution or approval.",
+    "Greedy ranking by opportunity score within measured available capital."
+  ]
+}

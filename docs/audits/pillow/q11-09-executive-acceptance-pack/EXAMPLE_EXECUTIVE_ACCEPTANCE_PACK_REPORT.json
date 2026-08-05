@@ -1,0 +1,919 @@
+{
+  "reportId": "eaprt-rpt-0001",
+  "timestamp": "2026-08-05T01:37:53.276Z",
+  "packVersion": "Q11-EAPRT-v1",
+  "engineId": "PILLOW-EAPRT-001",
+  "missionId": "Q11-09",
+  "executiveSummary": "Executive Acceptance Pack Q11-09 aggregates 2/2 certification sources and 6/7 audit sources. Production readiness evidence: 3/3 sources with structural evidence. Prior gate: Q11-08 Financial Readiness Audit not implemented / not injected. Overall pack decision: withhold. Grand King retains final production deployment authority.",
+  "certificationSummary": {
+    "computedAt": "2026-08-05T01:37:53.269Z",
+    "totalSources": 2,
+    "boundCount": 2,
+    "certifiedCount": 2,
+    "partiallyCertifiedCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "reports": [
+      {
+        "source": "production-certification-core",
+        "bound": true,
+        "reportId": "pccrt-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "evidence": [
+          "production-certification-core: handle bound",
+          "reportId=pccrt-rpt"
+        ]
+      },
+      {
+        "source": "shared-runtime-certification",
+        "bound": true,
+        "reportId": "srcrt-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "evidence": [
+          "shared-runtime-certification: handle bound",
+          "reportId=srcrt-rpt"
+        ]
+      }
+    ],
+    "evidence": [
+      "production-certification-core: handle bound",
+      "reportId=pccrt-rpt",
+      "shared-runtime-certification: handle bound",
+      "reportId=srcrt-rpt"
+    ]
+  },
+  "auditSummary": {
+    "computedAt": "2026-08-05T01:37:53.270Z",
+    "totalSources": 7,
+    "boundCount": 6,
+    "certifiedCount": 6,
+    "partiallyCertifiedCount": 0,
+    "failedCount": 0,
+    "missingCount": 1,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "reports": [
+      {
+        "source": "worker-readiness-audit",
+        "bound": true,
+        "reportId": "Q11-02-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-02",
+        "evidence": [
+          "worker-readiness-audit: handle bound",
+          "reportId=Q11-02-rpt"
+        ]
+      },
+      {
+        "source": "pillow-command-audit",
+        "bound": true,
+        "reportId": "Q11-03-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-03",
+        "evidence": [
+          "pillow-command-audit: handle bound",
+          "reportId=Q11-03-rpt"
+        ]
+      },
+      {
+        "source": "business-factory-audit",
+        "bound": true,
+        "reportId": "Q11-04-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-04",
+        "evidence": [
+          "business-factory-audit: handle bound",
+          "reportId=Q11-04-rpt"
+        ]
+      },
+      {
+        "source": "security-audit",
+        "bound": true,
+        "reportId": "Q11-05-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-05",
+        "evidence": [
+          "security-audit: handle bound",
+          "reportId=Q11-05-rpt"
+        ]
+      },
+      {
+        "source": "performance-audit",
+        "bound": true,
+        "reportId": "Q11-06-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-06",
+        "evidence": [
+          "performance-audit: handle bound",
+          "reportId=Q11-06-rpt"
+        ]
+      },
+      {
+        "source": "recovery-audit",
+        "bound": true,
+        "reportId": "Q11-07-rpt",
+        "decision": "certify",
+        "classification": "certified",
+        "missionId": "Q11-07",
+        "evidence": [
+          "recovery-audit: handle bound",
+          "reportId=Q11-07-rpt"
+        ]
+      },
+      {
+        "source": "financial-readiness-audit",
+        "bound": false,
+        "reportId": null,
+        "decision": null,
+        "classification": "missing",
+        "missionId": null,
+        "evidence": [
+          "Q11-08 Financial Readiness Audit not implemented / not injected"
+        ]
+      }
+    ],
+    "evidence": [
+      "worker-readiness-audit: handle bound",
+      "reportId=Q11-02-rpt",
+      "pillow-command-audit: handle bound",
+      "reportId=Q11-03-rpt",
+      "business-factory-audit: handle bound",
+      "reportId=Q11-04-rpt",
+      "security-audit: handle bound",
+      "reportId=Q11-05-rpt",
+      "performance-audit: handle bound",
+      "reportId=Q11-06-rpt",
+      "recovery-audit: handle bound",
+      "reportId=Q11-07-rpt",
+      "Q11-08 Financial Readiness Audit not implemented / not injected"
+    ]
+  },
+  "productionReadinessSummary": {
+    "computedAt": "2026-08-05T01:37:53.270Z",
+    "totalSources": 3,
+    "boundCount": 3,
+    "evidencePresentCount": 3,
+    "overallClassification": "certified",
+    "sources": [
+      {
+        "source": "monitoring-runtime",
+        "bound": true,
+        "evidencePresent": true,
+        "evidence": [
+          "monitoring-runtime: bound; probes=getState,getDashboard"
+        ]
+      },
+      {
+        "source": "audit-runtime",
+        "bound": true,
+        "evidencePresent": true,
+        "evidence": [
+          "audit-runtime: bound; probes=getState,query"
+        ]
+      },
+      {
+        "source": "executive-reporting-runtime",
+        "bound": true,
+        "evidencePresent": true,
+        "evidence": [
+          "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+        ]
+      }
+    ],
+    "evidence": [
+      "monitoring-runtime: bound; probes=getState,getDashboard",
+      "audit-runtime: bound; probes=getState,query",
+      "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+    ]
+  },
+  "riskSummary": {
+    "computedAt": "2026-08-05T01:37:53.275Z",
+    "totalRisks": 2,
+    "criticalRisks": [
+      "Q11-08 Financial Readiness Audit not implemented / not injected",
+      "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+    ],
+    "moderateRisks": [],
+    "lowRisks": [],
+    "evidence": [
+      "Q11-08 Financial Readiness Audit not implemented / not injected",
+      "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+    ]
+  },
+  "outstandingIssues": [
+    "Q11-08 Financial Readiness Audit not implemented / not injected",
+    "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+  ],
+  "deploymentRecommendation": {
+    "computedAt": "2026-08-05T01:37:53.275Z",
+    "recommendation": "withhold",
+    "rationale": [
+      "Executive Acceptance Pack recommends only — Grand King decides production deployment",
+      "Pack decision=withhold",
+      "Outstanding: Q11-08 Financial Readiness Audit not implemented / not injected",
+      "Outstanding: financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+    ],
+    "grandKingDecisionRequired": true,
+    "evidence": [
+      "recommendation=withhold",
+      "decision=withhold"
+    ]
+  },
+  "executiveChecklist": [
+    {
+      "itemId": "chk-001",
+      "category": "prior_gate",
+      "label": "Q11-08 Financial Readiness Audit consumable contract",
+      "status": "missing",
+      "evidence": [
+        "Q11-08 Financial Readiness Audit not implemented / not injected"
+      ]
+    },
+    {
+      "itemId": "chk-002",
+      "category": "certification",
+      "label": "production-certification-core certification report",
+      "status": "certified",
+      "evidence": [
+        "production-certification-core: handle bound",
+        "reportId=pccrt-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-003",
+      "category": "certification",
+      "label": "shared-runtime-certification certification report",
+      "status": "certified",
+      "evidence": [
+        "shared-runtime-certification: handle bound",
+        "reportId=srcrt-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-004",
+      "category": "audit",
+      "label": "worker-readiness-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "worker-readiness-audit: handle bound",
+        "reportId=Q11-02-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-005",
+      "category": "audit",
+      "label": "pillow-command-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "pillow-command-audit: handle bound",
+        "reportId=Q11-03-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-006",
+      "category": "audit",
+      "label": "business-factory-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "business-factory-audit: handle bound",
+        "reportId=Q11-04-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-007",
+      "category": "audit",
+      "label": "security-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "security-audit: handle bound",
+        "reportId=Q11-05-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-008",
+      "category": "audit",
+      "label": "performance-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "performance-audit: handle bound",
+        "reportId=Q11-06-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-009",
+      "category": "audit",
+      "label": "recovery-audit audit report",
+      "status": "certified",
+      "evidence": [
+        "recovery-audit: handle bound",
+        "reportId=Q11-07-rpt"
+      ]
+    },
+    {
+      "itemId": "chk-010",
+      "category": "audit",
+      "label": "financial-readiness-audit audit report",
+      "status": "missing",
+      "evidence": [
+        "Q11-08 Financial Readiness Audit not implemented / not injected"
+      ]
+    },
+    {
+      "itemId": "chk-011",
+      "category": "readiness",
+      "label": "monitoring-runtime production readiness evidence",
+      "status": "certified",
+      "evidence": [
+        "monitoring-runtime: bound; probes=getState,getDashboard"
+      ]
+    },
+    {
+      "itemId": "chk-012",
+      "category": "readiness",
+      "label": "audit-runtime production readiness evidence",
+      "status": "certified",
+      "evidence": [
+        "audit-runtime: bound; probes=getState,query"
+      ]
+    },
+    {
+      "itemId": "chk-013",
+      "category": "readiness",
+      "label": "executive-reporting-runtime production readiness evidence",
+      "status": "certified",
+      "evidence": [
+        "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+      ]
+    },
+    {
+      "itemId": "chk-014",
+      "category": "governance",
+      "label": "Grand King final production deployment authority preserved",
+      "status": "certified",
+      "evidence": [
+        "Executive Acceptance Pack never approves production deployment directly"
+      ]
+    }
+  ],
+  "supportingEvidence": [
+    "production-certification-core: handle bound",
+    "reportId=pccrt-rpt",
+    "shared-runtime-certification: handle bound",
+    "reportId=srcrt-rpt",
+    "worker-readiness-audit: handle bound",
+    "reportId=Q11-02-rpt",
+    "pillow-command-audit: handle bound",
+    "reportId=Q11-03-rpt",
+    "business-factory-audit: handle bound",
+    "reportId=Q11-04-rpt",
+    "security-audit: handle bound",
+    "reportId=Q11-05-rpt",
+    "performance-audit: handle bound",
+    "reportId=Q11-06-rpt",
+    "recovery-audit: handle bound",
+    "reportId=Q11-07-rpt",
+    "Q11-08 Financial Readiness Audit not implemented / not injected",
+    "monitoring-runtime: bound; probes=getState,getDashboard",
+    "audit-runtime: bound; probes=getState,query",
+    "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+  ],
+  "confidenceScore": 0.71,
+  "metadataVersion": "EAPRT-001-v1",
+  "reportVersion": "EAPRT-RPT-v1",
+  "workerId": "wkr-executive-acceptance-pack-01",
+  "acceptancePack": {
+    "acceptancePackId": "eaprt-pack-0001",
+    "repositoryVersion": "EAPRT-001-v1",
+    "certificationSummary": {
+      "computedAt": "2026-08-05T01:37:53.269Z",
+      "totalSources": 2,
+      "boundCount": 2,
+      "certifiedCount": 2,
+      "partiallyCertifiedCount": 0,
+      "failedCount": 0,
+      "missingCount": 0,
+      "blockedCount": 0,
+      "deferredCount": 0,
+      "reports": [
+        {
+          "source": "production-certification-core",
+          "bound": true,
+          "reportId": "pccrt-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "evidence": [
+            "production-certification-core: handle bound",
+            "reportId=pccrt-rpt"
+          ]
+        },
+        {
+          "source": "shared-runtime-certification",
+          "bound": true,
+          "reportId": "srcrt-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "evidence": [
+            "shared-runtime-certification: handle bound",
+            "reportId=srcrt-rpt"
+          ]
+        }
+      ],
+      "evidence": [
+        "production-certification-core: handle bound",
+        "reportId=pccrt-rpt",
+        "shared-runtime-certification: handle bound",
+        "reportId=srcrt-rpt"
+      ]
+    },
+    "auditSummary": {
+      "computedAt": "2026-08-05T01:37:53.270Z",
+      "totalSources": 7,
+      "boundCount": 6,
+      "certifiedCount": 6,
+      "partiallyCertifiedCount": 0,
+      "failedCount": 0,
+      "missingCount": 1,
+      "blockedCount": 0,
+      "deferredCount": 0,
+      "reports": [
+        {
+          "source": "worker-readiness-audit",
+          "bound": true,
+          "reportId": "Q11-02-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-02",
+          "evidence": [
+            "worker-readiness-audit: handle bound",
+            "reportId=Q11-02-rpt"
+          ]
+        },
+        {
+          "source": "pillow-command-audit",
+          "bound": true,
+          "reportId": "Q11-03-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-03",
+          "evidence": [
+            "pillow-command-audit: handle bound",
+            "reportId=Q11-03-rpt"
+          ]
+        },
+        {
+          "source": "business-factory-audit",
+          "bound": true,
+          "reportId": "Q11-04-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-04",
+          "evidence": [
+            "business-factory-audit: handle bound",
+            "reportId=Q11-04-rpt"
+          ]
+        },
+        {
+          "source": "security-audit",
+          "bound": true,
+          "reportId": "Q11-05-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-05",
+          "evidence": [
+            "security-audit: handle bound",
+            "reportId=Q11-05-rpt"
+          ]
+        },
+        {
+          "source": "performance-audit",
+          "bound": true,
+          "reportId": "Q11-06-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-06",
+          "evidence": [
+            "performance-audit: handle bound",
+            "reportId=Q11-06-rpt"
+          ]
+        },
+        {
+          "source": "recovery-audit",
+          "bound": true,
+          "reportId": "Q11-07-rpt",
+          "decision": "certify",
+          "classification": "certified",
+          "missionId": "Q11-07",
+          "evidence": [
+            "recovery-audit: handle bound",
+            "reportId=Q11-07-rpt"
+          ]
+        },
+        {
+          "source": "financial-readiness-audit",
+          "bound": false,
+          "reportId": null,
+          "decision": null,
+          "classification": "missing",
+          "missionId": null,
+          "evidence": [
+            "Q11-08 Financial Readiness Audit not implemented / not injected"
+          ]
+        }
+      ],
+      "evidence": [
+        "worker-readiness-audit: handle bound",
+        "reportId=Q11-02-rpt",
+        "pillow-command-audit: handle bound",
+        "reportId=Q11-03-rpt",
+        "business-factory-audit: handle bound",
+        "reportId=Q11-04-rpt",
+        "security-audit: handle bound",
+        "reportId=Q11-05-rpt",
+        "performance-audit: handle bound",
+        "reportId=Q11-06-rpt",
+        "recovery-audit: handle bound",
+        "reportId=Q11-07-rpt",
+        "Q11-08 Financial Readiness Audit not implemented / not injected"
+      ]
+    },
+    "readinessSummary": {
+      "computedAt": "2026-08-05T01:37:53.270Z",
+      "totalSources": 3,
+      "boundCount": 3,
+      "evidencePresentCount": 3,
+      "overallClassification": "certified",
+      "sources": [
+        {
+          "source": "monitoring-runtime",
+          "bound": true,
+          "evidencePresent": true,
+          "evidence": [
+            "monitoring-runtime: bound; probes=getState,getDashboard"
+          ]
+        },
+        {
+          "source": "audit-runtime",
+          "bound": true,
+          "evidencePresent": true,
+          "evidence": [
+            "audit-runtime: bound; probes=getState,query"
+          ]
+        },
+        {
+          "source": "executive-reporting-runtime",
+          "bound": true,
+          "evidencePresent": true,
+          "evidence": [
+            "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+          ]
+        }
+      ],
+      "evidence": [
+        "monitoring-runtime: bound; probes=getState,getDashboard",
+        "audit-runtime: bound; probes=getState,query",
+        "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+      ]
+    },
+    "riskSummary": {
+      "computedAt": "2026-08-05T01:37:53.275Z",
+      "totalRisks": 2,
+      "criticalRisks": [
+        "Q11-08 Financial Readiness Audit not implemented / not injected",
+        "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+      ],
+      "moderateRisks": [],
+      "lowRisks": [],
+      "evidence": [
+        "Q11-08 Financial Readiness Audit not implemented / not injected",
+        "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+      ]
+    },
+    "outstandingIssues": [
+      "Q11-08 Financial Readiness Audit not implemented / not injected",
+      "financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+    ],
+    "deploymentRecommendation": {
+      "computedAt": "2026-08-05T01:37:53.275Z",
+      "recommendation": "withhold",
+      "rationale": [
+        "Executive Acceptance Pack recommends only — Grand King decides production deployment",
+        "Pack decision=withhold",
+        "Outstanding: Q11-08 Financial Readiness Audit not implemented / not injected",
+        "Outstanding: financial-readiness-audit: audit evidence missing — Q11-08 Financial Readiness Audit not implemented / not injected"
+      ],
+      "grandKingDecisionRequired": true,
+      "evidence": [
+        "recommendation=withhold",
+        "decision=withhold"
+      ]
+    },
+    "executiveChecklist": [
+      {
+        "itemId": "chk-001",
+        "category": "prior_gate",
+        "label": "Q11-08 Financial Readiness Audit consumable contract",
+        "status": "missing",
+        "evidence": [
+          "Q11-08 Financial Readiness Audit not implemented / not injected"
+        ]
+      },
+      {
+        "itemId": "chk-002",
+        "category": "certification",
+        "label": "production-certification-core certification report",
+        "status": "certified",
+        "evidence": [
+          "production-certification-core: handle bound",
+          "reportId=pccrt-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-003",
+        "category": "certification",
+        "label": "shared-runtime-certification certification report",
+        "status": "certified",
+        "evidence": [
+          "shared-runtime-certification: handle bound",
+          "reportId=srcrt-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-004",
+        "category": "audit",
+        "label": "worker-readiness-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "worker-readiness-audit: handle bound",
+          "reportId=Q11-02-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-005",
+        "category": "audit",
+        "label": "pillow-command-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "pillow-command-audit: handle bound",
+          "reportId=Q11-03-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-006",
+        "category": "audit",
+        "label": "business-factory-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "business-factory-audit: handle bound",
+          "reportId=Q11-04-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-007",
+        "category": "audit",
+        "label": "security-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "security-audit: handle bound",
+          "reportId=Q11-05-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-008",
+        "category": "audit",
+        "label": "performance-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "performance-audit: handle bound",
+          "reportId=Q11-06-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-009",
+        "category": "audit",
+        "label": "recovery-audit audit report",
+        "status": "certified",
+        "evidence": [
+          "recovery-audit: handle bound",
+          "reportId=Q11-07-rpt"
+        ]
+      },
+      {
+        "itemId": "chk-010",
+        "category": "audit",
+        "label": "financial-readiness-audit audit report",
+        "status": "missing",
+        "evidence": [
+          "Q11-08 Financial Readiness Audit not implemented / not injected"
+        ]
+      },
+      {
+        "itemId": "chk-011",
+        "category": "readiness",
+        "label": "monitoring-runtime production readiness evidence",
+        "status": "certified",
+        "evidence": [
+          "monitoring-runtime: bound; probes=getState,getDashboard"
+        ]
+      },
+      {
+        "itemId": "chk-012",
+        "category": "readiness",
+        "label": "audit-runtime production readiness evidence",
+        "status": "certified",
+        "evidence": [
+          "audit-runtime: bound; probes=getState,query"
+        ]
+      },
+      {
+        "itemId": "chk-013",
+        "category": "readiness",
+        "label": "executive-reporting-runtime production readiness evidence",
+        "status": "certified",
+        "evidence": [
+          "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+        ]
+      },
+      {
+        "itemId": "chk-014",
+        "category": "governance",
+        "label": "Grand King final production deployment authority preserved",
+        "status": "certified",
+        "evidence": [
+          "Executive Acceptance Pack never approves production deployment directly"
+        ]
+      }
+    ],
+    "supportingEvidence": [
+      "production-certification-core: handle bound",
+      "reportId=pccrt-rpt",
+      "shared-runtime-certification: handle bound",
+      "reportId=srcrt-rpt",
+      "worker-readiness-audit: handle bound",
+      "reportId=Q11-02-rpt",
+      "pillow-command-audit: handle bound",
+      "reportId=Q11-03-rpt",
+      "business-factory-audit: handle bound",
+      "reportId=Q11-04-rpt",
+      "security-audit: handle bound",
+      "reportId=Q11-05-rpt",
+      "performance-audit: handle bound",
+      "reportId=Q11-06-rpt",
+      "recovery-audit: handle bound",
+      "reportId=Q11-07-rpt",
+      "Q11-08 Financial Readiness Audit not implemented / not injected",
+      "monitoring-runtime: bound; probes=getState,getDashboard",
+      "audit-runtime: bound; probes=getState,query",
+      "executive-reporting-runtime: bound; probes=getState,submitWorkerReport"
+    ],
+    "auditReference": "eaprt:eaprt-rpt-0001",
+    "generationTimestamp": "2026-08-05T01:37:53.276Z"
+  },
+  "decision": "withhold",
+  "auditStatus": "blocked",
+  "validation": {
+    "validationReportId": "eaprt-val-1785893873276",
+    "validationTimestamp": "2026-08-05T01:37:53.276Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 7,
+    "metadataVersion": "EAPRT-001-v1"
+  },
+  "integrationSummary": {
+    "verifiedAt": "2026-08-05T01:37:53.271Z",
+    "rows": [
+      {
+        "target": "financial_readiness_audit",
+        "bound": false,
+        "evidence": "financial_readiness_audit not injected"
+      },
+      {
+        "target": "production_certification_core",
+        "bound": true,
+        "evidence": "production_certification_core handle injected"
+      },
+      {
+        "target": "shared_runtime_certification",
+        "bound": true,
+        "evidence": "shared_runtime_certification handle injected"
+      },
+      {
+        "target": "worker_readiness_audit",
+        "bound": true,
+        "evidence": "worker_readiness_audit handle injected"
+      },
+      {
+        "target": "pillow_command_audit",
+        "bound": true,
+        "evidence": "pillow_command_audit handle injected"
+      },
+      {
+        "target": "business_factory_audit",
+        "bound": true,
+        "evidence": "business_factory_audit handle injected"
+      },
+      {
+        "target": "security_audit",
+        "bound": true,
+        "evidence": "security_audit handle injected"
+      },
+      {
+        "target": "performance_audit",
+        "bound": true,
+        "evidence": "performance_audit handle injected"
+      },
+      {
+        "target": "recovery_audit",
+        "bound": true,
+        "evidence": "recovery_audit handle injected"
+      },
+      {
+        "target": "executive_reporting_runtime",
+        "bound": true,
+        "evidence": "executive_reporting_runtime handle injected"
+      },
+      {
+        "target": "audit_runtime",
+        "bound": true,
+        "evidence": "audit_runtime handle injected"
+      },
+      {
+        "target": "monitoring_runtime",
+        "bound": true,
+        "evidence": "monitoring_runtime handle injected"
+      }
+    ],
+    "totalTargets": 12,
+    "boundCount": 11,
+    "allBound": false,
+    "evidence": [
+      "financial_readiness_audit not injected",
+      "production_certification_core handle injected",
+      "shared_runtime_certification handle injected",
+      "worker_readiness_audit handle injected",
+      "pillow_command_audit handle injected",
+      "business_factory_audit handle injected",
+      "security_audit handle injected",
+      "performance_audit handle injected",
+      "recovery_audit handle injected",
+      "executive_reporting_runtime handle injected",
+      "audit_runtime handle injected",
+      "monitoring_runtime handle injected"
+    ]
+  },
+  "governanceSummary": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "executiveAcceptancePackRequired": true,
+    "selfDocPresent": true,
+    "selfDocPath": "docs/governance/EMPIREAI_EXECUTIVE_ACCEPTANCE_PACK_SYSTEM.md",
+    "boundaryLocksHonoured": true,
+    "evidence": [
+      "Governance doc present: docs/governance/EMPIREAI_EXECUTIVE_ACCEPTANCE_PACK_SYSTEM.md"
+    ]
+  },
+  "q1109ContractConsumed": {
+    "attempted": false,
+    "consumed": false,
+    "contractVersion": null,
+    "fields": [],
+    "evidence": "Q11-08 Financial Readiness Audit not implemented / not injected"
+  },
+  "consumableByQ1110": true,
+  "neverImplementQ1110OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "ninthQ11Gate": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q11-09:executive-acceptance-pack",
+    "q11-08:financial-readiness-audit",
+    "pillow:executive-acceptance-gate",
+    "docs/governance/EMPIREAI_EXECUTIVE_ACCEPTANCE_PACK_SYSTEM.md"
+  ],
+  "runTimestamp": "2026-08-05T01:37:53.276Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutablePackHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicPackBehaviour": true,
+  "maskSensitiveValues": true,
+  "neverFabricateAcceptanceEvidence": true,
+  "neverHideFailedAudits": true,
+  "neverApproveProductionDeployment": true,
+  "neverOverrideFailedCertifications": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

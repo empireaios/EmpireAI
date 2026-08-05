@@ -1,0 +1,60 @@
+{
+  "missionId": "Q2-01",
+  "doctrine": "PILLOW-EBF-001",
+  "moduleId": "empire-builder-factory-core",
+  "metadataVersion": "EBF-001-v1",
+  "missionVersion": "EBF-BBM-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Turn a Grand King command into a complete business-building mission.",
+  "prerequisites": [
+    { "missionId": "Q1-13", "doctrine": "PILLOW-WFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverInterpretDetailedBusinessStrategy": true,
+    "neverGenerateBusinessModels": true,
+    "neverResearchMarkets": true,
+    "neverAssignWorkers": true,
+    "neverExecuteBusinesses": true,
+    "neverLaunchBusinesses": true,
+    "neverImplementQ202OrLater": true
+  },
+  "businessBuildMissionFields": [
+    "businessBuildMissionId",
+    "timestamp",
+    "originalCommand",
+    "businessType",
+    "missionObjective",
+    "expectedBusinessOutput",
+    "currentStatus",
+    "requiredNextStep",
+    "approvalStatus",
+    "traceabilityReference",
+    "metadataVersion"
+  ],
+  "businessTypes": [
+    "media",
+    "commerce",
+    "local_cleaning",
+    "affiliate",
+    "digital_product",
+    "local_services",
+    "saas",
+    "agency",
+    "unknown"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/empire-builder-factory-core.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-builder-factory-core/",
+    "config": "config/empire-builder-factory-core.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EMPIRE_BUILDER_FACTORY_CORE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/empire-builder-factory-core-bridge.ts",
+    "tests": "pillow/src/validation/tests/empire-builder-factory-core.test.ts"
+  },
+  "notes": [
+    "Isolated mission-container service; public pillow index aliases EbfBusinessBuildMissionRecord to avoid collision with backend business-build-engine types."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "missionId": "Q9-11",
+  "engineVersion": "PILLOW-CAPCRT-001",
+  "workerId": "wkr-capital-factory-certification-01",
+  "status": "FINAL PASS",
+  "certificationDecision": "Certified",
+  "confidenceScore": 1,
+  "workersCertified": 10,
+  "workersTotal": 10,
+  "repositoryRootEvidence": true,
+  "runtimeProbesOptional": true,
+  "neverImplementQ10OrLater": true,
+  "evidenceBasedOnly": true,
+  "structuralSignalOnly": true,
+  "tests": {
+    "capital-factory-certification.test.ts": "12/12 pass"
+  },
+  "regression": {
+    "capital-risk-worker.test.ts": "12/12 pass"
+  },
+  "wiring": {
+    "bindsCapitalFactoryCore": true,
+    "bindsAccountingWorker": true,
+    "bindsCashflowWorker": true,
+    "bindsBudgetPlanningWorker": true,
+    "bindsProfitabilityWorker": true,
+    "bindsForecastingWorker": true,
+    "bindsTaxSupportWorker": true,
+    "bindsInvestmentPlanningWorker": true,
+    "bindsFinancialReportingWorker": true,
+    "bindsCapitalRiskWorker": true,
+    "bindsExecutiveReportingRuntime": true,
+    "bindsWorkerRegistry": true,
+    "bindsWorkerLifecycle": true,
+    "bindsWorkerRecoverySystem": true
+  }
+}

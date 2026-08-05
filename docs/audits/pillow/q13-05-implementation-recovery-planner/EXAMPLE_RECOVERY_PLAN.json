@@ -1,0 +1,28 @@
+{
+  "recoveryId": "irpln-rec-0001",
+  "version": "IRPLN-001-v1",
+  "programme": "Q13",
+  "missionId": "Q13-05",
+  "filesToPreserve": ["pillow/src/cursor-specification-generator/"],
+  "filesRequiringExtension": [],
+  "recoverySequence": [
+    {
+      "stepId": "step-1",
+      "order": 1,
+      "action": "preserve",
+      "target": "pillow/src/cursor-specification-generator/",
+      "description": "Preserve verified implementation",
+      "rationale": "neverOverwriteVerifiedImplementations"
+    },
+    {
+      "stepId": "step-2",
+      "order": 2,
+      "action": "create",
+      "target": "pillow/src/implementation-recovery-planner-nonexistent/",
+      "description": "Create missing implementation",
+      "rationale": "minimise recovery scope"
+    }
+  ],
+  "estimatedRecoveryScope": "moderate",
+  "timestamp": "2026-08-05T08:00:00.000Z"
+}

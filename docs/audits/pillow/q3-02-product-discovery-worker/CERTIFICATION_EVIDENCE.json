@@ -1,0 +1,53 @@
+{
+  "missionId": "Q3-02",
+  "doctrine": "PILLOW-PDW-001",
+  "moduleId": "product-discovery-worker",
+  "metadataVersion": "PDW-001-v1",
+  "reportVersion": "PDW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Find product opportunities from marketplaces, suppliers, search trends, and customer demand.",
+  "prerequisites": [
+    { "missionId": "Q3-01", "doctrine": "PILLOW-CMF-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverEvaluateProducts": true,
+    "neverRankProducts": true,
+    "neverSelectSuppliers": true,
+    "neverBuildListings": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ303OrLater": true
+  },
+  "productDiscoveryReportFields": [
+    "discoveryId",
+    "timestamp",
+    "businessMissionId",
+    "productId",
+    "productName",
+    "category",
+    "discoverySource",
+    "marketplace",
+    "supplier",
+    "searchTrendSignals",
+    "customerDemandSignals",
+    "discoveryReason",
+    "confidenceScore",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/product-discovery-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/product-discovery-worker/",
+    "config": "config/product-discovery-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PRODUCT_DISCOVERY_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/product-discovery-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/product-discovery-worker.test.ts"
+  },
+  "notes": [
+    "Discovery-only Commerce Factory worker; public pillow index aliases PdwProductDiscoveryReport to avoid collision with backend product-discovery-opportunity-engine."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "missionId": "Q7-08",
+  "doctrine": "PILLOW-LGW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/lead-generation-worker/",
+  "metadataVersion": "LGW-001-v1",
+  "reportVersion": "LGW-RPT-v1",
+  "workerId": "wkr-lead-generation-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS",
+    "Q7-04": "FINAL PASS",
+    "Q7-05": "FINAL PASS",
+    "Q7-06": "FINAL PASS",
+    "Q7-07": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverExecuteAdvertisingCampaigns": true,
+    "neverReplaceCrm": true,
+    "neverReplaceBookingWorker": true,
+    "neverDeliverCustomerJobs": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricateLeadOrConversionResults": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ709OrLater": true,
+    "preserveCompleteLeadTraceability": true,
+    "preserveFunnelAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowLeadGenerationWorker": true,
+    "subsystemRegistry": "lead-generation-worker",
+    "hostRoutes": "/api/pillow/lead-generation-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/lead-generation-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_LEAD_GENERATION_WORKER_SYSTEM.md",
+    "config": "config/lead-generation-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsCrmWorker": true,
+    "bindsWhatsAppWorker": true,
+    "bindsLocalSeoWorker": true,
+    "bindsBookingWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/lead-generation-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "localSeoWorker": "12/12",
+    "crmWorker": "12/12",
+    "bookingWorker": "12/12"
+  },
+  "evidence": [
+    "consumes approved Q7-07 local SEO fixtures",
+    "lead funnel + enquiry form + capture + qualification + scoring",
+    "CRM / booking routing via injected workers only",
+    "funnel metrics from observed captures only — never fabricated",
+    "Lead Generation Report with consumableByQ709",
+    "ERR submit when executiveReportingRuntime injected",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "leadGenerationWorker": "12/12",
+    "localSeoWorkerRegression": "12/12",
+    "crmWorkerRegression": "12/12",
+    "bookingWorkerRegression": "12/12"
+  }
+}

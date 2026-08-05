@@ -1,0 +1,93 @@
+{
+  "reportId": "apvrt-rpt-example-001",
+  "timestamp": "2026-08-04T06:40:00.000Z",
+  "runtimeVersion": "Q10-APVRT-v1",
+  "activeApprovalRequests": [
+    {
+      "approvalId": "apvrt-apr-example-01",
+      "requestId": "req-demo-01",
+      "missionId": "M-APVRT-DEMO",
+      "factory": "pillow-factory",
+      "worker": "wkr-demo-01",
+      "approvalType": "multi_stage",
+      "approvalPolicy": "pol-multi-stage-ops",
+      "requestedApprover": "pillow",
+      "currentApprover": "factory_lead",
+      "currentStatus": "routed",
+      "stageIndex": 1,
+      "maxStages": 3,
+      "auditReference": "audit://approval/apvrt-apr-example-01",
+      "fabricated": false,
+      "structuralSignalOnly": true
+    }
+  ],
+  "pendingApprovals": [
+    {
+      "approvalId": "apvrt-apr-example-01",
+      "currentStatus": "routed",
+      "currentApprover": "factory_lead"
+    }
+  ],
+  "approvedRequests": [
+    {
+      "approvalId": "apvrt-apr-example-02",
+      "approvalPolicy": "pol-pillow-standard",
+      "currentStatus": "resumed",
+      "resumeToken": "resume://structural/apvrt-apr-example-02"
+    }
+  ],
+  "rejectedRequests": [
+    {
+      "approvalId": "apvrt-apr-example-03",
+      "approvalPolicy": "pol-grand-king-restricted",
+      "currentStatus": "rejected",
+      "resumeBlocked": true
+    }
+  ],
+  "escalatedRequests": [],
+  "approvalTimelines": [
+    {
+      "approvalId": "apvrt-apr-example-02",
+      "submittedAt": "2026-08-04T06:35:00.000Z",
+      "decidedAt": "2026-08-04T06:36:00.000Z",
+      "resumedAt": "2026-08-04T06:36:05.000Z",
+      "stageCount": 1
+    }
+  ],
+  "governanceSummary": {
+    "totalPolicies": 5,
+    "pillowEnforced": true,
+    "grandKingEnforced": true,
+    "unauthorizedExecutionPrevented": true,
+    "autoApproveRestrictedBlocked": true,
+    "notes": ["Enterprise approval governance operational — structural decisions only"]
+  },
+  "supportingEvidence": [
+    "approval-runtime operational evidence",
+    "config/approval-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 90,
+  "metadataVersion": "APVRT-001-v1",
+  "reportVersion": "APVRT-RPT-v1",
+  "workerId": "wkr-approval-runtime-01",
+  "consumableByQ1010": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverFabricateApprovalDecisions": true,
+  "neverAutoApproveRestrictedActions": true,
+  "neverImplementQ1010OrLater": true,
+  "neverReplaceBusinessLogic": true,
+  "neverReplaceWorkerImplementations": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "preserveCompleteTraceability": true,
+  "preserveApprovalHistory": true,
+  "preserveAuditHistory": true,
+  "preventUnauthorizedExecution": true,
+  "deterministicApprovalRouting": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

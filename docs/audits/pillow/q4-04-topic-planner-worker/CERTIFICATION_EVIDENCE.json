@@ -1,0 +1,64 @@
+{
+  "missionId": "Q4-04",
+  "doctrine": "PILLOW-TPW-001",
+  "moduleId": "topic-planner-worker",
+  "metadataVersion": "TPW-001-v1",
+  "planVersion": "TPW-PLAN-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Select daily topics per approved channel without waiting for Grand King prompts.",
+  "prerequisites": [
+    { "missionId": "Q4-03", "doctrine": "PILLOW-TRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-02", "doctrine": "PILLOW-ECW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverWriteScripts": true,
+    "neverGenerateVisuals": true,
+    "neverProduceVideos": true,
+    "neverPublishContent": true,
+    "neverBypassPillowGovernance": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ405OrLater": true,
+    "neverRequireGrandKingDailyPrompts": true
+  },
+  "topicPlanFields": [
+    "topicPlanId",
+    "timestamp",
+    "channelId",
+    "publishingDate",
+    "selectedTopics",
+    "topicPriority",
+    "selectionReason",
+    "editorialAlignment",
+    "trendAlignment",
+    "expectedAudience",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "editor_in_chief_worker",
+    "trend_research_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/topic-planner-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/topic-planner-worker/",
+    "config": "config/topic-planner-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_TOPIC_PLANNER_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/topic-planner-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/topic-planner-worker.test.ts"
+  },
+  "notes": [
+    "Planning-only: selects daily topics under Pillow governance without daily Grand King prompts; does not create or publish content."
+  ]
+}

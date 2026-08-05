@@ -1,0 +1,57 @@
+{
+  "missionId": "Q0-16",
+  "doctrine": "PILLOW-DMEM-001",
+  "moduleId": "decision-memory",
+  "metadataVersion": "DMEM-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Stores decisions, reasons, evidence, assumptions, confidence, alternatives and final outcomes.",
+  "boundaries": {
+    "neverMakeDecisions": true,
+    "neverExecuteWork": true,
+    "neverReplaceExecutionMemory": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "decisionRecordFields": [
+    "decisionId",
+    "timestamp",
+    "executiveObjective",
+    "businessId",
+    "missionId",
+    "decisionSummary",
+    "recommendedOption",
+    "alternativeOptions",
+    "decisionRationale",
+    "supportingEvidence",
+    "assumptions",
+    "riskAssessment",
+    "confidenceScore",
+    "approvalStatus",
+    "finalOutcome",
+    "relatedWorkers",
+    "metadataVersion"
+  ],
+  "lookupDimensions": [
+    "decision_id",
+    "business",
+    "mission",
+    "worker",
+    "outcome",
+    "confidence",
+    "date",
+    "approval_status"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/decision-memory.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/decision-memory/",
+    "config": "config/decision-memory.config.json",
+    "doctrine": "docs/governance/EMPIREAI_DECISION_MEMORY_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/decision-memory-bridge.ts",
+    "tests": "pillow/src/validation/tests/decision-memory.test.ts"
+  },
+  "idCollisionNote": "PILLOW-DE-001 reserved for Decision Engine (Q0-05); Q0-16 uses PILLOW-DMEM-001"
+}

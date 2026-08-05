@@ -1,0 +1,32 @@
+{
+  "briefId": "seow-brief-0048",
+  "title": "TrailBackpack Pro SEO article brief",
+  "primaryKeyword": "best travel backpack",
+  "secondaryKeywords": [
+    "TrailBackpack Pro review"
+  ],
+  "searchIntent": "commercial",
+  "audience": "buyers evaluating evidenced recommendations",
+  "outline": [
+    "Introduction to TrailBackpack Pro",
+    "Key features and evidence",
+    "Pros and cons",
+    "Who it is for",
+    "Buying considerations",
+    "FAQ",
+    "Conclusion"
+  ],
+  "metaTitle": "best travel backpack",
+  "metaDescription": "Evidence-based review of TrailBackpack Pro.",
+  "faqPrompts": [
+    "What is the best travel_gear?",
+    "Who should buy TrailBackpack Pro?",
+    "What are the main drawbacks of TrailBackpack Pro?"
+  ],
+  "evidenceNotes": [
+    "review_report:rcw-rpt-0001",
+    "primary_keyword:best travel backpack",
+    "No ranking/traffic performance claims included"
+  ],
+  "fabricated": false
+}

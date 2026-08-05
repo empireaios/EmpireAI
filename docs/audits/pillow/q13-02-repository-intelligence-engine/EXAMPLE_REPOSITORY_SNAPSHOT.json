@@ -1,0 +1,61 @@
+{
+  "repositorySnapshotId": "rieng-snap-000001",
+  "repositoryVersion": "example-v1",
+  "repositoryFingerprint": "abc123def456",
+  "moduleInventory": [
+    {
+      "moduleId": "pillow-src-repository-intelligence-engine",
+      "path": "pillow/src/repository-intelligence-engine",
+      "fileCount": 15,
+      "sourceTypes": ["typescript"],
+      "evidencePaths": ["pillow/src/repository-intelligence-engine/engine.ts"]
+    }
+  ],
+  "serviceInventory": [
+    {
+      "serviceId": "engine-pillow-src-repository-intelligence-engine-engine-ts",
+      "kind": "engine",
+      "path": "pillow/src/repository-intelligence-engine/engine.ts",
+      "exportHints": ["RepositoryIntelligenceEngine", "createRepositoryIntelligenceEngine"],
+      "evidencePaths": ["pillow/src/repository-intelligence-engine/engine.ts"]
+    }
+  ],
+  "dependencyGraph": {
+    "nodes": [{ "id": "pillow/src/repository-intelligence-engine/engine.ts", "path": "pillow/src/repository-intelligence-engine/engine.ts", "kind": "file" }],
+    "edges": [],
+    "cycles": [],
+    "unresolvedCount": 0,
+    "externalCount": 0,
+    "internalCount": 0,
+    "computedAt": "2026-08-05T00:00:00.000Z"
+  },
+  "integrationGraph": {
+    "nodes": [],
+    "edges": [],
+    "computedAt": "2026-08-05T00:00:00.000Z"
+  },
+  "architectureLayers": [
+    {
+      "layer": "pillow",
+      "pathCount": 15,
+      "moduleCount": 1,
+      "constraints": ["Pillow runtime modules must not import backend internals directly"],
+      "violations": [],
+      "evidencePaths": ["pillow/src/repository-intelligence-engine/engine.ts"]
+    }
+  ],
+  "existingImplementations": [
+    {
+      "identity": "PILLOW-RIENG-001",
+      "missionId": null,
+      "engineId": "PILLOW-RIENG-001",
+      "paths": ["pillow/src/repository-intelligence-engine/engine.ts"],
+      "evidence": ["pillow/src/repository-intelligence-engine/engine.ts:PILLOW-RIENG-001"]
+    }
+  ],
+  "reusableComponents": [],
+  "technicalDebtFindings": [],
+  "conflicts": [],
+  "risks": [],
+  "timestamp": "2026-08-05T00:00:00.000Z"
+}

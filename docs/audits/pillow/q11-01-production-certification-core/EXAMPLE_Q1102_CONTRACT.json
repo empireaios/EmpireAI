@@ -1,0 +1,64 @@
+{
+  "contractId": "pccrt-q1102-contract-v1",
+  "contractVersion": "PCCRT-001-v1",
+  "producedBy": "production-certification-core",
+  "missionId": "Q11-01",
+  "consumerMissionId": "Q11-02",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "certificationScope",
+    "factorySummary",
+    "workerSummary",
+    "runtimeSummary",
+    "governanceSummary",
+    "readinessSummary",
+    "evidenceSummary",
+    "failedItems",
+    "outstandingRisks",
+    "auditStatus",
+    "confidenceScore",
+    "certificationDecision",
+    "programmeInventory",
+    "certificationResults"
+  ],
+  "programmeCatalog": [
+    "workforce_certification",
+    "runtime_certification",
+    "factory_certification",
+    "governance_certification",
+    "reporting_certification",
+    "integration_certification",
+    "security_certification",
+    "performance_certification",
+    "recovery_certification",
+    "financial_readiness_certification",
+    "executive_certification",
+    "custom_extension"
+  ],
+  "certificationStatusCatalog": [
+    "Certified",
+    "Partially Certified",
+    "Failed Certification",
+    "Blocked",
+    "Deferred",
+    "Registered",
+    "Discovered",
+    "Pending"
+  ],
+  "certificationDecisionCatalog": [
+    "Certified",
+    "Conditionally_Certified",
+    "Not_Certified",
+    "Failed",
+    "Deferred"
+  ],
+  "notes": [
+    "Structural contract for Q11-02 Worker Readiness Audit — production certification evidence only",
+    "Production Certification Core never fabricates certification evidence and never certifies missing capabilities",
+    "neverImplementQ1102OrLater remains locked — this module does not implement Worker Readiness Audit",
+    "Coordinates Q11 programmes; does not replace individual audit programmes"
+  ],
+  "neverImplementQ1102OrLater": true,
+  "structuralSignalOnly": true
+}

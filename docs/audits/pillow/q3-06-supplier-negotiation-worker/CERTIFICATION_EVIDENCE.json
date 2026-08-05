@@ -1,0 +1,52 @@
+{
+  "missionId": "Q3-06",
+  "doctrine": "PILLOW-SNW-001",
+  "moduleId": "supplier-negotiation-worker",
+  "metadataVersion": "SNW-001-v1",
+  "reportVersion": "SNW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Prepare negotiation messages, MOQ questions, shipping terms, and supplier comparisons.",
+  "prerequisites": [
+    { "missionId": "Q3-05", "doctrine": "PILLOW-SEW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverContactSuppliers": true,
+    "neverCommitAgreements": true,
+    "neverPlaceOrders": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ307OrLater": true
+  },
+  "supplierNegotiationReportFields": [
+    "negotiationId",
+    "timestamp",
+    "productId",
+    "candidateSuppliers",
+    "preferredSupplier",
+    "comparisonSummary",
+    "moqNegotiation",
+    "priceNegotiation",
+    "shippingNegotiation",
+    "fulfilmentQuestions",
+    "refundQuestions",
+    "draftNegotiationMessage",
+    "recommendation",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/supplier-negotiation-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/supplier-negotiation-worker/",
+    "config": "config/supplier-negotiation-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_SUPPLIER_NEGOTIATION_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/supplier-negotiation-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/supplier-negotiation-worker.test.ts"
+  },
+  "notes": [
+    "Supplier-negotiation-preparation-only Commerce Factory worker; public pillow index aliases SnwSupplierNegotiationReport."
+  ]
+}

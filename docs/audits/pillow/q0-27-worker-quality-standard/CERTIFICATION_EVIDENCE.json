@@ -1,0 +1,52 @@
+{
+  "missionId": "Q0-27",
+  "doctrine": "PILLOW-WQS-001",
+  "moduleId": "worker-quality-standard",
+  "metadataVersion": "WQS-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Applies common standards to every worker: reasoning, self-critique, confidence scoring, evidence and tool discipline.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkerImplementations": true,
+    "neverReplacePeerReviewRuntime": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "qualityRecordFields": [
+    "qualityRecordId",
+    "timestamp",
+    "workerId",
+    "missionId",
+    "reasoningSummary",
+    "confidenceScore",
+    "evidence",
+    "assumptions",
+    "limitations",
+    "validationResult",
+    "governanceCompliance",
+    "metadataVersion"
+  ],
+  "qualityStandards": [
+    "structured_reasoning",
+    "self_validation",
+    "confidence_scoring",
+    "evidence_tracking",
+    "assumption_recording",
+    "limitation_reporting",
+    "traceability",
+    "governance_compliance",
+    "standard_reporting"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-quality-standard.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-quality-standard/",
+    "config": "config/worker-quality-standard.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_QUALITY_STANDARD_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-quality-standard-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-quality-standard.test.ts"
+  }
+}

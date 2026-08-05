@@ -1,0 +1,68 @@
+{
+  "missionId": "Q8-05",
+  "doctrine": "PILLOW-SEOW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/seo-content-worker/",
+  "metadataVersion": "SEOW-001-v1",
+  "reportVersion": "SEOW-RPT-v1",
+  "workerId": "wkr-seo-content-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS",
+    "Q8-02": "FINAL PASS",
+    "Q8-03": "FINAL PASS",
+    "Q8-04": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateSeoPerformanceClaims": true,
+    "neverPublishArticles": true,
+    "neverManipulateSearchRankings": true,
+    "neverReplaceAnalyticsWorker": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ806OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowSeoContentWorker": true,
+    "subsystemRegistry": "seo-content-worker",
+    "hostRoutes": "/api/pillow/seo-content-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/seo-content-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_SEO_CONTENT_WORKER_SYSTEM.md",
+    "config": "config/seo-content-worker.config.json",
+    "bindsAffiliateFactoryCore": true,
+    "bindsAffiliateOpportunityWorker": true,
+    "bindsComparisonSiteWorker": true,
+    "bindsReviewContentWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/seo-content-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateFactoryCore": "12/12",
+    "affiliateOpportunityWorker": "12/12",
+    "comparisonSiteWorker": "12/12",
+    "reviewContentWorker": "12/12"
+  },
+  "evidence": [
+    "consumes Affiliate Opportunity Reports and Review Content Reports",
+    "SEO content plan + article brief + SEO article from verified fixtures",
+    "keyword mapping and internal linking recommendations generated",
+    "content completeness evaluated without fabricating performance claims",
+    "SEO Content Report with consumableByQ806 and version history",
+    "ERR submit when executiveReportingRuntime injected",
+    "prior Q8 workers untouched",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "seoContentWorker": "12/12",
+    "reviewContentWorkerRegression": "12/12",
+    "comparisonSiteWorkerRegression": "12/12",
+    "affiliateOpportunityWorkerRegression": "12/12",
+    "affiliateFactoryCoreRegression": "12/12"
+  }
+}

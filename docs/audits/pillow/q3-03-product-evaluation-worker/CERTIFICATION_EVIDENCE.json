@@ -1,0 +1,55 @@
+﻿{
+  "missionId": "Q3-03",
+  "doctrine": "PILLOW-PEW-001",
+  "moduleId": "product-evaluation-worker",
+  "metadataVersion": "PEW-001-v1",
+  "reportVersion": "PEW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Score products by margin, demand, competition, shipping, risk, reviews, and creative potential.",
+  "prerequisites": [
+    { "missionId": "Q3-02", "doctrine": "PILLOW-PDW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverDiscoverProducts": true,
+    "neverSelectSuppliers": true,
+    "neverCreateListings": true,
+    "neverPurchaseInventory": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ304OrLater": true
+  },
+  "productEvaluationReportFields": [
+    "evaluationId",
+    "timestamp",
+    "productId",
+    "productName",
+    "category",
+    "marginScore",
+    "demandScore",
+    "competitionScore",
+    "shippingScore",
+    "riskScore",
+    "reviewScore",
+    "creativePotentialScore",
+    "overallScore",
+    "recommendation",
+    "supportingEvidence",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/product-evaluation-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/product-evaluation-worker/",
+    "config": "config/product-evaluation-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PRODUCT_EVALUATION_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/product-evaluation-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/product-evaluation-worker.test.ts"
+  },
+  "notes": [
+    "Evaluation-only Commerce Factory worker; public pillow index aliases PewProductEvaluationReport."
+  ]
+}

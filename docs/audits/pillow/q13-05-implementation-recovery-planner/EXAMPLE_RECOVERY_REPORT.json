@@ -1,0 +1,12 @@
+{
+  "reportId": "irpln-rpt-0001",
+  "reportVersion": "IRPLN-RPT-v1",
+  "metadataVersion": "IRPLN-001-v1",
+  "engineId": "PILLOW-IRPLN-001",
+  "missionId": "Q13-05",
+  "consumableByQ1306": true,
+  "neverImplementQ1306OrLater": true,
+  "neverExecuteRecovery": true,
+  "neverModifyRepository": true,
+  "confidenceScore": 0.85
+}

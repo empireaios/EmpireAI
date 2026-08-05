@@ -1,0 +1,74 @@
+{
+  "reportId": "qrt-rpt-example-v1",
+  "timestamp": "2026-08-04T01:30:00.000Z",
+  "runtimeVersion": "Q10-QRT-v1",
+  "queueInventory": [
+    {
+      "queueId": "qrt-queue-example-001",
+      "queueName": "enterprise-jobs",
+      "queueType": "priority",
+      "paused": false,
+      "maxRetries": 3,
+      "fabricated": false,
+      "structuralSignalOnly": true
+    }
+  ],
+  "activeJobs": [],
+  "waitingJobs": [],
+  "runningJobs": [],
+  "completedJobs": [
+    {
+      "jobId": "job-high-priority",
+      "status": "completed",
+      "priority": 10
+    },
+    {
+      "jobId": "job-low-priority",
+      "status": "dispatched",
+      "priority": 1
+    }
+  ],
+  "failedJobs": [],
+  "retrySummary": {
+    "totalRetries": 0,
+    "jobsRetried": 0,
+    "jobsDeadLettered": 0,
+    "maxRetriesObserved": 0
+  },
+  "dependencySummary": {
+    "totalDependencies": 0,
+    "satisfiedDependencies": 0,
+    "blockedJobs": 0,
+    "readyJobs": 0
+  },
+  "queueHealth": {
+    "status": "healthy",
+    "healthScore": 85,
+    "pausedQueues": 0,
+    "activeQueues": 1,
+    "backlogSize": 0
+  },
+  "dispatchStatistics": {
+    "totalDispatches": 2,
+    "lastDispatchAt": "2026-08-04T01:00:05.000Z",
+    "highRiskDispatches": 0
+  },
+  "supportingEvidence": [
+    "queue-runtime structural evidence",
+    "config/queue-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 85,
+  "metadataVersion": "QRT-001-v1",
+  "reportVersion": "QRT-RPT-v1",
+  "workerId": "wkr-queue-runtime-01",
+  "consumableByQ1005": true,
+  "neverReplaceWorkerLogic": true,
+  "neverReplaceMissionLogic": true,
+  "neverExecuteBusinessSpecificWork": true,
+  "neverFabricateQueueState": true,
+  "neverImplementQ1005OrLater": true,
+  "deterministicQueueOrdering": true,
+  "structuralSignalOnly": true
+}

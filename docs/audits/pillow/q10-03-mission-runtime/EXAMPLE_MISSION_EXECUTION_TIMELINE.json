@@ -1,0 +1,30 @@
+[
+  {
+    "entryId": "msr-trn-example-001",
+    "timestamp": "2026-08-04T01:20:00.000Z",
+    "label": "Created→Queued",
+    "state": "Queued",
+    "notes": ["Auto-queue for execute"]
+  },
+  {
+    "entryId": "msr-trn-example-002",
+    "timestamp": "2026-08-04T01:20:01.000Z",
+    "label": "Queued→Ready",
+    "state": "Ready",
+    "notes": ["Auto-ready for execute"]
+  },
+  {
+    "entryId": "msr-trn-example-003",
+    "timestamp": "2026-08-04T01:20:02.000Z",
+    "label": "Ready→Running",
+    "state": "Running",
+    "notes": ["Execute mission"]
+  },
+  {
+    "entryId": "msr-trn-example-004",
+    "timestamp": "2026-08-04T01:20:03.000Z",
+    "label": "Running→Completed",
+    "state": "Completed",
+    "notes": ["Execution completed"]
+  }
+]

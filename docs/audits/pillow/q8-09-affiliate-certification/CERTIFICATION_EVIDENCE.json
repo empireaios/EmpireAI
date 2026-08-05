@@ -1,0 +1,91 @@
+{
+  "missionId": "Q8-09",
+  "doctrine": "PILLOW-AFCRT-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/affiliate-certification/",
+  "metadataVersion": "AFCRT-001-v1",
+  "reportVersion": "AFCRT-RPT-v1",
+  "workerId": "wkr-affiliate-certification-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS",
+    "Q8-02": "FINAL PASS",
+    "Q8-03": "FINAL PASS",
+    "Q8-04": "FINAL PASS",
+    "Q8-05": "FINAL PASS",
+    "Q8-06": "FINAL PASS",
+    "Q8-07": "FINAL PASS",
+    "Q8-08": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateVerificationResults": true,
+    "neverCertifyUnsupportedFunctionality": true,
+    "neverImplementMissingFunctionality": true,
+    "neverAutoCorrectFailedImplementations": true,
+    "neverOverrideGovernance": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ901OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveCertificationAuditHistory": true,
+    "finalQ8Gate": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowAffiliateCertification": true,
+    "subsystemRegistry": "affiliate-certification",
+    "hostRoutes": "/api/pillow/affiliate-certification/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/affiliate-certification-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_AFFILIATE_CERTIFICATION_SYSTEM.md",
+    "config": "config/affiliate-certification.config.json",
+    "bindsAffiliateFactoryCore": true,
+    "bindsAffiliateOpportunityWorker": true,
+    "bindsComparisonSiteWorker": true,
+    "bindsReviewContentWorker": true,
+    "bindsSeoContentWorker": true,
+    "bindsEmailFunnelWorker": true,
+    "bindsAnalyticsWorker": true,
+    "bindsAffiliateComplianceWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/affiliate-certification.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateComplianceWorker": "12/12",
+    "analyticsWorker": "12/12"
+  },
+  "certificationDecision": "Certified",
+  "componentStatusMatrix": {
+    "Q8-01": "Completed",
+    "Q8-02": "Completed",
+    "Q8-03": "Completed",
+    "Q8-04": "Completed",
+    "Q8-05": "Completed",
+    "Q8-06": "Completed",
+    "Q8-07": "Completed",
+    "Q8-08": "Completed"
+  },
+  "evidence": [
+    "all Q8-01..Q8-08 modules present with FINAL PASS CERTIFICATION_EVIDENCE.json",
+    "session.ts + subsystem-registry wiring verified for every Q8 worker",
+    "integrations verified from repository bind evidence",
+    "production/governance/operational readiness evaluated from observed evidence",
+    "fail-closed certification decision Certified with confidenceScore=1",
+    "Affiliate Certification Report AFCRT-RPT-v1 / AFCRT-001-v1",
+    "ERR submit when executiveReportingRuntime injected",
+    "prior Q8 workers untouched",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "affiliateCertification": "12/12",
+    "affiliateComplianceWorkerRegression": "12/12",
+    "analyticsWorkerRegression": "12/12"
+  },
+  "exampleArtifacts": [
+    "EXAMPLE_COMPONENT_STATUS_MATRIX.json",
+    "EXAMPLE_PRODUCTION_READINESS.json",
+    "EXAMPLE_AFFILIATE_CERTIFICATION_REPORT.json"
+  ]
+}

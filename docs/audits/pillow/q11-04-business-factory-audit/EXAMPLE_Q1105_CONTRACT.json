@@ -1,0 +1,30 @@
+{
+  "contractId": "q1105-contract-BFART-001-v1",
+  "contractVersion": "BFART-001-v1",
+  "producedBy": "business-factory-audit",
+  "missionId": "Q11-04",
+  "consumerMissionId": "Q11-05",
+  "exposedFields": [
+    "assessments",
+    "factoryReadinessSummary",
+    "decision",
+    "factoryInventory",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "decisionCatalog": ["certify", "withhold", "escalate", "defer"],
+  "notes": [
+    "Business Factory Audit Q11-04 certified — stops at Q11-04, exposes Q1105ConsumableContract for Q11-05 (Security Audit)",
+    "This contract is structural-signal-only; Q11-04 never implements Q11-05 or any later mission itself"
+  ],
+  "neverImplementQ1105OrLater": true,
+  "structuralSignalOnly": true
+}

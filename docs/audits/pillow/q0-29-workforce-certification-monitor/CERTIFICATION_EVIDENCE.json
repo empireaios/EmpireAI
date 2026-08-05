@@ -1,0 +1,64 @@
+{
+  "missionId": "Q0-29",
+  "doctrine": "PILLOW-WCM-001",
+  "moduleId": "workforce-certification-monitor",
+  "metadataVersion": "WCM-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Continuously verifies that workers remain usable, reachable, governed and fit for task assignment.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverRepairWorkersAutomatically": true,
+    "neverReplaceWorkerQualityStandard": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "certificationRecordFields": [
+    "certificationId",
+    "timestamp",
+    "workerId",
+    "workerName",
+    "department",
+    "certificationStatus",
+    "availabilityStatus",
+    "capabilityStatus",
+    "toolAccessStatus",
+    "governanceStatus",
+    "runtimeHealth",
+    "qualityCompliance",
+    "certificationIssues",
+    "recommendedAction",
+    "metadataVersion"
+  ],
+  "certificationChecks": [
+    "registration",
+    "reachability",
+    "capability",
+    "approved_tool_access",
+    "runtime_health",
+    "governance_compliance",
+    "quality_standard_compliance",
+    "self_critique_compliance",
+    "dependency_health",
+    "executive_readiness"
+  ],
+  "certificationStatuses": [
+    "certified",
+    "provisionally_certified",
+    "suspended",
+    "decertified",
+    "pending_review",
+    "offline"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/workforce-certification-monitor.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/workforce-certification-monitor/",
+    "config": "config/workforce-certification-monitor.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKFORCE_CERTIFICATION_MONITOR_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/workforce-certification-monitor-bridge.ts",
+    "tests": "pillow/src/validation/tests/workforce-certification-monitor.test.ts"
+  }
+}

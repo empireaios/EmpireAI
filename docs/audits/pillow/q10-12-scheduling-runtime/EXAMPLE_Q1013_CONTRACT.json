@@ -1,0 +1,47 @@
+{
+  "contractId": "schrt-q1013-contract-v1",
+  "contractVersion": "SCHRT-001-v1",
+  "producedBy": "scheduling-runtime",
+  "missionId": "Q10-12",
+  "consumerMissionId": "Q10-13",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "activeSchedules",
+    "upcomingExecutions",
+    "completedExecutions",
+    "missedExecutions",
+    "eventTriggers",
+    "schedulingStatistics",
+    "conflictSummary",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "scheduleTypeCatalog": [
+    "one_time",
+    "daily",
+    "weekly",
+    "monthly",
+    "cron",
+    "event_driven",
+    "delayed",
+    "custom_extension"
+  ],
+  "triggerTypeCatalog": [
+    "time",
+    "event",
+    "manual",
+    "dependency",
+    "custom_extension"
+  ],
+  "notes": [
+    "Structural contract for Q10-13 Audit Runtime — scheduling evidence only",
+    "Scheduling Runtime never fabricates execution times",
+    "neverImplementQ1013OrLater remains locked — this module does not implement Audit Runtime",
+    "Does not replace Queue Runtime or Mission Runtime"
+  ],
+  "neverImplementQ1013OrLater": true,
+  "structuralSignalOnly": true
+}

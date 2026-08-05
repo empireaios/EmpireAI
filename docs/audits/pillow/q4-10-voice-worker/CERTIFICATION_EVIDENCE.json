@@ -1,0 +1,52 @@
+{
+  "missionId": "Q4-10",
+  "missionName": "Voice Worker",
+  "doctrineId": "PILLOW-VOW-001",
+  "moduleId": "voice-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-07-24T00:00:00.000Z",
+  "metadataVersion": "VOW-001-v1",
+  "reportSchemaVersion": "VOW-RPT-v1",
+  "validation": {
+    "testFile": "pillow/src/validation/tests/voice-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved scripts",
+    "Prepare narration segments",
+    "Configure voice generation settings",
+    "Support multiple voice profiles",
+    "Support multiple languages",
+    "Control pacing and pronunciation",
+    "Generate voiceover assets",
+    "Validate voice quality",
+    "Generate alternate voice versions",
+    "Produce machine-readable Voice Reports"
+  ],
+  "boundariesVerified": [
+    "Does not rewrite scripts",
+    "Does not assemble videos",
+    "Does not publish media",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q4-11 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Script Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/voice-worker/",
+    "config/voice-worker.config.json",
+    "docs/governance/EMPIREAI_VOICE_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q4-10-voice-worker/Q4_10_VOICE_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/voice-worker-bridge.ts"
+  ]
+}

@@ -1,0 +1,761 @@
+{
+  "reportId": "afcrt-rpt-0001",
+  "timestamp": "2026-08-03T01:47:06.579Z",
+  "factoryName": "Affiliate Factory",
+  "certificationScope": [
+    "Q8-01",
+    "Q8-02",
+    "Q8-03",
+    "Q8-04",
+    "Q8-05",
+    "Q8-06",
+    "Q8-07",
+    "Q8-08"
+  ],
+  "componentStatusMatrix": [
+    {
+      "missionId": "Q8-01",
+      "missionName": "affiliate-factory-core",
+      "subsystemId": "affiliate-factory-core",
+      "modulePath": "pillow/src/affiliate-factory-core/",
+      "expectedDeliverable": "Affiliate Factory Core registration, mission lifecycle, and Q8 worker coordination",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/affiliate-factory-core/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_AFFILIATE_FACTORY_CORE_SYSTEM.md",
+      "configEvidence": "config file present at config/affiliate-factory-core.config.json"
+    },
+    {
+      "missionId": "Q8-02",
+      "missionName": "affiliate-opportunity-worker",
+      "subsystemId": "affiliate-opportunity-worker",
+      "modulePath": "pillow/src/affiliate-opportunity-worker/",
+      "expectedDeliverable": "Evidence-driven affiliate opportunity scoring and Affiliate Opportunity Reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/affiliate-opportunity-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_AFFILIATE_OPPORTUNITY_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/affiliate-opportunity-worker.config.json"
+    },
+    {
+      "missionId": "Q8-03",
+      "missionName": "comparison-site-worker",
+      "subsystemId": "comparison-site-worker",
+      "modulePath": "pillow/src/comparison-site-worker/",
+      "expectedDeliverable": "Comparison site structure and Comparison Site Reports derived from opportunity packages",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/comparison-site-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_COMPARISON_SITE_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/comparison-site-worker.config.json"
+    },
+    {
+      "missionId": "Q8-04",
+      "missionName": "review-content-worker",
+      "subsystemId": "review-content-worker",
+      "modulePath": "pillow/src/review-content-worker/",
+      "expectedDeliverable": "Review articles, pros/cons, alternatives, and Review Content Reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/review-content-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_REVIEW_CONTENT_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/review-content-worker.config.json"
+    },
+    {
+      "missionId": "Q8-05",
+      "missionName": "seo-content-worker",
+      "subsystemId": "seo-content-worker",
+      "modulePath": "pillow/src/seo-content-worker/",
+      "expectedDeliverable": "SEO content plans, articles, keyword mapping, and SEO Content Reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/seo-content-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_SEO_CONTENT_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/seo-content-worker.config.json"
+    },
+    {
+      "missionId": "Q8-06",
+      "missionName": "email-funnel-worker",
+      "subsystemId": "email-funnel-worker",
+      "modulePath": "pillow/src/email-funnel-worker/",
+      "expectedDeliverable": "Lead magnets, email sequences, CTA strategy, and Email Funnel Reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/email-funnel-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_EMAIL_FUNNEL_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/email-funnel-worker.config.json"
+    },
+    {
+      "missionId": "Q8-07",
+      "missionName": "analytics-worker",
+      "subsystemId": "analytics-worker",
+      "modulePath": "pillow/src/analytics-worker/",
+      "expectedDeliverable": "Click/conversion/commission/SEO/funnel analytics and Analytics Reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/analytics-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_ANALYTICS_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/analytics-worker.config.json"
+    },
+    {
+      "missionId": "Q8-08",
+      "missionName": "affiliate-compliance-worker",
+      "subsystemId": "affiliate-compliance-worker",
+      "modulePath": "pillow/src/affiliate-compliance-worker/",
+      "expectedDeliverable": "Disclosure/platform/disclaimer validation and Affiliate Compliance Reports consumable by Q8-09",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/affiliate-compliance-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_AFFILIATE_COMPLIANCE_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/affiliate-compliance-worker.config.json"
+    }
+  ],
+  "deliverableVerification": {
+    "verificationId": "afcrt-ver-1785721626476",
+    "verifiedAt": "2026-08-03T01:47:06.476Z",
+    "items": [
+      {
+        "missionId": "Q8-01",
+        "label": "Affiliate Factory Core registration, mission lifecycle, and Q8 worker coordination",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/affiliate-factory-core/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-02",
+        "label": "Evidence-driven affiliate opportunity scoring and Affiliate Opportunity Reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/affiliate-opportunity-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-03",
+        "label": "Comparison site structure and Comparison Site Reports derived from opportunity packages",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/comparison-site-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-04",
+        "label": "Review articles, pros/cons, alternatives, and Review Content Reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/review-content-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-05",
+        "label": "SEO content plans, articles, keyword mapping, and SEO Content Reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/seo-content-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-06",
+        "label": "Lead magnets, email sequences, CTA strategy, and Email Funnel Reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/email-funnel-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-07",
+        "label": "Click/conversion/commission/SEO/funnel analytics and Analytics Reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/analytics-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q8-08",
+        "label": "Disclosure/platform/disclaimer validation and Affiliate Compliance Reports consumable by Q8-09",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/affiliate-compliance-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      }
+    ],
+    "requiredCount": 8,
+    "presentCount": 8,
+    "allRequiredPresent": true,
+    "missingItems": [],
+    "criticalItemsMissing": []
+  },
+  "integrationVerification": {
+    "verifiedAt": "2026-08-03T01:47:06.476Z",
+    "rows": [
+      {
+        "missionId": "Q8-01",
+        "missionName": "affiliate-factory-core",
+        "registryReferenced": true,
+        "expectedBinds": [],
+        "observedBinds": [],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "no declared upstream binds for this mission"
+      },
+      {
+        "missionId": "Q8-02",
+        "missionName": "affiliate-opportunity-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore] observed=[affiliateFactoryCore]"
+      },
+      {
+        "missionId": "Q8-03",
+        "missionName": "comparison-site-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker]"
+      },
+      {
+        "missionId": "Q8-04",
+        "missionName": "review-content-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker]"
+      },
+      {
+        "missionId": "Q8-05",
+        "missionName": "seo-content-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker]"
+      },
+      {
+        "missionId": "Q8-06",
+        "missionName": "email-funnel-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "reviewContentWorker",
+          "seoContentWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "reviewContentWorker",
+          "seoContentWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker]"
+      },
+      {
+        "missionId": "Q8-07",
+        "missionName": "analytics-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker",
+          "seoContentWorker",
+          "emailFunnelWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker",
+          "seoContentWorker",
+          "emailFunnelWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker]"
+      },
+      {
+        "missionId": "Q8-08",
+        "missionName": "affiliate-compliance-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker",
+          "seoContentWorker",
+          "emailFunnelWorker",
+          "analyticsWorker"
+        ],
+        "observedBinds": [
+          "affiliateFactoryCore",
+          "affiliateOpportunityWorker",
+          "comparisonSiteWorker",
+          "reviewContentWorker",
+          "seoContentWorker",
+          "emailFunnelWorker",
+          "analyticsWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker]"
+      }
+    ],
+    "allBound": true,
+    "evidence": [
+      "Q8-01: no declared upstream binds for this mission",
+      "Q8-02: expected=[affiliateFactoryCore] observed=[affiliateFactoryCore]",
+      "Q8-03: expected=[affiliateFactoryCore,affiliateOpportunityWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker]",
+      "Q8-04: expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker]",
+      "Q8-05: expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker]",
+      "Q8-06: expected=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker]",
+      "Q8-07: expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker]",
+      "Q8-08: expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker]"
+    ]
+  },
+  "productionReadiness": {
+    "ready": true,
+    "modulesPresent": 8,
+    "modulesTotal": 8,
+    "finalPassCount": 8,
+    "finalPassTotal": 8,
+    "notes": [
+      "All Q8-01..Q8-08 components observed Completed from repository and runtime evidence"
+    ],
+    "evidence": [
+      "Q8-01: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-02: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-03: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-04: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-05: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-06: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-07: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q8-08: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true"
+    ]
+  },
+  "governanceCompliance": {
+    "compliant": true,
+    "checks": [
+      {
+        "missionId": "self",
+        "governancePath": "docs/governance/EMPIREAI_AFFILIATE_CERTIFICATION_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-01",
+        "governancePath": "docs/governance/EMPIREAI_AFFILIATE_FACTORY_CORE_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-02",
+        "governancePath": "docs/governance/EMPIREAI_AFFILIATE_OPPORTUNITY_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-03",
+        "governancePath": "docs/governance/EMPIREAI_COMPARISON_SITE_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-04",
+        "governancePath": "docs/governance/EMPIREAI_REVIEW_CONTENT_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-05",
+        "governancePath": "docs/governance/EMPIREAI_SEO_CONTENT_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-06",
+        "governancePath": "docs/governance/EMPIREAI_EMAIL_FUNNEL_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-07",
+        "governancePath": "docs/governance/EMPIREAI_ANALYTICS_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q8-08",
+        "governancePath": "docs/governance/EMPIREAI_AFFILIATE_COMPLIANCE_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      }
+    ],
+    "missingDocs": [],
+    "evidence": [
+      "self: present=true labelObserved=true path=docs/governance/EMPIREAI_AFFILIATE_CERTIFICATION_SYSTEM.md",
+      "Q8-01: present=true labelObserved=true path=docs/governance/EMPIREAI_AFFILIATE_FACTORY_CORE_SYSTEM.md",
+      "Q8-02: present=true labelObserved=true path=docs/governance/EMPIREAI_AFFILIATE_OPPORTUNITY_WORKER_SYSTEM.md",
+      "Q8-03: present=true labelObserved=true path=docs/governance/EMPIREAI_COMPARISON_SITE_WORKER_SYSTEM.md",
+      "Q8-04: present=true labelObserved=true path=docs/governance/EMPIREAI_REVIEW_CONTENT_WORKER_SYSTEM.md",
+      "Q8-05: present=true labelObserved=true path=docs/governance/EMPIREAI_SEO_CONTENT_WORKER_SYSTEM.md",
+      "Q8-06: present=true labelObserved=true path=docs/governance/EMPIREAI_EMAIL_FUNNEL_WORKER_SYSTEM.md",
+      "Q8-07: present=true labelObserved=true path=docs/governance/EMPIREAI_ANALYTICS_WORKER_SYSTEM.md",
+      "Q8-08: present=true labelObserved=true path=docs/governance/EMPIREAI_AFFILIATE_COMPLIANCE_WORKER_SYSTEM.md"
+    ]
+  },
+  "operationalReadiness": {
+    "ready": true,
+    "reachableCount": 8,
+    "totalCount": 8,
+    "probes": [
+      {
+        "workerKey": "affiliateFactoryCore",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "affiliateOpportunityWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "comparisonSiteWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "reviewContentWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "seoContentWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "emailFunnelWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "analyticsWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "affiliateComplianceWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      }
+    ],
+    "notes": [
+      "affiliateFactoryCore: reachable=true (getState completed)",
+      "affiliateOpportunityWorker: reachable=true (getState completed)",
+      "comparisonSiteWorker: reachable=true (getState completed)",
+      "reviewContentWorker: reachable=true (getState completed)",
+      "seoContentWorker: reachable=true (getState completed)",
+      "emailFunnelWorker: reachable=true (getState completed)",
+      "analyticsWorker: reachable=true (getState completed)",
+      "affiliateComplianceWorker: reachable=true (getState completed)"
+    ]
+  },
+  "workflowCompleteness": {
+    "complete": true,
+    "stages": [
+      {
+        "missionId": "Q8-01",
+        "dependsOn": [],
+        "dependenciesSatisfied": true,
+        "evidence": "no upstream Q8 dependency"
+      },
+      {
+        "missionId": "Q8-02",
+        "dependsOn": [
+          "Q8-01"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01]; integration=expected=[affiliateFactoryCore] observed=[affiliateFactoryCore]"
+      },
+      {
+        "missionId": "Q8-03",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker]"
+      },
+      {
+        "missionId": "Q8-04",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02",
+          "Q8-03"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02,Q8-03]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker]"
+      },
+      {
+        "missionId": "Q8-05",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02",
+          "Q8-03",
+          "Q8-04"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02,Q8-03,Q8-04]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker]"
+      },
+      {
+        "missionId": "Q8-06",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02",
+          "Q8-03",
+          "Q8-04",
+          "Q8-05"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02,Q8-03,Q8-04,Q8-05]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,reviewContentWorker,seoContentWorker]"
+      },
+      {
+        "missionId": "Q8-07",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02",
+          "Q8-03",
+          "Q8-04",
+          "Q8-05",
+          "Q8-06"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02,Q8-03,Q8-04,Q8-05,Q8-06]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker]"
+      },
+      {
+        "missionId": "Q8-08",
+        "dependsOn": [
+          "Q8-01",
+          "Q8-02",
+          "Q8-03",
+          "Q8-04",
+          "Q8-05",
+          "Q8-06",
+          "Q8-07"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q8-01,Q8-02,Q8-03,Q8-04,Q8-05,Q8-06,Q8-07]; integration=expected=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker] observed=[affiliateFactoryCore,affiliateOpportunityWorker,comparisonSiteWorker,reviewContentWorker,seoContentWorker,emailFunnelWorker,analyticsWorker]"
+      }
+    ],
+    "evidence": [
+      "Q8-01: dependenciesSatisfied=true",
+      "Q8-02: dependenciesSatisfied=true",
+      "Q8-03: dependenciesSatisfied=true",
+      "Q8-04: dependenciesSatisfied=true",
+      "Q8-05: dependenciesSatisfied=true",
+      "Q8-06: dependenciesSatisfied=true",
+      "Q8-07: dependenciesSatisfied=true",
+      "Q8-08: dependenciesSatisfied=true"
+    ]
+  },
+  "reportingCapability": {
+    "capable": false,
+    "workersWithReportingAccess": 0,
+    "totalWorkers": 8,
+    "executiveReportingAvailable": false,
+    "evidence": [
+      "0/8 injected workers expose getReports()",
+      "executiveReportingRuntime injected=false"
+    ]
+  },
+  "launchPackContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "ACW-Q809-v1",
+    "fields": [
+      "disclosureValidation",
+      "recommendedCorrections"
+    ],
+    "evidence": "Injected Q8-08 compliance worker handshake returned an explicit consumableByQ809 contract"
+  },
+  "risks": [],
+  "outstandingFindings": [],
+  "certificationDecision": "Certified",
+  "auditStatus": "certified",
+  "confidenceScore": 1,
+  "metadataVersion": "AFCRT-001-v1",
+  "reportVersion": "AFCRT-RPT-v1",
+  "workerId": "wkr-affiliate-certification-01",
+  "validation": {
+    "validationReportId": "afcrt-val-1785721626579",
+    "validationTimestamp": "2026-08-03T01:47:06.579Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 142,
+    "metadataVersion": "AFCRT-001-v1"
+  },
+  "runTimestamp": "2026-08-03T01:47:06.579Z",
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-11:affiliate-certification",
+    "mission:Q8-01:module:pillow/src/affiliate-factory-core/",
+    "mission:Q8-02:module:pillow/src/affiliate-opportunity-worker/",
+    "mission:Q8-03:module:pillow/src/comparison-site-worker/",
+    "mission:Q8-04:module:pillow/src/review-content-worker/",
+    "mission:Q8-05:module:pillow/src/seo-content-worker/",
+    "mission:Q8-06:module:pillow/src/email-funnel-worker/",
+    "mission:Q8-07:module:pillow/src/analytics-worker/",
+    "mission:Q8-08:module:pillow/src/affiliate-compliance-worker/",
+    "module found at pillow/src/affiliate-factory-core/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/affiliate-opportunity-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/comparison-site-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/review-content-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/seo-content-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/email-funnel-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/analytics-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/affiliate-compliance-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveCertificationAuditHistory": true,
+  "neverFabricateVerificationResults": true,
+  "neverCertifyUnsupportedFunctionality": true,
+  "neverImplementMissingFunctionality": true,
+  "neverAutoCorrectFailedImplementations": true,
+  "neverOverrideGovernance": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ901OrLater": true,
+  "finalQ8Gate": true,
+  "consumableByFutureSeries": false
+}

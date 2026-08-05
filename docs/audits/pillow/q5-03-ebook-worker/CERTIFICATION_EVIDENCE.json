@@ -1,0 +1,59 @@
+{
+  "missionId": "Q5-03",
+  "missionName": "Ebook Worker",
+  "doctrineId": "PILLOW-EBW-001",
+  "moduleId": "ebook-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "EBW-001-v1",
+  "reportSchemaVersion": "EBW-RPT-v1",
+  "primaryDeliverable": "Create ebooks, guides, manuals, and structured written products.",
+  "prerequisites": [
+    { "missionId": "Q5-02", "doctrine": "PILLOW-DPR-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/ebook-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved Digital Product Research",
+    "Create product outline",
+    "Create chapter structure",
+    "Generate complete written content",
+    "Generate tables, checklists and summaries where appropriate",
+    "Generate references and appendices when required",
+    "Apply consistent formatting",
+    "Perform self-review for completeness and readability",
+    "Prepare export-ready ebook assets",
+    "Produce machine-readable Ebook Reports"
+  ],
+  "boundariesVerified": [
+    "Does not build sales pages",
+    "Does not process payments",
+    "Does not deliver products to customers",
+    "Does not publish products directly",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-04 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Digital Product Research Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/ebook-worker/",
+    "config/ebook-worker.config.json",
+    "docs/governance/EMPIREAI_EBOOK_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-03-ebook-worker/Q5_03_EBOOK_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/ebook-worker-bridge.ts"
+  ]
+}

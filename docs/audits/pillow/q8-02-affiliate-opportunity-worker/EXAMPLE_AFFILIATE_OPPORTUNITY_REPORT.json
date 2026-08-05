@@ -1,0 +1,161 @@
+{
+  "reportId": "aow-rpt-0001",
+  "timestamp": "2026-08-02T11:50:19.158Z",
+  "affiliateProjectId": "afc-prj-travel-gear-01",
+  "programmeName": "TravelGear Partners",
+  "productCategory": "travel_gear",
+  "targetNiche": "travel_gear",
+  "commissionStructure": {
+    "programmeId": "prog-travel-gear-01",
+    "programmeName": "TravelGear Partners",
+    "commissionPercent": 8,
+    "cookieDays": 30,
+    "payoutFrequency": "monthly",
+    "comparisonNotes": [
+      "Observed commission 8% from fixture",
+      "Cookie duration 30 days",
+      "Payout frequency monthly"
+    ],
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "estimatedDemand": "medium volume, rising trend",
+  "competitionSummary": "2 established blogs",
+  "opportunityScore": 71,
+  "risks": [],
+  "recommendation": "recommend",
+  "auditStatus": "ready_for_q803",
+  "confidenceScore": 1,
+  "metadataVersion": "AOW-001-v1",
+  "reportVersion": "AOW-RPT-v1",
+  "workerId": "wkr-affiliate-opportunity-01",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "programmes": [
+    {
+      "programmeId": "prog-travel-gear-01",
+      "programmeName": "TravelGear Partners",
+      "network": "ShareASale",
+      "cookieDays": 30,
+      "payoutFrequency": "monthly",
+      "source": "fixture",
+      "fabricated": false
+    }
+  ],
+  "products": [
+    {
+      "productId": "prod-backpack-01",
+      "name": "TrailBackpack Pro",
+      "category": "travel_gear",
+      "programmeId": "prog-travel-gear-01",
+      "source": "fixture",
+      "fabricated": false
+    }
+  ],
+  "niches": [
+    {
+      "nicheId": "niche-travel-gear",
+      "name": "travel_gear",
+      "region": "SG",
+      "source": "fixture",
+      "fabricated": false
+    }
+  ],
+  "commissionComparisons": [
+    {
+      "programmeId": "prog-travel-gear-01",
+      "programmeName": "TravelGear Partners",
+      "commissionPercent": 8,
+      "cookieDays": 30,
+      "payoutFrequency": "monthly",
+      "comparisonNotes": [
+        "Observed commission 8% from fixture",
+        "Cookie duration 30 days",
+        "Payout frequency monthly"
+      ],
+      "fabricated": false,
+      "evidencePresent": true
+    }
+  ],
+  "demandAssessment": {
+    "nicheId": "niche-travel-gear",
+    "searchVolumeBand": "medium",
+    "trend": "rising",
+    "seasonality": "Q4_peak",
+    "estimatedDemand": "medium volume, rising trend",
+    "fabricated": false,
+    "evidencePresent": true,
+    "notes": [
+      "Derived from fixtureDemandSignals only"
+    ]
+  },
+  "competitionAssessment": {
+    "nicheId": "niche-travel-gear",
+    "competitorCountBand": "moderate",
+    "summary": "2 established blogs",
+    "fabricated": false,
+    "evidencePresent": true,
+    "notes": [
+      "2 established blogs"
+    ]
+  },
+  "seasonalNotes": [
+    "seasonality=Q4_peak"
+  ],
+  "opportunityRanking": [
+    {
+      "rank": 1,
+      "opportunityKey": "opp-prog-travel-gear-01",
+      "programmeId": "prog-travel-gear-01",
+      "programmeName": "TravelGear Partners",
+      "productCategory": "travel_gear",
+      "targetNiche": "travel_gear",
+      "opportunityScore": 71,
+      "scoreBasis": [
+        "commission_component=24.0",
+        "demand_component=30",
+        "competition_component=12",
+        "cookie_duration_bonus=5"
+      ],
+      "recommendation": "recommend",
+      "fabricated": false
+    }
+  ],
+  "evidenceSources": [
+    "fixtureProgrammes",
+    "fixtureProducts",
+    "fixtureNiches",
+    "fixtureCommissionData",
+    "fixtureDemandSignals",
+    "fixtureCompetition"
+  ],
+  "evidenceMode": "fixture",
+  "validation": {
+    "decision": "pass",
+    "errors": [],
+    "warnings": []
+  },
+  "runTimestamp": "2026-08-02T11:50:19.158Z",
+  "consumableByQ803": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-02:affiliate_business:afc-biz-travel-gear-01",
+    "q8-02:affiliate_project:afc-prj-travel-gear-01",
+    "q8-02:programmes:1",
+    "q8-02:ranking:1"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveResearchEvidence": true,
+  "preserveAuditHistory": true,
+  "neverFabricateCommissionOrDemandData": true,
+  "neverCreateAffiliateContent": true,
+  "neverPublishWebsites": true,
+  "neverJoinAffiliateProgrammesAutomatically": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ803OrLater": true
+}

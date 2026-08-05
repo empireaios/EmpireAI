@@ -1,0 +1,33 @@
+{
+  "computedAt": "2026-08-04T01:40:00.000Z",
+  "missionId": "Q10-04",
+  "engineVersion": "PILLOW-QRT-001",
+  "runtimeVersion": "Q10-QRT-v1",
+  "metadataVersion": "QRT-001-v1",
+  "reportVersion": "QRT-RPT-v1",
+  "workerId": "wkr-queue-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionMissionRuntime": {
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverReplaceWorkerLogic": true,
+    "neverReplaceMissionLogic": true,
+    "neverExecuteBusinessSpecificWork": true,
+    "neverFabricateQueueState": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1005OrLater": true,
+    "deterministicQueueOrdering": true,
+    "structuralSignalOnly": true
+  },
+  "q1005ContractExposed": true,
+  "consumableByQ1005": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Queue Runtime Q10-04 certified — stops at Q10-04, exposes Q1005ConsumableContract for Q10-05",
+    "Dispatch records always have businessLogicExecuted: false"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "guideId": "csw-guide-0036",
+  "title": "travel_gear buyer guide",
+  "topic": "travel_gear",
+  "buyingFactors": [
+    "observed features and specifications",
+    "observed pricing and value signals",
+    "best-for fit from fixture labels",
+    "opportunity ranking signals when available"
+  ],
+  "bestForRecommendations": [
+    {
+      "label": "Best for weekend hikers",
+      "productId": "prod-backpack-01",
+      "productName": "TrailBackpack Pro",
+      "reason": "Fixture bestFor label: weekend hikers"
+    },
+    {
+      "label": "Best for city travelers",
+      "productId": "prod-duffel-01",
+      "productName": "CityDuffel Lite",
+      "reason": "Fixture bestFor label: city travelers"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How were travel_gear products ranked?",
+      "answer": "Only from Affiliate Opportunity scores and product fixture evidence. Missing data stays unknown."
+    },
+    {
+      "question": "Are prices guaranteed?",
+      "answer": "No. Prices shown only when present in fixtures; otherwise marked unknown."
+    },
+    {
+      "question": "Is this published live?",
+      "answer": "No. Comparison Site Worker produces structural content packages only and never publishes websites."
+    }
+  ],
+  "prosConsByProduct": [
+    {
+      "productId": "prod-backpack-01",
+      "productName": "TrailBackpack Pro",
+      "pros": [
+        "Durable shell",
+        "Comfortable harness"
+      ],
+      "cons": [
+        "Premium price"
+      ]
+    },
+    {
+      "productId": "prod-duffel-01",
+      "productName": "CityDuffel Lite",
+      "pros": [
+        "Lightweight"
+      ],
+      "cons": [
+        "Less padding"
+      ]
+    }
+  ],
+  "fabricated": false
+}

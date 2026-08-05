@@ -1,0 +1,105 @@
+{
+  "reportId": "crmw-rpt-0001",
+  "timestamp": "2026-08-02T05:00:00.000Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "customerId": "crmw-cust-0001",
+  "leadStatus": "won",
+  "contactHistory": [
+    {
+      "contactId": "crmw-contact-0001",
+      "customerId": "crmw-cust-0001",
+      "timestamp": "2026-08-02T04:30:00.000Z",
+      "channel": "phone",
+      "summary": "Initial qualification call regarding residential cleaning",
+      "direction": "outbound",
+      "recordedBy": "wkr-crm-01",
+      "fabricated": false,
+      "source": "input",
+      "relatedBookingId": null,
+      "tags": ["qualification"]
+    }
+  ],
+  "bookingHistory": [
+    {
+      "linkId": "crmw-blink-0001",
+      "customerId": "crmw-cust-0001",
+      "bookingId": "bkw-bk-0001",
+      "customerReference": "cust-orchard-home-01",
+      "serviceSelected": "residential cleaning — Basic",
+      "scheduledDateTime": "2026-08-10T10:00:00.000Z",
+      "assignedWorker": "wkr-tech-clean-01",
+      "bookingStatus": "confirmed",
+      "linkedAt": "2026-08-02T04:45:00.000Z",
+      "source": "fixtureBooking",
+      "traceabilityRefs": [
+        "q7-04:booking:bkw-bk-0001",
+        "q7-05:customer:crmw-cust-0001"
+      ]
+    }
+  ],
+  "followUpSchedule": [
+    {
+      "followUpId": "crmw-fu-0001",
+      "customerId": "crmw-cust-0001",
+      "leadId": "crmw-lead-0001",
+      "scheduledAt": "2026-08-02T04:40:00.000Z",
+      "dueAt": "2026-08-12T09:00:00.000Z",
+      "status": "scheduled",
+      "purpose": "post-booking satisfaction check",
+      "completedAt": null,
+      "notes": "",
+      "createdAt": "2026-08-02T04:40:00.000Z",
+      "updatedAt": "2026-08-02T04:40:00.000Z"
+    }
+  ],
+  "customerLifecycleStage": "active_customer",
+  "outstandingTasks": ["follow_up:post-booking satisfaction check"],
+  "auditStatus": "open",
+  "confidenceScore": 0.85,
+  "metadataVersion": "CRMW-001-v1",
+  "reportVersion": "CRMW-RPT-v1",
+  "workerId": "wkr-crm-01",
+  "tags": ["cleaning", "orchard"],
+  "segments": ["busy homeowners"],
+  "referralSource": "local-search",
+  "repeatCustomer": false,
+  "opportunities": [],
+  "communicationHistory": [
+    {
+      "contactId": "crmw-contact-0001",
+      "customerId": "crmw-cust-0001",
+      "timestamp": "2026-08-02T04:30:00.000Z",
+      "channel": "phone",
+      "summary": "Initial qualification call regarding residential cleaning",
+      "direction": "outbound",
+      "recordedBy": "wkr-crm-01",
+      "fabricated": false,
+      "source": "input",
+      "relatedBookingId": null,
+      "tags": ["qualification"]
+    }
+  ],
+  "consumableByQ706": true,
+  "neverExecuteMarketingCampaigns": true,
+  "neverDeliverCustomerJobs": true,
+  "neverReplaceBookingFunctionality": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverFabricateCustomerInteractions": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ706OrLater": true,
+  "preserveCompleteCustomerHistory": true,
+  "preserveCompleteTraceability": true,
+  "preserveCrmAuditHistory": true,
+  "neverExposeCredentials": true,
+  "neverExposeProhibitedPersonalData": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-05:crm:crmw-cust-0001",
+    "q7-04:booking:bkw-bk-0001"
+  ]
+}

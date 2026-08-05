@@ -1,0 +1,53 @@
+{
+  "missionId": "Q0-03",
+  "doctrine": "PILLOW-BSM-001",
+  "moduleId": "business-state-manager",
+  "metadataVersion": "BSM-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Maintains live state of every active business, channel, workflow, and project.",
+  "boundaries": {
+    "neverExecuteMissions": true,
+    "neverAssignWorkers": true,
+    "neverApproveActions": true,
+    "neverLaunchBusinesses": true,
+    "neverMakeStrategicDecisions": true
+  },
+  "businessStateFields": [
+    "businessId",
+    "name",
+    "category",
+    "currentState",
+    "currentPhase",
+    "healthStatus",
+    "progressSummary",
+    "activeMissions",
+    "pendingApprovals",
+    "blockers",
+    "dependencies",
+    "lastUpdateTimestamp",
+    "metadataVersion"
+  ],
+  "lifecycleStates": [
+    "planned",
+    "building",
+    "testing",
+    "waiting_approval",
+    "operating",
+    "paused",
+    "recovering",
+    "archived"
+  ],
+  "healthStatuses": ["healthy", "warning", "critical"],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/business-state-manager.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/business-state-manager/",
+    "config": "config/business-state-manager.config.json",
+    "doctrine": "docs/governance/EMPIREAI_BUSINESS_STATE_MANAGER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/business-state-manager-bridge.ts",
+    "tests": "pillow/src/validation/tests/business-state-manager.test.ts"
+  }
+}

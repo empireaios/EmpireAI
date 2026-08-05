@@ -1,0 +1,22 @@
+{
+  "contractId": "q1201-consumption-AIFRT-001-v1",
+  "contractVersion": "QSCPT-001-v1",
+  "consumedBy": "ai-innovation-factory",
+  "consumerMissionId": "Q12-01",
+  "producerMissionId": "Q11-13",
+  "producedBy": "q-series-completion",
+  "seriesCompletePrerequisite": true,
+  "consumptionFields": [
+    "finalCompletionDecision",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "liveRunExample": {
+    "finalCompletionDecision": "withhold",
+    "seriesCompleteActivation": false,
+    "researchPermitted": true,
+    "notes": "Factory researches with honest prerequisite issues when Q Series incomplete"
+  },
+  "neverImplementQ1301OrLater": true,
+  "neverAutoDeployInnovations": true
+}

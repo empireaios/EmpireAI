@@ -1,0 +1,78 @@
+{
+  "missionId": "Q5-01",
+  "missionName": "Digital Products Factory Core",
+  "doctrineId": "PILLOW-DPF-001",
+  "moduleId": "digital-products-factory-core",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "DPF-001-v1",
+  "reportSchemaVersion": "DPF-DFR-v1",
+  "missionSchemaVersion": "DPF-DPM-v1",
+  "primaryDeliverable": "Create and operate digital product businesses.",
+  "prerequisites": [
+    { "missionId": "Q4-19", "doctrine": "PILLOW-MDC-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-14", "doctrine": "PILLOW-CMC-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-10", "doctrine": "PILLOW-EBC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-13", "doctrine": "PILLOW-WFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/digital-products-factory-core.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Create Digital Product Business Missions",
+    "Register digital product businesses",
+    "Coordinate product creation pipelines",
+    "Coordinate design and branding workflows",
+    "Coordinate sales page workflows",
+    "Coordinate checkout workflows",
+    "Coordinate fulfilment workflows",
+    "Coordinate customer delivery",
+    "Coordinate analytics",
+    "Coordinate continuous learning",
+    "Track business lifecycle",
+    "Produce machine-readable Digital Products Factory Reports"
+  ],
+  "boundariesVerified": [
+    "Does not create ebooks",
+    "Does not create courses",
+    "Does not build sales pages",
+    "Does not process payments",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-02 or later"
+  ],
+  "reportFields": [
+    "factoryMissionId",
+    "timestamp",
+    "businessId",
+    "productPortfolio",
+    "activeProducts",
+    "currentPipelineStage",
+    "assignedWorkers",
+    "fulfilmentStatus",
+    "analyticsStatus",
+    "learningStatus",
+    "executiveSummary",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Mission Coordination Engine",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/digital-products-factory-core/",
+    "config/digital-products-factory-core.config.json",
+    "docs/governance/EMPIREAI_DIGITAL_PRODUCTS_FACTORY_CORE_SYSTEM.md",
+    "docs/audits/pillow/q5-01-digital-products-factory-core/Q5_01_DIGITAL_PRODUCTS_FACTORY_CORE_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/digital-products-factory-core-bridge.ts"
+  ]
+}

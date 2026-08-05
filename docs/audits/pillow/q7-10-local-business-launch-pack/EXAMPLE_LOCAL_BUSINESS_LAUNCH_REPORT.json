@@ -1,0 +1,332 @@
+{
+  "reportId": "lblp-rpt-0001",
+  "timestamp": "2026-08-02T07:59:11.939Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "businessName": "Orchard Sparkle Clean",
+  "businessType": "residential_cleaning",
+  "executiveSummary": "Local Business Launch Pack for Orchard Sparkle Clean (lbfc-prj-cleaning-01): 9/9 required deliverables verified; readiness=ready_for_approval. All required Q7-01..Q7-09 deliverables are present. This pack assembles and verifies launch readiness only — it never launches, deploys, certifies, or approves the business.",
+  "deliverableVerification": {
+    "verificationId": "lblp-ver-0002",
+    "businessProjectId": "lbfc-prj-cleaning-01",
+    "verifiedAt": "2026-08-02T07:59:11.938Z",
+    "items": [
+      {
+        "item": "business_identity",
+        "label": "Business identity (Q7-01 LBFC project record)",
+        "present": true,
+        "required": true,
+        "critical": true,
+        "evidenceRefs": [
+          "fixtureLbfc:lbfc-prj-cleaning-01"
+        ],
+        "notes": "Business identity (Q7-01 LBFC project record) verified from supplied fixture evidence."
+      },
+      {
+        "item": "market_research",
+        "label": "Market research report (Q7-02)",
+        "present": true,
+        "required": true,
+        "critical": true,
+        "evidenceRefs": [
+          "fixtureMarketResearch:lmrw-rpt-0001"
+        ],
+        "notes": "Market research report (Q7-02) verified from supplied fixture evidence."
+      },
+      {
+        "item": "service_offer",
+        "label": "Service offer & pricing catalogue (Q7-03)",
+        "present": true,
+        "required": true,
+        "critical": true,
+        "evidenceRefs": [
+          "fixtureServiceOffer:sow-rpt-0001"
+        ],
+        "notes": "Service offer & pricing catalogue (Q7-03) verified from supplied fixture evidence."
+      },
+      {
+        "item": "booking_readiness",
+        "label": "Booking readiness (Q7-04)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureBooking:bkw-booking-0001"
+        ],
+        "notes": "Booking readiness (Q7-04) verified from supplied fixture evidence."
+      },
+      {
+        "item": "crm_readiness",
+        "label": "CRM readiness (Q7-05)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureCrm:crm-rpt-0001"
+        ],
+        "notes": "CRM readiness (Q7-05) verified from supplied fixture evidence."
+      },
+      {
+        "item": "whatsapp_readiness",
+        "label": "WhatsApp communication readiness (Q7-06)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureWhatsApp:waw-rpt-0001"
+        ],
+        "notes": "WhatsApp communication readiness (Q7-06) verified from supplied fixture evidence."
+      },
+      {
+        "item": "local_seo",
+        "label": "Local SEO assets (Q7-07)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureLocalSeo:lseo-rpt-0001"
+        ],
+        "notes": "Local SEO assets (Q7-07) verified from supplied fixture evidence."
+      },
+      {
+        "item": "lead_generation",
+        "label": "Lead generation funnel (Q7-08)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureLeadGeneration:lgw-rpt-0001"
+        ],
+        "notes": "Lead generation funnel (Q7-08) verified from supplied fixture evidence."
+      },
+      {
+        "item": "operations",
+        "label": "Operations workflow design (Q7-09)",
+        "present": true,
+        "required": true,
+        "critical": false,
+        "evidenceRefs": [
+          "fixtureOperations:opsw-rpt-0001"
+        ],
+        "notes": "Operations workflow design (Q7-09) verified from supplied fixture evidence."
+      }
+    ],
+    "requiredCount": 9,
+    "presentCount": 9,
+    "allRequiredPresent": true,
+    "missingItems": [],
+    "criticalItemsMissing": []
+  },
+  "readinessStatus": "ready_for_approval",
+  "riskSummary": [],
+  "outstandingIssues": [],
+  "approvalRecommendation": "recommend_approval",
+  "auditStatus": "ready_for_q711",
+  "confidenceScore": 1,
+  "metadataVersion": "LBLP-001-v1",
+  "reportVersion": "LBLP-RPT-v1",
+  "workerId": "wkr-local-business-launch-pack-01",
+  "packageId": "lblp-pkg-0001",
+  "launchPackage": {
+    "executiveSummary": "Local Business Launch Pack for Orchard Sparkle Clean (lbfc-prj-cleaning-01): 9/9 required deliverables verified; readiness=ready_for_approval. All required Q7-01..Q7-09 deliverables are present. This pack assembles and verifies launch readiness only — it never launches, deploys, certifies, or approves the business.",
+    "businessOverview": {
+      "status": "evidenced",
+      "summary": "Orchard Sparkle Clean (residential_cleaning) — lifecycle stage: launch_ready; approval status: approved.",
+      "evidenceRefs": [
+        "fixtureLbfc:lbfc-prj-cleaning-01"
+      ],
+      "data": {
+        "businessProjectId": "lbfc-prj-cleaning-01",
+        "businessName": "Orchard Sparkle Clean",
+        "businessCategory": "residential_cleaning",
+        "currentLifecycleStage": "launch_ready",
+        "approvalStatus": "approved",
+        "launchReadiness": "ready"
+      }
+    },
+    "targetMarket": {
+      "status": "evidenced",
+      "summary": "Target market: Singapore / Orchard for residential_cleaning; 4 opportunity finding(s) identified in research evidence.",
+      "evidenceRefs": [
+        "fixtureMarketResearch:lmrw-rpt-0001"
+      ],
+      "data": {
+        "reportId": "lmrw-rpt-0001",
+        "targetCity": "Singapore",
+        "targetServiceArea": "Orchard",
+        "serviceCategory": "residential_cleaning",
+        "executiveSummary": "Strong demand for premium residential cleaning in Orchard.",
+        "opportunityCount": 4,
+        "confidenceScore": 0.85
+      }
+    },
+    "serviceCatalogue": {
+      "status": "evidenced",
+      "summary": "3 service package(s) defined in the Q7-03 service offer evidence.",
+      "evidenceRefs": [
+        "fixtureServiceOffer:sow-rpt-0001"
+      ],
+      "data": {
+        "reportId": "sow-rpt-0001",
+        "packageCount": 3,
+        "pricingRecommendationCount": 3,
+        "currency": "SGD",
+        "executiveSummary": "Three-tier cleaning packages with competitive Orchard-area pricing.",
+        "confidenceScore": 0.8
+      }
+    },
+    "pricingSummary": {
+      "status": "evidenced",
+      "summary": "3 pricing recommendation(s) recorded in SGD; figures reflect evidence-classed Q7-03 findings, never final approved pricing.",
+      "evidenceRefs": [
+        "fixtureServiceOffer:sow-rpt-0001"
+      ],
+      "data": {
+        "reportId": "sow-rpt-0001",
+        "packageCount": 3,
+        "pricingRecommendationCount": 3,
+        "currency": "SGD",
+        "executiveSummary": "Three-tier cleaning packages with competitive Orchard-area pricing.",
+        "confidenceScore": 0.8
+      }
+    },
+    "bookingReadiness": {
+      "status": "evidenced",
+      "summary": "Booking bkw-booking-0001 status=confirmed; confirmed=true.",
+      "evidenceRefs": [
+        "fixtureBooking:bkw-booking-0001"
+      ],
+      "data": {
+        "reportId": "bkw-rpt-0001",
+        "bookingId": "bkw-booking-0001",
+        "bookingStatus": "confirmed",
+        "confirmed": true,
+        "confidenceScore": 0.9
+      }
+    },
+    "crmReadiness": {
+      "status": "evidenced",
+      "summary": "CRM lead status=qualified; customer lifecycle stage=active.",
+      "evidenceRefs": [
+        "fixtureCrm:crm-rpt-0001"
+      ],
+      "data": {
+        "reportId": "crm-rpt-0001",
+        "customerId": "crm-cust-0001",
+        "leadStatus": "qualified",
+        "customerLifecycleStage": "active",
+        "confidenceScore": 0.75
+      }
+    },
+    "whatsAppReadiness": {
+      "status": "evidenced",
+      "summary": "WhatsApp conversation waw-conv-0001 status=active.",
+      "evidenceRefs": [
+        "fixtureWhatsApp:waw-rpt-0001"
+      ],
+      "data": {
+        "reportId": "waw-rpt-0001",
+        "conversationId": "waw-conv-0001",
+        "conversationStatus": "active",
+        "confidenceScore": 0.8
+      }
+    },
+    "localSeoReadiness": {
+      "status": "evidenced",
+      "summary": "2 local SEO landing page asset(s) generated.",
+      "evidenceRefs": [
+        "fixtureLocalSeo:lseo-rpt-0001"
+      ],
+      "data": {
+        "reportId": "lseo-rpt-0001",
+        "landingPageCount": 2,
+        "confidenceScore": 0.7
+      }
+    },
+    "leadGenerationReadiness": {
+      "status": "evidenced",
+      "summary": "Lead generation funnel lgw-funnel-0001 evidenced.",
+      "evidenceRefs": [
+        "fixtureLeadGeneration:lgw-rpt-0001"
+      ],
+      "data": {
+        "reportId": "lgw-rpt-0001",
+        "funnelId": "lgw-funnel-0001",
+        "confidenceScore": 0.75
+      }
+    },
+    "operationsReadiness": {
+      "status": "evidenced",
+      "summary": "Operations workflow opsw-wf-0001 defines 9 operational stage(s).",
+      "evidenceRefs": [
+        "fixtureOperations:opsw-rpt-0001"
+      ],
+      "data": {
+        "reportId": "opsw-rpt-0001",
+        "workflowId": "opsw-wf-0001",
+        "operationalStagesCount": 9,
+        "confidenceScore": 0.85
+      }
+    },
+    "risks": [],
+    "assumptions": [
+      "Pricing and market figures reflect Q7-02/Q7-03 evidence-classed findings and worker-supplied fixtures — not confirmed final commercial terms.",
+      "The Launch Pack assembles and verifies readiness signals only; it never launches, deploys, or certifies the business, and never overrides Pillow, Grand King, or existing certification."
+    ],
+    "outstandingItems": [],
+    "approvalRecommendation": "recommend_approval"
+  },
+  "readinessAssessment": {
+    "assessedAt": "2026-08-02T07:59:11.939Z",
+    "businessProjectId": "lbfc-prj-cleaning-01",
+    "readinessStatus": "ready_for_approval",
+    "requiredCount": 9,
+    "presentCount": 9,
+    "missingItems": [],
+    "criticalItemsMissing": [],
+    "confidenceScore": 1,
+    "notes": [
+      "All required Q7-01..Q7-09 deliverables verified from collected evidence."
+    ]
+  },
+  "validation": {
+    "validationReportId": "lblp-val-1785657551939",
+    "validationTimestamp": "2026-08-02T07:59:11.939Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 1,
+    "metadataVersion": "LBLP-001-v1"
+  },
+  "runTimestamp": "2026-08-02T07:59:11.939Z",
+  "consumableByQ711": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-10:launch-pack:lblp-pkg-0001",
+    "business_project:lbfc-prj-cleaning-01",
+    "collection:lblp-col-0003",
+    "verification:lblp-ver-0002",
+    "fixtureLbfc:lbfc-prj-cleaning-01",
+    "fixtureMarketResearch:lmrw-rpt-0001",
+    "fixtureServiceOffer:sow-rpt-0001",
+    "fixtureBooking:bkw-booking-0001",
+    "fixtureCrm:crm-rpt-0001",
+    "fixtureWhatsApp:waw-rpt-0001",
+    "fixtureLocalSeo:lseo-rpt-0001",
+    "fixtureLeadGeneration:lgw-rpt-0001",
+    "fixtureOperations:opsw-rpt-0001"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverLaunchBusinessAutomatically": true,
+  "neverOverrideGovernance": true,
+  "neverReplaceCertification": true,
+  "neverClaimReadinessWithoutEvidence": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ711OrLater": true
+}

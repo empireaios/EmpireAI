@@ -1,0 +1,37 @@
+{
+  "missionId": "Q6-06",
+  "doctrineId": "PILLOW-DBW-001",
+  "moduleId": "database-worker",
+  "status": "FINAL PASS",
+  "metadataVersion": "DBW-001-v1",
+  "reportVersion": "DBW-RPT-v1",
+  "workerId": "wkr-database-01",
+  "priors": [
+    { "missionId": "Q6-01", "doctrine": "PILLOW-EPFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-02", "doctrine": "PILLOW-RQW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-03", "doctrine": "PILLOW-ARW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-04", "doctrine": "PILLOW-FEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-05", "doctrine": "PILLOW-BEW-001", "status": "FINAL PASS" }
+  ],
+  "module": "pillow/src/database-worker",
+  "tests": {
+    "path": "pillow/src/validation/tests/database-worker.test.ts",
+    "result": "10/10 pass"
+  },
+  "boundaries": [
+    "Does not build frontend",
+    "Does not build backend business logic",
+    "Does not implement application business logic",
+    "Does not override approved architecture",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q6-07 or later"
+  ],
+  "evidence": [
+    "database-worker.test.ts",
+    "EMPIREAI_DATABASE_WORKER_SYSTEM.md",
+    "database-worker.config.json",
+    "database-worker-bridge.ts",
+    "session/index/registry/host/routes wiring"
+  ]
+}

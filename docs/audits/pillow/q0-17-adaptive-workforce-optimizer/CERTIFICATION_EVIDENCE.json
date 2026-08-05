@@ -1,0 +1,55 @@
+{
+  "missionId": "Q0-17",
+  "doctrine": "PILLOW-AWO-001",
+  "moduleId": "adaptive-workforce-optimizer",
+  "metadataVersion": "AWO-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Improves worker assignment, routing, collaboration and execution quality over time.",
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverModifyWorkersAutomatically": true,
+    "neverReplacePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverPerformStrategicPlanning": true
+  },
+  "optimizationRecordFields": [
+    "optimizationId",
+    "timestamp",
+    "scope",
+    "workers",
+    "department",
+    "currentPerformance",
+    "bottlenecks",
+    "improvementOpportunities",
+    "recommendedChanges",
+    "expectedBenefits",
+    "confidenceScore",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "optimizationTargets": [
+    "worker_assignment",
+    "worker_utilization",
+    "worker_performance",
+    "collaboration",
+    "routing",
+    "queue_efficiency",
+    "throughput",
+    "accuracy",
+    "reliability",
+    "operational_cost"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/adaptive-workforce-optimizer.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/adaptive-workforce-optimizer/",
+    "config": "config/adaptive-workforce-optimizer.config.json",
+    "doctrine": "docs/governance/EMPIREAI_ADAPTIVE_WORKFORCE_OPTIMIZER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/adaptive-workforce-optimizer-bridge.ts",
+    "tests": "pillow/src/validation/tests/adaptive-workforce-optimizer.test.ts"
+  },
+  "idCollisionNote": "PILLOW-WFO-001 reserved for Workflow Optimization (T2-05); Q0-17 uses PILLOW-AWO-001"
+}

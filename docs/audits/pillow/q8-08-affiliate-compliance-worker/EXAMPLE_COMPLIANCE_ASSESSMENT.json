@@ -1,0 +1,51 @@
+{
+  "disclosureValidation": {
+    "validationId": "acw-disc-0047",
+    "status": "pass",
+    "disclosurePresent": true,
+    "disclosureTextObserved": true,
+    "placement": "above_fold",
+    "linkDisclosurePresent": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "platformRuleValidation": {
+    "validationId": "acw-plat-0048",
+    "status": "pass",
+    "platform": "amazon_associates",
+    "rulesAcknowledged": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "disclaimerValidation": {
+    "validationId": "acw-disclaim-0049",
+    "status": "pass",
+    "requiredDisclaimerPresent": true,
+    "disclaimerTextObserved": true,
+    "notes": [],
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  "readinessAssessment": {
+    "assessmentId": "acw-ready-0050",
+    "status": "approval_ready",
+    "riskScore": 0,
+    "blockers": [],
+    "notes": [
+      "Readiness is an evidence-based operational assessment only",
+      "Does not publish content or provide legal advice",
+      "Does not automatically approve non-compliant assets"
+    ],
+    "fabricated": false,
+    "evidencePresent": true,
+    "autoApproved": false,
+    "legalConclusion": "not_legal_advice"
+  },
+  "complianceRisks": [],
+  "policyFindings": []
+}

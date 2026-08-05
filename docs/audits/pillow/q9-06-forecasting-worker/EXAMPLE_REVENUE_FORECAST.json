@@ -1,0 +1,221 @@
+{
+  "action": "forecast_revenue",
+  "validation": {
+    "validationReportId": "frcw-val-1785755145720",
+    "validationTimestamp": "2026-08-03T11:05:45.720Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 2,
+    "metadataVersion": "FRCW-001-v1"
+  },
+  "revenueForecast": {
+    "seriesId": "frcw-series-0002",
+    "metric": "revenue",
+    "scenario": "expected",
+    "model": "historical_trend",
+    "currency": "SGD",
+    "businessId": "capfc-biz-growth-01",
+    "growthRateBps": 909,
+    "horizonPeriods": 3,
+    "points": [
+      {
+        "periodLabel": "2026-04",
+        "amountMinor": 1309080,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0001",
+          "frcw-assumption-0002"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-05",
+        "amountMinor": 1428075,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0001",
+          "frcw-assumption-0002"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-06",
+        "amountMinor": 1557887,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0001",
+          "frcw-assumption-0002"
+        ],
+        "confidenceBps": 10000
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0001",
+      "frcw-assumption-0002"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "historicalBaseline": {
+    "currency": "SGD",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "points": [
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 1000000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 700000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": -200000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 250000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 1100000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 720000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": -150000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 300000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 1200000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 740000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": -100000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 350000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit3",
+        "isHistorical": true,
+        "fabricated": false
+      }
+    ],
+    "sourceRefs": [
+      "frcw-ev-rev1",
+      "frcw-ev-cost1",
+      "frcw-ev-cf1",
+      "frcw-ev-profit1",
+      "frcw-ev-rev2",
+      "frcw-ev-cost2",
+      "frcw-ev-cf2",
+      "frcw-ev-profit2",
+      "frcw-ev-rev3",
+      "frcw-ev-cost3",
+      "frcw-ev-cf3",
+      "frcw-ev-profit3"
+    ],
+    "periodsCovered": 3,
+    "isHistorical": true,
+    "fabricated": false
+  }
+}

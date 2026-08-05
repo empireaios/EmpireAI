@@ -1,0 +1,67 @@
+{
+  "missionId": "Q7-05",
+  "doctrine": "PILLOW-CRMW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/crm-worker/",
+  "metadataVersion": "CRMW-001-v1",
+  "reportVersion": "CRMW-RPT-v1",
+  "workerId": "wkr-crm-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS",
+    "Q7-04": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverExecuteMarketingCampaigns": true,
+    "neverDeliverCustomerJobs": true,
+    "neverReplaceBookingFunctionality": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricateCustomerInteractions": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ706OrLater": true,
+    "preserveCompleteCustomerHistory": true,
+    "preserveCompleteTraceability": true,
+    "preserveCrmAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowCrmWorker": true,
+    "subsystemRegistry": "crm-worker",
+    "hostRoutes": "/api/pillow/crm-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/crm-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_CRM_WORKER_SYSTEM.md",
+    "config": "config/crm-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsLocalMarketResearchWorker": true,
+    "bindsServiceOfferWorker": true,
+    "bindsBookingWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/crm-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "bookingWorker": "12/12",
+    "serviceOfferWorker": "12/12",
+    "localMarketResearchWorker": "13/13",
+    "localBusinessFactoryCore": "12/12"
+  },
+  "evidence": [
+    "customer profile + lead capture",
+    "contact history + follow-up schedule",
+    "booking history linked from Q7-04 fixture",
+    "lifecycle update + CRM analytics",
+    "CRM Report with consumableByQ706",
+    "ERR submit when executiveReportingRuntime injected"
+  ],
+  "tests": {
+    "crmWorker": "12/12",
+    "bookingWorkerRegression": "12/12",
+    "serviceOfferWorkerRegression": "12/12",
+    "localMarketResearchWorkerRegression": "13/13",
+    "localBusinessFactoryCoreRegression": "12/12"
+  }
+}

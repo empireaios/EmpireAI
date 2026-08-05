@@ -1,0 +1,51 @@
+{
+  "missionId": "Q3-07",
+  "doctrine": "PILLOW-PIW-001",
+  "moduleId": "product-image-worker",
+  "metadataVersion": "PIW-001-v1",
+  "reportVersion": "PIW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Prepare supplier images and product creatives for compliant marketplace use.",
+  "prerequisites": [
+    { "missionId": "Q3-06", "doctrine": "PILLOW-SNW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-05", "doctrine": "PILLOW-SEW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverPublishListings": true,
+    "neverGenerateAdvertisements": true,
+    "neverContactSuppliers": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ308OrLater": true,
+    "neverOverwriteOriginalSourceAssets": true
+  },
+  "productImageReportFields": [
+    "imageReportId",
+    "timestamp",
+    "productId",
+    "supplierId",
+    "sourceImages",
+    "processedImages",
+    "imageQualityStatus",
+    "complianceStatus",
+    "imageVariants",
+    "processingSummary",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/product-image-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/product-image-worker/",
+    "config": "config/product-image-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PRODUCT_IMAGE_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/product-image-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/product-image-worker.test.ts"
+  },
+  "notes": [
+    "Product-image-preparation-only Commerce Factory worker; public pillow index aliases PiwProductImageReport."
+  ]
+}

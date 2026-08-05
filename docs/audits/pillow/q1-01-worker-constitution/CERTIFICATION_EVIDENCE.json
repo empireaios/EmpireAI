@@ -1,0 +1,65 @@
+{
+  "missionId": "Q1-01",
+  "doctrine": "PILLOW-WCT-001",
+  "moduleId": "worker-constitution",
+  "metadataVersion": "WCT-001-v1",
+  "constitutionVersion": "WCT-CONST-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Define what an AI Worker is, how it behaves, and how it remains governed by Pillow.",
+  "q0Prerequisite": {
+    "missionId": "Q0-30",
+    "doctrine": "PILLOW-UWC-001",
+    "status": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkerQualityStandard": true,
+    "neverReplaceGovernance": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "constitutionFields": [
+    "constitutionVersion",
+    "workerIdentity",
+    "workerPurpose",
+    "workerResponsibilities",
+    "workerAuthority",
+    "workerRestrictions",
+    "workerObligations",
+    "communicationStandards",
+    "reportingStandards",
+    "qualityStandards",
+    "governanceStandards",
+    "escalationStandards",
+    "auditStandards",
+    "traceabilityStandards",
+    "metadataVersion"
+  ],
+  "constitutionalRules": [
+    "governed_by_pillow",
+    "follow_executive_instructions",
+    "never_bypass_pillow",
+    "never_execute_outside_authority",
+    "report_all_work",
+    "preserve_audit_history",
+    "preserve_traceability",
+    "follow_worker_quality_standard",
+    "follow_worker_self_critique_protocol",
+    "participate_peer_review_when_required",
+    "use_approved_tools_only",
+    "escalate_beyond_authority",
+    "remain_certifiable"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-constitution.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-constitution/",
+    "config": "config/worker-constitution.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_CONSTITUTION_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-constitution-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-constitution.test.ts"
+  }
+}

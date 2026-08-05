@@ -1,0 +1,49 @@
+{
+  "computedAt": "2026-08-05T00:00:00.000Z",
+  "missionId": "Q10-14",
+  "engineVersion": "PILLOW-SRCRT-001",
+  "runtimeVersion": "Q10-SRCRT-v1",
+  "metadataVersion": "SRCRT-001-v1",
+  "reportVersion": "SRCRT-RPT-v1",
+  "workerId": "wkr-shared-runtime-certification-01",
+  "certificationStatus": "passed",
+  "decision": "Certified",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionAuditRuntime": {
+    "missionId": "Q10-13",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "runtimesCertified": [
+    "Q10-01", "Q10-02", "Q10-03", "Q10-04", "Q10-05", "Q10-06", "Q10-07",
+    "Q10-08", "Q10-09", "Q10-10", "Q10-11", "Q10-12", "Q10-13"
+  ],
+  "boundaryLocks": {
+    "neverFabricateCertificationEvidence": true,
+    "neverCertifyMissingFunctionality": true,
+    "neverAssumeImplementation": true,
+    "neverImplementMissingRuntimes": true,
+    "neverModifyRuntimeBehaviour": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ1101OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveImmutableCertificationHistory": true,
+    "evidenceBasedOnly": true,
+    "structuralSignalOnly": true
+  },
+  "q1101ContractExposed": true,
+  "consumableByQ1101": true,
+  "finalQ10Gate": true,
+  "certificationStatusNote": "passed",
+  "notes": [
+    "Shared Runtime Certification Q10-14 certified — stops at Q10-14, exposes Q1101ConsumableContract for Q11-01",
+    "All 13 Q10 runtimes verified from repository + runtime evidence — never fabricated",
+    "Cross-runtime governance, monitoring, recovery, auditability, and reporting verified",
+    "Wired into Pillow session, orchestrator subsystem registry, and host API routes"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "missionId": "Q4-06",
+  "doctrine": "PILLOW-HKW-001",
+  "moduleId": "hook-worker",
+  "metadataVersion": "HKW-001-v1",
+  "reportVersion": "HKW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Create opening hooks, retention loops, curiosity gaps, and viewer continuation moments.",
+  "prerequisites": [
+    { "missionId": "Q4-05", "doctrine": "PILLOW-SCW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-04", "doctrine": "PILLOW-TPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverRewriteCompleteScript": true,
+    "neverGenerateThumbnails": true,
+    "neverGenerateVideos": true,
+    "neverPublishContent": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ407OrLater": true,
+    "neverUseMisleadingOrDeceptiveHooks": true
+  },
+  "hookReportFields": [
+    "hookReportId",
+    "timestamp",
+    "scriptId",
+    "contentFormat",
+    "primaryHook",
+    "alternativeHooks",
+    "curiosityGaps",
+    "retentionLoops",
+    "continuationMoments",
+    "engagementRationale",
+    "selfReviewSummary",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "script_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/hook-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/hook-worker/",
+    "config": "config/hook-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_HOOK_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/hook-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/hook-worker.test.ts"
+  },
+  "notes": [
+    "Engagement-only: improves retention via hooks/gaps/loops; does not rewrite the complete script or publish content."
+  ]
+}

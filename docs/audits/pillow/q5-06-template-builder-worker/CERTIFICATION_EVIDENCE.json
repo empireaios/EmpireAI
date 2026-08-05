@@ -1,0 +1,62 @@
+{
+  "missionId": "Q5-06",
+  "missionName": "Template Builder Worker",
+  "doctrineId": "PILLOW-TBW-001",
+  "moduleId": "template-builder-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "TBW-001-v1",
+  "reportSchemaVersion": "TBW-RPT-v1",
+  "primaryDeliverable": "Create templates, spreadsheets, prompts, planners, contracts, and reusable assets.",
+  "prerequisites": [
+    { "missionId": "Q5-05", "doctrine": "PILLOW-CBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-04", "doctrine": "PILLOW-PPW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-03", "doctrine": "PILLOW-EBW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-02", "doctrine": "PILLOW-DPR-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/template-builder-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved Digital Product Research",
+    "Generate reusable templates",
+    "Generate planners",
+    "Generate spreadsheets",
+    "Generate contracts and document templates",
+    "Generate business forms and checklists",
+    "Generate reusable prompt libraries where applicable",
+    "Validate usability and completeness",
+    "Prepare export-ready template packages",
+    "Produce machine-readable Template Builder Reports"
+  ],
+  "boundariesVerified": [
+    "Does not build sales pages",
+    "Does not process payments",
+    "Does not deliver products to customers",
+    "Does not publish products directly",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-07 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Digital Product Research Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/template-builder-worker/",
+    "config/template-builder-worker.config.json",
+    "docs/governance/EMPIREAI_TEMPLATE_BUILDER_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-06-template-builder-worker/Q5_06_TEMPLATE_BUILDER_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/template-builder-worker-bridge.ts"
+  ]
+}

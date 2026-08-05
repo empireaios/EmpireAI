@@ -1,0 +1,61 @@
+{
+  "missionId": "Q5-11",
+  "missionName": "Digital Product Analytics Worker",
+  "doctrineId": "PILLOW-DPA-001",
+  "moduleId": "digital-product-analytics-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "DPA-001-v1",
+  "reportSchemaVersion": "DPA-RPT-v1",
+  "primaryDeliverable": "Continuously measure digital product performance and recommend data-driven improvements.",
+  "prerequisites": [
+    { "missionId": "Q5-10", "doctrine": "PILLOW-DDW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-09", "doctrine": "PILLOW-CKW-001", "status": "FINAL PASS" },
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/digital-product-analytics-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Track product sales",
+    "Track revenue and profit metrics",
+    "Track conversion rates",
+    "Track refund rates",
+    "Analyse customer feedback",
+    "Detect product performance trends",
+    "Detect underperforming products",
+    "Recommend improvement opportunities",
+    "Generate executive performance summaries",
+    "Produce machine-readable Digital Product Analytics Reports"
+  ],
+  "boundariesVerified": [
+    "Does not edit products",
+    "Does not modify products without Pillow approval",
+    "Does not process payments",
+    "Does not deliver products",
+    "Does not fabricate metrics",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-12 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Checkout Worker",
+    "Digital Delivery Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/digital-product-analytics-worker/",
+    "config/digital-product-analytics-worker.config.json",
+    "docs/governance/EMPIREAI_DIGITAL_PRODUCT_ANALYTICS_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-11-digital-product-analytics-worker/Q5_11_DIGITAL_PRODUCT_ANALYTICS_WORKER_CERTIFICATION.md"
+  ]
+}

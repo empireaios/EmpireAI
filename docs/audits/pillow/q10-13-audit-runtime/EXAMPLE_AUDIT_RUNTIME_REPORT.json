@@ -1,0 +1,102 @@
+{
+  "reportId": "audrt-rpt-example-q1013-01",
+  "timestamp": "2026-08-04T15:00:00.000Z",
+  "runtimeVersion": "Q10-AUDRT-v1",
+  "totalAuditRecords": 5,
+  "workerActivitySummary": {
+    "total": 1,
+    "byCategory": { "worker_action": 1 },
+    "byStatus": { "recorded": 1 },
+    "supportingEvidence": ["summary:worker=1"],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "missionActivitySummary": {
+    "total": 1,
+    "byCategory": { "mission_lifecycle": 1 },
+    "byStatus": { "recorded": 1 },
+    "supportingEvidence": ["summary:mission=1"],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "approvalSummary": {
+    "total": 1,
+    "byCategory": { "approval_decision": 1 },
+    "byStatus": { "recorded": 1 },
+    "supportingEvidence": ["summary:approval=1"],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "recoverySummary": {
+    "total": 1,
+    "byCategory": { "recovery_event": 1 },
+    "byStatus": { "recorded": 1 },
+    "supportingEvidence": ["summary:recovery=1"],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "schedulingSummary": {
+    "total": 1,
+    "byCategory": { "scheduling_activity": 1 },
+    "byStatus": { "recorded": 1 },
+    "supportingEvidence": ["summary:scheduling=1"],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "evidenceSummary": {
+    "totalEvidenceRefs": 5,
+    "uniqueEvidenceRefs": 5,
+    "attachmentCount": 0,
+    "supportingEvidence": [
+      "evidence:total=5",
+      "evidence:unique=5",
+      "evidence:attachments=0"
+    ],
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "integrityVerification": {
+    "verificationId": "audrt-verify-example-q1013-01",
+    "timestamp": "2026-08-04T15:00:00.000Z",
+    "totalChecked": 5,
+    "verifiedCount": 5,
+    "failedCount": 0,
+    "tamperedSuspectedCount": 0,
+    "pendingCount": 0,
+    "allPassed": true,
+    "failedRecordIds": [],
+    "supportingEvidence": [
+      "checked=5",
+      "verified=5",
+      "failed=0",
+      "digest_algorithm=djb2_canonical",
+      "never_fabricated"
+    ],
+    "fabricated": false,
+    "structuralSignalOnly": true,
+    "metadataVersion": "AUDRT-001-v1"
+  },
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 92,
+  "metadataVersion": "AUDRT-001-v1",
+  "reportVersion": "AUDRT-RPT-v1",
+  "workerId": "wkr-audit-runtime-01",
+  "consumableByQ1014": true,
+  "neverFabricateAuditEvidence": true,
+  "neverDeleteAuditRecords": true,
+  "neverExecuteBusinessLogic": true,
+  "neverModifyOperationalData": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ1014OrLater": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "preserveCompleteTraceability": true,
+  "preserveImmutableAuditHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicAuditRecording": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

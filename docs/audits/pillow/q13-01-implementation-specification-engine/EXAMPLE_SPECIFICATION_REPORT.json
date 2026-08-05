@@ -1,0 +1,27 @@
+{
+  "reportId": "iseng-rpt-0001",
+  "timestamp": "2026-08-05T00:00:00.000Z",
+  "specificationVersion": "Q13-ISENG-v1",
+  "engineId": "PILLOW-ISENG-001",
+  "missionId": "Q13-01",
+  "architectureSummary": "Scanned 3 roots with 120 modules",
+  "confidenceScore": 0.85,
+  "metadataVersion": "ISENG-001-v1",
+  "reportVersion": "ISENG-RPT-v1",
+  "consumableByQ1302": true,
+  "neverImplementQ1302OrLater": true,
+  "neverExecuteImplementations": true,
+  "q1301ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "AIFRT-001-v1",
+    "fields": ["technologySummary", "proposals"],
+    "innovationPrerequisite": true,
+    "evidence": "Injected aiInnovationFactory Q1301 handshake consumerMissionId=Q13-01"
+  },
+  "generatedSpecificationSummary": {
+    "specificationCount": 1,
+    "latestSpecificationId": "iseng-spec-0001",
+    "specificationIds": ["iseng-spec-0001"]
+  }
+}

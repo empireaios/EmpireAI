@@ -1,0 +1,35 @@
+{
+  "capitalBusinessId": "tsw-biz-alpha-01",
+  "reportingPeriod": "2026-03",
+  "periodEndDate": "2026-03-31",
+  "signalKind": "filing_reminder_schedule",
+  "isAdvice": false,
+  "isFilingInstruction": false,
+  "reminders": [
+    {
+      "reminderId": "tsw-rem-000001",
+      "kind": "period_close",
+      "dueDate": "2026-03-31",
+      "title": "Period close — gather tax-support records",
+      "description": "Support reminder for 2026-03 (period_close). Not legal advice. Not a filing instruction. Not an automatic submission."
+    },
+    {
+      "reminderId": "tsw-rem-000002",
+      "kind": "document_gathering",
+      "dueDate": "2026-04-14",
+      "title": "Document gathering checkpoint"
+    },
+    {
+      "reminderId": "tsw-rem-000003",
+      "kind": "professional_review",
+      "dueDate": "2026-04-30",
+      "title": "Professional review checkpoint"
+    },
+    {
+      "reminderId": "tsw-rem-000004",
+      "kind": "filing_window",
+      "dueDate": "2026-05-15",
+      "title": "Filing window reminder (schedule only — not advice)"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "missionId": "Q9-07",
+  "doctrine": "PILLOW-TSW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/tax-support-worker/",
+  "metadataVersion": "TSW-001-v1",
+  "reportVersion": "TSW-RPT-v1",
+  "workerId": "wkr-tax-support-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS",
+    "Q9-04": "FINAL PASS",
+    "Q9-05": "FINAL PASS",
+    "Q9-06": "FINAL PASS"
+  },
+  "taxSupportModel": {
+    "moneyRepresentation": "MoneyMinor.minorUnits integer cents",
+    "factualRecordsDistinctFromReminders": true,
+    "neverFabricateTaxCalculationsOrObligations": true,
+    "neverProvideLegalOrTaxAdvice": true,
+    "neverSubmitFilingsAutomatically": true
+  },
+  "boundaries": {
+    "neverProvideLegalOrTaxAdvice": true,
+    "neverFabricateTaxCalculationsOrObligations": true,
+    "neverSubmitFilingsAutomatically": true,
+    "neverReplaceAccountantsOrTaxProfessionals": true,
+    "neverModifyAccountingRecords": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ908OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveTaxSupportHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowTaxSupportWorker": true,
+    "subsystemRegistry": "tax-support-worker",
+    "hostRoutes": "/api/pillow/tax-support-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/tax-support-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_TAX_SUPPORT_WORKER_SYSTEM.md",
+    "config": "config/tax-support-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "profitabilityWorkerBinding": true,
+    "forecastingWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/tax-support-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "forecastingWorker": "12/12",
+    "profitabilityWorker": "12/12"
+  },
+  "evidence": [
+    "verified tax-support transactions organised; categories never invented from untagged ledger lines",
+    "factual income and expense summaries prepared with recordKind factual_financial_record",
+    "missing documentation detected as support signals",
+    "filing reminder schedule generated with isAdvice:false and isFilingInstruction:false",
+    "professional review flags created for missing docs / high-value / jurisdiction extension",
+    "historical Tax Support Reports preserved across periods",
+    "Tax Support Report with consumableByQ908",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q9-01..Q9-06 untouched and still FINAL PASS",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "taxSupportWorker": "12/12",
+    "forecastingWorkerRegression": "12/12",
+    "profitabilityWorkerRegression": "12/12"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "lifecycleId": "qrt-lifecycle-example-v1",
+  "missionId": "Q10-04",
+  "queueName": "enterprise-jobs",
+  "queueType": "priority",
+  "events": [
+    {
+      "step": 1,
+      "action": "create_queue",
+      "timestamp": "2026-08-04T01:00:00.000Z",
+      "result": "pass",
+      "queueId": "qrt-queue-example-001"
+    },
+    {
+      "step": 2,
+      "action": "enqueue",
+      "timestamp": "2026-08-04T01:00:01.000Z",
+      "jobId": "job-high-priority",
+      "priority": 10,
+      "status": "ready"
+    },
+    {
+      "step": 3,
+      "action": "enqueue",
+      "timestamp": "2026-08-04T01:00:02.000Z",
+      "jobId": "job-low-priority",
+      "priority": 1,
+      "status": "ready"
+    },
+    {
+      "step": 4,
+      "action": "dispatch_ready",
+      "timestamp": "2026-08-04T01:00:03.000Z",
+      "dispatchedJobId": "job-high-priority",
+      "businessLogicExecuted": false
+    },
+    {
+      "step": 5,
+      "action": "complete_job",
+      "timestamp": "2026-08-04T01:00:04.000Z",
+      "jobId": "job-high-priority",
+      "status": "completed"
+    },
+    {
+      "step": 6,
+      "action": "dispatch_ready",
+      "timestamp": "2026-08-04T01:00:05.000Z",
+      "dispatchedJobId": "job-low-priority",
+      "businessLogicExecuted": false
+    }
+  ],
+  "notes": [
+    "Structural queue lifecycle example — dispatch never executes business logic",
+    "Deterministic priority ordering enforced"
+  ]
+}

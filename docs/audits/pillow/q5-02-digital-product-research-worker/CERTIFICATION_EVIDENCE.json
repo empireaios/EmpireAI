@@ -1,0 +1,58 @@
+{
+  "missionId": "Q5-02",
+  "missionName": "Digital Product Research Worker",
+  "doctrineId": "PILLOW-DPR-001",
+  "moduleId": "digital-product-research-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-08-01T00:00:00.000Z",
+  "metadataVersion": "DPR-001-v1",
+  "reportSchemaVersion": "DPR-RPT-v1",
+  "primaryDeliverable": "Find digital product opportunities based on demand, pain points, and market gaps.",
+  "prerequisites": [
+    { "missionId": "Q5-01", "doctrine": "PILLOW-DPF-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-19", "doctrine": "PILLOW-MDC-001", "status": "FINAL PASS" }
+  ],
+  "validation": {
+    "testFile": "pillow/src/validation/tests/digital-product-research-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Analyse customer pain points",
+    "Analyse search demand",
+    "Analyse market gaps",
+    "Analyse competitor products",
+    "Analyse emerging trends",
+    "Discover underserved niches",
+    "Estimate demand",
+    "Estimate commercial opportunity",
+    "Rank opportunities",
+    "Produce machine-readable Digital Product Research Reports"
+  ],
+  "boundariesVerified": [
+    "Does not create digital products",
+    "Does not create sales pages",
+    "Does not process payments",
+    "Does not invent unsupported market evidence",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q5-03 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Digital Products Factory Core",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/digital-product-research-worker/",
+    "config/digital-product-research-worker.config.json",
+    "docs/governance/EMPIREAI_DIGITAL_PRODUCT_RESEARCH_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q5-02-digital-product-research-worker/Q5_02_DIGITAL_PRODUCT_RESEARCH_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/digital-product-research-worker-bridge.ts"
+  ]
+}

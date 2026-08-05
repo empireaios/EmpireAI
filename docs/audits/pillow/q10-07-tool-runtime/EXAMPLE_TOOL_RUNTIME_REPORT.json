@@ -1,0 +1,391 @@
+{
+  "reportId": "toolrt-rpt-1785818679596-5",
+  "timestamp": "2026-08-04T04:44:39.596Z",
+  "runtimeVersion": "Q10-TOOLRT-v1",
+  "registeredTools": [
+    {
+      "toolId": "tool-ai-01",
+      "toolName": "AI Provider Structural Tool",
+      "toolCategory": "ai_provider",
+      "provider": "ai-provider-structural",
+      "version": "v1",
+      "authMethod": "bearer_token",
+      "credentialReference": "cred://vault/ai/tool-ai-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-ai-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-analytics-01",
+      "toolName": "Analytics Structural Tool",
+      "toolCategory": "analytics",
+      "provider": "analytics-structural",
+      "version": "v1",
+      "authMethod": "bearer_token",
+      "credentialReference": "cred://vault/analytics/tool-analytics-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-analytics-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-cloud-01",
+      "toolName": "Cloud Platform Structural Tool",
+      "toolCategory": "cloud_platform",
+      "provider": "cloud-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/cloud/tool-cloud-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-cloud-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-cursor-01",
+      "toolName": "Cursor Structural Tool",
+      "toolCategory": "cursor",
+      "provider": "cursor-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/cursor/tool-cursor-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "available",
+      "auditReference": "audit://tool-runtime/tool-cursor-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-database-01",
+      "toolName": "Database Structural Tool",
+      "toolCategory": "database",
+      "provider": "database-structural",
+      "version": "v1",
+      "authMethod": "basic",
+      "credentialReference": "cred://vault/database/tool-database-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": true,
+        "highRisk": true
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-database-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-deploy-01",
+      "toolName": "Deployment Structural Tool",
+      "toolCategory": "deployment",
+      "provider": "deployment-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/deployment/tool-deploy-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": true,
+        "highRisk": true
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-deploy-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-design-01",
+      "toolName": "Design Structural Tool",
+      "toolCategory": "design",
+      "provider": "design-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/design/tool-design-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-design-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-github-01",
+      "toolName": "GitHub Structural Tool",
+      "toolCategory": "github",
+      "provider": "github-structural",
+      "version": "v1",
+      "authMethod": "oauth",
+      "credentialReference": "cred://vault/github/tool-github-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "available",
+      "auditReference": "audit://tool-runtime/tool-github-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-internal-01",
+      "toolName": "Internal Enterprise Structural Tool",
+      "toolCategory": "internal_enterprise",
+      "provider": "internal-structural",
+      "version": "v1",
+      "authMethod": "none",
+      "credentialReference": "cred://vault/internal/tool-internal-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-internal-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-marketplace-01",
+      "toolName": "Marketplace Structural Tool",
+      "toolCategory": "marketplace",
+      "provider": "marketplace-structural",
+      "version": "v1",
+      "authMethod": "oauth",
+      "credentialReference": "cred://vault/marketplace/tool-marketplace-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-marketplace-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-monitoring-01",
+      "toolName": "Monitoring Structural Tool",
+      "toolCategory": "monitoring",
+      "provider": "monitoring-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/monitoring/tool-monitoring-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-monitoring-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "toolId": "tool-supplier-01",
+      "toolName": "Supplier Structural Tool",
+      "toolCategory": "supplier",
+      "provider": "supplier-structural",
+      "version": "v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/supplier/tool-supplier-01",
+      "permissionPolicy": {
+        "allowedActions": [
+          "status",
+          "invoke",
+          "list"
+        ],
+        "requiresPillowConfirmation": true,
+        "requiresGrandKingApproval": false,
+        "highRisk": false
+      },
+      "connectionStatus": "disconnected",
+      "availabilityStatus": "standby",
+      "auditReference": "audit://tool-runtime/tool-supplier-01",
+      "metadataVersion": "TOOLRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    }
+  ],
+  "toolCategories": [
+    "ai_provider",
+    "analytics",
+    "cloud_platform",
+    "cursor",
+    "database",
+    "deployment",
+    "design",
+    "github",
+    "internal_enterprise",
+    "marketplace",
+    "monitoring",
+    "supplier"
+  ],
+  "activeConnections": [],
+  "invocationStatistics": {
+    "totalInvocations": 4,
+    "successfulInvocations": 2,
+    "failedInvocations": 0,
+    "deniedInvocations": 0,
+    "retriedInvocations": 2,
+    "liveExecutions": 0,
+    "structuralOnlyInvocations": 4,
+    "lastInvocationAt": "2026-08-04T04:44:39.596Z"
+  },
+  "failureSummary": {
+    "totalFailures": 0,
+    "byErrorClass": {},
+    "unavailableCount": 0
+  },
+  "retrySummary": {
+    "totalRetries": 2,
+    "exhaustedRetries": 0,
+    "averageAttempts": 1.75
+  },
+  "availabilityStatus": {
+    "available": 2,
+    "degraded": 0,
+    "unavailable": 0,
+    "unknown": 0,
+    "standby": 10
+  },
+  "permissionStatus": {
+    "granted": 4,
+    "denied": 0,
+    "highRiskApproved": 2
+  },
+  "diagnostics": {
+    "registeredToolCount": 12,
+    "activeConnectionCount": 0,
+    "unavailableToolCount": 0,
+    "notes": [
+      "Structural tool diagnostics only — no fabricated execution payloads",
+      "credentialReference strings only; secrets never included"
+    ]
+  },
+  "supportingEvidence": [
+    "tool-runtime operational evidence",
+    "config/tool-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 95,
+  "metadataVersion": "TOOLRT-001-v1",
+  "reportVersion": "TOOLRT-RPT-v1",
+  "workerId": "wkr-tool-runtime-01",
+  "consumableByQ1008": true,
+  "neverExposeSecrets": true,
+  "neverExposeCredentials": true,
+  "neverFabricateExecutionResults": true,
+  "neverInvokeUnauthorizedTools": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1008OrLater": true,
+  "deterministicToolRoutingOnly": true,
+  "preserveCompleteTraceability": true,
+  "preserveInvocationTraces": true,
+  "preserveAuditHistory": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "credentialReferenceOnly": true
+}

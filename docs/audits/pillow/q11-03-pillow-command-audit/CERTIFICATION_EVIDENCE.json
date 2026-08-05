@@ -1,0 +1,47 @@
+{
+  "computedAt": "2026-08-05T03:00:00.000Z",
+  "missionId": "Q11-03",
+  "engineVersion": "PILLOW-PCART-001",
+  "auditVersion": "Q11-PCART-v1",
+  "metadataVersion": "PCART-001-v1",
+  "reportVersion": "PCART-RPT-v1",
+  "workerId": "wkr-pillow-command-audit-01",
+  "certificationStatus": "passed",
+  "decision": "Ready",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionWorkerReadinessAudit": {
+    "missionId": "Q11-02",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "workersAudited": 5,
+  "successfullyControlledWorkers": 5,
+  "boundaryLocks": {
+    "neverFabricateAuditEvidence": true,
+    "neverCertifyUnverifiedCommandCapability": true,
+    "neverAssumeImplementation": true,
+    "neverModifyWorkerImplementations": true,
+    "neverRepairFailedWorkers": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ1104OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveImmutableAuditHistory": true,
+    "evidenceBasedOnly": true,
+    "structuralSignalOnly": true
+  },
+  "q1104ContractExposed": true,
+  "consumableByQ1104": true,
+  "q1103ContractConsumed": true,
+  "firstPillowCommandGate": true,
+  "notes": [
+    "Pillow Command Audit Q11-03 certified — stops at Q11-03, exposes Q1104ConsumableContract for Q11-04",
+    "Command verification is structural/presence-only — invokeWorker never executes business logic",
+    "Discovers workers only from workerRegistry; never invents workers",
+    "Wired into Pillow session, orchestrator subsystem registry, and host API routes"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "topologyId": "srtc-topology-example-v1",
+  "timestamp": "2026-08-04T01:00:00.000Z",
+  "runtimeVersion": "Q10-SRTC-v1",
+  "metadataVersion": "SRTC-001-v1",
+  "factories": [
+    { "factoryKey": "workforce-os", "factoryName": "Workforce (Q0/Q1)", "series": "workforce", "healthStatus": "unknown" },
+    { "factoryKey": "empire-builder-factory", "factoryName": "Empire Builder", "series": "Q2", "healthStatus": "unknown" },
+    { "factoryKey": "commerce-factory", "factoryName": "Commerce", "series": "Q3", "healthStatus": "unknown" },
+    { "factoryKey": "media-factory", "factoryName": "Media", "series": "Q4", "healthStatus": "unknown" },
+    { "factoryKey": "digital-products-factory", "factoryName": "Digital Products", "series": "Q5", "healthStatus": "unknown" },
+    { "factoryKey": "enterprise-platform-factory", "factoryName": "Enterprise Platform", "series": "Q6", "healthStatus": "unknown" },
+    { "factoryKey": "local-business-factory", "factoryName": "Local Business", "series": "Q7", "healthStatus": "unknown" },
+    { "factoryKey": "affiliate-factory", "factoryName": "Affiliate", "series": "Q8", "healthStatus": "unknown" },
+    { "factoryKey": "capital-factory", "factoryName": "Capital", "series": "Q9", "healthStatus": "unknown" }
+  ],
+  "workers": [
+    { "workerId": "wkr-capital-factory-core-01", "workerName": "Capital Factory Core", "factoryKey": "capital-factory", "healthStatus": "unknown" },
+    { "workerId": "wkr-affiliate-factory-core-01", "workerName": "Affiliate Factory Core", "factoryKey": "affiliate-factory", "healthStatus": "unknown" },
+    { "workerId": "wkr-empire-builder-factory-core-01", "workerName": "Empire Builder Factory Core", "factoryKey": "empire-builder-factory", "healthStatus": "unknown" }
+  ],
+  "services": [
+    { "serviceName": "factory_registry", "status": "connected" },
+    { "serviceName": "worker_registry", "status": "connected" },
+    { "serviceName": "runtime_registry", "status": "connected" },
+    { "serviceName": "execution_context", "status": "connected" },
+    { "serviceName": "routing_engine", "status": "connected" }
+  ],
+  "routes": [
+    {
+      "sourceFactory": "capital-factory",
+      "targetFactory": "commerce-factory",
+      "service": "runtime_coordination",
+      "routingStatus": "routed",
+      "businessLogicInvoked": false
+    }
+  ],
+  "dependencies": [
+    { "target": "worker_registry", "status": "unavailable", "probed": true, "fabricated": false },
+    { "target": "executive_reporting_runtime", "status": "unavailable", "probed": true, "fabricated": false },
+    { "target": "capital_factory", "status": "unavailable", "probed": true, "fabricated": false }
+  ],
+  "notes": [
+    "Example topology — healthStatus unknown unless probed",
+    "Routing records only; no business logic invoked"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "reportId": "gkagt-rpt-0001",
+  "timestamp": "2026-08-05T01:51:07.915Z",
+  "approvalVersion": "Q11-GKAGT-v1",
+  "engineId": "PILLOW-GKAGT-001",
+  "missionId": "Q11-10",
+  "executiveAcceptanceSummary": "Withhold — FINART missing",
+  "certificationSummary": {
+    "computedAt": "2026-08-05T01:51:07.914Z",
+    "totalSources": 2,
+    "boundCount": 2,
+    "certifiedCount": 2,
+    "partiallyCertifiedCount": 0,
+    "failedCount": 0,
+    "missingCount": 0,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "reports": [],
+    "evidence": []
+  },
+  "productionReadinessSummary": {
+    "computedAt": "2026-08-05T01:51:07.914Z",
+    "totalSources": 3,
+    "boundCount": 3,
+    "evidencePresentCount": 3,
+    "overallClassification": "certified",
+    "sources": [],
+    "evidence": []
+  },
+  "grandKingDecision": "pending",
+  "deploymentAuthorisationStatus": "blocked",
+  "outstandingIssues": [
+    "Executive Acceptance Pack decision=withhold — withhold blocks deployment authorisation",
+    "Executive Acceptance Pack withhold/failed — deployment authorisation blocked",
+    "Financial Readiness Audit not implemented"
+  ],
+  "supportingEvidence": [
+    "packReportId=eaprt-rpt-live-withhold",
+    "packDecision=withhold",
+    "deploymentRecommendation=withhold",
+    "pccrt decision=certify",
+    "packDecision=withhold auditStatus=blocked",
+    "q1110ContractConsumed version=EAPRT-001-v1"
+  ],
+  "auditStatus": "draft",
+  "confidenceScore": 0.7,
+  "metadataVersion": "GKAGT-001-v1",
+  "reportVersion": "GKAGT-RPT-v1",
+  "workerId": "wkr-grand-king-acceptance-gate-01",
+  "acceptance": {
+    "acceptanceId": "gkagt-acc-0001",
+    "repositoryVersion": "GKAGT-001-v1",
+    "certificationStatus": "blocked",
+    "executiveAcceptancePackReference": "eaprt-rpt-live-withhold",
+    "productionReadinessStatus": "certified",
+    "grandKingDecision": "pending",
+    "decisionTimestamp": null,
+    "decisionComments": null,
+    "deploymentAuthorisationStatus": "blocked",
+    "reReviewStatus": "not_required",
+    "supportingEvidence": [
+      "packReportId=eaprt-rpt-live-withhold",
+      "packDecision=withhold",
+      "deploymentRecommendation=withhold",
+      "pccrt decision=certify",
+      "packDecision=withhold auditStatus=blocked",
+      "q1110ContractConsumed version=EAPRT-001-v1"
+    ],
+    "auditReference": "gkagt:gkagt-rpt-0001"
+  },
+  "decisionHistoryRefs": [],
+  "validation": {
+    "validationReportId": "gkagt-val-1785894667915",
+    "validationTimestamp": "2026-08-05T01:51:07.915Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 1,
+    "metadataVersion": "GKAGT-001-v1"
+  },
+  "q1110ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "EAPRT-001-v1",
+    "fields": [
+      "decision"
+    ],
+    "evidence": "Injected Q11-09 executive-acceptance-pack handshake returned explicit consumableByQ1110 contract"
+  },
+  "consumableByQ1201": true,
+  "neverImplementQ1201OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "finalQ11Gate": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "deploymentAuthorisation": null,
+  "reReviewStatus": "not_required",
+  "traceabilityRefs": [
+    "eaprt-rpt-live-withhold",
+    "decision=pending",
+    "auth=blocked"
+  ],
+  "runTimestamp": "2026-08-05T01:51:07.915Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutableApprovalHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicGateBehaviour": true,
+  "maskSensitiveValues": true,
+  "neverFabricateApprovalEvidence": true,
+  "neverBypassGrandKingApproval": true,
+  "neverAuthoriseWithoutApproval": true,
+  "neverOverrideFailedCertifications": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

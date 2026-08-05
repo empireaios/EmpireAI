@@ -1,0 +1,66 @@
+{
+  "missionId": "Q1-06",
+  "doctrine": "PILLOW-RMX-001",
+  "moduleId": "responsibility-matrix",
+  "metadataVersion": "RMX-001-v1",
+  "matrixVersion": "RMX-MATRIX-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Map every worker responsibility, input, output, owner, dependency and approval requirement.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceAuthorityMatrix": true,
+    "neverReplaceOrganizationCharter": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "responsibilityFields": [
+    "matrixVersion",
+    "responsibilityId",
+    "responsibilityName",
+    "primaryOwner",
+    "supportingWorkers",
+    "department",
+    "factory",
+    "requiredInputs",
+    "expectedOutputs",
+    "dependencies",
+    "requiredApprovals",
+    "successCriteria",
+    "failureConditions",
+    "escalationTarget",
+    "metadataVersion"
+  ],
+  "responsibilityRules": [
+    "exactly_one_accountable_owner",
+    "supporting_workers_optional",
+    "required_inputs_defined",
+    "expected_outputs_defined",
+    "required_approvals_defined",
+    "dependency_chain_defined",
+    "escalation_path_defined",
+    "quality_requirements_defined",
+    "completion_criteria_defined",
+    "no_responsibility_outside_matrix",
+    "no_ambiguous_ownership"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/responsibility-matrix.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/responsibility-matrix/",
+    "config": "config/responsibility-matrix.config.json",
+    "doctrine": "docs/governance/EMPIREAI_RESPONSIBILITY_MATRIX_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/responsibility-matrix-bridge.ts",
+    "tests": "pillow/src/validation/tests/responsibility-matrix.test.ts"
+  }
+}

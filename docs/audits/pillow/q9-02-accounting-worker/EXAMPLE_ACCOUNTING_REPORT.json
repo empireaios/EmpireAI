@@ -1,0 +1,306 @@
+{
+  "reportId": "accw-rpt-0001",
+  "timestamp": "2026-08-03T04:57:32.678Z",
+  "accountingPeriod": "2026-Q3",
+  "incomeSummary": {
+    "totalsByCurrency": [
+      {
+        "currency": "SGD",
+        "total": 12500,
+        "fabricated": false
+      }
+    ],
+    "totalsByBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 12500,
+        "fabricated": false
+      }
+    ],
+    "grandTotal": 12500,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "expenseSummary": {
+    "totalsByCurrency": [
+      {
+        "currency": "SGD",
+        "total": 3200,
+        "fabricated": false
+      }
+    ],
+    "totalsByBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 3200,
+        "fabricated": false
+      }
+    ],
+    "grandTotal": 3200,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "assetSummary": {
+    "totalsByCurrency": [
+      {
+        "currency": "SGD",
+        "total": 13800,
+        "fabricated": false
+      }
+    ],
+    "totalsByBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 13800,
+        "fabricated": false
+      }
+    ],
+    "grandTotal": 13800,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "liabilitySummary": {
+    "totalsByCurrency": [
+      {
+        "currency": "SGD",
+        "total": 1500,
+        "fabricated": false
+      }
+    ],
+    "totalsByBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": 1500,
+        "fabricated": false
+      }
+    ],
+    "grandTotal": 1500,
+    "fabricated": false,
+    "evidencePresent": true
+  },
+  "ledgerBalance": {
+    "balanced": true,
+    "totalDebits": 16200,
+    "totalCredits": 16200,
+    "difference": 0,
+    "currency": "SGD"
+  },
+  "financialEvents": [
+    {
+      "entryId": "accw-entry-0001",
+      "entryType": "income",
+      "businessId": "capfc-biz-growth-01",
+      "accountingPeriod": "2026-Q3",
+      "timestamp": "2026-08-03T04:57:32.673Z",
+      "description": "Affiliate programme revenue",
+      "currency": "SGD",
+      "lines": [
+        {
+          "accountId": "accw-acct-0003",
+          "debit": 12500,
+          "credit": 0,
+          "currency": "SGD",
+          "memo": "Affiliate programme revenue"
+        },
+        {
+          "accountId": "accw-acct-0001",
+          "debit": 0,
+          "credit": 12500,
+          "currency": "SGD",
+          "memo": "Affiliate programme revenue"
+        }
+      ],
+      "fabricated": false,
+      "immutable": true,
+      "traceabilityRefs": [
+        "q9-02:income:capfc-biz-growth-01",
+        "q9-02:entry:accw-entry-0001"
+      ]
+    },
+    {
+      "entryId": "accw-entry-0002",
+      "entryType": "expense",
+      "businessId": "capfc-biz-growth-01",
+      "accountingPeriod": "2026-Q3",
+      "timestamp": "2026-08-03T04:57:32.674Z",
+      "description": "Content production expense",
+      "currency": "SGD",
+      "lines": [
+        {
+          "accountId": "accw-acct-0002",
+          "debit": 3200,
+          "credit": 0,
+          "currency": "SGD",
+          "memo": "Content production expense"
+        },
+        {
+          "accountId": "accw-acct-0003",
+          "debit": 0,
+          "credit": 3200,
+          "currency": "SGD",
+          "memo": "Content production expense"
+        }
+      ],
+      "fabricated": false,
+      "immutable": true,
+      "traceabilityRefs": [
+        "q9-02:expense:capfc-biz-growth-01",
+        "q9-02:entry:accw-entry-0002"
+      ]
+    },
+    {
+      "entryId": "accw-entry-0003",
+      "entryType": "transfer",
+      "businessId": "capfc-biz-growth-01",
+      "accountingPeriod": "2026-Q3",
+      "timestamp": "2026-08-03T04:57:32.676Z",
+      "description": "Owner draw structural transfer",
+      "currency": "SGD",
+      "lines": [
+        {
+          "accountId": "accw-acct-0003",
+          "debit": 0,
+          "credit": 500,
+          "currency": "SGD",
+          "memo": "Owner draw structural transfer"
+        },
+        {
+          "accountId": "accw-acct-0005",
+          "debit": 500,
+          "credit": 0,
+          "currency": "SGD",
+          "memo": "Owner draw structural transfer"
+        }
+      ],
+      "fabricated": false,
+      "immutable": true,
+      "traceabilityRefs": [
+        "q9-02:transfer:capfc-biz-growth-01",
+        "q9-02:entry:accw-entry-0003"
+      ]
+    }
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 100,
+  "metadataVersion": "ACCW-001-v1",
+  "reportVersion": "ACCW-RPT-v1",
+  "workerId": "wkr-accounting-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "capitalProjectId": null,
+  "equitySummary": {
+    "totalEquity": -500,
+    "currency": "SGD",
+    "byBusiness": [
+      {
+        "businessId": "capfc-biz-growth-01",
+        "total": -500,
+        "fabricated": false
+      }
+    ],
+    "fabricated": false
+  },
+  "accountBalances": [
+    {
+      "accountId": "accw-acct-0001",
+      "businessId": "capfc-biz-growth-01",
+      "accountType": "income",
+      "name": "Income",
+      "currency": "SGD",
+      "balance": 12500,
+      "metadata": {
+        "chartOfAccounts": "standard"
+      },
+      "createdAt": "2026-08-03T04:57:32.672Z",
+      "updatedAt": "2026-08-03T04:57:32.673Z",
+      "fabricated": false
+    },
+    {
+      "accountId": "accw-acct-0002",
+      "businessId": "capfc-biz-growth-01",
+      "accountType": "expense",
+      "name": "Expenses",
+      "currency": "SGD",
+      "balance": 3200,
+      "metadata": {
+        "chartOfAccounts": "standard"
+      },
+      "createdAt": "2026-08-03T04:57:32.672Z",
+      "updatedAt": "2026-08-03T04:57:32.674Z",
+      "fabricated": false
+    },
+    {
+      "accountId": "accw-acct-0003",
+      "businessId": "capfc-biz-growth-01",
+      "accountType": "asset",
+      "name": "Cash/Bank",
+      "currency": "SGD",
+      "balance": 8800,
+      "metadata": {
+        "chartOfAccounts": "standard"
+      },
+      "createdAt": "2026-08-03T04:57:32.672Z",
+      "updatedAt": "2026-08-03T04:57:32.676Z",
+      "fabricated": false
+    },
+    {
+      "accountId": "accw-acct-0004",
+      "businessId": "capfc-biz-growth-01",
+      "accountType": "liability",
+      "name": "Accounts Payable",
+      "currency": "SGD",
+      "balance": 0,
+      "metadata": {
+        "chartOfAccounts": "standard"
+      },
+      "createdAt": "2026-08-03T04:57:32.672Z",
+      "updatedAt": "2026-08-03T04:57:32.672Z",
+      "fabricated": false
+    },
+    {
+      "accountId": "accw-acct-0005",
+      "businessId": "capfc-biz-growth-01",
+      "accountType": "equity",
+      "name": "Owner Equity",
+      "currency": "SGD",
+      "balance": -500,
+      "metadata": {
+        "chartOfAccounts": "standard"
+      },
+      "createdAt": "2026-08-03T04:57:32.672Z",
+      "updatedAt": "2026-08-03T04:57:32.676Z",
+      "fabricated": false
+    }
+  ],
+  "validation": {
+    "validationReportId": "accw-val-1785733052678",
+    "validationTimestamp": "2026-08-03T04:57:32.678Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 1,
+    "metadataVersion": "ACCW-001-v1"
+  },
+  "runTimestamp": "2026-08-03T04:57:32.678Z",
+  "consumableByQ903": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-02:report:accw-rpt-0001",
+    "q9-02:capital_business:capfc-biz-growth-01",
+    "q9-02:accounting_period:2026-Q3"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveImmutableAccountingHistory": true,
+  "neverFabricateAccountingRecords": true,
+  "neverForecastFinances": true,
+  "neverApproveInvestments": true,
+  "neverReplaceBudgetPlanningWorker": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ903OrLater": true
+}

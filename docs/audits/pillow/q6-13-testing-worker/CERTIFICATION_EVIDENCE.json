@@ -1,0 +1,48 @@
+{
+  "missionId": "Q6-13",
+  "doctrine": "PILLOW-TSW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/testing-worker/",
+  "metadataVersion": "TSW-001-v1",
+  "reportVersion": "TSW-RPT-v1",
+  "workerId": "wkr-testing-01",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS",
+    "Q6-10": "FINAL PASS",
+    "Q6-11": "FINAL PASS",
+    "Q6-12": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateSuccessfulTests": true,
+    "neverModifyUnrelatedProductionCode": true,
+    "neverReplaceDeployment": true,
+    "neverReplaceCertification": true,
+    "neverImplementQ614OrLater": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowTestingWorker": true,
+    "subsystemRegistry": "testing-worker",
+    "hostRoutes": "/api/pillow/testing-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/testing-worker-bridge.ts"
+  },
+  "evidence": [
+    "pillow/src/validation/tests/testing-worker.test.ts",
+    "unit/integration/e2e/acceptance generation + execution",
+    "explicit coverageDelta only",
+    "baseline regression detection + remediation"
+  ],
+  "tests": {
+    "testingWorker": "12/12",
+    "notificationWorkerRegression": "12/12"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "contractId": "q1107-contract-PERFART-001-v1",
+  "contractVersion": "PERFART-001-v1",
+  "producedBy": "performance-audit",
+  "missionId": "Q11-06",
+  "consumerMissionId": "Q11-07",
+  "exposedFields": [
+    "assessments",
+    "performanceReadinessSummary",
+    "decision",
+    "componentInventory",
+    "bottleneckSummary",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "decisionCatalog": [
+    "certify",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Performance Audit Q11-06 certified — stops at Q11-06, exposes Q1107ConsumableContract for Q11-07 (Recovery Audit)",
+    "This contract is structural-signal-only; Q11-06 never implements Q11-07 or any later mission itself"
+  ],
+  "neverImplementQ1107OrLater": true,
+  "structuralSignalOnly": true
+}

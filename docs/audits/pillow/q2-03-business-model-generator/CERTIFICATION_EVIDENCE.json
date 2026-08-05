@@ -1,0 +1,51 @@
+{
+  "missionId": "Q2-03",
+  "doctrine": "PILLOW-EMG-001",
+  "moduleId": "empire-builder-model-generator",
+  "metadataVersion": "EMG-001-v1",
+  "modelVersion": "EMG-MDL-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Convert structured business intent into a complete business model ready for validation.",
+  "prerequisites": [
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverValidateDemand": true,
+    "neverPerformMarketResearch": true,
+    "neverBuildBranding": true,
+    "neverAssignWorkers": true,
+    "neverLaunchBusiness": true,
+    "neverImplementQ204OrLater": true
+  },
+  "namingNote": "Module uses empire-builder-model-generator / PILLOW-EMG-001 to avoid collision with existing X1-04 business-model-generator / PILLOW-BMG-001.",
+  "businessModelFields": [
+    "businessModelId",
+    "timestamp",
+    "businessType",
+    "valueProposition",
+    "productsServices",
+    "customerSegments",
+    "revenueModel",
+    "costModel",
+    "operatingModel",
+    "requiredCapabilities",
+    "requiredIntegrations",
+    "businessAssumptions",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/empire-builder-model-generator.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/empire-builder-model-generator/",
+    "config": "config/empire-builder-model-generator.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EMPIRE_BUILDER_MODEL_GENERATOR_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/empire-builder-model-generator-bridge.ts",
+    "tests": "pillow/src/validation/tests/empire-builder-model-generator.test.ts"
+  },
+  "notes": [
+    "Isolated blueprint-only Q2 service; public pillow index aliases EmgBusinessModel to avoid collision with X1-04 BusinessModelRecord."
+  ]
+}

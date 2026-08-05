@@ -1,0 +1,25 @@
+{
+  "contractId": "q1304-contract-MPENG-001-v1",
+  "contractVersion": "MPENG-001-v1",
+  "producedBy": "mission-planning-engine",
+  "missionId": "Q13-03",
+  "consumerMissionId": "Q13-04",
+  "exposedFields": [
+    "missionSummary",
+    "repositoryIntelligenceSummary",
+    "dependencySummary",
+    "executionPlan",
+    "integrationSummary",
+    "validationStrategy",
+    "acceptanceCriteria",
+    "riskSummary",
+    "plans",
+    "confidenceScore"
+  ],
+  "neverImplementQ1304OrLater": true,
+  "structuralSignalOnly": true,
+  "planningPrerequisite": true,
+  "notes": [
+    "Mission Planning Engine Q13-03 — exposes Q1304ConsumableContract for Q13-04 without implementing Q13-04"
+  ]
+}

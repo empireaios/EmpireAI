@@ -1,0 +1,51 @@
+{
+  "computedAt": "2026-08-05T01:00:00.000Z",
+  "missionId": "Q11-01",
+  "results": [
+    {
+      "certificationId": "pccrt-cert-factory-01",
+      "programmeId": "factory_certification",
+      "componentId": "commerce-factory",
+      "componentType": "factory",
+      "certificationStatus": "Discovered",
+      "readinessScore": 0.85,
+      "evidenceReferences": ["evid://pccrt/factory/commerce-factory"],
+      "validationResults": ["factory_key_present", "module_referenced"],
+      "failedChecks": [],
+      "passedChecks": ["factory_key_present", "module_referenced"],
+      "outstandingIssues": [],
+      "auditReference": "audit://pccrt/factory/commerce-factory",
+      "certificationTimestamp": "2026-08-05T01:00:00.000Z"
+    },
+    {
+      "certificationId": "pccrt-cert-runtime-01",
+      "programmeId": "runtime_certification",
+      "componentId": "Q10-01",
+      "componentType": "runtime",
+      "certificationStatus": "Discovered",
+      "readinessScore": 0.9,
+      "evidenceReferences": ["evid://pccrt/runtime/Q10-01"],
+      "validationResults": ["engine_present", "session_bound"],
+      "failedChecks": [],
+      "passedChecks": ["engine_present", "session_bound"],
+      "outstandingIssues": [],
+      "auditReference": "audit://pccrt/runtime/Q10-01",
+      "certificationTimestamp": "2026-08-05T01:00:00.000Z"
+    },
+    {
+      "certificationId": "pccrt-cert-workforce-01",
+      "programmeId": "workforce_certification",
+      "componentId": "worker-registry",
+      "componentType": "worker",
+      "certificationStatus": "Discovered",
+      "readinessScore": 0.8,
+      "evidenceReferences": ["evid://pccrt/worker/registry"],
+      "validationResults": ["registry_list_workers"],
+      "failedChecks": [],
+      "passedChecks": ["registry_list_workers"],
+      "outstandingIssues": [],
+      "auditReference": "audit://pccrt/worker/registry",
+      "certificationTimestamp": "2026-08-05T01:00:00.000Z"
+    }
+  ]
+}

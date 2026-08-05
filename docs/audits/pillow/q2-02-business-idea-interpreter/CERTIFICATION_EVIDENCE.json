@@ -1,0 +1,50 @@
+{
+  "missionId": "Q2-02",
+  "doctrine": "PILLOW-BII-001",
+  "moduleId": "business-idea-interpreter",
+  "metadataVersion": "BII-001-v1",
+  "intentVersion": "BII-INT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Understand simple business commands and convert them into structured business intent.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverGenerateBusinessModels": true,
+    "neverResearchMarkets": true,
+    "neverBuildBusinesses": true,
+    "neverAssignWorkers": true,
+    "neverExecuteAnything": true,
+    "neverImplementQ203OrLater": true
+  },
+  "structuredBusinessIntentFields": [
+    "intentId",
+    "timestamp",
+    "originalCommand",
+    "businessType",
+    "businessIdea",
+    "targetCustomer",
+    "productServiceCategory",
+    "channelPlatform",
+    "constraints",
+    "successObjective",
+    "confidenceScore",
+    "missingInformation",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/business-idea-interpreter.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/business-idea-interpreter/",
+    "config": "config/business-idea-interpreter.config.json",
+    "doctrine": "docs/governance/EMPIREAI_BUSINESS_IDEA_INTERPRETER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/business-idea-interpreter-bridge.ts",
+    "tests": "pillow/src/validation/tests/business-idea-interpreter.test.ts"
+  },
+  "notes": [
+    "Isolated interpret-only service; public pillow index aliases BII_BUSINESS_TYPES and BiiStructuredBusinessIntent to avoid collision with Q2-01 BUSINESS_TYPES."
+  ]
+}

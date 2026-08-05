@@ -1,0 +1,61 @@
+{
+  "missionId": "Q7-04",
+  "doctrine": "PILLOW-BKW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/booking-worker/",
+  "metadataVersion": "BKW-001-v1",
+  "reportVersion": "BKW-RPT-v1",
+  "workerId": "wkr-booking-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverPerformTheService": true,
+    "neverProcessPayments": true,
+    "neverReplaceCrm": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricateBookingConfirmations": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ705OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveBookingAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowBookingWorker": true,
+    "subsystemRegistry": "booking-worker",
+    "hostRoutes": "/api/pillow/booking-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/booking-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_BOOKING_WORKER_SYSTEM.md",
+    "config": "config/booking-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsLocalMarketResearchWorker": true,
+    "bindsServiceOfferWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/booking-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "serviceOfferWorker": "12/12",
+    "localMarketResearchWorker": "13/13",
+    "localBusinessFactoryCore": "12/12"
+  },
+  "evidence": [
+    "consumes approved Q7-03 service offer fixtures",
+    "create/assign/modify/cancel with conflict prevention",
+    "confirmation only for valid bookings",
+    "Booking Report with consumableByQ705",
+    "ERR submit when executiveReportingRuntime injected"
+  ],
+  "tests": {
+    "bookingWorker": "12/12",
+    "serviceOfferWorkerRegression": "12/12",
+    "localMarketResearchWorkerRegression": "13/13",
+    "localBusinessFactoryCoreRegression": "12/12"
+  }
+}

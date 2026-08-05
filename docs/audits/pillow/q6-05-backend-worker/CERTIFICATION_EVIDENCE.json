@@ -1,0 +1,34 @@
+{
+  "missionId": "Q6-05",
+  "doctrineId": "PILLOW-BEW-001",
+  "moduleId": "backend-worker",
+  "status": "FINAL PASS",
+  "metadataVersion": "BEW-001-v1",
+  "reportVersion": "BEW-RPT-v1",
+  "priors": [
+    { "missionId": "Q6-01", "doctrine": "PILLOW-EPFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-02", "doctrine": "PILLOW-RQW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-03", "doctrine": "PILLOW-ARW-001", "status": "FINAL PASS" },
+    { "missionId": "Q6-04", "doctrine": "PILLOW-FEW-001", "status": "FINAL PASS" }
+  ],
+  "module": "pillow/src/backend-worker",
+  "tests": {
+    "path": "pillow/src/validation/tests/backend-worker.test.ts",
+    "result": "10/10 pass"
+  },
+  "boundaries": [
+    "Does not build frontend UI",
+    "Does not design new requirements",
+    "Does not override approved architecture",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not implement Q6-06 or later"
+  ],
+  "evidence": [
+    "backend-worker.test.ts",
+    "EMPIREAI_BACKEND_WORKER_SYSTEM.md",
+    "backend-worker.config.json",
+    "backend-worker-bridge.ts",
+    "session/index/registry/host/routes wiring"
+  ]
+}

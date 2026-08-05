@@ -1,0 +1,13 @@
+{
+  "contractId": "q1305-contract-CSGEN-001-v1",
+  "contractVersion": "CSGEN-001-v1",
+  "producedBy": "cursor-specification-generator",
+  "missionId": "Q13-04",
+  "consumerMissionId": "Q13-05",
+  "neverImplementQ1305OrLater": true,
+  "structuralSignalOnly": true,
+  "specificationPrerequisite": true,
+  "notes": [
+    "Cursor Specification Generator Q13-04 — exposes Q1305ConsumableContract for Q13-05 without implementing Q13-05"
+  ]
+}

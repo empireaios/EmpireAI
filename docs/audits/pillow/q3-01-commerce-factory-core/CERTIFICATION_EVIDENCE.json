@@ -1,0 +1,63 @@
+{
+  "missionId": "Q3-01",
+  "doctrine": "PILLOW-CMF-001",
+  "moduleId": "commerce-factory-core",
+  "metadataVersion": "CMF-001-v1",
+  "missionVersion": "CMF-CBM-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Turn an approved Business Blueprint + Business Approval Pack into a complete Commerce Build Mission.",
+  "prerequisites": [
+    { "missionId": "Q2-10", "doctrine": "PILLOW-EBC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverBuildStores": true,
+    "neverImportProducts": true,
+    "neverConfigureMarketplaces": true,
+    "neverExecuteCommerceImplementation": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ302OrLater": true
+  },
+  "commerceBuildMissionFields": [
+    "commerceBuildMissionId",
+    "timestamp",
+    "businessBlueprintId",
+    "businessApprovalPackId",
+    "businessType",
+    "commerceCategory",
+    "missionObjective",
+    "currentStatus",
+    "requiredNextStep",
+    "approvalStatus",
+    "grandKingApprovalVerified",
+    "blueprintCompletenessVerified",
+    "implementationPrerequisitesVerified",
+    "missingPrerequisites",
+    "traceabilityReference",
+    "metadataVersion"
+  ],
+  "commerceCategories": [
+    "online_store",
+    "marketplace",
+    "dropshipping",
+    "subscription_commerce",
+    "wholesale",
+    "hybrid_commerce",
+    "unknown"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/commerce-factory-core.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/commerce-factory-core/",
+    "config": "config/commerce-factory-core.config.json",
+    "doctrine": "docs/governance/EMPIREAI_COMMERCE_FACTORY_CORE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/commerce-factory-core-bridge.ts",
+    "tests": "pillow/src/validation/tests/commerce-factory-core.test.ts"
+  },
+  "notes": [
+    "Preparation-only Q3 entrypoint; public pillow index aliases CmfCommerceBuildMission to avoid CFC / Company Factory Certified collision."
+  ]
+}

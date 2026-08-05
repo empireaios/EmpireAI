@@ -1,0 +1,362 @@
+{
+  "reportId": "apirt-rpt-1785816373845-7",
+  "timestamp": "2026-08-04T04:06:13.845Z",
+  "runtimeVersion": "Q10-APIRT-v1",
+  "registeredApis": [
+    {
+      "apiId": "api-ai-01",
+      "provider": "ai-model-structural",
+      "serviceType": "ai_model",
+      "endpoint": "https://structural.local/ai/v1",
+      "authMethod": "bearer_token",
+      "credentialReference": "cred://vault/ai/api-ai-01",
+      "apiVersion": "v1",
+      "connectionStatus": "disconnected",
+      "healthStatus": "standby",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": null,
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-ai-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "apiId": "api-comms-01",
+      "provider": "communication-structural",
+      "serviceType": "communication",
+      "endpoint": "https://structural.local/comms/v1",
+      "authMethod": "basic",
+      "credentialReference": "cred://vault/comms/api-comms-01",
+      "apiVersion": "v1",
+      "connectionStatus": "disconnected",
+      "healthStatus": "standby",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": null,
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-comms-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "apiId": "api-internal-01",
+      "provider": "internal-service-structural",
+      "serviceType": "internal_service",
+      "endpoint": "https://structural.local/internal/v1",
+      "authMethod": "none",
+      "credentialReference": "cred://vault/internal/api-internal-01",
+      "apiVersion": "v1",
+      "connectionStatus": "disconnected",
+      "healthStatus": "standby",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": null,
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-internal-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "apiId": "api-marketplace-01",
+      "provider": "marketplace-structural",
+      "serviceType": "marketplace",
+      "endpoint": "https://structural.local/marketplace/v1",
+      "authMethod": "oauth",
+      "credentialReference": "cred://vault/marketplace/api-marketplace-01",
+      "apiVersion": "v1",
+      "connectionStatus": "disconnected",
+      "healthStatus": "standby",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": null,
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-marketplace-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "apiId": "api-payment-01",
+      "provider": "payment-structural",
+      "serviceType": "payment",
+      "endpoint": "https://structural.local/payment/v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/payment/api-payment-01",
+      "apiVersion": "v1",
+      "connectionStatus": "disconnected",
+      "healthStatus": "standby",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": null,
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-payment-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    },
+    {
+      "apiId": "api-supplier-01",
+      "provider": "supplier-structural",
+      "serviceType": "supplier",
+      "endpoint": "https://structural.local/supplier/v1",
+      "authMethod": "api_key",
+      "credentialReference": "cred://vault/supplier/api-supplier-01",
+      "apiVersion": "v1",
+      "connectionStatus": "connected",
+      "healthStatus": "unhealthy",
+      "rateLimitStatus": "ok",
+      "retryPolicy": {
+        "maxRetries": 3,
+        "backoffMs": 100,
+        "retryOnStatuses": [
+          408,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "timeoutPolicy": {
+        "timeoutMs": 5000
+      },
+      "lastSuccessfulRequest": "2026-08-04T04:06:13.845Z",
+      "lastFailedRequest": null,
+      "auditReference": "audit://api-runtime/api-supplier-01",
+      "circuitState": "closed",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    }
+  ],
+  "activeConnections": [
+    {
+      "connectionId": "apirt-conn-1785816373843-1",
+      "apiId": "api-supplier-01",
+      "provider": "supplier-structural",
+      "status": "connected",
+      "openedAt": "2026-08-04T04:06:13.843Z",
+      "closedAt": null,
+      "credentialReference": "cred://vault/supplier/api-supplier-01",
+      "metadataVersion": "APIRT-001-v1",
+      "structuralSignalOnly": true,
+      "fabricated": false
+    }
+  ],
+  "providerHealth": [
+    {
+      "apiId": "api-ai-01",
+      "provider": "ai-model-structural",
+      "healthStatus": "standby",
+      "successCount": 0,
+      "failureCount": 0,
+      "lastSuccessAt": null,
+      "lastFailureAt": null,
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    },
+    {
+      "apiId": "api-comms-01",
+      "provider": "communication-structural",
+      "healthStatus": "standby",
+      "successCount": 0,
+      "failureCount": 0,
+      "lastSuccessAt": null,
+      "lastFailureAt": null,
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    },
+    {
+      "apiId": "api-internal-01",
+      "provider": "internal-service-structural",
+      "healthStatus": "standby",
+      "successCount": 0,
+      "failureCount": 0,
+      "lastSuccessAt": null,
+      "lastFailureAt": null,
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    },
+    {
+      "apiId": "api-marketplace-01",
+      "provider": "marketplace-structural",
+      "healthStatus": "standby",
+      "successCount": 0,
+      "failureCount": 0,
+      "lastSuccessAt": null,
+      "lastFailureAt": null,
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    },
+    {
+      "apiId": "api-payment-01",
+      "provider": "payment-structural",
+      "healthStatus": "standby",
+      "successCount": 0,
+      "failureCount": 0,
+      "lastSuccessAt": null,
+      "lastFailureAt": null,
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    },
+    {
+      "apiId": "api-supplier-01",
+      "provider": "supplier-structural",
+      "healthStatus": "unhealthy",
+      "successCount": 2,
+      "failureCount": 3,
+      "lastSuccessAt": "2026-08-04T04:06:13.845Z",
+      "lastFailureAt": "2026-08-04T04:06:13.845Z",
+      "circuitState": "closed",
+      "rateLimitStatus": "ok"
+    }
+  ],
+  "requestStatistics": {
+    "totalRequests": 5,
+    "successfulRequests": 2,
+    "failedRequests": 3,
+    "rateLimitedRequests": 0,
+    "retriedRequests": 3,
+    "liveCallsExecuted": 0,
+    "structuralOnlyRequests": 5,
+    "lastRequestAt": "2026-08-04T04:06:13.845Z"
+  },
+  "failureSummary": {
+    "totalFailures": 3,
+    "byErrorClass": {
+      "transient": 3
+    },
+    "circuitOpenCount": 0
+  },
+  "retrySummary": {
+    "totalRetries": 3,
+    "exhaustedRetries": 0,
+    "averageAttempts": 2.2
+  },
+  "authenticationStatus": {
+    "authenticated": 5,
+    "rejected": 0,
+    "skipped": 0,
+    "refreshStructural": 0
+  },
+  "rateLimitStatus": {
+    "ok": 6,
+    "approaching": 0,
+    "exceeded": 0
+  },
+  "apiDiagnostics": {
+    "registeredProviderCount": 6,
+    "activeConnectionCount": 1,
+    "openCircuitCount": 0,
+    "rateLimitedProviderCount": 0,
+    "notes": [
+      "Structural API diagnostics only — no live response bodies fabricated",
+      "credentialReference strings only; secrets never included"
+    ]
+  },
+  "supportingEvidence": [
+    "api-runtime operational evidence",
+    "config/api-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 87,
+  "metadataVersion": "APIRT-001-v1",
+  "reportVersion": "APIRT-RPT-v1",
+  "workerId": "wkr-api-runtime-01",
+  "consumableByQ1007": true,
+  "neverExposeSecrets": true,
+  "neverExposeCredentials": true,
+  "neverFabricateApiResponses": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverImplementQ1007OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveRequestTraces": true,
+  "preserveAuditHistory": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "credentialReferenceOnly": true
+}

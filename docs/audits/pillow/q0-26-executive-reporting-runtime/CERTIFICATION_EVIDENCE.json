@@ -1,0 +1,55 @@
+{
+  "missionId": "Q0-26",
+  "doctrine": "PILLOW-ERT-001",
+  "moduleId": "executive-reporting-runtime",
+  "metadataVersion": "ERT-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Forces every worker and department to report progress, blockers, evidence and completion status to Pillow.",
+  "boundaries": {
+    "neverExecuteWorkerLogic": true,
+    "neverReplaceMonitoringRuntime": true,
+    "neverReplaceMissionCoordination": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "reportRecordFields": [
+    "reportId",
+    "timestamp",
+    "reportingEntity",
+    "entityType",
+    "businessId",
+    "missionId",
+    "currentStatus",
+    "progress",
+    "blockers",
+    "risks",
+    "evidence",
+    "nextAction",
+    "completionStatus",
+    "metadataVersion"
+  ],
+  "reportTypes": [
+    "progress_report",
+    "status_report",
+    "completion_report",
+    "blocker_report",
+    "risk_report",
+    "exception_report",
+    "executive_summary",
+    "department_summary",
+    "factory_summary"
+  ],
+  "reportingFrequencies": ["real_time", "event_driven", "scheduled", "on_demand"],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/executive-reporting-runtime.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/executive-reporting-runtime/",
+    "config": "config/executive-reporting-runtime.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EXECUTIVE_REPORTING_RUNTIME_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/executive-reporting-runtime-bridge.ts",
+    "tests": "pillow/src/validation/tests/executive-reporting-runtime.test.ts"
+  }
+}

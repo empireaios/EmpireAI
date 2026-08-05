@@ -1,0 +1,60 @@
+{
+  "workflowId": "wf-capital-commerce-sync",
+  "sessionId": "por-session-example-001",
+  "requestId": "por-req-example-001",
+  "runtimeVersion": "Q10-POR-v1",
+  "workers": [
+    {
+      "workerId": "wkr-capital-factory-core-01",
+      "factoryKey": "capital-factory",
+      "action": "sync_state"
+    }
+  ],
+  "tools": [
+    {
+      "toolId": "factory_registry",
+      "action": "lookup"
+    }
+  ],
+  "workflows": [
+    {
+      "workflowId": "wf-capital-commerce-sync",
+      "steps": [
+        {
+          "stepId": "step-1",
+          "kind": "worker",
+          "targetId": "wkr-capital-factory-core-01",
+          "action": "sync_state"
+        },
+        {
+          "stepId": "step-2",
+          "kind": "tool",
+          "targetId": "factory_registry",
+          "action": "lookup"
+        }
+      ]
+    }
+  ],
+  "approvalRequests": [
+    {
+      "approvalId": "apr-capital-001",
+      "kind": "capital_allocation",
+      "requiresGrandKingApproval": false
+    }
+  ],
+  "reportRequests": [
+    {
+      "reportType": "executive_summary"
+    }
+  ],
+  "crossFactoryRoute": {
+    "sourceFactory": "capital-factory",
+    "targetFactory": "commerce-factory",
+    "service": "runtime_coordination"
+  },
+  "pillowConfirmed": true,
+  "grandKingApproved": true,
+  "validated": true,
+  "structuralSignalOnly": true,
+  "neverFabricateExecutionResults": true
+}

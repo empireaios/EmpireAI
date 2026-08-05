@@ -1,0 +1,29 @@
+{
+  "missionId": "Q9-10",
+  "doctrine": "PILLOW-CAPRW-001",
+  "workerId": "wkr-capital-risk-01",
+  "modulePath": "pillow/src/capital-risk-worker/",
+  "certificationStatus": "FINAL_PASS",
+  "testSuite": "capital-risk-worker.test.ts",
+  "testResult": "12/12",
+  "regressionSuite": "financial-reporting-worker.test.ts",
+  "regressionResult": "12/12",
+  "metadataVersion": "CAPRW-001-v1",
+  "reportVersion": "CAPRW-RPT-v1",
+  "boundaries": {
+    "neverApproveFinancialDecisions": true,
+    "neverExecuteInvestments": true,
+    "neverMoveCapital": true,
+    "neverModifyAccountingRecords": true,
+    "neverFabricateRisksOrEvidence": true,
+    "neverAutomaticallyExecuteMitigation": true,
+    "neverImplementQ911OrLater": true,
+    "consumableByQ911": true
+  },
+  "q911Contract": {
+    "producedBy": "capital-risk-worker",
+    "missionId": "Q9-10",
+    "consumerMissionId": "Q9-11"
+  },
+  "certifiedAt": "2026-08-04T00:42:00.000Z"
+}

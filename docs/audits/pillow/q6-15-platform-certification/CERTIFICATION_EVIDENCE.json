@@ -1,0 +1,64 @@
+{
+  "missionId": "Q6-15",
+  "doctrine": "PILLOW-PFC-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/platform-certification/",
+  "metadataVersion": "PFC-001-v1",
+  "reportVersion": "PFC-RPT-v1",
+  "workerId": "wkr-platform-cert-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS",
+    "Q6-10": "FINAL PASS",
+    "Q6-11": "FINAL PASS",
+    "Q6-12": "FINAL PASS",
+    "Q6-13": "FINAL PASS",
+    "Q6-14": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateCertificationSuccess": true,
+    "neverActivateRealProduction": true,
+    "neverConductRealCustomerBilling": true,
+    "neverOverridePillowGrandKing": true,
+    "neverImplementQ7OrLater": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowPlatformCertification": true,
+    "subsystemRegistry": "platform-certification",
+    "hostRoutes": "/api/pillow/platform-certification/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/platform-certification-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_PLATFORM_CERTIFICATION_SYSTEM.md",
+    "config": "config/platform-certification.config.json"
+  },
+  "validationCommand": "npx --yes tsx --test \"src/validation/tests/platform-certification.test.ts\"",
+  "validationResult": { "tests": 13, "passed": 13, "failed": 0 },
+  "regressionCommand": "npx --yes tsx --test \"src/validation/tests/deployment-worker.test.ts\"",
+  "regressionResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "certificationScope": "Q6-15 certifier engine, Pillow wiring, and controlled injected worker fixtures",
+  "fullControlledE2eCertificationStatus": "Certified",
+  "productionActivation": false,
+  "realCustomerBilling": false,
+  "providerCredentialsUsed": false,
+  "evidence": [
+    "pillow/src/validation/tests/platform-certification.test.ts",
+    "mission matrix Q6-01..Q6-14 from repository + runtime probes",
+    "controlled-fixture E2E critical outcomes",
+    "fail-closed negative safety checks",
+    "evidence-only certification gates"
+  ],
+  "tests": {
+    "platformCertification": "13/13",
+    "deploymentWorkerRegression": "12/12"
+  },
+  "note": "Does not certify a live production platform. Runtime certification status is always computed from current observed evidence. Controlled fixtures may return Certified; live boots without scenario runners may return a lower status."
+}

@@ -1,0 +1,53 @@
+{
+  "contractId": "monrt-q1011-contract-v1",
+  "contractVersion": "MONRT-001-v1",
+  "producedBy": "monitoring-runtime",
+  "missionId": "Q10-10",
+  "consumerMissionId": "Q10-11",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "enterpriseHealthSummary",
+    "workerHealth",
+    "factoryHealth",
+    "runtimeHealth",
+    "apiHealth",
+    "queueHealth",
+    "missionHealth",
+    "toolHealth",
+    "activeAlerts",
+    "criticalEvents",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "componentTypeCatalog": [
+    "worker",
+    "factory",
+    "runtime_service",
+    "api",
+    "queue",
+    "mission",
+    "tool",
+    "enterprise_service",
+    "custom_extension"
+  ],
+  "healthStatusCatalog": [
+    "healthy",
+    "degraded",
+    "warning",
+    "critical",
+    "unavailable",
+    "standby",
+    "unknown"
+  ],
+  "alertSeverityCatalog": ["info", "warning", "critical"],
+  "notes": [
+    "Structural contract for Q10-11 Recovery Runtime — monitoring evidence only",
+    "Monitoring Runtime never fabricates health or suppresses critical alerts",
+    "neverImplementQ1011OrLater remains locked — this module does not implement Recovery Runtime"
+  ],
+  "neverImplementQ1011OrLater": true,
+  "structuralSignalOnly": true
+}

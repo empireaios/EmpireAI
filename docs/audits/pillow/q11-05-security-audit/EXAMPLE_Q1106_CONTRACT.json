@@ -1,0 +1,36 @@
+{
+  "contractId": "q1106-contract-SECART-001-v1",
+  "contractVersion": "SECART-001-v1",
+  "producedBy": "security-audit",
+  "missionId": "Q11-05",
+  "consumerMissionId": "Q11-06",
+  "exposedFields": [
+    "assessments",
+    "securityReadinessSummary",
+    "decision",
+    "componentInventory",
+    "criticalFindings",
+    "outstandingRisks",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "certified",
+    "partially_certified",
+    "failed",
+    "missing",
+    "blocked",
+    "deferred"
+  ],
+  "decisionCatalog": [
+    "certify",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Security Audit Q11-05 certified — stops at Q11-05, exposes Q1106ConsumableContract for Q11-06 (Performance Audit)",
+    "This contract is structural-signal-only; Q11-05 never implements Q11-06 or any later mission itself"
+  ],
+  "neverImplementQ1106OrLater": true,
+  "structuralSignalOnly": true
+}

@@ -1,0 +1,40 @@
+{
+  "contractId": "q1303-contract-RIENG-001-v1",
+  "contractVersion": "RIENG-001-v1",
+  "producedBy": "repository-intelligence-engine",
+  "missionId": "Q13-02",
+  "consumerMissionId": "Q13-03",
+  "exposedFields": [
+    "repositorySummary",
+    "moduleSummary",
+    "serviceSummary",
+    "dependencySummary",
+    "architectureSummary",
+    "existingImplementationSummary",
+    "technicalDebtSummary",
+    "riskSummary",
+    "snapshot",
+    "outstandingIssues",
+    "confidenceScore",
+    "repositoryFingerprint"
+  ],
+  "repositoryCatalog": [
+    "module_inventory",
+    "service_inventory",
+    "dependency_graph",
+    "integration_graph",
+    "architecture_layers",
+    "existing_implementations",
+    "reusable_components",
+    "technical_debt",
+    "conflicts"
+  ],
+  "notes": [
+    "Repository Intelligence Engine Q13-02 — exposes Q1303ConsumableContract for Q13-03 without implementing Q13-03",
+    "Read-only repository analysis — never modifies analyzed files",
+    "Never certifies Q13-01 from RIENG"
+  ],
+  "neverImplementQ1303OrLater": true,
+  "structuralSignalOnly": true,
+  "repositoryPrerequisite": true
+}

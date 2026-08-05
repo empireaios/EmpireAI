@@ -1,0 +1,65 @@
+{
+  "missionId": "Q0-25",
+  "doctrine": "PILLOW-MCE-001",
+  "moduleId": "mission-coordination-engine",
+  "metadataVersion": "MCE-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Coordinates multi-worker missions from planning to execution, review, approval and closure.",
+  "boundaries": {
+    "neverExecuteWorkerLogic": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverReplaceExecutivePlanner": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "missionRecordFields": [
+    "missionId",
+    "timestamp",
+    "businessId",
+    "missionName",
+    "missionOwner",
+    "missionStatus",
+    "currentPhase",
+    "assignedWorkers",
+    "dependencies",
+    "approvalCheckpoints",
+    "progress",
+    "blockers",
+    "completionStatus",
+    "metadataVersion"
+  ],
+  "missionStates": [
+    "planned",
+    "waiting",
+    "ready",
+    "running",
+    "waiting_approval",
+    "blocked",
+    "paused",
+    "recovering",
+    "completed",
+    "cancelled",
+    "failed"
+  ],
+  "missionPhases": [
+    "planning",
+    "preparation",
+    "execution",
+    "review",
+    "approval",
+    "completion",
+    "closure"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/mission-coordination-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/mission-coordination-engine/",
+    "config": "config/mission-coordination-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_MISSION_COORDINATION_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/mission-coordination-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/mission-coordination-engine.test.ts"
+  }
+}

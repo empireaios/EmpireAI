@@ -1,0 +1,52 @@
+{
+  "missionId": "Q0-05",
+  "doctrine": "PILLOW-DE-001",
+  "moduleId": "decision-engine",
+  "metadataVersion": "DE-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Evaluates options, trade-offs, risks, confidence, and recommends the best course of action for Pillow.",
+  "boundaries": {
+    "neverExecuteWork": true,
+    "neverAssignWorkers": true,
+    "neverApproveActions": true,
+    "neverOverridePillow": true,
+    "neverReplaceGrandKingApproval": true
+  },
+  "decisionPackageFields": [
+    "decisionId",
+    "timestamp",
+    "executiveObjective",
+    "candidateOptions",
+    "evaluationMatrix",
+    "tradeOffAnalysis",
+    "recommendedOption",
+    "confidenceScore",
+    "riskAssessment",
+    "assumptions",
+    "missingInformation",
+    "supportingEvidence",
+    "metadataVersion"
+  ],
+  "evaluationCriteria": [
+    "business_value",
+    "strategic_alignment",
+    "cost",
+    "complexity",
+    "risk",
+    "time",
+    "resource_requirement",
+    "probability_of_success"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/decision-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/decision-engine/",
+    "config": "config/decision-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_DECISION_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/decision-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/decision-engine.test.ts"
+  }
+}

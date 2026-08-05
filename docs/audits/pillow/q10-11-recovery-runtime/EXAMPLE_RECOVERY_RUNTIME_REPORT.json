@@ -1,0 +1,92 @@
+{
+  "reportId": "recrt-rpt-example-001",
+  "timestamp": "2026-08-04T14:20:00.000Z",
+  "runtimeVersion": "Q10-RECRT-v1",
+  "recoverySummary": {
+    "totalFailures": 4,
+    "totalRecoveries": 4,
+    "activeCount": 0,
+    "completedCount": 2,
+    "failedCount": 0,
+    "escalatedCount": 1,
+    "notes": ["Enterprise recovery operational — structural outcomes only"]
+  },
+  "activeRecoveries": [],
+  "completedRecoveries": [
+    {
+      "recoveryId": "rec-example-01",
+      "failureId": "fail-example-01",
+      "missionId": "M-RECRT-DEMO",
+      "jobId": "job-demo-01",
+      "workerId": "wkr-alpha",
+      "factoryId": "factory-pillow",
+      "failureClassification": "transient",
+      "recoveryStrategy": "restart_job",
+      "recoveryStatus": "completed",
+      "restartCount": 1,
+      "rollbackStatus": "not_applicable",
+      "escalationStatus": "none",
+      "checkpointRef": "checkpoint://structural/job-demo-01",
+      "fabricated": false,
+      "structuralSignalOnly": true
+    },
+    {
+      "recoveryId": "rec-example-02",
+      "failureClassification": "state_corruption",
+      "recoveryStrategy": "restore_checkpoint",
+      "recoveryStatus": "completed",
+      "checkpointRef": "checkpoint://structural/job-demo-02",
+      "fabricated": false
+    }
+  ],
+  "failedRecoveries": [],
+  "restartSummary": {
+    "totalRestarts": 1,
+    "successfulRestarts": 1,
+    "failedRestarts": 0,
+    "maxRestartsObserved": 1
+  },
+  "rollbackSummary": {
+    "totalRollbacks": 1,
+    "completedRollbacks": 1,
+    "failedRollbacks": 0
+  },
+  "escalationSummary": {
+    "totalEscalations": 1,
+    "pendingEscalations": 0,
+    "escalatedCount": 1,
+    "resolvedStructurally": 0
+  },
+  "recoveryMetrics": {
+    "averageRestartCount": 0.25,
+    "checkpointRetentionCount": 3,
+    "unrecoverableEscalations": 1
+  },
+  "supportingEvidence": [
+    "recovery-runtime operational evidence",
+    "config/recovery-runtime.config.json"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 88,
+  "metadataVersion": "RECRT-001-v1",
+  "reportVersion": "RECRT-RPT-v1",
+  "workerId": "wkr-recovery-runtime-01",
+  "consumableByQ1012": true,
+  "neverFabricateRecoverySuccess": true,
+  "neverLoseRecoverableExecutionState": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverModifyValidatedBusinessData": true,
+  "neverReplaceBusinessLogic": true,
+  "neverImplementQ1012OrLater": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "preserveCompleteTraceability": true,
+  "preserveRecoveryHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicRecoveryBehaviour": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true
+}

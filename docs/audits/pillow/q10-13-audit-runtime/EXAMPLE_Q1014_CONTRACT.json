@@ -1,0 +1,49 @@
+{
+  "contractId": "audrt-q1014-contract-v1",
+  "contractVersion": "AUDRT-001-v1",
+  "producedBy": "audit-runtime",
+  "missionId": "Q10-13",
+  "consumerMissionId": "Q10-14",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "totalAuditRecords",
+    "workerActivitySummary",
+    "missionActivitySummary",
+    "approvalSummary",
+    "recoverySummary",
+    "schedulingSummary",
+    "evidenceSummary",
+    "integrityVerification",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "auditCategoryCatalog": [
+    "runtime_event",
+    "worker_action",
+    "factory_activity",
+    "api_activity",
+    "queue_activity",
+    "mission_lifecycle",
+    "approval_decision",
+    "recovery_event",
+    "scheduling_activity",
+    "evidence_attachment",
+    "custom_extension"
+  ],
+  "integrityStatusCatalog": [
+    "verified",
+    "pending",
+    "failed",
+    "tampered_suspected"
+  ],
+  "notes": [
+    "Structural contract for Q10-14 Shared Runtime Certification — audit evidence only",
+    "Audit Runtime never fabricates audit evidence and never deletes audit records",
+    "neverImplementQ1014OrLater remains locked — this module does not implement Shared Runtime Certification",
+    "Does not execute business logic or modify operational data — structural audit refs only"
+  ],
+  "neverImplementQ1014OrLater": true,
+  "structuralSignalOnly": true
+}

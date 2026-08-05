@@ -1,0 +1,36 @@
+{
+  "contractId": "q1104-contract-PCART-001-v1",
+  "contractVersion": "PCART-001-v1",
+  "producedBy": "pillow-command-audit",
+  "missionId": "Q11-03",
+  "consumerMissionId": "Q11-04",
+  "exposedFields": [
+    "commandMatrix",
+    "commandReadinessSummary",
+    "commandReadinessDecision",
+    "workerInventory",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "readinessClassificationCatalog": [
+    "Ready",
+    "Partially Ready",
+    "Failed",
+    "Missing",
+    "Blocked",
+    "Deferred"
+  ],
+  "commandReadinessDecisionCatalog": [
+    "Ready",
+    "Conditionally_Ready",
+    "Not_Ready",
+    "Failed",
+    "Deferred"
+  ],
+  "notes": [
+    "Pillow Command Audit Q11-03 certified — stops at Q11-03, exposes Q1104ConsumableContract for Q11-04 (Factory Readiness Audit)",
+    "This contract is structural-signal-only; Q11-03 never implements Q11-04 or any later mission itself"
+  ],
+  "neverImplementQ1104OrLater": true,
+  "structuralSignalOnly": true
+}

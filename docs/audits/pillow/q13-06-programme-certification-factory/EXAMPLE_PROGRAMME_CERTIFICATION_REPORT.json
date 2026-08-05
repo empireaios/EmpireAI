@@ -1,0 +1,21 @@
+{
+  "reportId": "pcfct-rpt-0001",
+  "reportVersion": "PCFCT-RPT-v1",
+  "metadataVersion": "PCFCT-001-v1",
+  "engineId": "PILLOW-PCFCT-001",
+  "missionId": "Q13-06",
+  "programmeCode": "Q",
+  "programmeName": "Q Series",
+  "neverImplementFutureProgramme": true,
+  "neverImplementQ1307OrLater": true,
+  "neverAutoModifyProduction": true,
+  "neverCertifyFromClaimsAlone": true,
+  "q1306ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "IRPLN-001-v1",
+    "consumerMissionId": "Q13-06",
+    "fields": ["missionSummary", "recoveryAnalysis", "plans"],
+    "evidence": "Q1306 contract consumed from IRPLN (IRPLN-001-v1)"
+  }
+}

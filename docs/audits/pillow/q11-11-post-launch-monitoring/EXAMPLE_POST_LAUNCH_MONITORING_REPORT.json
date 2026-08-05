@@ -1,0 +1,57 @@
+{
+  "reportId": "plmrt-rpt-0001",
+  "timestamp": "2026-08-05T02:15:00.000Z",
+  "monitoringVersion": "Q11-PLMRT-v1",
+  "engineId": "PILLOW-PLMRT-001",
+  "missionId": "Q11-11",
+  "productionHealthSummary": {
+    "computedAt": "2026-08-05T02:15:00.000Z",
+    "productionActiveMonitoring": false,
+    "overallHealthScore": 0,
+    "overallProductionStatus": "blocked",
+    "totalIncidents": 0,
+    "totalErrors": 0,
+    "totalWarnings": 0,
+    "businessImpact": "unknown",
+    "evidence": [
+      "productionActiveMonitoring=false",
+      "incidents=0",
+      "alerts=0"
+    ]
+  },
+  "grandKingAcceptanceGranted": false,
+  "productionActiveMonitoring": false,
+  "q1111ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "GKAGT-001-v1",
+    "fields": ["grandKingDecision", "deploymentAuthorisationStatus"],
+    "evidence": "Injected Q11-10 grand-king-acceptance-gate handshake returned explicit consumableByQ1111 contract"
+  },
+  "consumableByQ1112": true,
+  "neverImplementQ1112OrLater": true,
+  "outstandingRisks": [
+    "Grand King acceptance not granted — production-active monitoring blocked",
+    "Grand King decision pending",
+    "Deployment authorisation blocked"
+  ],
+  "confidenceScore": 0.6,
+  "metadataVersion": "PLMRT-001-v1",
+  "reportVersion": "PLMRT-RPT-v1",
+  "workerId": "wkr-post-launch-monitoring-01",
+  "validation": {
+    "validationReportId": "plmrt-val-001",
+    "validationTimestamp": "2026-08-05T02:15:00.000Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 1,
+    "metadataVersion": "PLMRT-001-v1"
+  },
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "neverFabricateProductionEvidence": true,
+  "neverSuppressCriticalIncidents": true,
+  "neverHideFailures": true,
+  "neverAutoModifyProduction": true
+}

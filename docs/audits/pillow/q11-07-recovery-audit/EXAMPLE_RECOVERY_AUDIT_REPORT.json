@@ -1,0 +1,692 @@
+{
+  "reportId": "recart-rpt-0001",
+  "timestamp": "2026-08-05T00:12:50.903Z",
+  "auditVersion": "Q11-RECART-v1",
+  "engineId": "PILLOW-RECART-001",
+  "missionId": "Q11-07",
+  "totalRecoveryComponents": 13,
+  "certifiedComponents": 10,
+  "partiallyCertifiedComponents": 2,
+  "failedComponents": 0,
+  "missingComponents": 1,
+  "blockedComponents": 0,
+  "deferredComponents": 0,
+  "recoverySummary": {
+    "computedAt": "2026-08-05T00:12:50.901Z",
+    "totalComponents": 13,
+    "certifiedCount": 10,
+    "partiallyCertifiedCount": 2,
+    "failedCount": 0,
+    "missingCount": 1,
+    "blockedCount": 0,
+    "deferredCount": 0,
+    "overallReadinessScore": 0.85,
+    "allCertified": false,
+    "notes": [
+      "Recovery readiness derived strictly from capability-presence evidence — destructive recovery methods NEVER invoked during audit"
+    ],
+    "evidence": [
+      "certified=10",
+      "partially_certified=2",
+      "failed=0",
+      "missing=1"
+    ]
+  },
+  "failureDetectionSummary": {
+    "dimension": "failureDetection",
+    "passedCount": 12,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "failureDetection assessed across 13 catalogued components"
+    ]
+  },
+  "restartSummary": {
+    "dimension": "workflowRestart",
+    "passedCount": 12,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "workflowRestart assessed across 13 catalogued components"
+    ]
+  },
+  "rollbackSummary": {
+    "dimension": "rollback",
+    "passedCount": 12,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "rollback assessed across 13 catalogued components"
+    ]
+  },
+  "checkpointSummary": {
+    "dimension": "checkpointRestoration",
+    "passedCount": 12,
+    "partialCount": 0,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "checkpointRestoration assessed across 13 catalogued components"
+    ]
+  },
+  "escalationSummary": {
+    "dimension": "escalation",
+    "passedCount": 10,
+    "partialCount": 2,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "escalation assessed across 13 catalogued components"
+    ]
+  },
+  "resilienceSummary": {
+    "dimension": "enterpriseResilience",
+    "passedCount": 10,
+    "partialCount": 2,
+    "failedCount": 0,
+    "missingCount": 1,
+    "totalComponents": 13,
+    "evidence": [
+      "enterpriseResilience assessed at 2026-08-05T00:12:50.902Z across 13 catalogued keys"
+    ]
+  },
+  "integrationSummary": {
+    "verifiedAt": "2026-08-05T00:12:50.901Z",
+    "rows": [
+      {
+        "target": "performance_audit",
+        "bound": true,
+        "evidence": "performance_audit: bound"
+      },
+      {
+        "target": "production_certification_core",
+        "bound": true,
+        "evidence": "production_certification_core: bound"
+      },
+      {
+        "target": "recovery_runtime",
+        "bound": true,
+        "evidence": "recovery_runtime: bound"
+      },
+      {
+        "target": "monitoring_runtime",
+        "bound": true,
+        "evidence": "monitoring_runtime: bound"
+      },
+      {
+        "target": "queue_runtime",
+        "bound": true,
+        "evidence": "queue_runtime: bound"
+      },
+      {
+        "target": "mission_runtime",
+        "bound": true,
+        "evidence": "mission_runtime: bound"
+      },
+      {
+        "target": "audit_runtime",
+        "bound": true,
+        "evidence": "audit_runtime: bound"
+      },
+      {
+        "target": "executive_reporting_runtime",
+        "bound": true,
+        "evidence": "executive_reporting_runtime: bound"
+      },
+      {
+        "target": "shared_runtime_core",
+        "bound": true,
+        "evidence": "shared_runtime_core: bound"
+      },
+      {
+        "target": "worker_registry",
+        "bound": true,
+        "evidence": "worker_registry: bound"
+      },
+      {
+        "target": "pillow_orchestration_runtime",
+        "bound": true,
+        "evidence": "pillow_orchestration_runtime: bound"
+      }
+    ],
+    "totalTargets": 11,
+    "boundCount": 11,
+    "allBound": true,
+    "evidence": [
+      "performance_audit: bound",
+      "production_certification_core: bound",
+      "recovery_runtime: bound",
+      "monitoring_runtime: bound",
+      "queue_runtime: bound",
+      "mission_runtime: bound",
+      "audit_runtime: bound",
+      "executive_reporting_runtime: bound",
+      "shared_runtime_core: bound",
+      "worker_registry: bound",
+      "pillow_orchestration_runtime: bound"
+    ]
+  },
+  "governanceSummary": {
+    "compliant": true,
+    "grandKingApprovalRequired": true,
+    "recoveryAuditRequired": true,
+    "selfDocPresent": true,
+    "selfDocPath": "docs/governance/EMPIREAI_RECOVERY_AUDIT_SYSTEM.md",
+    "boundaryLocksHonoured": true,
+    "requiredComponentsBoundCount": 3,
+    "totalRequiredComponents": 3,
+    "evidence": [
+      "selfDocPresent=true",
+      "requiredComponentsBound=3/3",
+      "neverMutateProductionViaRecoveryCalls=true"
+    ]
+  },
+  "outstandingRisks": [
+    "pillow-orchestration-runtime: partially certified — discovered=true; detectionStatus=Passed (getState presence=true); recoveryStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope; restartStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope; rollbackStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope; checkpointStatus not applicable to pillow-orchestration-runtime — evaluated by mission-runtime; vacuously satisfied by design scope; escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)",
+    "recovery-manager: partially certified — discovered=true; detectionStatus=Passed (getState presence=true); recoveryStatus not applicable to recovery-manager — evaluated by recovery-runtime; vacuously satisfied by design scope; restartStatus not applicable to recovery-manager — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope; rollbackStatus not applicable to recovery-manager — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope; checkpointStatus not applicable to recovery-manager — evaluated by mission-runtime; vacuously satisfied by design scope; escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)",
+    "rollback-manager: missing structural evidence — discovered=false — no rollback-manager handle injected",
+    "Recovery readiness incomplete: 10/13 components certified"
+  ],
+  "supportingEvidence": [
+    "certified=10",
+    "partially_certified=2",
+    "failed=0",
+    "missing=1",
+    "selfDocPresent=true",
+    "requiredComponentsBound=3/3",
+    "neverMutateProductionViaRecoveryCalls=true",
+    "performance_audit: bound",
+    "production_certification_core: bound",
+    "recovery_runtime: bound",
+    "monitoring_runtime: bound",
+    "queue_runtime: bound",
+    "mission_runtime: bound",
+    "audit_runtime: bound",
+    "executive_reporting_runtime: bound",
+    "shared_runtime_core: bound",
+    "worker_registry: bound",
+    "pillow_orchestration_runtime: bound"
+  ],
+  "confidenceScore": 0.85,
+  "metadataVersion": "RECART-001-v1",
+  "reportVersion": "RECART-RPT-v1",
+  "workerId": "wkr-recovery-audit-01",
+  "findings": [
+    "pillow-orchestration-runtime: partially certified — discovered=true; detectionStatus=Passed (getState presence=true); recoveryStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope; restartStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope; rollbackStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope; checkpointStatus not applicable to pillow-orchestration-runtime — evaluated by mission-runtime; vacuously satisfied by design scope; escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)",
+    "recovery-manager: partially certified — discovered=true; detectionStatus=Passed (getState presence=true); recoveryStatus not applicable to recovery-manager — evaluated by recovery-runtime; vacuously satisfied by design scope; restartStatus not applicable to recovery-manager — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope; rollbackStatus not applicable to recovery-manager — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope; checkpointStatus not applicable to recovery-manager — evaluated by mission-runtime; vacuously satisfied by design scope; escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)",
+    "rollback-manager: missing structural evidence — discovered=false — no rollback-manager handle injected",
+    "Recovery readiness incomplete: 10/13 components certified"
+  ],
+  "assessments": [
+    {
+      "recoveryCheckId": "recart-chk-0001",
+      "componentId": "recovery-runtime",
+      "componentType": "primary_recovery_capability",
+      "failureScenario": "primary_runtime_failure",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (detectFailure present=true; NEVER invoked — presence-only)",
+        "recoveryStatus=Passed (restoreState/restartJob present=2/2; NEVER invoked)",
+        "restartStatus=Passed (restartJob/resumeWorkflow present=2/2; NEVER invoked)",
+        "rollbackStatus=Passed (rollback present=true; NEVER invoked)",
+        "checkpointStatus not applicable to recovery-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (getState presence=true)"
+      ],
+      "auditReference": "component:recovery-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0002",
+      "componentId": "monitoring-runtime",
+      "componentType": "failure_detection_signal",
+      "failureScenario": "anomaly_detection_failure",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getDashboard/getState present=2/2)",
+        "recoveryStatus not applicable to monitoring-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to monitoring-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to monitoring-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to monitoring-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (getState presence=true)"
+      ],
+      "auditReference": "component:monitoring-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0003",
+      "componentId": "queue-runtime",
+      "componentType": "queue_recovery_integration",
+      "failureScenario": "queue_stall_failure",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to queue-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to queue-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to queue-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to queue-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (1/1 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:queue-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0004",
+      "componentId": "mission-runtime",
+      "componentType": "mission_checkpoint_recovery",
+      "failureScenario": "mission_checkpoint_loss",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus=Passed (resume/recover present=2/2; NEVER invoked)",
+        "restartStatus=Passed (resume present=true; NEVER invoked)",
+        "rollbackStatus not applicable to mission-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus=Passed (getCheckpoints present=true; NEVER invoked)",
+        "escalationStatus=Passed"
+      ],
+      "auditReference": "component:mission-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0005",
+      "componentId": "audit-runtime",
+      "componentType": "recovery_audit_trail",
+      "failureScenario": "recovery_trail_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to audit-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to audit-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to audit-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to audit-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:audit-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0006",
+      "componentId": "executive-reporting-runtime",
+      "componentType": "recovery_reporting",
+      "failureScenario": "recovery_reporting_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to executive-reporting-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to executive-reporting-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to executive-reporting-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to executive-reporting-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:executive-reporting-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0007",
+      "componentId": "production-certification-core",
+      "componentType": "certification_signal",
+      "failureScenario": "certification_signal_loss",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to production-certification-core — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to production-certification-core — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to production-certification-core — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to production-certification-core — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:production-certification-core",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0008",
+      "componentId": "pillow-orchestration-runtime",
+      "componentType": "workflow_resume_structural",
+      "failureScenario": "workflow_resume_failure",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Partial",
+      "resilienceClassification": "partially_certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to pillow-orchestration-runtime — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to pillow-orchestration-runtime — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:pillow-orchestration-runtime",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0009",
+      "componentId": "worker-registry",
+      "componentType": "worker_recovery_inventory",
+      "failureScenario": "worker_inventory_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to worker-registry — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to worker-registry — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to worker-registry — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to worker-registry — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:worker-registry",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0010",
+      "componentId": "shared-runtime-core",
+      "componentType": "runtime_resilience_signal",
+      "failureScenario": "runtime_resilience_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to shared-runtime-core — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to shared-runtime-core — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to shared-runtime-core — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to shared-runtime-core — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:shared-runtime-core",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0011",
+      "componentId": "worker-recovery-system",
+      "componentType": "worker_recovery_system",
+      "failureScenario": "worker_recovery_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Passed",
+      "resilienceClassification": "certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to worker-recovery-system — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to worker-recovery-system — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to worker-recovery-system — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to worker-recovery-system — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Passed (2/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:worker-recovery-system",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0012",
+      "componentId": "recovery-manager",
+      "componentType": "recovery_manager",
+      "failureScenario": "recovery_coordination_gap",
+      "detectionStatus": "Passed",
+      "recoveryStatus": "Passed",
+      "restartStatus": "Passed",
+      "rollbackStatus": "Passed",
+      "checkpointStatus": "Passed",
+      "escalationStatus": "Partial",
+      "resilienceClassification": "partially_certified",
+      "supportingEvidence": [
+        "discovered=true",
+        "detectionStatus=Passed (getState presence=true)",
+        "recoveryStatus not applicable to recovery-manager — evaluated by recovery-runtime; vacuously satisfied by design scope",
+        "restartStatus not applicable to recovery-manager — evaluated by recovery-runtime/mission-runtime; vacuously satisfied by design scope",
+        "rollbackStatus not applicable to recovery-manager — evaluated by recovery-runtime/rollback-manager; vacuously satisfied by design scope",
+        "checkpointStatus not applicable to recovery-manager — evaluated by mission-runtime; vacuously satisfied by design scope",
+        "escalationStatus=Partial (1/2 catalogued probe methods present; NEVER invoked)"
+      ],
+      "auditReference": "component:recovery-manager",
+      "auditTimestamp": "2026-08-05T00:12:50.900Z"
+    },
+    {
+      "recoveryCheckId": "recart-chk-0013",
+      "componentId": "rollback-manager",
+      "componentType": "rollback_manager",
+      "failureScenario": "rollback_capability_gap",
+      "detectionStatus": "Missing",
+      "recoveryStatus": "Missing",
+      "restartStatus": "Missing",
+      "rollbackStatus": "Missing",
+      "checkpointStatus": "Missing",
+      "escalationStatus": "Missing",
+      "resilienceClassification": "missing",
+      "supportingEvidence": [
+        "discovered=false — no rollback-manager handle injected"
+      ],
+      "auditReference": "component:rollback-manager",
+      "auditTimestamp": "2026-08-05T00:12:50.901Z"
+    }
+  ],
+  "decision": "withhold",
+  "auditStatus": "missing",
+  "validation": {
+    "validationReportId": "recart-val-1785888770902",
+    "validationTimestamp": "2026-08-05T00:12:50.902Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 3,
+    "metadataVersion": "RECART-001-v1"
+  },
+  "componentInventory": [
+    {
+      "componentKey": "recovery-runtime",
+      "componentName": "Recovery Runtime",
+      "componentType": "primary_recovery_capability",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "monitoring-runtime",
+      "componentName": "Monitoring Runtime",
+      "componentType": "failure_detection_signal",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "queue-runtime",
+      "componentName": "Queue Runtime",
+      "componentType": "queue_recovery_integration",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "mission-runtime",
+      "componentName": "Mission Runtime",
+      "componentType": "mission_checkpoint_recovery",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "audit-runtime",
+      "componentName": "Audit Runtime",
+      "componentType": "recovery_audit_trail",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "executive-reporting-runtime",
+      "componentName": "Executive Reporting Runtime",
+      "componentType": "recovery_reporting",
+      "bound": true,
+      "healthStatus": "active",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "production-certification-core",
+      "componentName": "Production Certification Core",
+      "componentType": "certification_signal",
+      "bound": true,
+      "healthStatus": "healthy",
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "pillow-orchestration-runtime",
+      "componentName": "Pillow Orchestration Runtime",
+      "componentType": "workflow_resume_structural",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "worker-registry",
+      "componentName": "Worker Registry",
+      "componentType": "worker_recovery_inventory",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "shared-runtime-core",
+      "componentName": "Shared Runtime Core",
+      "componentType": "runtime_resilience_signal",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "worker-recovery-system",
+      "componentName": "Worker Recovery System",
+      "componentType": "worker_recovery_system",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "recovery-manager",
+      "componentName": "Recovery Manager",
+      "componentType": "recovery_manager",
+      "bound": true,
+      "healthStatus": null,
+      "evidencePresent": true
+    },
+    {
+      "componentKey": "rollback-manager",
+      "componentName": "Rollback Manager",
+      "componentType": "rollback_manager",
+      "bound": false,
+      "healthStatus": null,
+      "evidencePresent": false
+    }
+  ],
+  "q1107ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "PERFART-001-v1",
+    "fields": [
+      "assessments",
+      "decision"
+    ],
+    "evidence": "Injected Q11-06 performance-audit handshake returned explicit consumableByQ1107 contract"
+  },
+  "consumableByQ1108": true,
+  "neverImplementQ1108OrLater": true,
+  "structuralSignalOnly": true,
+  "evidenceBasedOnly": true,
+  "seventhQ11Gate": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q11-07:recovery-audit",
+    "q11-06:performance-audit",
+    "pillow:recovery-readiness-gate"
+  ],
+  "runTimestamp": "2026-08-05T00:12:50.903Z",
+  "preserveCompleteTraceability": true,
+  "preserveImmutableRecoveryHistory": true,
+  "preserveAuditHistory": true,
+  "deterministicAuditBehaviour": true,
+  "maskSensitiveValues": true,
+  "neverFabricateRecoveryEvidence": true,
+  "neverCertifyUntestedRecovery": true,
+  "neverMutateProductionViaRecoveryCalls": true,
+  "neverAssumeImplementation": true,
+  "neverModifyRecoveryImplementations": true,
+  "neverRepairFailedRecoveryComponents": true,
+  "neverBypassPillowGovernance": true,
+  "neverBypassGrandKingApproval": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true
+}

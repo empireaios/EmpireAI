@@ -1,0 +1,97 @@
+{
+  "missionId": "Q1-11",
+  "doctrine": "PILLOW-WPR-001",
+  "moduleId": "worker-performance-review",
+  "metadataVersion": "WPR-001-v1",
+  "performanceVersion": "WPR-PERF-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Score workers by quality, speed, accuracy, recovery, collaboration and business outcome.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-06", "doctrine": "PILLOW-RMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-07", "doctrine": "PILLOW-WRG-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-08", "doctrine": "PILLOW-WLC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-09", "doctrine": "PILLOW-WAE-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-10", "doctrine": "PILLOW-WMO-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkerMonitoring": true,
+    "neverReplaceWorkforceCertificationMonitor": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "integrations": {
+    "workerAssignmentEngine": true,
+    "workforceCertificationMonitor": true,
+    "adaptiveWorkforceOptimizer": true
+  },
+  "performanceRecordFields": [
+    "performanceReviewId",
+    "timestamp",
+    "workerId",
+    "workerName",
+    "department",
+    "reviewPeriod",
+    "qualityScore",
+    "accuracyScore",
+    "speedScore",
+    "reliabilityScore",
+    "collaborationScore",
+    "recoveryScore",
+    "businessOutcomeScore",
+    "executiveRating",
+    "improvementRecommendations",
+    "metadataVersion"
+  ],
+  "performanceMetrics": [
+    "quality",
+    "accuracy",
+    "speed",
+    "reliability",
+    "consistency",
+    "collaboration",
+    "recovery",
+    "efficiency",
+    "business_value",
+    "governance_compliance"
+  ],
+  "performanceRatings": [
+    "outstanding",
+    "excellent",
+    "good",
+    "acceptable",
+    "needs_improvement",
+    "poor"
+  ],
+  "performanceRules": [
+    "evaluate_every_active_worker",
+    "preserve_historical_performance",
+    "detect_improving_performance",
+    "detect_declining_performance",
+    "recommend_improvements",
+    "integrate_with_worker_assignment_engine",
+    "integrate_with_workforce_certification_monitor",
+    "integrate_with_adaptive_workforce_optimizer"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-performance-review.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-performance-review/",
+    "config": "config/worker-performance-review.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_PERFORMANCE_REVIEW_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-performance-review-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-performance-review.test.ts"
+  },
+  "notes": [
+    "Isolated evaluate-only service; public pillow index aliases WprPerformanceRecord to avoid collision with Empire Performance Guardian PerformanceRecord."
+  ]
+}

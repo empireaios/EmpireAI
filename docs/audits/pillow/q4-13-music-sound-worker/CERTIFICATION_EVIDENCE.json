@@ -1,0 +1,53 @@
+{
+  "missionId": "Q4-13",
+  "missionName": "Music & Sound Worker",
+  "doctrineId": "PILLOW-MSW-001",
+  "moduleId": "music-sound-worker",
+  "status": "FINAL PASS",
+  "certifiedAt": "2026-07-24T00:00:00.000Z",
+  "metadataVersion": "MSW-001-v1",
+  "reportSchemaVersion": "MSW-RPT-v1",
+  "validation": {
+    "testFile": "pillow/src/validation/tests/music-sound-worker.test.ts",
+    "testsExecuted": 10,
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "capabilitiesVerified": [
+    "Receive approved scripts",
+    "Receive approved video timeline",
+    "Determine required music mood",
+    "Determine required sound effects",
+    "Select licensed music",
+    "Select generated music where approved",
+    "Match music to scenes",
+    "Match sound effects to events",
+    "Validate licensing compliance",
+    "Produce machine-readable Music & Sound Reports"
+  ],
+  "boundariesVerified": [
+    "Does not assemble videos",
+    "Does not publish media",
+    "Does not override Pillow",
+    "Does not override Grand King",
+    "Does not use unapproved copyrighted assets",
+    "Does not implement Q4-14 or later"
+  ],
+  "integrations": [
+    "Worker Registry",
+    "Worker Lifecycle",
+    "Worker Assignment Engine",
+    "Script Worker",
+    "Video Assembly Worker",
+    "Executive Reporting Runtime",
+    "Worker Performance Review",
+    "Worker Recovery System"
+  ],
+  "artifacts": [
+    "pillow/src/music-sound-worker/",
+    "config/music-sound-worker.config.json",
+    "docs/governance/EMPIREAI_MUSIC_SOUND_WORKER_SYSTEM.md",
+    "docs/audits/pillow/q4-13-music-sound-worker/Q4_13_MUSIC_SOUND_WORKER_CERTIFICATION.md",
+    "backend/src/orchestration/pillow-host/music-sound-worker-bridge.ts"
+  ]
+}

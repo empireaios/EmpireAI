@@ -1,0 +1,49 @@
+{
+  "specificationId": "iseng-spec-0001",
+  "programme": "Q-Series",
+  "missionId": "Q13-01",
+  "missionName": "Implementation Specification Engine",
+  "repositoryFindings": [
+    "read_only_scan:moduleCount=120",
+    "explicit_input:missionId=Q13-01"
+  ],
+  "dependencies": [
+    "aiInnovationFactory.getQ1301ConsumableContract",
+    "executiveReportingRuntime.submitWorkerReport",
+    "pillow/src/implementation-specification-engine"
+  ],
+  "architectureSummary": "Scanned 3 roots with 120 modules; 15 engine modules, 8 runtime modules",
+  "filesExpected": [
+    "pillow/src/implementation-specification-engine/",
+    "config/implementation-specification-engine.config.json",
+    "docs/governance/EMPIREAI_IMPLEMENTATION_SPECIFICATION_ENGINE_SYSTEM.md"
+  ],
+  "requiredCapabilities": [
+    "parse_approved_roadmap_mission",
+    "analyse_repository_architecture",
+    "generate_implementation_specification",
+    "expose_q1302_consumable_contract"
+  ],
+  "validationPlan": [
+    "Run implementation-specification-engine.test.ts (12 tests)"
+  ],
+  "integrationPlan": [
+    "Wire session after aiInnovationFactory"
+  ],
+  "risks": [
+    {
+      "risk": "Fabricated repository state",
+      "level": "critical",
+      "mitigation": "neverFabricateRepositoryState=true"
+    }
+  ],
+  "constraints": [
+    "Specification only — never execute implementations"
+  ],
+  "governanceRequirements": [
+    "Pillow command confirmation required",
+    "Q1302 contract emitted without implementing RIENG"
+  ],
+  "version": "ISENG-001-v1",
+  "timestamp": "2026-08-05T00:00:00.000Z"
+}

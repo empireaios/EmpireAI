@@ -1,0 +1,117 @@
+{
+  "reportId": "tsw-rpt-000001",
+  "timestamp": "2026-08-03T00:00:00.000Z",
+  "capitalProjectId": "cap-proj-tsw-01",
+  "reportingPeriod": "2026-03",
+  "incomeSummary": {
+    "totalIncome": { "currency": "SGD", "minorUnits": 265000 },
+    "revenueIncome": { "currency": "SGD", "minorUnits": 250000 },
+    "otherIncome": { "currency": "SGD", "minorUnits": 15000 },
+    "transactionCount": 2,
+    "recordKind": "factual_financial_record",
+    "fabricated": false
+  },
+  "expenseSummary": {
+    "totalExpenses": { "currency": "SGD", "minorUnits": 125000 },
+    "cogs": { "currency": "SGD", "minorUnits": 80000 },
+    "opex": { "currency": "SGD", "minorUnits": 45000 },
+    "payroll": { "currency": "SGD", "minorUnits": 0 },
+    "advertising": { "currency": "SGD", "minorUnits": 0 },
+    "fees": { "currency": "SGD", "minorUnits": 0 },
+    "transactionCount": 2,
+    "recordKind": "factual_financial_record",
+    "fabricated": false
+  },
+  "taxCategories": [
+    {
+      "category": "expense_cogs",
+      "total": { "currency": "SGD", "minorUnits": 80000 },
+      "transactionCount": 1,
+      "recordKind": "factual_financial_record",
+      "fabricated": false
+    },
+    {
+      "category": "expense_opex",
+      "total": { "currency": "SGD", "minorUnits": 45000 },
+      "transactionCount": 1,
+      "recordKind": "factual_financial_record",
+      "fabricated": false
+    },
+    {
+      "category": "income_other",
+      "total": { "currency": "SGD", "minorUnits": 15000 },
+      "transactionCount": 1,
+      "recordKind": "factual_financial_record",
+      "fabricated": false
+    },
+    {
+      "category": "income_revenue",
+      "total": { "currency": "SGD", "minorUnits": 250000 },
+      "transactionCount": 1,
+      "recordKind": "factual_financial_record",
+      "fabricated": false
+    }
+  ],
+  "supportingRecords": [
+    {
+      "recordId": "tsw-rec-000001",
+      "businessId": "tsw-biz-alpha-01",
+      "reportingPeriod": "2026-03",
+      "currency": "SGD",
+      "transactionCount": 4,
+      "documentCount": 1,
+      "fabricated": false
+    }
+  ],
+  "missingDocumentation": [
+    {
+      "missingId": "tsw-miss-000001",
+      "kind": "receipt",
+      "signalKind": "missing_documentation_signal",
+      "fabricated": false
+    },
+    {
+      "missingId": "tsw-miss-000002",
+      "kind": "bank_statement",
+      "signalKind": "missing_documentation_signal",
+      "fabricated": false
+    }
+  ],
+  "filingReminders": [
+    {
+      "kind": "filing_window",
+      "dueDate": "2026-05-15",
+      "signalKind": "filing_reminder_schedule",
+      "isAdvice": false,
+      "isFilingInstruction": false
+    }
+  ],
+  "professionalReviewFlags": [
+    {
+      "reason": "missing_documentation",
+      "severity": "attention",
+      "signalKind": "professional_review_flag",
+      "isAdvice": false
+    }
+  ],
+  "supportingEvidence": ["accw-entry-rev-1", "accw-entry-other-1", "accw-entry-cogs-1", "accw-entry-opex-1", "doc-invoice-1"],
+  "auditStatus": "pending",
+  "outstandingIssues": ["missing:receipt", "missing:bank_statement", "review:missing_documentation"],
+  "confidenceScore": 84,
+  "metadataVersion": "TSW-001-v1",
+  "reportVersion": "TSW-RPT-v1",
+  "workerId": "wkr-tax-support-01",
+  "capitalBusinessId": "tsw-biz-alpha-01",
+  "consumableByQ908": true,
+  "neverProvideLegalOrTaxAdvice": true,
+  "neverFabricateTaxCalculationsOrObligations": true,
+  "neverSubmitFilingsAutomatically": true,
+  "neverReplaceAccountantsOrTaxProfessionals": true,
+  "neverModifyAccountingRecords": true,
+  "neverImplementQ908OrLater": true,
+  "factualRecordsDistinctFromReminders": true,
+  "notes": [
+    "Tax Support Worker (Q9-07) prepares tax-support data from verified financial evidence only — it never provides legal or tax advice, never fabricates tax calculations or obligations, and never submits filings automatically.",
+    "Q9-08 (Investment Planning Worker) must consume the Q908 contract rather than reimplement Q9-07."
+  ]
+}

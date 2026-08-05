@@ -1,0 +1,935 @@
+{
+  "reportId": "lbc-rpt-0001",
+  "timestamp": "2026-08-02T08:56:29.317Z",
+  "factoryName": "Local Business Factory",
+  "certificationScope": [
+    "Q7-01",
+    "Q7-02",
+    "Q7-03",
+    "Q7-04",
+    "Q7-05",
+    "Q7-06",
+    "Q7-07",
+    "Q7-08",
+    "Q7-09",
+    "Q7-10"
+  ],
+  "componentStatusMatrix": [
+    {
+      "missionId": "Q7-01",
+      "missionName": "local-business-factory-core",
+      "subsystemId": "local-business-factory-core",
+      "modulePath": "pillow/src/local-business-factory-core/",
+      "expectedDeliverable": "Local Business Factory Core registration, mission lifecycle, and Q7 worker coordination",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/local-business-factory-core/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_LOCAL_BUSINESS_FACTORY_CORE_SYSTEM.md",
+      "configEvidence": "config file present at config/local-business-factory-core.config.json"
+    },
+    {
+      "missionId": "Q7-02",
+      "missionName": "local-market-research-worker",
+      "subsystemId": "local-market-research-worker",
+      "modulePath": "pillow/src/local-market-research-worker/",
+      "expectedDeliverable": "Fixture/evidence-driven demand, competitor, pricing, and opportunity local market research reports",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/local-market-research-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_LOCAL_MARKET_RESEARCH_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/local-market-research-worker.config.json"
+    },
+    {
+      "missionId": "Q7-03",
+      "missionName": "service-offer-worker",
+      "subsystemId": "service-offer-worker",
+      "modulePath": "pillow/src/service-offer-worker/",
+      "expectedDeliverable": "Service catalogue, packages, and pricing recommendations derived from Q7-02 market research",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/service-offer-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_SERVICE_OFFER_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/service-offer-worker.config.json"
+    },
+    {
+      "missionId": "Q7-04",
+      "missionName": "booking-worker",
+      "subsystemId": "booking-worker",
+      "modulePath": "pillow/src/booking-worker/",
+      "expectedDeliverable": "Booking create/assign/modify/cancel lifecycle with conflict prevention and confirmation evidence",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/booking-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_BOOKING_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/booking-worker.config.json"
+    },
+    {
+      "missionId": "Q7-05",
+      "missionName": "crm-worker",
+      "subsystemId": "crm-worker",
+      "modulePath": "pillow/src/crm-worker/",
+      "expectedDeliverable": "Customer profile, lead capture, contact history, and CRM lifecycle management",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/crm-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_CRM_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/crm-worker.config.json"
+    },
+    {
+      "missionId": "Q7-06",
+      "missionName": "whatsapp-worker",
+      "subsystemId": "whatsapp-worker",
+      "modulePath": "pillow/src/whatsapp-worker/",
+      "expectedDeliverable": "Inbound/outbound WhatsApp conversation handling with preserved conversation history",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/whatsapp-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_WHATSAPP_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/whatsapp-worker.config.json"
+    },
+    {
+      "missionId": "Q7-07",
+      "missionName": "local-seo-worker",
+      "subsystemId": "local-seo-worker",
+      "modulePath": "pillow/src/local-seo-worker/",
+      "expectedDeliverable": "GBP recommendations, landing pages, keywords, and metadata derived from Q7-03 service offers",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/local-seo-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_LOCAL_SEO_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/local-seo-worker.config.json"
+    },
+    {
+      "missionId": "Q7-08",
+      "missionName": "lead-generation-worker",
+      "subsystemId": "lead-generation-worker",
+      "modulePath": "pillow/src/lead-generation-worker/",
+      "expectedDeliverable": "Lead funnel, enquiry capture, qualification, and scoring routed through CRM/booking",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/lead-generation-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_LEAD_GENERATION_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/lead-generation-worker.config.json"
+    },
+    {
+      "missionId": "Q7-09",
+      "missionName": "operations-worker",
+      "subsystemId": "operations-worker",
+      "modulePath": "pillow/src/operations-worker/",
+      "expectedDeliverable": "Service delivery, assignment, fulfilment, QA, escalation, and completion workflow evidence",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/operations-worker/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_OPERATIONS_WORKER_SYSTEM.md",
+      "configEvidence": "config file present at config/operations-worker.config.json"
+    },
+    {
+      "missionId": "Q7-10",
+      "missionName": "local-business-launch-pack",
+      "subsystemId": "local-business-launch-pack",
+      "modulePath": "pillow/src/local-business-launch-pack/",
+      "expectedDeliverable": "Executive launch package assembled and verified from Q7-01..Q7-09 evidence with readiness assessment",
+      "status": "Completed",
+      "reason": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable",
+      "moduleEvidence": "module found at pillow/src/local-business-launch-pack/",
+      "finalPassEvidence": "FINAL PASS observed (json)",
+      "sessionEvidence": "session.ts reference observed",
+      "registryEvidence": "subsystem registry reference observed",
+      "runtimeEvidence": "getState completed",
+      "governanceEvidence": "governance doc present at docs/governance/EMPIREAI_LOCAL_BUSINESS_LAUNCH_PACK_SYSTEM.md",
+      "configEvidence": "config file present at config/local-business-launch-pack.config.json"
+    }
+  ],
+  "deliverableVerification": {
+    "verificationId": "lbc-ver-1785660989275",
+    "verifiedAt": "2026-08-02T08:56:29.275Z",
+    "items": [
+      {
+        "missionId": "Q7-01",
+        "label": "Local Business Factory Core registration, mission lifecycle, and Q7 worker coordination",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/local-business-factory-core/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-02",
+        "label": "Fixture/evidence-driven demand, competitor, pricing, and opportunity local market research reports",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/local-market-research-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-03",
+        "label": "Service catalogue, packages, and pricing recommendations derived from Q7-02 market research",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/service-offer-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-04",
+        "label": "Booking create/assign/modify/cancel lifecycle with conflict prevention and confirmation evidence",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/booking-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-05",
+        "label": "Customer profile, lead capture, contact history, and CRM lifecycle management",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/crm-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-06",
+        "label": "Inbound/outbound WhatsApp conversation handling with preserved conversation history",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/whatsapp-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-07",
+        "label": "GBP recommendations, landing pages, keywords, and metadata derived from Q7-03 service offers",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/local-seo-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-08",
+        "label": "Lead funnel, enquiry capture, qualification, and scoring routed through CRM/booking",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/lead-generation-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-09",
+        "label": "Service delivery, assignment, fulfilment, QA, escalation, and completion workflow evidence",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/operations-worker/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      },
+      {
+        "missionId": "Q7-10",
+        "label": "Executive launch package assembled and verified from Q7-01..Q7-09 evidence with readiness assessment",
+        "present": true,
+        "critical": true,
+        "evidenceRefs": [
+          "module found at pillow/src/local-business-launch-pack/",
+          "FINAL PASS observed (json)",
+          "getState completed"
+        ],
+        "notes": "Module present, prior FINAL PASS evidence observed, session and subsystem registry references observed, and runtime probe reachable"
+      }
+    ],
+    "requiredCount": 10,
+    "presentCount": 10,
+    "allRequiredPresent": true,
+    "missingItems": [],
+    "criticalItemsMissing": []
+  },
+  "integrationVerification": {
+    "verifiedAt": "2026-08-02T08:56:29.275Z",
+    "rows": [
+      {
+        "missionId": "Q7-01",
+        "missionName": "local-business-factory-core",
+        "registryReferenced": true,
+        "expectedBinds": [],
+        "observedBinds": [],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "no declared upstream binds for this mission"
+      },
+      {
+        "missionId": "Q7-02",
+        "missionName": "local-market-research-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore] observed=[localBusinessFactoryCore]"
+      },
+      {
+        "missionId": "Q7-03",
+        "missionName": "service-offer-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,localMarketResearchWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker]"
+      },
+      {
+        "missionId": "Q7-04",
+        "missionName": "booking-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker]"
+      },
+      {
+        "missionId": "Q7-05",
+        "missionName": "crm-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker",
+          "bookingWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker",
+          "bookingWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker]"
+      },
+      {
+        "missionId": "Q7-06",
+        "missionName": "whatsapp-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "bookingWorker",
+          "crmWorker",
+          "notificationWorker",
+          "apiIntegrationWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "bookingWorker",
+          "crmWorker",
+          "notificationWorker",
+          "apiIntegrationWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker]"
+      },
+      {
+        "missionId": "Q7-07",
+        "missionName": "local-seo-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "serviceOfferWorker",
+          "crmWorker",
+          "whatsAppWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "serviceOfferWorker",
+          "crmWorker",
+          "whatsAppWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker] observed=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker]"
+      },
+      {
+        "missionId": "Q7-08",
+        "missionName": "lead-generation-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "crmWorker",
+          "whatsAppWorker",
+          "localSeoWorker",
+          "bookingWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "crmWorker",
+          "whatsAppWorker",
+          "localSeoWorker",
+          "bookingWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker] observed=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker]"
+      },
+      {
+        "missionId": "Q7-09",
+        "missionName": "operations-worker",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "bookingWorker",
+          "crmWorker",
+          "whatsAppWorker",
+          "leadGenerationWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "bookingWorker",
+          "crmWorker",
+          "whatsAppWorker",
+          "leadGenerationWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker]"
+      },
+      {
+        "missionId": "Q7-10",
+        "missionName": "local-business-launch-pack",
+        "registryReferenced": true,
+        "expectedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker",
+          "bookingWorker",
+          "crmWorker",
+          "whatsAppWorker",
+          "localSeoWorker",
+          "leadGenerationWorker",
+          "operationsWorker"
+        ],
+        "observedBinds": [
+          "localBusinessFactoryCore",
+          "localMarketResearchWorker",
+          "serviceOfferWorker",
+          "bookingWorker",
+          "crmWorker",
+          "whatsAppWorker",
+          "localSeoWorker",
+          "leadGenerationWorker",
+          "operationsWorker"
+        ],
+        "missingBinds": [],
+        "allBound": true,
+        "runtimeHandshake": "bound",
+        "evidence": "expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker]"
+      }
+    ],
+    "allBound": true,
+    "evidence": [
+      "Q7-01: no declared upstream binds for this mission",
+      "Q7-02: expected=[localBusinessFactoryCore] observed=[localBusinessFactoryCore]",
+      "Q7-03: expected=[localBusinessFactoryCore,localMarketResearchWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker]",
+      "Q7-04: expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker]",
+      "Q7-05: expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker]",
+      "Q7-06: expected=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker]",
+      "Q7-07: expected=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker] observed=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker]",
+      "Q7-08: expected=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker] observed=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker]",
+      "Q7-09: expected=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker]",
+      "Q7-10: expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker]"
+    ]
+  },
+  "productionReadiness": {
+    "ready": true,
+    "modulesPresent": 10,
+    "modulesTotal": 10,
+    "finalPassCount": 10,
+    "finalPassTotal": 10,
+    "notes": [
+      "All Q7-01..Q7-10 components observed Completed from repository and runtime evidence"
+    ],
+    "evidence": [
+      "Q7-01: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-02: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-03: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-04: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-05: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-06: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-07: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-08: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-09: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true",
+      "Q7-10: module=true; finalPass=true(json); session=true; registry=true; config=true; governance=true"
+    ]
+  },
+  "governanceCompliance": {
+    "compliant": true,
+    "checks": [
+      {
+        "missionId": "self",
+        "governancePath": "docs/governance/EMPIREAI_LOCAL_BUSINESS_CERTIFICATION_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-01",
+        "governancePath": "docs/governance/EMPIREAI_LOCAL_BUSINESS_FACTORY_CORE_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-02",
+        "governancePath": "docs/governance/EMPIREAI_LOCAL_MARKET_RESEARCH_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-03",
+        "governancePath": "docs/governance/EMPIREAI_SERVICE_OFFER_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-04",
+        "governancePath": "docs/governance/EMPIREAI_BOOKING_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-05",
+        "governancePath": "docs/governance/EMPIREAI_CRM_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-06",
+        "governancePath": "docs/governance/EMPIREAI_WHATSAPP_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-07",
+        "governancePath": "docs/governance/EMPIREAI_LOCAL_SEO_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-08",
+        "governancePath": "docs/governance/EMPIREAI_LEAD_GENERATION_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-09",
+        "governancePath": "docs/governance/EMPIREAI_OPERATIONS_WORKER_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      },
+      {
+        "missionId": "Q7-10",
+        "governancePath": "docs/governance/EMPIREAI_LOCAL_BUSINESS_LAUNCH_PACK_SYSTEM.md",
+        "present": true,
+        "containsExpectedLabel": true
+      }
+    ],
+    "missingDocs": [],
+    "evidence": [
+      "self: present=true labelObserved=true path=docs/governance/EMPIREAI_LOCAL_BUSINESS_CERTIFICATION_SYSTEM.md",
+      "Q7-01: present=true labelObserved=true path=docs/governance/EMPIREAI_LOCAL_BUSINESS_FACTORY_CORE_SYSTEM.md",
+      "Q7-02: present=true labelObserved=true path=docs/governance/EMPIREAI_LOCAL_MARKET_RESEARCH_WORKER_SYSTEM.md",
+      "Q7-03: present=true labelObserved=true path=docs/governance/EMPIREAI_SERVICE_OFFER_WORKER_SYSTEM.md",
+      "Q7-04: present=true labelObserved=true path=docs/governance/EMPIREAI_BOOKING_WORKER_SYSTEM.md",
+      "Q7-05: present=true labelObserved=true path=docs/governance/EMPIREAI_CRM_WORKER_SYSTEM.md",
+      "Q7-06: present=true labelObserved=true path=docs/governance/EMPIREAI_WHATSAPP_WORKER_SYSTEM.md",
+      "Q7-07: present=true labelObserved=true path=docs/governance/EMPIREAI_LOCAL_SEO_WORKER_SYSTEM.md",
+      "Q7-08: present=true labelObserved=true path=docs/governance/EMPIREAI_LEAD_GENERATION_WORKER_SYSTEM.md",
+      "Q7-09: present=true labelObserved=true path=docs/governance/EMPIREAI_OPERATIONS_WORKER_SYSTEM.md",
+      "Q7-10: present=true labelObserved=true path=docs/governance/EMPIREAI_LOCAL_BUSINESS_LAUNCH_PACK_SYSTEM.md"
+    ]
+  },
+  "operationalReadiness": {
+    "ready": true,
+    "reachableCount": 10,
+    "totalCount": 10,
+    "probes": [
+      {
+        "workerKey": "localBusinessFactoryCore",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "localMarketResearchWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "serviceOfferWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "bookingWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "crmWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "whatsAppWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "localSeoWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "leadGenerationWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "operationsWorker",
+        "reachable": true,
+        "evidence": "getState completed"
+      },
+      {
+        "workerKey": "localBusinessLaunchPack",
+        "reachable": true,
+        "evidence": "getState completed"
+      }
+    ],
+    "notes": [
+      "localBusinessFactoryCore: reachable=true (getState completed)",
+      "localMarketResearchWorker: reachable=true (getState completed)",
+      "serviceOfferWorker: reachable=true (getState completed)",
+      "bookingWorker: reachable=true (getState completed)",
+      "crmWorker: reachable=true (getState completed)",
+      "whatsAppWorker: reachable=true (getState completed)",
+      "localSeoWorker: reachable=true (getState completed)",
+      "leadGenerationWorker: reachable=true (getState completed)",
+      "operationsWorker: reachable=true (getState completed)",
+      "localBusinessLaunchPack: reachable=true (getState completed)"
+    ]
+  },
+  "workflowCompleteness": {
+    "complete": true,
+    "stages": [
+      {
+        "missionId": "Q7-01",
+        "dependsOn": [],
+        "dependenciesSatisfied": true,
+        "evidence": "no upstream Q7 dependency"
+      },
+      {
+        "missionId": "Q7-02",
+        "dependsOn": [
+          "Q7-01"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01]; integration=expected=[localBusinessFactoryCore] observed=[localBusinessFactoryCore]"
+      },
+      {
+        "missionId": "Q7-03",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02]; integration=expected=[localBusinessFactoryCore,localMarketResearchWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker]"
+      },
+      {
+        "missionId": "Q7-04",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03]; integration=expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker]"
+      },
+      {
+        "missionId": "Q7-05",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04]; integration=expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker]"
+      },
+      {
+        "missionId": "Q7-06",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04",
+          "Q7-05"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04,Q7-05]; integration=expected=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,notificationWorker,apiIntegrationWorker]"
+      },
+      {
+        "missionId": "Q7-07",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04",
+          "Q7-05",
+          "Q7-06"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04,Q7-05,Q7-06]; integration=expected=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker] observed=[localBusinessFactoryCore,serviceOfferWorker,crmWorker,whatsAppWorker]"
+      },
+      {
+        "missionId": "Q7-08",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04",
+          "Q7-05",
+          "Q7-06",
+          "Q7-07"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04,Q7-05,Q7-06,Q7-07]; integration=expected=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker] observed=[localBusinessFactoryCore,crmWorker,whatsAppWorker,localSeoWorker,bookingWorker]"
+      },
+      {
+        "missionId": "Q7-09",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04",
+          "Q7-05",
+          "Q7-06",
+          "Q7-07",
+          "Q7-08"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04,Q7-05,Q7-06,Q7-07,Q7-08]; integration=expected=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker] observed=[localBusinessFactoryCore,bookingWorker,crmWorker,whatsAppWorker,leadGenerationWorker]"
+      },
+      {
+        "missionId": "Q7-10",
+        "dependsOn": [
+          "Q7-01",
+          "Q7-02",
+          "Q7-03",
+          "Q7-04",
+          "Q7-05",
+          "Q7-06",
+          "Q7-07",
+          "Q7-08",
+          "Q7-09"
+        ],
+        "dependenciesSatisfied": true,
+        "evidence": "depends on [Q7-01,Q7-02,Q7-03,Q7-04,Q7-05,Q7-06,Q7-07,Q7-08,Q7-09]; integration=expected=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker] observed=[localBusinessFactoryCore,localMarketResearchWorker,serviceOfferWorker,bookingWorker,crmWorker,whatsAppWorker,localSeoWorker,leadGenerationWorker,operationsWorker]"
+      }
+    ],
+    "evidence": [
+      "Q7-01: dependenciesSatisfied=true",
+      "Q7-02: dependenciesSatisfied=true",
+      "Q7-03: dependenciesSatisfied=true",
+      "Q7-04: dependenciesSatisfied=true",
+      "Q7-05: dependenciesSatisfied=true",
+      "Q7-06: dependenciesSatisfied=true",
+      "Q7-07: dependenciesSatisfied=true",
+      "Q7-08: dependenciesSatisfied=true",
+      "Q7-09: dependenciesSatisfied=true",
+      "Q7-10: dependenciesSatisfied=true"
+    ]
+  },
+  "reportingCapability": {
+    "capable": false,
+    "workersWithReportingAccess": 0,
+    "totalWorkers": 10,
+    "executiveReportingAvailable": false,
+    "evidence": [
+      "0/10 injected workers expose getReports()",
+      "executiveReportingRuntime injected=false"
+    ]
+  },
+  "launchPackContractConsumed": {
+    "attempted": false,
+    "consumed": false,
+    "contractVersion": null,
+    "fields": [],
+    "evidence": "No injected local-business-launch-pack handle exposing getQ711ConsumableContract"
+  },
+  "risks": [],
+  "outstandingFindings": [],
+  "certificationDecision": "Certified",
+  "auditStatus": "certified",
+  "confidenceScore": 1,
+  "metadataVersion": "LBC-001-v1",
+  "reportVersion": "LBC-RPT-v1",
+  "workerId": "wkr-local-business-certification-01",
+  "validation": {
+    "validationReportId": "lbc-val-1785660989317",
+    "validationTimestamp": "2026-08-02T08:56:29.317Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 59,
+    "metadataVersion": "LBC-001-v1"
+  },
+  "runTimestamp": "2026-08-02T08:56:29.317Z",
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-11:local-business-certification",
+    "mission:Q7-01:module:pillow/src/local-business-factory-core/",
+    "mission:Q7-02:module:pillow/src/local-market-research-worker/",
+    "mission:Q7-03:module:pillow/src/service-offer-worker/",
+    "mission:Q7-04:module:pillow/src/booking-worker/",
+    "mission:Q7-05:module:pillow/src/crm-worker/",
+    "mission:Q7-06:module:pillow/src/whatsapp-worker/",
+    "mission:Q7-07:module:pillow/src/local-seo-worker/",
+    "mission:Q7-08:module:pillow/src/lead-generation-worker/",
+    "mission:Q7-09:module:pillow/src/operations-worker/",
+    "mission:Q7-10:module:pillow/src/local-business-launch-pack/",
+    "module found at pillow/src/local-business-factory-core/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/local-market-research-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/service-offer-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/booking-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/crm-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/whatsapp-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/local-seo-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/lead-generation-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/operations-worker/",
+    "FINAL PASS observed (json)",
+    "getState completed",
+    "module found at pillow/src/local-business-launch-pack/",
+    "FINAL PASS observed (json)",
+    "getState completed"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveCertificationAuditHistory": true,
+  "neverFabricateVerificationResults": true,
+  "neverCertifyUnsupportedFunctionality": true,
+  "neverImplementMissingFunctionality": true,
+  "neverAutoCorrectFailedImplementations": true,
+  "neverOverrideGovernance": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ801OrLater": true,
+  "finalQ7Gate": true,
+  "consumableByFutureSeries": false
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "correctionId": "acw-corr-0011",
+    "area": "disclosure",
+    "recommendation": "Add a clear affiliate disclosure where readers can observe it before promotional claims",
+    "rationale": "Affiliate disclosure failed validation against evidence",
+    "priority": "critical",
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  {
+    "correctionId": "acw-corr-0012",
+    "area": "platform",
+    "recommendation": "Acknowledge and align content with evidenced platform programme rules",
+    "rationale": "Platform policy acknowledgement failed against evidence",
+    "priority": "high",
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  },
+  {
+    "correctionId": "acw-corr-0013",
+    "area": "promotional_claim",
+    "recommendation": "Remove or substantiate promotional claims flagged in evidence before publication review",
+    "rationale": "Potential prohibited promotional claim evidenced: guaranteed income",
+    "priority": "critical",
+    "fabricated": false,
+    "evidencePresent": true,
+    "legalConclusion": "not_legal_advice"
+  }
+]

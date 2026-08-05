@@ -1,0 +1,712 @@
+{
+  "reportId": "frcw-rpt-0001",
+  "timestamp": "2026-08-03T11:05:45.724Z",
+  "capitalProjectId": "capfc-prj-growth-01",
+  "forecastPeriod": "2026-Q3",
+  "revenueForecast": {
+    "seriesId": "frcw-series-0005",
+    "metric": "revenue",
+    "scenario": "expected",
+    "model": "historical_trend",
+    "currency": "SGD",
+    "businessId": "capfc-biz-growth-01",
+    "growthRateBps": 909,
+    "horizonPeriods": 3,
+    "points": [
+      {
+        "periodLabel": "2026-04",
+        "amountMinor": 1309080,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-05",
+        "amountMinor": 1428075,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-06",
+        "amountMinor": 1557887,
+        "currency": "SGD",
+        "metric": "revenue",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006"
+        ],
+        "confidenceBps": 10000
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0005",
+      "frcw-assumption-0006"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "costForecast": {
+    "seriesId": "frcw-series-0008",
+    "metric": "cost",
+    "scenario": "expected",
+    "model": "historical_trend",
+    "currency": "SGD",
+    "businessId": "capfc-biz-growth-01",
+    "growthRateBps": 277,
+    "horizonPeriods": 3,
+    "points": [
+      {
+        "periodLabel": "2026-04",
+        "amountMinor": 760498,
+        "currency": "SGD",
+        "metric": "cost",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-05",
+        "amountMinor": 781563,
+        "currency": "SGD",
+        "metric": "cost",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-06",
+        "amountMinor": 803212,
+        "currency": "SGD",
+        "metric": "cost",
+        "scenario": "expected",
+        "model": "historical_trend",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0007",
+      "frcw-assumption-0008"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "cashflowForecast": {
+    "seriesId": "frcw-series-0011",
+    "metric": "net_cashflow",
+    "scenario": "expected",
+    "model": "rolling",
+    "currency": "SGD",
+    "businessId": "capfc-biz-growth-01",
+    "growthRateBps": 909,
+    "horizonPeriods": 3,
+    "points": [
+      {
+        "periodLabel": "2026-04",
+        "amountMinor": 548582,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "scenario": "expected",
+        "model": "rolling",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006",
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-05",
+        "amountMinor": 646512,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "scenario": "expected",
+        "model": "rolling",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006",
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-06",
+        "amountMinor": 754675,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "scenario": "expected",
+        "model": "rolling",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0005",
+          "frcw-assumption-0006",
+          "frcw-assumption-0007",
+          "frcw-assumption-0008"
+        ],
+        "confidenceBps": 10000
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0005",
+      "frcw-assumption-0006",
+      "frcw-assumption-0007",
+      "frcw-assumption-0008"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "cashRunway": {
+    "estimateId": "frcw-runway-0002",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "openingCashMinor": {
+      "currency": "SGD",
+      "minorUnits": 2500000
+    },
+    "monthlyNetBurnMinor": {
+      "currency": "SGD",
+      "minorUnits": 150000
+    },
+    "monthlySurplusMinor": {
+      "currency": "SGD",
+      "minorUnits": 0
+    },
+    "runwayStatus": "burning",
+    "runwayMonths": 16,
+    "runwayDays": 500,
+    "currency": "SGD",
+    "scenario": "expected",
+    "assumptions": [
+      {
+        "assumptionId": "frcw-assumption-0011",
+        "key": "cash_runway",
+        "description": "Average net monthly cashflow derived directly from verified net_cashflow historical points.",
+        "valueBps": null,
+        "valueMinor": -150000,
+        "source": "historical_net_cashflow_points",
+        "fabricated": false
+      },
+      {
+        "assumptionId": "frcw-assumption-0012",
+        "key": "cash_runway",
+        "description": "runwayDays approximates each calendar month as exactly 30 days.",
+        "valueBps": null,
+        "valueMinor": null,
+        "source": "fixed_30_day_month_approximation",
+        "fabricated": false
+      }
+    ],
+    "supportingEvidence": [
+      "frcw-ev-cf1",
+      "frcw-ev-cf2",
+      "frcw-ev-cf3"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "profitForecast": {
+    "seriesId": "frcw-series-0014",
+    "metric": "profit",
+    "scenario": "expected",
+    "model": "profit_projection",
+    "currency": "SGD",
+    "businessId": "capfc-biz-growth-01",
+    "growthRateBps": 1666,
+    "horizonPeriods": 3,
+    "points": [
+      {
+        "periodLabel": "2026-04",
+        "amountMinor": 408310,
+        "currency": "SGD",
+        "metric": "profit",
+        "scenario": "expected",
+        "model": "profit_projection",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0009",
+          "frcw-assumption-0010"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-05",
+        "amountMinor": 476334,
+        "currency": "SGD",
+        "metric": "profit",
+        "scenario": "expected",
+        "model": "profit_projection",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0009",
+          "frcw-assumption-0010"
+        ],
+        "confidenceBps": 10000
+      },
+      {
+        "periodLabel": "2026-06",
+        "amountMinor": 555691,
+        "currency": "SGD",
+        "metric": "profit",
+        "scenario": "expected",
+        "model": "profit_projection",
+        "isForecast": true,
+        "isHistorical": false,
+        "fabricated": false,
+        "assumptionRefs": [
+          "frcw-assumption-0009",
+          "frcw-assumption-0010"
+        ],
+        "confidenceBps": 10000
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0009",
+      "frcw-assumption-0010"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "reinvestmentOptions": [],
+  "forecastAssumptions": [
+    {
+      "assumptionId": "frcw-assumption-0005",
+      "key": "growth_assumption",
+      "description": "Growth rate for revenue derived from the last two verified historical points.",
+      "valueBps": 909,
+      "valueMinor": null,
+      "source": "derived_from_historical_trend",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0006",
+      "key": "sensitivity",
+      "description": "Best-case/worst-case scenarios derived using a +/-500 bps sensitivity spread from the expected revenue growth rate.",
+      "valueBps": 500,
+      "valueMinor": null,
+      "source": "config_default",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0007",
+      "key": "cost_assumption",
+      "description": "Growth rate for cost derived from the last two verified historical points.",
+      "valueBps": 277,
+      "valueMinor": null,
+      "source": "derived_from_historical_trend",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0008",
+      "key": "sensitivity",
+      "description": "Best-case/worst-case scenarios derived using a +/-500 bps sensitivity spread from the expected cost growth rate.",
+      "valueBps": 500,
+      "valueMinor": null,
+      "source": "config_default",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0009",
+      "key": "profit_projection",
+      "description": "Growth rate for profit derived from the last two verified historical points.",
+      "valueBps": 1666,
+      "valueMinor": null,
+      "source": "derived_from_historical_trend",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0010",
+      "key": "sensitivity",
+      "description": "Best-case/worst-case scenarios derived using a +/-500 bps sensitivity spread from the expected profit growth rate.",
+      "valueBps": 500,
+      "valueMinor": null,
+      "source": "config_default",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0011",
+      "key": "cash_runway",
+      "description": "Average net monthly cashflow derived directly from verified net_cashflow historical points.",
+      "valueBps": null,
+      "valueMinor": -150000,
+      "source": "historical_net_cashflow_points",
+      "fabricated": false
+    },
+    {
+      "assumptionId": "frcw-assumption-0012",
+      "key": "cash_runway",
+      "description": "runwayDays approximates each calendar month as exactly 30 days.",
+      "valueBps": null,
+      "valueMinor": null,
+      "source": "fixed_30_day_month_approximation",
+      "fabricated": false
+    }
+  ],
+  "confidenceAssessment": {
+    "overallConfidenceBps": 10000,
+    "notes": [
+      "Forecasts are structural projections derived from verified historical evidence and documented assumptions — never a guaranteed outcome.",
+      "Historical baseline covers 3 distinct period(s) across 12 verified point(s)."
+    ],
+    "limitingFactors": [],
+    "fabricated": false
+  },
+  "scenarioComparison": {
+    "comparisonId": "frcw-comparison-0001",
+    "currency": "SGD",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "horizonPeriods": 3,
+    "scenarios": [
+      {
+        "scenario": "best_case",
+        "growthRateBps": 1409,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1782066
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 926243
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 855823
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 630247
+        },
+        "runwayMonths": null
+      },
+      {
+        "scenario": "expected",
+        "growthRateBps": 909,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1557887
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 803212
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 754675
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 555691
+        },
+        "runwayMonths": null
+      },
+      {
+        "scenario": "worst_case",
+        "growthRateBps": 409,
+        "endingRevenueMinor": {
+          "currency": "SGD",
+          "minorUnits": 1353343
+        },
+        "endingCostMinor": {
+          "currency": "SGD",
+          "minorUnits": 691590
+        },
+        "endingCashflowMinor": {
+          "currency": "SGD",
+          "minorUnits": 661753
+        },
+        "endingProfitMinor": {
+          "currency": "SGD",
+          "minorUnits": 487259
+        },
+        "runwayMonths": null
+      }
+    ],
+    "assumptionRefs": [
+      "frcw-assumption-0005",
+      "frcw-assumption-0006",
+      "frcw-assumption-0007",
+      "frcw-assumption-0008",
+      "frcw-assumption-0009",
+      "frcw-assumption-0010"
+    ],
+    "isForecast": true,
+    "fabricated": false
+  },
+  "supportingEvidence": [
+    "frcw-ev-rev1",
+    "frcw-ev-cost1",
+    "frcw-ev-cf1",
+    "frcw-ev-profit1",
+    "frcw-ev-rev2",
+    "frcw-ev-cost2",
+    "frcw-ev-cf2",
+    "frcw-ev-profit2",
+    "frcw-ev-rev3",
+    "frcw-ev-cost3",
+    "frcw-ev-cf3",
+    "frcw-ev-profit3",
+    "frcw-assumption-0005",
+    "frcw-assumption-0006",
+    "frcw-assumption-0007",
+    "frcw-assumption-0008",
+    "frcw-assumption-0009",
+    "frcw-assumption-0010"
+  ],
+  "auditStatus": "passed",
+  "outstandingIssues": [],
+  "confidenceScore": 100,
+  "metadataVersion": "FRCW-001-v1",
+  "reportVersion": "FRCW-RPT-v1",
+  "workerId": "wkr-forecasting-01",
+  "capitalBusinessId": "capfc-biz-growth-01",
+  "historicalBaseline": {
+    "currency": "SGD",
+    "capitalBusinessId": "capfc-biz-growth-01",
+    "points": [
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 1000000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 700000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": -200000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-01",
+        "amountMinor": 250000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit1",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 1100000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 720000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": -150000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-02",
+        "amountMinor": 300000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit2",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 1200000,
+        "currency": "SGD",
+        "metric": "revenue",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-rev3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 740000,
+        "currency": "SGD",
+        "metric": "cost",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cost3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": -100000,
+        "currency": "SGD",
+        "metric": "net_cashflow",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-cf3",
+        "isHistorical": true,
+        "fabricated": false
+      },
+      {
+        "periodLabel": "2026-03",
+        "amountMinor": 350000,
+        "currency": "SGD",
+        "metric": "profit",
+        "businessId": "capfc-biz-growth-01",
+        "sourceRef": "frcw-ev-profit3",
+        "isHistorical": true,
+        "fabricated": false
+      }
+    ],
+    "sourceRefs": [
+      "frcw-ev-rev1",
+      "frcw-ev-cost1",
+      "frcw-ev-cf1",
+      "frcw-ev-profit1",
+      "frcw-ev-rev2",
+      "frcw-ev-cost2",
+      "frcw-ev-cf2",
+      "frcw-ev-profit2",
+      "frcw-ev-rev3",
+      "frcw-ev-cost3",
+      "frcw-ev-cf3",
+      "frcw-ev-profit3"
+    ],
+    "periodsCovered": 3,
+    "isHistorical": true,
+    "fabricated": false
+  },
+  "validation": {
+    "validationReportId": "frcw-val-1785755145725",
+    "validationTimestamp": "2026-08-03T11:05:45.725Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 3,
+    "metadataVersion": "FRCW-001-v1"
+  },
+  "runTimestamp": "2026-08-03T11:05:45.724Z",
+  "consumableByQ907": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q9-06:report:frcw-rpt-0001",
+    "q9-06:capital_business:capfc-biz-growth-01",
+    "q9-06:forecast_period:2026-Q3",
+    "frcw-ev-rev1",
+    "frcw-ev-cost1",
+    "frcw-ev-cf1",
+    "frcw-ev-profit1",
+    "frcw-ev-rev2",
+    "frcw-ev-cost2",
+    "frcw-ev-cf2",
+    "frcw-ev-profit2",
+    "frcw-ev-rev3",
+    "frcw-ev-cost3",
+    "frcw-ev-cf3",
+    "frcw-ev-profit3",
+    "frcw-assumption-0005",
+    "frcw-assumption-0006",
+    "frcw-assumption-0007",
+    "frcw-assumption-0008",
+    "frcw-assumption-0009",
+    "frcw-assumption-0010"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveForecastHistory": true,
+  "neverPresentForecastsAsGuaranteedOutcomes": true,
+  "neverFabricateHistoricalFinancialData": true,
+  "neverExecuteInvestments": true,
+  "neverApproveBudgets": true,
+  "neverReplaceInvestmentPlanningWorker": true,
+  "neverModifyAccountingRecords": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ907OrLater": true
+}

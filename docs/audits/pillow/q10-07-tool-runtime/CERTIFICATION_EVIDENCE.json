@@ -1,0 +1,49 @@
+{
+  "computedAt": "2026-08-04T04:20:00.000Z",
+  "missionId": "Q10-07",
+  "engineVersion": "PILLOW-TOOLRT-001",
+  "runtimeVersion": "Q10-TOOLRT-v1",
+  "metadataVersion": "TOOLRT-001-v1",
+  "reportVersion": "TOOLRT-RPT-v1",
+  "workerId": "wkr-tool-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionApiRuntime": {
+    "missionId": "Q10-06",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverExposeSecrets": true,
+    "neverExposeCredentials": true,
+    "neverFabricateExecutionResults": true,
+    "neverInvokeUnauthorizedTools": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1008OrLater": true,
+    "deterministicToolRoutingOnly": true,
+    "structuralSignalOnly": true
+  },
+  "seedTools": [
+    "tool-cursor-01",
+    "tool-github-01",
+    "tool-design-01",
+    "tool-analytics-01",
+    "tool-ai-01",
+    "tool-marketplace-01",
+    "tool-supplier-01",
+    "tool-cloud-01",
+    "tool-deploy-01",
+    "tool-database-01",
+    "tool-monitoring-01",
+    "tool-internal-01"
+  ],
+  "q1008ContractExposed": true,
+  "consumableByQ1008": true,
+  "certificationStatus": "passed",
+  "notes": [
+    "Tool Runtime Q10-07 certified — stops at Q10-07, exposes Q1008ConsumableContract for Q10-08",
+    "Credential references only; secrets never logged or reported",
+    "Structural invocation without fabricated execution payloads when toolAdapter unbound"
+  ]
+}

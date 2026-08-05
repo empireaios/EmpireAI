@@ -1,0 +1,47 @@
+{
+  "missionId": "Q6-12",
+  "doctrine": "PILLOW-NTW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/notification-worker/",
+  "metadataVersion": "NTW-001-v1",
+  "reportVersion": "NTW-RPT-v1",
+  "workerId": "wkr-notification-01",
+  "priorMissions": {
+    "Q6-01": "FINAL PASS",
+    "Q6-02": "FINAL PASS",
+    "Q6-03": "FINAL PASS",
+    "Q6-04": "FINAL PASS",
+    "Q6-05": "FINAL PASS",
+    "Q6-06": "FINAL PASS",
+    "Q6-07": "FINAL PASS",
+    "Q6-08": "FINAL PASS",
+    "Q6-09": "FINAL PASS",
+    "Q6-10": "FINAL PASS",
+    "Q6-11": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverReplaceWorkflowOrchestration": true,
+    "neverReplaceBusinessLogic": true,
+    "neverExposeCredentialsOrSecrets": true,
+    "neverFabricateDeliveryResults": true,
+    "neverImplementQ613OrLater": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowNotificationWorker": true,
+    "subsystemRegistry": "notification-worker",
+    "hostRoutes": "/api/pillow/notification-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/notification-worker-bridge.ts"
+  },
+  "evidence": [
+    "pillow/src/validation/tests/notification-worker.test.ts",
+    "email/sms/telegram/whatsapp transport-driven delivery",
+    "template substitution + retry + delivery tracking",
+    "credential redaction in reports"
+  ],
+  "tests": {
+    "notificationWorker": "12/12",
+    "workflowBuilderWorkerRegression": "12/12"
+  }
+}

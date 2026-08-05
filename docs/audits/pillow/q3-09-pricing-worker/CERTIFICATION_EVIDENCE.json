@@ -1,0 +1,54 @@
+{
+  "missionId": "Q3-09",
+  "doctrine": "PILLOW-PRW-001",
+  "moduleId": "pricing-worker",
+  "metadataVersion": "PRW-001-v1",
+  "reportVersion": "PRW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Set pricing based on cost, margin, competition, fees, ads, and target profit.",
+  "prerequisites": [
+    { "missionId": "Q3-08", "doctrine": "PILLOW-PLW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverPublishListings": true,
+    "neverModifySupplierCosts": true,
+    "neverExecutePromotions": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ310OrLater": true,
+    "neverPublishPricingAutomatically": true
+  },
+  "pricingReportFields": [
+    "pricingId",
+    "timestamp",
+    "productId",
+    "supplierCost",
+    "shippingCost",
+    "marketplaceFees",
+    "paymentFees",
+    "advertisingAllocation",
+    "totalLandedCost",
+    "targetMargin",
+    "targetProfit",
+    "competitorPricing",
+    "recommendedSellingPrice",
+    "pricingRationale",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/pricing-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/pricing-worker/",
+    "config": "config/pricing-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_PRICING_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/pricing-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/pricing-worker.test.ts"
+  },
+  "notes": [
+    "Pricing-recommendation-only Commerce Factory worker; public pillow index aliases PrwPricingReport."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "missionId": "Q4-03",
+  "doctrine": "PILLOW-TRW-001",
+  "moduleId": "trend-research-worker",
+  "metadataVersion": "TRW-001-v1",
+  "reportVersion": "TRW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Scan trends, competitors, search demand, social signals, and current events for content opportunities.",
+  "prerequisites": [
+    { "missionId": "Q4-02", "doctrine": "PILLOW-ECW-001", "status": "FINAL PASS" },
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverSelectPublishingTopics": true,
+    "neverWriteScripts": true,
+    "neverGenerateThumbnails": true,
+    "neverPublishContent": true,
+    "neverGenerateContentDirectly": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ404OrLater": true,
+    "useApprovedResearchSourcesOnly": true
+  },
+  "trendResearchReportFields": [
+    "trendReportId",
+    "timestamp",
+    "channelId",
+    "trendCategory",
+    "trendTopic",
+    "discoverySource",
+    "searchDemand",
+    "socialSignals",
+    "competitorActivity",
+    "currentEventRelevance",
+    "confidenceScore",
+    "supportingEvidence",
+    "recommendedPriority",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "media_factory_core",
+    "editor_in_chief_worker",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/trend-research-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/trend-research-worker/",
+    "config": "config/trend-research-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_TREND_RESEARCH_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/trend-research-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/trend-research-worker.test.ts"
+  },
+  "notes": [
+    "Discovery-only: identifies opportunities before planning; does not select publishing topics or generate content."
+  ]
+}

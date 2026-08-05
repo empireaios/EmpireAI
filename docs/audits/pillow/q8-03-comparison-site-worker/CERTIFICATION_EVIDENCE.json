@@ -1,0 +1,60 @@
+{
+  "missionId": "Q8-03",
+  "doctrine": "PILLOW-CSW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/comparison-site-worker/",
+  "metadataVersion": "CSW-001-v1",
+  "reportVersion": "CSW-RPT-v1",
+  "workerId": "wkr-comparison-site-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q8-01": "FINAL PASS",
+    "Q8-02": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverFabricateRankingsOrProductInformation": true,
+    "neverPublishWebsites": true,
+    "neverManipulateRankingsWithoutEvidence": true,
+    "neverReplaceReviewContentWorker": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ804OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowComparisonSiteWorker": true,
+    "subsystemRegistry": "comparison-site-worker",
+    "hostRoutes": "/api/pillow/comparison-site-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/comparison-site-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_COMPARISON_SITE_WORKER_SYSTEM.md",
+    "config": "config/comparison-site-worker.config.json",
+    "bindsAffiliateFactoryCore": true,
+    "bindsAffiliateOpportunityWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/comparison-site-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "affiliateFactoryCore": "12/12",
+    "affiliateOpportunityWorker": "12/12"
+  },
+  "evidence": [
+    "consumes Affiliate Opportunity Reports / fixture opportunity packages",
+    "comparison page + ranking page + buyer guide from verified product fixtures",
+    "feature and pricing comparison tables — unknown cells when evidence missing",
+    "ranking methodology documented; rankings never fabricated",
+    "Comparison Site Report with consumableByQ804",
+    "ERR submit when executiveReportingRuntime injected",
+    "AOW/AFC untouched boundaries preserved",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "comparisonSiteWorker": "12/12",
+    "affiliateOpportunityWorkerRegression": "12/12",
+    "affiliateFactoryCoreRegression": "12/12"
+  }
+}

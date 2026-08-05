@@ -1,0 +1,62 @@
+{
+  "missionId": "Q4-02",
+  "doctrine": "PILLOW-ECW-001",
+  "moduleId": "editor-in-chief-worker",
+  "metadataVersion": "ECW-001-v1",
+  "reportVersion": "ECW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Own channel editorial direction, quality, audience, tone, and long-term content strategy.",
+  "prerequisites": [
+    { "missionId": "Q4-01", "doctrine": "PILLOW-MFC-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-14", "doctrine": "PILLOW-CMC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverWriteScripts": true,
+    "neverCreateThumbnails": true,
+    "neverAssembleVideos": true,
+    "neverPublishContent": true,
+    "neverBypassPillowGovernance": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ403OrLater": true
+  },
+  "editorialReportFields": [
+    "editorialReportId",
+    "timestamp",
+    "mediaBusinessId",
+    "channelId",
+    "editorialStrategy",
+    "targetAudience",
+    "editorialTone",
+    "qualityStandards",
+    "contentPriorities",
+    "reviewOutcome",
+    "executiveRecommendations",
+    "metadataVersion"
+  ],
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "media_factory_core",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/editor-in-chief-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/editor-in-chief-worker/",
+    "config": "config/editor-in-chief-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_EDITOR_IN_CHIEF_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/editor-in-chief-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/editor-in-chief-worker.test.ts"
+  },
+  "notes": [
+    "Doctrine ID is PILLOW-ECW-001 (not EIC — PILLOW-EIC-001 is Executive Intelligence Certification).",
+    "Editorial direction only; does not write scripts, create thumbnails, assemble videos, or publish."
+  ]
+}

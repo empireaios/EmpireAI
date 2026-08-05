@@ -1,0 +1,62 @@
+{
+  "missionId": "Q7-03",
+  "doctrine": "PILLOW-SOW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/service-offer-worker/",
+  "metadataVersion": "SOW-001-v1",
+  "reportVersion": "SOW-RPT-v1",
+  "workerId": "wkr-service-offer-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverBuildBookingSystems": true,
+    "neverBuildCrm": true,
+    "neverExecuteCustomerJobs": true,
+    "neverLaunchBusiness": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricatePricingEvidence": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ704OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowServiceOfferWorker": true,
+    "subsystemRegistry": "service-offer-worker",
+    "hostRoutes": "/api/pillow/service-offer-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/service-offer-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_SERVICE_OFFER_WORKER_SYSTEM.md",
+    "config": "config/service-offer-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsLocalMarketResearchWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/service-offer-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionCommands": [
+    "node --import tsx --test \"src/validation/tests/local-market-research-worker.test.ts\"",
+    "node --import tsx --test \"src/validation/tests/local-business-factory-core.test.ts\""
+  ],
+  "regressionResult": {
+    "localMarketResearchWorker": "13/13",
+    "localBusinessFactoryCore": "12/12"
+  },
+  "evidence": [
+    "consumes Q7-02 fixture/report market research",
+    "catalogue + packages + pricing referencing Q7-02 findings",
+    "guarantees + fulfilment requirements",
+    "Service Offer Report with consumableByQ704",
+    "ERR submit when executiveReportingRuntime injected"
+  ],
+  "tests": {
+    "serviceOfferWorker": "12/12",
+    "localMarketResearchWorkerRegression": "13/13",
+    "localBusinessFactoryCoreRegression": "12/12"
+  }
+}

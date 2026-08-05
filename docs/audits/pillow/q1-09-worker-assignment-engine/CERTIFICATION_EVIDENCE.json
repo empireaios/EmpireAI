@@ -1,0 +1,79 @@
+{
+  "missionId": "Q1-09",
+  "doctrine": "PILLOW-WAE-001",
+  "moduleId": "worker-assignment-engine",
+  "metadataVersion": "WAE-001-v1",
+  "assignmentVersion": "WAE-ASN-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Assign workers to missions based on skills, availability, risk, cost and dependencies.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-02", "doctrine": "PILLOW-OCH-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-03", "doctrine": "PILLOW-RTX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-04", "doctrine": "PILLOW-STX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-05", "doctrine": "PILLOW-AMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-06", "doctrine": "PILLOW-RMX-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-07", "doctrine": "PILLOW-WRG-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-08", "doctrine": "PILLOW-WLC-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverReplaceTaskNegotiationProtocol": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "assignmentRecordFields": [
+    "assignmentId",
+    "timestamp",
+    "missionId",
+    "businessId",
+    "missionRequirements",
+    "candidateWorkers",
+    "evaluationCriteria",
+    "selectedPrimaryWorker",
+    "supportingWorkers",
+    "assignmentReason",
+    "riskAssessment",
+    "estimatedCost",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "assignmentFactors": [
+    "skills",
+    "certification",
+    "availability",
+    "current_workload",
+    "authority",
+    "required_tools",
+    "dependencies",
+    "risk",
+    "cost",
+    "historical_performance"
+  ],
+  "assignmentRules": [
+    "never_assign_uncertified_workers",
+    "never_assign_unavailable_workers",
+    "never_exceed_worker_authority",
+    "never_violate_authority_matrix",
+    "respect_responsibility_matrix",
+    "respect_worker_lifecycle_status",
+    "respect_worker_certification_status"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-assignment-engine.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-assignment-engine/",
+    "config": "config/worker-assignment-engine.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_ASSIGNMENT_ENGINE_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-assignment-engine-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-assignment-engine.test.ts"
+  },
+  "notes": [
+    "Isolated recommend-only service; does not replace TicketAssignmentEngine or ChatAssignmentEngine."
+  ]
+}

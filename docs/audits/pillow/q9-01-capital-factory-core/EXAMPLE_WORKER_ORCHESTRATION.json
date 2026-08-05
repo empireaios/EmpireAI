@@ -1,0 +1,78 @@
+{
+  "workerStatusMatrix": [
+    {
+      "workerRole": "accounting_worker",
+      "workerId": "wkr-capfc-acct-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    },
+    {
+      "workerRole": "forecasting_worker",
+      "workerId": "wkr-capfc-fcst-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    },
+    {
+      "workerRole": "allocation_worker",
+      "workerId": "wkr-capfc-alloc-01",
+      "status": "assigned",
+      "notes": "registered_structural_role_slot"
+    }
+  ],
+  "q902Contract": {
+    "contractId": "capfc-q902-contract-CAPFC-001-v1",
+    "contractVersion": "CAPFC-001-v1",
+    "producedBy": "capital-factory-core",
+    "missionId": "Q9-01",
+    "consumerMissionId": "Q9-02",
+    "exposedFields": [
+      "capitalBusinessId",
+      "capitalProjectName",
+      "capitalCategory",
+      "lifecycleStatus",
+      "workerStatusMatrix",
+      "dependencyGraph",
+      "readinessStatus",
+      "outstandingTasks",
+      "risks",
+      "executiveSummary",
+      "confidenceScore",
+      "metadataVersion"
+    ],
+    "workerRoleCatalog": [
+      "accounting_worker",
+      "forecasting_worker",
+      "investment_analysis_worker",
+      "capital_allocation_worker",
+      "treasury_worker",
+      "financial_reporting_worker",
+      "risk_review_worker",
+      "unknown",
+      "accounting_worker",
+      "forecasting_worker",
+      "investment_analysis_worker",
+      "capital_allocation_worker",
+      "treasury_worker",
+      "financial_reporting_worker",
+      "risk_review_worker",
+      "unknown"
+    ],
+    "lifecycleStatuses": [
+      "project_registered",
+      "workers_coordinated",
+      "preparation",
+      "readiness_review",
+      "operating",
+      "paused",
+      "completed",
+      "archived"
+    ],
+    "notes": [
+      "Capital Factory Core (Q9-01) is orchestration-only.",
+      "It does not perform accounting, forecast finances, or execute investments automatically.",
+      "Q9-02 and later workers must consume this contract rather than reimplement Q9-01 orchestration."
+    ],
+    "neverImplementQ902OrLater": true,
+    "structuralSignalOnly": true
+  }
+}

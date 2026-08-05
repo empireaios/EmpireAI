@@ -1,0 +1,51 @@
+{
+  "missionId": "Q7-01",
+  "doctrine": "PILLOW-LBFC-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/local-business-factory-core/",
+  "metadataVersion": "LBFC-001-v1",
+  "reportVersion": "LBFC-RPT-v1",
+  "workerId": "wkr-local-business-factory-core-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q6-15": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverPerformSpecialistWorkerFunctions": true,
+    "neverReplaceQ7Workers": true,
+    "neverModifyUnrelatedFactories": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverFabricateOperationalStatus": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ702OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowLocalBusinessFactoryCore": true,
+    "subsystemRegistry": "local-business-factory-core",
+    "hostRoutes": "/api/pillow/local-business-factory-core/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/local-business-factory-core-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_LOCAL_BUSINESS_FACTORY_CORE_SYSTEM.md",
+    "config": "config/local-business-factory-core.config.json"
+  },
+  "validationCommand": "npx --yes tsx --test \"src/validation/tests/local-business-factory-core.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionCommand": "npx --yes tsx --test \"src/validation/tests/platform-certification.test.ts\"",
+  "regressionResult": { "tests": 13, "passed": 13, "failed": 0 },
+  "evidence": [
+    "pillow/src/validation/tests/local-business-factory-core.test.ts",
+    "register + lifecycle + worker coordination",
+    "approval / launch readiness / ERR submit",
+    "Local Business Factory Report required fields",
+    "audit trail + cockpit snapshot"
+  ],
+  "tests": {
+    "localBusinessFactoryCore": "12/12",
+    "platformCertificationRegression": "13/13"
+  }
+}

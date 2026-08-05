@@ -1,0 +1,65 @@
+{
+  "missionId": "Q2-06",
+  "doctrine": "PILLOW-BBW-001",
+  "moduleId": "business-blueprint-worker",
+  "metadataVersion": "BBW-001-v1",
+  "blueprintVersion": "BBW-BPL-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Transform an approved business opportunity into a complete executable business blueprint.",
+  "prerequisites": [
+    { "missionId": "Q2-01", "doctrine": "PILLOW-EBF-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-02", "doctrine": "PILLOW-BII-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-03", "doctrine": "PILLOW-EMG-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-04", "doctrine": "PILLOW-MRW-001", "status": "FINAL PASS" },
+    { "missionId": "Q2-05", "doctrine": "PILLOW-OEW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteBusiness": true,
+    "neverLaunchProducts": true,
+    "neverCreateBranding": true,
+    "neverBuildWebsites": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ207OrLater": true
+  },
+  "integrations": [
+    "worker_registry",
+    "worker_lifecycle",
+    "worker_assignment_engine",
+    "executive_reporting_runtime",
+    "worker_performance_review",
+    "worker_recovery_system"
+  ],
+  "blueprintFields": [
+    "blueprintId",
+    "timestamp",
+    "businessBuildMissionId",
+    "businessType",
+    "businessObjective",
+    "productsServices",
+    "customerSegments",
+    "valueProposition",
+    "operationalWorkflow",
+    "requiredWorkers",
+    "requiredIntegrations",
+    "requiredAssets",
+    "milestones",
+    "dependencies",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/business-blueprint-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/business-blueprint-worker/",
+    "config": "config/business-blueprint-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_BUSINESS_BLUEPRINT_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/business-blueprint-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/business-blueprint-worker.test.ts"
+  },
+  "notes": [
+    "Isolated blueprint-only Q2 worker; requires Proceed/approved opportunity; produces single canonical blueprint per mission; does not execute."
+  ]
+}

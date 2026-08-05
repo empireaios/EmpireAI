@@ -1,0 +1,70 @@
+{
+  "missionId": "Q7-09",
+  "doctrine": "PILLOW-OPSW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/operations-worker/",
+  "metadataVersion": "OPSW-001-v1",
+  "reportVersion": "OPSW-RPT-v1",
+  "workerId": "wkr-operations-01",
+  "observedAt": "2026-08-02",
+  "priorMissions": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS",
+    "Q7-04": "FINAL PASS",
+    "Q7-05": "FINAL PASS",
+    "Q7-06": "FINAL PASS",
+    "Q7-07": "FINAL PASS",
+    "Q7-08": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverPerformCustomerServices": true,
+    "neverReplaceBookingWorker": true,
+    "neverReplaceCrmWorker": true,
+    "neverReplaceLeadGenerationWorker": true,
+    "neverFabricateOperationalEvidence": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ710OrLater": true,
+    "preserveCompleteOperationalTraceability": true,
+    "preserveWorkflowAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowOperationsWorker": true,
+    "subsystemRegistry": "operations-worker",
+    "hostRoutes": "/api/pillow/operations-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/operations-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_OPERATIONS_WORKER_SYSTEM.md",
+    "config": "config/operations-worker.config.json",
+    "bindsLocalBusinessFactoryCore": true,
+    "bindsBookingWorker": true,
+    "bindsCrmWorker": true,
+    "bindsWhatsAppWorker": true,
+    "bindsLeadGenerationWorker": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/operations-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "leadGenerationWorker": "12/12",
+    "bookingWorker": "12/12",
+    "crmWorker": "12/12"
+  },
+  "evidence": [
+    "consumes confirmed booking fixtures only — rejects non-confirmed",
+    "service delivery + assignment + fulfilment + QA + escalation + completion + follow-up workflows (designOnly)",
+    "Operations Report with consumableByQ710",
+    "ERR submit when executiveReportingRuntime injected",
+    "never fabricates operational execution evidence",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "operationsWorker": "12/12",
+    "leadGenerationWorkerRegression": "12/12",
+    "bookingWorkerRegression": "12/12",
+    "crmWorkerRegression": "12/12"
+  }
+}

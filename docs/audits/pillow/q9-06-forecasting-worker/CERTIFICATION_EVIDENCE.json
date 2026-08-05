@@ -1,0 +1,78 @@
+{
+  "missionId": "Q9-06",
+  "doctrine": "PILLOW-FRCW-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/forecasting-worker/",
+  "metadataVersion": "FRCW-001-v1",
+  "reportVersion": "FRCW-RPT-v1",
+  "workerId": "wkr-forecasting-01",
+  "observedAt": "2026-08-03",
+  "priorMissions": {
+    "Q9-01": "FINAL PASS",
+    "Q9-02": "FINAL PASS",
+    "Q9-03": "FINAL PASS",
+    "Q9-04": "FINAL PASS",
+    "Q9-05": "FINAL PASS"
+  },
+  "forecastModel": {
+    "moneyRepresentation": "MoneyMinor.minorUnits integer cents",
+    "growthRates": "integer basis points",
+    "historicalVsForecastSeparation": true,
+    "scenarios": ["best_case", "expected", "worst_case"],
+    "neverPresentForecastsAsGuaranteedOutcomes": true
+  },
+  "boundaries": {
+    "neverFabricateHistoricalFinancialData": true,
+    "neverPresentForecastsAsGuaranteedOutcomes": true,
+    "neverExecuteInvestments": true,
+    "neverApproveBudgets": true,
+    "neverReplaceInvestmentPlanningWorker": true,
+    "neverModifyAccountingRecords": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ907OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveForecastHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowForecastingWorker": true,
+    "subsystemRegistry": "forecasting-worker",
+    "hostRoutes": "/api/pillow/forecasting-worker/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/forecasting-worker-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_FORECASTING_WORKER_SYSTEM.md",
+    "config": "config/forecasting-worker.config.json",
+    "capitalFactoryCoreBinding": true,
+    "accountingWorkerBinding": true,
+    "cashflowWorkerBinding": true,
+    "budgetPlanningWorkerBinding": true,
+    "profitabilityWorkerBinding": true,
+    "workerAssignmentEngineBinding": true
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/forecasting-worker.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "profitabilityWorker": "12/12",
+    "budgetPlanningWorker": "12/12"
+  },
+  "evidence": [
+    "verified historical series consumed; empty history rejected without fabrication",
+    "revenue, cost, cashflow, and profit forecasts labelled isForecast:true",
+    "historicalBaseline kept isHistorical:true and never mixed with forecast points",
+    "cash runway estimated from verified net_cashflow evidence",
+    "structural reinvestment options sized from surplus only — never executed",
+    "best/expected/worst scenario comparison",
+    "Forecasting Report with consumableByQ907",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q9-01..Q9-05 untouched and still FINAL PASS",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "forecastingWorker": "12/12",
+    "profitabilityWorkerRegression": "12/12",
+    "budgetPlanningWorkerRegression": "12/12"
+  }
+}

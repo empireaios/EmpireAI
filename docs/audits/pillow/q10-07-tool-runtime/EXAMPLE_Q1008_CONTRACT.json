@@ -1,0 +1,54 @@
+{
+  "contractId": "toolrt-q1008-contract-v1",
+  "contractVersion": "TOOLRT-001-v1",
+  "producedBy": "tool-runtime",
+  "missionId": "Q10-07",
+  "consumerMissionId": "Q10-08",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "registeredTools",
+    "toolCategories",
+    "activeConnections",
+    "invocationStatistics",
+    "failureSummary",
+    "retrySummary",
+    "availabilityStatus",
+    "permissionStatus",
+    "diagnostics",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "toolCategoryCatalog": [
+    "cursor",
+    "github",
+    "design",
+    "analytics",
+    "ai_provider",
+    "marketplace",
+    "supplier",
+    "cloud_platform",
+    "deployment",
+    "database",
+    "monitoring",
+    "internal_enterprise",
+    "custom_extension"
+  ],
+  "authMethodCatalog": [
+    "api_key",
+    "oauth",
+    "bearer_token",
+    "basic",
+    "none",
+    "custom_extension"
+  ],
+  "notes": [
+    "Structural contract for Q10-08 Communication Runtime — tool registrations and credential references only",
+    "Tool Runtime never fabricates execution results or exposes secrets",
+    "neverImplementQ1008OrLater remains locked — this module does not implement Communication Runtime"
+  ],
+  "neverImplementQ1008OrLater": true,
+  "structuralSignalOnly": true
+}

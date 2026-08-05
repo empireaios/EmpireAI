@@ -1,0 +1,52 @@
+{
+  "missionId": "Q3-10",
+  "doctrine": "PILLOW-INW-001",
+  "moduleId": "inventory-worker",
+  "metadataVersion": "INW-001-v1",
+  "reportVersion": "INW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Monitor stock, lead times, reorder points, and supplier availability.",
+  "prerequisites": [
+    { "missionId": "Q3-05", "doctrine": "PILLOW-SEW-001", "status": "FINAL PASS" },
+    { "missionId": "Q3-09", "doctrine": "PILLOW-PRW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverPurchaseInventory": true,
+    "neverModifySupplierStock": true,
+    "neverPlaceSupplierOrders": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ311OrLater": true,
+    "neverModifySupplierInventoryDirectly": true
+  },
+  "inventoryReportFields": [
+    "inventoryReportId",
+    "timestamp",
+    "productId",
+    "supplierId",
+    "currentStock",
+    "stockStatus",
+    "leadTime",
+    "reorderPoint",
+    "supplierAvailability",
+    "inventoryAlerts",
+    "recommendedAction",
+    "confidenceScore",
+    "metadataVersion"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/inventory-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/inventory-worker/",
+    "config": "config/inventory-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_INVENTORY_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/inventory-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/inventory-worker.test.ts"
+  },
+  "notes": [
+    "Inventory-monitoring-only Commerce Factory worker; public pillow index aliases InwInventoryReport."
+  ]
+}

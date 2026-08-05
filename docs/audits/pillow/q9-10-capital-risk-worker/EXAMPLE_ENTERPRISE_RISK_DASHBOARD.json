@@ -1,0 +1,47 @@
+{
+  "dashboardId": "caprw-dash-000001",
+  "timestamp": "2026-Q2",
+  "currency": "SGD",
+  "fabricated": false,
+  "executiveRiskSummary": {
+    "summaryId": "caprw-sum-000001",
+    "totalRisks": 6,
+    "criticalCount": 0,
+    "highCount": 1,
+    "mediumCount": 4,
+    "lowCount": 1,
+    "infoCount": 0,
+    "escalationRequired": true,
+    "highestEscalationLevel": "pillow",
+    "fabricated": false
+  },
+  "risksBySeverity": {
+    "info": 0,
+    "low": 1,
+    "medium": 4,
+    "high": 1,
+    "critical": 0
+  },
+  "widgets": [
+    {
+      "widgetId": "caprw-wgt-000001",
+      "category": "aggregate",
+      "title": "Total capital risks",
+      "riskCount": 6
+    },
+    {
+      "widgetId": "caprw-wgt-000002",
+      "category": "overspending",
+      "title": "overspending risks",
+      "riskCount": 1,
+      "highestSeverity": "medium"
+    },
+    {
+      "widgetId": "caprw-wgt-000003",
+      "category": "cash_shortage",
+      "title": "cash shortage risks",
+      "riskCount": 1,
+      "highestSeverity": "medium"
+    }
+  ]
+}

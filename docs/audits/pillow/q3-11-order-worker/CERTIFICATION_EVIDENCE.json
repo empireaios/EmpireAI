@@ -1,0 +1,63 @@
+{
+  "missionId": "Q3-11",
+  "doctrine": "PILLOW-ORW-001",
+  "moduleId": "order-worker",
+  "metadataVersion": "ORW-001-v1",
+  "reportVersion": "ORW-RPT-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Manage order routing, fulfilment status, exceptions, and customer updates.",
+  "prerequisites": [
+    { "missionId": "Q3-10", "doctrine": "PILLOW-INW-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverProcessPayments": true,
+    "neverIssueRefunds": true,
+    "neverModifyInventoryDirectly": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverImplementQ312OrLater": true,
+    "neverAlterFinancialRecords": true
+  },
+  "orderReportFields": [
+    "orderReportId",
+    "timestamp",
+    "orderId",
+    "customerId",
+    "productId",
+    "supplierId",
+    "orderStatus",
+    "fulfilmentStatus",
+    "shippingStatus",
+    "exceptions",
+    "customerUpdates",
+    "recommendedAction",
+    "metadataVersion"
+  ],
+  "orderStates": [
+    "received",
+    "awaiting_fulfilment",
+    "processing",
+    "fulfilled",
+    "shipped",
+    "delivered",
+    "delayed",
+    "exception",
+    "cancelled",
+    "closed"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/order-worker.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/order-worker/",
+    "config": "config/order-worker.config.json",
+    "doctrine": "docs/governance/EMPIREAI_ORDER_WORKER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/order-worker-bridge.ts",
+    "tests": "pillow/src/validation/tests/order-worker.test.ts"
+  },
+  "notes": [
+    "Order-operations-only Commerce Factory worker; public pillow index aliases OrwOrderReport."
+  ]
+}

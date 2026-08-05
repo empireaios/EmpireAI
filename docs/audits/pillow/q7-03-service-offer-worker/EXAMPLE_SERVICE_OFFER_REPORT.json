@@ -1,0 +1,173 @@
+{
+  "reportId": "sow-rpt-0001",
+  "timestamp": "2026-08-02T02:00:00.000Z",
+  "businessProjectId": "lbfc-prj-cleaning-01",
+  "serviceCatalogue": [
+    {
+      "serviceId": "sow-svc-001",
+      "name": "residential cleaning",
+      "description": "residential cleaning offer derived from Q7-02 local market research for Orchard",
+      "category": "cleaning",
+      "targetSegments": ["busy homeowners", "small offices"],
+      "geographicCoverage": "Orchard",
+      "evidenceClass": "estimated",
+      "sourceResearchRefs": ["lmrw-res-fixture-001"]
+    }
+  ],
+  "servicePackages": [
+    {
+      "packageId": "sow-pkg-001",
+      "name": "residential cleaning — Basic",
+      "targetCustomer": "busy homeowners",
+      "pricingModel": "fixed_package",
+      "recommendedPrice": {
+        "value": "SGD 98",
+        "evidenceClass": "estimated",
+        "source": "research",
+        "explanation": "Derived from Q7-02 pricing findings; not a fabricated price"
+      },
+      "pricingAssumptions": [
+        "Anchored to Q7-02 typicalPriceRange (SGD 80-150 per visit)",
+        "Basic factor 0.85 applied structurally"
+      ],
+      "estimatedDuration": "2-3 hours",
+      "estimatedOperationalCost": {
+        "value": "SGD 44",
+        "evidenceClass": "inference",
+        "source": "assumption"
+      },
+      "estimatedGrossMargin": {
+        "value": "~35-45%",
+        "evidenceClass": "inference",
+        "source": "assumption"
+      },
+      "optionalExtras": ["addon deep zone", "materials top-up"],
+      "renewalOptions": ["one-off", "convert_to_recurring"],
+      "packageType": "basic",
+      "inclusions": ["core service", "standard consumables"],
+      "exclusions": ["specialist equipment", "after-hours surcharge coverage"],
+      "geographicCoverage": "Orchard",
+      "sourceResearchRefs": ["lmrw-res-fixture-001"]
+    }
+  ],
+  "pricingRecommendations": [
+    {
+      "recommendationId": "sow-prc-001",
+      "packageId": "sow-pkg-001",
+      "recommendedPrice": {
+        "value": "SGD 98",
+        "evidenceClass": "estimated",
+        "source": "research"
+      },
+      "currency": "SGD",
+      "pricingModel": "fixed_package",
+      "researchTypicalRange": "SGD 80-150 per visit",
+      "researchMinObserved": "SGD 60",
+      "researchMaxObserved": "SGD 220",
+      "pricingAssumptions": [
+        "Anchored to Q7-02 typicalPriceRange (SGD 80-150 per visit)"
+      ],
+      "evidenceClass": "estimated",
+      "referencesQ702PricingFindings": true,
+      "sourceResearchId": "lmrw-res-fixture-001"
+    }
+  ],
+  "packageInclusions": [
+    {
+      "packageId": "sow-pkg-001",
+      "inclusions": ["core service", "standard consumables"]
+    }
+  ],
+  "packageExclusions": [
+    {
+      "packageId": "sow-pkg-001",
+      "exclusions": ["specialist equipment", "after-hours surcharge coverage"]
+    }
+  ],
+  "guarantees": [
+    {
+      "guaranteeId": "sow-gua-001",
+      "packageId": "sow-pkg-001",
+      "satisfaction": "Satisfaction revisit within agreed window when defects reported",
+      "workmanship": "Workmanship rework for covered scope defects",
+      "responseTime": "next-business-day acknowledgement",
+      "arrivalWindow": "scheduled arrival window",
+      "warrantyPeriod": "24-48h post-completion defect window",
+      "refundConditions": "Aligned to observed research practice: re-clean within 24h",
+      "reworkConditions": "One complimentary rework pass for covered defects",
+      "evidenceClass": "estimated",
+      "supported": true
+    }
+  ],
+  "fulfilmentRequirements": [
+    {
+      "fulfilmentId": "sow-ful-001",
+      "packageId": "sow-pkg-001",
+      "skills": ["cleaning_execution", "customer_communication", "quality_check"],
+      "equipment": ["standard kit"],
+      "materials": ["standard consumables"],
+      "licences": ["local_operating_permission_if_required"],
+      "estimatedManpower": "1-2 techs",
+      "workflowPrerequisites": [
+        "confirmed service scope",
+        "access arrangements",
+        "Q7-03 offer accepted structurally (booking is Q7-04)"
+      ],
+      "customerPreparation": ["clear access path", "secure valuables", "confirm on-site contact"],
+      "completionCriteria": [
+        "scope checklist complete",
+        "customer walkthrough offered",
+        "defects logged if any"
+      ],
+      "evidenceClass": "assumption"
+    }
+  ],
+  "operationalAssumptions": [
+    "fixture mirrors near-term Orchard conditions",
+    "Service offers are structural signals only — no booking, CRM, launch, or job execution",
+    "Pricing recommendations reference Q7-02 findings and never fabricate evidence"
+  ],
+  "risks": [
+    "review_density_may_lag_new_entrants",
+    "fulfilment_capacity_not_validated_in_q7_03"
+  ],
+  "outstandingQuestions": [
+    "licensing_requirements",
+    "Confirm licensing and insurance requirements before operations (out of Q7-03 scope)"
+  ],
+  "confidenceScore": 0.9,
+  "executiveSummary": "Service offer package for cleaning in Singapore/Orchard. Catalogue and packages derived from Q7-02 research; pricing recommendations reference pricing findings. Structural signals only.",
+  "metadataVersion": "SOW-001-v1",
+  "reportVersion": "SOW-RPT-v1",
+  "workerId": "wkr-service-offer-01",
+  "sourceResearchId": "lmrw-res-fixture-001",
+  "evidenceAssumptionNotes": [
+    "Pricing recommendations anchored to Q7-02 pricingFindings (estimated from observed ranges)",
+    "Guarantees and fulfilment requirements include structural assumptions where research is silent",
+    "Evidence vs assumption distinguished via evidenceClass on package and pricing fields"
+  ],
+  "consumableByQ704": true,
+  "neverBuildBookingSystems": true,
+  "neverBuildCrm": true,
+  "neverExecuteCustomerJobs": true,
+  "neverLaunchBusiness": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverFabricatePricingEvidence": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ704OrLater": true,
+  "preserveCompleteTraceability": true,
+  "preserveAuditHistory": true,
+  "neverExposeCredentials": true,
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q7-03:service_offer:sow-rpt-0001",
+    "q7-03:source_research:lmrw-res-fixture-001",
+    "q7-03:business_project:lbfc-prj-cleaning-01",
+    "q7-02:consumable_contract:LMRW-Q703-v1"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "contractId": "q1112-contract-PLMRT-001-v1",
+  "contractVersion": "PLMRT-001-v1",
+  "producedBy": "post-launch-monitoring",
+  "missionId": "Q11-11",
+  "consumerMissionId": "Q11-12",
+  "exposedFields": [
+    "productionHealthSummary",
+    "workerSummary",
+    "factorySummary",
+    "runtimeSummary",
+    "apiSummary",
+    "workflowSummary",
+    "incidentSummary",
+    "alertSummary",
+    "businessImpactSummary",
+    "assessments",
+    "grandKingAcceptanceGranted",
+    "productionActiveMonitoring",
+    "outstandingRisks",
+    "confidenceScore"
+  ],
+  "productionStatusCatalog": ["active", "blocked", "standby", "degraded", "unknown"],
+  "alertStatusCatalog": ["none", "warning", "critical", "unknown"],
+  "notes": [
+    "Post-Launch Monitoring Q11-11 certified — stops at Q11-11, exposes Q1112ConsumableContract for Q11-12 Q Series Certified",
+    "This contract is structural-signal-only; Q11-11 never implements Q11-12 or any later mission itself",
+    "Production-active monitoring evidence only when Grand King approve + deployment authorised"
+  ],
+  "neverImplementQ1112OrLater": true,
+  "structuralSignalOnly": true
+}

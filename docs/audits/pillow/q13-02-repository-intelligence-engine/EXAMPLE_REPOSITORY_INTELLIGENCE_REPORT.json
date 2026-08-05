@@ -1,0 +1,43 @@
+{
+  "reportId": "rieng-rpt-000001",
+  "reportVersion": "RIENG-RPT-v1",
+  "metadataVersion": "RIENG-001-v1",
+  "timestamp": "2026-08-05T00:00:00.000Z",
+  "runTimestamp": "2026-08-05T00:00:00.000Z",
+  "workerId": "wkr-repository-intelligence-engine-01",
+  "missionId": "Q13-02",
+  "repositorySummary": {
+    "totalFiles": 15,
+    "totalModules": 1,
+    "totalServices": 3,
+    "includeRoots": ["pillow/src/repository-intelligence-engine"],
+    "excludeDirs": ["node_modules"],
+    "repositoryFingerprint": "abc123def456",
+    "repositoryVersion": "example-v1"
+  },
+  "moduleSummary": { "totalModules": 1, "topModules": [] },
+  "serviceSummary": { "totalServices": 3, "byKind": { "engine": 1, "controller": 1, "manager": 1 } },
+  "dependencySummary": { "nodeCount": 15, "edgeCount": 42, "cycleCount": 0, "unresolvedCount": 0 },
+  "architectureSummary": { "layers": [], "violationCount": 0 },
+  "existingImplementationSummary": { "count": 1, "entries": [] },
+  "technicalDebtSummary": { "count": 0, "byCategory": {} },
+  "riskSummary": { "count": 0, "risks": [] },
+  "confidenceScore": 0.85,
+  "q1302ContractConsumed": {
+    "attempted": true,
+    "consumed": true,
+    "contractVersion": "ISENG-001-v1",
+    "fields": ["specifications", "architectureSummary"],
+    "evidence": "consumed Q1302 contract from ISENG consumerMissionId=Q13-02"
+  },
+  "q1302Prerequisite": {
+    "verified": true,
+    "implementationSpecificationEnginePresent": true,
+    "q1302ContractAvailable": true,
+    "outstandingPrerequisiteIssues": [],
+    "evidence": ["implementationSpecificationEngine bound with contractVersion=ISENG-001-v1"]
+  },
+  "consumableByQ1303": true,
+  "neverImplementQ1303OrLater": true,
+  "neverModifyAnalyzedFiles": true
+}

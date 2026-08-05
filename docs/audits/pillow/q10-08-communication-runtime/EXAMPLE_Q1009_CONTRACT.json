@@ -1,0 +1,56 @@
+{
+  "contractId": "comrt-q1009-contract-v1",
+  "contractVersion": "COMRT-001-v1",
+  "producedBy": "communication-runtime",
+  "missionId": "Q10-08",
+  "consumerMissionId": "Q10-09",
+  "exposedFields": [
+    "reportId",
+    "runtimeVersion",
+    "activeCommunicationChannels",
+    "messageStatistics",
+    "deliverySummary",
+    "retrySummary",
+    "failedDeliveries",
+    "collaborationSessions",
+    "runtimeHealth",
+    "supportingEvidence",
+    "auditStatus",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "messageTypeCatalog": [
+    "request",
+    "response",
+    "event",
+    "broadcast",
+    "multicast",
+    "point_to_point",
+    "collaboration",
+    "acknowledgement",
+    "dead_letter",
+    "custom_extension"
+  ],
+  "channelTypeCatalog": [
+    "worker_to_worker",
+    "factory_to_factory",
+    "runtime_service",
+    "collaboration_session"
+  ],
+  "deliveryStatusCatalog": [
+    "pending",
+    "routed",
+    "delivered",
+    "acknowledged",
+    "failed",
+    "retrying",
+    "dead_lettered"
+  ],
+  "notes": [
+    "Structural contract for Q10-09 Approval Runtime — communication channels and delivery evidence only",
+    "Communication Runtime never fabricates messages or loses acknowledged messages",
+    "neverImplementQ1009OrLater remains locked — this module does not implement Approval Runtime"
+  ],
+  "neverImplementQ1009OrLater": true,
+  "structuralSignalOnly": true
+}

@@ -1,0 +1,50 @@
+{
+  "missionId": "Q0-10",
+  "doctrine": "PILLOW-WCR-001",
+  "moduleId": "workforce-capability-registry",
+  "metadataVersion": "WCR-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Maintains a live registry of all workers, skills, tools, departments, limits and status.",
+  "boundaries": {
+    "neverExecuteWork": true,
+    "neverAssignWorkers": true,
+    "neverOrchestrateWorkers": true,
+    "neverApproveActions": true,
+    "neverReplacePillow": true
+  },
+  "registryRecordFields": [
+    "registryId",
+    "workerId",
+    "workerName",
+    "department",
+    "workerType",
+    "capabilityList",
+    "skillList",
+    "approvedTools",
+    "dependencies",
+    "operatingLimits",
+    "currentStatus",
+    "version",
+    "lastUpdated"
+  ],
+  "lookupDimensions": [
+    "worker",
+    "capability",
+    "department",
+    "tool",
+    "skill",
+    "status"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/workforce-capability-registry.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/workforce-capability-registry/",
+    "config": "config/workforce-capability-registry.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKFORCE_CAPABILITY_REGISTRY_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/workforce-capability-registry-bridge.ts",
+    "tests": "pillow/src/validation/tests/workforce-capability-registry.test.ts"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "computedAt": "2026-08-04T15:00:00.000Z",
+  "missionId": "Q10-13",
+  "engineVersion": "PILLOW-AUDRT-001",
+  "runtimeVersion": "Q10-AUDRT-v1",
+  "metadataVersion": "AUDRT-001-v1",
+  "reportVersion": "AUDRT-RPT-v1",
+  "workerId": "wkr-audit-runtime-01",
+  "testsPassed": 12,
+  "testsTotal": 12,
+  "regressionSchedulingRuntime": {
+    "missionId": "Q10-12",
+    "testsPassed": 12,
+    "testsTotal": 12
+  },
+  "boundaryLocks": {
+    "neverFabricateAuditEvidence": true,
+    "neverDeleteAuditRecords": true,
+    "neverExecuteBusinessLogic": true,
+    "neverModifyOperationalData": true,
+    "neverBypassPillowGovernance": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ1014OrLater": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "preserveCompleteTraceability": true,
+    "preserveImmutableAuditHistory": true,
+    "deterministicAuditRecording": true,
+    "structuralSignalOnly": true
+  },
+  "seedRecords": [
+    "audrt-seed-worker-01",
+    "audrt-seed-mission-01",
+    "audrt-seed-approval-01",
+    "audrt-seed-recovery-01",
+    "audrt-seed-scheduling-01"
+  ],
+  "q1014ContractExposed": true,
+  "consumableByQ1014": true,
+  "distinctFromExistingAuditEngines": [
+    "audit-reviewer",
+    "enterprise-audit-engine",
+    "executive-audit-engine",
+    "decision-audit-engine",
+    "master-audit",
+    "autonomous-ux-audit-engine"
+  ],
+  "certificationStatus": "passed",
+  "notes": [
+    "Audit Runtime Q10-13 certified — stops at Q10-13, exposes Q1014ConsumableContract for Q10-14",
+    "Immutable append-only store; evidence refs only; deterministic djb2 integrity digests",
+    "Never fabricates audit evidence; never deletes audit records; never executes business logic",
+    "Wired into Pillow session, orchestrator subsystem registry, and host API routes"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "missionId": "Q8-01",
+  "doctrine": "PILLOW-AFC-001",
+  "status": "FINAL PASS",
+  "module": "pillow/src/affiliate-factory-core/",
+  "metadataVersion": "AFC-001-v1",
+  "reportVersion": "AFC-RPT-v1",
+  "workerId": "wkr-affiliate-factory-core-01",
+  "observedAt": "2026-08-02",
+  "priorSeries": {
+    "Q7-01": "FINAL PASS",
+    "Q7-02": "FINAL PASS",
+    "Q7-03": "FINAL PASS",
+    "Q7-04": "FINAL PASS",
+    "Q7-05": "FINAL PASS",
+    "Q7-06": "FINAL PASS",
+    "Q7-07": "FINAL PASS",
+    "Q7-08": "FINAL PASS",
+    "Q7-09": "FINAL PASS",
+    "Q7-10": "FINAL PASS",
+    "Q7-11": "FINAL PASS"
+  },
+  "boundaries": {
+    "neverDiscoverAffiliateProgrammes": true,
+    "neverGenerateAffiliateContent": true,
+    "neverLaunchBusinessesAutomatically": true,
+    "neverFabricateWorkerStatus": true,
+    "neverOverrideApprovedArchitecture": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true,
+    "neverBypassGrandKingApproval": true,
+    "neverImplementQ802OrLater": true,
+    "preserveCompleteTraceability": true,
+    "preserveFactoryAuditHistory": true
+  },
+  "wiring": {
+    "session": true,
+    "indexExport": true,
+    "requirePillowAffiliateFactoryCore": true,
+    "subsystemRegistry": "affiliate-factory-core",
+    "hostRoutes": "/api/pillow/affiliate-factory-core/*",
+    "offlineBridge": "backend/src/orchestration/pillow-host/affiliate-factory-core-bridge.ts",
+    "governance": "docs/governance/EMPIREAI_AFFILIATE_FACTORY_CORE_SYSTEM.md",
+    "config": "config/affiliate-factory-core.config.json"
+  },
+  "validationCommand": "node --import tsx --test \"src/validation/tests/affiliate-factory-core.test.ts\"",
+  "validationResult": { "tests": 12, "passed": 12, "failed": 0 },
+  "regressionResult": {
+    "localBusinessFactoryCore": "12/12",
+    "localBusinessCertification": "12/12"
+  },
+  "evidence": [
+    "affiliate business project create/register + lifecycle with operating gate after workers_coordinated",
+    "structural worker role slots only — never fabricates Q8-02+ worker health",
+    "multi-business concurrent projects",
+    "Affiliate Factory Report with consumableByQ802",
+    "ERR submit when executiveReportingRuntime injected",
+    "Q7 modules untouched; LBC still rejects Q8-01 from inside itself",
+    "wired: session, index, subsystem registry, pillow-host, routes"
+  ],
+  "tests": {
+    "affiliateFactoryCore": "12/12",
+    "localBusinessFactoryCoreRegression": "12/12",
+    "localBusinessCertificationRegression": "12/12"
+  }
+}

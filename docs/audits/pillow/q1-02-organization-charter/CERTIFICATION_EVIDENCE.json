@@ -1,0 +1,55 @@
+{
+  "missionId": "Q1-02",
+  "doctrine": "PILLOW-OCH-001",
+  "moduleId": "organization-charter",
+  "metadataVersion": "OCH-001-v1",
+  "charterVersion": "OCH-CHARTER-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Define departments, reporting lines, authority, responsibilities and escalation to Pillow.",
+  "prerequisites": [
+    { "missionId": "Q0-30", "doctrine": "PILLOW-UWC-001", "status": "FINAL PASS" },
+    { "missionId": "Q1-01", "doctrine": "PILLOW-WCT-001", "status": "FINAL PASS" }
+  ],
+  "boundaries": {
+    "neverExecuteWorkerTasks": true,
+    "neverReplaceWorkforceOperatingSystem": true,
+    "neverReplaceWorkforceOrchestrator": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "charterFields": [
+    "charterVersion",
+    "executiveAuthority",
+    "organizationalHierarchy",
+    "departments",
+    "factories",
+    "reportingRelationships",
+    "authorityLevels",
+    "responsibilityMatrix",
+    "escalationHierarchy",
+    "governanceRules",
+    "metadataVersion"
+  ],
+  "organizationalRules": [
+    "pillow_supreme_executive_authority",
+    "worker_belongs_to_exactly_one_department",
+    "department_belongs_to_one_factory",
+    "factory_reports_to_pillow",
+    "worker_has_reporting_chain",
+    "responsibility_has_owner",
+    "escalation_reaches_pillow",
+    "no_worker_outside_organization"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/organization-charter.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/organization-charter/",
+    "config": "config/organization-charter.config.json",
+    "doctrine": "docs/governance/EMPIREAI_ORGANIZATION_CHARTER_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/organization-charter-bridge.ts",
+    "tests": "pillow/src/validation/tests/organization-charter.test.ts"
+  }
+}

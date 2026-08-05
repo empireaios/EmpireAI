@@ -1,0 +1,59 @@
+{
+  "missionId": "Q0-28",
+  "doctrine": "PILLOW-WSCP-001",
+  "moduleId": "worker-self-critique-protocol",
+  "metadataVersion": "WSCP-001-v1",
+  "status": "FINAL PASS",
+  "primaryDeliverable": "Requires workers to critique their own output before submission.",
+  "boundaries": {
+    "neverReplacePeerReviewRuntime": true,
+    "neverReplaceWorkerQualityStandard": true,
+    "neverExecuteWorkerTasks": true,
+    "neverOverridePillow": true,
+    "neverOverrideGrandKing": true
+  },
+  "selfCritiqueRecordFields": [
+    "selfCritiqueId",
+    "timestamp",
+    "workerId",
+    "missionId",
+    "outputReviewed",
+    "completenessScore",
+    "logicalConsistency",
+    "evidenceReview",
+    "weaknessesFound",
+    "suggestedImprovements",
+    "revisedConfidenceScore",
+    "submissionDecision",
+    "metadataVersion"
+  ],
+  "critiqueChecks": [
+    "completeness",
+    "correctness",
+    "evidence",
+    "internal_consistency",
+    "assumptions",
+    "risks",
+    "missing_information",
+    "quality",
+    "executive_readiness"
+  ],
+  "submissionDecisions": [
+    "submit",
+    "revise_before_submit",
+    "escalate",
+    "reject_output"
+  ],
+  "verification": {
+    "command": "npx --yes tsx --test \"src/validation/tests/worker-self-critique-protocol.test.ts\"",
+    "testsPassed": 10,
+    "testsFailed": 0
+  },
+  "artifacts": {
+    "module": "pillow/src/worker-self-critique-protocol/",
+    "config": "config/worker-self-critique-protocol.config.json",
+    "doctrine": "docs/governance/EMPIREAI_WORKER_SELF_CRITIQUE_PROTOCOL_SYSTEM.md",
+    "bridge": "backend/src/orchestration/pillow-host/worker-self-critique-protocol-bridge.ts",
+    "tests": "pillow/src/validation/tests/worker-self-critique-protocol.test.ts"
+  }
+}

@@ -1,0 +1,21 @@
+# Q11-11 Post-Launch Monitoring — Validation Checklist
+
+- [x] Folder `pillow/src/post-launch-monitoring/`
+- [x] Class `PostLaunchMonitoring`
+- [x] Engine `PILLOW-PLMRT-001`
+- [x] Codes `PLMRT-001-v1`, `PLMRT-RPT-v1`, `Q11-PLMRT-v1`
+- [x] Mission `Q11-11`
+- [x] Session `postLaunchMonitoring` after `grandKingAcceptanceGate`
+- [x] Consume `getQ1111ConsumableContract()` (`consumerMissionId: Q11-11`)
+- [x] Emit `getQ1112ConsumableContract()` for Q11-12
+- [x] `neverImplementQ1112OrLater: true`
+- [x] Gate rule: approve + authorised for production-active
+- [x] Honest blocked path when GK not authorised
+- [x] Monitor workers/factories/workflows/runtimes/APIs
+- [x] Detect incidents/abnormal behaviour from evidence only
+- [x] Generate alerts + health summary + report
+- [x] Boundary locks (no fabricate/suppress/hide/auto-modify/override)
+- [x] Reject Q11-12+ missionId
+- [x] GKAGT `getQ1111ConsumableContract()` + route `q1111-contract`
+- [x] Routes `/api/pillow/post-launch-monitoring/*`
+- [x] Tests 12/12

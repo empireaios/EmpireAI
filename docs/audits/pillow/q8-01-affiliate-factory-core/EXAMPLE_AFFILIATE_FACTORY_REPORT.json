@@ -1,0 +1,82 @@
+{
+  "reportId": "afc-rpt-1785664608605",
+  "timestamp": "2026-08-02T09:56:48.605Z",
+  "affiliateBusinessId": "afc-biz-travel-gear-01",
+  "businessName": "Travel Gear Affiliates",
+  "lifecycleStatus": "operating",
+  "workerStatusMatrix": [
+    {
+      "workerRole": "opportunity_discovery_worker",
+      "workerId": "wkr-afc-opp-01",
+      "status": "ready",
+      "notes": "structural slot ready"
+    },
+    {
+      "workerRole": "content_creation_worker",
+      "workerId": "wkr-afc-content-01",
+      "status": "ready",
+      "notes": "structural slot ready"
+    }
+  ],
+  "readinessStatus": "ready",
+  "outstandingTasks": [],
+  "risks": [],
+  "executiveSummary": "Affiliate Factory Core orchestration for Travel Gear Affiliates (travel_gear, region=SG): lifecycle=operating, readiness=ready, workers=2/2 ready, outstandingTasks=0, risks=0.",
+  "auditStatus": "not_audited",
+  "confidenceScore": 86,
+  "metadataVersion": "AFC-001-v1",
+  "reportVersion": "AFC-RPT-v1",
+  "workerId": "wkr-affiliate-factory-core-01",
+  "factoryId": "affiliate-factory-core",
+  "businessCategory": "travel_gear",
+  "metadata": {},
+  "dependencyGraph": [
+    {
+      "fromRole": "opportunity_discovery_worker",
+      "toRole": "content_creation_worker",
+      "dependencyType": "sequential",
+      "notes": "dependency_edge_recorded"
+    }
+  ],
+  "progressSummary": {
+    "stagesCompleted": 5,
+    "totalStages": 8,
+    "percentComplete": 63,
+    "workersReady": 2,
+    "workersTotal": 2
+  },
+  "validation": {
+    "validationReportId": "afc-val-1785664608605",
+    "validationTimestamp": "2026-08-02T09:56:48.605Z",
+    "decision": "pass",
+    "errors": [],
+    "warnings": [],
+    "durationMs": 0,
+    "metadataVersion": "AFC-001-v1"
+  },
+  "runTimestamp": "2026-08-02T09:56:48.605Z",
+  "consumableByQ802": true,
+  "submittedToExecutiveReporting": false,
+  "executiveReportId": null,
+  "traceabilityRefs": [
+    "q8-01:affiliate_business:afc-biz-travel-gear-01",
+    "q8-01:worker_coordination:2_roles",
+    "q8-01:dependency_graph:1_edges",
+    "q8-01:lifecycle_status:preparation",
+    "q8-01:lifecycle_status:readiness_review",
+    "q8-01:lifecycle_status:operating"
+  ],
+  "structuralSignalOnly": true,
+  "maskSensitiveValues": true,
+  "preserveCompleteTraceability": true,
+  "preserveFactoryAuditHistory": true,
+  "neverDiscoverAffiliateProgrammes": true,
+  "neverGenerateAffiliateContent": true,
+  "neverLaunchBusinessesAutomatically": true,
+  "neverFabricateWorkerStatus": true,
+  "neverOverrideApprovedArchitecture": true,
+  "neverOverridePillow": true,
+  "neverOverrideGrandKing": true,
+  "neverBypassGrandKingApproval": true,
+  "neverImplementQ802OrLater": true
+}

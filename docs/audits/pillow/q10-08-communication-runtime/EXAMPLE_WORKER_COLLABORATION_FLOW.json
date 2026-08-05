@@ -1,0 +1,63 @@
+{
+  "flow": [
+    "open_or_resolve_channel",
+    "send_worker_message",
+    "route_deterministically",
+    "deliver_async_or_sync",
+    "acknowledge",
+    "open_collaboration_session",
+    "preserve_history"
+  ],
+  "workerToWorker": {
+    "channelId": "chan-wkr-alpha-beta",
+    "sender": "wkr-alpha",
+    "receiver": "wkr-beta",
+    "messageType": "request",
+    "syncMode": "async",
+    "contextReference": "ctx://structural/worker/alpha-to-beta",
+    "deliveryStatus": "delivered",
+    "fabricated": false,
+    "structuralSignalOnly": true
+  },
+  "factoryToFactory": {
+    "channelId": "chan-factory-pillow-capital",
+    "sender": "factory-pillow",
+    "receiver": "factory-capital",
+    "messageType": "event",
+    "syncMode": "async",
+    "contextReference": "ctx://structural/factory/pillow-to-capital",
+    "deliveryStatus": "delivered",
+    "fabricated": false
+  },
+  "synchronous": {
+    "request": {
+      "sender": "wkr-gamma",
+      "receiver": "wkr-delta",
+      "messageType": "request",
+      "correlationId": "corr-demo-sync-1",
+      "syncMode": "sync",
+      "contextReference": "ctx://structural/sync/request-01"
+    },
+    "response": {
+      "messageType": "response",
+      "correlationId": "corr-demo-sync-1",
+      "deliveryStatus": "delivered"
+    }
+  },
+  "acknowledgement": {
+    "preservesHistory": true,
+    "neverLoseAcknowledgedMessages": true,
+    "deliveryStatusAfterAck": "acknowledged"
+  },
+  "collaborationSession": {
+    "participants": ["wkr-alpha", "wkr-beta"],
+    "missionId": "M-COMRT-COLLAB",
+    "contextReference": "ctx://structural/session/collab-live",
+    "status": "active"
+  },
+  "retry": {
+    "simulateFailure": true,
+    "eligibleForRetry": true,
+    "deadLetterAfterMaxRetries": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "contractId": "q1201-contract-QSCPT-001-v1",
+  "contractVersion": "QSCPT-001-v1",
+  "producedBy": "q-series-completion",
+  "missionId": "Q11-13",
+  "consumerMissionId": "Q12-01",
+  "exposedFields": [
+    "missionSummary",
+    "factorySummary",
+    "workerSummary",
+    "runtimeSummary",
+    "governanceSummary",
+    "certificationSummary",
+    "productionReadinessSummary",
+    "finalCompletionDecision",
+    "assessments",
+    "outstandingIssues",
+    "confidenceScore"
+  ],
+  "completionDecisionCatalog": [
+    "complete",
+    "incomplete",
+    "withhold",
+    "escalate",
+    "defer"
+  ],
+  "notes": [
+    "Q Series Completion Q11-13 — FINAL Q11 mission; exposes Q1201ConsumableContract as series-complete prerequisite for Q12-01 AI Innovation Factory",
+    "This contract coexists with GKAGT Q1201 — do NOT remove grand-king-acceptance-gate getQ1201ConsumableContract",
+    "Q11-13 never implements Q12-01 or any later mission itself",
+    "Honest complete rule: complete only when QSCRT certify + FINART present + EAPRT certify + GK approve+authorised + PLMRT productionActive",
+    "Live run expected incomplete/withhold when FINART/EAPRT/GK/PLMRT/QSCRT chain incomplete"
+  ],
+  "neverImplementQ1201OrLater": true,
+  "structuralSignalOnly": true,
+  "seriesCompletePrerequisite": true,
+  "exampleLiveRun": {
+    "finalCompletionDecision": "withhold",
+    "outstandingIssues": [
+      "Q11-08 Financial Readiness Audit (FINART) missing from mission inventory",
+      "Q Series Certification decision not certify (withhold)",
+      "Executive Acceptance Pack decision not certify (withhold)",
+      "Grand King not approve+authorised (pending/blocked)",
+      "Post-Launch Monitoring productionActiveMonitoring !== true"
+    ]
+  }
+}
