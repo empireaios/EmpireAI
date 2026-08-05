@@ -561,6 +561,7 @@ import { collectBusinessFactoryAuditSnapshot } from "../business-factory-audit-b
 import { collectSecurityAuditSnapshot } from "../security-audit-bridge.js";
 import { collectPerformanceAuditSnapshot } from "../performance-audit-bridge.js";
 import { collectRecoveryAuditSnapshot } from "../recovery-audit-bridge.js";
+import { collectFinancialReadinessAuditSnapshot } from "../financial-readiness-audit-bridge.js";
 import { collectExecutiveAcceptancePackSnapshot } from "../executive-acceptance-pack-bridge.js";
 import { collectGrandKingAcceptanceGateSnapshot } from "../grand-king-acceptance-gate-bridge.js";
 import { collectPostLaunchMonitoringSnapshot } from "../post-launch-monitoring-bridge.js";
@@ -35869,6 +35870,85 @@ export async function registerPillowRoutes(
   app.post("/api/pillow/recovery-audit/validate", { preHandler: pillowAuth }, recoveryAuditAction("validate"));
   app.post("/api/pillow/recovery-audit/diagnostics", { preHandler: pillowAuth }, recoveryAuditAction("diagnostics"));
   app.post("/api/pillow/recovery-audit/q1108-contract", { preHandler: pillowAuth }, recoveryAuditAction("q1108-contract"));
+
+  app.get("/api/pillow/financial-readiness-audit", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectFinancialReadinessAuditSnapshot());
+    }
+    return reply.send({ financialReadinessAudit: pillowHost.getFinancialReadinessAudit() });
+  });
+  const financialReadinessAuditAction = (
+    method:
+      | "connect"
+      | "discover-components"
+      | "verify-payment-workflows"
+      | "verify-revenue-recording"
+      | "verify-expense-tracking"
+      | "verify-accounting-records"
+      | "verify-financial-reporting"
+      | "verify-cost-controls"
+      | "verify-financial-governance"
+      | "verify-audit-traceability"
+      | "verify-integrations"
+      | "classify-financial-readiness"
+      | "produce-findings"
+      | "produce-report"
+      | "audit"
+      | "submit-report"
+      | "list"
+      | "validate"
+      | "diagnostics"
+      | "q1109-contract",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectFinancialReadinessAuditSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectFinancialReadinessAudit(body)
+          : method === "discover-components" ? pillowHost.discoverFinancialReadinessAuditComponents()
+            : method === "verify-payment-workflows" ? pillowHost.verifyFinancialReadinessAuditPaymentWorkflows()
+              : method === "verify-revenue-recording" ? pillowHost.verifyFinancialReadinessAuditRevenueRecording()
+                : method === "verify-expense-tracking" ? pillowHost.verifyFinancialReadinessAuditExpenseTracking()
+                  : method === "verify-accounting-records" ? pillowHost.verifyFinancialReadinessAuditAccountingRecords()
+                    : method === "verify-financial-reporting" ? pillowHost.verifyFinancialReadinessAuditFinancialReporting()
+                      : method === "verify-cost-controls" ? pillowHost.verifyFinancialReadinessAuditCostControls()
+                        : method === "verify-financial-governance" ? pillowHost.verifyFinancialReadinessAuditFinancialGovernance()
+                          : method === "verify-audit-traceability" ? pillowHost.verifyFinancialReadinessAuditAuditTraceability()
+                            : method === "verify-integrations" ? pillowHost.verifyFinancialReadinessAuditIntegrations()
+                              : method === "classify-financial-readiness" ? pillowHost.classifyFinancialReadinessAuditReadiness()
+                                : method === "produce-findings" ? pillowHost.produceFinancialReadinessAuditFindings(body)
+                                  : method === "produce-report" ? await pillowHost.produceFinancialReadinessAuditReport(body)
+                                    : method === "audit" ? await pillowHost.auditFinancialReadiness(body)
+                                      : method === "submit-report" ? await pillowHost.submitFinancialReadinessAuditReport(body)
+                                        : method === "list" ? pillowHost.listFinancialReadinessAuditReports()
+                                          : method === "validate" ? pillowHost.validateFinancialReadinessAudit(body)
+                                            : method === "q1109-contract" ? pillowHost.getFinancialReadinessAuditQ1109Contract()
+                                              : pillowHost.runFinancialReadinessAuditDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/financial-readiness-audit/connect", { preHandler: pillowAuth }, financialReadinessAuditAction("connect"));
+  app.post("/api/pillow/financial-readiness-audit/discover-components", { preHandler: pillowAuth }, financialReadinessAuditAction("discover-components"));
+  app.post("/api/pillow/financial-readiness-audit/verify-payment-workflows", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-payment-workflows"));
+  app.post("/api/pillow/financial-readiness-audit/verify-revenue-recording", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-revenue-recording"));
+  app.post("/api/pillow/financial-readiness-audit/verify-expense-tracking", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-expense-tracking"));
+  app.post("/api/pillow/financial-readiness-audit/verify-accounting-records", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-accounting-records"));
+  app.post("/api/pillow/financial-readiness-audit/verify-financial-reporting", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-financial-reporting"));
+  app.post("/api/pillow/financial-readiness-audit/verify-cost-controls", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-cost-controls"));
+  app.post("/api/pillow/financial-readiness-audit/verify-financial-governance", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-financial-governance"));
+  app.post("/api/pillow/financial-readiness-audit/verify-audit-traceability", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-audit-traceability"));
+  app.post("/api/pillow/financial-readiness-audit/verify-integrations", { preHandler: pillowAuth }, financialReadinessAuditAction("verify-integrations"));
+  app.post("/api/pillow/financial-readiness-audit/classify-financial-readiness", { preHandler: pillowAuth }, financialReadinessAuditAction("classify-financial-readiness"));
+  app.post("/api/pillow/financial-readiness-audit/produce-findings", { preHandler: pillowAuth }, financialReadinessAuditAction("produce-findings"));
+  app.post("/api/pillow/financial-readiness-audit/produce-report", { preHandler: pillowAuth }, financialReadinessAuditAction("produce-report"));
+  app.post("/api/pillow/financial-readiness-audit/audit", { preHandler: pillowAuth }, financialReadinessAuditAction("audit"));
+  app.post("/api/pillow/financial-readiness-audit/submit-report", { preHandler: pillowAuth }, financialReadinessAuditAction("submit-report"));
+  app.post("/api/pillow/financial-readiness-audit/list", { preHandler: pillowAuth }, financialReadinessAuditAction("list"));
+  app.post("/api/pillow/financial-readiness-audit/validate", { preHandler: pillowAuth }, financialReadinessAuditAction("validate"));
+  app.post("/api/pillow/financial-readiness-audit/diagnostics", { preHandler: pillowAuth }, financialReadinessAuditAction("diagnostics"));
+  app.post("/api/pillow/financial-readiness-audit/q1109-contract", { preHandler: pillowAuth }, financialReadinessAuditAction("q1109-contract"));
 
   app.get("/api/pillow/executive-acceptance-pack", { preHandler: pillowAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") {

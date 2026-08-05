@@ -438,6 +438,7 @@ export type SubsystemId =
   | "security-audit"
   | "performance-audit"
   | "recovery-audit"
+  | "financial-readiness-audit"
   | "executive-acceptance-pack"
   | "grand-king-acceptance-gate"
   | "post-launch-monitoring"

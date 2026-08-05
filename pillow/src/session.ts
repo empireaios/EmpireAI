@@ -1771,6 +1771,10 @@ import {
   createRecoveryAudit,
 } from "./recovery-audit/engine.js";
 import {
+  FinancialReadinessAudit,
+  createFinancialReadinessAudit,
+} from "./financial-readiness-audit/engine.js";
+import {
   ExecutiveAcceptancePack,
   createExecutiveAcceptancePack,
 } from "./executive-acceptance-pack/engine.js";
@@ -2211,6 +2215,7 @@ let businessFactoryAudit: BusinessFactoryAudit | null = null;
 let securityAudit: SecurityAudit | null = null;
 let performanceAudit: PerformanceAudit | null = null;
 let recoveryAudit: RecoveryAudit | null = null;
+let financialReadinessAudit: FinancialReadinessAudit | null = null;
 let executiveAcceptancePack: ExecutiveAcceptancePack | null = null;
 let grandKingAcceptanceGate: GrandKingAcceptanceGate | null = null;
 let postLaunchMonitoring: PostLaunchMonitoring | null = null;
@@ -2692,6 +2697,7 @@ export interface PillowSession {
   securityAudit: SecurityAudit;
   performanceAudit: PerformanceAudit;
   recoveryAudit: RecoveryAudit;
+  financialReadinessAudit: FinancialReadinessAudit;
   executiveAcceptancePack: ExecutiveAcceptancePack;
   grandKingAcceptanceGate: GrandKingAcceptanceGate;
   postLaunchMonitoring: PostLaunchMonitoring;
@@ -7199,6 +7205,33 @@ export async function startPillow(options?: {
   });
   await yieldEventLoop();
 
+  financialReadinessAudit = createFinancialReadinessAudit(result);
+  await financialReadinessAudit.initialize();
+  wireEngineIntegrations(financialReadinessAudit, {
+    recoveryAudit,
+    productionCertificationCore,
+    commerceFactoryCore,
+    paymentGatewayIntegration: paymentGatewayIntegrationEngine,
+    billingWorker,
+    revenueEngine,
+    expenseEngine,
+    accountingWorker,
+    financialReportingWorker,
+    profitCalculationEngine,
+    refundEngine,
+    reconciliationEngine,
+    financialOperationsCertification: financialOperationsCertificationEngine,
+    capitalFactoryCore,
+    financialRiskMonitor,
+    apiRuntime,
+    auditRuntime,
+    monitoringRuntime,
+    executiveReportingRuntime,
+    sharedRuntimeCore,
+    workerRegistry,
+  });
+  await yieldEventLoop();
+
   executiveAcceptancePack = createExecutiveAcceptancePack(result);
   await executiveAcceptancePack.initialize();
   wireEngineIntegrations(executiveAcceptancePack, {
@@ -7210,6 +7243,7 @@ export async function startPillow(options?: {
     securityAudit,
     performanceAudit,
     recoveryAudit,
+    financialReadinessAudit,
     executiveReportingRuntime,
     auditRuntime,
     monitoringRuntime,
@@ -7257,6 +7291,7 @@ export async function startPillow(options?: {
     securityAudit,
     performanceAudit,
     recoveryAudit,
+    financialReadinessAudit,
     executiveAcceptancePack,
     grandKingAcceptanceGate,
     sharedRuntimeCore,
@@ -7284,6 +7319,7 @@ export async function startPillow(options?: {
     securityAudit,
     performanceAudit,
     recoveryAudit,
+    financialReadinessAudit,
     executiveAcceptancePack,
     grandKingAcceptanceGate,
     postLaunchMonitoring,
@@ -7897,6 +7933,7 @@ export async function startPillow(options?: {
     securityAudit: securityAudit,
     performanceAudit: performanceAudit,
     recoveryAudit: recoveryAudit,
+    financialReadinessAudit: financialReadinessAudit,
     executiveAcceptancePack: executiveAcceptancePack,
     grandKingAcceptanceGate: grandKingAcceptanceGate,
     postLaunchMonitoring: postLaunchMonitoring,
@@ -8433,6 +8470,7 @@ export async function startPillow(options?: {
     securityAudit: securityAudit!,
     performanceAudit: performanceAudit!,
     recoveryAudit: recoveryAudit!,
+    financialReadinessAudit: financialReadinessAudit!,
     executiveAcceptancePack: executiveAcceptancePack!,
     grandKingAcceptanceGate: grandKingAcceptanceGate!,
     postLaunchMonitoring: postLaunchMonitoring!,
@@ -12437,6 +12475,15 @@ export function requireRecoveryAudit(): RecoveryAudit {
     );
   }
   return recoveryAudit;
+}
+
+export function requireFinancialReadinessAudit(): FinancialReadinessAudit {
+  if (!financialReadinessAudit) {
+    throw new PillowNotBootstrappedError(
+      "Financial Readiness Audit not ready. Call startPillow() first.",
+    );
+  }
+  return financialReadinessAudit;
 }
 
 export function requireExecutiveAcceptancePack(): ExecutiveAcceptancePack {

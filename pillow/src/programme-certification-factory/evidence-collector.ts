@@ -452,10 +452,10 @@ export function detectRemainingConstitutionalExceptions(
   certifications: ProgrammeCertification[],
 ): string[] {
   const exceptions: string[] = [];
-  const finartStub = join(repositoryRoot, "pillow/src/financial-artifacts-runtime/");
-  const finartAudit = join(repositoryRoot, "docs/audits/pillow/q11-08-financial-artifacts-runtime/");
-  if (!existsSync(finartStub) && !existsSync(finartAudit)) {
-    exceptions.push("Q11-08 FINART stub absent from repository evidence");
+  const finartEngine = join(repositoryRoot, "pillow/src/financial-readiness-audit/engine.ts");
+  const finartAudit = join(repositoryRoot, "docs/audits/pillow/q11-08-financial-readiness-audit/");
+  if (!existsSync(finartEngine) && !existsSync(finartAudit)) {
+    exceptions.push("Q11-08 FINART engine absent from repository evidence");
   }
   for (const cert of certifications) {
     if (cert.certificationStatus === "withheld") {

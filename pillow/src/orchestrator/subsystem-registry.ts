@@ -465,6 +465,7 @@ export interface PillowSubsystemBundle {
   securityAudit?: import("../security-audit/engine.js").SecurityAudit;
   performanceAudit?: import("../performance-audit/engine.js").PerformanceAudit;
   recoveryAudit?: import("../recovery-audit/engine.js").RecoveryAudit;
+  financialReadinessAudit?: import("../financial-readiness-audit/engine.js").FinancialReadinessAudit;
   executiveAcceptancePack?: import("../executive-acceptance-pack/engine.js").ExecutiveAcceptancePack;
   grandKingAcceptanceGate?: import("../grand-king-acceptance-gate/engine.js").GrandKingAcceptanceGate;
   postLaunchMonitoring?: import("../post-launch-monitoring/engine.js").PostLaunchMonitoring;
@@ -6896,6 +6897,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.recoveryAudit) return "unavailable";
       try {
         const status = b.recoveryAudit.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "financial-readiness-audit",
+    label: "Financial Readiness Audit",
+    missionId: "Q11-08",
+    runtimePath: "pillow/src/financial-readiness-audit/",
+    probe: (b) => {
+      if (!b.financialReadinessAudit) return "unavailable";
+      try {
+        const status = b.financialReadinessAudit.getState().health.status;
         return status === "failed" ? "degraded" : "ready";
       } catch {
         return "unavailable";

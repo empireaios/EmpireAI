@@ -22751,6 +22751,103 @@ export class PillowHost {
         this.ensureRunning();
         return this.pillowSession.recoveryAudit.getQ1108ConsumableContract();
     }
+    getFinancialReadinessAudit() {
+        this.ensureRunning();
+        const engine = this.pillowSession.financialReadinessAudit;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "Q11-08",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            financialMatrix: engine.getFinancialMatrix(),
+            financialHistory: engine.getFinancialHistory(),
+            latestReport: engine.getState().latestReport,
+            auditTrail: engine.getAuditTrail(),
+            q1109Contract: engine.getQ1109ConsumableContract(),
+        };
+    }
+    connectFinancialReadinessAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.connect(input ?? {});
+    }
+    discoverFinancialReadinessAuditComponents() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.discoverFinancialComponents();
+    }
+    verifyFinancialReadinessAuditPaymentWorkflows() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyPaymentWorkflows();
+    }
+    verifyFinancialReadinessAuditRevenueRecording() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyRevenueRecording();
+    }
+    verifyFinancialReadinessAuditExpenseTracking() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyExpenseTracking();
+    }
+    verifyFinancialReadinessAuditAccountingRecords() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyAccountingRecords();
+    }
+    verifyFinancialReadinessAuditFinancialReporting() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyFinancialReporting();
+    }
+    verifyFinancialReadinessAuditCostControls() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyCostControls();
+    }
+    verifyFinancialReadinessAuditFinancialGovernance() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyFinancialGovernance();
+    }
+    verifyFinancialReadinessAuditAuditTraceability() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyAuditTraceability();
+    }
+    verifyFinancialReadinessAuditIntegrations() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.verifyIntegrations();
+    }
+    classifyFinancialReadinessAuditReadiness() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.classifyFinancialReadiness();
+    }
+    produceFinancialReadinessAuditFindings(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.produceFinancialReadinessFindings(input ?? {});
+    }
+    produceFinancialReadinessAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.produceFinancialReadinessAuditReport(input ?? {});
+    }
+    auditFinancialReadiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.auditFinancialReadiness(input ?? {});
+    }
+    submitFinancialReadinessAuditReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.submitReport(input ?? {});
+    }
+    listFinancialReadinessAuditReports() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.list();
+    }
+    validateFinancialReadinessAudit(input) {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.validate(input ?? {});
+    }
+    runFinancialReadinessAuditDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.runDiagnostics();
+    }
+    getFinancialReadinessAuditQ1109Contract() {
+        this.ensureRunning();
+        return this.pillowSession.financialReadinessAudit.getQ1109ConsumableContract();
+    }
     getExecutiveAcceptancePack() {
         this.ensureRunning();
         const engine = this.pillowSession.executiveAcceptancePack;
