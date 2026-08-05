@@ -187,9 +187,9 @@ Performed after push of Q Phase migration commit (see Git Integrity section upda
 | Pre-audit HEAD | `21c03a483a3096470b40eabfd74712d9efd08e88` |
 | Pre-audit ahead/behind | 0 / 0 |
 | Pre-audit working tree | Dirty â€” massive untracked Q artefacts |
-| Post-audit commit | *(filled after commit)* |
-| Push status | *(filled after push)* |
-| Post-push ahead/behind | *(filled after push)* |
+| Post-audit commit | `33d62e6f` (+ follow-up test-fix commit) |
+| Push status | PUSHED to origin/main (see tip after follow-up) |
+| Post-push ahead/behind | PUSHED to origin/main (see tip after follow-up) |
 
 ---
 
@@ -236,3 +236,12 @@ Q Series is **structurally present** for 177/178 missions with fresh **396/396**
 - `pillow/src/planner` MissionPlannerEngine vs Q13-03 MissionPlanningEngine  
 - recovery-runtime / recovery-audit vs Q13-05 IRPLN  
 - production-certification-core / empire-certified vs Q13-06 PCFCT  
+
+### Clean clone evidence (executed)
+
+- Clone root: %TEMP%\EmpireAI-q-phase-clean-20260805203954\EmpireAI
+- HEAD at clone: 33d62e6f
+- Pillow typecheck/build: PASS
+- Backend typecheck/build: PASS
+- FINART engine.ts: ABSENT (Broken confirmed on origin tip)
+- Spot test drift: PCFCT expected ail vs engine ailed — remediated in working tree (Q13 tests 60/60)

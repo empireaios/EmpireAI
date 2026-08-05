@@ -199,7 +199,7 @@ describe("Q13-03 Mission Planning Engine", () => {
     assert.equal(report.reportVersion, MISSION_PLANNING_ENGINE_REPORT_VERSION);
     assert.equal(report.engineId, "PILLOW-MPENG-001");
     assert.ok(report.plans.length >= 1);
-    assert.notEqual(report.validation.decision, "fail");
+    assert.notEqual(report.validation.decision, "failed");
     assert.ok(report.confidenceScore > 0);
   });
 
@@ -239,7 +239,7 @@ describe("Q13-03 Mission Planning Engine", () => {
       { missionId: "Q14-01" },
     ] as Partial<MpengInput>[]) {
       const report = await engine.produceReport({ ...sampleInput(), ...forbidden });
-      assert.equal(report.validation.decision, "fail");
+      assert.equal(report.validation.decision, "failed");
       assert.ok(report.validation.errors.length >= 1);
     }
   });

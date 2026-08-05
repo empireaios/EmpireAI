@@ -234,7 +234,7 @@ describe("Q13-04 Cursor Specification Generator", () => {
     assert.equal(report.reportVersion, CURSOR_SPECIFICATION_GENERATOR_REPORT_VERSION);
     assert.equal(report.engineId, "PILLOW-CSGEN-001");
     assert.ok(report.generatedCursorSpecification);
-    assert.notEqual(report.validation.decision, "fail");
+    assert.notEqual(report.validation.decision, "failed");
     assert.ok(report.confidenceScore > 0);
     assert.equal(report.governanceValidation.approvalStatus, "pending_grand_king");
   });
@@ -284,7 +284,7 @@ describe("Q13-04 Cursor Specification Generator", () => {
       { missionId: "Q14-01" },
     ] as Partial<CsgenInput>[]) {
       const report = await engine.produceReport({ ...sampleInput(), ...forbidden });
-      assert.equal(report.validation.decision, "fail");
+      assert.equal(report.validation.decision, "failed");
       assert.ok(report.validation.errors.length >= 1);
     }
   });

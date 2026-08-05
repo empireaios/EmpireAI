@@ -235,7 +235,7 @@ describe("Q13-05 Implementation Recovery Planner", () => {
     assert.equal(report.reportVersion, IMPLEMENTATION_RECOVERY_PLANNER_REPORT_VERSION);
     assert.equal(report.engineId, "PILLOW-IRPLN-001");
     assert.ok(report.plans.length >= 1);
-    assert.notEqual(report.validation.decision, "fail");
+    assert.notEqual(report.validation.decision, "failed");
     assert.ok(report.confidenceScore > 0);
   });
 
@@ -283,7 +283,7 @@ describe("Q13-05 Implementation Recovery Planner", () => {
       { missionId: "Q14-01" },
     ] as Partial<IrplnInput>[]) {
       const report = await engine.produceReport({ ...sampleInput(), ...forbidden });
-      assert.equal(report.validation.decision, "fail");
+      assert.equal(report.validation.decision, "failed");
       assert.ok(report.validation.errors.length >= 1);
     }
   });

@@ -254,7 +254,7 @@ describe("Q13-06 Programme Certification Factory", () => {
         ...sampleInput({ programmeCode: "Q" }),
         ...forbidden,
       });
-      assert.equal(report.validation.decision, "fail");
+      assert.equal(report.validation.decision, "failed");
       assert.ok(report.validation.errors.length >= 1);
     }
   });

@@ -175,7 +175,7 @@ describe("Q13-02 Repository Intelligence Engine", () => {
     assert.ok(report.moduleSummary.totalModules >= 1);
     assert.ok(report.dependencySummary.nodeCount >= 1);
     assert.ok(report.snapshot.repositorySnapshotId);
-    assert.notEqual(report.validation.decision, "fail");
+    assert.notEqual(report.validation.decision, "failed");
     assert.ok(report.confidenceScore > 0);
   });
 
@@ -212,7 +212,7 @@ describe("Q13-02 Repository Intelligence Engine", () => {
       { missionId: "Q14-01" },
     ] as Partial<RiengInput>[]) {
       const report = await engine.produceReport({ ...sampleInput(), ...forbidden });
-      assert.equal(report.validation.decision, "fail");
+      assert.equal(report.validation.decision, "failed");
       assert.ok(report.validation.errors.length >= 1);
     }
     assert.equal(isForbiddenMissionId("Q13-02"), false);
