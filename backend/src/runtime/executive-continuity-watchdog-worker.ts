@@ -26,13 +26,16 @@ setInterval(() => {
   if (Date.now() - startedAtMs < bootGraceMs) {
     return;
   }
-  // Index 1: sqlite flush-in-flight — sync db.export() cannot beat; do not stall-exit.
-  if (Atomics.load(view, 1) === 1) {
-    return;
-  }
+  // Index 1: sqlite flush-in-flight — sync db.export() cannot beat; do not stall-exit
+  // unless the guard is stuck longer than a hard ceiling (export hang).
+  const flushInFlight = Atomics.load(view, 1) === 1;
   const lastHeartbeatMs = Atomics.load(view, 0);
   if (lastHeartbeatMs <= 0) return;
   const stalledFor = Date.now() - lastHeartbeatMs;
+  const maxFlushGuardMs = Math.max(stallExitMs * 3, 90_000);
+  if (flushInFlight && stalledFor < maxFlushGuardMs) {
+    return;
+  }
   if (stalledFor >= stallExitMs) {
     // eslint-disable-next-line no-console
     console.error(
@@ -41,6 +44,7 @@ setInterval(() => {
         event: "executive_continuity_watchdog_exit",
         stalledForMs: stalledFor,
         stallExitMs,
+        flushInFlight,
         message:
           "Main-thread heartbeat stalled — exiting for Railway restart (HA continuity)",
       }),

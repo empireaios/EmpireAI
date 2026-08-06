@@ -8,6 +8,7 @@ import type {
   PillowHostStatus,
   PillowWorkspaceSession,
 } from "./types";
+import { toExecutiveSurfaceMessage } from "./executive-surface";
 
 const PILLOW_REQUEST_TIMEOUT_MS = 60_000;
 const PILLOW_SESSION_TIMEOUT_MS = 130_000;
@@ -21,14 +22,14 @@ function sleep(ms: number): Promise<void> {
 function normalizePillowNetworkError(error: unknown): Error {
   if (error instanceof Error) {
     if (error.name === "AbortError") {
-      return new Error("Pillow request timed out — Brain may still be processing. Try again.");
+      return new Error("Executive Intelligence is taking longer than usual. Retrying automatically…");
     }
     if (error.message === "Failed to fetch") {
-      return new Error("Pillow host connection failed — check network and try again.");
+      return new Error("Starting Executive Systems…");
     }
     return error;
   }
-  return new Error("Pillow request failed");
+  return new Error("Starting Executive Systems…");
 }
 
 async function pillowFetchWithRetry(
@@ -98,7 +99,11 @@ async function pillowRequest<T>(
 
     if (!response.ok) {
       const body = (await response.json().catch(() => ({}))) as { error?: string };
-      throw new Error(body.error ?? `Pillow request failed (${response.status})`);
+      throw new Error(
+        toExecutiveSurfaceMessage(
+          body.error ?? `Pillow request failed (${response.status})`,
+        ),
+      );
     }
 
     return response.json() as Promise<T>;
@@ -115,14 +120,24 @@ export async function fetchPillowStatus(): Promise<{ status: PillowHostStatus }>
   return pillowRequest("/api/pillow/status");
 }
 
+let inflightSessionCreate: Promise<PillowWorkspaceSession> | null = null;
+
 export async function createPillowHostSession(workspaceId?: string): Promise<PillowWorkspaceSession> {
-  const result = await pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
-    method: "POST",
-    body: JSON.stringify(workspaceId ? { workspaceId } : {}),
-    timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
-    retries: 2,
-  });
-  return result.session;
+  // Coalesce concurrent creates — cockpit bootstrap + recovery must not stampede Brain.
+  if (!inflightSessionCreate) {
+    inflightSessionCreate = pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
+      method: "POST",
+      body: JSON.stringify(workspaceId ? { workspaceId } : {}),
+      timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
+      // No automatic HTTP retries — caller owns backoff to avoid request storms.
+      retries: 0,
+    })
+      .then((result) => result.session)
+      .finally(() => {
+        inflightSessionCreate = null;
+      });
+  }
+  return inflightSessionCreate;
 }
 
 export async function sendPillowChat(input: {

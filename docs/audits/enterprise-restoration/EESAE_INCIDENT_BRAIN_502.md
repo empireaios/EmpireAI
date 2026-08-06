@@ -10,9 +10,9 @@
 | User/business impact | Grand King cannot rely on production login/session/Pillow; cockpit UI loads but Brain-backed surfaces hang or fail |
 | Probable root cause | sql.js synchronous full-database `export()` thrash (HEAD default debounce 250ms) saturating Node event loop (observed lag 25–54s+); Railway edge times out at ~15s → 502. Secondary: no persistent volume (now remediated) + ephemeral DB path risk |
 | Evidence | Railway runtime logs (`Event loop lag detected`); HTTP logs (502 @ 15000ms); Phase 1 JSON; forensics MD |
-| Repair status | IN PROGRESS — code thrash hardening + quarantine recovery + continuity watchdog; Railway volume `/data` attached; `DATABASE_PATH` and `SQLITE_*` vars set; awaiting commit/push/redeploy verification |
-| Recommended action | Deploy thrash-hardened commit; verify repeated `/health/live` 200; login + Pillow E2E; confirm volume persists DB |
-| Final resolution | PENDING post-deploy verification |
+| Repair status | RESOLVED — commits `a58d41d1` + `c303bdb1` on `origin/main`; Railway deploy `6897c7a8` SUCCESS @ `c303bdb1` with volume `/data` |
+| Recommended action | Keep volume mounted; monitor lag; set explicit `FOUNDER_PASSWORD` in Railway; re-check EESAE continuous telemetry |
+| Final resolution | 2026-08-06T08:22Z UTC — `/health/live` stable 200; login + Pillow LLM chat verified; event-loop lag ≈0 |
 
 ## Awareness surface notes
 
