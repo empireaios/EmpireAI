@@ -1,8 +1,15 @@
 import bcrypt from "bcryptjs";
 import { env } from "../config/env.js";
+import { logger } from "../config/logger.js";
 import { getDatabase } from "../brain/database.js";
 import { UserStore } from "./session-store.js";
 
+/**
+ * Ensure founder/admin bootstrap accounts exist and match env passwords.
+ * Env credentials are the canonical source for these seed accounts — if the
+ * stored hash drifts (volume restore, prior password, failed deploy), re-hash
+ * from FOUNDER_PASSWORD / ADMIN_PASSWORD so production login cannot soft-lock.
+ */
 export async function seedDefaultUsers(): Promise<void> {
   const db = getDatabase();
   const users = new UserStore(db);
@@ -25,16 +32,29 @@ export async function seedDefaultUsers(): Promise<void> {
   ];
 
   for (const account of defaults) {
-    if (users.findByEmail(account.email)) continue;
+    const existing = users.findByEmail(account.email);
+    if (!existing) {
+      const passwordHash = await bcrypt.hash(account.password, 12);
+      users.create({
+        email: account.email,
+        name: account.name,
+        role: account.role,
+        workspaceId: account.workspaceId,
+        passwordHash,
+      });
+      logger.info({ email: account.email, role: account.role }, "Seeded bootstrap account");
+      continue;
+    }
 
-    const passwordHash = await bcrypt.hash(account.password, 12);
-    users.create({
-      email: account.email,
-      name: account.name,
-      role: account.role,
-      workspaceId: account.workspaceId,
-      passwordHash,
-    });
+    const matches = await verifyPassword(account.password, existing.passwordHash);
+    if (!matches) {
+      const passwordHash = await bcrypt.hash(account.password, 12);
+      users.updatePasswordHash(existing.id, passwordHash);
+      logger.warn(
+        { email: account.email, role: account.role },
+        "Synced bootstrap account password hash from environment (previous hash did not match)",
+      );
+    }
   }
 }
 

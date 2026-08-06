@@ -1,7 +1,8 @@
 const LOCAL_BRAIN_URL = "http://localhost:4000";
 const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
-const AUTH_UPSTREAM_TIMEOUT_MS = 20_000;
+/** Auth must survive transient Brain lag; keep under Vercel route maxDuration (60s). */
+const AUTH_UPSTREAM_TIMEOUT_MS = 55_000;
 const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
 /** Pillow chat runs context assembly + LLM — must stay under Vercel maxDuration (60s). */
 const PILLOW_UPSTREAM_TIMEOUT_MS = 58_000;
@@ -61,6 +62,72 @@ function brainProxyErrorResponse(
   return Response.json({ error: message }, { status });
 }
 
+function getUpstreamSetCookies(headers: Headers): string[] {
+  const withGetter = headers as Headers & { getSetCookie?: () => string[] };
+  if (typeof withGetter.getSetCookie === "function") {
+    return withGetter.getSetCookie();
+  }
+  const single = headers.get("set-cookie");
+  return single ? [single] : [];
+}
+
+/**
+ * Rewrite Brain Set-Cookie for the Next.js BFF origin.
+ * Strips Domain (host-only on Vercel) and ensures Secure on Vercel HTTPS.
+ */
+export function rewriteSetCookieForBff(raw: string): string {
+  const parts = raw.split(";").map((p) => p.trim()).filter(Boolean);
+  if (parts.length === 0) return raw;
+
+  const rewritten: string[] = [parts[0]!];
+  let hasPath = false;
+  let hasSameSite = false;
+  let hasHttpOnly = false;
+  let hasSecure = false;
+
+  for (const part of parts.slice(1)) {
+    if (/^domain=/i.test(part)) continue;
+    if (/^path=/i.test(part)) {
+      hasPath = true;
+      rewritten.push("Path=/");
+      continue;
+    }
+    if (/^samesite=/i.test(part)) {
+      hasSameSite = true;
+      rewritten.push("SameSite=Lax");
+      continue;
+    }
+    if (/^httponly$/i.test(part)) {
+      hasHttpOnly = true;
+      rewritten.push("HttpOnly");
+      continue;
+    }
+    if (/^secure$/i.test(part)) {
+      hasSecure = true;
+      if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+        rewritten.push("Secure");
+      }
+      continue;
+    }
+    rewritten.push(part);
+  }
+
+  if (!hasPath) rewritten.push("Path=/");
+  if (!hasSameSite) rewritten.push("SameSite=Lax");
+  if (!hasHttpOnly && /^empireai_session=/i.test(parts[0]!)) {
+    rewritten.push("HttpOnly");
+  }
+  if (
+    !hasSecure &&
+    (process.env.VERCEL || process.env.NODE_ENV === "production") &&
+    /^empireai_session=/i.test(parts[0]!)
+  ) {
+    rewritten.push("Secure");
+  }
+
+  return rewritten.join("; ");
+}
+
 export async function proxyBrainRequest(
   path: string,
   request: Request,
@@ -94,8 +161,10 @@ export async function proxyBrainRequest(
     const contentType = response.headers.get("content-type");
     if (contentType) headers.set("content-type", contentType);
 
-    const setCookie = response.headers.get("set-cookie");
-    if (setCookie) headers.set("set-cookie", setCookie);
+    const setCookies = getUpstreamSetCookies(response.headers).map(rewriteSetCookieForBff);
+    for (const cookie of setCookies) {
+      headers.append("set-cookie", cookie);
+    }
 
     return new Response(body, {
       status: response.status,

@@ -20,6 +20,8 @@ out/
 /data/
 *.db
 *.db-journal
+*.db.corrupt-*
+*.db.tmp-*
 *.sqlite
 *.sqlite3
 

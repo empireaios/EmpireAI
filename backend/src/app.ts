@@ -349,6 +349,20 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     sqlite: getSqlitePersistStats(),
   }));
 
+  app.get("/health/executive-continuity", async () => {
+    const { getExecutiveContinuityHealth } = await import(
+      "./runtime/executive-continuity-watchdog.js"
+    );
+    const continuity = getExecutiveContinuityHealth();
+    return {
+      status: continuity.healthy ? "ok" : "degraded",
+      brain: "online",
+      continuity,
+      eventLoopLagMs: getRecentEventLoopLagMs(),
+      sqlite: getSqlitePersistStats(),
+    };
+  });
+
   app.get("/health", async () => {
     let guardianReport: Record<string, unknown> = { overall: "unknown" };
     try {
@@ -509,6 +523,12 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
     });
 
     // Pillow also boots in the background after server start; session/chat await readiness.
+    // Executive Learning review/approve APIs are Cockpit-critical (not deferred REAL modules).
+    await breathe();
+    await registerExecutiveLearningRoutes(app, {
+      authenticate,
+      auditLogger: brain.auditLogger,
+    });
   }
 
   app.get(
@@ -1266,11 +1286,7 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
         auditLogger: brain.auditLogger,
       });
       wireCanonicalPillowApprovalPipeline(pillowHost.getApprovalGate());
-      await breathe();
-  await registerExecutiveLearningRoutes(app, {
-        authenticate,
-        auditLogger: brain.auditLogger,
-      });
+      // Executive Learning routes register in Cockpit-critical path (production earlyListen).
       await breathe();
   await registerPillowExecutiveCouncilRoutes(app, {
         authenticate,

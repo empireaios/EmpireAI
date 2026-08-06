@@ -161,6 +161,13 @@ export class UserStore {
       workspaceId: user.workspaceId,
     };
   }
+
+  /** Update bootstrap-account password hash (env is source of truth for seed users). */
+  updatePasswordHash(userId: string, passwordHash: string): void {
+    this.db
+      .prepare(`UPDATE users SET password_hash = @passwordHash WHERE id = @id`)
+      .run({ id: userId, passwordHash });
+  }
 }
 
 type DbUserRow = {

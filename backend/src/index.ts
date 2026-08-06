@@ -25,6 +25,11 @@ async function main() {
   const { startEventLoopLagMonitor } = await import("./runtime/event-loop-cooperative.js");
   startEventLoopLagMonitor();
 
+  const { startExecutiveContinuityWatchdog } = await import(
+    "./runtime/executive-continuity-watchdog.js"
+  );
+  startExecutiveContinuityWatchdog();
+
   if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {
     const deferMs = Number(process.env.EMPIRE_EXTENSION_ROUTE_DEFER_MS ?? 10 * 60 * 1000);
     setTimeout(() => {

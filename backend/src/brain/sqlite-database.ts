@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import initSqlJs, { type BindParams } from "sql.js";
+import {
+  getRecentEventLoopLagMs,
+  waitForEventLoopCapacity,
+} from "../runtime/event-loop-cooperative.js";
 
 type SqlJsStatic = Awaited<ReturnType<typeof initSqlJs>>;
 type SqlJsDatabase = InstanceType<SqlJsStatic["Database"]>;
@@ -13,7 +17,19 @@ const SQL: SqlJsStatic = await initSqlJs({
   locateFile: (file: string) => path.join(wasmDirectory, file),
 });
 
-const PERSIST_DEBOUNCE_MS = Number(process.env.SQLITE_PERSIST_DEBOUNCE_MS ?? 250);
+const PERSIST_DEBOUNCE_MS = Number(process.env.SQLITE_PERSIST_DEBOUNCE_MS ?? 30_000);
+/** Floor between successful flushes — prevents write-storm export thrash that blocks auth. */
+const MIN_FLUSH_INTERVAL_MS = Number(process.env.SQLITE_MIN_FLUSH_INTERVAL_MS ?? 120_000);
+/** Skip sync export while the loop is already saturated (auth/health first). */
+const FLUSH_LAG_SKIP_MS = Number(process.env.SQLITE_FLUSH_LAG_SKIP_MS ?? 80);
+/** Hard ceiling — never export more often than this even if dirty+idle. */
+const MAX_FLUSH_INTERVAL_MS = Number(process.env.SQLITE_MAX_FLUSH_INTERVAL_MS ?? 300_000);
+/**
+ * Delay the first sql.js export after process start.
+ * Large DBs block the event loop for minutes during export — login/health must win first.
+ */
+const FIRST_FLUSH_DELAY_MS = Number(process.env.SQLITE_FIRST_FLUSH_DELAY_MS ?? 600_000);
+const processStartedAtMs = Date.now();
 
 type RunResult = { changes: number; lastInsertRowid: number | bigint };
 
@@ -22,6 +38,8 @@ type PersistStats = {
   flushCount: number;
   lastFlushMs: number | null;
   lastFlushDurationMs: number | null;
+  /** True while synchronous db.export() is running (watchdog must not stall-exit). */
+  flushInFlight: boolean;
 };
 
 let persistStats: PersistStats = {
@@ -29,10 +47,27 @@ let persistStats: PersistStats = {
   flushCount: 0,
   lastFlushMs: null,
   lastFlushDurationMs: null,
+  flushInFlight: false,
 };
+
+/** Optional SharedArrayBuffer slot: main sets 1 during sync export so HA worker ignores stalls. */
+let flushGuardView: Int32Array | null = null;
 
 export function getSqlitePersistStats(): Readonly<PersistStats> {
   return persistStats;
+}
+
+/** Wire HA watchdog SharedArrayBuffer index 1 as flush-in-flight guard. */
+export function bindSqliteFlushGuard(view: Int32Array): void {
+  flushGuardView = view;
+  Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
+}
+
+function setFlushInFlight(active: boolean): void {
+  persistStats = { ...persistStats, flushInFlight: active };
+  if (flushGuardView) {
+    Atomics.store(flushGuardView, 1, active ? 1 : 0);
+  }
 }
 
 function normalizeParams(params: Record<string, unknown>): BindParams {
@@ -62,6 +97,72 @@ function rowToObject(columns: string[], values: unknown[]): Record<string, unkno
   return row;
 }
 
+export type SqliteOpenRecovery = {
+  recovered: boolean;
+  quarantinedPath: string | null;
+  reason: string | null;
+};
+
+let lastOpenRecovery: SqliteOpenRecovery = {
+  recovered: false,
+  quarantinedPath: null,
+  reason: null,
+};
+
+export function getLastSqliteOpenRecovery(): Readonly<SqliteOpenRecovery> {
+  return lastOpenRecovery;
+}
+
+/**
+ * Quarantine a corrupted SQLite file (never silent delete).
+ * Returns the quarantine path, or null if rename failed.
+ */
+export function quarantineSqliteFile(filePath: string, reason: string): string | null {
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const quarantinePath = `${filePath}.corrupt-${stamp}`;
+  try {
+    fs.renameSync(filePath, quarantinePath);
+    return quarantinePath;
+  } catch {
+    try {
+      fs.copyFileSync(filePath, quarantinePath);
+      fs.unlinkSync(filePath);
+      return quarantinePath;
+    } catch {
+      console.error(
+        JSON.stringify({
+          level: "error",
+          msg: "Failed to quarantine corrupted SQLite file",
+          filePath,
+          reason,
+        }),
+      );
+      return null;
+    }
+  }
+}
+
+function tryOpenExistingDatabase(filePath: string): SqlJsDatabase {
+  const buffer = fs.readFileSync(filePath);
+  if (buffer.length < 16) {
+    throw new Error("SQLite file too small / truncated");
+  }
+  const header = buffer.subarray(0, 15).toString("utf8");
+  if (header !== "SQLite format 3") {
+    throw new Error("SQLite header magic mismatch (not a SQLite database)");
+  }
+  const db = new SQL.Database(buffer);
+  // Fail closed on integrity failure before migrations touch the file.
+  const check = db.exec("PRAGMA integrity_check");
+  const result =
+    check[0]?.values?.[0]?.[0] !== undefined ? String(check[0].values[0][0]) : "unknown";
+  if (result !== "ok") {
+    db.close();
+    throw new Error(`PRAGMA integrity_check failed: ${result}`);
+  }
+  return db;
+}
+
 /** Pure-JS SQLite (sql.js) with a better-sqlite3-compatible surface for EmpireAI. */
 export class EmpireDatabase {
   private readonly db: SqlJsDatabase;
@@ -72,9 +173,31 @@ export class EmpireDatabase {
 
   constructor(private readonly filePath: string) {
     this.inMemory = isInMemoryDatabasePath(filePath);
+    lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
+
     if (!this.inMemory && fs.existsSync(filePath)) {
-      const buffer = fs.readFileSync(filePath);
-      this.db = new SQL.Database(buffer);
+      try {
+        this.db = tryOpenExistingDatabase(filePath);
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : String(error);
+        const quarantinedPath = quarantineSqliteFile(filePath, reason);
+        lastOpenRecovery = {
+          recovered: true,
+          quarantinedPath,
+          reason,
+        };
+        console.error(
+          JSON.stringify({
+            level: "error",
+            msg: "SQLite database corrupted — quarantined and recreating empty database",
+            filePath,
+            quarantinedPath,
+            reason,
+            note: "Quarantined file preserved for manual restore; business data was not silently deleted",
+          }),
+        );
+        this.db = new SQL.Database();
+      }
     } else {
       this.db = new SQL.Database();
     }
@@ -155,14 +278,27 @@ export class EmpireDatabase {
     this.persistDirty = true;
     persistStats.pending = true;
 
-    if (this.persistTimer !== null) {
+    if (this.persistTimer !== null || this.persistInFlight) {
       return;
     }
+
+    const sinceLastFlush =
+      persistStats.lastFlushMs === null ? Number.POSITIVE_INFINITY : Date.now() - persistStats.lastFlushMs;
+    const sinceStart = Date.now() - processStartedAtMs;
+    const firstFlushWait =
+      persistStats.flushCount === 0 && sinceStart < FIRST_FLUSH_DELAY_MS
+        ? FIRST_FLUSH_DELAY_MS - sinceStart
+        : 0;
+    const delay = Math.max(
+      PERSIST_DEBOUNCE_MS,
+      firstFlushWait,
+      sinceLastFlush < MIN_FLUSH_INTERVAL_MS ? MIN_FLUSH_INTERVAL_MS - sinceLastFlush : 0,
+    );
 
     this.persistTimer = setTimeout(() => {
       this.persistTimer = null;
       void this.flushPersistAsync();
-    }, PERSIST_DEBOUNCE_MS);
+    }, delay);
 
     if (typeof this.persistTimer.unref === "function") {
       this.persistTimer.unref();
@@ -174,38 +310,90 @@ export class EmpireDatabase {
       return;
     }
 
+    // Coalesce concurrent writers — never tight-loop recurse under write storms.
     if (this.persistInFlight) {
-      await this.persistInFlight;
-      if (this.persistDirty) {
-        return this.flushPersistAsync();
-      }
+      this.persistDirty = true;
+      persistStats.pending = true;
       return;
     }
 
-    this.persistDirty = false;
-    const started = performance.now();
-
     this.persistInFlight = (async () => {
       try {
-        const data = Buffer.from(this.db.export());
+        // Prefer auth/health responsiveness over durability timing under lag.
+        await waitForEventLoopCapacity(5_000);
+        if (getRecentEventLoopLagMs() >= FLUSH_LAG_SKIP_MS) {
+          this.persistDirty = true;
+          persistStats.pending = true;
+          this.schedulePersist();
+          return;
+        }
+
+        const sinceLastFlush =
+          persistStats.lastFlushMs === null
+            ? Number.POSITIVE_INFINITY
+            : Date.now() - persistStats.lastFlushMs;
+        // Under any residual lag, stretch flushes toward the hard ceiling.
+        if (
+          sinceLastFlush < MAX_FLUSH_INTERVAL_MS &&
+          getRecentEventLoopLagMs() >= Math.floor(FLUSH_LAG_SKIP_MS / 2)
+        ) {
+          this.persistDirty = true;
+          persistStats.pending = true;
+          this.schedulePersist();
+          return;
+        }
+
+        if (!this.persistDirty) {
+          return;
+        }
+
+        this.persistDirty = false;
+        const started = performance.now();
+
+        // Yield so auth / health HTTP can run before synchronous sql.js export.
+        await new Promise<void>((resolve) => setImmediate(resolve));
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+
+        // Sync export blocks the loop; guard tells HA watchdog not to stall-exit mid-flush.
+        setFlushInFlight(true);
+        let data: Buffer;
+        try {
+          data = Buffer.from(this.db.export());
+        } finally {
+          setFlushInFlight(false);
+        }
         await fs.promises.mkdir(path.dirname(this.filePath), { recursive: true });
-        await fs.promises.writeFile(this.filePath, data);
+        const tempPath = `${this.filePath}.tmp-${process.pid}`;
+        await fs.promises.writeFile(tempPath, data);
+        await fs.promises.rename(tempPath, this.filePath);
+
+        const durationMs = Math.round(performance.now() - started);
         persistStats = {
           pending: this.persistDirty,
           flushCount: persistStats.flushCount + 1,
           lastFlushMs: Date.now(),
-          lastFlushDurationMs: Math.round(performance.now() - started),
+          lastFlushDurationMs: durationMs,
+          flushInFlight: false,
         };
+      } catch (error) {
+        // Keep dirty so a later schedule retries; do not crash the process.
+        this.persistDirty = true;
+        persistStats.pending = true;
+        setFlushInFlight(false);
+        throw error;
       } finally {
         this.persistInFlight = null;
         persistStats.pending = this.persistDirty;
+        if (this.persistDirty) {
+          this.schedulePersist();
+        }
       }
     })();
 
-    await this.persistInFlight;
-
-    if (this.persistDirty) {
-      return this.flushPersistAsync();
+    try {
+      await this.persistInFlight;
+    } catch {
+      // Logged by caller paths via unhandled rejection avoidance — schedulePersist retries.
     }
   }
 
@@ -215,16 +403,30 @@ export class EmpireDatabase {
       return;
     }
 
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+      this.persistTimer = null;
+    }
+
     const started = performance.now();
     fs.mkdirSync(path.dirname(this.filePath), { recursive: true });
-    const data = this.db.export();
-    fs.writeFileSync(this.filePath, Buffer.from(data));
+    setFlushInFlight(true);
+    let data: Uint8Array;
+    try {
+      data = this.db.export();
+    } finally {
+      setFlushInFlight(false);
+    }
+    const tempPath = `${this.filePath}.tmp-shutdown`;
+    fs.writeFileSync(tempPath, Buffer.from(data));
+    fs.renameSync(tempPath, this.filePath);
     this.persistDirty = false;
     persistStats = {
       pending: false,
       flushCount: persistStats.flushCount + 1,
       lastFlushMs: Date.now(),
       lastFlushDurationMs: Math.round(performance.now() - started),
+      flushInFlight: false,
     };
   }
 }

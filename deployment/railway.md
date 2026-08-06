@@ -29,12 +29,17 @@ buildCommand = "npm install --prefix pillow && npm install --prefix backend && n
 
 [deploy]
 startCommand = "node backend/dist/index.js"
-healthcheckPath = "/health"
+healthcheckPath = "/health/live"
+healthcheckTimeout = 300
 ```
 
-4. Add a **volume** mounted at `/data`.
-5. Configure environment variables (below).
+4. Add a **volume** mounted at `/data` (required — without it, `DATABASE_PATH=/data/empireai-brain.db` is ephemeral and redeploys lose state).
+5. Configure environment variables (below). Confirm service variable `DATABASE_PATH=/data/empireai-brain.db` (also defaulted in `nixpacks.toml`).
 6. Generate a public domain for the API service.
+
+### Production 502 / event-loop stall (known failure mode)
+
+If Railway shows the service **Online** but `/health/live` returns **502** after ~15s, the Brain process is usually **event-loop wedged** (sql.js full-database export thrash), not a DNS or routing failure. Check runtime logs for `Event loop lag detected` with multi-second `lagMs`. Fix: deploy persist throttling (`SQLITE_*` defaults in `sqlite-database.ts`) and ensure a volume is attached so the DB path is durable.
 
 ---
 

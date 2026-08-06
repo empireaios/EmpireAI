@@ -2,7 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
-import { EmpireDatabase, isInMemoryDatabasePath } from "./sqlite-database.js";
+import {
+  EmpireDatabase,
+  getLastSqliteOpenRecovery,
+  isInMemoryDatabasePath,
+} from "./sqlite-database.js";
 export { isPostgresEnabled, getPostgresPool } from "./postgres/pool.js";
 
 let dbInstance: EmpireDatabase | null = null;
@@ -38,7 +42,21 @@ export function getDatabase(): EmpireDatabase {
   activeDbPath = dbPath;
   dbInstance.pragma("foreign_keys = ON");
   migrate(dbInstance);
-  logger.info({ dbPath, driver: "sql.js" }, "Brain database initialized");
+
+  const recovery = getLastSqliteOpenRecovery();
+  if (recovery.recovered) {
+    logger.error(
+      {
+        dbPath,
+        quarantinedPath: recovery.quarantinedPath,
+        reason: recovery.reason,
+        driver: "sql.js",
+      },
+      "Brain database recovered from corruption (quarantined prior file; empty DB recreated)",
+    );
+  } else {
+    logger.info({ dbPath, driver: "sql.js" }, "Brain database initialized");
+  }
 
   return dbInstance;
 }
