@@ -115,6 +115,52 @@ export function enqueueMarketplacePublish(pkg: MarketplaceListingPackage): Publi
   return item;
 }
 
+export function getMarketplaceListingPackage(
+  workspaceId: string,
+  packageId: string,
+): MarketplaceListingPackage | null {
+  const db = getDatabase();
+  const row = db
+    .prepare(
+      `SELECT record_json FROM marketplace_publish_packages
+       WHERE workspace_id = @workspaceId AND package_id = @packageId`,
+    )
+    .get({ workspaceId, packageId }) as { record_json: string } | undefined;
+  if (!row?.record_json) return null;
+  try {
+    return JSON.parse(row.record_json) as MarketplaceListingPackage;
+  } catch {
+    return null;
+  }
+}
+
+export async function updatePublishQueueAfterExecution(
+  queueId: string,
+  workspaceId: string,
+  status: PublishQueueItem["status"],
+  blockers: string[],
+): Promise<void> {
+  const db = getDatabase();
+  const row = db
+    .prepare(
+      `SELECT record_json FROM marketplace_publish_queue
+       WHERE workspace_id = @workspaceId AND queue_id = @queueId`,
+    )
+    .get({ workspaceId, queueId }) as { record_json: string } | undefined;
+  if (!row?.record_json) return;
+  let item: PublishQueueItem;
+  try {
+    item = JSON.parse(row.record_json) as PublishQueueItem;
+  } catch {
+    return;
+  }
+  item.status = status;
+  item.blockers = blockers;
+  db.prepare(
+    `UPDATE marketplace_publish_queue SET record_json = @json WHERE queue_id = @queueId`,
+  ).run({ queueId, json: JSON.stringify(item) });
+}
+
 export function listMarketplaceAdapters(env: NodeJS.ProcessEnv = process.env) {
   return MARKETPLACE_ADAPTERS.map((adapter) => resolveMarketplaceAdapter(adapter.marketplaceId, env));
 }

@@ -467,7 +467,11 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
 
   if (earlyListen) {
     await breathe();
-  await registerCockpitCriticalRoutes(routeDeps);
+    await registerCockpitCriticalRoutes(routeDeps);
+    // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
+    // Full REAL-module surface remains deferred behind finishRouteRegistration.
+    await breathe();
+    await registerCommerceCriticalRoutes(routeDeps);
     return {
       app,
       brain,
@@ -510,6 +514,35 @@ function createEmpireShutdown(deps: {
     await deps.app.close();
     await deps.brain.shutdown();
   };
+}
+
+let commerceCriticalRoutesRegistered = false;
+
+/** Supplier → Amazon listing routes required for first-dollar commerce proof. */
+async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
+  if (commerceCriticalRoutesRegistered) return;
+  const { app, authenticate, brain } = deps;
+
+  await breathe();
+  await registerAmazonGlobalSellerRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerMarketplacePublishingRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerVersion1ActivationRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  commerceCriticalRoutesRegistered = true;
+  logger.info("Commerce-critical routes registered (Amazon / marketplace publish / V1 activation)");
 }
 
 async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
@@ -954,19 +987,10 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
   });
 
   await breathe();
-  await registerAmazonGlobalSellerRoutes(app, {
-    authenticate,
-    auditLogger: brain.auditLogger,
-  });
+  await registerCommerceCriticalRoutes(deps);
 
   await breathe();
   await registerCommerceIntelligenceStudioRoutes(app, {
-    authenticate,
-    auditLogger: brain.auditLogger,
-  });
-
-  await breathe();
-  await registerMarketplacePublishingRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
@@ -1234,7 +1258,7 @@ async function registerEmpireExtensionRoutes(deps: EmpireRouteDeps): Promise<voi
   await registerVersion1GoLiveApprovalRoutes(app, { authenticate, auditLogger: brain.auditLogger });
 
   await breathe();
-  await registerVersion1ActivationRoutes(app, { authenticate, auditLogger: brain.auditLogger });
+  await registerCommerceCriticalRoutes(deps);
 
   await breathe();
   await registerVersion1CompletionRoutes(app, { authenticate, auditLogger: brain.auditLogger });

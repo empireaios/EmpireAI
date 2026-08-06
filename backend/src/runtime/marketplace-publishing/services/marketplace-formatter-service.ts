@@ -14,6 +14,8 @@ export function formatForMarketplace(
 ): Record<string, unknown> {
   switch (marketplaceId) {
     case "amazon":
+    case "amazon-us":
+    case "amazon-sg":
       return {
         productType: "PRODUCT",
         attributes: {

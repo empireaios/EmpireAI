@@ -280,19 +280,27 @@ export async function amazonOAuthRefreshToken(
     };
   }
 
-  const response = await httpTransport({
-    url: "https://api.amazon.com/auth/o2/token",
-    method: "POST",
-    body: {
-      grant_type: "refresh_token",
-      refresh_token: refreshToken,
-      client_id: config.clientId,
-      client_secret: config.clientSecret,
-    },
+  // LWA requires application/x-www-form-urlencoded (not JSON).
+  const form = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: refreshToken,
+    client_id: config.clientId,
+    client_secret: config.clientSecret,
   });
+  const raw = await fetch("https://api.amazon.com/auth/o2/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: form.toString(),
+  });
+  const text = await raw.text();
+  let json: Record<string, unknown> = {};
+  try {
+    json = text ? (JSON.parse(text) as Record<string, unknown>) : {};
+  } catch {
+    throw new Error(`Amazon OAuth refresh failed for ${registryId}: non-JSON response`);
+  }
 
-  if (!response.ok) throw new Error(`Amazon OAuth refresh failed for ${registryId}`);
-  const json = response.json as Record<string, unknown>;
+  if (!raw.ok) throw new Error(`Amazon OAuth refresh failed for ${registryId}`);
   return {
     accessToken: json.access_token,
     refreshToken: json.refresh_token ?? refreshToken,
