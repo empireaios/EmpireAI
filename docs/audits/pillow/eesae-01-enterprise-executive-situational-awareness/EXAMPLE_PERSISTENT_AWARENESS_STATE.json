@@ -1,0 +1,15 @@
+{
+  "stateId": "eesae-state-example-01",
+  "timestamp": "2026-08-05T15:00:00.000Z",
+  "systemHealthSummary": "Monitoring runtime health: healthy (score 88)",
+  "performanceSummary": "Monitoring runtime reports no active performance alerts",
+  "businessSummary": "No business evidence bound — honest no-evidence state",
+  "workforceSummary": "No workforce evidence bound — honest no-evidence state",
+  "selfAwarenessSummary": "Self-awareness evaluation: complexity and simplification questions pending evidence",
+  "openFindings": [],
+  "escalations": [],
+  "recommendations": [],
+  "longTermEmpireValueNotes": ["Continuous executive awareness remains a permanent constitutional duty"],
+  "evidenceRefs": ["monitoring_runtime:getState"],
+  "confidenceScore": 0.84
+}

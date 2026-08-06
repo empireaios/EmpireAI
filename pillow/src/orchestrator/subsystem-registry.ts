@@ -478,6 +478,7 @@ export interface PillowSubsystemBundle {
   cursorSpecificationGenerator?: import("../cursor-specification-generator/engine.js").CursorSpecificationGenerator;
   implementationRecoveryPlanner?: import("../implementation-recovery-planner/engine.js").ImplementationRecoveryPlanner;
   programmeCertificationFactory?: import("../programme-certification-factory/engine.js").ProgrammeCertificationFactory;
+  enterpriseExecutiveSituationalAwarenessEngine?: import("../enterprise-executive-situational-awareness-engine/engine.js").EnterpriseExecutiveSituationalAwarenessEngine;
   empireCommander?: EmpireCommanderEngine;
   empireOperatingSystem?: EmpireOperatingSystemEngine;
   continuousEvolution?: ContinuousEvolutionEngine;
@@ -7092,6 +7093,21 @@ const SUBSYSTEM_DESCRIPTORS: SubsystemDescriptor[] = [
       if (!b.programmeCertificationFactory) return "unavailable";
       try {
         const status = b.programmeCertificationFactory.getState().health.status;
+        return status === "failed" ? "degraded" : "ready";
+      } catch {
+        return "unavailable";
+      }
+    },
+  },
+  {
+    id: "enterprise-executive-situational-awareness-engine",
+    label: "Enterprise Executive Situational Awareness Engine",
+    missionId: "EESAE-01",
+    runtimePath: "pillow/src/enterprise-executive-situational-awareness-engine/",
+    probe: (b) => {
+      if (!b.enterpriseExecutiveSituationalAwarenessEngine) return "unavailable";
+      try {
+        const status = b.enterpriseExecutiveSituationalAwarenessEngine.getState().health.status;
         return status === "failed" ? "degraded" : "ready";
       } catch {
         return "unavailable";

@@ -23837,6 +23837,108 @@ export class PillowHost {
         this.ensureRunning();
         return this.pillowSession.programmeCertificationFactory.getCertificationHistory();
     }
+    getEnterpriseExecutiveSituationalAwarenessEngine() {
+        this.ensureRunning();
+        const engine = this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine;
+        return {
+            computedAt: new Date().toISOString(),
+            missionId: "EESAE-01",
+            engine: engine.getState(),
+            cockpit: engine.getCockpitSnapshot(),
+            catalog: engine.getCatalog(),
+            reports: engine.getReports(),
+            awarenessStates: engine.getAwarenessStates(),
+            latestReport: engine.getState().latestReport,
+            latestAwarenessState: engine.getState().latestAwarenessState,
+            briefing: engine.getBriefingForGrandKing(),
+            auditTrail: engine.getAuditTrail(),
+        };
+    }
+    connectEnterpriseExecutiveSituationalAwarenessEngine(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.connect(input ?? {});
+    }
+    evaluateEesaeSystemHealth(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.evaluateSystemHealth(input ?? {});
+    }
+    evaluateEesaePerformance(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.evaluatePerformanceIntelligence(input ?? {});
+    }
+    evaluateEesaeBusiness(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.evaluateBusinessIntelligence(input ?? {});
+    }
+    evaluateEesaeWorkforce(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.evaluateAiWorkforceIntelligence(input ?? {});
+    }
+    evaluateEesaeSelfAwareness(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.evaluateSelfAwareness(input ?? {});
+    }
+    detectEesaeDeterioration(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.detectDeterioration(input ?? {});
+    }
+    investigateEesaeRootCauses(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.investigateRootCauses(input ?? {});
+    }
+    generateEesaeRecommendations(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.generateExecutiveRecommendations(input ?? {});
+    }
+    escalateEesaeUnacknowledged(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.escalateUnacknowledged(input ?? {});
+    }
+    acknowledgeEesaeFinding(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.acknowledgeFinding(input ?? {});
+    }
+    runEesaeAwarenessCycle(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.runAwarenessCycle(input ?? {});
+    }
+    produceEesaeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.produceSituationalAwarenessReport(input ?? {});
+    }
+    submitEesaeReport(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.submitReport(input ?? {});
+    }
+    getEesaeBriefing() {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.getBriefingForGrandKing();
+    }
+    listEesaeReports(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.list(input ?? {});
+    }
+    getEesaeHistory() {
+        this.ensureRunning();
+        return {
+            reports: this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.getReports(),
+            awarenessStates: this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.getAwarenessStates(),
+            auditTrail: this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.getAuditTrail(),
+        };
+    }
+    validateEesae(input) {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.validate(input ?? {});
+    }
+    runEesaeDiagnostics() {
+        this.ensureRunning();
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.runDiagnostics();
+    }
+    getEesaePersistentState(input) {
+        this.ensureRunning();
+        const stateId = typeof input?.stateId === "string" ? input.stateId : undefined;
+        return this.pillowSession.enterpriseExecutiveSituationalAwarenessEngine.getPersistentAwarenessState(stateId);
+    }
     getGlobalExpansionSimulator() {
         this.ensureRunning();
         const engine = this.pillowSession.globalExpansionSimulator;

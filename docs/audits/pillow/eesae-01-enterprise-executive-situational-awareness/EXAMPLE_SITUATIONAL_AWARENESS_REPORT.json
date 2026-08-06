@@ -1,0 +1,35 @@
+{
+  "reportId": "eesae-rpt-example-01",
+  "timestamp": "2026-08-05T15:00:00.000Z",
+  "executiveSummary": "Example Situational Awareness Report — monitoring evidence healthy with no fabricated metrics.",
+  "domainSummaries": [
+    {
+      "domain": "system",
+      "summary": "Monitoring runtime health: healthy (score 88)",
+      "evidenceAvailable": true,
+      "evidenceRefs": ["monitoring_runtime:getState"],
+      "confidenceScore": 0.84,
+      "notes": ["Derived from monitoringRuntime.getState() — not fabricated"]
+    }
+  ],
+  "deteriorationDetected": false,
+  "findings": [],
+  "recommendations": [
+    {
+      "recommendationId": "eesae-rec-example-01",
+      "priority": 1,
+      "title": "Maintain continuous awareness cycle",
+      "description": "No open findings — continue evidence-based monitoring cadence",
+      "evidenceRefs": ["eesae:awareness_cycle"],
+      "findingIds": [],
+      "autoApplyForbidden": true
+    }
+  ],
+  "briefingForGrandKing": "Empire situational awareness: system healthy; no critical escalations.",
+  "confidenceScore": 0.84,
+  "metadataVersion": "EESAE-001-v1",
+  "neverFabricateMetrics": true,
+  "neverSilentDeterioration": true,
+  "constitutionalDutyActive": true,
+  "digitalSoulAligned": true
+}

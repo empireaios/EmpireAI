@@ -574,6 +574,7 @@ import { collectMissionPlanningEngineSnapshot } from "../mission-planning-engine
 import { collectCursorSpecificationGeneratorSnapshot } from "../cursor-specification-generator-bridge.js";
 import { collectImplementationRecoveryPlannerSnapshot } from "../implementation-recovery-planner-bridge.js";
 import { collectProgrammeCertificationFactorySnapshot } from "../programme-certification-factory-bridge.js";
+import { collectEnterpriseExecutiveSituationalAwarenessEngineSnapshot } from "../enterprise-executive-situational-awareness-engine-bridge.js";
 import { collectCapitalFactoryCoreSnapshot } from "../capital-factory-core-bridge.js";
 import { collectAccountingWorkerSnapshot } from "../accounting-worker-bridge.js";
 import { collectCashflowWorkerSnapshot } from "../cashflow-worker-bridge.js";
@@ -36767,6 +36768,87 @@ export async function registerPillowRoutes(
   app.post("/api/pillow/programme-certification-factory/validate", { preHandler: pillowAuth }, programmeCertificationFactoryAction("validate"));
   app.post("/api/pillow/programme-certification-factory/diagnostics", { preHandler: pillowAuth }, programmeCertificationFactoryAction("diagnostics"));
   app.post("/api/pillow/programme-certification-factory/q-series-completion-contract", { preHandler: pillowAuth }, programmeCertificationFactoryAction("q-series-completion-contract"));
+
+  app.get("/api/pillow/enterprise-executive-situational-awareness-engine", { preHandler: pillowAuth }, async (_request, reply) => {
+    if (pillowHost.getStatus().lifecycle !== "running") {
+      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+      return reply.send(collectEnterpriseExecutiveSituationalAwarenessEngineSnapshot());
+    }
+    return reply.send({
+      enterpriseExecutiveSituationalAwarenessEngine: pillowHost.getEnterpriseExecutiveSituationalAwarenessEngine(),
+    });
+  });
+  const eesaeAction = (
+    method:
+      | "connect"
+      | "evaluate-system-health"
+      | "evaluate-performance"
+      | "evaluate-business"
+      | "evaluate-workforce"
+      | "evaluate-self-awareness"
+      | "detect-deterioration"
+      | "investigate"
+      | "generate-recommendations"
+      | "escalate"
+      | "acknowledge"
+      | "run-awareness-cycle"
+      | "produce-report"
+      | "submit-report"
+      | "briefing"
+      | "list"
+      | "history"
+      | "validate"
+      | "diagnostics"
+      | "persistent-state",
+  ) =>
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (pillowHost.getStatus().lifecycle !== "running") {
+        return reply.code(503).send(collectEnterpriseExecutiveSituationalAwarenessEngineSnapshot());
+      }
+      const body = (request.body ?? {}) as Record<string, unknown>;
+      const report =
+        method === "connect" ? pillowHost.connectEnterpriseExecutiveSituationalAwarenessEngine(body)
+          : method === "evaluate-system-health" ? pillowHost.evaluateEesaeSystemHealth(body)
+            : method === "evaluate-performance" ? pillowHost.evaluateEesaePerformance(body)
+              : method === "evaluate-business" ? pillowHost.evaluateEesaeBusiness(body)
+                : method === "evaluate-workforce" ? pillowHost.evaluateEesaeWorkforce(body)
+                  : method === "evaluate-self-awareness" ? pillowHost.evaluateEesaeSelfAwareness(body)
+                    : method === "detect-deterioration" ? pillowHost.detectEesaeDeterioration(body)
+                      : method === "investigate" ? pillowHost.investigateEesaeRootCauses(body)
+                        : method === "generate-recommendations" ? pillowHost.generateEesaeRecommendations(body)
+                          : method === "escalate" ? pillowHost.escalateEesaeUnacknowledged(body)
+                            : method === "acknowledge" ? pillowHost.acknowledgeEesaeFinding(body)
+                              : method === "run-awareness-cycle" ? pillowHost.runEesaeAwarenessCycle(body)
+                                : method === "produce-report" ? pillowHost.produceEesaeReport(body)
+                                  : method === "submit-report" ? pillowHost.submitEesaeReport(body)
+                                    : method === "briefing" ? pillowHost.getEesaeBriefing()
+                                      : method === "list" ? pillowHost.listEesaeReports(body)
+                                        : method === "history" ? pillowHost.getEesaeHistory()
+                                          : method === "validate" ? pillowHost.validateEesae(body)
+                                            : method === "persistent-state" ? pillowHost.getEesaePersistentState(body)
+                                              : pillowHost.runEesaeDiagnostics();
+      return reply.send({ computedAt: new Date().toISOString(), report });
+    };
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/connect", { preHandler: pillowAuth }, eesaeAction("connect"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/evaluate-system-health", { preHandler: pillowAuth }, eesaeAction("evaluate-system-health"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/evaluate-performance", { preHandler: pillowAuth }, eesaeAction("evaluate-performance"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/evaluate-business", { preHandler: pillowAuth }, eesaeAction("evaluate-business"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/evaluate-workforce", { preHandler: pillowAuth }, eesaeAction("evaluate-workforce"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/evaluate-self-awareness", { preHandler: pillowAuth }, eesaeAction("evaluate-self-awareness"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/detect-deterioration", { preHandler: pillowAuth }, eesaeAction("detect-deterioration"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/investigate", { preHandler: pillowAuth }, eesaeAction("investigate"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/generate-recommendations", { preHandler: pillowAuth }, eesaeAction("generate-recommendations"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/escalate", { preHandler: pillowAuth }, eesaeAction("escalate"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/acknowledge", { preHandler: pillowAuth }, eesaeAction("acknowledge"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/run-awareness-cycle", { preHandler: pillowAuth }, eesaeAction("run-awareness-cycle"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/produce-report", { preHandler: pillowAuth }, eesaeAction("produce-report"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/submit-report", { preHandler: pillowAuth }, eesaeAction("submit-report"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/briefing", { preHandler: pillowAuth }, eesaeAction("briefing"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/list", { preHandler: pillowAuth }, eesaeAction("list"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/history", { preHandler: pillowAuth }, eesaeAction("history"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/validate", { preHandler: pillowAuth }, eesaeAction("validate"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/diagnostics", { preHandler: pillowAuth }, eesaeAction("diagnostics"));
+  app.post("/api/pillow/enterprise-executive-situational-awareness-engine/persistent-state", { preHandler: pillowAuth }, eesaeAction("persistent-state"));
 
   app.get("/api/pillow/capital-factory-core", { preHandler: pillowAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") {

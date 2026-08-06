@@ -1775,6 +1775,10 @@ import {
   createFinancialReadinessAudit,
 } from "./financial-readiness-audit/engine.js";
 import {
+  EnterpriseExecutiveSituationalAwarenessEngine,
+  createEnterpriseExecutiveSituationalAwarenessEngine,
+} from "./enterprise-executive-situational-awareness-engine/engine.js";
+import {
   ExecutiveAcceptancePack,
   createExecutiveAcceptancePack,
 } from "./executive-acceptance-pack/engine.js";
@@ -2228,6 +2232,7 @@ let missionPlanningEngine: MissionPlanningEngine | null = null;
 let cursorSpecificationGenerator: CursorSpecificationGenerator | null = null;
 let implementationRecoveryPlanner: ImplementationRecoveryPlanner | null = null;
 let programmeCertificationFactory: ProgrammeCertificationFactory | null = null;
+let enterpriseExecutiveSituationalAwarenessEngine: EnterpriseExecutiveSituationalAwarenessEngine | null = null;
 let globalExpansionSimulator: GlobalExpansionSimulator | null = null;
 let internationalExecutiveCockpit: InternationalExecutiveCockpit | null = null;
 let globalOperationsCertified: GlobalOperationsCertified | null = null;
@@ -2710,6 +2715,7 @@ export interface PillowSession {
   cursorSpecificationGenerator: CursorSpecificationGenerator;
   implementationRecoveryPlanner: ImplementationRecoveryPlanner;
   programmeCertificationFactory: ProgrammeCertificationFactory;
+  enterpriseExecutiveSituationalAwarenessEngine: EnterpriseExecutiveSituationalAwarenessEngine;
   autonomousScalingFramework: AutonomousScalingFrameworkEngine;
   winningProductDetector: WinningProductDetectorEngine;
   scalingDecisionEngine: ScalingDecisionEngine;
@@ -7436,6 +7442,27 @@ export async function startPillow(options?: {
     pillowOrchestrationRuntime,
   });
   await yieldEventLoop();
+
+  enterpriseExecutiveSituationalAwarenessEngine = createEnterpriseExecutiveSituationalAwarenessEngine(result);
+  await enterpriseExecutiveSituationalAwarenessEngine.initialize();
+  wireEngineIntegrations(enterpriseExecutiveSituationalAwarenessEngine, {
+    monitoringRuntime,
+    executiveReportingRuntime,
+    auditRuntime,
+    pillowOrchestrationRuntime,
+    digitalSoulRuntime,
+    digitalSoul: digitalSoulRuntime,
+    workerRegistry,
+    commerceIntelligence: commerceIntelligenceEngine,
+    empireKnowledgeEngine,
+    programmeCertificationFactory,
+    queueRuntime,
+    memoryRuntime,
+    recoveryRuntime,
+    sharedRuntimeCore,
+    intelligenceContext,
+  });
+  await yieldEventLoop();
   founderShellEngine!.attachSurfaces({
     supervisor: cursorSupervisor,
     builderMonitor: builderMonitorEngine,
@@ -7946,6 +7973,7 @@ export async function startPillow(options?: {
     cursorSpecificationGenerator: cursorSpecificationGenerator,
     implementationRecoveryPlanner: implementationRecoveryPlanner,
     programmeCertificationFactory: programmeCertificationFactory,
+    enterpriseExecutiveSituationalAwarenessEngine: enterpriseExecutiveSituationalAwarenessEngine,
   });
   await orchestrator.initialize();
   await yieldEventLoop();
@@ -8483,6 +8511,7 @@ export async function startPillow(options?: {
     cursorSpecificationGenerator: cursorSpecificationGenerator!,
     implementationRecoveryPlanner: implementationRecoveryPlanner!,
     programmeCertificationFactory: programmeCertificationFactory!,
+    enterpriseExecutiveSituationalAwarenessEngine: enterpriseExecutiveSituationalAwarenessEngine!,
     globalExpansionSimulator: globalExpansionSimulator!,
     internationalExecutiveCockpit: internationalExecutiveCockpit!,
     regionalGrowthOptimizerEngine: regionalGrowthOptimizerEngine!,
@@ -12604,6 +12633,19 @@ export function requireProgrammeCertificationFactory(): ProgrammeCertificationFa
 
 export function getProgrammeCertificationFactory(): ProgrammeCertificationFactory | null {
   return programmeCertificationFactory;
+}
+
+export function requireEnterpriseExecutiveSituationalAwarenessEngine(): EnterpriseExecutiveSituationalAwarenessEngine {
+  if (!enterpriseExecutiveSituationalAwarenessEngine) {
+    throw new PillowNotBootstrappedError(
+      "Enterprise Executive Situational Awareness Engine not ready. Call startPillow() first.",
+    );
+  }
+  return enterpriseExecutiveSituationalAwarenessEngine;
+}
+
+export function getEnterpriseExecutiveSituationalAwarenessEngine(): EnterpriseExecutiveSituationalAwarenessEngine | null {
+  return enterpriseExecutiveSituationalAwarenessEngine;
 }
 
 export function requirePillowEmpireOpportunityEngine(): EmpireOpportunityEngine {

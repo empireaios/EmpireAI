@@ -451,6 +451,7 @@ export type SubsystemId =
   | "cursor-specification-generator"
   | "implementation-recovery-planner"
   | "programme-certification-factory"
+  | "enterprise-executive-situational-awareness-engine"
   | "global-expansion-simulator"
   | "international-executive-cockpit"
   | "global-operations-certified"

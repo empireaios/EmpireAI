@@ -1,0 +1,10 @@
+{
+  "briefingId": "eesae-brief-example-01",
+  "timestamp": "2026-08-05T15:00:00.000Z",
+  "briefingText": "Grand King briefing: Empire situational awareness cycle complete. System healthy. No critical unacknowledged findings.",
+  "openCriticalFindings": 0,
+  "openEscalations": 0,
+  "deteriorationDetected": false,
+  "confidenceScore": 0.84,
+  "constitutionalDutyActive": true
+}
