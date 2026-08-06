@@ -89,28 +89,40 @@ async function resolveSellerId(
   if (fromEnv) return { sellerId: fromEnv, blocker: null };
 
   const profile = getAmazonMarketplaceProfile(registryId);
-  const response = await httpTransport({
-    url: `${profile.productionEndpoint}/sellers/v1/marketplaceParticipations`,
-    method: "GET",
+
+  // marketplaceParticipations does not return sellerId — probe Product Fees with a
+  // known ASIN; Amazon echoes SellerId even on client error responses.
+  const feesProbe = await httpTransport({
+    url: `${profile.productionEndpoint}/products/fees/v0/items/B08N5WRWNW/feesEstimate`,
+    method: "POST",
     headers: { "x-amz-access-token": accessToken },
+    body: {
+      FeesEstimateRequest: {
+        MarketplaceId: profile.marketplaceId,
+        IsAmazonFulfilled: false,
+        PriceToEstimateFees: {
+          ListingPrice: { CurrencyCode: "USD", Amount: 10 },
+        },
+        Identifier: "empireai-seller-id-probe",
+      },
+    },
   });
-  if (!response.ok) {
-    return {
-      sellerId: null,
-      blocker: `marketplaceParticipations failed HTTP ${response.status}`,
+  const feesJson = feesProbe.json as {
+    payload?: {
+      FeesEstimateResult?: {
+        FeesEstimateIdentifier?: { SellerId?: string };
+      };
     };
-  }
-  const payload = response.json as {
-    payload?: Array<{ sellingPartnerId?: string; marketplace?: { id?: string } }>;
   };
-  const rows = Array.isArray(payload.payload) ? payload.payload : [];
-  const match =
-    rows.find((row) => row.marketplace?.id === profile.marketplaceId) ?? rows[0];
-  const sellerId = match?.sellingPartnerId?.trim() || null;
-  if (!sellerId) {
-    return { sellerId: null, blocker: "Could not resolve Amazon sellingPartnerId" };
-  }
-  return { sellerId, blocker: null };
+  const probed =
+    feesJson.payload?.FeesEstimateResult?.FeesEstimateIdentifier?.SellerId?.trim() || null;
+  if (probed) return { sellerId: probed, blocker: null };
+
+  return {
+    sellerId: null,
+    blocker:
+      "Could not resolve Amazon SellerId — set AMAZON_SELLER_ID (Seller Central merchant token) on Railway",
+  };
 }
 
 function buildListingsPutBody(pkg: MarketplaceListingPackage, marketplaceId: string): Record<string, unknown> {

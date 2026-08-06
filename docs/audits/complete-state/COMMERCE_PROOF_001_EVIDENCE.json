@@ -1,0 +1,406 @@
+{
+  "mission": "COMMERCE_PROOF_MISSION_001",
+  "startedAt": "2026-08-06T23:29:40.113Z",
+  "brain": "https://empireai-production.up.railway.app",
+  "stages": {
+    "healthLive": {
+      "status": 200,
+      "ms": 1121,
+      "body": {
+        "status": "ok",
+        "brain": "online",
+        "eventLoopLagMs": 487.15074699930847,
+        "sqlite": {
+          "pending": true,
+          "flushCount": 59,
+          "lastFlushMs": 1786057805221,
+          "lastFlushDurationMs": 2098,
+          "flushInFlight": false
+        },
+        "admission": {
+          "pillowSessionCreatesInFlight": 0,
+          "maxPillowSessionCreates": 2,
+          "lagRejectMs": 250,
+          "recentLagMs": 487.15074699930847,
+          "sessionRateLimit": 4,
+          "sessionRateWindowMs": 10000,
+          "sessionCreatesInWindow": 0
+        }
+      }
+    },
+    "login": {
+      "status": 200,
+      "ms": 11928,
+      "body": {
+        "user": {
+          "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
+          "email": "founder@empireai.com",
+          "name": "Empire Founder",
+          "role": "founder",
+          "workspaceId": "ws_empire_1",
+          "platformIdentity": "grand-king"
+        },
+        "expiresAt": "2026-08-13T23:30:05.457Z"
+      }
+    },
+    "cjLiveAuth": {
+      "status": 200,
+      "ms": 2918,
+      "body": {
+        "status": "ok",
+        "mission": "B6-02B",
+        "success": true,
+        "verifiedAt": "2026-08-06T23:30:08.556Z",
+        "credentialSource": "CJ_API_KEY",
+        "auth": {
+          "endpoint": "https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken",
+          "method": "POST",
+          "payloadShape": {
+            "apiKey": true
+          },
+          "httpStatus": 200,
+          "accessTokenReceived": "***",
+          "refreshTokenReceived": "***",
+          "accessTokenExpiryParsed": "***",
+          "refreshTokenExpiryParsed": "***",
+          "apiResult": true,
+          "apiMessage": "Success"
+        },
+        "tokenCache": "***",
+        "authenticatedCall": {
+          "endpoint": "https://developers.cjdropshipping.com/api2.0/v1/product/list?pageNum=1&pageSize=1",
+          "method": "GET",
+          "httpStatus": 200,
+          "apiResult": true,
+          "productCount": 1,
+          "message": "Success"
+        },
+        "blockers": [],
+        "errorCode": null,
+        "errorMessage": null
+      }
+    },
+    "v1Activation": {
+      "status": 200,
+      "ms": 931,
+      "body": {
+        "status": "BLOCKED",
+        "ready": false,
+        "blockers": [
+          "Amazon SP-API shared LWA credentials and per-region refresh tokens (NA + FE) not configured"
+        ],
+        "pillowProductionMode": false
+      }
+    },
+    "marketplaceHealth": {
+      "status": 200,
+      "ms": 1172,
+      "body": {
+        "status": "HEALTHY",
+        "adapterCount": 9,
+        "livePublishBlocked": false,
+        "amazonSupportsPublish": true,
+        "amazonUsSupportsPublish": true,
+        "amazonAdapterStatus": "CONNECTED",
+        "amazonUsAdapterStatus": "CONNECTED"
+      }
+    },
+    "adapters": {
+      "status": 200,
+      "ms": 1034,
+      "body": {
+        "adapters": [
+          {
+            "marketplaceId": "amazon",
+            "displayName": "Amazon (all V1 regions)",
+            "adapterStatus": "CONNECTED",
+            "supportsDraft": true,
+            "supportsPublish": true,
+            "requiresKingApproval": true,
+            "formatterId": "amazon-sp-api",
+            "validatorId": "amazon-listing"
+          },
+          {
+            "marketplaceId": "amazon-us",
+            "displayName": "Amazon US",
+            "adapterStatus": "CONNECTED",
+            "supportsDraft": true,
+            "supportsPublish": true,
+            "requiresKingApproval": true,
+            "formatterId": "amazon-sp-api",
+            "validatorId": "amazon-listing"
+          },
+          {
+            "marketplaceId": "amazon-sg",
+            "displayName": "Amazon Singapore",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "amazon-sp-api",
+            "validatorId": "amazon-listing"
+          },
+          {
+            "marketplaceId": "ebay",
+            "displayName": "eBay",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "ebay-trading",
+            "validatorId": "ebay-listing"
+          },
+          {
+            "marketplaceId": "etsy",
+            "displayName": "Etsy",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "etsy-v3",
+            "validatorId": "etsy-listing"
+          },
+          {
+            "marketplaceId": "shopify",
+            "displayName": "Shopify",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "shopify-admin",
+            "validatorId": "shopify-product"
+          },
+          {
+            "marketplaceId": "woocommerce",
+            "displayName": "WooCommerce",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "woo-rest",
+            "validatorId": "woo-product"
+          },
+          {
+            "marketplaceId": "shopee",
+            "displayName": "Shopee",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "shopee-open",
+            "validatorId": "shopee-listing"
+          },
+          {
+            "marketplaceId": "lazada",
+            "displayName": "Lazada",
+            "adapterStatus": "ARCHITECTURE_READY",
+            "supportsDraft": true,
+            "supportsPublish": false,
+            "requiresKingApproval": true,
+            "formatterId": "lazada-open",
+            "validatorId": "lazada-listing"
+          }
+        ]
+      }
+    },
+    "evaluation": {
+      "productId": "cj-live-1786058999230",
+      "cost": 12,
+      "price": 29.99,
+      "estimatedMarginUsd": 17.99,
+      "recommendation": "PROCEED_CONTROLLED",
+      "cjLiveAuthHttp": 200,
+      "cjSuccess": true
+    },
+    "pillowChat": {
+      "status": 400,
+      "ms": 1880,
+      "body": {
+        "error": "Validation failed",
+        "details": {
+          "formErrors": [],
+          "fieldErrors": {
+            "sessionId": [
+              "Required"
+            ]
+          }
+        }
+      }
+    },
+    "build": {
+      "status": 201,
+      "ms": 1916,
+      "body": {
+        "package": {
+          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "workspaceId": "ws_empire_1",
+          "companyId": "co-grand-king",
+          "productId": "cj-live-1786058999230",
+          "marketplaceId": "amazon-us",
+          "title": "EmpireAI Commerce Proof Product (CJ Live)",
+          "description": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch.",
+          "bulletPoints": [
+            "Controlled EmpireAI commerce proof listing",
+            "Grand King approved first-dollar path",
+            "Single-SKU supervised publish"
+          ],
+          "specifications": {
+            "sku": "EMP-PROOF-1786059001112",
+            "productType": "PRODUCT"
+          },
+          "price": 29.99,
+          "currency": "USD",
+          "images": [
+            "https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"
+          ],
+          "status": "VALIDATED",
+          "governanceApproved": true,
+          "kingApproved": true,
+          "blockers": [],
+          "formattedPayload": {
+            "productType": "PRODUCT",
+            "attributes": {
+              "item_name": [
+                {
+                  "value": "EmpireAI Commerce Proof Product (CJ Live)"
+                }
+              ],
+              "product_description": [
+                {
+                  "value": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch."
+                }
+              ],
+              "bullet_point": [
+                {
+                  "value": "Controlled EmpireAI commerce proof listing"
+                },
+                {
+                  "value": "Grand King approved first-dollar path"
+                },
+                {
+                  "value": "Single-SKU supervised publish"
+                }
+              ],
+              "list_price": [
+                {
+                  "value": 29.99,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "images": [
+              {
+                "variant": "MAIN",
+                "url": "https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"
+              }
+            ]
+          },
+          "computedAt": "2026-08-06T23:30:15.484Z"
+        },
+        "queueItem": {
+          "queueId": "874bad5a-d741-491e-9f39-69171426148c",
+          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "marketplaceId": "amazon-us",
+          "status": "PENDING",
+          "blockers": [],
+          "queuedAt": "2026-08-06T23:30:15.485Z"
+        }
+      }
+    },
+    "execute": {
+      "status": 409,
+      "ms": 4008,
+      "body": {
+        "package": {
+          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "workspaceId": "ws_empire_1",
+          "companyId": "co-grand-king",
+          "productId": "cj-live-1786058999230",
+          "marketplaceId": "amazon-us",
+          "title": "EmpireAI Commerce Proof Product (CJ Live)",
+          "description": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch.",
+          "bulletPoints": [
+            "Controlled EmpireAI commerce proof listing",
+            "Grand King approved first-dollar path",
+            "Single-SKU supervised publish"
+          ],
+          "specifications": {
+            "sku": "EMP-PROOF-1786059001112",
+            "productType": "PRODUCT"
+          },
+          "price": 29.99,
+          "currency": "USD",
+          "images": [
+            "https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"
+          ],
+          "status": "VALIDATED",
+          "governanceApproved": true,
+          "kingApproved": true,
+          "blockers": [],
+          "formattedPayload": {
+            "productType": "PRODUCT",
+            "attributes": {
+              "item_name": [
+                {
+                  "value": "EmpireAI Commerce Proof Product (CJ Live)"
+                }
+              ],
+              "product_description": [
+                {
+                  "value": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch."
+                }
+              ],
+              "bullet_point": [
+                {
+                  "value": "Controlled EmpireAI commerce proof listing"
+                },
+                {
+                  "value": "Grand King approved first-dollar path"
+                },
+                {
+                  "value": "Single-SKU supervised publish"
+                }
+              ],
+              "list_price": [
+                {
+                  "value": 29.99,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "images": [
+              {
+                "variant": "MAIN",
+                "url": "https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"
+              }
+            ]
+          },
+          "computedAt": "2026-08-06T23:30:15.484Z"
+        },
+        "publish": {
+          "ok": false,
+          "marketplaceId": "amazon-us",
+          "registryId": "amazon-us",
+          "sellerId": null,
+          "sku": "EMP-PROOF-1786059001112",
+          "httpStatus": null,
+          "amazonStatus": null,
+          "submissionId": null,
+          "issues": [],
+          "blockers": [
+            "Could not resolve Amazon sellingPartnerId"
+          ],
+          "liveApiCalled": true,
+          "responseBody": null
+        }
+      }
+    }
+  },
+  "blockers": [
+    "Could not resolve Amazon sellingPartnerId"
+  ],
+  "verdict": "LIVE_API_CALLED_NOT_ACCEPTED",
+  "finishedAt": "2026-08-06T23:30:07.037Z",
+  "remainingToFirstOrder": "Customer discovery + purchase of the published SKU (Amazon organic/ads)",
+  "remainingToFirstDollar": "Order payout settlement after first paid order and successful fulfilment"
+}
