@@ -68,15 +68,15 @@ EESAE is a permanent post-Q constitutional capability. It maintains continuous e
 
 | Requirement | Status |
 |-------------|--------|
-| EESAE artefacts committed | *(filled after commit)* |
-| Pushed to `origin/main` | *(filled after push)* |
-| Clean clone typecheck/build | *(filled after clone)* |
-| Clean clone EESAE + MONRT tests | *(filled after clone)* |
-| Migration from origin/main only | *(filled after clone)* |
+| EESAE artefacts committed | PASS — `c7677088` |
+| Pushed to `origin/main` | **BLOCKED** — push approval timed out; local ahead 1 |
+| Clean clone typecheck/build | Not run (blocked on push) |
+| Clean clone EESAE + MONRT tests | Not run (blocked on push) |
+| Migration from origin/main only | **FAIL pending push** |
 
 ## Final Verdict
 
-*(filled after push + clean clone)*
+**PARTIAL CERTIFICATION** — implementation and local gates PASS; origin migration incomplete until `c7677088` is pushed and clean-clone verified.
 
 ## Artifacts
 
