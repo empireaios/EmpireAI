@@ -1,0 +1,1841 @@
+{
+  "generatedAt": "2026-08-06T16:43:09.992580+00:00",
+  "totals": {
+    "COMPLETED": 227
+  },
+  "duplicateIdsSkipped": 0,
+  "totalMissions": 227,
+  "kSeries": "INTENTIONALLY_SKIPPED_BY_APPROVED_DECISION",
+  "emptyShellFindings": [
+    {
+      "path": "empireai-web/components/cockpit/widgets/commerce/commerceMarketingDemoData.ts",
+      "severity": "MEDIUM",
+      "reason": "Commerce marketing panel imports demo data module \u2014 display may be non-operational",
+      "classification_impact": "Does not demote Q3 mission packs; marks Commerce Marketing UI as display-limited"
+    },
+    {
+      "path": "backend/src/runtime/marketplace-publishing/models/marketplace-adapter.ts",
+      "severity": "HIGH",
+      "reason": "supportsPublish defaults false until LIVE_COMMERCE_INTEGRATION_MODE=production + Amazon credentials",
+      "classification_impact": "Amazon live publish READY_AFTER_GRAND_KING_ACTION / credential+flag gated"
+    }
+  ],
+  "missions": [
+    {
+      "id": "PRE-G-PHASE",
+      "programme": "PRE-G",
+      "title": "PRE-G Foundation",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pre-g-foundation/PRE_G_FOUNDATION_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "G-PHASE",
+      "programme": "G",
+      "title": "G Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/g-phase/G_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "P-PHASE",
+      "programme": "P",
+      "title": "P Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/p-phase/P_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "E-PHASE",
+      "programme": "E",
+      "title": "E Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/e-phase/E_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "T-PHASE",
+      "programme": "T",
+      "title": "T Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/t-phase/T_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "R-PHASE",
+      "programme": "R",
+      "title": "R Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/r-phase/R_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "X-PHASE",
+      "programme": "X",
+      "title": "X Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/x-phase/X_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "Q-PHASE",
+      "programme": "Q",
+      "title": "Q Phase",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/q-phase/Q_PHASE_CERTIFICATION.md",
+      "notes": "Programme closer certification"
+    },
+    {
+      "id": "eesae-01-enterprise-executive-situational-awareness",
+      "programme": "EESAE",
+      "title": "EESAE-01 Enterprise Executive Situational Awareness Engine \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/eesae-01-enterprise-executive-situational-awareness/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "executive-judgement",
+      "programme": "POST-Q",
+      "title": "Pillow Live Executive Judgement Certification & Remediation",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/executive-judgement/EXECUTIVE_JUDGEMENT_CERTIFICATION_REPORT.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "executive-learning-memory",
+      "programme": "POST-Q",
+      "title": "Executive Learning Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/executive-learning-memory/EXECUTIVE_LEARNING_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "executive-startup-readiness",
+      "programme": "POST-Q",
+      "title": "Pillow Executive Startup & Readiness Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/executive-startup-readiness/EXECUTIVE_STARTUP_READINESS_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "high-availability",
+      "programme": "POST-Q",
+      "title": "Pillow High-Availability & Executive Continuity Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/high-availability/HIGH_AVAILABILITY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-01-executive-planner",
+      "programme": "Q",
+      "title": "Q0-01 Executive Planner",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-01-executive-planner/Q0_01_EXECUTIVE_PLANNER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-02-opportunity-scanner",
+      "programme": "Q",
+      "title": "Q0-02 Opportunity Scanner",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-02-opportunity-scanner/Q0_02_OPPORTUNITY_SCANNER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-03-business-state-manager",
+      "programme": "Q",
+      "title": "Q0-03 Business State Manager",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-03-business-state-manager/Q0_03_BUSINESS_STATE_MANAGER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-04-execution-memory",
+      "programme": "Q",
+      "title": "Q0-04 Execution Memory",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-04-execution-memory/Q0_04_EXECUTION_MEMORY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-05-decision-engine",
+      "programme": "Q",
+      "title": "Q0-05 Decision Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-05-decision-engine/Q0_05_DECISION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-06-approval-router",
+      "programme": "Q",
+      "title": "Q0-06 Approval Router",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-06-approval-router/Q0_06_APPROVAL_ROUTER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-07-strategic-recommendation-engine",
+      "programme": "Q",
+      "title": "Q0-07 Strategic Recommendation Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-07-strategic-recommendation-engine/Q0_07_STRATEGIC_RECOMMENDATION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-08-executive-audit-engine",
+      "programme": "Q",
+      "title": "Q0-08 Executive Audit Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-08-executive-audit-engine/Q0_08_EXECUTIVE_AUDIT_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-09-workforce-orchestrator",
+      "programme": "Q",
+      "title": "Q0-09 Pillow Workforce Orchestrator",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-09-workforce-orchestrator/Q0_09_WORKFORCE_ORCHESTRATOR_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-10-workforce-capability-registry",
+      "programme": "Q",
+      "title": "Q0-10 Workforce Capability Registry",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-10-workforce-capability-registry/Q0_10_WORKFORCE_CAPABILITY_REGISTRY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-11-workforce-access-manager",
+      "programme": "Q",
+      "title": "Q0-11 Workforce Access Manager",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-11-workforce-access-manager/Q0_11_WORKFORCE_ACCESS_MANAGER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-12-skill-tool-router",
+      "programme": "Q",
+      "title": "Q0-12 Skill & Tool Router",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-12-skill-tool-router/Q0_12_SKILL_TOOL_ROUTER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-13-collective-reasoning-engine",
+      "programme": "Q",
+      "title": "Q0-13 Collective Reasoning Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-13-collective-reasoning-engine/Q0_13_COLLECTIVE_REASONING_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-14-experience-replay-engine",
+      "programme": "Q",
+      "title": "Q0-14 Experience Replay Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-14-experience-replay-engine/Q0_14_EXPERIENCE_REPLAY_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-15-operational-playbook-engine",
+      "programme": "Q",
+      "title": "Q0-15 Operational Playbook Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-15-operational-playbook-engine/Q0_15_OPERATIONAL_PLAYBOOK_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-16-decision-memory",
+      "programme": "Q",
+      "title": "Q0-16 Decision Memory",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-16-decision-memory/Q0_16_DECISION_MEMORY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-17-adaptive-workforce-optimizer",
+      "programme": "Q",
+      "title": "Q0-17 Adaptive Workforce Optimizer",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-17-adaptive-workforce-optimizer/Q0_17_ADAPTIVE_WORKFORCE_OPTIMIZER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-18-executive-command-center",
+      "programme": "Q",
+      "title": "\ufeff# Q0-18 Pillow Executive Command Center",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-18-executive-command-center/Q0_18_EXECUTIVE_COMMAND_CENTER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-19-workforce-operating-system",
+      "programme": "Q",
+      "title": "\ufeff# Q0-19 Workforce Operating System",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-19-workforce-operating-system/Q0_19_WORKFORCE_OPERATING_SYSTEM_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-20-task-negotiation-protocol",
+      "programme": "Q",
+      "title": "\ufeff# Q0-20 Task Negotiation Protocol",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-20-task-negotiation-protocol/Q0_20_TASK_NEGOTIATION_PROTOCOL_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-21-peer-review-runtime",
+      "programme": "Q",
+      "title": "Q0-21 Peer Review Runtime",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-21-peer-review-runtime/Q0_21_PEER_REVIEW_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-22-escalation-framework",
+      "programme": "Q",
+      "title": "Q0-22 Escalation Framework",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-22-escalation-framework/Q0_22_ESCALATION_FRAMEWORK_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-23-knowledge-sharing-bus",
+      "programme": "Q",
+      "title": "Q0-23 Knowledge Sharing Bus",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-23-knowledge-sharing-bus/Q0_23_KNOWLEDGE_SHARING_BUS_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-24-inter-worker-messaging",
+      "programme": "Q",
+      "title": "Q0-24 Inter-Worker Messaging",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-24-inter-worker-messaging/Q0_24_INTER_WORKER_MESSAGING_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-25-mission-coordination-engine",
+      "programme": "Q",
+      "title": "Q0-25 Mission Coordination Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-25-mission-coordination-engine/Q0_25_MISSION_COORDINATION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-26-executive-reporting-runtime",
+      "programme": "Q",
+      "title": "Q0-26 Executive Reporting Runtime",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-26-executive-reporting-runtime/Q0_26_EXECUTIVE_REPORTING_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-27-worker-quality-standard",
+      "programme": "Q",
+      "title": "Q0-27 Worker Quality Standard",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-27-worker-quality-standard/Q0_27_WORKER_QUALITY_STANDARD_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-28-worker-self-critique-protocol",
+      "programme": "Q",
+      "title": "Q0-28 Worker Self-Critique Protocol",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-28-worker-self-critique-protocol/Q0_28_WORKER_SELF_CRITIQUE_PROTOCOL_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-29-workforce-certification-monitor",
+      "programme": "Q",
+      "title": "Q0-29 Workforce Certification Monitor",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-29-workforce-certification-monitor/Q0_29_WORKFORCE_CERTIFICATION_MONITOR_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q0-30-unified-workforce-certification",
+      "programme": "Q",
+      "title": "Q0-30 Unified Workforce Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q0-30-unified-workforce-certification/Q0_30_UNIFIED_WORKFORCE_CERTIFICATION_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-01-worker-constitution",
+      "programme": "Q",
+      "title": "Q1-01 Worker Constitution",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-01-worker-constitution/Q1_01_WORKER_CONSTITUTION_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-02-organization-charter",
+      "programme": "Q",
+      "title": "Q1-02 Organization Charter",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-02-organization-charter/Q1_02_ORGANIZATION_CHARTER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-03-role-taxonomy",
+      "programme": "Q",
+      "title": "Q1-03 Role Taxonomy",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-03-role-taxonomy/Q1_03_ROLE_TAXONOMY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-04-skill-taxonomy",
+      "programme": "Q",
+      "title": "Q1-04 Skill Taxonomy",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-04-skill-taxonomy/Q1_04_SKILL_TAXONOMY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-05-authority-matrix",
+      "programme": "Q",
+      "title": "Q1-05 Authority Matrix",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-05-authority-matrix/Q1_05_AUTHORITY_MATRIX_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-06-responsibility-matrix",
+      "programme": "Q",
+      "title": "Q1-06 Responsibility Matrix",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-06-responsibility-matrix/Q1_06_RESPONSIBILITY_MATRIX_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-07-worker-registry",
+      "programme": "Q",
+      "title": "Q1-07 Worker Registry",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-07-worker-registry/Q1_07_WORKER_REGISTRY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-08-worker-lifecycle",
+      "programme": "Q",
+      "title": "Q1-08 Worker Lifecycle",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-08-worker-lifecycle/Q1_08_WORKER_LIFECYCLE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-09-worker-assignment-engine",
+      "programme": "Q",
+      "title": "Q1-09 Worker Assignment Engine",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-09-worker-assignment-engine/Q1_09_WORKER_ASSIGNMENT_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-10-worker-monitoring",
+      "programme": "Q",
+      "title": "Q1-10 Worker Monitoring",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-10-worker-monitoring/Q1_10_WORKER_MONITORING_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-11-worker-performance-review",
+      "programme": "Q",
+      "title": "Q1-11 Worker Performance Review",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-11-worker-performance-review/Q1_11_WORKER_PERFORMANCE_REVIEW_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-12-worker-recovery-system",
+      "programme": "Q",
+      "title": "Q1-12 Worker Recovery System",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-12-worker-recovery-system/Q1_12_WORKER_RECOVERY_SYSTEM_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q1-13-workforce-factory-certification",
+      "programme": "Q",
+      "title": "Q1-13 Workforce Factory Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q1-13-workforce-factory-certification/Q1_13_WORKFORCE_FACTORY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-01-shared-runtime-core",
+      "programme": "Q",
+      "title": "Q10-01 Shared Runtime Core Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-01-shared-runtime-core/Q10_01_SHARED_RUNTIME_CORE.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-02-pillow-orchestration-runtime",
+      "programme": "Q",
+      "title": "Q10-02 Pillow Orchestration Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-02-pillow-orchestration-runtime/Q10_02_PILLOW_ORCHESTRATION_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-03-mission-runtime",
+      "programme": "Q",
+      "title": "Q10-03 Mission Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-03-mission-runtime/Q10_03_MISSION_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-04-queue-runtime",
+      "programme": "Q",
+      "title": "Q10-04 Queue Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-04-queue-runtime/Q10_04_QUEUE_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-05-memory-runtime",
+      "programme": "Q",
+      "title": "Q10-05 Memory Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-05-memory-runtime/Q10_05_MEMORY_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-06-api-runtime",
+      "programme": "Q",
+      "title": "Q10-06 API Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-06-api-runtime/Q10_06_API_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-07-tool-runtime",
+      "programme": "Q",
+      "title": "Q10-07 Tool Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-07-tool-runtime/Q10_07_TOOL_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-08-communication-runtime",
+      "programme": "Q",
+      "title": "Q10-08 Communication Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-08-communication-runtime/Q10_08_COMMUNICATION_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-09-approval-runtime",
+      "programme": "Q",
+      "title": "Q10-09 Approval Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-09-approval-runtime/Q10_09_APPROVAL_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-10-monitoring-runtime",
+      "programme": "Q",
+      "title": "Q10-10 Monitoring Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-10-monitoring-runtime/Q10_10_MONITORING_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-11-recovery-runtime",
+      "programme": "Q",
+      "title": "Q10-11 Recovery Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-11-recovery-runtime/Q10_11_RECOVERY_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-12-scheduling-runtime",
+      "programme": "Q",
+      "title": "Q10-12 Scheduling Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-12-scheduling-runtime/Q10_12_SCHEDULING_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-13-audit-runtime",
+      "programme": "Q",
+      "title": "Q10-13 Audit Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-13-audit-runtime/Q10_13_AUDIT_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q10-14-shared-runtime-certification",
+      "programme": "Q",
+      "title": "Q10-14 Shared Runtime Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q10-14-shared-runtime-certification/Q10_14_SHARED_RUNTIME_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-01-production-certification-core",
+      "programme": "Q",
+      "title": "Q11-01 Production Certification Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-01-production-certification-core/Q11_01_PRODUCTION_CERTIFICATION_CORE.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-02-worker-readiness-audit",
+      "programme": "Q",
+      "title": "Q11-02 Worker Readiness Audit",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-02-worker-readiness-audit/Q11_02_WORKER_READINESS_AUDIT.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-03-pillow-command-audit",
+      "programme": "Q",
+      "title": "Q11-03 Pillow Command Audit",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-03-pillow-command-audit/Q11_03_PILLOW_COMMAND_AUDIT.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-04-business-factory-audit",
+      "programme": "Q",
+      "title": "Q11-04 Business Factory Audit \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-04-business-factory-audit/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-05-security-audit",
+      "programme": "Q",
+      "title": "Q11-05 Security Audit \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-05-security-audit/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-06-performance-audit",
+      "programme": "Q",
+      "title": "Q11-06 Performance Audit \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-06-performance-audit/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-07-recovery-audit",
+      "programme": "Q",
+      "title": "Q11-07 Recovery Audit \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-07-recovery-audit/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-08-financial-readiness-audit",
+      "programme": "Q",
+      "title": "Q11-08 Financial Readiness Audit \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-08-financial-readiness-audit/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-09-executive-acceptance-pack",
+      "programme": "Q",
+      "title": "Q11-09 Executive Acceptance Pack \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-09-executive-acceptance-pack/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-10-grand-king-acceptance-gate",
+      "programme": "Q",
+      "title": "Q11-10 Grand King Acceptance Gate \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-10-grand-king-acceptance-gate/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-11-post-launch-monitoring",
+      "programme": "Q",
+      "title": "Q11-11 Post-Launch Monitoring \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-11-post-launch-monitoring/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-12-q-series-certification",
+      "programme": "Q",
+      "title": "Q11-12 Q Series Certification \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-12-q-series-certification/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q11-13-q-series-completion",
+      "programme": "Q",
+      "title": "Q11-13 Q Series Completion \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q11-13-q-series-completion/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q12-01-ai-innovation-factory",
+      "programme": "Q",
+      "title": "Q12-01 AI Innovation Factory \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q12-01-ai-innovation-factory/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-01-implementation-specification-engine",
+      "programme": "Q",
+      "title": "Q13-01 Implementation Specification Engine \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-01-implementation-specification-engine/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-02-repository-intelligence-engine",
+      "programme": "Q",
+      "title": "Q13-02 Repository Intelligence Engine \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-02-repository-intelligence-engine/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-03-mission-planning-engine",
+      "programme": "Q",
+      "title": "Q13-03 Mission Planning Engine \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-03-mission-planning-engine/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-04-cursor-specification-generator",
+      "programme": "Q",
+      "title": "Q13-04 Cursor Specification Generator \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-04-cursor-specification-generator/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-05-implementation-recovery-planner",
+      "programme": "Q",
+      "title": "Q13-05 Implementation Recovery Planner \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-05-implementation-recovery-planner/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q13-06-programme-certification-factory",
+      "programme": "Q",
+      "title": "Q13-06 Programme Certification Factory \u2014 Certification Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q13-06-programme-certification-factory/CERTIFICATION_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-01-empire-builder-factory-core",
+      "programme": "Q",
+      "title": "Q2-01 Empire Builder Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-01-empire-builder-factory-core/Q2_01_EMPIRE_BUILDER_FACTORY_CORE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-02-business-idea-interpreter",
+      "programme": "Q",
+      "title": "Q2-02 Business Idea Interpreter",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-02-business-idea-interpreter/Q2_02_BUSINESS_IDEA_INTERPRETER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-03-business-model-generator",
+      "programme": "Q",
+      "title": "Q2-03 Business Model Generator",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-03-business-model-generator/Q2_03_BUSINESS_MODEL_GENERATOR_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-04-market-research-worker",
+      "programme": "Q",
+      "title": "Q2-04 Market Research Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-04-market-research-worker/Q2_04_MARKET_RESEARCH_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-05-opportunity-evaluation-worker",
+      "programme": "Q",
+      "title": "Q2-05 Opportunity Evaluation Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-05-opportunity-evaluation-worker/Q2_05_OPPORTUNITY_EVALUATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-06-business-blueprint-worker",
+      "programme": "Q",
+      "title": "Q2-06 Business Blueprint Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-06-business-blueprint-worker/Q2_06_BUSINESS_BLUEPRINT_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-07-launch-plan-worker",
+      "programme": "Q",
+      "title": "Q2-07 Launch Plan Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-07-launch-plan-worker/Q2_07_LAUNCH_PLAN_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-08-business-risk-worker",
+      "programme": "Q",
+      "title": "Q2-08 Business Risk Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-08-business-risk-worker/Q2_08_BUSINESS_RISK_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-09-business-approval-pack-worker",
+      "programme": "Q",
+      "title": "Q2-09 Business Approval Pack Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-09-business-approval-pack-worker/Q2_09_BUSINESS_APPROVAL_PACK_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q2-10-empire-builder-certification",
+      "programme": "Q",
+      "title": "Q2-10 Empire Builder Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q2-10-empire-builder-certification/Q2_10_EMPIRE_BUILDER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-01-commerce-factory-core",
+      "programme": "Q",
+      "title": "Q3-01 Commerce Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-01-commerce-factory-core/Q3_01_COMMERCE_FACTORY_CORE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-02-product-discovery-worker",
+      "programme": "Q",
+      "title": "Q3-02 Product Discovery Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-02-product-discovery-worker/Q3_02_PRODUCT_DISCOVERY_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-03-product-evaluation-worker",
+      "programme": "Q",
+      "title": "\ufeff# Q3-03 Product Evaluation Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-03-product-evaluation-worker/Q3_03_PRODUCT_EVALUATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-04-supplier-discovery-worker",
+      "programme": "Q",
+      "title": "\ufeff# Q3-04 Supplier Discovery Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-04-supplier-discovery-worker/Q3_04_SUPPLIER_DISCOVERY_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-05-supplier-evaluation-worker",
+      "programme": "Q",
+      "title": "Q3-05 Supplier Evaluation Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-05-supplier-evaluation-worker/Q3_05_SUPPLIER_EVALUATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-06-supplier-negotiation-worker",
+      "programme": "Q",
+      "title": "Q3-06 Supplier Negotiation Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-06-supplier-negotiation-worker/Q3_06_SUPPLIER_NEGOTIATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-07-product-image-worker",
+      "programme": "Q",
+      "title": "Q3-07 Product Image Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-07-product-image-worker/Q3_07_PRODUCT_IMAGE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-08-product-listing-worker",
+      "programme": "Q",
+      "title": "Q3-08 Product Listing Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-08-product-listing-worker/Q3_08_PRODUCT_LISTING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-09-pricing-worker",
+      "programme": "Q",
+      "title": "Q3-09 Pricing Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-09-pricing-worker/Q3_09_PRICING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-10-inventory-worker",
+      "programme": "Q",
+      "title": "Q3-10 Inventory Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-10-inventory-worker/Q3_10_INVENTORY_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-11-order-worker",
+      "programme": "Q",
+      "title": "Q3-11 Order Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-11-order-worker/Q3_11_ORDER_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-12-refund-dispute-worker",
+      "programme": "Q",
+      "title": "Q3-12 Refund & Dispute Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-12-refund-dispute-worker/Q3_12_REFUND_DISPUTE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-13-commerce-analytics-worker",
+      "programme": "Q",
+      "title": "Q3-13 Commerce Analytics Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-13-commerce-analytics-worker/Q3_13_COMMERCE_ANALYTICS_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q3-14-commerce-certification",
+      "programme": "Q",
+      "title": "Q3-14 Commerce Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q3-14-commerce-certification/Q3_14_COMMERCE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-01-media-factory-core",
+      "programme": "Q",
+      "title": "Q4-01 Media Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-01-media-factory-core/Q4_01_MEDIA_FACTORY_CORE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-02-editor-in-chief-worker",
+      "programme": "Q",
+      "title": "Q4-02 Editor-in-Chief Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-02-editor-in-chief-worker/Q4_02_EDITOR_IN_CHIEF_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-03-trend-research-worker",
+      "programme": "Q",
+      "title": "Q4-03 Trend Research Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-03-trend-research-worker/Q4_03_TREND_RESEARCH_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-04-topic-planner-worker",
+      "programme": "Q",
+      "title": "Q4-04 Topic Planner Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-04-topic-planner-worker/Q4_04_TOPIC_PLANNER_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-05-script-worker",
+      "programme": "Q",
+      "title": "Q4-05 Script Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-05-script-worker/Q4_05_SCRIPT_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-06-hook-worker",
+      "programme": "Q",
+      "title": "Q4-06 Hook Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-06-hook-worker/Q4_06_HOOK_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-07-thumbnail-worker",
+      "programme": "Q",
+      "title": "Q4-07 Thumbnail Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-07-thumbnail-worker/Q4_07_THUMBNAIL_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-08-visual-research-worker",
+      "programme": "Q",
+      "title": "Q4-08 Visual Research Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-08-visual-research-worker/Q4_08_VISUAL_RESEARCH_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-09-image-creative-worker",
+      "programme": "Q",
+      "title": "Q4-09 Image & Creative Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-09-image-creative-worker/Q4_09_IMAGE_CREATIVE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-10-voice-worker",
+      "programme": "Q",
+      "title": "Q4-10 Voice Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-10-voice-worker/Q4_10_VOICE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-11-video-assembly-worker",
+      "programme": "Q",
+      "title": "Q4-11 Video Assembly Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-11-video-assembly-worker/Q4_11_VIDEO_ASSEMBLY_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-12-subtitle-worker",
+      "programme": "Q",
+      "title": "Q4-12 Subtitle Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-12-subtitle-worker/Q4_12_SUBTITLE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-13-music-sound-worker",
+      "programme": "Q",
+      "title": "Q4-13 Music & Sound Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-13-music-sound-worker/Q4_13_MUSIC_SOUND_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-14-publishing-worker",
+      "programme": "Q",
+      "title": "Q4-14 Publishing Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-14-publishing-worker/Q4_14_PUBLISHING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-15-media-analytics-worker",
+      "programme": "Q",
+      "title": "Q4-15 Media Analytics Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-15-media-analytics-worker/Q4_15_MEDIA_ANALYTICS_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-16-media-learning-worker",
+      "programme": "Q",
+      "title": "Q4-16 Media Learning Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-16-media-learning-worker/Q4_16_MEDIA_LEARNING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-17-channel-recommendation-worker",
+      "programme": "Q",
+      "title": "Q4-17 Channel Recommendation Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-17-channel-recommendation-worker/Q4_17_CHANNEL_RECOMMENDATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-18-media-executive-review-worker",
+      "programme": "Q",
+      "title": "Q4-18 Media Executive Review Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-18-media-executive-review-worker/Q4_18_MEDIA_EXECUTIVE_REVIEW_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q4-19-media-certification",
+      "programme": "Q",
+      "title": "Q4-19 Media Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q4-19-media-certification/Q4_19_MEDIA_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-01-digital-products-factory-core",
+      "programme": "Q",
+      "title": "Q5-01 Digital Products Factory Core Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-01-digital-products-factory-core/Q5_01_DIGITAL_PRODUCTS_FACTORY_CORE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-02-digital-product-research-worker",
+      "programme": "Q",
+      "title": "Q5-02 Digital Product Research Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-02-digital-product-research-worker/Q5_02_DIGITAL_PRODUCT_RESEARCH_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-03-ebook-worker",
+      "programme": "Q",
+      "title": "Q5-03 Ebook Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-03-ebook-worker/Q5_03_EBOOK_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-04-prompt-product-worker",
+      "programme": "Q",
+      "title": "Q5-04 Prompt Product Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-04-prompt-product-worker/Q5_04_PROMPT_PRODUCT_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-05-course-builder-worker",
+      "programme": "Q",
+      "title": "Q5-05 Course Builder Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-05-course-builder-worker/Q5_05_COURSE_BUILDER_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-06-template-builder-worker",
+      "programme": "Q",
+      "title": "Q5-06 Template Builder Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-06-template-builder-worker/Q5_06_TEMPLATE_BUILDER_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-07-design-worker",
+      "programme": "Q",
+      "title": "Q5-07 Design Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-07-design-worker/Q5_07_DESIGN_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-08-sales-page-worker",
+      "programme": "Q",
+      "title": "Q5-08 Sales Page Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-08-sales-page-worker/Q5_08_SALES_PAGE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-09-checkout-worker",
+      "programme": "Q",
+      "title": "Q5-09 Checkout Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-09-checkout-worker/Q5_09_CHECKOUT_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-10-digital-delivery-worker",
+      "programme": "Q",
+      "title": "Q5-10 Digital Delivery Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-10-digital-delivery-worker/Q5_10_DIGITAL_DELIVERY_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-11-digital-product-analytics-worker",
+      "programme": "Q",
+      "title": "Q5-11 Digital Product Analytics Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-11-digital-product-analytics-worker/Q5_11_DIGITAL_PRODUCT_ANALYTICS_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q5-12-digital-products-certification",
+      "programme": "Q",
+      "title": "Q5-12 Digital Products Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q5-12-digital-products-certification/Q5_12_DIGITAL_PRODUCTS_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-01-enterprise-platform-factory-core",
+      "programme": "Q",
+      "title": "Q6-01 Enterprise Platform Factory Core Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-01-enterprise-platform-factory-core/Q6_01_ENTERPRISE_PLATFORM_FACTORY_CORE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-02-requirements-worker",
+      "programme": "Q",
+      "title": "Q6-02 Requirements Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-02-requirements-worker/Q6_02_REQUIREMENTS_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-03-architecture-worker",
+      "programme": "Q",
+      "title": "Q6-03 Architecture Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-03-architecture-worker/Q6_03_ARCHITECTURE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-04-frontend-worker",
+      "programme": "Q",
+      "title": "Q6-04 Frontend Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-04-frontend-worker/Q6_04_FRONTEND_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-05-backend-worker",
+      "programme": "Q",
+      "title": "Q6-05 Backend Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-05-backend-worker/Q6_05_BACKEND_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-06-database-worker",
+      "programme": "Q",
+      "title": "Q6-06 Database Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-06-database-worker/Q6_06_DATABASE_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-07-authentication-worker",
+      "programme": "Q",
+      "title": "Q6-07 Authentication Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-07-authentication-worker/Q6_07_AUTHENTICATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-08-authorization-worker",
+      "programme": "Q",
+      "title": "Q6-08 Authorization Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-08-authorization-worker/Q6_08_AUTHORIZATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-09-billing-worker",
+      "programme": "Q",
+      "title": "Q6-09 Billing Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-09-billing-worker/Q6_09_BILLING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-10-api-integration-worker",
+      "programme": "Q",
+      "title": "Q6-10 API Integration Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-10-api-integration-worker/Q6_10_API_INTEGRATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-11-workflow-builder-worker",
+      "programme": "Q",
+      "title": "Q6-11 Workflow Builder Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-11-workflow-builder-worker/Q6_11_WORKFLOW_BUILDER_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-12-notification-worker",
+      "programme": "Q",
+      "title": "Q6-12 Notification Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-12-notification-worker/Q6_12_NOTIFICATION_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-13-testing-worker",
+      "programme": "Q",
+      "title": "Q6-13 Testing Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-13-testing-worker/Q6_13_TESTING_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-14-deployment-worker",
+      "programme": "Q",
+      "title": "Q6-14 Deployment Worker Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-14-deployment-worker/Q6_14_DEPLOYMENT_WORKER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q6-15-platform-certification",
+      "programme": "Q",
+      "title": "Q6-15 Platform Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q6-15-platform-certification/Q6_15_PLATFORM_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-01-local-business-factory-core",
+      "programme": "Q",
+      "title": "Q7-01 Local Business Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-01-local-business-factory-core/Q7_01_LOCAL_BUSINESS_FACTORY_CORE.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-02-local-market-research-worker",
+      "programme": "Q",
+      "title": "Q7-02 Local Market Research Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-02-local-market-research-worker/Q7_02_LOCAL_MARKET_RESEARCH_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-03-service-offer-worker",
+      "programme": "Q",
+      "title": "Q7-03 Service Offer Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-03-service-offer-worker/Q7_03_SERVICE_OFFER_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-04-booking-worker",
+      "programme": "Q",
+      "title": "Q7-04 Booking Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-04-booking-worker/Q7_04_BOOKING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-05-crm-worker",
+      "programme": "Q",
+      "title": "Q7-05 CRM Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-05-crm-worker/Q7_05_CRM_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-06-whatsapp-worker",
+      "programme": "Q",
+      "title": "Q7-06 WhatsApp Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-06-whatsapp-worker/Q7_06_WHATSAPP_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-07-local-seo-worker",
+      "programme": "Q",
+      "title": "Q7-07 Local SEO Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-07-local-seo-worker/Q7_07_LOCAL_SEO_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-08-lead-generation-worker",
+      "programme": "Q",
+      "title": "Q7-08 Lead Generation Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-08-lead-generation-worker/Q7_08_LEAD_GENERATION_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-09-operations-worker",
+      "programme": "Q",
+      "title": "Q7-09 Operations Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-09-operations-worker/Q7_09_OPERATIONS_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-10-local-business-launch-pack",
+      "programme": "Q",
+      "title": "Q7-10 Local Business Launch Pack",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-10-local-business-launch-pack/Q7_10_LOCAL_BUSINESS_LAUNCH_PACK.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q7-11-local-business-certification",
+      "programme": "Q",
+      "title": "Q7-11 Local Business Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q7-11-local-business-certification/Q7_11_LOCAL_BUSINESS_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-01-affiliate-factory-core",
+      "programme": "Q",
+      "title": "Q8-01 Affiliate Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-01-affiliate-factory-core/Q8_01_AFFILIATE_FACTORY_CORE.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-02-affiliate-opportunity-worker",
+      "programme": "Q",
+      "title": "Q8-02 Affiliate Opportunity Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-02-affiliate-opportunity-worker/Q8_02_AFFILIATE_OPPORTUNITY_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-03-comparison-site-worker",
+      "programme": "Q",
+      "title": "Q8-03 Comparison Site Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-03-comparison-site-worker/Q8_03_COMPARISON_SITE_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-04-review-content-worker",
+      "programme": "Q",
+      "title": "Q8-04 Review Content Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-04-review-content-worker/Q8_04_REVIEW_CONTENT_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-05-seo-content-worker",
+      "programme": "Q",
+      "title": "Q8-05 SEO Content Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-05-seo-content-worker/Q8_05_SEO_CONTENT_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-06-email-funnel-worker",
+      "programme": "Q",
+      "title": "Q8-06 Email Funnel Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-06-email-funnel-worker/Q8_06_EMAIL_FUNNEL_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-07-analytics-worker",
+      "programme": "Q",
+      "title": "Q8-07 Analytics Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-07-analytics-worker/Q8_07_ANALYTICS_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-08-affiliate-compliance-worker",
+      "programme": "Q",
+      "title": "Q8-08 Affiliate Compliance Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-08-affiliate-compliance-worker/Q8_08_AFFILIATE_COMPLIANCE_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q8-09-affiliate-certification",
+      "programme": "Q",
+      "title": "Q8-09 Affiliate Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q8-09-affiliate-certification/Q8_09_AFFILIATE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-01-capital-factory-core",
+      "programme": "Q",
+      "title": "Q9-01 \u2014 Capital Factory Core",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-01-capital-factory-core/Q9_01_CAPITAL_FACTORY_CORE.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-02-accounting-worker",
+      "programme": "Q",
+      "title": "Q9-02 \u2014 Accounting Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-02-accounting-worker/Q9_02_ACCOUNTING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-03-cashflow-worker",
+      "programme": "Q",
+      "title": "Q9-03 \u2014 Cashflow Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-03-cashflow-worker/Q9_03_CASHFLOW_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-04-budget-planning-worker",
+      "programme": "Q",
+      "title": "Q9-04 \u2014 Budget Planning Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-04-budget-planning-worker/Q9_04_BUDGET_PLANNING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-05-profitability-worker",
+      "programme": "Q",
+      "title": "Q9-05 \u2014 Profitability Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-05-profitability-worker/Q9_05_PROFITABILITY_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-06-forecasting-worker",
+      "programme": "Q",
+      "title": "Q9-06 \u2014 Forecasting Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-06-forecasting-worker/Q9_06_FORECASTING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-07-tax-support-worker",
+      "programme": "Q",
+      "title": "Q9-07 \u2014 Tax Support Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-07-tax-support-worker/Q9_07_TAX_SUPPORT_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-08-investment-planning-worker",
+      "programme": "Q",
+      "title": "Q9-08 \u2014 Investment Planning Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-08-investment-planning-worker/Q9_08_INVESTMENT_PLANNING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-09-financial-reporting-worker",
+      "programme": "Q",
+      "title": "Q9-09 \u2014 Financial Reporting Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-09-financial-reporting-worker/Q9_09_FINANCIAL_REPORTING_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-10-capital-risk-worker",
+      "programme": "Q",
+      "title": "Q9-10 \u2014 Capital Risk Worker",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-10-capital-risk-worker/Q9_10_CAPITAL_RISK_WORKER.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "q9-11-capital-factory-certification",
+      "programme": "Q",
+      "title": "Q9-11 Capital Factory Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/q9-11-capital-factory-certification/Q9_11_CAPITAL_FACTORY_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-09-global-market-intelligence",
+      "programme": "X",
+      "title": "X4-09 \u2014 Global Market Intelligence Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-09-global-market-intelligence/X4_09_GLOBAL_MARKET_INTELLIGENCE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-10-executive-global-dashboard",
+      "programme": "X",
+      "title": "X4-10 \u2014 Executive Global Dashboard Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-10-executive-global-dashboard/X4_10_EXECUTIVE_GLOBAL_DASHBOARD_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-11-global-brand-management",
+      "programme": "X",
+      "title": "X4-11 \u2014 Global Brand Management Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-11-global-brand-management/X4_11_GLOBAL_BRAND_MANAGEMENT_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-12-international-partnership-engine",
+      "programme": "X",
+      "title": "X4-12 \u2014 International Partnership Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-12-international-partnership-engine/X4_12_INTERNATIONAL_PARTNERSHIP_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-13-global-talent-intelligence",
+      "programme": "X",
+      "title": "X4-13 \u2014 Global Talent Intelligence Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-13-global-talent-intelligence/X4_13_GLOBAL_TALENT_INTELLIGENCE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-14-regional-growth-optimizer",
+      "programme": "X",
+      "title": "X4-14 \u2014 Regional Growth Optimizer Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-14-regional-growth-optimizer/X4_14_REGIONAL_GROWTH_OPTIMIZER_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-15-global-risk-intelligence",
+      "programme": "X",
+      "title": "X4-15 \u2014 Global Risk Intelligence Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-15-global-risk-intelligence/X4_15_GLOBAL_RISK_INTELLIGENCE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-16-cross-region-learning-engine",
+      "programme": "X",
+      "title": "X4-16 \u2014 Cross-Region Learning Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-16-cross-region-learning-engine/X4_16_CROSS_REGION_LEARNING_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-17-global-expansion-simulator",
+      "programme": "X",
+      "title": "X4-17 \u2014 Global Expansion Simulator Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-17-global-expansion-simulator/X4_17_GLOBAL_EXPANSION_SIMULATOR_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-18-international-executive-cockpit",
+      "programme": "X",
+      "title": "X4-18 \u2014 International Executive Cockpit Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-18-international-executive-cockpit/X4_18_INTERNATIONAL_EXECUTIVE_COCKPIT_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x4-19-global-operations-certified",
+      "programme": "X",
+      "title": "X4-19 \u2014 Global Operations Certified Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x4-19-global-operations-certified/X4_19_GLOBAL_OPERATIONS_CERTIFIED_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-01-empire-intelligence-framework",
+      "programme": "X",
+      "title": "X5-01 \u2014 Empire Intelligence Framework Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-01-empire-intelligence-framework/X5_01_EMPIRE_INTELLIGENCE_FRAMEWORK_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-02-empire-knowledge-engine",
+      "programme": "X",
+      "title": "X5-02 \u2014 Empire Knowledge Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-02-empire-knowledge-engine/X5_02_EMPIRE_KNOWLEDGE_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-03-empire-memory-engine",
+      "programme": "X",
+      "title": "X5-03 \u2014 Empire Memory Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-03-empire-memory-engine/X5_03_EMPIRE_MEMORY_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-04-empire-optimization-engine",
+      "programme": "X",
+      "title": "X5-04 \u2014 Empire Optimization Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-04-empire-optimization-engine/X5_04_EMPIRE_OPTIMIZATION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-05-empire-capital-allocation",
+      "programme": "X",
+      "title": "X5-05 \u2014 Empire Capital Allocation Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-05-empire-capital-allocation/X5_05_EMPIRE_CAPITAL_ALLOCATION_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-06-empire-opportunity-engine",
+      "programme": "X",
+      "title": "X5-06 \u2014 Empire Opportunity Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-06-empire-opportunity-engine/X5_06_EMPIRE_OPPORTUNITY_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-07-empire-innovation-engine",
+      "programme": "X",
+      "title": "X5-07 \u2014 Empire Innovation Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-07-empire-innovation-engine/X5_07_EMPIRE_INNOVATION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-08-empire-resilience-engine",
+      "programme": "X",
+      "title": "X5-08 \u2014 Empire Resilience Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-08-empire-resilience-engine/X5_08_EMPIRE_RESILIENCE_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-09-empire-self-improvement-engine",
+      "programme": "X",
+      "title": "X5-09 \u2014 Empire Self-Improvement Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-09-empire-self-improvement-engine/X5_09_EMPIRE_SELF_IMPROVEMENT_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-10-executive-empire-dashboard",
+      "programme": "X",
+      "title": "X5-10 Executive Empire Dashboard Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-10-executive-empire-dashboard/X5_10_EXECUTIVE_EMPIRE_DASHBOARD_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-11-cross-empire-governance-engine",
+      "programme": "X",
+      "title": "X5-11 Cross-Empire Governance Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-11-cross-empire-governance-engine/X5_11_CROSS_EMPIRE_GOVERNANCE_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-12-autonomous-investment-engine",
+      "programme": "X",
+      "title": "X5-12 Autonomous Investment Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-12-autonomous-investment-engine/X5_12_AUTONOMOUS_INVESTMENT_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-13-enterprise-succession-engine",
+      "programme": "X",
+      "title": "X5-13 Enterprise Succession Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-13-enterprise-succession-engine/X5_13_ENTERPRISE_SUCCESSION_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-14-empire-legacy-engine",
+      "programme": "X",
+      "title": "X5-14 Empire Legacy Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-14-empire-legacy-engine/X5_14_EMPIRE_LEGACY_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-15-grand-king-advisory-engine",
+      "programme": "X",
+      "title": "X5-15 Grand King Advisory Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-15-grand-king-advisory-engine/X5_15_GRAND_KING_ADVISORY_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-16-civilization-knowledge-engine",
+      "programme": "X",
+      "title": "X5-16 Civilization Knowledge Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-16-civilization-knowledge-engine/X5_16_CIVILIZATION_KNOWLEDGE_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-17-autonomous-empire-evolution",
+      "programme": "X",
+      "title": "X5-17 Autonomous Empire Evolution Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-17-autonomous-empire-evolution/X5_17_AUTONOMOUS_EMPIRE_EVOLUTION_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-18-empire-performance-guardian",
+      "programme": "X",
+      "title": "X5-18 Empire Performance Guardian Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-18-empire-performance-guardian/X5_18_EMPIRE_PERFORMANCE_GUARDIAN_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-19-infinite-growth-engine",
+      "programme": "X",
+      "title": "X5-19 Infinite Growth Engine Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-19-infinite-growth-engine/X5_19_INFINITE_GROWTH_ENGINE_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "x5-20-empire-certified",
+      "programme": "X",
+      "title": "X5-20 Empire Certified Certification",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow/x5-20-empire-certified/X5_20_EMPIRE_CERTIFIED_CERTIFICATION.md",
+      "notes": "Mission audit pack present; external live activation assessed separately."
+    },
+    {
+      "id": "digital-soul",
+      "programme": "DSV2",
+      "title": "Digital Soul V2",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/digital-soul/DS_BEHAVIOUR_V1_REMEDIATION_RECERT_REPORT.md",
+      "notes": "Post-programme / cross-cutting capability"
+    },
+    {
+      "id": "pillow-shell",
+      "programme": "UX-SHELL",
+      "title": "Pillow UX Operating Shell",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/pillow-shell/OPERATING_SHELL_FINAL_UX_POLISH_REPORT.md",
+      "notes": "Post-programme / cross-cutting capability"
+    },
+    {
+      "id": "enterprise-restoration",
+      "programme": "RESTORATION",
+      "title": "Enterprise Restoration",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/enterprise-restoration/ENTERPRISE_RESTORATION_AND_PERFORMANCE_CERTIFICATION.md",
+      "notes": "Post-programme / cross-cutting capability"
+    },
+    {
+      "id": "auth",
+      "programme": "AUTH",
+      "title": "Grand King Auth / Login Recovery",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/auth/GRAND_KING_LOGIN_REGRESSION_COMPLETION.md",
+      "notes": "Post-programme / cross-cutting capability"
+    },
+    {
+      "id": "mission-queue",
+      "programme": "X",
+      "title": "Mission Queue Continuity",
+      "classification": "COMPLETED",
+      "evidencePath": "docs/audits/mission-queue/X4_12_VERIFICATION.md",
+      "notes": "Post-programme / cross-cutting capability"
+    }
+  ]
+}

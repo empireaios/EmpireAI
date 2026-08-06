@@ -1,0 +1,13 @@
+﻿{
+    "recordedAtUtc":  "2026-08-06T15:47:23.4281929Z",
+    "branch":  "main",
+    "localHead":  "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "originMain":  "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "aheadBehind":  "0\t0",
+    "statusShort":  "## main...origin/main",
+    "prodLive":  "FAIL The remote server returned an error: (502) Bad Gateway.",
+    "cockpit":  "HTTP 200",
+    "railwayCommit":  "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "railwayDeployId":  "b51dbc7a-d222-4e3a-807a-59b29128a02d",
+    "railwayStatus":  "SUCCESS"
+}

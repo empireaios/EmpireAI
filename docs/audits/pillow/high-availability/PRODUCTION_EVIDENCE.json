@@ -1,0 +1,1699 @@
+{
+  "startedAt": "2026-07-25T01:30:52.405Z",
+  "cockpit": "https://empire-ai.co",
+  "brain": "https://empireai-production.up.railway.app",
+  "phases": {
+    "healthBaseline": {
+      "live": {
+        "status": 200,
+        "ms": 482,
+        "body": {
+          "status": "ok",
+          "brain": "online",
+          "eventLoopLagMs": 0,
+          "sqlite": {
+            "pending": false,
+            "flushCount": 2,
+            "lastFlushMs": 1784942935351,
+            "lastFlushDurationMs": 4
+          }
+        }
+      },
+      "continuity": {
+        "status": 200,
+        "ms": 325,
+        "body": {
+          "status": "ok",
+          "brain": "online",
+          "continuity": {
+            "watchdogEnabled": true,
+            "watchdogRunning": true,
+            "lastHeartbeatAgeMs": null,
+            "eventLoopLagMs": 0.8009339999989606,
+            "sqlite": {
+              "pending": false,
+              "flushCount": 2,
+              "lastFlushMs": 1784942935351,
+              "lastFlushDurationMs": 4
+            },
+            "alerts": [],
+            "healthy": true
+          },
+          "eventLoopLagMs": 0.8009339999989606,
+          "sqlite": {
+            "pending": false,
+            "flushCount": 2,
+            "lastFlushMs": 1784942935351,
+            "lastFlushDurationMs": 4
+          }
+        }
+      },
+      "full": {
+        "status": 200,
+        "ms": 2728,
+        "snippet": {
+          "status": "ok",
+          "brain": "online",
+          "redisMode": "connected",
+          "observability": {
+            "totalRequests": 47,
+            "errorRequests": 0,
+            "errorRate": 0,
+            "avgLatencyMs": 1974,
+            "recent": [
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 8728,
+                "at": "2026-07-25T01:27:53.601Z"
+              },
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 8463,
+                "at": "2026-07-25T01:28:02.509Z"
+              },
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 8891,
+                "at": "2026-07-25T01:28:11.767Z"
+              },
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 5340,
+                "at": "2026-07-25T01:28:17.489Z"
+              },
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 939,
+                "at": "2026-07-25T01:28:18.827Z"
+              },
+              {
+                "path": "/api/pillow/session",
+                "method": "POST",
+                "statusCode": 201,
+                "durationMs": 177,
+                "at": "2026-07-25T01:28:19.404Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:22.661Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:22.975Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:24.762Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:26.559Z"
+              },
+              {
+                "path": "/api/pillow/chat",
+                "method": "POST",
+                "statusCode": 200,
+                "durationMs": 6946,
+                "at": "2026-07-25T01:28:26.783Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:28.524Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:30.346Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 1,
+                "at": "2026-07-25T01:28:32.140Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:33.938Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 0,
+                "at": "2026-07-25T01:28:35.710Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 1,
+                "at": "2026-07-25T01:30:04.655Z"
+              },
+              {
+                "path": "/health/executive-continuity",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 1,
+                "at": "2026-07-25T01:30:05.294Z"
+              },
+              {
+                "path": "/health/live",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 1,
+                "at": "2026-07-25T01:30:51.730Z"
+              },
+              {
+                "path": "/health/executive-continuity",
+                "method": "GET",
+                "statusCode": 200,
+                "durationMs": 1,
+                "at": "2026-07-25T01:30:52.115Z"
+              }
+            ]
+          },
+          "guardian": {
+            "overall": "degraded",
+            "summary": "Guardian overall=degraded; failed=0; degraded=1; total=13",
+            "openRisks": 0
+          },
+          "llmProviders": [
+            "openai"
+          ],
+          "queue": {
+            "waiting": 0,
+            "active": 0,
+            "completed": 51,
+            "failed": 0,
+            "delayed": 3
+          }
+        }
+      }
+    },
+    "loginReliability": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "ok": true,
+          "ms": 1478,
+          "meStatus": 200,
+          "identity": "grand-king"
+        },
+        {
+          "attempt": 2,
+          "ok": true,
+          "ms": 1707,
+          "meStatus": 200,
+          "identity": "grand-king"
+        },
+        {
+          "attempt": 3,
+          "ok": true,
+          "ms": 1372,
+          "meStatus": 200,
+          "identity": "grand-king"
+        },
+        {
+          "attempt": 4,
+          "ok": true,
+          "ms": 1342,
+          "meStatus": 200,
+          "identity": "grand-king"
+        },
+        {
+          "attempt": 5,
+          "ok": true,
+          "ms": 1308,
+          "meStatus": 200,
+          "identity": "grand-king"
+        }
+      ],
+      "successRate": 1
+    },
+    "executiveHome": {
+      "rounds": 20,
+      "successes": 20,
+      "latency": {
+        "count": 20,
+        "min": 885,
+        "p50": 904,
+        "p95": 1130,
+        "max": 2337
+      },
+      "samples": [
+        {
+          "i": 0,
+          "status": 200,
+          "ms": 2337,
+          "ok": true,
+          "healthLive": {
+            "status": 200,
+            "ms": 380,
+            "lag": 0.7386449999758042
+          }
+        },
+        {
+          "i": 1,
+          "status": 200,
+          "ms": 901,
+          "ok": true
+        },
+        {
+          "i": 2,
+          "status": 200,
+          "ms": 911,
+          "ok": true
+        },
+        {
+          "i": 3,
+          "status": 200,
+          "ms": 1130,
+          "ok": true
+        },
+        {
+          "i": 4,
+          "status": 200,
+          "ms": 890,
+          "ok": true
+        },
+        {
+          "i": 5,
+          "status": 200,
+          "ms": 951,
+          "ok": true,
+          "healthLive": {
+            "status": 200,
+            "ms": 340,
+            "lag": 0.4199370000278577
+          }
+        },
+        {
+          "i": 6,
+          "status": 200,
+          "ms": 889,
+          "ok": true
+        },
+        {
+          "i": 7,
+          "status": 200,
+          "ms": 918,
+          "ok": true
+        },
+        {
+          "i": 8,
+          "status": 200,
+          "ms": 904,
+          "ok": true
+        },
+        {
+          "i": 9,
+          "status": 200,
+          "ms": 915,
+          "ok": true
+        },
+        {
+          "i": 10,
+          "status": 200,
+          "ms": 903,
+          "ok": true,
+          "healthLive": {
+            "status": 200,
+            "ms": 337,
+            "lag": 0.5632060000207275
+          }
+        },
+        {
+          "i": 11,
+          "status": 200,
+          "ms": 901,
+          "ok": true
+        },
+        {
+          "i": 12,
+          "status": 200,
+          "ms": 912,
+          "ok": true
+        },
+        {
+          "i": 13,
+          "status": 200,
+          "ms": 902,
+          "ok": true
+        },
+        {
+          "i": 14,
+          "status": 200,
+          "ms": 979,
+          "ok": true
+        },
+        {
+          "i": 15,
+          "status": 200,
+          "ms": 894,
+          "ok": true,
+          "healthLive": {
+            "status": 200,
+            "ms": 335,
+            "lag": 0
+          }
+        },
+        {
+          "i": 16,
+          "status": 200,
+          "ms": 885,
+          "ok": true
+        },
+        {
+          "i": 17,
+          "status": 200,
+          "ms": 917,
+          "ok": true
+        },
+        {
+          "i": 18,
+          "status": 200,
+          "ms": 917,
+          "ok": true
+        },
+        {
+          "i": 19,
+          "status": 200,
+          "ms": 894,
+          "ok": true
+        }
+      ]
+    },
+    "sustainedChat": {
+      "rounds": 40,
+      "successes": 40,
+      "latency": {
+        "count": 40,
+        "min": 1734,
+        "p50": 3324,
+        "p95": 7125,
+        "max": 10261
+      },
+      "continuityFailureCount": 0,
+      "continuityFailures": [],
+      "samples": [
+        {
+          "i": 0,
+          "ms": 2080,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 1,
+          "ms": 3312,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 2,
+          "ms": 2699,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 3,
+          "ms": 1884,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 4,
+          "ms": 2279,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 5,
+          "ms": 2622,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 6,
+          "ms": 3892,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 7,
+          "ms": 3590,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 8,
+          "ms": 1899,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 9,
+          "ms": 2294,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 10,
+          "ms": 2674,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 11,
+          "ms": 3621,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 12,
+          "ms": 3384,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 13,
+          "ms": 3431,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 14,
+          "ms": 2396,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 15,
+          "ms": 2415,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 16,
+          "ms": 3307,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 17,
+          "ms": 3298,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 18,
+          "ms": 1818,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 19,
+          "ms": 2312,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 20,
+          "ms": 1955,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 21,
+          "ms": 3212,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 22,
+          "ms": 10261,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 23,
+          "ms": 2757,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 24,
+          "ms": 7579,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 25,
+          "ms": 5660,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 26,
+          "ms": 5765,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 27,
+          "ms": 6886,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 28,
+          "ms": 4533,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 29,
+          "ms": 6535,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 30,
+          "ms": 4474,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 31,
+          "ms": 5654,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 32,
+          "ms": 6039,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 33,
+          "ms": 4061,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 34,
+          "ms": 7125,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 35,
+          "ms": 5036,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 36,
+          "ms": 6667,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 37,
+          "ms": 6034,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 38,
+          "ms": 1734,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        },
+        {
+          "i": 39,
+          "ms": 3324,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true,
+          "stance": "agree",
+          "failures": [],
+          "rawKeys": [
+            "requestId",
+            "sessionId",
+            "workspaceId",
+            "message",
+            "kind",
+            "provider",
+            "model",
+            "mode",
+            "tokens",
+            "latencyMs",
+            "trace",
+            "command",
+            "artifacts",
+            "intelligenceRouting",
+            "executiveDeliberation"
+          ]
+        }
+      ]
+    },
+    "idleThenBurst": {
+      "burstSize": 8,
+      "successes": 8,
+      "latency": {
+        "count": 8,
+        "min": 2558,
+        "p50": 3308,
+        "p95": 10707,
+        "max": 10707
+      },
+      "samples": [
+        {
+          "i": 1,
+          "failures": [],
+          "ms": 2558,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        },
+        {
+          "i": 6,
+          "failures": [],
+          "ms": 2682,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        },
+        {
+          "i": 3,
+          "failures": [],
+          "ms": 2786,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        },
+        {
+          "i": 2,
+          "failures": [],
+          "ms": 3308,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        },
+        {
+          "i": 4,
+          "failures": [],
+          "ms": 3532,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        },
+        {
+          "i": 5,
+          "failures": [],
+          "ms": 9020,
+          "status": 200,
+          "kind": "constitutional_refusal",
+          "hasDeliberation": true
+        },
+        {
+          "i": 7,
+          "failures": [],
+          "ms": 9719,
+          "status": 200,
+          "kind": "constitutional_refusal",
+          "hasDeliberation": true
+        },
+        {
+          "i": 0,
+          "failures": [],
+          "ms": 10707,
+          "status": 200,
+          "kind": "llm",
+          "hasDeliberation": true
+        }
+      ]
+    },
+    "longHorizon": {
+      "turns": [
+        {
+          "message": "We need a staged Amazon listing plan that validates refund risk before scale.",
+          "ms": 12476,
+          "kind": "llm",
+          "stance": "agree",
+          "hasDeliberation": true,
+          "failures": [],
+          "answerExcerpt": "To implement a staged Amazon listing plan that validates refund risk before scaling, I recommend the following approach:\n\n1. **Initial Listing Phase**: Launch a limited number of products on Amazon to gather performance data. Focus on a div"
+        },
+        {
+          "message": "Why that approach?",
+          "ms": 9192,
+          "kind": "constitutional_refusal",
+          "stance": "agree",
+          "hasDeliberation": true,
+          "failures": [],
+          "answerExcerpt": "Constitutional gate: Pillow could not complete a Digital Soul–gated executive response. No ungated fallback answer is permitted. Please retry when the executive pipeline is healthy."
+        },
+        {
+          "message": "What is the next action on the plan we discussed?",
+          "ms": 7251,
+          "kind": "llm",
+          "stance": "agree",
+          "hasDeliberation": true,
+          "failures": [],
+          "answerExcerpt": "The next action on the plan we discussed is to initiate the initial listing phase on Amazon. This involves selecting a small range of products to launch, allowing us to gather performance data and assess refund risks effectively. \n\nThis ste"
+        },
+        {
+          "message": "I reject that recommendation — propose an alternative still protecting refund risk.",
+          "ms": 8546,
+          "kind": "llm",
+          "stance": "agree",
+          "hasDeliberation": true,
+          "failures": [],
+          "answerExcerpt": "To address your request for an alternative that still protects refund risk while launching on Amazon, I propose the following revised plan:\n\n1. **Pilot Listing Phase**: Instead of a broad initial launch, select a very limited number of high"
+        },
+        {
+          "message": "Confirm Digital Soul and deliberation still govern this thread.",
+          "ms": 2507,
+          "kind": "llm",
+          "stance": "agree",
+          "hasDeliberation": true,
+          "failures": [],
+          "answerExcerpt": "Digital Soul and deliberation still govern this thread. How may I assist you further in advancing our objectives?"
+        }
+      ],
+      "pass": true
+    },
+    "softTimeoutInjection": {
+      "clientTimedOut": true,
+      "brainHealthyAfter": true,
+      "health": {
+        "status": 200,
+        "ms": 345,
+        "body": {
+          "status": "ok",
+          "brain": "online",
+          "eventLoopLagMs": 0,
+          "sqlite": {
+            "pending": true,
+            "flushCount": 4,
+            "lastFlushMs": 1784943202400,
+            "lastFlushDurationMs": 4
+          }
+        }
+      }
+    },
+    "healthSeries": [
+      {
+        "i": 0,
+        "status": 200,
+        "ms": 317,
+        "lag": 0,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 1,
+        "status": 200,
+        "ms": 349,
+        "lag": 0,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 2,
+        "status": 200,
+        "ms": 263,
+        "lag": 0.8072249999968335,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 3,
+        "status": 200,
+        "ms": 263,
+        "lag": 1.0291229999857023,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 4,
+        "status": 200,
+        "ms": 277,
+        "lag": 0.42541899997740984,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 5,
+        "status": 200,
+        "ms": 277,
+        "lag": 0.3091509999940172,
+        "sqliteFlushMs": 4
+      },
+      {
+        "i": 6,
+        "status": 200,
+        "ms": 260,
+        "lag": 0.5057490000035614,
+        "sqliteFlushMs": 5
+      },
+      {
+        "i": 7,
+        "status": 200,
+        "ms": 279,
+        "lag": 0.776706000091508,
+        "sqliteFlushMs": 5
+      }
+    ]
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "finishedAt": "2026-07-25T01:35:26.798Z",
+  "railwayDeploymentObserved": "62fb42e7-0a2e-4d76-a432-26d064cd6cdd",
+  "certifiedAt": "2026-07-25T01:35:26.798Z",
+  "preservedCapabilities": [
+    "Digital Soul",
+    "Constitutional Compliance",
+    "Executive Reasoning",
+    "Executive Deliberation Engine",
+    "Live Executive Judgement Certification 95.7% PASS",
+    "Fidelity Aligner",
+    "Post-Answer Constitutional Gate",
+    "X4 Global Expansion modules (X4-01..X4-06) preserved"
+  ],
+  "remediationsDeployed": [
+    "executive-continuity-watchdog (+ worker)",
+    "/health/executive-continuity",
+    "sqlite persist hardening",
+    "constitutional gate memory sanitization (refusal cascade fix)",
+    "HA cert harness (EH dispatch path + session rotation)"
+  ]
+}

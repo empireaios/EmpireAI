@@ -1,0 +1,1513 @@
+{
+  "mission": "MASTER — GRAND KING LOGIN REGRESSION RECONCILIATION",
+  "startedAt": "2026-08-06T04:17:56.783Z",
+  "cockpit": "https://empire-ai.co",
+  "brain": "https://empireai-production.up.railway.app",
+  "certifiedBaseline": {
+    "source": "docs/audits/pillow/high-availability/HIGH_AVAILABILITY_CERTIFICATION.md",
+    "deploymentId": "62fb42e7-0a2e-4d76-a432-26d064cd6cdd",
+    "grandKingLogin": "5/5 PASS",
+    "verdict": "PASS"
+  },
+  "probes": {
+    "brainHealthLive": {
+      "ok": true,
+      "status": 200,
+      "ms": 794,
+      "body": {
+        "status": "ok",
+        "brain": "online",
+        "eventLoopLagMs": 0,
+        "sqlite": {
+          "pending": false,
+          "flushCount": 3313,
+          "lastFlushMs": 1785989376244,
+          "lastFlushDurationMs": 92
+        }
+      },
+      "setCookie": [],
+      "rawSetCookiePresent": false
+    },
+    "bffInvalidLogin": {
+      "ok": false,
+      "status": 401,
+      "ms": 498,
+      "body": {
+        "error": "Invalid email or password"
+      },
+      "setCookie": [],
+      "rawSetCookiePresent": false
+    },
+    "brainInvalidLogin": {
+      "ok": false,
+      "status": 401,
+      "ms": 257,
+      "body": {
+        "error": "Invalid email or password"
+      },
+      "setCookie": [],
+      "rawSetCookiePresent": false
+    },
+    "bffValidLogin": {
+      "ok": true,
+      "status": 200,
+      "ms": 1050,
+      "body": {
+        "user": {
+          "id": "ffc40f53-b0de-4adc-857a-781c996a0152",
+          "email": "founder@empireai.com",
+          "name": "Empire Founder",
+          "role": "founder",
+          "workspaceId": "ws_empire_1",
+          "platformIdentity": "grand-king"
+        },
+        "expiresAt": "2026-08-13T04:18:08.317Z"
+      },
+      "setCookie": [
+        "empireai_session=***"
+      ],
+      "rawSetCookiePresent": true
+    },
+    "bffValidLoginSession": {
+      "status": 200,
+      "hasSessionCookie": true,
+      "platformIdentity": "grand-king",
+      "userEmailPresent": true
+    },
+    "bffAuthMe": {
+      "ok": true,
+      "status": 200,
+      "ms": 657,
+      "body": {
+        "user": {
+          "id": "ffc40f53-b0de-4adc-857a-781c996a0152",
+          "email": "founder@empireai.com",
+          "name": "Empire Founder",
+          "role": "founder",
+          "workspaceId": "ws_empire_1",
+          "platformIdentity": "grand-king"
+        }
+      },
+      "setCookie": [],
+      "rawSetCookiePresent": false
+    },
+    "bffExecutiveHome": {
+      "ok": true,
+      "status": 200,
+      "ms": 2727,
+      "body": {
+        "correlationId": "5c4380ce-611d-4cb3-bedf-0b3a0c723181",
+        "status": "completed",
+        "result": {
+          "computedAt": "2026-08-06T04:18:12.494Z",
+          "greeting": {
+            "displayNameHint": "Grand King",
+            "topBlocker": "B5: NODE_ENV must be production",
+            "topBlockerHref": "/cockpit/infrastructure/health"
+          },
+          "command": {
+            "computedAt": "2026-08-06T04:18:11.476Z",
+            "workspaceId": "ws_empire_1",
+            "companyId": "ws_empire_1__c4",
+            "certificationBlockers": {
+              "B5": {
+                "id": "B5",
+                "label": "Production deploy + readiness",
+                "status": "open",
+                "detail": "NODE_ENV must be production"
+              },
+              "B6": {
+                "id": "B6",
+                "label": "REAL-002B credentials",
+                "status": "partial",
+                "detail": "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
+              },
+              "B7": {
+                "id": "B7",
+                "label": "GK-GOLIVE-APPROVAL",
+                "status": "open",
+                "detail": "Dispatch lite path — full go-live package on refresh"
+              },
+              "B8": {
+                "id": "B8",
+                "label": "PROOF-001",
+                "status": "open",
+                "detail": "Awaiting implementation — no first-revenue validation runs recorded"
+              }
+            },
+            "operationalReadiness": {
+              "percent": 30,
+              "passed": false,
+              "detail": "LIVE_COMMERCE_INTEGRATION_MODE must be production"
+            },
+            "crirReadiness": {
+              "score": null,
+              "launchReady": false,
+              "reportCount": 0,
+              "status": "Awaiting implementation",
+              "detail": "No CRIR registered — required before launch with approved products"
+            },
+            "proof001": {
+              "achieved": false,
+              "progressPercent": 0,
+              "stagesPassed": 0,
+              "totalStages": 12,
+              "detail": "Awaiting implementation — no first-revenue validation runs recorded",
+              "validationCount": 0
+            },
+            "commerceReadiness": {
+              "score": null,
+              "launchDecision": "NOT_READY",
+              "blockingCount": 0
+            },
+            "pendingApprovals": {
+              "count": 0,
+              "top": null
+            },
+            "nextExecutiveApproval": "GK-GOLIVE-APPROVAL",
+            "success001": {
+              "blocker": "PROOF-001 verified net profit pending",
+              "progressPercent": 0,
+              "currentNetProfitUsd": 0
+            },
+            "implementation": {
+              "milestone": "P0-1",
+              "phase": "GO-002 Phase 5 — Production Deploy & Credential Activation",
+              "objective": "Awaiting implementation",
+              "currentBlocker": "B5"
+            },
+            "oms": {
+              "activeObjective": "Awaiting implementation",
+              "progress": 0,
+              "confidence": 0,
+              "overallHealth": "YELLOW",
+              "currentBlocker": null,
+              "nextHighestImpactAction": null,
+              "forecastCompletion": null,
+              "remainingWork": [
+                "NODE_ENV must be production",
+                "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+                "Dispatch lite path — full go-live package on refresh",
+                "Awaiting implementation — no first-revenue validation runs recorded"
+              ],
+              "remainingBlockers": [
+                "B5: NODE_ENV must be production",
+                "B6: B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+                "B7: Dispatch lite path — full go-live package on refresh",
+                "B8: Awaiting implementation — no first-revenue validation runs recorded"
+              ]
+            }
+          },
+          "portfolio": {
+            "portfolioMetrics": [
+              {
+                "label": "Portfolio Revenue",
+                "value": "$1.63M",
+                "change": "+18.4%",
+                "trend": "up"
+              },
+              {
+                "label": "Net Margin",
+                "value": "49.0%",
+                "change": "+2.1%",
+                "trend": "up"
+              },
+              {
+                "label": "Active Companies",
+                "value": "4",
+                "change": "+1",
+                "trend": "up"
+              },
+              {
+                "label": "Agents Online",
+                "value": "64",
+                "change": "100%",
+                "trend": "neutral"
+              }
+            ],
+            "companies": [
+              {
+                "id": "ws_empire_1__c4",
+                "name": "Atlas Fintech",
+                "category": "Fintech",
+                "status": "live",
+                "revenue": "$891K",
+                "margin": "34.0%",
+                "agents": 18
+              },
+              {
+                "id": "ws_empire_1__c3",
+                "name": "Lumen Media",
+                "category": "Media",
+                "status": "building",
+                "revenue": "$0.00",
+                "margin": "—",
+                "agents": 12
+              },
+              {
+                "id": "ws_empire_1__c2",
+                "name": "Vertex SaaS",
+                "category": "SaaS",
+                "status": "live",
+                "revenue": "$312K",
+                "margin": "71.0%",
+                "agents": 16
+              },
+              {
+                "id": "ws_empire_1__c1",
+                "name": "Meridian Commerce",
+                "category": "Commerce",
+                "status": "live",
+                "revenue": "$428K",
+                "margin": "42.0%",
+                "agents": 18
+              }
+            ],
+            "recentActivity": [
+              {
+                "id": "64b3e838-02f8-45c5-be76-9bfcbad3b318",
+                "agent": "Alex",
+                "action": "Auto-swapped supplier for Atlas Fintech SKU-4421",
+                "module": "suppliers",
+                "timestamp": "49m ago",
+                "outcome": "Fulfillment restored"
+              },
+              {
+                "id": "6af9cf79-4545-4a2a-80df-a42480d52804",
+                "agent": "Taylor",
+                "action": "Paused underperforming Meta ad set",
+                "module": "ads",
+                "timestamp": "49m ago",
+                "outcome": "Saved $840/day"
+              },
+              {
+                "id": "e98796e5-41c2-4ad5-9aa7-6605a060f3c6",
+                "agent": "Nova",
+                "action": "Escalated billing dispute to finance module",
+                "module": "support",
+                "timestamp": "49m ago",
+                "outcome": "Refund authorized"
+              },
+              {
+                "id": "2a5ae393-3296-4b71-8547-52c3bcd6c8ab",
+                "agent": "Victoria",
+                "action": "Initiated manufacturing pipeline for Health vertical",
+                "module": "ai-ceo",
+                "timestamp": "49m ago",
+                "outcome": "Pipeline queued"
+              },
+              {
+                "id": "31252b04-2f41-4afe-894a-a6f823e29856",
+                "agent": "Morgan",
+                "action": "Detected demand spike in wireless accessories",
+                "module": "intelligence",
+                "timestamp": "49m ago",
+                "outcome": "+34% demand signal"
+              }
+            ],
+            "workspaceId": "ws_empire_1"
+          },
+          "engineSummaries": [
+            {
+              "engineId": "supplier",
+              "displayName": "Supplier Engine",
+              "computedAt": "2026-08-06T04:18:11.478Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "CJ API key configured — production mode pending",
+              "health": "WARNING",
+              "progress": {
+                "percent": 65,
+                "label": "API key present — set CJ_INTEGRATION_MODE=LIVE and LIVE_COMMERCE_INTEGRATION_MODE=production after approval"
+              },
+              "nextAction": "API key present — set CJ_INTEGRATION_MODE=LIVE and LIVE_COMMERCE_INTEGRATION_MODE=production after approval",
+              "executiveAudit": {
+                "summary": "B6-02 CONFIGURED · 3 supplier row(s) in domain store",
+                "artifactRef": "artifacts/b6-02-cj-dropshipping-executive-audit.md"
+              },
+              "dependencies": [
+                "CREDENTIAL_VAULT_KEY (B6-04)",
+                "LIVE_COMMERCE_INTEGRATION_MODE=production",
+                "CJ connector not connected"
+              ],
+              "metrics": [
+                {
+                  "label": "Connected Suppliers",
+                  "value": "3"
+                },
+                {
+                  "label": "Fulfillment Rate",
+                  "value": "93.0%"
+                },
+                {
+                  "label": "Auto-Recoveries",
+                  "value": "12"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "GlobalSource Direct",
+                  "value": "94% reliable · 7.1 days",
+                  "status": "healthy"
+                },
+                {
+                  "label": "Nexus Fulfillment",
+                  "value": "98% reliable · 4.2 days",
+                  "status": "healthy"
+                },
+                {
+                  "label": "PrimeDrop Logistics",
+                  "value": "87% reliable · 5.8 days",
+                  "status": "degraded"
+                }
+              ]
+            },
+            {
+              "engineId": "marketplace",
+              "displayName": "Marketplace Engine",
+              "computedAt": "2026-08-06T04:18:11.479Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "Partial Amazon region credentials — both NA + FE required",
+              "health": "FAILED",
+              "progress": {
+                "percent": 45,
+                "label": "US: CONFIGURED · SG: PENDING"
+              },
+              "nextAction": "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+              "executiveAudit": {
+                "summary": "ADR-052 V1 channels · shopee-sg architecture pending B6-01c",
+                "artifactRef": "artifacts/b6-01d-amazon-multi-region-foundation-executive-audit.md"
+              },
+              "dependencies": [
+                "AMAZON_SP_API_CLIENT_ID + CLIENT_SECRET (shared)",
+                "AMAZON_SP_API_REFRESH_TOKEN_NA + _FE",
+                "Live commerce mode: sandbox"
+              ],
+              "detailRows": [
+                {
+                  "label": "amazon-us",
+                  "value": "Credentials configured",
+                  "status": "configured"
+                },
+                {
+                  "label": "amazon-sg",
+                  "value": "Refresh token pending",
+                  "status": "pending"
+                },
+                {
+                  "label": "shopee-sg",
+                  "value": "Not yet implemented in B6-01D scope",
+                  "status": "pending"
+                },
+                {
+                  "label": "shopify",
+                  "value": "Architecture provision only",
+                  "status": "pending"
+                }
+              ]
+            },
+            {
+              "engineId": "storefront",
+              "displayName": "Storefront Engine",
+              "computedAt": "2026-08-06T04:18:11.775Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Building Lumen Media (69% complete)",
+              "health": "FAILED",
+              "progress": {
+                "percent": 0,
+                "label": "Store pending"
+              },
+              "nextAction": "No marketplaces ready for publishing",
+              "executiveAudit": {
+                "summary": "Launch decision: NOT_READY · 3 blocker(s)",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "No marketplaces ready for publishing: blocked",
+                "Supplier unavailable: blocked",
+                "Fulfillment not ready: blocked"
+              ],
+              "metrics": [
+                {
+                  "label": "Brand system",
+                  "value": "100% · complete"
+                },
+                {
+                  "label": "Product catalog",
+                  "value": "100% · complete"
+                },
+                {
+                  "label": "Storefront theme",
+                  "value": "78% · in_progress"
+                },
+                {
+                  "label": "Checkout & payments",
+                  "value": "45% · in_progress"
+                },
+                {
+                  "label": "Ad creatives",
+                  "value": "20% · in_progress"
+                }
+              ]
+            },
+            {
+              "engineId": "advertising",
+              "displayName": "Advertising Engine",
+              "computedAt": "2026-08-06T04:18:11.967Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Campaign data in domain store — live Meta connector optional pre-PROOF-001",
+              "health": "WARNING",
+              "progress": {
+                "percent": 35,
+                "label": "2 active campaigns"
+              },
+              "nextAction": "Optional pre-PROOF: configure Meta Ads connector (B6 not required for PROOF-001 path)",
+              "executiveAudit": {
+                "summary": "GO-002 Phase 7 — Advertising optional before first profit proof",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "Storefront deployed",
+                "Product listing live",
+                "Meta Ads connector (optional pre-PROOF)"
+              ],
+              "metrics": [
+                {
+                  "label": "Daily Budget",
+                  "value": "$25K"
+                },
+                {
+                  "label": "Spend Today",
+                  "value": "$16K"
+                },
+                {
+                  "label": "Blended ROAS",
+                  "value": "3.9×"
+                },
+                {
+                  "label": "Conversions",
+                  "value": "1,367"
+                },
+                {
+                  "label": "Active Campaigns",
+                  "value": "2"
+                },
+                {
+                  "label": "Content Pieces",
+                  "value": "94"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "Google",
+                  "value": "$8K · ROAS 3.6×",
+                  "status": "Live"
+                },
+                {
+                  "label": "Meta",
+                  "value": "$12K · ROAS 4.2×",
+                  "status": "Live"
+                },
+                {
+                  "label": "TikTok",
+                  "value": "$3K · ROAS 2.9×",
+                  "status": "Paused"
+                }
+              ]
+            },
+            {
+              "engineId": "payment",
+              "displayName": "Payment Engine",
+              "computedAt": "2026-08-06T04:18:11.968Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "Stripe live keys verified (sk_live)",
+              "health": "HEALTHY",
+              "progress": {
+                "percent": 100,
+                "label": "Stripe live keys configured"
+              },
+              "nextAction": "Monitor checkout webhooks on Finance → Billing",
+              "executiveAudit": {
+                "summary": "B6-03 VERIFIED · Vault configured",
+                "artifactRef": "artifacts/b6-03-stripe-production-executive-audit.md"
+              },
+              "dependencies": [
+                "STRIPE_SECRET_KEY",
+                "STRIPE_WEBHOOK_SECRET",
+                "CREDENTIAL_VAULT_KEY present"
+              ],
+              "metrics": [
+                {
+                  "label": "Net Profit (MTD)",
+                  "value": "$229K"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "14.1%"
+                },
+                {
+                  "label": "Cash Runway",
+                  "value": "18 mo"
+                }
+              ]
+            },
+            {
+              "engineId": "logistics",
+              "displayName": "Logistics Engine",
+              "computedAt": "2026-08-06T04:18:11.969Z",
+              "dataMode": "sandbox",
+              "implemented": true,
+              "currentState": "CJ fulfilment gated until B6-02 + production mode",
+              "health": "WARNING",
+              "progress": {
+                "percent": 40,
+                "label": "1 shipped · 2 recent order(s)"
+              },
+              "nextAction": "Complete B6-02 CJ credentials before live fulfilment",
+              "executiveAudit": {
+                "summary": "live-cj-fulfillment module gated by B6 + King approval",
+                "artifactRef": null
+              },
+              "dependencies": [
+                "Supplier Engine (CJ) configured",
+                "Order pipeline active",
+                "LIVE_COMMERCE_INTEGRATION_MODE=production"
+              ],
+              "metrics": [
+                {
+                  "label": "Today",
+                  "value": "2"
+                },
+                {
+                  "label": "Processing",
+                  "value": "1"
+                },
+                {
+                  "label": "Shipped",
+                  "value": "1"
+                },
+                {
+                  "label": "Profit Today",
+                  "value": "$96.60"
+                }
+              ],
+              "detailRows": [
+                {
+                  "label": "ws_empire_1__1041",
+                  "value": "Budget Tracker Pro · $149.00",
+                  "status": "Processing"
+                },
+                {
+                  "label": "ws_empire_1__1042",
+                  "value": "ProFlex Earbuds · $89.00",
+                  "status": "Shipped"
+                }
+              ]
+            },
+            {
+              "engineId": "analytics",
+              "displayName": "Analytics Engine",
+              "computedAt": "2026-08-06T04:18:12.413Z",
+              "dataMode": "live",
+              "implemented": true,
+              "currentState": "PROOF-001 0/12 stages · Portfolio 4 companies",
+              "health": "UNKNOWN",
+              "progress": {
+                "percent": 0,
+                "label": "Awaiting implementation — no first-revenue validation runs recorded"
+              },
+              "nextAction": "Advance V1 commercial spine to first revenue",
+              "executiveAudit": {
+                "summary": "SUCCESS-001 0% · Net profit $0",
+                "artifactRef": "artifacts/b6-03-stripe-production-executive-audit.md"
+              },
+              "dependencies": [
+                "Payment Engine (Stripe)",
+                "Order + fulfilment telemetry",
+                "Analytics conversion engine (optional GA4/pixel)"
+              ],
+              "metrics": [
+                {
+                  "label": "Portfolio Revenue",
+                  "value": "$1.63M"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "49.0%"
+                },
+                {
+                  "label": "Net Profit (MTD)",
+                  "value": "$229K"
+                },
+                {
+                  "label": "Net Margin",
+                  "value": "14.1%"
+                }
+              ]
+            }
+          ],
+          "summaryCards": [
+            {
+              "id": "empire-health",
+              "widgetId": "G4-06-W01",
+              "title": "Empire Health",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "live",
+              "dataSource": "ESIS dashboard · operational command · engine summaries",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Real-time ESIS domain streaming · GC-03 alert push",
+              "primaryValue": "30%",
+              "status": "WARNING · Ops readiness 30%",
+              "dependency": "LIVE_COMMERCE_INTEGRATION_MODE must be production",
+              "nextAction": "LIVE_COMMERCE_INTEGRATION_MODE must be production",
+              "href": "/cockpit/finance/profit",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "Commerce",
+                  "value": "30% · HEALTHY"
+                },
+                {
+                  "label": "Production readiness",
+                  "value": "30% · WARNING"
+                },
+                {
+                  "label": "Engines healthy",
+                  "value": "1/7"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "revenue-today",
+              "widgetId": "G4-06-W04",
+              "title": "Revenue Summary",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "sandbox",
+              "dataSource": "Order repository · finance ledger · profitTodayCents",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Stripe webhook real-time revenue ticker",
+              "primaryValue": "$96.60",
+              "status": "2 order(s) today",
+              "dependency": "Order repository · profitTodayCents",
+              "nextAction": "Awaiting implementation — no first-revenue validation runs recorded",
+              "href": "/cockpit/finance/profit",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "PROOF-001",
+                  "value": "0/12 stages"
+                },
+                {
+                  "label": "Net profit (runtime)",
+                  "value": "$0"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "marketplace-status",
+              "widgetId": "G4-06-W02",
+              "title": "Marketplace Health",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "sandbox",
+              "dataSource": "Marketplace engine panel · Amazon SP-API readiness",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Live SP-API connection health polling",
+              "primaryValue": "45%",
+              "status": "Partial Amazon region credentials — both NA + FE required",
+              "dependency": "AMAZON_SP_API_CLIENT_ID + CLIENT_SECRET (shared)",
+              "nextAction": "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+              "href": "/cockpit/intelligence/marketplace",
+              "health": "FAILED",
+              "items": [
+                {
+                  "label": "amazon-us",
+                  "value": "Credentials configured"
+                },
+                {
+                  "label": "amazon-sg",
+                  "value": "Refresh token pending"
+                },
+                {
+                  "label": "shopee-sg",
+                  "value": "Not yet implemented in B6-01D scope"
+                }
+              ],
+              "engineCenterId": "marketplace"
+            },
+            {
+              "id": "supplier-status",
+              "widgetId": "G4-06-W03",
+              "title": "Supplier Health",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "sandbox",
+              "dataSource": "Supplier engine panel · CJ Dropshipping readiness",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Live CJ API health + fulfilment rate sync",
+              "primaryValue": "65%",
+              "status": "CJ API key configured — production mode pending",
+              "dependency": "CREDENTIAL_VAULT_KEY (B6-04)",
+              "nextAction": "API key present — set CJ_INTEGRATION_MODE=LIVE and LIVE_COMMERCE_INTEGRATION_MODE=production after approval",
+              "href": "/cockpit/intelligence/suppliers",
+              "health": "WARNING",
+              "items": [
+                {
+                  "label": "GlobalSource Direct",
+                  "value": "94% reliable · 7.1 days"
+                },
+                {
+                  "label": "Nexus Fulfillment",
+                  "value": "98% reliable · 4.2 days"
+                },
+                {
+                  "label": "PrimeDrop Logistics",
+                  "value": "87% reliable · 5.8 days"
+                }
+              ],
+              "engineCenterId": "supplier"
+            },
+            {
+              "id": "active-missions",
+              "widgetId": "G4-06-W05",
+              "title": "Active Missions",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "live",
+              "dataSource": "Objective Management System · objective dashboard",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Mission Centre SSE progress updates",
+              "primaryValue": "1",
+              "status": "Awaiting implementation",
+              "dependency": "Objective Management System (OMS)",
+              "nextAction": "Open Mission Centre for full queue",
+              "href": "/cockpit/missions",
+              "health": "YELLOW",
+              "items": [
+                {
+                  "label": "Awaiting implementation",
+                  "value": "0% · YELLOW"
+                }
+              ],
+              "engineCenterId": null
+            },
+            {
+              "id": "executive-alerts",
+              "widgetId": "G4-06-W07",
+              "title": "Executive Alerts",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "live",
+              "dataSource": "Certification register B5–B8 · pending approvals · engine health",
+              "refreshSeconds": 45,
+              "futureEnhancement": "GC-03 Notification Centre push routing",
+              "primaryValue": "4",
+              "status": "4 certification · 0 approval",
+              "dependency": "B5–B8 certification register · Pillow approval repository",
+              "nextAction": "NODE_ENV must be production",
+              "href": "/cockpit/finance/profit",
+              "health": "FAILED",
+              "items": [
+                {
+                  "label": "B5",
+                  "value": "NODE_ENV must be production"
+                },
+                {
+                  "label": "B6",
+                  "value": "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval"
+                },
+                {
+                  "label": "B7",
+                  "value": "Dispatch lite path — full go-live package on refresh"
+                },
+                {
+                  "label": "B8",
+                  "value": "Awaiting implementation — no first-revenue validation runs recorded"
+                }
+              ],
+              "engineCenterId": "analytics"
+            },
+            {
+              "id": "pillow-status",
+              "widgetId": "G4-06-W06",
+              "title": "Pillow Status",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "sandbox",
+              "dataSource": "Pillow supervisor view · approval repository",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Pillow session runtime SSE · council debate feed",
+              "primaryValue": "0",
+              "status": "Dry-run readiness — EMPIRE_V1_OPERATIONAL_READY not set",
+              "dependency": "Pillow approval runtime (ADR-049)",
+              "nextAction": "Natural-language chat is live via Pillow host session and GlobalAiAssistantPanel on Development → Pillow",
+              "href": "/cockpit/development/pillow",
+              "health": "HEALTHY",
+              "items": [],
+              "engineCenterId": "pillow-supervisor"
+            },
+            {
+              "id": "pending-kings-approval",
+              "widgetId": "G4-06-W08",
+              "title": "Pending King's Approval",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "live",
+              "dataSource": "Decision repository · Pillow approval queue",
+              "refreshSeconds": 45,
+              "futureEnhancement": "One-click sovereign approve from Executive Home",
+              "primaryValue": "0",
+              "status": "No items awaiting sovereign approval",
+              "dependency": "Decision repository · Pillow approval queue",
+              "nextAction": "Portfolio fully authorized",
+              "href": "/cockpit/development/approvals",
+              "health": "HEALTHY",
+              "items": [],
+              "engineCenterId": "pillow-supervisor"
+            },
+            {
+              "id": "ai-recommendations",
+              "widgetId": "G4-06-W10",
+              "title": "AI Recommendation Summary",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "sandbox",
+              "dataSource": "AI CEO repository · portfolio briefing (no generative AI in G4-06)",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Generative AI CEO briefing via Pillow NL reasoning",
+              "primaryValue": "3",
+              "status": "Portfolio velocity is accelerating. Three ventures are ready to scale.",
+              "dependency": "AI CEO repository · portfolio briefing (no generative AI in G4-06)",
+              "nextAction": "Scale top revenue company",
+              "href": "/cockpit/intelligence/discovery",
+              "health": "HEALTHY",
+              "items": [
+                {
+                  "label": "Scale top revenue company",
+                  "value": "High impact · Recommended"
+                },
+                {
+                  "label": "Launch Lumen Media ads",
+                  "value": "Medium impact · Queued"
+                },
+                {
+                  "label": "Manufacture new vertical",
+                  "value": "High impact · In progress"
+                }
+              ],
+              "engineCenterId": "quantitative-intelligence"
+            },
+            {
+              "id": "executive-timeline",
+              "widgetId": "G4-06-W09",
+              "title": "Recent Executive Timeline",
+              "available": true,
+              "liveDataAvailable": true,
+              "dataMode": "live",
+              "dataSource": "Activity repository · global-execution-timeline · portfolio recentActivity",
+              "refreshSeconds": 45,
+              "futureEnhancement": "Cross-engine timeline SSE · force-directed graph sync",
+              "primaryValue": "0",
+              "status": "0 upcoming · 5 recent activity",
+              "dependency": "Activity repository · global-execution-timeline",
+              "nextAction": "Open Mission Centre for full objective timeline",
+              "href": "/cockpit#executive-timeline",
+              "health": "HEALTHY",
+              "items": [
+                {
+                  "label": "Alex",
+                  "value": "Auto-swapped supplier for Atlas Fintech SKU-4421",
+                  "timestamp": "49m ago"
+                },
+                {
+                  "label": "Taylor",
+                  "value": "Paused underperforming Meta ad set",
+                  "timestamp": "49m ago"
+                },
+                {
+                  "label": "Nova",
+                  "value": "Escalated billing dispute to finance module",
+                  "timestamp": "49m ago"
+                }
+              ],
+              "engineCenterId": null
+            }
+          ],
+          "attentionItems": [
+            {
+              "id": "B5",
+              "label": "B5: NODE_ENV must be production",
+              "severity": "critical",
+              "href": "/cockpit/finance/profit",
+              "engineId": "analytics"
+            },
+            {
+              "id": "B6",
+              "label": "B6: B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+              "severity": "warning",
+              "href": "/cockpit/intelligence/marketplace",
+              "engineId": "marketplace"
+            },
+            {
+              "id": "B7",
+              "label": "B7: Dispatch lite path — full go-live package on refresh",
+              "severity": "critical",
+              "href": "/cockpit/governance/v1",
+              "engineId": null
+            },
+            {
+              "id": "B8",
+              "label": "B8: Awaiting implementation — no first-revenue validation runs recorded",
+              "severity": "critical",
+              "href": "/cockpit/governance/v1",
+              "engineId": null
+            },
+            {
+              "id": "engine-marketplace",
+              "label": "Marketplace Engine — Partial Amazon region credentials — both NA + FE required",
+              "severity": "critical",
+              "href": "/cockpit/intelligence/marketplace",
+              "engineId": "marketplace"
+            },
+            {
+              "id": "engine-storefront",
+              "label": "Storefront Engine — Building Lumen Media (69% complete)",
+              "severity": "critical",
+              "href": "/cockpit/commerce/store",
+              "engineId": "storefront"
+            }
+          ],
+          "nextExecutiveAction": "GK-GOLIVE-APPROVAL",
+          "executiveTimeline": [
+            {
+              "id": "tl-logistics-ws_empire_1__1041",
+              "sourceEngine": "logistics",
+              "sourceLabel": "Logistics",
+              "title": "Budget Tracker Pro",
+              "summary": "Processing · $149.00",
+              "timestamp": "49m ago",
+              "href": "/cockpit/operations/fulfillment"
+            },
+            {
+              "id": "tl-logistics-ws_empire_1__1042",
+              "sourceEngine": "logistics",
+              "sourceLabel": "Logistics",
+              "title": "ProFlex Earbuds",
+              "summary": "Shipped · $89.00",
+              "timestamp": "49m ago",
+              "href": "/cockpit/operations/fulfillment"
+            },
+            {
+              "id": "tl-activity-64b3e838-02f8-45c5-be76-9bfcbad3b318",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Alex",
+              "summary": "Auto-swapped supplier for Atlas Fintech SKU-4421",
+              "timestamp": "49m ago",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-6af9cf79-4545-4a2a-80df-a42480d52804",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Taylor",
+              "summary": "Paused underperforming Meta ad set",
+              "timestamp": "49m ago",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-e98796e5-41c2-4ad5-9aa7-6605a060f3c6",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Nova",
+              "summary": "Escalated billing dispute to finance module",
+              "timestamp": "49m ago",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-activity-2a5ae393-3296-4b71-8547-52c3bcd6c8ab",
+              "sourceEngine": "portfolio",
+              "sourceLabel": "Portfolio",
+              "title": "Victoria",
+              "summary": "Initiated manufacturing pipeline for Health vertical",
+              "timestamp": "49m ago",
+              "href": "/cockpit"
+            },
+            {
+              "id": "tl-program-operational-access",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "REAL-002B — Connect Amazon SP-API + first VERIFIED credentials (live)",
+              "summary": "Operational Access · 100% complete",
+              "timestamp": "2026-08-13T04:18:12.491Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-1188fca7-1ad2-4649-9c98-568c7cc3eaed",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Smart Measuring Cups — LIVE",
+              "summary": "cj-dropshipping · score 68",
+              "timestamp": "2026-08-12T04:18:12.491Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-108c92e1-ac99-468f-acbb-f872d5c8ea0a",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Foldable Cutting Board — SCALING",
+              "summary": "spocket · score 68",
+              "timestamp": "2026-08-09T04:18:12.491Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-pipeline-266f840c-5e25-412f-accd-77e44024a26d",
+              "sourceEngine": "oms",
+              "sourceLabel": "OMS",
+              "title": "Old Seasonal Mug Warmer — ARCHIVED",
+              "summary": "marketplace TBD · score 68",
+              "timestamp": "2026-08-06T04:18:12.491Z",
+              "href": "/cockpit/missions"
+            },
+            {
+              "id": "tl-supplier-GlobalSource Direct",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "GlobalSource Direct",
+              "summary": "94% reliable · 7.1 days",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-supplier-Nexus Fulfillment",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "Nexus Fulfillment",
+              "summary": "98% reliable · 4.2 days",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-supplier-PrimeDrop Logistics",
+              "sourceEngine": "supplier",
+              "sourceLabel": "Supplier",
+              "title": "PrimeDrop Logistics",
+              "summary": "87% reliable · 5.8 days",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/suppliers"
+            },
+            {
+              "id": "tl-marketplace-amazon-us",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "amazon-us",
+              "summary": "Credentials configured",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-marketplace-amazon-sg",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "amazon-sg",
+              "summary": "Refresh token pending",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-marketplace-shopee-sg",
+              "sourceEngine": "marketplace",
+              "sourceLabel": "Marketplace",
+              "title": "shopee-sg",
+              "summary": "Not yet implemented in B6-01D scope",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "tl-storefront-Brand system",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Brand system",
+              "summary": "100% · complete",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-storefront-Product catalog",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Product catalog",
+              "summary": "100% · complete",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-storefront-Storefront theme",
+              "sourceEngine": "storefront",
+              "sourceLabel": "Storefront",
+              "title": "Storefront theme",
+              "summary": "78% · in_progress",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "tl-advertising-ws_empire_1__m1",
+              "sourceEngine": "advertising",
+              "sourceLabel": "Advertising",
+              "title": "Meridian — Summer Scale",
+              "summary": "Active · reach 2.4M",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/commerce/marketing"
+            },
+            {
+              "id": "tl-advertising-ws_empire_1__m2",
+              "sourceEngine": "advertising",
+              "sourceLabel": "Advertising",
+              "title": "Vertex — Retention Loop",
+              "summary": "Active · reach 890K",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/commerce/marketing"
+            },
+            {
+              "id": "tl-payment-profit-today",
+              "sourceEngine": "payment",
+              "sourceLabel": "Payment",
+              "title": "Order profit today",
+              "summary": "$96.60",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/finance/billing"
+            },
+            {
+              "id": "tl-analytics-proof",
+              "sourceEngine": "analytics",
+              "sourceLabel": "Analytics",
+              "title": "PROOF-001 tracker",
+              "summary": "PROOF-001 0/12 stages · Portfolio 4 companies",
+              "timestamp": "2026-08-06T04:18:12.490Z",
+              "href": "/cockpit/finance/profit"
+            }
+          ],
+          "executiveAlerts": [
+            {
+              "id": "B5",
+              "label": "B5: NODE_ENV must be production",
+              "severity": "critical",
+              "engineId": "analytics",
+              "href": "/cockpit/finance/profit"
+            },
+            {
+              "id": "B6",
+              "label": "B6: B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+              "severity": "warning",
+              "engineId": "marketplace",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "B7",
+              "label": "B7: Dispatch lite path — full go-live package on refresh",
+              "severity": "critical",
+              "engineId": null,
+              "href": "/cockpit/governance/v1"
+            },
+            {
+              "id": "B8",
+              "label": "B8: Awaiting implementation — no first-revenue validation runs recorded",
+              "severity": "critical",
+              "engineId": null,
+              "href": "/cockpit/governance/v1"
+            },
+            {
+              "id": "engine-marketplace",
+              "label": "Marketplace Engine — Partial Amazon region credentials — both NA + FE required",
+              "severity": "critical",
+              "engineId": "marketplace",
+              "href": "/cockpit/intelligence/marketplace"
+            },
+            {
+              "id": "engine-storefront",
+              "label": "Storefront Engine — Building Lumen Media (69% complete)",
+              "severity": "critical",
+              "engineId": "storefront",
+              "href": "/cockpit/commerce/store"
+            }
+          ],
+          "approvalRoutes": [],
+          "dependencyGraph": {
+            "nodes": [
+              {
+                "engineId": "supplier",
+                "displayName": "Supplier Engine",
+                "route": "/cockpit/intelligence/suppliers",
+                "health": "WARNING"
+              },
+              {
+                "engineId": "marketplace",
+                "displayName": "Marketplace Engine",
+                "route": "/cockpit/intelligence/marketplace",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "storefront",
+                "displayName": "Storefront Engine",
+                "route": "/cockpit/commerce/store",
+                "health": "FAILED"
+              },
+              {
+                "engineId": "advertising",
+                "displayName": "Advertising Engine",
+                "route": "/cockpit/commerce/marketing",
+                "health": "WARNING"
+              },
+              {
+                "engineId": "payment",
+                "displayName": "Payment Engine",
+                "route": "/cockpit/finance/billing",
+                "health": "HEALTHY"
+              },
+              {
+                "engineId": "logistics",
+                "displayName": "Logistics Engine",
+                "route": "/cockpit/operations/fulfillment",
+                "health": "WARNING"
+              },
+              {
+                "engineId": "analytics",
+                "displayName": "Analytics Engine",
+                "route": "/cockpit/finance/profit",
+                "health": "UNKNOWN"
+              },
+              {
+                "engineId": "quantitative-intelligence",
+                "displayName": "Quantitative Intelligence",
+                "route": "/cockpit/intelligence/discovery",
+                "health": "HEALTHY"
+              },
+              {
+                "engineId": "pillow-supervisor",
+                "displayName": "Pillow Supervisor",
+                "route": "/cockpit/development/pillow",
+                "health": "HEALTHY"
+              }
+            ],
+            "edges": [
+              {
+                "from": "supplier",
+                "to": "logistics",
+                "label": "Fulfilment supply"
+              },
+              {
+                "from": "supplier",
+                "to": "marketplace",
+                "label": "Catalog sourcing"
+              },
+              {
+                "from": "marketplace",
+                "to": "storefront",
+                "label": "Channel listings"
+              },
+              {
+                "from": "storefront",
+                "to": "advertising",
+                "label": "Traffic destination"
+              },
+              {
+                "from": "storefront",
+                "to": "payment",
+                "label": "Checkout surface"
+              },
+              {
+                "from": "payment",
+                "to": "analytics",
+                "label": "Revenue telemetry"
+              },
+              {
+                "from": "logistics",
+                "to": "analytics",
+                "label": "Fulfilment telemetry"
+              },
+              {
+                "from": "advertising",
+                "to": "analytics",
+                "label": "Conversion telemetry"
+              },
+              {
+                "from": "quantitative-intelligence",
+                "to": "supplier",
+                "label": "Scoring input"
+              },
+              {
+                "from": "quantitative-intelligence",
+                "to": "marketplace",
+                "label": "Opportunity signals"
+              },
+              {
+                "from": "pillow-supervisor",
+                "to": "supplier",
+                "label": "Approval gate"
+              },
+              {
+                "from": "pillow-supervisor",
+                "to": "marketplace",
+                "label": "Approval gate"
+              }
+            ]
+          },
+          "architectureVersion": "P7-04",
+          "executiveBrief": {
+            "overallEmpireStatus": "30%",
+            "currentStrategicObjective": "Awaiting implementation",
+            "currentConstitutionalPhase": "P7 Experience · Executive Operating System",
+            "currentExecutionPhase": "Foundation & PROOF-001",
+            "highestPriorityRisk": "B5: NODE_ENV must be production",
+            "highestPriorityOpportunity": "Awaiting implementation — no first-revenue validation runs recorded",
+            "currentRecommendation": "GK-GOLIVE-APPROVAL"
+          },
+          "centreSummaries": {
+            "mission": {
+              "currentMission": "Awaiting implementation",
+              "missionOwner": "ECC · Supervisor",
+              "currentStep": "GK-GOLIVE-APPROVAL",
+              "progress": 0,
+              "eta": "PROOF-001 gate pending",
+              "dependencies": [
+                "Builder",
+                "Supervisor",
+                "Guardian",
+                "Production Truth"
+              ],
+              "currentRisks": [
+                "B5: NODE_ENV must be production",
+                "B6: B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+                "B7: Dispatch lite path — full go-live package on refresh"
+              ],
+              "validationStatus": "In progress",
+              "recoveryStatus": "Recovery mapped",
+              "href": "/cockpit/missions"
+            },
+            "pillow": {
+              "recommendations": [
+                "GK-GOLIVE-APPROVAL",
+                "Scale top revenue company"
+              ],
+              "architectureFindings": [
+                "Empire architecture: WARNING · Ops readiness 30%",
+                "Constitutional hierarchy verified"
+              ],
+              "engineeringFindings": [
+                "Operational readiness: 30%",
+                "LIVE_COMMERCE_INTEGRATION_MODE must be production"
+              ],
+              "businessFindings": [
+                "3 live · 4 total ventures",
+                "Revenue signal: $96.60"
+              ],
+              "commercialOpportunities": [
+                "B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+                "Review marketing performance"
+              ],
+              "visionAlignment": "Awaiting implementation — no first-revenue validation runs recorded",
+              "pendingDecisions": []
+            },
+            "business": {
+              "activeBusinesses": 4,
+              "revenue": "$96.60",
+              "orders": "—",
+              "profit": "$0",
+              "advertisingSpend": "—",
+              "marketingPerformance": "—",
+              "businessHealth": "WARNING",
+              "growthTrend": "0/12 stages",
+              "href": "/cockpit/commerce/workspace"
+            },
+            "production": {
+              "productionHealth": "FAILED",
+              "runtimeHealth": "Attention",
+              "guardianStatus": "Critical",
+              "sessions": "Durable sessions · Pillow host",
+              "infrastructure": "LIVE_COMMERCE_INTEGRATION_MODE must be production",
+              "deploymentStatus": "Certification in progress",
+              "currentIncidents": [
+                "B5: NODE_ENV must be production",
+                "B6: B6-01a — US credentials present — set LIVE_COMMERCE_INTEGRATION_MODE=production after King approval",
+                "B7: Dispatch lite path — full go-live package on refresh",
+                "B8: Awaiting implementation — no first-revenue validation runs recorded",
+                "Marketplace Engine — Partial Amazon region credentials — both NA + FE required",
+                "Storefront Engine — Building Lumen Media (69% complete)"
+              ],
+              "href": "/cockpit/founder/production"
+            }
+          },
+          "_trace": {
+            "commandMs": 11,
+            "portfolioMs": 1,
+            "enginePanelsMs": 936,
+            "pillowSupervisorMs": 44,
+            "summaryCardsMs": 5,
+            "timelineMs": 32,
+            "approvalRoutesMs": 1,
+            "extraPanelsMs": 0,
+            "dependencyGraphMs": 0,
+            "totalMs": 1030
+          },
+          "_cached": false,
+          "_fallback": false
+        }
+      },
+      "setCookie": [],
+      "rawSetCookiePresent": false
+    },
+    "bffExecutiveHomeDetail": {
+      "status": 200,
+      "ms": 2727,
+      "ok": true
+    },
+    "bffLogout": {
+      "ok": true,
+      "status": 200,
+      "ms": 1093,
+      "body": {
+        "ok": true
+      },
+      "setCookie": [
+        "empireai_session=***"
+      ],
+      "rawSetCookiePresent": true
+    },
+    "bffAuthMeAfterLogout": {
+      "ok": false,
+      "status": 401,
+      "ms": 800,
+      "body": {
+        "error": "Invalid or expired session"
+      },
+      "setCookie": [
+        "empireai_session=***"
+      ],
+      "rawSetCookiePresent": true
+    }
+  },
+  "checks": {
+    "brainReachable": true,
+    "invalidCredentialsRejected": true,
+    "brainInvalidRejected": true,
+    "validLoginOk": true,
+    "sessionCookieCreated": true,
+    "grandKingIdentity": true,
+    "refreshPreservesSession": true,
+    "executiveHomeLoads": true,
+    "logoutWorks": true,
+    "sessionClearedAfterLogout": true
+  },
+  "blockers": [],
+  "rootCauseClass": null,
+  "verdict": "PASS",
+  "finishedAt": "2026-08-06T04:18:05.848Z"
+}

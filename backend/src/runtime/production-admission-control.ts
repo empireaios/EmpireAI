@@ -7,7 +7,8 @@
  *
  * This module fails closed (503 + Retry-After) before queueing more work when:
  * - recent event-loop lag exceeds the admission threshold, or
- * - too many Pillow session creates are already in flight.
+ * - too many Pillow session creates are already in flight, or
+ * - session-create rate exceeds a hard window (protects even when lag metrics stall).
  *
  * Health/auth routes must never call into this gate.
  */
@@ -18,8 +19,18 @@ const MAX_SESSION_CREATES = Math.max(
   1,
   Number(process.env.ADMISSION_MAX_PILLOW_SESSION_CREATES ?? 2),
 );
+/** Hard rate limit: max session creates accepted per rolling window (all callers). */
+const SESSION_RATE_LIMIT = Math.max(
+  1,
+  Number(process.env.ADMISSION_SESSION_RATE_LIMIT ?? 4),
+);
+const SESSION_RATE_WINDOW_MS = Math.max(
+  1_000,
+  Number(process.env.ADMISSION_SESSION_RATE_WINDOW_MS ?? 10_000),
+);
 
 let pillowSessionCreatesInFlight = 0;
+const sessionCreateTimestamps: number[] = [];
 
 export type AdmissionDecision =
   | { admit: true }
@@ -30,13 +41,27 @@ export function getAdmissionStats(): {
   maxPillowSessionCreates: number;
   lagRejectMs: number;
   recentLagMs: number;
+  sessionRateLimit: number;
+  sessionRateWindowMs: number;
+  sessionCreatesInWindow: number;
 } {
+  pruneSessionRateWindow();
   return {
     pillowSessionCreatesInFlight,
     maxPillowSessionCreates: MAX_SESSION_CREATES,
     lagRejectMs: LAG_REJECT_MS,
     recentLagMs: getRecentEventLoopLagMs(),
+    sessionRateLimit: SESSION_RATE_LIMIT,
+    sessionRateWindowMs: SESSION_RATE_WINDOW_MS,
+    sessionCreatesInWindow: sessionCreateTimestamps.length,
   };
+}
+
+function pruneSessionRateWindow(): void {
+  const cutoff = Date.now() - SESSION_RATE_WINDOW_MS;
+  while (sessionCreateTimestamps.length > 0 && sessionCreateTimestamps[0]! < cutoff) {
+    sessionCreateTimestamps.shift();
+  }
 }
 
 /** Reject expensive work when the loop is already saturated. */
@@ -57,6 +82,16 @@ export function admitPillowSessionCreate(): AdmissionDecision {
   const base = admitExpensiveWork("pillow session create");
   if (!base.admit) return base;
 
+  pruneSessionRateWindow();
+  if (sessionCreateTimestamps.length >= SESSION_RATE_LIMIT) {
+    return {
+      admit: false,
+      reason: `Pillow session create rate limit (${SESSION_RATE_LIMIT}/${SESSION_RATE_WINDOW_MS}ms)`,
+      retryAfterSec: Math.max(2, Math.ceil(SESSION_RATE_WINDOW_MS / 1000)),
+      lagMs: getRecentEventLoopLagMs(),
+    };
+  }
+
   if (pillowSessionCreatesInFlight >= MAX_SESSION_CREATES) {
     return {
       admit: false,
@@ -70,6 +105,8 @@ export function admitPillowSessionCreate(): AdmissionDecision {
 
 export function beginPillowSessionCreate(): void {
   pillowSessionCreatesInFlight += 1;
+  sessionCreateTimestamps.push(Date.now());
+  pruneSessionRateWindow();
 }
 
 export function endPillowSessionCreate(): void {
@@ -79,4 +116,5 @@ export function endPillowSessionCreate(): void {
 /** Test-only reset. */
 export function resetAdmissionControlForTesting(): void {
   pillowSessionCreatesInFlight = 0;
+  sessionCreateTimestamps.length = 0;
 }

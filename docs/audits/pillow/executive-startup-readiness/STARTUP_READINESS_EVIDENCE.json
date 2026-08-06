@@ -1,0 +1,69 @@
+{
+  "mission": "MASTER — PILLOW EXECUTIVE STARTUP & READINESS CERTIFICATION",
+  "startedAt": "2026-07-27T04:09:42.068Z",
+  "cockpit": "https://empire-ai.co",
+  "brain": "https://empireai-production.up.railway.app",
+  "timeline": {
+    "brainLiveMs": 433,
+    "loginMs": 919,
+    "executiveHomeMs": 2384,
+    "pillowReadyMs": 781,
+    "pillowSessionAttempts": [
+      {
+        "attempt": 1,
+        "status": 201,
+        "ms": 781,
+        "error": null
+      }
+    ],
+    "firstResponseMs": 3297,
+    "warmSessionMs": 654,
+    "totalProbeMs": 8468
+  },
+  "checks": {
+    "brainLive": true,
+    "loginOk": true,
+    "sessionCookie": true,
+    "executiveHomeOk": true,
+    "pillowReady": true,
+    "sessionErrorsLeakFree": true,
+    "firstConversationOk": true,
+    "firstConversationLeakFree": true,
+    "firstConversationNatural": true,
+    "warmSessionOk": true
+  },
+  "firstConversation": {
+    "prompt": "How smart are you?",
+    "status": 200,
+    "ms": 3297,
+    "replyPreview": "I possess advanced analytical capabilities and can process vast amounts of information to provide insights, recommendations, and strategic guidance. My focus is on maximizing Long-Term Empire Value while ensuring constitutional governance and operational readiness. If you have specific areas you'd like to explore or questions about my capabilities, please let me know!",
+    "ok": true
+  },
+  "recovery": {
+    "autoSessionRecoveryAttempts": 1,
+    "sessionBecameReady": true,
+    "warmRestartReady": true
+  },
+  "verdict": "PASS",
+  "finishedAt": "2026-07-27T04:09:50.536Z",
+  "failedChecks": [],
+  "performance": {
+    "beforeObservedUx": {
+      "executiveHomeUsableSec": "5–10",
+      "notes": "Connecting… + infra error replies on first ask"
+    },
+    "afterMeasured": {
+      "loginMs": 919,
+      "executiveHomeMs": 2384,
+      "pillowReadyMs": 781,
+      "firstResponseMs": 3297,
+      "warmSessionMs": 654
+    },
+    "recommendations": [
+      "Keep history fetch non-blocking after session create (already applied in web provider).",
+      "Gate Send until executiveReady (already applied).",
+      "Sanitize all Grand King–facing errors (already applied).",
+      "Cold Pillow boot remains the dominant latency — keep readiness banner, never expose host internals."
+    ]
+  }
+}

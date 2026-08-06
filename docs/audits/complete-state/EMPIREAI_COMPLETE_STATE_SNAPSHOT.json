@@ -1,0 +1,174 @@
+{
+  "auditMetadata": {
+    "mission": "EMPIREAI_COMPLETE_STATE_AUDIT",
+    "auditDateUtc": "2026-08-06",
+    "lastVerifiedTimestamp": "2026-08-06T17:20:00.000Z",
+    "confidenceLevel": "HIGH_WITH_GATED_COMMERCE",
+    "verdict": "COMPLETE_STATE_PARTIALLY_CERTIFIED",
+    "supplierToAmazonPath": "READY_AFTER_GRAND_KING_ACTION",
+    "kSeries": "INTENTIONALLY_SKIPPED"
+  },
+  "git": {
+    "branch": "main",
+    "localHeadPreRemediationPush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "originMainPreRemediationPush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "aheadBehindPrePush": "0/0",
+    "remediationIncluded": [
+      "backend/src/runtime/production-admission-control.ts session rate limit",
+      "docs/audits/complete-state/*"
+    ],
+    "note": "Final tip filled after commit/push in post-push verification"
+  },
+  "production": {
+    "brainUrl": "https://empireai-production.up.railway.app",
+    "cockpitUrl": "https://empire-ai.co",
+    "railwayDeployIdObservedHealthy": "fcdb39ce-0265-4dcc-8c43-7004f17c637f",
+    "railwayCommitPrePush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
+    "healthLive": "200_OK_DURING_AUDIT_WINDOWS",
+    "healthReady": "404_NOT_PRESENT",
+    "loginBrowserThisAudit": "FAILED_TO_FETCH_ON_SUBMIT",
+    "loginPriorEvidence": "docs/audits/auth/LOGIN_REGRESSION_EVIDENCE.json PASS",
+    "enterpriseRestoration": "ENTERPRISE_OPERATIONAL at b5a4773e with soak proofs"
+  },
+  "programmeStatuses": {
+    "PRE-G": "COMPLETED",
+    "G": "COMPLETED",
+    "P": "COMPLETED",
+    "E": "COMPLETED",
+    "T": "COMPLETED",
+    "R": "COMPLETED",
+    "X": "COMPLETED",
+    "Q": "COMPLETED",
+    "DigitalSoulV2": "COMPLETED",
+    "PillowUxShell": "COMPLETED",
+    "EESAE": "OPERATIONAL_POLLING_DEPENDENT",
+    "EnterpriseRestoration": "ENTERPRISE_OPERATIONAL"
+  },
+  "missionInventory": {
+    "source": "docs/audits/complete-state/_MISSION_INVENTORY.json",
+    "totalMissions": 227,
+    "COMPLETED": 227,
+    "PARTIALLY_IMPLEMENTED": 0,
+    "MISSING": 0,
+    "DUPLICATED": 0,
+    "BROKEN_OR_DEVIATING": 0,
+    "classificationBasis": "Audit-pack presence; live external activation classified separately"
+  },
+  "builds": {
+    "pillowTypecheck": "PASS",
+    "backendTypecheck": "PASS",
+    "frontendBuild": "PASS",
+    "backendCriticalTests": {
+      "executed": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "suites": [
+        "production-admission-control",
+        "version-1-operational-activation",
+        "cj-dropshipping-live-connector",
+        "amazon-global-seller"
+      ]
+    }
+  },
+  "performanceMeasurements": {
+    "healthLive": "Immediate_to_Fast",
+    "loginPriorProbeMs": "~1050",
+    "pillowChatPriorMs": "~7500_LLM_bound",
+    "sessionReuse": "Fast"
+  },
+  "eesaeStatus": "OPERATIONAL_BUT_POLLING_DEPENDENT",
+  "commerceReadiness": {
+    "status": "READY_AFTER_GRAND_KING_ACTION",
+    "safeBatchSize": "1-5",
+    "liveCommerceModeDefault": "sandbox",
+    "supportsPublishDefault": false
+  },
+  "supplierReadiness": {
+    "provider": "cj-dropshipping",
+    "codePresent": true,
+    "credentialVarsPresentOnRailway": [
+      "CJ_API_KEY",
+      "CJ_DROPSHIPPING_API_KEY",
+      "CJ_INTEGRATION_MODE"
+    ],
+    "operationalStatus": "CREDENTIAL_GATED_SANDBOX_DEFAULT"
+  },
+  "amazonReadiness": {
+    "codePresent": true,
+    "credentialVarsPresentOnRailway": [
+      "AMAZON_SP_API_CLIENT_ID",
+      "AMAZON_SP_API_CLIENT_SECRET",
+      "AMAZON_SP_API_REFRESH_TOKEN",
+      "AMAZON_SP_API_REGION"
+    ],
+    "liveCommerceIntegrationMode": "MISSING_DEFAULTS_SANDBOX",
+    "empireV1OperationalReady": "MISSING",
+    "supportsPublish": false,
+    "operationalStatus": "READY_AFTER_GRAND_KING_ACTION"
+  },
+  "mediaReadiness": "STRUCTURAL_DEFER_VS_COMMERCE",
+  "revenueReadiness": "NOT_LIVE_READY_AFTER_GK_ACTION",
+  "migrationReadiness": "MIGRATION_READY",
+  "credentialRequirementsByVariableName": [
+    "FOUNDER_PASSWORD",
+    "DATABASE_PATH",
+    "CREDENTIAL_VAULT_KEY",
+    "OPENAI_API_KEY",
+    "REDIS_URL",
+    "CJ_API_KEY",
+    "CJ_DROPSHIPPING_API_KEY",
+    "CJ_INTEGRATION_MODE",
+    "AMAZON_SP_API_CLIENT_ID",
+    "AMAZON_SP_API_CLIENT_SECRET",
+    "AMAZON_SP_API_REFRESH_TOKEN",
+    "AMAZON_SP_API_REGION",
+    "LIVE_COMMERCE_INTEGRATION_MODE",
+    "EMPIRE_V1_OPERATIONAL_READY"
+  ],
+  "verifiedBlockers": [
+    "LIVE_COMMERCE_INTEGRATION_MODE not set to production on Railway",
+    "EMPIRE_V1_OPERATIONAL_READY not set",
+    "Browser login this audit returned Failed to fetch (re-verify after deploy)",
+    "Session rate-limit remediation must be pushed/deployed"
+  ],
+  "grandKingActions": [
+    "Confirm Amazon SP-API authorization scope",
+    "Set LIVE_COMMERCE_INTEGRATION_MODE=production when ready to write",
+    "Confirm CJ_INTEGRATION_MODE=LIVE",
+    "Approve controlled 1-5 product listing batch",
+    "Set EMPIRE_V1_OPERATIONAL_READY=true only after first success"
+  ],
+  "recommendedImmediateNextAction": "After deploying admission rate-limit: Grand King confirms Seller Central + sets LIVE_COMMERCE_INTEGRATION_MODE=production, then publishes a controlled 1-5 product batch via Amazon Global Seller readiness/listing + King approval. Do not start new programmes.",
+  "evidencePaths": [
+    "docs/audits/complete-state/COMPLETE_STATE_AUDIT_CERTIFICATION.md",
+    "docs/audits/complete-state/_MISSION_INVENTORY.json",
+    "docs/audits/complete-state/_PHASE1_BASELINE.json",
+    "docs/audits/enterprise-restoration/ENTERPRISE_RESTORATION_AND_PERFORMANCE_CERTIFICATION.md",
+    "docs/audits/auth/LOGIN_REGRESSION_EVIDENCE.json",
+    "docs/audits/pillow/eesae-01-enterprise-executive-situational-awareness/EESAE_CERTIFICATION.md",
+    "backend/src/runtime/production-admission-control.ts",
+    "backend/src/orchestration/version-1-activation/version-1-activation-config.ts",
+    "backend/src/runtime/marketplace-publishing/models/marketplace-adapter.ts"
+  ],
+  "externalIntegrationsSummary": {
+    "railway": "LIVE_AND_VERIFIED",
+    "vercel": "LIVE_AND_VERIFIED",
+    "openai": "CREDENTIAL_GATED",
+    "cjDropshipping": "CREDENTIAL_GATED",
+    "amazonSpApi": "CREDENTIAL_GATED_OWNER_APPROVAL_GATED",
+    "otherMarketplaces": "STRUCTURAL_ONLY"
+  },
+  "emptyShellFindings": [
+    {
+      "path": "backend/src/runtime/marketplace-publishing/models/marketplace-adapter.ts",
+      "severity": "HIGH",
+      "note": "supportsPublish false until production live commerce mode"
+    },
+    {
+      "path": "empireai-web/components/cockpit/widgets/commerce/commerceMarketingDemoData.ts",
+      "severity": "MEDIUM",
+      "note": "Demo marketing data — not live revenue"
+    }
+  ]
+}
