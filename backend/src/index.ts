@@ -4,6 +4,11 @@ import { logCaughtError } from "./config/log-caught-error.js";
 import { buildApp } from "./app.js";
 
 async function main() {
+  const { enforceProductionPersistenceGate } = await import(
+    "./runtime/production-persistence-gate.js"
+  );
+  enforceProductionPersistenceGate();
+
   const productionEarlyListen = env.NODE_ENV === "production";
   const { app, shutdown, finishRouteRegistration } = await buildApp({
     startWorkers: !productionEarlyListen,

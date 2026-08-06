@@ -20,7 +20,7 @@ const HEARTBEAT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HEARTBEAT_MS ?? 1_0
 const HIGH_LAG_ALERT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_MS ?? 500);
 const HIGH_LAG_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_MS ?? 45_000);
 /** Ignore stall/high-lag exits during cold start (Pillow session init can block the loop). */
-const BOOT_GRACE_MS = Number(process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ?? 180_000);
+const BOOT_GRACE_MS = Number(process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ?? 60_000);
 
 type ContinuityHealth = {
   watchdogEnabled: boolean;

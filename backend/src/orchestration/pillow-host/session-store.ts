@@ -43,6 +43,33 @@ export class PillowSessionStore {
     return session;
   }
 
+  /**
+   * Reuse the newest non-stale workspace session when present.
+   * Prevents Cockpit bootstrap stampedes from allocating unbounded sessions.
+   */
+  getOrCreate(
+    workspaceId: string,
+    options?: {
+      repositoryFingerprint?: string;
+      currentMission?: string | null;
+      maxAgeMs?: number;
+    },
+  ): { session: WorkspaceSession; reused: boolean } {
+    const maxAgeMs = options?.maxAgeMs ?? Number(process.env.PILLOW_SESSION_REUSE_MAX_AGE_MS ?? 30 * 60_000);
+    const existing = this.listForWorkspace(workspaceId)
+      .slice()
+      .sort((a, b) => b.lastActivityAt.localeCompare(a.lastActivityAt))[0];
+    if (existing) {
+      const ageMs = Date.now() - Date.parse(existing.lastActivityAt);
+      if (Number.isFinite(ageMs) && ageMs >= 0 && ageMs <= maxAgeMs) {
+        existing.lastActivityAt = new Date().toISOString();
+        existing.updatedAt = existing.lastActivityAt;
+        return { session: existing, reused: true };
+      }
+    }
+    return { session: this.create(workspaceId, options), reused: false };
+  }
+
   get(workspaceId: string, sessionId: string): WorkspaceSession | null {
     return this.sessions.get(this.key(workspaceId, sessionId)) ?? null;
   }

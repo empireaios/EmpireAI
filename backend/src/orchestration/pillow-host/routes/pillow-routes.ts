@@ -39681,10 +39681,29 @@ export async function registerPillowRoutes(
       return reply.code(403).send({ error: "Workspace access denied" });
     }
 
+    const {
+      admitPillowSessionCreate,
+      beginPillowSessionCreate,
+      endPillowSessionCreate,
+    } = await import("../../../runtime/production-admission-control.js");
+    const admission = admitPillowSessionCreate();
+    if (!admission.admit) {
+      reply.header("Retry-After", String(admission.retryAfterSec));
+      return reply.code(503).send({
+        error: "Starting Executive Systems…",
+        retryAfterSec: admission.retryAfterSec,
+        admission: {
+          reason: admission.reason,
+          lagMs: admission.lagMs,
+        },
+      });
+    }
+
     if (!(await ensurePillowHostReadyOrReply(pillowHost, llmRouter, auditLogger, reply))) {
       return;
     }
 
+    beginPillowSessionCreate();
     try {
       const session = pillowHost.createSession(workspaceId);
       auditLogger.write({
@@ -39700,6 +39719,8 @@ export async function registerPillowRoutes(
         return reply.code(503).send({ error: error.message, health: pillowHost.getHealth() });
       }
       throw error;
+    } finally {
+      endPillowSessionCreate();
     }
   });
 
@@ -39785,6 +39806,20 @@ export async function registerPillowRoutes(
     const workspaceId = body.workspaceId ?? user.workspaceId;
     if (workspaceId !== user.workspaceId && user.role !== "admin") {
       return reply.code(403).send({ error: "Workspace access denied" });
+    }
+
+    const { admitExpensiveWork } = await import("../../../runtime/production-admission-control.js");
+    const admission = admitExpensiveWork("pillow chat");
+    if (!admission.admit) {
+      reply.header("Retry-After", String(admission.retryAfterSec));
+      return reply.code(503).send({
+        error: "Preparing Executive Intelligence…",
+        retryAfterSec: admission.retryAfterSec,
+        admission: {
+          reason: admission.reason,
+          lagMs: admission.lagMs,
+        },
+      });
     }
 
     if (!(await ensurePillowHostReadyOrReply(pillowHost, llmRouter, auditLogger, reply))) {

@@ -360,18 +360,20 @@ export class PillowHost {
     createSession(workspaceId) {
         this.ensureRunning();
         const bootstrap = this.pillowSession.bootstrap;
-        const session = this.sessionStore.create(workspaceId, {
+        const { session, reused } = this.sessionStore.getOrCreate(workspaceId, {
             repositoryFingerprint: this.pillowSession.contextBuilder.repositoryFingerprint,
             currentMission: bootstrap.currentMission,
         });
         this.touchActivity();
-        this.auditLogger?.write({
-            action: "pillow.session.create",
-            actor: "pillow-host",
-            workspaceId,
-            correlationId: session.sessionId,
-            metadata: { sessionId: session.sessionId },
-        });
+        if (!reused) {
+            this.auditLogger?.write({
+                action: "pillow.session.create",
+                actor: "pillow-host",
+                workspaceId,
+                correlationId: session.sessionId,
+                metadata: { sessionId: session.sessionId, reused: false },
+            });
+        }
         return session;
     }
     destroySession(workspaceId, sessionId) {
