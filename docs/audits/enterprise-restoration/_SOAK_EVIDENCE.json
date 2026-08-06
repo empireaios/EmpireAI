@@ -1,0 +1,31 @@
+﻿{
+    "startedAt":  "2026-08-06T15:04:43.7649257Z",
+    "deployId":  "c1dea4d3-3640-410d-9c75-b5413725edd4",
+    "commit":  "199049424e89a2efc74565deac01d4da328dd16c",
+    "samples":  [
+                    "t=1 status=200 ms=396 lag=0 inFlight=0",
+                    "t=2 status=200 ms=372 lag=0.990259000100195 inFlight=0",
+                    "t=3 status=200 ms=247 lag=0 inFlight=0",
+                    "t=4 status=200 ms=320 lag=0.664709999924526 inFlight=0",
+                    "t=5 status=200 ms=220 lag=0 inFlight=0",
+                    "t=6 status=200 ms=285 lag=0.311209999956191 inFlight=0",
+                    "t=7 status=200 ms=465 lag=0.366291999816895 inFlight=0",
+                    "t=8 status=200 ms=208 lag=0 inFlight=0",
+                    "t=9 status=200 ms=309 lag=0.868970999959856 inFlight=0",
+                    "t=10 status=200 ms=253 lag=0 inFlight=0",
+                    "t=11 status=200 ms=304 lag=0.0980920000001788 inFlight=0",
+                    "t=12 status=200 ms=250 lag=0 inFlight=0",
+                    "t=13 status=200 ms=250 lag=0 inFlight=0",
+                    "t=14 status=200 ms=249 lag=0 inFlight=0",
+                    "t=15 status=200 ms=229 lag=0.562633000081405 inFlight=0",
+                    "t=16 status=200 ms=390 lag=0.898481999989599 inFlight=0",
+                    "t=17 status=200 ms=237 lag=0.295758999884129 inFlight=0",
+                    "t=18 status=200 ms=213 lag=0.295186999952421 inFlight=0",
+                    "t=19 status=200 ms=228 lag=0 inFlight=0",
+                    "t=20 status=200 ms=211 lag=0.69691800000146 inFlight=0"
+                ],
+    "ok":  20,
+    "fail":  0,
+    "endedAt":  "2026-08-06T15:19:49.5886611Z",
+    "verdict":  "PASS"
+}
