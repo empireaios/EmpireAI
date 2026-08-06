@@ -28,15 +28,13 @@ This audit revalidates prior programme certifications as claims, inventories app
 | Item | Value at package freeze |
 |------|-------------------------|
 | Branch | `main` |
-| Local HEAD (pre-push remediation) | `b5a4773e5d920e82ce41f03b3ef87cd5c677910b` |
-| origin/main (pre-push) | same |
-| Ahead/behind (pre-push) | 0/0 |
-| Railway deploy observed healthy | `fcdb39ce-0265-4dcc-8c43-7004f17c637f` SUCCESS |
-| Production Brain | `https://empireai-production.up.railway.app` — `/health/live` **200**, lag≈0 |
-| Cockpit | `https://empire-ai.co` — HTTP **200**, login page renders |
-| Phase-1 freeze note | At audit start, tip `b5a4773e` briefly returned **502** under session stampede; redeploy restored health |
-
-Post-remediation tip and production commit are recorded in `EMPIREAI_COMPLETE_STATE_SNAPSHOT.json` after commit/push.
+| Final local HEAD / origin/main | `433ebe3e881ed3d2a3cc684cccff3543921fe47d` |
+| Ahead/behind | 0/0 |
+| Pre-remediation tip | `b5a4773e` (ENTERPRISE OPERATIONAL) |
+| Railway deploy (final) | `fe5599b0-e2b2-49fd-84ea-bb6b56e16a53` SUCCESS @ `433ebe3e` |
+| Production Brain | `/health/live` **200** post-push; admission includes `sessionRateLimit=4` |
+| Cockpit | `https://empire-ai.co` — HTTP **200**; browser submit once showed `Failed to fetch` when Brain was unreachable mid-audit |
+| Remediation pushed | Session rate-limit admission + Complete State Package |
 
 ---
 

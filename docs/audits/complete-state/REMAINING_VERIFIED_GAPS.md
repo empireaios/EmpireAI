@@ -14,9 +14,8 @@ Only genuine remaining gaps after the Complete State Audit. Not a wishlist.
    - Gap: `CJ_INTEGRATION_MODE` present but must be confirmed `LIVE` for real catalogue (not fixtures).  
    - Owner action: verify variable value in Railway UI.
 
-4. **Session stampede hardening deploy**  
-   - Gap: hard session rate-limit added in admission control during this audit; must be on `origin/main` and Railway.  
-   - Owner/system action: commit + push + confirm `/health/live` shows rate-limit stats.
+4. **Session stampede hardening** — CLOSED for this audit  
+   - `433ebe3e` on `origin/main`; Railway `fe5599b0` exposes `sessionRateLimit` on `/health/live`.
 
 5. **Demo vs live UI honesty**  
    - Gap: commerce marketing demo data can look “live.”  

@@ -2,7 +2,7 @@
   "auditMetadata": {
     "mission": "EMPIREAI_COMPLETE_STATE_AUDIT",
     "auditDateUtc": "2026-08-06",
-    "lastVerifiedTimestamp": "2026-08-06T17:20:00.000Z",
+    "lastVerifiedTimestamp": "2026-08-06T18:30:00.000Z",
     "confidenceLevel": "HIGH_WITH_GATED_COMMERCE",
     "verdict": "COMPLETE_STATE_PARTIALLY_CERTIFIED",
     "supplierToAmazonPath": "READY_AFTER_GRAND_KING_ACTION",
@@ -10,25 +10,29 @@
   },
   "git": {
     "branch": "main",
+    "finalCommit": "433ebe3e881ed3d2a3cc684cccff3543921fe47d",
+    "localHead": "433ebe3e881ed3d2a3cc684cccff3543921fe47d",
+    "originMain": "433ebe3e881ed3d2a3cc684cccff3543921fe47d",
+    "aheadBehind": "0/0",
     "localHeadPreRemediationPush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
-    "originMainPreRemediationPush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
-    "aheadBehindPrePush": "0/0",
     "remediationIncluded": [
       "backend/src/runtime/production-admission-control.ts session rate limit",
-      "docs/audits/complete-state/*"
-    ],
-    "note": "Final tip filled after commit/push in post-push verification"
+      "docs/audits/complete-state/*",
+      "docs/audits/auth, digital-soul, pillow-shell, HA, ELM, judgement, startup-readiness"
+    ]
   },
   "production": {
     "brainUrl": "https://empireai-production.up.railway.app",
     "cockpitUrl": "https://empire-ai.co",
-    "railwayDeployIdObservedHealthy": "fcdb39ce-0265-4dcc-8c43-7004f17c637f",
-    "railwayCommitPrePush": "b5a4773e5d920e82ce41f03b3ef87cd5c677910b",
-    "healthLive": "200_OK_DURING_AUDIT_WINDOWS",
+    "railwayDeployIdFinal": "fe5599b0-e2b2-49fd-84ea-bb6b56e16a53",
+    "railwayCommitFinal": "433ebe3e881ed3d2a3cc684cccff3543921fe47d",
+    "railwayDeployIdMidAudit": "fcdb39ce-0265-4dcc-8c43-7004f17c637f",
+    "healthLive": "200_OK_POST_PUSH_WITH_SESSION_RATE_LIMIT_STATS",
     "healthReady": "404_NOT_PRESENT",
-    "loginBrowserThisAudit": "FAILED_TO_FETCH_ON_SUBMIT",
+    "admissionRateLimitLive": true,
+    "loginBrowserThisAudit": "FAILED_TO_FETCH_ON_SUBMIT_WHEN_BRAIN_UNREACHABLE",
     "loginPriorEvidence": "docs/audits/auth/LOGIN_REGRESSION_EVIDENCE.json PASS",
-    "enterpriseRestoration": "ENTERPRISE_OPERATIONAL at b5a4773e with soak proofs"
+    "enterpriseRestoration": "ENTERPRISE_OPERATIONAL at b5a4773e with soak proofs; rate-limit on 433ebe3e"
   },
   "programmeStatuses": {
     "PRE-G": "COMPLETED",
@@ -129,8 +133,7 @@
   "verifiedBlockers": [
     "LIVE_COMMERCE_INTEGRATION_MODE not set to production on Railway",
     "EMPIRE_V1_OPERATIONAL_READY not set",
-    "Browser login this audit returned Failed to fetch (re-verify after deploy)",
-    "Session rate-limit remediation must be pushed/deployed"
+    "Browser login this audit once returned Failed to fetch when Brain unreachable — re-login after sustained health"
   ],
   "grandKingActions": [
     "Confirm Amazon SP-API authorization scope",
