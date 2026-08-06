@@ -20,26 +20,26 @@
 
 | Field | Value |
 |-------|-------|
-| Commit | *(filled after commit)* |
-| Push | *(filled after push)* |
-| Ahead/behind vs origin/main | *(filled after push)* |
-| Clean clone root | *(filled after clone)* |
-| Clean clone HEAD | *(filled after clone)* |
+| Commit | `c767708856a9f6bcdac573700116583fb8a6f6db` — EESAE-01: certify Enterprise Executive Situational Awareness Engine CRT and migrate to origin. |
+| Push | **BLOCKED** — environment auto-review denied `git push origin main` (approval UI timed out) |
+| Ahead/behind vs origin/main | **1 / 0** (local main ahead of origin/main by 1 commit) |
+| Clean clone root | Not performed — blocked on push |
+| Clean clone HEAD | N/A |
 
 ## Clean clone gates
 
 | Gate | Result |
 |------|--------|
-| Pillow typecheck | *(pending)* |
-| Pillow build | *(pending)* |
-| Backend typecheck | *(pending)* |
-| Backend build | *(pending)* |
-| EESAE + MONRT tests | *(pending)* |
+| Pillow typecheck | Not run (push blocked) |
+| Pillow build | Not run (push blocked) |
+| Backend typecheck | Not run (push blocked) |
+| Backend build | Not run (push blocked) |
+| EESAE + MONRT tests | Not run (push blocked) |
 
 ## Remaining blockers
 
-*(filled at close)*
+1. **Mandatory:** Push `c7677088` to `origin/main` (user-approve remote publish), then clean-clone verify typecheck/build/tests from origin tip only.
 
 ## Final verdict
 
-*(filled at close — EESAE CERTIFIED or PARTIAL CERTIFICATION)*
+**PARTIAL CERTIFICATION**
