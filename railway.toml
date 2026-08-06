@@ -4,7 +4,8 @@
 
 [build]
 builder = "NIXPACKS"
-buildCommand = "node scripts/sync-pillow-governance.mjs && NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_CONFIG_PRODUCTION=false npm install --prefix backend && npm run build --prefix pillow && npm run build --prefix backend"
+# Install pillow+backend first so scripts/sync-pillow-governance.mjs can resolve tsx from backend/node_modules.
+buildCommand = "NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_CONFIG_PRODUCTION=false npm install --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
 startCommand = "node backend/dist/index.js"

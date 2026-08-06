@@ -24,13 +24,25 @@ function resolveTsxImportSpecifier() {
       const tsxEntry = requireFromBackend.resolve("tsx");
       return pathToFileURL(tsxEntry).href;
     } catch {
-      // fall through to bare specifier / root resolution
+      // fall through
     }
   }
-  return "tsx";
+  try {
+    const requireFromRoot = createRequire(path.join(repoRoot, "package.json"));
+    return pathToFileURL(requireFromRoot.resolve("tsx")).href;
+  } catch {
+    return null;
+  }
 }
 
 const tsxSpecifier = resolveTsxImportSpecifier();
+if (!tsxSpecifier) {
+  console.error(
+    "[sync-pillow-governance] Cannot resolve package 'tsx'. Install backend deps first: npm install --prefix backend",
+  );
+  process.exit(1);
+}
+
 const result = spawnSync(
   process.execPath,
   ["--import", tsxSpecifier, tsEntry],

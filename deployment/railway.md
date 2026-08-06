@@ -25,7 +25,7 @@ Both services share the same environment variables and persistent volume.
 
 ```toml
 [build]
-buildCommand = "npm install --prefix pillow && npm install --prefix backend && npm run build --prefix pillow && npm run build --prefix backend"
+buildCommand = "npm install --prefix pillow && npm install --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
 startCommand = "node backend/dist/index.js"
