@@ -68,19 +68,28 @@ EESAE is a permanent post-Q constitutional capability. It maintains continuous e
 
 | Requirement | Status |
 |-------------|--------|
-| EESAE artefacts committed | PASS — `c7677088` |
-| Pushed to `origin/main` | **BLOCKED** — push approval timed out; local ahead 1 |
-| Clean clone typecheck/build | Not run (blocked on push) |
-| Clean clone EESAE + MONRT tests | Not run (blocked on push) |
-| Migration from origin/main only | **FAIL pending push** |
+| EESAE artefacts committed | PASS — `c7677088` (+ cert follow-ups) |
+| Pushed to `origin/main` | PASS — tip `8fc77e05` |
+| Clean clone typecheck/build | PASS |
+| Clean clone EESAE + MONRT tests | PASS — **24/24** |
+| Migration from origin/main only | PASS |
+
+### Clean clone evidence
+
+- Clone root: `%TEMP%\EmpireAI-eesae-clean-20260806102037\EmpireAI`
+- HEAD: `8fc77e055875e1fa6fb95442bd6e7788fa79fa9a`
+- EESAE engine/config/gov/bridge/cert pack: PRESENT
+- Pillow/backend typecheck+build: PASS
+- Tests: 24/24 PASS
 
 ## Final Verdict
 
-**PARTIAL CERTIFICATION** — implementation and local gates PASS; origin migration incomplete until `c7677088` is pushed and clean-clone verified.
+**EESAE CERTIFIED**
 
 ## Artifacts
 
 - `docs/governance/EMPIREAI_ENTERPRISE_EXECUTIVE_SITUATIONAL_AWARENESS_ENGINE_SYSTEM.md`
+- `EESAE_CERTIFICATION.md`
 - `IMPLEMENTATION_REPORT.md`
 - `VALIDATION_CHECKLIST.md`
 - `EXAMPLE_SITUATIONAL_AWARENESS_REPORT.json`
