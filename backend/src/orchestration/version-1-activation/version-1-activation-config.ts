@@ -2,6 +2,7 @@ import {
   type AmazonMarketplaceRegistryId,
   hasAmazonMarketplaceEnvCredentials,
   hasAmazonSpApiEnvCredentials,
+  hasAmazonSpApiSharedCredentials,
   isAmazonMarketplaceRegistryId,
 } from "../reality-integration/live-commerce/amazon-marketplace-profiles.js";
 
@@ -58,9 +59,16 @@ export function isAmazonMarketplaceLiveActivated(
   return isLiveCommerceProductionMode(env) && hasAmazonMarketplaceEnvCredentials(registryId, env);
 }
 
-/** M3 — all V1 Amazon marketplaces live (shared LWA app + per-region refresh tokens). */
+/** M3 — Amazon live path when production mode + shared LWA + at least one V1 marketplace token. */
 export function isAmazonLiveCommerceActivated(env: NodeJS.ProcessEnv = process.env): boolean {
-  return isLiveCommerceProductionMode(env) && hasAmazonSpApiEnvCredentials(env);
+  if (!isLiveCommerceProductionMode(env) || !hasAmazonSpApiSharedCredentials(env)) {
+    return false;
+  }
+  // First-dollar / US-only accounts must not be blocked solely by missing FE/SG token.
+  return (
+    hasAmazonMarketplaceEnvCredentials("amazon-us", env) ||
+    hasAmazonMarketplaceEnvCredentials("amazon-sg", env)
+  );
 }
 
 /** M3 — CJ live fulfilment path enabled. */

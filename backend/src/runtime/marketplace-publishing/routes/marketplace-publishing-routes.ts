@@ -105,12 +105,15 @@ export async function registerMarketplacePublishingRoutes(
   app.get("/health/marketplace-publishing", async (_request, reply) => {
     const adapters = listMarketplaceAdapters();
     const amazon = resolveMarketplaceAdapter("amazon");
+    const amazonUs = resolveMarketplaceAdapter("amazon-us");
     return reply.send({
       status: adapters.length >= 7 ? "HEALTHY" : "WARNING",
       adapterCount: adapters.length,
-      livePublishBlocked: !amazon.supportsPublish,
+      livePublishBlocked: !amazonUs.supportsPublish,
       amazonSupportsPublish: amazon.supportsPublish,
+      amazonUsSupportsPublish: amazonUs.supportsPublish,
       amazonAdapterStatus: amazon.adapterStatus,
+      amazonUsAdapterStatus: amazonUs.adapterStatus,
     });
   });
 }
