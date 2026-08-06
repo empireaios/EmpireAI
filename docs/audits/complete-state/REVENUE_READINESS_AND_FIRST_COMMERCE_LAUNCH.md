@@ -30,7 +30,7 @@ Form **B** applies:
 
 1. In Amazon Seller Central, confirm SP-API app still authorised for US/SG (as configured).  
 2. On Railway, set **`LIVE_COMMERCE_INTEGRATION_MODE=production`**.  
-3. Confirm **`CJ_INTEGRATION_MODE=LIVE`** (not sandbox fixtures).  
+3. **`CJ_INTEGRATION_MODE=LIVE` already set** — still execute one live catalogue pull before selecting SKUs.  
 4. Keep **`EMPIRE_V1_OPERATIONAL_READY=false`** until first controlled publish succeeds; then set `true` only after validation.  
 5. Redeploy/restart Brain if env change requires it.  
 6. Authenticate to Cockpit → run readiness: `GET /amazon-global-seller/readiness`.  
