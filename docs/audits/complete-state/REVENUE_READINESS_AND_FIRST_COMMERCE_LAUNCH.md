@@ -13,8 +13,8 @@ Form **B** applies:
 
 | # | Stage | Status | Exact blocker |
 |---|-------|--------|---------------|
-| 1 | Connect suppliers | Code + creds | Confirm `CJ_INTEGRATION_MODE=LIVE` for live catalogue |
-| 2 | Pull catalogue | Implemented | Sandbox vs live mode |
+| 1 | Connect suppliers | Creds + `CJ_INTEGRATION_MODE=LIVE` on Railway | Live auth/product pull still must be executed once |
+| 2 | Pull catalogue | Implemented | Live pull not re-proven in addendum window |
 | 3 | Normalize | Implemented | — |
 | 4 | Supplier quality/policy | Partial engines | Manual King review for first batch |
 | 5 | Marketplace eligibility | Partial | Amazon category validation on first SKU |
