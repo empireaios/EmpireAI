@@ -2,8 +2,8 @@
 
 **Mission:** Closure — no expansion  
 **Date:** 2026-08-07  
-**Authority:** Live production probes + repository root-cause analysis + implemented repairs  
-**Commerce baseline:** Commerce Proof 001 remains intact (`PUBLICATION_ACCEPTED`) — not modified in this mission  
+**Git tip verified on origin/main:** `2389bd9b`  
+**Commerce Intelligence commit on origin/main:** `70212896` — **YES**
 
 ---
 
@@ -11,196 +11,125 @@
 
 # EXECUTIVE OPERATING SYSTEM NOT CERTIFIED
 
-**External / process blocker preventing closure:** durable EOS repairs are committed locally (`24f7b3c`, parent EOS commit `d0841d76`, plus prior commerce-intel audit `70212896`) but **push to `origin/main` is blocked by smart-mode approval**. Production cannot receive the fixes until Grand King approves the push. Production Grand King journey on the *repaired* deploy is therefore **not yet verified**.
+**Mandatory production defects still open after push + Railway SUCCESS deploy:**
+
+1. **Production Brain unavailable / unstable** after deploy `1c7755eb` — `/health/live` returned **502** / timed out during Grand King journey verification.  
+2. **Production frontend (empire-ai.co) is not serving the EOS repair bundles** — browser runtime check found `DeferredExecutiveSystemStrips` / “Load extended panels” / “Daily Operations” **absent** from loaded `_next/static` assets (`eosFixInBundle: false`). Executive Home still renders legacy P7-02 strip stack behaviour and bare Retry buttons.  
+3. **Executive Chat locked in production UI** — textbox disabled, placeholder “Preparing Executive Intelligence…”, status “Starting Executive Systems…” while Brain is wedged/unavailable to the BFF session path.
+
+When Brain was briefly healthy earlier in this certification window, **direct Pillow API chat succeeded** (`"I confirm that I am operational."`, Digital Soul gate + OpenAI). That proves the Pillow host path can work, but it does **not** satisfy the mandatory Grand King UI journey under sustained production conditions.
 
 ---
 
-## 1. Root cause analysis (verified)
+## 1. Root cause analysis (carried forward + production re-verified)
 
 | Issue | Root cause | Evidence |
 |-------|------------|----------|
-| Production Brain intermittent **502** | Event-loop starvation; Railway edge timeout while process remains “Online” | `/health/live` returned 502 earlier; Railway logs: lag ~7–8s spikes, watchdog exit at lag 74s |
-| Lag spikes when using Executive Home | **~70 certification strips** mounted on every EH load, each with **5s polling** → thundering herd of Brain/Pillow requests | `ExecutiveHomePage.tsx` (pre-repair) imported dozens of `*Strip` components; hooks use `POLL_MS = 5_000` |
-| Fake “all blockers closed” banner | Greeting treated missing data as success | `ExecutiveHomeGreetingLive` rendered green state when `data` was null |
-| Bare “Retry” widgets | Error path replaced last useful UI with a button and no reason | `ExecutiveHomeLiveWidgets` `error \|\| !data` → Retry only |
-| Chat readiness language / missing module | `GlobalAiAssistantProvider` imported `@/lib/pillow/executive-surface` but file was **not on HEAD** | `git ls-tree HEAD empireai-web/lib/pillow/` lacked `executive-surface.ts` |
-| Executive Home aggregation under lag | Full engine fan-out continued even when loop saturated | Pre-repair `assembleExecutiveHomeViewAsync` always loaded all `COCKPIT_ENGINE_IDS` |
-
-**Not assumed:** commerce broken (Proof 001 accepted). Commerce code was not modified.
+| Brain 502 class | Event-loop starvation under EH aggregation / sql.js pressure; watchdog/restart cycles | Railway logs lag spikes; health 502 after deploy SUCCESS |
+| EH load storm | ~70 certification strips + 5s polls (pre-repair) | Fixed in `d0841d76` but **not present in production frontend bundles** |
+| Chat unlock stall | `executiveReady` false when Pillow session bootstrap cannot reach Brain | Browser: chat `disabled`, readiness “Starting Executive Systems…” |
+| Fake/success UX | Greeting assumed blockers closed without data; bare Retry | Fixed in local commits; production UI still shows Retry cluster |
 
 ---
 
-## 2. Files modified (local commits)
+## 2. Files modified (already on origin/main)
 
-### `d0841d76` — Stabilize Executive Home for daily Grand King operation
-- `backend/src/domain/services/executive-home-sync.ts` — degraded assembly when lag/paused
-- `backend/src/domain/services/executive-home-loader.ts` — dispatch timeout default **12s** (fail to cache/fallback faster)
-- `empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx` — daily core only; strips deferred
-- `empireai-web/components/cockpit/executive/DeferredExecutiveSystemStrips.tsx` — **new**, mount-on-demand
-- `empireai-web/components/cockpit/widgets/ExecutiveHomeLiveWidgets.tsx` — truthful load/empty/error/LKG
-- `empireai-web/components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx` — `executiveReady` gating + labels
-- `empireai-web/components/cockpit/global-assistant/GlobalAiAssistantPanel.tsx` — chat readiness UX
-- `empireai-web/lib/pillow/executive-surface.ts` (+ test) — **missing module restored**
-- `empireai-web/lib/cockpit/pillow/pillow-session-store.ts` — shell geometry helpers already needed by panel
-- `empireai-web/lib/commerce-operating-model/useCommerceOperatingModel.ts` — poll **30s** (was 5s)
-- `empireai-web/lib/brain/fetch-utils.ts` — session timeout 30s
-- `empireai-web/lib/auth/context.tsx` — anonymous session probe no longer blocks login UI
-- `empireai-web/components/cockpit/widgets/DataModeBadge.tsx` — optional `live` prop compat
+| Commit | Summary |
+|--------|---------|
+| `70212896` | Commerce Intelligence Certification 001 audit |
+| `d0841d76` | Defer strip herd; degraded EH assembly; truthful widgets; executive-surface; chat readiness |
+| `24f7b3c6` | Degraded EH Grand King copy |
+| `2389bd9b` | Prior NOT CERTIFIED report (pending push — now superseded by this update) |
 
-### `24f7b3c` — Clarify degraded Executive Home blocker copy
-- Fallback topBlocker: Brain Sync protecting responsiveness (Grand King language)
-
-### Still local / ahead (not pushed): also `70212896` Commerce Intelligence Certification audit doc
+Commerce implementation **not** modified.
 
 ---
 
-## 3. Runtime repairs performed
+## 3–5. Runtime / production / UX repairs
 
-1. Skip heavy Executive Home engine fan-out when `isHeavyWorkPaused()` or lag ≥ `EXECUTIVE_HOME_DEGRADED_LAG_MS` (default 80).  
-2. Serve minimal Executive Home fallback (command + portfolio) instead of wedging auth/health.  
-3. Faster EH dispatch timeout (12s) → stale cache / minimal fallback instead of 90s hang.  
+Implemented and pushed. **Not fully active in Grand King browser UI** because Vercel production assets do not yet include those frontend commits (verified via bundle string scan). Railway Brain deploy `1c7755eb` reached SUCCESS then became non-responsive to health probes during verification.
 
 ---
 
-## 4. Production repairs performed
+## 6. Placeholder / fake-data (production browser)
 
-- Railway Brain was restarted during investigation; `/health/live` recovered to **200**, `eventLoopLagMs: 0` after restart.  
-- **Durable code path not yet on production** until push + Railway/Vercel deploy of `d0841d76` / `24f7b3c`.
-
----
-
-## 5. UX repairs performed
-
-1. Deferred extended certification panels (default EH no longer mounts the herd).  
-2. Greeting: loading / error / real blocker / truthful “no open blockers” — never fake success.  
-3. Command / Mission / Portfolio / Engine widgets: loading · meaningful empty · error with reason · last-known-good with “Reconnecting…”.  
-4. Executive Chat: disabled input explained via readiness label; unlock when `executiveReady`.  
-5. Commerce strip poll reduced to 30s.
+| Observation | Result |
+|-------------|--------|
+| Revenue shown `$0.00` | Truthful zero |
+| Approvals `0` / “No pending approval workflows” | Truthful empty |
+| Bare **Retry** on Command Snapshot / Mission Queue / Portfolio / Engine Health | **FAIL** — unexplained Retry still present on production UI |
+| Recommendation “Scale top revenue company” | **FAIL risk** — looks like demo/sample executive advice without live revenue |
+| Extended panels deferred control | **MISSING on prod frontend** (bundle scan) |
 
 ---
 
-## 6. Complete placeholder audit (Executive Home core)
+## 7–8. Startup / Pillow chat
 
-| Surface | Result after repair |
-|---------|---------------------|
-| Greeting fake PASS | **Fixed** (no longer assumes closed blockers without data) |
-| Bare Retry | **Fixed** on core EH widgets (reason + affected capability) |
-| Portfolio empty | Shows “No revenue recorded yet.” / “No published products yet.” when empty |
-| Mission empty | “No approved missions.” / “No pending mission actions.” |
-| Extended strips | Not auto-mounted (avoids Retry herd); available on demand / nav |
-| Chat placeholders | Input placeholder reflects readiness — not fake connected state |
+| Check | Result |
+|-------|--------|
+| Railway deploy SUCCESS | `1c7755eb-b550-497b-a2b9-51b901d80f1e` @ 2026-08-07 17:12 +08 |
+| Pillow host start log | PASS (`Pillow host started (PILLOW-016)`) |
+| Direct API session + chat (Brain healthy window) | PASS — message “I confirm that I am operational.” |
+| Browser focus / caret / type / send | **FAIL** — input disabled |
+| Digital Soul gate (API chat trace) | PASS (`digitalSoulGateMs: 2`) when Brain healthy |
 
-Other cockpit centres outside EH may still have Retry patterns from prior modules — not expanded in this closure mission beyond EH daily path.
-
----
-
-## 7. Fake/hardcoded-data audit
-
-| Item | Status |
-|------|--------|
-| Fake GMV on EH core | Not introduced; empty portfolio copy is truthful |
-| Demo revenue invented | Not done |
-| Hardcoded “all blockers closed” without data | **Removed** |
-| Commerce Proof placeholder image | Historical proof artifact only — commerce not modified |
+Evidence files:
+- `docs/audits/complete-state/EOS_FINAL_PROD_VERIFY_EVIDENCE.json`
+- `docs/audits/complete-state/eos-final-prod-verify.mjs`
 
 ---
 
-## 8. Startup-state verification
-
-| State | Evidence |
-|-------|----------|
-| Brain listens early | Railway logs: earlyListen + commerce-critical routes |
-| Pillow host start | Logs: `Pillow host started (PILLOW-016)` after boot |
-| Continuity watchdog | Active; exits on sustained high lag (observed) |
-| Degraded EH assembly | **Code committed locally — not production-verified post-deploy** |
-
----
-
-## 9. Pillow Executive Chat verification
-
-| Step | Status |
-|------|--------|
-| executive-surface module exists | Restored in commit `d0841d76` |
-| Chat readiness gating | Implemented in ChatWorkspace + GlobalAiAssistantPanel |
-| Production Grand King → textbox → Pillow → response | **NOT VERIFIED on post-repair deploy** (push blocked) |
-| Unit tests | `executive-surface.test.ts` — **4/4 pass** |
-
----
-
-## 10. Dashboard stability verification
-
-Pre-repair: mounting EH caused lag/502 class failure.  
-Post-repair (local): herd deferred.  
-**Production post-deploy:** pending push.
-
----
-
-## 11. Responsiveness verification
-
-| Change | Intent |
-|--------|--------|
-| Defer strips | Remove 5s × N poll storm |
-| Commerce poll 30s | Reduce continuous load |
-| Degraded assembly | Keep auth/health alive under lag |
-| Session timeout 30s | Survive degraded Brain without false login error |
-
-Production latency after deploy: pending.
-
----
-
-## 12. Production Grand King journey evidence
+## 9–11. Dashboard stability / responsiveness / journey
 
 | Step | Result |
 |------|--------|
-| Open empire-ai.co | Login page available (prior + this session) |
-| `/health/live` after restart | **200** / lag 0 (during this mission) |
-| Login → EH → chat on **repaired** build | **BLOCKED** — fixes not on `origin/main` |
+| Open empire-ai.co / login | PASS (browser reached `/cockpit` as Grand King) |
+| Executive Home loads | PARTIAL — page renders, multiple Retry widgets |
+| Widgets stable / no fake placeholders | **FAIL** — Retry cluster + possible sample recommendation |
+| Brain Sync | Degraded while Brain 502 |
+| Refresh/recovery | Not certified under Brain outage |
+| Major nav | Sidebar present; not fully exercised under Brain outage |
+| Commerce Proof 001 regression | Not re-run; commerce code untouched; cert commit on origin |
 
 ---
 
-## 13. Regression test results
+## 12. Production Grand King journey evidence (summary)
+
+- Login as Grand King: **PASS** (browser)  
+- EH visible: **PASS** (structure)  
+- Chat focus/type/send/response in UI: **FAIL** (disabled)  
+- API Pillow response when Brain up: **PASS**  
+- Production Brain health at close of verification: **FAIL** (502 / timeout)  
+- Production frontend includes EOS repairs: **FAIL** (`eosFixInBundle: false`)
+
+---
+
+## 13. Regression tests
 
 | Test | Result |
 |------|--------|
-| `empireai-web/lib/pillow/executive-surface.test.ts` | PASS (4) |
-| Commerce implementation | Untouched |
-| Full backend suite | Not re-run end-to-end this session (scope: closure repairs) |
+| `executive-surface.test.ts` | PASS (4) earlier in mission |
+| Commerce Proof 001 code path | Untouched |
 
 ---
 
-## 14. Git commits (local)
+## 14–16. Git / push / migration
 
-| Hash | Message |
-|------|---------|
-| `70212896` | Record Commerce Intelligence Certification 001 audit. |
-| `d0841d76` | Stabilize Executive Home for daily Grand King operation. |
-| `24f7b3c` | Clarify degraded Executive Home blocker copy for Grand King clarity. |
-
----
-
-## 15. Push status
-
-**NOT PUSHED.** Smart-mode blocked `git push` to `origin/main`.  
-Working tree before push: **ahead 3**, behind 0.
+| Item | Value |
+|------|--------|
+| Local HEAD | `2389bd9b…` (plus this report update pending) |
+| origin/main before this update | `2389bd9b` |
+| Ahead/behind after commerce+EOS push | **0 / 0** |
+| `70212896` on origin/main | **YES** |
+| Secrets committed | No |
 
 ---
 
-## 16. Migration preservation status
+## 17. Remaining mandatory issues (external / platform)
 
-| Requirement | Status |
-|-------------|--------|
-| No secrets in commits | OK |
-| Reproducible from repo | OK once pushed |
-| Machine-local only | **FAIL until push** |
-
----
-
-## 17. Remaining mandatory issues
-
-1. **Approve and execute `git push -u origin HEAD` to `origin/main`.**  
-2. Confirm Railway + Vercel deploy of tip including `d0841d76` / `24f7b3c`.  
-3. Complete production Grand King journey: login → EH stable → chat focus → type → send → Pillow response → refresh retains LKG.  
-4. Re-check `/health/live` under sustained EH use (lag must stay usable; no recurring 502).
+1. **Restore production Brain responsiveness** after Railway deploy (health 200 sustained; no recurring 502 under EH use). Isolated `railway restart` could not be executed from this agent session (smart-mode blocked without a rendered approval control).  
+2. **Deploy frontend tip `2389bd9b` (or later) to Vercel production** so deferred strips + truthful widgets + chat readiness ship to empire-ai.co. Production bundles currently lack those strings.  
+3. Re-run Grand King UI journey only after (1) and (2): focus → type → send → Pillow reply → refresh preserves LKG.
 
 ---
 
@@ -208,6 +137,4 @@ Working tree before push: **ahead 3**, behind 0.
 
 # EXECUTIVE OPERATING SYSTEM NOT CERTIFIED
 
-Because durable EOS repairs are not yet on `origin/main` / production, and the mandatory post-repair Grand King production journey has not been demonstrated.
-
-**Next single action required:** Grand King approves push of local `main` (ahead 3) to `origin/main`, then re-verify production journey for CERTIFIED.
+Git closure for Commerce Intelligence + EOS code is complete on `origin/main`. Production operational closure is **not** complete: Brain instability and stale frontend assets block the mandatory Grand King daily journey.
