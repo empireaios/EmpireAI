@@ -16,8 +16,11 @@ export function formatForMarketplace(
     case "amazon":
     case "amazon-us":
     case "amazon-sg":
+      // New-catalog create with productType PRODUCT is rejected by Amazon (4000004).
+      // Executor switches to LISTING_OFFER_ONLY + catalog ASIN for first-dollar publish.
       return {
         productType: "PRODUCT",
+        requirements: "LISTING_OFFER_ONLY",
         attributes: {
           item_name: [{ value: listing.title }],
           product_description: [{ value: listing.description }],

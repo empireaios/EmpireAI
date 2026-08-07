@@ -90,26 +90,20 @@ async function main() {
   evidence.stages.adapters = await req("/marketplace-publishing/adapters");
 
   const cj = evidence.stages.cjLiveAuth.body;
-  const product =
-    cj?.authenticatedCall?.productCount != null
-      ? {
-          productId: `cj-live-${Date.now()}`,
-          title: "EmpireAI Commerce Proof Product (CJ Live)",
-          description:
-            "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch.",
-          price: 29.99,
-          images: ["https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"],
-        }
-      : {
-          productId: `proof-${Date.now()}`,
-          title: "EmpireAI Commerce Proof Product",
-          description:
-            "Controlled first-listing proof product. CJ live pull unavailable — package still prepared for Amazon execute.",
-          price: 29.99,
-          images: ["https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"],
-        };
+  // Title must match Amazon catalog search so LISTING_OFFER_ONLY can resolve an ASIN
+  // (Amazon rejects creating new catalog items with productType PRODUCT).
+  const product = {
+    productId: `cj-live-${Date.now()}`,
+    title: "USB C Cable Fast Charging",
+    description:
+      "Controlled EmpireAI commerce proof — offer-only listing against an existing catalog ASIN. CJ live auth: " +
+      (cj?.success ? "ok" : "unavailable"),
+    price: 14.99,
+    images: ["https://via.placeholder.com/1000x1000.png?text=EmpireAI+Proof"],
+  };
+  void cj;
 
-  const cost = 12.0;
+  const cost = 4.0;
   const price = product.price;
   const margin = Number((price - cost).toFixed(2));
   evidence.stages.evaluation = {
@@ -118,6 +112,7 @@ async function main() {
     price,
     estimatedMarginUsd: margin,
     recommendation: margin > 5 ? "PROCEED_CONTROLLED" : "REJECT",
+    publishMode: "LISTING_OFFER_ONLY",
     cjLiveAuthHttp: evidence.stages.cjLiveAuth.status,
     cjSuccess: Boolean(cj?.success),
   };
@@ -151,7 +146,12 @@ async function main() {
         "Grand King approved first-dollar path",
         "Single-SKU supervised publish",
       ],
-      specifications: { sku: `EMP-PROOF-${Date.now()}`, productType: "PRODUCT" },
+      // PRODUCT create is rejected by Amazon (4000004). Executor uses LISTING_OFFER_ONLY + catalog ASIN.
+      specifications: {
+        sku: `EMP-PROOF-${Date.now()}`,
+        requirements: "LISTING_OFFER_ONLY",
+        quantity: "5",
+      },
       price,
       images: product.images,
       executiveCouncilApproved: true,

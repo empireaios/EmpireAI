@@ -125,12 +125,100 @@ async function resolveSellerId(
   };
 }
 
-function buildListingsPutBody(pkg: MarketplaceListingPackage, marketplaceId: string): Record<string, unknown> {
+async function resolveCatalogAsin(
+  registryId: AmazonMarketplaceRegistryId,
+  accessToken: string,
+  pkg: MarketplaceListingPackage,
+): Promise<{ asin: string | null; blocker: string | null }> {
+  const explicit =
+    pkg.specifications.asin?.trim() ||
+    pkg.specifications.ASIN?.trim() ||
+    pkg.specifications.merchant_suggested_asin?.trim();
+  if (explicit) return { asin: explicit, blocker: null };
+
+  const profile = getAmazonMarketplaceProfile(registryId);
+  const keywords = pkg.title.replace(/[^\w\s]/g, " ").trim().split(/\s+/).slice(0, 8).join(" ");
+  if (!keywords) {
+    return { asin: null, blocker: "No ASIN and empty title for catalog search" };
+  }
+  const url =
+    `${profile.productionEndpoint}/catalog/2022-04-01/items` +
+    `?marketplaceIds=${encodeURIComponent(profile.marketplaceId)}` +
+    `&keywords=${encodeURIComponent(keywords)}` +
+    `&includedData=summaries&pageSize=1`;
+  const response = await httpTransport({
+    url,
+    method: "GET",
+    headers: { "x-amz-access-token": accessToken },
+  });
+  if (!response.ok) {
+    return {
+      asin: null,
+      blocker: `Amazon catalog search failed HTTP ${response.status} — set specifications.asin`,
+    };
+  }
+  const items = (response.json as { items?: Array<{ asin?: string }> })?.items;
+  const asin = Array.isArray(items) ? items[0]?.asin?.trim() : null;
+  if (!asin) {
+    return {
+      asin: null,
+      blocker:
+        "No catalog ASIN matched title — set specifications.asin for LISTING_OFFER_ONLY publish",
+    };
+  }
+  return { asin, blocker: null };
+}
+
+/** Amazon rejects creating new catalog items with productType PRODUCT — use offer-only on an ASIN. */
+function buildOfferOnlyPutBody(
+  pkg: MarketplaceListingPackage,
+  marketplaceId: string,
+  asin: string,
+): Record<string, unknown> {
+  const currency = pkg.currency || "USD";
+  const quantity = Number(pkg.specifications.quantity || 10);
+  return {
+    productType: "PRODUCT",
+    requirements: "LISTING_OFFER_ONLY",
+    attributes: {
+      merchant_suggested_asin: [{ value: asin, marketplace_id: marketplaceId }],
+      condition_type: [{ value: "new_new", marketplace_id: marketplaceId }],
+      fulfillment_availability: [
+        {
+          fulfillment_channel_code: "DEFAULT",
+          quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 10,
+          marketplace_id: marketplaceId,
+        },
+      ],
+      purchasable_offer: [
+        {
+          currency,
+          our_price: [{ schedule: [{ value_with_tax: pkg.price }] }],
+          marketplace_id: marketplaceId,
+        },
+      ],
+    },
+  };
+}
+
+function buildListingsPutBody(
+  pkg: MarketplaceListingPackage,
+  marketplaceId: string,
+  options?: { asin?: string; forceOfferOnly?: boolean },
+): Record<string, unknown> {
   const formatted = (pkg.formattedPayload ?? {}) as Record<string, unknown>;
   const productType =
     (typeof formatted.productType === "string" && formatted.productType) ||
     pkg.specifications.productType ||
     "PRODUCT";
+  const requirements =
+    pkg.specifications.requirements ||
+    (options?.forceOfferOnly || productType === "PRODUCT" ? "LISTING_OFFER_ONLY" : "LISTING");
+
+  if (requirements === "LISTING_OFFER_ONLY" && options?.asin) {
+    return buildOfferOnlyPutBody(pkg, marketplaceId, options.asin);
+  }
+
   const baseAttrs =
     formatted.attributes && typeof formatted.attributes === "object"
       ? (formatted.attributes as Record<string, unknown>)
@@ -184,7 +272,7 @@ function buildListingsPutBody(pkg: MarketplaceListingPackage, marketplaceId: str
 
   return {
     productType,
-    requirements: pkg.specifications.requirements || "LISTING",
+    requirements,
     attributes,
   };
 }
@@ -278,7 +366,42 @@ export async function executeAmazonListingsPublish(
   }
 
   const profile = getAmazonMarketplaceProfile(registryId);
-  const putBody = buildListingsPutBody(pkg, profile.marketplaceId);
+  const formatted = (pkg.formattedPayload ?? {}) as Record<string, unknown>;
+  const declaredType =
+    (typeof formatted.productType === "string" && formatted.productType) ||
+    pkg.specifications.productType ||
+    "PRODUCT";
+  const useOfferOnly =
+    pkg.specifications.requirements === "LISTING_OFFER_ONLY" ||
+    declaredType === "PRODUCT" ||
+    !pkg.specifications.productType;
+
+  let asin: string | undefined;
+  if (useOfferOnly) {
+    const resolved = await resolveCatalogAsin(registryId, token.accessToken, pkg);
+    if (!resolved.asin) {
+      return {
+        ok: false,
+        marketplaceId: pkg.marketplaceId,
+        registryId,
+        sellerId: seller.sellerId,
+        sku,
+        httpStatus: null,
+        amazonStatus: null,
+        submissionId: null,
+        issues: [],
+        blockers: [resolved.blocker ?? "ASIN required for LISTING_OFFER_ONLY"],
+        liveApiCalled: true,
+        responseBody: null,
+      };
+    }
+    asin = resolved.asin;
+  }
+
+  const putBody = buildListingsPutBody(pkg, profile.marketplaceId, {
+    asin,
+    forceOfferOnly: useOfferOnly,
+  });
   const url =
     `${profile.productionEndpoint}/listings/2021-08-01/items/` +
     `${encodeURIComponent(seller.sellerId)}/${encodeURIComponent(sku)}` +
@@ -306,7 +429,7 @@ export async function executeAmazonListingsPublish(
     (amazonStatus === "ACCEPTED" ||
       amazonStatus === "VALID" ||
       amazonStatus === undefined ||
-      issues.length === 0);
+      (amazonStatus !== "INVALID" && issues.length === 0));
 
   return {
     ok: accepted,
@@ -322,7 +445,8 @@ export async function executeAmazonListingsPublish(
       ? []
       : [
           `Amazon putListingsItem HTTP ${response.status}` +
-            (amazonStatus ? ` status=${amazonStatus}` : ""),
+            (amazonStatus ? ` status=${amazonStatus}` : "") +
+            (asin ? ` asin=${asin}` : ""),
         ],
     liveApiCalled: true,
     responseBody: response.json,
