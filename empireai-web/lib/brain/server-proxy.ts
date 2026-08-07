@@ -62,6 +62,70 @@ function brainProxyErrorResponse(
   return Response.json({ error: message }, { status });
 }
 
+/** Railway edge 502 bodies use `message`, not `error` — normalize for the login UI. */
+function normalizeUpstreamAuthFailureBody(
+  status: number,
+  bodyText: string,
+  contentType: string | null,
+): { body: string; contentType: string } {
+  const isJson = Boolean(contentType?.includes("application/json"));
+  let parsed: Record<string, unknown> | null = null;
+  if (isJson) {
+    try {
+      parsed = JSON.parse(bodyText) as Record<string, unknown>;
+    } catch {
+      parsed = null;
+    }
+  }
+
+  if (status === 401 || status === 403) {
+    if (parsed && typeof parsed.error === "string") {
+      return { body: bodyText, contentType: contentType ?? "application/json" };
+    }
+    return {
+      body: JSON.stringify({ error: "Invalid email or password" }),
+      contentType: "application/json",
+    };
+  }
+
+  if (status === 502 || status === 503 || status === 504) {
+    const upstreamMessage =
+      (parsed && typeof parsed.error === "string" && parsed.error) ||
+      (parsed && typeof parsed.message === "string" && parsed.message) ||
+      bodyText?.slice(0, 200) ||
+      "Brain unavailable";
+    return {
+      body: JSON.stringify({
+        error: `Authentication service unavailable (${status}): ${upstreamMessage}`,
+        code: status,
+      }),
+      contentType: "application/json",
+    };
+  }
+
+  if (parsed && typeof parsed.error !== "string" && typeof parsed.message === "string") {
+    return {
+      body: JSON.stringify({ ...parsed, error: parsed.message }),
+      contentType: "application/json",
+    };
+  }
+
+  return { body: bodyText, contentType: contentType ?? "application/json" };
+}
+
+function isAuthProxyPath(path: string): boolean {
+  return (
+    path === "/auth/login" ||
+    path === "/auth/logout" ||
+    path === "/auth/me" ||
+    path === "/auth/refresh"
+  );
+}
+
+async function sleep(ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function getUpstreamSetCookies(headers: Headers): string[] {
   const withGetter = headers as Headers & { getSetCookie?: () => string[] };
   if (typeof withGetter.getSetCookie === "function") {
@@ -143,33 +207,74 @@ export async function proxyBrainRequest(
   }
 
   const url = `${brainApiUrl}${path}`;
+  const authPath = isAuthProxyPath(path);
+  const maxAttempts = authPath ? 3 : 1;
 
   try {
-    const upstreamAbort = AbortSignal.timeout(upstreamTimeoutMs);
-    const response = await fetch(url, {
-      ...init,
-      headers: {
-        ...(init?.headers ?? {}),
-        cookie: forwardCookie(request) ?? "",
-      },
-      cache: "no-store",
-      signal: init?.signal ?? upstreamAbort,
-    });
+    let lastError: unknown = null;
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        const upstreamAbort = AbortSignal.timeout(upstreamTimeoutMs);
+        const response = await fetch(url, {
+          ...init,
+          headers: {
+            ...(init?.headers ?? {}),
+            cookie: forwardCookie(request) ?? "",
+          },
+          cache: "no-store",
+          signal: init?.signal ?? upstreamAbort,
+        });
 
-    const body = await response.text();
-    const headers = new Headers();
-    const contentType = response.headers.get("content-type");
-    if (contentType) headers.set("content-type", contentType);
+        const rawBody = await response.text();
+        const contentType = response.headers.get("content-type");
 
-    const setCookies = getUpstreamSetCookies(response.headers).map(rewriteSetCookieForBff);
-    for (const cookie of setCookies) {
-      headers.append("set-cookie", cookie);
+        // Retry only transient Brain unavailability on auth — never retry 401.
+        if (
+          authPath &&
+          attempt < maxAttempts &&
+          (response.status === 502 || response.status === 503 || response.status === 504)
+        ) {
+          await sleep(400 * attempt);
+          continue;
+        }
+
+        const normalized = authPath
+          ? normalizeUpstreamAuthFailureBody(response.status, rawBody, contentType)
+          : { body: rawBody, contentType: contentType ?? "application/json" };
+
+        const headers = new Headers();
+        if (normalized.contentType) {
+          headers.set("content-type", normalized.contentType);
+        }
+
+        const setCookies = getUpstreamSetCookies(response.headers).map(rewriteSetCookieForBff);
+        for (const cookie of setCookies) {
+          headers.append("set-cookie", cookie);
+        }
+
+        return new Response(normalized.body, {
+          status: response.status,
+          headers,
+        });
+      } catch (error) {
+        lastError = error;
+        const timedOut = error instanceof Error && error.name === "TimeoutError";
+        if (authPath && attempt < maxAttempts && !timedOut) {
+          await sleep(400 * attempt);
+          continue;
+        }
+        if (timedOut) {
+          return brainProxyErrorResponse(
+            new Error(
+              `Authentication service timed out after ${upstreamTimeoutMs}ms. Brain may be restarting — retry shortly.`,
+            ),
+            504,
+          );
+        }
+        throw error;
+      }
     }
-
-    return new Response(body, {
-      status: response.status,
-      headers,
-    });
+    return brainProxyErrorResponse(lastError ?? new Error("Brain proxy request failed"), 502);
   } catch (error) {
     if (error instanceof Error && error.name === "TimeoutError") {
       return brainProxyErrorResponse(

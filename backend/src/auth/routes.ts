@@ -27,12 +27,14 @@ export async function registerAuthRoutes(
 
   app.post("/auth/login", async (request, reply) => {
     const body = loginSchema.parse(request.body);
-    const user = users.findByEmail(body.email);
+    const email = body.email.trim().toLowerCase();
+    const password = body.password;
+    const user = users.findByEmail(email);
 
-    if (!user || !(await verifyPassword(body.password, user.passwordHash))) {
+    if (!user || !(await verifyPassword(password, user.passwordHash))) {
       auditLogger.write({
         action: "auth.failed",
-        actor: body.email,
+        actor: email,
         workspaceId: "unknown",
         correlationId: `auth:${Date.now()}`,
         metadata: { reason: "invalid_credentials" },

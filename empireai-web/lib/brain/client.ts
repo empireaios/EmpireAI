@@ -81,12 +81,28 @@ export async function login(email: string, password: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email: email.trim(), password }),
   });
 
   if (!response.ok) {
-    const body = (await response.json().catch(() => ({}))) as { error?: string };
-    throw normalizeError(new Error(body.error ?? "Login failed"), response.status);
+    const body = (await response.json().catch(() => ({}))) as {
+      error?: string;
+      message?: string;
+    };
+    const upstream = body.error ?? body.message;
+    let message = upstream ?? "Login failed";
+    if (!upstream) {
+      if (response.status === 502 || response.status === 503) {
+        message =
+          "Authentication service unavailable. Empire Brain is not ready — retry after restart.";
+      } else if (response.status === 504) {
+        message =
+          "Authentication timed out. Empire Brain may be restarting — retry shortly.";
+      } else if (response.status === 401 || response.status === 403) {
+        message = "Invalid email or password";
+      }
+    }
+    throw normalizeError(new Error(message), response.status);
   }
 
   return response.json() as Promise<{ user: import("../auth/types").SessionUser }>;

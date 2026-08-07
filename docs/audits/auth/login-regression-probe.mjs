@@ -20,20 +20,16 @@ const BRAIN = (process.env.BRAIN_URL ?? "https://empireai-production.up.railway.
   /\/$/,
   "",
 );
-// Resolve like production Brain env.ts / ELM cert harness (env override, then defaults).
-const EMAIL = (
-  process.env.FOUNDER_EMAIL ??
-  process.env.EMPIRE_LOGIN_EMAIL ??
-  "founder@empireai.com"
-).trim();
+// Credentials from env only — never hardcode production passwords in the probe.
+const EMAIL = (process.env.FOUNDER_EMAIL ?? process.env.EMPIRE_LOGIN_EMAIL ?? "").trim();
 const PASSWORD = (
   process.env.FOUNDER_PASSWORD ??
   process.env.EMPIRE_LOGIN_PASSWORD ??
-  "EmpireAI2026!"
+  ""
 ).trim();
 
 const evidence = {
-  mission: "MASTER — GRAND KING LOGIN REGRESSION RECONCILIATION",
+  mission: "PRODUCTION AUTHENTICATION PERMANENT CLOSURE — regression probe",
   startedAt: new Date().toISOString(),
   cockpit: COCKPIT,
   brain: BRAIN,
@@ -99,9 +95,22 @@ function cookieHeaderFromSetCookie(setCookieHeaders) {
 }
 
 async function main() {
-  // 1) Brain health
+  // 1) Brain health (process)
   const live = await probe("brainHealthLive", `${BRAIN}/health/live`, {}, 20_000);
   evidence.checks.brainReachable = live.status === 200;
+
+  // 1b) Auth readiness (Grand King access)
+  const ready = await probe("brainHealthReady", `${BRAIN}/health/ready`, {}, 20_000);
+  evidence.checks.authReady =
+    ready.status === 200 &&
+    (ready.body?.grandKingAccess === "ready" || ready.body?.ready === true);
+  if (!evidence.checks.authReady) {
+    evidence.blockers.push(
+      ready.status === 0
+        ? "Brain /health/ready unreachable"
+        : `Brain /health/ready HTTP ${ready.status} — Grand King access not ready`,
+    );
+  }
 
   // 2) Invalid credentials via BFF
   const invalidBff = await probe(
@@ -285,14 +294,38 @@ async function main() {
     evidence.blockers.push(evidence.rootCauseClass);
   }
 
+  // Repeated login continuity (when credentials available and Brain up)
+  if (EMAIL && PASSWORD && evidence.checks.brainReachable) {
+    let consecutive = 0;
+    for (let i = 1; i <= 3; i++) {
+      const r = await probe(
+        `bffRepeatedLogin_${i}`,
+        `${COCKPIT}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+        },
+        60_000,
+      );
+      if (r.status === 200 && r.rawSetCookiePresent) consecutive += 1;
+    }
+    evidence.checks.repeatedLoginOk = consecutive === 3;
+    if (!evidence.checks.repeatedLoginOk) {
+      evidence.blockers.push(`Repeated login failed (${consecutive}/3)`);
+    }
+  }
+
   const required = [
     "brainReachable",
+    "authReady",
     "invalidCredentialsRejected",
     "validLoginOk",
     "sessionCookieCreated",
     "refreshPreservesSession",
     "executiveHomeLoads",
     "logoutWorks",
+    "repeatedLoginOk",
   ];
   const allPass = required.every((k) => evidence.checks[k] === true);
   evidence.verdict = allPass ? "PASS" : "FAIL";
@@ -301,7 +334,32 @@ async function main() {
   const outPath = join(__dirname, "LOGIN_REGRESSION_EVIDENCE.json");
   mkdirSync(__dirname, { recursive: true });
   writeFileSync(outPath, JSON.stringify(evidence, null, 2));
-  console.log(JSON.stringify({ verdict: evidence.verdict, rootCauseClass: evidence.rootCauseClass, checks: evidence.checks, blockers: evidence.blockers, outPath }, null, 2));
+  // Also mirror under complete-state for permanent closure evidence.
+  const completeStatePath = join(
+    __dirname,
+    "..",
+    "complete-state",
+    "AUTH_LOGIN_REGRESSION_EVIDENCE.json",
+  );
+  try {
+    mkdirSync(dirname(completeStatePath), { recursive: true });
+    writeFileSync(completeStatePath, JSON.stringify(evidence, null, 2));
+  } catch {
+    /* non-fatal */
+  }
+  console.log(
+    JSON.stringify(
+      {
+        verdict: evidence.verdict,
+        rootCauseClass: evidence.rootCauseClass,
+        checks: evidence.checks,
+        blockers: evidence.blockers,
+        outPath,
+      },
+      null,
+      2,
+    ),
+  );
   process.exit(allPass ? 0 : 1);
 }
 

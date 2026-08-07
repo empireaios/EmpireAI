@@ -59,6 +59,11 @@ function beat(): void {
   Atomics.store(heartbeatView, 0, Date.now());
 }
 
+let flushGuardSinceMs: number | null = null;
+const MAX_FLUSH_GUARD_MS = Number(
+  process.env.EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS ?? 90_000,
+);
+
 function evaluateHighLagExit(): void {
   if (inBootGrace()) {
     // Still beat so worker sees activity after grace ends.
@@ -67,9 +72,21 @@ function evaluateHighLagExit(): void {
   const sqlite = getSqlitePersistStats();
   // Only suppress exit during the synchronous export itself.
   // pending=true (dirty, waiting for first-flush delay) must NOT disable HA recovery.
+  // A stuck flushInFlight must not permanently disable HA (auth would stay dead).
   if (sqlite.flushInFlight) {
-    highLagSinceMs = null;
-    return;
+    if (flushGuardSinceMs === null) flushGuardSinceMs = Date.now();
+    const guardedFor = Date.now() - flushGuardSinceMs;
+    if (guardedFor < MAX_FLUSH_GUARD_MS) {
+      highLagSinceMs = null;
+      return;
+    }
+    logger.error(
+      { guardedForMs: guardedFor, maxFlushGuardMs: MAX_FLUSH_GUARD_MS, sqlite },
+      "Executive continuity watchdog — sqlite flush guard stuck; exiting for Railway restart",
+    );
+    process.exit(78);
+  } else {
+    flushGuardSinceMs = null;
   }
   const lag = getRecentEventLoopLagMs();
   if (lag >= HIGH_LAG_ALERT_MS) {

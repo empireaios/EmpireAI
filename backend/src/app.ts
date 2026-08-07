@@ -351,6 +351,28 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     admission: getAdmissionStats(),
   }));
 
+  // Process alive ≠ Grand King auth ready. Ops/probes use this; Railway stays on /health/live.
+  app.get("/health/ready", async (_request, reply) => {
+    const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
+    const report = assessAuthReadiness({ sessionStore });
+    if (!report.ready) {
+      return reply.code(503).send({
+        status: "not_ready",
+        brain: "online",
+        process: "running",
+        grandKingAccess: "blocked",
+        ...report,
+      });
+    }
+    return {
+      status: "ready",
+      brain: "online",
+      process: "running",
+      grandKingAccess: "ready",
+      ...report,
+    };
+  });
+
   app.get("/health/executive-continuity", async () => {
     const { getExecutiveContinuityHealth } = await import(
       "./runtime/executive-continuity-watchdog.js"

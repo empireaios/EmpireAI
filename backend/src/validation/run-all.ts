@@ -41,6 +41,8 @@ async function main(): Promise<void> {
       "src/validation/tests/scheduler-workers.test.ts",
       "src/validation/tests/domain.test.ts",
       "src/validation/tests/foundation.test.ts",
+      "src/validation/tests/auth-readiness.test.ts",
+      "src/validation/tests/bootstrap-password-sync.test.ts",
     ],
     {
       cwd: backendRoot,
