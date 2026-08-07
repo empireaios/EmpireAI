@@ -201,7 +201,7 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
-      topBlocker: "Executive Home aggregation timed out — partial data shown",
+      topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
       topBlockerHref: null,
     },
     command,
@@ -337,7 +337,7 @@ export function buildMinimalExecutiveHomeFallback(
     computedAt: new Date().toISOString(),
     greeting: {
       displayNameHint: "Grand King",
-      topBlocker: "Executive Home aggregation timed out — partial data shown",
+      topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
       topBlockerHref: null,
     },
     command,
