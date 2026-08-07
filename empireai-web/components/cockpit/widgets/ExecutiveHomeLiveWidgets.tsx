@@ -17,6 +17,12 @@ import {
 import { resolveKpiDisplayValue } from "@/lib/cockpit/kpis/resolve-kpi-values";
 import { useLedgerKpiValues } from "@/lib/cockpit/kpis/useLedgerKpiValues";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
+import {
+  EXECUTIVE_WIDGET_EMPTY,
+  EXECUTIVE_WIDGET_ERROR,
+  EXECUTIVE_WIDGET_LOADING,
+  toExecutiveSurfaceMessage,
+} from "@/lib/pillow/executive-surface";
 
 function useExecutiveHomeData() {
   const shared = useExecutiveHomeOptional();
@@ -39,44 +45,53 @@ function useExecutiveHomeData() {
   };
 }
 
+type WidgetPhase = "LOADING" | "EMPTY" | "ERROR" | "READY";
+
 function WidgetLoadState({
   title,
   loading,
   error,
   hasData,
-  onRetry,
   children,
 }: {
   title: string;
   loading: boolean;
   error: Error | null;
   hasData: boolean;
-  onRetry: () => void;
+  onRetry?: () => void;
   children: ReactNode;
 }) {
-  if (loading && !hasData) {
-    return <Panel title={title}>Loading Executive data…</Panel>;
-  }
-  if (!hasData) {
+  const phase: WidgetPhase =
+    loading && !hasData ? "LOADING" : !hasData ? (error ? "ERROR" : "EMPTY") : "READY";
+
+  if (phase === "LOADING") {
     return (
       <Panel title={title}>
-        <p className="text-sm text-amber-200/90">
-          {error?.message
-            ? `Unable to load: ${error.message}`
-            : "Executive data unavailable."}
+        <p className="text-sm text-[#8a847a]">{EXECUTIVE_WIDGET_LOADING}</p>
+      </Panel>
+    );
+  }
+  if (phase === "ERROR") {
+    return (
+      <Panel title={title}>
+        <p className="text-sm text-[#c8c0b0]">
+          {toExecutiveSurfaceMessage(error?.message, EXECUTIVE_WIDGET_ERROR)}
         </p>
-        <p className="mt-1 text-xs text-[#8a847a]">Affected: {title}. Retry when Brain is ready.</p>
-        <button type="button" className="mt-3 text-sm text-[#d4af37]" onClick={() => void onRetry()}>
-          Retry
-        </button>
+      </Panel>
+    );
+  }
+  if (phase === "EMPTY") {
+    return (
+      <Panel title={title}>
+        <p className="text-sm text-[#8a847a]">{EXECUTIVE_WIDGET_EMPTY}</p>
       </Panel>
     );
   }
   return (
     <>
       {error && (
-        <p className="mb-2 text-xs text-amber-200/80">
-          Reconnecting… showing last known good state. {error.message}
+        <p className="mb-2 text-xs text-[#8a847a]">
+          Updating… showing last known good state.
         </p>
       )}
       {children}
@@ -109,27 +124,32 @@ export function ExecutiveHomeGreetingLive() {
       </div>
       {loading && !data ? (
         <div className="rounded-lg border border-gold/15 bg-gold/5 px-4 py-3 text-sm text-[#c8c0b0]">
-          Connecting Brain Sync…
+          {EXECUTIVE_WIDGET_LOADING}
         </div>
       ) : error && !data ? (
-        <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-200/90">
-          Executive Home unavailable: {error.message}
+        <div className="rounded-lg border border-gold/15 bg-white/[0.02] px-4 py-3 text-sm text-[#c8c0b0]">
+          {toExecutiveSurfaceMessage(error.message, EXECUTIVE_WIDGET_ERROR)}
         </div>
-      ) : topBlocker ? (
+      ) : topBlocker &&
+        !/NODE_ENV|certification|constitutional|digital soul|pillow host|brain sync/i.test(
+          topBlocker,
+        ) ? (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
-          <p className="text-sm text-amber-200/90">⚠ {topBlocker}</p>
+          <p className="text-sm text-amber-200/90">
+            ⚠ {toExecutiveSurfaceMessage(topBlocker, "Action needed on your Empire.")}
+          </p>
           {data?.greeting.topBlockerHref && (
             <Link
               href={data.greeting.topBlockerHref}
               className="shrink-0 rounded-md border border-gold/15 px-3 py-1 text-xs text-[#d4af37]"
             >
-              Resolve
+              Review
             </Link>
           )}
         </div>
       ) : data ? (
         <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-200/90">
-          No open certification blockers reported.
+          Empire operating posture clear — proceed with daily command.
         </div>
       ) : null}
     </div>
@@ -138,7 +158,7 @@ export function ExecutiveHomeGreetingLive() {
 
 /** SCR-001 — Command snapshot from executive-home Brain view. */
 export function CommandSnapshotLive() {
-  const { data, loading, error, reload } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
 
   return (
     <WidgetLoadState
@@ -146,7 +166,6 @@ export function CommandSnapshotLive() {
       loading={loading}
       error={error}
       hasData={Boolean(data)}
-      onRetry={reload}
     >
       {data && (
         <Panel title="Command Snapshot" subtitle="Live · cockpit-command aggregate">
@@ -192,7 +211,7 @@ export function CommandSnapshotLive() {
 
 /** SCR-001 — Mission queue preview from OMS. */
 export function MissionQueuePreviewLive() {
-  const { data, loading, error, reload } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
 
   return (
     <WidgetLoadState
@@ -200,7 +219,6 @@ export function MissionQueuePreviewLive() {
       loading={loading}
       error={error}
       hasData={Boolean(data)}
-      onRetry={reload}
     >
       {data && (
         <Panel title="Mission Queue Preview" subtitle="Live · OMS reporting">
@@ -239,7 +257,7 @@ export function MissionQueuePreviewLive() {
 
 /** SCR-001 — Portfolio pulse from domain dashboard. */
 export function PortfolioPulseLive() {
-  const { data, loading, error, reload } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
   const metrics = data?.portfolio.portfolioMetrics ?? [];
   const companies = data?.portfolio.companies ?? [];
 
@@ -249,7 +267,6 @@ export function PortfolioPulseLive() {
       loading={loading}
       error={error}
       hasData={Boolean(data)}
-      onRetry={reload}
     >
       {data && (
         <Panel title="Portfolio Pulse" subtitle="Live · dashboard domain store">
@@ -285,17 +302,28 @@ export function PortfolioPulseLive() {
 
 /** SCR-001 — Recent agent activity from domain store. */
 export function AgentActivityLive() {
-  const { data, loading, error, reload } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
 
-  if (loading) {
-    return <Panel title="Agent Activity">Loading…</Panel>;
-  }
-  if (error || !data) {
+  if (loading && !data) {
     return (
       <Panel title="Agent Activity">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
+        <p className="text-sm text-[#8a847a]">{EXECUTIVE_WIDGET_LOADING}</p>
+      </Panel>
+    );
+  }
+  if (error && !data) {
+    return (
+      <Panel title="Agent Activity">
+        <p className="text-sm text-[#c8c0b0]">
+          {toExecutiveSurfaceMessage(error.message, EXECUTIVE_WIDGET_ERROR)}
+        </p>
+      </Panel>
+    );
+  }
+  if (!data) {
+    return (
+      <Panel title="Agent Activity">
+        <p className="text-sm text-[#8a847a]">{EXECUTIVE_WIDGET_EMPTY}</p>
       </Panel>
     );
   }
@@ -326,7 +354,7 @@ export function AgentActivityLive() {
 
 /** SCR-001 — Engine health row from live engine summaries. */
 export function DepartmentHealthRowLive() {
-  const { data, loading, error, reload } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
   const engines = data?.engineSummaries ?? [];
 
   return (
@@ -335,14 +363,11 @@ export function DepartmentHealthRowLive() {
       loading={loading}
       error={error}
       hasData={Boolean(data)}
-      onRetry={reload}
     >
       {data && (
         <Panel title="V1 Engine Health" subtitle="Live · G4-02 engine centers">
           {engines.length === 0 ? (
-            <p className="text-sm text-[#8a847a]">
-              Engine summaries unavailable in this view (degraded or empty assembly).
-            </p>
+            <p className="text-sm text-[#8a847a]">{EXECUTIVE_WIDGET_EMPTY}</p>
           ) : (
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {engines.map((engine) => (

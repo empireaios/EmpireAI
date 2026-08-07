@@ -9,6 +9,15 @@ import { StatusBadge } from "@/components/cockpit/widgets/shared/statusBadges";
 import { CockpitExplainButton } from "@/components/cockpit/interaction/CockpitInteractionDrawer";
 import { ExecutiveLiveWidgetFrame } from "@/components/cockpit/widgets/ExecutiveLiveWidgetFrame";
 import type { ExecutiveHomeView } from "@/lib/cockpit/panel-types";
+import {
+  EXECUTIVE_SYNC_CONNECTING,
+  EXECUTIVE_SYNC_READY,
+  EXECUTIVE_SYNC_REFRESHING,
+  EXECUTIVE_WIDGET_EMPTY,
+  EXECUTIVE_WIDGET_ERROR,
+  EXECUTIVE_WIDGET_LOADING,
+  toExecutiveSurfaceMessage,
+} from "@/lib/pillow/executive-surface";
 
 function severityBorder(severity: ExecutiveHomeView["attentionItems"][number]["severity"]) {
   if (severity === "critical") return "border-red-500/30 bg-red-500/5";
@@ -17,7 +26,7 @@ function severityBorder(severity: ExecutiveHomeView["attentionItems"][number]["s
 }
 
 function formatLastUpdated(iso: string | null) {
-  if (!iso) return "Awaiting first load…";
+  if (!iso) return EXECUTIVE_SYNC_CONNECTING;
   return new Intl.DateTimeFormat("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
@@ -27,21 +36,27 @@ function formatLastUpdated(iso: string | null) {
 
 /** G4-06 — Brain sync status for Executive Home. */
 export function ExecutiveHomeSyncBar() {
-  const { loading, refreshing, lastUpdatedAt, refreshMs, reload } = useExecutiveHome();
-  const isInitialLoad = loading && !lastUpdatedAt;
+  const { loading, refreshing, lastUpdatedAt, error, refreshMs } = useExecutiveHome();
+  const isReady = Boolean(lastUpdatedAt) && !error;
+  const statusLabel = !lastUpdatedAt
+    ? loading
+      ? EXECUTIVE_SYNC_CONNECTING
+      : error
+        ? toExecutiveSurfaceMessage(error.message, EXECUTIVE_WIDGET_ERROR)
+        : EXECUTIVE_SYNC_CONNECTING
+    : refreshing
+      ? EXECUTIVE_SYNC_REFRESHING
+      : `${EXECUTIVE_SYNC_READY} · ${formatLastUpdated(lastUpdatedAt)}`;
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-gold/10 bg-white/[0.02] px-4 py-2 text-xs text-[#8a847a]">
       <span>
-        Brain sync ·{" "}
-        {isInitialLoad ? "Connecting…" : refreshing ? "Refreshing…" : `Updated ${formatLastUpdated(lastUpdatedAt)}`}
+        Brain Sync ·{" "}
+        <span className={isReady ? "text-emerald-200/90" : "text-[#c8c0b0]"}>{statusLabel}</span>
       </span>
       <div className="flex items-center gap-3">
         <span>Auto-refresh {Math.round(refreshMs / 1000)}s</span>
         <DataModeBadge mode="live" />
-        <button type="button" className="text-[#d4af37] hover:underline" onClick={() => reload()}>
-          Refresh now
-        </button>
       </div>
     </div>
   );
@@ -63,7 +78,7 @@ export function ExecutiveAttentionStrip() {
   if (!data || data.attentionItems.length === 0) {
     return (
       <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-200/90">
-        Nothing requires immediate attention — all certification gates and approvals clear.
+        Nothing requires immediate attention.
       </div>
     );
   }
@@ -124,26 +139,29 @@ export function ExecutiveNextActionStrip() {
 
 /** G4-06 — Priority live executive widget grid (10 widgets). */
 export function ExecutivePriorityWidgetGrid() {
-  const { data, loading, error, reload } = useExecutiveHome();
+  const { data, loading, error } = useExecutiveHome();
 
   if (loading && !data) {
     return (
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {EXECUTIVE_PRIORITY_WIDGETS.map((widget) => (
-          <div
-            key={widget.widgetId}
-            className="h-44 animate-pulse rounded-xl border border-gold/10 bg-white/[0.02]"
-          />
-        ))}
+      <div className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-6 text-sm text-[#8a847a]">
+        {EXECUTIVE_WIDGET_LOADING}
       </div>
     );
   }
 
-  if (error || !data) {
+  if (error && !data) {
     return (
-      <button type="button" className="text-sm text-[#d4af37]" onClick={() => reload()}>
-        Retry loading executive widgets
-      </button>
+      <div className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-6 text-sm text-[#c8c0b0]">
+        {toExecutiveSurfaceMessage(error.message, EXECUTIVE_WIDGET_ERROR)}
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-6 text-sm text-[#8a847a]">
+        {EXECUTIVE_WIDGET_EMPTY}
+      </div>
     );
   }
 

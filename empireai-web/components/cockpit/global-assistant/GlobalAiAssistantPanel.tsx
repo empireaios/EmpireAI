@@ -207,7 +207,8 @@ export function GlobalAiAssistantPanel() {
     executiveSnapshot,
     proactiveGuidance,
   } = useGlobalAiAssistant();
-  const chatEnabled = executiveReady && !loading;
+  // Typing is always allowed; Ask/Enter may attempt pipeline even during startup.
+  const chatEnabled = !loading && Boolean(queryDraft.trim());
 
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
@@ -1161,21 +1162,17 @@ export function GlobalAiAssistantPanel() {
               value={queryDraft}
               onChange={(e) => setQueryDraft(e.target.value)}
               onKeyDown={onComposerKeyDown}
-              disabled={!executiveReady}
-              placeholder={
-                executiveReady
-                  ? "Ask Pillow… (Enter send · Shift+Enter newline · / commands)"
-                  : "Preparing Executive Intelligence…"
-              }
-              className="min-h-[44px] max-h-40 min-w-0 flex-1 resize-none rounded-lg border border-gold/15 bg-black/40 px-3 py-2.5 text-sm leading-snug text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none disabled:opacity-60"
+              autoComplete="off"
+              spellCheck
+              placeholder="Ask Pillow… (Enter send · Shift+Enter newline · / commands)"
+              className="min-h-[44px] max-h-40 min-w-0 flex-1 resize-none rounded-lg border border-gold/15 bg-black/40 px-3 py-2.5 text-sm leading-snug text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
             />
             {voice.supported && (
               <button
                 type="button"
                 aria-label={voice.listening ? "Stop voice input" : "Start voice input"}
                 onClick={voice.toggle}
-                disabled={!executiveReady}
-                className={`shrink-0 rounded-lg px-2.5 py-2 text-xs font-medium disabled:opacity-50 ${
+                className={`shrink-0 rounded-lg px-2.5 py-2 text-xs font-medium ${
                   voice.listening
                     ? "bg-red-500/20 text-red-200"
                     : "border border-gold/15 text-[#d4af37] hover:bg-gold/10"
@@ -1187,6 +1184,7 @@ export function GlobalAiAssistantPanel() {
             <button
               type="submit"
               disabled={!chatEnabled}
+              title={loading ? "Preparing response…" : "Ask Pillow"}
               className="shrink-0 rounded-lg bg-gold/15 px-3 py-2 text-xs font-medium text-[#d4af37] hover:bg-gold/25 disabled:opacity-50"
             >
               Ask

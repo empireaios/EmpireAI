@@ -8,6 +8,7 @@ import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/Executive
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProactiveGuidance";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
+import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 
 const EXECUTIVE_ACTIONS = [
   { action: "summarise" as const, label: "Summarise" },
@@ -20,6 +21,7 @@ const EXECUTIVE_ACTIONS = [
 export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
   const conversationRef = useRef<HTMLDivElement>(null);
+  const composerRef = useRef<HTMLInputElement>(null);
   const {
     loading,
     context,
@@ -38,7 +40,8 @@ export function ExecutiveHomeChatWorkspace() {
     executiveSnapshot,
     proactiveGuidance,
   } = useGlobalAiAssistant();
-  const chatEnabled = executiveReady && !loading;
+  // Composer stays interactive always. Send attempts the pipeline; soft reply if still starting.
+  const canSend = !loading && Boolean(queryDraft.trim());
 
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
@@ -48,6 +51,13 @@ export function ExecutiveHomeChatWorkspace() {
     expand();
     void ensureHostSession();
   }, [expand, ensureHostSession]);
+
+  useEffect(() => {
+    const id = window.requestAnimationFrame(() => {
+      composerRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, []);
 
   useEffect(() => {
     if (voiceEnabled && conversation.length > 0) {
@@ -129,19 +139,17 @@ export function ExecutiveHomeChatWorkspace() {
       >
         {!executiveReady && (
           <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">
-            {readinessLabel || connectionError || "Preparing Executive Intelligence…"}
+            {readinessLabel || connectionError || EXECUTIVE_STARTING_LABEL}
           </p>
         )}
 
         {conversation.length === 0 && !loading && (
           <div className="flex h-full flex-col justify-center text-sm text-[#8a847a]">
             <p className="text-[#c8c0b0]">
-              {!executiveReady
-                ? "Starting Executive Systems — conversation will unlock when ready."
-                : (context?.pageInsightSummary ??
-                  "Executive Chat — your primary operating console. Ask Pillow anything.")}
+              {context?.pageInsightSummary ??
+                "Executive Chat — type below at any time. Send when Executive Intelligence is ready."}
             </p>
-            {executiveReady && executive?.nextExecutiveAction && (
+            {executive?.nextExecutiveAction && (
               <p className="mt-2 text-xs text-[#d4af37]">
                 Next: {executive.nextExecutiveAction}
               </p>
@@ -180,33 +188,28 @@ export function ExecutiveHomeChatWorkspace() {
           className="flex gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            if (!chatEnabled) return;
-            if (queryDraft.trim()) {
-              void ask(queryDraft.trim());
-            }
+            if (!canSend) return;
+            void ask(queryDraft.trim());
           }}
         >
           <input
+            ref={composerRef}
             type="text"
             id="executive-pillow-query"
             aria-label="Executive prompt"
             value={queryDraft}
             onChange={(e) => setQueryDraft(e.target.value)}
-            disabled={!executiveReady}
-            placeholder={
-              executiveReady
-                ? "Executive prompt — repository, knowledge, live intelligence…"
-                : "Preparing Executive Intelligence…"
-            }
-            className="min-h-[44px] flex-1 rounded-lg border border-gold/15 bg-black/40 px-3 py-2 text-sm text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none disabled:opacity-60"
+            autoComplete="off"
+            spellCheck
+            placeholder="Executive prompt — type now; Send when ready…"
+            className="min-h-[44px] flex-1 rounded-lg border border-gold/15 bg-black/40 px-3 py-2 text-sm text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
           />
           {voice.supported && (
             <button
               type="button"
               aria-label={voice.listening ? "Stop voice" : "Voice input"}
               onClick={voice.toggle}
-              disabled={!executiveReady}
-              className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium disabled:opacity-50 ${
+              className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium ${
                 voice.listening
                   ? "bg-red-500/20 text-red-200"
                   : "border border-gold/15 text-[#d4af37] hover:bg-gold/10"
@@ -217,7 +220,8 @@ export function ExecutiveHomeChatWorkspace() {
           )}
           <button
             type="submit"
-            disabled={!chatEnabled}
+            disabled={!canSend}
+            title={loading ? "Preparing response…" : "Send"}
             className="shrink-0 rounded-lg bg-gold/15 px-4 py-2 text-xs font-medium text-[#d4af37] hover:bg-gold/25 disabled:opacity-50"
           >
             Send

@@ -124,7 +124,9 @@ async function main() {
     evidence.blockers.push("pillow sessionId missing");
   }
 
-  // Web surface reachability (Vercel)
+  evidence.stages.healthReady = await req(BRAIN, "/health/ready");
+
+  // Web surface reachability (Vercel) + EOS UX bundle markers
   try {
     const webStarted = Date.now();
     const webRes = await fetch(`${WEB}/login`, { redirect: "follow" });
@@ -132,6 +134,20 @@ async function main() {
       status: webRes.status,
       ms: Date.now() - webStarted,
       finalUrl: webRes.url,
+    };
+    const cockpitStarted = Date.now();
+    const cockpitRes = await fetch(`${WEB}/cockpit`, { redirect: "manual" });
+    const cockpitHtml = await cockpitRes.text().catch(() => "");
+    evidence.stages.webCockpitSurface = {
+      status: cockpitRes.status,
+      ms: Date.now() - cockpitStarted,
+      eosFixInBundle:
+        /DeferredExecutiveSystemStrips|Load extended panels|Daily Operations|type now; Send when ready/i.test(
+          cockpitHtml,
+        ),
+      hasRetryPlaceholder: /Retry loading executive widgets|Retry when Brain is ready/i.test(
+        cockpitHtml,
+      ),
     };
   } catch (e) {
     evidence.stages.webLoginPage = { error: String(e?.message || e) };
@@ -152,24 +168,36 @@ async function main() {
   const loginOk = evidence.stages.login.status === 200;
   const sessionOk = evidence.stages.pillowSession.status === 200 && Boolean(sessionId);
 
+  const readyOk =
+    evidence.stages.healthReady?.status === 200 &&
+    (evidence.stages.healthReady.body?.grandKingAccess === "ready" ||
+      evidence.stages.healthReady.body?.ready === true);
+  const chatLeaksConstitutional =
+    typeof chatText === "string" && /constitutional gate|digital soul unavailable/i.test(chatText);
+
   evidence.derived.checks = {
     healthOk,
+    authReadyOk: readyOk,
     loginOk,
     executiveHomeOk: ehOk,
     pillowSessionOk: sessionOk,
     pillowChatOk: chatOk,
     chatPreview: chatText ? String(chatText).slice(0, 240) : null,
+    chatLeaksConstitutional,
     eventLoopLagMs: evidence.stages.healthLive.body?.eventLoopLagMs ?? null,
     ehFallback: Boolean(evidence.stages.executiveHome.body?.result?._fallback),
     ehCached: Boolean(evidence.stages.executiveHome.body?.result?._cached),
     topBlocker: evidence.stages.executiveHome.body?.result?.greeting?.topBlocker ?? null,
+    eosFixInBundle: evidence.stages.webCockpitSurface?.eosFixInBundle ?? null,
   };
 
   if (!healthOk) evidence.blockers.push("health/live not ok");
+  if (!readyOk) evidence.blockers.push("health/ready not ok");
   if (!loginOk) evidence.blockers.push("login not ok");
   if (!ehOk) evidence.blockers.push("executive-home dispatch not ok");
   if (!sessionOk) evidence.blockers.push("pillow session not ok");
   if (!chatOk) evidence.blockers.push("pillow chat not ok");
+  if (chatLeaksConstitutional) evidence.blockers.push("pillow chat leaked constitutional language");
 
   evidence.verdict = evidence.blockers.length === 0 ? "API_PATH_PASS" : "API_PATH_FAIL";
   evidence.finishedAt = new Date().toISOString();

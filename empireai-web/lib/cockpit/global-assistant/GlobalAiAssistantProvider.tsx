@@ -33,6 +33,7 @@ import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
 import type { PillowChatArtifact } from "@/lib/pillow/types";
 import {
   EXECUTIVE_NOT_READY_REPLY,
+  EXECUTIVE_PIPELINE_SOFT_REPLY,
   EXECUTIVE_RECOVERING_LABEL,
   EXECUTIVE_STARTING_LABEL,
   readinessLabel as formatReadinessLabel,
@@ -420,17 +421,17 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           workspaceContext: workspaceContext as unknown as Record<string, unknown>,
         });
         const response = mapPillowChatToAssistantResponse(chatResult, query);
-        const surfaceSummary = toExecutiveChatMessage(
-          response.interactionSummary,
-          response.interactionSummary,
-        );
+        // Never pass raw text as fallback — constitutional/infra leaks must not reach UX.
         const surfaced = {
           ...response,
-          interactionSummary: surfaceSummary,
-          reason: toExecutiveChatMessage(response.reason, response.reason),
+          interactionSummary: toExecutiveChatMessage(
+            response.interactionSummary,
+            EXECUTIVE_PIPELINE_SOFT_REPLY,
+          ),
+          reason: toExecutiveChatMessage(response.reason, EXECUTIVE_PIPELINE_SOFT_REPLY),
           recommendedNextAction: toExecutiveChatMessage(
             response.recommendedNextAction,
-            response.recommendedNextAction,
+            EXECUTIVE_PIPELINE_SOFT_REPLY,
           ),
         };
         recordConversation(query, surfaced, chatResult.artifacts);
@@ -491,41 +492,9 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         queryDraft: "",
       }));
 
-      // Readiness gate — do not converse until executive pipeline is ready.
+      // Always attempt the executive pipeline — soft reply only if session/chat cannot complete.
       if (!state.executiveReady) {
         void ensureHostSession();
-        recordConversation(query, {
-          action: "ask",
-          currentContext: "Executive startup",
-          reason: EXECUTIVE_NOT_READY_REPLY,
-          supportingEvidence: [],
-          recommendedNextAction: "Wait a moment, then ask again.",
-          confidence: "unavailable",
-          suggestedFollowUps: [],
-          interactionIntent: "general",
-          interactionSummary: EXECUTIVE_NOT_READY_REPLY,
-          computedAt: new Date().toISOString(),
-          futureCapabilities: [],
-        });
-        setState((s) => ({
-          ...s,
-          loading: false,
-          lastResponse: {
-            action: "ask",
-            currentContext: "Executive startup",
-            reason: EXECUTIVE_NOT_READY_REPLY,
-            supportingEvidence: [],
-            recommendedNextAction: "Wait a moment, then ask again.",
-            confidence: "unavailable",
-            suggestedFollowUps: [],
-            interactionIntent: "general",
-            interactionSummary: EXECUTIVE_NOT_READY_REPLY,
-            computedAt: new Date().toISOString(),
-            futureCapabilities: [],
-          },
-          connectionError: s.connectionError ?? EXECUTIVE_STARTING_LABEL,
-        }));
-        return;
       }
 
       const sent = await sendViaPillow(query, target);

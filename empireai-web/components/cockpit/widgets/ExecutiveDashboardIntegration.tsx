@@ -67,16 +67,21 @@ export function ExecutiveDependencyGraphPanel() {
 
 /** G4-05 — Aggregated executive timeline from all engines. */
 export function ExecutiveTimelinePanel() {
-  const { data, loading, error, reload } = useExecutiveHome();
-  if (loading) {
-    return <Panel title="Executive Timeline">Loading integrated timeline…</Panel>;
+  const { data, loading, error } = useExecutiveHome();
+  if (loading && !data) {
+    return <Panel title="Executive Timeline">Loading…</Panel>;
   }
-  if (error || !data) {
+  if (error && !data) {
     return (
       <Panel title="Executive Timeline">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
+        <p className="text-sm text-[#c8c0b0]">This view is temporarily unavailable.</p>
+      </Panel>
+    );
+  }
+  if (!data) {
+    return (
+      <Panel title="Executive Timeline">
+        <p className="text-sm text-[#8a847a]">Nothing to report right now.</p>
       </Panel>
     );
   }

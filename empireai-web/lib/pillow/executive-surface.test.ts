@@ -36,6 +36,15 @@ describe("executive surface language", () => {
     assert.equal(leaksInternalArchitecture(out), false);
   });
 
+  test("chat sanitizer requires safe fallback for architecture leaks", () => {
+    const leak =
+      "Constitutional gate: Pillow executive pipeline unavailable. Brain assistant fallback is disabled.";
+    assert.equal(
+      toExecutiveChatMessage(leak, EXECUTIVE_PIPELINE_SOFT_REPLY),
+      EXECUTIVE_PIPELINE_SOFT_REPLY,
+    );
+  });
+
   test("not-ready reply never leaks architecture", () => {
     assert.equal(leaksInternalArchitecture(EXECUTIVE_NOT_READY_REPLY), false);
   });

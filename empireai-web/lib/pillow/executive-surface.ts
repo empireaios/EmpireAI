@@ -37,6 +37,13 @@ export const EXECUTIVE_NOT_READY_REPLY =
 export const EXECUTIVE_PIPELINE_SOFT_REPLY =
   "I am realigning Executive Intelligence to answer properly. Please ask again in a moment.";
 export const EXECUTIVE_READY_LABEL = "Ready";
+export const EXECUTIVE_WIDGET_LOADING = "Loading…";
+export const EXECUTIVE_WIDGET_EMPTY = "Nothing to report right now.";
+export const EXECUTIVE_WIDGET_ERROR =
+  "This view is temporarily unavailable. Continuing with the rest of Executive Home.";
+export const EXECUTIVE_SYNC_READY = "READY";
+export const EXECUTIVE_SYNC_CONNECTING = "Connecting…";
+export const EXECUTIVE_SYNC_REFRESHING = "Refreshing…";
 
 export function leaksInternalArchitecture(text: string | null | undefined): boolean {
   if (!text) return false;
