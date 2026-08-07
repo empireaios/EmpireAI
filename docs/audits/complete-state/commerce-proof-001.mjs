@@ -122,9 +122,18 @@ async function main() {
     cjSuccess: Boolean(cj?.success),
   };
 
+  evidence.stages.pillowSession = await req("/api/pillow/session", {
+    method: "POST",
+    body: "{}",
+  });
+  const sessionId =
+    evidence.stages.pillowSession.body?.sessionId ||
+    evidence.stages.pillowSession.body?.session?.sessionId ||
+    evidence.stages.pillowSession.body?.result?.sessionId;
   evidence.stages.pillowChat = await req("/api/pillow/chat", {
     method: "POST",
     body: JSON.stringify({
+      sessionId,
       message: `Commerce proof: recommend go/no-go for SKU ${product.productId} at price ${price} cost ${cost} margin ${margin}. One sentence.`,
     }),
   });
