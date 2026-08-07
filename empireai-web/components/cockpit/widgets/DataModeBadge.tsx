@@ -13,17 +13,20 @@ const modeLabels: Record<CockpitDataMode, string> = {
 };
 
 type DataModeBadgeProps = {
-  mode: CockpitDataMode;
+  mode?: CockpitDataMode;
+  /** Convenience boolean used by development panels (`live` ⇒ mode="live"). */
+  live?: boolean;
   className?: string;
 };
 
 /** Displays Cockpit data mode — Live, Demo, or Sandbox. */
-export function DataModeBadge({ mode, className = "" }: DataModeBadgeProps) {
+export function DataModeBadge({ mode, live, className = "" }: DataModeBadgeProps) {
+  const resolved: CockpitDataMode = mode ?? (live === false ? "demo" : "live");
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${modeStyles[mode]} ${className}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${modeStyles[resolved]} ${className}`}
     >
-      {modeLabels[mode]}
+      {modeLabels[resolved]}
     </span>
   );
 }

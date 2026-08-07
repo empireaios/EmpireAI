@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { useAuth } from "@/lib/auth/context";
 import { resolveExecutiveDisplayName } from "@/lib/auth/display";
 import { useExecutiveHomeOptional } from "@/lib/cockpit/hooks/useExecutiveHome";
@@ -38,10 +39,55 @@ function useExecutiveHomeData() {
   };
 }
 
+function WidgetLoadState({
+  title,
+  loading,
+  error,
+  hasData,
+  onRetry,
+  children,
+}: {
+  title: string;
+  loading: boolean;
+  error: Error | null;
+  hasData: boolean;
+  onRetry: () => void;
+  children: ReactNode;
+}) {
+  if (loading && !hasData) {
+    return <Panel title={title}>Loading Executive data…</Panel>;
+  }
+  if (!hasData) {
+    return (
+      <Panel title={title}>
+        <p className="text-sm text-amber-200/90">
+          {error?.message
+            ? `Unable to load: ${error.message}`
+            : "Executive data unavailable."}
+        </p>
+        <p className="mt-1 text-xs text-[#8a847a]">Affected: {title}. Retry when Brain is ready.</p>
+        <button type="button" className="mt-3 text-sm text-[#d4af37]" onClick={() => void onRetry()}>
+          Retry
+        </button>
+      </Panel>
+    );
+  }
+  return (
+    <>
+      {error && (
+        <p className="mb-2 text-xs text-amber-200/80">
+          Reconnecting… showing last known good state. {error.message}
+        </p>
+      )}
+      {children}
+    </>
+  );
+}
+
 /** SCR-001 — Live greeting with certification blocker from Brain. */
 export function ExecutiveHomeGreetingLive() {
   const { user } = useAuth();
-  const { data } = useExecutiveHomeData();
+  const { data, loading, error } = useExecutiveHomeData();
   const displayName = resolveExecutiveDisplayName(user);
   const sessionLabel =
     user?.platformIdentity === "grand-king" ? "Grand King session" : "Sovereign session";
@@ -61,7 +107,15 @@ export function ExecutiveHomeGreetingLive() {
         </h1>
         <p className="mt-1 text-sm text-[#8a847a]">{today} · {sessionLabel}</p>
       </div>
-      {topBlocker ? (
+      {loading && !data ? (
+        <div className="rounded-lg border border-gold/15 bg-gold/5 px-4 py-3 text-sm text-[#c8c0b0]">
+          Connecting Brain Sync…
+        </div>
+      ) : error && !data ? (
+        <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-200/90">
+          Executive Home unavailable: {error.message}
+        </div>
+      ) : topBlocker ? (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
           <p className="text-sm text-amber-200/90">⚠ {topBlocker}</p>
           {data?.greeting.topBlockerHref && (
@@ -73,11 +127,11 @@ export function ExecutiveHomeGreetingLive() {
             </Link>
           )}
         </div>
-      ) : (
+      ) : data ? (
         <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-200/90">
-          All certification blockers closed — monitor PROOF-001 on Finance → Profit
+          No open certification blockers reported.
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -86,52 +140,53 @@ export function ExecutiveHomeGreetingLive() {
 export function CommandSnapshotLive() {
   const { data, loading, error, reload } = useExecutiveHomeData();
 
-  if (loading) {
-    return <Panel title="Command Snapshot">Loading…</Panel>;
-  }
-  if (error || !data) {
-    return (
-      <Panel title="Command Snapshot">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
-      </Panel>
-    );
-  }
-
-  const { command } = data;
   return (
-    <Panel title="Command Snapshot" subtitle="Live · cockpit-command aggregate">
-      <div className="mb-3">
-        <DataModeBadge mode="live" />
-      </div>
-      <dl className="space-y-3 text-sm">
-        <div>
-          <dt className="text-[#6f6a60]">Operational readiness</dt>
-          <dd className="text-[#e8e0d0]">
-            {command.operationalReadiness.percent}% — {command.operationalReadiness.detail}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-[#6f6a60]">Active objective</dt>
-          <dd className="text-[#f0d78c]">{command.oms.activeObjective}</dd>
-        </div>
-        <div>
-          <dt className="text-[#6f6a60]">PROOF-001</dt>
-          <dd className="text-[#e8e0d0]">
-            {command.proof001.stagesPassed}/{command.proof001.totalStages} stages ·{" "}
-            {command.proof001.detail}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-[#6f6a60]">Pending approvals</dt>
-          <dd className="text-[#e8e0d0]">{command.pendingApprovals.count}</dd>
-        </div>
-      </dl>
-      <Link href={`${COCKPIT_BASE}/command`} className="mt-4 inline-block text-xs text-[#d4af37]">
-        Open Command Centre →
-      </Link>
-    </Panel>
+    <WidgetLoadState
+      title="Command Snapshot"
+      loading={loading}
+      error={error}
+      hasData={Boolean(data)}
+      onRetry={reload}
+    >
+      {data && (
+        <Panel title="Command Snapshot" subtitle="Live · cockpit-command aggregate">
+          <div className="mb-3">
+            <DataModeBadge mode="live" />
+          </div>
+          <dl className="space-y-3 text-sm">
+            <div>
+              <dt className="text-[#6f6a60]">Operational readiness</dt>
+              <dd className="text-[#e8e0d0]">
+                {data.command.operationalReadiness.percent}% —{" "}
+                {data.command.operationalReadiness.detail}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[#6f6a60]">Active objective</dt>
+              <dd className="text-[#f0d78c]">{data.command.oms.activeObjective}</dd>
+            </div>
+            <div>
+              <dt className="text-[#6f6a60]">PROOF-001</dt>
+              <dd className="text-[#e8e0d0]">
+                {data.command.proof001.stagesPassed}/{data.command.proof001.totalStages} stages ·{" "}
+                {data.command.proof001.detail}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[#6f6a60]">Pending approvals</dt>
+              <dd className="text-[#e8e0d0]">
+                {data.command.pendingApprovals.count > 0
+                  ? data.command.pendingApprovals.count
+                  : "No pending approvals."}
+              </dd>
+            </div>
+          </dl>
+          <Link href={`${COCKPIT_BASE}/command`} className="mt-4 inline-block text-xs text-[#d4af37]">
+            Open Command Centre →
+          </Link>
+        </Panel>
+      )}
+    </WidgetLoadState>
   );
 }
 
@@ -139,80 +194,92 @@ export function CommandSnapshotLive() {
 export function MissionQueuePreviewLive() {
   const { data, loading, error, reload } = useExecutiveHomeData();
 
-  if (loading) {
-    return <Panel title="Mission Queue">Loading…</Panel>;
-  }
-  if (error || !data) {
-    return (
-      <Panel title="Mission Queue">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
-      </Panel>
-    );
-  }
-
   return (
-    <Panel title="Mission Queue Preview" subtitle="Live · OMS reporting">
-      <div className="space-y-3 text-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-[#c8c0b0]">OMS health</span>
-          <StatusBadge status={data.command.oms.overallHealth === "GREEN" ? "connected" : "pending"} />
-        </div>
-        <p className="text-[#e8e0d0]">{data.command.oms.activeObjective}</p>
-        <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
-          <div
-            className="h-full rounded-full bg-[#d4af37]/70"
-            style={{ width: `${data.command.oms.progress}%` }}
-          />
-        </div>
-        {data.command.oms.nextHighestImpactAction && (
-          <p className="text-xs text-[#8a847a]">Next: {data.command.oms.nextHighestImpactAction}</p>
-        )}
-      </div>
-      <Link href={`${COCKPIT_BASE}/missions`} className="mt-4 inline-block text-xs text-[#d4af37]">
-        Open Mission Centre →
-      </Link>
-    </Panel>
+    <WidgetLoadState
+      title="Mission Queue"
+      loading={loading}
+      error={error}
+      hasData={Boolean(data)}
+      onRetry={reload}
+    >
+      {data && (
+        <Panel title="Mission Queue Preview" subtitle="Live · OMS reporting">
+          <div className="space-y-3 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-[#c8c0b0]">OMS health</span>
+              <StatusBadge
+                status={data.command.oms.overallHealth === "GREEN" ? "connected" : "pending"}
+              />
+            </div>
+            <p className="text-[#e8e0d0]">
+              {data.command.oms.activeObjective || "No approved missions."}
+            </p>
+            <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
+              <div
+                className="h-full rounded-full bg-[#d4af37]/70"
+                style={{ width: `${data.command.oms.progress}%` }}
+              />
+            </div>
+            {data.command.oms.nextHighestImpactAction ? (
+              <p className="text-xs text-[#8a847a]">
+                Next: {data.command.oms.nextHighestImpactAction}
+              </p>
+            ) : (
+              <p className="text-xs text-[#8a847a]">No pending mission actions.</p>
+            )}
+          </div>
+          <Link href={`${COCKPIT_BASE}/missions`} className="mt-4 inline-block text-xs text-[#d4af37]">
+            Open Mission Centre →
+          </Link>
+        </Panel>
+      )}
+    </WidgetLoadState>
   );
 }
 
 /** SCR-001 — Portfolio pulse from domain dashboard. */
 export function PortfolioPulseLive() {
   const { data, loading, error, reload } = useExecutiveHomeData();
-
-  if (loading) {
-    return <Panel title="Portfolio Pulse">Loading…</Panel>;
-  }
-  if (error || !data) {
-    return (
-      <Panel title="Portfolio Pulse">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
-      </Panel>
-    );
-  }
+  const metrics = data?.portfolio.portfolioMetrics ?? [];
+  const companies = data?.portfolio.companies ?? [];
 
   return (
-    <Panel title="Portfolio Pulse" subtitle="Live · dashboard domain store">
-      <div className="grid gap-3 sm:grid-cols-2">
-        {data.portfolio.portfolioMetrics.slice(0, 4).map((m) => (
-          <div key={m.label} className="rounded-lg border border-gold/10 px-3 py-2">
-            <p className="text-[10px] uppercase text-[#6f6a60]">{m.label}</p>
-            <p className="font-display text-xl text-[#f0d78c]">{m.value}</p>
-          </div>
-        ))}
-      </div>
-      <ul className="mt-4 space-y-2 text-sm">
-        {data.portfolio.companies.slice(0, 4).map((c) => (
-          <li key={c.id} className="flex justify-between text-[#c8c0b0]">
-            <span>{c.name}</span>
-            <span>{c.revenue}</span>
-          </li>
-        ))}
-      </ul>
-    </Panel>
+    <WidgetLoadState
+      title="Portfolio Pulse"
+      loading={loading}
+      error={error}
+      hasData={Boolean(data)}
+      onRetry={reload}
+    >
+      {data && (
+        <Panel title="Portfolio Pulse" subtitle="Live · dashboard domain store">
+          {metrics.length === 0 ? (
+            <p className="text-sm text-[#8a847a]">No revenue recorded yet.</p>
+          ) : (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {metrics.slice(0, 4).map((m) => (
+                <div key={m.label} className="rounded-lg border border-gold/10 px-3 py-2">
+                  <p className="text-[10px] uppercase text-[#6f6a60]">{m.label}</p>
+                  <p className="font-display text-xl text-[#f0d78c]">{m.value}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {companies.length === 0 ? (
+            <p className="mt-4 text-sm text-[#8a847a]">No published products yet.</p>
+          ) : (
+            <ul className="mt-4 space-y-2 text-sm">
+              {companies.slice(0, 4).map((c) => (
+                <li key={c.id} className="flex justify-between text-[#c8c0b0]">
+                  <span>{c.name}</span>
+                  <span>{c.revenue}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Panel>
+      )}
+    </WidgetLoadState>
   );
 }
 
@@ -260,42 +327,46 @@ export function AgentActivityLive() {
 /** SCR-001 — Engine health row from live engine summaries. */
 export function DepartmentHealthRowLive() {
   const { data, loading, error, reload } = useExecutiveHomeData();
-
-  if (loading) {
-    return <Panel title="Engine Health">Loading…</Panel>;
-  }
-  if (error || !data) {
-    return (
-      <Panel title="Engine Health">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
-      </Panel>
-    );
-  }
+  const engines = data?.engineSummaries ?? [];
 
   return (
-    <Panel title="V1 Engine Health" subtitle="Live · G4-02 engine centers">
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        {data.engineSummaries.map((engine) => (
-          <div key={engine.engineId} className="rounded-lg border border-gold/10 px-3 py-2">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-xs font-medium text-[#c8c0b0]">{engine.displayName}</p>
-              <StatusBadge
-                status={
-                  engine.health === "HEALTHY"
-                    ? "connected"
-                    : engine.health === "FAILED"
-                      ? "blocked"
-                      : "pending"
-                }
-              />
+    <WidgetLoadState
+      title="Engine Health"
+      loading={loading}
+      error={error}
+      hasData={Boolean(data)}
+      onRetry={reload}
+    >
+      {data && (
+        <Panel title="V1 Engine Health" subtitle="Live · G4-02 engine centers">
+          {engines.length === 0 ? (
+            <p className="text-sm text-[#8a847a]">
+              Engine summaries unavailable in this view (degraded or empty assembly).
+            </p>
+          ) : (
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {engines.map((engine) => (
+                <div key={engine.engineId} className="rounded-lg border border-gold/10 px-3 py-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs font-medium text-[#c8c0b0]">{engine.displayName}</p>
+                    <StatusBadge
+                      status={
+                        engine.health === "HEALTHY"
+                          ? "connected"
+                          : engine.health === "FAILED"
+                            ? "blocked"
+                            : "pending"
+                      }
+                    />
+                  </div>
+                  <p className="mt-1 text-[10px] text-[#6f6a60]">{engine.progress.percent}%</p>
+                </div>
+              ))}
             </div>
-            <p className="mt-1 text-[10px] text-[#6f6a60]">{engine.progress.percent}%</p>
-          </div>
-        ))}
-      </div>
-    </Panel>
+          )}
+        </Panel>
+      )}
+    </WidgetLoadState>
   );
 }
 

@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import type { CommerceOperatingModel } from "@/lib/commerce-operating-model/types";
 
-const POLL_MS = 5_000;
+/** Home + panel share this hook — avoid 5s herd against production Brain. */
+const POLL_MS = 30_000;
 
 type CommerceOperatingModelPayload = {
   computedAt: string;

@@ -11,7 +11,7 @@ import {
 
 const DEFAULT_COMPANY = "co-grand-king";
 const CACHE_TTL_MS = 60_000;
-const DISPATCH_TIMEOUT_MS = Number(process.env.EXECUTIVE_HOME_DISPATCH_TIMEOUT_MS ?? 90_000);
+const DISPATCH_TIMEOUT_MS = Number(process.env.EXECUTIVE_HOME_DISPATCH_TIMEOUT_MS ?? 12_000);
 
 type CacheEntry = { expires: number; view: ExecutiveHomeView };
 

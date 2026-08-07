@@ -1,4 +1,5 @@
-export const SESSION_FETCH_TIMEOUT_MS = 8_000;
+/** Must exceed degraded Brain/BFF /auth/me latency (often 8–12s under sqlite flush lag). */
+export const SESSION_FETCH_TIMEOUT_MS = 30_000;
 export const BRAIN_FETCH_TIMEOUT_MS = 20_000;
 export const BRAIN_DISPATCH_TIMEOUT_MS = 55_000;
 

@@ -25,10 +25,14 @@ import {
 } from "./operational-command-view.js";
 import {
   cooperativeYield,
+  getRecentEventLoopLagMs,
+  isHeavyWorkPaused,
   waitForEventLoopCapacity,
 } from "../../runtime/event-loop-cooperative.js";
 
 const DEFAULT_COMPANY = "co-grand-king";
+/** Above this lag, skip heavy engine fan-out so auth/health stay alive. */
+const DEGRADED_ASSEMBLY_LAG_MS = Number(process.env.EXECUTIVE_HOME_DEGRADED_LAG_MS ?? 80);
 
 export async function assembleExecutiveHomeViewAsync(
   workspaceId: string,
@@ -50,16 +54,36 @@ export async function assembleExecutiveHomeViewAsync(
   const portfolio = loadDashboardView(workspaceId);
   mark("portfolioMs");
 
+  // Production safety: never let Executive Home aggregation wedge the event loop.
+  // Auth/login and /health/live must remain responsive even when cockpit widgets are slow.
+  if (
+    isHeavyWorkPaused() ||
+    getRecentEventLoopLagMs() >= DEGRADED_ASSEMBLY_LAG_MS
+  ) {
+    trace.degradedAssembly = 1;
+    trace.lagMs = Math.round(getRecentEventLoopLagMs());
+    return await buildMinimalExecutiveHomeFallbackAsync(workspaceId, companyId, env);
+  }
+
   const engineSummaries: EnginePanelView[] = [];
   const panelById: Record<string, EnginePanelView> = {};
   for (const engineId of COCKPIT_ENGINE_IDS) {
     await cooperativeYield();
+    if (isHeavyWorkPaused() || getRecentEventLoopLagMs() >= DEGRADED_ASSEMBLY_LAG_MS) {
+      trace.degradedAssembly = 1;
+      trace.enginePanelsPartial = engineSummaries.length;
+      break;
+    }
     await waitForEventLoopCapacity();
     const panel = loadEnginePanelView(engineId, workspaceId, env);
     engineSummaries.push(panel);
     panelById[engineId] = panel;
   }
   mark("enginePanelsMs");
+
+  if (trace.degradedAssembly === 1 && engineSummaries.length === 0) {
+    return await buildMinimalExecutiveHomeFallbackAsync(workspaceId, companyId, env);
+  }
 
   const openBlockers = Object.values(command.certificationBlockers).filter(
     (blocker) => blocker.status !== "closed",

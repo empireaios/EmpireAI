@@ -27,7 +27,8 @@ export function ExecutiveHomeChatWorkspace() {
     queryDraft,
     voiceEnabled,
     connectionError,
-    pillowConnected,
+    executiveReady,
+    readinessLabel,
     setQueryDraft,
     setVoiceEnabled,
     runAction,
@@ -37,6 +38,7 @@ export function ExecutiveHomeChatWorkspace() {
     executiveSnapshot,
     proactiveGuidance,
   } = useGlobalAiAssistant();
+  const chatEnabled = executiveReady && !loading;
 
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
@@ -81,12 +83,12 @@ export function ExecutiveHomeChatWorkspace() {
           </div>
           <span
             className={`rounded-full px-2 py-0.5 text-[10px] ${
-              pillowConnected
+              executiveReady
                 ? "bg-emerald-500/15 text-emerald-200"
                 : "bg-amber-500/15 text-amber-200"
             }`}
           >
-            {pillowConnected ? "Connected" : "Connecting…"}
+            {executiveReady ? "Ready" : readinessLabel}
           </span>
         </div>
         <div className="mt-2 flex flex-wrap gap-1.5 text-[10px]">
@@ -112,7 +114,12 @@ export function ExecutiveHomeChatWorkspace() {
       {executiveSnapshot && (
         <div className="shrink-0 space-y-2 border-b border-gold/10 px-4 py-2">
           <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
-          <PillowProactiveGuidance items={proactiveGuidance} onAsk={(prompt) => void ask(prompt)} />
+          <PillowProactiveGuidance
+            items={executiveReady ? proactiveGuidance : []}
+            onAsk={(prompt) => {
+              if (executiveReady) void ask(prompt);
+            }}
+          />
         </div>
       )}
 
@@ -120,19 +127,21 @@ export function ExecutiveHomeChatWorkspace() {
         ref={conversationRef}
         className="min-h-0 flex-1 overflow-y-auto px-4 py-3"
       >
-        {connectionError && (
-          <p className="mb-3 rounded border border-amber-500/25 bg-amber-500/10 px-2 py-1.5 text-xs text-amber-100">
-            {connectionError}
+        {!executiveReady && (
+          <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">
+            {readinessLabel || connectionError || "Preparing Executive Intelligence…"}
           </p>
         )}
 
         {conversation.length === 0 && !loading && (
           <div className="flex h-full flex-col justify-center text-sm text-[#8a847a]">
             <p className="text-[#c8c0b0]">
-              {context?.pageInsightSummary ??
-                "Executive Chat — your primary operating console. Ask Pillow anything."}
+              {!executiveReady
+                ? "Starting Executive Systems — conversation will unlock when ready."
+                : (context?.pageInsightSummary ??
+                  "Executive Chat — your primary operating console. Ask Pillow anything.")}
             </p>
-            {executive?.nextExecutiveAction && (
+            {executiveReady && executive?.nextExecutiveAction && (
               <p className="mt-2 text-xs text-[#d4af37]">
                 Next: {executive.nextExecutiveAction}
               </p>
@@ -162,7 +171,7 @@ export function ExecutiveHomeChatWorkspace() {
         </ul>
 
         {loading && (
-          <p className="mt-3 text-sm text-[#8a847a]">Pillow assembling intelligence…</p>
+          <p className="mt-3 text-sm text-[#8a847a]">Preparing your executive response…</p>
         )}
       </div>
 
@@ -171,6 +180,7 @@ export function ExecutiveHomeChatWorkspace() {
           className="flex gap-2"
           onSubmit={(e) => {
             e.preventDefault();
+            if (!chatEnabled) return;
             if (queryDraft.trim()) {
               void ask(queryDraft.trim());
             }
@@ -182,15 +192,21 @@ export function ExecutiveHomeChatWorkspace() {
             aria-label="Executive prompt"
             value={queryDraft}
             onChange={(e) => setQueryDraft(e.target.value)}
-            placeholder="Executive prompt — repository, knowledge, live intelligence…"
-            className="min-h-[44px] flex-1 rounded-lg border border-gold/15 bg-black/40 px-3 py-2 text-sm text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
+            disabled={!executiveReady}
+            placeholder={
+              executiveReady
+                ? "Executive prompt — repository, knowledge, live intelligence…"
+                : "Preparing Executive Intelligence…"
+            }
+            className="min-h-[44px] flex-1 rounded-lg border border-gold/15 bg-black/40 px-3 py-2 text-sm text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none disabled:opacity-60"
           />
           {voice.supported && (
             <button
               type="button"
               aria-label={voice.listening ? "Stop voice" : "Voice input"}
               onClick={voice.toggle}
-              className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium ${
+              disabled={!executiveReady}
+              className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium disabled:opacity-50 ${
                 voice.listening
                   ? "bg-red-500/20 text-red-200"
                   : "border border-gold/15 text-[#d4af37] hover:bg-gold/10"
@@ -201,7 +217,7 @@ export function ExecutiveHomeChatWorkspace() {
           )}
           <button
             type="submit"
-            disabled={loading}
+            disabled={!chatEnabled}
             className="shrink-0 rounded-lg bg-gold/15 px-4 py-2 text-xs font-medium text-[#d4af37] hover:bg-gold/25 disabled:opacity-50"
           >
             Send
@@ -222,7 +238,8 @@ export function ExecutiveHomeChatWorkspace() {
               <button
                 key={action}
                 type="button"
-                className="rounded border border-gold/15 px-2 py-1 text-[10px] text-[#c8c0b0] hover:border-gold/30"
+                disabled={!executiveReady || loading}
+                className="rounded border border-gold/15 px-2 py-1 text-[10px] text-[#c8c0b0] hover:border-gold/30 disabled:opacity-40"
                 onClick={() =>
                   void runAction(
                     action,

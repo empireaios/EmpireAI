@@ -51,10 +51,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const sessionUser = await fetchSessionUser();
         if (!cancelled) setUser(sessionUser);
-      } catch (err) {
+      } catch {
+        // Anonymous session probe must not block Grand King login UI.
+        // Timeouts / Brain lag surface as "not signed in", not a login-page error.
         if (!cancelled) {
           setUser(null);
-          setError(err instanceof Error ? err.message : "Session check failed");
+          setError(null);
         }
       } finally {
         if (!cancelled) setLoading(false);
