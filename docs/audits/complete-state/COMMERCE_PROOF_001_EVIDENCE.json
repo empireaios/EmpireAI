@@ -1,27 +1,27 @@
 {
   "mission": "COMMERCE_PROOF_MISSION_001",
-  "startedAt": "2026-08-06T23:29:40.113Z",
+  "startedAt": "2026-08-07T01:09:09.683Z",
   "brain": "https://empireai-production.up.railway.app",
   "stages": {
     "healthLive": {
       "status": 200,
-      "ms": 1121,
+      "ms": 636,
       "body": {
         "status": "ok",
         "brain": "online",
-        "eventLoopLagMs": 487.15074699930847,
+        "eventLoopLagMs": 0.313549000013154,
         "sqlite": {
           "pending": true,
-          "flushCount": 59,
-          "lastFlushMs": 1786057805221,
-          "lastFlushDurationMs": 2098,
+          "flushCount": 0,
+          "lastFlushMs": null,
+          "lastFlushDurationMs": null,
           "flushInFlight": false
         },
         "admission": {
           "pillowSessionCreatesInFlight": 0,
           "maxPillowSessionCreates": 2,
           "lagRejectMs": 250,
-          "recentLagMs": 487.15074699930847,
+          "recentLagMs": 0.313549000013154,
           "sessionRateLimit": 4,
           "sessionRateWindowMs": 10000,
           "sessionCreatesInWindow": 0
@@ -30,7 +30,7 @@
     },
     "login": {
       "status": 200,
-      "ms": 11928,
+      "ms": 8901,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -40,17 +40,17 @@
           "workspaceId": "ws_empire_1",
           "platformIdentity": "grand-king"
         },
-        "expiresAt": "2026-08-13T23:30:05.457Z"
+        "expiresAt": "2026-08-14T01:09:31.537Z"
       }
     },
     "cjLiveAuth": {
       "status": 200,
-      "ms": 2918,
+      "ms": 1025,
       "body": {
         "status": "ok",
         "mission": "B6-02B",
         "success": true,
-        "verifiedAt": "2026-08-06T23:30:08.556Z",
+        "verifiedAt": "2026-08-07T01:09:32.731Z",
         "credentialSource": "CJ_API_KEY",
         "auth": {
           "endpoint": "https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken",
@@ -82,7 +82,7 @@
     },
     "v1Activation": {
       "status": 200,
-      "ms": 931,
+      "ms": 231,
       "body": {
         "status": "BLOCKED",
         "ready": false,
@@ -94,7 +94,7 @@
     },
     "marketplaceHealth": {
       "status": 200,
-      "ms": 1172,
+      "ms": 221,
       "body": {
         "status": "HEALTHY",
         "adapterCount": 9,
@@ -107,7 +107,7 @@
     },
     "adapters": {
       "status": 200,
-      "ms": 1034,
+      "ms": 396,
       "body": {
         "adapters": [
           {
@@ -204,7 +204,7 @@
       }
     },
     "evaluation": {
-      "productId": "cj-live-1786058999230",
+      "productId": "cj-live-1786064961095",
       "cost": 12,
       "price": 29.99,
       "estimatedMarginUsd": 17.99,
@@ -212,30 +212,220 @@
       "cjLiveAuthHttp": 200,
       "cjSuccess": true
     },
-    "pillowChat": {
-      "status": 400,
-      "ms": 1880,
+    "pillowSession": {
+      "status": 201,
+      "ms": 423,
       "body": {
-        "error": "Validation failed",
-        "details": {
-          "formErrors": [],
-          "fieldErrors": {
-            "sessionId": [
-              "Required"
-            ]
+        "session": {
+          "sessionId": "fafa6a9f-6e5d-446b-bb86-18a0e5a0978a",
+          "workspaceId": "ws_empire_1",
+          "conversationHistory": [],
+          "approvalState": "none",
+          "repositoryFingerprint": "no-git|2026-08-07T01:08:47.451Z|archived_r002_readme:2026-08-07T01:06:53.000Z|bl_a_repository_difference_report:2026-08-07T01:06:53.000Z|bl_a_synchronization_report:2026-08-07T01:06:53.000Z|bl_a_validation_report:2026-08-07T01:06:53.000Z|bl_b:2026-08-07T01:06:53.000Z|bl_b_repository_difference_report:2026-08-07T01:06:53.000Z|bl_b_validation_report:2026-08-07T01:06:53.000Z|bl_c:2026-08-07T01:06:53.000Z|business_completion_ledger:2026-08-07T01:06:53.000Z|canonical_ekls_specification:2026-08-07T01:06:53.000Z|combined_executive_audit_acd_001_030:2026-08-07T01:06:53.000Z|combined_executive_audit_cbd_001_020:2026-08-07T01:06:53.000Z|combined_executive_audit_ctd_001_040:2026-08-07T01:06:53.000Z|combined_executive_audit_empireai_integrations_hub:2026-08-07T01:06:53.000Z|combined_executive_audit_empireai_v1_executive_certification_gap_analysis:2026-08-07T01:06:53.000Z|combined_executive_audit_empireai_v1_operational_activation:2026-08-07T01:06:53.000Z|combined_executive_audit_empireai_v1_operational_totality:2026-08-07T01:06:53.000Z|combined_executive_audit_empireai_v1_production_deployment:2026-08-07T01:06:53.000Z|combined_executive_audit_executive_learning_engine:2026-08-07T01:06:53.000Z|combined_executive_audit_executive_perspectives_refinement:2026-08-07T01:06:53.000Z|combined_executive_audit_executive_ux_layer_architecture:2026-08-07T01:06:53.000Z|combined_executive_audit_gc_03:2026-08-07T01:06:53.000Z|combined_executive_audit_gc_05:2026-08-07T01:06:53.000Z|combined_executive_audit_gvd_001_030:2026-08-07T01:06:53.000Z|combined_executive_audit_managed_deployment_synchronization:2026-08-07T01:06:53.000Z|combined_executive_audit_managed_production_deployment:2026-08-07T01:06:53.000Z|combined_executive_audit_marketplace_autonomy_doctrine:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_020_commerce_intelligence_operating_system:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_constitutional_laws_finalization:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_constitution_update:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_executive_companion:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_executive_council:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_owned_commerce_intelligence_core:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_product_integration_master_plan:2026-08-07T01:06:53.000Z|combined_executive_audit_pillow_version_1_delivery_mode:2026-08-07T01:06:53.000Z|combined_executive_audit_real_002b:2026-08-07T01:06:53.000Z|combined_executive_audit_real_003_007:2026-08-07T01:06:53.000Z|combined_executive_audit_real_008_012:2026-08-07T01:06:53.000Z|combined_executive_audit_real_013_018:2026-08-07T01:06:53.000Z|combined_executive_audit_real_019_025:2026-08-07T01:06:53.000Z|combined_executive_audit_real_026_035:2026-08-07T01:06:53.000Z|combined_executive_audit_real_036_050:2026-08-07T01:06:53.000Z|combined_executive_audit_real_051_070:2026-08-07T01:06:53.000Z|combined_executive_audit_real_071_100:2026-08-07T01:06:53.000Z|combined_executive_audit_real061_backend_compile_recovery:2026-08-07T01:06:53.000Z|combined_executive_audit_uid_001_020:2026-08-07T01:06:53.000Z|combined_executive_audit_ux_001_023:2026-08-07T01:06:53.000Z|combined_executive_audit_version_1_certification_mode_activation:2026-08-07T01:06:53.000Z|commerce_os_blueprint:2026-08-07T01:06:53.000Z|cursor_progress_report:2026-08-07T01:06:53.000Z|cursor_progress_report_real_002a:2026-08-07T01:06:53.000Z|deployment_root_cause_report:2026-08-07T01:06:53.000Z|development_environment_report:2026-08-07T01:06:53.000Z|empireai_architecture:2026-08-07T01:06:53.000Z|empireai_architecture_constraints_acd:2026-08-07T01:06:53.000Z|empireai_architect_report:2026-08-07T01:06:53.000Z|empireai_backlog_release_governance:2026-08-07T01:06:53.000Z|empireai_bl_c_continuous_improvement_constitution:2026-08-07T01:06:53.000Z|empireai_commerce_canon:2026-08-07T01:06:53.000Z|empireai_commercial_business_doctrine_cbd:2026-08-07T01:06:53.000Z|empireai_constitution:2026-08-07T01:06:53.000Z|empireai_continuous_artifact_generation_workflow:2026-08-07T01:06:53.000Z|empireai_core_constitution_ctd:2026-08-07T01:06:53.000Z|empireai_cost_report:2026-08-07T01:06:53.000Z|empireai_cursor_output_standard:2026-08-07T01:06:53.000Z|empireai_cursor_recovery_doctrine:2026-08-07T01:06:53.000Z|empireai_decisions:2026-08-07T01:06:53.000Z|empireai_dependency_report:2026-08-07T01:06:53.000Z|empireai_digital_soul_constitution_v2:2026-08-07T01:06:53.000Z|empireai_empire_recovery_doctrine:2026-08-07T01:06:53.000Z|empireai_executive_audit_standard:2026-08-07T01:06:53.000Z|empireai_eye_architecture:2026-08-07T01:06:53.000Z|empireai_genesis:2026-08-07T01:06:53.000Z|empireai_global_product_intelligence_architecture:2026-08-07T01:06:53.000Z|empireai_governance_doctrine_gvd:2026-08-07T01:06:53.000Z|empireai_grand_kings_revenue_engine:2026-08-07T01:06:53.000Z|empireai_journey_first_doctrine:2026-08-07T01:06:53.000Z|empireai_pillow_architecture:2026-08-07T01:06:53.000Z|empireai_pillow_constitution:2026-08-07T01:06:53.000Z|empireai_pillow_executive_intelligence_constitution:2026-08-07T01:06:53.000Z|empireai_pillow_memory_doctrine:2026-08-07T01:06:53.000Z|empireai_reality_v1:2026-08-07T01:06:53.000Z|empireai_repository_first_doctrine:2026-08-07T01:06:53.000Z|empireai_repository_master_index:2026-08-07T01:06:53.000Z|empireai_roadmap:2026-08-07T01:06:53.000Z|empireai_soul:2026-08-07T01:06:53.000Z|empireai_status:2026-08-07T01:06:53.000Z|empireai_strength_report:2026-08-07T01:06:53.000Z|empireai_total_view_report:2026-08-07T01:06:53.000Z|empireai_ux_identity_doctrine_uid:2026-08-07T01:06:53.000Z|empireai_ux_master_blueprint:2026-08-07T01:06:53.000Z|empireai_vision:2026-08-07T01:06:53.000Z|empire_return_package:2026-08-07T01:06:53.000Z|empire_review_package:2026-08-07T01:06:53.000Z|executive_audit_real072_frontend_production_build_recovery:2026-08-07T01:06:53.000Z|go_001_operational_readiness_report:2026-08-07T01:06:53.000Z|go_002_grand_king_operational_master_plan:2026-08-07T01:06:53.000Z|grand_king_operation_simulation:2026-08-07T01:06:53.000Z|journey:2026-08-07T01:06:53.000Z|journey_audit:2026-08-07T01:06:53.000Z|journey_synchronization_report:2026-08-07T01:06:53.000Z|marketplace_os_vision:2026-08-07T01:06:53.000Z|master_completion_ledger:2026-08-07T01:06:53.000Z|operational_access_report:2026-08-07T01:06:53.000Z|pillow_architecture_contract:2026-08-07T01:06:53.000Z|pillow_roadmap:2026-08-07T01:06:53.000Z|pillow_runtime_integration_plan:2026-08-07T01:06:53.000Z|production_environment_certification:2026-08-07T01:06:53.000Z|readme:2026-08-07T01:06:53.000Z|revenue_mission_ledger:2026-08-07T01:06:53.000Z|sa_001_architects_final_recommendations:2026-08-07T01:06:53.000Z|sa_001_executive_scorecard:2026-08-07T01:06:53.000Z|sa_001_implementation_priority:2026-08-07T01:06:53.000Z|sa_001_operational_readiness:2026-08-07T01:06:53.000Z|sa_001_supreme_executive_audit:2026-08-07T01:06:53.000Z|supplier_readiness_report:2026-08-07T01:06:53.000Z|ux_blueprint_validation:2026-08-07T01:06:53.000Z|ux_implementation_contract:2026-08-07T01:06:53.000Z|development_doctrine:2026-08-07T01:06:53.000Z|empireai_architecture_law:2026-08-07T01:06:53.000Z|empireai_brain_architecture:2026-08-07T01:06:53.000Z|empireai_builder_architecture:2026-08-07T01:06:53.000Z|empireai_canonical_architecture:2026-08-07T01:06:53.000Z|empireai_cockpit_architecture:2026-08-07T01:06:53.000Z|empireai_commerce_architecture:2026-08-07T01:06:53.000Z|empireai_infrastructure_architecture:2026-08-07T01:06:53.000Z|empireai_pillow_architecture:2026-08-07T01:06:53.000Z|project_cockpit_specification:2026-08-07T01:06:53.000Z|cockpit_build_sequence:2026-08-07T01:06:53.000Z|cockpit_dependency_graph:2026-08-07T01:06:53.000Z|cockpit_implementation_roadmap:2026-08-07T01:06:53.000Z|cockpit_information_architecture:2026-08-07T01:06:53.000Z|cockpit_migration_plan:2026-08-07T01:06:53.000Z|cockpit_screen_map:2026-08-07T01:06:53.000Z|cockpit_user_flow:2026-08-07T01:06:53.000Z|00_executive_summary:2026-08-07T01:06:53.000Z|01_repository_inventory:2026-08-07T01:06:53.000Z|02_documentation_inventory:2026-08-07T01:06:53.000Z|03_mission_history:2026-08-07T01:06:53.000Z|04_master_roadmap_reconstruction:2026-08-07T01:06:53.000Z|05_hierarchy_and_ownership:2026-08-07T01:06:53.000Z|06_architecture_map:2026-08-07T01:06:53.000Z|07_pillow_audit:2026-08-07T01:06:53.000Z|08_brain_and_runtime_audit:2026-08-07T01:06:53.000Z|09_cockpit_and_ux_audit:2026-08-07T01:06:53.000Z|10_builder_cursor_audit:2026-08-07T01:06:53.000Z|11_business_and_commerce_audit:2026-08-07T01:06:53.000Z|12_infrastructure_and_production_audit:2026-08-07T01:06:53.000Z|13_test_and_validation_audit:2026-08-07T01:06:53.000Z|14_duplicate_truth_and_naming_audit:2026-08-07T01:06:53.000Z|15_gaps_and_drift_audit:2026-08-07T01:06:53.000Z|16_recommended_constitution_backlog:2026-08-07T01:06:53.000Z|18_audit_evidence_pack:2026-08-07T01:06:53.000Z|adr_044_real_namespace_canonicalization:2026-08-07T01:06:53.000Z|artifact_generation_classification:2026-08-07T01:06:53.000Z|commercial_integration_to_intelligence_transition:2026-08-07T01:06:53.000Z|commercial_risk_intelligence_doctrine:2026-08-07T01:06:53.000Z|commercial_risk_intelligence_governance_alignment_report:2026-08-07T01:06:53.000Z|commercial_risk_intelligence_report_specification:2026-08-07T01:06:53.000Z|constitutional_execution_programme_review:2026-08-07T01:06:53.000Z|cursor_output_template:2026-08-07T01:06:53.000Z|empireai_1688_integration_system:2026-08-07T01:06:53.000Z|empireai_accessibility_intelligence_system:2026-08-07T01:06:53.000Z|empireai_accounting_export_engine_system:2026-08-07T01:06:53.000Z|empireai_accounting_worker_system:2026-08-07T01:06:53.000Z|empireai_acquisition_evaluation_engine_system:2026-08-07T01:06:53.000Z|empireai_adaptive_interface_system:2026-08-07T01:06:53.000Z|empireai_adaptive_workforce_optimizer_system:2026-08-07T01:06:53.000Z|empireai_affiliate_certification_system:2026-08-07T01:06:53.000Z|empireai_affiliate_compliance_worker_system:2026-08-07T01:06:53.000Z|empireai_affiliate_factory_core_system:2026-08-07T01:06:53.000Z|empireai_affiliate_opportunity_worker_system:2026-08-07T01:06:53.000Z|empireai_ai_campaign_generator_system:2026-08-07T01:06:53.000Z|empireai_ai_customer_support_system:2026-08-07T01:06:53.000Z|empireai_ai_evolution_architecture:2026-08-07T01:06:53.000Z|empireai_ai_innovation_factory_system:2026-08-07T01:06:53.000Z|empireai_aliexpress_integration_system:2026-08-07T01:06:53.000Z|empireai_amazon_inventory_sync_system:2026-08-07T01:06:53.000Z|empireai_amazon_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_amazon_order_management_system:2026-08-07T01:06:53.000Z|empireai_amazon_product_intelligence_system:2026-08-07T01:06:53.000Z|empireai_analytics_worker_system:2026-08-07T01:06:53.000Z|empireai_api_integration_worker_system:2026-08-07T01:06:53.000Z|empireai_api_runtime_system:2026-08-07T01:06:53.000Z|empireai_approval_router_system:2026-08-07T01:06:53.000Z|empireai_approval_runtime_system:2026-08-07T01:06:53.000Z|empireai_approval_workflow_system:2026-08-07T01:06:53.000Z|empireai_architectural_decision_record_system:2026-08-07T01:06:53.000Z|empireai_architecture_evolution_architecture:2026-08-07T01:06:53.000Z|empireai_architecture_worker_system:2026-08-07T01:06:53.000Z|empireai_attribution_engine_system:2026-08-07T01:06:53.000Z|empireai_audience_intelligence_system:2026-08-07T01:06:53.000Z|empireai_audit_runtime_system:2026-08-07T01:06:53.000Z|empireai_authentication_worker_system:2026-08-07T01:06:53.000Z|empireai_authority_matrix_system:2026-08-07T01:06:53.000Z|empireai_authorization_worker_system:2026-08-07T01:06:53.000Z|empireai_autonomous_builder_certification_system:2026-08-07T01:06:53.000Z|empireai_autonomous_decision_monitor:2026-08-07T01:06:53.000Z|empireai_autonomous_empire_evolution_system:2026-08-07T01:06:53.000Z|empireai_autonomous_growth_optimizer_system:2026-08-07T01:06:53.000Z|empireai_autonomous_investment_engine_system:2026-08-07T01:06:53.000Z|empireai_autonomous_marketing_engine_system:2026-08-07T01:06:53.000Z|empireai_autonomous_portfolio_board_system:2026-08-07T01:06:53.000Z|empireai_autonomous_recovery_engine:2026-08-07T01:06:53.000Z|empireai_autonomous_scaling_framework_system:2026-08-07T01:06:53.000Z|empireai_autonomous_ux_audit_system:2026-08-07T01:06:53.000Z|empireai_backend_worker_system:2026-08-07T01:06:53.000Z|empireai_banking_integration_system:2026-08-07T01:06:53.000Z|empireai_billing_worker_system:2026-08-07T01:06:53.000Z|empireai_booking_worker_system:2026-08-07T01:06:53.000Z|empireai_bottleneck_intelligence_system:2026-08-07T01:06:53.000Z|empireai_brain_runtime_system:2026-08-07T01:06:53.000Z|empireai_brand_creation_engine_system:2026-08-07T01:06:53.000Z|empireai_browser_truth_system:2026-08-07T01:06:53.000Z|empireai_budget_management_engine_system:2026-08-07T01:06:53.000Z|empireai_budget_optimization_engine_system:2026-08-07T01:06:53.000Z|empireai_budget_planning_worker_system:2026-08-07T01:06:53.000Z|empireai_builder_console:2026-08-07T01:06:53.000Z|empireai_builder_monitor:2026-08-07T01:06:53.000Z|empireai_business_approval_pack_worker_system:2026-08-07T01:06:53.000Z|empireai_business_automation:2026-08-07T01:06:53.000Z|empireai_business_blueprint_worker_system:2026-08-07T01:06:53.000Z|empireai_business_factory:2026-08-07T01:06:53.000Z|empireai_business_factory_audit_system:2026-08-07T01:06:53.000Z|empireai_business_health_ranking_system:2026-08-07T01:06:53.000Z|empireai_business_idea_interpreter_system:2026-08-07T01:06:53.000Z|empireai_business_launch_orchestrator_system:2026-08-07T01:06:53.000Z|empireai_business_model_generator_system:2026-08-07T01:06:53.000Z|empireai_business_opportunity_discovery_system:2026-08-07T01:06:53.000Z|empireai_business_risk_worker_system:2026-08-07T01:06:53.000Z|empireai_business_state_manager_system:2026-08-07T01:06:53.000Z|empireai_campaign_manager_system:2026-08-07T01:06:53.000Z|empireai_capacity_planning_engine_system:2026-08-07T01:06:53.000Z|empireai_capital_allocation_engine:2026-08-07T01:06:53.000Z|empireai_capital_distribution_engine_system:2026-08-07T01:06:53.000Z|empireai_capital_factory_certification_system:2026-08-07T01:06:53.000Z|empireai_capital_factory_core_system:2026-08-07T01:06:53.000Z|empireai_capital_risk_engine:2026-08-07T01:06:53.000Z|empireai_capital_risk_worker_system:2026-08-07T01:06:53.000Z|empireai_cashflow_worker_system:2026-08-07T01:06:53.000Z|empireai_cash_flow_monitor_system:2026-08-07T01:06:53.000Z|empireai_cash_reserve_intelligence:2026-08-07T01:06:53.000Z|empireai_change_documentation_system:2026-08-07T01:06:53.000Z|empireai_channel_recommendation_worker_system:2026-08-07T01:06:53.000Z|empireai_checkout_worker_system:2026-08-07T01:06:53.000Z|empireai_civilization_knowledge_engine_system:2026-08-07T01:06:53.000Z|empireai_cjdropshipping_integration_system:2026-08-07T01:06:53.000Z|empireai_cockpit_ux:2026-08-07T01:06:53.000Z|empireai_collective_reasoning_engine_system:2026-08-07T01:06:53.000Z|empireai_commerce_analytics_worker_system:2026-08-07T01:06:53.000Z|empireai_commerce_certification_system:2026-08-07T01:06:53.000Z|empireai_commerce_factory_core_system:2026-08-07T01:06:53.000Z|empireai_commerce_operating_model:2026-08-07T01:06:53.000Z|empireai_commercial_intelligence:2026-08-07T01:06:53.000Z|empireai_communication_runtime_system:2026-08-07T01:06:53.000Z|empireai_company_factory_certified_system:2026-08-07T01:06:53.000Z|empireai_company_factory_framework_system:2026-08-07T01:06:53.000Z|empireai_company_lifecycle_manager_system:2026-08-07T01:06:53.000Z|empireai_comparison_site_worker_system:2026-08-07T01:06:53.000Z|empireai_competitor_intelligence_engine:2026-08-07T01:06:53.000Z|empireai_competitor_marketing_monitor_system:2026-08-07T01:06:53.000Z|empireai_component_generator_system:2026-08-07T01:06:53.000Z|empireai_component_recognition_system:2026-08-07T01:06:53.000Z|empireai_conflict_resolution_engine:2026-08-07T01:06:53.000Z|empireai_constitutional_execution_governance:2026-08-07T01:06:53.000Z|empireai_constitutional_framework:2026-08-07T01:06:53.000Z|empireai_constitution_hierarchy:2026-08-07T01:06:53.000Z|empireai_constitution_lock:2026-08-07T01:06:53.000Z|empireai_constitution_validation:2026-08-07T01:06:53.000Z|empireai_context_awareness_system:2026-08-07T01:06:53.000Z|empireai_context_synchronization_system:2026-08-07T01:06:53.000Z|empireai_continuous_collaboration_system:2026-08-07T01:06:53.000Z|empireai_continuous_screen_observation_system:2026-08-07T01:06:53.000Z|empireai_continuous_ux_evolution_system:2026-08-07T01:06:53.000Z|empireai_conversion_intelligence_system:2026-08-07T01:06:53.000Z|empireai_corporate_vision_engine:2026-08-07T01:06:53.000Z|empireai_cost_optimization_engine:2026-08-07T01:06:53.000Z|empireai_country_intelligence_engine_system:2026-08-07T01:06:53.000Z|empireai_course_builder_worker_system:2026-08-07T01:06:53.000Z|empireai_creative_asset_manager_system:2026-08-07T01:06:53.000Z|empireai_crisis_decision_engine:2026-08-07T01:06:53.000Z|empireai_crm_foundation_system:2026-08-07T01:06:53.000Z|empireai_crm_worker_system:2026-08-07T01:06:53.000Z|empireai_cross_business_intelligence:2026-08-07T01:06:53.000Z|empireai_cross_business_knowledge_engine_system:2026-08-07T01:06:53.000Z|empireai_cross_channel_orchestrator_system:2026-08-07T01:06:53.000Z|empireai_cross_company_resource_engine_system:2026-08-07T01:06:53.000Z|empireai_cross_empire_governance_engine_system:2026-08-07T01:06:53.000Z|empireai_cross_region_learning_engine_system:2026-08-07T01:06:53.000Z|empireai_currency_intelligence_system:2026-08-07T01:06:53.000Z|empireai_cursor_protocol:2026-08-07T01:06:53.000Z|empireai_cursor_specification_generator_system:2026-08-07T01:06:53.000Z|empireai_customer_behaviour_intelligence:2026-08-07T01:06:53.000Z|empireai_customer_identity_engine_system:2026-08-07T01:06:53.000Z|empireai_customer_journey_intelligence_system:2026-08-07T01:06:53.000Z|empireai_customer_lifetime_value_engine_system:2026-08-07T01:06:53.000Z|empireai_customer_operations_certification_system:2026-08-07T01:06:53.000Z|empireai_customer_risk_engine_system:2026-08-07T01:06:53.000Z|empireai_customer_segmentation_engine_system:2026-08-07T01:06:53.000Z|empireai_customer_sentiment_engine_system:2026-08-07T01:06:53.000Z|empireai_customer_timeline_engine_system:2026-08-07T01:06:53.000Z|empireai_database_worker_system:2026-08-07T01:06:53.000Z|empireai_decision_audit_engine:2026-08-07T01:06:53.000Z|empireai_decision_engine_system:2026-08-07T01:06:53.000Z|empireai_decision_memory_system:2026-08-07T01:06:53.000Z|empireai_decision_simulation_engine:2026-08-07T01:06:53.000Z|empireai_department_planning_engine:2026-08-07T01:06:53.000Z|empireai_deployment_worker_system:2026-08-07T01:06:53.000Z|empireai_design_system_intelligence_system:2026-08-07T01:06:53.000Z|empireai_design_worker_system:2026-08-07T01:06:53.000Z|empireai_digital_delivery_worker_system:2026-08-07T01:06:53.000Z|empireai_digital_products_certification_system:2026-08-07T01:06:53.000Z|empireai_digital_products_factory_core_system:2026-08-07T01:06:53.000Z|empireai_digital_product_analytics_worker_system:2026-08-07T01:06:53.000Z|empireai_digital_product_research_worker_system:2026-08-07T01:06:53.000Z|empireai_digital_soul_system:2026-08-07T01:06:53.000Z|empireai_doctrine_system:2026-08-07T01:06:53.000Z|empireai_documentation_law:2026-08-07T01:06:53.000Z|empireai_domain_digital_asset_planner_system:2026-08-07T01:06:53.000Z|empireai_durable_session_architecture:2026-08-07T01:06:53.000Z|empireai_e2e_testing_system:2026-08-07T01:06:53.000Z|empireai_ebay_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_ebook_worker_system:2026-08-07T01:06:53.000Z|empireai_editor_in_chief_worker_system:2026-08-07T01:06:53.000Z|empireai_email_communication_engine_system:2026-08-07T01:06:53.000Z|empireai_email_funnel_worker_system:2026-08-07T01:06:53.000Z|empireai_empire_builder_certification_system:2026-08-07T01:06:53.000Z|empireai_empire_builder_factory_core_system:2026-08-07T01:06:53.000Z|empireai_empire_builder_model_generator_system:2026-08-07T01:06:53.000Z|empireai_empire_capital_allocation_system:2026-08-07T01:06:53.000Z|empireai_empire_certified_system:2026-08-07T01:06:53.000Z|empireai_empire_evolution_architecture:2026-08-07T01:06:53.000Z|empireai_empire_innovation_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_intelligence_framework_system:2026-08-07T01:06:53.000Z|empireai_empire_knowledge_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_legacy_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_memory_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_opportunity_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_optimization_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_performance_guardian_system:2026-08-07T01:06:53.000Z|empireai_empire_resilience_engine_system:2026-08-07T01:06:53.000Z|empireai_empire_self_improvement_engine_system:2026-08-07T01:06:53.000Z|empireai_engineering_standards:2026-08-07T01:06:53.000Z|empireai_enterprise_audit_engine:2026-08-07T01:06:53.000Z|empireai_enterprise_constitutional_guardian:2026-08-07T01:06:53.000Z|empireai_enterprise_executive_situational_awareness_engine_system:2026-08-07T01:06:53.000Z|empireai_enterprise_governance_framework:2026-08-07T01:06:53.000Z|empireai_enterprise_pattern_engine:2026-08-07T01:06:53.000Z|empireai_enterprise_platform_factory_core_system:2026-08-07T01:06:53.000Z|empireai_enterprise_portfolio_framework_system:2026-08-07T01:06:53.000Z|empireai_enterprise_risk_governance:2026-08-07T01:06:53.000Z|empireai_enterprise_succession_engine_system:2026-08-07T01:06:53.000Z|empireai_enterprise_valuation_engine:2026-08-07T01:06:53.000Z|empireai_enterprise_value_engine_system:2026-08-07T01:06:53.000Z|empireai_escalation_framework_system:2026-08-07T01:06:53.000Z|empireai_eta_engine:2026-08-07T01:06:53.000Z|empireai_etsy_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_execution_control_center:2026-08-07T01:06:53.000Z|empireai_execution_memory_system:2026-08-07T01:06:53.000Z|empireai_executive_acceptance_pack_system:2026-08-07T01:06:53.000Z|empireai_executive_accountability_engine:2026-08-07T01:06:53.000Z|empireai_executive_advisory_engine:2026-08-07T01:06:53.000Z|empireai_executive_approval_intelligence:2026-08-07T01:06:53.000Z|empireai_executive_architecture_framework:2026-08-07T01:06:53.000Z|empireai_executive_audit_engine_system:2026-08-07T01:06:53.000Z|empireai_executive_benchmark_engine:2026-08-07T01:06:53.000Z|empireai_executive_budget_planner:2026-08-07T01:06:53.000Z|empireai_executive_calendar_engine:2026-08-07T01:06:53.000Z|empireai_executive_capital_strategy:2026-08-07T01:06:53.000Z|empireai_executive_collaboration_certification_system:2026-08-07T01:06:53.000Z|empireai_executive_command_center_system:2026-08-07T01:06:53.000Z|empireai_executive_compliance_engine:2026-08-07T01:06:53.000Z|empireai_executive_confidence_engine:2026-08-07T01:06:53.000Z|empireai_executive_consensus_engine:2026-08-07T01:06:53.000Z|empireai_executive_constitutional_monitor:2026-08-07T01:06:53.000Z|empireai_executive_customer_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_decision_architecture:2026-08-07T01:06:53.000Z|empireai_executive_decision_certification:2026-08-07T01:06:53.000Z|empireai_executive_deliberation_engine_system:2026-08-07T01:06:53.000Z|empireai_executive_dependency_engine:2026-08-07T01:06:53.000Z|empireai_executive_empire_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_escalation_engine:2026-08-07T01:06:53.000Z|empireai_executive_ethics_engine:2026-08-07T01:06:53.000Z|empireai_executive_exception_manager:2026-08-07T01:06:53.000Z|empireai_executive_finance_framework:2026-08-07T01:06:53.000Z|empireai_executive_financial_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_forecast_intelligence:2026-08-07T01:06:53.000Z|empireai_executive_global_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_governance_certification:2026-08-07T01:06:53.000Z|empireai_executive_home:2026-08-07T01:06:53.000Z|empireai_executive_insight_engine:2026-08-07T01:06:53.000Z|empireai_executive_intelligence_certification:2026-08-07T01:06:53.000Z|empireai_executive_knowledge_graph:2026-08-07T01:06:53.000Z|empireai_executive_kpi_engine:2026-08-07T01:06:53.000Z|empireai_executive_performance_dashboard:2026-08-07T01:06:53.000Z|empireai_executive_planner_system:2026-08-07T01:06:53.000Z|empireai_executive_planning_certification:2026-08-07T01:06:53.000Z|empireai_executive_planning_dashboard:2026-08-07T01:06:53.000Z|empireai_executive_policy_engine:2026-08-07T01:06:53.000Z|empireai_executive_policy_evolution:2026-08-07T01:06:53.000Z|empireai_executive_portfolio_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_prediction_engine:2026-08-07T01:06:53.000Z|empireai_executive_recommendation_engine:2026-08-07T01:06:53.000Z|empireai_executive_reporting_runtime_system:2026-08-07T01:06:53.000Z|empireai_executive_resilience_engine:2026-08-07T01:06:53.000Z|empireai_executive_review_board:2026-08-07T01:06:53.000Z|empireai_executive_roadmap_engine:2026-08-07T01:06:53.000Z|empireai_executive_scaling_dashboard_system:2026-08-07T01:06:53.000Z|empireai_executive_scenario_planner:2026-08-07T01:06:53.000Z|empireai_executive_style_learning_system:2026-08-07T01:06:53.000Z|empireai_executive_transparency_engine:2026-08-07T01:06:53.000Z|empireai_executive_trust_engine:2026-08-07T01:06:53.000Z|empireai_executive_workspace_intelligence_system:2026-08-07T01:06:53.000Z|empireai_expense_engine_system:2026-08-07T01:06:53.000Z|empireai_experience_replay_engine_system:2026-08-07T01:06:53.000Z|empireai_explainability_architecture:2026-08-07T01:06:53.000Z|empireai_explain_decisions_system:2026-08-07T01:06:53.000Z|empireai_financial_executive_certification:2026-08-07T01:06:53.000Z|empireai_financial_forecast_engine_system:2026-08-07T01:06:53.000Z|empireai_financial_framework_system:2026-08-07T01:06:53.000Z|empireai_financial_operations_certification_system:2026-08-07T01:06:53.000Z|empireai_financial_readiness_audit_system:2026-08-07T01:06:53.000Z|empireai_financial_reporting_worker_system:2026-08-07T01:06:53.000Z|empireai_financial_risk_monitor_system:2026-08-07T01:06:53.000Z|empireai_financial_scale_engine_system:2026-08-07T01:06:53.000Z|empireai_financial_scenario_engine:2026-08-07T01:06:53.000Z|empireai_first_revenue_optimizer_system:2026-08-07T01:06:53.000Z|empireai_forecasting_worker_system:2026-08-07T01:06:53.000Z|empireai_founder_shell:2026-08-07T01:06:53.000Z|empireai_frontend_builder_system:2026-08-07T01:06:53.000Z|empireai_frontend_worker_system:2026-08-07T01:06:53.000Z|empireai_fulfilment_orchestrator_system:2026-08-07T01:06:53.000Z|empireai_fulfilment_sla_monitor_system:2026-08-07T01:06:53.000Z|empireai_global_brand_management_system:2026-08-07T01:06:53.000Z|empireai_global_expansion_framework_system:2026-08-07T01:06:53.000Z|empireai_global_expansion_simulator_system:2026-08-07T01:06:53.000Z|empireai_global_market_intelligence_system:2026-08-07T01:06:53.000Z|empireai_global_operations_certified_system:2026-08-07T01:06:53.000Z|empireai_global_risk_intelligence_system:2026-08-07T01:06:53.000Z|empireai_global_scaling_planner_system:2026-08-07T01:06:53.000Z|empireai_global_talent_intelligence_system:2026-08-07T01:06:53.000Z|empireai_global_tax_intelligence_system:2026-08-07T01:06:53.000Z|empireai_glossary:2026-08-07T01:06:53.000Z|empireai_google_ads_integration_system:2026-08-07T01:06:53.000Z|empireai_grand_king_acceptance_gate_system:2026-08-07T01:06:53.000Z|empireai_grand_king_advisory_engine_system:2026-08-07T01:06:53.000Z|empireai_grand_king_executive_cockpit:2026-08-07T01:06:53.000Z|empireai_grand_king_operating_account:2026-08-07T01:06:53.000Z|empireai_growth_initialization_engine_system:2026-08-07T01:06:53.000Z|empireai_guardian_monitoring_system:2026-08-07T01:06:53.000Z|empireai_hierarchy:2026-08-07T01:06:53.000Z|empireai_hook_worker_system:2026-08-07T01:06:53.000Z|empireai_image_creative_worker_system:2026-08-07T01:06:53.000Z|empireai_implementation_recovery_planner_system:2026-08-07T01:06:53.000Z|empireai_implementation_specification_engine_system:2026-08-07T01:06:53.000Z|empireai_industry_intelligence_engine:2026-08-07T01:06:53.000Z|empireai_infinite_growth_engine_system:2026-08-07T01:06:53.000Z|empireai_initiative_portfolio_engine:2026-08-07T01:06:53.000Z|empireai_innovation_intelligence_engine:2026-08-07T01:06:53.000Z|empireai_interaction_tracking_system:2026-08-07T01:06:53.000Z|empireai_international_executive_cockpit_system:2026-08-07T01:06:53.000Z|empireai_international_logistics_engine_system:2026-08-07T01:06:53.000Z|empireai_international_partnership_engine_system:2026-08-07T01:06:53.000Z|empireai_inter_worker_messaging_system:2026-08-07T01:06:53.000Z|empireai_inventory_worker_system:2026-08-07T01:06:53.000Z|empireai_investment_evaluation_engine:2026-08-07T01:06:53.000Z|empireai_investment_planning_worker_system:2026-08-07T01:06:53.000Z|empireai_invoice_generator_system:2026-08-07T01:06:53.000Z|empireai_journey_system:2026-08-07T01:06:53.000Z|empireai_knowledge_evolution_architecture:2026-08-07T01:06:53.000Z|empireai_knowledge_sharing_bus_system:2026-08-07T01:06:53.000Z|empireai_language_intelligence_system:2026-08-07T01:06:53.000Z|empireai_launch_monitoring_engine_system:2026-08-07T01:06:53.000Z|empireai_launch_plan_worker_system:2026-08-07T01:06:53.000Z|empireai_launch_readiness_validator_system:2026-08-07T01:06:53.000Z|empireai_layout_evaluation_system:2026-08-07T01:06:53.000Z|empireai_layout_refactoring_system:2026-08-07T01:06:53.000Z|empireai_layout_understanding_system:2026-08-07T01:06:53.000Z|empireai_lead_generation_worker_system:2026-08-07T01:06:53.000Z|empireai_live_chat_integration_system:2026-08-07T01:06:53.000Z|empireai_live_eta_experience:2026-08-07T01:06:53.000Z|empireai_localization_engine_system:2026-08-07T01:06:53.000Z|empireai_local_business_certification_system:2026-08-07T01:06:53.000Z|empireai_local_business_factory_core_system:2026-08-07T01:06:53.000Z|empireai_local_business_launch_pack_system:2026-08-07T01:06:53.000Z|empireai_local_market_research_worker_system:2026-08-07T01:06:53.000Z|empireai_local_seo_worker_system:2026-08-07T01:06:53.000Z|empireai_logistics_optimization_system:2026-08-07T01:06:53.000Z|empireai_long_term_growth_planner:2026-08-07T01:06:53.000Z|empireai_loyalty_programme_engine_system:2026-08-07T01:06:53.000Z|empireai_marketing_analytics_dashboard_system:2026-08-07T01:06:53.000Z|empireai_marketing_experiment_engine_system:2026-08-07T01:06:53.000Z|empireai_marketing_framework_system:2026-08-07T01:06:53.000Z|empireai_marketing_scale_engine_system:2026-08-07T01:06:53.000Z|empireai_marketplace_certification_system:2026-08-07T01:06:53.000Z|empireai_marketplace_connector_framework_system:2026-08-07T01:06:53.000Z|empireai_marketplace_health_monitor_system:2026-08-07T01:06:53.000Z|empireai_marketplace_integration_architecture:2026-08-07T01:06:53.000Z|empireai_marketplace_order_normalization_system:2026-08-07T01:06:53.000Z|empireai_marketplace_product_normalization_system:2026-08-07T01:06:53.000Z|empireai_market_intelligence_engine:2026-08-07T01:06:53.000Z|empireai_market_research_worker_system:2026-08-07T01:06:53.000Z|empireai_market_validation_engine_system:2026-08-07T01:06:53.000Z|empireai_media_analytics_worker_system:2026-08-07T01:06:53.000Z|empireai_media_certification_system:2026-08-07T01:06:53.000Z|empireai_media_executive_review_worker_system:2026-08-07T01:06:53.000Z|empireai_media_factory_core_system:2026-08-07T01:06:53.000Z|empireai_media_learning_worker_system:2026-08-07T01:06:53.000Z|empireai_memory_runtime_system:2026-08-07T01:06:53.000Z|empireai_meta_ads_integration_system:2026-08-07T01:06:53.000Z|empireai_mission_coordination_engine_system:2026-08-07T01:06:53.000Z|empireai_mission_generation_policy:2026-08-07T01:06:53.000Z|empireai_mission_planning_engine_system:2026-08-07T01:06:53.000Z|empireai_mission_runtime_system:2026-08-07T01:06:53.000Z|empireai_monitoring_runtime_system:2026-08-07T01:06:53.000Z|empireai_multi_company_registry_system:2026-08-07T01:06:53.000Z|empireai_multi_currency_engine_system:2026-08-07T01:06:53.000Z|empireai_multi_proposal_generator_system:2026-08-07T01:06:53.000Z|empireai_multi_warehouse_support_system:2026-08-07T01:06:53.000Z|empireai_music_sound_worker_system:2026-08-07T01:06:53.000Z|empireai_naming_standard:2026-08-07T01:06:53.000Z|empireai_natural_ux_conversation_system:2026-08-07T01:06:53.000Z|empireai_navigation_mapping_system:2026-08-07T01:06:53.000Z|empireai_notification_worker_system:2026-08-07T01:06:53.000Z|empireai_operational_elasticity_engine_system:2026-08-07T01:06:53.000Z|empireai_operational_playbook_engine_system:2026-08-07T01:06:53.000Z|empireai_operations_worker_system:2026-08-07T01:06:53.000Z|empireai_opportunity_discovery_engine:2026-08-07T01:06:53.000Z|empireai_opportunity_evaluation_worker_system:2026-08-07T01:06:53.000Z|empireai_opportunity_prioritization_engine:2026-08-07T01:06:53.000Z|empireai_opportunity_scanner_system:2026-08-07T01:06:53.000Z|empireai_order_worker_system:2026-08-07T01:06:53.000Z|empireai_organization_charter_system:2026-08-07T01:06:53.000Z|empireai_ownership_model:2026-08-07T01:06:53.000Z|empireai_payment_gateway_integration_system:2026-08-07T01:06:53.000Z|empireai_peer_review_runtime_system:2026-08-07T01:06:53.000Z|empireai_performance_audit_system:2026-08-07T01:06:53.000Z|empireai_performance_governance:2026-08-07T01:06:53.000Z|empireai_performance_preservation_engine_system:2026-08-07T01:06:53.000Z|empireai_pillow_command_audit_system:2026-08-07T01:06:53.000Z|empireai_pillow_intelligence_platform:2026-08-07T01:06:53.000Z|empireai_pillow_orchestration_runtime_system:2026-08-07T01:06:53.000Z|empireai_pillow_ux:2026-08-07T01:06:53.000Z|empireai_platform_certification_system:2026-08-07T01:06:53.000Z|empireai_portfolio_balance_engine_system:2026-08-07T01:06:53.000Z|empireai_portfolio_certified_system:2026-08-07T01:06:53.000Z|empireai_portfolio_expansion_planner_system:2026-08-07T01:06:53.000Z|empireai_portfolio_forecast_engine_system:2026-08-07T01:06:53.000Z|empireai_portfolio_intelligence_certified_system:2026-08-07T01:06:53.000Z|empireai_portfolio_optimization_engine_system:2026-08-07T01:06:53.000Z|empireai_portfolio_performance_engine_system:2026-08-07T01:06:53.000Z|empireai_portfolio_risk_engine_system:2026-08-07T01:06:53.000Z|empireai_post_launch_monitoring_system:2026-08-07T01:06:53.000Z|empireai_preference_learning_system:2026-08-07T01:06:53.000Z|empireai_preview_generator_system:2026-08-07T01:06:53.000Z|empireai_pricing_strategy_engine_system:2026-08-07T01:06:53.000Z|empireai_pricing_worker_system:2026-08-07T01:06:53.000Z|empireai_priority_management_engine:2026-08-07T01:06:53.000Z|empireai_procurement_engine_system:2026-08-07T01:06:53.000Z|empireai_procurement_intelligence_system:2026-08-07T01:06:53.000Z|empireai_production_certification_core_system:2026-08-07T01:06:53.000Z|empireai_production_mode:2026-08-07T01:06:53.000Z|empireai_production_truth:2026-08-07T01:06:53.000Z|empireai_productivity_intelligence_system:2026-08-07T01:06:53.000Z|empireai_product_discovery_worker_system:2026-08-07T01:06:53.000Z|empireai_product_evaluation_worker_system:2026-08-07T01:06:53.000Z|empireai_product_image_worker_system:2026-08-07T01:06:53.000Z|empireai_product_listing_worker_system:2026-08-07T01:06:53.000Z|empireai_product_portfolio_builder_system:2026-08-07T01:06:53.000Z|empireai_profitability_worker_system:2026-08-07T01:06:53.000Z|empireai_profit_calculation_engine_system:2026-08-07T01:06:53.000Z|empireai_profit_optimization_engine:2026-08-07T01:06:53.000Z|empireai_profit_scaling_engine_system:2026-08-07T01:06:53.000Z|empireai_programme_certification_factory_system:2026-08-07T01:06:53.000Z|empireai_prompt_product_worker_system:2026-08-07T01:06:53.000Z|empireai_publishing_worker_system:2026-08-07T01:06:53.000Z|empireai_queue_runtime_system:2026-08-07T01:06:53.000Z|empireai_q_series_certification_system:2026-08-07T01:06:53.000Z|empireai_q_series_completion_system:2026-08-07T01:06:53.000Z|empireai_real_world_operations_certification_system:2026-08-07T01:06:53.000Z|empireai_reasoning_model:2026-08-07T01:06:53.000Z|empireai_recommendation_engine_system:2026-08-07T01:06:53.000Z|empireai_reconciliation_engine_system:2026-08-07T01:06:53.000Z|empireai_recovery_audit_system:2026-08-07T01:06:53.000Z|empireai_recovery_doctrine_system:2026-08-07T01:06:53.000Z|empireai_recovery_runtime_system:2026-08-07T01:06:53.000Z|empireai_refund_dispute_worker_system:2026-08-07T01:06:53.000Z|empireai_refund_engine_system:2026-08-07T01:06:53.000Z|empireai_regional_compliance_engine_system:2026-08-07T01:06:53.000Z|empireai_regional_growth_optimizer_system:2026-08-07T01:06:53.000Z|empireai_regression_protection_system:2026-08-07T01:06:53.000Z|empireai_repository_architecture_intelligence:2026-08-07T01:06:53.000Z|empireai_repository_evolution_architecture:2026-08-07T01:06:53.000Z|empireai_repository_intelligence_engine_system:2026-08-07T01:06:53.000Z|empireai_repository_structure:2026-08-07T01:06:53.000Z|empireai_requirements_worker_system:2026-08-07T01:06:53.000Z|empireai_resource_allocation_engine:2026-08-07T01:06:53.000Z|empireai_responsibility_matrix_system:2026-08-07T01:06:53.000Z|empireai_returns_intelligence_system:2026-08-07T01:06:53.000Z|empireai_return_management_system:2026-08-07T01:06:53.000Z|empireai_revenue_acceleration_engine_system:2026-08-07T01:06:53.000Z|empireai_revenue_engine_system:2026-08-07T01:06:53.000Z|empireai_review_content_worker_system:2026-08-07T01:06:53.000Z|empireai_review_management_engine_system:2026-08-07T01:06:53.000Z|empireai_risk_assessment_engine:2026-08-07T01:06:53.000Z|empireai_roadmap_governance:2026-08-07T01:06:53.000Z|empireai_roadmap_hierarchy:2026-08-07T01:06:53.000Z|empireai_roi_intelligence_engine:2026-08-07T01:06:53.000Z|empireai_role_taxonomy_system:2026-08-07T01:06:53.000Z|empireai_rollback_manager_system:2026-08-07T01:06:53.000Z|empireai_sales_page_worker_system:2026-08-07T01:06:53.000Z|empireai_scale_simulation_engine_system:2026-08-07T01:06:53.000Z|empireai_scaling_architecture:2026-08-07T01:06:53.000Z|empireai_scaling_decision_engine_system:2026-08-07T01:06:53.000Z|empireai_scaling_risk_monitor_system:2026-08-07T01:06:53.000Z|empireai_scheduling_runtime_system:2026-08-07T01:06:53.000Z|empireai_screen_annotation_system:2026-08-07T01:06:53.000Z|empireai_script_worker_system:2026-08-07T01:06:53.000Z|empireai_security_audit_system:2026-08-07T01:06:53.000Z|empireai_self_balancing_enterprise_system:2026-08-07T01:06:53.000Z|empireai_self_improving_ux_system:2026-08-07T01:06:53.000Z|empireai_seo_content_worker_system:2026-08-07T01:06:53.000Z|empireai_seo_intelligence_system:2026-08-07T01:06:53.000Z|empireai_service_offer_worker_system:2026-08-07T01:06:53.000Z|empireai_session_continuity_system:2026-08-07T01:06:53.000Z|empireai_shared_customer_intelligence_system:2026-08-07T01:06:53.000Z|empireai_shared_runtime_certification_system:2026-08-07T01:06:53.000Z|empireai_shared_runtime_core_system:2026-08-07T01:06:53.000Z|empireai_shared_supplier_intelligence_system:2026-08-07T01:06:53.000Z|empireai_shipment_tracking_engine_system:2026-08-07T01:06:53.000Z|empireai_shipping_carrier_integration_system:2026-08-07T01:06:53.000Z|empireai_shopify_store_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_side_by_side_comparison_system:2026-08-07T01:06:53.000Z|empireai_skill_taxonomy_system:2026-08-07T01:06:53.000Z|empireai_skill_tool_router_system:2026-08-07T01:06:53.000Z|empireai_sms_communication_engine_system:2026-08-07T01:06:53.000Z|empireai_store_generation_engine_system:2026-08-07T01:06:53.000Z|empireai_strategic_alignment_monitor:2026-08-07T01:06:53.000Z|empireai_strategic_objective_engine:2026-08-07T01:06:53.000Z|empireai_strategic_recommendation_engine_system:2026-08-07T01:06:53.000Z|empireai_subtitle_worker_system:2026-08-07T01:06:53.000Z|empireai_supervisor_governance:2026-08-07T01:06:53.000Z|empireai_supervisor_system:2026-08-07T01:06:53.000Z|empireai_supplier_discovery_worker_system:2026-08-07T01:06:53.000Z|empireai_supplier_evaluation_worker_system:2026-08-07T01:06:53.000Z|empireai_supplier_framework_system:2026-08-07T01:06:53.000Z|empireai_supplier_inventory_sync_system:2026-08-07T01:06:53.000Z|empireai_supplier_negotiation_worker_system:2026-08-07T01:06:53.000Z|empireai_supplier_operations_certification_system:2026-08-07T01:06:53.000Z|empireai_supplier_pricing_engine_system:2026-08-07T01:06:53.000Z|empireai_supplier_product_sync_system:2026-08-07T01:06:53.000Z|empireai_supplier_ranking_engine_system:2026-08-07T01:06:53.000Z|empireai_supplier_risk_monitor_system:2026-08-07T01:06:53.000Z|empireai_supplier_scale_engine_system:2026-08-07T01:06:53.000Z|empireai_task_negotiation_protocol_system:2026-08-07T01:06:53.000Z|empireai_tax_intelligence_engine_system:2026-08-07T01:06:53.000Z|empireai_tax_support_worker_system:2026-08-07T01:06:53.000Z|empireai_template_builder_worker_system:2026-08-07T01:06:53.000Z|empireai_testing_worker_system:2026-08-07T01:06:53.000Z|empireai_theme_builder_system:2026-08-07T01:06:53.000Z|empireai_threat_detection_engine:2026-08-07T01:06:53.000Z|empireai_thumbnail_worker_system:2026-08-07T01:06:53.000Z|empireai_ticket_management_engine_system:2026-08-07T01:06:53.000Z|empireai_tiktok_ads_integration_system:2026-08-07T01:06:53.000Z|empireai_tiktok_shop_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_tool_runtime_system:2026-08-07T01:06:53.000Z|empireai_topic_planner_worker_system:2026-08-07T01:06:53.000Z|empireai_trade_off_analysis_engine:2026-08-07T01:06:53.000Z|empireai_trend_research_worker_system:2026-08-07T01:06:53.000Z|empireai_ui_state_mapper_system:2026-08-07T01:06:53.000Z|empireai_unified_workforce_certification_system:2026-08-07T01:06:53.000Z|empireai_ux_intelligence_certification_system:2026-08-07T01:06:53.000Z|empireai_ux_opportunity_discovery_system:2026-08-07T01:06:53.000Z|empireai_ux_rule_engine_system:2026-08-07T01:06:53.000Z|empireai_ux_scoring_system:2026-08-07T01:06:53.000Z|empireai_validation_engine_system:2026-08-07T01:06:53.000Z|empireai_video_assembly_worker_system:2026-08-07T01:06:53.000Z|empireai_viral_trend_intelligence_system:2026-08-07T01:06:53.000Z|empireai_vision_accumulation:2026-08-07T01:06:53.000Z|empireai_vision_accumulation_policy:2026-08-07T01:06:53.000Z|empireai_vision_accumulation_register:2026-08-07T01:06:53.000Z|empireai_vision_hierarchy:2026-08-07T01:06:53.000Z|empireai_vision_integrity_engine:2026-08-07T01:06:53.000Z|empireai_vision_synchronization_policy:2026-08-07T01:06:53.000Z|empireai_vision_synchronization_system:2026-08-07T01:06:53.000Z|empireai_visual_capture_system:2026-08-07T01:06:53.000Z|empireai_visual_consistency_system:2026-08-07T01:06:53.000Z|empireai_visual_foundation_certification_system:2026-08-07T01:06:53.000Z|empireai_visual_generation_layer:2026-08-07T01:06:53.000Z|empireai_visual_intelligence_certification_system:2026-08-07T01:06:53.000Z|empireai_visual_memory_system:2026-08-07T01:06:53.000Z|empireai_visual_research_worker_system:2026-08-07T01:06:53.000Z|empireai_voice_ux_commands_system:2026-08-07T01:06:53.000Z|empireai_voice_worker_system:2026-08-07T01:06:53.000Z|empireai_walmart_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_warehouse_intelligence_system:2026-08-07T01:06:53.000Z|empireai_whatsapp_integration_system:2026-08-07T01:06:53.000Z|empireai_whatsapp_worker_system:2026-08-07T01:06:53.000Z|empireai_winning_product_detector_system:2026-08-07T01:06:53.000Z|empireai_woocommerce_marketplace_integration_system:2026-08-07T01:06:53.000Z|empireai_worker_assignment_engine_system:2026-08-07T01:06:53.000Z|empireai_worker_constitution_system:2026-08-07T01:06:53.000Z|empireai_worker_lifecycle_system:2026-08-07T01:06:53.000Z|empireai_worker_monitoring_system:2026-08-07T01:06:53.000Z|empireai_worker_performance_review_system:2026-08-07T01:06:53.000Z|empireai_worker_quality_standard_system:2026-08-07T01:06:53.000Z|empireai_worker_readiness_audit_system:2026-08-07T01:06:53.000Z|empireai_worker_recovery_system:2026-08-07T01:06:53.000Z|empireai_worker_registry_system:2026-08-07T01:06:53.000Z|empireai_worker_self_critique_protocol_system:2026-08-07T01:06:53.000Z|empireai_workflow_builder_worker_system:2026-08-07T01:06:53.000Z|empireai_workflow_evolution_system:2026-08-07T01:06:53.000Z|empireai_workflow_optimization_system:2026-08-07T01:06:53.000Z|empireai_workforce_access_manager_system:2026-08-07T01:06:53.000Z|empireai_workforce_capability_registry_system:2026-08-07T01:06:53.000Z|empireai_workforce_certification_monitor_system:2026-08-07T01:06:53.000Z|empireai_workforce_factory_certification_system:2026-08-07T01:06:53.000Z|empireai_workforce_intelligence_system:2026-08-07T01:06:53.000Z|empireai_workforce_operating_system:2026-08-07T01:06:53.000Z|empireai_workforce_orchestrator_system:2026-08-07T01:06:53.000Z|empireai_youtube_ads_integration_system:2026-08-07T01:06:53.000Z|empireai_zero_human_automation_architecture:2026-08-07T01:06:53.000Z|executive_audit_index:2026-08-07T01:06:53.000Z|executive_cognitive_pipelines:2026-08-07T01:06:53.000Z|executive_intelligence_library_update_policy:2026-08-07T01:06:53.000Z|executive_ux_layer_architecture:2026-08-07T01:06:53.000Z|g7_kings_operation_preparation_report:2026-08-07T01:06:53.000Z|g8_kings_operation_report:2026-08-07T01:06:53.000Z|marketplace_autonomy_doctrine_real_051a:2026-08-07T01:06:53.000Z|organizational_knowledge_quality_assessment:2026-08-07T01:06:53.000Z|phase_p7_completion_review:2026-08-07T01:06:53.000Z|phase_p8_completion_review:2026-08-07T01:06:53.000Z|pillow_enhancement_register:2026-08-07T01:06:53.000Z|pillow_product_integration_master_plan:2026-08-07T01:06:53.000Z|pillow_version_1_delivery_mode:2026-08-07T01:06:53.000Z|ux_enhancement_register:2026-08-07T01:06:53.000Z|ux_master_executive_audit_governance:2026-08-07T01:06:53.000Z|v1_marketplace_channel_registry:2026-08-07T01:06:53.000Z|version_1_certification_blocker_register:2026-08-07T01:06:53.000Z|version_1_certification_mode:2026-08-07T01:06:53.000Z|version_1_go_live_preparation_checklist:2026-08-07T01:06:53.000Z|constitutional_requirement_matrix:2026-08-07T01:06:53.000Z|digital_soul_prior_drafts_archived:2026-08-07T01:06:53.000Z|empireai_digital_soul_constitution_v2_condensed_superseded:2026-08-07T01:06:53.000Z|alertbanner:2026-08-07T01:06:53.000Z|approvalpanel:2026-08-07T01:06:53.000Z|commandpalette:2026-08-07T01:06:53.000Z|executiveheader:2026-08-07T01:06:53.000Z|executivekpicard:2026-08-07T01:06:53.000Z|executivepanel:2026-08-07T01:06:53.000Z|executivesidebar:2026-08-07T01:06:53.000Z|executivetable:2026-08-07T01:06:53.000Z|globalapprovalbar:2026-08-07T01:06:53.000Z|globalassistantpanel:2026-08-07T01:06:53.000Z|globalfilters:2026-08-07T01:06:53.000Z|globalsuccess001blockerbar:2026-08-07T01:06:53.000Z|missionbriefpanel:2026-08-07T01:06:53.000Z|notificationscenter:2026-08-07T01:06:53.000Z|defaultexecutivenav:2026-08-07T01:06:53.000Z|index:2026-08-07T01:06:53.000Z",
+          "currentMission": null,
+          "tokenUsage": "***",
+          "createdAt": "2026-08-07T01:09:33.969Z",
+          "updatedAt": "2026-08-07T01:09:33.969Z",
+          "lastActivityAt": "2026-08-07T01:09:33.969Z"
+        }
+      }
+    },
+    "pillowChat": {
+      "status": 200,
+      "ms": 2920,
+      "body": {
+        "result": {
+          "requestId": "09344e87-6215-498e-b140-543aad43167a",
+          "sessionId": "fafa6a9f-6e5d-446b-bb86-18a0e5a0978a",
+          "workspaceId": "ws_empire_1",
+          "message": "Proceed with a go for SKU cj-live-1786064961095 at a price of 29.99, as it offers a margin of 17.99, which is acceptable for profitability.",
+          "kind": "llm",
+          "provider": "openai",
+          "model": "gpt-4o-mini",
+          "mode": "general_intelligence",
+          "tokens": "***",
+          "latencyMs": 2496,
+          "trace": {
+            "digitalSoulGateMs": 1,
+            "commandMs": 6,
+            "contextMs": 1,
+            "executiveReasoningMs": 0,
+            "executiveDeliberationMs": 0,
+            "executiveCouncilMs": 5,
+            "llmMs": 2481,
+            "totalMs": 2496
+          },
+          "command": {
+            "intent": "unknown",
+            "category": "general",
+            "plan": {
+              "intent": "unknown",
+              "category": "general",
+              "objective": "Grand King command: unknown",
+              "relevantModules": [
+                "repository_memory",
+                "empire_ai_orchestrator"
+              ],
+              "dependencyChecks": [
+                {
+                  "id": "BOOTSTRAP",
+                  "label": "Pillow bootstrapped",
+                  "satisfied": true
+                },
+                {
+                  "id": "MEMORY",
+                  "label": "Repository memory ready",
+                  "satisfied": true
+                },
+                {
+                  "id": "SYNC",
+                  "label": "Repository synchronized",
+                  "satisfied": false
+                }
+              ],
+              "steps": [
+                {
+                  "order": 1,
+                  "label": "Execute unknown",
+                  "module": "empire_ai_orchestrator",
+                  "status": "coordinated"
+                }
+              ],
+              "requiresGrandKingConfirmation": false,
+              "repositoryEvidence": [
+                "Journey: PILLOW-019 — ",
+                "Health score: 39",
+                "Current mission: none",
+                "Next mission candidate: REPOSITORY-SYNC",
+                "Drift: repository not fully synchronized"
+              ]
+            },
+            "awareness": {
+              "journeyPosition": "PILLOW-019 — ",
+              "currentMission": null,
+              "repositoryHealthScore": 39,
+              "outstandingMissions": 0,
+              "activeEngineeringMissions": 0,
+              "recoveryStatus": "ready",
+              "synchronizationStatus": "ready",
+              "executiveAuditStatus": "ready",
+              "commercialBlockers": [
+                "REAL-002B"
+              ],
+              "repositorySynchronized": false,
+              "grandKingPriorityActive": false
+            }
+          },
+          "executiveRecommendation": {
+            "recommendationId": "44571e18-cb72-4319-811d-327d4c7c6dbe",
+            "debateId": "177866cf-08ad-4c57-8a39-92928bfae708",
+            "currentObjective": "Finish EmpireAI Version 1",
+            "recommendation": "Proceed with Commerce proof: recommend go/no-go for SKU cj-live-1786064961095 at price 29.99 cost 12 margin 17.99. One sentence. only after addressing challenged assumptions — Pillow does not agree blindly (Law 1).",
+            "reason": "Pillow synthesized 7 executive perspectives into one recommendation. Strategy Perspective evaluated \"Commerce proof: recommend go/no-go for SKU cj-live-1786064961095 at price 29.99 cost 12 margin 17.99. One sentence.\" through Long-term direction, Objective sequencing, Trade-offs, Future impact (relevance 85%). Financial Perspective evaluated \"Commerce proof: recommend go/no-go for SKU cj-live-1786064961095 at price 29.99 cost 12 margin 17.99. One sentence.\" through ROI, Profit, Cost, Capital efficiency, Engineering investment (relevance 80%).",
+            "confidence": 49,
+            "expectedProfitImpact": "Moderate profit potential — monitor margin and ROI during pilot.",
+            "expectedEngineeringCost": "Acceptable within current engineering capacity.",
+            "expectedRisk": "Risk Perspective identifies Business risk risk on this proposal",
+            "objectiveAlignment": "partial",
+            "status": "awaiting_grand_king"
+          },
+          "artifacts": [
+            {
+              "artifactId": "art_bd3250a2-4c5",
+              "artifactType": "chat_response",
+              "sourceTool": "general_knowledge",
+              "missionId": null,
+              "timestamp": "2026-08-07T01:09:36.910Z",
+              "owner": "founder@empireai.com",
+              "status": "complete",
+              "destinationEngine": null,
+              "relatedBusinessEngine": null,
+              "approvalStatus": "none",
+              "title": "Chat: Commerce proof: recommend go/no-go for SKU cj-live-178606496",
+              "content": "Proceed with a go for SKU cj-live-1786064961095 at a price of 29.99, as it offers a margin of 17.99, which is acceptable for profitability.",
+              "metadata": {
+                "provider": "openai",
+                "model": "gpt-4o-mini"
+              }
+            }
+          ],
+          "intelligenceRouting": {
+            "primarySource": "ekls",
+            "primaryCapability": "web_search",
+            "rationale": "Current information required — Web Search invoked"
+          },
+          "executiveDeliberation": {
+            "deliberationId": "ede-1786064974429",
+            "deliberatedAt": "2026-08-07T01:09:34.429Z",
+            "significance": "significant",
+            "objectiveInference": "Advance Grand King intent (“Commerce proof: recommend go/no-go for SKU cj-live-1786064961095 at price 29.99 cost 12 margin 17.99. One sentence.”) while protecting the current empire objective: Finish EmpireAI Version 1",
+            "challengeStance": "agree",
+            "selectedApproachSummary": "Proceed exactly as requested",
+            "alternatives": [
+              {
+                "summary": "Proceed exactly as requested",
+                "selected": true,
+                "expectedValue": 70,
+                "risk": 35
+              },
+              {
+                "summary": "Validate performance / evidence first, then scale only what clears constitutional and commercial thresholds",
+                "selected": false,
+                "expectedValue": 80,
+                "risk": 30
+              },
+              {
+                "summary": "Staged pilot with explicit kill criteria, owner-value checkpoint, and reversible spend",
+                "selected": false,
+                "expectedValue": 75,
+                "risk": 35
+              },
+              {
+                "summary": "Defer irreversible action; gather missing evidence and present a sharper decision package to the Grand King",
+                "selected": false,
+                "expectedValue": 60,
+                "risk": 20
+              }
+            ],
+            "hiddenRisks": [
+              "Opportunity cost if a higher-EV alternative is ignored"
+            ],
+            "assumptions": [
+              "Grand King seeks durable empire value, not merely immediate agreement",
+              "Requested direction is compatible with validated performance norms"
+            ],
+            "uncertaintyLevel": "low",
+            "uncertaintyNote": null,
+            "executiveConclusions": [
+              "Objective: Advance Grand King intent (“Commerce proof: recommend go/no-go for SKU cj-live-1786064961095 at price 29.99 cost 12 margin 17.99. One sentence.”) while protecting the current empire objective: Finish EmpireAI Version 1",
+              "Stance: Requested direction is acceptable; still surface material risks and assumptions.",
+              "Selected approach: Proceed exactly as requested",
+              "Alternatives compared (4): prefer highest expected value with acceptable risk, sustainability, and EmpireAI alignment.",
+              "Hidden risks: Opportunity cost if a higher-EV alternative is ignored",
+              "Assumptions: Grand King seeks durable empire value, not merely immediate agreement; Requested direction is compatible with validated performance norms",
+              "Information that would improve the decision: Downside bound and reversibility of the proposed action",
+              "Long-term consequence: Selected path supports durable owner value if execution stays within constitutional and validated limits.",
+              "Deliberation reinforces Digital Soul duties: truthfulness, no fabrication, Grand King authority on irreversible acts, and Long-Term Empire Value over short-term appeasement.",
+              "Uncertainty (low): evidence sufficient for a provisional executive conclusion.",
+              "Optimise for wisdom, judgement, foresight, strategic thinking, and owner value — not response speed or sycophancy.",
+              "Visible answer must include: recommended path, why, main risk, immediate next action, and any approval required.",
+              "Never expose chain-of-thought, stance enums, score numbers, or internal scratch reasoning to the Grand King — share concise executive conclusions only."
+            ],
+            "neverExposeChainOfThought": true,
+            "fidelityAdjusted": false
           }
         }
       }
     },
     "build": {
       "status": 201,
-      "ms": 1916,
+      "ms": 410,
       "body": {
         "package": {
-          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "packageId": "06b70965-09cd-473d-8fec-3898f93443b7",
           "workspaceId": "ws_empire_1",
           "companyId": "co-grand-king",
-          "productId": "cj-live-1786058999230",
+          "productId": "cj-live-1786064961095",
           "marketplaceId": "amazon-us",
           "title": "EmpireAI Commerce Proof Product (CJ Live)",
           "description": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch.",
@@ -245,7 +435,7 @@
             "Single-SKU supervised publish"
           ],
           "specifications": {
-            "sku": "EMP-PROOF-1786059001112",
+            "sku": "EMP-PROOF-1786064964438",
             "productType": "PRODUCT"
           },
           "price": 29.99,
@@ -295,27 +485,27 @@
               }
             ]
           },
-          "computedAt": "2026-08-06T23:30:15.484Z"
+          "computedAt": "2026-08-07T01:09:37.335Z"
         },
         "queueItem": {
-          "queueId": "874bad5a-d741-491e-9f39-69171426148c",
-          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "queueId": "ac191bb4-a439-4980-8037-9a66e0a36947",
+          "packageId": "06b70965-09cd-473d-8fec-3898f93443b7",
           "marketplaceId": "amazon-us",
           "status": "PENDING",
           "blockers": [],
-          "queuedAt": "2026-08-06T23:30:15.485Z"
+          "queuedAt": "2026-08-07T01:09:37.336Z"
         }
       }
     },
     "execute": {
       "status": 409,
-      "ms": 4008,
+      "ms": 1517,
       "body": {
         "package": {
-          "packageId": "b3304382-bbb1-49f3-a4b8-a725e42c75b7",
+          "packageId": "06b70965-09cd-473d-8fec-3898f93443b7",
           "workspaceId": "ws_empire_1",
           "companyId": "co-grand-king",
-          "productId": "cj-live-1786058999230",
+          "productId": "cj-live-1786064961095",
           "marketplaceId": "amazon-us",
           "title": "EmpireAI Commerce Proof Product (CJ Live)",
           "description": "Controlled first-listing proof product sourced via CJ live auth path. Not a mass catalog launch.",
@@ -325,7 +515,7 @@
             "Single-SKU supervised publish"
           ],
           "specifications": {
-            "sku": "EMP-PROOF-1786059001112",
+            "sku": "EMP-PROOF-1786064964438",
             "productType": "PRODUCT"
           },
           "price": 29.99,
@@ -375,32 +565,51 @@
               }
             ]
           },
-          "computedAt": "2026-08-06T23:30:15.484Z"
+          "computedAt": "2026-08-07T01:09:37.335Z"
         },
         "publish": {
           "ok": false,
           "marketplaceId": "amazon-us",
           "registryId": "amazon-us",
-          "sellerId": null,
-          "sku": "EMP-PROOF-1786059001112",
-          "httpStatus": null,
-          "amazonStatus": null,
-          "submissionId": null,
-          "issues": [],
+          "sellerId": "A3M2CX25RTMI6M",
+          "sku": "EMP-PROOF-1786064964438",
+          "httpStatus": 200,
+          "amazonStatus": "INVALID",
+          "submissionId": "36bc4bfe057b4f30add76045e8364aaa",
+          "issues": [
+            {
+              "code": "4000004",
+              "message": "Creating products is not supported with the \"PRODUCT\" Amazon product type. Either specify a specific Amazon product type or specify an offer-only requirements set.",
+              "severity": "ERROR",
+              "categories": []
+            }
+          ],
           "blockers": [
-            "Could not resolve Amazon sellingPartnerId"
+            "Amazon putListingsItem HTTP 200 status=INVALID"
           ],
           "liveApiCalled": true,
-          "responseBody": null
+          "responseBody": {
+            "sku": "EMP-PROOF-1786064964438",
+            "status": "INVALID",
+            "submissionId": "36bc4bfe057b4f30add76045e8364aaa",
+            "issues": [
+              {
+                "code": "4000004",
+                "message": "Creating products is not supported with the \"PRODUCT\" Amazon product type. Either specify a specific Amazon product type or specify an offer-only requirements set.",
+                "severity": "ERROR",
+                "categories": []
+              }
+            ]
+          }
         }
       }
     }
   },
   "blockers": [
-    "Could not resolve Amazon sellingPartnerId"
+    "Amazon putListingsItem HTTP 200 status=INVALID"
   ],
   "verdict": "LIVE_API_CALLED_NOT_ACCEPTED",
-  "finishedAt": "2026-08-06T23:30:07.037Z",
+  "finishedAt": "2026-08-07T01:09:26.365Z",
   "remainingToFirstOrder": "Customer discovery + purchase of the published SKU (Amazon organic/ads)",
   "remainingToFirstDollar": "Order payout settlement after first paid order and successful fulfilment"
 }
