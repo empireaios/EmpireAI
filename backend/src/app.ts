@@ -355,22 +355,15 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   app.get("/health/ready", async (_request, reply) => {
     const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
     const report = assessAuthReadiness({ sessionStore });
-    if (!report.ready) {
-      return reply.code(503).send({
-        status: "not_ready",
-        brain: "online",
-        process: "running",
-        grandKingAccess: "blocked",
-        ...report,
-      });
-    }
-    return {
-      status: "ready",
-      brain: "online",
-      process: "running",
-      grandKingAccess: "ready",
+    const payload = {
       ...report,
+      brain: "online" as const,
+      process: "running" as const,
     };
+    if (!report.ready) {
+      return reply.code(503).send(payload);
+    }
+    return payload;
   });
 
   app.get("/health/executive-continuity", async () => {
