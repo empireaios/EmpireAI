@@ -2,7 +2,7 @@
 
 **Mission:** Production Authentication Permanent Closure  
 **Date:** 2026-08-07  
-**Repo tip at analysis:** `c5dbe5bb` (then auth durability commit — see §15–17)
+**Repo tip:** `2888a157` (auth durability commit — see §15–17)
 
 ## Verdicts
 
@@ -95,10 +95,10 @@ Production identity/password/session **cannot be re-proven** until Brain answers
 
 | Item | Value |
 |------|-------|
-| Local HEAD (pre-commit baseline) | `c5dbe5bb` |
-| origin/main (pre-commit) | `c5dbe5bb` |
-| ahead/behind (pre-commit) | **0 / 0** |
-| Railway deploy commit | Pending push + deploy of auth durability commit |
+| Local HEAD | `2888a157` |
+| origin/main | Pending push verification |
+| ahead/behind | Was **1 / 0** after commit (must return 0/0 after push) |
+| Railway deploy commit | Pending push + deploy of `2888a157` |
 
 ## 19. EOS Grand King journey
 
