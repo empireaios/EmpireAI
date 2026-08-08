@@ -23,8 +23,7 @@ export type CjProductVariant = {
   sellPrice?: number;
   /** Live CJ API 2.0 field observed on product/query. */
   variantSellPrice?: number;
-  /** Alternate price field on some variantList payloads. */
-  price?: number | string;
+  price?: number;
   suggestSellPrice?: number;
   variantSugSellPrice?: number;
   weight?: number;
@@ -50,12 +49,12 @@ export type CjProduct = {
   productWeight?: number;
   categoryId?: string;
   categoryName?: string;
-  sellPrice?: number | string;
-  suggestSellPrice?: number | string;
+  sellPrice?: number;
+  suggestSellPrice?: number;
   /** Some CJ list payloads use productPrice / nowPrice instead of sellPrice. */
-  productPrice?: number | string;
-  nowPrice?: number | string;
-  discountPrice?: number | string;
+  productPrice?: number;
+  nowPrice?: number;
+  discountPrice?: number;
   description?: string;
   remark?: string;
   tags?: string[];
