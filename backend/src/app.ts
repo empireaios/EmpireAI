@@ -68,6 +68,14 @@ import { registerFounderAutomationRoutes } from "./runtime/founder-automation/ro
 import { registerAmazonGlobalSellerRoutes } from "./runtime/amazon-global-seller/routes/amazon-global-seller-routes.js";
 import { registerCommerceIntelligenceStudioRoutes } from "./runtime/commerce-intelligence-studio/routes/commerce-intelligence-studio-routes.js";
 import { registerMarketplacePublishingRoutes } from "./runtime/marketplace-publishing/routes/marketplace-publishing-routes.js";
+import {
+  getPillowCommercePresaleAutomationServer,
+  registerPillowCommercePresaleRoutes,
+} from "./orchestration/pillow-commerce-presale/index.js";
+import {
+  getPresaleApprovalGate,
+  syncPresaleApprovalGateWithPillowHost,
+} from "./orchestration/pillow-commerce-presale/approval-bridge.js";
 import { registerListingIntelligenceRoutes } from "./runtime/listing-intelligence/routes/listing-intelligence-routes.js";
 import { registerProductMediaRoutes } from "./runtime/product-media/routes/product-media-routes.js";
 import { registerCommerceExecutionPipelineRoutes } from "./runtime/commerce-execution-pipeline/routes/commerce-execution-pipeline-routes.js";
@@ -250,16 +258,18 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   if (pillowEnabled) {
     const bootDelayMs = env.NODE_ENV === "production" ? 15_000 : 5_000;
     const bootPillowHost = () => {
-      void schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger)?.catch(
-        (error) => {
+      void schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger)
+        ?.then(() => {
+          syncPresaleApprovalGateWithPillowHost(pillowHost);
+        })
+        .catch((error) => {
           logger.error(
             {
               error: error instanceof Error ? error.message : String(error),
             },
             "Pillow host startup failed — backend continues in degraded mode",
           );
-        },
-      );
+        });
     };
     setTimeout(bootPillowHost, bootDelayMs);
   }
@@ -556,8 +566,20 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
+  await registerPillowCommercePresaleRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+    getApprovalGate: () => getPresaleApprovalGate(deps.pillowHost),
+  });
+
+  // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
+  getPillowCommercePresaleAutomationServer().start();
+
   commerceCriticalRoutesRegistered = true;
-  logger.info("Commerce-critical routes registered (Amazon / marketplace publish / V1 activation)");
+  logger.info(
+    "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale)",
+  );
 }
 
 async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
@@ -579,6 +601,9 @@ async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<voi
       authenticate,
       auditLogger: brain.auditLogger,
     });
+
+    // Ensure commerce pre-sale can register Grand King approvals before full Pillow boot.
+    wireCanonicalPillowApprovalPipeline(getPresaleApprovalGate(pillowHost));
   }
 
   app.get(

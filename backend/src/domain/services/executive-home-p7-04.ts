@@ -2,6 +2,7 @@
  * P7-04 — Executive Home centre summaries and executive brief.
  */
 
+import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import type { ExecutiveAlert, ExecutiveHomeView, ExecutiveSummaryCard, EnginePanelView } from "./cockpit-panel-views.js";
 
 type CommandView = ExecutiveHomeView["command"];
@@ -164,10 +165,23 @@ export function buildExecutiveHomeCentreSummaries(input: {
         `${liveCompanies} live · ${input.portfolio.companies.length} total ventures`,
         revenue?.primaryValue ? `Revenue signal: ${revenue.primaryValue}` : "Commerce workspace active",
       ],
-      commercialOpportunities: [
-        marketplacePanel?.nextAction ?? "Connect marketplace via Commerce centre",
-        marketing?.nextAction ?? "Review marketing performance",
-      ],
+      commercialOpportunities: (() => {
+        const opportunities = [
+          marketplacePanel?.nextAction ?? "Connect marketplace via Commerce centre",
+          marketing?.nextAction ?? "Review marketing performance",
+        ];
+        try {
+          const pending = getPillowCommercePresaleRepository().getPendingApprovalOpportunity("ws_empire_1");
+          if (pending?.recommendation?.headline) {
+            opportunities.unshift(
+              `${pending.recommendation.headline}: ${pending.recommendation.productName ?? "opportunity"} (${pending.recommendation.expectedProfit ?? "profit UNKNOWN"})`,
+            );
+          }
+        } catch {
+          /* repository unavailable — keep generic opportunities */
+        }
+        return opportunities;
+      })(),
       visionAlignment: input.command.proof001.achieved
         ? "PROOF-001 achieved · Vision on track"
         : input.command.proof001.detail,

@@ -123,6 +123,8 @@ import { founderAutomationTools } from "../runtime/founder-automation/tools/foun
 import { amazonGlobalSellerTools } from "../runtime/amazon-global-seller/tools/amazon-global-seller-tools.js";
 import { commerceIntelligenceStudioTools } from "../runtime/commerce-intelligence-studio/tools/commerce-intelligence-studio-tools.js";
 import { marketplacePublishingTools } from "../runtime/marketplace-publishing/tools/marketplace-publishing-tools.js";
+import { pillowCommercePresaleTools } from "../orchestration/pillow-commerce-presale/tools/pillow-commerce-presale-tools.js";
+import { getPillowCommercePresaleSchedulerDefinitions } from "../orchestration/pillow-commerce-presale/automation/pillow-commerce-presale-automation.js";
 import { listingIntelligenceTools } from "../runtime/listing-intelligence/tools/listing-intelligence-tools.js";
 import { productMediaTools } from "../runtime/product-media/tools/product-media-tools.js";
 import { commerceExecutionPipelineTools } from "../runtime/commerce-execution-pipeline/tools/commerce-execution-pipeline-tools.js";
@@ -440,6 +442,7 @@ export async function createBrain(options?: {
     ...amazonGlobalSellerTools,
     ...commerceIntelligenceStudioTools,
     ...marketplacePublishingTools,
+    ...pillowCommercePresaleTools,
     ...listingIntelligenceTools,
     ...productMediaTools,
     ...commerceExecutionPipelineTools,
@@ -587,6 +590,9 @@ export async function createBrain(options?: {
 
   if (options?.startScheduler ?? false) {
     for (const definition of getGrandKingSchedulerDefinitions()) {
+      await scheduler.register(definition);
+    }
+    for (const definition of getPillowCommercePresaleSchedulerDefinitions()) {
       await scheduler.register(definition);
     }
     await scheduler.start();
