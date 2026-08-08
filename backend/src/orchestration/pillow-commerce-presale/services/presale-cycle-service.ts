@@ -323,26 +323,24 @@ export async function runPillowCommercePresaleCycle(
       continue;
     }
 
-    let stockUnits = 0;
-    try {
-      const stock = await cj.queryStockByPid(product.pid);
-      stockUnits = sumStock(stock.data);
-    } catch (error) {
-      rejections.push({
-        cjPid: product.pid,
-        productName,
-        reasonCode: "OUT_OF_STOCK",
-        reason: `Stock query failed: ${error instanceof Error ? error.message : String(error)}`,
-      });
-      continue;
-    }
+    const stockResult = await fetchLiveStockUnits(cj, {
+      vid: variant.vid,
+      sku: variant.sku,
+      inventory: variant.inventory,
+    });
+    const stockUnits = stockResult.units;
     if (stockUnits <= 0) {
       rejections.push({
         cjPid: product.pid,
         productName,
         reasonCode: "OUT_OF_STOCK",
-        reason: "Live stock is 0 — not approval-ready",
-        evidence: { stockUnits },
+        reason: "Live stock UNAVAILABLE or 0 — not approval-ready",
+        evidence: {
+          stockUnits,
+          stockSource: stockResult.source,
+          vid: variant.vid,
+          sku: variant.sku,
+        },
       });
       continue;
     }
