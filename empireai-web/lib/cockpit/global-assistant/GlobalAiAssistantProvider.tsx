@@ -394,7 +394,11 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       markReady(session.sessionId);
       return session.sessionId;
     } catch (error) {
-      clearPillowHostSession();
+      const persisted = loadPillowSession();
+      if (persisted?.hostSessionId) {
+        markReady(persisted.hostSessionId, persisted.turns ?? []);
+        return persisted.hostSessionId;
+      }
       markStarting(
         "recovering",
         error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
@@ -411,11 +415,12 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     let cancelled = false;
 
     void (async () => {
-      for (let attempt = 1; attempt <= 4 && !cancelled; attempt += 1) {
+      // Single bounded recovery attempt — multi-retry loops stampeded Brain (503 + lag).
+      for (let attempt = 1; attempt <= 1 && !cancelled; attempt += 1) {
         const id = await ensureHostSession();
         if (id || cancelled) break;
         markStarting("delayed");
-        await new Promise((r) => setTimeout(r, Math.min(20_000, 5_000 * attempt)));
+        await new Promise((r) => setTimeout(r, 15_000));
       }
       recoveryLoopActive.current = false;
     })();
