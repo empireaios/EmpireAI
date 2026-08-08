@@ -382,6 +382,12 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   );
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
+    // Reuse first — Executive Home / panel expand must not create parallel sessions.
+    const existing = loadPillowSession();
+    if (existing?.hostSessionId) {
+      markReady(existing.hostSessionId, existing.turns ?? []);
+      return existing.hostSessionId;
+    }
     try {
       const session = await createPillowHostSession();
       const snapshot: PillowSessionSnapshot = {

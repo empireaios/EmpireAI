@@ -158,6 +158,7 @@ export function DevelopmentPillowExperience() {
     activatedRef.current = true;
 
     expand();
+    // ensureHostSession reuses persisted host id — safe; provider still owns first create.
     void ensureHostSession();
 
     let attempts = 0;

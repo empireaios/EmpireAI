@@ -35,7 +35,6 @@ export function ExecutiveHomeChatWorkspace() {
     setVoiceEnabled,
     runAction,
     ask,
-    ensureHostSession,
     expand,
     executiveSnapshot,
     proactiveGuidance,
@@ -49,8 +48,8 @@ export function ExecutiveHomeChatWorkspace() {
 
   useEffect(() => {
     expand();
-    void ensureHostSession();
-  }, [expand, ensureHostSession]);
+    // Provider owns host-session bootstrap. Do not create a parallel session on EH mount.
+  }, [expand]);
 
   useEffect(() => {
     const id = window.requestAnimationFrame(() => {
