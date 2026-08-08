@@ -31,8 +31,16 @@ const out = {
   deferredStrips: /DeferredExecutiveSystemStrips|Load extended panels/i.test(scan),
   postureClear: /Empire operating posture clear/i.test(scan),
   retryPlaceholder: /Retry loading executive widgets|Retry when Brain is ready/i.test(scan),
+  // Legacy markers prove an older Cockpit bundle is still live.
+  legacyUnlockCopy: /conversation will unlock when ready/i.test(scan),
+  legacyPreparingCopy: /Preparing Executive Intelligence/i.test(scan),
+  legacyStartingSystems: /Starting Executive Systems/i.test(scan),
+  hasExecutivePrompt: /Executive prompt/i.test(scan),
 };
 out.eosFixInBundle =
   out.composerAlwaysOn || out.deferredStrips || out.postureClear;
+out.legacyBundleLikely =
+  !out.eosFixInBundle &&
+  (out.legacyUnlockCopy || out.legacyPreparingCopy || out.legacyStartingSystems);
 console.log(JSON.stringify(out, null, 2));
 process.exit(out.eosFixInBundle && !out.retryPlaceholder ? 0 : 1);
