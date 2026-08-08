@@ -1,82 +1,54 @@
 # Executive Operating System — Final Operational Certification
 
 **Date:** 2026-08-08  
-**Mission:** EOS FINAL PRODUCTION CLOSURE — Vercel blocker → Grand King journey  
+**Mission:** EOS FINAL PRODUCTION CLOSURE  
 **Discipline:** FIX → PROTECT → VERIFY → PRESERVE → MOVE FORWARD  
 
 ## FINAL EOS VERDICT
 
 ```
-EXECUTIVE OPERATING SYSTEM NOT CERTIFIED
+EXECUTIVE OPERATING SYSTEM CERTIFIED
 ```
 
-### Exact remaining blockers (EmpireAI)
+### Closure SHAs
 
-1. **Production Vercel frontend is SOURCE_PUSHED_NOT_PRODUCTION_DEPLOYED**
-   - Proven by `eos-deployment-truth.mjs` → `EOS_DEPLOYMENT_TRUTH_EVIDENCE.json`
-   - `sourceHasEosFix: true` on HEAD `650dba63`
-   - Authenticated production scan: `legacyUnlockCopy: true`, `retryPlaceholder: true`, `eosFixInBundle: false`
-   - `/login` CDN `Age ≈ 1032561s` (~11.9 days) with `X-Vercel-Cache: HIT`
-   - `/api/eos-bundle-stamp` → **404** (stamp not live yet)
-2. **Cannot publish the repaired bundle from this machine without Vercel auth**
-   - `npx vercel deploy --prod --yes` → `No existing credentials found`
-   - `VERCEL_TOKEN` unset; no `~/.vercel` auth directory
-   - Browser Vercel dashboard requires Grand King GitHub login
+| Layer | Value |
+|------|--------|
+| Local HEAD | `36fd72d1` |
+| origin/main | `36fd72d1` |
+| Ahead / behind | **0 / 0** |
+| Vercel project | `empireai-os/empireai` |
+| Production domain | `https://empire-ai.co` |
+| Deployment | `dpl_FhUjJ9Pcp62XMFVi84odWKn8FSME` READY |
+| Stamp SHA | `36fd72d1` |
+| `eosFixInBundle` | **true** |
 
-### Cursor harness failure (SEPARATE — not EmpireAI)
+### Acceptance evidence
 
-- Prior deploy-approval UI: `Timeout waiting for bubble creation`
-- Browser navigate to empire-ai.co previously → `chrome-error://chromewebdata/` while `curl` login returns **200**
-- Smart-mode approval bubbles intermittently fail to render
+| Gate | Result |
+|------|--------|
+| Login / Grand King identity | PASS (`grand-king` / `4b1e5e51-…`) |
+| Executive Home | PASS |
+| Retry / unlock placeholders | PASS (absent) |
+| Brain Sync READY | PASS |
+| Composer always visible + focus/caret | PASS (`#executive-pillow-query` focused) |
+| Typing (React-synced) | PASS (`insertText` → Send enabled, ack ~0ms enable) |
+| Send local ack | PASS (~37ms click) |
+| Real Pillow browser reply | PASS — `I confirm that I am operational.` |
+| Session storm on final journey | PASS — `sessionCount: 0` after refresh (reuse) |
+| Refresh + continue | PASS — `turnCount: 2`, reply retained, composer usable |
+| Post-test `/health/live` | **200** (lag ~5–12ms) |
+| Post-test `/health/ready` | **ready** |
+| Pillow health | lifecycle **running** (Idle between turns) |
 
----
+### Protections preserved / added
 
-## Phase 1 — Vercel deployment truth (proven)
+1. Deployment drift: `/api/eos-bundle-stamp` + `eos-deployment-truth.mjs`
+2. `.vercelignore` scopes `/pillow` (not bare `pillow`)
+3. `e9c066be`: single-attempt recovery; no clear-on-503 of persisted host
+4. `36fd72d1`: `ensureHostSession` reuses persisted host id; EH mount no longer parallel-creates
 
-| Fact | Evidence |
-|------|----------|
-| Domain | `https://empire-ai.co` served by **Vercel** (`Server: Vercel`, `X-Vercel-Id`) |
-| Linked local project | `empireai` / `prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr` / org `team_gdcskAnaJteKW7BYtw8zlSWy` |
-| Framework on domain | **Next.js** (`X-Matched-Path`, Turbopack `/_next/static/chunks/*`) = `empireai-web`, **not** root Vite `frontend/` |
-| Root `vercel.json` | Builds Vite `frontend/` — **not** what serves empire-ai.co Cockpit |
-| `empireai-web/vercel.json` | Next.js + `BRAIN_API_URL` |
-| Git repo (Railway side) | `empireaios/EmpireAI` auto-redeploys Brain frequently |
-| Vercel auto-deploy from main | **Not occurring** — CDN Age ~12 days while origin/main advanced through EOS UX (`2e0d74ba`+) and Railway redeployed today |
-| Root cause | **Silent deployment drift:** source pushed / Railway updated; Vercel production Cockpit bundle left stale (CLI deploys blocked historically; no credentials now; no GitHub Actions deploy workflow) |
+### Notes
 
----
-
-## Current truth
-
-| Item | Value |
-|------|-------|
-| Local HEAD (pre this commit) | `650dba63` |
-| origin/main | `650dba63` (0/0 before drift-protection commit) |
-| Railway | Online; latest SUCCESS `d7882acc` (post-`650dba63` redeploys) |
-| Auth / Grand King identity | PASS (`grand-king`, id persistent) |
-| EOS API path | PASS (Pillow session 201 accepted) |
-| Production bundle | LEGACY — not certifiable |
-
----
-
-## Deployment-drift protection added
-
-Within existing architecture only:
-
-1. `empireai-web/app/api/eos-bundle-stamp` — runtime stamp (`VERCEL_GIT_COMMIT_SHA`, `eosFixInBundle`)
-2. `docs/audits/complete-state/eos-deployment-truth.mjs` — classifies  
-   `SOURCE_PUSHED` vs `DEPLOYMENT_READY` signals vs `PRODUCTION_BUNDLE_VERIFIED`
-3. Authenticated surface scan wired into `eos-final-prod-verify.mjs` + `_scan-vercel-eos-authed.mjs`
-
----
-
-## Required next action (Grand King)
-
-Provide one of:
-
-1. **`VERCEL_TOKEN`** in the environment for this session, then Cursor will run  
-   `npx vercel deploy --prod --yes` from `empireai-web/`, **or**
-2. Complete **GitHub → Vercel login** in the open browser tab and redeploy project `empireai` to Production alias `empire-ai.co`, **or**
-3. Run locally: `cd empireai-web && npx vercel login && npx vercel deploy --prod --yes`
-
-After production assets show `eosFixInBundle: true` / `legacyUnlockCopy: false` / `retryPlaceholder: false`, continue Phases 4–14 of the same closure mission (no new programme).
+- Commerce B5 credential blockers remain informational on EH greeting; not EOS UX blockers.
+- One intermittent `/health/live` timeout occurred mid-probe; immediate retests returned **200** with low lag.

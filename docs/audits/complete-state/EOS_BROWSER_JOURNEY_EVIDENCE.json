@@ -1,0 +1,45 @@
+{
+  "mission": "EOS_FINAL_PRODUCTION_CLOSURE",
+  "checkedAt": "2026-08-08T14:36:34.000Z",
+  "git": {
+    "localHead": "36fd72d1",
+    "originMain": "36fd72d1",
+    "aheadBehind": "0\t0"
+  },
+  "production": {
+    "web": "https://empire-ai.co",
+    "stamp": {
+      "eosFixInBundle": true,
+      "gitCommitSha": "36fd72d1bef6ae48b3194a83005ae25f3ba25189",
+      "deploymentId": "dpl_FhUjJ9Pcp62XMFVi84odWKn8FSME"
+    }
+  },
+  "browserJourney": {
+    "loginSession": "already authenticated → /cockpit",
+    "grandKingIdentity": "Grand King / Empire Founder visible",
+    "composerFocused": true,
+    "typingMethod": "document.execCommand insertText (React-controlled sync)",
+    "sendEnabledAckMs": 0,
+    "sendClickAckMs": 37,
+    "pillowReplyInDom": "I confirm that I am operational.",
+    "afterRefresh": {
+      "sessionCreateCount": 0,
+      "hostSessionPresent": true,
+      "turnCount": 2,
+      "replyStillVisible": true,
+      "composerPresent": true,
+      "ready": true,
+      "legacyUnlockAbsent": true,
+      "retryPlaceholderAbsent": true
+    }
+  },
+  "postTestHealth": {
+    "healthLive": 200,
+    "eventLoopLagMs": 5.15,
+    "healthReady": "ready",
+    "pillowHealthHttp": 200,
+    "pillowLifecycle": "running",
+    "sessionCreatesInWindow": 0
+  },
+  "verdict": "EXECUTIVE_OPERATING_SYSTEM_CERTIFIED"
+}
