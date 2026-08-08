@@ -1,6 +1,6 @@
 {
   "mission": "PRODUCTION AUTHENTICATION PERMANENT CLOSURE — regression probe",
-  "startedAt": "2026-08-07T15:14:04.575Z",
+  "startedAt": "2026-08-08T02:21:13.455Z",
   "cockpit": "https://empire-ai.co",
   "brain": "https://empireai-production.up.railway.app",
   "certifiedBaseline": {
@@ -13,16 +13,16 @@
     "brainHealthLive": {
       "ok": true,
       "status": 200,
-      "ms": 425,
+      "ms": 390,
       "body": {
         "status": "ok",
         "brain": "online",
         "eventLoopLagMs": 0,
         "sqlite": {
-          "pending": false,
-          "flushCount": 2,
-          "lastFlushMs": 1786115090666,
-          "lastFlushDurationMs": 6650,
+          "pending": true,
+          "flushCount": 0,
+          "lastFlushMs": null,
+          "lastFlushDurationMs": null,
           "flushInFlight": false
         },
         "admission": {
@@ -41,7 +41,7 @@
     "brainHealthReady": {
       "ok": true,
       "status": 200,
-      "ms": 287,
+      "ms": 307,
       "body": {
         "ready": true,
         "status": "ready",
@@ -79,12 +79,12 @@
           }
         ],
         "blockers": [],
-        "eventLoopLagMs": 0.4430609999690205,
+        "eventLoopLagMs": 0.11439500001142733,
         "sqlite": {
-          "pending": false,
-          "flushCount": 2,
-          "lastFlushMs": 1786115090666,
-          "lastFlushDurationMs": 6650,
+          "pending": true,
+          "flushCount": 0,
+          "lastFlushMs": null,
+          "lastFlushDurationMs": null,
           "flushInFlight": false
         },
         "founderEmailPresent": true,
@@ -99,7 +99,7 @@
     "bffInvalidLogin": {
       "ok": false,
       "status": 401,
-      "ms": 502,
+      "ms": 475,
       "body": {
         "error": "Invalid email or password"
       },
@@ -109,7 +109,7 @@
     "brainInvalidLogin": {
       "ok": false,
       "status": 401,
-      "ms": 249,
+      "ms": 327,
       "body": {
         "error": "Invalid email or password"
       },
@@ -119,7 +119,7 @@
     "bffValidLogin": {
       "ok": true,
       "status": 200,
-      "ms": 810,
+      "ms": 874,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -129,7 +129,7 @@
           "workspaceId": "ws_empire_1",
           "platformIdentity": "grand-king"
         },
-        "expiresAt": "2026-08-14T15:14:21.768Z"
+        "expiresAt": "2026-08-15T02:21:30.974Z"
       },
       "setCookie": [
         "empireai_session=***"
@@ -145,7 +145,7 @@
     "bffAuthMe": {
       "ok": true,
       "status": 200,
-      "ms": 569,
+      "ms": 560,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -162,21 +162,21 @@
     "bffExecutiveHome": {
       "ok": true,
       "status": 200,
-      "ms": 1346,
+      "ms": 995,
       "body": {
-        "correlationId": "8dc490b6-c1f2-4e59-bde5-ab1797db66e4",
+        "correlationId": "2c25c1bd-a000-4d38-b241-d8852db5bd32",
         "status": "completed",
         "result": {
-          "computedAt": "2026-08-07T15:14:24.467Z",
+          "computedAt": "2026-08-08T02:20:53.823Z",
           "greeting": {
             "displayNameHint": "Grand King",
             "topBlocker": "B5: LIVE_COMMERCE_INTEGRATION_MODE=production requires B6 credentials — keep sandbox until REAL-002B approved",
             "topBlockerHref": "/cockpit/infrastructure/health"
           },
           "command": {
-            "computedAt": "2026-08-07T15:14:24.076Z",
+            "computedAt": "2026-08-08T02:20:53.470Z",
             "workspaceId": "ws_empire_1",
-            "companyId": "ws_empire_1__c3",
+            "companyId": "co-grand-king",
             "certificationBlockers": {
               "B5": {
                 "id": "B5",
@@ -239,19 +239,19 @@
               "currentNetProfitUsd": 0
             },
             "implementation": {
-              "milestone": "P0-1",
+              "milestone": "OBJ-001",
               "phase": "GO-002 Phase 5 — Production Deploy & Credential Activation",
-              "objective": "Awaiting implementation",
-              "currentBlocker": "B5"
+              "objective": "OBJ-001 — PROOF-001",
+              "currentBlocker": "B5 — Production deploy + readiness"
             },
             "oms": {
-              "activeObjective": "Awaiting implementation",
+              "activeObjective": "OBJ-001 — PROOF-001",
               "progress": 0,
-              "confidence": 0,
-              "overallHealth": "YELLOW",
-              "currentBlocker": null,
-              "nextHighestImpactAction": null,
-              "forecastCompletion": null,
+              "confidence": 22,
+              "overallHealth": "RED",
+              "currentBlocker": "B5 — Production deploy + readiness",
+              "nextHighestImpactAction": "P0-1 — Production deploy (closes B5)",
+              "forecastCompletion": "2026-10-15T08:19:49.097Z",
               "remainingWork": [
                 "LIVE_COMMERCE_INTEGRATION_MODE=production requires B6 credentials — keep sandbox until REAL-002B approved",
                 "B6-01b — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_FE on Railway",
@@ -379,7 +379,7 @@
             {
               "engineId": "supplier",
               "displayName": "Supplier Engine",
-              "computedAt": "2026-08-07T15:14:24.078Z",
+              "computedAt": "2026-08-08T02:20:53.472Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "CJ Dropshipping live fulfilment activated",
@@ -433,7 +433,7 @@
             {
               "engineId": "marketplace",
               "displayName": "Marketplace Engine",
-              "computedAt": "2026-08-07T15:14:24.078Z",
+              "computedAt": "2026-08-08T02:20:53.472Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "Amazon US + SG live commerce paths enabled",
@@ -478,7 +478,7 @@
             {
               "engineId": "storefront",
               "displayName": "Storefront Engine",
-              "computedAt": "2026-08-07T15:14:24.236Z",
+              "computedAt": "2026-08-08T02:20:53.622Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "Building Lumen Media (69% complete)",
@@ -523,7 +523,7 @@
             {
               "engineId": "advertising",
               "displayName": "Advertising Engine",
-              "computedAt": "2026-08-07T15:14:24.255Z",
+              "computedAt": "2026-08-08T02:20:53.623Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "Campaign data in domain store — live Meta connector optional pre-PROOF-001",
@@ -589,7 +589,7 @@
             {
               "engineId": "payment",
               "displayName": "Payment Engine",
-              "computedAt": "2026-08-07T15:14:24.256Z",
+              "computedAt": "2026-08-08T02:20:53.624Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "Stripe live keys verified (sk_live)",
@@ -626,7 +626,7 @@
             {
               "engineId": "logistics",
               "displayName": "Logistics Engine",
-              "computedAt": "2026-08-07T15:14:24.256Z",
+              "computedAt": "2026-08-08T02:20:53.624Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "CJ fulfilment path active · 1 orders processing",
@@ -679,7 +679,7 @@
             {
               "engineId": "analytics",
               "displayName": "Analytics Engine",
-              "computedAt": "2026-08-07T15:14:24.445Z",
+              "computedAt": "2026-08-08T02:20:53.801Z",
               "dataMode": "live",
               "implemented": true,
               "currentState": "PROOF-001 0/12 stages · Portfolio 4 companies",
@@ -854,15 +854,15 @@
               "refreshSeconds": 45,
               "futureEnhancement": "Mission Centre SSE progress updates",
               "primaryValue": "1",
-              "status": "Awaiting implementation",
+              "status": "OBJ-001 — PROOF-001",
               "dependency": "Objective Management System (OMS)",
-              "nextAction": "Open Mission Centre for full queue",
+              "nextAction": "P0-1 — Production deploy (closes B5)",
               "href": "/cockpit/missions",
-              "health": "YELLOW",
+              "health": "RED",
               "items": [
                 {
-                  "label": "Awaiting implementation",
-                  "value": "0% · YELLOW"
+                  "label": "OBJ-001 — PROOF-001",
+                  "value": "0% · RED"
                 }
               ],
               "engineCenterId": null
@@ -954,7 +954,7 @@
               "primaryValue": "3",
               "status": "Portfolio velocity is accelerating. Three ventures are ready to scale.",
               "dependency": "AI CEO repository · portfolio briefing (no generative AI in G4-06)",
-              "nextAction": "Scale top revenue company",
+              "nextAction": "P0-1 — Production deploy (closes B5)",
               "href": "/cockpit/intelligence/discovery",
               "health": "HEALTHY",
               "items": [
@@ -1044,9 +1044,16 @@
               "severity": "critical",
               "href": "/cockpit/commerce/store",
               "engineId": "storefront"
+            },
+            {
+              "id": "oms-red",
+              "label": "OMS RED — B5 — Production deploy + readiness",
+              "severity": "critical",
+              "href": "/cockpit/missions",
+              "engineId": null
             }
           ],
-          "nextExecutiveAction": "GK-GOLIVE-APPROVAL",
+          "nextExecutiveAction": "P0-1 — Production deploy (closes B5)",
           "executiveTimeline": [
             {
               "id": "tl-logistics-ws_empire_1__1042",
@@ -1108,7 +1115,7 @@
               "sourceLabel": "OMS",
               "title": "REAL-002B — Connect Amazon SP-API + first VERIFIED credentials (live)",
               "summary": "Operational Access · 100% complete",
-              "timestamp": "2026-08-14T15:14:24.466Z",
+              "timestamp": "2026-08-15T02:20:53.822Z",
               "href": "/cockpit/missions"
             },
             {
@@ -1117,7 +1124,7 @@
               "sourceLabel": "OMS",
               "title": "Smart Measuring Cups — LIVE",
               "summary": "cj-dropshipping · score 68",
-              "timestamp": "2026-08-13T15:14:24.466Z",
+              "timestamp": "2026-08-14T02:20:53.822Z",
               "href": "/cockpit/missions"
             },
             {
@@ -1126,7 +1133,7 @@
               "sourceLabel": "OMS",
               "title": "Foldable Cutting Board — SCALING",
               "summary": "spocket · score 68",
-              "timestamp": "2026-08-10T15:14:24.466Z",
+              "timestamp": "2026-08-11T02:20:53.822Z",
               "href": "/cockpit/missions"
             },
             {
@@ -1135,7 +1142,7 @@
               "sourceLabel": "OMS",
               "title": "Old Seasonal Mug Warmer — ARCHIVED",
               "summary": "marketplace TBD · score 68",
-              "timestamp": "2026-08-07T15:14:24.466Z",
+              "timestamp": "2026-08-08T02:20:53.822Z",
               "href": "/cockpit/missions"
             },
             {
@@ -1144,7 +1151,7 @@
               "sourceLabel": "Supplier",
               "title": "GlobalSource Direct",
               "summary": "94% reliable · 7.1 days",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/suppliers"
             },
             {
@@ -1153,7 +1160,7 @@
               "sourceLabel": "Supplier",
               "title": "Nexus Fulfillment",
               "summary": "98% reliable · 4.2 days",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/suppliers"
             },
             {
@@ -1162,7 +1169,7 @@
               "sourceLabel": "Supplier",
               "title": "PrimeDrop Logistics",
               "summary": "87% reliable · 5.8 days",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/suppliers"
             },
             {
@@ -1171,7 +1178,7 @@
               "sourceLabel": "Marketplace",
               "title": "amazon-us",
               "summary": "Credentials configured",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/marketplace"
             },
             {
@@ -1180,7 +1187,7 @@
               "sourceLabel": "Marketplace",
               "title": "amazon-sg",
               "summary": "Refresh token pending",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/marketplace"
             },
             {
@@ -1189,7 +1196,7 @@
               "sourceLabel": "Marketplace",
               "title": "shopee-sg",
               "summary": "Not yet implemented in B6-01D scope",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/intelligence/marketplace"
             },
             {
@@ -1198,7 +1205,7 @@
               "sourceLabel": "Storefront",
               "title": "Brand system",
               "summary": "100% · complete",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/commerce/store"
             },
             {
@@ -1207,7 +1214,7 @@
               "sourceLabel": "Storefront",
               "title": "Product catalog",
               "summary": "100% · complete",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/commerce/store"
             },
             {
@@ -1216,7 +1223,7 @@
               "sourceLabel": "Storefront",
               "title": "Storefront theme",
               "summary": "78% · in_progress",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/commerce/store"
             },
             {
@@ -1225,7 +1232,7 @@
               "sourceLabel": "Advertising",
               "title": "Meridian — Summer Scale",
               "summary": "Active · reach 2.4M",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/commerce/marketing"
             },
             {
@@ -1234,7 +1241,7 @@
               "sourceLabel": "Advertising",
               "title": "Vertex — Retention Loop",
               "summary": "Active · reach 890K",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/commerce/marketing"
             },
             {
@@ -1243,7 +1250,7 @@
               "sourceLabel": "Payment",
               "title": "Order profit today",
               "summary": "$0.00",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/finance/billing"
             },
             {
@@ -1252,7 +1259,7 @@
               "sourceLabel": "Analytics",
               "title": "PROOF-001 tracker",
               "summary": "PROOF-001 0/12 stages · Portfolio 4 companies",
-              "timestamp": "2026-08-07T15:14:24.465Z",
+              "timestamp": "2026-08-08T02:20:53.821Z",
               "href": "/cockpit/finance/profit"
             }
           ],
@@ -1291,6 +1298,13 @@
               "severity": "critical",
               "engineId": "storefront",
               "href": "/cockpit/commerce/store"
+            },
+            {
+              "id": "oms-red",
+              "label": "OMS RED — B5 — Production deploy + readiness",
+              "severity": "critical",
+              "engineId": null,
+              "href": "/cockpit/missions"
             }
           ],
           "approvalRoutes": [],
@@ -1417,18 +1431,18 @@
           "architectureVersion": "P7-04",
           "executiveBrief": {
             "overallEmpireStatus": "60%",
-            "currentStrategicObjective": "Awaiting implementation",
+            "currentStrategicObjective": "OBJ-001 — PROOF-001",
             "currentConstitutionalPhase": "P7 Experience · Executive Operating System",
             "currentExecutionPhase": "Foundation & PROOF-001",
             "highestPriorityRisk": "B5: LIVE_COMMERCE_INTEGRATION_MODE=production requires B6 credentials — keep sandbox until REAL-002B approved",
             "highestPriorityOpportunity": "Awaiting implementation — no first-revenue validation runs recorded",
-            "currentRecommendation": "GK-GOLIVE-APPROVAL"
+            "currentRecommendation": "P0-1 — Production deploy (closes B5)"
           },
           "centreSummaries": {
             "mission": {
-              "currentMission": "Awaiting implementation",
+              "currentMission": "OBJ-001 — PROOF-001",
               "missionOwner": "ECC · Supervisor",
-              "currentStep": "GK-GOLIVE-APPROVAL",
+              "currentStep": "P0-1 — Production deploy (closes B5)",
               "progress": 0,
               "eta": "PROOF-001 gate pending",
               "dependencies": [
@@ -1448,8 +1462,8 @@
             },
             "pillow": {
               "recommendations": [
-                "GK-GOLIVE-APPROVAL",
-                "Scale top revenue company"
+                "P0-1 — Production deploy (closes B5)",
+                "P0-1 — Production deploy (closes B5)"
               ],
               "architectureFindings": [
                 "Empire architecture: WARNING · Ops readiness 60%",
@@ -1493,24 +1507,17 @@
                 "B6: B6-01b — Inject shared LWA app + AMAZON_SP_API_REFRESH_TOKEN_FE on Railway",
                 "B7: Dispatch lite path — full go-live package on refresh",
                 "B8: Awaiting implementation — no first-revenue validation runs recorded",
-                "Storefront Engine — Building Lumen Media (69% complete)"
+                "Storefront Engine — Building Lumen Media (69% complete)",
+                "OMS RED — B5 — Production deploy + readiness"
               ],
               "href": "/cockpit/founder/production"
             }
           },
+          "_cached": true,
           "_trace": {
-            "commandMs": 4,
-            "portfolioMs": 1,
-            "enginePanelsMs": 367,
-            "pillowSupervisorMs": 0,
-            "summaryCardsMs": 2,
-            "timelineMs": 20,
-            "approvalRoutesMs": 0,
-            "extraPanelsMs": 0,
-            "dependencyGraphMs": 0,
-            "totalMs": 395
+            "cacheHitMs": 0,
+            "totalMs": 0
           },
-          "_cached": false,
           "_fallback": false
         }
       },
@@ -1519,13 +1526,13 @@
     },
     "bffExecutiveHomeDetail": {
       "status": 200,
-      "ms": 1346,
+      "ms": 995,
       "ok": true
     },
     "bffLogout": {
       "ok": true,
       "status": 200,
-      "ms": 711,
+      "ms": 744,
       "body": {
         "ok": true
       },
@@ -1537,7 +1544,7 @@
     "bffAuthMeAfterLogout": {
       "ok": false,
       "status": 401,
-      "ms": 532,
+      "ms": 525,
       "body": {
         "error": "Invalid or expired session"
       },
@@ -1549,7 +1556,7 @@
     "bffRepeatedLogin_1": {
       "ok": true,
       "status": 200,
-      "ms": 831,
+      "ms": 859,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -1559,7 +1566,7 @@
           "workspaceId": "ws_empire_1",
           "platformIdentity": "grand-king"
         },
-        "expiresAt": "2026-08-14T15:14:26.570Z"
+        "expiresAt": "2026-08-15T02:21:35.587Z"
       },
       "setCookie": [
         "empireai_session=***"
@@ -1569,7 +1576,7 @@
     "bffRepeatedLogin_2": {
       "ok": true,
       "status": 200,
-      "ms": 743,
+      "ms": 759,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -1579,7 +1586,7 @@
           "workspaceId": "ws_empire_1",
           "platformIdentity": "grand-king"
         },
-        "expiresAt": "2026-08-14T15:14:27.332Z"
+        "expiresAt": "2026-08-15T02:21:36.339Z"
       },
       "setCookie": [
         "empireai_session=***"
@@ -1589,7 +1596,7 @@
     "bffRepeatedLogin_3": {
       "ok": true,
       "status": 200,
-      "ms": 787,
+      "ms": 764,
       "body": {
         "user": {
           "id": "4b1e5e51-7ec6-4a1c-8272-337314a29f82",
@@ -1599,7 +1606,7 @@
           "workspaceId": "ws_empire_1",
           "platformIdentity": "grand-king"
         },
-        "expiresAt": "2026-08-14T15:14:28.100Z"
+        "expiresAt": "2026-08-15T02:21:37.124Z"
       },
       "setCookie": [
         "empireai_session=***"
@@ -1624,5 +1631,5 @@
   "blockers": [],
   "rootCauseClass": null,
   "verdict": "PASS",
-  "finishedAt": "2026-08-07T15:14:13.147Z"
+  "finishedAt": "2026-08-08T02:21:21.942Z"
 }

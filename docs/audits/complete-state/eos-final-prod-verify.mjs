@@ -196,16 +196,20 @@ async function main() {
   const ehOk = evidence.stages.executiveHome.status === 200;
   const chatBody = evidence.stages.pillowChat?.body;
   const chatText =
+    (typeof chatBody?.result?.message === "string" && chatBody.result.message) ||
     (typeof chatBody?.message === "string" && chatBody.message) ||
     (typeof chatBody?.reply === "string" && chatBody.reply) ||
     (typeof chatBody?.content === "string" && chatBody.content) ||
     (typeof chatBody?.response === "string" && chatBody.response) ||
-    (typeof chatBody?.result?.message === "string" && chatBody.result.message) ||
+    (typeof chatBody?.interactionSummary === "string" && chatBody.interactionSummary) ||
     null;
   const chatOk = evidence.stages.pillowChat?.status === 200 && Boolean(chatText);
   const healthOk = evidence.stages.healthLive.status === 200;
   const loginOk = evidence.stages.login.status === 200;
-  const sessionOk = evidence.stages.pillowSession.status === 200 && Boolean(sessionId);
+  const sessionOk =
+    (evidence.stages.pillowSession.status === 200 ||
+      evidence.stages.pillowSession.status === 201) &&
+    Boolean(sessionId);
 
   const readyOk =
     evidence.stages.healthReady?.status === 200 &&
@@ -238,7 +242,24 @@ async function main() {
   if (!chatOk) evidence.blockers.push("pillow chat not ok");
   if (chatLeaksConstitutional) evidence.blockers.push("pillow chat leaked constitutional language");
 
-  evidence.verdict = evidence.blockers.length === 0 ? "API_PATH_PASS" : "API_PATH_FAIL";
+  const apiPathPass = evidence.blockers.length === 0;
+  // Tightening: Grand King UX bundle must ship — API-only PASS is not EOS certification.
+  const uxBundleOk = Boolean(evidence.stages.webCockpitSurface?.eosFixInBundle);
+  const uxBlockers = [];
+  if (!uxBundleOk) {
+    uxBlockers.push("eos UX bundle not detected on empire-ai.co (composer/widget repairs not live)");
+  }
+  if (evidence.stages.webCockpitSurface?.hasRetryPlaceholder) {
+    uxBlockers.push("Retry placeholders still present in production frontend bundle");
+  }
+  evidence.derived.checks.uxBundleOk = uxBundleOk;
+  evidence.derived.checks.apiPathPass = apiPathPass;
+  evidence.uxBlockers = uxBlockers;
+  evidence.verdict = !apiPathPass
+    ? "API_PATH_FAIL"
+    : uxBlockers.length === 0
+      ? "EOS_FULL_PASS"
+      : "API_PATH_PASS_UX_PENDING";
   evidence.finishedAt = new Date().toISOString();
   writeFileSync(OUT, JSON.stringify(redact(evidence), null, 2));
   console.log(
