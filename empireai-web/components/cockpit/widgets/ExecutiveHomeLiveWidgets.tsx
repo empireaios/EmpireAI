@@ -131,7 +131,7 @@ export function ExecutiveHomeGreetingLive() {
           {toExecutiveSurfaceMessage(error.message, EXECUTIVE_WIDGET_ERROR)}
         </div>
       ) : topBlocker &&
-        !/NODE_ENV|certification|constitutional|digital soul|pillow host|brain sync/i.test(
+        !/NODE_ENV|certification|constitutional|digital soul|pillow host|brain sync|LIVE_COMMERCE|B6 credentials|REAL-002|PROOF-001|GK-GOLIVE|B5:|B6:|B7:|B8:/i.test(
           topBlocker,
         ) ? (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">

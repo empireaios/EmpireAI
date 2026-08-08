@@ -90,7 +90,8 @@ async function main() {
   }
 
   evidence.stages.me = await req(BRAIN, "/auth/me");
-  evidence.stages.executiveHome = await req(BRAIN, "/api/brain/dispatch", {
+  // Brain mounts /brain/dispatch (BFF maps /api/brain/dispatch → Brain).
+  evidence.stages.executiveHome = await req(BRAIN, "/brain/dispatch", {
     method: "POST",
     body: JSON.stringify({
       module: "executive-home",
@@ -100,16 +101,40 @@ async function main() {
     }),
   });
 
-  evidence.stages.pillowSession = await req(BRAIN, "/api/pillow/session", {
-    method: "POST",
-    body: JSON.stringify({}),
-  });
-  const sessionId =
-    evidence.stages.pillowSession.body?.sessionId ||
-    evidence.stages.pillowSession.body?.session?.sessionId ||
-    evidence.stages.pillowSession.body?.id ||
-    null;
-  evidence.derived = { sessionId };
+  // Pillow session create is admission-gated under event-loop lag — retry briefly.
+  let sessionId = null;
+  const sessionAttempts = [];
+  for (let i = 0; i < 6; i++) {
+    const attempt = await req(BRAIN, "/api/pillow/session", {
+      method: "POST",
+      body: JSON.stringify({}),
+    });
+    sessionAttempts.push({
+      status: attempt.status,
+      ms: attempt.ms,
+      error: attempt.body?.error ?? null,
+      retryAfterSec: attempt.body?.retryAfterSec ?? null,
+    });
+    sessionId =
+      attempt.body?.sessionId ||
+      attempt.body?.session?.sessionId ||
+      attempt.body?.id ||
+      null;
+    // Pillow host returns 201 Created on successful session bootstrap.
+    if ((attempt.status === 200 || attempt.status === 201) && sessionId) {
+      evidence.stages.pillowSession = attempt;
+      break;
+    }
+    const waitSec = Number(attempt.body?.retryAfterSec ?? 2);
+    await new Promise((r) => setTimeout(r, Math.max(1, waitSec) * 1000));
+  }
+  if (!evidence.stages.pillowSession) {
+    evidence.stages.pillowSession = {
+      status: sessionAttempts.at(-1)?.status ?? 0,
+      attempts: sessionAttempts,
+    };
+  }
+  evidence.derived = { sessionId, sessionAttempts };
 
   if (sessionId) {
     evidence.stages.pillowChat = await req(BRAIN, "/api/pillow/chat", {
@@ -138,16 +163,30 @@ async function main() {
     const cockpitStarted = Date.now();
     const cockpitRes = await fetch(`${WEB}/cockpit`, { redirect: "manual" });
     const cockpitHtml = await cockpitRes.text().catch(() => "");
+    // App Router keeps component strings in JS chunks, not the HTML shell.
+    const scriptUrls = [...cockpitHtml.matchAll(/\/_next\/static\/[^"']+\.js/g)]
+      .map((m) => m[0])
+      .slice(0, 12);
+    let chunkText = "";
+    for (const rel of scriptUrls) {
+      try {
+        const chunkRes = await fetch(`${WEB}${rel}`);
+        if (chunkRes.ok) chunkText += await chunkRes.text();
+      } catch {
+        /* ignore */
+      }
+    }
+    const scan = `${cockpitHtml}\n${chunkText}`;
     evidence.stages.webCockpitSurface = {
       status: cockpitRes.status,
       ms: Date.now() - cockpitStarted,
+      scriptsScanned: scriptUrls.length,
       eosFixInBundle:
-        /DeferredExecutiveSystemStrips|Load extended panels|Daily Operations|type now; Send when ready/i.test(
-          cockpitHtml,
+        /DeferredExecutiveSystemStrips|Load extended panels|Daily Operations|type now; Send when ready|Empire operating posture clear/i.test(
+          scan,
         ),
-      hasRetryPlaceholder: /Retry loading executive widgets|Retry when Brain is ready/i.test(
-        cockpitHtml,
-      ),
+      hasRetryPlaceholder: /Retry loading executive widgets|Retry when Brain is ready/i.test(scan),
+      composerAlwaysOn: /type now; Send when ready|Ask Pillow… \(Enter send/i.test(scan),
     };
   } catch (e) {
     evidence.stages.webLoginPage = { error: String(e?.message || e) };

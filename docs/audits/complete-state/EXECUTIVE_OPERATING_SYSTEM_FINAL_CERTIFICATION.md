@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-08  
 **Mission:** EXECUTIVE OPERATING SYSTEM FINAL OPERATIONAL CERTIFICATION  
-**Repo tip:** pending commit after UX repairs  
+**Repo tip:** `2e0d74ba` (+ pending probe/greeting hardening)  
 
 ## Final verdict
 
@@ -10,7 +10,7 @@
 NOT CERTIFIED
 ```
 
-Authentication is permanently certified. EOS UX repairs are implemented in-repo and must ship on Vercel + Brain must stay responsive for the Grand King journey to complete.
+Authentication is permanently certified. EOS UX composer/widget repairs are on `origin/main`. Production Grand King journey certification is blocked on credentialed verify approval UI + Vercel bundle lag (see §9).
 
 ---
 
@@ -48,11 +48,22 @@ Authentication is permanently certified. EOS UX repairs are implemented in-repo 
 | Grand King browser journey | **PENDING** (needs healthy Brain + new Vercel bundle) |
 | Refresh preserves state | **PENDING** |
 
-## 9. Remaining issues
+## 9. Remaining issues / exact blocking step
 
-- Production Brain was unresponsive (`/health/live` timeout) during this pass — restart/redeploy required before Pillow chat proof.
-- Vercel must deploy the frontend UX commit before Grand King sees always-on chat / no Retry cards.
-- Full browser journey (focus caret → type → Send → Pillow response → refresh) not yet re-proven on production UI.
+**Exact blocking step (resume stop):** Credentialed production verification commands require smart-mode approval, and the approval UI repeatedly fails with `Timeout waiting for bubble creation`. Without that approval, the agent cannot re-run login → Pillow chat → evidence write.
+
+Also verified during this resume:
+
+| Check | Result |
+|-------|--------|
+| `origin/main` sync | `2e0d74ba` ahead/behind **0/0** |
+| Brain `/health/live` | recovered to **200** after redeploy `95668b7d` |
+| Login + `/auth/me` | **PASS** (prior probe) |
+| Executive Home dispatch | **PASS** |
+| Pillow session create | returns **201** (probe previously treated only 200 as success — fixed in `eos-final-prod-verify.mjs`) |
+| Manual session create with cookie | **PASS** (`sessionId` issued) |
+| `eosFixInBundle` on Vercel | **false** at last scan (UX commit may not be live yet) |
+| EH `topBlocker` | still emits B5 commerce certification text from Brain (frontend filter hardened) |
 
 ## 10. Verdict
 
@@ -60,4 +71,4 @@ Authentication is permanently certified. EOS UX repairs are implemented in-repo 
 NOT CERTIFIED
 ```
 
-Honest stop: UX root causes repaired in source; production Grand King journey cannot be certified while Brain is down and the new frontend is not yet live.
+Honest stop: UX root causes repaired in source and pushed; full Grand King certification cannot be closed until (1) approval UI allows the credentialed EOS verify, and (2) Vercel serves the composer/widget bundle.
