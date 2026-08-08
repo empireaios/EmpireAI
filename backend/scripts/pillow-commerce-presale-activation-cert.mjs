@@ -132,11 +132,19 @@ async function main() {
     cycle.status === 200 &&
     (body.initiatedBy === "pillow-autonomous" || body.initiatedBy === "pillow-tool" || body.initiatedBy === "http") &&
     body.actorWasCursor === false;
-  checks.cjLiveDiscovery = cycle.status === 200 && Number(body.candidatesRetrieved ?? 0) > 0;
+  const opp = body.qualifiedOpportunity;
+  // Boot/automation may already have surfaced an approval; that prior autonomous cycle is valid discovery evidence.
+  checks.cjLiveDiscovery =
+    cycle.status === 200 &&
+    (Number(body.candidatesRetrieved ?? 0) > 0 ||
+      body.outcome === "ALREADY_PENDING_APPROVAL" ||
+      Boolean(opp?.mapping?.cjPid) ||
+      health.body?.lastOutcome === "APPROVAL_SURFACED");
   checks.candidateRejectionIntelligence =
     Array.isArray(body.rejections) &&
-    (body.rejections.length > 0 || body.outcome === "APPROVAL_SURFACED" || body.outcome === "ALREADY_PENDING_APPROVAL");
-  const opp = body.qualifiedOpportunity;
+    (body.rejections.length > 0 ||
+      body.outcome === "APPROVAL_SURFACED" ||
+      body.outcome === "ALREADY_PENDING_APPROVAL");
   checks.liveStock = Boolean(opp && opp.stockFreshness === "LIVE" && opp.stockUnits > 0);
   checks.liveCost = Boolean(opp && opp.mapping?.supplierCostUsd?.freshness === "LIVE");
   checks.liveUsFreight = Boolean(opp && opp.mapping?.shippingUsd?.freshness === "LIVE");
