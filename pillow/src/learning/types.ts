@@ -42,7 +42,47 @@ export type LearningSource =
   | "conversation"
   | "pattern_detection"
   | "manual"
-  | "merged";
+  | "merged"
+  | "system_seed"
+  | "commerce_event"
+  | "operational_event"
+  | "outcome"
+  | "collaboration";
+
+/** Epistemic status — never flatten hypothesis into fact. */
+export type MemoryEpistemicStatus =
+  | "FACT"
+  | "OBSERVATION"
+  | "ESTIMATE"
+  | "HYPOTHESIS"
+  | "RECOMMENDATION"
+  | "OWNER_DIRECTIVE"
+  | "INFERENCE"
+  | "OUTCOME";
+
+/** Authority / provenance of the memory statement. */
+export type MemoryAuthority =
+  | "grand_king_directive"
+  | "grand_king_decision"
+  | "pillow_recommendation"
+  | "chatgpt_recommendation"
+  | "external_api_fact"
+  | "supplier_data"
+  | "marketplace_data"
+  | "system_observed"
+  | "derived_inference"
+  | "model_hypothesis"
+  | "estimated_value";
+
+export type InstitutionalMemoryClass =
+  | "grand_king_directive"
+  | "strategic"
+  | "operational"
+  | "experience"
+  | "semantic"
+  | "commerce"
+  | "pillow_self_improvement"
+  | "collaboration";
 
 export interface LearningObservation {
   observation: string;
@@ -97,6 +137,22 @@ export interface ExecutiveKnowledgeEntry {
   supersededBy: string | null;
   reasoningAreas: ReasoningArea[];
   affectedReasoningAreas: ReasoningArea[];
+  /** Institutional extensions (optional — older rows may omit). */
+  memoryClass?: InstitutionalMemoryClass;
+  authority?: MemoryAuthority;
+  epistemicStatus?: MemoryEpistemicStatus;
+  tags?: string[];
+  evidenceRefs?: string[];
+  linkedEntities?: Record<string, string>;
+  outcomeLink?: {
+    recommendationId?: string;
+    approvalId?: string;
+    listingSku?: string;
+    orderId?: string;
+    result?: string;
+  };
+  supersedes?: string | null;
+  canonicalKey?: string;
 }
 
 export interface ConversationLearningInput {

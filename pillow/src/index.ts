@@ -4053,6 +4053,7 @@ export {
   analyzeLearningImpact,
   buildExecutiveLearningReasoningBundle,
   formatExecutiveLearningForLlm,
+  selectRelevantInstitutionalKnowledge,
   EXECUTIVE_PRINCIPLE_PATTERNS,
   CATEGORY_LABELS as LEARNING_CATEGORY_LABELS,
   assertCannotBypassConstitution,
@@ -4069,6 +4070,10 @@ export {
   type LearningGovernanceClass,
   type LearningPipelineResult,
   type LearningReviewStats,
+  type LearningSource,
+  type MemoryAuthority,
+  type MemoryEpistemicStatus,
+  type InstitutionalMemoryClass,
   type PendingExecutiveLearning,
   type ReasoningArea,
 } from "./learning/index.js";

@@ -185,7 +185,10 @@ import {
 import { schedulePillowHostBoot } from "./orchestration/pillow-host/pillow-boot.js";
 import { registerPillowApprovalRoutes } from "./orchestration/pillow-approval/index.js";
 import { wireCanonicalPillowApprovalPipeline } from "./orchestration/pillow-approval/canonical-pillow-approval-pipeline.js";
-import { registerExecutiveLearningRoutes } from "./orchestration/executive-learning/index.js";
+import {
+  registerExecutiveLearningRoutes,
+  seedInstitutionalMemoryBootstrap,
+} from "./orchestration/executive-learning/index.js";
 import { registerPillowExecutiveCouncilRoutes } from "./orchestration/pillow-executive-council/index.js";
 import { seedGrandKingAccount } from "./grand-king/services/grand-king-seed-service.js";
 import { GovernanceBlockedError } from "./foundation/empire-governance/services/governance-engine.js";
@@ -575,6 +578,17 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
   getPillowCommercePresaleAutomationServer().start();
+
+  // Institutional memory must accumulate from day one (cloud SQLite EKB).
+  try {
+    const seeded = seedInstitutionalMemoryBootstrap(undefined, brain.auditLogger);
+    logger.info({ seeded }, "Institutional memory bootstrap seeded");
+  } catch (error) {
+    logger.error(
+      { error: error instanceof Error ? error.message : String(error) },
+      "Institutional memory bootstrap failed — learning degraded",
+    );
+  }
 
   commerceCriticalRoutesRegistered = true;
   logger.info(

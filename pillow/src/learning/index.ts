@@ -15,6 +15,7 @@ export { analyzeLearningImpact } from "./impact-analyzer.js";
 export {
   buildExecutiveLearningReasoningBundle,
   formatExecutiveLearningForLlm,
+  selectRelevantInstitutionalKnowledge,
 } from "./reasoning-bundle.js";
 export { EXECUTIVE_PRINCIPLE_PATTERNS, CATEGORY_LABELS } from "./patterns.js";
 export {
@@ -37,6 +38,9 @@ export type {
   LearningPipelineResult,
   LearningReviewStats,
   LearningSource,
+  MemoryAuthority,
+  MemoryEpistemicStatus,
+  InstitutionalMemoryClass,
   PendingExecutiveLearning,
   ReasoningArea,
 } from "./types.js";

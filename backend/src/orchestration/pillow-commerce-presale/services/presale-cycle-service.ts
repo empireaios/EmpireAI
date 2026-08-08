@@ -29,6 +29,11 @@ import {
   type PresaleCycleResult,
   type QualifiedOpportunity,
 } from "../models.js";
+import {
+  captureInstitutionalMemory,
+  getCommerceInstitutionalContext,
+  linkOutcomeToMemory,
+} from "../../executive-learning/institutional-memory-service.js";
 import { getPillowCommercePresaleRepository } from "../repository/sqlite-pillow-commerce-presale-repository.js";
 
 export type RunPresaleCycleInput = {
@@ -188,6 +193,10 @@ export async function runPillowCommercePresaleCycle(
     return cycle;
   }
 
+  // Retrieve institutional commerce lessons BEFORE candidate analysis (must affect decisions).
+  const commerceMemory = getCommerceInstitutionalContext(input.workspaceId);
+  const memoryCitations: string[] = [];
+
   const cjConfig = loadCjConfig(env);
   if (!isCjLiveApiEnabled(cjConfig)) {
     blockers.push("CJ LIVE credentials/mode not enabled — cannot retrieve live supplier opportunities");
@@ -272,11 +281,30 @@ export async function runPillowCommercePresaleCycle(
     const productName = product.productNameEn || product.productName || product.pid;
 
     if (isProof001FailureClass({ productName, asin: null })) {
+      const lesson =
+        commerceMemory.lessons.find((l) => /anker|brand-gated|buyable/i.test(l)) ??
+        "Do not recommend Anker / B088NRLMPV brand-gated catalog offers";
+      memoryCitations.push(lesson);
       rejections.push({
         cjPid: product.pid,
         productName,
         reasonCode: "PROOF_001_BRAND_FAILURE_CLASS",
-        reason: "Rejected: brand/title matches Proof 001 Anker failure class",
+        reason: `Rejected using institutional memory: ${lesson}`,
+        evidence: { institutionalMemory: true, lessons: commerceMemory.lessons.slice(0, 4) },
+      });
+      captureInstitutionalMemory({
+        workspaceId: input.workspaceId,
+        canonicalKey: `commerce.reject.${product.pid}`,
+        title: `Rejected candidate ${product.pid} via institutional brand-gate lesson`,
+        statement: `Rejected "${productName}" because institutional experience forbids Anker/Proof-001 brand-gate patterns.`,
+        memoryClass: "commerce",
+        authority: "system_observed",
+        epistemicStatus: "OUTCOME",
+        source: "commerce_event",
+        tags: ["commerce", "rejection", "brand-gate"],
+        evidenceRefs: ["commerce.lesson.anker_brand_gate", `cjPid:${product.pid}`],
+        category: "C",
+        actor: "pillow-commerce-presale",
       });
       continue;
     }
@@ -391,14 +419,21 @@ export async function runPillowCommercePresaleCycle(
       isProof001FailureClass({
         asin: asinResult.asin,
         productName,
-      })
+      }) ||
+      commerceMemory.mustAvoidAsins.includes(asinResult.asin.toUpperCase())
     ) {
+      const lesson = "Amazon ACCEPTED is not publicly BUYABLE / Anker brand-gate experience";
+      memoryCitations.push(lesson);
       rejections.push({
         cjPid: product.pid,
         productName,
         reasonCode: "PROOF_001_BRAND_FAILURE_CLASS",
-        reason: `Rejected ASIN ${asinResult.asin} — Proof 001 failure class`,
-        evidence: { asin: asinResult.asin },
+        reason: `Rejected ASIN ${asinResult.asin} using institutional memory: ${lesson}`,
+        evidence: {
+          asin: asinResult.asin,
+          institutionalMemory: true,
+          mustAvoidAsins: commerceMemory.mustAvoidAsins,
+        },
       });
       continue;
     }
@@ -411,8 +446,27 @@ export async function runPillowCommercePresaleCycle(
         reasonCode: restrictions.qualificationRequired
           ? "QUALIFICATION_REQUIRED"
           : "AMAZON_RESTRICTION",
-        reason: `Amazon restriction preflight blocked: ${restrictions.reasons.join(" | ") || "restricted"}`,
-        evidence: { asin: asinResult.asin, reasons: restrictions.reasons },
+        reason: `Amazon restriction preflight blocked (institutional rule: preflight before recommend): ${restrictions.reasons.join(" | ") || "restricted"}`,
+        evidence: {
+          asin: asinResult.asin,
+          reasons: restrictions.reasons,
+          institutionalLesson: "commerce.lesson.preflight_restrictions_mandatory",
+        },
+      });
+      captureInstitutionalMemory({
+        workspaceId: input.workspaceId,
+        canonicalKey: `commerce.restriction.${asinResult.asin}`,
+        title: `Amazon restriction observed for ASIN ${asinResult.asin}`,
+        statement: restrictions.reasons.join(" | ") || "Amazon listing restriction",
+        memoryClass: "commerce",
+        authority: "marketplace_data",
+        epistemicStatus: "FACT",
+        source: "commerce_event",
+        tags: ["commerce", "amazon", "restriction"],
+        evidenceRefs: [`asin:${asinResult.asin}`, ...restrictions.reasons.slice(0, 3)],
+        linkedEntities: { asin: asinResult.asin, cjPid: product.pid },
+        category: "C",
+        actor: "pillow-commerce-presale",
       });
       continue;
     }
@@ -507,6 +561,7 @@ export async function runPillowCommercePresaleCycle(
       "Offer not yet published — BUYABLE must be verified after publication",
       "Catalog ASIN match is keyword-based; verify product fit before approval",
       `Starting quantity limited to ${DEFAULT_START_QUANTITY} for exposure control`,
+      ...commerceMemory.lessons.slice(0, 2).map((l) => `Institutional memory: ${l}`),
     ];
 
     const recommendation = buildRecommendation({
@@ -524,6 +579,7 @@ export async function runPillowCommercePresaleCycle(
       cjPid: product.pid,
       cjVid: variant.vid,
     });
+    recommendation.fullNarrative = `${recommendation.fullNarrative}\n\n${commerceMemory.formatted}\nMemory citations: ${memoryCitations.join(" | ") || "preflight lessons applied"}`;
 
     const now = new Date().toISOString();
     const mapping = {
@@ -605,6 +661,36 @@ export async function runPillowCommercePresaleCycle(
 
     repo.saveMapping(mapping, input.workspaceId);
     repo.saveOpportunity(qualified);
+
+    captureInstitutionalMemory({
+      workspaceId: input.workspaceId,
+      canonicalKey: `commerce.recommendation.${qualified.opportunityId}`,
+      title: `Pillow recommended ${productName} for Grand King approval`,
+      statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd}. Publication blocked until Grand King approval.`,
+      memoryClass: "pillow_self_improvement",
+      authority: "pillow_recommendation",
+      epistemicStatus: "RECOMMENDATION",
+      source: "commerce_event",
+      tags: ["commerce", "recommendation", "first-dollar"],
+      evidenceRefs: [
+        `asin:${asinResult.asin}`,
+        `sku:${amazonSellerSku}`,
+        `profit:${economics.expectedProfitUsd}`,
+      ],
+      linkedEntities: {
+        asin: asinResult.asin,
+        cjPid: product.pid,
+        amazonSellerSku,
+        opportunityId: qualified.opportunityId,
+      },
+      outcomeLink: {
+        recommendationId: qualified.opportunityId,
+        approvalId: approvalId ?? undefined,
+        listingSku: amazonSellerSku,
+      },
+      category: "C",
+      actor: "pillow-commerce-presale",
+    });
     break;
   }
 
@@ -673,5 +759,47 @@ export function applyOwnerDecisionToOpportunity(input: {
   };
   // Owner approval does NOT auto-publish in this mission.
   repo.updateOpportunity(updated);
+
+  // Outcome-link: GK decision must update institutional memory for recommendation evaluation.
+  const asin = updated.mapping.asin;
+  const recKey = `commerce.recommendation.${updated.opportunityId}`;
+  captureInstitutionalMemory({
+    workspaceId: input.workspaceId,
+    canonicalKey: `commerce.owner_decision.${updated.opportunityId}`,
+    title: `Grand King ${input.outcome} commerce opportunity ${asin}`,
+    statement: `Grand King ${input.outcome} Pillow recommendation for ASIN ${asin} (opportunity ${updated.opportunityId}).`,
+    memoryClass: "commerce",
+    authority: "grand_king_decision",
+    epistemicStatus: "OUTCOME",
+    source: "outcome",
+    tags: ["commerce", "owner-decision", input.outcome.toLowerCase()],
+    evidenceRefs: [recKey, `opportunity:${updated.opportunityId}`, `asin:${asin}`],
+    linkedEntities: {
+      asin,
+      opportunityId: updated.opportunityId,
+      approvalId: updated.approvalId ?? "",
+    },
+    outcomeLink: {
+      recommendationId: updated.opportunityId,
+      approvalId: updated.approvalId,
+      listingSku: updated.mapping.sellerSku,
+      result: input.outcome,
+    },
+    category: "B",
+    actor: "grand-king",
+    approvedBy: "grand-king",
+  });
+  linkOutcomeToMemory({
+    workspaceId: input.workspaceId,
+    canonicalKey: recKey,
+    outcomeLink: {
+      recommendationId: updated.opportunityId,
+      approvalId: updated.approvalId,
+      listingSku: updated.mapping.sellerSku,
+      result: input.outcome,
+    },
+    actor: "grand-king",
+  });
+
   return updated;
 }

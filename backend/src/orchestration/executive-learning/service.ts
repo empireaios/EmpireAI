@@ -11,6 +11,20 @@ import {
   type PendingExecutiveLearning,
 } from "@empireai/pillow";
 
+/** Local governance guard — keeps Brain deployable even if pillow dist lags source. */
+function assertCannotBypassConstitution(pending: PendingExecutiveLearning): void {
+  const text = `${pending.title} ${pending.description} ${pending.observation}`.toLowerCase();
+  const malicious =
+    /bypass constitution|ignore digital soul|override grand king|disable constitutional|skip approval/.test(
+      text,
+    );
+  if (malicious) {
+    throw new Error(
+      "Learning rejected: content attempts constitutional / Digital Soul bypass",
+    );
+  }
+}
+
 import type { AuditLogger } from "../../brain/audit/audit-logger.js";
 import { SqliteExecutiveLearningRepository } from "./repository/sqlite-executive-learning-repository.js";
 
@@ -97,8 +111,15 @@ export function observeExecutiveConversation(
       expiresAt: null,
       requiresGrandKingApproval: candidate.requiresGrandKingApproval,
     };
+    try {
+      assertCannotBypassConstitution(record);
+    } catch {
+      // Malicious / constitutional-bypass candidates are stored as Rejected — never pending.
+      record.status = "rejected";
+      record.impactSummary = `${record.impactSummary} [auto-rejected: constitutional bypass attempt]`;
+    }
     repository.savePending(record);
-    created.push(record);
+    if (record.status !== "rejected") created.push(record);
   }
 
   for (const sessionItem of pipeline.sessionContext) {
@@ -110,7 +131,8 @@ export function observeExecutiveConversation(
       title: sessionItem.title,
       description: sessionItem.description,
       category: "D",
-      status: "expired",
+      // Session-active until TTL — never immediately expired (bundle retrieval).
+      status: "session_active",
       observation: sessionItem.observation.observation,
       evidence: sessionItem.observation.evidence,
       confidence: sessionItem.confidence,
@@ -180,9 +202,10 @@ export function approveExecutiveLearning(
   repository.ensureTables();
   const pending = repository.getPending(input.learningId, input.workspaceId);
   if (!pending) return null;
-  if (pending.category === "D") {
+  if (pending.category === "D" || pending.status === "session_active") {
     throw new Error("Temporary session context cannot be promoted to Executive Knowledge Base");
   }
+  assertCannotBypassConstitution(pending);
 
   const now = new Date().toISOString();
   const knowledge: ExecutiveKnowledgeEntry = {
@@ -240,6 +263,36 @@ export function editExecutiveLearning(
   input: EditLearningInput,
 ): PendingExecutiveLearning | null {
   repository.ensureTables();
+  const existing = repository.getPending(input.learningId, input.workspaceId);
+  if (!existing) return null;
+
+  // Governance: never escalate Category D (Experimental) into durable A/B/C via edit.
+  if (
+    existing.category === "D" &&
+    input.category !== undefined &&
+    input.category !== "D"
+  ) {
+    throw new Error(
+      "Cannot escalate temporary session context (Category D) to durable learning via edit",
+    );
+  }
+  // Escalating into Permanent (A) always requires GK approval flag.
+  if (input.category === "A" && existing.category !== "A") {
+    const updated = repository.editPending({
+      ...input,
+      category: "A",
+    });
+    if (!updated) return null;
+    const gated: PendingExecutiveLearning = {
+      ...updated,
+      requiresGrandKingApproval: true,
+      status:
+        updated.status === "session_active" ? "pending_confirmation" : updated.status,
+    };
+    repository.savePending(gated);
+    return gated;
+  }
+
   return repository.editPending(input);
 }
 
@@ -290,9 +343,7 @@ export function buildReasoningBundleForWorkspace(input: {
   repository.ensureTables();
   repository.expireSessionContext(input.workspaceId);
   const approved = repository.listApprovedKnowledge(input.workspaceId);
-  const sessionContext = repository
-    .listPending(input.workspaceId)
-    .filter((item) => item.category === "D" && item.status !== "expired");
+  const sessionContext = repository.listSessionContext(input.workspaceId);
 
   return buildExecutiveLearningReasoningBundle({
     currentObjective: input.currentObjective,

@@ -190,12 +190,26 @@ describe("pillow-commerce-presale", () => {
             { status: 200 },
           );
         }
-        if (url.includes("/product/stock/queryByPid")) {
+        if (
+          url.includes("/product/stock/queryByVid") ||
+          url.includes("/product/stock/queryBySku") ||
+          url.includes("/product/stock/queryByPid")
+        ) {
           return new Response(
             JSON.stringify({
               code: 200,
               result: true,
-              data: [{ sku: "SPA-1", vid: "VGOOD", inventory: 120 }],
+              data: [{ sku: "SPA-1", vid: "VGOOD", totalInventoryNum: 120, cjInventoryNum: 120 }],
+            }),
+            { status: 200 },
+          );
+        }
+        if (url.includes("/product/variant/query")) {
+          return new Response(
+            JSON.stringify({
+              code: 200,
+              result: true,
+              data: [{ vid: "VGOOD", variantSku: "SPA-1", variantSellPrice: 3.2 }],
             }),
             { status: 200 },
           );

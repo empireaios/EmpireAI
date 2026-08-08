@@ -261,10 +261,24 @@ See section in `CHATGPT_COMPLETE_STATE_HANDOFF.md` (syllabus pointers). Full UCT
 
 ---
 
-## 37. Final verdict
+## 37. Institutional memory gate (NON-NEGOTIABLE)
+
+Complete State Audit **must not** certify MEMORY / INSTITUTIONAL LEARNING merely because code, tables, vector stores, embeddings, APIs, or unit tests exist.
+
+Required lifecycle evidence (see `INSTITUTIONAL_MEMORY_CERTIFICATION.md`):
+
+`CAPTURE → PERSIST → SURVIVE RESTART → RETRIEVE → ENTER REASONING → AFFECT DECISION → RECEIVE OUTCOME → UPDATE / LEARN → RETAIN PROVENANCE → CONTINUE ACCUMULATING`
+
+Future major certifications must include a **MEMORY IMPACT CHECK**. Chat transcripts alone are insufficient.
+
+---
+
+## 38. Final verdict
 
 # COMPLETE STATE PARTIALLY CERTIFIED
 
 **Rationale:** Mission inventory complete; programmes accounted; production usable; builds green for Pillow/Backend; Complete State Package produced. Remaining: live commerce activation is Grand-King-gated (honest), frontend build/clean-clone results must match snapshot, and session rate-limit remediation must land on `origin/main` + Railway. Capability claims for **live Amazon publish** are correctly **not** certified as LIVE.
 
 **Supplier→Amazon:** READY AFTER GRAND KING ACTION
+
+**Institutional memory:** Gate defined in §37; live verdict in `INSTITUTIONAL_MEMORY_CERTIFICATION_EVIDENCE.json` after production cert.

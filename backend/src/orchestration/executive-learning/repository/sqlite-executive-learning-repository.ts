@@ -74,6 +74,22 @@ export class SqliteExecutiveLearningRepository {
         `SELECT record_json FROM executive_learning_pending
          WHERE workspace_id = @workspaceId
            AND status IN ('pending_confirmation', 'pending_approval')
+           AND category IN ('A', 'B', 'C')
+         ORDER BY updated_at DESC`,
+      )
+      .all({ workspaceId }) as Array<Record<string, unknown>>;
+    return rows.map((row) => mapJson<PendingExecutiveLearning>(row));
+  }
+
+  /** Active Category D session context (not yet TTL-expired). */
+  listSessionContext(workspaceId: string): PendingExecutiveLearning[] {
+    const db = getDatabase();
+    const rows = db
+      .prepare(
+        `SELECT record_json FROM executive_learning_pending
+         WHERE workspace_id = @workspaceId
+           AND category = 'D'
+           AND status = 'session_active'
          ORDER BY updated_at DESC`,
       )
       .all({ workspaceId }) as Array<Record<string, unknown>>;
@@ -252,6 +268,61 @@ export class SqliteExecutiveLearningRepository {
       updatedAt: new Date().toISOString(),
     });
     return archived;
+  }
+
+  listAllKnowledge(workspaceId: string): ExecutiveKnowledgeEntry[] {
+    const db = getDatabase();
+    const rows = db
+      .prepare(
+        `SELECT record_json FROM executive_knowledge_base
+         WHERE workspace_id = @workspaceId
+         ORDER BY updated_at DESC`,
+      )
+      .all({ workspaceId }) as Array<Record<string, unknown>>;
+    return rows.map((row) => mapJson<ExecutiveKnowledgeEntry>(row));
+  }
+
+  findApprovedByCanonicalKey(
+    workspaceId: string,
+    canonicalKey: string,
+  ): ExecutiveKnowledgeEntry | null {
+    const approved = this.listApprovedKnowledge(workspaceId);
+    return approved.find((item) => item.canonicalKey === canonicalKey) ?? null;
+  }
+
+  supersedeKnowledge(input: {
+    workspaceId: string;
+    oldLearningId: string;
+    newKnowledge: ExecutiveKnowledgeEntry;
+  }): ExecutiveKnowledgeEntry | null {
+    const existing = this.getKnowledge(input.oldLearningId, input.workspaceId);
+    if (!existing) return null;
+    const superseded: ExecutiveKnowledgeEntry = {
+      ...existing,
+      status: "superseded",
+      supersededBy: input.newKnowledge.learningId,
+    };
+    const db = getDatabase();
+    const now = new Date().toISOString();
+    db.prepare(
+      `UPDATE executive_knowledge_base
+       SET status = 'superseded', record_json = @json, updated_at = @updatedAt
+       WHERE learning_id = @learningId AND workspace_id = @workspaceId`,
+    ).run({
+      learningId: input.oldLearningId,
+      workspaceId: input.workspaceId,
+      json: JSON.stringify(superseded),
+      updatedAt: now,
+    });
+    this.promoteToKnowledge(input.newKnowledge.learningId, {
+      ...input.newKnowledge,
+      supersedes: input.oldLearningId,
+    });
+    return input.newKnowledge;
+  }
+
+  saveKnowledgeDirect(knowledge: ExecutiveKnowledgeEntry): void {
+    this.promoteToKnowledge(knowledge.learningId, knowledge);
   }
 
   expireSessionContext(workspaceId: string): void {
