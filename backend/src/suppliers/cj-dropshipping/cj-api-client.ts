@@ -146,6 +146,19 @@ export class CjApiClient {
     });
   }
 
+  /** Variant details — often carries variantSellPrice when product/list omits cost. */
+  queryProductVariants(pid: string): Promise<{
+    code: number;
+    result: boolean;
+    message: string;
+    data?: unknown;
+  }> {
+    return this.request({
+      path: "/product/variant/query",
+      query: { pid },
+    });
+  }
+
   queryStockByPid(pid: string): Promise<CjStockResponse> {
     return this.request<CjStockResponse>({
       path: "/product/stock/queryByPid",

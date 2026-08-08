@@ -12,7 +12,12 @@ import {
   openAmazonUsSession,
   searchCatalogAsin,
 } from "../amazon-commerce-preflight.js";
-import { pickLiveCjVariant, coerceUsdNumber } from "../cj-live-normalize.js";
+import {
+  pickLiveCjVariant,
+  coerceUsdNumber,
+  mergeCjVariantQueryIntoProduct,
+  summarizeCjPriceFields,
+} from "../cj-live-normalize.js";
 import { calculateExpectedContribution, proposeSellingPrice } from "../economics.js";
 import {
   DEFAULT_START_QUANTITY,
@@ -246,7 +251,17 @@ export async function runPillowCommercePresaleCycle(
       /* list payload may still be usable */
     }
 
-    const picked = pickLiveCjVariant(detail);
+    let picked = pickLiveCjVariant(detail);
+    if (picked.costUsd === null) {
+      try {
+        const variantQuery = await cj.queryProductVariants(product.pid);
+        detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
+        picked = pickLiveCjVariant(detail);
+      } catch {
+        /* keep prior pick */
+      }
+    }
+
     const variant = picked.variant;
     const costAmount = picked.costUsd;
     if (!variant?.vid) {
@@ -255,6 +270,7 @@ export async function runPillowCommercePresaleCycle(
         productName,
         reasonCode: "INCOMPLETE_IDENTITY",
         reason: "No CJ variant identity (vid) available",
+        evidence: summarizeCjPriceFields(detail),
       });
       continue;
     }
@@ -264,6 +280,7 @@ export async function runPillowCommercePresaleCycle(
         productName,
         reasonCode: "COST_UNAVAILABLE",
         reason: "Live supplier cost UNAVAILABLE — refusing static heuristic",
+        evidence: summarizeCjPriceFields(detail),
       });
       continue;
     }

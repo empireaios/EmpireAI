@@ -11,10 +11,71 @@ export function coerceUsdNumber(value: unknown): number | null {
   return null;
 }
 
+export function asCjVariantArray(value: unknown): CjProductVariant[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const row = entry as Record<string, unknown>;
+      const vid = String(row.vid ?? row.variantId ?? "").trim();
+      const sku = String(row.sku ?? row.variantSku ?? vid).trim();
+      if (!vid && !sku) return null;
+      return {
+        vid: vid || sku,
+        sku: sku || vid,
+        sellPrice: coerceUsdNumber(row.sellPrice) ?? undefined,
+        variantSellPrice: coerceUsdNumber(row.variantSellPrice) ?? undefined,
+        price: (row.price as number | string | undefined) ?? undefined,
+        suggestSellPrice:
+          coerceUsdNumber(row.suggestSellPrice) ??
+          coerceUsdNumber(row.variantSugSellPrice) ??
+          undefined,
+        inventory: typeof row.inventory === "number" ? row.inventory : undefined,
+      } satisfies CjProductVariant;
+    })
+    .filter((v): v is CjProductVariant => Boolean(v));
+}
+
 export function listCjVariants(product: CjProduct): CjProductVariant[] {
-  const fromVariants = Array.isArray(product.variants) ? product.variants : [];
-  const fromList = Array.isArray(product.variantList) ? product.variantList : [];
+  const fromVariants = asCjVariantArray(product.variants);
+  const fromList = asCjVariantArray(product.variantList);
   return [...fromVariants, ...fromList].filter((v) => v && (v.vid || v.sku));
+}
+
+/** Merge a raw CJ variant/query payload into a product for cost/identity extraction. */
+export function mergeCjVariantQueryIntoProduct(product: CjProduct, variantPayload: unknown): CjProduct {
+  let variants: CjProductVariant[] = [];
+  if (Array.isArray(variantPayload)) {
+    variants = asCjVariantArray(variantPayload);
+  } else if (variantPayload && typeof variantPayload === "object") {
+    const row = variantPayload as Record<string, unknown>;
+    variants = asCjVariantArray(
+      row.variants ?? row.variantList ?? row.list ?? row.data ?? variantPayload,
+    );
+  }
+  if (variants.length === 0) return product;
+  return {
+    ...product,
+    variants: [...listCjVariants(product), ...variants],
+  };
+}
+
+export function summarizeCjPriceFields(product: CjProduct): Record<string, unknown> {
+  const variants = listCjVariants(product).slice(0, 3).map((v) => ({
+    vid: v.vid,
+    sku: v.sku,
+    sellPrice: v.sellPrice ?? null,
+    variantSellPrice: v.variantSellPrice ?? null,
+    price: v.price ?? null,
+  }));
+  return {
+    sellPrice: product.sellPrice ?? null,
+    productPrice: product.productPrice ?? null,
+    nowPrice: product.nowPrice ?? null,
+    discountPrice: product.discountPrice ?? null,
+    variantCount: listCjVariants(product).length,
+    variants,
+  };
 }
 
 export function extractCjVariantCostUsd(variant: CjProductVariant): number | null {
