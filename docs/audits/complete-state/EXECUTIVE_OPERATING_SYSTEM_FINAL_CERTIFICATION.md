@@ -1,7 +1,7 @@
 # Executive Operating System — Final Operational Certification
 
 **Date:** 2026-08-08  
-**Mission:** EOS FINAL ACCEPTANCE, HARDENING & PRODUCTION CLOSURE  
+**Mission:** EOS FINAL PRODUCTION CLOSURE — Vercel blocker → Grand King journey  
 **Discipline:** FIX → PROTECT → VERIFY → PRESERVE → MOVE FORWARD  
 
 ## FINAL EOS VERDICT
@@ -12,101 +12,71 @@ EXECUTIVE OPERATING SYSTEM NOT CERTIFIED
 
 ### Exact remaining blockers (EmpireAI)
 
-1. **Production Vercel frontend serves a LEGACY Cockpit bundle** — authenticated scan of `https://empire-ai.co/cockpit` found:
-   - `legacyUnlockCopy: true` (“conversation will unlock when ready”)
-   - `legacyPreparingCopy: true`
-   - `retryPlaceholder: true` (“Retry loading executive widgets”)
-   - `eosFixInBundle: false` (always-on composer / deferred strips / posture copy **absent**)
-2. Therefore Grand King **chat focus / caret / typing / Send UX** and **no-Retry Home widgets** remain **UNPROVEN / FAILED** on production UI, even though Brain API chat works.
+1. **Production Vercel frontend is SOURCE_PUSHED_NOT_PRODUCTION_DEPLOYED**
+   - Proven by `eos-deployment-truth.mjs` → `EOS_DEPLOYMENT_TRUTH_EVIDENCE.json`
+   - `sourceHasEosFix: true` on HEAD `650dba63`
+   - Authenticated production scan: `legacyUnlockCopy: true`, `retryPlaceholder: true`, `eosFixInBundle: false`
+   - `/login` CDN `Age ≈ 1032561s` (~11.9 days) with `X-Vercel-Cache: HIT`
+   - `/api/eos-bundle-stamp` → **404** (stamp not live yet)
+2. **Cannot publish the repaired bundle from this machine without Vercel auth**
+   - `npx vercel deploy --prod --yes` → `No existing credentials found`
+   - `VERCEL_TOKEN` unset; no `~/.vercel` auth directory
+   - Browser Vercel dashboard requires Grand King GitHub login
 
 ### Cursor harness failure (SEPARATE — not EmpireAI)
 
-- Browser navigate to empire-ai.co → `chrome-error://chromewebdata/` (black page) while `curl` login returns **200**
-- Vercel production deploy command approval UI: `Timeout waiting for bubble creation`
+- Prior deploy-approval UI: `Timeout waiting for bubble creation`
+- Browser navigate to empire-ai.co previously → `chrome-error://chromewebdata/` while `curl` login returns **200**
 - Smart-mode approval bubbles intermittently fail to render
 
 ---
 
-## Current truth (inspected, not assumed)
+## Phase 1 — Vercel deployment truth (proven)
+
+| Fact | Evidence |
+|------|----------|
+| Domain | `https://empire-ai.co` served by **Vercel** (`Server: Vercel`, `X-Vercel-Id`) |
+| Linked local project | `empireai` / `prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr` / org `team_gdcskAnaJteKW7BYtw8zlSWy` |
+| Framework on domain | **Next.js** (`X-Matched-Path`, Turbopack `/_next/static/chunks/*`) = `empireai-web`, **not** root Vite `frontend/` |
+| Root `vercel.json` | Builds Vite `frontend/` — **not** what serves empire-ai.co Cockpit |
+| `empireai-web/vercel.json` | Next.js + `BRAIN_API_URL` |
+| Git repo (Railway side) | `empireaios/EmpireAI` auto-redeploys Brain frequently |
+| Vercel auto-deploy from main | **Not occurring** — CDN Age ~12 days while origin/main advanced through EOS UX (`2e0d74ba`+) and Railway redeployed today |
+| Root cause | **Silent deployment drift:** source pushed / Railway updated; Vercel production Cockpit bundle left stale (CLI deploys blocked historically; no credentials now; no GitHub Actions deploy workflow) |
+
+---
+
+## Current truth
 
 | Item | Value |
 |------|-------|
-| Starting baseline referenced | `124606e1` |
-| Work after baseline preserved | `d7df71e2` (tighten EOS cert / 201 sessionOk / UX-pending verdict) |
-| Local HEAD | `d7df71e2` |
-| origin/main HEAD | `d7df71e2` |
-| Ahead / behind | **0 / 0** |
-| Railway deploy | `317869c8` **SUCCESS** |
-| Railway commit | `d7df71e2` |
-| Brain `/health/live` | **200** (post-verify) |
-| Brain `/health/ready` | **200** `grandKingAccess: ready` |
-| Pillow `/api/pillow/health` | **200** |
-| Vercel project (local link) | `empireai` / `prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr` |
-| Vercel UX bundle | **LEGACY** (see authenticated scan) |
-| Uncommitted WIP | Unrelated executive-learning / pillow tmp / shell WIP — **not** part of this closure |
+| Local HEAD (pre this commit) | `650dba63` |
+| origin/main | `650dba63` (0/0 before drift-protection commit) |
+| Railway | Online; latest SUCCESS `d7882acc` (post-`650dba63` redeploys) |
+| Auth / Grand King identity | PASS (`grand-king`, id persistent) |
+| EOS API path | PASS (Pillow session 201 accepted) |
+| Production bundle | LEGACY — not certifiable |
 
 ---
 
-## Final report (mandatory fields)
+## Deployment-drift protection added
 
-1. **Starting HEAD discovered:** `d7df71e2` (after `124606e1`; not reset)
-2. **Final local HEAD:** `d7df71e2`
-3. **Final origin/main HEAD:** `d7df71e2`
-4. **Ahead/behind:** 0 / 0
-5. **Railway deployed version/commit:** deploy `317869c8` → commit `d7df71e2`
-6. **Vercel deployed version/commit:** **UNPROVEN exact git SHA**; authenticated bundle scan proves **legacy UX** still live
-7. **Production login:** **PASS** (Brain + BFF; auth regression probe PASS)
-8. **Grand King identity/session:** **PASS** — `platformIdentity: grand-king`, id `4b1e5e51-7ec6-4a1c-8272-337314a29f82`, session cookie created, refresh preserves session
-9. **Executive Home (API):** **PASS** — `/brain/dispatch` executive-home load 200; `_fallback: false`
-10. **Placeholder/Retry/fake-data (UI):** **FAIL** — production Cockpit still contains Retry widget copy + unlock/disabled-chat copy
-11. **Brain Sync:** API path healthy; UI Brain Sync READY string **UNPROVEN** on live bundle (legacy Home still present)
-12. **Pillow Host:** **PASS** (health 200; session **201**; chat 200)
-13. **Digital Soul:** Gate executed in chat trace (`digitalSoulGateMs` present); no constitutional refusal in reply — **PASS for this journey** (no bypass)
-14. **Constitutional Gate:** Functioning (no dead-end; reply was real LLM content, not gate refusal) — **PASS**
-15. **Chat visibility (UI):** Executive Chat markers present in authenticated Cockpit HTML — **PASS presence**
-16. **Chat focus/caret (UI):** **FAIL / UNPROVEN** — legacy unlock copy still shipped (`conversation will unlock when ready`)
-17. **Typing (UI):** **FAIL / UNPROVEN** — same legacy composer gating still in production bundle
-18. **Send (UI):** **UNPROVEN** on browser; API Send path **PASS**
-19. **Real Pillow response:** **PASS** — `"I am operational."` via production Brain Pillow chat
-20. **Correct executive pipeline:** **PASS** — `kind: "llm"`, provider openai, Digital Soul gate timed; no Brain-assistant fallback used
-21. **Refresh/session persistence:** Auth probe refresh `/api/auth/me` **PASS**; full UI refresh journey **UNPROVEN** (browser harness failed)
-22. **UI responsiveness:** Browser harness failed (`chrome-error`); **UNPROVEN** for &lt;100ms acknowledgement on production UI
-23. **Production stability:** Brain remained live/ready after bounded probes; elevated lag (~601ms) observed during one EH load — **WATCH** (starvation class not fully closed)
-24. **Post-verification `/health/live`:** **200**
-25. **Post-verification `/health/ready`:** **200** / ready
-26. **Regression protections verified/added:**
-    - Auth: `login-regression-probe.mjs` **PASS**
-    - Pillow 201 acceptance in `eos-final-prod-verify.mjs`
-    - UX bundle gate → verdict `API_PATH_PASS_UX_PENDING` (does not fake EOS_FULL_PASS)
-    - Authenticated Vercel scan script `_scan-vercel-eos-authed.mjs`
-27. **Remaining known regressions:**
-    - Vercel legacy UX bundle (disabled chat / Retry)
-    - Intermittent Brain 502/timeout class (recovered via redeploy earlier; not eliminated)
-28. **Cursor harness failures (SEPARATED):**
-    - Approval bubble timeout on Vercel deploy command
-    - Browser navigate → `chrome-error://chromewebdata/` while curl login 200
-29. **Security/credential exposure check:** No credentials committed; probes use env/runtime only; secrets not printed in reports
-30. **FINAL EOS VERDICT:** **EXECUTIVE OPERATING SYSTEM NOT CERTIFIED**
+Within existing architecture only:
+
+1. `empireai-web/app/api/eos-bundle-stamp` — runtime stamp (`VERCEL_GIT_COMMIT_SHA`, `eosFixInBundle`)
+2. `docs/audits/complete-state/eos-deployment-truth.mjs` — classifies  
+   `SOURCE_PUSHED` vs `DEPLOYMENT_READY` signals vs `PRODUCTION_BUNDLE_VERIFIED`
+3. Authenticated surface scan wired into `eos-final-prod-verify.mjs` + `_scan-vercel-eos-authed.mjs`
 
 ---
 
-## Tightening evidence (no fake success)
+## Required next action (Grand King)
 
-| Claim | Allowed? | Result |
-|-------|----------|--------|
-| API path PASS ⇒ EOS CERTIFIED | **NO** | Correctly withheld |
-| health=200 ⇒ operable UI | **NO** | Legacy UI still live |
-| Git push ⇒ Vercel updated | **NO** | Proven false by authenticated scan |
-| Pillow API chat ⇒ UI typing works | **NO** | Legacy unlock copy still present |
+Provide one of:
 
----
+1. **`VERCEL_TOKEN`** in the environment for this session, then Cursor will run  
+   `npx vercel deploy --prod --yes` from `empireai-web/`, **or**
+2. Complete **GitHub → Vercel login** in the open browser tab and redeploy project `empireai` to Production alias `empire-ai.co`, **or**
+3. Run locally: `cd empireai-web && npx vercel login && npx vercel deploy --prod --yes`
 
-## Minimum next action to close (outside Cursor harness if needed)
-
-Deploy current `empireai-web` from `d7df71e2` to Vercel project `empireai` (`npx vercel deploy --prod` from `empireai-web/`), then re-run:
-
-1. `node docs/audits/complete-state/_scan-vercel-eos-authed.mjs` → require `eosFixInBundle: true` and `retryPlaceholder: false`
-2. `node docs/audits/complete-state/eos-final-prod-verify.mjs` → require `EOS_FULL_PASS`
-3. Real browser Grand King journey: focus → caret → type → Send → response → refresh
-
-Until those pass: **do not certify**.
+After production assets show `eosFixInBundle: true` / `legacyUnlockCopy: false` / `retryPlaceholder: false`, continue Phases 4–14 of the same closure mission (no new programme).

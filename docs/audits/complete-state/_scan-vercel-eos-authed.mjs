@@ -62,6 +62,11 @@ for (const rel of [...scriptSet].slice(0, 60)) {
   }
 }
 
+const stampRes = await fetch(`${WEB}/api/eos-bundle-stamp`, { cache: "no-store" });
+const stamp = stampRes.ok ? await stampRes.json().catch(() => null) : null;
+const loginHead = await fetch(`${WEB}/login`, { method: "HEAD" });
+const loginCdnAgeSec = Number(loginHead.headers.get("age") ?? NaN);
+
 const out = {
   loginStatus: login.status,
   meStatus: me.status,
@@ -78,7 +83,15 @@ const out = {
   legacyUnlockCopy: /conversation will unlock when ready/i.test(scan),
   legacyPreparingCopy: /Preparing Executive Intelligence/i.test(scan),
   hasExecutiveChat: /Executive Chat|executive-pillow-query/i.test(scan),
+  stampStatus: stampRes.status,
+  stamp,
+  loginCdnAgeSec: Number.isFinite(loginCdnAgeSec) ? loginCdnAgeSec : null,
 };
-out.eosFixInBundle = out.composerAlwaysOn || out.deferredStrips || out.postureClear;
+out.eosFixInBundle = out.composerAlwaysOn || out.deferredStrips || out.postureClear || Boolean(stamp?.eosFixInBundle);
+out.productionBundleVerified =
+  Boolean(out.eosFixInBundle) && !out.legacyUnlockCopy && !out.retryPlaceholder;
+out.deploymentClassification = out.productionBundleVerified
+  ? "PRODUCTION_BUNDLE_VERIFIED"
+  : "SOURCE_PUSHED_NOT_PRODUCTION_DEPLOYED";
 console.log(JSON.stringify(out, null, 2));
-process.exit(out.eosFixInBundle && out.hasSessionCookie && out.meStatus === 200 ? 0 : 1);
+process.exit(out.productionBundleVerified && out.hasSessionCookie && out.meStatus === 200 ? 0 : 1);

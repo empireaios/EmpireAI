@@ -1,0 +1,40 @@
+{
+  "mission": "EOS_DEPLOYMENT_TRUTH",
+  "checkedAt": "2026-08-08T03:22:50.268Z",
+  "web": "https://empire-ai.co",
+  "layers": {
+    "SOURCE_PUSHED": {
+      "localHead": "650dba6335e598790afd9c74438479800fd64d94",
+      "originMain": "650dba6335e598790afd9c74438479800fd64d94",
+      "aheadBehind": "0\t0",
+      "sourceHasEosFix": true
+    },
+    "DEPLOYMENT_READY": {
+      "note": "Vercel Ready ≠ domain verified. Stamp/CDN used as deployment signals.",
+      "loginStatus": 200,
+      "loginCdnAgeSec": 1032561,
+      "vercelCache": "HIT",
+      "cdnLooksStale": true,
+      "stampStatus": 404,
+      "stamp": null,
+      "sourceMatchesStamp": false
+    },
+    "PRODUCTION_BUNDLE_VERIFIED": {
+      "scanned": true,
+      "loginStatus": 200,
+      "cockpitStatus": 200,
+      "scriptsScanned": 60,
+      "composerAlwaysOn": false,
+      "deferredStrips": false,
+      "postureClear": false,
+      "retryPlaceholder": true,
+      "legacyUnlockCopy": true,
+      "legacyPreparingCopy": true,
+      "hasExecutiveChat": true,
+      "eosFixInBundle": false,
+      "productionBundleVerified": false
+    }
+  },
+  "classification": "SOURCE_PUSHED_NOT_PRODUCTION_DEPLOYED",
+  "ok": false
+}

@@ -151,22 +151,56 @@ async function main() {
 
   evidence.stages.healthReady = await req(BRAIN, "/health/ready");
 
-  // Web surface reachability (Vercel) + EOS UX bundle markers
+  // Web surface reachability (Vercel) + AUTHENTICATED EOS UX bundle markers
+  // Unauthenticated /cockpit redirects to /login and cannot prove the Cockpit bundle.
   try {
     const webStarted = Date.now();
     const webRes = await fetch(`${WEB}/login`, { redirect: "follow" });
+    const loginAgeSec = Number(webRes.headers.get("age") ?? NaN);
     evidence.stages.webLoginPage = {
       status: webRes.status,
       ms: Date.now() - webStarted,
       finalUrl: webRes.url,
+      cdnAgeSec: Number.isFinite(loginAgeSec) ? loginAgeSec : null,
+      vercelCache: webRes.headers.get("x-vercel-cache"),
     };
+    const stampStarted = Date.now();
+    const stampRes = await fetch(`${WEB}/api/eos-bundle-stamp`, { cache: "no-store" });
+    const stampBody = stampRes.ok ? await stampRes.json().catch(() => null) : null;
+    evidence.stages.eosBundleStamp = {
+      status: stampRes.status,
+      ms: Date.now() - stampStarted,
+      body: stampBody,
+    };
+
+    const bffLogin = await fetch(`${WEB}/api/auth/login`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie: cookie() },
+      body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+    });
+    const setCookie =
+      typeof bffLogin.headers.getSetCookie === "function"
+        ? bffLogin.headers.getSetCookie()
+        : bffLogin.headers.get("set-cookie")
+          ? [bffLogin.headers.get("set-cookie")]
+          : [];
+    for (const c of setCookie) {
+      if (!c) continue;
+      const n = String(c).split("=")[0];
+      const i = jar.findIndex((x) => x.startsWith(`${n}=`));
+      if (i >= 0) jar[i] = c;
+      else jar.push(c);
+    }
+
     const cockpitStarted = Date.now();
-    const cockpitRes = await fetch(`${WEB}/cockpit`, { redirect: "manual" });
+    const cockpitRes = await fetch(`${WEB}/cockpit`, {
+      headers: { cookie: cookie() },
+      redirect: "follow",
+    });
     const cockpitHtml = await cockpitRes.text().catch(() => "");
-    // App Router keeps component strings in JS chunks, not the HTML shell.
     const scriptUrls = [...cockpitHtml.matchAll(/\/_next\/static\/[^"']+\.js/g)]
       .map((m) => m[0])
-      .slice(0, 12);
+      .slice(0, 60);
     let chunkText = "";
     for (const rel of scriptUrls) {
       try {
@@ -177,16 +211,33 @@ async function main() {
       }
     }
     const scan = `${cockpitHtml}\n${chunkText}`;
+    const composerAlwaysOn = /type now; Send when ready|Ask Pillow… \(Enter send/i.test(scan);
+    const deferredStrips = /DeferredExecutiveSystemStrips|Load extended panels|Daily Operations/i.test(
+      scan,
+    );
+    const postureClear = /Empire operating posture clear/i.test(scan);
     evidence.stages.webCockpitSurface = {
       status: cockpitRes.status,
       ms: Date.now() - cockpitStarted,
+      finalUrl: cockpitRes.url,
       scriptsScanned: scriptUrls.length,
-      eosFixInBundle:
-        /DeferredExecutiveSystemStrips|Load extended panels|Daily Operations|type now; Send when ready|Empire operating posture clear/i.test(
-          scan,
-        ),
+      composerAlwaysOn,
+      deferredStrips,
+      postureClear,
+      eosFixInBundle: composerAlwaysOn || deferredStrips || postureClear || Boolean(stampBody?.eosFixInBundle),
       hasRetryPlaceholder: /Retry loading executive widgets|Retry when Brain is ready/i.test(scan),
-      composerAlwaysOn: /type now; Send when ready|Ask Pillow… \(Enter send/i.test(scan),
+      legacyUnlockCopy: /conversation will unlock when ready/i.test(scan),
+      legacyPreparingCopy: /Preparing Executive Intelligence/i.test(scan),
+    };
+    evidence.stages.deploymentTruth = {
+      sourcePushedNote: "Git push is not production deploy",
+      loginCdnAgeSec: Number.isFinite(loginAgeSec) ? loginAgeSec : null,
+      stampPresent: Boolean(stampBody?.eosFixInBundle),
+      productionBundleVerified: Boolean(
+        evidence.stages.webCockpitSurface.eosFixInBundle &&
+          !evidence.stages.webCockpitSurface.legacyUnlockCopy &&
+          !evidence.stages.webCockpitSurface.hasRetryPlaceholder,
+      ),
     };
   } catch (e) {
     evidence.stages.webLoginPage = { error: String(e?.message || e) };
