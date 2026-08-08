@@ -159,10 +159,28 @@ export class CjApiClient {
     });
   }
 
+  /**
+   * Legacy path retained for callers; live CJ API 2.0 documents queryByVid / queryBySku.
+   * Prefer queryStockByVid / queryStockBySku for first-dollar stock truth.
+   */
   queryStockByPid(pid: string): Promise<CjStockResponse> {
     return this.request<CjStockResponse>({
       path: "/product/stock/queryByPid",
       query: { pid },
+    });
+  }
+
+  queryStockByVid(vid: string): Promise<CjStockResponse> {
+    return this.request<CjStockResponse>({
+      path: "/product/stock/queryByVid",
+      query: { vid },
+    });
+  }
+
+  queryStockBySku(sku: string): Promise<CjStockResponse> {
+    return this.request<CjStockResponse>({
+      path: "/product/stock/queryBySku",
+      query: { sku },
     });
   }
 

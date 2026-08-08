@@ -43,21 +43,59 @@ export type RunPresaleCycleInput = {
 };
 
 function sumStock(stockPayload: unknown): number {
-  if (!Array.isArray(stockPayload)) return 0;
+  const rows = Array.isArray(stockPayload)
+    ? stockPayload
+    : stockPayload && typeof stockPayload === "object"
+      ? [stockPayload]
+      : [];
   let total = 0;
-  for (const row of stockPayload) {
+  for (const row of rows) {
     if (!row || typeof row !== "object") continue;
-    const inv = (row as { inventory?: number }).inventory;
-    if (typeof inv === "number" && Number.isFinite(inv)) total += inv;
-    const warehouses = (row as { warehouseInventory?: Array<{ inventory?: number }> })
-      .warehouseInventory;
+    const r = row as Record<string, unknown>;
+    for (const key of [
+      "inventory",
+      "totalInventoryNum",
+      "cjInventoryNum",
+      "storageNum",
+      "factoryInventoryNum",
+    ]) {
+      const n = r[key];
+      if (typeof n === "number" && Number.isFinite(n) && n > total) total = n;
+    }
+    const warehouses = r.warehouseInventory;
     if (Array.isArray(warehouses)) {
       for (const w of warehouses) {
-        if (typeof w.inventory === "number" && Number.isFinite(w.inventory)) total += w.inventory;
+        if (!w || typeof w !== "object") continue;
+        const inv = (w as { inventory?: number }).inventory;
+        if (typeof inv === "number" && Number.isFinite(inv)) total += inv;
       }
     }
   }
   return total;
+}
+
+async function fetchLiveStockUnits(
+  cj: ReturnType<typeof createCjApiClient>,
+  variant: { vid: string; sku: string; inventory?: number },
+): Promise<{ units: number; source: string }> {
+  if (typeof variant.inventory === "number" && variant.inventory > 0) {
+    return { units: variant.inventory, source: "cj.variant.inventory" };
+  }
+  try {
+    const byVid = await cj.queryStockByVid(variant.vid);
+    const units = sumStock(byVid.data);
+    if (units > 0) return { units, source: "cj.stock.queryByVid" };
+  } catch {
+    /* try sku */
+  }
+  try {
+    const bySku = await cj.queryStockBySku(variant.sku);
+    const units = sumStock(bySku.data);
+    if (units > 0) return { units, source: "cj.stock.queryBySku" };
+  } catch {
+    /* try legacy pid path only as last resort */
+  }
+  return { units: 0, source: "unavailable" };
 }
 
 function buildRecommendation(input: {
