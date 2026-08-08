@@ -781,8 +781,8 @@ export function applyOwnerDecisionToOpportunity(input: {
     },
     outcomeLink: {
       recommendationId: updated.opportunityId,
-      approvalId: updated.approvalId,
-      listingSku: updated.mapping.sellerSku,
+      approvalId: updated.approvalId ?? undefined,
+      listingSku: updated.mapping.amazonSellerSku,
       result: input.outcome,
     },
     category: "B",
@@ -794,8 +794,8 @@ export function applyOwnerDecisionToOpportunity(input: {
     canonicalKey: recKey,
     outcomeLink: {
       recommendationId: updated.opportunityId,
-      approvalId: updated.approvalId,
-      listingSku: updated.mapping.sellerSku,
+      approvalId: updated.approvalId ?? undefined,
+      listingSku: updated.mapping.amazonSellerSku,
       result: input.outcome,
     },
     actor: "grand-king",
