@@ -21,7 +21,12 @@ export type CjProductVariant = {
   variantKey?: string;
   variantImage?: string;
   sellPrice?: number;
+  /** Live CJ API 2.0 field observed on product/query. */
+  variantSellPrice?: number;
+  /** Alternate price field on some variantList payloads. */
+  price?: number | string;
   suggestSellPrice?: number;
+  variantSugSellPrice?: number;
   weight?: number;
   inventory?: number;
   warehouseInventory?: CjWarehouseInventory[];
@@ -45,12 +50,18 @@ export type CjProduct = {
   productWeight?: number;
   categoryId?: string;
   categoryName?: string;
-  sellPrice?: number;
-  suggestSellPrice?: number;
+  sellPrice?: number | string;
+  suggestSellPrice?: number | string;
+  /** Some CJ list payloads use productPrice / nowPrice instead of sellPrice. */
+  productPrice?: number | string;
+  nowPrice?: number | string;
+  discountPrice?: number | string;
   description?: string;
   remark?: string;
   tags?: string[];
   variants?: CjProductVariant[];
+  /** Live CJ API 2.0 alternate variant array name. */
+  variantList?: CjProductVariant[];
   status?: number;
 };
 

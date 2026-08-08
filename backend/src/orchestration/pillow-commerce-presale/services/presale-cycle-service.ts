@@ -4,7 +4,7 @@ import { logger } from "../../../config/logger.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
-import type { CjProduct, CjProductVariant } from "../../../suppliers/cj-dropshipping/cj-types.js";
+import type { CjProduct } from "../../../suppliers/cj-dropshipping/cj-types.js";
 import {
   estimateAmazonFees,
   getListingsRestrictions,
@@ -12,6 +12,7 @@ import {
   openAmazonUsSession,
   searchCatalogAsin,
 } from "../amazon-commerce-preflight.js";
+import { pickLiveCjVariant, coerceUsdNumber } from "../cj-live-normalize.js";
 import { calculateExpectedContribution, proposeSellingPrice } from "../economics.js";
 import {
   DEFAULT_START_QUANTITY,
@@ -35,23 +36,6 @@ export type RunPresaleCycleInput = {
   /** Injected fetch for tests. */
   fetchImpl?: typeof fetch;
 };
-
-function pickVariant(product: CjProduct): CjProductVariant | null {
-  const variants = product.variants ?? [];
-  if (variants.length === 0) {
-    if (product.sellPrice == null) return null;
-    return {
-      vid: product.pid,
-      sku: product.productSku || product.pid,
-      sellPrice: product.sellPrice,
-      suggestSellPrice: product.suggestSellPrice,
-      inventory: undefined,
-    };
-  }
-  return (
-    variants.find((v) => typeof v.sellPrice === "number" && v.sellPrice > 0) ?? variants[0] ?? null
-  );
-}
 
 function sumStock(stockPayload: unknown): number {
   if (!Array.isArray(stockPayload)) return 0;
@@ -262,7 +246,9 @@ export async function runPillowCommercePresaleCycle(
       /* list payload may still be usable */
     }
 
-    const variant = pickVariant(detail);
+    const picked = pickLiveCjVariant(detail);
+    const variant = picked.variant;
+    const costAmount = picked.costUsd;
     if (!variant?.vid) {
       rejections.push({
         cjPid: product.pid,
@@ -272,13 +258,6 @@ export async function runPillowCommercePresaleCycle(
       });
       continue;
     }
-
-    const costAmount =
-      typeof variant.sellPrice === "number"
-        ? variant.sellPrice
-        : typeof detail.sellPrice === "number"
-          ? detail.sellPrice
-          : null;
     if (costAmount === null) {
       rejections.push({
         cjPid: product.pid,
@@ -388,7 +367,8 @@ export async function runPillowCommercePresaleCycle(
     let price = proposeSellingPrice({
       supplierCostUsd: costAmount,
       shippingUsd: shippingAmount,
-      suggestSellPriceUsd: variant.suggestSellPrice ?? detail.suggestSellPrice,
+      suggestSellPriceUsd:
+        coerceUsdNumber(variant.suggestSellPrice) ?? coerceUsdNumber(detail.suggestSellPrice),
     });
 
     let fees = await estimateAmazonFees(amazon.session, asinResult.asin, price);
@@ -412,7 +392,8 @@ export async function runPillowCommercePresaleCycle(
     const refined = proposeSellingPrice({
       supplierCostUsd: costAmount,
       shippingUsd: shippingAmount,
-      suggestSellPriceUsd: variant.suggestSellPrice ?? detail.suggestSellPrice,
+      suggestSellPriceUsd:
+        coerceUsdNumber(variant.suggestSellPrice) ?? coerceUsdNumber(detail.suggestSellPrice),
       feeGuessUsd: fees.totalFeesUsd,
     });
     if (refined > price) {

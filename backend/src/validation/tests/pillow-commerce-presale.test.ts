@@ -11,6 +11,7 @@ import { pillowCommercePresaleTools } from "../../orchestration/pillow-commerce-
 import { setHttpTransportOverride, resetHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { runPillowCommercePresaleCycle } from "../../orchestration/pillow-commerce-presale/services/presale-cycle-service.js";
 import { clearCjAuthCache } from "../../suppliers/cj-dropshipping/cj-auth.js";
+import { pickLiveCjVariant } from "../../orchestration/pillow-commerce-presale/cj-live-normalize.js";
 
 describe("pillow-commerce-presale", () => {
   beforeEach(() => {
@@ -57,6 +58,22 @@ describe("pillow-commerce-presale", () => {
     assert.equal(isProof001FailureClass({ asin: "B088NRLMPV" }), true);
     assert.equal(isProof001FailureClass({ productName: "Anker USB-C Cable" }), true);
     assert.equal(isProof001FailureClass({ productName: "Generic desk organizer", asin: "B0TEST1234" }), false);
+  });
+
+  it("normalizes live CJ variantSellPrice / variantList.price into cost", () => {
+    const picked = pickLiveCjVariant({
+      pid: "P1",
+      productName: "Test",
+      variantList: [
+        {
+          vid: "V9",
+          sku: "SKU-9",
+          variantSellPrice: 3.45,
+        },
+      ],
+    });
+    assert.equal(picked.costUsd, 3.45);
+    assert.equal(picked.variant?.vid, "V9");
   });
 
   it("rejects loss-making economics and unavailable live inputs", () => {
