@@ -1,0 +1,33 @@
+# Monorepo upload ignores for Vercel project Root Directory = empireai-web.
+# IMPORTANT: never use bare "pillow" — it also matches empireai-web/**/pillow.
+.git
+**/.git
+**/node_modules
+**/.next
+**/dist
+**/build
+**/.turbo
+**/.empire
+**/.pillow-*
+**/coverage
+**/.nyc_output
+/backend
+/pillow
+/frontend
+/docs
+/config
+/scripts
+/artifacts
+/pillow-data
+/data
+.tmp-ds
+.tmp-*
+_tmp_*
+agent-transcripts
+.cursor
+*.sqlite
+*.db
+**/*.log
+**/*.tsbuildinfo
+.env
+.env.*

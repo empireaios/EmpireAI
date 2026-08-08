@@ -233,10 +233,18 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     if (!user) return;
     if (hostSessionInit.current) return;
     hostSessionInit.current = true;
-    markStarting("starting");
 
     void (async () => {
-      const maxAttempts = 8;
+      // Remount / Strict-effect safety: reuse a persisted host session instead of
+      // creating another and rate-limit storming Brain (/api/pillow/session 503).
+      const existingId = loadPillowSession()?.hostSessionId ?? null;
+      if (existingId) {
+        markReady(existingId, loadPillowSession()?.turns ?? []);
+        return;
+      }
+
+      markStarting("starting");
+      const maxAttempts = 4;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         try {
           const session = await createPillowHostSession();
@@ -284,17 +292,28 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           }
           return;
         } catch (error) {
+          // Do not clear a concurrently established session on rate-limit failure.
+          const persisted = loadPillowSession();
+          if (persisted?.hostSessionId) {
+            markReady(persisted.hostSessionId, persisted.turns ?? []);
+            return;
+          }
           clearPillowHostSession();
           const phase: ExecutiveReadinessPhase =
-            attempt >= 4 ? "delayed" : attempt > 1 ? "recovering" : "starting";
+            attempt >= 3 ? "delayed" : attempt > 1 ? "recovering" : "starting";
           markStarting(
             phase,
             error instanceof Error ? error.message : EXECUTIVE_STARTING_LABEL,
           );
           if (attempt < maxAttempts) {
-            await new Promise((r) => setTimeout(r, Math.min(8_000, 1_200 * attempt)));
+            await new Promise((r) => setTimeout(r, Math.min(8_000, 1_500 * attempt)));
           }
         }
+      }
+      const recovered = loadPillowSession()?.hostSessionId;
+      if (recovered) {
+        markReady(recovered, loadPillowSession()?.turns ?? []);
+        return;
       }
       markStarting("delayed", EXECUTIVE_RECOVERING_LABEL);
     })();

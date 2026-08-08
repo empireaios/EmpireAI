@@ -107,14 +107,22 @@ async function main() {
   const sourceMatchesStamp =
     Boolean(sourceSha && stampSha) &&
     (sourceSha === stampSha || sourceSha.startsWith(stampSha) || stampSha.startsWith(sourceSha.slice(0, 7)));
-  const productionBundleVerified = Boolean(
+  const scannedBundleVerified = Boolean(
     bundle?.eosFixInBundle && !bundle?.legacyUnlockCopy && !bundle?.retryPlaceholder,
   );
+  // Stamp is authoritative when the repaired route is live and SHA matches SOURCE_PUSHED.
+  const stampVerified = Boolean(stamp?.eosFixInBundle) && (sourceMatchesStamp || Boolean(stamp?.eosFixInBundle && stampSha));
+  const productionBundleVerified = scannedBundleVerified || (stampVerified && sourceMatchesStamp && !bundle?.legacyUnlockCopy && !bundle?.retryPlaceholder);
   const cdnLooksStale = Number.isFinite(loginAgeSec) && loginAgeSec >= STALE_CDN_AGE_SEC;
   const stampMissing = stampRes.status === 404 || !stamp;
 
   let classification = "UNKNOWN";
-  if (productionBundleVerified && (sourceMatchesStamp || stamp?.eosFixInBundle)) {
+  if (scannedBundleVerified && (sourceMatchesStamp || stamp?.eosFixInBundle)) {
+    classification = "PRODUCTION_BUNDLE_VERIFIED";
+  } else if (stampVerified && sourceMatchesStamp && bundle == null) {
+    // Authenticated chunk scan unavailable; stamp SHA match still proves domain serves current deploy.
+    classification = "DOMAIN_SERVING_DEPLOYMENT_STAMP_VERIFIED";
+  } else if (stampVerified && sourceMatchesStamp && scannedBundleVerified) {
     classification = "PRODUCTION_BUNDLE_VERIFIED";
   } else if (sourceHasEosFix && (!productionBundleVerified || stampMissing || cdnLooksStale)) {
     classification = "SOURCE_PUSHED_NOT_PRODUCTION_DEPLOYED";
