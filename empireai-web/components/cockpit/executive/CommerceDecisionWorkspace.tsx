@@ -28,7 +28,7 @@ export function CommerceDecisionWorkspace({
       id="commerce-decision-workspace"
       data-testid="commerce-decision-workspace"
       aria-label="Commerce decision workspace"
-      className="flex h-full min-h-[42vh] w-full flex-col rounded-xl border border-emerald-500/30 bg-emerald-500/[0.04]"
+      className="flex h-full min-h-[75vh] w-full flex-col rounded-xl border border-emerald-500/30 bg-emerald-500/[0.04]"
     >
       <header className="shrink-0 border-b border-emerald-500/20 px-5 py-4">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200">

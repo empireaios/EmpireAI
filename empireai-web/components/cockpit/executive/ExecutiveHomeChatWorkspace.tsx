@@ -5,12 +5,10 @@ import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
-import { CommerceDecisionWorkspace } from "@/components/cockpit/executive/CommerceDecisionWorkspace";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProactiveGuidance";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
-import { useExecutiveHome } from "@/lib/cockpit/hooks/useExecutiveHome";
 import { PILLOW_WORKSPACE_LAYOUT } from "@/lib/cockpit/executive/pillow-workspace-layout";
 
 const EXECUTIVE_ACTIONS = [
@@ -30,11 +28,9 @@ function autosizeComposer(el: HTMLTextAreaElement | null) {
   el.style.height = `${next}px`;
 }
 
-/** Primary Grand King ↔ Pillow workspace — large history, large composer, large decisions. */
+/** Primary Grand King ↔ Pillow workspace — large history + large composer. */
 export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
-  const { data: homeData } = useExecutiveHome();
-  const hasDecision = Boolean(homeData?.canonicalTruth?.commerceOpportunity);
   const conversationRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
   const {
@@ -62,7 +58,7 @@ export function ExecutiveHomeChatWorkspace() {
 
   const focusComposer = useCallback(() => {
     const root = document.getElementById("executive-pillow-workspace");
-    root?.scrollIntoView({ behavior: "smooth", block: "start" });
+    root?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     window.requestAnimationFrame(() => {
       composerRef.current?.focus({ preventScroll: true });
       autosizeComposer(composerRef.current);
@@ -107,8 +103,38 @@ export function ExecutiveHomeChatWorkspace() {
   const executive = context?.executiveContext;
   const screen = resolveCockpitScreenContext(pathname);
 
-  const conversationPane = (
-    <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+  return (
+    <section
+      id="executive-pillow-workspace"
+      data-testid="executive-pillow-workspace"
+      className="flex h-[min(88vh,calc(100dvh-7rem))] min-h-[75vh] w-full flex-col overflow-hidden rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
+      aria-label="Executive Chat workspace"
+    >
+      <header className="shrink-0 border-b border-gold/10 px-5 py-3">
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37]">
+              Pillow · Primary executive workspace
+            </p>
+            <h2 className="font-display text-2xl text-[#f0d78c]">Executive Chat</h2>
+          </div>
+          <span
+            className={`rounded-full px-2 py-0.5 text-[10px] ${
+              executiveReady
+                ? "bg-emerald-500/15 text-emerald-200"
+                : "bg-amber-500/15 text-amber-200"
+            }`}
+            title={
+              executiveReady
+                ? "Executive Intelligence ready"
+                : readinessLabel || "Starting — composer remains usable"
+            }
+          >
+            {executiveReady ? "Ready" : readinessLabel}
+          </span>
+        </div>
+      </header>
+
       {executiveSnapshot && (
         <div
           data-testid="pillow-context-strip"
@@ -275,61 +301,6 @@ export function ExecutiveHomeChatWorkspace() {
           </div>
         </div>
       </footer>
-    </div>
-  );
-
-  return (
-    <section
-      id="executive-pillow-workspace"
-      data-testid="executive-pillow-workspace"
-      className="flex h-[min(88vh,calc(100dvh-7rem))] min-h-[75vh] w-full flex-col overflow-hidden rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
-      aria-label="Executive Chat workspace"
-    >
-      <header className="shrink-0 border-b border-gold/10 px-5 py-3">
-        <div className="flex flex-wrap items-start justify-between gap-2">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37]">
-              Pillow · Primary executive workspace
-            </p>
-            <h2 className="font-display text-2xl text-[#f0d78c]">Executive Chat</h2>
-          </div>
-          <span
-            className={`rounded-full px-2 py-0.5 text-[10px] ${
-              executiveReady
-                ? "bg-emerald-500/15 text-emerald-200"
-                : "bg-amber-500/15 text-amber-200"
-            }`}
-            title={
-              executiveReady
-                ? "Executive Intelligence ready"
-                : readinessLabel || "Starting — composer remains usable"
-            }
-          >
-            {executiveReady ? "Ready" : readinessLabel}
-          </span>
-        </div>
-      </header>
-
-      <div
-        className={
-          hasDecision
-            ? "grid min-h-0 flex-1 grid-cols-1 gap-0 lg:grid-cols-2"
-            : "flex min-h-0 flex-1 flex-col"
-        }
-      >
-        {hasDecision && (
-          <div className="min-h-0 overflow-hidden border-b border-gold/10 p-3 lg:border-b-0 lg:border-r">
-            <CommerceDecisionWorkspace
-              onAskPillow={(prompt) => {
-                setQueryDraft(prompt);
-                void ask(prompt);
-                focusComposer();
-              }}
-            />
-          </div>
-        )}
-        {conversationPane}
-      </div>
     </section>
   );
 }

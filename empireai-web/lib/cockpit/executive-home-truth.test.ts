@@ -88,7 +88,7 @@ describe("executive home truth + nav reality", () => {
     );
     assert.match(decision, /commerce-decision-workspace/);
     assert.match(decision, /Ask Pillow about this/);
-    assert.match(decision, /min-h-\[42vh\]/);
+    assert.match(decision, /min-h-\[75vh\]/);
     assert.ok(!/<details/.test(decision));
   });
 });
