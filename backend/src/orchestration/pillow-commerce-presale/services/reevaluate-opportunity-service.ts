@@ -139,7 +139,8 @@ export async function reevaluateCommerceOpportunity(
 
   const target = { asin, cjPid, amazonSellerSku };
 
-  if (!isCjLiveApiEnabled(env)) {
+  const cjConfig = loadCjConfig(env);
+  if (!isCjLiveApiEnabled(cjConfig)) {
     return {
       ...base,
       target,
@@ -166,7 +167,7 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  const cj = createCjApiClient(loadCjConfig(env));
+  const cj = createCjApiClient(cjConfig);
   const commerceMemory = getCommerceInstitutionalContext(input.workspaceId);
 
   let detail;
