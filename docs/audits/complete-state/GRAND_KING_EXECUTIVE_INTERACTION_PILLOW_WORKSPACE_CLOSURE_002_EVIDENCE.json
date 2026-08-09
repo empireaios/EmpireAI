@@ -1,0 +1,121 @@
+{
+  "mission": "GRAND_KING_EXECUTIVE_INTERACTION_PILLOW_WORKSPACE_CLOSURE_002",
+  "closedAt": "2026-08-09T21:10:00.000Z",
+  "git": {
+    "implementationHead": "f892b1bc6deb510a124cb35e51416fc4180bfc89",
+    "ahead": 0,
+    "behind": 0
+  },
+  "vercelStamp": {
+    "gitCommitSha": "f892b1bc6deb510a124cb35e51416fc4180bfc89",
+    "deploymentId": "dpl_CkySKVbFa5ohPpjxdmosxYyQxF4W",
+    "eosUxMarker": "type now; Send when ready",
+    "eosFixInBundle": true
+  },
+  "rootCauses": [
+    {
+      "id": "SIDEBAR_SCROLL_AWAY",
+      "summary": "Sidebar used h-full inside a growing page flex column, so it scrolled away with content; centre links appeared unclickable when Pillow was in view.",
+      "fix": "sticky top-0 h-dvh on CockpitSidebar"
+    },
+    {
+      "id": "SHARED_LOADING_FLAG",
+      "summary": "Background Brain context refresh set the same loading flag as chat, disabling Send and showing Preparing your executive response without a send.",
+      "fix": "refreshContext no longer touches chat loading; ask/runAction use finally to clear loading"
+    },
+    {
+      "id": "LARGE_OUTER_ONLY",
+      "summary": "Outer Pillow container grew but history/composer/approvals stayed cramped and Mission/Pillow columns crushed width.",
+      "fix": "Pillow primary workspace above secondary centres; side-by-side decision+chat; composer min 180px; history min 50vh"
+    }
+  ],
+  "controlMatrixSummary": {
+    "inventoried": 52,
+    "functional": 49,
+    "truthfullyDisabled": 3,
+    "removed": 0,
+    "deadEnabledRemaining": 0,
+    "notes": "Send disabled when empty (truthful). Quick actions disabled while loading/not ready with title why. No live Approve/Reject exercised against money opportunity."
+  },
+  "dimensions": {
+    "before": {
+      "composerPx": 97,
+      "messageHistoryApproxPx": 250,
+      "pillowUsableWidthNote": "crushed by Mission/Pillow side columns",
+      "nestedVerticalScrolls": "page + pillow + history + centre columns"
+    },
+    "after_1920x1080_with_decision": {
+      "PILLOW_WORKSPACE": { "w": 786, "h": 950, "vhRatio": 0.88 },
+      "MESSAGE_HISTORY": { "w": 785, "h": 540, "vhRatio": 0.5 },
+      "COMPOSER": { "w": 610, "h": 180 },
+      "APPROVAL_VIEW": { "w": 786, "h": 950 },
+      "sideBySide": true
+    },
+    "after_1920x1080_full_width": {
+      "PILLOW_WORKSPACE": { "w": 1585, "h": 950, "vhRatio": 0.88 },
+      "MESSAGE_HISTORY": { "w": 1583, "h": 540, "vhRatio": 0.5 },
+      "COMPOSER": { "w": 1408, "h": 180 }
+    },
+    "after_1366x768": {
+      "PILLOW_WORKSPACE": { "w": 1031, "h": 656 },
+      "MESSAGE_HISTORY": { "w": 1029, "h": 384, "vhRatio": 0.5 },
+      "COMPOSER": { "w": 854, "h": 180 },
+      "xOverflowMain": 0
+    },
+    "after_1440x900": {
+      "PILLOW_WORKSPACE": { "w": 1105, "h": 788 },
+      "MESSAGE_HISTORY": { "w": 1103, "h": 450, "vhRatio": 0.5 },
+      "COMPOSER": { "w": 928, "h": 180 },
+      "xOverflowMain": 0
+    },
+    "nestedVerticalScrollRegionsAfter": 2,
+    "horizontalOverflowRegionsAfter": 0,
+    "composerExpandedMultilinePx": 206
+  },
+  "journey": {
+    "askAiFocusesComposer": true,
+    "sendAckImmediate": true,
+    "realPillowResponse": "Ready for decision review.",
+    "askPillowAboutApproval": true,
+    "nextActionReal": true,
+    "summariseWired": true,
+    "summariseNote": "Returned executive soft-start reply during Brain recovery; control wired, not decorative.",
+    "refreshSessionContinuity": true,
+    "histRetainedAfterRefresh": true,
+    "noLiveApproveReject": true,
+    "missionHitAtBottomSticky": true,
+    "sidebarRoutes": {
+      "Mission Centre": "/cockpit/missions PASS",
+      "Pillow Centre": "/cockpit/development/pillow PASS",
+      "Builder Console": "/cockpit/founder/builder PASS",
+      "Supervisor Centre": "/cockpit/founder/supervisor PASS",
+      "Journey Centre": "/cockpit/founder/journey PASS",
+      "Production Centre": "/cockpit/founder/production PASS",
+      "Guardian Centre": "/cockpit/founder/guardian PASS",
+      "Business Centre": "/cockpit/commerce/workspace PASS",
+      "Commerce Centre": "/cockpit/commerce/store PASS",
+      "Knowledge Centre": "/cockpit/founder/architecture PASS",
+      "Explainability": "/cockpit/founder/explainability PASS",
+      "Live ETA": "/cockpit/founder/live-eta PASS",
+      "Settings": "/cockpit/governance/settings PASS",
+      "Executive Home": "/cockpit PASS"
+    }
+  },
+  "health": {
+    "railwayLive": { "status": 200, "brain": "online", "eventLoopLagMs": 0.079 },
+    "railwayReady": { "status": 200, "ready": true },
+    "transient502DuringAggressiveNav": true,
+    "recovered": true,
+    "sessionCreatesInWindowAfter": 0
+  },
+  "compatibility": {
+    "commerce": "dossier ASIN B0FKFNCT52 side-by-side retained; EXPECTED vs realised discipline retained",
+    "institutionalMemory": "CERTIFIED banner retained; 14 lessons",
+    "eos": "stamp eosFixInBundle true; chat ack path intact"
+  },
+  "tests": {
+    "frontend": "node --import tsx --test lib/cockpit/executive-home-truth.test.ts — 9/9 pass",
+    "backendChanged": false
+  },
+  "verdict": "GRAND KING EXECUTIVE INTERACTION + PILLOW WORKSPACE CERTIFIED"
+}
