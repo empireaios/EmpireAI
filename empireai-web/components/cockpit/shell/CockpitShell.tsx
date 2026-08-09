@@ -20,7 +20,7 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
           <GlobalAiAssistantProvider>
           <div className="flex min-h-screen bg-[#030303] text-[#f5f0e6]">
             <CockpitSidebar />
-            <div className="flex min-h-screen flex-1 flex-col pb-20 lg:pb-0">
+            <div className="flex min-w-0 flex-1 flex-col pb-20 lg:pb-0">
               <CockpitTopBar />
               <ExecutiveCommandStrip />
               <main
