@@ -1,0 +1,105 @@
+{
+  "mission": "PERSISTENT_CUMULATIVE_MEMORY_INSTITUTIONAL_LEARNING",
+  "startedAt": "2026-08-09T00:29:01.094Z",
+  "brain": "https://empireai-production.up.railway.app",
+  "stages": {
+    "health": {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "module": "institutional-memory",
+        "spine": "executive-learning-ekls",
+        "approvedCount": 14,
+        "hasAcceptedNeBuyable": true,
+        "hasAnkerLesson": true,
+        "publicationAutoDisabled": true
+      }
+    },
+    "login": {
+      "status": 200
+    },
+    "seed": {
+      "status": 200,
+      "seeded": 0,
+      "keys": [
+        "gk.directive.first_dollar_dropshipping",
+        "gk.directive.pillow_initiates_commerce",
+        "gk.directive.cursor_minimization",
+        "gk.directive.no_publish_without_approval",
+        "commerce.lesson.accepted_ne_buyable",
+        "commerce.lesson.anker_brand_gate",
+        "commerce.lesson.preflight_restrictions_mandatory",
+        "ops.lesson.eos_session_storm",
+        "collab.memory.ready"
+      ],
+      "count": 14
+    },
+    "retrieve": {
+      "status": 200,
+      "count": 12,
+      "titles": [
+        "First-dollar dropshipping is the standing commerce objective",
+        "No publication or supplier spend without Grand King approval",
+        "Amazon ACCEPTED is not publicly BUYABLE",
+        "Amazon selling eligibility must be checked before recommendation",
+        "Pillow initiates commerce; Grand King approves or rejects",
+        "Cursor is not the commerce operator",
+        "Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+        "Amazon restriction observed for ASIN B0BW33V19K",
+        "Amazon restriction observed for ASIN B07CVJ2DST",
+        "Amazon restriction observed for ASIN B0D9JT6SG4"
+      ],
+      "commerceLessons": [
+        "Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+        "Amazon selling eligibility must be checked before recommendation",
+        "Amazon ACCEPTED is not publicly BUYABLE",
+        "First-dollar dropshipping is the standing commerce objective",
+        "Cursor is not the commerce operator",
+        "No publication or supplier spend without Grand King approval",
+        "Pillow initiates commerce; Grand King approves or rejects",
+        "Amazon restriction observed for ASIN B0BW33V19K"
+      ],
+      "mustAvoidAsins": [
+        "B088NRLMPV",
+        "B0BW33V19K",
+        "B07CVJ2DST",
+        "B0D9JT6SG4",
+        "B0FKFNCT52"
+      ]
+    },
+    "capture": {
+      "status": 201,
+      "ok": true,
+      "created": true,
+      "learningId": "7b5293d0-8548-4d0b-9f65-2c70c22fdbfd"
+    },
+    "commerceUse": {
+      "status": 200,
+      "outcome": "ALREADY_PENDING_APPROVAL",
+      "usedMemoryInNarrative": true,
+      "usedMemoryInRejection": false,
+      "opportunityAsin": "B0FKFNCT52"
+    },
+    "durability": {
+      "status": 200,
+      "count": 15,
+      "hasAcceptedNeBuyable": true,
+      "hasAnker": true
+    }
+  },
+  "checks": {
+    "healthRoute": true,
+    "seedOrPresent": true,
+    "retrieveRelevant": true,
+    "liveCapture": true,
+    "commerceReasoningUsesMemory": true,
+    "acceptedNeBuyablePersisted": true,
+    "ankerLessonPersisted": true,
+    "cloudDurable": true,
+    "noSecretHoarding": true
+  },
+  "blockers": [],
+  "verdict": "PERSISTENT CUMULATIVE MEMORY & INSTITUTIONAL LEARNING CERTIFIED",
+  "cursorRequiredForNormalMemoryOperation": "NO",
+  "completedAt": "2026-08-09T00:29:04.331Z"
+}

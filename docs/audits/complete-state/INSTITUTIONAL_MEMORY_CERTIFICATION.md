@@ -74,3 +74,16 @@ For every substantive capability certification, ask:
 
 - `PERSISTENT CUMULATIVE MEMORY & INSTITUTIONAL LEARNING CERTIFIED`
 - `PERSISTENT CUMULATIVE MEMORY & INSTITUTIONAL LEARNING NOT CERTIFIED`
+
+---
+
+## Production certification result
+
+| Item | Value |
+|------|--------|
+| Verdict | **PERSISTENT CUMULATIVE MEMORY & INSTITUTIONAL LEARNING CERTIFIED** |
+| Evidence | `INSTITUTIONAL_MEMORY_CERTIFICATION_EVIDENCE.json` |
+| Brain | `https://empireai-production.up.railway.app` |
+| Git HEAD (cert close) | `7aeab4fb` |
+| Railway deploy | `9ece5d7a-4947-4a28-903d-dc48ea535a5e` SUCCESS |
+| Cursor required for normal memory operation | **NO** |
