@@ -1280,13 +1280,15 @@ export function loadMissionCentreView(
     priority: obj.executivePriority,
   }));
 
-  const pendingApprovals = pendingRows.slice(0, 10).map((row) => ({
-    approvalId: row.approvalId,
-    title: row.proposal.title,
-    summary: row.proposal.summary,
-    type: row.type,
-    status: row.status,
-  }));
+  const pendingApprovals: MissionCentreView["pendingApprovals"] = pendingRows
+    .slice(0, 10)
+    .map((row) => ({
+      approvalId: row.approvalId,
+      title: row.proposal.title,
+      summary: row.proposal.summary,
+      type: String(row.type),
+      status: String(row.status),
+    }));
 
   try {
     const commerceOpp = getPillowCommercePresaleRepository().getPendingApprovalOpportunity(
@@ -1301,7 +1303,10 @@ export function loadMissionCentreView(
         title: `Commerce opportunity ${commerceOpp.mapping.asin} — approval required`,
         summary: `${commerceOpp.recommendation.productName} · expected profit ${commerceOpp.recommendation.expectedProfit}`,
         type: "commerce_presale",
-        status: commerceOpp.approvalStatus || "Pending",
+        status:
+          commerceOpp.approvalStatus && commerceOpp.approvalStatus !== "none"
+            ? String(commerceOpp.approvalStatus)
+            : "Pending",
       });
     }
   } catch {

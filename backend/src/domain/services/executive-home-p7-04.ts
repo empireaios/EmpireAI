@@ -319,6 +319,8 @@ export function enrichExecutiveHomeViewP704(
             truth.realisedRevenueUsd != null
               ? `$${truth.realisedRevenueUsd.toFixed(2)}`
               : "No realised revenue yet",
+          change: "Canonical realised",
+          trend: "neutral" as const,
         },
         {
           label: "Realised Profit",
@@ -326,6 +328,8 @@ export function enrichExecutiveHomeViewP704(
             truth.realisedProfitUsd != null
               ? `$${truth.realisedProfitUsd.toFixed(2)}`
               : "No realised profit yet",
+          change: "Canonical realised",
+          trend: "neutral" as const,
         },
       ]),
   };

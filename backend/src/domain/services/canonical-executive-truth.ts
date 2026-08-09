@@ -275,7 +275,7 @@ export function buildCanonicalExecutiveTruth(input: {
 
   return {
     computedAt: new Date().toISOString(),
-    systemOperational: command.operationalReadiness.passed || guardianStatus !== "Critical",
+    systemOperational: command.operationalReadiness.passed || guardianStatus !== "Attention",
     brainStatus: input.brainOnline === false ? "degraded" : "online",
     guardianStatus,
     productionStatus,
