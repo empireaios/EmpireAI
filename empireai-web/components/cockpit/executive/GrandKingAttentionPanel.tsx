@@ -51,7 +51,18 @@ export function GrandKingAttentionPanel() {
                   <p className="text-sm font-medium text-[#f0d78c]">{item.title}</p>
                   <p className="mt-1 text-xs text-[#8a847a]">{item.detail}</p>
                 </div>
-                {item.href && (
+                {(item.priority === "money_approval" ||
+                  item.priority === "commercial_opportunity") && (
+                  <a
+                    href="#executive-pillow-anchor"
+                    className="shrink-0 text-xs text-[#d4af37] hover:underline"
+                  >
+                    Review in Pillow →
+                  </a>
+                )}
+                {item.href &&
+                  item.priority !== "money_approval" &&
+                  item.priority !== "commercial_opportunity" && (
                   <Link href={item.href} className="shrink-0 text-xs text-[#d4af37] hover:underline">
                     Open →
                   </Link>
