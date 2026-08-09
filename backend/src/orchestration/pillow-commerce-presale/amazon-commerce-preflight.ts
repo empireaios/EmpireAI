@@ -334,6 +334,218 @@ export function interpretListingCommercialState(input: {
   return { state: "UNKNOWN", reasons: reasons.length ? reasons : ["Insufficient listing evidence"] };
 }
 
+/** Catalog item details for brand / demand context. */
+export async function getCatalogItemDetails(
+  session: AmazonSession,
+  asin: string,
+): Promise<{
+  brandName: string | null;
+  itemName: string | null;
+  salesRank: number | null;
+  freshness: "LIVE" | "UNAVAILABLE";
+  blocker: string | null;
+}> {
+  const url =
+    `${session.endpoint}/catalog/2022-04-01/items/${encodeURIComponent(asin)}` +
+    `?marketplaceIds=${encodeURIComponent(session.marketplaceId)}` +
+    `&includedData=summaries,salesRanks`;
+  const response = await httpTransport({
+    url,
+    method: "GET",
+    headers: { "x-amz-access-token": session.accessToken },
+  });
+  const json = response.json as {
+    summaries?: Array<{ brandName?: string; itemName?: string }>;
+    salesRanks?: Array<{
+      ranks?: Array<{ rank?: number }>;
+    }>;
+    errors?: Array<{ message?: string }>;
+  };
+  if (!response.ok) {
+    return {
+      brandName: null,
+      itemName: null,
+      salesRank: null,
+      freshness: "UNAVAILABLE",
+      blocker: json.errors?.map((e) => e.message).filter(Boolean).join("; ") || `HTTP ${response.status}`,
+    };
+  }
+  const summary = json.summaries?.[0];
+  const rank = json.salesRanks?.[0]?.ranks?.[0]?.rank;
+  return {
+    brandName: summary?.brandName?.trim() || null,
+    itemName: summary?.itemName?.trim() || null,
+    salesRank: typeof rank === "number" ? rank : null,
+    freshness: "LIVE",
+    blocker: null,
+  };
+}
+
+/**
+ * Competitive offer / Featured Offer snapshot via Product Pricing API.
+ * Labels UNKNOWN when API scope or response is insufficient — never fabricate.
+ */
+export async function getCompetitiveOfferSnapshot(
+  session: AmazonSession,
+  asin: string,
+  ourPriceUsd: number,
+): Promise<{
+  competingOfferCount: number | null;
+  lowestCompetitorPriceUsd: number | null;
+  featuredOfferPriceUsd: number | null;
+  featuredOfferSellerId: string | null;
+  featuredOfferEligible: "YES" | "NO" | "UNKNOWN";
+  currentlyFeaturedOffer: "YES" | "NO" | "UNKNOWN";
+  relativeOfferPosition: string;
+  freshness: "LIVE" | "UNAVAILABLE" | "UNKNOWN";
+  source: string;
+  note?: string;
+}> {
+  const url =
+    `${session.endpoint}/products/pricing/v0/items/${encodeURIComponent(asin)}/offers` +
+    `?MarketplaceId=${encodeURIComponent(session.marketplaceId)}` +
+    `&ItemCondition=New`;
+  const response = await httpTransport({
+    url,
+    method: "GET",
+    headers: { "x-amz-access-token": session.accessToken },
+  });
+  const json = response.json as {
+    payload?: {
+      Summary?: {
+        TotalOfferCount?: number;
+        LowestPrices?: Array<{
+          ListingPrice?: { Amount?: number };
+          LandedPrice?: { Amount?: number };
+        }>;
+        BuyBoxPrices?: Array<{
+          ListingPrice?: { Amount?: number };
+          LandedPrice?: { Amount?: number };
+        }>;
+        BuyBoxEligibleOffers?: Array<{ OfferCount?: number }>;
+      };
+      Offers?: Array<{
+        SellerId?: string;
+        IsBuyBoxWinner?: boolean;
+        ListingPrice?: { Amount?: number };
+        IsFeaturedMerchant?: boolean;
+      }>;
+    };
+    errors?: Array<{ message?: string; code?: string }>;
+  };
+
+  if (!response.ok) {
+    return {
+      competingOfferCount: null,
+      lowestCompetitorPriceUsd: null,
+      featuredOfferPriceUsd: null,
+      featuredOfferSellerId: null,
+      featuredOfferEligible: "UNKNOWN",
+      currentlyFeaturedOffer: "UNKNOWN",
+      relativeOfferPosition: "UNKNOWN — pricing offers API unavailable",
+      freshness: "UNAVAILABLE",
+      source: "amazon.products.pricing.v0.items.offers",
+      note:
+        json.errors?.map((e) => e.message || e.code).filter(Boolean).join("; ") ||
+        `HTTP ${response.status}`,
+    };
+  }
+
+  const summary = json.payload?.Summary;
+  const offers = json.payload?.Offers ?? [];
+  const count =
+    typeof summary?.TotalOfferCount === "number"
+      ? summary.TotalOfferCount
+      : offers.length || null;
+  const lowest =
+    summary?.LowestPrices?.[0]?.LandedPrice?.Amount ??
+    summary?.LowestPrices?.[0]?.ListingPrice?.Amount ??
+    offers
+      .map((o) => o.ListingPrice?.Amount)
+      .filter((n): n is number => typeof n === "number")
+      .sort((a, b) => a - b)[0] ??
+    null;
+  const buyBox =
+    summary?.BuyBoxPrices?.[0]?.LandedPrice?.Amount ??
+    summary?.BuyBoxPrices?.[0]?.ListingPrice?.Amount ??
+    offers.find((o) => o.IsBuyBoxWinner)?.ListingPrice?.Amount ??
+    null;
+  const buyBoxSeller = offers.find((o) => o.IsBuyBoxWinner)?.SellerId ?? null;
+  const eligibleCount = summary?.BuyBoxEligibleOffers?.[0]?.OfferCount;
+  const featuredEligible =
+    typeof eligibleCount === "number"
+      ? eligibleCount > 0
+        ? "YES"
+        : "NO"
+      : ("UNKNOWN" as const);
+
+  let relative = "UNKNOWN";
+  if (typeof lowest === "number") {
+    if (ourPriceUsd <= lowest) relative = "OFFER POSITION: would be among cheapest (pre-publish estimate)";
+    else if (ourPriceUsd <= lowest * 1.05) relative = "OFFER POSITION: near lowest (~within 5%)";
+    else relative = `OFFER POSITION: above lowest by $${(ourPriceUsd - lowest).toFixed(2)} (not organic search rank)`;
+  }
+
+  return {
+    competingOfferCount: count,
+    lowestCompetitorPriceUsd: typeof lowest === "number" ? lowest : null,
+    featuredOfferPriceUsd: typeof buyBox === "number" ? buyBox : null,
+    featuredOfferSellerId: buyBoxSeller,
+    featuredOfferEligible: featuredEligible,
+    currentlyFeaturedOffer: "NO", // we are not published yet
+    relativeOfferPosition: relative,
+    freshness: "LIVE",
+    source: "amazon.products.pricing.v0.items.offers",
+    note: "Featured Offer / Buy Box from pricing offers API. Organic search rank is a different metric and is NOT claimed here.",
+  };
+}
+
+/** Post-publish listing item read for BUYABLE gate. */
+export async function getListingItemCommercialState(
+  session: AmazonSession,
+  sellerSku: string,
+): Promise<{
+  state: CommercialOfferState;
+  reasons: string[];
+  raw: unknown;
+}> {
+  const url =
+    `${session.endpoint}/listings/2021-08-01/items/${encodeURIComponent(session.sellerId)}/${encodeURIComponent(sellerSku)}` +
+    `?marketplaceIds=${encodeURIComponent(session.marketplaceId)}` +
+    `&includedData=summaries,offers,issues`;
+  const response = await httpTransport({
+    url,
+    method: "GET",
+    headers: { "x-amz-access-token": session.accessToken },
+  });
+  const json = response.json as {
+    status?: string;
+    summaries?: Array<{ status?: string[]; selectable?: boolean }>;
+    issues?: Array<{ code?: string; severity?: string; message?: string; categories?: string[] }>;
+    offers?: Array<{ offerType?: string }>;
+    errors?: Array<{ message?: string }>;
+  };
+  if (!response.ok) {
+    return {
+      state: "UNKNOWN",
+      reasons: [
+        json.errors?.map((e) => e.message).filter(Boolean).join("; ") ||
+          `Listings item GET failed HTTP ${response.status}`,
+      ],
+      raw: json,
+    };
+  }
+  return {
+    ...interpretListingCommercialState({
+      amazonStatus: json.status,
+      summaries: json.summaries,
+      issues: json.issues,
+      offers: json.offers,
+    }),
+    raw: json,
+  };
+}
+
 /** Regression guard: Proof 001 Anker / brand-suppressed pattern must never qualify. */
 export function isProof001FailureClass(input: {
   asin?: string | null;

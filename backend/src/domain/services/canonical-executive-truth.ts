@@ -28,6 +28,12 @@ export type CanonicalCommerceOpportunity = {
   approvalId: string | null;
   approvalStatus: string;
   summary: string;
+  /** Grand King decision dossier summary when FD-CDD-001 present. */
+  dossierSummary: string | null;
+  brandRoute: string | null;
+  pillowRecommendation: string | null;
+  competingOffers: string | null;
+  deliveryPromise: string | null;
 };
 
 export type CanonicalExecutiveTruth = {
@@ -132,6 +138,7 @@ export function buildCanonicalExecutiveTruth(input: {
       input.workspaceId,
     );
     if (pending) {
+      const d = pending.dossier;
       commerceOpportunity = {
         opportunityId: pending.opportunityId,
         asin: pending.mapping.asin,
@@ -144,7 +151,20 @@ export function buildCanonicalExecutiveTruth(input: {
         disposition: pending.disposition,
         approvalId: pending.approvalId,
         approvalStatus: pending.approvalStatus,
-        summary: pending.recommendation.fullNarrative.split("\n").slice(0, 8).join(" · "),
+        summary:
+          d?.grandKingSummary?.split("\n").slice(0, 12).join(" · ") ??
+          pending.recommendation.fullNarrative.split("\n").slice(0, 8).join(" · "),
+        dossierSummary: d?.grandKingSummary ?? null,
+        brandRoute: d?.eligibilityAndBrand.brandRoute ?? null,
+        pillowRecommendation:
+          d?.exposureAndAction.pillowRecommendation ?? pending.recommendation.pillowRecommendation,
+        competingOffers:
+          d?.marketplaceCompetition.competingOfferCount != null
+            ? String(d.marketplaceCompetition.competingOfferCount)
+            : d
+              ? "UNKNOWN"
+              : null,
+        deliveryPromise: d?.demandFulfilmentRisk.delivery.customerExpectation ?? null,
       };
     }
   } catch {
@@ -220,7 +240,7 @@ export function buildCanonicalExecutiveTruth(input: {
       id: `commerce-${commerceOpportunity.opportunityId}`,
       priority: "money_approval",
       title: "Commerce opportunity requires Grand King approval",
-      detail: `${commerceOpportunity.productName} · ASIN ${commerceOpportunity.asin} · expected profit ${commerceOpportunity.expectedProfitUsd} · no publish/spend without approval`,
+      detail: `${commerceOpportunity.productName} · ASIN ${commerceOpportunity.asin} · ${commerceOpportunity.pillowRecommendation ?? "REVIEW"} · expected profit ${commerceOpportunity.expectedProfitUsd} · brand ${commerceOpportunity.brandRoute ?? "UNKNOWN"} · no publish/spend without approval`,
       href: "/cockpit/commerce/store",
     });
   } else if (pendingApprovals > 0) {

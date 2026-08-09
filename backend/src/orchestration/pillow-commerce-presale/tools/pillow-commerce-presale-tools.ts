@@ -1,11 +1,14 @@
 import type { RegisteredTool } from "../../../brain/types.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
 import { getPresaleApprovalGate } from "../approval-bridge.js";
+import { buildCommerceOperatingLoopReadiness } from "../commerce-operating-loop.js";
 import { getPillowCommercePresaleRepository } from "../repository/sqlite-pillow-commerce-presale-repository.js";
 import {
   applyOwnerDecisionToOpportunity,
   runPillowCommercePresaleCycle,
 } from "../services/presale-cycle-service.js";
+import { explainPillowCommerce } from "../commerce-plain-language.js";
+import { reevaluateCommerceOpportunity } from "../services/reevaluate-opportunity-service.js";
 
 export const pillowCommercePresaleTools: RegisteredTool[] = [
   {
@@ -81,5 +84,57 @@ export const pillowCommercePresaleTools: RegisteredTool[] = [
         supplierSpendAttempted: false,
       };
     },
+  },
+  {
+    name: "pillow_commerce.reevaluate_opportunity",
+    description:
+      "Pillow re-evaluates a commerce opportunity under the complete Commercial Decision Dossier (FD-CDD-001). Surfaces APPROVE dossier or REJECTS and continues autonomous discovery path. Never publishes or spends.",
+    module: "pillow-commerce-presale",
+    authorityLevel: "L2",
+    parameters: {
+      type: "object",
+      properties: {
+        workspaceId: { type: "string" },
+        companyId: { type: "string" },
+        asin: { type: "string" },
+        cjPid: { type: "string" },
+        amazonSellerSku: { type: "string" },
+      },
+      required: [],
+    },
+    handler: async (args) =>
+      reevaluateCommerceOpportunity({
+        workspaceId: args.workspaceId ? String(args.workspaceId) : GRAND_KING_WORKSPACE_ID,
+        companyId: args.companyId ? String(args.companyId) : GRAND_KING_COMPANY_ID,
+        asin: args.asin ? String(args.asin) : undefined,
+        cjPid: args.cjPid ? String(args.cjPid) : undefined,
+        amazonSellerSku: args.amazonSellerSku ? String(args.amazonSellerSku) : undefined,
+        approvalGate: getPresaleApprovalGate(),
+      }),
+  },
+  {
+    name: "pillow_commerce.operating_loop_readiness",
+    description:
+      "Return first-dollar complete commerce operating-loop readiness (Amazon→CJ bridge, BUYABLE, shipment confirm, actual P&L). Marks order-dependent stages READY — AWAITING FIRST REAL ORDER.",
+    module: "pillow-commerce-presale",
+    authorityLevel: "L1",
+    parameters: { type: "object", properties: {}, required: [] },
+    handler: async () => buildCommerceOperatingLoopReadiness(),
+  },
+  {
+    name: "pillow_commerce.explain",
+    description:
+      "Plain-language Grand King Commerce Q&A from canonical live truth (price, delivery, Featured Offer, actual vs expected profit, fulfilment route). UNKNOWN stays UNKNOWN.",
+    module: "pillow-commerce-presale",
+    authorityLevel: "L1",
+    parameters: {
+      type: "object",
+      properties: { workspaceId: { type: "string" } },
+      required: [],
+    },
+    handler: async (args) =>
+      explainPillowCommerce(
+        args.workspaceId ? String(args.workspaceId) : GRAND_KING_WORKSPACE_ID,
+      ),
   },
 ];

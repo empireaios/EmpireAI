@@ -7,11 +7,17 @@ import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropship
 import type { CjProduct } from "../../../suppliers/cj-dropshipping/cj-types.js";
 import {
   estimateAmazonFees,
+  getCatalogItemDetails,
+  getCompetitiveOfferSnapshot,
   getListingsRestrictions,
   isProof001FailureClass,
   openAmazonUsSession,
   searchCatalogAsin,
 } from "../amazon-commerce-preflight.js";
+import {
+  assembleCommercialDecisionDossier,
+  pickCheapestFreight,
+} from "../assemble-commercial-dossier.js";
 import {
   pickLiveCjVariant,
   coerceUsdNumber,
@@ -28,6 +34,7 @@ import {
   type MoneyEvidence,
   type PresaleCycleResult,
   type QualifiedOpportunity,
+  type RejectionReasonCode,
 } from "../models.js";
 import {
   captureInstitutionalMemory,
@@ -35,6 +42,7 @@ import {
   linkOutcomeToMemory,
 } from "../../executive-learning/institutional-memory-service.js";
 import { getPillowCommercePresaleRepository } from "../repository/sqlite-pillow-commerce-presale-repository.js";
+import type { CjFreightOption } from "../../../suppliers/cj-dropshipping/cj-types.js";
 
 export type RunPresaleCycleInput = {
   workspaceId: string;
@@ -374,17 +382,16 @@ export async function runPillowCommercePresaleCycle(
     }
 
     let shippingAmount: number | null = null;
+    let freightOption: CjFreightOption | null = null;
     try {
       const freight = await cj.calculateFreight({
         startCountryCode: "CN",
         endCountryCode: "US",
         products: [{ quantity: 1, vid: variant.vid }],
       });
-      const options = freight.data ?? [];
-      const priced = options
-        .map((o) => o.logisticPrice)
-        .filter((n): n is number => typeof n === "number" && Number.isFinite(n));
-      if (priced.length > 0) shippingAmount = Math.min(...priced);
+      const pickedFreight = pickCheapestFreight(freight.data ?? []);
+      shippingAmount = pickedFreight.priceUsd;
+      freightOption = pickedFreight.option;
     } catch (error) {
       rejections.push({
         cjPid: product.pid,
@@ -559,13 +566,79 @@ export async function runPillowCommercePresaleCycle(
     const amazonSellerSku = `EMP-FD-${Date.now().toString(36).toUpperCase()}`;
     const risks = [
       "Offer not yet published — BUYABLE must be verified after publication",
-      "Catalog ASIN match is keyword-based; verify product fit before approval",
+      "Catalog ASIN match is keyword-based; fulfilment uses deterministic SKU→CJ PID/VID map only",
       `Starting quantity limited to ${DEFAULT_START_QUANTITY} for exposure control`,
       ...commerceMemory.lessons.slice(0, 2).map((l) => `Institutional memory: ${l}`),
     ];
 
+    const catalog = await getCatalogItemDetails(amazon.session, asinResult.asin);
+    const competition = await getCompetitiveOfferSnapshot(
+      amazon.session,
+      asinResult.asin,
+      price,
+    );
+    const now = new Date().toISOString();
+    const assembled = assembleCommercialDecisionDossier({
+      productName: catalog.itemName || productName,
+      marketplaceId: amazon.session.marketplaceId,
+      asin: asinResult.asin,
+      amazonSellerSku,
+      cjPid: product.pid,
+      cjVid: variant.vid,
+      cjVariantSku: variant.sku || variant.vid,
+      mappingTimestamp: now,
+      stockUnits,
+      stockFreshness: "LIVE",
+      productCost: costEv,
+      usShipping: shipEv,
+      amazonFees: feeEv,
+      proposedSellingPriceUsd: price,
+      expectedProfitUsd: economics.expectedProfitUsd,
+      expectedMarginPct: economics.expectedMarginPct ?? 0,
+      brandName: catalog.brandName,
+      amazonEligibility: "PASS",
+      restrictionStatus: "PASS — listingsRestrictions clear at preflight",
+      competition,
+      freightOption,
+      salesRank: catalog.salesRank,
+      risks,
+    });
+
+    if (assembled.verdict === "REJECT") {
+      const reasonCode = (assembled.rejectCode ?? "DOSSIER_REJECT") as RejectionReasonCode;
+      rejections.push({
+        cjPid: product.pid,
+        productName,
+        reasonCode,
+        reason: assembled.why,
+        evidence: {
+          asin: asinResult.asin,
+          brandName: catalog.brandName,
+          brandRoute: assembled.dossier.eligibilityAndBrand.brandRoute,
+          delivery: assembled.dossier.demandFulfilmentRisk.delivery.supplierCanMeet,
+          grandKingSummary: assembled.dossier.grandKingSummary.slice(0, 500),
+        },
+      });
+      captureInstitutionalMemory({
+        workspaceId: input.workspaceId,
+        canonicalKey: `commerce.dossier_reject.${product.pid}.${asinResult.asin}`,
+        title: `Dossier REJECT ${asinResult.asin} / CJ ${product.pid}`,
+        statement: assembled.why,
+        memoryClass: "commerce",
+        authority: "pillow_recommendation",
+        epistemicStatus: "OUTCOME",
+        source: "commerce_event",
+        tags: ["commerce", "rejection", "dossier", reasonCode.toLowerCase()],
+        evidenceRefs: [`asin:${asinResult.asin}`, `cjPid:${product.pid}`, reasonCode],
+        linkedEntities: { asin: asinResult.asin, cjPid: product.pid },
+        category: "C",
+        actor: "pillow-commerce-presale",
+      });
+      continue;
+    }
+
     const recommendation = buildRecommendation({
-      productName,
+      productName: catalog.itemName || productName,
       asin: asinResult.asin,
       stockUnits,
       cost: costEv,
@@ -574,14 +647,15 @@ export async function runPillowCommercePresaleCycle(
       price,
       profit: economics.expectedProfitUsd,
       margin: economics.expectedMarginPct ?? 0,
-      risks,
+      risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
       amazonSellerSku,
       cjPid: product.pid,
       cjVid: variant.vid,
     });
-    recommendation.fullNarrative = `${recommendation.fullNarrative}\n\n${commerceMemory.formatted}\nMemory citations: ${memoryCitations.join(" | ") || "preflight lessons applied"}`;
+    recommendation.fullNarrative = `${assembled.dossier.grandKingSummary}\n\n${commerceMemory.formatted}\nMemory citations: ${memoryCitations.join(" | ") || "preflight lessons applied"}`;
+    recommendation.riskSummary =
+      assembled.dossier.demandFulfilmentRisk.riskReasons.join("; ") || recommendation.riskSummary;
 
-    const now = new Date().toISOString();
     const mapping = {
       marketplaceId: amazon.session.marketplaceId,
       asin: asinResult.asin,
@@ -615,6 +689,8 @@ export async function runPillowCommercePresaleCycle(
               `asin:${mapping.asin}`,
               `cjPid:${mapping.cjPid}`,
               `expectedProfitUsd:${mapping.expectedProfitUsd}`,
+              `brandRoute:${assembled.dossier.eligibilityAndBrand.brandRoute}`,
+              "dossier:FD-CDD-001",
               "publicationAttempted:false",
               "supplierSpendAttempted:false",
             ],
@@ -627,6 +703,7 @@ export async function runPillowCommercePresaleCycle(
               standingObjective: STANDING_COMMERCE_OBJECTIVE,
               publicationAllowed: false,
               supplierSpendAllowed: false,
+              dossierVersion: "FD-CDD-001",
             },
           },
         });
@@ -649,8 +726,9 @@ export async function runPillowCommercePresaleCycle(
       mapping,
       stockUnits,
       stockFreshness: "LIVE",
-      risks,
+      risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
       recommendation,
+      dossier: assembled.dossier,
       approvalId,
       approvalStatus: approvalId ? "Pending" : "none",
       publicationAllowed: false,
@@ -665,17 +743,18 @@ export async function runPillowCommercePresaleCycle(
     captureInstitutionalMemory({
       workspaceId: input.workspaceId,
       canonicalKey: `commerce.recommendation.${qualified.opportunityId}`,
-      title: `Pillow recommended ${productName} for Grand King approval`,
-      statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd}. Publication blocked until Grand King approval.`,
+      title: `Pillow recommended ${catalog.itemName || productName} for Grand King approval`,
+      statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd} with complete FD-CDD-001 dossier. Publication blocked until Grand King approval.`,
       memoryClass: "pillow_self_improvement",
       authority: "pillow_recommendation",
       epistemicStatus: "RECOMMENDATION",
       source: "commerce_event",
-      tags: ["commerce", "recommendation", "first-dollar"],
+      tags: ["commerce", "recommendation", "first-dollar", "dossier"],
       evidenceRefs: [
         `asin:${asinResult.asin}`,
         `sku:${amazonSellerSku}`,
         `profit:${economics.expectedProfitUsd}`,
+        "dossier:FD-CDD-001",
       ],
       linkedEntities: {
         asin: asinResult.asin,

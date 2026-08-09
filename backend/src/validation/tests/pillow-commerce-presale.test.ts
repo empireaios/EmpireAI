@@ -33,6 +33,8 @@ describe("pillow-commerce-presale", () => {
   it("registers Pillow commerce tools", () => {
     assert.ok(pillowCommercePresaleTools.some((t) => t.name === "pillow_commerce.run_presale_cycle"));
     assert.ok(pillowCommercePresaleTools.some((t) => t.name === "pillow_commerce.latest_opportunity"));
+    assert.ok(pillowCommercePresaleTools.some((t) => t.name === "pillow_commerce.reevaluate_opportunity"));
+    assert.ok(pillowCommercePresaleTools.some((t) => t.name === "pillow_commerce.operating_loop_readiness"));
   });
 
   it("treats ACCEPTED as not BUYABLE (Proof 001 regression class)", () => {
@@ -219,30 +221,73 @@ describe("pillow-commerce-presale", () => {
             JSON.stringify({
               code: 200,
               result: true,
-              data: [{ logisticName: "CJPacket", logisticPrice: 4.8 }],
+              data: [
+                {
+                  logisticName: "CJPacket",
+                  logisticPrice: 4.8,
+                  logisticAging: "5-9",
+                  countryCode: "CN",
+                },
+              ],
             }),
             { status: 200 },
           );
         }
+        return new Response(JSON.stringify({ code: 200, result: true, data: null }), { status: 200 });
       }
       return originalFetch(input, init);
     }) as typeof fetch;
 
     setHttpTransportOverride(async (request) => {
+      // Catalog item detail: /items/{asin}
+      if (/\/catalog\/2022-04-01\/items\/[A-Z0-9]+/i.test(request.url)) {
+        return {
+          status: 200,
+          ok: true,
+          latencyMs: 1,
+          json: {
+            summaries: [{ brandName: "Generic", itemName: "Silicone Kitchen Spatula Set" }],
+            salesRanks: [{ ranks: [{ rank: 85000 }] }],
+          },
+        };
+      }
       if (request.url.includes("/catalog/2022-04-01/items")) {
         return {
           status: 200,
           ok: true,
           latencyMs: 1,
           json: {
-            items: [{ asin: "B0TESTSPATULA", summaries: [{ brandName: "GenericHome", itemName: "Spatula" }] }],
+            items: [
+              {
+                asin: "B0TESTSPATULA",
+                summaries: [{ brandName: "Generic", itemName: "Silicone Kitchen Spatula Set" }],
+              },
+            ],
           },
         };
       }
       if (request.url.includes("/listings/2021-08-01/restrictions")) {
         return { status: 200, ok: true, latencyMs: 1, json: { restrictions: [] } };
       }
-      if (request.url.includes("/feesEstimate")) {
+      if (request.url.includes("/products/pricing/v0/items/") && request.url.includes("/offers")) {
+        return {
+          status: 200,
+          ok: true,
+          latencyMs: 1,
+          json: {
+            payload: {
+              Summary: {
+                TotalOfferCount: 3,
+                LowestPrices: [{ LandedPrice: { Amount: 12.99 } }],
+                BuyBoxPrices: [{ LandedPrice: { Amount: 12.99 } }],
+                BuyBoxEligibleOffers: [{ OfferCount: 2 }],
+              },
+              Offers: [{ SellerId: "AOTHER", IsBuyBoxWinner: true, ListingPrice: { Amount: 12.99 } }],
+            },
+          },
+        };
+      }
+      if (request.url.includes("/feesEstimate") || request.url.includes("fees")) {
         return {
           status: 200,
           ok: true,
@@ -257,7 +302,7 @@ describe("pillow-commerce-presale", () => {
           },
         };
       }
-      return { status: 404, ok: false, latencyMs: 1, json: { error: "unexpected" } };
+      return { status: 404, ok: false, latencyMs: 1, json: { error: "unexpected", url: request.url } };
     });
 
     const gate = new ApprovalGateEngine();
@@ -283,7 +328,9 @@ describe("pillow-commerce-presale", () => {
     assert.ok(cycle.qualifiedOpportunity!.approvalId);
     assert.equal(cycle.qualifiedOpportunity!.publicationAllowed, false);
     assert.equal(cycle.qualifiedOpportunity!.supplierSpendAllowed, false);
-    assert.match(cycle.qualifiedOpportunity!.recommendation.fullNarrative, /APPROVAL REQUIRED/);
+    assert.match(cycle.qualifiedOpportunity!.recommendation.fullNarrative, /GRAND KING DECISION/);
+    assert.equal(cycle.qualifiedOpportunity!.dossier?.dossierVersion, "FD-CDD-001");
+    assert.equal(cycle.qualifiedOpportunity!.dossier?.exposureAndAction.pillowRecommendation, "APPROVE");
 
     const pending = gate.listPending("ws_empire_1");
     assert.ok(pending.some((a) => a.approvalId === cycle.qualifiedOpportunity!.approvalId));

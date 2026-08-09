@@ -3,6 +3,8 @@
  * ACCEPTED ≠ BUYABLE — commercial states are explicit and evidence-backed.
  */
 
+import type { CommercialDecisionDossier } from "./commercial-decision-dossier.js";
+
 export const STANDING_COMMERCE_OBJECTIVE =
   "FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US" as const;
 
@@ -51,6 +53,10 @@ export type RejectionReasonCode =
   | "FEE_UNAVAILABLE"
   | "SUPPLIER_UNAVAILABLE"
   | "INCOMPLETE_IDENTITY"
+  | "DELIVERY_PROMISE_MISMATCH"
+  | "BRAND_AUTHENTICITY_UNVERIFIED"
+  | "PRIVATE_LABEL_NOT_CONFIGURED"
+  | "DOSSIER_REJECT"
   | "OTHER";
 
 export type MoneyEvidence = {
@@ -114,6 +120,8 @@ export type QualifiedOpportunity = {
   stockFreshness: EvidenceFreshness;
   risks: string[];
   recommendation: ExecutiveRecommendation;
+  /** Complete Commercial Decision Dossier (FD-CDD-001) — mandatory before Grand King approval. */
+  dossier?: CommercialDecisionDossier;
   approvalId: string | null;
   approvalStatus: "none" | "Pending" | "Approved" | "Rejected" | "Cancelled" | "Expired";
   publicationAllowed: false;

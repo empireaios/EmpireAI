@@ -79,7 +79,9 @@ function syncPipelineFromFulfillment(
   });
 }
 
-/** Prepares a LIVE CJ fulfillment job — PENDING_FOUNDER_APPROVAL, never auto-submits. */
+/** Prepares a LIVE CJ fulfillment job — PENDING_FOUNDER_APPROVAL, never auto-submits.
+ * Idempotent by pipelineId: retries resume existing record and must not create duplicate CJ orders.
+ */
 export function prepareLiveCjFulfillment(
   input: PrepareLiveCjFulfillmentInput,
 ): LiveCjFulfillmentRecord {

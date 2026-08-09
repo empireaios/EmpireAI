@@ -6,10 +6,13 @@ import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
 import { getPillowCommercePresaleRepository } from "../repository/sqlite-pillow-commerce-presale-repository.js";
+import { buildCommerceOperatingLoopReadiness } from "../commerce-operating-loop.js";
+import { explainPillowCommerce } from "../commerce-plain-language.js";
 import {
   applyOwnerDecisionToOpportunity,
   runPillowCommercePresaleCycle,
 } from "../services/presale-cycle-service.js";
+import { reevaluateCommerceOpportunity } from "../services/reevaluate-opportunity-service.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -136,6 +139,88 @@ export async function registerPillowCommercePresaleRoutes(
     },
   );
 
+  app.post(
+    "/pillow-commerce-presale/reevaluate",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      if (user.role !== "founder" && user.role !== "admin") {
+        return reply.code(403).send({ error: "Founder access required" });
+      }
+      const body = z
+        .object({
+          workspaceId: z.string().optional(),
+          companyId: z.string().optional(),
+          asin: z.string().optional(),
+          cjPid: z.string().optional(),
+          amazonSellerSku: z.string().optional(),
+        })
+        .parse(request.body ?? {});
+
+      const workspaceId = body.workspaceId ?? user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const result = await reevaluateCommerceOpportunity({
+        workspaceId,
+        companyId: body.companyId ?? GRAND_KING_COMPANY_ID,
+        asin: body.asin,
+        cjPid: body.cjPid,
+        amazonSellerSku: body.amazonSellerSku,
+        approvalGate: deps.getApprovalGate?.() ?? null,
+      });
+
+      deps.auditLogger.write({
+        action: "tool.execute",
+        actor: user.email,
+        workspaceId,
+        companyId: result.opportunity?.companyId ?? GRAND_KING_COMPANY_ID,
+        correlationId: result.opportunity?.opportunityId ?? "reeval",
+        metadata: {
+          tool: "pillow_commerce.reevaluate_opportunity",
+          outcome: result.outcome,
+          asin: result.target.asin,
+          publicationAttempted: false,
+          supplierSpendAttempted: false,
+        },
+      });
+
+      return reply.send(result);
+    },
+  );
+
+  app.get(
+    "/pillow-commerce-presale/operating-loop",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      const workspaceId = user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const repo = getPillowCommercePresaleRepository();
+      const pending = repo.getPendingApprovalOpportunity(workspaceId);
+      return reply.send({
+        operatingLoop: buildCommerceOperatingLoopReadiness(),
+        pendingApproval: pending
+          ? {
+              opportunityId: pending.opportunityId,
+              asin: pending.mapping.asin,
+              dossierVersion: pending.dossier?.dossierVersion ?? null,
+              pillowRecommendation:
+                pending.dossier?.exposureAndAction.pillowRecommendation ??
+                pending.recommendation.pillowRecommendation,
+              grandKingSummary: pending.dossier?.grandKingSummary ?? pending.recommendation.fullNarrative,
+            }
+          : null,
+      });
+    },
+  );
+
+  app.get(
+    "/pillow-commerce-presale/explain",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      const workspaceId = user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send(explainPillowCommerce(workspaceId));
+    },
+  );
+
   app.get("/health/pillow-commerce-presale", async (_request, reply) => {
     const repo = getPillowCommercePresaleRepository();
     const latest = repo.getLatestCycle(GRAND_KING_WORKSPACE_ID);
@@ -148,6 +233,8 @@ export async function registerPillowCommercePresaleRoutes(
       lastCycleAt: latest?.completedAt ?? null,
       publicationAutoDisabled: true,
       supplierSpendAutoDisabled: true,
+      commercialDecisionDossier: "FD-CDD-001",
+      operatingLoop: buildCommerceOperatingLoopReadiness().canonicalAmazonToCjRoute,
     });
   });
 }
