@@ -223,7 +223,18 @@ export function ExecutiveHomeChatWorkspace() {
             data-testid="pillow-composer"
             aria-label="Executive prompt"
             value={queryDraft}
-            onChange={(e) => setQueryDraft(e.target.value)}
+            onChange={(e) => {
+              setQueryDraft(e.target.value);
+              autosizeComposer(e.target);
+            }}
+            onKeyDown={(e) => {
+              // Multiline by default; explicit send via Ctrl/Cmd+Enter (or the Send button).
+              if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                if (!canSend) return;
+                void ask(queryDraft.trim());
+              }
+            }}
             rows={6}
             autoComplete="off"
             spellCheck

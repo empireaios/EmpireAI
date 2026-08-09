@@ -91,4 +91,34 @@ describe("executive home truth + nav reality", () => {
     assert.match(decision, /min-h-\[75vh\]/);
     assert.ok(!/<details/.test(decision));
   });
+
+  it("background context refresh must not share chat loading (Send must stay usable)", () => {
+    const provider = readFileSync(
+      join(root, "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx"),
+      "utf8",
+    );
+    const refreshStart = provider.indexOf("const refreshContext = useCallback");
+    const refreshEnd = provider.indexOf(
+      "}, [pathname, state.pageOverride, syncExecutiveAwareness]);",
+    );
+    assert.ok(refreshStart > 0 && refreshEnd > refreshStart);
+    const refreshBody = provider.slice(refreshStart, refreshEnd);
+    assert.ok(
+      !/loading:\s*true/.test(refreshBody),
+      "refreshContext must not set loading:true — that blocks Send / shows fake Preparing",
+    );
+    assert.match(
+      provider,
+      /Never share chat `loading` with background context refresh/,
+    );
+  });
+
+  it("sidebar stays sticky so nav remains clickable after scroll", () => {
+    const sidebar = readFileSync(
+      join(root, "components/cockpit/shell/CockpitSidebar.tsx"),
+      "utf8",
+    );
+    assert.match(sidebar, /sticky/);
+    assert.match(sidebar, /h-dvh|h-screen/);
+  });
 });

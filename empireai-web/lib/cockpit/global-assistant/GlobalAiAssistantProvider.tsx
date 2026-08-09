@@ -321,7 +321,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   }, [markReady, markStarting, pathname, savedSession?.turns, user]);
 
   const refreshContext = useCallback(async () => {
-    setState((s) => ({ ...s, loading: true }));
+    // Never share chat `loading` with background context refresh — that disabled Send
+    // and showed "Preparing your executive response…" while Brain context was fetching.
     try {
       const result = await brainDispatch<GlobalAssistantContext>({
         module: "cockpit-global-assistant",
@@ -331,12 +332,11 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       const brainContext = result.result ?? null;
       setState((s) => ({
         ...s,
-        loading: false,
         context: brainContext,
       }));
       syncExecutiveAwareness(brainContext, state.pageOverride);
     } catch {
-      setState((s) => ({ ...s, loading: false }));
+      // Background awareness only — do not block the composer.
     }
   }, [pathname, state.pageOverride, syncExecutiveAwareness]);
 
@@ -523,32 +523,17 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         queryDraft: "",
       }));
 
-      // Always attempt the executive pipeline — soft reply only if session/chat cannot complete.
-      if (!state.executiveReady) {
-        void ensureHostSession();
-      }
+      try {
+        // Always attempt the executive pipeline — soft reply only if session/chat cannot complete.
+        if (!state.executiveReady) {
+          void ensureHostSession();
+        }
 
-      const sent = await sendViaPillow(query, target);
-      if (sent) return;
+        const sent = await sendViaPillow(query, target);
+        if (sent) return;
 
-      // Gate still enforced (no Brain fallback) — Grand King sees executive language only.
-      recordConversation(query, {
-        action: "ask",
-        currentContext: "Executive startup",
-        reason: EXECUTIVE_NOT_READY_REPLY,
-        supportingEvidence: [],
-        recommendedNextAction: "Wait a moment, then ask again.",
-        confidence: "unavailable",
-        suggestedFollowUps: [],
-        interactionIntent: "general",
-        interactionSummary: EXECUTIVE_NOT_READY_REPLY,
-        computedAt: new Date().toISOString(),
-        futureCapabilities: [],
-      });
-      setState((s) => ({
-        ...s,
-        loading: false,
-        lastResponse: {
+        // Gate still enforced (no Brain fallback) — Grand King sees executive language only.
+        recordConversation(query, {
           action: "ask",
           currentContext: "Executive startup",
           reason: EXECUTIVE_NOT_READY_REPLY,
@@ -560,9 +545,27 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           interactionSummary: EXECUTIVE_NOT_READY_REPLY,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
-        },
-        connectionError: s.connectionError ?? EXECUTIVE_RECOVERING_LABEL,
-      }));
+        });
+        setState((s) => ({
+          ...s,
+          lastResponse: {
+            action: "ask",
+            currentContext: "Executive startup",
+            reason: EXECUTIVE_NOT_READY_REPLY,
+            supportingEvidence: [],
+            recommendedNextAction: "Wait a moment, then ask again.",
+            confidence: "unavailable",
+            suggestedFollowUps: [],
+            interactionIntent: "general",
+            interactionSummary: EXECUTIVE_NOT_READY_REPLY,
+            computedAt: new Date().toISOString(),
+            futureCapabilities: [],
+          },
+          connectionError: s.connectionError ?? EXECUTIVE_RECOVERING_LABEL,
+        }));
+      } finally {
+        setState((s) => (s.loading ? { ...s, loading: false } : s));
+      }
     },
     [ensureHostSession, recordConversation, sendViaPillow, state.executiveReady],
   );
@@ -597,26 +600,11 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         activeTarget: target ?? null,
       }));
 
-      const sent = await sendViaPillow(userQuery, target);
-      if (sent) return;
+      try {
+        const sent = await sendViaPillow(userQuery, target);
+        if (sent) return;
 
-      recordConversation(userQuery, {
-        action,
-        currentContext: "Executive Intelligence starting",
-        reason: EXECUTIVE_NOT_READY_REPLY,
-        supportingEvidence: [],
-        recommendedNextAction: "Wait a moment, then ask again.",
-        confidence: "unavailable",
-        suggestedFollowUps: [],
-        interactionIntent: "general",
-        interactionSummary: EXECUTIVE_NOT_READY_REPLY,
-        computedAt: new Date().toISOString(),
-        futureCapabilities: [],
-      });
-      setState((s) => ({
-        ...s,
-        loading: false,
-        lastResponse: {
+        recordConversation(userQuery, {
           action,
           currentContext: "Executive Intelligence starting",
           reason: EXECUTIVE_NOT_READY_REPLY,
@@ -628,9 +616,27 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           interactionSummary: EXECUTIVE_NOT_READY_REPLY,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
-        },
-        connectionError: s.readinessLabel || EXECUTIVE_RECOVERING_LABEL,
-      }));
+        });
+        setState((s) => ({
+          ...s,
+          lastResponse: {
+            action,
+            currentContext: "Executive Intelligence starting",
+            reason: EXECUTIVE_NOT_READY_REPLY,
+            supportingEvidence: [],
+            recommendedNextAction: "Wait a moment, then ask again.",
+            confidence: "unavailable",
+            suggestedFollowUps: [],
+            interactionIntent: "general",
+            interactionSummary: EXECUTIVE_NOT_READY_REPLY,
+            computedAt: new Date().toISOString(),
+            futureCapabilities: [],
+          },
+          connectionError: s.readinessLabel || EXECUTIVE_RECOVERING_LABEL,
+        }));
+      } finally {
+        setState((s) => (s.loading ? { ...s, loading: false } : s));
+      }
     },
     [
       askPillow,
