@@ -38,6 +38,7 @@ export type GlobalAssistantExecutiveContext = {
   engineCenterId: EngineCenterId | null;
   engineCenterName: string | null;
   activeMissionCount: number;
+  pendingApprovals: number;
   topMissionTitle: string | null;
   alertCount: number;
   topAlertLabel: string | null;
@@ -148,10 +149,12 @@ function buildExecutiveContext(
     engineCenterId: engineId,
     engineCenterName,
     activeMissionCount: activeMissions.length,
-    topMissionTitle: topMission?.title ?? null,
+    pendingApprovals:
+      home.canonicalTruth?.pendingApprovals ?? home.command.pendingApprovals.count ?? 0,
+    topMissionTitle: topMission?.title ?? home.canonicalTruth?.activeMissionTitle ?? null,
     alertCount: home.executiveAlerts.length,
     topAlertLabel: topAlert?.label ?? null,
-    nextExecutiveAction: home.nextExecutiveAction,
+    nextExecutiveAction: home.canonicalTruth?.nextGrandKingAction ?? home.nextExecutiveAction,
     contextSummary,
   };
 }

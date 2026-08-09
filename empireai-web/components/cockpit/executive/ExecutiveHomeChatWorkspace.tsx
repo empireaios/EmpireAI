@@ -21,7 +21,7 @@ const EXECUTIVE_ACTIONS = [
 export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
   const conversationRef = useRef<HTMLDivElement>(null);
-  const composerRef = useRef<HTMLInputElement>(null);
+  const composerRef = useRef<HTMLTextAreaElement>(null);
   const {
     loading,
     context,
@@ -79,16 +79,16 @@ export function ExecutiveHomeChatWorkspace() {
 
   return (
     <section
-      className="flex h-[calc(100vh-8.5rem)] min-h-[520px] flex-col overflow-hidden rounded-xl border border-gold/15 bg-[#0a0a0a]/95 shadow-2xl lg:h-[calc(100vh-7rem)]"
-      aria-label="Executive Chat"
+      className="flex h-[75vh] min-h-[70vh] w-full flex-col overflow-hidden rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl lg:h-[85vh] lg:min-h-[75vh]"
+      aria-label="Executive Chat workspace"
     >
-      <header className="shrink-0 border-b border-gold/10 px-4 py-3">
+      <header className="shrink-0 border-b border-gold/10 px-5 py-4">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37]">
-              Pillow · Executive Intelligence · P7-03
+              Pillow · Primary executive workspace
             </p>
-            <h2 className="font-display text-lg text-[#f0d78c]">Executive Chat</h2>
+            <h2 className="font-display text-2xl text-[#f0d78c]">Executive Chat</h2>
           </div>
           <span
             className={`rounded-full px-2 py-0.5 text-[10px] ${
@@ -121,7 +121,7 @@ export function ExecutiveHomeChatWorkspace() {
       </header>
 
       {executiveSnapshot && (
-        <div className="shrink-0 space-y-2 border-b border-gold/10 px-4 py-2">
+        <div className="max-h-[22%] shrink-0 space-y-2 overflow-y-auto border-b border-gold/10 px-5 py-2">
           <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           <PillowProactiveGuidance
             items={executiveReady ? proactiveGuidance : []}
@@ -134,7 +134,7 @@ export function ExecutiveHomeChatWorkspace() {
 
       <div
         ref={conversationRef}
-        className="min-h-0 flex-1 overflow-y-auto px-4 py-3"
+        className="min-h-0 flex-[1_1_auto] overflow-y-auto px-5 py-4"
       >
         {!executiveReady && (
           <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">
@@ -169,7 +169,9 @@ export function ExecutiveHomeChatWorkspace() {
               <span className="text-[10px] uppercase text-[#6f6a60]">
                 {turn.role === "pillow" ? "Pillow" : "Grand King"}
               </span>
-              <p className="mt-1 whitespace-pre-wrap text-sm text-[#e8e0d0]">{turn.content}</p>
+              <p className="mt-1 whitespace-pre-wrap text-base leading-relaxed text-[#e8e0d0]">
+                {turn.content}
+              </p>
               {turn.artifacts && turn.artifacts.length > 0 && (
                 <ExecutiveChatArtifacts artifacts={turn.artifacts} />
               )}
@@ -182,26 +184,26 @@ export function ExecutiveHomeChatWorkspace() {
         )}
       </div>
 
-      <footer className="shrink-0 space-y-2 border-t border-gold/10 px-4 py-3">
+      <footer className="shrink-0 space-y-3 border-t border-gold/10 px-5 py-4">
         <form
-          className="flex gap-2"
+          className="flex items-end gap-2"
           onSubmit={(e) => {
             e.preventDefault();
             if (!canSend) return;
             void ask(queryDraft.trim());
           }}
         >
-          <input
+          <textarea
             ref={composerRef}
-            type="text"
             id="executive-pillow-query"
             aria-label="Executive prompt"
             value={queryDraft}
             onChange={(e) => setQueryDraft(e.target.value)}
+            rows={3}
             autoComplete="off"
             spellCheck
             placeholder="Executive prompt — type now; Send when ready…"
-            className="min-h-[44px] flex-1 rounded-lg border border-gold/15 bg-black/40 px-3 py-2 text-sm text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
+            className="min-h-[96px] flex-1 resize-y rounded-lg border border-gold/15 bg-black/40 px-4 py-3 text-base text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
           />
           {voice.supported && (
             <button

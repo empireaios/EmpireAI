@@ -256,6 +256,65 @@ export type ExecutiveHomeView = {
   architectureVersion: "P7-04";
   executiveBrief: ExecutiveHomeBrief;
   centreSummaries: ExecutiveHomeCentreSummaries;
+  canonicalTruth?: CanonicalExecutiveTruth;
+};
+
+export type CanonicalExecutiveTruth = {
+  computedAt: string;
+  systemOperational: boolean;
+  brainStatus: "online" | "degraded" | "unknown";
+  guardianStatus: string;
+  productionStatus: string;
+  commerceReadiness: string;
+  realisedRevenueUsd: number | null;
+  realisedOrders: number | null;
+  realisedProfitUsd: number | null;
+  portfolioCompaniesTotal: number;
+  livePortfolioCompanies: number;
+  seedPortfolioExcludedFromLiveEconomics: true;
+  activeMissionTitle: string | null;
+  activeMissionHuman: string;
+  openMissionCount: number;
+  pendingApprovals: number;
+  pendingApprovalTitles: string[];
+  currentObjectiveHuman: string;
+  currentBlockers: Array<{ humanLabel: string; engineeringId?: string; current: boolean }>;
+  commerceOpportunity: {
+    opportunityId: string;
+    asin: string;
+    cjPid: string;
+    amazonSellerSku: string;
+    productName: string;
+    expectedProfitUsd: string;
+    expectedMarginPct: string;
+    offerPrice: string;
+    disposition: string;
+    approvalId: string | null;
+    approvalStatus: string;
+    summary: string;
+  } | null;
+  pillowActivity: {
+    institutionalMemoryLessons: number;
+    institutionalMemoryCertified: boolean;
+    pendingCommerceRecommendation: boolean;
+    nextAutonomousAction: string;
+  };
+  grandKingAttention: Array<{
+    id: string;
+    priority:
+      | "critical_system"
+      | "money_approval"
+      | "commercial_opportunity"
+      | "important_decision"
+      | "informational";
+    title: string;
+    detail: string;
+    href: string | null;
+    engineeringId?: string;
+  }>;
+  nextGrandKingAction: string;
+  nextPillowAction: string;
+  dataIntegrityNotes: string[];
 };
 
 export type MissionCentreView = {

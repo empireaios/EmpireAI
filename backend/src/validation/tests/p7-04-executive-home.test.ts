@@ -59,9 +59,11 @@ describe("P7-04 — Executive Home", () => {
     void architectureVersion;
     void executiveBrief;
     void centreSummaries;
-    const enriched = enrichExecutiveHomeViewP704(base);
+    const enriched = enrichExecutiveHomeViewP704(base, "ws-foundation");
     assert.equal(enriched.architectureVersion, "P7-04");
     assert.ok(enriched.executiveBrief);
     assert.ok(enriched.centreSummaries);
+    assert.ok(enriched.canonicalTruth);
+    assert.equal(enriched.canonicalTruth.seedPortfolioExcludedFromLiveEconomics, true);
   });
 });

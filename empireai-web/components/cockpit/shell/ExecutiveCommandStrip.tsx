@@ -70,7 +70,7 @@ function healthBadgeVariant(
 }
 
 function formatForecast(iso: string | null): string {
-  if (!iso) return "Awaiting implementation";
+  if (!iso) return "No tracked ETA";
   try {
     return new Date(iso).toLocaleDateString(undefined, {
       month: "short",
@@ -255,7 +255,7 @@ export function ExecutiveCommandStrip() {
             value={
               data.crirReadiness.score !== null
                 ? `${data.crirReadiness.score}%`
-                : "Awaiting implementation"
+                : "No tracked ETA"
             }
             detail={data.crirReadiness.detail}
             variant={data.crirReadiness.launchReady ? "success" : "warning"}
@@ -275,7 +275,7 @@ export function ExecutiveCommandStrip() {
             value={
               data.commerceReadiness.score !== null
                 ? `${data.commerceReadiness.score}%`
-                : "Awaiting implementation"
+                : "No tracked ETA"
             }
             detail={`${data.commerceReadiness.launchDecision} · ${data.commerceReadiness.blockingCount} blocking`}
             variant={
@@ -312,7 +312,7 @@ export function ExecutiveCommandStrip() {
             <div className="sm:col-span-2">
               <span className="text-[#6f6a60]">Next action · </span>
               <span className="text-[#c8c0b0]">
-                {data.oms.nextHighestImpactAction ?? "Awaiting implementation"}
+                {data.oms.nextHighestImpactAction ?? "No action required"}
               </span>
             </div>
           </div>

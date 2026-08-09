@@ -148,6 +148,8 @@ export type ExecutiveHomeView = {
   architectureVersion: "P7-04";
   executiveBrief: import("./executive-home-p7-04.js").ExecutiveHomeBrief;
   centreSummaries: import("./executive-home-p7-04.js").ExecutiveHomeCentreSummaries;
+  /** Total-truth aggregation — Home + Centres must share this. */
+  canonicalTruth: import("./canonical-executive-truth.js").CanonicalExecutiveTruth;
 };
 
 export type MissionCentreView = {
@@ -1211,28 +1213,31 @@ export function loadExecutiveHomeView(
       ? "Monitor revenue and scale top-performing ventures"
       : command.proof001.detail);
 
-  return enrichExecutiveHomeViewP704({
-    computedAt: new Date().toISOString(),
-    greeting: {
-      displayNameHint: "Grand King",
-      topBlocker: top ? `${top.id}: ${top.detail}` : null,
-      topBlockerHref: top?.id.startsWith("B6")
-        ? "/cockpit/infrastructure/integrations"
-        : top?.id === "B5"
-          ? "/cockpit/infrastructure/health"
-          : "/cockpit/governance/v1",
+  return enrichExecutiveHomeViewP704(
+    {
+      computedAt: new Date().toISOString(),
+      greeting: {
+        displayNameHint: "Grand King",
+        topBlocker: top ? `${top.id}: ${top.detail}` : null,
+        topBlockerHref: top?.id.startsWith("B6")
+          ? "/cockpit/infrastructure/integrations"
+          : top?.id === "B5"
+            ? "/cockpit/infrastructure/health"
+            : "/cockpit/governance/v1",
+      },
+      command,
+      portfolio,
+      engineSummaries,
+      summaryCards,
+      attentionItems,
+      nextExecutiveAction,
+      executiveTimeline,
+      executiveAlerts,
+      approvalRoutes,
+      dependencyGraph,
     },
-    command,
-    portfolio,
-    engineSummaries,
-    summaryCards,
-    attentionItems,
-    nextExecutiveAction,
-    executiveTimeline,
-    executiveAlerts,
-    approvalRoutes,
-    dependencyGraph,
-  });
+    workspaceId,
+  );
 }
 
 export function loadMissionCentreView(

@@ -51,7 +51,12 @@ export function ExecutiveEmpireAwarenessStrip() {
     },
     {
       label: "Current Mission",
-      value: context?.currentMission ?? founder?.missionStatus ?? activeMissions?.primaryValue ?? "—",
+      value:
+        data?.canonicalTruth?.activeMissionHuman ??
+        context?.currentMission ??
+        founder?.missionStatus ??
+        activeMissions?.primaryValue ??
+        "No active mission",
       href: COCKPIT_UX_NAVIGATION.find((n) => n.id === "mission_centre")?.href,
     },
     {
@@ -76,17 +81,20 @@ export function ExecutiveEmpireAwarenessStrip() {
     },
     {
       label: "Guardian",
-      value: founderData?.founderShellEngine.cockpit.shellHealth ?? "—",
+      value: data?.canonicalTruth?.guardianStatus ?? founderData?.founderShellEngine.cockpit.shellHealth ?? "—",
       href: COCKPIT_UX_NAVIGATION.find((n) => n.id === "guardian")?.href,
     },
     {
       label: "Production",
-      value: founder?.productionStatus ?? "—",
+      value: data?.canonicalTruth?.productionStatus ?? founder?.productionStatus ?? "—",
       href: COCKPIT_UX_NAVIGATION.find((n) => n.id === "production")?.href,
     },
     {
       label: "Revenue",
-      value: revenue?.primaryValue ?? founder?.revenue ?? "—",
+      value:
+        data?.canonicalTruth?.realisedRevenueUsd != null
+          ? `$${data.canonicalTruth.realisedRevenueUsd.toFixed(2)}`
+          : "No realised revenue yet",
       href: COCKPIT_UX_NAVIGATION.find((n) => n.id === "commerce")?.href,
     },
     {
@@ -101,7 +109,9 @@ export function ExecutiveEmpireAwarenessStrip() {
     },
     {
       label: "Approvals",
-      value: String(data?.command.pendingApprovals.count ?? founder?.pendingActions?.length ?? 0),
+      value: String(
+        data?.canonicalTruth?.pendingApprovals ?? data?.command.pendingApprovals.count ?? 0,
+      ),
       href: COCKPIT_UX_NAVIGATION.find((n) => n.id === "executive_home")?.href,
     },
   ];

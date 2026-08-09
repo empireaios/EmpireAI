@@ -57,7 +57,7 @@ export function buildExecutiveContextSnapshot(input: {
     supervisorStatus: home?.supervisorStatus ?? null,
     productionStatus: home?.productionStatus ?? null,
     guardianStatus: cockpit?.shellHealth ?? null,
-    pendingApprovals: input.pendingApprovals ?? executive?.activeMissionCount ?? 0,
+    pendingApprovals: input.pendingApprovals ?? 0,
     alertCount: executive?.alertCount ?? alerts.length,
     recommendations: [...new Set(recommendations)].slice(0, 6),
     risks: [...new Set(risks)].slice(0, 6),

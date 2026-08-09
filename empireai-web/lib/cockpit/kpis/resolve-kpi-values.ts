@@ -26,6 +26,10 @@ export function resolveKpiDisplayValue(
   const candidates = KPI_LABEL_TO_LEDGER[kpi.label] ?? [kpi.label];
   const match = ledgerMetrics.find((m) => candidates.includes(m.label));
   if (!match) {
+    // LIVE badges must never display placeholder/demo/fixture values.
+    if (kpi.dataMode === "live") {
+      return { value: "Not yet measured", trend: undefined };
+    }
     return { value: kpi.placeholderValue, trend: kpi.placeholderTrend };
   }
   const trendSymbol =

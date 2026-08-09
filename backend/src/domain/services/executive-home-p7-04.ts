@@ -4,6 +4,10 @@
 
 import { listInstitutionalMemory } from "../../orchestration/executive-learning/institutional-memory-service.js";
 import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
+import {
+  buildCanonicalExecutiveTruth,
+  type CanonicalExecutiveTruth,
+} from "./canonical-executive-truth.js";
 import type { ExecutiveAlert, ExecutiveHomeView, ExecutiveSummaryCard, EnginePanelView } from "./cockpit-panel-views.js";
 
 type CommandView = ExecutiveHomeView["command"];
@@ -127,7 +131,9 @@ export function buildExecutiveHomeCentreSummaries(input: {
   nextExecutiveAction: string;
   executiveAlerts: ExecutiveAlert[];
   pendingApprovals: number;
+  truth?: CanonicalExecutiveTruth;
 }): ExecutiveHomeCentreSummaries {
+  const truth = input.truth;
   const revenue = card(input.summaryCards, "revenue-today");
   const orders = card(input.summaryCards, "orders-today");
   const marketing = card(input.summaryCards, "marketing-performance");
@@ -139,13 +145,20 @@ export function buildExecutiveHomeCentreSummaries(input: {
 
   return {
     mission: {
-      currentMission: input.command.oms.activeObjective ?? "No active objective",
+      currentMission: truth?.activeMissionHuman ?? "No active mission",
       missionOwner: "ECC · Supervisor",
-      currentStep: input.command.oms.nextHighestImpactAction ?? input.nextExecutiveAction,
-      progress: input.command.oms.progress ?? 0,
-      eta: input.command.proof001.achieved ? "Revenue scaling phase" : "PROOF-001 gate pending",
+      currentStep: truth?.nextGrandKingAction ?? input.command.oms.nextHighestImpactAction ?? input.nextExecutiveAction,
+      progress: truth?.activeMissionTitle ? input.command.oms.progress ?? 0 : 0,
+      eta: truth?.activeMissionTitle
+        ? input.command.proof001.achieved
+          ? "Active work in progress"
+          : "Pending owner decision / validation"
+        : "No tracked ETA — no active mission",
       dependencies: ["Builder", "Supervisor", "Guardian", "Production Truth"],
-      currentRisks: input.executiveAlerts.slice(0, 3).map((a) => a.label),
+      currentRisks: (truth?.currentBlockers ?? [])
+        .filter((b) => b.current)
+        .slice(0, 3)
+        .map((b) => b.humanLabel),
       validationStatus: input.command.operationalReadiness.passed ? "Passed" : "In progress",
       recoveryStatus: openBlockerCount(input.command) > 0 ? "Recovery mapped" : "Nominal",
       href: "/cockpit/missions",
@@ -207,25 +220,33 @@ export function buildExecutiveHomeCentreSummaries(input: {
           ? "PROOF-001 achieved · Vision on track · Institutional memory accumulating"
           : input.command.proof001.detail,
         pendingDecisions:
-          input.pendingApprovals > 0 ? [`${input.pendingApprovals} pending approvals`] : [],
+          (truth?.pendingApprovals ?? input.pendingApprovals) > 0
+            ? [`${truth?.pendingApprovals ?? input.pendingApprovals} pending approval(s)`]
+            : [],
       };
     })(),
     business: {
-      activeBusinesses: input.portfolio.companies.length,
-      revenue: revenue?.primaryValue ?? `$${input.command.success001.currentNetProfitUsd.toFixed(0)} net`,
-      orders: orders?.primaryValue ?? "—",
-      profit: `$${input.command.success001.currentNetProfitUsd.toFixed(0)}`,
+      activeBusinesses: truth?.portfolioCompaniesTotal ?? input.portfolio.companies.length,
+      revenue:
+        truth?.realisedRevenueUsd != null
+          ? `$${truth.realisedRevenueUsd.toFixed(2)} realised`
+          : "No realised revenue yet",
+      orders:
+        truth?.realisedOrders != null ? String(truth.realisedOrders) : "No orders received",
+      profit:
+        truth?.realisedProfitUsd != null
+          ? `$${truth.realisedProfitUsd.toFixed(2)}`
+          : "No realised profit yet",
       advertisingSpend: marketing?.items.find((i) => /spend/i.test(i.label))?.value ?? "—",
       marketingPerformance: marketing?.primaryValue ?? marketing?.status ?? "—",
-      businessHealth: empireHealth?.health ?? empireHealth?.status ?? "—",
-      growthTrend:
-        revenue?.items[0]?.value ?? `${input.command.success001.progressPercent}% to SUCCESS-001`,
+      businessHealth: `${truth?.livePortfolioCompanies ?? 0} non-seed live · ${truth?.portfolioCompaniesTotal ?? input.portfolio.companies.length} portfolio (seed excluded from LIVE economics)`,
+      growthTrend: truth?.commerceReadiness ?? "Commerce pre-sale",
       href: "/cockpit/commerce/workspace",
     },
     production: {
-      productionHealth: productionPanel?.health ?? worstEngineHealth(input.engineSummaries),
+      productionHealth: truth?.productionStatus ?? productionPanel?.health ?? worstEngineHealth(input.engineSummaries),
       runtimeHealth: input.command.operationalReadiness.passed ? "Healthy" : "Attention",
-      guardianStatus: worstEngineHealth(input.engineSummaries),
+      guardianStatus: truth?.guardianStatus ?? worstEngineHealth(input.engineSummaries),
       sessions: "Durable sessions · Pillow host",
       infrastructure: input.command.operationalReadiness.detail,
       deploymentStatus: input.command.operationalReadiness.passed
@@ -240,25 +261,94 @@ export function buildExecutiveHomeCentreSummaries(input: {
 }
 
 export function enrichExecutiveHomeViewP704(
-  view: Omit<ExecutiveHomeView, "executiveBrief" | "centreSummaries" | "architectureVersion">,
+  view: Omit<
+    ExecutiveHomeView,
+    "executiveBrief" | "centreSummaries" | "architectureVersion" | "canonicalTruth"
+  >,
+  workspaceId = "ws_empire_1",
 ): ExecutiveHomeView {
+  const pillowPending = (() => {
+    try {
+      // Prefer command count; pillow supervisor may already be reflected there.
+      return view.command.pendingApprovals.count;
+    } catch {
+      return 0;
+    }
+  })();
+
+  const truth = buildCanonicalExecutiveTruth({
+    workspaceId,
+    command: view.command,
+    portfolio: view.portfolio,
+    engineSummaries: view.engineSummaries,
+    pillowPendingApprovals: pillowPending,
+    nextExecutiveAction: view.nextExecutiveAction,
+    brainOnline: true,
+  });
+
+  const briefBase = buildExecutiveHomeBrief({
+    command: view.command,
+    summaryCards: view.summaryCards,
+    nextExecutiveAction: truth.nextGrandKingAction,
+    executiveAlerts: view.executiveAlerts,
+  });
+
   return {
     ...view,
     architectureVersion: "P7-04",
-    executiveBrief: buildExecutiveHomeBrief({
-      command: view.command,
-      summaryCards: view.summaryCards,
-      nextExecutiveAction: view.nextExecutiveAction,
-      executiveAlerts: view.executiveAlerts,
-    }),
+    canonicalTruth: truth,
+    command: {
+      ...view.command,
+      pendingApprovals: {
+        ...view.command.pendingApprovals,
+        count: truth.pendingApprovals,
+      },
+      oms: {
+        ...view.command.oms,
+        activeObjective: truth.currentObjectiveHuman,
+      },
+    },
+    attentionItems:
+      truth.grandKingAttention.length > 0
+        ? truth.grandKingAttention.map((item) => ({
+            id: item.id,
+            label: item.title,
+            severity:
+              item.priority === "critical_system"
+                ? ("critical" as const)
+                : item.priority === "informational"
+                  ? ("info" as const)
+                  : ("warning" as const),
+            href: item.href,
+          }))
+        : view.attentionItems,
+    nextExecutiveAction: truth.nextGrandKingAction,
+    greeting: {
+      ...view.greeting,
+      topBlocker:
+        truth.grandKingAttention[0]?.title ??
+        (truth.pendingApprovals === 0 ? null : view.greeting.topBlocker),
+    },
+    executiveBrief: {
+      ...briefBase,
+      currentStrategicObjective: truth.currentObjectiveHuman,
+      highestPriorityRisk:
+        truth.grandKingAttention.find((a) => a.priority === "critical_system")?.title ??
+        briefBase.highestPriorityRisk,
+      highestPriorityOpportunity: truth.commerceOpportunity
+        ? `${truth.commerceOpportunity.productName} · ${truth.commerceOpportunity.expectedProfitUsd}`
+        : briefBase.highestPriorityOpportunity,
+      currentRecommendation: truth.nextGrandKingAction,
+    },
     centreSummaries: buildExecutiveHomeCentreSummaries({
       command: view.command,
       portfolio: view.portfolio,
       summaryCards: view.summaryCards,
       engineSummaries: view.engineSummaries,
-      nextExecutiveAction: view.nextExecutiveAction,
+      nextExecutiveAction: truth.nextGrandKingAction,
       executiveAlerts: view.executiveAlerts,
-      pendingApprovals: view.command.pendingApprovals.count,
+      pendingApprovals: truth.pendingApprovals,
+      truth,
     }),
   };
 }

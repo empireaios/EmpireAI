@@ -15,6 +15,8 @@ export type GlobalAssistantExecutiveContext = {
   engineCenterId: string | null;
   engineCenterName: string | null;
   activeMissionCount: number;
+  /** Canonical pending approvals — never confuse with activeMissionCount. */
+  pendingApprovals?: number;
   topMissionTitle: string | null;
   alertCount: number;
   topAlertLabel: string | null;

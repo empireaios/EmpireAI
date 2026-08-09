@@ -182,7 +182,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       const snapshot = buildExecutiveContextSnapshot({
         founderShell: founderShell?.data ?? null,
         brainContext,
-        pendingApprovals: brainContext?.executiveContext?.activeMissionCount,
+        // Never treat mission count as approvals — that caused Home vs Pillow Context contradictions.
+        pendingApprovals: brainContext?.executiveContext?.pendingApprovals ?? 0,
         nextExecutiveAction: brainContext?.executiveContext?.nextExecutiveAction ?? null,
       });
 
@@ -214,7 +215,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       const snapshot = buildExecutiveContextSnapshot({
         founderShell: founderShell?.data ?? null,
         brainContext,
-        pendingApprovals: brainContext?.executiveContext?.activeMissionCount,
+        pendingApprovals: brainContext?.executiveContext?.pendingApprovals ?? 0,
         nextExecutiveAction: brainContext?.executiveContext?.nextExecutiveAction ?? null,
       });
       const guidance = buildProactiveGuidance(snapshot);

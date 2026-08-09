@@ -3,31 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "@/lib/auth/context";
-import {
-  cockpitCommandNavigation,
-  cockpitDepartmentNavigation,
-  type CockpitNavItem,
-} from "@/lib/cockpit/navigation";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
 import { COCKPIT_UX_NAVIGATION } from "@/lib/cockpit-ux/navigation";
-import {
-  canAccessCockpitNav,
-  cockpitNavIcons,
-  isCockpitNavActive,
-} from "./cockpitNavUtils";
+import { isCockpitNavActive } from "./cockpitNavUtils";
 
+/**
+ * Grand King active navigation — operational Centres only.
+ * Legacy department IA destinations are not shown until each is proven real.
+ */
 export function CockpitSidebar() {
   const pathname = usePathname();
-  const { user } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
-
-  const commandItems = cockpitCommandNavigation.filter((item) =>
-    canAccessCockpitNav(item.roles, user?.role),
-  );
-  const departmentItems = cockpitDepartmentNavigation.filter((item) =>
-    canAccessCockpitNav(item.roles, user?.role),
-  );
 
   const primaryNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "primary");
   const operationsNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "operations");
@@ -75,45 +61,6 @@ export function CockpitSidebar() {
     </div>
   );
 
-  const renderGroup = (label: string, items: readonly CockpitNavItem[]) => (
-    <div className="mb-6">
-      {!collapsed && (
-        <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#6f6a60]">
-          {label}
-        </p>
-      )}
-      <ul className="space-y-0.5">
-        {items.map((item) => {
-          const active = isCockpitNavActive(pathname, item.href);
-          return (
-            <li key={item.id}>
-              <Link
-                href={item.href}
-                className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
-                  active
-                    ? "bg-gold/10 text-[#f0d78c] shadow-[inset_2px_0_0_#d4af37]"
-                    : "text-[#8a847a] hover:bg-white/[0.04] hover:text-[#f0d78c]"
-                }`}
-                title={item.label}
-              >
-                <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs ${
-                    active
-                      ? "bg-gold/15 text-[#d4af37]"
-                      : "bg-white/[0.03] text-[#6f6a60] group-hover:text-[#d4af37]"
-                  }`}
-                >
-                  {cockpitNavIcons[item.icon]}
-                </span>
-                {!collapsed && <span className="truncate">{item.label}</span>}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-
   return (
     <aside
       aria-label="Cockpit navigation"
@@ -144,8 +91,6 @@ export function CockpitSidebar() {
         {renderCockpitGroup("Executive Cockpit", primaryNav)}
         {renderCockpitGroup("Operations", operationsNav)}
         {renderCockpitGroup("System", systemNav)}
-        {renderGroup("Command", commandItems)}
-        {renderGroup("Departments", departmentItems)}
       </nav>
 
       <div className="border-t border-gold/10 p-4">

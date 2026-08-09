@@ -164,28 +164,39 @@ export async function assembleExecutiveHomeViewAsync(
       ? "Monitor revenue and scale top-performing ventures"
       : command.proof001.detail);
 
-  return enrichExecutiveHomeViewP704({
-    computedAt: new Date().toISOString(),
-    greeting: {
-      displayNameHint: "Grand King",
-      topBlocker: top ? `${top.id}: ${top.detail}` : null,
-      topBlockerHref: top?.id.startsWith("B6")
-        ? "/cockpit/infrastructure/integrations"
-        : top?.id === "B5"
-          ? "/cockpit/infrastructure/health"
-          : "/cockpit/governance/v1",
+  return enrichExecutiveHomeViewP704(
+    {
+      computedAt: new Date().toISOString(),
+      greeting: {
+        displayNameHint: "Grand King",
+        topBlocker: top ? humanizeGreetingBlocker(top.id, top.detail) : null,
+        topBlockerHref: top?.id.startsWith("B6")
+          ? "/cockpit/infrastructure/integrations"
+          : top?.id === "B5"
+            ? "/cockpit/infrastructure/health"
+            : "/cockpit/governance/v1",
+      },
+      command,
+      portfolio,
+      engineSummaries,
+      summaryCards,
+      attentionItems,
+      nextExecutiveAction,
+      executiveTimeline,
+      executiveAlerts,
+      approvalRoutes,
+      dependencyGraph,
     },
-    command,
-    portfolio,
-    engineSummaries,
-    summaryCards,
-    attentionItems,
-    nextExecutiveAction,
-    executiveTimeline,
-    executiveAlerts,
-    approvalRoutes,
-    dependencyGraph,
-  });
+    workspaceId,
+  );
+}
+
+function humanizeGreetingBlocker(id: string, detail: string): string {
+  if (/^B6/i.test(id) || /LWA|credential|Amazon/i.test(detail)) {
+    return "Amazon US credentials or marketplace integration require attention.";
+  }
+  if (/^B5/i.test(id)) return "Infrastructure health requires attention.";
+  return detail;
 }
 
 export async function buildMinimalExecutiveHomeFallbackAsync(
@@ -197,27 +208,30 @@ export async function buildMinimalExecutiveHomeFallbackAsync(
   const command = await loadOperationalCommandViewForDispatchAsync(workspaceId, companyId, env);
   await cooperativeYield();
   const portfolio = loadDashboardView(workspaceId);
-  return enrichExecutiveHomeViewP704({
-    computedAt: new Date().toISOString(),
-    greeting: {
-      displayNameHint: "Grand King",
-      topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
-      topBlockerHref: null,
+  return enrichExecutiveHomeViewP704(
+    {
+      computedAt: new Date().toISOString(),
+      greeting: {
+        displayNameHint: "Grand King",
+        topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
+        topBlockerHref: null,
+      },
+      command,
+      portfolio,
+      engineSummaries: [],
+      summaryCards: [],
+      attentionItems: [],
+      nextExecutiveAction:
+        command.oms.nextHighestImpactAction ??
+        command.nextExecutiveApproval ??
+        "Refresh Executive Home in a moment",
+      executiveTimeline: [],
+      executiveAlerts: [],
+      approvalRoutes: [],
+      dependencyGraph: { nodes: [], edges: [] },
     },
-    command,
-    portfolio,
-    engineSummaries: [],
-    summaryCards: [],
-    attentionItems: [],
-    nextExecutiveAction:
-      command.oms.nextHighestImpactAction ??
-      command.nextExecutiveApproval ??
-      "Refresh Executive Home in a moment",
-    executiveTimeline: [],
-    executiveAlerts: [],
-    approvalRoutes: [],
-    dependencyGraph: { nodes: [], edges: [] },
-  });
+    workspaceId,
+  );
 }
 
 /** Sync path retained for callers outside dispatch (tests, interaction layer). */
@@ -290,40 +304,43 @@ export function assembleExecutiveHomeViewSync(
   );
   const top = openBlockers[0] ?? null;
 
-  return enrichExecutiveHomeViewP704({
-    computedAt: new Date().toISOString(),
-    greeting: {
-      displayNameHint: "Grand King",
-      topBlocker: top ? `${top.id}: ${top.detail}` : null,
-      topBlockerHref: top?.id.startsWith("B6")
-        ? "/cockpit/infrastructure/integrations"
-        : top?.id === "B5"
-          ? "/cockpit/infrastructure/health"
-          : "/cockpit/governance/v1",
+  return enrichExecutiveHomeViewP704(
+    {
+      computedAt: new Date().toISOString(),
+      greeting: {
+        displayNameHint: "Grand King",
+        topBlocker: top ? humanizeGreetingBlocker(top.id, top.detail) : null,
+        topBlockerHref: top?.id.startsWith("B6")
+          ? "/cockpit/infrastructure/integrations"
+          : top?.id === "B5"
+            ? "/cockpit/infrastructure/health"
+            : "/cockpit/governance/v1",
+      },
+      command,
+      portfolio,
+      engineSummaries,
+      summaryCards,
+      attentionItems: executiveAlerts.map((alert) => ({
+        id: alert.id,
+        label: alert.label,
+        severity: alert.severity,
+        href: alert.href,
+        engineId: alert.engineId,
+      })),
+      nextExecutiveAction:
+        command.oms.nextHighestImpactAction ??
+        command.nextExecutiveApproval ??
+        top?.detail ??
+        (command.proof001.achieved
+          ? "Monitor revenue and scale top-performing ventures"
+          : command.proof001.detail),
+      executiveTimeline,
+      executiveAlerts,
+      approvalRoutes,
+      dependencyGraph,
     },
-    command,
-    portfolio,
-    engineSummaries,
-    summaryCards,
-    attentionItems: executiveAlerts.map((alert) => ({
-      id: alert.id,
-      label: alert.label,
-      severity: alert.severity,
-      href: alert.href,
-      engineId: alert.engineId,
-    })),
-    nextExecutiveAction:
-      command.oms.nextHighestImpactAction ??
-      command.nextExecutiveApproval ??
-      top?.detail ??
-      (command.proof001.achieved
-        ? "Monitor revenue and scale top-performing ventures"
-        : command.proof001.detail),
-    executiveTimeline,
-    executiveAlerts,
-    approvalRoutes,
-    dependencyGraph,
-  });
+    workspaceId,
+  );
 }
 
 export function buildMinimalExecutiveHomeFallback(
@@ -333,25 +350,28 @@ export function buildMinimalExecutiveHomeFallback(
 ): ExecutiveHomeView {
   const command = loadOperationalCommandView(workspaceId, companyId, env);
   const portfolio = loadDashboardView(workspaceId);
-  return enrichExecutiveHomeViewP704({
-    computedAt: new Date().toISOString(),
-    greeting: {
-      displayNameHint: "Grand King",
-      topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
-      topBlockerHref: null,
+  return enrichExecutiveHomeViewP704(
+    {
+      computedAt: new Date().toISOString(),
+      greeting: {
+        displayNameHint: "Grand King",
+        topBlocker: "Brain Sync is protecting responsiveness — showing core Executive Home only",
+        topBlockerHref: null,
+      },
+      command,
+      portfolio,
+      engineSummaries: [],
+      summaryCards: [],
+      attentionItems: [],
+      nextExecutiveAction:
+        command.oms.nextHighestImpactAction ??
+        command.nextExecutiveApproval ??
+        "Refresh Executive Home in a moment",
+      executiveTimeline: [],
+      executiveAlerts: [],
+      approvalRoutes: [],
+      dependencyGraph: { nodes: [], edges: [] },
     },
-    command,
-    portfolio,
-    engineSummaries: [],
-    summaryCards: [],
-    attentionItems: [],
-    nextExecutiveAction:
-      command.oms.nextHighestImpactAction ??
-      command.nextExecutiveApproval ??
-      "Refresh Executive Home in a moment",
-    executiveTimeline: [],
-    executiveAlerts: [],
-    approvalRoutes: [],
-    dependencyGraph: { nodes: [], edges: [] },
-  });
+    workspaceId,
+  );
 }
