@@ -18,7 +18,7 @@ export function GrandKingAttentionPanel() {
     <section
       id="grand-king-attention"
       aria-label="Grand King attention"
-      className="rounded-xl border border-gold/30 bg-gradient-to-br from-gold/[0.1] via-black/50 to-transparent px-5 py-4"
+      className="rounded-xl border border-gold/30 bg-gradient-to-br from-gold/[0.1] via-black/50 to-transparent px-4 py-3"
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>

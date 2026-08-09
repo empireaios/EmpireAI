@@ -663,7 +663,13 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   const value = useMemo(
     () => ({
       ...state,
-      expand: () => setState((s) => ({ ...s, expanded: true })),
+      expand: () => {
+        setState((s) => ({ ...s, expanded: true }));
+        // Executive Home embeds Pillow (floating panel is suppressed). Focus the workspace.
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("empireai:focus-pillow"));
+        }
+      },
       collapse: () => setState((s) => ({ ...s, expanded: false })),
       toggle: () => setState((s) => ({ ...s, expanded: !s.expanded })),
       ensureHostSession,

@@ -292,6 +292,11 @@ export type CanonicalExecutiveTruth = {
     approvalId: string | null;
     approvalStatus: string;
     summary: string;
+    dossierSummary?: string | null;
+    brandRoute?: string | null;
+    pillowRecommendation?: string | null;
+    competingOffers?: string | null;
+    deliveryPromise?: string | null;
   } | null;
   pillowActivity: {
     institutionalMemoryLessons: number;

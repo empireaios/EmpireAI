@@ -34,7 +34,7 @@ export function CanonicalTruthStrip() {
   return (
     <section
       aria-label="Canonical executive truth"
-      className="rounded-xl border border-gold/15 bg-white/[0.02] px-4 py-4"
+      className="rounded-xl border border-gold/15 bg-white/[0.02] px-4 py-3"
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d4af37]">

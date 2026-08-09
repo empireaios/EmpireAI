@@ -67,7 +67,11 @@ export function ExecutiveHomeCentresGrid() {
   if (!centres) return null;
 
   return (
-    <section id="executive-centres" aria-label="Executive centres" className="grid gap-4 lg:grid-cols-2">
+    <section
+      id="executive-centres"
+      aria-label="Executive centres"
+      className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+    >
       <CentreLink href={centres.mission.href} title="Mission Centre">
         <Row label="Current Mission" value={centres.mission.currentMission} />
         <Row label="Owner" value={centres.mission.missionOwner} />
