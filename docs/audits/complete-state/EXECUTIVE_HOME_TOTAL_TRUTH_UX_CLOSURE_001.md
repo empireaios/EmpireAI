@@ -57,4 +57,25 @@ Consumed by: Executive Home Attention/Strip/Brief, awareness strip, Commerce Cen
 
 ## Git / deploy
 
-Filled at closure time after push.
+- local HEAD: `2c4165f5f25ba52490ae5835eb3cc237a895ccca`
+- origin/main: `2c4165f5f25ba52490ae5835eb3cc237a895ccca`
+- ahead/behind: `0/0`
+- Vercel stamp: `2c4165f5…` · `dpl_FYLtmVyfwWM7BAvTQrvcPzvbPtLf`
+- Railway: Online · `dc1c506e-9004-416f-8dec-881c92dc0c3a`
+- Evidence: `EXECUTIVE_HOME_TOTAL_TRUTH_UX_CLOSURE_001_EVIDENCE.json`
+
+## Production browser acceptance (summary)
+
+- Pending approvals = 1 (Home + guidance + commerce)
+- Mission = No active mission
+- Guardian/Production = Degraded (readiness-based, not fake Critical)
+- Realised revenue/profit = $0.00 · no $1.63M / 49% LIVE
+- Awaiting implementation count on Home = 0
+- Commerce opportunity ASIN B0FKFNCT52 · $8.07 surfaced
+- Pillow Chat = 85vh · ~63% main width · composer ~97px
+- Institutional memory certified surface retained
+- EOS prior operational reply retained
+
+## FINAL VERDICT
+
+**EXECUTIVE HOME TOTAL TRUTH + UX CERTIFIED**

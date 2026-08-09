@@ -20,6 +20,7 @@ import {
   ensurePillowApprovalTables,
   SqlitePillowApprovalRepository,
 } from "../../orchestration/pillow-approval/repository/sqlite-pillow-approval-repository.js";
+import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { getObjectiveReportingSummary } from "../../orchestration/objective-management-engine/services/objective-management-service.js";
 import { buildGrandKingsDashboard } from "../../orchestration/ecommerce-os-orchestrator/services/dashboard-status-service.js";
 import {
@@ -535,18 +536,52 @@ function renderOperationalCommandView(
       launchDecision: commerceDashboard.launchDecision ?? "NOT_READY",
       blockingCount: commerceDashboard.blockingItems.filter((b) => b.severity === "BLOCKING").length,
     },
-    pendingApprovals: {
-      count: pendingRows.length,
-      top: topPending
+    pendingApprovals: (() => {
+      let commerceTop: {
+        approvalId: string;
+        title: string;
+        summary: string;
+        type: string;
+      } | null = null;
+      try {
+        const commerceOpp = getPillowCommercePresaleRepository().getPendingApprovalOpportunity(
+          workspaceId,
+        );
+        if (commerceOpp) {
+          commerceTop = {
+            approvalId: commerceOpp.approvalId ?? commerceOpp.opportunityId,
+            title: `Commerce opportunity ${commerceOpp.mapping.asin} — approval required`,
+            summary: `${commerceOpp.recommendation.productName} · expected profit ${commerceOpp.recommendation.expectedProfit}`,
+            type: "commerce_presale",
+          };
+        }
+      } catch {
+        /* optional */
+      }
+      const count = Math.max(pendingRows.length, commerceTop ? 1 : 0);
+      const top = topPending
         ? {
             approvalId: topPending.approvalId,
             title: topPending.proposal.title,
             summary: topPending.proposal.summary,
             type: topPending.type,
           }
-        : null,
-    },
-    nextExecutiveApproval,
+        : commerceTop;
+      return { count, top };
+    })(),
+    nextExecutiveApproval: (() => {
+      try {
+        const commerceOpp = getPillowCommercePresaleRepository().getPendingApprovalOpportunity(
+          workspaceId,
+        );
+        if (commerceOpp && pendingRows.length === 0) {
+          return `Commerce opportunity ${commerceOpp.mapping.asin} — approval required`;
+        }
+      } catch {
+        /* optional */
+      }
+      return nextExecutiveApproval;
+    })(),
     success001: {
       blocker: success001Blocker,
       progressPercent: success001.progressPercent,

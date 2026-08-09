@@ -1,0 +1,66 @@
+{
+  "mission": "EXECUTIVE HOME TOTAL TRUTH + UX CLOSURE 001",
+  "verdict": "EXECUTIVE HOME TOTAL TRUTH + UX CERTIFIED",
+  "certifiedAt": "2026-08-09T08:50:00.000Z",
+  "git": {
+    "localHead": "2c4165f5f25ba52490ae5835eb3cc237a895ccca",
+    "originMain": "2c4165f5f25ba52490ae5835eb3cc237a895ccca",
+    "aheadBehind": "0/0"
+  },
+  "deployment": {
+    "vercelStampSha": "2c4165f5f25ba52490ae5835eb3cc237a895ccca",
+    "vercelDeploymentId": "dpl_FYLtmVyfwWM7BAvTQrvcPzvbPtLf",
+    "railwayStatus": "Online",
+    "railwayDeploymentId": "dc1c506e-9004-416f-8dec-881c92dc0c3a",
+    "brainHealth": "ok"
+  },
+  "browserAcceptance": {
+    "url": "https://empire-ai.co/cockpit",
+    "awaitingImplementationCount": 0,
+    "fakeGmv163Present": false,
+    "fakeNetMargin49Present": false,
+    "pendingApprovals": 1,
+    "mission": "No active mission",
+    "guardian": "Degraded",
+    "production": "Degraded",
+    "realisedRevenueUsd": 0,
+    "realisedProfitUsd": 0,
+    "commerceOpportunityAsin": "B0FKFNCT52",
+    "expectedProfit": "$8.07",
+    "grandKingAttentionPrimary": "Commerce opportunity requires Grand King approval",
+    "pillowChat": {
+      "heightPx": 918,
+      "heightVh": 0.85,
+      "widthPx": 1046,
+      "widthFractionOfMain": 0.634,
+      "composerHeightPx": 97,
+      "priorEosReplyPresent": true
+    },
+    "commerceCentre": {
+      "route": "/cockpit/commerce/store",
+      "topOpportunityVisible": true,
+      "asin": "B0FKFNCT52",
+      "cjPid": "2608080908321600000",
+      "offer": "$24.21",
+      "expectedProfit": "$8.07",
+      "seedExcludedLabel": true,
+      "awaitingImplementation": false
+    },
+    "institutionalMemory": "Institutional Memory CERTIFIED · 14 approved lessons"
+  },
+  "tests": {
+    "canonicalExecutiveTruth": "4/4 pass",
+    "frontendTruthNav": "4/4 pass",
+    "backendTsc": "pass"
+  },
+  "remainingGrandKingActions": [
+    "Approve or reject commerce opportunity ASIN B0FKFNCT52 (expected profit $8.07) — no publish/spend without approval",
+    "Amazon US credentials remain an important integration decision for marketplace publication"
+  ],
+  "uncommittedExcluded": [
+    ".tmp-* temporary files",
+    "EOS evidence JSON churn unrelated to this mission",
+    "pillow-shell-preview / pillow scripts scratch",
+    "COMMERCE_PROOF_001_LISTING_STATUS docs (separate)"
+  ]
+}
