@@ -76,20 +76,22 @@ describe("canonical executive truth", () => {
     assert.ok(truth.grandKingAttention.length >= 1);
   });
 
-  it("uses operational readiness when engine panels are empty", () => {
+  it("uses operational readiness — not credential-gap engine FAILED — for health", () => {
     const truth = buildCanonicalExecutiveTruth({
       workspaceId: "ws_test",
       command: baseCommand({
         operationalReadiness: { percent: 80, passed: true, detail: "ready" },
       }),
       portfolio: { portfolioMetrics: [], companies: [], recentActivity: [] } as never,
-      engineSummaries: [],
+      engineSummaries: [
+        { engineId: "storefront", displayName: "Store", health: "FAILED", progress: { percent: 0, label: "x" } },
+      ] as never,
       pillowPendingApprovals: 0,
       nextExecutiveAction: "Continue",
     });
     assert.equal(truth.guardianStatus, "Healthy");
     assert.equal(truth.productionStatus, "Healthy");
-    assert.notEqual(truth.guardianStatus, "Unknown");
+    assert.notEqual(truth.guardianStatus, "Critical");
   });
 
   it("dedupes attention titles", () => {

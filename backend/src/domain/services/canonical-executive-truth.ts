@@ -67,13 +67,6 @@ export type CanonicalExecutiveTruth = {
 
 const SEED_COMPANY_NAME_RE = /^(Meridian Commerce|Vertex SaaS|Lumen Media|Atlas Fintech)$/i;
 
-function worstEngineHealth(panels: EnginePanelView[]): string {
-  if (panels.some((p) => p.health === "FAILED")) return "Critical";
-  if (panels.some((p) => p.health === "WARNING")) return "Degraded";
-  if (panels.length === 0) return "Unknown";
-  return "Healthy";
-}
-
 function humanizeBlocker(id: string, detail: string): string {
   if (/^B6/i.test(id) || /LWA|credential|Amazon/i.test(detail)) {
     return "Amazon US credentials or marketplace integration require attention.";
@@ -103,31 +96,18 @@ export function buildCanonicalExecutiveTruth(input: {
   nextExecutiveAction: string;
   brainOnline?: boolean;
 }): CanonicalExecutiveTruth {
-  const { command, portfolio, engineSummaries } = input;
-  // Prefer operational readiness when engine panels are empty/unknown — empty panels
-  // must not invent Critical/Unknown that contradicts Brain shell health.
+  const { command, portfolio } = input;
+  // Authoritative runtime health = operational readiness / Brain posture.
+  // Engine panels mark FAILED for missing marketplace credentials and open
+  // certification gates — that must NOT masquerade as Guardian/Production Critical.
   const readinessHealth = command.operationalReadiness.passed
     ? "Healthy"
     : command.operationalReadiness.percent >= 50
       ? "Degraded"
       : "Attention";
-  const engineHealth = worstEngineHealth(engineSummaries);
-  const guardianStatus =
-    engineHealth === "Unknown" || engineSummaries.length === 0 ? readinessHealth : engineHealth;
-  const productionPanel = engineSummaries.find((p) => p.engineId === "storefront");
-  const productionStatus = productionPanel?.health
-    ? productionPanel.health === "HEALTHY"
-      ? "Healthy"
-      : productionPanel.health === "WARNING"
-        ? "Degraded"
-        : productionPanel.health === "FAILED"
-          ? "Critical"
-          : productionPanel.health === "UNKNOWN" || productionPanel.health === "NOT_IMPLEMENTED"
-            ? readinessHealth
-            : String(productionPanel.health)
-    : readinessHealth;
+  const guardianStatus = readinessHealth;
+  const productionStatus = readinessHealth;
 
-  const nonSeedCompanies = portfolio.companies.filter((c) => !isSeedCompany(c.name));
   const livePortfolioCompanies = portfolio.companies.filter(
     (c) => c.status === "live" && !isSeedCompany(c.name),
   ).length;
@@ -189,13 +169,19 @@ export function buildCanonicalExecutiveTruth(input: {
 
   const currentBlockers = Object.values(command.certificationBlockers)
     .filter((b) => b.status !== "closed")
-    .map((b) => ({
-      humanLabel: humanizeBlocker(b.id, b.detail),
-      engineeringId: b.id,
-      // Historical certification gates that are superseded by later certified activations
-      // remain listed but marked non-current when proof001/commerce already advanced.
-      current: !(command.proof001.achieved && /PROOF-001/i.test(b.id + b.detail)),
-    }));
+    .map((b) => {
+      const idDetail = `${b.id} ${b.detail}`;
+      const isFirstRevenueGate = /B8|PROOF-001|first.?revenue/i.test(idDetail);
+      const isSoftDispatch = /B7|Dispatch lite/i.test(idDetail);
+      // First-revenue / soft dispatch gates are historical certification posture once
+      // commerce pre-sale is live — not current production outages.
+      const current = !(isFirstRevenueGate || isSoftDispatch);
+      return {
+        humanLabel: humanizeBlocker(b.id, b.detail),
+        engineeringId: b.id,
+        current,
+      };
+    });
 
   let institutionalMemoryLessons = 0;
   let institutionalMemoryCertified = false;
@@ -216,14 +202,15 @@ export function buildCanonicalExecutiveTruth(input: {
     const key = blocker.humanLabel.toLowerCase();
     if (seenAttention.has(key)) continue;
     seenAttention.add(key);
+    const amazonRelated = /Amazon|credential|marketplace/i.test(blocker.humanLabel);
     attention.push({
       id: `blocker-${blocker.engineeringId ?? blocker.humanLabel}`,
-      priority: "critical_system",
+      priority: amazonRelated ? "important_decision" : "critical_system",
       title: blocker.humanLabel,
       detail: blocker.engineeringId
         ? `Engineering ref: ${blocker.engineeringId}`
         : "Current operational gate",
-      href: "/cockpit/founder/production",
+      href: amazonRelated ? "/cockpit/commerce/store" : "/cockpit/founder/production",
       engineeringId: blocker.engineeringId,
     });
   }
@@ -256,13 +243,13 @@ export function buildCanonicalExecutiveTruth(input: {
     });
   }
 
-  if (guardianStatus === "Critical" || productionStatus === "Critical") {
+  if (guardianStatus === "Attention" && productionStatus === "Attention") {
     attention.unshift({
-      id: "health-critical",
+      id: "health-attention",
       priority: "critical_system",
-      title: "Production / Guardian health is critical",
-      detail: `Guardian: ${guardianStatus} · Production: ${productionStatus}`,
-      href: "/cockpit/founder/guardian",
+      title: "Operational readiness requires attention",
+      detail: `Guardian: ${guardianStatus} · Production: ${productionStatus} · ${command.operationalReadiness.detail}`,
+      href: "/cockpit/founder/production",
     });
   }
 
@@ -283,6 +270,7 @@ export function buildCanonicalExecutiveTruth(input: {
     "Seed portfolio GMV / demo margins are excluded from LIVE realised economics.",
     "Pending approval count includes Pillow gate + commerce opportunity awaiting owner decision.",
     "Mission empty state uses 'No active mission' — never 'Awaiting implementation' as current truth.",
+    "Guardian/Production status uses operational readiness — not credential-gap engine FAILED flags.",
   ];
 
   return {

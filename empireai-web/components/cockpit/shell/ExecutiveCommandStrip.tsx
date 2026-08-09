@@ -5,6 +5,22 @@ import { ExternalLink, Target } from "lucide-react";
 import { Badge } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
 
+/** Never present programme placeholders as current operating truth. */
+function humanizeCommandCopy(value: string | null | undefined): string {
+  const text = (value ?? "").trim();
+  if (!text) return "—";
+  if (/awaiting implementation/i.test(text)) {
+    if (/first-revenue|proof-001|revenue validation/i.test(text)) {
+      return "No realised revenue yet";
+    }
+    if (/mission|objective/i.test(text) || text.length < 40) {
+      return "No active mission";
+    }
+    return "Not yet measured";
+  }
+  return text;
+}
+
 type BlockerChipStatus = "open" | "closed" | "partial";
 
 type OperationalCommandView = {
@@ -261,13 +277,13 @@ export function ExecutiveCommandStrip() {
             variant={data.crirReadiness.launchReady ? "success" : "warning"}
           />
           <MetricChip
-            label="PROOF-001"
+            label="First revenue"
             value={
               data.proof001.achieved
-                ? "Achieved"
+                ? "Validated"
                 : `${data.proof001.progressPercent}%`
             }
-            detail={data.proof001.detail}
+            detail={humanizeCommandCopy(data.proof001.detail)}
             variant={data.proof001.achieved ? "success" : "default"}
           />
           <MetricChip
@@ -275,7 +291,7 @@ export function ExecutiveCommandStrip() {
             value={
               data.commerceReadiness.score !== null
                 ? `${data.commerceReadiness.score}%`
-                : "No tracked ETA"
+                : "Not yet measured"
             }
             detail={`${data.commerceReadiness.launchDecision} · ${data.commerceReadiness.blockingCount} blocking`}
             variant={
@@ -289,13 +305,15 @@ export function ExecutiveCommandStrip() {
         <div className="rounded-lg border border-gold/15 bg-white/[0.02] p-3">
           <div className="mb-2 flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6f6a60]">
-              Active objective (OMS)
+              Current mission
             </span>
             <Badge variant={healthBadgeVariant(data.oms.overallHealth)}>
               {data.oms.overallHealth}
             </Badge>
           </div>
-          <p className="text-sm font-medium text-[#f0d78c]">{data.oms.activeObjective}</p>
+          <p className="text-sm font-medium text-[#f0d78c]">
+            {humanizeCommandCopy(data.oms.activeObjective)}
+          </p>
           <div className="mt-2 grid gap-2 text-xs text-[#8a847a] sm:grid-cols-2 lg:grid-cols-5">
             <div>
               <span className="text-[#6f6a60]">Progress · </span>
