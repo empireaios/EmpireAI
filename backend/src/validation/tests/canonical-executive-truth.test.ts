@@ -75,4 +75,48 @@ describe("canonical executive truth", () => {
     assert.equal(truth.activeMissionTitle, "First-dollar commerce");
     assert.ok(truth.grandKingAttention.length >= 1);
   });
+
+  it("uses operational readiness when engine panels are empty", () => {
+    const truth = buildCanonicalExecutiveTruth({
+      workspaceId: "ws_test",
+      command: baseCommand({
+        operationalReadiness: { percent: 80, passed: true, detail: "ready" },
+      }),
+      portfolio: { portfolioMetrics: [], companies: [], recentActivity: [] } as never,
+      engineSummaries: [],
+      pillowPendingApprovals: 0,
+      nextExecutiveAction: "Continue",
+    });
+    assert.equal(truth.guardianStatus, "Healthy");
+    assert.equal(truth.productionStatus, "Healthy");
+    assert.notEqual(truth.guardianStatus, "Unknown");
+  });
+
+  it("dedupes attention titles", () => {
+    const truth = buildCanonicalExecutiveTruth({
+      workspaceId: "ws_test",
+      command: baseCommand({
+        certificationBlockers: {
+          B6: {
+            id: "B6-01",
+            detail: "Amazon LWA credentials missing",
+            status: "open",
+            label: "B6",
+          },
+          B6b: {
+            id: "B6-01b",
+            detail: "Amazon US credentials require attention",
+            status: "open",
+            label: "B6b",
+          },
+        },
+      }),
+      portfolio: { portfolioMetrics: [], companies: [], recentActivity: [] } as never,
+      engineSummaries: [],
+      pillowPendingApprovals: 0,
+      nextExecutiveAction: "Continue",
+    });
+    const titles = truth.grandKingAttention.map((a) => a.title.toLowerCase());
+    assert.equal(new Set(titles).size, titles.length);
+  });
 });

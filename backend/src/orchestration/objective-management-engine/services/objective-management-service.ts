@@ -621,7 +621,7 @@ export function getObjectiveReportingSummary(
   const primary = dashboard.primaryObjective;
   if (!primary) {
     return {
-      activeObjective: "Awaiting implementation",
+      activeObjective: "No active mission",
       progress: 0,
       confidence: 0,
       currentBlocker: null,

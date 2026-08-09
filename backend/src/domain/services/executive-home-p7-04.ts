@@ -217,8 +217,10 @@ export function buildExecutiveHomeCentreSummaries(input: {
         ],
         commercialOpportunities: opportunities,
         visionAlignment: input.command.proof001.achieved
-          ? "PROOF-001 achieved · Vision on track · Institutional memory accumulating"
-          : input.command.proof001.detail,
+          ? "First realised revenue validated · Institutional memory accumulating"
+          : truth?.commerceOpportunity
+            ? "First-dollar commerce opportunity pending Grand King approval — not yet realised revenue"
+            : "No realised revenue yet",
         pendingDecisions:
           (truth?.pendingApprovals ?? input.pendingApprovals) > 0
             ? [`${truth?.pendingApprovals ?? input.pendingApprovals} pending approval(s)`]
@@ -293,10 +295,46 @@ export function enrichExecutiveHomeViewP704(
     executiveAlerts: view.executiveAlerts,
   });
 
+  const attentionDeduped = (() => {
+    const seen = new Set<string>();
+    const items = [];
+    for (const item of truth.grandKingAttention) {
+      const key = item.title.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      items.push(item);
+    }
+    return items;
+  })();
+
+  // Never present seed portfolio GMV / demo margin as current LIVE economics on Executive Home.
+  const portfolio = {
+    ...view.portfolio,
+    portfolioMetrics: view.portfolio.portfolioMetrics
+      .filter((m) => !/Portfolio Revenue|GMV|Net Margin/i.test(m.label))
+      .concat([
+        {
+          label: "Realised Revenue",
+          value:
+            truth.realisedRevenueUsd != null
+              ? `$${truth.realisedRevenueUsd.toFixed(2)}`
+              : "No realised revenue yet",
+        },
+        {
+          label: "Realised Profit",
+          value:
+            truth.realisedProfitUsd != null
+              ? `$${truth.realisedProfitUsd.toFixed(2)}`
+              : "No realised profit yet",
+        },
+      ]),
+  };
+
   return {
     ...view,
     architectureVersion: "P7-04",
-    canonicalTruth: truth,
+    canonicalTruth: { ...truth, grandKingAttention: attentionDeduped },
+    portfolio,
     command: {
       ...view.command,
       pendingApprovals: {
@@ -307,10 +345,18 @@ export function enrichExecutiveHomeViewP704(
         ...view.command.oms,
         activeObjective: truth.currentObjectiveHuman,
       },
+      proof001: {
+        ...view.command.proof001,
+        detail: view.command.proof001.achieved
+          ? "First realised revenue validated"
+          : truth.commerceOpportunity
+            ? "Qualified opportunity awaiting approval — no realised sale yet"
+            : "No realised revenue yet",
+      },
     },
     attentionItems:
-      truth.grandKingAttention.length > 0
-        ? truth.grandKingAttention.map((item) => ({
+      attentionDeduped.length > 0
+        ? attentionDeduped.map((item) => ({
             id: item.id,
             label: item.title,
             severity:
@@ -326,7 +372,7 @@ export function enrichExecutiveHomeViewP704(
     greeting: {
       ...view.greeting,
       topBlocker:
-        truth.grandKingAttention[0]?.title ??
+        attentionDeduped[0]?.title ??
         (truth.pendingApprovals === 0 ? null : view.greeting.topBlocker),
     },
     executiveBrief: {

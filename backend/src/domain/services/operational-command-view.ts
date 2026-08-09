@@ -189,7 +189,7 @@ function computeProof001(validations: ReturnType<typeof listFirstRevenueValidati
       progressPercent: achieved ? 100 : 0,
       stagesPassed: 0,
       totalStages: 12,
-      detail: "Awaiting implementation — no first-revenue validation runs recorded",
+      detail: "No realised revenue yet — no first-revenue validation runs recorded",
       validationCount: 0,
     };
   }
@@ -519,7 +519,7 @@ function renderOperationalCommandView(
       reportCount: crirReports.length,
       status:
         crirReports.length === 0
-          ? "Awaiting implementation"
+          ? "Not yet measured"
           : crirBlocking
             ? "BLOCKED"
             : "READY",
@@ -623,7 +623,7 @@ export function loadLaunchView(workspaceId: string, companyId?: string): LaunchV
           category: "COMMERCE",
           label: "Commerce readiness evaluation",
           status: "pending" as const,
-          note: "Awaiting implementation — run commerce readiness evaluate",
+          note: "Commerce readiness not yet measured — run readiness evaluate when needed",
         },
       ];
 

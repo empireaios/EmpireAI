@@ -104,7 +104,16 @@ export function buildCanonicalExecutiveTruth(input: {
   brainOnline?: boolean;
 }): CanonicalExecutiveTruth {
   const { command, portfolio, engineSummaries } = input;
-  const guardianStatus = worstEngineHealth(engineSummaries);
+  // Prefer operational readiness when engine panels are empty/unknown — empty panels
+  // must not invent Critical/Unknown that contradicts Brain shell health.
+  const readinessHealth = command.operationalReadiness.passed
+    ? "Healthy"
+    : command.operationalReadiness.percent >= 50
+      ? "Degraded"
+      : "Attention";
+  const engineHealth = worstEngineHealth(engineSummaries);
+  const guardianStatus =
+    engineHealth === "Unknown" || engineSummaries.length === 0 ? readinessHealth : engineHealth;
   const productionPanel = engineSummaries.find((p) => p.engineId === "storefront");
   const productionStatus = productionPanel?.health
     ? productionPanel.health === "HEALTHY"
@@ -114,9 +123,9 @@ export function buildCanonicalExecutiveTruth(input: {
         : productionPanel.health === "FAILED"
           ? "Critical"
           : productionPanel.health === "UNKNOWN" || productionPanel.health === "NOT_IMPLEMENTED"
-            ? "Unknown"
+            ? readinessHealth
             : String(productionPanel.health)
-    : worstEngineHealth(engineSummaries);
+    : readinessHealth;
 
   const nonSeedCompanies = portfolio.companies.filter((c) => !isSeedCompany(c.name));
   const livePortfolioCompanies = portfolio.companies.filter(
@@ -202,7 +211,11 @@ export function buildCanonicalExecutiveTruth(input: {
 
   const attention: GrandKingAttentionItem[] = [];
 
+  const seenAttention = new Set<string>();
   for (const blocker of currentBlockers.filter((b) => b.current)) {
+    const key = blocker.humanLabel.toLowerCase();
+    if (seenAttention.has(key)) continue;
+    seenAttention.add(key);
     attention.push({
       id: `blocker-${blocker.engineeringId ?? blocker.humanLabel}`,
       priority: "critical_system",

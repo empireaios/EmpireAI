@@ -8,51 +8,76 @@ import {
   formatCommerceLabel,
   useCommerceOperatingModel,
 } from "@/lib/commerce-operating-model/useCommerceOperatingModel";
+import { useExecutiveHomeOptional } from "@/lib/cockpit/hooks/useExecutiveHome";
 
-/** Compact commerce strip for Executive Home. */
+/** Compact commerce strip for Executive Home — prefers canonicalTruth when available. */
 export function CommerceOperatingStrip() {
   const { view, loading, live } = useCommerceOperatingModel();
+  const home = useExecutiveHomeOptional();
+  const truth = home?.data?.canonicalTruth;
 
-  if (loading && !view) {
+  if (loading && !view && !truth) {
     return (
       <section className="rounded-xl border border-gold/15 px-4 py-3 text-sm text-[#8a847a]">
-        Loading Commerce Operating Model…
+        Loading commerce truth…
       </section>
     );
   }
 
-  if (!view) return null;
+  if (!view && !truth) return null;
+
+  const revenue =
+    truth?.realisedRevenueUsd != null
+      ? `$${truth.realisedRevenueUsd.toFixed(2)} realised`
+      : "No realised revenue yet";
+  const profit =
+    truth?.realisedProfitUsd != null
+      ? `$${truth.realisedProfitUsd.toFixed(2)} realised`
+      : "No realised profit yet";
+  const businesses = truth
+    ? `${truth.livePortfolioCompanies} live non-seed · ${truth.portfolioCompaniesTotal} portfolio`
+    : view
+      ? `${view.activeBusinessCount} · ${view.liveBusinessCount} live`
+      : "—";
+  const oppLine = truth?.commerceOpportunity
+    ? `${truth.commerceOpportunity.productName} · ${truth.commerceOpportunity.expectedProfitUsd} expected`
+    : truth?.commerceReadiness ?? view?.marketingSummary ?? "—";
 
   return (
     <section className="rounded-xl border border-gold/20 bg-gradient-to-r from-gold/[0.05] to-transparent px-5 py-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Badge variant="gold">P8-02 Commerce</Badge>
-          <DataModeBadge mode={live ? "live" : "sandbox"} />
-          <StatusBadge status={view.commerceHealth} />
+          <Badge variant="gold">Commerce Truth</Badge>
+          <DataModeBadge mode="live" />
+          {view && <StatusBadge status={view.commerceHealth} />}
         </div>
-        <Link href="/cockpit/commerce/operating" className="text-xs text-[#d4af37] hover:underline">
-          Commerce panel →
+        <Link href="/cockpit/commerce/store" className="text-xs text-[#d4af37] hover:underline">
+          Commerce Centre →
         </Link>
       </div>
       <div className="mt-3 grid gap-3 sm:grid-cols-4">
         <div>
-          <p className="text-xs text-[#6f6a60]">Revenue</p>
-          <p className="text-sm text-[#d4af37]">{view.revenueSummary}</p>
+          <p className="text-xs text-[#6f6a60]">Realised Revenue</p>
+          <p className="text-sm text-[#d4af37]">{revenue}</p>
         </div>
         <div>
-          <p className="text-xs text-[#6f6a60]">Profit</p>
-          <p className="text-sm text-[#c8c0b0]">{view.profitSummary}</p>
+          <p className="text-xs text-[#6f6a60]">Realised Profit</p>
+          <p className="text-sm text-[#c8c0b0]">{profit}</p>
         </div>
         <div>
           <p className="text-xs text-[#6f6a60]">Businesses</p>
-          <p className="text-sm text-[#e8e0d0]">{view.activeBusinessCount} · {view.liveBusinessCount} live</p>
+          <p className="text-sm text-[#e8e0d0]">{businesses}</p>
         </div>
         <div>
-          <p className="text-xs text-[#6f6a60]">Marketing</p>
-          <p className="text-sm text-[#c8c0b0] truncate">{view.marketingSummary}</p>
+          <p className="text-xs text-[#6f6a60]">Opportunity / readiness</p>
+          <p className="text-sm text-[#c8c0b0] truncate">{oppLine}</p>
         </div>
       </div>
+      {!live && view && !truth && (
+        <p className="mt-2 text-[11px] text-amber-200/80">
+          Commerce operating model fallback — not presented as realised LIVE economics.
+        </p>
+      )}
     </section>
   );
 }

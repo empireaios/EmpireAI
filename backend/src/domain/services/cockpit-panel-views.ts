@@ -20,6 +20,7 @@ import {
   ensurePillowApprovalTables,
   SqlitePillowApprovalRepository,
 } from "../../orchestration/pillow-approval/repository/sqlite-pillow-approval-repository.js";
+import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { getObjectiveReportingSummary } from "../../orchestration/objective-management-engine/services/objective-management-service.js";
 import { resolveLiveCommerceIntegrationMode } from "../../orchestration/reality-integration/live-commerce/config.js";
 import { AMAZON_MARKETPLACE_REGISTRY_IDS } from "../../orchestration/reality-integration/live-commerce/amazon-marketplace-profiles.js";
@@ -1246,12 +1247,21 @@ export function loadMissionCentreView(
   env: NodeJS.ProcessEnv = process.env,
 ): MissionCentreView {
   const command = loadOperationalCommandView(workspaceId, companyId, env);
-  const oms = getObjectiveReportingSummary(workspaceId, companyId);
+  const omsRaw = getObjectiveReportingSummary(workspaceId, companyId);
   const objectiveDashboard = buildObjectiveDashboard(workspaceId, companyId);
 
   ensurePillowApprovalTables();
   const pillowRepo = new SqlitePillowApprovalRepository();
   const pendingRows = pillowRepo.listApprovals(workspaceId, { status: "Pending" });
+
+  const omsObjective = (omsRaw.activeObjective ?? "").trim();
+  const oms = {
+    ...omsRaw,
+    activeObjective:
+      !omsObjective || /awaiting implementation/i.test(omsObjective)
+        ? "No active mission"
+        : omsObjective,
+  };
 
   const blockers = Object.values(command.certificationBlockers)
     .filter((b) => b.status !== "closed")
@@ -1270,17 +1280,39 @@ export function loadMissionCentreView(
     priority: obj.executivePriority,
   }));
 
+  const pendingApprovals = pendingRows.slice(0, 10).map((row) => ({
+    approvalId: row.approvalId,
+    title: row.proposal.title,
+    summary: row.proposal.summary,
+    type: row.type,
+    status: row.status,
+  }));
+
+  try {
+    const commerceOpp = getPillowCommercePresaleRepository().getPendingApprovalOpportunity(
+      workspaceId,
+    );
+    if (
+      commerceOpp &&
+      !pendingApprovals.some((a) => a.approvalId === commerceOpp.approvalId)
+    ) {
+      pendingApprovals.unshift({
+        approvalId: commerceOpp.approvalId ?? commerceOpp.opportunityId,
+        title: `Commerce opportunity ${commerceOpp.mapping.asin} — approval required`,
+        summary: `${commerceOpp.recommendation.productName} · expected profit ${commerceOpp.recommendation.expectedProfit}`,
+        type: "commerce_presale",
+        status: commerceOpp.approvalStatus || "Pending",
+      });
+    }
+  } catch {
+    /* optional */
+  }
+
   return {
     computedAt: new Date().toISOString(),
     oms,
     blockers,
-    pendingApprovals: pendingRows.slice(0, 10).map((row) => ({
-      approvalId: row.approvalId,
-      title: row.proposal.title,
-      summary: row.proposal.summary,
-      type: row.type,
-      status: row.status,
-    })),
+    pendingApprovals,
     missions,
   };
 }

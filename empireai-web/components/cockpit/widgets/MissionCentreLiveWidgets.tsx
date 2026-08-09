@@ -26,28 +26,30 @@ export function MissionBlockerStripLive() {
 
   if (data.blockers.length === 0) {
     return (
-      <Panel title="Mission Blockers" subtitle="Live · no open certification blockers">
-        <p className="text-sm text-emerald-300/90">All B5–B8 gates closed or in partial progress only.</p>
+      <Panel title="Current Blockers" subtitle="Live · no open current blockers">
+        <p className="text-sm text-emerald-300/90">No current operational blockers.</p>
       </Panel>
     );
   }
 
   return (
-    <Panel title="Mission Blockers" subtitle="Live · B5–B8 certification">
+    <Panel title="Current Blockers" subtitle="Live · human executive language · engineering refs expandable">
       <div className="flex flex-wrap gap-2">
         {data.blockers.map((b) => (
           <div
             key={b.id}
             className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-sm"
           >
-            <span className="font-medium text-amber-200">{b.id}</span>
-            <span className="mx-2 text-[#6f6a60]">·</span>
             <span className="text-[#c8c0b0]">{b.detail}</span>
+            <details className="mt-1 text-[11px] text-[#6f6a60]">
+              <summary className="cursor-pointer text-amber-200/80">Engineering ref</summary>
+              {b.id} · {b.label}
+            </details>
           </div>
         ))}
       </div>
-      <Link href={`${COCKPIT_BASE}/governance/v1`} className="mt-3 inline-block text-xs text-[#d4af37]">
-        Executive Audit Center →
+      <Link href={`${COCKPIT_BASE}/founder/production`} className="mt-3 inline-block text-xs text-[#d4af37]">
+        Production Centre →
       </Link>
     </Panel>
   );
@@ -71,9 +73,12 @@ export function MissionApprovalTriageLive() {
   }
 
   return (
-    <Panel title="Approval Triage" subtitle="Live · Pillow approval repository">
+    <Panel
+      title="Approval Triage"
+      subtitle={`Live · ${data.pendingApprovals.length} pending (Pillow gate + commerce)`}
+    >
       {data.pendingApprovals.length === 0 ? (
-        <p className="text-sm text-[#6f6a60]">No pending approvals in queue.</p>
+        <p className="text-sm text-[#6f6a60]">No pending approval.</p>
       ) : (
         <DataTable
           keyField="approvalId"
@@ -89,8 +94,8 @@ export function MissionApprovalTriageLive() {
           ]}
         />
       )}
-      <Link href={`${COCKPIT_BASE}/development/approvals`} className="mt-3 inline-block text-xs text-[#d4af37]">
-        Approval Inbox →
+      <Link href={`${COCKPIT_BASE}/development/pillow`} className="mt-3 inline-block text-xs text-[#d4af37]">
+        Pillow Centre →
       </Link>
     </Panel>
   );
@@ -113,20 +118,30 @@ export function MissionQueueFullLive() {
     );
   }
 
+  const rawObjective = (data.oms.activeObjective ?? "").trim();
+  const activeMission =
+    !rawObjective ||
+    /awaiting implementation/i.test(rawObjective) ||
+    /^no active/i.test(rawObjective)
+      ? "No active mission"
+      : rawObjective;
+
   return (
     <div className="space-y-4">
-      <Panel title="OMS Objective" subtitle={`Health: ${data.oms.overallHealth}`}>
-        <p className="text-sm text-[#f0d78c]">{data.oms.activeObjective}</p>
-        <p className="mt-2 text-xs text-[#8a847a]">
-          {data.oms.progress}% · Confidence {data.oms.confidence}%
-        </p>
-        {data.oms.nextHighestImpactAction && (
+      <Panel title="Current Mission" subtitle={`Health: ${data.oms.overallHealth}`}>
+        <p className="text-sm text-[#f0d78c]">{activeMission}</p>
+        {activeMission !== "No active mission" && (
+          <p className="mt-2 text-xs text-[#8a847a]">
+            {data.oms.progress}% · Confidence {data.oms.confidence}%
+          </p>
+        )}
+        {data.oms.nextHighestImpactAction && activeMission !== "No active mission" && (
           <p className="mt-2 text-sm text-[#c8c0b0]">Next: {data.oms.nextHighestImpactAction}</p>
         )}
       </Panel>
-      <Panel title="Active Objectives" subtitle="Live · objective management engine">
+      <Panel title="Mission Queue" subtitle="Live · active / queued / historical objectives">
         {data.missions.length === 0 ? (
-          <p className="text-sm text-[#6f6a60]">No objectives initialized for workspace.</p>
+          <p className="text-sm text-[#6f6a60]">No active mission.</p>
         ) : (
           <DataTable
             keyField="id"
