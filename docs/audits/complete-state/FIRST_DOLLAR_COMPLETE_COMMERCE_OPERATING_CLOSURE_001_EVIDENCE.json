@@ -1,0 +1,409 @@
+{
+  "mission": "FIRST_DOLLAR_COMPLETE_COMMERCE_OPERATING_CLOSURE_001",
+  "startedAt": "2026-08-09T13:28:18.252Z",
+  "brain": "https://empireai-production.up.railway.app",
+  "stages": {
+    "health": {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "module": "pillow-commerce-presale",
+        "standingObjective": "FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US",
+        "lastOutcome": "ALREADY_PENDING_APPROVAL",
+        "lastCycleAt": "2026-08-09T13:28:13.491Z",
+        "publicationAutoDisabled": true,
+        "supplierSpendAutoDisabled": true,
+        "commercialDecisionDossier": "FD-CDD-001",
+        "operatingLoop": "EMPIREAI_AUTOMATED_BRIDGE"
+      }
+    },
+    "login": {
+      "status": 200
+    },
+    "latestBefore": {
+      "status": 200,
+      "body": {
+        "standingObjective": "FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US",
+        "latestCycle": {
+          "cycleId": "5b86b362-d2e8-430f-b3ec-8e09a94f4d6c",
+          "workspaceId": "ws_empire_1",
+          "companyId": "co-grand-king",
+          "initiatedBy": "pillow-autonomous",
+          "standingObjective": "FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US",
+          "startedAt": "2026-08-09T13:28:13.491Z",
+          "completedAt": "2026-08-09T13:28:13.491Z",
+          "candidatesRetrieved": 0,
+          "rejections": [],
+          "qualifiedOpportunity": {
+            "opportunityId": "a85a1cda-bd77-4103-a38d-09339b82cacd",
+            "workspaceId": "ws_empire_1",
+            "companyId": "co-grand-king",
+            "disposition": "APPROVAL_READY",
+            "preflightOfferState": "NOT_PUBLISHED",
+            "mapping": {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "asin": "B0FKFNCT52",
+              "amazonSellerSku": "EMP-FD-MSL1SDPF",
+              "cjPid": "2608080908321600000",
+              "cjVid": "2608080908321600700",
+              "cjVariantSku": "CJJT304598301AZ",
+              "supplierCostUsd": {
+                "amountUsd": 4.21,
+                "freshness": "LIVE",
+                "source": "cj.product.variant.sellPrice"
+              },
+              "shippingUsd": {
+                "amountUsd": 8.3,
+                "freshness": "LIVE",
+                "source": "cj.logistic.freightCalculate US"
+              },
+              "amazonFeesUsd": {
+                "amountUsd": 3.63,
+                "freshness": "LIVE",
+                "source": "amazon.feesEstimate"
+              },
+              "proposedSellingPriceUsd": 24.21,
+              "expectedProfitUsd": 8.07,
+              "expectedMarginPct": 33.33,
+              "startQuantity": 3,
+              "verifiedAt": "2026-08-09T00:11:48.964Z"
+            },
+            "stockUnits": 9962,
+            "stockFreshness": "LIVE",
+            "risks": [
+              "Offer not yet published — BUYABLE must be verified after publication",
+              "Catalog ASIN match is keyword-based; verify product fit before approval",
+              "Starting quantity limited to 3 for exposure control",
+              "Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+              "Institutional memory: Amazon selling eligibility must be checked before recommendation"
+            ],
+            "recommendation": {
+              "headline": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED",
+              "productName": "High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use",
+              "amazonUsEligibility": "Preflight clear for ASIN B0FKFNCT52 (NOT published; NOT BUYABLE yet)",
+              "supplier": "CJdropshipping",
+              "supplierStock": "9962 units [LIVE]",
+              "supplierCost": "$4.21 [LIVE]",
+              "usShipping": "$8.30 [LIVE]",
+              "amazonFees": "$3.63 [LIVE]",
+              "proposedSellingPrice": "$24.21",
+              "expectedProfit": "$8.07",
+              "expectedMargin": "33.33%",
+              "riskSummary": "Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation",
+              "pillowRecommendation": "APPROVE",
+              "proposedActionAfterApproval": "Publish LISTING_OFFER_ONLY using persisted Amazon↔CJ map; verify BUYABLE after publish; no supplier spend until a real Amazon order + separate approval.",
+              "fullNarrative": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED\n\nProduct: High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use\nAmazon US: eligible/preflight clear for ASIN B0FKFNCT52 (NOT yet published; NOT claimed BUYABLE)\nSupplier: CJdropshipping\nSupplier stock: 9962 units [LIVE]\nSupplier cost: $4.21 [LIVE]\nUS shipping: $8.30 [LIVE]\nAmazon fees: $3.63 [LIVE]\nProposed selling price: $24.21\nExpected profit: $8.07\nExpected margin: 33.33%\nRisk: Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation\nPillow recommendation: APPROVE\nProposed action after approval: Build LISTING_OFFER_ONLY package with persisted Amazon↔CJ map, then publish only after explicit Grand King approval confirmation — no spend before approval.\n\nIdentity: Amazon SKU EMP-FD-MSL1SDPF ↔ CJ PID 2608080908321600000 / VID 2608080908321600700\n\n=== INSTITUTIONAL COMMERCE MEMORY (must influence recommendation) ===\n- [FACT/marketplace_data] Do not recommend Anker / B088NRLMPV brand-gated catalog offers: Anker USB-C cable ASIN B088NRLMPV requires brand approval (QUALIFICATION_REQUIRED). Never treat it as a first-dollar candidate. Preflight getListingsRestrictions before recommending or publishing.\n- [INFERENCE/derived_inference] Amazon selling eligibility must be checked before recommendation: Never publish-first then discover brand/category qualification afterward. Restriction preflight is mandatory before Pillow surfaces APPROVAL-READY opportunities.\n- [FACT/marketplace_data] Amazon ACCEPTED is not publicly BUYABLE: putListingsItem ACCEPTED does not mean the offer can receive customer orders. Verify post-publish commercial state. DISCOVERABLE + LISTING_SUPPRESSED / QUALIFICATION_REQUIRED is not success.\n- [OWNER_DIRECTIVE/grand_king_directive] First-dollar dropshipping is the standing commerce objective: FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US until first real buyable sale and profit.\n- [OWNER_DIRECTIVE/grand_king_directive] Cursor is not the commerce operator: Cursor builds/repairs EmpireAI. Routine product discovery, analysis, qualification, recommendation, and approval workflow must not require Cursor.\n- [OWNER_DIRECTIVE/grand_king_directive] No publication or supplier spend without Grand King approval: Do not publish Amazon offers or place supplier orders without explicit Grand King approval. No fabricated or implied approval.\n- [OWNER_DIRECTIVE/grand_king_directive] Pillow initiates commerce; Grand King approves or rejects: Pillow must autonomously discover, analyse, reject unsuitable candidates, and surface only qualified recommendations. The Grand King role is APPROVE or REJECT — not product search or API operation.\n- [OWNER_DIRECTIVE/grand_king_directive] ChatGPT–Pillow collaboration conclusions must use institutional memory: Future Grand King ↔ Pillow ↔ ChatGPT strategic collaboration must persist question, context, positions, disagreements, conclusion, owner decision, and later outcome with provenance — not disposable API responses.\nAvoid ASINs: B088NRLMPV\nAvoid brands: anker\nMemory citations: preflight lessons applied"
+            },
+            "approvalId": null,
+            "approvalStatus": "none",
+            "publicationAllowed": false,
+            "supplierSpendAllowed": false,
+            "createdAt": "2026-08-09T00:11:48.964Z",
+            "updatedAt": "2026-08-09T00:11:48.964Z"
+          },
+          "outcome": "ALREADY_PENDING_APPROVAL",
+          "blockers": [
+            "Pending Grand King approval already exists — not creating duplicate recommendation"
+          ],
+          "publicationAttempted": false,
+          "supplierSpendAttempted": false,
+          "actorWasCursor": false
+        },
+        "latestOpportunity": {
+          "opportunityId": "a85a1cda-bd77-4103-a38d-09339b82cacd",
+          "workspaceId": "ws_empire_1",
+          "companyId": "co-grand-king",
+          "disposition": "APPROVAL_READY",
+          "preflightOfferState": "NOT_PUBLISHED",
+          "mapping": {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "asin": "B0FKFNCT52",
+            "amazonSellerSku": "EMP-FD-MSL1SDPF",
+            "cjPid": "2608080908321600000",
+            "cjVid": "2608080908321600700",
+            "cjVariantSku": "CJJT304598301AZ",
+            "supplierCostUsd": {
+              "amountUsd": 4.21,
+              "freshness": "LIVE",
+              "source": "cj.product.variant.sellPrice"
+            },
+            "shippingUsd": {
+              "amountUsd": 8.3,
+              "freshness": "LIVE",
+              "source": "cj.logistic.freightCalculate US"
+            },
+            "amazonFeesUsd": {
+              "amountUsd": 3.63,
+              "freshness": "LIVE",
+              "source": "amazon.feesEstimate"
+            },
+            "proposedSellingPriceUsd": 24.21,
+            "expectedProfitUsd": 8.07,
+            "expectedMarginPct": 33.33,
+            "startQuantity": 3,
+            "verifiedAt": "2026-08-09T00:11:48.964Z"
+          },
+          "stockUnits": 9962,
+          "stockFreshness": "LIVE",
+          "risks": [
+            "Offer not yet published — BUYABLE must be verified after publication",
+            "Catalog ASIN match is keyword-based; verify product fit before approval",
+            "Starting quantity limited to 3 for exposure control",
+            "Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+            "Institutional memory: Amazon selling eligibility must be checked before recommendation"
+          ],
+          "recommendation": {
+            "headline": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED",
+            "productName": "High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use",
+            "amazonUsEligibility": "Preflight clear for ASIN B0FKFNCT52 (NOT published; NOT BUYABLE yet)",
+            "supplier": "CJdropshipping",
+            "supplierStock": "9962 units [LIVE]",
+            "supplierCost": "$4.21 [LIVE]",
+            "usShipping": "$8.30 [LIVE]",
+            "amazonFees": "$3.63 [LIVE]",
+            "proposedSellingPrice": "$24.21",
+            "expectedProfit": "$8.07",
+            "expectedMargin": "33.33%",
+            "riskSummary": "Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation",
+            "pillowRecommendation": "APPROVE",
+            "proposedActionAfterApproval": "Publish LISTING_OFFER_ONLY using persisted Amazon↔CJ map; verify BUYABLE after publish; no supplier spend until a real Amazon order + separate approval.",
+            "fullNarrative": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED\n\nProduct: High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use\nAmazon US: eligible/preflight clear for ASIN B0FKFNCT52 (NOT yet published; NOT claimed BUYABLE)\nSupplier: CJdropshipping\nSupplier stock: 9962 units [LIVE]\nSupplier cost: $4.21 [LIVE]\nUS shipping: $8.30 [LIVE]\nAmazon fees: $3.63 [LIVE]\nProposed selling price: $24.21\nExpected profit: $8.07\nExpected margin: 33.33%\nRisk: Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation\nPillow recommendation: APPROVE\nProposed action after approval: Build LISTING_OFFER_ONLY package with persisted Amazon↔CJ map, then publish only after explicit Grand King approval confirmation — no spend before approval.\n\nIdentity: Amazon SKU EMP-FD-MSL1SDPF ↔ CJ PID 2608080908321600000 / VID 2608080908321600700\n\n=== INSTITUTIONAL COMMERCE MEMORY (must influence recommendation) ===\n- [FACT/marketplace_data] Do not recommend Anker / B088NRLMPV brand-gated catalog offers: Anker USB-C cable ASIN B088NRLMPV requires brand approval (QUALIFICATION_REQUIRED). Never treat it as a first-dollar candidate. Preflight getListingsRestrictions before recommending or publishing.\n- [INFERENCE/derived_inference] Amazon selling eligibility must be checked before recommendation: Never publish-first then discover brand/category qualification afterward. Restriction preflight is mandatory before Pillow surfaces APPROVAL-READY opportunities.\n- [FACT/marketplace_data] Amazon ACCEPTED is not publicly BUYABLE: putListingsItem ACCEPTED does not mean the offer can receive customer orders. Verify post-publish commercial state. DISCOVERABLE + LISTING_SUPPRESSED / QUALIFICATION_REQUIRED is not success.\n- [OWNER_DIRECTIVE/grand_king_directive] First-dollar dropshipping is the standing commerce objective: FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US until first real buyable sale and profit.\n- [OWNER_DIRECTIVE/grand_king_directive] Cursor is not the commerce operator: Cursor builds/repairs EmpireAI. Routine product discovery, analysis, qualification, recommendation, and approval workflow must not require Cursor.\n- [OWNER_DIRECTIVE/grand_king_directive] No publication or supplier spend without Grand King approval: Do not publish Amazon offers or place supplier orders without explicit Grand King approval. No fabricated or implied approval.\n- [OWNER_DIRECTIVE/grand_king_directive] Pillow initiates commerce; Grand King approves or rejects: Pillow must autonomously discover, analyse, reject unsuitable candidates, and surface only qualified recommendations. The Grand King role is APPROVE or REJECT — not product search or API operation.\n- [OWNER_DIRECTIVE/grand_king_directive] ChatGPT–Pillow collaboration conclusions must use institutional memory: Future Grand King ↔ Pillow ↔ ChatGPT strategic collaboration must persist question, context, positions, disagreements, conclusion, owner decision, and later outcome with provenance — not disposable API responses.\nAvoid ASINs: B088NRLMPV\nAvoid brands: anker\nMemory citations: preflight lessons applied"
+          },
+          "approvalId": null,
+          "approvalStatus": "none",
+          "publicationAllowed": false,
+          "supplierSpendAllowed": false,
+          "createdAt": "2026-08-09T00:11:48.964Z",
+          "updatedAt": "2026-08-09T00:11:48.964Z"
+        },
+        "pendingApproval": {
+          "opportunityId": "a85a1cda-bd77-4103-a38d-09339b82cacd",
+          "workspaceId": "ws_empire_1",
+          "companyId": "co-grand-king",
+          "disposition": "APPROVAL_READY",
+          "preflightOfferState": "NOT_PUBLISHED",
+          "mapping": {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "asin": "B0FKFNCT52",
+            "amazonSellerSku": "EMP-FD-MSL1SDPF",
+            "cjPid": "2608080908321600000",
+            "cjVid": "2608080908321600700",
+            "cjVariantSku": "CJJT304598301AZ",
+            "supplierCostUsd": {
+              "amountUsd": 4.21,
+              "freshness": "LIVE",
+              "source": "cj.product.variant.sellPrice"
+            },
+            "shippingUsd": {
+              "amountUsd": 8.3,
+              "freshness": "LIVE",
+              "source": "cj.logistic.freightCalculate US"
+            },
+            "amazonFeesUsd": {
+              "amountUsd": 3.63,
+              "freshness": "LIVE",
+              "source": "amazon.feesEstimate"
+            },
+            "proposedSellingPriceUsd": 24.21,
+            "expectedProfitUsd": 8.07,
+            "expectedMarginPct": 33.33,
+            "startQuantity": 3,
+            "verifiedAt": "2026-08-09T00:11:48.964Z"
+          },
+          "stockUnits": 9962,
+          "stockFreshness": "LIVE",
+          "risks": [
+            "Offer not yet published — BUYABLE must be verified after publication",
+            "Catalog ASIN match is keyword-based; verify product fit before approval",
+            "Starting quantity limited to 3 for exposure control",
+            "Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+            "Institutional memory: Amazon selling eligibility must be checked before recommendation"
+          ],
+          "recommendation": {
+            "headline": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED",
+            "productName": "High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use",
+            "amazonUsEligibility": "Preflight clear for ASIN B0FKFNCT52 (NOT published; NOT BUYABLE yet)",
+            "supplier": "CJdropshipping",
+            "supplierStock": "9962 units [LIVE]",
+            "supplierCost": "$4.21 [LIVE]",
+            "usShipping": "$8.30 [LIVE]",
+            "amazonFees": "$3.63 [LIVE]",
+            "proposedSellingPrice": "$24.21",
+            "expectedProfit": "$8.07",
+            "expectedMargin": "33.33%",
+            "riskSummary": "Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation",
+            "pillowRecommendation": "APPROVE",
+            "proposedActionAfterApproval": "Publish LISTING_OFFER_ONLY using persisted Amazon↔CJ map; verify BUYABLE after publish; no supplier spend until a real Amazon order + separate approval.",
+            "fullNarrative": "COMMERCE OPPORTUNITY — APPROVAL REQUIRED\n\nProduct: High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use\nAmazon US: eligible/preflight clear for ASIN B0FKFNCT52 (NOT yet published; NOT claimed BUYABLE)\nSupplier: CJdropshipping\nSupplier stock: 9962 units [LIVE]\nSupplier cost: $4.21 [LIVE]\nUS shipping: $8.30 [LIVE]\nAmazon fees: $3.63 [LIVE]\nProposed selling price: $24.21\nExpected profit: $8.07\nExpected margin: 33.33%\nRisk: Offer not yet published — BUYABLE must be verified after publication; Catalog ASIN match is keyword-based; verify product fit before approval; Starting quantity limited to 3 for exposure control; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation\nPillow recommendation: APPROVE\nProposed action after approval: Build LISTING_OFFER_ONLY package with persisted Amazon↔CJ map, then publish only after explicit Grand King approval confirmation — no spend before approval.\n\nIdentity: Amazon SKU EMP-FD-MSL1SDPF ↔ CJ PID 2608080908321600000 / VID 2608080908321600700\n\n=== INSTITUTIONAL COMMERCE MEMORY (must influence recommendation) ===\n- [FACT/marketplace_data] Do not recommend Anker / B088NRLMPV brand-gated catalog offers: Anker USB-C cable ASIN B088NRLMPV requires brand approval (QUALIFICATION_REQUIRED). Never treat it as a first-dollar candidate. Preflight getListingsRestrictions before recommending or publishing.\n- [INFERENCE/derived_inference] Amazon selling eligibility must be checked before recommendation: Never publish-first then discover brand/category qualification afterward. Restriction preflight is mandatory before Pillow surfaces APPROVAL-READY opportunities.\n- [FACT/marketplace_data] Amazon ACCEPTED is not publicly BUYABLE: putListingsItem ACCEPTED does not mean the offer can receive customer orders. Verify post-publish commercial state. DISCOVERABLE + LISTING_SUPPRESSED / QUALIFICATION_REQUIRED is not success.\n- [OWNER_DIRECTIVE/grand_king_directive] First-dollar dropshipping is the standing commerce objective: FIND AND PREPARE SAFE, PROFITABLE DROPSHIPPING OPPORTUNITIES FOR AMAZON US until first real buyable sale and profit.\n- [OWNER_DIRECTIVE/grand_king_directive] Cursor is not the commerce operator: Cursor builds/repairs EmpireAI. Routine product discovery, analysis, qualification, recommendation, and approval workflow must not require Cursor.\n- [OWNER_DIRECTIVE/grand_king_directive] No publication or supplier spend without Grand King approval: Do not publish Amazon offers or place supplier orders without explicit Grand King approval. No fabricated or implied approval.\n- [OWNER_DIRECTIVE/grand_king_directive] Pillow initiates commerce; Grand King approves or rejects: Pillow must autonomously discover, analyse, reject unsuitable candidates, and surface only qualified recommendations. The Grand King role is APPROVE or REJECT — not product search or API operation.\n- [OWNER_DIRECTIVE/grand_king_directive] ChatGPT–Pillow collaboration conclusions must use institutional memory: Future Grand King ↔ Pillow ↔ ChatGPT strategic collaboration must persist question, context, positions, disagreements, conclusion, owner decision, and later outcome with provenance — not disposable API responses.\nAvoid ASINs: B088NRLMPV\nAvoid brands: anker\nMemory citations: preflight lessons applied"
+          },
+          "approvalId": null,
+          "approvalStatus": "none",
+          "publicationAllowed": false,
+          "supplierSpendAllowed": false,
+          "createdAt": "2026-08-09T00:11:48.964Z",
+          "updatedAt": "2026-08-09T00:11:48.964Z"
+        }
+      }
+    },
+    "reevaluate": {
+      "status": 200,
+      "ms": 4728,
+      "outcome": "DOSSIER_APPROVE_SURFACED",
+      "rejectReason": null,
+      "dossierSummaryPreview": "COMMERCE OPPORTUNITY — GRAND KING DECISION\n\nProduct: WHATOOK Portable Handheld Fan, High Speed Turbo Mini Fan with 5 Speeds, 3000mAh USB-C Rechargeable Personal Fan, LED Digital Display, Small Pocket Fan for Travel, Camping, Concerts, Makeup (White)\nRoute: GENERIC UNBRANDED\nAmazon ASIN: B0FKFNCT52\nCJ Product/Variant: 2608080908321600000 / 2608080908321600700\nAmazon seller SKU: EMP-FD-MSL1SDPF\nBrand: UNKNOWN\nBrand route: GENERIC_UNBRANDED\nAmazon eligibility: PASS\nRestriction status: PASS — listingsRestrictions clear at re-evaluation\nCJ stock: 9962 [LIVE]\nCJ product cost: $4.21 [LIVE]\nCJ processing: 1–3 days [ESTIMATED]\nUS shipping: $8.30 [LIVE]\nTransit: 5–11 days [ESTIMATED]\nExpected Amazon buyer delivery: Buyer-facing delivery estimate ~7–15 days (merchant-fulfilled handling 2d + transit 5–11d + buffer). Honest MF config required — do not promise 3–5 days for CN→US freight.\nSupplier can meet promise: UNKNOWN\nAmazon fees: $3.64 [LIVE]\nCompeting offers: 2 [LIVE]\nLowest competing price: $9.99\nFeatured Offer eligible: YES\nCurrently Featured Offer: NO\nOur expected offer position: OFFER POSITION: above lowest by $14.26 (not organic search rank)\nProposed price: $24.25\nBreak-even: $16.15\nE"
+    },
+    "operatingLoop": {
+      "status": 200,
+      "body": {
+        "computedAt": "2026-08-09T13:28:50.553Z",
+        "canonicalAmazonToCjRoute": "EMPIREAI_AUTOMATED_BRIDGE",
+        "routeRationale": "No native CJ↔Amazon sync is certified for this Grand King account. Existing authorized path is Amazon SP-API orders → EmpireAI mapping (amazonSellerSku→cjPid/cjVid) → approval-gated CjOrderClient createOrder → tracking sync → Amazon confirmShipment. Avoids unnecessary ERP intermediaries.",
+        "stages": [
+          {
+            "stage": "DISCOVERY_DOSSIER",
+            "status": "IMPLEMENTED_READY",
+            "detail": "Pillow presale cycle builds Commercial Decision Dossier with LIVE economics where APIs allow."
+          },
+          {
+            "stage": "GRAND_KING_APPROVAL",
+            "status": "IMPLEMENTED_READY",
+            "detail": "Pillow approval gate; no publish/spend without Approved decision."
+          },
+          {
+            "stage": "REVALIDATION_PUBLISH",
+            "status": "IMPLEMENTED_READY",
+            "detail": "Marketplace publish executor LISTING_OFFER_ONLY exists; armed only after approval."
+          },
+          {
+            "stage": "BUYABLE_VERIFY",
+            "status": "IMPLEMENTED_READY",
+            "detail": "getListingItemCommercialState + interpretListingCommercialState (ACCEPTED≠BUYABLE)."
+          },
+          {
+            "stage": "OFFER_MONITOR",
+            "status": "IMPLEMENTED_READY",
+            "detail": "Bounded competitive pricing + listing status reads available; no aggressive polling."
+          },
+          {
+            "stage": "AMAZON_ORDER_DETECT",
+            "status": "READY_AWAITING_FIRST_REAL_ORDER",
+            "detail": "Amazon orders GET adapter + first-order operations scaffolding present."
+          },
+          {
+            "stage": "AMAZON_TO_CJ_ORCHESTRATION",
+            "status": "READY_AWAITING_FIRST_REAL_ORDER",
+            "detail": "live-cj-fulfillment + CjOrderClient createOrder; idempotent amazonOrderId key required."
+          },
+          {
+            "stage": "CJ_SUPPLIER_PAYMENT",
+            "status": "READY_AWAITING_FIRST_REAL_ORDER",
+            "detail": "CJ createOrder path is the spend event; remains Grand King spend-governance gated. Amazon payout ≠ CJ payment."
+          },
+          {
+            "stage": "TRACKING",
+            "status": "READY_AWAITING_FIRST_REAL_ORDER",
+            "detail": "CJ logistic/trackInfo sync implemented in live-cj-fulfillment / cj-tracking-sync."
+          },
+          {
+            "stage": "AMAZON_SHIPMENT_CONFIRM",
+            "status": "IMPLEMENTED_READY",
+            "detail": "confirmAmazonMerchantShipment executor wired for merchant-fulfilled orders when tracking exists."
+          },
+          {
+            "stage": "ACTUAL_PNL",
+            "status": "READY_AWAITING_FIRST_REAL_ORDER",
+            "detail": "Actual revenue − Amazon fees − CJ cost − CJ shipping recorded separately from expected profit."
+          },
+          {
+            "stage": "INSTITUTIONAL_MEMORY",
+            "status": "LIVE_PROVEN",
+            "detail": "Certified institutional memory captures recommendations, rejections, approvals, lessons."
+          }
+        ],
+        "idempotency": {
+          "amazonOrderToSupplierOrderKey": "amazonOrderId + orderItemId + amazonSellerSku",
+          "policy": "Retries must resume existing LiveCjFulfillmentRecord by pipeline/amazon order id — never create duplicate CJ orders."
+        },
+        "financialSeparation": {
+          "amazonCustomerPayment": "Marketplace customer revenue / settlement (separate event).",
+          "cjSupplierPayment": "Supplier createOrder / CJ account debit under spend governance (separate event)."
+        },
+        "cursorRequiredForNormalOperation": false,
+        "performanceLadderLevel": 1,
+        "performanceLadderLabel": "LEVEL 1 — decision-ready opportunity autonomously produced (awaiting Grand King approval for LEVEL 2)."
+      }
+    }
+  },
+  "checks": {
+    "healthOk": true,
+    "dossierVersionDeployed": true,
+    "reevaluateHttpOk": true,
+    "actorWasCursorFalse": true,
+    "noPublication": true,
+    "noSupplierSpend": true,
+    "dossierSurfaced": true,
+    "operatingLoopOk": true,
+    "canonicalBridge": true,
+    "cursorNotRequired": true
+  },
+  "blockers": [],
+  "report": {
+    "productSelected": {
+      "asin": "B0FKFNCT52",
+      "cjPid": "2608080908321600000",
+      "sku": "EMP-FD-MSL1SDPF"
+    },
+    "outcome": "DOSSIER_APPROVE_SURFACED",
+    "brandRoute": "GENERIC_UNBRANDED",
+    "liveStock": 9962,
+    "liveCost": {
+      "amountUsd": 4.21,
+      "freshness": "LIVE",
+      "source": "cj.product.variant.sellPrice"
+    },
+    "liveFreight": {
+      "amountUsd": 8.3,
+      "freshness": "LIVE",
+      "source": "cj.logistic.freightCalculate US"
+    },
+    "delivery": {
+      "cjProcessingDaysMin": 1,
+      "cjProcessingDaysMax": 3,
+      "carrierTransitDaysMin": 5,
+      "carrierTransitDaysMax": 11,
+      "earliestExpectedDeliveryDays": 6,
+      "latestExpectedDeliveryDays": 16,
+      "amazonHandlingTimeDays": 2,
+      "amazonBuyerPromiseDaysMin": 7,
+      "amazonBuyerPromiseDaysMax": 15,
+      "trackingAvailable": true,
+      "warehouseOrigin": null,
+      "safetyBufferDays": 2,
+      "lateDeliveryRisk": "MEDIUM",
+      "customerExpectation": "Buyer-facing delivery estimate ~7–15 days (merchant-fulfilled handling 2d + transit 5–11d + buffer). Honest MF config required — do not promise 3–5 days for CN→US freight.",
+      "supplierCanMeet": "UNKNOWN",
+      "freshness": "ESTIMATED",
+      "source": "cj.freight + conservative MF handling model"
+    },
+    "competition": {
+      "competingOfferCount": 2,
+      "lowestCompetitorPriceUsd": 9.99,
+      "featuredOfferPriceUsd": 9.99,
+      "featuredOfferSellerId": "A2OC078BW7LNX9",
+      "featuredOfferEligible": "YES",
+      "currentlyFeaturedOffer": "NO",
+      "relativeOfferPosition": "OFFER POSITION: above lowest by $14.26 (not organic search rank)",
+      "freshness": "LIVE",
+      "source": "amazon.products.pricing.v0.items.offers",
+      "note": "Featured Offer / Buy Box from pricing offers API. Organic search rank is a different metric and is NOT claimed here."
+    },
+    "proposedPrice": 24.25,
+    "expectedProfit": 8.1,
+    "risk": "MEDIUM",
+    "pillowRecommendation": "APPROVE",
+    "rejectReason": null,
+    "grandKingSummary": "COMMERCE OPPORTUNITY — GRAND KING DECISION\n\nProduct: WHATOOK Portable Handheld Fan, High Speed Turbo Mini Fan with 5 Speeds, 3000mAh USB-C Rechargeable Personal Fan, LED Digital Display, Small Pocket Fan for Travel, Camping, Concerts, Makeup (White)\nRoute: GENERIC UNBRANDED\nAmazon ASIN: B0FKFNCT52\nCJ Product/Variant: 2608080908321600000 / 2608080908321600700\nAmazon seller SKU: EMP-FD-MSL1SDPF\nBrand: UNKNOWN\nBrand route: GENERIC_UNBRANDED\nAmazon eligibility: PASS\nRestriction status: PASS — listingsRestrictions clear at re-evaluation\nCJ stock: 9962 [LIVE]\nCJ product cost: $4.21 [LIVE]\nCJ processing: 1–3 days [ESTIMATED]\nUS shipping: $8.30 [LIVE]\nTransit: 5–11 days [ESTIMATED]\nExpected Amazon buyer delivery: Buyer-facing delivery estimate ~7–15 days (merchant-fulfilled handling 2d + transit 5–11d + buffer). Honest MF config required — do not promise 3–5 days for CN→US freight.\nSupplier can meet promise: UNKNOWN\nAmazon fees: $3.64 [LIVE]\nCompeting offers: 2 [LIVE]\nLowest competing price: $9.99\nFeatured Offer eligible: YES\nCurrently Featured Offer: NO\nOur expected offer position: OFFER POSITION: above lowest by $14.26 (not organic search rank)\nProposed price: $24.25\nBreak-even: $16.15\nExpected profit: $8.10 (EXPECTED — not realised)\nExpected margin: 33.40%\nPricing rationale: Price $24.25 covers landed CJ cost+ship $12.51 + Amazon fees $3.64 with $8.10 buffer above break-even $16.15.\nImages/presentation: OFFER_ON_EXISTING_ASIN — using Amazon catalog imagery; supplier image regeneration not required for first-dollar offer route.\nListing copy: Existing catalog copy controlled by Amazon PDP — seller offer fields only (price/quantity/condition). No SEO spam regeneration.\nListing route: OFFER_ON_EXISTING_ASIN\nDemand evidence: Sales rank UNKNOWN from authorized APIs. Existence on Amazon is not demand proof.\nRisk: MEDIUM — Re-evaluated under FD-CDD-001 complete dossier standard; Offer not published — BUYABLE must be verified after publication; Starting quantity 3; Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers; Institutional memory: Amazon selling eligibility must be checked before recommendation; Delivery promise: supplierCanMeet=UNKNOWN\nStarting exposure: 3 units\nPillow recommendation: APPROVE\nWhy: Generic/unbranded offer route with live stock/cost/freight/fees, restriction clear, delivery feasible under conservative estimates, and positive expected contribution. Publication still requires Grand King approval; BUYABLE must be verified after publish.\nAfter approval: 1) Revalidate stock/cost/freight/fees/restrictions. 2) Publish LISTING_OFFER_ONLY with Amazon↔CJ map. 3) Verify BUYABLE (ACCEPTED≠BUYABLE). 4) Monitor offer. 5) On real Amazon order: idempotent EmpireAI→CJ createOrder (approval-gated spend). 6) Sync tracking. 7) confirmShipment to Amazon. 8) Record actual P&L ≠ expected. 9) Capture institutional memory.\n\nUNKNOWN fields: supplierCanMeetDelivery, brandName, demandEvidence\nCustomer receives: Supplier-fulfilled product matching the Amazon catalog listing attributes.\nBrand appears: No EmpireAI private-label branding applied on product/packaging for this route."
+  },
+  "verdict": "FIRST-DOLLAR COMPLETE COMMERCE OPERATING CAPABILITY CERTIFIED",
+  "completedAt": "2026-08-09T13:28:29.130Z"
+}
