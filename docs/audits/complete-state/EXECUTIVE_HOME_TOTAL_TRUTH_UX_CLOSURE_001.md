@@ -57,12 +57,13 @@ Consumed by: Executive Home Attention/Strip/Brief, awareness strip, Commerce Cen
 
 ## Git / deploy
 
-- local HEAD: `2c4165f5f25ba52490ae5835eb3cc237a895ccca`
-- origin/main: `2c4165f5f25ba52490ae5835eb3cc237a895ccca`
+- local HEAD: `fe359070f0af14f867c653002e7881b17a934073`
+- origin/main: `fe359070f0af14f867c653002e7881b17a934073`
 - ahead/behind: `0/0`
-- Vercel stamp: `2c4165f5…` · `dpl_FYLtmVyfwWM7BAvTQrvcPzvbPtLf`
-- Railway: Online · `dc1c506e-9004-416f-8dec-881c92dc0c3a`
+- Vercel stamp: `fe359070…` · `dpl_Hm4q36QZdN6dyrqdFm38oW7PyChq`
+- Railway: Online · `17bbf54a-f20d-4b52-b00f-fa58a68661a4`
 - Evidence: `EXECUTIVE_HOME_TOTAL_TRUTH_UX_CLOSURE_001_EVIDENCE.json`
+- Approval Bar production verify: `1 pending` matches canonical pending approvals
 
 ## Production browser acceptance (summary)
 
