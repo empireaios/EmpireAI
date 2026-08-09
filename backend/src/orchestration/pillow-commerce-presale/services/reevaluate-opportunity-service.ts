@@ -600,6 +600,30 @@ async function finalizeReject(input: {
     actor: "pillow-commerce-presale",
   });
 
+  let nextPillowAction =
+    "Autonomously discover and deep-analyse the next candidate. Do not ask Grand King to find another product.";
+  if (input.input.continueDiscoveryOnReject !== false) {
+    try {
+      const { runPillowCommercePresaleCycle } = await import("./presale-cycle-service.js");
+      const cycle = await runPillowCommercePresaleCycle({
+        workspaceId: input.input.workspaceId,
+        companyId: input.input.companyId,
+        initiatedBy: "pillow-autonomous",
+        approvalGate: input.input.approvalGate ?? null,
+        env: input.input.env,
+      });
+      nextPillowAction = `Rejected prior candidate; discovery cycle outcome=${cycle.outcome}${
+        cycle.qualifiedOpportunity
+          ? ` · surfaced ${cycle.qualifiedOpportunity.mapping.asin}`
+          : ""
+      }.`;
+    } catch (error) {
+      nextPillowAction = `Rejected prior candidate; discovery retry failed: ${
+        error instanceof Error ? error.message : String(error)
+      }`;
+    }
+  }
+
   return {
     reevaluatedAt: now,
     actorWasCursor: false,
@@ -612,7 +636,6 @@ async function finalizeReject(input: {
     rejectReason: input.reason,
     rejectCode: input.reasonCode,
     operatingLoop: input.operatingLoop,
-    nextPillowAction:
-      "Autonomously discover and deep-analyse the next candidate. Do not ask Grand King to find another product.",
+    nextPillowAction,
   };
 }

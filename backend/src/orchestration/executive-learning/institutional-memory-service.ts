@@ -413,6 +413,16 @@ export function getCommerceInstitutionalContext(workspaceId: string): {
   const mustAvoidAsins = new Set<string>();
   const mustAvoidBrands = new Set<string>();
   for (const m of memories) {
+    // Only treat ASINs/brands from rejection / brand-gate / restriction lessons as must-avoid.
+    // Recommendation memories also link ASINs — those must NOT block re-evaluation.
+    const avoidSignal =
+      m.tags?.some((t) =>
+        /reject|restriction|brand-gate|suppressed|qualification|avoid/i.test(t),
+      ) ||
+      /reject|restriction|brand-gate|suppressed|qualification|avoid|do not recommend/i.test(
+        `${m.title} ${m.canonicalKey}`,
+      );
+    if (!avoidSignal) continue;
     if (m.linkedEntities?.asin) mustAvoidAsins.add(m.linkedEntities.asin.toUpperCase());
     if (m.linkedEntities?.brand) mustAvoidBrands.add(m.linkedEntities.brand.toLowerCase());
   }
