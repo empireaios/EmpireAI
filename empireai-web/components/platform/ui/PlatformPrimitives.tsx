@@ -3,7 +3,9 @@ import type { MetricTrend } from "@/lib/platform/types";
 
 type PlatformPageHeaderProps = {
   title: string;
-  description: string;
+  description?: string;
+  /** Alias used by some founder experiences. */
+  subtitle?: string;
   eyebrow?: string;
   actions?: ReactNode;
 };
@@ -11,9 +13,11 @@ type PlatformPageHeaderProps = {
 export function PlatformPageHeader({
   title,
   description,
+  subtitle,
   eyebrow,
   actions,
 }: PlatformPageHeaderProps) {
+  const detail = description ?? subtitle;
   return (
     <div className="mb-8 flex flex-col gap-4 border-b border-gold/10 pb-8 lg:flex-row lg:items-end lg:justify-between">
       <div>
@@ -25,9 +29,11 @@ export function PlatformPageHeader({
         <h1 className="font-display text-3xl font-semibold text-[#f0d78c] sm:text-4xl">
           {title}
         </h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#8a847a] sm:text-base">
-          {description}
-        </p>
+        {detail && (
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#8a847a] sm:text-base">
+            {detail}
+          </p>
+        )}
       </div>
       {actions && <div className="flex shrink-0 gap-3">{actions}</div>}
     </div>
@@ -63,18 +69,26 @@ export function StatCard({ label, value, change, trend }: StatCardProps) {
 type PanelProps = {
   title: string;
   subtitle?: string;
+  /** Alias used by development cockpit panels. */
+  description?: string;
   children: ReactNode;
   className?: string;
   action?: ReactNode;
+  /** Alias used by development cockpit panels. */
+  actions?: ReactNode;
 };
 
 export function Panel({
   title,
   subtitle,
+  description,
   children,
   className = "",
   action,
+  actions,
 }: PanelProps) {
+  const detail = subtitle ?? description;
+  const trailing = action ?? actions;
   return (
     <section
       className={`rounded-xl border border-gold/10 bg-white/[0.02] ${className}`}
@@ -82,11 +96,11 @@ export function Panel({
       <div className="flex items-start justify-between border-b border-gold/10 px-5 py-4">
         <div>
           <h2 className="text-sm font-semibold text-[#f0d78c]">{title}</h2>
-          {subtitle && (
-            <p className="mt-1 text-xs text-[#6f6a60]">{subtitle}</p>
+          {detail && (
+            <p className="mt-1 text-xs text-[#6f6a60]">{detail}</p>
           )}
         </div>
-        {action}
+        {trailing}
       </div>
       <div className="p-5">{children}</div>
     </section>
@@ -116,23 +130,69 @@ export function Badge({ children, variant = "default" }: BadgeProps) {
   );
 }
 
-type DataTableProps<T> = {
-  columns: { key: string; header: string; render?: (row: T) => ReactNode }[];
-  data: T[];
-  keyField: keyof T;
+type DataTableColumn<T> = {
+  key: string;
+  header?: string;
+  /** Alias used by some cockpit panels. */
+  label?: string;
+  render?: (row: T) => ReactNode;
 };
 
-export function DataTable<T extends Record<string, unknown>>({
+type DataTableProps<T = Record<string, unknown>> = {
+  columns: Array<string | DataTableColumn<T>>;
+  /** Preferred prop name. */
+  data?: T[];
+  /** Object rows, or legacy matrix rows when columns are string headers. */
+  rows?: T[] | string[][];
+  keyField?: keyof T;
+};
+
+function normalizeColumns<T>(
+  columns: Array<string | DataTableColumn<T>>,
+): DataTableColumn<T>[] {
+  return columns.map((col, index) => {
+    if (typeof col === "string") {
+      return { key: `c${index}`, header: col };
+    }
+    return { ...col, header: col.header ?? col.label ?? col.key };
+  });
+}
+
+function normalizeRows<T extends Record<string, unknown>>(
+  columns: DataTableColumn<T>[],
+  data: T[] | undefined,
+  rows: T[] | string[][] | undefined,
+): T[] {
+  if (data) return data;
+  if (!rows || rows.length === 0) return [];
+  if (Array.isArray(rows[0])) {
+    return (rows as string[][]).map((cells) => {
+      const row: Record<string, unknown> = {};
+      columns.forEach((col, i) => {
+        row[col.key] = cells[i] ?? "";
+      });
+      return row as T;
+    });
+  }
+  return rows as T[];
+}
+
+export function DataTable<T extends Record<string, unknown> = Record<string, unknown>>({
   columns,
   data,
+  rows,
   keyField,
 }: DataTableProps<T>) {
+  const normalizedColumns = normalizeColumns(columns);
+  const tableData = normalizeRows(normalizedColumns, data, rows);
+  const resolvedKey = keyField ?? (normalizedColumns[0]?.key as keyof T | undefined);
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[640px] text-left text-sm">
         <thead>
           <tr className="border-b border-gold/10 text-xs uppercase tracking-[0.15em] text-[#6f6a60]">
-            {columns.map((col) => (
+            {normalizedColumns.map((col) => (
               <th key={col.key} className="px-4 py-3 font-medium">
                 {col.header}
               </th>
@@ -140,12 +200,12 @@ export function DataTable<T extends Record<string, unknown>>({
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => (
+          {tableData.map((row, index) => (
             <tr
-              key={String(row[keyField])}
+              key={resolvedKey ? String(row[resolvedKey] ?? index) : String(index)}
               className="border-b border-gold/5 transition-colors hover:bg-white/[0.02]"
             >
-              {columns.map((col) => (
+              {normalizedColumns.map((col) => (
                 <td key={col.key} className="px-4 py-3.5 text-[#c8c0b0]">
                   {col.render
                     ? col.render(row)

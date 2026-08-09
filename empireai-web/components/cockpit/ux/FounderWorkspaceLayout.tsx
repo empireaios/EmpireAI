@@ -26,8 +26,11 @@ export function FounderWorkspaceLayout({
       <CockpitPageHeader
         eyebrow={`Executive Cockpit · ${centre?.label ?? title}`}
         title={title}
-        description={subtitle ?? centre?.description}
+        dataMode="live"
       />
+      {(subtitle ?? centre?.description) && (
+        <p className="text-sm text-[#8a847a]">{subtitle ?? centre?.description}</p>
+      )}
       <div className="flex flex-wrap items-center gap-3 rounded-lg border border-gold/10 bg-white/[0.02] px-4 py-2 text-xs text-[#8a847a]">
         <DataModeBadge mode="live" />
         <span>Shell health: {shellHealth}</span>

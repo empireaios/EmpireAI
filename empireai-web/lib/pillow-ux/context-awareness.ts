@@ -50,8 +50,8 @@ export function buildExecutiveContextSnapshot(input: {
 
   return {
     currentBusiness: ctx?.currentBusiness ?? home?.businessStatus ?? null,
-    currentMission: ctx?.currentMission ?? home?.missionStatus ?? executive?.currentMission ?? null,
-    currentJourney: home?.currentJourney ?? ctx?.currentJourney ?? executive?.journeyPosition ?? null,
+    currentMission: ctx?.currentMission ?? home?.missionStatus ?? executive?.topMissionTitle ?? null,
+    currentJourney: home?.currentJourney ?? ctx?.currentJourney ?? null,
     currentRoadmapItem: home?.currentJourney ?? ctx?.currentJourney ?? null,
     builderStatus: home?.builderStatus ?? null,
     supervisorStatus: home?.supervisorStatus ?? null,

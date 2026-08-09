@@ -33,7 +33,6 @@ type VisualCapturePayload = {
     } | null;
   };
   live?: boolean;
-  engine?: VisualCapturePayload["visualCapture"] extends undefined ? never : VisualCapturePayload["visualCapture"]["engine"];
 };
 
 /** T1-01 — Visual Capture Engine development panel. */

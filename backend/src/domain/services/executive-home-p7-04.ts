@@ -2,6 +2,7 @@
  * P7-04 — Executive Home centre summaries and executive brief.
  */
 
+import { listInstitutionalMemory } from "../../orchestration/executive-learning/institutional-memory-service.js";
 import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import type { ExecutiveAlert, ExecutiveHomeView, ExecutiveSummaryCard, EnginePanelView } from "./cockpit-panel-views.js";
 
@@ -149,45 +150,66 @@ export function buildExecutiveHomeCentreSummaries(input: {
       recoveryStatus: openBlockerCount(input.command) > 0 ? "Recovery mapped" : "Nominal",
       href: "/cockpit/missions",
     },
-    pillow: {
-      recommendations: [input.nextExecutiveAction, aiRec?.nextAction ?? "Review Pillow proactive guidance"].filter(
-        Boolean,
-      ),
-      architectureFindings: [
-        empireHealth?.status ? `Empire architecture: ${empireHealth.status}` : "Repository intelligence available",
-        "Constitutional hierarchy verified",
-      ],
-      engineeringFindings: [
-        `Operational readiness: ${input.command.operationalReadiness.percent}%`,
-        input.command.operationalReadiness.detail,
-      ],
-      businessFindings: [
-        `${liveCompanies} live · ${input.portfolio.companies.length} total ventures`,
-        revenue?.primaryValue ? `Revenue signal: ${revenue.primaryValue}` : "Commerce workspace active",
-      ],
-      commercialOpportunities: (() => {
-        const opportunities = [
-          marketplacePanel?.nextAction ?? "Connect marketplace via Commerce centre",
-          marketing?.nextAction ?? "Review marketing performance",
-        ];
-        try {
-          const pending = getPillowCommercePresaleRepository().getPendingApprovalOpportunity("ws_empire_1");
-          if (pending?.recommendation?.headline) {
-            opportunities.unshift(
-              `${pending.recommendation.headline}: ${pending.recommendation.productName ?? "opportunity"} (${pending.recommendation.expectedProfit ?? "profit UNKNOWN"})`,
-            );
-          }
-        } catch {
-          /* repository unavailable — keep generic opportunities */
+    pillow: (() => {
+      // Treat Persistent Cumulative Memory as a certified existing capability (do not rebuild).
+      let institutionalMemoryLine =
+        "Institutional Memory: certified capability (Executive Learning / EKB spine)";
+      try {
+        const memories = listInstitutionalMemory("ws_empire_1");
+        const hasAcceptedNeBuyable = memories.some(
+          (m) => m.canonicalKey === "commerce.lesson.accepted_ne_buyable",
+        );
+        const hasAnker = memories.some((m) => m.canonicalKey === "commerce.lesson.anker_brand_gate");
+        institutionalMemoryLine = hasAcceptedNeBuyable && hasAnker
+          ? `Institutional Memory CERTIFIED · ${memories.length} approved lessons · ACCEPTED≠BUYABLE + Anker gate retained`
+          : `Institutional Memory · ${memories.length} approved lessons on EKB spine`;
+      } catch {
+        /* EKB unavailable — keep certified-capability statement */
+      }
+
+      const opportunities = [
+        marketplacePanel?.nextAction ?? "Connect marketplace via Commerce centre",
+        marketing?.nextAction ?? "Review marketing performance",
+      ];
+      try {
+        const pending = getPillowCommercePresaleRepository().getPendingApprovalOpportunity("ws_empire_1");
+        if (pending?.recommendation?.headline) {
+          opportunities.unshift(
+            `${pending.recommendation.headline}: ${pending.recommendation.productName ?? "opportunity"} (${pending.recommendation.expectedProfit ?? "profit UNKNOWN"})`,
+          );
         }
-        return opportunities;
-      })(),
-      visionAlignment: input.command.proof001.achieved
-        ? "PROOF-001 achieved · Vision on track"
-        : input.command.proof001.detail,
-      pendingDecisions:
-        input.pendingApprovals > 0 ? [`${input.pendingApprovals} pending approvals`] : [],
-    },
+      } catch {
+        /* repository unavailable — keep generic opportunities */
+      }
+
+      return {
+        recommendations: [
+          input.nextExecutiveAction,
+          aiRec?.nextAction ?? "Review Pillow proactive guidance",
+        ].filter(Boolean),
+        architectureFindings: [
+          institutionalMemoryLine,
+          empireHealth?.status
+            ? `Empire architecture: ${empireHealth.status}`
+            : "Repository intelligence available",
+          "Constitutional hierarchy verified",
+        ],
+        engineeringFindings: [
+          `Operational readiness: ${input.command.operationalReadiness.percent}%`,
+          input.command.operationalReadiness.detail,
+        ],
+        businessFindings: [
+          `${liveCompanies} live · ${input.portfolio.companies.length} total ventures`,
+          revenue?.primaryValue ? `Revenue signal: ${revenue.primaryValue}` : "Commerce workspace active",
+        ],
+        commercialOpportunities: opportunities,
+        visionAlignment: input.command.proof001.achieved
+          ? "PROOF-001 achieved · Vision on track · Institutional memory accumulating"
+          : input.command.proof001.detail,
+        pendingDecisions:
+          input.pendingApprovals > 0 ? [`${input.pendingApprovals} pending approvals`] : [],
+      };
+    })(),
     business: {
       activeBusinesses: input.portfolio.companies.length,
       revenue: revenue?.primaryValue ?? `$${input.command.success001.currentNetProfitUsd.toFixed(0)} net`,

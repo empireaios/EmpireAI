@@ -38,9 +38,17 @@ Empire Health · Roadmap Position · Current Mission · Progress · ETA · Build
 | **Business** | ventures, revenue, orders, profit, marketing, health, trend | `/cockpit/commerce/workspace` |
 | **Production** | production, runtime, guardian, sessions, deployment, incidents | `/cockpit/founder/production` |
 
+## Certified capabilities (existing — do not rebuild)
+
+| Capability | Status | How Executive Home treats it |
+|------------|--------|------------------------------|
+| Persistent Cumulative Memory & Institutional Learning | **CERTIFIED** | Pillow Centre surfaces approved EKB lesson count + ACCEPTED≠BUYABLE / Anker retention; Brain SQLite EKB is source of truth |
+| Executive Operating System | **CERTIFIED** | Preserve; do not reopen |
+| First-Dollar Pillow Commerce Activation | **CERTIFIED** | Commerce opportunity strip / pending approval via existing presale path |
+
 ## Principles
 
-Everything important above the fold · No duplicate information · No unnecessary navigation · Real-time updates · Context preserved · Executive-first design
+Everything important above the fold · No duplicate information · No unnecessary navigation · Real-time updates · Context preserved · Executive-first design · Total truth (live Brain data, not demo placeholders)
 
 ## Personalization
 

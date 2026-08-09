@@ -83,8 +83,14 @@ export function ExecutiveHomeCentresGrid() {
         )}
       </CentreLink>
 
-      <CentreLink href="/cockpit" title="Pillow Centre">
+      <CentreLink href="/cockpit/development/pillow" title="Pillow Centre">
         <BulletList items={centres.pillow.recommendations.slice(0, 3)} />
+        {centres.pillow.architectureFindings[0] && (
+          <div className="mt-2">
+            <p className="text-[10px] uppercase text-[#6f6a60]">Certified capability</p>
+            <p className="text-sm text-emerald-300/90">{centres.pillow.architectureFindings[0]}</p>
+          </div>
+        )}
         <div className="mt-3 space-y-2">
           <p className="text-[10px] uppercase text-[#6f6a60]">Vision</p>
           <p className="text-sm text-[#c8c0b0]">{centres.pillow.visionAlignment}</p>
