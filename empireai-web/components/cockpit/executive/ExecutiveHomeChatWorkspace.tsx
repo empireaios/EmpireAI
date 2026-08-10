@@ -37,6 +37,7 @@ export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
   const conversationEndRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
+  const seenConversationLenRef = useRef<number | null>(null);
   const {
     loading,
     context,
@@ -75,12 +76,8 @@ export function ExecutiveHomeChatWorkspace() {
     expand();
   }, [expand]);
 
-  // Focus composer on mount without hijacking page scroll into a Pillow prison.
-  useEffect(() => {
-    const id = window.requestAnimationFrame(() => focusComposer({ scrollIntoView: false }));
-    return () => window.cancelAnimationFrame(id);
-  }, [focusComposer]);
-
+  // Do NOT autofocus composer on mount — that jumps the page into Pillow and
+  // traps the Grand King mid-workspace. Explicit focus-pillow events still work.
   useEffect(() => {
     const onFocus = () => focusComposer({ scrollIntoView: true });
     window.addEventListener(PILLOW_WORKSPACE_LAYOUT.focusEventName, onFocus);
@@ -100,11 +97,22 @@ export function ExecutiveHomeChatWorkspace() {
     }
   }, [conversation, voiceEnabled]);
 
-  // Keep the latest turn visible via page scroll — never a nested history scroller.
+  // Page-primary: only follow the latest turn after a NEW message arrives.
+  // Initial hydrate / remount must not yank scroll into the Pillow region.
   useEffect(() => {
-    if (conversation.length === 0 && !loading) return;
+    const prev = seenConversationLenRef.current;
+    const next = conversation.length;
+    if (prev === null) {
+      seenConversationLenRef.current = next;
+      return;
+    }
+    if (next <= prev) {
+      seenConversationLenRef.current = next;
+      return;
+    }
+    seenConversationLenRef.current = next;
     conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [conversation, loading]);
+  }, [conversation.length]);
 
   const executive = context?.executiveContext;
   const screen = resolveCockpitScreenContext(pathname);

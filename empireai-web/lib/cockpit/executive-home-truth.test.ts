@@ -93,6 +93,18 @@ describe("executive home truth + nav reality", () => {
       !/overflow-y-auto/.test(historyBlock),
       "message history must not be a nested vertical scroller",
     );
+    // Mount must not autofocus composer (that yanks page scroll into Pillow).
+    assert.ok(
+      !/Focus composer on mount|requestAnimationFrame\(\(\) => focusComposer\(\{ scrollIntoView: false \}\)/.test(
+        chat,
+      ),
+      "must not autofocus composer on mount",
+    );
+    assert.match(
+      chat,
+      /seenConversationLenRef|Initial hydrate/,
+      "must gate conversation scrollIntoView so hydrate does not trap page",
+    );
   });
 
   it("Commerce decision workspace is natural-language first with technical disclosure", () => {
