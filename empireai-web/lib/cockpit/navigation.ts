@@ -366,7 +366,7 @@ export const cockpitNavigation = [
       },
       {
         id: "costs",
-        label: "Costs",
+        label: "Cost Control",
         href: `${COCKPIT_BASE}/finance/costs`,
         screenId: "SCR-403",
         department: "finance",

@@ -8,6 +8,7 @@ import { CommerceDecisionWorkspace } from "@/components/cockpit/executive/Commer
 import { ExecutiveHomeChatWorkspace } from "@/components/cockpit/executive/ExecutiveHomeChatWorkspace";
 import { GrandKingAttentionPanel } from "@/components/cockpit/executive/GrandKingAttentionPanel";
 import { CanonicalTruthStrip } from "@/components/cockpit/executive/CanonicalTruthStrip";
+import { PillowCommissioningStrip } from "@/components/cockpit/executive/PillowCommissioningStrip";
 import { ExecutiveHomeProvider, useExecutiveHome } from "@/lib/cockpit/hooks/useExecutiveHome";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { getCockpitScreenDataMode } from "@/lib/cockpit/kpis/registry";
@@ -58,6 +59,7 @@ export function ExecutiveHomePage() {
 
         <GrandKingAttentionPanel />
         <CanonicalTruthStrip />
+        <PillowCommissioningStrip />
 
         <ExecutiveHomePrimaryWorkspace />
 

@@ -320,6 +320,68 @@ export type CanonicalExecutiveTruth = {
   nextGrandKingAction: string;
   nextPillowAction: string;
   dataIntegrityNotes: string[];
+  pillowOperatingState?: {
+    state: string;
+    humanLabel: string;
+    currentFocus: string;
+    lastHeartbeatAt: string | null;
+    lastOperatingCycleAt: string | null;
+    nextScheduledCycleAt: string | null;
+    needsGrandKing: boolean;
+    needsGrandKingReason: string | null;
+    costGuardLevel: string;
+    birthStatus: string;
+  } | null;
+  sinceLastVisit?: {
+    lastVisitAt: string | null;
+    discovered: number;
+    analysed: number;
+    rejected: number;
+    approvalsRequested: number;
+    purchasesMade: number;
+    aiApiCostIncurredUsd: number;
+    latestMeaningfulActions: Array<{ at: string; type: string; summary: string }>;
+    nextWork: string | null;
+    needsGrandKing: boolean;
+    needsGrandKingReason: string | null;
+  } | null;
+  costGuard?: {
+    level: string;
+    hardStopActive: boolean;
+    unconfiguredLimitKeys: string[];
+    actualUsd: number;
+    committedUsd: number;
+    forecastUsd: number;
+  } | null;
+  birth?: {
+    status: string;
+    birthTimestamp: string | null;
+    technicallyReady: boolean;
+    operatingAgeSeconds: number | null;
+    gatesPassedCount: number;
+    gatesTotal: number;
+  } | null;
+  oneProductCommissioning?: {
+    productName: string;
+    supplier: string;
+    marketplace: string;
+    expectedProfit: string;
+    pillowRecommendation: string;
+    stage: string;
+    buyable: false | "UNKNOWN";
+    grandKingDecision: string;
+    selectionAuthority: "pillow";
+    cursorSelected: false;
+    visualRoute: string;
+  } | null;
+  smartViableKpi?: {
+    smartViable: number;
+    target: number;
+    distanceToTarget: number;
+    evaluated: number;
+    rejected: number;
+  } | null;
+  flightRecorderLatest?: Array<{ at: string; type: string; summary: string }>;
 };
 
 export type MissionCentreView = {

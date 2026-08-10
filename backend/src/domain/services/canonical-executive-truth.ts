@@ -3,7 +3,14 @@
  * Seed/demo/portfolio showcase metrics are NEVER presented as realised LIVE commerce.
  */
 import { listInstitutionalMemory } from "../../orchestration/executive-learning/institutional-memory-service.js";
+import { getBirthRecord } from "../../orchestration/pillow-commissioning/birth.js";
+import { buildCostGuardStatus } from "../../orchestration/pillow-commissioning/cost-guard.js";
+import { listFlightEvents } from "../../orchestration/pillow-commissioning/flight-recorder.js";
+import { getOneProductCommissioningRecord } from "../../orchestration/pillow-commissioning/one-product-commissioning.js";
+import { buildPillowOperatingState } from "../../orchestration/pillow-commissioning/operating-state.js";
+import { buildSinceLastVisitBrief } from "../../orchestration/pillow-commissioning/since-last-visit.js";
 import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
+import { buildSmartViableKpiSnapshot } from "../../orchestration/pillow-commerce-presale/smart-viable-kpi.js";
 import type { EnginePanelView, ExecutiveHomeView } from "./cockpit-panel-views.js";
 
 export type GrandKingAttentionItem = {
@@ -69,6 +76,69 @@ export type CanonicalExecutiveTruth = {
   nextGrandKingAction: string;
   nextPillowAction: string;
   dataIntegrityNotes: string[];
+  /** Mission 004 — honest operating posture (never generic LIVE). */
+  pillowOperatingState: {
+    state: string;
+    humanLabel: string;
+    currentFocus: string;
+    lastHeartbeatAt: string | null;
+    lastOperatingCycleAt: string | null;
+    nextScheduledCycleAt: string | null;
+    needsGrandKing: boolean;
+    needsGrandKingReason: string | null;
+    costGuardLevel: string;
+    birthStatus: string;
+  } | null;
+  sinceLastVisit: {
+    lastVisitAt: string | null;
+    discovered: number;
+    analysed: number;
+    rejected: number;
+    approvalsRequested: number;
+    purchasesMade: number;
+    aiApiCostIncurredUsd: number;
+    latestMeaningfulActions: Array<{ at: string; type: string; summary: string }>;
+    nextWork: string | null;
+    needsGrandKing: boolean;
+    needsGrandKingReason: string | null;
+  } | null;
+  costGuard: {
+    level: string;
+    hardStopActive: boolean;
+    unconfiguredLimitKeys: string[];
+    actualUsd: number;
+    committedUsd: number;
+    forecastUsd: number;
+  } | null;
+  birth: {
+    status: string;
+    birthTimestamp: string | null;
+    technicallyReady: boolean;
+    operatingAgeSeconds: number | null;
+    gatesPassedCount: number;
+    gatesTotal: number;
+  } | null;
+  oneProductCommissioning: {
+    productName: string;
+    supplier: string;
+    marketplace: string;
+    expectedProfit: string;
+    pillowRecommendation: string;
+    stage: string;
+    buyable: false | "UNKNOWN";
+    grandKingDecision: string;
+    selectionAuthority: "pillow";
+    cursorSelected: false;
+    visualRoute: string;
+  } | null;
+  smartViableKpi: {
+    smartViable: number;
+    target: number;
+    distanceToTarget: number;
+    evaluated: number;
+    rejected: number;
+  } | null;
+  flightRecorderLatest: Array<{ at: string; type: string; summary: string }>;
 };
 
 const SEED_COMPANY_NAME_RE = /^(Meridian Commerce|Vertex SaaS|Lumen Media|Atlas Fintech)$/i;
@@ -280,18 +350,171 @@ export function buildCanonicalExecutiveTruth(input: {
     important_decision: 3,
     informational: 4,
   };
-  attention.sort((a, b) => priorityRank[a.priority] - priorityRank[b.priority]);
-
-  const nextGrandKingAction =
-    attention[0]?.title ??
-    (pendingApprovals === 0 ? "No action required." : input.nextExecutiveAction);
 
   const dataIntegrityNotes = [
     "Seed portfolio GMV / demo margins are excluded from LIVE realised economics.",
     "Pending approval count includes Pillow gate + commerce opportunity awaiting owner decision.",
     "Mission empty state uses 'No active mission' — never 'Awaiting implementation' as current truth.",
     "Guardian/Production status uses operational readiness — not credential-gap engine FAILED flags.",
+    "Pillow operating state never uses generic LIVE when truth is unknown.",
+    "Birth timestamp is created only on Grand King authorisation — never invented.",
   ];
+
+  let pillowOperatingState: CanonicalExecutiveTruth["pillowOperatingState"] = null;
+  let sinceLastVisit: CanonicalExecutiveTruth["sinceLastVisit"] = null;
+  let costGuard: CanonicalExecutiveTruth["costGuard"] = null;
+  let birth: CanonicalExecutiveTruth["birth"] = null;
+  let oneProductCommissioning: CanonicalExecutiveTruth["oneProductCommissioning"] = null;
+  let smartViableKpi: CanonicalExecutiveTruth["smartViableKpi"] = null;
+  let flightRecorderLatest: CanonicalExecutiveTruth["flightRecorderLatest"] = [];
+
+  try {
+    const op = buildPillowOperatingState(input.workspaceId);
+    pillowOperatingState = {
+      state: op.state,
+      humanLabel: op.humanLabel,
+      currentFocus: op.currentFocus,
+      lastHeartbeatAt: op.lastHeartbeatAt,
+      lastOperatingCycleAt: op.lastOperatingCycleAt,
+      nextScheduledCycleAt: op.nextScheduledCycleAt,
+      needsGrandKing: op.needsGrandKing,
+      needsGrandKingReason: op.needsGrandKingReason,
+      costGuardLevel: op.costGuardLevel,
+      birthStatus: op.birthStatus,
+    };
+  } catch {
+    /* optional */
+  }
+
+  try {
+    const brief = buildSinceLastVisitBrief(input.workspaceId, { recordVisit: false });
+    sinceLastVisit = {
+      lastVisitAt: brief.lastVisitAt,
+      discovered: brief.discovered,
+      analysed: brief.analysed,
+      rejected: brief.rejected,
+      approvalsRequested: brief.approvalsRequested,
+      purchasesMade: brief.purchasesMade,
+      aiApiCostIncurredUsd: brief.aiApiCostIncurredUsd,
+      latestMeaningfulActions: brief.latestMeaningfulActions,
+      nextWork: brief.nextWork,
+      needsGrandKing: brief.needsGrandKing,
+      needsGrandKingReason: brief.needsGrandKingReason,
+    };
+  } catch {
+    /* optional */
+  }
+
+  try {
+    const cg = buildCostGuardStatus(input.workspaceId);
+    costGuard = {
+      level: cg.level,
+      hardStopActive: cg.hardStopActive,
+      unconfiguredLimitKeys: cg.unconfiguredLimitKeys,
+      actualUsd:
+        cg.spend.dailyAi.actualUsd +
+        cg.spend.monthlyOperating.actualUsd +
+        cg.spend.autonomousPaid.actualUsd,
+      committedUsd:
+        cg.spend.dailyAi.committedUsd +
+        cg.spend.monthlyOperating.committedUsd +
+        cg.spend.autonomousPaid.committedUsd,
+      forecastUsd:
+        cg.spend.dailyAi.forecastUsd +
+        cg.spend.monthlyOperating.forecastUsd +
+        cg.spend.autonomousPaid.forecastUsd,
+    };
+  } catch {
+    /* optional */
+  }
+
+  try {
+    const b = getBirthRecord(input.workspaceId);
+    birth = {
+      status: b.status,
+      birthTimestamp: b.birthTimestamp,
+      technicallyReady: b.technicallyReady,
+      operatingAgeSeconds: b.operatingAgeSeconds,
+      gatesPassedCount: b.gatesPassedCount,
+      gatesTotal: b.gatesTotal,
+    };
+  } catch {
+    /* optional */
+  }
+
+  try {
+    const opc = getOneProductCommissioningRecord(input.workspaceId);
+    if (opc) {
+      oneProductCommissioning = {
+        productName: opc.productName,
+        supplier: opc.supplier,
+        marketplace: opc.marketplace,
+        expectedProfit: opc.expectedProfit,
+        pillowRecommendation: opc.pillowRecommendation,
+        stage: opc.stage,
+        buyable: opc.buyable,
+        grandKingDecision: opc.grandKingDecision,
+        selectionAuthority: "pillow",
+        cursorSelected: false,
+        visualRoute: opc.visualAmazonOutput.route,
+      };
+    }
+  } catch {
+    /* optional */
+  }
+
+  try {
+    const kpi = buildSmartViableKpiSnapshot(input.workspaceId);
+    smartViableKpi = {
+      smartViable: kpi.smartViable,
+      target: kpi.kpi.target,
+      distanceToTarget: kpi.distanceToTarget,
+      evaluated: kpi.candidatesEvaluated,
+      rejected: kpi.rejected,
+    };
+  } catch {
+    /* optional */
+  }
+
+  try {
+    flightRecorderLatest = listFlightEvents(input.workspaceId, { limit: 5 }).map((e) => ({
+      at: e.recordedAt,
+      type: e.eventType,
+      summary: e.result ?? e.objective,
+    }));
+  } catch {
+    flightRecorderLatest = [];
+  }
+
+  if (costGuard?.hardStopActive) {
+    attention.unshift({
+      id: "cost-guard-hard-stop",
+      priority: "critical_system",
+      title: "Cost Guard HARD STOP active",
+      detail: "Paid autonomous activity is blocked until Grand King adjusts limits.",
+      href: "/cockpit/finance/costs",
+    });
+  } else if (costGuard && costGuard.unconfiguredLimitKeys.length > 0) {
+    attention.push({
+      id: "cost-guard-unconfigured",
+      priority: "important_decision",
+      title: "Cost Guard limits need Grand King configuration",
+      detail: `${costGuard.unconfiguredLimitKeys.length} limit(s) unconfigured — Pillow will not invent budgets.`,
+      href: "/cockpit/finance/costs",
+    });
+  }
+
+  if (birth?.status === "TECHNICALLY_READY_AWAITING_GRAND_KING") {
+    attention.push({
+      id: "birth-awaiting",
+      priority: "important_decision",
+      title: "Pillow birth technically ready — awaiting Grand King",
+      detail: "No birth timestamp will be created until you authorise continuous operation.",
+      href: COCKPIT_HOME_HREF,
+    });
+  }
+
+  attention.sort((a, b) => priorityRank[a.priority] - priorityRank[b.priority]);
 
   return {
     computedAt: new Date().toISOString(),
@@ -330,11 +553,22 @@ export function buildCanonicalExecutiveTruth(input: {
         ? "Wait for Grand King approval, then continue pre-sale cycle without unauthorized publish/spend."
         : "Continue autonomous commerce discovery and surface the next qualified opportunity.",
     },
-    grandKingAttention: attention.slice(0, 6),
-    nextGrandKingAction,
+    grandKingAttention: attention.slice(0, 8),
+    nextGrandKingAction:
+      attention[0]?.title ??
+      (pendingApprovals === 0 ? "No action required." : input.nextExecutiveAction),
     nextPillowAction: commerceOpportunity
       ? "Hold publication and supplier spend until Grand King decides."
       : "Observe → analyse → discover → validate → recommend.",
     dataIntegrityNotes,
+    pillowOperatingState,
+    sinceLastVisit,
+    costGuard,
+    birth,
+    oneProductCommissioning,
+    smartViableKpi,
+    flightRecorderLatest,
   };
 }
+
+const COCKPIT_HOME_HREF = "/cockpit";

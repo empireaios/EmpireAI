@@ -149,6 +149,19 @@ export class SqlitePillowCommercePresaleRepository {
     return row ? (JSON.parse(row.record_json) as QualifiedOpportunity) : null;
   }
 
+  /** Recent production opportunities for Pillow ranking (not Cursor preselection). */
+  listRecentOpportunities(workspaceId: string, limit = 24): QualifiedOpportunity[] {
+    const db = getDatabase();
+    const rows = db
+      .prepare(
+        `SELECT record_json FROM pillow_commerce_presale_opportunities
+         WHERE workspace_id = @workspaceId
+         ORDER BY updated_at DESC LIMIT @limit`,
+      )
+      .all({ workspaceId, limit }) as Array<{ record_json: string }>;
+    return rows.map((row) => JSON.parse(row.record_json) as QualifiedOpportunity);
+  }
+
   getMappingByAmazonSku(amazonSellerSku: string): AmazonCjProductMap | null {
     const db = getDatabase();
     const row = db
@@ -275,5 +288,7 @@ let repoSingleton: SqlitePillowCommercePresaleRepository | null = null;
 
 export function getPillowCommercePresaleRepository(): SqlitePillowCommercePresaleRepository {
   if (!repoSingleton) repoSingleton = new SqlitePillowCommercePresaleRepository();
+  // Re-ensure after :memory: DB resets between tests / process restarts.
+  ensurePillowCommercePresaleTables();
   return repoSingleton;
 }

@@ -72,6 +72,7 @@ import {
   getPillowCommercePresaleAutomationServer,
   registerPillowCommercePresaleRoutes,
 } from "./orchestration/pillow-commerce-presale/index.js";
+import { registerPillowCommissioningRoutes } from "./orchestration/pillow-commissioning/index.js";
 import {
   getPresaleApprovalGate,
   syncPresaleApprovalGateWithPillowHost,
@@ -574,6 +575,12 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
     authenticate,
     auditLogger: brain.auditLogger,
     getApprovalGate: () => getPresaleApprovalGate(deps.pillowHost),
+  });
+
+  await breathe();
+  await registerPillowCommissioningRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
   });
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.

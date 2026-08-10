@@ -7,6 +7,8 @@ import { randomUUID } from "node:crypto";
 import type { ScheduledJobDefinition } from "../../../brain/scheduler.js";
 import { logger } from "../../../config/logger.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
+import { assertPaidAutonomousAllowed } from "../../pillow-commissioning/cost-guard.js";
+import { recordFlightEvent } from "../../pillow-commissioning/flight-recorder.js";
 import { getPresaleApprovalGate } from "../approval-bridge.js";
 import { runPillowCommercePresaleCycle } from "../services/presale-cycle-service.js";
 
@@ -43,6 +45,13 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
   outcome?: string;
 }> {
   try {
+    const gate = assertPaidAutonomousAllowed(GRAND_KING_WORKSPACE_ID, 0.05);
+    if (!gate.allowed) {
+      return {
+        ok: false,
+        detail: `Cost Guard blocked autonomous presale: ${gate.reason}`,
+      };
+    }
     const cycle = await runPillowCommercePresaleCycle({
       workspaceId: GRAND_KING_WORKSPACE_ID,
       companyId: GRAND_KING_COMPANY_ID,
@@ -51,6 +60,24 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
       maxCandidates: 24,
       approvalGate: getPresaleApprovalGate(),
     });
+    try {
+      recordFlightEvent({
+        workspaceId: GRAND_KING_WORKSPACE_ID,
+        eventType: "COMMERCE_CYCLE",
+        businessArea: "commerce",
+        subsystem: "pillow-commerce-presale-automation",
+        objective: "Autonomous SMART viable discovery cycle",
+        analysisSummary: `retrieved=${cycle.candidatesRetrieved}; rejected=${cycle.rejections.length}; smartViable=${cycle.smartViableBatchCount ?? 0}`,
+        decision: cycle.outcome,
+        authority: "pillow",
+        result: cycle.outcome,
+        nextScheduledAt: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString(),
+        evidenceConsidered: ["presale-automation-tick"],
+        entityRefs: { cycleId: cycle.cycleId },
+      });
+    } catch {
+      /* ledger must not break automation */
+    }
     return {
       ok: true,
       detail: `outcome=${cycle.outcome}; retrieved=${cycle.candidatesRetrieved}; rejected=${cycle.rejections.length}; smartViable=${cycle.smartViableBatchCount ?? 0}`,
@@ -58,6 +85,21 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
       outcome: cycle.outcome,
     };
   } catch (error) {
+    try {
+      recordFlightEvent({
+        workspaceId: GRAND_KING_WORKSPACE_ID,
+        eventType: "FAIL",
+        businessArea: "commerce",
+        subsystem: "pillow-commerce-presale-automation",
+        objective: "Autonomous SMART viable discovery cycle",
+        authority: "pillow",
+        actionFailed: error instanceof Error ? error.message : "Presale automation tick failed",
+        result: "FAIL",
+        evidenceConsidered: ["presale-automation-tick"],
+      });
+    } catch {
+      /* ignore */
+    }
     return {
       ok: false,
       detail: error instanceof Error ? error.message : "Presale automation tick failed",

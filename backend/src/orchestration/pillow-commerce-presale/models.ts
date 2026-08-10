@@ -57,6 +57,7 @@ export type RejectionReasonCode =
   | "BRAND_AUTHENTICITY_UNVERIFIED"
   | "PRIVATE_LABEL_NOT_CONFIGURED"
   | "DOSSIER_REJECT"
+  | "ALREADY_MAPPED"
   | "OTHER";
 
 export type MoneyEvidence = {
