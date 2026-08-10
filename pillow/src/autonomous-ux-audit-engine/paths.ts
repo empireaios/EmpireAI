@@ -49,3 +49,35 @@ export const ISSUE_SEVERITIES = [
   "low",
   "info",
 ] as const;
+
+/**
+ * Mission 006 — Grand King UX defect classes (parallel to ISSUE_SEVERITIES).
+ * Class 1 = operational blockers → fix immediately (maps roughly to critical/high).
+ * Class 2 = important UX → queue alongside commercial track.
+ * Class 3 = polish → backlog; do not delay first-dollar progression.
+ */
+export const GRAND_KING_UX_DEFECT_CLASSES = [
+  "CLASS_1_OPERATIONAL_BLOCKER",
+  "CLASS_2_IMPORTANT_UX",
+  "CLASS_3_UX_POLISH",
+] as const;
+
+export const GRAND_KING_UX_CLASS_RULES = {
+  CLASS_1_OPERATIONAL_BLOCKER:
+    "FIX IMMEDIATELY — prevents Grand King from operating/testing EmpireAI.",
+  CLASS_2_IMPORTANT_UX:
+    "Queue and improve alongside commercial progression; do not automatically stop commerce.",
+  CLASS_3_UX_POLISH:
+    "Record in backlog; do not delay first-dollar progression.",
+} as const;
+
+/** Map AUA severity → Grand King UX class for triage. */
+export function mapIssueSeverityToGrandKingUxClass(
+  severity: (typeof ISSUE_SEVERITIES)[number],
+): (typeof GRAND_KING_UX_DEFECT_CLASSES)[number] {
+  if (severity === "critical" || severity === "high") {
+    return "CLASS_1_OPERATIONAL_BLOCKER";
+  }
+  if (severity === "medium") return "CLASS_2_IMPORTANT_UX";
+  return "CLASS_3_UX_POLISH";
+}

@@ -331,6 +331,9 @@ export type CanonicalExecutiveTruth = {
     needsGrandKingReason: string | null;
     costGuardLevel: string;
     birthStatus: string;
+    activityMode?: string;
+    winningPurpose?: string;
+    winningOperatingQuestion?: string;
   } | null;
   sinceLastVisit?: {
     lastVisitAt: string | null;

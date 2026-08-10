@@ -7,6 +7,12 @@ import { buildSmartViableKpiSnapshot } from "../pillow-commerce-presale/smart-vi
 import { buildCostGuardStatus } from "./cost-guard.js";
 import { getLatestFlightEvent, listFlightEvents } from "./flight-recorder.js";
 import { getBirthRecord } from "./birth.js";
+import {
+  WINNING_OPERATING_QUESTION,
+  PILLOW_WINNING_PURPOSE,
+  activityModeFromOperatingState,
+  type PillowActivityMode,
+} from "./winning-purpose-doctrine.js";
 
 export type PillowOperatingStateCode =
   | "WORKING"
@@ -33,6 +39,10 @@ export type PillowOperatingState = {
   costGuardLevel: string;
   birthStatus: string;
   evidence: string[];
+  /** Mission 006 — activity mode distinct from raw state code. */
+  activityMode: PillowActivityMode;
+  winningPurpose: string;
+  winningOperatingQuestion: string;
 };
 
 export function buildPillowOperatingState(workspaceId: string): PillowOperatingState {
@@ -136,5 +146,8 @@ export function buildPillowOperatingState(workspaceId: string): PillowOperatingS
     costGuardLevel: cost.level,
     birthStatus: birth.status,
     evidence,
+    activityMode: activityModeFromOperatingState(state),
+    winningPurpose: PILLOW_WINNING_PURPOSE,
+    winningOperatingQuestion: WINNING_OPERATING_QUESTION,
   };
 }

@@ -56,4 +56,19 @@ export {
   INTELLIGENCE_TIER_MAP,
   buildScaleCostOptimisationReport,
 } from "./intelligence-tiers.js";
+export {
+  WINNING_PURPOSE_DOCTRINE_ID,
+  PILLOW_WINNING_PURPOSE,
+  WINNING_OPERATING_QUESTION,
+  GRAND_KING_UX_DEFECT_CLASSES,
+  classifyGrandKingUxFinding,
+  buildWinningPurposeBrief,
+  PARALLEL_TRACKS,
+  COMMERCIAL_KPI_PRESERVATION,
+  COST_DISCIPLINE_ABOVE_AUTONOMY,
+  activityModeFromOperatingState,
+  type PillowActivityMode,
+  type GrandKingUxDefectClassId,
+  type WinningPurposeRuntimeBrief,
+} from "./winning-purpose-doctrine.js";
 export { registerPillowCommissioningRoutes } from "./routes/pillow-commissioning-routes.js";

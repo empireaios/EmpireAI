@@ -131,6 +131,8 @@ describe("Digital Soul of Pillow V2 (DS-V2-CANONICAL)", () => {
     assert.ok(block.includes("Never fabricate"));
     assert.ok(block.includes("Long-Term Empire Value"));
     assert.ok(block.includes("Grand King"));
+    assert.ok(block.includes("PILLOW WINNING PURPOSE"));
+    assert.ok(block.includes("probability of winning"));
   });
 
   test("compliance separates evidence and flags approval boundaries", () => {

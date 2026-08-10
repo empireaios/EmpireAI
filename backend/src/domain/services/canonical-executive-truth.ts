@@ -88,6 +88,10 @@ export type CanonicalExecutiveTruth = {
     needsGrandKingReason: string | null;
     costGuardLevel: string;
     birthStatus: string;
+    /** Mission 006 */
+    activityMode: string;
+    winningPurpose: string;
+    winningOperatingQuestion: string;
   } | null;
   sinceLastVisit: {
     lastVisitAt: string | null;
@@ -381,6 +385,9 @@ export function buildCanonicalExecutiveTruth(input: {
       needsGrandKingReason: op.needsGrandKingReason,
       costGuardLevel: op.costGuardLevel,
       birthStatus: op.birthStatus,
+      activityMode: op.activityMode,
+      winningPurpose: op.winningPurpose,
+      winningOperatingQuestion: op.winningOperatingQuestion,
     };
   } catch {
     /* optional */

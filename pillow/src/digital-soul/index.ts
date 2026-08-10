@@ -51,6 +51,24 @@ export {
 } from "./prompt.js";
 
 export {
+  WINNING_PURPOSE_DOCTRINE_ID,
+  PILLOW_WINNING_PURPOSE,
+  WINNING_OPERATING_QUESTION,
+  WINNING_IS_NOT,
+  WINNING_IS,
+  VALUE_CREATION_CYCLE,
+  PILLOW_ACTIVITY_MODES,
+  PARALLEL_OPERATING_TRACKS,
+  COMMERCIAL_KPI_SEQUENCE,
+  COST_DISCIPLINE_ABOVE_AUTONOMY,
+  CURSOR_ROLE_IN_WINNING,
+  PLAYGROUND_PRINCIPLE_STATEMENT,
+  OPTIMISATION_CONSIDERATIONS,
+  describeWinningPurposeForPrompt,
+  type PillowActivityMode,
+} from "./winning-purpose.js";
+
+export {
   evaluateConstitutionalCompliance,
   separateEvidenceAndAssumptions,
   type ComplianceInput,

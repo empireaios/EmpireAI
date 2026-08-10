@@ -19,5 +19,8 @@ Plain-language register of major capabilities as of the Complete State Audit (20
 | Finance/capital workers | P&L / risk | Structural | Defer vs first listing |
 | Migration | New Windows PC | Ready with secrets restore | See migration runbook |
 | Enterprise Restoration | Anti-502 architecture | Certified OPERATIONAL | Rate-limit hardening in this audit |
+| Pillow winning purpose (Mission 006) | Win = sustainable realised economic value under governance | Structural / runtime wired | Not a single-metric maximiser; cost above autonomy |
+| Parallel UX Track B | Class 1/2/3 UX defect triage alongside commerce | Structural | Class 1 fix immediately; Class 3 never blocks first dollar |
+| Supplier × marketplace universe | Expandable playground principle | Structural | CJ×Amazon US = first corridor only |
 
 **Legend:** Usable = Grand King can use today · Structural = code/cert present · Gated = needs env/approval · Blocked = cannot complete end-to-end yet.

@@ -53,6 +53,16 @@ export function PillowCommissioningStrip() {
         <DataModeBadge mode="live" />
       </div>
 
+      {op?.winningOperatingQuestion && (
+        <p className="mb-3 text-sm leading-relaxed text-[#c8c0b0]">
+          <span className="text-[#d4af37]">Winning purpose · </span>
+          {op.winningOperatingQuestion}
+          {op.activityMode ? (
+            <span className="text-[#8a847a]"> · mode {op.activityMode.replace(/_/g, " ")}</span>
+          ) : null}
+        </p>
+      )}
+
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-8">
         <Cell label="Operating state" value={op?.humanLabel ?? "UNKNOWN"} />
         <Cell label="Current focus" value={op?.currentFocus ?? "—"} />

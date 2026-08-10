@@ -74,6 +74,9 @@ TIER 3 — CONSTITUTION & LAW
 ├── Doctrines
 │   ├── Doctrine System (P2-04)   → EMPIREAI_DOCTRINE_SYSTEM.md
 │   ├── GVD · CBD · UID · ACD
+│   ├── Parallel UX + Winning Purpose (Mission 006 binder)
+│   │     → EMPIREAI_PARALLEL_UX_AND_WINNING_PURPOSE_DOCTRINE_006.md
+│   │     (runtime: pillow/src/digital-soul/winning-purpose.ts · pillow-commissioning/winning-purpose-doctrine.ts)
 │   └── Domain governance doctrines (CRI, etc.)
 └── Identity Governance Law (P1 governance — constitutional)
     ├── Reasoning Model · Vision Sync · Vision Accumulation

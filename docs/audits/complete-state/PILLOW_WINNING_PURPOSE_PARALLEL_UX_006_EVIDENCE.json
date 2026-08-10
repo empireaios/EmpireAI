@@ -1,0 +1,41 @@
+{
+  "mission": "006-pillow-winning-purpose-parallel-ux-doctrine",
+  "at": "2026-08-10T16:50:00.000Z",
+  "constitutionalLocksHonoured": {
+    "birthInvented": false,
+    "thousandReleased": false,
+    "publishOrSpend": false,
+    "ownerLimitsInvented": false,
+    "cursorSelectedPortfolio": false,
+    "duplicateConstitutionCreated": false
+  },
+  "runtimeHomes": {
+    "pillowWinningPurpose": "pillow/src/digital-soul/winning-purpose.ts",
+    "digitalSoulPromptInjection": "pillow/src/digital-soul/prompt.ts",
+    "brainDoctrine": "backend/src/orchestration/pillow-commissioning/winning-purpose-doctrine.ts",
+    "operatingState": "backend/src/orchestration/pillow-commissioning/operating-state.ts",
+    "canonicalTruth": "backend/src/domain/services/canonical-executive-truth.ts",
+    "smartViableKpi": "backend/src/orchestration/pillow-commerce-presale/smart-viable-kpi.ts",
+    "uxWeb": "empireai-web/lib/cockpit/ux/grand-king-ux-defect-class.ts",
+    "uxAua": "pillow/src/autonomous-ux-audit-engine/paths.ts",
+    "observabilityUi": "empireai-web/components/cockpit/executive/PillowCommissioningStrip.tsx"
+  },
+  "doctrineBinder": "docs/governance/EMPIREAI_PARALLEL_UX_AND_WINNING_PURPOSE_DOCTRINE_006.md",
+  "csaChecklist": "docs/audits/complete-state/CSA_MISSION_006_DOCTRINE_CHECKLIST.md",
+  "tests": {
+    "digitalSoul": "15/15 pass (includes winning purpose in prompt block)",
+    "webUxClass": "2/2 pass",
+    "backendDoctrineSmoke": "import smoke PASS (purpose/CLASS_1/kpi=1000/seq AFTER 1,000)",
+    "backendUnitFile": "mission-006-winning-purpose.test.ts added"
+  },
+  "classifications": {
+    "winningPurposeRuntime": "PARTIAL",
+    "autonomousPostBirthLoop": "BLOCKED",
+    "observabilityAliveSignal": "PARTIAL",
+    "uxClassification": "PROVEN",
+    "commercialKpiPreservation": "PROVEN",
+    "universePrinciple": "PROVEN",
+    "costAboveAutonomyDoctrine": "PROVEN",
+    "productionDeployVerification": "PENDING_AFTER_PUSH"
+  }
+}

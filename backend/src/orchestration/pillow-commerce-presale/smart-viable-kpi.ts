@@ -13,9 +13,11 @@ export const SMART_VIABLE_LISTING_KPI = {
   definition:
     "A listing counts as SMART VIABLE only after supplier stock/freight, Amazon eligibility, brand/IP filters, competitive economics, delivery promise, and dossier completeness pass. Raw CJ availability alone is insufficient.",
   sequence:
-    "Build 1,000 SMART viable listings → pursue first real dollar across the portfolio → learn → continue toward 10,000+.",
+    "One-product = commissioning proof → Birth (GK) → continuous operation → build 1,000 SMART viable/listing-ready opportunities → pursue first real dollar across that surface → then 10,000+. First dollar is AFTER 1,000, not a prerequisite.",
   playgroundPrinciple:
-    "SUPPLIER UNIVERSE × MARKETPLACE UNIVERSE × PILLOW INTELLIGENCE = probability-of-scale engine. Grand King + ChatGPT choose future integrations; Pillow operates installed corridors; Cursor implements approved additions.",
+    "SUPPLIER UNIVERSE × MARKETPLACE UNIVERSE × PILLOW INTELLIGENCE = probability-of-scale engine. Grand King + ChatGPT choose future integrations; Pillow operates installed corridors; Cursor implements approved additions. CJ×Amazon US is the first corridor, not the final universe.",
+  winningNote:
+    "Activity/API calls/listing volume alone are not winning. Pillow wins via sustainable realised economic value under governance and cost limits (Mission 006).",
 } as const;
 
 export type SmartViableKpiSnapshot = {
@@ -75,7 +77,9 @@ export function buildSmartViableKpiSnapshot(workspaceId: string): SmartViableKpi
     notes: [
       "SMART viable counts use persisted approval-ready / awaiting-approval opportunities and maps — not raw CJ catalogue size.",
       "No publish/spend in discovery batch mode.",
+      SMART_VIABLE_LISTING_KPI.sequence,
       SMART_VIABLE_LISTING_KPI.playgroundPrinciple,
+      SMART_VIABLE_LISTING_KPI.winningNote,
     ],
   };
 }
