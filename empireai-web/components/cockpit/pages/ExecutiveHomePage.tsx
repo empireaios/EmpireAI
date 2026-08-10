@@ -33,7 +33,7 @@ function ExecutiveHomePrimaryWorkspace() {
           Operational truth loading — Pillow is available below.
         </p>
       )}
-      {/* Stack on all sizes: page scroll is primary; avoid dual 88vh scroll prisons. */}
+      {/* Page scroll is the sole primary vertical owner — Pillow/Commerce are page-flow. */}
       {hasDecision && <CommerceDecisionWorkspace onAskPillow={onAsk} />}
       <ExecutiveHomeChatWorkspace />
     </div>

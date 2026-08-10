@@ -1,21 +1,24 @@
 /**
- * Executive Home Pillow workspace layout (mission 003).
- * Page scroll is primary — avoid nested scroll prisons.
+ * Executive Home Pillow workspace layout.
+ * Canonical scroll owner = document/page. Nested overflow is exceptional only.
  */
 export const PILLOW_WORKSPACE_LAYOUT = {
-  /** Minimum useful workspace height without locking the page */
-  workspaceMinVh: 70,
-  /** Conversation history large but page-scroll friendly */
-  messageHistoryMinVh: 48,
-  messageHistoryMaxVh: 62,
-  /** Composer is a strategic writing surface */
-  composerMinPx: 180,
-  composerMaxPx: 420,
-  /** Context/guidance strip stays secondary */
-  contextStripMaxVh: 10,
+  /**
+   * Workspace participates in page flow — do not lock a viewport-height prison.
+   * Empty-state visual presence only (not a scroll container height).
+   */
+  workspaceMinPx: 320,
+  /**
+   * Message history is page-flow by default (no max-height scroll prison).
+   * Internal history scrolling is disabled; long threads scroll with the page.
+   */
+  messageHistoryInternalScroll: false,
+  /** Composer remains a strategic writing surface without trapping the page */
+  composerMinPx: 140,
+  composerMaxPx: 320,
+  /** Context/guidance strip — compact; overflow only if content exceeds strip */
+  contextStripMaxPx: 120,
   /** Pillow owns content width — centres are below, not beside */
   pillowBesideCentres: false,
-  /** Nested scroll must release wheel to the page at boundaries */
-  overscrollBehavior: "auto" as const,
   focusEventName: "empireai:focus-pillow",
 } as const;

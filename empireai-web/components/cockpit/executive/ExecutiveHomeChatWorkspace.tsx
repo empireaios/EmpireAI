@@ -28,10 +28,14 @@ function autosizeComposer(el: HTMLTextAreaElement | null) {
   el.style.height = `${next}px`;
 }
 
-/** Primary Grand King ↔ Pillow workspace — large history + large composer. */
+/**
+ * Primary Grand King ↔ Pillow workspace.
+ * Scroll owner = Executive Home page. History grows in document flow —
+ * no viewport-height nested scroll prison.
+ */
 export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
-  const conversationRef = useRef<HTMLDivElement>(null);
+  const conversationEndRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
   const {
     loading,
@@ -56,9 +60,11 @@ export function ExecutiveHomeChatWorkspace() {
     void ask(transcript);
   });
 
-  const focusComposer = useCallback(() => {
-    const root = document.getElementById("executive-pillow-workspace");
-    root?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  const focusComposer = useCallback((opts?: { scrollIntoView?: boolean }) => {
+    if (opts?.scrollIntoView) {
+      const root = document.getElementById("executive-pillow-workspace");
+      root?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
     window.requestAnimationFrame(() => {
       composerRef.current?.focus({ preventScroll: true });
       autosizeComposer(composerRef.current);
@@ -69,13 +75,14 @@ export function ExecutiveHomeChatWorkspace() {
     expand();
   }, [expand]);
 
+  // Focus composer on mount without hijacking page scroll into a Pillow prison.
   useEffect(() => {
-    const id = window.requestAnimationFrame(() => focusComposer());
+    const id = window.requestAnimationFrame(() => focusComposer({ scrollIntoView: false }));
     return () => window.cancelAnimationFrame(id);
   }, [focusComposer]);
 
   useEffect(() => {
-    const onFocus = () => focusComposer();
+    const onFocus = () => focusComposer({ scrollIntoView: true });
     window.addEventListener(PILLOW_WORKSPACE_LAYOUT.focusEventName, onFocus);
     return () => window.removeEventListener(PILLOW_WORKSPACE_LAYOUT.focusEventName, onFocus);
   }, [focusComposer]);
@@ -93,11 +100,10 @@ export function ExecutiveHomeChatWorkspace() {
     }
   }, [conversation, voiceEnabled]);
 
+  // Keep the latest turn visible via page scroll — never a nested history scroller.
   useEffect(() => {
-    conversationRef.current?.scrollTo({
-      top: conversationRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    if (conversation.length === 0 && !loading) return;
+    conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [conversation, loading]);
 
   const executive = context?.executiveContext;
@@ -107,9 +113,11 @@ export function ExecutiveHomeChatWorkspace() {
     <section
       id="executive-pillow-workspace"
       data-testid="executive-pillow-workspace"
-      className="flex min-h-[70vh] w-full flex-col rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
+      className="flex w-full flex-col rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
+      style={{ minHeight: PILLOW_WORKSPACE_LAYOUT.workspaceMinPx }}
       aria-label="Executive Chat workspace"
       data-scroll-policy="page-primary"
+      data-history-scroll="page-flow"
     >
       <header className="shrink-0 border-b border-gold/10 px-5 py-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
@@ -139,26 +147,33 @@ export function ExecutiveHomeChatWorkspace() {
       {executiveSnapshot && (
         <div
           data-testid="pillow-context-strip"
-          className="max-h-[10vh] shrink-0 space-y-2 overflow-y-auto overscroll-y-contain border-b border-gold/10 px-5 py-2"
+          className="shrink-0 space-y-2 border-b border-gold/10 px-5 py-2"
+          style={{ maxHeight: PILLOW_WORKSPACE_LAYOUT.contextStripMaxPx }}
         >
-          <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
-          <PillowProactiveGuidance
-            items={
-              executiveReady
-                ? proactiveGuidance.filter((g) => g.id !== "pending-approvals")
-                : []
-            }
-            onAsk={(prompt) => {
-              if (executiveReady) void ask(prompt);
-            }}
-          />
+          <div className="max-h-full overflow-y-auto overscroll-y-contain">
+            <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
+            <PillowProactiveGuidance
+              items={
+                executiveReady
+                  ? proactiveGuidance.filter((g) => g.id !== "pending-approvals")
+                  : []
+              }
+              onAsk={(prompt) => {
+                if (executiveReady) void ask(prompt);
+              }}
+            />
+          </div>
         </div>
       )}
 
+      {/*
+        History is document-flow (no max-height / overflow-y prison).
+        Long conversations scroll with Executive Home — the canonical page owner.
+      */}
       <div
-        ref={conversationRef}
         data-testid="pillow-message-history"
-        className="min-h-[48vh] max-h-[62vh] flex-[1_1_auto] overflow-y-auto overscroll-y-auto px-5 py-4"
+        className="px-5 py-4"
+        data-scroll-policy="page-flow"
       >
         {!executiveReady && (
           <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">
@@ -167,7 +182,7 @@ export function ExecutiveHomeChatWorkspace() {
         )}
 
         {conversation.length === 0 && !loading && (
-          <div className="flex h-full min-h-[36vh] flex-col justify-center text-sm text-[#8a847a]">
+          <div className="flex min-h-[160px] flex-col justify-center text-sm text-[#8a847a]">
             <p className="max-w-3xl text-base leading-relaxed text-[#c8c0b0]">
               {context?.pageInsightSummary ??
                 "Executive Chat — write a full strategic instruction below. Pillow is your primary operating surface."}
@@ -204,6 +219,7 @@ export function ExecutiveHomeChatWorkspace() {
         {loading && (
           <p className="mt-3 text-sm text-[#8a847a]">Preparing your executive response…</p>
         )}
+        <div ref={conversationEndRef} aria-hidden className="h-px w-px" />
       </div>
 
       <footer
@@ -229,18 +245,17 @@ export function ExecutiveHomeChatWorkspace() {
               autosizeComposer(e.target);
             }}
             onKeyDown={(e) => {
-              // Multiline by default; explicit send via Ctrl/Cmd+Enter (or the Send button).
               if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
                 if (!canSend) return;
                 void ask(queryDraft.trim());
               }
             }}
-            rows={6}
+            rows={5}
             autoComplete="off"
             spellCheck
             placeholder="Write a full executive instruction — multiple paragraphs are welcome…"
-            className="min-h-[180px] max-h-[420px] flex-1 resize-y rounded-lg border border-gold/15 bg-black/40 px-4 py-3 text-base leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
+            className="min-h-[140px] max-h-[320px] flex-1 resize-y rounded-lg border border-gold/15 bg-black/40 px-4 py-3 text-base leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
           />
           {voice.supported && (
             <button

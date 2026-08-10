@@ -51,10 +51,10 @@ describe("executive home truth + nav reality", () => {
     }
   });
 
-  it("Pillow workspace layout targets are genuinely large and page-scroll friendly", () => {
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.workspaceMinVh >= 70);
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.messageHistoryMinVh >= 45);
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMinPx >= 160);
+  it("Pillow workspace layout targets page-primary scrolling (no nested prison)", () => {
+    assert.equal(PILLOW_WORKSPACE_LAYOUT.messageHistoryInternalScroll, false);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMinPx >= 120);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMaxPx <= 360);
     assert.equal(PILLOW_WORKSPACE_LAYOUT.pillowBesideCentres, false);
   });
 
@@ -71,17 +71,28 @@ describe("executive home truth + nav reality", () => {
     assert.ok(pillowIdx > 0 && centresIdx > pillowIdx);
   });
 
-  it("Pillow composer and history use large sizing without scroll prison", () => {
+  it("Pillow history is page-flow — no vh max-height overflow prison", () => {
     const chat = readFileSync(
       join(root, "components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx"),
       "utf8",
     );
-    assert.match(chat, /min-h-\[180px\]/);
-    assert.match(chat, /min-h-\[48vh\]|min-h-\[50vh\]/);
-    assert.match(chat, /min-h-\[70vh\]|min-h-\[75vh\]/);
-    assert.match(chat, /page-primary|overscroll-y-auto/);
+    assert.match(chat, /data-history-scroll="page-flow"/);
+    assert.match(chat, /data-scroll-policy="page-primary"/);
+    assert.match(chat, /min-h-\[140px\]/);
     assert.match(chat, /empireai:focus-pillow|PILLOW_WORKSPACE_LAYOUT\.focusEventName/);
+    assert.ok(!/max-h-\[62vh\]/.test(chat), "62vh history prison removed");
+    assert.ok(!/min-h-\[48vh\]/.test(chat), "48vh history min prison removed");
+    assert.ok(!/min-h-\[70vh\]/.test(chat), "70vh workspace prison removed");
     assert.ok(!/h-\[min\(88vh/.test(chat), "fixed 88vh scroll prison removed");
+    // History region must not declare overflow-y-auto
+    const historyBlock = chat.slice(
+      chat.indexOf('data-testid="pillow-message-history"'),
+      chat.indexOf('data-testid="pillow-composer-footer"'),
+    );
+    assert.ok(
+      !/overflow-y-auto/.test(historyBlock),
+      "message history must not be a nested vertical scroller",
+    );
   });
 
   it("Commerce decision workspace is natural-language first with technical disclosure", () => {
@@ -148,6 +159,10 @@ describe("executive home truth + nav reality", () => {
       "utf8",
     );
     assert.match(shell, /lg:pl-64|lg:pl-\[72px\]/);
+    // overflow-x-hidden computes overflow-y:auto (CSS) and creates a rival scroller.
+    assert.match(shell, /overflow-x-clip/);
+    assert.ok(!/overflow-x-hidden/.test(shell));
+    assert.match(shell, /data-scroll-owner="page"/);
   });
 
   it("secondary polls use fetch budget and do not stack", () => {

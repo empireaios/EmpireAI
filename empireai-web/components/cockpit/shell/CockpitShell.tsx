@@ -50,7 +50,8 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
                 <main
                   id="cockpit-main"
                   aria-label="Cockpit content"
-                  className="flex-1 overflow-x-hidden px-4 py-6 lg:px-8 lg:py-8"
+                  data-scroll-owner="page"
+                  className="flex-1 overflow-x-clip px-4 py-6 lg:px-8 lg:py-8"
                 >
                   {children}
                 </main>
