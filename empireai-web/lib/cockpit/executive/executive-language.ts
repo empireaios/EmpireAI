@@ -65,9 +65,14 @@ export function toExecutiveCommerceLanguage(opp: CommerceOpportunityLike): Execu
   const delivery = opp.deliveryPromise?.trim()
     ? opp.deliveryPromise.replace(/\bCJ\b/gi, "supplier")
     : null;
-  const recommendation = opp.pillowRecommendation
-    ? humanizeEnum(opp.pillowRecommendation)
-    : "Review the opportunity economics and risks, then decide in the approval queue.";
+  const rawRec = opp.pillowRecommendation?.trim() ?? "";
+  const recommendation = !rawRec
+    ? "Review the opportunity economics and risks, then decide in the approval queue."
+    : /^approve$/i.test(rawRec)
+      ? "Approve this opportunity (publication and spend remain gated)"
+      : /^reject$/i.test(rawRec)
+        ? "Reject this opportunity"
+        : humanizeEnum(rawRec);
 
   return {
     headline: opp.productName,

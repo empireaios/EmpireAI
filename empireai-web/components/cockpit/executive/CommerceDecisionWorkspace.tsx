@@ -56,7 +56,12 @@ export function CommerceDecisionWorkspace({
 
       <div className="px-5 py-4">
         <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-[#e8e0d0]">
-          {dossier}
+          {dossier
+            .replace(/\bEMP-FD-[A-Z0-9]+\b/g, "internal SKU")
+            .replace(/\bASIN\s+B0[A-Z0-9]+\b/gi, "Amazon listing")
+            .replace(/\bB0[A-Z0-9]{8,}\b/g, "Amazon listing")
+            .replace(/\bCJ(?:\s+PID)?\s*\d{10,}\b/gi, "supplier product")
+            .replace(/\b\d{16,}\b/g, "supplier identifier")}
         </pre>
         <p className="mt-4 text-xs text-[#8a847a]">
           EXPECTED profit is not realised profit. Publication and supplier spend remain blocked until

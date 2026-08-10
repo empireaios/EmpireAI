@@ -139,9 +139,15 @@ describe("executive home truth + nav reality", () => {
       join(root, "components/cockpit/shell/CockpitSidebar.tsx"),
       "utf8",
     );
-    assert.match(sidebar, /sticky/);
+    assert.match(sidebar, /fixed/);
     assert.match(sidebar, /h-dvh|h-screen/);
     assert.match(sidebar, /z-50/);
+    assert.match(sidebar, /pointer-events-auto/);
+    const shell = readFileSync(
+      join(root, "components/cockpit/shell/CockpitShell.tsx"),
+      "utf8",
+    );
+    assert.match(shell, /lg:pl-64|lg:pl-\[72px\]/);
   });
 
   it("secondary polls use fetch budget and do not stack", () => {
