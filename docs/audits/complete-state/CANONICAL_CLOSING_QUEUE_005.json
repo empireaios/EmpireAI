@@ -1,0 +1,410 @@
+{
+  "artifact": "EMPIREAI_CANONICAL_CLOSING_QUEUE_005",
+  "directive": "COMPLETE THE MACHINE, PROVE PILLOW, THEN OPERATE",
+  "updatedAt": "2026-08-10T14:15:00.000Z",
+  "reconciledAgainst": {
+    "repoHead": "e5dd7f0a8e7e4ad794fcf8c034ad8cf15b484dc9",
+    "originMain": "e5dd7f0a8e7e4ad794fcf8c034ad8cf15b484dc9",
+    "aheadBehind": "0/0",
+    "vercelStamp": "e5dd7f0a8e7e4ad794fcf8c034ad8cf15b484dc9",
+    "vercelDeploymentId": "dpl_C4sBKeiLVLfKE5krHeRXbcaRCWeF",
+    "railwayHealthPillowCommissioning": {
+      "ok": true,
+      "birthStatus": "COMMISSIONING",
+      "birthTimestamp": null,
+      "technicallyReady": false,
+      "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
+    },
+    "mission004Evidence": "docs/audits/complete-state/PILLOW_BIRTH_COMMISSIONING_004_EVIDENCE.json",
+    "mission003Evidence": "docs/audits/complete-state/GRAND_KING_PRODUCTION_ACCEPTANCE_1000_SMART_LISTING_003_EVIDENCE.json",
+    "scrollDefectProof": {
+      "status": "COMPLETE",
+      "commits": ["9b963c12", "162f65b8", "e5dd7f0a"],
+      "productionPass": true,
+      "note": "Live top→bottom→top production journey PASS; nested Pillow history prison removed"
+    }
+  },
+  "liveTruth": {
+    "pillowBirthTimestamp": null,
+    "smartViableCountLastMeasured": 7,
+    "smartViableTarget": 1000,
+    "smartViableNote": "Pipeline evidence from Mission 004 production proof (evaluated 32 / smartViable 7). Re-read live KPI on Executive Home; not a 1,000 release.",
+    "realisedRevenueUsd": 0,
+    "realisedProfitUsd": 0,
+    "published": 0,
+    "buyable": 0,
+    "orders": 0,
+    "costGuardOwnerLimits": "ALL_SEVEN_UNCONFIGURED",
+    "costSafeguards": "ACTIVE_HARD_STOP_MECHANISM_PROVEN",
+    "corridor": "CJdropshipping → Pillow → Amazon US",
+    "oneProductSelection": {
+      "productName": "LOKLNEYK Nordic ins Style Striped Pure Cotton Bedding Set Four-piece Mix and Match Sheets and Quilt Covers Student Dormitory 3-piece Wholesale((220 * 240cm),Cecilia-YellowCafe)",
+      "selectionAuthority": "pillow",
+      "cursorSelected": false,
+      "expectedProfit": "$90.24",
+      "stageAtProof": "AWAITING_GRAND_KING_DECISION",
+      "publicationAttempted": false,
+      "buyable": "UNKNOWN",
+      "liveDurabilityNote": "Railway SQLite durability may have wiped commissioning ledger after proof; dossier must re-hydrate from production opportunity space without Cursor preselection."
+    }
+  },
+  "activeMissions": [
+    {
+      "id": "CQ-01",
+      "title": "Cost Guard owner decisions (decision-support mission)",
+      "status": "ACTIVE",
+      "note": "Do not duplicate. Read-only owner decision support; no inventing/configuring limits."
+    }
+  ],
+  "queuedSafeCursorMissions": [
+    "CQ-04",
+    "CQ-06",
+    "CQ-07",
+    "CQ-08",
+    "CQ-10",
+    "CQ-11",
+    "CQ-15"
+  ],
+  "items": [
+    {
+      "id": "CQ-01",
+      "title": "Cost Guard owner decisions",
+      "status": "ACTIVE",
+      "dependencies": [],
+      "owner": "Grand King + ChatGPT (decide); Cursor (expose only)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "OWNER_FINANCIAL_LIMITS",
+      "evidence": "Mission 004: 7 unconfigured limits; hard-stop proof PASS; Cost Control Centre live. Owner intent signalled: SGD 500/mo master operating ceiling (not yet configured).",
+      "nextAction": "Allow Cost Guard owner decision-support mission to finish; Grand King + ChatGPT choose subordinate protections inside SGD 500 master view. Do not invent values."
+    },
+    {
+      "id": "CQ-02",
+      "title": "Cost Guard real configuration",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-01"],
+      "owner": "Cursor (after owner values)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "REQUIRES_APPROVED_OWNER_LIMITS",
+      "evidence": "Config API + persistence exist; all seven limits null in emptyDefaults.",
+      "nextAction": "After Grand King supplies approved numbers: persist, verify, prove hard-stop + restart persistence + non-bypass."
+    },
+    {
+      "id": "CQ-03",
+      "title": "Executive Home scroll defect",
+      "status": "COMPLETE",
+      "dependencies": [],
+      "owner": "Cursor",
+      "canCursorExecuteNow": false,
+      "governanceGate": "NONE",
+      "evidence": "Commits 9b963c12 / 162f65b8 / e5dd7f0a live on empire-ai.co. Production CDP journey: initialY=0, bottom=maxY, top=0, nestedHistoryPrison=false, commercePrison=false, competingCanY=[], Mission Centre hit OK.",
+      "nextAction": "Preserve. Do not reopen unless Grand King observes a new production regression."
+    },
+    {
+      "id": "CQ-04",
+      "title": "Pillow one-product decision dossier",
+      "status": "READY",
+      "dependencies": [],
+      "owner": "Cursor (expose); Pillow (defend)",
+      "canCursorExecuteNow": true,
+      "governanceGate": "NO_PUBLISH_NO_SPEND",
+      "evidence": "004 one-product proof Nordic bedding; selectionAuthority=pillow; cursorSelected=false; seed dossier path prepared.",
+      "nextAction": "Assemble complete natural-language challenge dossier with LIVE/ESTIMATED/UNKNOWN honesty; no publication."
+    },
+    {
+      "id": "CQ-05",
+      "title": "Grand King + ChatGPT challenge gate",
+      "status": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "dependencies": ["CQ-04"],
+      "owner": "ChatGPT (challenge) · Pillow (defend) · Grand King (decide)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "CHATGPT_CHALLENGE_THEN_GRAND_KING",
+      "evidence": "Not started. Cursor must not impersonate ChatGPT or accept commercial judgment.",
+      "nextAction": "After CQ-04 dossier exists, ChatGPT challenges Pillow; Grand King decides."
+    },
+    {
+      "id": "CQ-06",
+      "title": "Cost Intelligence closure",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor",
+      "canCursorExecuteNow": true,
+      "governanceGate": "NO_FABRICATED_BILLING",
+      "evidence": "Mission 004 COST INTELLIGENCE=PARTIAL. AI ledger partial; Railway/Vercel invoice APIs not wired; forecasts INSUFFICIENT_MEASURED_DATA.",
+      "nextAction": "Close safe gaps; keep UNKNOWN honest; improve Grand King monthly cost view."
+    },
+    {
+      "id": "CQ-07",
+      "title": "Billing exposure closure",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor (classify); Grand King (payment-method governance)",
+      "canCursorExecuteNow": true,
+      "governanceGate": "NO_OWNER_LIMIT_INVENTION",
+      "evidence": "buildBillingExposureRegister() lists OpenAI/Railway/Vercel/CJ/Amazon/Anthropic with blind spots.",
+      "nextAction": "Complete CONNECTED/LIMIT/HARD-STOP/OWNER-LIMIT matrix for every charge-capable service."
+    },
+    {
+      "id": "CQ-08",
+      "title": "Cost-efficient intelligence architecture",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor",
+      "canCursorExecuteNow": true,
+      "governanceGate": "DO_NOT_DUMB_DOWN_PILLOW",
+      "evidence": "Hybrid doctrine + tier map implemented; scale A/B/C not fully measured in prod.",
+      "nextAction": "Verify cheap→expensive ladder on live path; measure useful intelligence per dollar."
+    },
+    {
+      "id": "CQ-09",
+      "title": "One-product cost baseline",
+      "status": "QUEUED",
+      "dependencies": ["CQ-04"],
+      "owner": "Cursor + Pillow ledger",
+      "canCursorExecuteNow": true,
+      "governanceGate": "NO_FABRICATED_UNIT_COST",
+      "evidence": "attributableCostUsd=null on commissioning record; forecasts blocked until measured.",
+      "nextAction": "Capture ACTUAL/ESTIMATED/PROJECTED/UNKNOWN for one-product operating cycle."
+    },
+    {
+      "id": "CQ-10",
+      "title": "Pillow observability / Grand King work ledger",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor",
+      "canCursorExecuteNow": true,
+      "governanceGate": "NO_RAW_CHAIN_OF_THOUGHT",
+      "evidence": "Flight Recorder + since-last-visit + EH commissioning strip exist; not yet a full executive work ledger UX.",
+      "nextAction": "Make 'What has Pillow done since last visit?' answerable in natural executive language."
+    },
+    {
+      "id": "CQ-11",
+      "title": "Pillow continuous runtime certification",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor",
+      "canCursorExecuteNow": true,
+      "governanceGate": "TECHNICAL_ONLY_NO_BIRTH",
+      "evidence": "4h automation + boot tick exist; live birthStatus currently COMMISSIONING / technicallyReady=false after durability events.",
+      "nextAction": "Prove Cursor/laptop/browser independence, restart recovery, no duplicate ops, governance survival — without creating Birth timestamp."
+    },
+    {
+      "id": "CQ-12",
+      "title": "Institutional memory continuity",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor + Pillow",
+      "canCursorExecuteNow": true,
+      "governanceGate": "PROVE_USE_NOT_MERE_STORAGE",
+      "evidence": "Mission 004 claimed 29 lessons; SQLite durability wipe risk means continuity must be re-proven.",
+      "nextAction": "Prove later decisions retrieve/use prior institutional knowledge across restart."
+    },
+    {
+      "id": "CQ-13",
+      "title": "One-product end-to-end visual proof",
+      "status": "QUEUED",
+      "dependencies": ["CQ-04", "CQ-05"],
+      "owner": "Cursor (surface); Pillow (operate within authority)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "NO_FABRICATED_DOWNSTREAM_STAGES",
+      "evidence": "Path implemented through AWAITING_GRAND_KING_DECISION; publish/BUYABLE/order/P&L not reached.",
+      "nextAction": "Visual lifecycle only marks stages genuinely reached."
+    },
+    {
+      "id": "CQ-14",
+      "title": "1,000 SMART capacity + cost simulation",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-09", "CQ-15"],
+      "owner": "Cursor (simulate); Pillow (selection authority preserved)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "CURSOR_MUST_NOT_SELECT_PRODUCTS",
+      "evidence": "INSUFFICIENT_MEASURED_DATA for unit cost; yield known (qualification-heavy rejects).",
+      "nextAction": "Simulate after measured baseline; never Cursor-preselect winners."
+    },
+    {
+      "id": "CQ-15",
+      "title": "SMART pipeline bottleneck closure",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor (investigate/fix); Pillow (operate funnel)",
+      "canCursorExecuteNow": true,
+      "governanceGate": "DO_NOT_WEAKEN_SMART_STANDARDS",
+      "evidence": "Top rejects: QUALIFICATION_REQUIRED (37), NO_AMAZON_ASIN (5) at Mission 003 snapshot.",
+      "nextAction": "Classify genuine restriction vs sourcing/matching/defect; improve funnel legitimately."
+    },
+    {
+      "id": "CQ-16",
+      "title": "1,000 portfolio readiness",
+      "status": "QUEUED",
+      "dependencies": ["CQ-02", "CQ-11", "CQ-14", "CQ-15"],
+      "owner": "Cursor (certify readiness only)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "NO_AGGRESSIVE_RELEASE",
+      "evidence": "Batch/async/checkpoint/dedupe paths exist; full readiness cert not done.",
+      "nextAction": "Certify readiness checklist; do not execute aggressive 1,000."
+    },
+    {
+      "id": "CQ-17",
+      "title": "Final pre-birth certification",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-02", "CQ-03", "CQ-06", "CQ-07", "CQ-08", "CQ-10", "CQ-11", "CQ-12", "CQ-13", "CQ-16"],
+      "owner": "Cursor",
+      "canCursorExecuteNow": false,
+      "governanceGate": "NO_TECHNICALLY_READY_SHORTCUT",
+      "evidence": "Prior 10/10 gates claimed; live technicallyReady currently false — re-cert required.",
+      "nextAction": "Holistic reconcile COMPLETE/PARTIAL/MISSING/BROKEN/BLOCKED/AWAITING."
+    },
+    {
+      "id": "CQ-18",
+      "title": "Grand King + ChatGPT birth gate",
+      "status": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "dependencies": ["CQ-17"],
+      "owner": "Grand King (sole birth authority) + ChatGPT review",
+      "canCursorExecuteNow": false,
+      "governanceGate": "BIRTH_AUTHORISATION",
+      "evidence": "birthTimestamp=null; Cursor must not authorise.",
+      "nextAction": "STOP for explicit Grand King authorisation after evidence review."
+    },
+    {
+      "id": "CQ-19",
+      "title": "Pillow Birth",
+      "status": "AWAITING_GRAND_KING",
+      "dependencies": ["CQ-18"],
+      "owner": "Grand King authorises; Cursor executes immutable stamp only after authority",
+      "canCursorExecuteNow": false,
+      "governanceGate": "EXPLICIT_GRAND_KING_ONLY",
+      "evidence": "birthTimestamp remains NULL.",
+      "nextAction": "Create immutable Birth timestamp only after explicit authorisation."
+    },
+    {
+      "id": "CQ-20",
+      "title": "Post-birth continuous operation proof",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-19"],
+      "owner": "Pillow operates; Cursor certifies evidence",
+      "canCursorExecuteNow": false,
+      "governanceGate": "REQUIRES_BIRTH",
+      "evidence": "Continuous operation NOT STARTED.",
+      "nextAction": "After birth, prove productive timestamped work — not merely scheduler existence."
+    },
+    {
+      "id": "CQ-21",
+      "title": "Grand King + ChatGPT scale review",
+      "status": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "dependencies": ["CQ-05", "CQ-14", "CQ-16", "CQ-20"],
+      "owner": "Grand King + ChatGPT",
+      "canCursorExecuteNow": false,
+      "governanceGate": "SCALE_RELEASE_REVIEW",
+      "evidence": "1,000 release explicitly gated.",
+      "nextAction": "STOP for scale review before any aggressive release."
+    },
+    {
+      "id": "CQ-22",
+      "title": "1,000 SMART viable listing release",
+      "status": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "dependencies": ["CQ-21"],
+      "owner": "Pillow (select/operate); Cursor (build/repair only)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "EXPLICIT_RELEASE_AUTHORITY",
+      "evidence": "thousandRelease=AWAITING_GRAND_KING_AND_CHATGPT; Cursor must not preselect.",
+      "nextAction": "Only after authority: Pillow discovers→evaluates→rejects→selects within governance."
+    },
+    {
+      "id": "CQ-23",
+      "title": "First Real Dollar",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-22"],
+      "owner": "Pillow operates commerce loop",
+      "canCursorExecuteNow": false,
+      "governanceGate": "AFTER_1000_SURFACE",
+      "evidence": "realisedRevenueUsd=0; realisedProfitUsd=0; NOT YET REALISED.",
+      "nextAction": "Pursue after 1,000 SMART surface; do not equate expected/published/BUYABLE with realised profit."
+    },
+    {
+      "id": "CQ-24",
+      "title": "10,000 stage",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-23"],
+      "owner": "Grand King + ChatGPT (authorise) · Pillow (operate)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "JUSTIFIED_BY_1000_EVIDENCE",
+      "evidence": "Not begun; 10k is not an ultimate ceiling.",
+      "nextAction": "Do not begin until 1,000 evidence justifies scale."
+    },
+    {
+      "id": "CQ-25",
+      "title": "Supplier × marketplace universe",
+      "status": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "dependencies": [],
+      "owner": "Grand King + ChatGPT (choose playgrounds); Cursor (install); Pillow (operate)",
+      "canCursorExecuteNow": false,
+      "governanceGate": "PLAYGROUND_EXPANSION",
+      "evidence": "Principle documented; CJ×Amazon US is first corridor only.",
+      "nextAction": "No Cursor-chosen expansion. Await owner strategy decisions."
+    },
+    {
+      "id": "CQ-26",
+      "title": "Complete State Audit",
+      "status": "QUEUED",
+      "dependencies": ["CQ-20", "CQ-22", "CQ-23"],
+      "owner": "Cursor",
+      "canCursorExecuteNow": false,
+      "governanceGate": "INDEPENDENT_OF_PRIOR_CLAIMS",
+      "evidence": "Prior CSA claims exist; must re-audit actual repo+prod independently before final complete.",
+      "nextAction": "Classify every approved Day-1 mission against reality."
+    },
+    {
+      "id": "CQ-27",
+      "title": "CSA remediation",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-26"],
+      "owner": "Cursor",
+      "canCursorExecuteNow": false,
+      "governanceGate": "DEFECTS_ONLY",
+      "evidence": "Pending CQ-26 findings.",
+      "nextAction": "Close genuine blockers of finished state; no cosmetic churn."
+    },
+    {
+      "id": "CQ-28",
+      "title": "Ultimate Capability Test",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-27"],
+      "owner": "Cursor + Pillow under Grand King observation",
+      "canCursorExecuteNow": false,
+      "governanceGate": "REAL_OPERATING_CONDITIONS",
+      "evidence": "Not started.",
+      "nextAction": "Prove end-to-end real operation, not mere code presence."
+    },
+    {
+      "id": "CQ-29",
+      "title": "ChatGPT–Pillow collaboration bridge",
+      "status": "QUEUED",
+      "dependencies": [],
+      "owner": "Cursor (capability); Grand King oversight",
+      "canCursorExecuteNow": true,
+      "governanceGate": "AUTHORITY_SEPARATION",
+      "evidence": "Strategic collaboration capability previously required; not the same as context dump.",
+      "nextAction": "Preserve/advance bridge for ongoing GK ↔ ChatGPT ↔ Pillow collaboration."
+    },
+    {
+      "id": "CQ-30",
+      "title": "Final EmpireAI certification",
+      "status": "BLOCKED",
+      "dependencies": ["CQ-28", "CQ-29"],
+      "owner": "Grand King declares; Cursor evidences",
+      "canCursorExecuteNow": false,
+      "governanceGate": "FULL_CLOSING_PATH",
+      "evidence": "EmpireAI is NOT complete. Pillow is NOT born.",
+      "nextAction": "Only after entire approved closing path is genuinely satisfied."
+    }
+  ],
+  "constitutionalLocks": {
+    "empireAiComplete": false,
+    "pillowBorn": false,
+    "thousandReleased": false,
+    "publishAuthorised": false,
+    "spendAuthorised": false,
+    "ownerLimitsInvented": false,
+    "cursorSubstitutesForPillow": false,
+    "cursorSubstitutesForChatGptChallenge": false
+  }
+}
