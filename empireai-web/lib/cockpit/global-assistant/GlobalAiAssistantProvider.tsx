@@ -670,11 +670,10 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     () => ({
       ...state,
       expand: () => {
+        // Mark panel expanded only. Do NOT auto-dispatch the Pillow focus event —
+        // Executive Home mounts expand() and that was yanking page scroll into Pillow.
+        // Explicit openers (Ask AI / Ask Pillow) dispatch the focus event themselves.
         setState((s) => ({ ...s, expanded: true }));
-        // Executive Home embeds Pillow (floating panel is suppressed). Focus the workspace.
-        if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("empireai:focus-pillow"));
-        }
       },
       collapse: () => setState((s) => ({ ...s, expanded: false })),
       toggle: () => setState((s) => ({ ...s, expanded: !s.expanded })),

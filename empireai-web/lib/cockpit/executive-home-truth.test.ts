@@ -136,6 +136,22 @@ describe("executive home truth + nav reality", () => {
     assert.ok(card.technicalDetails.some((d) => d.value === "B0FKFNCT52"));
   });
 
+  it("expand() must not auto-focus Pillow (mount expand must not trap page scroll)", () => {
+    const provider = readFileSync(
+      join(root, "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx"),
+      "utf8",
+    );
+    const expandStart = provider.indexOf("Mark panel expanded only");
+    assert.ok(expandStart > 0, "expand() must document no auto-focus");
+    const expandEnd = provider.indexOf("collapse:", expandStart);
+    assert.ok(expandEnd > expandStart);
+    const expandBody = provider.slice(expandStart, expandEnd);
+    assert.ok(
+      !/focus-pillow|dispatchEvent/.test(expandBody),
+      "expand() must not dispatch focus-pillow — that traps Executive Home scroll on mount",
+    );
+  });
+
   it("background context refresh must not share chat loading (Send must stay usable)", () => {
     const provider = readFileSync(
       join(root, "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx"),

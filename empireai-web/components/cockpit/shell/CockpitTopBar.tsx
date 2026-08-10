@@ -87,7 +87,12 @@ export function CockpitTopBar() {
           <button
             type="button"
             aria-label="Open Global AI Assistant"
-            onClick={() => expand()}
+            onClick={() => {
+              expand();
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("empireai:focus-pillow"));
+              }
+            }}
             className="hidden rounded-lg border border-gold/20 bg-gold/5 px-3 py-1.5 text-xs text-[#d4af37] hover:bg-gold/10 sm:block"
           >
             Ask AI
