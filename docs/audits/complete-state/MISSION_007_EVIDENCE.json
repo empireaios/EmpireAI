@@ -48,6 +48,9 @@
     "monitoringCostIntelligence": "PARTIAL",
     "pillowPostLaunchAutonomy": "READY_FOR_REAL_TEST"
   },
+  "localHead": "fb630b73",
+  "branch": "main",
+  "aheadOfOriginAtCommit": 1,
   "productionBrowserJourney": "PENDING_DEPLOY",
-  "syntheticLargeChatDomBound": "PENDING_LOCAL_OR_PROD_SCRIPT"
+  "syntheticLargeChatDomBound": "PASS_UNIT_pillow-chat-scale.test.ts"
 }
