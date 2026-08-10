@@ -1,0 +1,46 @@
+{
+  "mission": "004-reconciled-pillow-birth-commissioning",
+  "at": "2026-08-10T11:20:30Z",
+  "baselinePreserved": "69f5bdfe",
+  "localHead": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
+  "originMain": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
+  "aheadBehind": "0/0",
+  "vercel": {
+    "gitCommitSha": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
+    "deploymentId": "dpl_9aaX4YUBPdfAtMMozasffPhM5Auk",
+    "source": "https://empire-ai.co/api/eos-bundle-stamp"
+  },
+  "railwayHealthPillowCommissioning": {
+    "ok": true,
+    "module": "pillow-commissioning",
+    "birthStatus": "COMMISSIONING",
+    "birthTimestamp": null,
+    "technicallyReady": false,
+    "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
+  },
+  "unitTests": {
+    "file": "backend/src/validation/tests/pillow-commissioning-004.test.ts",
+    "pass": 7,
+    "fail": 0
+  },
+  "typecheck": "backend tsc --noEmit clean after ALREADY_MAPPED + FlightEventInput fixes",
+  "governance": {
+    "birthTimestampInvented": false,
+    "cursorSelectedCommissioningProduct": false,
+    "aggressiveThousandReleased": false,
+    "publishOrSupplierSpendExecuted": false
+  },
+  "founderGatedPending": [
+    "POST /pillow-commissioning/cost-guard/hard-stop-proof",
+    "POST /pillow-commissioning/one-product/run",
+    "Grand King Cost Guard limit configuration",
+    "Grand King birth authorisation (only when technically ready)"
+  ],
+  "residueLeftUncommitted": [
+    ".tmp-*",
+    "EOS_*_EVIDENCE.json churn",
+    "COMMERCE_PROOF_001_*",
+    "pillow typecheck scratch",
+    "empireai-web/app/pillow-shell-preview/"
+  ]
+}

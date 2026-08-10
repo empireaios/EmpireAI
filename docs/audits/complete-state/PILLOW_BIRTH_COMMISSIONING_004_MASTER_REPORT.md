@@ -95,8 +95,8 @@ Factory commissioning only — not Commerce strategy.
 | 97 | New implementation | `pillow-commissioning/*`, Cost Control UI, EH strip, LLM/automation guard |
 | 98 | Tests | `pillow-commissioning-004.test.ts` (7/7 local) |
 | 99 | Production tests | Post-deploy cert script |
-| 100–102 | HEAD / origin / ahead-behind | Fill after push (target 0/0) |
-| 103–105 | Vercel / Railway / stamp | Fill after deploy |
+| 100–102 | HEAD / origin / ahead-behind | `f46f505e` / `f46f505e` / **0/0** |
+| 103–105 | Vercel / Railway / stamp | Vercel `f46f505e` (`dpl_9aaX4YUBPdfAtMMozasffPhM5Auk`); Railway `/health/pillow-commissioning` live; birthTimestamp=null |
 | 106 | Residue | Unrelated scratch preserved uncommitted |
 | 107 | Evidence artifacts | This report + evidence JSON |
 | 108 | External blockers | Invoice APIs; GK limits; GK birth auth; GK+ChatGPT 1k release |
