@@ -1,76 +1,132 @@
 {
   "mission": "GRAND_KING_PRODUCTION_ACCEPTANCE_1000_SMART_LISTING_003",
-  "recordedAt": "2026-08-10T04:56:00.000Z",
+  "recordedAt": "2026-08-10T07:28:00.000Z",
+  "commits": {
+    "implementationLoadScrollLanguage": "1664bd7228ba3a75533a8c55340a6738691cfdb8",
+    "vercelBuildFixAndBatchScale": "76b346fb3462c3f39195ac7d2ae49b7623f644e9",
+    "fixedSidebarAndDossierScrub": "2aa419b9b35ed7eb8e5836fbe0b7bdf324a76767"
+  },
   "gateA": {
-    "rootCause": "founder-shell and commerce-operating-model hung 200-300s with stacked 30s polls; secondary awareness blocked usable load",
+    "rootCause": "founder-shell and commerce-operating-model hung 200-300s with stacked 30s polls; secondary awareness blocked usable load. Sticky sidebar layout boxes drifted under page scroll so Centre links appeared dead.",
     "repairs": [
-      "fetchWithBudget 12s",
-      "poll 60s + inFlight",
+      "fetchWithBudget 12s + inFlight + 60s poll",
       "skip commerce-model when canonicalTruth present",
       "page-primary scroll; remove 88vh prison",
-      "sidebar z-50 pointer-events-auto",
+      "fixed left sidebar + lg:pl offset",
       "executive-language NL default + technical disclosure",
-      "fix CommerceOpportunityLike null fields for Vercel tsc"
+      "dossier prose scrub of ASIN/SKU/CJ IDs",
+      "Vercel tsc nullability fix for dossierSummary"
     ],
     "beforeLoad": {
       "founderShellMs": [200000, 300000],
-      "commerceOperatingModelMs": [200000, 300000],
-      "note": "from prior production Performance entries"
+      "commerceOperatingModelMs": [200000, 300000]
     },
-    "afterBackendObservability": {
-      "founderShellMs": [175, 176],
-      "commerceOperatingModelMs": [176, 1002],
-      "brainDispatchMs": [16820, 34321],
-      "source": "https://empireai-production.up.railway.app/health recent[]"
+    "afterProductionBrowser": {
+      "ttfbMs": 51,
+      "domContentLoadedMs": 949,
+      "shellVisible": "Executive Home chrome + Pillow available while truth loads",
+      "progressiveNote": "Operational truth loading — Pillow is available below.",
+      "founderShellObservedMs": [175, 8978],
+      "brainDispatchStillSlowMs": [16820, 34321],
+      "resourceCount": 174,
+      "pillowHistoryPx": 670,
+      "pillowWorkspacePx": 1100,
+      "composerPx": 180,
+      "pageScrollHeightPx": 2665,
+      "sidebarPosition": "fixed",
+      "sidebarZ": "50",
+      "sidebarHitAfterScroll": true,
+      "centresViaSidebarClick": [
+        { "id": "journey", "path": "/cockpit/founder/journey", "h1": "Journey Centre" },
+        { "id": "production", "path": "/cockpit/founder/production", "h1": "Production Centre" },
+        { "id": "guardian", "path": "/cockpit/founder/guardian", "h1": "Guardian Centre" },
+        { "id": "business", "path": "/cockpit/commerce/workspace", "h1": "Commerce" },
+        { "id": "commerce", "path": "/cockpit/commerce/store", "h1": "Commerce" },
+        { "id": "knowledge", "path": "/cockpit/founder/architecture", "h1": "Knowledge Centre" },
+        { "id": "explainability", "path": "/cockpit/founder/explainability", "h1": "Explainability" },
+        { "id": "live_eta", "path": "/cockpit/founder/live-eta", "h1": "Live ETA" },
+        { "id": "settings", "path": "/cockpit/governance/settings", "h1": "Governance" },
+        { "id": "executive_home", "path": "/cockpit", "h1": "Executive Home" }
+      ],
+      "alsoOpenedByDirectNav": [
+        "Mission Centre",
+        "Pillow Centre (Development heading)",
+        "Builder Console",
+        "Supervisor Centre"
+      ],
+      "pillowSend": {
+        "prompt": "Mission 003 production check: confirm you are ready as the primary executive workspace...",
+        "reply": "I am ready as the primary executive workspace for Mission 003 production check.",
+        "artifact": "art_2c678464-88c"
+      },
+      "askPillowAboutOpportunity": {
+        "governedApprovalNotExecuted": true,
+        "replyArtifact": "art_7176281f-6ba",
+        "naturalLanguageDraftPreferred": true
+      },
+      "technicalIdsDefaultView": "hidden behind Technical details / evidence disclosures; historical chat may still contain older ASIN/SKU prompts",
+      "vercelServing": {
+        "gitCommitSha": "2aa419b9b35ed7eb8e5836fbe0b7bdf324a76767",
+        "deploymentId": "dpl_AvCyxsCkhqZZDy5Jv3NFCoUnvbyn"
+      }
     },
-    "vercel": {
-      "failedDeployCommit": "1664bd7228ba3a75533a8c55340a6738691cfdb8",
-      "failedDeployUrl": "https://empireai-pdh5zymuv-empireai-os.vercel.app",
-      "failure": "TypeScript: dossierSummary null not assignable in CommerceDecisionWorkspace",
-      "servingAtRecordTime": "4b161462a3ca84a7e7245edbbc1b790bea7c2339",
-      "servingDeploymentId": "dpl_BaQakGcdFx8g7VvfPF7uFK46z3J6"
+    "controlAuditSummary": {
+      "sidebarItems": "FUNCTIONAL (all Centres opened with real headings)",
+      "askAiNextSummarise": "FUNCTIONAL (wired to Pillow / executive actions)",
+      "askPillowChallenge": "FUNCTIONAL",
+      "openApprovalQueue": "FUNCTIONAL (route link; no Approve/Reject executed)",
+      "placeholderHashLinks": "none observed on audited journey"
     },
-    "browserJourney": "pending_after_successful_vercel_deploy"
+    "verdictEngineeringProduction": "PRODUCTION_ACCEPTANCE_READY",
+    "verdictSubjectiveGrandKing": "NOT_CLAIMED_BY_CURSOR"
   },
   "gateB": {
     "kpiTarget": 1000,
     "supplier": "CJdropshipping",
     "marketplace": "Amazon US",
-    "snapshotAt": "2026-08-10T04:05:54.402Z",
-    "rawCandidatesDiscovered": 28,
-    "candidatesEvaluated": 40,
-    "rejected": 32,
-    "smartViable": 4,
-    "listingReady": 4,
-    "awaitingApproval": 0,
+    "snapshotAt": "2026-08-10T07:15:38.039Z",
+    "rawCandidatesDiscovered": 14,
+    "candidatesEvaluated": 52,
+    "rejected": 42,
+    "smartViable": 6,
+    "listingReady": null,
+    "awaitingApproval": null,
     "published": 0,
     "buyable": 0,
     "orders": 0,
     "realisedRevenueUsd": 0,
     "realisedProfitUsd": 0,
-    "distanceToTarget": 996,
+    "distanceToTarget": 994,
     "topRejectionReasons": [
-      { "reasonCode": "QUALIFICATION_REQUIRED", "count": 23 },
-      { "reasonCode": "PROOF_001_BRAND_FAILURE_CLASS", "count": 5 },
-      { "reasonCode": "NO_AMAZON_ASIN", "count": 2 },
-      { "reasonCode": "FREIGHT_UNAVAILABLE", "count": 2 }
+      { "reasonCode": "QUALIFICATION_REQUIRED", "count": 37 },
+      { "reasonCode": "NO_AMAZON_ASIN", "count": 5 }
     ],
     "latestCycle": {
       "outcome": "SMART_VIABLE_BATCH_COMPLETE",
-      "candidatesRetrieved": 24,
-      "rejected": 22,
-      "smartViableBatchCount": 2,
-      "smartViableAsins": ["B0GVNPFW1L", "B0GWGX74LP"],
-      "completedAt": "2026-08-10T03:49:47.505Z"
+      "candidatesRetrieved": 8,
+      "smartViableBatchCount": 1,
+      "completedAt": "2026-08-10T07:15:38.039Z"
     },
+    "scalePath": [
+      "smartViableBatch continues after first qualify",
+      "async 202 for SMART HTTP run-cycle",
+      "CJ page checkpoint/resume + ALREADY_MAPPED dedupe",
+      "automation every 4h + boot tick"
+    ],
     "externalConstraints": [
-      "Synchronous run-cycle HTTP often 502 via Railway edge while batch continues in-process — mitigated by async 202",
       "Amazon qualification/restriction preflight rejects majority of CJ page (QUALIFICATION_REQUIRED)",
+      "Synchronous long run-cycle can still hit Railway edge resets; async 202 + automation intended path",
       "No unauthorized publish/spend"
     ],
-    "autonomousContinuation": "scheduler every 4h + boot tick; smartViableBatch true; page checkpoint/resume",
+    "autonomousContinuation": "ACTIVE via scheduler/boot tick",
     "cursorRequiredForRoutineProgression": false,
     "firstRealDollar": "NOT_YET_REALIZED",
     "playgroundPrincipleRecorded": "docs/architecture/SUPPLIER_MARKETPLACE_UNIVERSE_PRINCIPLE.md"
+  },
+  "git": {
+    "localHeadAtEvidence": "2aa419b9b35ed7eb8e5836fbe0b7bdf324a76767",
+    "originMainAtEvidence": "2aa419b9b35ed7eb8e5836fbe0b7bdf324a76767",
+    "aheadBehind": "0/0",
+    "residue": "unrelated .tmp-*, EOS evidence churn, pillow scratch, pillow-shell-preview — left uncommitted"
   }
 }
