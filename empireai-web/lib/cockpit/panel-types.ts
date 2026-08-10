@@ -297,6 +297,13 @@ export type CanonicalExecutiveTruth = {
     pillowRecommendation?: string | null;
     competingOffers?: string | null;
     deliveryPromise?: string | null;
+    listingRoute?: string | null;
+    lowestCompetitorPriceUsd?: number | null;
+    featuredOfferPriceUsd?: number | null;
+    supplierCostUsd?: number | null;
+    shippingUsd?: number | null;
+    demandEvidence?: string | null;
+    catalogImageUrl?: string | null;
   } | null;
   pillowActivity: {
     institutionalMemoryLessons: number;
@@ -383,6 +390,11 @@ export type CanonicalExecutiveTruth = {
     distanceToTarget: number;
     evaluated: number;
     rejected: number;
+    topRejectionReasons?: Array<{
+      reasonCode: string;
+      count: number;
+      humanLabel: string;
+    }>;
   } | null;
   flightRecorderLatest?: Array<{ at: string; type: string; summary: string }>;
 };

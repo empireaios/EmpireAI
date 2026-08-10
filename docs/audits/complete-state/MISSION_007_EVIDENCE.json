@@ -1,0 +1,53 @@
+{
+  "missionId": "007",
+  "title": "Grand King Cockpit Total Executive UX + Pillow Operating Surface",
+  "doctrinePreserved": ["005", "006"],
+  "computedAtLocalNote": "Filled at commit time; production stamps verified post-deploy",
+  "artifacts": {
+    "executivePresentation": "empireai-web/lib/cockpit/executive/executive-presentation.ts",
+    "pillowWorkspaceLayout": "empireai-web/lib/cockpit/executive/pillow-workspace-layout.ts",
+    "executiveHome": "empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx",
+    "chatWorkspace": "empireai-web/components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx",
+    "attention": "empireai-web/components/cockpit/executive/GrandKingAttentionPanel.tsx",
+    "commerceDecision": "empireai-web/components/cockpit/executive/CommerceDecisionWorkspace.tsx",
+    "canonicalTruthStrip": "empireai-web/components/cockpit/executive/CanonicalTruthStrip.tsx",
+    "commissioningStrip": "empireai-web/components/cockpit/executive/PillowCommissioningStrip.tsx",
+    "navigation": "empireai-web/lib/cockpit-ux/navigation.ts",
+    "settingsUnavailable": "empireai-web/components/cockpit/governance/SettingsUnavailablePanel.tsx",
+    "portfolioControlPlane": "backend/src/orchestration/pillow-commissioning/portfolio-control-plane.ts",
+    "postLaunchDeviation": "backend/src/orchestration/pillow-commissioning/post-launch-commercial-deviation.ts",
+    "csaChecklist": "docs/audits/complete-state/CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md"
+  },
+  "routesAdded": [
+    "GET /pillow-commissioning/portfolio-control",
+    "GET /pillow-commissioning/post-launch-deviations"
+  ],
+  "chatArchitecture": {
+    "historyScroll": "workspace-windowed",
+    "visibleMessageWindow": 40,
+    "chatShellMaxVh": 72,
+    "chatShellMaxPx": 720,
+    "pagePrimaryAroundShell": true,
+    "overscrollBehavior": "auto"
+  },
+  "nonNegotiables": {
+    "noSubjectiveGrandKingAcceptance": true,
+    "noInventedCostGuardLimits": true,
+    "noBirthAuthorisation": true,
+    "noHardCodedLowerPriceOnZeroSales": true,
+    "cursorNotRuntimeOperator": true
+  },
+  "verdictsAtClose": {
+    "grandKingCockpit": "NOT_READY",
+    "pillowChatScalability": "NOT_PROVEN",
+    "pillowProactiveAttention": "PARTIAL",
+    "commerceDecisionUx": "NOT_READY",
+    "financialLiveTruth": "PARTIAL",
+    "portfolioControlPlane": "PARTIAL",
+    "livePortfolioScalability": "PARTIAL",
+    "monitoringCostIntelligence": "PARTIAL",
+    "pillowPostLaunchAutonomy": "READY_FOR_REAL_TEST"
+  },
+  "productionBrowserJourney": "PENDING_DEPLOY",
+  "syntheticLargeChatDomBound": "PENDING_LOCAL_OR_PROD_SCRIPT"
+}

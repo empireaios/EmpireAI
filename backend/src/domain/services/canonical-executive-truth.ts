@@ -41,6 +41,14 @@ export type CanonicalCommerceOpportunity = {
   pillowRecommendation: string | null;
   competingOffers: string | null;
   deliveryPromise: string | null;
+  /** Mission 007 — visual decision fields */
+  listingRoute: string | null;
+  lowestCompetitorPriceUsd: number | null;
+  featuredOfferPriceUsd: number | null;
+  supplierCostUsd: number | null;
+  shippingUsd: number | null;
+  demandEvidence: string | null;
+  catalogImageUrl: string | null;
 };
 
 export type CanonicalExecutiveTruth = {
@@ -141,11 +149,29 @@ export type CanonicalExecutiveTruth = {
     distanceToTarget: number;
     evaluated: number;
     rejected: number;
+    topRejectionReasons: Array<{ reasonCode: string; count: number; humanLabel: string }>;
   } | null;
   flightRecorderLatest: Array<{ at: string; type: string; summary: string }>;
 };
 
 const SEED_COMPANY_NAME_RE = /^(Meridian Commerce|Vertex SaaS|Lumen Media|Atlas Fintech)$/i;
+
+function humanizeRejectionReason(reasonCode: string): string {
+  const key = reasonCode.trim().toUpperCase();
+  const map: Record<string, string> = {
+    NO_AMAZON_ASIN: "Amazon eligibility could not be confirmed",
+    QUALIFICATION_REQUIRED: "Amazon eligibility / qualification incomplete",
+    MARGIN_TOO_LOW: "Margin too low",
+    DELIVERY_TOO_SLOW: "Delivery too slow",
+    BRAND_IP_RISK: "Brand/IP risk",
+    SUPPLIER_STOCK: "Supplier stock not confirmed",
+    FREIGHT: "Freight / shipping economics failed",
+    COMPETITION: "Competitive position too weak",
+    DOSSIER_INCOMPLETE: "Commercial dossier incomplete",
+  };
+  if (map[key]) return map[key];
+  return reasonCode.replace(/_/g, " ").toLowerCase();
+}
 
 function humanizeBlocker(id: string, detail: string): string {
   if (/^B6/i.test(id) || /LWA|credential|Amazon/i.test(detail)) {
@@ -239,6 +265,13 @@ export function buildCanonicalExecutiveTruth(input: {
               ? "UNKNOWN"
               : null,
         deliveryPromise: d?.demandFulfilmentRisk.delivery.customerExpectation ?? null,
+        listingRoute: d?.presentation.listingRoute ?? "OFFER_ON_EXISTING_ASIN",
+        lowestCompetitorPriceUsd: d?.marketplaceCompetition.lowestCompetitorPriceUsd ?? null,
+        featuredOfferPriceUsd: d?.marketplaceCompetition.featuredOfferPriceUsd ?? null,
+        supplierCostUsd: pending.mapping.supplierCostUsd.amountUsd ?? null,
+        shippingUsd: pending.mapping.shippingUsd.amountUsd ?? null,
+        demandEvidence: d?.demandFulfilmentRisk.demandEvidence ?? null,
+        catalogImageUrl: null,
       };
     }
   } catch {
@@ -257,7 +290,7 @@ export function buildCanonicalExecutiveTruth(input: {
   }
   if (commerceOpportunity) {
     pendingApprovalTitles.push(
-      `Commerce opportunity ${commerceOpportunity.asin} — approval required`,
+      `Commerce opportunity — ${commerceOpportunity.productName} — approval required`,
     );
   }
 
@@ -310,20 +343,24 @@ export function buildCanonicalExecutiveTruth(input: {
   }
 
   if (pendingApprovals > 0 && commerceOpportunity) {
+    const competitor =
+      commerceOpportunity.lowestCompetitorPriceUsd != null
+        ? `Lowest competing offer about $${commerceOpportunity.lowestCompetitorPriceUsd.toFixed(2)}.`
+        : "Competitor pricing not fully verified.";
     attention.push({
       id: `commerce-${commerceOpportunity.opportunityId}`,
       priority: "money_approval",
-      title: "Commerce opportunity requires Grand King approval",
-      detail: `${commerceOpportunity.productName} · ASIN ${commerceOpportunity.asin} · ${commerceOpportunity.pillowRecommendation ?? "REVIEW"} · expected profit ${commerceOpportunity.expectedProfitUsd} · brand ${commerceOpportunity.brandRoute ?? "UNKNOWN"} · no publish/spend without approval`,
-      href: "/cockpit/commerce/store",
+      title: "Commerce opportunity requires your approval",
+      detail: `${commerceOpportunity.productName}. Proposed price ${commerceOpportunity.offerPrice}. Expected profit ${commerceOpportunity.expectedProfitUsd} (expected — not realised). ${competitor} No publish or supplier spend without your decision.`,
+      href: "/cockpit#commerce-decision-workspace",
     });
   } else if (pendingApprovals > 0) {
     attention.push({
       id: "pending-approvals",
       priority: "money_approval",
-      title: `${pendingApprovals} approval(s) require Grand King decision`,
+      title: `${pendingApprovals} approval(s) require your decision`,
       detail: pendingApprovalTitles[0] ?? "Review pending approvals",
-      href: "/cockpit/development/pillow",
+      href: "/cockpit/development/approvals",
     });
   }
 
@@ -332,8 +369,8 @@ export function buildCanonicalExecutiveTruth(input: {
       id: `opp-${commerceOpportunity.opportunityId}`,
       priority: "commercial_opportunity",
       title: "Qualified commerce opportunity ready",
-      detail: `${commerceOpportunity.productName} · ${commerceOpportunity.expectedProfitUsd} expected profit`,
-      href: "/cockpit/commerce/store",
+      detail: `${commerceOpportunity.productName} · ${commerceOpportunity.expectedProfitUsd} expected profit (not realised)`,
+      href: "/cockpit#commerce-decision-workspace",
     });
   }
 
@@ -478,6 +515,11 @@ export function buildCanonicalExecutiveTruth(input: {
       distanceToTarget: kpi.distanceToTarget,
       evaluated: kpi.candidatesEvaluated,
       rejected: kpi.rejected,
+      topRejectionReasons: kpi.topRejectionReasons.slice(0, 8).map((r) => ({
+        reasonCode: r.reasonCode,
+        count: r.count,
+        humanLabel: humanizeRejectionReason(r.reasonCode),
+      })),
     };
   } catch {
     /* optional */

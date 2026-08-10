@@ -71,4 +71,15 @@ export {
   type GrandKingUxDefectClassId,
   type WinningPurposeRuntimeBrief,
 } from "./winning-purpose-doctrine.js";
+export {
+  buildPortfolioControlPlaneSnapshot,
+  type PortfolioControlPlaneSnapshot,
+  type AggregatedPortfolioException,
+  type MonitoringTier,
+  type PortfolioExceptionCode,
+} from "./portfolio-control-plane.js";
+export {
+  assessPostLaunchCommercialDeviations,
+  type PostLaunchDeviationAssessment,
+} from "./post-launch-commercial-deviation.js";
 export { registerPillowCommissioningRoutes } from "./routes/pillow-commissioning-routes.js";

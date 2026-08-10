@@ -51,11 +51,14 @@ describe("executive home truth + nav reality", () => {
     }
   });
 
-  it("Pillow workspace layout targets page-primary scrolling (no nested prison)", () => {
-    assert.equal(PILLOW_WORKSPACE_LAYOUT.messageHistoryInternalScroll, false);
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMinPx >= 120);
+  it("Pillow workspace layout uses bounded chat shell (Mission 007)", () => {
+    assert.equal(PILLOW_WORKSPACE_LAYOUT.messageHistoryInternalScroll, true);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow >= 20);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.chatShellMaxVh <= 80);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMinPx >= 80);
     assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMaxPx <= 360);
     assert.equal(PILLOW_WORKSPACE_LAYOUT.pillowBesideCentres, false);
+    assert.equal(PILLOW_WORKSPACE_LAYOUT.historyOverscrollBehavior, "auto");
   });
 
   it("Executive Home places Pillow above secondary centres (not beside)", () => {
@@ -65,35 +68,35 @@ describe("executive home truth + nav reality", () => {
     );
     assert.match(page, /executive-pillow-anchor/);
     assert.match(page, /Secondary centre summaries/);
+    assert.match(page, /grand-king-attention|GrandKingAttentionPanel/);
     assert.ok(!/lg:grid-cols-\[minmax\(0,1fr\)_minmax\(0,2fr\)\]/.test(page));
     const pillowIdx = page.indexOf('id="executive-pillow-anchor"');
     const centresIdx = page.indexOf("Secondary centre summaries");
     assert.ok(pillowIdx > 0 && centresIdx > pillowIdx);
   });
 
-  it("Pillow history is page-flow — no vh max-height overflow prison", () => {
+  it("Pillow chat uses workspace-windowed history — bounded DOM, no 62vh prison", () => {
     const chat = readFileSync(
       join(root, "components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx"),
       "utf8",
     );
-    assert.match(chat, /data-history-scroll="page-flow"/);
-    assert.match(chat, /data-scroll-policy="page-primary"/);
-    assert.match(chat, /min-h-\[140px\]/);
+    assert.match(chat, /data-history-scroll="workspace-windowed"/);
+    assert.match(chat, /data-scroll-policy="workspace-windowed"/);
+    assert.match(chat, /data-chat-shell="bounded"|chatShellMaxVh/);
     assert.match(chat, /empireai:focus-pillow|PILLOW_WORKSPACE_LAYOUT\.focusEventName/);
     assert.ok(!/max-h-\[62vh\]/.test(chat), "62vh history prison removed");
     assert.ok(!/min-h-\[48vh\]/.test(chat), "48vh history min prison removed");
     assert.ok(!/min-h-\[70vh\]/.test(chat), "70vh workspace prison removed");
     assert.ok(!/h-\[min\(88vh/.test(chat), "fixed 88vh scroll prison removed");
-    // History region must not declare overflow-y-auto
     const historyBlock = chat.slice(
       chat.indexOf('data-testid="pillow-message-history"'),
       chat.indexOf('data-testid="pillow-composer-footer"'),
     );
     assert.ok(
-      !/overflow-y-auto/.test(historyBlock),
-      "message history must not be a nested vertical scroller",
+      /overflow-y-auto/.test(historyBlock),
+      "message history scrolls inside bounded workspace shell",
     );
-    // Mount must not autofocus composer (that yanks page scroll into Pillow).
+    assert.match(chat, /visibleMessageWindow|windowSize|Load earlier|load earlier/i);
     assert.ok(
       !/Focus composer on mount|requestAnimationFrame\(\(\) => focusComposer\(\{ scrollIntoView: false \}\)/.test(
         chat,
@@ -102,9 +105,18 @@ describe("executive home truth + nav reality", () => {
     );
     assert.match(
       chat,
-      /seenConversationLenRef|Initial hydrate/,
-      "must gate conversation scrollIntoView so hydrate does not trap page",
+      /seenConversationLenRef/,
+      "must gate conversation scroll so hydrate does not trap page",
     );
+  });
+
+  it("navigation marks unavailable centres honestly (Mission 007)", () => {
+    const settings = COCKPIT_UX_NAVIGATION.find((n) => n.id === "settings");
+    assert.ok(settings);
+    assert.equal(settings?.availability, "unavailable");
+    assert.ok(settings?.unavailableReason);
+    const commerce = COCKPIT_UX_NAVIGATION.find((n) => n.id === "commerce");
+    assert.equal(commerce?.href, "/cockpit/commerce/operating");
   });
 
   it("Commerce decision workspace is natural-language first with technical disclosure", () => {
@@ -113,9 +125,11 @@ describe("executive home truth + nav reality", () => {
       "utf8",
     );
     assert.match(decision, /commerce-decision-workspace/);
-    assert.match(decision, /Ask Pillow about this/);
-    assert.match(decision, /Technical details/);
-    assert.match(decision, /toExecutiveCommerceLanguage/);
+    assert.match(decision, /Ask Pillow/);
+    assert.match(decision, /Challenge Pillow/);
+    assert.match(decision, /Technical details|full evidence/i);
+    assert.match(decision, /Lowest competitor|lowestCompetitorPriceUsd/);
+    assert.match(decision, /toExecutiveCommerceLanguage|explainListingRoute/);
   });
 
   it("executive language hides raw CJ/SKU from default headline", () => {

@@ -1,24 +1,27 @@
 /**
- * Executive Home Pillow workspace layout.
- * Canonical scroll owner = document/page. Nested overflow is exceptional only.
+ * Executive Home Pillow workspace layout (Mission 007).
+ *
+ * Page remains the primary owner for Executive Home sections.
+ * Inside the Pillow chat shell, history uses a bounded workspace window
+ * with controlled internal scrolling so long threads do not grow the page
+ * unboundedly — without recreating a full-viewport scroll prison.
  */
 export const PILLOW_WORKSPACE_LAYOUT = {
-  /**
-   * Workspace participates in page flow — do not lock a viewport-height prison.
-   * Empty-state visual presence only (not a scroll container height).
-   */
   workspaceMinPx: 320,
+  /** Bounded chat shell height (vh) — history scrolls inside; page still scrolls around the shell. */
+  chatShellMaxVh: 72,
+  chatShellMaxPx: 720,
   /**
-   * Message history is page-flow by default (no max-height scroll prison).
-   * Internal history scrolling is disabled; long threads scroll with the page.
+   * History uses internal scroll inside the bounded shell.
+   * overscrollBehavior must remain "auto" so wheel can continue the page at boundaries.
    */
-  messageHistoryInternalScroll: false,
-  /** Composer remains a strategic writing surface without trapping the page */
-  composerMinPx: 140,
-  composerMaxPx: 320,
-  /** Context/guidance strip — compact; overflow only if content exceeds strip */
-  contextStripMaxPx: 120,
-  /** Pillow owns content width — centres are below, not beside */
+  messageHistoryInternalScroll: true,
+  historyOverscrollBehavior: "auto" as const,
+  /** Bound DOM: only render the latest N messages; load earlier on demand. */
+  visibleMessageWindow: 40,
+  composerMinPx: 96,
+  composerMaxPx: 220,
+  contextStripMaxPx: 96,
   pillowBesideCentres: false,
   focusEventName: "empireai:focus-pillow",
 } as const;

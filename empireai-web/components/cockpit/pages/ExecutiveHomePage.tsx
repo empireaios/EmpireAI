@@ -33,7 +33,7 @@ function ExecutiveHomePrimaryWorkspace() {
           Operational truth loading — Pillow is available below.
         </p>
       )}
-      {/* Page scroll is the sole primary vertical owner — Pillow/Commerce are page-flow. */}
+      {/* Decision before chat — Grand King decides first, then converses. */}
       {hasDecision && <CommerceDecisionWorkspace onAskPillow={onAsk} />}
       <ExecutiveHomeChatWorkspace />
     </div>
@@ -41,9 +41,9 @@ function ExecutiveHomePrimaryWorkspace() {
 }
 
 /**
- * SCR-001 · Grand King primary workflow:
- * urgent decisions → dossier → Pillow primary chat → secondary detail.
- * Document/page scroll is the primary navigation mechanism.
+ * Mission 007 · SCR-001 decision-first Grand King Home:
+ * Attention → money/truth → Pillow status → decisions → chat → secondary.
+ * Page scrolls the operating surface; Pillow chat uses a bounded shell.
  */
 export function ExecutiveHomePage() {
   return (
@@ -57,20 +57,32 @@ export function ExecutiveHomePage() {
         <ExecutiveHomeSyncBar />
         <ExecutiveHomeGreetingLive />
 
+        {/* 1. What needs my attention? */}
         <GrandKingAttentionPanel />
+
+        {/* 2. What is the money / operating truth? */}
         <CanonicalTruthStrip />
         <PillowCommissioningStrip />
 
+        {/* 3. Decision + Pillow chat */}
         <ExecutiveHomePrimaryWorkspace />
 
-        <CommerceOperatingStrip />
-        <ExecutiveHomeBriefPanel />
-        <section aria-label="Secondary centre summaries" className="w-full">
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6f6a60]">
-            Secondary centre summaries
-          </p>
-          <ExecutiveHomeCentresGrid />
-        </section>
+        {/* 4. Secondary operating detail */}
+        <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
+          <summary className="cursor-pointer text-xs font-medium text-[#8a847a]">
+            More operating detail (commerce strip · brief · centres)
+          </summary>
+          <div className="mt-3 space-y-4">
+            <CommerceOperatingStrip />
+            <ExecutiveHomeBriefPanel />
+            <section aria-label="Secondary centre summaries" className="w-full">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6f6a60]">
+                Secondary centre summaries
+              </p>
+              <ExecutiveHomeCentresGrid />
+            </section>
+          </div>
+        </details>
       </div>
     </ExecutiveHomeProvider>
   );

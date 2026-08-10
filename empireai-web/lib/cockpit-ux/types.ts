@@ -42,6 +42,9 @@ export type CockpitCentreId =
   | "live_eta"
   | "settings";
 
+/** Mission 007 — honest destination truth for Grand King nav. */
+export type CockpitNavAvailability = "live" | "partial" | "unavailable";
+
 export type CockpitCentreNavItem = {
   id: CockpitCentreId;
   label: string;
@@ -49,6 +52,9 @@ export type CockpitCentreNavItem = {
   icon: string;
   description: string;
   group: "primary" | "operations" | "system";
+  /** Default live when omitted. */
+  availability?: CockpitNavAvailability;
+  unavailableReason?: string;
 };
 
 export type CockpitWidget =

@@ -1,5 +1,5 @@
-import { GovernancePoliciesPanel } from "@/components/cockpit/widgets/GovernancePanels";
+import { SettingsUnavailablePanel } from "@/components/cockpit/governance/SettingsUnavailablePanel";
 
 export default function GovernanceSettingsPage() {
-  return <GovernancePoliciesPanel />;
+  return <SettingsUnavailablePanel />;
 }

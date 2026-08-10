@@ -22,6 +22,8 @@ import {
   runPillowOneProductCommissioning,
 } from "../one-product-commissioning.js";
 import { buildPillowOperatingState } from "../operating-state.js";
+import { buildPortfolioControlPlaneSnapshot } from "../portfolio-control-plane.js";
+import { assessPostLaunchCommercialDeviations } from "../post-launch-commercial-deviation.js";
 import { buildSinceLastVisitBrief } from "../since-last-visit.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
@@ -115,6 +117,24 @@ export async function registerPillowCommissioningRoutes(
     async (request, reply) => {
       const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
       return reply.send(buildCostControlCentreSnapshot(workspaceId));
+    },
+  );
+
+  app.get(
+    "/pillow-commissioning/portfolio-control",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send(buildPortfolioControlPlaneSnapshot(workspaceId));
+    },
+  );
+
+  app.get(
+    "/pillow-commissioning/post-launch-deviations",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send(assessPostLaunchCommercialDeviations(workspaceId));
     },
   );
 

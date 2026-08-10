@@ -45,6 +45,13 @@ export function CockpitSidebar() {
       <ul className="space-y-0.5">
         {items.map((item) => {
           const active = isCockpitNavActive(pathname, item.href);
+          const availability = item.availability ?? "live";
+          const title =
+            availability === "unavailable"
+              ? item.unavailableReason ?? "Not yet available"
+              : availability === "partial"
+                ? `${item.description} (partial)`
+                : item.description;
           return (
             <li key={item.id}>
               <Link
@@ -52,9 +59,12 @@ export function CockpitSidebar() {
                 className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
                   active
                     ? "bg-gold/10 text-[#f0d78c] shadow-[inset_2px_0_0_#d4af37]"
-                    : "text-[#8a847a] hover:bg-white/[0.04] hover:text-[#f0d78c]"
+                    : availability === "unavailable"
+                      ? "text-[#5a564e] hover:bg-white/[0.03] hover:text-[#8a847a]"
+                      : "text-[#8a847a] hover:bg-white/[0.04] hover:text-[#f0d78c]"
                 }`}
-                title={item.description}
+                title={title}
+                aria-disabled={availability === "unavailable" ? undefined : undefined}
               >
                 <span
                   className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs ${
@@ -65,7 +75,21 @@ export function CockpitSidebar() {
                 >
                   {item.icon}
                 </span>
-                {!collapsed && <span className="truncate">{item.label}</span>}
+                {!collapsed && (
+                  <span className="flex min-w-0 flex-1 items-center gap-2">
+                    <span className="truncate">{item.label}</span>
+                    {availability === "unavailable" && (
+                      <span className="shrink-0 text-[9px] uppercase tracking-wider text-[#5a564e]">
+                        Soon
+                      </span>
+                    )}
+                    {availability === "partial" && (
+                      <span className="shrink-0 text-[9px] uppercase tracking-wider text-[#6f6a60]">
+                        Partial
+                      </span>
+                    )}
+                  </span>
+                )}
               </Link>
             </li>
           );

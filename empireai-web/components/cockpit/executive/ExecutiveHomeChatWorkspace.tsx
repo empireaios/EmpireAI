@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
@@ -10,6 +10,7 @@ import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProac
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 import { PILLOW_WORKSPACE_LAYOUT } from "@/lib/cockpit/executive/pillow-workspace-layout";
+import { scrubMachineLanguage } from "@/lib/cockpit/executive/executive-presentation";
 
 const EXECUTIVE_ACTIONS = [
   { action: "summarise" as const, label: "Summarise" },
@@ -29,15 +30,17 @@ function autosizeComposer(el: HTMLTextAreaElement | null) {
 }
 
 /**
- * Primary Grand King ↔ Pillow workspace.
- * Scroll owner = Executive Home page. History grows in document flow —
- * no viewport-height nested scroll prison.
+ * Primary Grand King ↔ Pillow workspace (Mission 007).
+ * Bounded chat shell: history scrolls inside; composer stays visible.
+ * Page remains primary owner around the shell (overscroll auto at boundaries).
  */
 export function ExecutiveHomeChatWorkspace() {
   const pathname = usePathname();
   const conversationEndRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
   const seenConversationLenRef = useRef<number | null>(null);
+  const [windowSize, setWindowSize] = useState(PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow);
   const {
     loading,
     context,
@@ -97,8 +100,7 @@ export function ExecutiveHomeChatWorkspace() {
     }
   }, [conversation, voiceEnabled]);
 
-  // Page-primary: only follow the latest turn after a NEW message arrives.
-  // Initial hydrate / remount must not yank scroll into the Pillow region.
+  // Follow latest turn inside the history pane only — never yank the page.
   useEffect(() => {
     const prev = seenConversationLenRef.current;
     const next = conversation.length;
@@ -111,21 +113,35 @@ export function ExecutiveHomeChatWorkspace() {
       return;
     }
     seenConversationLenRef.current = next;
-    conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const pane = historyRef.current;
+    if (pane) {
+      pane.scrollTop = pane.scrollHeight;
+    } else {
+      conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   }, [conversation.length]);
 
   const executive = context?.executiveContext;
   const screen = resolveCockpitScreenContext(pathname);
+  const hiddenCount = Math.max(0, conversation.length - windowSize);
+  const visibleTurns = useMemo(
+    () => conversation.slice(Math.max(0, conversation.length - windowSize)),
+    [conversation, windowSize],
+  );
 
   return (
     <section
       id="executive-pillow-workspace"
       data-testid="executive-pillow-workspace"
       className="flex w-full flex-col rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
-      style={{ minHeight: PILLOW_WORKSPACE_LAYOUT.workspaceMinPx }}
+      style={{
+        minHeight: PILLOW_WORKSPACE_LAYOUT.workspaceMinPx,
+        maxHeight: `min(${PILLOW_WORKSPACE_LAYOUT.chatShellMaxVh}vh, ${PILLOW_WORKSPACE_LAYOUT.chatShellMaxPx}px)`,
+      }}
       aria-label="Executive Chat workspace"
       data-scroll-policy="page-primary"
-      data-history-scroll="page-flow"
+      data-history-scroll="workspace-windowed"
+      data-chat-shell="bounded"
     >
       <header className="shrink-0 border-b border-gold/10 px-5 py-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
@@ -175,34 +191,50 @@ export function ExecutiveHomeChatWorkspace() {
       )}
 
       {/*
-        History is document-flow (no max-height / overflow-y prison).
-        Long conversations scroll with Executive Home — the canonical page owner.
+        Bounded history pane — only this region scrolls for chat.
+        overscroll-behavior:auto allows page continuation at edges (no prison).
       */}
       <div
+        ref={historyRef}
         data-testid="pillow-message-history"
-        className="px-5 py-4"
-        data-scroll-policy="page-flow"
+        className="min-h-0 flex-1 overflow-y-auto overscroll-y-auto px-5 py-4"
+        data-scroll-policy="workspace-windowed"
+        style={{ overscrollBehaviorY: PILLOW_WORKSPACE_LAYOUT.historyOverscrollBehavior }}
       >
         {!executiveReady && (
           <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">
-            {readinessLabel || connectionError || EXECUTIVE_STARTING_LABEL}
+            {scrubMachineLanguage(readinessLabel || connectionError || EXECUTIVE_STARTING_LABEL)}
           </p>
         )}
 
         {conversation.length === 0 && !loading && (
-          <div className="flex min-h-[160px] flex-col justify-center text-sm text-[#8a847a]">
+          <div className="flex min-h-[120px] flex-col justify-center text-sm text-[#8a847a]">
             <p className="max-w-3xl text-base leading-relaxed text-[#c8c0b0]">
               {context?.pageInsightSummary ??
-                "Executive Chat — write a full strategic instruction below. Pillow is your primary operating surface."}
+                "Write a strategic instruction below. Pillow investigates and recommends — you decide when authority is required."}
             </p>
             {executive?.nextExecutiveAction && (
-              <p className="mt-3 text-sm text-[#d4af37]">Next: {executive.nextExecutiveAction}</p>
+              <p className="mt-3 text-sm text-[#d4af37]">
+                Next: {scrubMachineLanguage(executive.nextExecutiveAction)}
+              </p>
             )}
           </div>
         )}
 
-        <ul className="mx-auto max-w-4xl space-y-5">
-          {conversation.map((turn) => (
+        {hiddenCount > 0 && (
+          <button
+            type="button"
+            className="mb-3 text-xs text-[#d4af37] hover:underline"
+            onClick={() =>
+              setWindowSize((n) => n + PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow)
+            }
+          >
+            Load earlier messages ({hiddenCount} hidden)
+          </button>
+        )}
+
+        <ul className="mx-auto max-w-4xl space-y-4">
+          {visibleTurns.map((turn) => (
             <li
               key={turn.id}
               className={
@@ -263,7 +295,7 @@ export function ExecutiveHomeChatWorkspace() {
             autoComplete="off"
             spellCheck
             placeholder="Write a full executive instruction — multiple paragraphs are welcome…"
-            className="min-h-[140px] max-h-[320px] flex-1 resize-y rounded-lg border border-gold/15 bg-black/40 px-4 py-3 text-base leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
+            className="min-h-[96px] max-h-[220px] flex-1 resize-y rounded-lg border border-gold/15 bg-black/40 px-4 py-3 text-base leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/30 focus:outline-none"
           />
           {voice.supported && (
             <button
