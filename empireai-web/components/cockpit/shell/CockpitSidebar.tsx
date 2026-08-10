@@ -64,7 +64,7 @@ export function CockpitSidebar() {
   return (
     <aside
       aria-label="Cockpit navigation"
-      className={`sticky top-0 z-30 hidden h-dvh shrink-0 flex-col border-r border-gold/10 bg-[#050505]/95 backdrop-blur-xl transition-all duration-500 lg:flex ${
+      className={`sticky top-0 z-50 hidden h-dvh shrink-0 flex-col self-start border-r border-gold/10 bg-[#050505] pointer-events-auto transition-all duration-500 lg:flex ${
         collapsed ? "w-[72px]" : "w-64"
       }`}
     >

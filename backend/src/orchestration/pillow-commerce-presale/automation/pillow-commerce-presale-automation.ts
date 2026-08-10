@@ -23,7 +23,12 @@ export function getPillowCommercePresaleSchedulerDefinitions(): ScheduledJobDefi
         workspaceId: GRAND_KING_WORKSPACE_ID,
         companyId: GRAND_KING_COMPANY_ID,
         toolName: "pillow_commerce.run_presale_cycle",
-        input: { workspaceId: GRAND_KING_WORKSPACE_ID, companyId: GRAND_KING_COMPANY_ID },
+        input: {
+          workspaceId: GRAND_KING_WORKSPACE_ID,
+          companyId: GRAND_KING_COMPANY_ID,
+          smartViableBatch: true,
+          maxCandidates: 24,
+        },
         correlationId: `schedule:${PILLOW_COMMERCE_PRESALE_JOB_NAME}`,
         priority: "high",
       },
@@ -42,11 +47,13 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
       workspaceId: GRAND_KING_WORKSPACE_ID,
       companyId: GRAND_KING_COMPANY_ID,
       initiatedBy: "pillow-autonomous",
+      smartViableBatch: true,
+      maxCandidates: 24,
       approvalGate: getPresaleApprovalGate(),
     });
     return {
       ok: true,
-      detail: `outcome=${cycle.outcome}; retrieved=${cycle.candidatesRetrieved}; rejected=${cycle.rejections.length}`,
+      detail: `outcome=${cycle.outcome}; retrieved=${cycle.candidatesRetrieved}; rejected=${cycle.rejections.length}; smartViable=${cycle.smartViableBatchCount ?? 0}`,
       cycleId: cycle.cycleId,
       outcome: cycle.outcome,
     };

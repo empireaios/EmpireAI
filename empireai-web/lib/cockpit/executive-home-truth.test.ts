@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { resolveKpiDisplayValue } from "@/lib/cockpit/kpis/resolve-kpi-values";
 import { COCKPIT_UX_NAVIGATION } from "@/lib/cockpit-ux/navigation";
 import { PILLOW_WORKSPACE_LAYOUT } from "@/lib/cockpit/executive/pillow-workspace-layout";
+import { toExecutiveCommerceLanguage } from "@/lib/cockpit/executive/executive-language";
 
 const PROHIBITED =
   /Awaiting implementation|coming soon|TBD|lorem ipsum|dummy data|mock LIVE|fixture/i;
@@ -50,9 +51,9 @@ describe("executive home truth + nav reality", () => {
     }
   });
 
-  it("Pillow workspace layout targets are genuinely large", () => {
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.workspaceMinVh >= 75);
-    assert.ok(PILLOW_WORKSPACE_LAYOUT.messageHistoryMinVh >= 50);
+  it("Pillow workspace layout targets are genuinely large and page-scroll friendly", () => {
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.workspaceMinVh >= 70);
+    assert.ok(PILLOW_WORKSPACE_LAYOUT.messageHistoryMinVh >= 45);
     assert.ok(PILLOW_WORKSPACE_LAYOUT.composerMinPx >= 160);
     assert.equal(PILLOW_WORKSPACE_LAYOUT.pillowBesideCentres, false);
   });
@@ -70,26 +71,46 @@ describe("executive home truth + nav reality", () => {
     assert.ok(pillowIdx > 0 && centresIdx > pillowIdx);
   });
 
-  it("Pillow composer and history use large sizing classes", () => {
+  it("Pillow composer and history use large sizing without scroll prison", () => {
     const chat = readFileSync(
       join(root, "components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx"),
       "utf8",
     );
     assert.match(chat, /min-h-\[180px\]/);
-    assert.match(chat, /min-h-\[50vh\]/);
-    assert.match(chat, /min-h-\[75vh\]/);
+    assert.match(chat, /min-h-\[48vh\]|min-h-\[50vh\]/);
+    assert.match(chat, /min-h-\[70vh\]|min-h-\[75vh\]/);
+    assert.match(chat, /page-primary|overscroll-y-auto/);
     assert.match(chat, /empireai:focus-pillow|PILLOW_WORKSPACE_LAYOUT\.focusEventName/);
+    assert.ok(!/h-\[min\(88vh/.test(chat), "fixed 88vh scroll prison removed");
   });
 
-  it("Commerce decision workspace is a large surface not a tiny accordion-only path", () => {
+  it("Commerce decision workspace is natural-language first with technical disclosure", () => {
     const decision = readFileSync(
       join(root, "components/cockpit/executive/CommerceDecisionWorkspace.tsx"),
       "utf8",
     );
     assert.match(decision, /commerce-decision-workspace/);
     assert.match(decision, /Ask Pillow about this/);
-    assert.match(decision, /min-h-\[75vh\]/);
-    assert.ok(!/<details/.test(decision));
+    assert.match(decision, /Technical details/);
+    assert.match(decision, /toExecutiveCommerceLanguage/);
+  });
+
+  it("executive language hides raw CJ/SKU from default headline", () => {
+    const card = toExecutiveCommerceLanguage({
+      productName: "Portable Mini Fan",
+      asin: "B0FKFNCT52",
+      cjPid: "2608080908321600000",
+      amazonSellerSku: "EMP-FD-MSL1SDPF",
+      offerPrice: "$24.25",
+      expectedProfitUsd: "$8.10",
+      approvalStatus: "PENDING_APPROVAL",
+      disposition: "APPROVE",
+      competingOffers: "$9.99",
+    });
+    assert.equal(card.headline, "Portable Mini Fan");
+    assert.match(card.economicsLine, /\$24\.25/);
+    assert.ok(!card.headline.includes("EMP-FD"));
+    assert.ok(card.technicalDetails.some((d) => d.value === "B0FKFNCT52"));
   });
 
   it("background context refresh must not share chat loading (Send must stay usable)", () => {
@@ -120,5 +141,21 @@ describe("executive home truth + nav reality", () => {
     );
     assert.match(sidebar, /sticky/);
     assert.match(sidebar, /h-dvh|h-screen/);
+    assert.match(sidebar, /z-50/);
+  });
+
+  it("secondary polls use fetch budget and do not stack", () => {
+    const founder = readFileSync(
+      join(root, "lib/founder-shell/FounderShellProvider.tsx"),
+      "utf8",
+    );
+    const commerce = readFileSync(
+      join(root, "lib/commerce-operating-model/useCommerceOperatingModel.ts"),
+      "utf8",
+    );
+    assert.match(founder, /fetchWithBudget/);
+    assert.match(founder, /inFlight/);
+    assert.match(commerce, /fetchWithBudget/);
+    assert.match(commerce, /enabled/);
   });
 });

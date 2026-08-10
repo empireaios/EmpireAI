@@ -9,12 +9,13 @@ import {
 } from "../services/presale-cycle-service.js";
 import { explainPillowCommerce } from "../commerce-plain-language.js";
 import { reevaluateCommerceOpportunity } from "../services/reevaluate-opportunity-service.js";
+import { buildSmartViableKpiSnapshot } from "../smart-viable-kpi.js";
 
 export const pillowCommercePresaleTools: RegisteredTool[] = [
   {
     name: "pillow_commerce.run_presale_cycle",
     description:
-      "Autonomous first-dollar pre-sale cycle: discover CJ opportunities, reject unsuitable, check Amazon restrictions, live stock/cost/freight/fees, profit gate, map Amazon↔CJ, surface Grand King approval. Never publishes or spends.",
+      "Autonomous CJ×Amazon US SMART viable discovery/evaluation toward the 1,000-listing KPI. Rejects unsuitable candidates, builds dossiers, surfaces at most one Grand King approval. Never publishes or spends.",
     module: "pillow-commerce-presale",
     authorityLevel: "L2",
     parameters: {
@@ -23,6 +24,7 @@ export const pillowCommercePresaleTools: RegisteredTool[] = [
         workspaceId: { type: "string" },
         companyId: { type: "string" },
         maxCandidates: { type: "number" },
+        smartViableBatch: { type: "boolean" },
       },
       required: [],
     },
@@ -31,9 +33,26 @@ export const pillowCommercePresaleTools: RegisteredTool[] = [
         workspaceId: args.workspaceId ? String(args.workspaceId) : GRAND_KING_WORKSPACE_ID,
         companyId: args.companyId ? String(args.companyId) : GRAND_KING_COMPANY_ID,
         initiatedBy: "pillow-tool",
-        maxCandidates: typeof args.maxCandidates === "number" ? args.maxCandidates : 8,
+        maxCandidates: typeof args.maxCandidates === "number" ? args.maxCandidates : 24,
+        smartViableBatch: args.smartViableBatch !== false,
         approvalGate: getPresaleApprovalGate(),
       }),
+  },
+  {
+    name: "pillow_commerce.smart_viable_kpi",
+    description:
+      "Return progress toward 1,000 SMART viable CJ×Amazon US listings (raw vs viable, rejections, distance to target).",
+    module: "pillow-commerce-presale",
+    authorityLevel: "L1",
+    parameters: {
+      type: "object",
+      properties: { workspaceId: { type: "string" } },
+      required: [],
+    },
+    handler: async (args) => {
+      const workspaceId = args.workspaceId ? String(args.workspaceId) : GRAND_KING_WORKSPACE_ID;
+      return buildSmartViableKpiSnapshot(workspaceId);
+    },
   },
   {
     name: "pillow_commerce.latest_opportunity",

@@ -49,6 +49,12 @@ export type RunPresaleCycleInput = {
   companyId: string;
   initiatedBy: PresaleCycleResult["initiatedBy"];
   maxCandidates?: number;
+  /**
+   * Evaluate the full candidate page for SMART viable KPI progress.
+   * Continues after the first qualify; registers at most one Grand King approval.
+   * Never publishes or spends.
+   */
+  smartViableBatch?: boolean;
   approvalGate?: ApprovalGateEngine | null;
   env?: NodeJS.ProcessEnv;
   /** Injected fetch for tests. */
@@ -174,12 +180,17 @@ export async function runPillowCommercePresaleCycle(
   const repo = getPillowCommercePresaleRepository();
   const cycleId = randomUUID();
   const startedAt = new Date().toISOString();
-  const maxCandidates = input.maxCandidates ?? 8;
+  const smartViableBatch = Boolean(input.smartViableBatch);
+  const maxCandidates = Math.min(
+    Math.max(input.maxCandidates ?? (smartViableBatch ? 24 : 8), 1),
+    smartViableBatch ? 40 : 20,
+  );
   const blockers: string[] = [];
   const rejections: CandidateRejection[] = [];
+  const smartViableAsins: string[] = [];
 
   const pending = repo.getPendingApprovalOpportunity(input.workspaceId);
-  if (pending) {
+  if (pending && !smartViableBatch) {
     const cycle: PresaleCycleResult = {
       cycleId,
       workspaceId: input.workspaceId,
@@ -673,8 +684,12 @@ export async function runPillowCommercePresaleCycle(
       verifiedAt: now,
     };
 
+    // At most one Grand King approval surface — batch mode may find many SMART viable maps.
+    const shouldRegisterApproval =
+      !qualified && !pending && Boolean(input.approvalGate);
+
     let approvalId: string | null = null;
-    if (input.approvalGate) {
+    if (shouldRegisterApproval && input.approvalGate) {
       try {
         const approval = input.approvalGate.register({
           workspaceId: input.workspaceId,
@@ -713,11 +728,11 @@ export async function runPillowCommercePresaleCycle(
           `Approval registration failed: ${error instanceof Error ? error.message : String(error)}`,
         );
       }
-    } else {
+    } else if (!qualified && !pending && !input.approvalGate) {
       blockers.push("ApprovalGate unavailable at cycle time — opportunity stored; gate will be required before publish");
     }
 
-    qualified = {
+    const opportunity: QualifiedOpportunity = {
       opportunityId: randomUUID(),
       workspaceId: input.workspaceId,
       companyId: input.companyId,
@@ -738,39 +753,48 @@ export async function runPillowCommercePresaleCycle(
     };
 
     repo.saveMapping(mapping, input.workspaceId);
-    repo.saveOpportunity(qualified);
+    repo.saveOpportunity(opportunity);
+    smartViableAsins.push(mapping.asin);
+    if (!qualified) {
+      qualified = opportunity;
+    }
 
-    captureInstitutionalMemory({
-      workspaceId: input.workspaceId,
-      canonicalKey: `commerce.recommendation.${qualified.opportunityId}`,
-      title: `Pillow recommended ${catalog.itemName || productName} for Grand King approval`,
-      statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd} with complete FD-CDD-001 dossier. Publication blocked until Grand King approval.`,
-      memoryClass: "pillow_self_improvement",
-      authority: "pillow_recommendation",
-      epistemicStatus: "RECOMMENDATION",
-      source: "commerce_event",
-      tags: ["commerce", "recommendation", "first-dollar", "dossier"],
-      evidenceRefs: [
-        `asin:${asinResult.asin}`,
-        `sku:${amazonSellerSku}`,
-        `profit:${economics.expectedProfitUsd}`,
-        "dossier:FD-CDD-001",
-      ],
-      linkedEntities: {
-        asin: asinResult.asin,
-        cjPid: product.pid,
-        amazonSellerSku,
-        opportunityId: qualified.opportunityId,
-      },
-      outcomeLink: {
-        recommendationId: qualified.opportunityId,
-        approvalId: approvalId ?? undefined,
-        listingSku: amazonSellerSku,
-      },
-      category: "C",
-      actor: "pillow-commerce-presale",
-    });
-    break;
+    if (shouldRegisterApproval) {
+      captureInstitutionalMemory({
+        workspaceId: input.workspaceId,
+        canonicalKey: `commerce.recommendation.${opportunity.opportunityId}`,
+        title: `Pillow recommended ${catalog.itemName || productName} for Grand King approval`,
+        statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd} with complete FD-CDD-001 dossier. Publication blocked until Grand King approval.`,
+        memoryClass: "pillow_self_improvement",
+        authority: "pillow_recommendation",
+        epistemicStatus: "RECOMMENDATION",
+        source: "commerce_event",
+        tags: ["commerce", "recommendation", "first-dollar", "dossier", "smart-viable"],
+        evidenceRefs: [
+          `asin:${asinResult.asin}`,
+          `sku:${amazonSellerSku}`,
+          `profit:${economics.expectedProfitUsd}`,
+          "dossier:FD-CDD-001",
+        ],
+        linkedEntities: {
+          asin: asinResult.asin,
+          cjPid: product.pid,
+          amazonSellerSku,
+          opportunityId: opportunity.opportunityId,
+        },
+        outcomeLink: {
+          recommendationId: opportunity.opportunityId,
+          approvalId: approvalId ?? undefined,
+          listingSku: amazonSellerSku,
+        },
+        category: "C",
+        actor: "pillow-commerce-presale",
+      });
+    }
+
+    if (!smartViableBatch) {
+      break;
+    }
   }
 
   const cycle: PresaleCycleResult = {
@@ -783,16 +807,25 @@ export async function runPillowCommercePresaleCycle(
     completedAt: new Date().toISOString(),
     candidatesRetrieved: products.length,
     rejections,
-    qualifiedOpportunity: qualified,
-    outcome: qualified
-      ? "APPROVAL_SURFACED"
-      : blockers.length
-        ? "BLOCKED_INTEGRATION"
-        : "NO_QUALIFIED_OPPORTUNITY",
+    qualifiedOpportunity: qualified ?? pending ?? null,
+    smartViableBatchCount: smartViableAsins.length,
+    smartViableAsins,
+    outcome: smartViableBatch
+      ? smartViableAsins.length > 0 || qualified || pending
+        ? "SMART_VIABLE_BATCH_COMPLETE"
+        : blockers.length
+          ? "BLOCKED_INTEGRATION"
+          : "NO_QUALIFIED_OPPORTUNITY"
+      : qualified
+        ? "APPROVAL_SURFACED"
+        : blockers.length
+          ? "BLOCKED_INTEGRATION"
+          : "NO_QUALIFIED_OPPORTUNITY",
     blockers,
     publicationAttempted: false,
     supplierSpendAttempted: false,
     actorWasCursor: false,
+    kpiTarget: 1000,
   };
 
   repo.saveCycle(cycle);

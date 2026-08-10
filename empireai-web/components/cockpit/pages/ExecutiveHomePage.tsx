@@ -16,7 +16,7 @@ import { ExecutiveHomeSyncBar } from "@/components/cockpit/widgets/ExecutiveSumm
 
 function ExecutiveHomePrimaryWorkspace() {
   const { ask, setQueryDraft } = useGlobalAiAssistant();
-  const { data } = useExecutiveHome();
+  const { data, loading } = useExecutiveHome();
   const hasDecision = Boolean(data?.canonicalTruth?.commerceOpportunity);
 
   const onAsk = (prompt: string) => {
@@ -26,27 +26,28 @@ function ExecutiveHomePrimaryWorkspace() {
   };
 
   return (
-    <div id="executive-pillow-anchor" className="min-h-0 w-full">
-      {hasDecision ? (
-        <div className="grid min-h-[min(88vh,calc(100dvh-8rem))] grid-cols-1 gap-3 lg:grid-cols-2">
-          <CommerceDecisionWorkspace onAskPillow={onAsk} />
-          <ExecutiveHomeChatWorkspace />
-        </div>
-      ) : (
-        <ExecutiveHomeChatWorkspace />
+    <div id="executive-pillow-anchor" className="w-full space-y-3">
+      {loading && !data && (
+        <p className="rounded-lg border border-gold/15 px-3 py-2 text-xs text-[#8a847a]">
+          Operational truth loading — Pillow is available below.
+        </p>
       )}
+      {/* Stack on all sizes: page scroll is primary; avoid dual 88vh scroll prisons. */}
+      {hasDecision && <CommerceDecisionWorkspace onAskPillow={onAsk} />}
+      <ExecutiveHomeChatWorkspace />
     </div>
   );
 }
 
 /**
  * SCR-001 · Grand King primary workflow:
- * urgent decisions → dossier + Pillow side-by-side → secondary detail.
+ * urgent decisions → dossier → Pillow primary chat → secondary detail.
+ * Document/page scroll is the primary navigation mechanism.
  */
 export function ExecutiveHomePage() {
   return (
-    <ExecutiveHomeProvider refreshMs={45_000}>
-      <div className="mx-auto flex max-w-[1800px] flex-col gap-3">
+    <ExecutiveHomeProvider refreshMs={60_000}>
+      <div className="mx-auto flex max-w-[1800px] flex-col gap-4">
         <CockpitPageHeader
           eyebrow="Executive Cockpit · Daily Operations"
           title="Executive Home"

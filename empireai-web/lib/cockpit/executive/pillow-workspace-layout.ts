@@ -1,22 +1,21 @@
 /**
- * Executive Home Pillow workspace layout targets (closure 002).
- * Used by UI and regression tests — not decorative CSS only.
+ * Executive Home Pillow workspace layout (mission 003).
+ * Page scroll is primary — avoid nested scroll prisons.
  */
 export const PILLOW_WORKSPACE_LAYOUT = {
-  /** Outer workspace uses most of the viewport */
-  workspaceMinVh: 75,
-  workspaceTargetVh: 88,
-  /** Conversation history must be a large readable document region */
-  messageHistoryMinVh: 50,
+  /** Minimum useful workspace height without locking the page */
+  workspaceMinVh: 70,
+  /** Conversation history large but page-scroll friendly */
+  messageHistoryMinVh: 48,
+  messageHistoryMaxVh: 62,
   /** Composer is a strategic writing surface */
   composerMinPx: 180,
   composerMaxPx: 420,
-  /** Decision dossier when present */
-  decisionMinVh: 42,
-  decisionMaxVh: 58,
   /** Context/guidance strip stays secondary */
-  contextStripMaxVh: 12,
+  contextStripMaxVh: 10,
   /** Pillow owns content width — centres are below, not beside */
   pillowBesideCentres: false,
+  /** Nested scroll must release wheel to the page at boundaries */
+  overscrollBehavior: "auto" as const,
   focusEventName: "empireai:focus-pillow",
 } as const;

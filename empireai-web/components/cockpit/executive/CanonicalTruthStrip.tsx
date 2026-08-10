@@ -54,10 +54,18 @@ export function CanonicalTruthStrip() {
       </div>
       {t.commerceOpportunity && (
         <div className="mt-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2 text-sm text-[#c8c0b0]">
-          <span className="text-emerald-200">Commerce opportunity · APPROVAL REQUIRED · </span>
-          {t.commerceOpportunity.productName} · ASIN {t.commerceOpportunity.asin} ·{" "}
-          {t.commerceOpportunity.expectedProfitUsd} expected profit · SKU{" "}
-          {t.commerceOpportunity.amazonSellerSku}
+          <span className="text-emerald-200">Commerce opportunity · approval required · </span>
+          {t.commerceOpportunity.productName} · expected profit{" "}
+          {t.commerceOpportunity.expectedProfitUsd} (EXPECTED)
+          <details className="mt-1 text-xs text-[#6f6a60]">
+            <summary className="cursor-pointer text-[#8a847a]">Technical details</summary>
+            <p className="mt-1 font-mono">
+              ASIN {t.commerceOpportunity.asin} · SKU {t.commerceOpportunity.amazonSellerSku}
+              {"cjPid" in t.commerceOpportunity && t.commerceOpportunity.cjPid
+                ? ` · CJ ${String(t.commerceOpportunity.cjPid)}`
+                : ""}
+            </p>
+          </details>
         </div>
       )}
       <p className="mt-2 text-[10px] text-[#6f6a60]">

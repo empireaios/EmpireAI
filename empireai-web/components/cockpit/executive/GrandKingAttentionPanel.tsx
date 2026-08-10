@@ -49,7 +49,15 @@ export function GrandKingAttentionPanel() {
                     {item.priority.replace(/_/g, " ")}
                   </p>
                   <p className="text-sm font-medium text-[#f0d78c]">{item.title}</p>
-                  <p className="mt-1 text-xs text-[#8a847a]">{item.detail}</p>
+                  <p className="mt-1 text-xs text-[#8a847a]">
+                    {item.detail
+                      .replace(/\bEMP-FD-[A-Z0-9]+\b/g, "internal SKU")
+                      .replace(/\bASIN\s+B0[A-Z0-9]+\b/gi, "Amazon listing")
+                      .replace(/\bCJ\s+\d{10,}\b/gi, "supplier product")
+                      .replace(/\b[A-Z]{2,}_[A-Z0-9_]+\b/g, (m) =>
+                        m.replace(/_/g, " ").toLowerCase(),
+                      )}
+                  </p>
                 </div>
                 {(item.priority === "money_approval" ||
                   item.priority === "commercial_opportunity") && (

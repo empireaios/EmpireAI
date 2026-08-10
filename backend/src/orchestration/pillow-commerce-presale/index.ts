@@ -13,6 +13,10 @@ export {
 } from "./services/presale-cycle-service.js";
 export { reevaluateCommerceOpportunity } from "./services/reevaluate-opportunity-service.js";
 export { getPillowCommercePresaleRepository } from "./repository/sqlite-pillow-commerce-presale-repository.js";
+export {
+  SMART_VIABLE_LISTING_KPI,
+  buildSmartViableKpiSnapshot,
+} from "./smart-viable-kpi.js";
 export { pillowCommercePresaleTools } from "./tools/pillow-commerce-presale-tools.js";
 export { registerPillowCommercePresaleRoutes } from "./routes/pillow-commerce-presale-routes.js";
 export {

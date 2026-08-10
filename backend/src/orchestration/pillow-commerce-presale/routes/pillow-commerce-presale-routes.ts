@@ -13,6 +13,7 @@ import {
   runPillowCommercePresaleCycle,
 } from "../services/presale-cycle-service.js";
 import { reevaluateCommerceOpportunity } from "../services/reevaluate-opportunity-service.js";
+import { buildSmartViableKpiSnapshot } from "../smart-viable-kpi.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -41,7 +42,8 @@ export async function registerPillowCommercePresaleRoutes(
         .object({
           workspaceId: z.string().optional(),
           companyId: z.string().optional(),
-          maxCandidates: z.number().int().positive().max(20).optional(),
+          maxCandidates: z.number().int().positive().max(40).optional(),
+          smartViableBatch: z.boolean().optional(),
           initiatedBy: z.enum(["http", "pillow-tool", "pillow-autonomous"]).optional(),
         })
         .parse(request.body ?? {});
@@ -52,6 +54,7 @@ export async function registerPillowCommercePresaleRoutes(
         companyId: body.companyId ?? GRAND_KING_COMPANY_ID,
         initiatedBy: body.initiatedBy ?? "http",
         maxCandidates: body.maxCandidates,
+        smartViableBatch: body.smartViableBatch,
         approvalGate: deps.getApprovalGate?.() ?? null,
       });
 
@@ -89,7 +92,18 @@ export async function registerPillowCommercePresaleRoutes(
         latestCycle: repo.getLatestCycle(workspaceId),
         latestOpportunity: repo.getLatestOpportunity(workspaceId),
         pendingApproval: repo.getPendingApprovalOpportunity(workspaceId),
+        smartViableKpi: buildSmartViableKpiSnapshot(workspaceId),
       });
+    },
+  );
+
+  app.get(
+    "/pillow-commerce-presale/smart-viable-kpi",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      const workspaceId = user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send(buildSmartViableKpiSnapshot(workspaceId));
     },
   );
 

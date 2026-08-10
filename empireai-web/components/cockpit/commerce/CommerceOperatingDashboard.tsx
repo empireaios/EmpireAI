@@ -12,14 +12,15 @@ import { useExecutiveHomeOptional } from "@/lib/cockpit/hooks/useExecutiveHome";
 
 /** Compact commerce strip for Executive Home — prefers canonicalTruth when available. */
 export function CommerceOperatingStrip() {
-  const { view, loading, live } = useCommerceOperatingModel();
   const home = useExecutiveHomeOptional();
   const truth = home?.data?.canonicalTruth;
+  // When Executive Home truth is present, skip the slow commerce-operating-model poll.
+  const { view, loading, live } = useCommerceOperatingModel({ enabled: !truth });
 
   if (loading && !view && !truth) {
     return (
       <section className="rounded-xl border border-gold/15 px-4 py-3 text-sm text-[#8a847a]">
-        Loading commerce truth…
+        Commerce detail loading in background…
       </section>
     );
   }

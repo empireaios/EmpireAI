@@ -107,8 +107,9 @@ export function ExecutiveHomeChatWorkspace() {
     <section
       id="executive-pillow-workspace"
       data-testid="executive-pillow-workspace"
-      className="flex h-[min(88vh,calc(100dvh-7rem))] min-h-[75vh] w-full flex-col overflow-hidden rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
+      className="flex min-h-[70vh] w-full flex-col rounded-xl border border-gold/20 bg-[#0a0a0a]/98 shadow-2xl"
       aria-label="Executive Chat workspace"
+      data-scroll-policy="page-primary"
     >
       <header className="shrink-0 border-b border-gold/10 px-5 py-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
@@ -138,7 +139,7 @@ export function ExecutiveHomeChatWorkspace() {
       {executiveSnapshot && (
         <div
           data-testid="pillow-context-strip"
-          className="max-h-[12vh] shrink-0 space-y-2 overflow-y-auto border-b border-gold/10 px-5 py-2"
+          className="max-h-[10vh] shrink-0 space-y-2 overflow-y-auto overscroll-y-contain border-b border-gold/10 px-5 py-2"
         >
           <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           <PillowProactiveGuidance
@@ -157,7 +158,7 @@ export function ExecutiveHomeChatWorkspace() {
       <div
         ref={conversationRef}
         data-testid="pillow-message-history"
-        className="min-h-[50vh] flex-[1_1_auto] overflow-y-auto px-5 py-4"
+        className="min-h-[48vh] max-h-[62vh] flex-[1_1_auto] overflow-y-auto overscroll-y-auto px-5 py-4"
       >
         {!executiveReady && (
           <p className="mb-3 rounded border border-gold/20 bg-gold/5 px-2 py-1.5 text-xs text-[#f0d78c]">

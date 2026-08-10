@@ -18,6 +18,10 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   if (resource === "health" || resource === "status") {
     return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
   }
+  // Secondary awareness polls — fail fast so Executive Home stays interactive.
+  if (resource === "founder-shell" || resource === "commerce-operating-model") {
+    return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
+  }
   if (resource === "session") {
     return PILLOW_SESSION_UPSTREAM_TIMEOUT_MS;
   }

@@ -162,6 +162,92 @@ export class SqlitePillowCommercePresaleRepository {
   updateOpportunity(opportunity: QualifiedOpportunity): void {
     this.saveOpportunity(opportunity);
   }
+
+  getFunnelCounts(workspaceId: string): {
+    mappings: number;
+    approvalReady: number;
+    awaitingApproval: number;
+    approvedPendingPublish: number;
+    published: number;
+    evaluatedFromCycles: number;
+    rejectedFromCycles: number;
+  } {
+    const db = getDatabase();
+    const mappings = (
+      db
+        .prepare(
+          `SELECT COUNT(*) AS n FROM pillow_commerce_amazon_cj_maps WHERE workspace_id = @workspaceId`,
+        )
+        .get({ workspaceId }) as { n: number }
+    ).n;
+    const byDisposition = (disposition: string) =>
+      (
+        db
+          .prepare(
+            `SELECT COUNT(*) AS n FROM pillow_commerce_presale_opportunities
+             WHERE workspace_id = @workspaceId AND disposition = @disposition`,
+          )
+          .get({ workspaceId, disposition }) as { n: number }
+      ).n;
+
+    const cycleRows = db
+      .prepare(
+        `SELECT record_json FROM pillow_commerce_presale_cycles
+         WHERE workspace_id = @workspaceId ORDER BY created_at DESC LIMIT 25`,
+      )
+      .all({ workspaceId }) as Array<{ record_json: string }>;
+
+    let evaluatedFromCycles = 0;
+    let rejectedFromCycles = 0;
+    for (const row of cycleRows) {
+      try {
+        const cycle = JSON.parse(row.record_json) as PresaleCycleResult;
+        evaluatedFromCycles += Number(cycle.candidatesRetrieved ?? 0);
+        rejectedFromCycles += Array.isArray(cycle.rejections) ? cycle.rejections.length : 0;
+      } catch {
+        /* ignore corrupt rows */
+      }
+    }
+
+    return {
+      mappings,
+      approvalReady: byDisposition("APPROVAL_READY"),
+      awaitingApproval: byDisposition("AWAITING_APPROVAL"),
+      approvedPendingPublish: byDisposition("APPROVED_PENDING_PUBLISH"),
+      published: byDisposition("PUBLISHED"),
+      evaluatedFromCycles,
+      rejectedFromCycles,
+    };
+  }
+
+  aggregateRejectionReasons(
+    workspaceId: string,
+    limitCycles = 25,
+  ): Array<{ reasonCode: string; count: number }> {
+    const db = getDatabase();
+    const cycleRows = db
+      .prepare(
+        `SELECT record_json FROM pillow_commerce_presale_cycles
+         WHERE workspace_id = @workspaceId ORDER BY created_at DESC LIMIT @limitCycles`,
+      )
+      .all({ workspaceId, limitCycles }) as Array<{ record_json: string }>;
+    const counts = new Map<string, number>();
+    for (const row of cycleRows) {
+      try {
+        const cycle = JSON.parse(row.record_json) as PresaleCycleResult;
+        for (const rejection of cycle.rejections ?? []) {
+          const code = String(rejection.reasonCode ?? "UNKNOWN");
+          counts.set(code, (counts.get(code) ?? 0) + 1);
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+    return [...counts.entries()]
+      .map(([reasonCode, count]) => ({ reasonCode, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 12);
+  }
 }
 
 let repoSingleton: SqlitePillowCommercePresaleRepository | null = null;

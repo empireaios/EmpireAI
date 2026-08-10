@@ -141,15 +141,20 @@ export type PresaleCycleResult = {
   candidatesRetrieved: number;
   rejections: CandidateRejection[];
   qualifiedOpportunity: QualifiedOpportunity | null;
+  /** Additional SMART viable finds in batch mode (no extra Grand King approvals). */
+  smartViableBatchCount?: number;
+  smartViableAsins?: string[];
   outcome:
     | "APPROVAL_SURFACED"
     | "NO_QUALIFIED_OPPORTUNITY"
     | "BLOCKED_INTEGRATION"
-    | "ALREADY_PENDING_APPROVAL";
+    | "ALREADY_PENDING_APPROVAL"
+    | "SMART_VIABLE_BATCH_COMPLETE";
   blockers: string[];
   publicationAttempted: false;
   supplierSpendAttempted: false;
   actorWasCursor: false;
+  kpiTarget?: number;
 };
 
 export function formatMoneyEvidence(m: MoneyEvidence): string {
