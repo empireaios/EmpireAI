@@ -159,6 +159,27 @@ export class SqlitePillowCommercePresaleRepository {
     return row ? (JSON.parse(row.record_json) as AmazonCjProductMap) : null;
   }
 
+  hasCjPid(workspaceId: string, cjPid: string): boolean {
+    const db = getDatabase();
+    const row = db
+      .prepare(
+        `SELECT 1 AS n FROM pillow_commerce_amazon_cj_maps
+         WHERE workspace_id = @workspaceId AND cj_pid = @cjPid LIMIT 1`,
+      )
+      .get({ workspaceId, cjPid }) as { n: number } | undefined;
+    return Boolean(row);
+  }
+
+  /** Resume CJ catalogue pagination after the last completed discovery page. */
+  getNextDiscoveryPage(workspaceId: string): number {
+    const latest = this.getLatestCycle(workspaceId);
+    const next = Number(latest?.nextDiscoveryPageNum ?? 0);
+    if (Number.isFinite(next) && next >= 1) return Math.floor(next);
+    const current = Number(latest?.discoveryPageNum ?? 0);
+    if (Number.isFinite(current) && current >= 1) return Math.floor(current) + 1;
+    return 1;
+  }
+
   updateOpportunity(opportunity: QualifiedOpportunity): void {
     this.saveOpportunity(opportunity);
   }

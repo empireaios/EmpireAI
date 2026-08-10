@@ -1,0 +1,76 @@
+{
+  "mission": "GRAND_KING_PRODUCTION_ACCEPTANCE_1000_SMART_LISTING_003",
+  "recordedAt": "2026-08-10T04:56:00.000Z",
+  "gateA": {
+    "rootCause": "founder-shell and commerce-operating-model hung 200-300s with stacked 30s polls; secondary awareness blocked usable load",
+    "repairs": [
+      "fetchWithBudget 12s",
+      "poll 60s + inFlight",
+      "skip commerce-model when canonicalTruth present",
+      "page-primary scroll; remove 88vh prison",
+      "sidebar z-50 pointer-events-auto",
+      "executive-language NL default + technical disclosure",
+      "fix CommerceOpportunityLike null fields for Vercel tsc"
+    ],
+    "beforeLoad": {
+      "founderShellMs": [200000, 300000],
+      "commerceOperatingModelMs": [200000, 300000],
+      "note": "from prior production Performance entries"
+    },
+    "afterBackendObservability": {
+      "founderShellMs": [175, 176],
+      "commerceOperatingModelMs": [176, 1002],
+      "brainDispatchMs": [16820, 34321],
+      "source": "https://empireai-production.up.railway.app/health recent[]"
+    },
+    "vercel": {
+      "failedDeployCommit": "1664bd7228ba3a75533a8c55340a6738691cfdb8",
+      "failedDeployUrl": "https://empireai-pdh5zymuv-empireai-os.vercel.app",
+      "failure": "TypeScript: dossierSummary null not assignable in CommerceDecisionWorkspace",
+      "servingAtRecordTime": "4b161462a3ca84a7e7245edbbc1b790bea7c2339",
+      "servingDeploymentId": "dpl_BaQakGcdFx8g7VvfPF7uFK46z3J6"
+    },
+    "browserJourney": "pending_after_successful_vercel_deploy"
+  },
+  "gateB": {
+    "kpiTarget": 1000,
+    "supplier": "CJdropshipping",
+    "marketplace": "Amazon US",
+    "snapshotAt": "2026-08-10T04:05:54.402Z",
+    "rawCandidatesDiscovered": 28,
+    "candidatesEvaluated": 40,
+    "rejected": 32,
+    "smartViable": 4,
+    "listingReady": 4,
+    "awaitingApproval": 0,
+    "published": 0,
+    "buyable": 0,
+    "orders": 0,
+    "realisedRevenueUsd": 0,
+    "realisedProfitUsd": 0,
+    "distanceToTarget": 996,
+    "topRejectionReasons": [
+      { "reasonCode": "QUALIFICATION_REQUIRED", "count": 23 },
+      { "reasonCode": "PROOF_001_BRAND_FAILURE_CLASS", "count": 5 },
+      { "reasonCode": "NO_AMAZON_ASIN", "count": 2 },
+      { "reasonCode": "FREIGHT_UNAVAILABLE", "count": 2 }
+    ],
+    "latestCycle": {
+      "outcome": "SMART_VIABLE_BATCH_COMPLETE",
+      "candidatesRetrieved": 24,
+      "rejected": 22,
+      "smartViableBatchCount": 2,
+      "smartViableAsins": ["B0GVNPFW1L", "B0GWGX74LP"],
+      "completedAt": "2026-08-10T03:49:47.505Z"
+    },
+    "externalConstraints": [
+      "Synchronous run-cycle HTTP often 502 via Railway edge while batch continues in-process — mitigated by async 202",
+      "Amazon qualification/restriction preflight rejects majority of CJ page (QUALIFICATION_REQUIRED)",
+      "No unauthorized publish/spend"
+    ],
+    "autonomousContinuation": "scheduler every 4h + boot tick; smartViableBatch true; page checkpoint/resume",
+    "cursorRequiredForRoutineProgression": false,
+    "firstRealDollar": "NOT_YET_REALIZED",
+    "playgroundPrincipleRecorded": "docs/architecture/SUPPLIER_MARKETPLACE_UNIVERSE_PRINCIPLE.md"
+  }
+}

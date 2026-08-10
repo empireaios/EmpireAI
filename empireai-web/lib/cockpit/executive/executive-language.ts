@@ -12,13 +12,13 @@ export type CommerceOpportunityLike = {
   expectedProfitUsd: string;
   approvalStatus: string;
   disposition: string;
-  summary?: string;
-  dossierSummary?: string;
-  brandRoute?: string;
-  pillowRecommendation?: string;
-  deliveryPromise?: string;
+  summary?: string | null;
+  dossierSummary?: string | null;
+  brandRoute?: string | null;
+  pillowRecommendation?: string | null;
+  deliveryPromise?: string | null;
   competingOffers?: string | number | null;
-  supplierCost?: string;
+  supplierCost?: string | null;
 };
 
 export type ExecutiveLanguageCard = {

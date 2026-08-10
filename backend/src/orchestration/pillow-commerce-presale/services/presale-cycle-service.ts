@@ -55,11 +55,16 @@ export type RunPresaleCycleInput = {
    * Never publishes or spends.
    */
   smartViableBatch?: boolean;
+  /** Optional CJ catalogue page override (1-based). Defaults to checkpoint/resume. */
+  pageNum?: number;
   approvalGate?: ApprovalGateEngine | null;
   env?: NodeJS.ProcessEnv;
   /** Injected fetch for tests. */
   fetchImpl?: typeof fetch;
 };
+
+/** Prevent overlapping long SMART batches from stacking on Railway. */
+const discoveryInFlightByWorkspace = new Set<string>();
 
 function sumStock(stockPayload: unknown): number {
   const rows = Array.isArray(stockPayload)
@@ -176,6 +181,44 @@ function buildRecommendation(input: {
 export async function runPillowCommercePresaleCycle(
   input: RunPresaleCycleInput,
 ): Promise<PresaleCycleResult> {
+  const workspaceId = input.workspaceId;
+  if (discoveryInFlightByWorkspace.has(workspaceId)) {
+    const repo = getPillowCommercePresaleRepository();
+    const page =
+      input.pageNum ??
+      (input.smartViableBatch ? repo.getNextDiscoveryPage(workspaceId) : 1);
+    return {
+      cycleId: randomUUID(),
+      workspaceId,
+      companyId: input.companyId,
+      initiatedBy: input.initiatedBy,
+      standingObjective: STANDING_COMMERCE_OBJECTIVE,
+      startedAt: new Date().toISOString(),
+      completedAt: new Date().toISOString(),
+      candidatesRetrieved: 0,
+      rejections: [],
+      qualifiedOpportunity: repo.getPendingApprovalOpportunity(workspaceId),
+      discoveryPageNum: page,
+      nextDiscoveryPageNum: page,
+      outcome: "SMART_VIABLE_BATCH_ACCEPTED",
+      blockers: ["Discovery batch already in flight — not starting a duplicate cycle"],
+      publicationAttempted: false,
+      supplierSpendAttempted: false,
+      actorWasCursor: false,
+      kpiTarget: 1000,
+    };
+  }
+  discoveryInFlightByWorkspace.add(workspaceId);
+  try {
+    return await runPillowCommercePresaleCycleImpl(input);
+  } finally {
+    discoveryInFlightByWorkspace.delete(workspaceId);
+  }
+}
+
+async function runPillowCommercePresaleCycleImpl(
+  input: RunPresaleCycleInput,
+): Promise<PresaleCycleResult> {
   const env = input.env ?? process.env;
   const repo = getPillowCommercePresaleRepository();
   const cycleId = randomUUID();
@@ -188,6 +231,13 @@ export async function runPillowCommercePresaleCycle(
   const blockers: string[] = [];
   const rejections: CandidateRejection[] = [];
   const smartViableAsins: string[] = [];
+  const discoveryPageNum = Math.max(
+    1,
+    Math.floor(
+      input.pageNum ??
+        (smartViableBatch ? repo.getNextDiscoveryPage(input.workspaceId) : 1),
+    ),
+  );
 
   const pending = repo.getPendingApprovalOpportunity(input.workspaceId);
   if (pending && !smartViableBatch) {
@@ -267,7 +317,7 @@ export async function runPillowCommercePresaleCycle(
   const cj = createCjApiClient(cjConfig, input.fetchImpl ?? fetch);
   let products: CjProduct[] = [];
   try {
-    const list = await cj.listProducts({ pageNum: 1, pageSize: maxCandidates });
+    const list = await cj.listProducts({ pageNum: discoveryPageNum, pageSize: maxCandidates });
     products = list.data?.list ?? [];
   } catch (error) {
     blockers.push(
@@ -298,6 +348,17 @@ export async function runPillowCommercePresaleCycle(
 
   for (const product of products.slice(0, maxCandidates)) {
     const productName = product.productNameEn || product.productName || product.pid;
+
+    if (repo.hasCjPid(input.workspaceId, product.pid)) {
+      rejections.push({
+        cjPid: product.pid,
+        productName,
+        reasonCode: "ALREADY_MAPPED",
+        reason: "CJ product already mapped in portfolio — skipping duplicate evaluation",
+        evidence: { dedupe: true },
+      });
+      continue;
+    }
 
     if (isProof001FailureClass({ productName, asin: null })) {
       const lesson =
@@ -797,6 +858,9 @@ export async function runPillowCommercePresaleCycle(
     }
   }
 
+  const nextDiscoveryPageNum =
+    products.length < maxCandidates ? 1 : discoveryPageNum + 1;
+
   const cycle: PresaleCycleResult = {
     cycleId,
     workspaceId: input.workspaceId,
@@ -810,6 +874,8 @@ export async function runPillowCommercePresaleCycle(
     qualifiedOpportunity: qualified ?? pending ?? null,
     smartViableBatchCount: smartViableAsins.length,
     smartViableAsins,
+    discoveryPageNum,
+    nextDiscoveryPageNum,
     outcome: smartViableBatch
       ? smartViableAsins.length > 0 || qualified || pending
         ? "SMART_VIABLE_BATCH_COMPLETE"
@@ -835,6 +901,8 @@ export async function runPillowCommercePresaleCycle(
       outcome: cycle.outcome,
       retrieved: cycle.candidatesRetrieved,
       rejected: rejections.length,
+      discoveryPageNum,
+      nextDiscoveryPageNum,
       approvalId: qualified?.approvalId ?? null,
     },
     "Pillow commerce pre-sale cycle completed",

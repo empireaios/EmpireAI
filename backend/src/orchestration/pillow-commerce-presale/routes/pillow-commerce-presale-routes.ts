@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 
@@ -44,17 +46,86 @@ export async function registerPillowCommercePresaleRoutes(
           companyId: z.string().optional(),
           maxCandidates: z.number().int().positive().max(40).optional(),
           smartViableBatch: z.boolean().optional(),
+          pageNum: z.number().int().positive().max(10_000).optional(),
+          /** Default true for SMART batches — avoids Railway/edge HTTP timeouts. */
+          async: z.boolean().optional(),
           initiatedBy: z.enum(["http", "pillow-tool", "pillow-autonomous"]).optional(),
         })
         .parse(request.body ?? {});
 
       const workspaceId = body.workspaceId ?? user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const companyId = body.companyId ?? GRAND_KING_COMPANY_ID;
+      const smartViableBatch = body.smartViableBatch;
+      const runAsync = body.async ?? Boolean(smartViableBatch);
+
+      if (runAsync) {
+        const acceptedCycleId = randomUUID();
+        void runPillowCommercePresaleCycle({
+          workspaceId,
+          companyId,
+          initiatedBy: body.initiatedBy ?? "http",
+          maxCandidates: body.maxCandidates,
+          smartViableBatch,
+          pageNum: body.pageNum,
+          approvalGate: deps.getApprovalGate?.() ?? null,
+        })
+          .then((cycle) => {
+            deps.auditLogger.write({
+              action: "tool.execute",
+              actor: user.email,
+              workspaceId,
+              companyId: cycle.companyId,
+              correlationId: cycle.cycleId,
+              metadata: {
+                tool: "pillow_commerce.run_presale_cycle",
+                outcome: cycle.outcome,
+                candidatesRetrieved: cycle.candidatesRetrieved,
+                rejected: cycle.rejections.length,
+                discoveryPageNum: cycle.discoveryPageNum ?? null,
+                approvalId: cycle.qualifiedOpportunity?.approvalId ?? null,
+                publicationAttempted: false,
+                supplierSpendAttempted: false,
+                asyncAcceptedCycleId: acceptedCycleId,
+              },
+            });
+          })
+          .catch((error) => {
+            deps.auditLogger.write({
+              action: "tool.execute",
+              actor: user.email,
+              workspaceId,
+              companyId,
+              correlationId: acceptedCycleId,
+              metadata: {
+                tool: "pillow_commerce.run_presale_cycle",
+                outcome: "ASYNC_FAILED",
+                error: error instanceof Error ? error.message : String(error),
+                publicationAttempted: false,
+                supplierSpendAttempted: false,
+              },
+            });
+          });
+
+        return reply.code(202).send({
+          accepted: true,
+          async: true,
+          cycleId: acceptedCycleId,
+          outcome: "SMART_VIABLE_BATCH_ACCEPTED",
+          statusPath: "/pillow-commerce-presale/latest",
+          kpiPath: "/pillow-commerce-presale/smart-viable-kpi",
+          publicationAttempted: false,
+          supplierSpendAttempted: false,
+          note: "Batch accepted for background evaluation. Poll latest/KPI for progress. No publish/spend.",
+        });
+      }
+
       const cycle = await runPillowCommercePresaleCycle({
         workspaceId,
-        companyId: body.companyId ?? GRAND_KING_COMPANY_ID,
+        companyId,
         initiatedBy: body.initiatedBy ?? "http",
         maxCandidates: body.maxCandidates,
-        smartViableBatch: body.smartViableBatch,
+        smartViableBatch,
+        pageNum: body.pageNum,
         approvalGate: deps.getApprovalGate?.() ?? null,
       });
 

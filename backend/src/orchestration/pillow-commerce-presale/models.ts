@@ -144,12 +144,17 @@ export type PresaleCycleResult = {
   /** Additional SMART viable finds in batch mode (no extra Grand King approvals). */
   smartViableBatchCount?: number;
   smartViableAsins?: string[];
+  /** CJ list page used for this cycle (1-based). */
+  discoveryPageNum?: number;
+  /** Next CJ list page for checkpoint/resume (1-based). */
+  nextDiscoveryPageNum?: number;
   outcome:
     | "APPROVAL_SURFACED"
     | "NO_QUALIFIED_OPPORTUNITY"
     | "BLOCKED_INTEGRATION"
     | "ALREADY_PENDING_APPROVAL"
-    | "SMART_VIABLE_BATCH_COMPLETE";
+    | "SMART_VIABLE_BATCH_COMPLETE"
+    | "SMART_VIABLE_BATCH_ACCEPTED";
   blockers: string[];
   publicationAttempted: false;
   supplierSpendAttempted: false;
