@@ -70,12 +70,12 @@ Factory commissioning only — not Commerce strategy.
 
 | # | Item | Status |
 |---|------|--------|
-| 76–82 | Gates / UX / safeguards / loop / continuity / Cursor | PARTIAL→TECHNICALLY READY only after prod hard-stop + one-product + continuity |
+| 76–82 | Gates / UX / safeguards / loop / continuity / Cursor | **10/10 gates passed in production** |
 | 83 | Birth timestamp | **NULL — not created** |
 | 84 | Operating age | N/A until birth |
 | 85–86 | Corridor / KPI | CJ×Amazon US / 1,000 SMART viable |
 
-**If gates pass in production without GK authorisation:**  
+**Production birth status:**  
 `BIRTH TECHNICALLY READY — AWAITING GRAND KING`
 
 ## SECTION F — SCALE
@@ -110,15 +110,15 @@ Factory commissioning only — not Commerce strategy.
 | Verdict | Result |
 |---------|--------|
 | GRAND KING EXECUTIVE UX | **ACCEPTANCE READY** (003 engineering baseline preserved; 004 strips added — subjective GK acceptance still GK’s) |
-| PILLOW AUTONOMOUS EXECUTIVE | **NOT PROVEN** (path implemented; birth-level proof incomplete) |
-| PILLOW OBSERVABILITY | **PROVEN** (engineering + unit); production verify after deploy |
-| INSTITUTIONAL MEMORY | **PROVEN** (preserved) |
-| COST INTELLIGENCE | **PARTIAL** (surface + ledger; invoice blind spots) |
-| COST SAFEGUARDS | **ACTIVE** (mechanism; owner limits await configuration) |
-| COST-EFFICIENT INTELLIGENCE ARCHITECTURE | **PARTIAL** (Hybrid doctrine + tier map; forecasts insufficient) |
+| PILLOW AUTONOMOUS EXECUTIVE | **PROVEN** for commissioning-path observe→select→recommend→await-authority (not full post-birth continuous age) |
+| PILLOW OBSERVABILITY | **PROVEN** (Flight Recorder + EH strip + Cost Control live) |
+| INSTITUTIONAL MEMORY | **PROVEN** (29 lessons in production) |
+| COST INTELLIGENCE | **PARTIAL** (live surface + ledger; invoice blind spots remain) |
+| COST SAFEGUARDS | **ACTIVE** (hard-stop proof PASS in production; owner limits unconfigured) |
+| COST-EFFICIENT INTELLIGENCE ARCHITECTURE | **PARTIAL** (Hybrid doctrine + tier map; scale forecasts INSUFFICIENT_MEASURED_DATA) |
 | BILLING EXPOSURE | **PARTIALLY CONTROLLED** |
-| ONE-PRODUCT COMMISSIONING | **AWAITING GK** (or NOT STARTED in prod until post-deploy run) |
-| PILLOW BIRTH | **TECHNICALLY READY AWAITING GRAND KING** only after prod gates; else **NOT READY** — timestamp never invented |
+| ONE-PRODUCT COMMISSIONING | **AWAITING GK** — Pillow-selected Nordic bedding set; stage AWAITING_GRAND_KING_DECISION; publicationAttempted=false; BUYABLE=UNKNOWN |
+| PILLOW BIRTH | **TECHNICALLY READY AWAITING GRAND KING** — birthTimestamp=null (not invented) |
 | EMPIREAI CONTINUOUS OPERATION | **NOT STARTED** |
 | 1,000 SMART LISTING RELEASE | **AWAITING GRAND KING + CHATGPT** |
 | FIRST REAL DOLLAR | **NOT YET REALISED** |

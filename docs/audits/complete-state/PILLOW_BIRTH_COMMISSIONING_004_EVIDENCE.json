@@ -1,40 +1,69 @@
 {
   "mission": "004-reconciled-pillow-birth-commissioning",
-  "at": "2026-08-10T11:20:30Z",
+  "at": "2026-08-10T11:32:00Z",
   "baselinePreserved": "69f5bdfe",
-  "localHead": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
-  "originMain": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
+  "localHead": "2beda845",
+  "originMain": "2beda845",
   "aheadBehind": "0/0",
   "vercel": {
     "gitCommitSha": "f46f505e0a6a013a4404e2490ed7d8a7ecf57054",
+    "note": "Initial commissioning deploy stamp; evidence commit may lag briefly",
     "deploymentId": "dpl_9aaX4YUBPdfAtMMozasffPhM5Auk",
     "source": "https://empire-ai.co/api/eos-bundle-stamp"
   },
   "railwayHealthPillowCommissioning": {
     "ok": true,
     "module": "pillow-commissioning",
-    "birthStatus": "COMMISSIONING",
+    "birthStatus": "TECHNICALLY_READY_AWAITING_GRAND_KING",
     "birthTimestamp": null,
-    "technicallyReady": false,
+    "technicallyReady": true,
     "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
+  },
+  "productionProofs": {
+    "costControlCentreVisible": true,
+    "hardStopProof": {
+      "ok": true,
+      "detail": "HARD STOP safely blocked further paid autonomous activity under temporary micro-limit",
+      "actualLedgerUsdAfter": 0.01
+    },
+    "oneProductCommissioning": {
+      "ok": true,
+      "selectionAuthority": "pillow",
+      "cursorSelected": false,
+      "productName": "LOKLNEYK Nordic ins Style Striped Pure Cotton Bedding Set Four-piece Mix and Match Sheets and Quilt Covers Student Dormitory 3-piece Wholesale((220 * 240cm),Cecilia-YellowCafe)",
+      "stage": "AWAITING_GRAND_KING_DECISION",
+      "publicationAttempted": false,
+      "buyable": "UNKNOWN",
+      "expectedProfit": "$90.24"
+    },
+    "birthGates": {
+      "passed": 10,
+      "total": 10,
+      "status": "TECHNICALLY_READY_AWAITING_GRAND_KING",
+      "birthTimestamp": null
+    },
+    "smartViablePipeline": {
+      "evaluated": 32,
+      "smartViable": 7,
+      "note": "Pipeline evidence only — not full 1000 portfolio / first dollar"
+    }
   },
   "unitTests": {
     "file": "backend/src/validation/tests/pillow-commissioning-004.test.ts",
     "pass": 7,
     "fail": 0
   },
-  "typecheck": "backend tsc --noEmit clean after ALREADY_MAPPED + FlightEventInput fixes",
   "governance": {
     "birthTimestampInvented": false,
     "cursorSelectedCommissioningProduct": false,
     "aggressiveThousandReleased": false,
     "publishOrSupplierSpendExecuted": false
   },
-  "founderGatedPending": [
-    "POST /pillow-commissioning/cost-guard/hard-stop-proof",
-    "POST /pillow-commissioning/one-product/run",
-    "Grand King Cost Guard limit configuration",
-    "Grand King birth authorisation (only when technically ready)"
+  "grandKingActionsRequired": [
+    "Configure Cost Guard limits (7 unconfigured)",
+    "Review one-product commissioning recommendation and approve/reject (no publish without authority)",
+    "Authorise Pillow birth only when ready (POST /pillow-commissioning/birth/authorise)",
+    "With ChatGPT: review and release aggressive 1,000 SMART execution"
   ],
   "residueLeftUncommitted": [
     ".tmp-*",
