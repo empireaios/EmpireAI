@@ -73,6 +73,7 @@ import {
   registerPillowCommercePresaleRoutes,
 } from "./orchestration/pillow-commerce-presale/index.js";
 import { registerPillowCommissioningRoutes } from "./orchestration/pillow-commissioning/index.js";
+import { getPillowExecutiveLoopAutomationServer } from "./orchestration/pillow-commissioning/executive-operating-loop/index.js";
 import {
   getPresaleApprovalGate,
   syncPresaleApprovalGateWithPillowHost,
@@ -585,6 +586,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
   getPillowCommercePresaleAutomationServer().start();
+  getPillowExecutiveLoopAutomationServer().start();
 
   // Institutional memory must accumulate from day one (cloud SQLite EKB).
   try {

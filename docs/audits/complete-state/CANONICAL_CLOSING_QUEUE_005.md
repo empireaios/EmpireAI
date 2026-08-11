@@ -1,7 +1,7 @@
 # EmpireAI — Canonical Closing Queue 005
 
 **Directive:** Complete the machine, prove Pillow, then operate.  
-**Updated:** 2026-08-11T08:00:00Z  
+**Updated:** 2026-08-11T17:23:03Z  
 **Machine ledger:** `CANONICAL_CLOSING_QUEUE_005.json`
 
 This is the durable closing ledger for CQ-01 → CQ-30.  
@@ -48,7 +48,8 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 | COMPLETE (preserve) | **CQ-03** Executive Home scroll defect | COMPLETE |
 | NEXT Cursor-safe | After CQ-05 owner gate: **CQ-06** / other Cursor-safe items | CQ-04 dossier LIVE but PARTIAL (durability residual) |
 | Queued Cursor-safe | CQ-06, CQ-07, CQ-08, CQ-10, CQ-11, CQ-15, CQ-29 | QUEUED |
-| Governance STOP | CQ-05, CQ-18, CQ-21, CQ-22, CQ-25 | AWAITING GK / GK+ChatGPT |
+| Governance STOP | CQ-18, CQ-21, CQ-22, CQ-25 | AWAITING GK / GK+ChatGPT |
+| Capability PASS | **CQ-05** Pillow commercial judgment challenge | PASS (APPROVE→HOLD FOR EVIDENCE); GK still owns commercial next step |
 
 ---
 
@@ -60,13 +61,13 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 | CQ-02 | Cost Guard real configuration | BLOCKED | CQ-01 | Cursor after values | NO | Requires approved limits | Persist/API ready | Configure + prove after GK values |
 | CQ-03 | Executive Home scroll defect | **COMPLETE** | — | Cursor | NO | None | Live PASS on `e5dd7f0a` | Preserve |
 | CQ-04 | Pillow one-product decision dossier | **PARTIAL** | — | Cursor expose; Pillow defend | NO (done enough for CQ-05) | No publish/spend | LIVE EH OPDD for Embroidered Floral Tank Vest; +74% premium risk; challenge seeds ready; redeploy durability residual | Optional durability harden; do not block CQ-05 |
-| CQ-05 | GK + ChatGPT challenge gate | AWAITING GK+CHATGPT | CQ-04 | ChatGPT/Pillow/GK | NO | Challenge then GK decide | Interface ready; challenge not executed | ChatGPT challenges Pillow on live dossier |
+| CQ-05 | GK + ChatGPT challenge gate | **PASS** | CQ-04 | ChatGPT/Pillow/GK | NO | Challenge then GK decide | Live Pillow runtime: APPROVE→HOLD FOR EVIDENCE; see CQ05 evidence | GK decides whether to accept HOLD + evidence-only path; no publish/spend/Birth |
 | CQ-06 | Cost Intelligence closure | QUEUED | — | Cursor | YES | No fabricated billing | PARTIAL; invoice blind spots | Close safe gaps; UNKNOWN stays UNKNOWN |
 | CQ-07 | Billing exposure closure | QUEUED | — | Cursor classify | YES | No invent limits | Register exists; incomplete matrix | Full exposure matrix |
 | CQ-08 | Cost-efficient intelligence architecture | QUEUED | — | Cursor | YES | Do not dumb down Pillow | Hybrid doctrine partial measure | Prove cheap→expensive ladder |
 | CQ-09 | One-product cost baseline | QUEUED | CQ-04 | Cursor+ledger | YES | No fabricated unit cost | attributableCostUsd=null | Capture ACTUAL/EST/PROJ/UNKNOWN |
 | CQ-10 | Grand King work ledger | QUEUED | — | Cursor | YES | No raw CoT | FR + since-last-visit partial | Answer “what has Pillow done?” |
-| CQ-11 | Continuous runtime certification | QUEUED | — | Cursor | YES | Technical only; no birth | Automation exists; techReady false live | Prove cloud independence + recovery |
+| CQ-11 | Continuous runtime certification | **ACTIVE** | executive-loop module | Cursor | YES | Technical only; no birth | Loop IMPLEMENTED; sandbox A–H PASS; live soak pending deploy | Deploy loop; prove Cursor-free tick + recovery |
 | CQ-12 | Institutional memory continuity | QUEUED | — | Cursor+Pillow | YES | Prove use, not storage | Lessons claimed; durability risk | Prove retrieval across restart |
 | CQ-13 | One-product E2E visual proof | QUEUED | CQ-04, CQ-05 | Cursor surface | NO | No fabricated stages | Stops at GK decision | Mark only genuine stages |
 | CQ-14 | 1,000 capacity + cost simulation | BLOCKED | CQ-09, CQ-15 | Cursor simulate | NO | Cursor ≠ selector | INSUFFICIENT_MEASURED_DATA | After baseline + bottleneck clarity |
@@ -114,7 +115,25 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 
 ## Blocked by Grand King + ChatGPT
 
-- CQ-05 challenge, CQ-18 birth review, CQ-21 scale review, CQ-22 1,000 release, CQ-25 playground expansion
+- CQ-18 birth review, CQ-21 scale review, CQ-22 1,000 release, CQ-25 playground expansion
+- CQ-05 challenge capability test: **PASS** (Pillow revised to HOLD FOR EVIDENCE); commercial disposition still requires Grand King decision
+
+## UX acceptance failures still open (do not mark EmpireAI complete)
+
+- Left-nav destinations reported non-operable / dead ends
+- Visible PARTIAL / incomplete Centres
+- Technical shell clutter on Executive Home
+- Pillow chat workspace quality gaps
+- Incomplete product visualisation (catalog image often unavailable)
+
+Primary objective remains Pillow executive capability completion + soak — UX stays open in parallel.
+
+## Pillow capability completion (this mission)
+
+- Module: `backend/src/orchestration/pillow-commissioning/executive-operating-loop/`
+- Sandbox capability tests A–H: **8/8 PASS**
+- Birth timestamp: **NULL** · TECHNICALLY READY FOR GK AUTHORISATION: **NO**
+- Evidence: `PILLOW_CAPABILITY_COMPLETION_REPORT.md`
 
 ## Cursor may execute next (safe)
 

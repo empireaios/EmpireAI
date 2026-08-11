@@ -89,3 +89,11 @@ export {
   type OneProductDecisionDossier,
 } from "./one-product-decision-dossier.js";
 export { registerPillowCommissioningRoutes } from "./routes/pillow-commissioning-routes.js";
+export {
+  runExecutiveOperatingCycle,
+  runPillowCapabilityTests,
+  evaluateExecutiveBirthReadiness,
+  getPillowExecutiveLoopAutomationServer,
+  getPillowExecutiveLoopSchedulerDefinitions,
+  runPillowExecutiveLoopAutomationTick,
+} from "./executive-operating-loop/index.js";

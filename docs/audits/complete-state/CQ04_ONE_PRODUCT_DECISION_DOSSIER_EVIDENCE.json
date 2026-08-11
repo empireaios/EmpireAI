@@ -2,7 +2,7 @@
   "artifact": "CQ04_ONE_PRODUCT_DECISION_DOSSIER",
   "updatedAt": "2026-08-11T08:00:00.000Z",
   "cq04Verdict": "PARTIAL",
-  "cq05Status": "AWAITING_GRAND_KING_AND_CHATGPT",
+  "cq05Status": "PASS",
   "subjectiveGrandKingAcceptance": false,
   "identityReconciliation": {
     "nordicBedding": "HISTORICAL_MISSION_004_ONLY",
@@ -96,5 +96,14 @@
     "aheadBehind": "0 0"
   },
   "nextGrandKingAction": "Open Executive Home CQ-04 dossier for the Embroidered Floral Tank Vest; review +74% price premium and UNKNOWN demand; decide whether to engage ChatGPT for CQ-05 challenge. Do not treat Cursor report as acceptance. Do not publish/spend.",
-  "nextChatGPTReviewPoint": "CQ-05 — challenge Pillow on price premium (+74%), demand UNKNOWN, delivery supplierCanMeet=UNKNOWN, and why not the denim jacket runner-up, using the live dossier only."
+  "nextChatGPTReviewPoint": "CQ-05 — challenge Pillow on price premium (+74%), demand UNKNOWN, delivery supplierCanMeet=UNKNOWN, and why not the denim jacket runner-up, using the live dossier only.",
+  "cq05": {
+    "verdict": "PASS",
+    "postChallengeDisposition": "HOLD FOR EVIDENCE",
+    "originalCq04RecommendationPreserved": "APPROVE",
+    "changedMind": true,
+    "evidence": "docs/audits/complete-state/CQ05_PILLOW_COMMERCIAL_JUDGMENT_CHALLENGE_EVIDENCE.json",
+    "report": "docs/audits/complete-state/CQ05_PILLOW_COMMERCIAL_JUDGMENT_CHALLENGE.md",
+    "completedAt": "2026-08-11T16:48:03.866Z"
+  }
 }

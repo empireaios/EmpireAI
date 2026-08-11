@@ -125,6 +125,8 @@ import { commerceIntelligenceStudioTools } from "../runtime/commerce-intelligenc
 import { marketplacePublishingTools } from "../runtime/marketplace-publishing/tools/marketplace-publishing-tools.js";
 import { pillowCommercePresaleTools } from "../orchestration/pillow-commerce-presale/tools/pillow-commerce-presale-tools.js";
 import { getPillowCommercePresaleSchedulerDefinitions } from "../orchestration/pillow-commerce-presale/automation/pillow-commerce-presale-automation.js";
+import { pillowExecutiveOperatingLoopTools } from "../orchestration/pillow-commissioning/executive-operating-loop/tools.js";
+import { getPillowExecutiveLoopSchedulerDefinitions } from "../orchestration/pillow-commissioning/executive-operating-loop/automation.js";
 import { listingIntelligenceTools } from "../runtime/listing-intelligence/tools/listing-intelligence-tools.js";
 import { productMediaTools } from "../runtime/product-media/tools/product-media-tools.js";
 import { commerceExecutionPipelineTools } from "../runtime/commerce-execution-pipeline/tools/commerce-execution-pipeline-tools.js";
@@ -443,6 +445,7 @@ export async function createBrain(options?: {
     ...commerceIntelligenceStudioTools,
     ...marketplacePublishingTools,
     ...pillowCommercePresaleTools,
+    ...pillowExecutiveOperatingLoopTools,
     ...listingIntelligenceTools,
     ...productMediaTools,
     ...commerceExecutionPipelineTools,
@@ -593,6 +596,9 @@ export async function createBrain(options?: {
       await scheduler.register(definition);
     }
     for (const definition of getPillowCommercePresaleSchedulerDefinitions()) {
+      await scheduler.register(definition);
+    }
+    for (const definition of getPillowExecutiveLoopSchedulerDefinitions()) {
       await scheduler.register(definition);
     }
     await scheduler.start();

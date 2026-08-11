@@ -11,6 +11,11 @@ import { buildCostGuardStatus } from "./cost-guard.js";
 import { listFlightEvents } from "./flight-recorder.js";
 import { getOneProductCommissioningRecord } from "./one-product-commissioning.js";
 import { recordFlightEvent } from "./flight-recorder.js";
+import {
+  getLatestCapabilityTestRun,
+  getLatestExecutiveCycle,
+  listExecutiveCycles,
+} from "./executive-operating-loop/store.js";
 
 export type BirthStatus =
   | "NOT_READY"
@@ -75,6 +80,24 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
   );
   const hasCommissioning = Boolean(commission && commission.selectionAuthority === "pillow");
   const hasMemory = memories.length > 0;
+  const execCycles = listExecutiveCycles(workspaceId, 10);
+  const latestExec = getLatestExecutiveCycle(workspaceId);
+  const hasLiveExecutiveLoop = execCycles.some((c) => c.mode === "live") && Boolean(latestExec);
+  const hasFullStageLoop = Boolean(
+    latestExec &&
+      ["OBSERVE", "DIAGNOSE", "CRITIQUE", "GENERATE_ALTERNATIVES", "DECIDE", "CONTINUE"].every((s) =>
+        latestExec.stages.some((x) => x.stage === s),
+      ),
+  );
+  const capRun = (getLatestCapabilityTestRun(workspaceId) ??
+    getLatestCapabilityTestRun(`${workspaceId}:capability-sandbox`)) as {
+    summary?: { passed?: number; failed?: number; total?: number };
+  } | null;
+  const capabilityHarnessPass = Boolean(
+    capRun?.summary &&
+      (capRun.summary.total ?? 0) >= 8 &&
+      (capRun.summary.failed ?? 1) === 0,
+  );
 
   return [
     {
@@ -140,6 +163,23 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
       label: "Publish/spend remain governed",
       passed: true,
       evidence: "publicationAutoDisabled + supplierSpendAutoDisabled preserved",
+    },
+    {
+      id: "executive_operating_loop",
+      label: "Continuous executive operating loop has live cycle evidence",
+      passed: hasLiveExecutiveLoop && hasFullStageLoop,
+      evidence:
+        hasLiveExecutiveLoop && hasFullStageLoop
+          ? `liveCycles=${execCycles.filter((c) => c.mode === "live").length}; latest=${latestExec?.cycleId}`
+          : "Run pillow executive operating loop live tick; sandbox alone is insufficient",
+    },
+    {
+      id: "capability_harness_ah",
+      label: "Capability tests A–H sandbox harness PASS",
+      passed: capabilityHarnessPass,
+      evidence: capabilityHarnessPass
+        ? `passed=${capRun?.summary?.passed}/${capRun?.summary?.total}`
+        : "Run POST /pillow-commissioning/capability-tests/run (or tool pillow_executive.run_capability_tests)",
     },
   ];
 }

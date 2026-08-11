@@ -30,6 +30,15 @@ import {
 } from "../one-product-decision-dossier.js";
 import { getPillowCommercePresaleRepository } from "../../pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { buildSinceLastVisitBrief } from "../since-last-visit.js";
+import { evaluateExecutiveBirthReadiness } from "../executive-operating-loop/birth-readiness.js";
+import { runPillowCapabilityTests } from "../executive-operating-loop/capability-harness.js";
+import { runExecutiveOperatingCycle } from "../executive-operating-loop/cycle-runner.js";
+import { buildLiveCommercialSituation } from "../executive-operating-loop/live-situation.js";
+import {
+  getLatestExecutiveCycle,
+  listExecutiveCycles,
+  listOutcomes,
+} from "../executive-operating-loop/store.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -285,6 +294,55 @@ export async function registerPillowCommissioningRoutes(
     async (request, reply) => {
       const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
       return reply.send(getBirthRecord(workspaceId));
+    },
+  );
+
+  app.get(
+    "/pillow-commissioning/executive-loop/latest",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send({
+        latest: getLatestExecutiveCycle(workspaceId),
+        recent: listExecutiveCycles(workspaceId, 5),
+        outcomes: listOutcomes(workspaceId, 20),
+      });
+    },
+  );
+
+  app.post(
+    "/pillow-commissioning/executive-loop/run",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const situation = buildLiveCommercialSituation(workspaceId);
+      const cycle = runExecutiveOperatingCycle({
+        workspaceId,
+        situation,
+        mode: "live",
+        persist: true,
+        recordFlight: true,
+      });
+      return reply.send({ ok: true, cycle });
+    },
+  );
+
+  app.post(
+    "/pillow-commissioning/capability-tests/run",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = `${request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID}:capability-sandbox`;
+      const result = runPillowCapabilityTests(workspaceId);
+      return reply.send({ ok: true, ...result });
+    },
+  );
+
+  app.get(
+    "/pillow-commissioning/birth-readiness",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      return reply.send(evaluateExecutiveBirthReadiness(workspaceId));
     },
   );
 
