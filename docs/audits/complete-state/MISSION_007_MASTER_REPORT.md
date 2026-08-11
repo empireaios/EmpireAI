@@ -31,7 +31,7 @@ Subjective Grand King acceptance is **not** declared.
 19. **Pagination/lazy-loading/virtualisation** — Windowed slice + expand-on-demand (not full virtualizer library).
 20. **DOM bound** — Synthetic 10k history renders ≤40 turns (unit proven).
 21. **Synthetic scale test** — `pillow-chat-scale.test.ts` PASS.
-22. **Production interaction** — PENDING deploy.
+22. **Production interaction** — **BLOCKED.** Live stamp `6e6a746c` (Mission 006). Observed `data-history-scroll=page-flow` (not workspace-windowed). Mission 007 not in Vercel bundle yet.
 
 ## SECTION C — COMMERCE DECISION UX
 
@@ -54,13 +54,24 @@ Subjective Grand King acceptance is **not** declared.
 68. **Reused** — canonical truth, commissioning, SMART KPI, flight recorder, approvals, Mission 006 winning purpose.
 69. **Files changed** — see commit; key paths in `MISSION_007_EVIDENCE.json`.
 70. **Tests** — web truth + presentation + chat scale; backend portfolio/post-launch.
-71. **Production browser tests** — PENDING deploy.
-72. **Performance tests** — synthetic windowing PASS; browser DOM bound PENDING.
-73–78. **Git/deploy stamps** — filled at commit/push time.
-79. **Evidence artifacts** — `CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md`, `MISSION_007_EVIDENCE.json`, this report.
-80. **Unresolved blockers** — CQ-01 Cost Guard limits (owner); Birth; live listing store; full Centre content audit; production journey.
-81. **Grand King actions required** — Configure Cost Guard limits (CQ-01); do not treat this report as acceptance; explore EH after deploy and report Class 1 defects.
-82. **Cursor required for routine operation?** — No.
+71. **Production browser tests** — **BLOCKED** on pre-007 Vercel stamp (see below).
+72. **Performance tests** — synthetic windowing PASS; browser DOM bound not proven on production.
+73. **local HEAD** — `8f3ceea8`
+74. **origin/main** — `8f3ceea8` (implementation `fb630b73`)
+75. **ahead/behind** — 0 / 0 vs origin
+76. **Vercel** — **STALE** `6e6a746c` · `dpl_YJBCwvufVJoazNGLcXyJmP31UcC3` (Mission 006)
+77. **Railway** — pillow-commissioning health OK; Birth null; COMMISSIONING
+78. **production commit relationship** — origin ahead of live Vercel by Mission 007 commits; live bundle ≠ main
+79. **Evidence artifacts** — `CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md`, `MISSION_007_EVIDENCE.json`, this report
+80. **Unresolved blockers** — **Vercel redeploy of main**; CQ-01 Cost Guard limits; Birth; live listing store; full Centre content audit
+81. **Grand King actions required** — Trigger/wait Vercel deploy of `8f3ceea8`; configure Cost Guard (CQ-01); explore EH after deploy; do not treat this as acceptance
+82. **Cursor required for routine operation?** — No
+
+### Exact blocking step (resume here)
+
+**Vercel production has not deployed Mission 007.**  
+`https://empire-ai.co/api/eos-bundle-stamp` → `gitCommitSha=6e6a746c` while `origin/main=8f3ceea8`.  
+Until the live stamp equals `fb630b73` or later, re-run the §33 production browser journey and update verdicts.
 
 ---
 

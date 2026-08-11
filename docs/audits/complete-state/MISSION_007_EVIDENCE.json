@@ -2,7 +2,6 @@
   "missionId": "007",
   "title": "Grand King Cockpit Total Executive UX + Pillow Operating Surface",
   "doctrinePreserved": ["005", "006"],
-  "computedAtLocalNote": "Filled at commit time; production stamps verified post-deploy",
   "artifacts": {
     "executivePresentation": "empireai-web/lib/cockpit/executive/executive-presentation.ts",
     "pillowWorkspaceLayout": "empireai-web/lib/cockpit/executive/pillow-workspace-layout.ts",
@@ -16,7 +15,8 @@
     "settingsUnavailable": "empireai-web/components/cockpit/governance/SettingsUnavailablePanel.tsx",
     "portfolioControlPlane": "backend/src/orchestration/pillow-commissioning/portfolio-control-plane.ts",
     "postLaunchDeviation": "backend/src/orchestration/pillow-commissioning/post-launch-commercial-deviation.ts",
-    "csaChecklist": "docs/audits/complete-state/CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md"
+    "csaChecklist": "docs/audits/complete-state/CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md",
+    "masterReport": "docs/audits/complete-state/MISSION_007_MASTER_REPORT.md"
   },
   "routesAdded": [
     "GET /pillow-commissioning/portfolio-control",
@@ -37,6 +37,46 @@
     "noHardCodedLowerPriceOnZeroSales": true,
     "cursorNotRuntimeOperator": true
   },
+  "git": {
+    "localHead": "8f3ceea8",
+    "implementationCommit": "fb630b73",
+    "evidenceStampCommit": "8f3ceea8",
+    "branch": "main",
+    "originMain": "8f3ceea89772c989ca45f2d7e4f322e8a71f7d26",
+    "aheadBehindOrigin": "0/0"
+  },
+  "production": {
+    "vercelStamp": "6e6a746c0e6cc01e15c229897aa3996f5da33a17",
+    "vercelDeploymentId": "dpl_YJBCwvufVJoazNGLcXyJmP31UcC3",
+    "stampEndpoint": "https://empire-ai.co/api/eos-bundle-stamp",
+    "stampObservedAt": "2026-08-10T23:59:56.414Z",
+    "mission007Deployed": false,
+    "observedUx": {
+      "historyScroll": "page-flow",
+      "attentionTitle": "Grand King Attention",
+      "pillowNeedsYourAttention": false,
+      "workspaceWindowed": false,
+      "success001Visible": true,
+      "commissioningLabelMachine": true
+    },
+    "blockingStep": "Vercel production still serves Mission 006 commit 6e6a746c; Mission 007 (fb630b73/8f3ceea8) is on origin/main but not in the live web bundle. Production browser acceptance journey cannot certify 007 until Vercel redeploys main."
+  },
+  "railway": {
+    "pillowCommissioningHealth": {
+      "ok": true,
+      "birthStatus": "COMMISSIONING",
+      "birthTimestamp": null,
+      "technicallyReady": false,
+      "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
+    }
+  },
+  "testsPassedAtClose": [
+    "empireai-web executive-home-truth + executive-presentation (19)",
+    "empireai-web pillow-chat-scale (2)",
+    "backend canonical-executive-truth + portfolio-control-plane (6)"
+  ],
+  "syntheticLargeChatDomBound": "PASS_UNIT_pillow-chat-scale.test.ts",
+  "productionBrowserJourney": "BLOCKED_PRE_007_VERCEL_STAMP",
   "verdictsAtClose": {
     "grandKingCockpit": "NOT_READY",
     "pillowChatScalability": "NOT_PROVEN",
@@ -47,10 +87,5 @@
     "livePortfolioScalability": "PARTIAL",
     "monitoringCostIntelligence": "PARTIAL",
     "pillowPostLaunchAutonomy": "READY_FOR_REAL_TEST"
-  },
-  "localHead": "fb630b73",
-  "branch": "main",
-  "aheadOfOriginAtCommit": 1,
-  "productionBrowserJourney": "PENDING_DEPLOY",
-  "syntheticLargeChatDomBound": "PASS_UNIT_pillow-chat-scale.test.ts"
+  }
 }
