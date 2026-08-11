@@ -40,7 +40,9 @@ export function ExecutiveHomeChatWorkspace() {
   const historyRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
   const seenConversationLenRef = useRef<number | null>(null);
-  const [windowSize, setWindowSize] = useState(PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow);
+  const [windowSize, setWindowSize] = useState<number>(
+    PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow,
+  );
   const {
     loading,
     context,
