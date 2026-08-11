@@ -1,0 +1,46 @@
+{
+  "artifact": "CQ04_ONE_PRODUCT_DECISION_DOSSIER",
+  "updatedAt": "2026-08-11T06:20:00.000Z",
+  "cq04Verdict": "PARTIAL",
+  "cq05Status": "AWAITING_GRAND_KING_AND_CHATGPT",
+  "subjectiveGrandKingAcceptance": false,
+  "identityReconciliation": {
+    "nordicBedding": "HISTORICAL_MISSION_004_ONLY",
+    "liveCommissioningBeforeRun": null,
+    "durabilityDefect": true,
+    "cursorSelectedProduct": false,
+    "pillowReselectionTriggered": true,
+    "pillowSelectedAt": "2026-08-11T06:00:05.324Z",
+    "canonicalProductName": "Foldable Multi-Functional Cart — Portable Hand Truck with Telescopic Handle and Swivel Wheels, Ideal for Travel, Luggage Transport, and Office Use(Purple)",
+    "canonicalOpportunityId": "3ba2841b-8a47-484d-b4a1-cf655572780f",
+    "canonicalAsin": "B0GYP6DNB5",
+    "commerceOpportunityDistinct": true,
+    "commerceOpportunityNameAtSelection": "11-in-1 Emergency Survival Kit for Men",
+    "commerceOpportunityIdAtSelection": "b7c68efc-cec4-4bfb-b215-e39b794499e5",
+    "whyIdentityDiffered": "Mission 004 Nordic commissioning row was lost from Railway SQLite; EH commerceOpportunity tracks latest pending approval independently from frozen commissioning pick; Pillow reselection ranked remaining production opportunities by expected profit."
+  },
+  "selection": {
+    "selectionAuthority": "pillow",
+    "cursorSelected": false,
+    "expectedProfit": "$29.07",
+    "offerPrice": "$159.40",
+    "publicationAttempted": false,
+    "supplierSpendAttempted": false
+  },
+  "implementation": {
+    "dossierModule": "backend/src/orchestration/pillow-commissioning/one-product-decision-dossier.ts",
+    "api": "GET /pillow-commissioning/one-product/decision-dossier",
+    "ehPanel": "empireai-web/components/cockpit/executive/OneProductDecisionDossierPanel.tsx",
+    "persistenceTable": "pillow_one_product_decision_dossier",
+    "challengeInterface": "Ask/Challenge Pillow seeds; CQ-05 not executed"
+  },
+  "governance": {
+    "birthTimestamp": null,
+    "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT",
+    "publicationAttempted": false,
+    "supplierSpendAttempted": false
+  },
+  "productionVerify": "PENDING_DEPLOY_AFTER_THIS_COMMIT",
+  "nextGrandKingAction": "Open Executive Home CQ-04 dossier; review economics vs competitor; decide whether to engage ChatGPT for CQ-05 challenge. Do not treat Cursor report as acceptance.",
+  "nextChatGPTReviewPoint": "CQ-05 — challenge Pillow on price premium, demand UNKNOWN, delivery, and alternatives using the live dossier."
+}

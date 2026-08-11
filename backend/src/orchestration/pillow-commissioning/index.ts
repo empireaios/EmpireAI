@@ -82,4 +82,10 @@ export {
   assessPostLaunchCommercialDeviations,
   type PostLaunchDeviationAssessment,
 } from "./post-launch-commercial-deviation.js";
+export {
+  buildAndPersistOneProductDecisionDossier,
+  getOrBuildOneProductDecisionDossier,
+  getPersistedOneProductDecisionDossier,
+  type OneProductDecisionDossier,
+} from "./one-product-decision-dossier.js";
 export { registerPillowCommissioningRoutes } from "./routes/pillow-commissioning-routes.js";

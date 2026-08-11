@@ -108,13 +108,13 @@
     {
       "id": "CQ-04",
       "title": "Pillow one-product decision dossier",
-      "status": "READY",
+      "status": "PARTIAL",
       "dependencies": [],
       "owner": "Cursor (expose); Pillow (defend)",
       "canCursorExecuteNow": true,
       "governanceGate": "NO_PUBLISH_NO_SPEND",
-      "evidence": "004 one-product proof Nordic bedding; selectionAuthority=pillow; cursorSelected=false; seed dossier path prepared.",
-      "nextAction": "Assemble complete natural-language challenge dossier with LIVE/ESTIMATED/UNKNOWN honesty; no publication."
+      "evidence": "Nordic Mission 004 historical only; live commissioning was null; Pillow reselected via one-product/run; durable OPDD API + EH panel wired. Production verify after deploy.",
+      "nextAction": "Verify live EH dossier + persistence; keep CQ-05 AWAITING GK+ChatGPT; no publish/spend."
     },
     {
       "id": "CQ-05",

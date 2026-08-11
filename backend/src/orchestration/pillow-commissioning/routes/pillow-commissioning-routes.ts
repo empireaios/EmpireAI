@@ -24,6 +24,11 @@ import {
 import { buildPillowOperatingState } from "../operating-state.js";
 import { buildPortfolioControlPlaneSnapshot } from "../portfolio-control-plane.js";
 import { assessPostLaunchCommercialDeviations } from "../post-launch-commercial-deviation.js";
+import {
+  buildAndPersistOneProductDecisionDossier,
+  getOrBuildOneProductDecisionDossier,
+} from "../one-product-decision-dossier.js";
+import { getPillowCommercePresaleRepository } from "../../pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { buildSinceLastVisitBrief } from "../since-last-visit.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
@@ -222,6 +227,9 @@ export async function registerPillowCommissioningRoutes(
         return reply.code(409).send({ ok: false, error: gate.reason, costGuard: gate.status });
       }
       const result = runPillowOneProductCommissioning(workspaceId);
+      const dossier = result.ok
+        ? buildAndPersistOneProductDecisionDossier(workspaceId)
+        : { ok: false, dossier: null };
       deps.auditLogger.write({
         action: "tool.execute",
         actor: user.email,
@@ -235,9 +243,13 @@ export async function registerPillowCommissioningRoutes(
           cursorSelected: false,
           publicationAttempted: false,
           supplierSpendAttempted: false,
+          dossierBuilt: Boolean(dossier.dossier),
         },
       });
-      return reply.code(result.ok ? 200 : 409).send(result);
+      return reply.code(result.ok ? 200 : 409).send({
+        ...result,
+        decisionDossier: dossier.dossier,
+      });
     },
   );
 
@@ -249,6 +261,21 @@ export async function registerPillowCommissioningRoutes(
       return reply.send({
         record: getOneProductCommissioningRecord(workspaceId),
       });
+    },
+  );
+
+  app.get(
+    "/pillow-commissioning/one-product/decision-dossier",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const commerce =
+        getPillowCommercePresaleRepository().getPendingApprovalOpportunity(workspaceId);
+      const result = getOrBuildOneProductDecisionDossier(workspaceId, {
+        commerceOpportunityId: commerce?.opportunityId ?? null,
+        commerceOpportunityName: commerce?.recommendation.productName ?? null,
+      });
+      return reply.code(result.ok ? 200 : 404).send(result);
     },
   );
 

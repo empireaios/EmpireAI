@@ -45,7 +45,7 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 |------|------|--------|
 | ACTIVE (do not duplicate) | **CQ-01** Cost Guard owner decision support | ACTIVE |
 | COMPLETE (preserve) | **CQ-03** Executive Home scroll defect | COMPLETE |
-| NEXT Cursor-safe | **CQ-04** One-product decision dossier | READY |
+| NEXT Cursor-safe | **CQ-04** One-product decision dossier | **PARTIAL** (live dossier wiring; see CQ04 evidence) |
 | Queued Cursor-safe | CQ-06, CQ-07, CQ-08, CQ-10, CQ-11, CQ-15, CQ-29 | QUEUED |
 | Governance STOP | CQ-05, CQ-18, CQ-21, CQ-22, CQ-25 | AWAITING GK / GK+ChatGPT |
 
@@ -58,7 +58,7 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 | CQ-01 | Cost Guard owner decisions | **ACTIVE** | — | GK+ChatGPT decide; Cursor expose | **NO** (do not duplicate) | Owner financial limits | 7 null limits; SGD 500 intent not configured | Finish decision-support; GK chooses values |
 | CQ-02 | Cost Guard real configuration | BLOCKED | CQ-01 | Cursor after values | NO | Requires approved limits | Persist/API ready | Configure + prove after GK values |
 | CQ-03 | Executive Home scroll defect | **COMPLETE** | — | Cursor | NO | None | Live PASS on `e5dd7f0a` | Preserve |
-| CQ-04 | Pillow one-product decision dossier | **READY** | — | Cursor expose; Pillow defend | **YES** | No publish/spend | Nordic bedding proof; seed dossier | Complete NL challenge dossier |
+| CQ-04 | Pillow one-product decision dossier | **PARTIAL** | — | Cursor expose; Pillow defend | **YES** | No publish/spend | Nordic historical; Pillow reselected; durable OPDD API+EH panel | Finish prod verify + persistence proof after deploy |
 | CQ-05 | GK + ChatGPT challenge gate | AWAITING GK+CHATGPT | CQ-04 | ChatGPT/Pillow/GK | NO | Challenge then GK decide | Not started | ChatGPT challenges Pillow |
 | CQ-06 | Cost Intelligence closure | QUEUED | — | Cursor | YES | No fabricated billing | PARTIAL; invoice blind spots | Close safe gaps; UNKNOWN stays UNKNOWN |
 | CQ-07 | Billing exposure closure | QUEUED | — | Cursor classify | YES | No invent limits | Register exists; incomplete matrix | Full exposure matrix |

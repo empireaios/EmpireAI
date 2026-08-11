@@ -5,6 +5,7 @@ import { ExecutiveHomeBriefPanel } from "@/components/cockpit/executive/Executiv
 import { ExecutiveHomeCentresGrid } from "@/components/cockpit/executive/ExecutiveHomeCentresGrid";
 import { CommerceOperatingStrip } from "@/components/cockpit/commerce/CommerceOperatingDashboard";
 import { CommerceDecisionWorkspace } from "@/components/cockpit/executive/CommerceDecisionWorkspace";
+import { OneProductDecisionDossierPanel } from "@/components/cockpit/executive/OneProductDecisionDossierPanel";
 import { ExecutiveHomeChatWorkspace } from "@/components/cockpit/executive/ExecutiveHomeChatWorkspace";
 import { GrandKingAttentionPanel } from "@/components/cockpit/executive/GrandKingAttentionPanel";
 import { CanonicalTruthStrip } from "@/components/cockpit/executive/CanonicalTruthStrip";
@@ -18,7 +19,8 @@ import { ExecutiveHomeSyncBar } from "@/components/cockpit/widgets/ExecutiveSumm
 function ExecutiveHomePrimaryWorkspace() {
   const { ask, setQueryDraft } = useGlobalAiAssistant();
   const { data, loading } = useExecutiveHome();
-  const hasDecision = Boolean(data?.canonicalTruth?.commerceOpportunity);
+  const hasCommerceDecision = Boolean(data?.canonicalTruth?.commerceOpportunity);
+  const hasCommissioning = Boolean(data?.canonicalTruth?.oneProductCommissioning);
 
   const onAsk = (prompt: string) => {
     setQueryDraft(prompt);
@@ -33,8 +35,22 @@ function ExecutiveHomePrimaryWorkspace() {
           Operational truth loading — Pillow is available below.
         </p>
       )}
-      {/* Decision before chat — Grand King decides first, then converses. */}
-      {hasDecision && <CommerceDecisionWorkspace onAskPillow={onAsk} />}
+      {/* CQ-04 commissioning dossier is authoritative for Grand King + ChatGPT challenge. */}
+      <OneProductDecisionDossierPanel onAskPillow={onAsk} />
+      {/* Separate floating commerce approval card — may differ from commissioning identity. */}
+      {hasCommerceDecision && !hasCommissioning && (
+        <CommerceDecisionWorkspace onAskPillow={onAsk} />
+      )}
+      {hasCommerceDecision && hasCommissioning && (
+        <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
+          <summary className="cursor-pointer text-xs text-[#8a847a]">
+            Other pending commerce opportunity (may differ from CQ-04 commissioning dossier)
+          </summary>
+          <div className="mt-3">
+            <CommerceDecisionWorkspace onAskPillow={onAsk} />
+          </div>
+        </details>
+      )}
       <ExecutiveHomeChatWorkspace />
     </div>
   );

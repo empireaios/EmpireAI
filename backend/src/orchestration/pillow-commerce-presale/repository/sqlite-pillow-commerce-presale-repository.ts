@@ -149,6 +149,20 @@ export class SqlitePillowCommercePresaleRepository {
     return row ? (JSON.parse(row.record_json) as QualifiedOpportunity) : null;
   }
 
+  getOpportunityById(
+    workspaceId: string,
+    opportunityId: string,
+  ): QualifiedOpportunity | null {
+    const db = getDatabase();
+    const row = db
+      .prepare(
+        `SELECT record_json FROM pillow_commerce_presale_opportunities
+         WHERE workspace_id = @workspaceId AND opportunity_id = @opportunityId LIMIT 1`,
+      )
+      .get({ workspaceId, opportunityId }) as { record_json: string } | undefined;
+    return row ? (JSON.parse(row.record_json) as QualifiedOpportunity) : null;
+  }
+
   /** Recent production opportunities for Pillow ranking (not Cursor preselection). */
   listRecentOpportunities(workspaceId: string, limit = 24): QualifiedOpportunity[] {
     const db = getDatabase();
