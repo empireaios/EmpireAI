@@ -65,13 +65,22 @@ export function GrandKingAttentionPanel() {
                       {severity}
                     </p>
                     <p className="mt-1 text-sm font-medium text-[#f0d78c]">
-                      {scrubMachineLanguage(item.title)}
+                      What happened: {scrubMachineLanguage(item.title)}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#8a847a]">{detail}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-[#8a847a]">
+                      Why it matters: {detail}
+                    </p>
                     <p className="mt-2 text-xs text-[#c8c0b0]">
+                      What Pillow thinks:{" "}
                       {decision
-                        ? "What you need to do: review the opportunity, then approve or reject in the approval queue — or ask Pillow to explain."
-                        : "What you need to do: open the related surface or ask Pillow what changed."}
+                        ? "This needs your commercial judgment before publication or spend."
+                        : "This is material enough that you should know and decide next action."}
+                    </p>
+                    <p className="mt-1 text-xs text-[#d4af37]">
+                      What Pillow needs from you:{" "}
+                      {decision
+                        ? "Review, then approve or reject in the queue — or ask Pillow to explain."
+                        : "Open the related surface or tell Pillow your preference."}
                     </p>
                   </div>
                   <div className="flex shrink-0 flex-col gap-1">

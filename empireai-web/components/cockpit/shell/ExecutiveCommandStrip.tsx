@@ -148,15 +148,15 @@ function Success001BlockerBar({ blocker }: { blocker: string }) {
     <div
       className="border-b border-amber-500/20 bg-amber-950/20 px-4 py-2 lg:px-8"
       data-testid="gc-06-blocker-bar"
-      aria-label="SUCCESS-001 blocker"
+      aria-label="Current owner blocker"
     >
       <Link
         href="/cockpit/command"
         className="inline-flex max-w-full items-center gap-2 text-sm text-amber-200/90 hover:text-amber-100"
-        title="Open SUCCESS-001 Command Center"
+        title="Open command centre for details"
       >
         <Target size={14} aria-hidden="true" className="shrink-0" />
-        <span className="shrink-0 font-medium">Blocking SUCCESS-001:</span>
+        <span className="shrink-0 font-medium">Current blocker:</span>
         <span className="truncate">{blocker}</span>
       </Link>
     </div>
@@ -230,7 +230,7 @@ export function ExecutiveCommandStrip() {
   return (
     <div className="border-b border-gold/20">
       {data.success001.blocker && data.success001.progressPercent < 100 && (
-        <Success001BlockerBar blocker={data.success001.blocker} />
+        <Success001BlockerBar blocker={humanizeCommandCopy(data.success001.blocker)} />
       )}
 
       <GlobalApprovalBar
@@ -239,132 +239,106 @@ export function ExecutiveCommandStrip() {
         topSummary={data.pendingApprovals.top?.summary ?? null}
       />
 
-      <div className="space-y-3 bg-[#050505] px-4 py-3 lg:px-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6f6a60]">
-            Production blockers
-          </span>
-          {blockerKeys.map((key) => {
-            const chip = data.certificationBlockers[key];
-            return (
-              <span key={key} title={chip.detail}>
-                <Badge variant={blockerBadgeVariant(chip.status)}>
-                  {key} · {chip.status}
-                </Badge>
-              </span>
-            );
-          })}
-          <Badge variant={openBlockers === 0 ? "success" : "warning"}>
-            {openBlockers === 0 ? "All closed" : `${openBlockers} open`}
-          </Badge>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          <MetricChip
-            label="Operational readiness"
-            value={`${data.operationalReadiness.percent}%`}
-            detail={data.operationalReadiness.detail}
-            variant={data.operationalReadiness.passed ? "success" : "warning"}
-          />
-          <MetricChip
-            label="CRIR readiness"
-            value={
-              data.crirReadiness.score !== null
-                ? `${data.crirReadiness.score}%`
-                : "No tracked ETA"
-            }
-            detail={data.crirReadiness.detail}
-            variant={data.crirReadiness.launchReady ? "success" : "warning"}
-          />
-          <MetricChip
-            label="First revenue"
-            value={
-              data.proof001.achieved
-                ? "Validated"
-                : `${data.proof001.progressPercent}%`
-            }
-            detail={humanizeCommandCopy(data.proof001.detail)}
-            variant={data.proof001.achieved ? "success" : "default"}
-          />
-          <MetricChip
-            label="Commerce readiness"
-            value={
-              data.commerceReadiness.score !== null
-                ? `${data.commerceReadiness.score}%`
-                : "Not yet measured"
-            }
-            detail={`${data.commerceReadiness.launchDecision} · ${data.commerceReadiness.blockingCount} blocking`}
-            variant={
-              data.commerceReadiness.launchDecision === "READY_TO_LAUNCH"
-                ? "success"
-                : "gold"
-            }
-          />
-        </div>
-
-        <div className="rounded-lg border border-gold/15 bg-white/[0.02] p-3">
-          <div className="mb-2 flex flex-wrap items-center gap-2">
+      <details className="bg-[#050505] px-4 py-2 lg:px-8">
+        <summary className="cursor-pointer text-xs text-[#6f6a60]">
+          System readiness details ▸
+          {openBlockers > 0 ? ` (${openBlockers} open technical gates)` : " (healthy)"}
+        </summary>
+        <div className="mt-3 space-y-3 pb-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6f6a60]">
-              Current mission
+              Technical gates
             </span>
-            <Badge variant={healthBadgeVariant(data.oms.overallHealth)}>
-              {data.oms.overallHealth}
-            </Badge>
+            {blockerKeys.map((key) => {
+              const chip = data.certificationBlockers[key];
+              return (
+                <span key={key} title={chip.detail}>
+                  <Badge variant={blockerBadgeVariant(chip.status)}>
+                    {chip.label || key} · {chip.status}
+                  </Badge>
+                </span>
+              );
+            })}
           </div>
-          <p className="text-sm font-medium text-[#f0d78c]">
-            {humanizeCommandCopy(data.oms.activeObjective)}
-          </p>
-          <div className="mt-2 grid gap-2 text-xs text-[#8a847a] sm:grid-cols-2 lg:grid-cols-5">
-            <div>
-              <span className="text-[#6f6a60]">Progress · </span>
-              <span className="text-[#c8c0b0]">{data.oms.progress}%</span>
-            </div>
-            <div>
-              <span className="text-[#6f6a60]">Confidence · </span>
-              <span className="text-[#c8c0b0]">{data.oms.confidence}%</span>
-            </div>
-            <div>
-              <span className="text-[#6f6a60]">Forecast · </span>
-              <span className="text-[#c8c0b0]">{formatForecast(data.oms.forecastCompletion)}</span>
-            </div>
-            <div className="sm:col-span-2">
-              <span className="text-[#6f6a60]">Next action · </span>
-              <span className="text-[#c8c0b0]">
-                {data.oms.nextHighestImpactAction ?? "No action required"}
-              </span>
-            </div>
-          </div>
-          {data.oms.remainingBlockers.length > 0 && (
-            <p className="mt-2 truncate text-xs text-amber-200/80" title={data.oms.remainingBlockers.join(" · ")}>
-              Blockers: {data.oms.remainingBlockers[0]}
-              {data.oms.remainingBlockers.length > 1
-                ? ` (+${data.oms.remainingBlockers.length - 1} more)`
-                : ""}
-            </p>
-          )}
-        </div>
 
-        <div className="grid gap-2 text-xs text-[#8a847a] sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <span className="text-[#6f6a60]">Milestone · </span>
-            <span className="text-[#c8c0b0]">{data.implementation.milestone}</span>
+          <div className="flex flex-wrap gap-2">
+            <MetricChip
+              label="Operational readiness"
+              value={`${data.operationalReadiness.percent}%`}
+              detail={data.operationalReadiness.detail}
+              variant={data.operationalReadiness.passed ? "success" : "warning"}
+            />
+            <MetricChip
+              label="Launch readiness"
+              value={
+                data.crirReadiness.score !== null
+                  ? `${data.crirReadiness.score}%`
+                  : "No tracked ETA"
+              }
+              detail={data.crirReadiness.detail}
+              variant={data.crirReadiness.launchReady ? "success" : "warning"}
+            />
+            <MetricChip
+              label="First revenue"
+              value={
+                data.proof001.achieved
+                  ? "Validated"
+                  : `${data.proof001.progressPercent}%`
+              }
+              detail={humanizeCommandCopy(data.proof001.detail)}
+              variant={data.proof001.achieved ? "success" : "default"}
+            />
+            <MetricChip
+              label="Commerce readiness"
+              value={
+                data.commerceReadiness.score !== null
+                  ? `${data.commerceReadiness.score}%`
+                  : "Not yet measured"
+              }
+              detail={`${data.commerceReadiness.launchDecision} · ${data.commerceReadiness.blockingCount} blocking`}
+              variant={
+                data.commerceReadiness.launchDecision === "READY_TO_LAUNCH"
+                  ? "success"
+                  : "gold"
+              }
+            />
           </div>
-          <div>
-            <span className="text-[#6f6a60]">Phase · </span>
-            <span className="text-[#c8c0b0]">{data.implementation.phase}</span>
-          </div>
-          <div>
-            <span className="text-[#6f6a60]">Objective · </span>
-            <span className="text-[#c8c0b0]">{data.implementation.objective}</span>
-          </div>
-          <div>
-            <span className="text-[#6f6a60]">Next approval · </span>
-            <span className="text-[#c8c0b0]">
-              {data.nextExecutiveApproval ?? "None pending"}
-            </span>
+
+          <div className="rounded-lg border border-gold/15 bg-white/[0.02] p-3">
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6f6a60]">
+                Current mission
+              </span>
+              <Badge variant={healthBadgeVariant(data.oms.overallHealth)}>
+                {data.oms.overallHealth}
+              </Badge>
+            </div>
+            <p className="text-sm font-medium text-[#f0d78c]">
+              {humanizeCommandCopy(data.oms.activeObjective)}
+            </p>
+            <div className="mt-2 grid gap-2 text-xs text-[#8a847a] sm:grid-cols-2 lg:grid-cols-5">
+              <div>
+                <span className="text-[#6f6a60]">Progress · </span>
+                <span className="text-[#c8c0b0]">{data.oms.progress}%</span>
+              </div>
+              <div>
+                <span className="text-[#6f6a60]">Confidence · </span>
+                <span className="text-[#c8c0b0]">{data.oms.confidence}%</span>
+              </div>
+              <div>
+                <span className="text-[#6f6a60]">Forecast · </span>
+                <span className="text-[#c8c0b0]">{formatForecast(data.oms.forecastCompletion)}</span>
+              </div>
+              <div className="sm:col-span-2">
+                <span className="text-[#6f6a60]">Next action · </span>
+                <span className="text-[#c8c0b0]">
+                  {data.oms.nextHighestImpactAction ?? "No action required"}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </details>
     </div>
   );
 }

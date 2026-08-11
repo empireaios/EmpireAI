@@ -1,89 +1,100 @@
-"use client";
+﻿"use client";
 
+import Link from "next/link";
 import { CockpitPageHeader } from "@/components/cockpit/layout/CockpitPageHeader";
 import { ExecutiveHomeBriefPanel } from "@/components/cockpit/executive/ExecutiveHomeBriefPanel";
 import { ExecutiveHomeCentresGrid } from "@/components/cockpit/executive/ExecutiveHomeCentresGrid";
 import { CommerceOperatingStrip } from "@/components/cockpit/commerce/CommerceOperatingDashboard";
 import { CommerceDecisionWorkspace } from "@/components/cockpit/executive/CommerceDecisionWorkspace";
 import { OneProductDecisionDossierPanel } from "@/components/cockpit/executive/OneProductDecisionDossierPanel";
-import { ExecutiveHomeChatWorkspace } from "@/components/cockpit/executive/ExecutiveHomeChatWorkspace";
 import { GrandKingAttentionPanel } from "@/components/cockpit/executive/GrandKingAttentionPanel";
 import { CanonicalTruthStrip } from "@/components/cockpit/executive/CanonicalTruthStrip";
 import { PillowCommissioningStrip } from "@/components/cockpit/executive/PillowCommissioningStrip";
+import { EmpireStatusBand } from "@/components/cockpit/executive/EmpireStatusBand";
+import { PillowCompactPresence } from "@/components/cockpit/executive/PillowCompactPresence";
+import { SinceLastVisitStrip } from "@/components/cockpit/executive/SinceLastVisitStrip";
 import { ExecutiveHomeProvider, useExecutiveHome } from "@/lib/cockpit/hooks/useExecutiveHome";
-import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { getCockpitScreenDataMode } from "@/lib/cockpit/kpis/registry";
 import { ExecutiveHomeGreetingLive } from "@/components/cockpit/widgets/ExecutiveHomeLiveWidgets";
-import { ExecutiveHomeSyncBar } from "@/components/cockpit/widgets/ExecutiveSummaryCards";
 
-function ExecutiveHomePrimaryWorkspace() {
-  const { ask, setQueryDraft } = useGlobalAiAssistant();
+function openPillowConversation(seed?: string) {
+  if (seed?.trim()) {
+    window.location.assign(
+      `/cockpit/development/pillow?tab=conversation&ask=${encodeURIComponent(seed.trim().slice(0, 1200))}`,
+    );
+    return;
+  }
+  window.location.assign("/cockpit/development/pillow?tab=conversation");
+}
+
+function ExecutiveHomeDecisionWorkspace() {
   const { data, loading } = useExecutiveHome();
   const hasCommerceDecision = Boolean(data?.canonicalTruth?.commerceOpportunity);
   const hasCommissioning = Boolean(data?.canonicalTruth?.oneProductCommissioning);
-
-  const onAsk = (prompt: string) => {
-    setQueryDraft(prompt);
-    void ask(prompt);
-    window.dispatchEvent(new CustomEvent("empireai:focus-pillow"));
-  };
 
   return (
     <div id="executive-pillow-anchor" className="w-full space-y-3">
       {loading && !data && (
         <p className="rounded-lg border border-gold/15 px-3 py-2 text-xs text-[#8a847a]">
-          Operational truth loading — Pillow is available below.
+          Operational truth loading…
         </p>
       )}
-      {/* CQ-04 commissioning dossier is authoritative for Grand King + ChatGPT challenge. */}
-      <OneProductDecisionDossierPanel onAskPillow={onAsk} />
-      {/* Separate floating commerce approval card — may differ from commissioning identity. */}
+
+      <OneProductDecisionDossierPanel onAskPillow={openPillowConversation} />
+
       {hasCommerceDecision && !hasCommissioning && (
-        <CommerceDecisionWorkspace onAskPillow={onAsk} />
+        <CommerceDecisionWorkspace onAskPillow={openPillowConversation} />
       )}
       {hasCommerceDecision && hasCommissioning && (
         <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
           <summary className="cursor-pointer text-xs text-[#8a847a]">
-            Other pending commerce opportunity (may differ from CQ-04 commissioning dossier)
+            Other pending commerce opportunity (may differ from commissioning dossier)
           </summary>
           <div className="mt-3">
-            <CommerceDecisionWorkspace onAskPillow={onAsk} />
+            <CommerceDecisionWorkspace onAskPillow={openPillowConversation} />
           </div>
         </details>
       )}
-      <ExecutiveHomeChatWorkspace />
+
+      <p className="text-center text-[11px] text-[#6f6a60]">
+        Full conversation lives in{" "}
+        <Link
+          href="/cockpit/development/pillow?tab=conversation"
+          className="text-[#d4af37] hover:underline"
+        >
+          Pillow Centre
+        </Link>{" "}
+        — Executive Home stays decision-first.
+      </p>
     </div>
   );
 }
 
 /**
- * Mission 007 · SCR-001 decision-first Grand King Home:
- * Attention → money/truth → Pillow status → decisions → chat → secondary.
- * Page scrolls the operating surface; Pillow chat uses a bounded shell.
+ * Grand King Executive Home — owner hierarchy:
+ * Status → Pillow → Attention → Business truth → Since last visit → Decisions.
+ * Full chat is not crammed into this page.
  */
 export function ExecutiveHomePage() {
   return (
     <ExecutiveHomeProvider refreshMs={60_000}>
-      <div className="mx-auto flex max-w-[1800px] flex-col gap-4">
+      <div className="mx-auto flex max-w-[1600px] flex-col gap-4">
         <CockpitPageHeader
-          eyebrow="Executive Cockpit · Daily Operations"
+          eyebrow="Grand King"
           title="Executive Home"
           dataMode={getCockpitScreenDataMode("SCR-001")}
         />
-        <ExecutiveHomeSyncBar />
         <ExecutiveHomeGreetingLive />
 
-        {/* 1. What needs my attention? */}
+        <EmpireStatusBand />
+        <PillowCompactPresence onTalk={openPillowConversation} />
         <GrandKingAttentionPanel />
-
-        {/* 2. What is the money / operating truth? */}
         <CanonicalTruthStrip />
+        <SinceLastVisitStrip />
         <PillowCommissioningStrip />
 
-        {/* 3. Decision + Pillow chat */}
-        <ExecutiveHomePrimaryWorkspace />
+        <ExecutiveHomeDecisionWorkspace />
 
-        {/* 4. Secondary operating detail */}
         <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
           <summary className="cursor-pointer text-xs font-medium text-[#8a847a]">
             More operating detail (commerce strip · brief · centres)

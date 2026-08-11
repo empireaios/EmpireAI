@@ -17,7 +17,9 @@ import {
 } from "../amazon-commerce-preflight.js";
 import {
   assembleCommercialDecisionDossier,
+  dossierVerdictAllowsApprovalSurface,
   pickCheapestFreight,
+  toExecutiveRecommendationFlag,
 } from "../assemble-commercial-dossier.js";
 import { buildCommerceOperatingLoopReadiness } from "../commerce-operating-loop.js";
 import {
@@ -416,6 +418,7 @@ export async function reevaluateCommerceOpportunity(
     });
   }
 
+  const approvalSurface = dossierVerdictAllowsApprovalSurface(assembled.verdict);
   const mapping = {
     marketplaceId: amazon.session.marketplaceId,
     asin,
@@ -434,7 +437,9 @@ export async function reevaluateCommerceOpportunity(
   };
 
   const recommendation = {
-    headline: "COMMERCE OPPORTUNITY — GRAND KING DECISION",
+    headline: approvalSurface
+      ? "COMMERCE OPPORTUNITY — GRAND KING DECISION"
+      : `COMMERCE CANDIDATE — PILLOW ${assembled.verdict}`,
     productName: catalog.itemName || productName,
     amazonUsEligibility: `Preflight clear for ASIN ${asin} (NOT published; NOT BUYABLE yet)`,
     supplier: "CJdropshipping" as const,
@@ -446,15 +451,20 @@ export async function reevaluateCommerceOpportunity(
     expectedProfit: `$${economics.expectedProfitUsd.toFixed(2)}`,
     expectedMargin: `${(economics.expectedMarginPct ?? 0).toFixed(2)}%`,
     riskSummary: assembled.dossier.demandFulfilmentRisk.riskReasons.join("; "),
-    pillowRecommendation: "APPROVE" as const,
-    proposedActionAfterApproval:
-      assembled.dossier.exposureAndAction.exactActionAfterApproval,
+    pillowRecommendation: toExecutiveRecommendationFlag(assembled.verdict),
+    proposedActionAfterApproval: approvalSurface
+      ? assembled.dossier.exposureAndAction.exactActionAfterApproval
+      : "Do not publish. Resolve demand/price/delivery uncertainty before asking Grand King to approve.",
     fullNarrative: `${assembled.dossier.grandKingSummary}\n\n${commerceMemory.formatted}`,
   };
 
   let approvalId = targetOpp?.approvalId ?? null;
   let approvalStatus = targetOpp?.approvalStatus ?? ("none" as const);
-  if ((!approvalId || approvalStatus === "Rejected" || approvalStatus === "Cancelled") && input.approvalGate) {
+  if (
+    approvalSurface &&
+    (!approvalId || approvalStatus === "Rejected" || approvalStatus === "Cancelled") &&
+    input.approvalGate
+  ) {
     try {
       const approval = input.approvalGate.register({
         workspaceId: input.workspaceId,
@@ -495,7 +505,11 @@ export async function reevaluateCommerceOpportunity(
     opportunityId: targetOpp?.opportunityId ?? randomUUID(),
     workspaceId: input.workspaceId,
     companyId: input.companyId,
-    disposition: approvalId ? "AWAITING_APPROVAL" : "APPROVAL_READY",
+    disposition: approvalId
+      ? "AWAITING_APPROVAL"
+      : approvalSurface
+        ? "APPROVAL_READY"
+        : "QUALIFIED",
     preflightOfferState: "NOT_PUBLISHED",
     mapping,
     stockUnits,
@@ -503,8 +517,8 @@ export async function reevaluateCommerceOpportunity(
     risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
     recommendation,
     dossier: assembled.dossier,
-    approvalId,
-    approvalStatus: approvalId ? "Pending" : "none",
+    approvalId: approvalSurface ? approvalId : null,
+    approvalStatus: approvalSurface && approvalId ? "Pending" : "none",
     publicationAllowed: false,
     supplierSpendAllowed: false,
     createdAt: targetOpp?.createdAt ?? now,
@@ -517,13 +531,13 @@ export async function reevaluateCommerceOpportunity(
   captureInstitutionalMemory({
     workspaceId: input.workspaceId,
     canonicalKey: `commerce.reeval.${opportunity.opportunityId}`,
-    title: `Pillow re-evaluated ${asin} under FD-CDD-001 — APPROVE`,
+    title: `Pillow re-evaluated ${asin} under FD-CDD-001 — ${assembled.verdict}`,
     statement: assembled.why,
     memoryClass: "pillow_self_improvement",
     authority: "pillow_recommendation",
     epistemicStatus: "RECOMMENDATION",
     source: "commerce_event",
-    tags: ["commerce", "reevaluation", "dossier", "approve"],
+    tags: ["commerce", "reevaluation", "dossier", assembled.verdict.toLowerCase()],
     evidenceRefs: [`asin:${asin}`, `cjPid:${cjPid}`, "dossier:FD-CDD-001"],
     linkedEntities: { asin, cjPid, amazonSellerSku, opportunityId: opportunity.opportunityId },
     category: "C",
@@ -533,13 +547,14 @@ export async function reevaluateCommerceOpportunity(
   return {
     ...base,
     target,
-    outcome: "DOSSIER_APPROVE_SURFACED",
+    outcome: approvalSurface ? "DOSSIER_APPROVE_SURFACED" : "DOSSIER_REJECTED",
     opportunity,
     dossierSummary: assembled.dossier.grandKingSummary,
-    rejectReason: null,
-    rejectCode: null,
-    nextPillowAction:
-      "Surface complete Grand King dossier and wait only at constitutional approval gate. Do not publish.",
+    rejectReason: approvalSurface ? null : assembled.why,
+    rejectCode: approvalSurface ? null : assembled.verdict,
+    nextPillowAction: approvalSurface
+      ? "Surface complete Grand King dossier and wait only at constitutional approval gate. Do not publish."
+      : `Pillow verdict ${assembled.verdict}: do not publish; continue evidence gathering. Do not treat expected profit as approval confidence.`,
   };
 }
 

@@ -50,23 +50,25 @@ export function CanonicalTruthStrip() {
     coverage: "realised profit only — not projected margin",
   });
 
+  const spend = formatFinancialAmount(t.costGuard?.actualUsd ?? null, {
+    status: t.costGuard?.actualUsd == null ? "PARTIAL" : "VERIFIED_AS_OF",
+    source: "cost-guard / internal ledger — not full invoice truth",
+    currency: "USD",
+    coverage: "internal measured spend only — not complete billing invoices",
+  });
+
   return (
     <section
-      aria-label="Canonical executive truth"
+      aria-label="Business truth"
       className="rounded-xl border border-gold/15 bg-white/[0.02] px-4 py-3"
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d4af37]">
-          Current operational truth
+          Business truth
         </p>
         <DataModeBadge mode="live" />
       </div>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-8">
-        <TruthCell label="Brain" value={scrubMachineLanguage(t.brainStatus)} />
-        <TruthCell label="Guardian" value={scrubMachineLanguage(t.guardianStatus)} />
-        <TruthCell label="Production" value={scrubMachineLanguage(t.productionStatus)} />
-        <TruthCell label="Mission" value={scrubMachineLanguage(t.activeMissionHuman)} />
-        <TruthCell label="Pending approvals" value={String(t.pendingApprovals)} />
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
         <TruthCell
           label="Realised revenue"
           value={
@@ -90,7 +92,26 @@ export function CanonicalTruthStrip() {
           value={t.realisedOrders == null || t.realisedOrders === 0 ? "No orders received" : String(t.realisedOrders)}
           status={t.realisedOrders == null ? "not yet verified" : "verified live"}
         />
+        <TruthCell
+          label="Actual spend (ledger)"
+          value={
+            t.costGuard?.actualUsd == null || t.costGuard.actualUsd === 0
+              ? "No measured spend yet"
+              : spend.display
+          }
+          status="partial — not full invoice truth"
+        />
+        <TruthCell label="Pending approvals" value={String(t.pendingApprovals)} />
       </div>
+      <details className="mt-3">
+        <summary className="cursor-pointer text-xs text-[#6f6a60]">System health details ▸</summary>
+        <div className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-4">
+          <TruthCell label="Brain" value={scrubMachineLanguage(t.brainStatus)} />
+          <TruthCell label="Guardian" value={scrubMachineLanguage(t.guardianStatus)} />
+          <TruthCell label="Production" value={scrubMachineLanguage(t.productionStatus)} />
+          <TruthCell label="Mission" value={scrubMachineLanguage(t.activeMissionHuman)} />
+        </div>
+      </details>
       {t.commerceOpportunity && (
         <div className="mt-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2 text-sm text-[#c8c0b0]">
           <span className="text-emerald-200">Commerce opportunity · approval required · </span>

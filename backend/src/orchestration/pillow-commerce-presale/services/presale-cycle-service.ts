@@ -16,8 +16,11 @@ import {
 } from "../amazon-commerce-preflight.js";
 import {
   assembleCommercialDecisionDossier,
+  dossierVerdictAllowsApprovalSurface,
   pickCheapestFreight,
+  toExecutiveRecommendationFlag,
 } from "../assemble-commercial-dossier.js";
+import type { DossierVerdict } from "../commercial-decision-dossier.js";
 import {
   pickLiveCjVariant,
   coerceUsdNumber,
@@ -136,10 +139,17 @@ function buildRecommendation(input: {
   amazonSellerSku: string;
   cjPid: string;
   cjVid: string;
+  dossierVerdict: DossierVerdict;
+  dossierWhy: string;
 }): ExecutiveRecommendation {
   const riskSummary = input.risks.length ? input.risks.join("; ") : "No preflight blockers detected";
+  const flag = toExecutiveRecommendationFlag(input.dossierVerdict);
+  const approvalReady = dossierVerdictAllowsApprovalSurface(input.dossierVerdict);
+  const headline = approvalReady
+    ? "COMMERCE OPPORTUNITY — APPROVAL REQUIRED"
+    : `COMMERCE CANDIDATE — PILLOW ${input.dossierVerdict}`;
   const fullNarrative = [
-    "COMMERCE OPPORTUNITY — APPROVAL REQUIRED",
+    headline,
     "",
     `Product: ${input.productName}`,
     `Amazon US: eligible/preflight clear for ASIN ${input.asin} (NOT yet published; NOT claimed BUYABLE)`,
@@ -152,14 +162,17 @@ function buildRecommendation(input: {
     `Expected profit: $${input.profit.toFixed(2)}`,
     `Expected margin: ${input.margin.toFixed(2)}%`,
     `Risk: ${riskSummary}`,
-    "Pillow recommendation: APPROVE",
-    "Proposed action after approval: Build LISTING_OFFER_ONLY package with persisted Amazon↔CJ map, then publish only after explicit Grand King approval confirmation — no spend before approval.",
+    `Pillow recommendation: ${input.dossierVerdict}`,
+    `Why: ${input.dossierWhy}`,
+    approvalReady
+      ? "Proposed action after approval: Build LISTING_OFFER_ONLY package with persisted Amazon↔CJ map, then publish only after explicit Grand King approval confirmation — no spend before approval."
+      : "Proposed action: Do not publish. Continue evidence gathering or escalate uncertainty to Grand King only as INVESTIGATE/WAIT/TEST — not as APPROVE.",
     "",
     `Identity: Amazon SKU ${input.amazonSellerSku} ↔ CJ PID ${input.cjPid} / VID ${input.cjVid}`,
   ].join("\n");
 
   return {
-    headline: "COMMERCE OPPORTUNITY — APPROVAL REQUIRED",
+    headline,
     productName: input.productName,
     amazonUsEligibility: `Preflight clear for ASIN ${input.asin} (NOT published; NOT BUYABLE yet)`,
     supplier: "CJdropshipping",
@@ -171,9 +184,10 @@ function buildRecommendation(input: {
     expectedProfit: `$${input.profit.toFixed(2)}`,
     expectedMargin: `${input.margin.toFixed(2)}%`,
     riskSummary,
-    pillowRecommendation: "APPROVE",
-    proposedActionAfterApproval:
-      "Publish LISTING_OFFER_ONLY using persisted Amazon↔CJ map; verify BUYABLE after publish; no supplier spend until a real Amazon order + separate approval.",
+    pillowRecommendation: flag,
+    proposedActionAfterApproval: approvalReady
+      ? "Publish LISTING_OFFER_ONLY using persisted Amazon↔CJ map; verify BUYABLE after publish; no supplier spend until a real Amazon order + separate approval."
+      : "Do not publish. Resolve demand/price/delivery uncertainty before asking Grand King to approve.",
     fullNarrative,
   };
 }
@@ -723,6 +737,8 @@ async function runPillowCommercePresaleCycleImpl(
       amazonSellerSku,
       cjPid: product.pid,
       cjVid: variant.vid,
+      dossierVerdict: assembled.verdict,
+      dossierWhy: assembled.why,
     });
     recommendation.fullNarrative = `${assembled.dossier.grandKingSummary}\n\n${commerceMemory.formatted}\nMemory citations: ${memoryCitations.join(" | ") || "preflight lessons applied"}`;
     recommendation.riskSummary =
@@ -745,9 +761,10 @@ async function runPillowCommercePresaleCycleImpl(
       verifiedAt: now,
     };
 
-    // At most one Grand King approval surface — batch mode may find many SMART viable maps.
+    const approvalSurface = dossierVerdictAllowsApprovalSurface(assembled.verdict);
+    // At most one Grand King approval surface — only when Pillow verdict is APPROVE.
     const shouldRegisterApproval =
-      !qualified && !pending && Boolean(input.approvalGate);
+      approvalSurface && !qualified && !pending && Boolean(input.approvalGate);
 
     let approvalId: string | null = null;
     if (shouldRegisterApproval && input.approvalGate) {
@@ -797,7 +814,11 @@ async function runPillowCommercePresaleCycleImpl(
       opportunityId: randomUUID(),
       workspaceId: input.workspaceId,
       companyId: input.companyId,
-      disposition: approvalId ? "AWAITING_APPROVAL" : "APPROVAL_READY",
+      disposition: approvalId
+        ? "AWAITING_APPROVAL"
+        : approvalSurface
+          ? "APPROVAL_READY"
+          : "QUALIFIED",
       preflightOfferState: "NOT_PUBLISHED",
       mapping,
       stockUnits,
@@ -820,12 +841,16 @@ async function runPillowCommercePresaleCycleImpl(
       qualified = opportunity;
     }
 
-    if (shouldRegisterApproval) {
+    if (shouldRegisterApproval || !approvalSurface) {
       captureInstitutionalMemory({
         workspaceId: input.workspaceId,
         canonicalKey: `commerce.recommendation.${opportunity.opportunityId}`,
-        title: `Pillow recommended ${catalog.itemName || productName} for Grand King approval`,
-        statement: `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd} with complete FD-CDD-001 dossier. Publication blocked until Grand King approval.`,
+        title: approvalSurface
+          ? `Pillow recommended ${catalog.itemName || productName} for Grand King approval`
+          : `Pillow ${assembled.verdict}: ${catalog.itemName || productName}`,
+        statement: approvalSurface
+          ? `Recommended ASIN ${asinResult.asin} / CJ ${product.pid} at $${price} expected profit $${economics.expectedProfitUsd} with complete FD-CDD-001 dossier. Publication blocked until Grand King approval.`
+          : `ASIN ${asinResult.asin} / CJ ${product.pid}: Pillow verdict ${assembled.verdict}. ${assembled.why} Not surfaced as APPROVAL_READY.`,
         memoryClass: "pillow_self_improvement",
         authority: "pillow_recommendation",
         epistemicStatus: "RECOMMENDATION",

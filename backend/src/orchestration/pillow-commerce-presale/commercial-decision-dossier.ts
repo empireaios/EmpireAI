@@ -8,7 +8,8 @@ import { formatMoneyEvidence } from "./models.js";
 export type BrandRoute = "EXISTING_BRANDED_CATALOG" | "GENERIC_UNBRANDED" | "OWN_BRAND_PRIVATE_LABEL";
 export type ListingRoute = "OFFER_ON_EXISTING_ASIN" | "CREATE_NEW_ASIN";
 export type RiskLevel = "LOW" | "MEDIUM" | "HIGH";
-export type DossierVerdict = "APPROVE" | "REJECT";
+/** Commercial recommendation spectrum — uncertainty must not collapse into APPROVE. */
+export type DossierVerdict = "APPROVE" | "REJECT" | "TEST" | "WAIT" | "INVESTIGATE";
 
 export type CompetitiveOfferSnapshot = {
   competingOfferCount: number | null;
@@ -110,6 +111,7 @@ export type CommercialDecisionDossier = {
     startingQuantity: number;
     pillowRecommendation: DossierVerdict;
     why: string;
+    confidence?: "high" | "medium" | "low";
     exactActionAfterApproval: string;
   };
   unknownFields: string[];

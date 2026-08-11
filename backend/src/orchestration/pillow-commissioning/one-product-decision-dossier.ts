@@ -5,6 +5,10 @@
  */
 
 import { getDatabase } from "../../brain/database.js";
+import {
+  computePricePremiumPct,
+  decideDossierVerdict,
+} from "../pillow-commerce-presale/decide-dossier-verdict.js";
 import { getPillowCommercePresaleRepository } from "../pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { buildSmartViableKpiSnapshot } from "../pillow-commerce-presale/smart-viable-kpi.js";
 import type { QualifiedOpportunity } from "../pillow-commerce-presale/models.js";
@@ -132,8 +136,10 @@ export type OneProductDecisionDossier = {
   prominentCompetitionRisk: string | null;
   pillowRecommendation: {
     verdict: string;
+    confidence: "high" | "medium" | "low";
     why: string;
     whatWouldChangeMind: string[];
+    unsureAbout: string[];
   };
   grandKingDecision: {
     ifApprove: string[];
@@ -352,8 +358,40 @@ export function buildAndPersistOneProductDecisionDossier(
 
   const expensive =
     delta != null && delta > 0
-      ? `Our proposed price is about $${delta.toFixed(2)} (${deltaPct}) above the lowest competing offer. This is a material commercial risk — positive expected margin alone does not justify the price.`
+      ? `Our proposed price is about $${delta.toFixed(2)} (${deltaPct.startsWith("-") ? deltaPct : `+${deltaPct.replace(/^\+/, "")}`}) above the lowest competing offer. This is a material commercial risk — positive expected margin alone does not justify the price.`
       : null;
+
+  const pricePremiumPct = computePricePremiumPct(ourPriceN, competitorN);
+  const demandUnknown = /UNKNOWN/i.test(
+    d?.demandFulfilmentRisk.demandEvidence ?? "UNKNOWN",
+  );
+  const recomputed = decideDossierVerdict({
+    brandRoute: d?.eligibilityAndBrand.brandRoute ?? "GENERIC_UNBRANDED",
+    deliveryCanMeet: d?.demandFulfilmentRisk.delivery.supplierCanMeet ?? "UNKNOWN",
+    amazonEligibility:
+      (d?.eligibilityAndBrand.amazonEligibility as "PASS" | "FAIL" | "UNKNOWN") ??
+      "UNKNOWN",
+    profitOk: (profitN ?? 0) >= 1,
+    pricePremiumPct,
+    demandEvidencePresent: !demandUnknown,
+    competingOfferCount: d?.marketplaceCompetition.competingOfferCount ?? null,
+  });
+  // Recompute against commercial uncertainty standard — do not inherit a stale APPROVE
+  // when demand/price evidence would force INVESTIGATE/WAIT/TEST.
+  const recommendationVerdict = recomputed.verdict;
+  const recommendationWhy = recomputed.why;
+  const unsureAbout = [
+    demandUnknown ? "Demand evidence is UNKNOWN — catalog existence is not demand proof." : null,
+    pricePremiumPct != null && pricePremiumPct >= 25
+      ? `Price is about ${pricePremiumPct.toFixed(0)}% above the lowest competing offer.`
+      : null,
+    d?.demandFulfilmentRisk.delivery.supplierCanMeet !== "YES"
+      ? "Whether the supplier can reliably meet the Amazon delivery promise."
+      : null,
+    !d?.presentation.imagesAssessment?.includes("available")
+      ? "Catalog image not yet available from Amazon APIs."
+      : null,
+  ].filter(Boolean) as string[];
 
   const finalists = buildFinalists(workspaceId, commissioning);
   const unknownFields = [
@@ -571,10 +609,9 @@ export function buildAndPersistOneProductDecisionDossier(
     ],
     prominentCompetitionRisk: expensive,
     pillowRecommendation: {
-      verdict: commissioning.pillowRecommendation,
-      why:
-        d?.exposureAndAction.why ??
-        "Pillow selected this opportunity from production SMART candidates by expected profit under governance gates.",
+      verdict: recommendationVerdict,
+      confidence: recomputed.confidence,
+      why: recommendationWhy,
       whatWouldChangeMind: [
         "A higher-quality opportunity with better price competitiveness and verified demand",
         "Amazon eligibility/restriction failure on revalidation",
@@ -582,6 +619,7 @@ export function buildAndPersistOneProductDecisionDossier(
         "Evidence that customers will not buy at a large premium vs lowest competitor",
         "Brand/IP conflict or catalog match failure",
       ],
+      unsureAbout,
     },
     grandKingDecision: {
       ifApprove: (

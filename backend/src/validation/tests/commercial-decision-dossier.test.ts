@@ -23,6 +23,9 @@ describe("commercial decision dossier FD-CDD-001", () => {
       deliveryCanMeet: "YES",
       amazonEligibility: "PASS",
       profitOk: true,
+      pricePremiumPct: 10,
+      demandEvidencePresent: true,
+      competingOfferCount: 3,
     });
     assert.equal(decided.verdict, "REJECT");
     assert.equal(decided.rejectCode, "BRAND_AUTHENTICITY_UNVERIFIED");
@@ -45,8 +48,24 @@ describe("commercial decision dossier FD-CDD-001", () => {
       deliveryCanMeet: delivery.supplierCanMeet,
       amazonEligibility: "PASS",
       profitOk: true,
+      pricePremiumPct: 10,
+      demandEvidencePresent: true,
+      competingOfferCount: 3,
     });
     assert.equal(decided.verdict, "REJECT");
+  });
+
+  it("investigates extreme price premium with unknown demand", () => {
+    const decided = decideDossierVerdict({
+      brandRoute: "GENERIC_UNBRANDED",
+      deliveryCanMeet: "YES",
+      amazonEligibility: "PASS",
+      profitOk: true,
+      pricePremiumPct: 250,
+      demandEvidencePresent: false,
+      competingOfferCount: 1,
+    });
+    assert.equal(decided.verdict, "INVESTIGATE");
   });
 
   it("approves generic route with complete dossier fields", () => {

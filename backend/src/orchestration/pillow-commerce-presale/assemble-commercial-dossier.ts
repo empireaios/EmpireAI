@@ -12,10 +12,23 @@ import {
   type DossierVerdict,
 } from "./commercial-decision-dossier.js";
 import {
+  computePricePremiumPct,
+  decideDossierVerdict,
+  dossierVerdictAllowsApprovalSurface,
+  toExecutiveRecommendationFlag,
+} from "./decide-dossier-verdict.js";
+import {
   DEFAULT_START_QUANTITY,
   type EvidenceFreshness,
   type MoneyEvidence,
 } from "./models.js";
+
+export {
+  computePricePremiumPct,
+  decideDossierVerdict,
+  dossierVerdictAllowsApprovalSurface,
+  toExecutiveRecommendationFlag,
+} from "./decide-dossier-verdict.js";
 
 export function parseFreightTransitDays(option: CjFreightOption | null | undefined): {
   min: number | null;
@@ -63,53 +76,6 @@ export function pickCheapestFreight(options: CjFreightOption[]): {
   return { priceUsd: bestPrice, option: best };
 }
 
-export function decideDossierVerdict(input: {
-  brandRoute: string;
-  deliveryCanMeet: "YES" | "NO" | "UNKNOWN";
-  amazonEligibility: "PASS" | "FAIL" | "UNKNOWN";
-  profitOk: boolean;
-}): { verdict: DossierVerdict; why: string; rejectCode?: string } {
-  if (input.amazonEligibility === "FAIL") {
-    return {
-      verdict: "REJECT",
-      why: "Amazon eligibility/restriction preflight failed.",
-      rejectCode: "AMAZON_RESTRICTION",
-    };
-  }
-  if (input.deliveryCanMeet === "NO") {
-    return {
-      verdict: "REJECT",
-      why: "Supplier delivery cannot realistically meet Amazon buyer delivery promise.",
-      rejectCode: "DELIVERY_PROMISE_MISMATCH",
-    };
-  }
-  if (input.brandRoute === "EXISTING_BRANDED_CATALOG") {
-    return {
-      verdict: "REJECT",
-      why: "Brand route is existing branded catalog, but CJ authenticity vs Amazon ASIN is not verified (keyword/catalog match alone is insufficient). Do not treat lookalike generics as authentic branded goods.",
-      rejectCode: "BRAND_AUTHENTICITY_UNVERIFIED",
-    };
-  }
-  if (input.brandRoute === "OWN_BRAND_PRIVATE_LABEL") {
-    return {
-      verdict: "REJECT",
-      why: "Private-label/own-brand route requires verified CJ branding/packaging configuration before first-dollar sale.",
-      rejectCode: "PRIVATE_LABEL_NOT_CONFIGURED",
-    };
-  }
-  if (!input.profitOk) {
-    return {
-      verdict: "REJECT",
-      why: "Economics fail minimum expected contribution gate.",
-      rejectCode: "LOSS_MAKING",
-    };
-  }
-  return {
-    verdict: "APPROVE",
-    why: "Generic/unbranded offer route with live stock/cost/freight/fees, restriction clear, delivery feasible under conservative estimates, and positive expected contribution. Publication still requires Grand King approval; BUYABLE must be verified after publish.",
-  };
-}
-
 export function assembleCommercialDecisionDossier(input: {
   productName: string;
   marketplaceId: string;
@@ -140,6 +106,7 @@ export function assembleCommercialDecisionDossier(input: {
   verdict: DossierVerdict;
   why: string;
   rejectCode?: string;
+  confidence: "high" | "medium" | "low";
 } {
   const transit = parseFreightTransitDays(input.freightOption);
   const delivery = assessDeliveryPromise({
@@ -152,11 +119,18 @@ export function assembleCommercialDecisionDossier(input: {
     brandName: input.brandName,
     productName: input.productName,
   });
+  const pricePremiumPct = computePricePremiumPct(
+    input.proposedSellingPriceUsd,
+    input.competition.lowestCompetitorPriceUsd,
+  );
   const decided = decideDossierVerdict({
     brandRoute: brand.route,
     deliveryCanMeet: delivery.supplierCanMeet,
     amazonEligibility: input.amazonEligibility,
     profitOk: input.expectedProfitUsd >= 1,
+    pricePremiumPct,
+    demandEvidencePresent: typeof input.salesRank === "number",
+    competingOfferCount: input.competition.competingOfferCount,
   });
 
   const demandEvidence =
@@ -173,6 +147,19 @@ export function assembleCommercialDecisionDossier(input: {
   }
   if (input.competition.freshness !== "LIVE") {
     risks.push("Competing offer snapshot not LIVE — marketplace position partially UNKNOWN");
+  }
+  if (pricePremiumPct != null && pricePremiumPct >= 25) {
+    risks.push(
+      `Our proposed price is about ${pricePremiumPct.toFixed(0)}% above the lowest competing offer — material commercial risk.`,
+    );
+  }
+  if (typeof input.salesRank !== "number") {
+    risks.push("Demand evidence is not verified.");
+  }
+  if (decided.verdict !== "APPROVE" && decided.verdict !== "REJECT") {
+    risks.push(
+      `Pillow recommendation is ${decided.verdict} (confidence ${decided.confidence}) — not APPROVE until uncertainty clears.`,
+    );
   }
 
   const dossier = buildCommercialDecisionDossier({
@@ -194,5 +181,6 @@ export function assembleCommercialDecisionDossier(input: {
     verdict: decided.verdict,
     why: decided.why,
     rejectCode: decided.rejectCode,
+    confidence: decided.confidence,
   };
 }

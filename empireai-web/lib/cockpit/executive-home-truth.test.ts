@@ -61,53 +61,37 @@ describe("executive home truth + nav reality", () => {
     assert.equal(PILLOW_WORKSPACE_LAYOUT.historyOverscrollBehavior, "auto");
   });
 
-  it("Executive Home places Pillow above secondary centres (not beside)", () => {
+  it("Executive Home places owner hierarchy before secondary centres", () => {
     const page = readFileSync(
       join(root, "components/cockpit/pages/ExecutiveHomePage.tsx"),
       "utf8",
     );
-    assert.match(page, /executive-pillow-anchor/);
+    assert.match(page, /EmpireStatusBand/);
+    assert.match(page, /PillowCompactPresence/);
+    assert.match(page, /GrandKingAttentionPanel/);
+    assert.match(page, /CanonicalTruthStrip/);
+    assert.match(page, /SinceLastVisitStrip/);
     assert.match(page, /Secondary centre summaries/);
-    assert.match(page, /grand-king-attention|GrandKingAttentionPanel/);
+    assert.ok(!/ExecutiveHomeChatWorkspace/.test(page), "full chat must not live on EH");
     assert.ok(!/lg:grid-cols-\[minmax\(0,1fr\)_minmax\(0,2fr\)\]/.test(page));
-    const pillowIdx = page.indexOf('id="executive-pillow-anchor"');
+    const statusIdx = page.indexOf("EmpireStatusBand");
     const centresIdx = page.indexOf("Secondary centre summaries");
-    assert.ok(pillowIdx > 0 && centresIdx > pillowIdx);
+    assert.ok(statusIdx > 0 && centresIdx > statusIdx);
   });
 
-  it("Pillow chat uses workspace-windowed history — bounded DOM, no 62vh prison", () => {
+  it("Pillow conversation workspace is a full chat surface (not tiny history strip)", () => {
     const chat = readFileSync(
-      join(root, "components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx"),
+      join(root, "components/cockpit/executive/PillowConversationWorkspace.tsx"),
       "utf8",
     );
-    assert.match(chat, /data-history-scroll="workspace-windowed"/);
-    assert.match(chat, /data-scroll-policy="workspace-windowed"/);
-    assert.match(chat, /data-chat-shell="bounded"|chatShellMaxVh/);
-    assert.match(chat, /empireai:focus-pillow|PILLOW_WORKSPACE_LAYOUT\.focusEventName/);
+    assert.match(chat, /pillow-conversation-workspace/);
+    assert.match(chat, /data-testid="pillow-message-history"/);
+    assert.match(chat, /data-testid="pillow-composer"/);
+    assert.match(chat, /Context ▸|Context/);
+    assert.match(chat, /Show earlier messages|windowSize/i);
+    assert.ok(/min-h-\[560px\]|h-\[min\(85vh/.test(chat), "conversation uses majority height");
     assert.ok(!/max-h-\[62vh\]/.test(chat), "62vh history prison removed");
-    assert.ok(!/min-h-\[48vh\]/.test(chat), "48vh history min prison removed");
-    assert.ok(!/min-h-\[70vh\]/.test(chat), "70vh workspace prison removed");
-    assert.ok(!/h-\[min\(88vh/.test(chat), "fixed 88vh scroll prison removed");
-    const historyBlock = chat.slice(
-      chat.indexOf('data-testid="pillow-message-history"'),
-      chat.indexOf('data-testid="pillow-composer-footer"'),
-    );
-    assert.ok(
-      /overflow-y-auto/.test(historyBlock),
-      "message history scrolls inside bounded workspace shell",
-    );
-    assert.match(chat, /visibleMessageWindow|windowSize|Load earlier|load earlier/i);
-    assert.ok(
-      !/Focus composer on mount|requestAnimationFrame\(\(\) => focusComposer\(\{ scrollIntoView: false \}\)/.test(
-        chat,
-      ),
-      "must not autofocus composer on mount",
-    );
-    assert.match(
-      chat,
-      /seenConversationLenRef/,
-      "must gate conversation scroll so hydrate does not trap page",
-    );
+    assert.ok(!/Load earlier messages \(\d+ hidden\)/.test(chat));
   });
 
   it("navigation marks unavailable centres honestly (Mission 007)", () => {

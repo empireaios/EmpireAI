@@ -77,8 +77,10 @@ type DecisionDossier = {
   prominentCompetitionRisk: string | null;
   pillowRecommendation: {
     verdict: string;
+    confidence?: string;
     why: string;
     whatWouldChangeMind: string[];
+    unsureAbout?: string[];
   };
   grandKingDecision: {
     ifApprove: string[];
@@ -200,30 +202,15 @@ export function OneProductDecisionDossierPanel({
     >
       <header className="border-b border-emerald-500/20 px-5 py-4">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200">
-          CQ-04 · Pillow one-product commissioning dossier
+          Product decision dossier
         </p>
         <h3 className="mt-1 font-display text-xl text-[#f0d78c]">{dossier.product.plainName}</h3>
         <p className="mt-2 text-xs text-[#8a847a]">
-          Selection authority: Pillow · Cursor selected:{" "}
-          {dossier.selection.cursorSelected ? "yes" : "no"} · Selected{" "}
-          {new Date(dossier.selection.selectedAt).toLocaleString()}
-        </p>
-        {dossier.identityReconciliation.commerceOpportunityDistinct && (
-          <p className="mt-2 rounded border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
-            Identity note: Executive Home also shows a different pending commerce opportunity
-            {dossier.identityReconciliation.commerceOpportunityName
-              ? ` (“${dossier.identityReconciliation.commerceOpportunityName}”).`
-              : "."}{" "}
-            This CQ-04 dossier is the canonical Pillow commissioning candidate — not that floating
-            approval card.
-          </p>
-        )}
-        <p className="mt-2 text-[11px] text-[#6f6a60]">
-          {dossier.identityReconciliation.nordicNote}
+          Selected by Pillow · Cursor did not choose this product
         </p>
       </header>
 
-      <div className="grid gap-4 px-5 py-4 lg:grid-cols-[180px_minmax(0,1fr)]">
+      <div className="grid gap-4 px-5 py-4 lg:grid-cols-[160px_minmax(0,1fr)]">
         <div className="flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-gold/15 bg-black/40">
           {dossier.product.catalogImageUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -234,27 +221,27 @@ export function OneProductDecisionDossierPanel({
             />
           ) : (
             <p className="px-3 text-center text-xs text-[#6f6a60]">
-              Catalog image not yet available from Amazon
+              Product image not yet available
             </p>
           )}
         </div>
         <div className="space-y-3">
-          <div className="rounded-lg border border-gold/15 bg-black/30 px-3 py-2">
-            <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">Listing route</p>
-            <p className="mt-1 text-sm text-[#f0d78c]">Joining an existing Amazon product page</p>
-            <p className="mt-1 text-xs leading-relaxed text-[#8a847a]">
-              {dossier.product.listingRouteExplanation}
+          <div className="rounded-lg border border-gold/20 bg-black/35 px-3 py-3">
+            <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
+              Pillow&apos;s recommendation
+            </p>
+            <p className="mt-1 text-lg text-[#d4af37]">
+              {dossier.pillowRecommendation.verdict}
+              {dossier.pillowRecommendation.confidence
+                ? ` · confidence ${dossier.pillowRecommendation.confidence}`
+                : ""}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-[#c8c0b0]">
+              Why: {dossier.pillowRecommendation.why}
             </p>
           </div>
-          <p className="text-xs text-[#c8c0b0]">
-            Supplier: {dossier.supplier.name}
-            {dossier.supplier.stockUnits != null
-              ? ` · Stock ${dossier.supplier.stockUnits}`
-              : " · Stock unknown"}{" "}
-            · Brand route: {dossier.product.brandRoute ?? "Unknown"}
-          </p>
           <p className="text-xs text-[#8a847a]">
-            Customer receives: {dossier.product.customerReceives}
+            {dossier.product.listingRouteExplanation}
           </p>
         </div>
       </div>
@@ -273,11 +260,7 @@ export function OneProductDecisionDossierPanel({
             }}
             tone={expensive ? "warn" : "neutral"}
           />
-          <div className="rounded-lg border border-gold/10 bg-black/25 px-2 py-2">
-            <p className="text-[9px] uppercase tracking-wider text-[#6f6a60]">Competing offers</p>
-            <p className="mt-1 text-sm text-[#e8e0d0]">{dossier.economics.competingOfferCount}</p>
-            <p className="mt-0.5 text-[9px] text-[#5a564e]">{dossier.economics.featuredOffer}</p>
-          </div>
+          <Metric field={dossier.economics.expectedProfit} tone="gold" />
         </div>
         {dossier.prominentCompetitionRisk && (
           <p className="rounded border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
@@ -288,34 +271,49 @@ export function OneProductDecisionDossierPanel({
           <Metric field={dossier.supplier.supplierCost} />
           <Metric field={dossier.supplier.freight} />
           <Metric field={dossier.economics.amazonFees} />
-          <Metric field={dossier.economics.landedCost} />
           <Metric field={dossier.economics.breakEven} />
-          <Metric field={dossier.economics.expectedProfit} tone="gold" />
-          <div className="rounded-lg border border-gold/10 bg-black/25 px-2 py-2">
-            <p className="text-[9px] uppercase tracking-wider text-[#6f6a60]">Expected margin</p>
-            <p className="mt-1 text-sm text-[#e8e0d0]">{dossier.economics.expectedMargin}</p>
-            <p className="mt-0.5 text-[9px] uppercase tracking-wider text-[#5a564e]">estimated</p>
-          </div>
-          <div className="rounded-lg border border-gold/10 bg-black/25 px-2 py-2">
+        </div>
+        <div className="grid gap-2 sm:grid-cols-2">
+          <div className="rounded-lg border border-gold/10 bg-black/25 px-3 py-2">
             <p className="text-[9px] uppercase tracking-wider text-[#6f6a60]">Demand</p>
             <p className="mt-1 text-xs text-amber-100">{dossier.demand.evidence}</p>
           </div>
+          <div className="rounded-lg border border-gold/10 bg-black/25 px-3 py-2">
+            <p className="text-[9px] uppercase tracking-wider text-[#6f6a60]">Delivery</p>
+            <p className="mt-1 text-xs text-[#c8c0b0]">{dossier.delivery.customerPromise}</p>
+          </div>
         </div>
-        <p className="text-xs text-[#8a847a]">Delivery: {dossier.delivery.customerPromise}</p>
-        <p className="text-xs text-[#8a847a]">
-          Eligibility: {dossier.eligibility.amazonEligibility} · Restrictions:{" "}
-          {dossier.eligibility.restrictionStatus} · Brand/IP: {dossier.eligibility.brandIp}
-        </p>
+        <div>
+          <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">Key risks</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-xs text-[#c8c0b0]">
+            {dossier.risks.slice(0, 6).map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+        </div>
+        {(dossier.pillowRecommendation.unsureAbout?.length ?? 0) > 0 && (
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
+              What Pillow is unsure about
+            </p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 text-xs text-amber-100/90">
+              {dossier.pillowRecommendation.unsureAbout!.map((u) => (
+                <li key={u}>{u}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="space-y-3 border-t border-emerald-500/15 px-5 py-4">
-        <div>
-          <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">Funnel (partial)</p>
-          <p className="mt-1 text-xs text-[#c8c0b0]">
+        <details className="rounded-lg border border-gold/10 bg-black/20 px-3 py-2">
+          <summary className="cursor-pointer text-xs text-[#8a847a]">
+            Candidate funnel &amp; alternatives ▸
+          </summary>
+          <p className="mt-2 text-xs text-[#c8c0b0]">
             Evaluated {dossier.funnel.candidatesEvaluated ?? "—"} · Rejected{" "}
-            {dossier.funnel.rejectedBeforeDeepAnalysis ?? "—"} · Commercially ready survivors{" "}
-            {dossier.funnel.smartViableSurvivors ?? "—"} · Detail retention:{" "}
-            {dossier.funnel.historicalFunnelDetail}
+            {dossier.funnel.rejectedBeforeDeepAnalysis ?? "—"} · Survivors{" "}
+            {dossier.funnel.smartViableSurvivors ?? "—"}
           </p>
           <ul className="mt-2 space-y-1 text-xs text-[#8a847a]">
             {dossier.funnel.finalists.map((f) => (
@@ -326,32 +324,7 @@ export function OneProductDecisionDossierPanel({
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-[#c8c0b0]">{dossier.funnel.whyWinnerWon}</p>
-        </div>
-
-        <div>
-          <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">Known risks</p>
-          <ul className="mt-1 list-disc space-y-1 pl-5 text-xs text-[#c8c0b0]">
-            {dossier.risks.slice(0, 8).map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="rounded-lg border border-gold/15 bg-black/25 px-3 py-3">
-          <p className="text-sm text-[#d4af37]">
-            Pillow recommendation: {dossier.pillowRecommendation.verdict}
-          </p>
-          <p className="mt-1 text-xs text-[#c8c0b0]">{dossier.pillowRecommendation.why}</p>
-          <p className="mt-2 text-[10px] uppercase tracking-wider text-[#6f6a60]">
-            What would change Pillow&apos;s mind
-          </p>
-          <ul className="mt-1 list-disc pl-5 text-xs text-[#8a847a]">
-            {dossier.pillowRecommendation.whatWouldChangeMind.map((w) => (
-              <li key={w}>{w}</li>
-            ))}
-          </ul>
-        </div>
+        </details>
 
         <div className="grid gap-2 sm:grid-cols-2">
           <div className="rounded-lg border border-gold/10 bg-black/20 px-3 py-2 text-xs text-[#c8c0b0]">
@@ -416,7 +389,7 @@ export function OneProductDecisionDossierPanel({
               )
             }
           >
-            Challenge Pillow (prepare CQ-05)
+            Challenge Pillow
           </button>
           <button
             type="button"
@@ -426,13 +399,15 @@ export function OneProductDecisionDossierPanel({
             Reload dossier
           </button>
         </div>
-        <p className="text-[10px] text-[#6f6a60]">
-          CQ-05 remains {dossier.challengeInterface.cq05Status}. Publication attempted:{" "}
-          {String(dossier.governance.publicationAttempted)} · Spend attempted:{" "}
-          {String(dossier.governance.supplierSpendAttempted)} · Birth:{" "}
-          {dossier.governance.birthTimestamp ?? "NULL"} · 1,000:{" "}
-          {dossier.governance.thousandRelease}
-        </p>
+        <details className="text-[10px] text-[#6f6a60]">
+          <summary className="cursor-pointer">Governance status ▸</summary>
+          <p className="mt-1">
+            Challenge gate: awaiting Grand King + ChatGPT. Publication attempted:{" "}
+            {String(dossier.governance.publicationAttempted)} · Spend attempted:{" "}
+            {String(dossier.governance.supplierSpendAttempted)} · Birth:{" "}
+            {dossier.governance.birthTimestamp ?? "not authorised"} · 1,000 release: not released
+          </p>
+        </details>
       </footer>
     </section>
   );
