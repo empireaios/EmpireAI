@@ -2,64 +2,33 @@
   "missionId": "007",
   "title": "Grand King Cockpit Total Executive UX + Pillow Operating Surface",
   "doctrinePreserved": ["005", "006"],
-  "artifacts": {
-    "executivePresentation": "empireai-web/lib/cockpit/executive/executive-presentation.ts",
-    "pillowWorkspaceLayout": "empireai-web/lib/cockpit/executive/pillow-workspace-layout.ts",
-    "executiveHome": "empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx",
-    "chatWorkspace": "empireai-web/components/cockpit/executive/ExecutiveHomeChatWorkspace.tsx",
-    "attention": "empireai-web/components/cockpit/executive/GrandKingAttentionPanel.tsx",
-    "commerceDecision": "empireai-web/components/cockpit/executive/CommerceDecisionWorkspace.tsx",
-    "canonicalTruthStrip": "empireai-web/components/cockpit/executive/CanonicalTruthStrip.tsx",
-    "commissioningStrip": "empireai-web/components/cockpit/executive/PillowCommissioningStrip.tsx",
-    "navigation": "empireai-web/lib/cockpit-ux/navigation.ts",
-    "settingsUnavailable": "empireai-web/components/cockpit/governance/SettingsUnavailablePanel.tsx",
-    "portfolioControlPlane": "backend/src/orchestration/pillow-commissioning/portfolio-control-plane.ts",
-    "postLaunchDeviation": "backend/src/orchestration/pillow-commissioning/post-launch-commercial-deviation.ts",
-    "csaChecklist": "docs/audits/complete-state/CSA_MISSION_007_EXECUTIVE_UX_CHECKLIST.md",
-    "masterReport": "docs/audits/complete-state/MISSION_007_MASTER_REPORT.md"
-  },
-  "routesAdded": [
-    "GET /pillow-commissioning/portfolio-control",
-    "GET /pillow-commissioning/post-launch-deviations"
-  ],
-  "chatArchitecture": {
-    "historyScroll": "workspace-windowed",
-    "visibleMessageWindow": 40,
-    "chatShellMaxVh": 72,
-    "chatShellMaxPx": 720,
-    "pagePrimaryAroundShell": true,
-    "overscrollBehavior": "auto"
-  },
-  "nonNegotiables": {
-    "noSubjectiveGrandKingAcceptance": true,
-    "noInventedCostGuardLimits": true,
-    "noBirthAuthorisation": true,
-    "noHardCodedLowerPriceOnZeroSales": true,
-    "cursorNotRuntimeOperator": true
-  },
+  "subjectiveGrandKingAcceptance": false,
   "git": {
-    "localHead": "8f3ceea8",
+    "localHead": "ee0cd330",
+    "originMain": "ee0cd33013f1109f21206e93bbc4d1e4741b7c51",
     "implementationCommit": "fb630b73",
-    "evidenceStampCommit": "8f3ceea8",
-    "branch": "main",
-    "originMain": "8f3ceea89772c989ca45f2d7e4f322e8a71f7d26",
+    "buildFixCommit": "ee0cd330",
+    "deployGapEvidenceCommit": "932458ab",
     "aheadBehindOrigin": "0/0"
   },
+  "deployDiagnosis": {
+    "rootCause": "Vercel TypeScript build failure on Mission 007 commits (fb630b73/8f3ceea8/932458ab): useState inferred literal 40 from as-const visibleMessageWindow; setWindowSize updater returned number.",
+    "failedDeployments": [
+      "dpl_2Ec4YNYN3rY5jHdSnWm1EGoRStGp (fb630b73)",
+      "dpl_E6pggos17t9zwh5rhLXCD4JMneWk (8f3ceea8)",
+      "dpl_8ocLWi2pHRsMX6MD8QTS22nfx5Gx (932458ab)"
+    ],
+    "lastSuccessfulPreFix": "6e6a746c / dpl_YJBCwvufVJoazNGLcXyJmP31UcC3",
+    "fix": "useState<number>(PILLOW_WORKSPACE_LAYOUT.visibleMessageWindow) in ExecutiveHomeChatWorkspace.tsx",
+    "resolutionCommit": "ee0cd330"
+  },
   "production": {
-    "vercelStamp": "6e6a746c0e6cc01e15c229897aa3996f5da33a17",
-    "vercelDeploymentId": "dpl_YJBCwvufVJoazNGLcXyJmP31UcC3",
+    "vercelStamp": "ee0cd33013f1109f21206e93bbc4d1e4741b7c51",
+    "vercelDeploymentId": "dpl_4TFjuMXtejuwEjVFdTem6teVHofj",
     "stampEndpoint": "https://empire-ai.co/api/eos-bundle-stamp",
-    "stampObservedAt": "2026-08-10T23:59:56.414Z",
-    "mission007Deployed": false,
-    "observedUx": {
-      "historyScroll": "page-flow",
-      "attentionTitle": "Grand King Attention",
-      "pillowNeedsYourAttention": false,
-      "workspaceWindowed": false,
-      "success001Visible": true,
-      "commissioningLabelMachine": true
-    },
-    "blockingStep": "Vercel production still serves Mission 006 commit 6e6a746c; Mission 007 (fb630b73/8f3ceea8) is on origin/main but not in the live web bundle. Production browser acceptance journey cannot certify 007 until Vercel redeploys main."
+    "stampObservedAt": "2026-08-11T02:50:11.348Z",
+    "mission007Deployed": true,
+    "mission006StillValidDoctrine": true
   },
   "railway": {
     "pillowCommissioningHealth": {
@@ -70,22 +39,60 @@
       "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
     }
   },
-  "testsPassedAtClose": [
-    "empireai-web executive-home-truth + executive-presentation (19)",
-    "empireai-web pillow-chat-scale (2)",
-    "backend canonical-executive-truth + portfolio-control-plane (6)"
-  ],
-  "syntheticLargeChatDomBound": "PASS_UNIT_pillow-chat-scale.test.ts",
-  "productionBrowserJourney": "BLOCKED_PRE_007_VERCEL_STAMP",
-  "verdictsAtClose": {
-    "grandKingCockpit": "NOT_READY",
-    "pillowChatScalability": "NOT_PROVEN",
-    "pillowProactiveAttention": "PARTIAL",
-    "commerceDecisionUx": "NOT_READY",
+  "liveProductionVerification": {
+    "observedAt": "2026-08-11T02:50:00Z",
+    "executiveHome": {
+      "historyScroll": "workspace-windowed",
+      "chatShell": "bounded",
+      "shellHeightPx": 720,
+      "shellMaxHeight": "720px",
+      "historyClientH": 328,
+      "historyScrollH": 3886,
+      "composerVisible": true,
+      "pillowNeedsYourAttention": true,
+      "commerceDecisionWorkspace": true,
+      "listingRouteExistingAsin": true,
+      "competitorPriceProminent": true,
+      "challengePillow": true,
+      "whyRejected": true,
+      "secondaryInDetails": true,
+      "settingsSoonBadge": true,
+      "settingsUnavailablePanel": true,
+      "chatSendResult": "Pillow replied: The chat composer is confirmed as usable."
+    },
+    "apisViaAuthenticatedBff": {
+      "portfolioControl": {
+        "status": 200,
+        "architecture": "EXCEPTION_DRIVEN_CONTROL_PLANE",
+        "costMeasurement": "UNKNOWN"
+      },
+      "postLaunchDeviations": {
+        "status": 200,
+        "forbidsHardCodedPriceCut": true
+      }
+    },
+    "centresSampled": {
+      "settings": "honest unavailable — Not yet available + Cost Centre link",
+      "commerceOperating": "HTTP 200 meaningful content",
+      "missions": "HTTP 200"
+    },
+    "residualMachineLanguageInShellChrome": {
+      "success001Banner": true,
+      "note": "Top APPROVAL/PRODUCTION chrome still shows SUCCESS-001 / B5 codes — Class 2 UX residual outside Mission 007 EH decision surface; not a deploy failure."
+    }
+  },
+  "verdictsAfterLiveVerify": {
+    "grandKingCockpit": "PARTIAL_LIVE",
+    "pillowChatScalability": "PROVEN_LIVE_BOUNDED_SHELL",
+    "pillowProactiveAttention": "PARTIAL_LIVE",
+    "commerceDecisionUx": "PARTIAL_LIVE",
     "financialLiveTruth": "PARTIAL",
     "portfolioControlPlane": "PARTIAL",
     "livePortfolioScalability": "PARTIAL",
     "monitoringCostIntelligence": "PARTIAL",
-    "pillowPostLaunchAutonomy": "READY_FOR_REAL_TEST"
-  }
+    "pillowPostLaunchAutonomy": "READY_FOR_REAL_TEST",
+    "mission007Complete": false,
+    "mission007LiveOnVercel": true
+  },
+  "nextClosingQueueAction": "CQ-01 Cost Guard owner decisions remain ACTIVE — do not invent limits. Next Cursor-safe lane remains CQ-04 one-product decision dossier progression (visual/NL already advanced by Mission 007; challenge/publish still gated)."
 }

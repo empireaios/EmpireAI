@@ -7,7 +7,7 @@ Prior completion claims are not proof. Verify repository **and** production.
 |---|-------------|------------------|----------------------------|
 | 1 | Cockpit is decision-first | EH order: Attention → truth → Pillow status → commerce decision → bounded chat → secondary `<details>` | PARTIAL (IA wired; GK subjective acceptance not declared) |
 | 2 | Dead navigation gone / honest | `navigation.ts` availability; Settings unavailable panel; Partial badges | PARTIAL (honest labels; full Centre content audit ongoing) |
-| 3 | Pillow chat scales | `pillow-workspace-layout` windowed history; `data-history-scroll=workspace-windowed` | PARTIAL (repo proven; synthetic DOM + prod journey pending deploy) |
+| 3 | Pillow chat scales | `pillow-workspace-layout` windowed history; `data-history-scroll=workspace-windowed` | PROVEN LIVE on `ee0cd330` (shell 720px; history internal scroll; composer usable) |
 | 4 | Pillow proactive attention | `GrandKingAttentionPanel` + canonical `grandKingAttention` | PARTIAL (surface proactive; continuous initiation post-Birth not proven) |
 | 5 | Financial LIVE truth authoritative | `formatFinancialAmount` + CanonicalTruthStrip status labels; no decorative LIVE $0 as success | PARTIAL (labelling; invoice-grade marketplace billing still blind spots) |
 | 6 | Human-readable timestamps | `formatGrandKingTime` on commissioning strip / flight rows | PROVEN (helpers + surfaces) |

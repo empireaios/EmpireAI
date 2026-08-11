@@ -26,8 +26,8 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 
 | Fact | Value |
 |------|-------|
-| Repo / origin | `e5dd7f0a` · 0/0 |
-| Vercel stamp | `e5dd7f0a` (`dpl_C4sBKeiLVLfKE5krHeRXbcaRCWeF`) |
+| Repo / origin | `ee0cd330` · 0/0 |
+| Vercel stamp | `ee0cd330` (`dpl_4TFjuMXtejuwEjVFdTem6teVHofj`) — Mission 007 LIVE (not COMPLETE) |
 | Pillow Birth timestamp | **NULL** |
 | Railway birthStatus | `COMMISSIONING` · technicallyReady=`false` |
 | SMART viable (last measured) | **7 / 1,000** (pipeline evidence; not release) |
