@@ -1,7 +1,7 @@
 # EmpireAI — Canonical Closing Queue 005
 
 **Directive:** Complete the machine, prove Pillow, then operate.  
-**Updated:** 2026-08-10T14:15:00Z  
+**Updated:** 2026-08-11T08:00:00Z  
 **Machine ledger:** `CANONICAL_CLOSING_QUEUE_005.json`
 
 This is the durable closing ledger for CQ-01 → CQ-30.  
@@ -26,16 +26,17 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 
 | Fact | Value |
 |------|-------|
-| Repo / origin | `ee0cd330` · 0/0 |
-| Vercel stamp | `ee0cd330` (`dpl_4TFjuMXtejuwEjVFdTem6teVHofj`) — Mission 007 LIVE (not COMPLETE) |
+| Repo / origin | `37895b14` · 0/0 |
+| Vercel stamp | CQ-04 dossier UI on `fa1b4fdc`+; Mission 007 still LIVE (not COMPLETE) |
 | Pillow Birth timestamp | **NULL** |
 | Railway birthStatus | `COMMISSIONING` · technicallyReady=`false` |
-| SMART viable (last measured) | **7 / 1,000** (pipeline evidence; not release) |
+| SMART viable (last measured) | **5 survivors / 32 evaluated** at CQ-04 selection (not a 1,000 release) |
 | Realised revenue | **$0** |
 | Realised profit | **$0** |
 | Cost Guard owner limits | **7/7 unconfigured** |
 | Cost safeguards | Hard-stop mechanism **ACTIVE / proven**; owner caps not set |
-| One-product | Pillow-selected Nordic bedding · expected profit $90.24 · awaiting GK · not published |
+| One-product (LIVE CQ-04) | Pillow-selected Embroidered Floral Tank Vest · expected profit **$25.86 ESTIMATED** · +74% vs lowest competitor · awaiting GK · not published |
+| Nordic bedding | Historical Mission 004 only — not live canonical |
 
 ---
 
@@ -45,7 +46,7 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 |------|------|--------|
 | ACTIVE (do not duplicate) | **CQ-01** Cost Guard owner decision support | ACTIVE |
 | COMPLETE (preserve) | **CQ-03** Executive Home scroll defect | COMPLETE |
-| NEXT Cursor-safe | **CQ-04** One-product decision dossier | **PARTIAL** (live dossier wiring; see CQ04 evidence) |
+| NEXT Cursor-safe | After CQ-05 owner gate: **CQ-06** / other Cursor-safe items | CQ-04 dossier LIVE but PARTIAL (durability residual) |
 | Queued Cursor-safe | CQ-06, CQ-07, CQ-08, CQ-10, CQ-11, CQ-15, CQ-29 | QUEUED |
 | Governance STOP | CQ-05, CQ-18, CQ-21, CQ-22, CQ-25 | AWAITING GK / GK+ChatGPT |
 
@@ -58,8 +59,8 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 | CQ-01 | Cost Guard owner decisions | **ACTIVE** | — | GK+ChatGPT decide; Cursor expose | **NO** (do not duplicate) | Owner financial limits | 7 null limits; SGD 500 intent not configured | Finish decision-support; GK chooses values |
 | CQ-02 | Cost Guard real configuration | BLOCKED | CQ-01 | Cursor after values | NO | Requires approved limits | Persist/API ready | Configure + prove after GK values |
 | CQ-03 | Executive Home scroll defect | **COMPLETE** | — | Cursor | NO | None | Live PASS on `e5dd7f0a` | Preserve |
-| CQ-04 | Pillow one-product decision dossier | **PARTIAL** | — | Cursor expose; Pillow defend | **YES** | No publish/spend | Nordic historical; Pillow reselected; durable OPDD API+EH panel | Finish prod verify + persistence proof after deploy |
-| CQ-05 | GK + ChatGPT challenge gate | AWAITING GK+CHATGPT | CQ-04 | ChatGPT/Pillow/GK | NO | Challenge then GK decide | Not started | ChatGPT challenges Pillow |
+| CQ-04 | Pillow one-product decision dossier | **PARTIAL** | — | Cursor expose; Pillow defend | NO (done enough for CQ-05) | No publish/spend | LIVE EH OPDD for Embroidered Floral Tank Vest; +74% premium risk; challenge seeds ready; redeploy durability residual | Optional durability harden; do not block CQ-05 |
+| CQ-05 | GK + ChatGPT challenge gate | AWAITING GK+CHATGPT | CQ-04 | ChatGPT/Pillow/GK | NO | Challenge then GK decide | Interface ready; challenge not executed | ChatGPT challenges Pillow on live dossier |
 | CQ-06 | Cost Intelligence closure | QUEUED | — | Cursor | YES | No fabricated billing | PARTIAL; invoice blind spots | Close safe gaps; UNKNOWN stays UNKNOWN |
 | CQ-07 | Billing exposure closure | QUEUED | — | Cursor classify | YES | No invent limits | Register exists; incomplete matrix | Full exposure matrix |
 | CQ-08 | Cost-efficient intelligence architecture | QUEUED | — | Cursor | YES | Do not dumb down Pillow | Hybrid doctrine partial measure | Prove cheap→expensive ladder |
@@ -117,7 +118,7 @@ Scale path: **1 product → 1,000 SMART → first real dollar → 10,000 → sup
 
 ## Cursor may execute next (safe)
 
-CQ-04 (immediate), then CQ-06, CQ-07, CQ-08, CQ-10, CQ-11, CQ-15, CQ-29 — without crossing publish/spend/birth/1k/owner-limit gates.
+CQ-06, CQ-07, CQ-08, CQ-10, CQ-11, CQ-15, CQ-29 — without crossing publish/spend/birth/1k/owner-limit gates. CQ-04 dossier is LIVE (PARTIAL durability); CQ-05 is for GK+ChatGPT only.
 
 ## Pillow must perform (not Cursor)
 

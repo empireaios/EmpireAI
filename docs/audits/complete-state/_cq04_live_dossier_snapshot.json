@@ -1,0 +1,284 @@
+{
+  "status": 200,
+  "ok": true,
+  "persisted": true,
+  "product": {
+    "plainName": "Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)",
+    "productType": "Dropship offer on Amazon US catalog (generic/unbranded route unless noted)",
+    "listingRoute": "OFFER_ON_EXISTING_ASIN",
+    "listingRouteExplanation": "We are joining an existing Amazon product page. Amazon controls the catalog images/title/content. EmpireAI is adding our seller offer.",
+    "brandRoute": "GENERIC_UNBRANDED",
+    "imageAvailable": false,
+    "catalogImageUrl": null,
+    "customerFacingTitle": "Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)",
+    "customerReceives": "Supplier-fulfilled product matching the Amazon catalog listing attributes.",
+    "brandAppearsWhere": "No EmpireAI private-label branding applied on product/packaging for this route."
+  },
+  "marketplace": {
+    "marketplace": "Amazon",
+    "country": "United States"
+  },
+  "supplier": {
+    "name": "CJdropshipping",
+    "stockUnits": 7350,
+    "stockStatus": "VERIFIED_LIVE",
+    "supplierCost": {
+      "label": "Supplier cost",
+      "display": "$9.55",
+      "amountUsd": 9.55,
+      "currency": "USD",
+      "status": "VERIFIED_LIVE",
+      "source": "cj.product.variant.sellPrice",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "CJ product cost for mapped variant"
+    },
+    "freight": {
+      "label": "Freight / shipping",
+      "display": "$7.87",
+      "amountUsd": 7.87,
+      "currency": "USD",
+      "status": "VERIFIED_LIVE",
+      "source": "cj.logistic.freightCalculate US",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "CJ US shipping quote for mapped variant"
+    },
+    "packagingBrandImplication": "Generic/unbranded offer — Amazon catalog presentation; supplier packaging may appear unmarked or supplier-default."
+  },
+  "economics": {
+    "ourPrice": {
+      "label": "Our proposed price",
+      "display": "$52.15",
+      "amountUsd": 52.15,
+      "currency": "USD",
+      "status": "ESTIMATED",
+      "source": "Pillow commercial dossier / recommendation",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Proposed Amazon offer price — not realised revenue"
+    },
+    "lowestCompetitor": {
+      "label": "Lowest competing price",
+      "display": "$29.98",
+      "amountUsd": 29.98,
+      "currency": "USD",
+      "status": "PARTIAL",
+      "source": "amazon.products.pricing.v0.items.offers",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Lowest observed competing offer at dossier compute"
+    },
+    "priceDifference": {
+      "label": "Price difference vs lowest competitor",
+      "display": "$22.17",
+      "amountUsd": 22.169999999999998,
+      "currency": "USD",
+      "status": "PARTIAL",
+      "source": "derived",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Our price minus lowest competitor"
+    },
+    "priceDifferencePct": "+74%",
+    "competingOfferCount": "1",
+    "featuredOffer": "Eligible: YES · Currently featured: NO · Featured price ~$29.98",
+    "amazonFees": {
+      "label": "Amazon fees",
+      "display": "$8.87",
+      "amountUsd": 8.87,
+      "currency": "USD",
+      "status": "VERIFIED_LIVE",
+      "source": "amazon.feesEstimate",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Estimated referral/closing fees for proposed price"
+    },
+    "landedCost": {
+      "label": "Landed cost (supplier + freight)",
+      "display": "$17.42",
+      "amountUsd": 17.42,
+      "currency": "USD",
+      "status": "PARTIAL",
+      "source": "derived from CJ cost+ship",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Does not include Amazon fees"
+    },
+    "breakEven": {
+      "label": "Break-even price",
+      "display": "$26.29",
+      "amountUsd": 26.29,
+      "currency": "USD",
+      "status": "ESTIMATED",
+      "source": "dossier sensitivity",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Estimated break-even selling price"
+    },
+    "expectedProfit": {
+      "label": "Expected profit",
+      "display": "$25.86",
+      "amountUsd": 25.86,
+      "currency": "USD",
+      "status": "ESTIMATED",
+      "source": "Pillow recommendation — NOT realised profit",
+      "asOf": "2026-08-11T07:34:16.378Z",
+      "coverage": "Expected contribution per sale if buyable and sold at proposed price"
+    },
+    "expectedMargin": "49.59%",
+    "marginStatus": "ESTIMATED"
+  },
+  "demand": {
+    "evidence": "Sales rank UNKNOWN from authorized APIs. Existence on Amazon is not demand proof.",
+    "confidence": "unknown",
+    "note": "Do not treat catalog existence as demand."
+  },
+  "delivery": {
+    "customerPromise": "Buyer-facing delivery estimate ~7–15 days (merchant-fulfilled handling 2d + transit 5–11d + buffer). Amazon delivery promise must match the supplier's actual shipping time.",
+    "processing": "1–3 days [ESTIMATED]",
+    "transit": "5–11 days transit (estimated)",
+    "supplierCanMeet": "UNKNOWN",
+    "naturalLanguage": "Customer delivery must reflect real supplier processing and China→US transit — not a short domestic promise."
+  },
+  "eligibility": {
+    "amazonEligibility": "PASS",
+    "restrictionStatus": "PASS — listingsRestrictions clear at preflight",
+    "brandIp": "Generic/unbranded route — avoid unauthorized brand claims.",
+    "catalogMatchQuality": "Catalog ASIN match may be keyword-based — verify fulfilment map before publish."
+  },
+  "risks": [
+    "Offer not yet published — BUYABLE must be verified after publication",
+    "Catalog ASIN match is keyword-based; fulfilment uses deterministic SKU→CJ PID/VID map only",
+    "Starting quantity limited to 3 for exposure control",
+    "Institutional memory: Do not recommend Anker / B088NRLMPV brand-gated catalog offers",
+    "Institutional memory: Amazon selling eligibility must be checked before recommendation",
+    "Delivery promise: supplierCanMeet=UNKNOWN",
+    "Our proposed price is about $22.17 (74%) above the lowest competing offer. This is a material commercial risk — positive expected margin alone does not justify the price.",
+    "Demand evidence is not verified.",
+    "Expected profit is not realised profit.",
+    "Publication and supplier spend remain gated until Grand King approval."
+  ],
+  "prominentCompetitionRisk": "Our proposed price is about $22.17 (74%) above the lowest competing offer. This is a material commercial risk — positive expected margin alone does not justify the price.",
+  "pillowRecommendation": {
+    "verdict": "APPROVE",
+    "why": "Generic/unbranded offer route with live stock/cost/freight/fees, restriction clear, delivery feasible under conservative estimates, and positive expected contribution. Publication still requires Grand King approval; BUYABLE must be verified after publish.",
+    "whatWouldChangeMind": [
+      "A higher-quality opportunity with better price competitiveness and verified demand",
+      "Amazon eligibility/restriction failure on revalidation",
+      "Supplier stock/cost/freight deterioration that collapses expected margin",
+      "Evidence that customers will not buy at a large premium vs lowest competitor",
+      "Brand/IP conflict or catalog match failure"
+    ]
+  },
+  "grandKingDecision": {
+    "ifApprove": [
+      "1) Revalidate stock/cost/freight/fees/restrictions.",
+      "2) Publish LISTING_OFFER_ONLY with Amazon↔CJ map.",
+      "3) Verify BUYABLE (ACCEPTED≠BUYABLE).",
+      "4) Monitor offer.",
+      "5) On real Amazon order: idempotent EmpireAI→CJ createOrder (approval-gated spend).",
+      "6) Sync tracking.",
+      "7) confirmShipment to Amazon.",
+      "8) Record actual P&L ≠ expected.",
+      "9) Capture institutional memory."
+    ],
+    "ifReject": [
+      "This commissioning candidate is not published.",
+      "No supplier spend occurs.",
+      "Pillow continues SMART discovery toward the 1,000 commercially ready surface.",
+      "Grand King may later ask Pillow to select another commissioning candidate via the production pipeline (Cursor must not pick)."
+    ],
+    "currentState": "none"
+  },
+  "challengeInterface": {
+    "ready": true,
+    "askPromptSeed": "Challenge/defend the CQ-04 one-product commissioning dossier for \"Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)\". Selection authority=Pillow; Cursor did not select this product. Proposed price $52.15; expected profit $25.86 (EXPECTED — not realised). Lowest competing offer about $29.98 (74% difference). Demand: Sales rank UNKNOWN from authorized APIs. Existence on Amazon is not demand proof.. Answer only from dossier evidence and institutional memory. Do not invent LIVE figures.",
+    "exampleChallenges": [
+      "Why this product?",
+      "Why this price vs the cheapest competitor?",
+      "What evidence shows demand?",
+      "What if there are no sales after publish?",
+      "What if competitor price drops?",
+      "What if supplier cost rises?",
+      "Why not select another product?",
+      "What are you least confident about?",
+      "What evidence would make you reject your own recommendation?"
+    ],
+    "cq05Status": "AWAITING_GRAND_KING_AND_CHATGPT"
+  },
+  "postLaunchAutonomyReadiness": {
+    "readyForRealTest": true,
+    "hardCodedPriceCutForbidden": true,
+    "detectionModule": "post-launch-commercial-deviation",
+    "note": "Detection is deterministic; commercial conclusion belongs to Pillow judgment. Cursor Ultra may run offline simulation — Cursor is not the live operator. No published listings yet — zero-sales review is not applicable."
+  },
+  "governance": {
+    "publicationAttempted": false,
+    "supplierSpendAttempted": false,
+    "birthTimestamp": null,
+    "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT"
+  },
+  "selection": {
+    "selectionAuthority": "pillow",
+    "cursorSelected": false,
+    "selectedAt": "2026-08-11T07:45:17.054Z",
+    "commissioningId": "opc_93989eb3",
+    "opportunityId": "93989eb3-4fb1-4f1d-87ea-8d88d39cab21",
+    "sourcePool": "Persisted production SMART opportunities (APPROVAL_READY / AWAITING_APPROVAL / QUALIFIED), ranked by expected profit by Pillow runtime"
+  },
+  "funnel": {
+    "candidatesEvaluated": 32,
+    "rejectedBeforeDeepAnalysis": 23,
+    "smartViableSurvivors": 5,
+    "pillowAnalysedCount": null,
+    "finalists": [
+      {
+        "productName": "Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)",
+        "expectedProfit": "$25.86",
+        "opportunityId": "93989eb3-4fb1-4f1d-87ea-8d88d39cab21",
+        "role": "winner",
+        "whyLost": null
+      },
+      {
+        "productName": "Men’s Vintage Washed Denim Jacket Single Breasted Drop Shoulder Casual Jean Coat Solid Color for Daily Wear",
+        "expectedProfit": "$23.46",
+        "opportunityId": "7c6fc903-92d6-4b37-af8d-589319d0a100",
+        "role": "runner_up",
+        "whyLost": "Lower expected profit ($23.46) than the Pillow-selected commissioning winner ($25.86) at selection time."
+      },
+      {
+        "productName": "Women’s Satin Pleated Dress Elegant Navy Puff Sleeve Collared V-Neck Pleated Hem Formal Cocktail Party Dress (Medium,Burgundy)",
+        "expectedProfit": "$19.04",
+        "opportunityId": "483efab9-1150-44e8-a143-092ec4621fb7",
+        "role": "runner_up",
+        "whyLost": "Lower expected profit ($19.04) than the Pillow-selected commissioning winner ($25.86) at selection time."
+      },
+      {
+        "productName": "High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use",
+        "expectedProfit": "$8.07",
+        "opportunityId": "a85a1cda-bd77-4103-a38d-09339b82cacd",
+        "role": "runner_up",
+        "whyLost": "Lower expected profit ($8.07) than the Pillow-selected commissioning winner ($25.86) at selection time."
+      }
+    ],
+    "whyWinnerWon": "Generic/unbranded offer route with live stock/cost/freight/fees, restriction clear, delivery feasible under conservative estimates, and positive expected contribution. Publication still requires Grand King approval; BUYABLE must be verified after publish.",
+    "historicalFunnelDetail": "PARTIAL"
+  },
+  "identityReconciliation": {
+    "nordicBeddingStatus": "HISTORICAL_MISSION_004_ONLY",
+    "nordicNote": "Mission 004 Nordic bedding ($90.24 expected) is historical evidence only. Live commissioning ledger was null before Pillow reselection; Nordic was not restored by Cursor.",
+    "commissioningPresent": true,
+    "commerceOpportunityDistinct": false,
+    "commerceOpportunityName": null,
+    "commerceOpportunityId": null
+  },
+  "unknownFields": [
+    "supplierCanMeetDelivery",
+    "brandName",
+    "demandEvidence",
+    "demandEvidence"
+  ],
+  "technicalAppendix": {
+    "asin": "B0FQVG4QJ1",
+    "amazonSellerSku": "EMP-FD-MSOCH2XY",
+    "cjPid": "2608110524521601900",
+    "cjVid": "2608110524521602700",
+    "opportunityId": "93989eb3-4fb1-4f1d-87ea-8d88d39cab21",
+    "commissioningId": "opc_93989eb3",
+    "disposition": "APPROVAL_READY",
+    "rawDeliveryPromise": "Buyer-facing delivery estimate ~7–15 days (merchant-fulfilled handling 2d + transit 5–11d + buffer). Honest MF config required — do not promise 3–5 days for CN→US freight."
+  }
+}

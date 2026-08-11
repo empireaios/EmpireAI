@@ -1,38 +1,88 @@
 {
   "artifact": "CQ04_ONE_PRODUCT_DECISION_DOSSIER",
-  "updatedAt": "2026-08-11T06:20:00.000Z",
+  "updatedAt": "2026-08-11T08:00:00.000Z",
   "cq04Verdict": "PARTIAL",
   "cq05Status": "AWAITING_GRAND_KING_AND_CHATGPT",
   "subjectiveGrandKingAcceptance": false,
   "identityReconciliation": {
     "nordicBedding": "HISTORICAL_MISSION_004_ONLY",
-    "liveCommissioningBeforeRun": null,
+    "liveCommissioningBeforeLatestRun": null,
     "durabilityDefect": true,
+    "durabilityRepairShipped": "37895b14 recoverCommissioningFromFlight",
+    "flightRecoverySucceededOnThisRedeploy": false,
+    "reasonRecoveryFailed": "After Railway redeploy, commissioning row null and insufficient flight/opportunity evidence to restore prior Pillow pick (cart B0GYP6DNB5).",
     "cursorSelectedProduct": false,
     "pillowReselectionTriggered": true,
-    "pillowSelectedAt": "2026-08-11T06:00:05.324Z",
-    "canonicalProductName": "Foldable Multi-Functional Cart — Portable Hand Truck with Telescopic Handle and Swivel Wheels, Ideal for Travel, Luggage Transport, and Office Use(Purple)",
-    "canonicalOpportunityId": "3ba2841b-8a47-484d-b4a1-cf655572780f",
-    "canonicalAsin": "B0GYP6DNB5",
-    "commerceOpportunityDistinct": true,
-    "commerceOpportunityNameAtSelection": "11-in-1 Emergency Survival Kit for Men",
-    "commerceOpportunityIdAtSelection": "b7c68efc-cec4-4bfb-b215-e39b794499e5",
-    "whyIdentityDiffered": "Mission 004 Nordic commissioning row was lost from Railway SQLite; EH commerceOpportunity tracks latest pending approval independently from frozen commissioning pick; Pillow reselection ranked remaining production opportunities by expected profit."
+    "pillowSelectedAt": "2026-08-11T07:45:17.054Z",
+    "canonicalProductName": "Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)",
+    "canonicalOpportunityId": "93989eb3-4fb1-4f1d-87ea-8d88d39cab21",
+    "canonicalAsin": "B0FQVG4QJ1",
+    "supersededPillowPickSameSessionEarlier": {
+      "productName": "Foldable Multi-Functional Cart — Portable Hand Truck with Telescopic Handle and Swivel Wheels, Ideal for Travel, Luggage Transport, and Office Use(Purple)",
+      "opportunityId": "3ba2841b-8a47-484d-b4a1-cf655572780f",
+      "note": "Lost on Railway SQLite wipe; not restored by Cursor; replaced only by Pillow one-product/run"
+    },
+    "commerceOpportunityDistinctFromCommissioning": true,
+    "commerceOpportunityNameOnEH": "Men’s Vintage Washed Denim Jacket Single Breasted Drop Shoulder Casual Jean Coat Solid Color for Daily Wear",
+    "whyIdentityDiffered": "Mission 004 Nordic commissioning row was lost from Railway SQLite; floating EH commerceOpportunity tracks latest pending approval independently from frozen commissioning pick; each wipe + Pillow reselection can change the commissioning winner among current SMART opportunities."
   },
   "selection": {
     "selectionAuthority": "pillow",
     "cursorSelected": false,
-    "expectedProfit": "$29.07",
-    "offerPrice": "$159.40",
+    "sourcePool": "Persisted production SMART opportunities ranked by expected profit",
+    "candidatesEvaluated": 32,
+    "rejectedBeforeDeepAnalysis": 23,
+    "smartViableSurvivors": 5,
+    "winnerExpectedProfit": "$25.86",
+    "offerPrice": "$52.15",
+    "lowestCompetitor": "$29.98",
+    "priceDifferencePct": "+74%",
     "publicationAttempted": false,
     "supplierSpendAttempted": false
   },
   "implementation": {
     "dossierModule": "backend/src/orchestration/pillow-commissioning/one-product-decision-dossier.ts",
     "api": "GET /pillow-commissioning/one-product/decision-dossier",
+    "bff": "GET /api/pillow-commissioning/one-product/decision-dossier",
     "ehPanel": "empireai-web/components/cockpit/executive/OneProductDecisionDossierPanel.tsx",
     "persistenceTable": "pillow_one_product_decision_dossier",
-    "challengeInterface": "Ask/Challenge Pillow seeds; CQ-05 not executed"
+    "commissioningRecovery": "backend/src/orchestration/pillow-commissioning/one-product-commissioning.ts#recoverCommissioningFromFlight",
+    "challengeInterface": "Ask/Challenge Pillow seeds CQ-05 questions into EH chat; CQ-05 not executed by Cursor",
+    "postLaunchModule": "post-launch-commercial-deviation (no hard-coded no-sales→cut-price)"
+  },
+  "productionVerify": {
+    "status": "LIVE_DOSSIER_VERIFIED",
+    "executiveHome": "https://empireai-five.vercel.app/cockpit#one-product-decision-dossier",
+    "brain": "https://empireai-production.up.railway.app",
+    "checks": {
+      "dossierVisibleOnEH": true,
+      "competitorPriceVisible": true,
+      "ourPriceAndDifferenceVisible": true,
+      "economicsClassified": true,
+      "demandUnknownHonest": true,
+      "deliveryNaturalLanguage": true,
+      "risksVisible": true,
+      "prominentPricePremiumRisk": true,
+      "pillowRecommendationVisible": true,
+      "approveRejectPathsVisible": true,
+      "technicalAppendixPresent": true,
+      "persistAfterBrowserReload": true,
+      "persistAfterApiReload": true,
+      "persistAcrossRailwayRedeploy": false,
+      "pillowAskSeedReachedChat": true,
+      "cursorSelected": false,
+      "publicationAttempted": false,
+      "supplierSpendAttempted": false,
+      "birthTimestamp": null,
+      "thousandRelease": "AWAITING_GRAND_KING_AND_CHATGPT",
+      "catalogImageAvailable": false
+    },
+    "residualBlockers": [
+      "CQ-01 Cost Guard 7 owner limits unconfigured",
+      "Railway commissioning persistence still wipes on some redeploys; flight recovery did not restore prior pick",
+      "Catalog image unavailable from Amazon APIs",
+      "Proposed price +74% vs lowest competitor — material commercial risk for CQ-05 challenge"
+    ]
   },
   "governance": {
     "birthTimestamp": null,
@@ -40,7 +90,11 @@
     "publicationAttempted": false,
     "supplierSpendAttempted": false
   },
-  "productionVerify": "PENDING_DEPLOY_AFTER_THIS_COMMIT",
-  "nextGrandKingAction": "Open Executive Home CQ-04 dossier; review economics vs competitor; decide whether to engage ChatGPT for CQ-05 challenge. Do not treat Cursor report as acceptance.",
-  "nextChatGPTReviewPoint": "CQ-05 — challenge Pillow on price premium, demand UNKNOWN, delivery, and alternatives using the live dossier."
+  "repository": {
+    "head": "37895b14",
+    "originMain": "37895b14",
+    "aheadBehind": "0 0"
+  },
+  "nextGrandKingAction": "Open Executive Home CQ-04 dossier for the Embroidered Floral Tank Vest; review +74% price premium and UNKNOWN demand; decide whether to engage ChatGPT for CQ-05 challenge. Do not treat Cursor report as acceptance. Do not publish/spend.",
+  "nextChatGPTReviewPoint": "CQ-05 — challenge Pillow on price premium (+74%), demand UNKNOWN, delivery supplierCanMeet=UNKNOWN, and why not the denim jacket runner-up, using the live dossier only."
 }

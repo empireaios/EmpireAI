@@ -1,13 +1,14 @@
 {
   "artifact": "EMPIREAI_CANONICAL_CLOSING_QUEUE_005",
   "directive": "COMPLETE THE MACHINE, PROVE PILLOW, THEN OPERATE",
-  "updatedAt": "2026-08-11T04:10:00.000Z",
+  "updatedAt": "2026-08-11T08:00:00.000Z",
   "reconciledAgainst": {
-    "repoHead": "ee0cd33013f1109f21206e93bbc4d1e4741b7c51",
-    "originMain": "ee0cd33013f1109f21206e93bbc4d1e4741b7c51",
+    "repoHead": "37895b1408ed514188779f49afa4f3ac399fade0",
+    "originMain": "37895b1408ed514188779f49afa4f3ac399fade0",
     "aheadBehind": "0/0",
-    "vercelStamp": "ee0cd33013f1109f21206e93bbc4d1e4741b7c51",
-    "vercelDeploymentId": "dpl_4TFjuMXtejuwEjVFdTem6teVHofj",
+    "vercelStamp": "fa1b4fdc (CQ-04 UI) / Mission 007 lineage ee0cd330 still LIVE",
+    "vercelDeploymentId": "see Vercel production alias empireai-five.vercel.app",
+    "cq04Evidence": "docs/audits/complete-state/CQ04_ONE_PRODUCT_DECISION_DOSSIER_EVIDENCE.json",
     "mission007": {
       "liveOnVercel": true,
       "complete": false,
@@ -44,14 +45,19 @@
     "costSafeguards": "ACTIVE_HARD_STOP_MECHANISM_PROVEN",
     "corridor": "CJdropshipping → Pillow → Amazon US",
     "oneProductSelection": {
-      "productName": "LOKLNEYK Nordic ins Style Striped Pure Cotton Bedding Set Four-piece Mix and Match Sheets and Quilt Covers Student Dormitory 3-piece Wholesale((220 * 240cm),Cecilia-YellowCafe)",
+      "productName": "Women Vintage Embroidered Floral Tank Vest Y2k Sleeveless V Neck Cardigan Tops Retro Cropped Open Front Street Gilet (A-Black, S)",
       "selectionAuthority": "pillow",
       "cursorSelected": false,
-      "expectedProfit": "$90.24",
+      "expectedProfit": "$25.86",
+      "expectedProfitStatus": "ESTIMATED",
+      "offerPrice": "$52.15",
+      "lowestCompetitor": "$29.98",
+      "priceDifferencePct": "+74%",
       "stageAtProof": "AWAITING_GRAND_KING_DECISION",
       "publicationAttempted": false,
       "buyable": "UNKNOWN",
-      "liveDurabilityNote": "Railway SQLite durability may have wiped commissioning ledger after proof; dossier must re-hydrate from production opportunity space without Cursor preselection."
+      "nordicBedding": "HISTORICAL_MISSION_004_ONLY",
+      "liveDurabilityNote": "Railway redeploy wiped commissioning; flight recovery shipped but did not restore prior pick; Pillow reselected via one-product/run. Cursor did not choose the product."
     }
   },
   "activeMissions": [
@@ -63,7 +69,6 @@
     }
   ],
   "queuedSafeCursorMissions": [
-    "CQ-04",
     "CQ-06",
     "CQ-07",
     "CQ-08",
@@ -111,10 +116,10 @@
       "status": "PARTIAL",
       "dependencies": [],
       "owner": "Cursor (expose); Pillow (defend)",
-      "canCursorExecuteNow": true,
+      "canCursorExecuteNow": false,
       "governanceGate": "NO_PUBLISH_NO_SPEND",
-      "evidence": "Nordic Mission 004 historical only; live commissioning was null; Pillow reselected via one-product/run; durable OPDD API + EH panel wired. Production verify after deploy.",
-      "nextAction": "Verify live EH dossier + persistence; keep CQ-05 AWAITING GK+ChatGPT; no publish/spend."
+      "evidence": "LIVE EH dossier for Pillow-selected Embroidered Floral Tank Vest (opp 93989eb3). Nordic historical; cart pick wiped. OPDD API+panel verified; +74% price premium prominent; challenge seed reached chat. Railway redeploy durability still residual (flight recovery shipped 37895b14 but did not restore).",
+      "nextAction": "Leave for GK+ChatGPT CQ-05. Optional later: harden SQLite durability beyond flight recovery. No publish/spend."
     },
     {
       "id": "CQ-05",
@@ -124,8 +129,8 @@
       "owner": "ChatGPT (challenge) · Pillow (defend) · Grand King (decide)",
       "canCursorExecuteNow": false,
       "governanceGate": "CHATGPT_CHALLENGE_THEN_GRAND_KING",
-      "evidence": "Not started. Cursor must not impersonate ChatGPT or accept commercial judgment.",
-      "nextAction": "After CQ-04 dossier exists, ChatGPT challenges Pillow; Grand King decides."
+      "evidence": "Not started by Grand King + ChatGPT. Cursor must not impersonate ChatGPT or accept commercial judgment. Challenge interface ready on EH dossier.",
+      "nextAction": "ChatGPT challenges Pillow on live CQ-04 dossier; Grand King decides."
     },
     {
       "id": "CQ-06",
