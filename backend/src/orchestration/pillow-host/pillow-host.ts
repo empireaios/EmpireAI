@@ -39,6 +39,11 @@ import {
 } from "../../domain/services/executive-conversational-routing.js";
 import { getLastGovernanceKnowledgeAudit, resolvePillowRepositoryRootWithAudit, } from "./resolve-repo-root.js";
 import { PillowSessionStore } from "./session-store.js";
+import {
+  buildExecutiveTruthSnapshot,
+  formatExecutiveTruthBrief,
+  enforceExecutiveTruthGrounding,
+} from "./executive-truth-grounding.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29765,6 +29770,22 @@ export class PillowHost {
                     screenAwarenessBrief: screenBriefParts.join("\n\n"),
                 };
             }
+            // CURRENT VERIFIED operational truth — outranks stale repo/demo commerce context.
+            let executiveTruthSnapshot = null;
+            try {
+                executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
+                operationalContext = {
+                    ...operationalContext,
+                    liveOperationalTruthBrief: formatExecutiveTruthBrief(executiveTruthSnapshot),
+                    // Prevent Phase-7 static product catalog from inventing alternate products.
+                    commerceIntelligenceBrief: undefined,
+                };
+            }
+            catch (truthError) {
+                logger.warn({
+                    error: truthError instanceof Error ? truthError.message : String(truthError),
+                }, "Executive truth grounding snapshot failed (non-blocking)");
+            }
             const executiveLearningBundle = !executiveReasoning
                 ? undefined
                 : buildReasoningBundleForWorkspace({
@@ -29869,6 +29890,21 @@ export class PillowHost {
                     else {
                         kind = "llm";
                         logResult = "success";
+                        // Deterministic high-stakes truth enforcement (product/finance/authority/freshness)
+                        if (executiveTruthSnapshot) {
+                            const grounded = enforceExecutiveTruthGrounding(
+                                message,
+                                executiveTruthSnapshot,
+                            );
+                            if (grounded.adjusted) {
+                                message = grounded.message;
+                                logResult = "success_grounded";
+                                logger.warn({
+                                    requestId,
+                                    violations: grounded.violations,
+                                }, "Executive truth grounding adjusted visible Pillow answer");
+                            }
+                        }
                     }
                     provider = completion.provider;
                     model = completion.model;

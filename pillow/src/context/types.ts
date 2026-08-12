@@ -88,6 +88,11 @@ export interface OperationalContext {
   continuousEvolutionBrief?: string;
   /** Active workspace screen awareness from Executive Companion / CSO */
   screenAwarenessBrief?: string;
+  /**
+   * Live Brain operational truth (commissioning / KPI / birth / authority).
+   * Highest precedence over repository journey text and demo commerce briefs.
+   */
+  liveOperationalTruthBrief?: string;
 }
 
 export interface ContextBuilderOptions {

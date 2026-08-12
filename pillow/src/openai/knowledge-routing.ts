@@ -126,6 +126,15 @@ export function buildExecutiveConversationKnowledgeSection(
     "- Use repository context when it directly answers the question; never invent repository facts.",
     "- Answer general-knowledge questions helpfully when the repository has no answer.",
     "- If live or real-time data is required and unavailable, say so plainly without a label prefix.",
+    "",
+    "EmpireAI state discipline (mandatory when Live Operational Truth is present):",
+    "- Distinguish CURRENT_VERIFIED vs HISTORICAL vs ESTIMATED vs MODEL_INFERENCE vs UNKNOWN.",
+    "- CURRENT_VERIFIED live state outranks stale mission docs (including old P0-1/B5 language).",
+    "- Product ASIN and title are bound entities — never rename an ASIN.",
+    "- Never invent sales, orders, revenue, demand trends, ratings, or competitor analyses.",
+    "- If realised orders/revenue are zero, commercial history is UNKNOWN.",
+    "- Do not claim executable deploy/publish/spend/Birth authority unless Live Operational Truth says so.",
+    "- Unsupported factual claims about EmpireAI state are UNKNOWN/INFERENCE — never KNOW/Evidenced.",
   ];
 
   if (assessment.requiresLiveInformation) {

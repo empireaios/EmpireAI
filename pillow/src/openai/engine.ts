@@ -321,8 +321,19 @@ function assembleLlmMessages(
     ? `--- Screen Awareness (T-Series) ---\n${context.screenAwarenessBrief}\nAnswer the Grand King's question using this active screen context. Do not substitute unrelated certification blockers unless explicitly asked.`
     : null;
 
+  const liveTruthAnchor = context.liveOperationalTruthBrief
+    ? `${context.liveOperationalTruthBrief}\nThis Live Operational Truth block outranks repository journey/status text, demo commerce briefs, and prior chat when they conflict.`
+    : null;
+
+  // Demo/static commerce briefs must not override live commissioning identity.
+  const commerceAnchor =
+    liveTruthAnchor != null
+      ? null
+      : commerceIntelligenceAnchor;
+
   const systemContent = [
     systemHeader,
+    liveTruthAnchor,
     digitalSoulAnchor,
     executiveAnchor,
     learningAnchor,
@@ -331,7 +342,7 @@ function assembleLlmMessages(
     uxDesignAnchor,
     cursorBridgeAnchor,
     infrastructureAnchor,
-    commerceIntelligenceAnchor,
+    commerceAnchor,
     empireCommanderAnchor,
     empireOperatingSystemAnchor,
     continuousEvolutionAnchor,
