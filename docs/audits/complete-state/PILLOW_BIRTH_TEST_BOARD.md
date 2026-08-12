@@ -1,13 +1,16 @@
 # Pillow Birth Test Board
 
-Updated: 2026-08-11T18:00:23.773Z
+Updated: 2026-08-12T06:20:00.000Z
 Engineering freeze: YES
 Birth authorised: NO
 Birth timestamp: NULL
-Ready to begin Birth testing: YES
+Ready to begin Birth testing: NO — production incident recovery incomplete (Brain latency + logout/relogin verify open)
+Prior PROVEN rows below: preserved (not erased)
 
-Live commissioning product (Pillow-selected): Mini Fan (ASIN B0FKFNCT52)
+Live commerce opportunity on EH (approval queue): Mini Fan (ASIN B0FKFNCT52)
+Live commissioning product (Pillow-selected 2026-08-12): Portable Mini Humidifier (ASIN B0F9NYK74T, opc_72e69dc3, INVESTIGATE)
 Historical CQ-04/CQ-05 challenge product preserved: Embroidered Floral Tank Vest
+Incident pause evidence: PRODUCTION_INCIDENT_BIRTH_PAUSE_EVIDENCE.md + PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json
 
 | Capability | Status | Evidence |
 |---|---|---|

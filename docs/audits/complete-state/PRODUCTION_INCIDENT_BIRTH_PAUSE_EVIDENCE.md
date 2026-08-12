@@ -22,6 +22,24 @@ Railway Brain saturation / non-response under load (sql.js flush + expensive Pil
 5. Softer session recovery (retry same session before wipe; keep local history)
 6. **Removed Float / Dock / Expand** — launcher → fixed Pillow Centre only
 7. Enter sends in Pillow Centre composer (Shift+Enter newline)
+8. Executive-loop boot tick deferred 60s → 180s (`1b72949c`)
+9. CockpitTopBar **Ask AI** routes to Pillow Centre, not expand shell (`f504f378`)
+
+## Live recovery verification (2026-08-12)
+
+See `PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json`.
+
+| Check | Result |
+|---|---|
+| Brain `/health` | 200 online; avgLatencyMs still elevated (~5.6s) |
+| Executive Home truth | **PASS** — real data, not indefinite loading |
+| Pillow one-product/run | **PASS** — Pillow selected humidifier `opc_72e69dc3` (Cursor did not pick) |
+| Pillow Centre chat | **PASS** — optimistic GK bubble + thinking + reply `art_915d6687-083` |
+| Float/Dock/Expand removed | **PASS** |
+| TopBar → Pillow Centre | code on `origin/main` `f504f378`; prod aria-label confirm pending deploy |
+| Logout → fresh login | **NOT RUN** (credential script approval) |
+| Birth timestamp | **NULL** / COMMISSIONING |
+| Safe to resume GK+ChatGPT Birth interrogation | **NO** — Brain still slow; full A–J not closed |
 
 ## Data / persistence
 

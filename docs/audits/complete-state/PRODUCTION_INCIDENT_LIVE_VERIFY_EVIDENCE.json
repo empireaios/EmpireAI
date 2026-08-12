@@ -1,0 +1,68 @@
+{
+  "artifact": "PRODUCTION_INCIDENT_LIVE_VERIFY",
+  "completedAt": "2026-08-12T06:20:00.000Z",
+  "cockpit": "https://empire-ai.co",
+  "brain": "https://empireai-production.up.railway.app",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "birthStatus": "COMMISSIONING",
+  "technicallyReady": false,
+  "safeToResumeBirthInterrogation": false,
+  "blocker": "BRAIN_STILL_SLOW_AND_TOPBAR_DEPLOY_PENDING_CONFIRM; logout/relogin script not completed under credential policy",
+  "commits": [
+    "5c34dbe3",
+    "1b72949c",
+    "f504f378"
+  ],
+  "checks": {
+    "brainHealth": {
+      "status": 200,
+      "observedAt": "2026-08-12T06:02:00Z",
+      "avgLatencyMs": 5622,
+      "note": "online but elevated latency; heavy /brain/dispatch cycles 9–17s still present"
+    },
+    "executiveHome": {
+      "status": "PASS",
+      "note": "Real operational truth loaded — not stuck on Operational truth loading…; Mini Fan opportunity + Business truth visible"
+    },
+    "oneProductCommissioning": {
+      "status": "PASS",
+      "selectionAuthority": "pillow",
+      "cursorSelected": false,
+      "commissioningId": "opc_72e69dc3",
+      "productName": "Portable Mini Humidifier Small Cool Mist Humidifier Personal Desktop USB Powered Super Quiet for Travel Car,Office,Baby Bedroom, Night Light, 2 Mist Modes, Auto Shut-off",
+      "asin": "B0F9NYK74T",
+      "pillowRecommendation": "INVESTIGATE",
+      "note": "Pillow reselected via POST /api/pillow-commissioning/one-product/run; GET persistence confirmed on immediate re-read"
+    },
+    "pillowCentreChat": {
+      "status": "PASS",
+      "optimisticGrandKingBubble": true,
+      "processingState": "Pillow is thinking…",
+      "replyArtifact": "art_915d6687-083",
+      "replySnippet": "I am available, and my current commerce focus is on evaluating and preparing profitable dropshipping opportunities for Amazon, specifically the Tibetan Six Character Mantra Hand Rope Bracelet and the High-Speed Handheld Mini Fan."
+    },
+    "floatDockExpandRemoved": {
+      "status": "PASS",
+      "note": "GlobalAiAssistantPanel is Talk with Pillow launcher → Pillow Centre; no float/dock/expand window on EH"
+    },
+    "topBarAskAiRoutesToPillowCentre": {
+      "status": "CODE_SHIPPED_AWAITING_PROD_CONFIRM",
+      "commit": "f504f378",
+      "note": "Live snapshot still showed aria-label Open Global AI Assistant before Vercel deploy of f504f378"
+    },
+    "logoutRelogin": {
+      "status": "NOT_RUN",
+      "note": "Credentialed production-incident-live-verify.mjs blocked earlier by Auto-review; not completed this turn"
+    },
+    "multiTurnContinuity": {
+      "status": "PARTIAL",
+      "note": "History retained across prior turns; recentConversationTurns code shipped in 5c34dbe3; dedicated wipe/recreate continuity probe not re-run"
+    }
+  },
+  "notes": [
+    "Prior Birth Test Board PROVEN rows preserved; Birth interrogation remains paused.",
+    "No publish/spend. No Birth authorisation. No production DB wipe.",
+    "Commerce opportunity Mini Fan remains on EH queue; commissioning dossier product is Pillow-selected humidifier (distinct surfaces)."
+  ]
+}
