@@ -86,7 +86,8 @@ export class PillowExecutiveLoopAutomationServer {
       setInterval(() => void runPillowExecutiveLoopAutomationTick(), 30 * 60 * 1000),
     );
 
-    const bootDelayMs = Number(process.env.PILLOW_EXECUTIVE_LOOP_BOOT_DELAY_MS ?? 60_000);
+    // Defer boot tick well past Pillow host warm-up so restart storms do not wedge auth/EH.
+    const bootDelayMs = Number(process.env.PILLOW_EXECUTIVE_LOOP_BOOT_DELAY_MS ?? 180_000);
     setTimeout(() => {
       void runPillowExecutiveLoopAutomationTick().then((result) => {
         logger.info({ ...result, correlationId: randomUUID() }, "Pillow executive loop boot tick");
