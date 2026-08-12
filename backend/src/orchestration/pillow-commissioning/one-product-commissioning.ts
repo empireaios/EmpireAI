@@ -5,6 +5,7 @@
  */
 
 import { getDatabase } from "../../brain/database.js";
+import { reclaimEphemeralSqliteArtifacts } from "../../runtime/volume-disk-reclaim.js";
 import { getPillowCommercePresaleRepository } from "../pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import type { QualifiedOpportunity } from "../pillow-commerce-presale/models.js";
 import { listFlightEvents, recordFlightEvent } from "./flight-recorder.js";
@@ -102,6 +103,8 @@ function readCommissioningRow(workspaceId: string): OneProductCommissioningRecor
 
 function persistCommissioningRecord(record: OneProductCommissioningRecord): void {
   ensureCommissioningTables();
+  // Reclaim ENOSPC leftovers before critical full-db export.
+  reclaimEphemeralSqliteArtifacts(process.env.DATABASE_PATH, { aggressiveForFlush: true });
   const db = getDatabase();
   db.prepare(
     `INSERT INTO pillow_one_product_commissioning (workspace_id, commissioning_id, record_json, updated_at)

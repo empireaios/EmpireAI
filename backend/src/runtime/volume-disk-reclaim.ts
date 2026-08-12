@@ -94,11 +94,13 @@ export function getVolumeDiskStats(databasePath: string | undefined): VolumeDisk
 
 /**
  * Delete only known-safe ephemeral artifacts:
- * - empireai-brain.db.tmp-*
- * - empireai-brain.db.tmp-shutdown
- * - empireai-brain.db.corrupt-* except the newest (keep 1)
+ * - empireai-brain.db.tmp-* / *.tmp-shutdown (failed flush leftovers)
+ * - empireai-brain.db.corrupt-* (keep newest 1 unless disk cannot fit a full flush)
  */
-export function reclaimEphemeralSqliteArtifacts(databasePath: string | undefined): ReclaimResult {
+export function reclaimEphemeralSqliteArtifacts(
+  databasePath: string | undefined,
+  opts?: { aggressiveForFlush?: boolean },
+): ReclaimResult {
   const dataDir = resolveDataDir(databasePath);
   const result: ReclaimResult = {
     scanned: 0,
@@ -135,7 +137,13 @@ export function reclaimEphemeralSqliteArtifacts(databasePath: string | undefined
       continue;
     }
 
-    if (name.startsWith("empireai-brain.db.tmp-") || name === "empireai-brain.db.tmp-shutdown") {
+    // Any leftover export temp — including partial ENOSPC writes — must go.
+    if (
+      name.includes(".tmp-") ||
+      name.endsWith(".tmp") ||
+      name === "empireai-brain.db.tmp-shutdown"
+    ) {
+      if (name === "empireai-brain.db") continue;
       deleteCandidates.push({ name, size });
       continue;
     }
@@ -144,10 +152,22 @@ export function reclaimEphemeralSqliteArtifacts(databasePath: string | undefined
     }
   }
 
+  const stats = getVolumeDiskStats(databasePath);
+  const mustDropCorrupt =
+    Boolean(opts?.aggressiveForFlush) ||
+    stats.canFlushFullDb === false ||
+    (stats.freeBytes !== null &&
+      stats.dbBytes !== null &&
+      stats.freeBytes < stats.dbBytes + 64 * 1024 * 1024);
+
   corrupt.sort((a, b) => b.mtimeMs - a.mtimeMs);
-  if (corrupt.length > 0) {
+  if (corrupt.length > 0 && !mustDropCorrupt) {
     result.kept.push(corrupt[0]!.name);
     for (const c of corrupt.slice(1)) {
+      deleteCandidates.push({ name: c.name, size: c.size });
+    }
+  } else {
+    for (const c of corrupt) {
       deleteCandidates.push({ name: c.name, size: c.size });
     }
   }
@@ -173,6 +193,7 @@ export function reclaimEphemeralSqliteArtifacts(databasePath: string | undefined
         deleted: result.deleted,
         freedBytes: result.freedBytes,
         deletedPaths: result.deletedPaths,
+        aggressiveForFlush: Boolean(opts?.aggressiveForFlush || mustDropCorrupt),
       },
       "Reclaimed ephemeral SQLite artifacts from /data volume",
     );

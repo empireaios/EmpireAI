@@ -4,6 +4,10 @@ import { logCaughtError } from "./config/log-caught-error.js";
 import { buildApp } from "./app.js";
 
 async function main() {
+  // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).
+  const { reclaimEphemeralVolumeFiles } = await import("./runtime/volume-reclaim.js");
+  reclaimEphemeralVolumeFiles();
+
   const { enforceProductionPersistenceGate } = await import(
     "./runtime/production-persistence-gate.js"
   );

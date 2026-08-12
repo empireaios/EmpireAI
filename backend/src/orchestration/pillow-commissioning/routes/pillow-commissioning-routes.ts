@@ -294,7 +294,9 @@ export async function registerPillowCommissioningRoutes(
       }
       const workspaceId = user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
       const beforeDisk = getVolumeDiskStats(env.DATABASE_PATH);
-      const reclaim = reclaimEphemeralSqliteArtifacts(env.DATABASE_PATH);
+      const reclaim = reclaimEphemeralSqliteArtifacts(env.DATABASE_PATH, {
+        aggressiveForFlush: true,
+      });
       const result = flushExistingCommissioningDurability(workspaceId);
       // Allow critical async flush a moment to complete / fail observably.
       await new Promise((r) => setTimeout(r, 1500));
