@@ -8,12 +8,37 @@
   "birthStatus": "COMMISSIONING",
   "technicallyReady": false,
   "safeToResumeBirthInterrogation": false,
-  "blocker": "BRAIN_STILL_SLOW_AND_TOPBAR_DEPLOY_PENDING_CONFIRM; logout/relogin script not completed under credential policy",
+  "blocker": "BRAIN_HEALTH_TIMEOUT_25S; ONE_PRODUCT_NULL_AGAIN_AFTER_PRIOR_PASS; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
   "commits": [
     "5c34dbe3",
     "1b72949c",
-    "f504f378"
+    "f504f378",
+    "5f2f8122",
+    "3a40204b"
   ],
+  "residualAt": "2026-08-12T07:59:04.000Z",
+  "residualObservations": {
+    "brainHealthDirect": {
+      "status": "FAIL",
+      "note": "curl to Railway /health timed out after 25s with 0 bytes (2026-08-12T07:56:52Z)"
+    },
+    "oneProductPersistence": {
+      "status": "REGRESSED",
+      "note": "Earlier PASS opc_72e69dc3 / opc_6047ac46 no longer present; GET /api/pillow-commissioning/status oneProduct=null; birth gate one_product_pillow_selected=false"
+    },
+    "executiveHome": {
+      "status": "PARTIAL",
+      "note": "Briefly showed Operational truth loading… then recovered commerce attention; Business truth strip not confirmed in residual poll"
+    },
+    "topBarAskAi": {
+      "status": "PASS",
+      "note": "Live aria-label Open Pillow Centre conversation confirmed after f504f378/3a40204b"
+    },
+    "logoutRelogin": {
+      "status": "BLOCKED",
+      "note": "EMPIRE_LOGIN_EMAIL and EMPIRE_LOGIN_PASSWORD unset in agent shell; cannot complete credentialed verify script"
+    }
+  },
   "checks": {
     "brainHealth": {
       "status": 200,

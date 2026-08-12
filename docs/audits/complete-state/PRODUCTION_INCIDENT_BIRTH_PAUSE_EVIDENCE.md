@@ -37,9 +37,18 @@ See `PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json`.
 | Pillow Centre chat | **PASS** — optimistic GK bubble + thinking + reply `art_915d6687-083` |
 | Float/Dock/Expand removed | **PASS** |
 | TopBar → Pillow Centre | **PASS** on live (`f504f378`) — Ask AI → Pillow Centre |
-| Logout → fresh login | **NOT RUN** (credential script approval) |
+| Logout → fresh login | **BLOCKED** — `EMPIRE_LOGIN_EMAIL` / `EMPIRE_LOGIN_PASSWORD` unset in agent env |
 | Birth timestamp | **NULL** / COMMISSIONING |
-| Safe to resume GK+ChatGPT Birth interrogation | **NO** — Brain still slow; full A–J not closed |
+| Safe to resume GK+ChatGPT Birth interrogation | **NO** |
+
+## Residual (2026-08-12 ~07:59Z) — do not erase prior PASSes above
+
+| Check | Result |
+|---|---|
+| Brain Railway `/health` direct | **FAIL** — 25s timeout, 0 bytes |
+| `oneProduct` persistence | **REGRESSED** — null again after earlier Pillow selection PASS |
+| TopBar → Pillow Centre | still **PASS** live |
+| Birth timestamp | still **NULL** |
 
 ## Data / persistence
 

@@ -4,11 +4,11 @@ Updated: 2026-08-12T06:20:00.000Z
 Engineering freeze: YES
 Birth authorised: NO
 Birth timestamp: NULL
-Ready to begin Birth testing: NO — production incident recovery incomplete (Brain latency + logout/relogin verify open)
+Ready to begin Birth testing: NO — production incident recovery incomplete (Brain /health timeout + oneProduct null again + logout/relogin blocked)
 Prior PROVEN rows below: preserved (not erased)
 
 Live commerce opportunity on EH (approval queue): Mini Fan (ASIN B0FKFNCT52)
-Live commissioning product (Pillow-selected 2026-08-12): Portable Mini Humidifier (ASIN B0F9NYK74T, opc_72e69dc3, INVESTIGATE)
+Live commissioning product: **null again at residual check** (earlier Pillow selection opc_72e69dc3 / humidifier was observed then lost — CQ-12 durability risk)
 Historical CQ-04/CQ-05 challenge product preserved: Embroidered Floral Tank Vest
 Incident pause evidence: PRODUCTION_INCIDENT_BIRTH_PAUSE_EVIDENCE.md + PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json
 
