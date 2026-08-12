@@ -18,9 +18,16 @@ import {
 import { listFlightEvents, recordFlightEvent } from "../flight-recorder.js";
 import { buildScaleCostOptimisationReport } from "../intelligence-tiers.js";
 import {
+  flushExistingCommissioningDurability,
   getOneProductCommissioningRecord,
   runPillowOneProductCommissioning,
 } from "../one-product-commissioning.js";
+import {
+  getVolumeDiskStats,
+  reclaimEphemeralSqliteArtifacts,
+} from "../../../runtime/volume-disk-reclaim.js";
+import { getSqlitePersistStats } from "../../../brain/sqlite-database.js";
+import { env } from "../../../config/env.js";
 import { buildPillowOperatingState } from "../operating-state.js";
 import { buildPortfolioControlPlaneSnapshot } from "../portfolio-control-plane.js";
 import { assessPostLaunchCommercialDeviations } from "../post-launch-commercial-deviation.js";
@@ -269,6 +276,51 @@ export async function registerPillowCommissioningRoutes(
       const workspaceId = request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
       return reply.send({
         record: getOneProductCommissioningRecord(workspaceId),
+      });
+    },
+  );
+
+  /**
+   * Re-flush current Pillow commissioning row + durability mirror.
+   * Does NOT reselect a product. Founder/admin only.
+   */
+  app.post(
+    "/pillow-commissioning/one-product/flush-durability",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      if (user.role !== "founder" && user.role !== "admin") {
+        return reply.code(403).send({ error: "Founder access required" });
+      }
+      const workspaceId = user.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const beforeDisk = getVolumeDiskStats(env.DATABASE_PATH);
+      const reclaim = reclaimEphemeralSqliteArtifacts(env.DATABASE_PATH);
+      const result = flushExistingCommissioningDurability(workspaceId);
+      // Allow critical async flush a moment to complete / fail observably.
+      await new Promise((r) => setTimeout(r, 1500));
+      const afterDisk = getVolumeDiskStats(env.DATABASE_PATH);
+      const sqlite = getSqlitePersistStats();
+      deps.auditLogger.write({
+        action: "tool.execute",
+        actor: user.email,
+        workspaceId,
+        companyId: "grand-king",
+        correlationId: result.record?.commissioningId ?? "opc-none",
+        metadata: {
+          tool: "pillow_commissioning.flush_durability",
+          ok: result.ok,
+          commissioningId: result.record?.commissioningId ?? null,
+          flushCount: sqlite.flushCount,
+          lastFlushError: sqlite.lastFlushError,
+          reclaim,
+        },
+      });
+      return reply.code(result.ok ? 200 : 409).send({
+        ...result,
+        reclaim,
+        diskBefore: beforeDisk,
+        diskAfter: afterDisk,
+        sqlite,
       });
     },
   );

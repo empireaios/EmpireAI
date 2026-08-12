@@ -7,6 +7,7 @@ import { randomUUID } from "node:crypto";
 import type { ScheduledJobDefinition } from "../../../brain/scheduler.js";
 import { logger } from "../../../config/logger.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
+import { admitExpensiveWork } from "../../../runtime/production-admission-control.js";
 import { assertPaidAutonomousAllowed } from "../../pillow-commissioning/cost-guard.js";
 import { recordFlightEvent } from "../../pillow-commissioning/flight-recorder.js";
 import { getPresaleApprovalGate } from "../approval-bridge.js";

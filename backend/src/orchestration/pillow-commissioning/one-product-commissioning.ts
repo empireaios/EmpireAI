@@ -166,6 +166,34 @@ function recoverCommissioningFromFlight(
   return null;
 }
 
+/**
+ * Re-persist the current Pillow selection (no reselection) so critical flush +
+ * durability mirror run again. Used after deploy/volume reclaim.
+ */
+export function flushExistingCommissioningDurability(workspaceId: string): {
+  ok: boolean;
+  error?: string;
+  record: OneProductCommissioningRecord | null;
+} {
+  const existing = getOneProductCommissioningRecord(workspaceId);
+  if (!existing) {
+    return { ok: false, error: "No commissioning record to flush", record: null };
+  }
+  if (existing.selectionAuthority !== "pillow" || existing.cursorSelected !== false) {
+    return { ok: false, error: "Refusing to flush non-Pillow commissioning record", record: existing };
+  }
+  const next: OneProductCommissioningRecord = {
+    ...existing,
+    updatedAt: new Date().toISOString(),
+    notes: [
+      ...(existing.notes ?? []),
+      `Durability flush requested at ${new Date().toISOString()} (no reselection).`,
+    ],
+  };
+  persistCommissioningRecord(next);
+  return { ok: true, record: next };
+}
+
 export function getOneProductCommissioningRecord(
   workspaceId: string,
 ): OneProductCommissioningRecord | null {

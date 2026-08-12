@@ -40,6 +40,11 @@ type PersistStats = {
   lastFlushDurationMs: number | null;
   /** True while synchronous db.export() is running (watchdog must not stall-exit). */
   flushInFlight: boolean;
+  /** Last flush failure message (ENOSPC, etc.) — null after a successful flush. */
+  lastFlushError: string | null;
+  lastFlushErrorAt: string | null;
+  criticalFlushRequested: number;
+  criticalFlushSucceeded: number;
 };
 
 let persistStats: PersistStats = {
@@ -48,6 +53,10 @@ let persistStats: PersistStats = {
   lastFlushMs: null,
   lastFlushDurationMs: null,
   flushInFlight: false,
+  lastFlushError: null,
+  lastFlushErrorAt: null,
+  criticalFlushRequested: 0,
+  criticalFlushSucceeded: 0,
 };
 
 /** Optional SharedArrayBuffer slot: main sets 1 during sync export so HA worker ignores stalls. */
@@ -279,6 +288,10 @@ export class EmpireDatabase {
     if (this.inMemory) {
       return;
     }
+    persistStats = {
+      ...persistStats,
+      criticalFlushRequested: persistStats.criticalFlushRequested + 1,
+    };
     this.persistDirty = true;
     persistStats.pending = true;
     if (this.persistTimer !== null) {
@@ -400,11 +413,22 @@ export class EmpireDatabase {
           lastFlushMs: Date.now(),
           lastFlushDurationMs: durationMs,
           flushInFlight: false,
+          lastFlushError: null,
+          lastFlushErrorAt: null,
+          criticalFlushRequested: persistStats.criticalFlushRequested,
+          criticalFlushSucceeded:
+            persistStats.criticalFlushSucceeded + (critical ? 1 : 0),
         };
       } catch (error) {
         // Keep dirty so a later schedule retries; do not crash the process.
         this.persistDirty = true;
         persistStats.pending = true;
+        persistStats = {
+          ...persistStats,
+          pending: true,
+          lastFlushError: error instanceof Error ? error.message : String(error),
+          lastFlushErrorAt: new Date().toISOString(),
+        };
         setFlushInFlight(false);
         throw error;
       } finally {
@@ -412,7 +436,17 @@ export class EmpireDatabase {
         persistStats.pending = this.persistDirty;
         if (this.persistDirty) {
           if (critical) {
-            this.requestCriticalPersist();
+            // Avoid tight ENOSPC spin — backoff before critical retry.
+            if (this.persistTimer !== null) {
+              clearTimeout(this.persistTimer);
+            }
+            this.persistTimer = setTimeout(() => {
+              this.persistTimer = null;
+              void this.flushPersistAsync({ critical: true });
+            }, 5_000);
+            if (typeof this.persistTimer.unref === "function") {
+              this.persistTimer.unref();
+            }
           } else {
             this.schedulePersist();
           }
@@ -457,6 +491,10 @@ export class EmpireDatabase {
       lastFlushMs: Date.now(),
       lastFlushDurationMs: Math.round(performance.now() - started),
       flushInFlight: false,
+      lastFlushError: null,
+      lastFlushErrorAt: null,
+      criticalFlushRequested: persistStats.criticalFlushRequested,
+      criticalFlushSucceeded: persistStats.criticalFlushSucceeded,
     };
   }
 }

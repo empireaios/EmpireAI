@@ -7,6 +7,7 @@ import {
   getLastSqliteOpenRecovery,
   isInMemoryDatabasePath,
 } from "./sqlite-database.js";
+import { reclaimEphemeralSqliteArtifacts } from "../runtime/volume-disk-reclaim.js";
 export { isPostgresEnabled, getPostgresPool } from "./postgres/pool.js";
 
 let dbInstance: EmpireDatabase | null = null;
@@ -37,6 +38,9 @@ export function getDatabase(): EmpireDatabase {
   if (!isInMemoryDatabasePath(dbPath)) {
     fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   }
+
+  // Free ephemeral tmp/corrupt copies before sql.js may need a full-db temp write.
+  reclaimEphemeralSqliteArtifacts(dbPath);
 
   dbInstance = new EmpireDatabase(dbPath);
   activeDbPath = dbPath;
