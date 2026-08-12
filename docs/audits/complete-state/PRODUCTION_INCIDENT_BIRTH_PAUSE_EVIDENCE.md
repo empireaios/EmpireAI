@@ -63,8 +63,23 @@ See `PRODUCTION_INCIDENT_RELIABILITY_REPAIR.md` + `PRODUCTION_RELIABILITY_SOAK_E
 | Logout/relogin | **BLOCKED** — agent missing `EMPIRE_LOGIN_EMAIL` / `EMPIRE_LOGIN_PASSWORD` |
 | Safe to resume Birth interrogation | **NO** until post-deploy durability + auth path verified |
 
+## Closure update (2026-08-12 ~13:58Z) — commit `0042aa33`
+
+| Check | Result |
+|---|---|
+| Deploy identity | **PASS** — `deploy.gitCommitSha=0042aa33…` deployment `229a7249` |
+| Volume ENOSPC | **MITIGATED** — reclaim temps/corrupt; live `canFlushFullDb=true`, ~3.6GB free |
+| Critical flush | **PASS** — `flushCount=2`, `criticalFlushSucceeded=2`, `lastFlushError=null` |
+| oneProduct durable | **PASS** — `opc_a85a1cda` / `B0FKFNCT52` Pillow; survived controlled redeploy (no new mirror-restore note) |
+| `/health/live` soak | **PASS** — 12/12, p95=651ms |
+| Logout → fresh login | **PASS** — cockpit login/logout/relogin + bad-password messaging |
+| Executive Home API | **PASS** — 5/5 `executive-home` load with `canonicalTruth` |
+| Birth timestamp | still **NULL** |
+| Birth status | **TECHNICALLY_READY_AWAITING_GRAND_KING** (gates 12/12 after hard-stop + capability harness re-run) |
+| Safe to resume GK+ChatGPT Birth interrogation | **YES** — see BIRTH_READINESS_MATRIX.md |
+
 ## Data / persistence
 
 No production database wipe performed.  
 Commissioning / CQ evidence / Birth null state intentionally preserved.  
-If Brain process restart via redeploy occurs, SQLite on Railway volume should persist; wipe residual remains a known durability risk (CQ-12) — not used as recovery method.
+Post-`0042aa33`: commissioning row + durability mirror proven across redeploy; Hobby volume still near capacity for a second full DB copy — reclaim path must stay active.

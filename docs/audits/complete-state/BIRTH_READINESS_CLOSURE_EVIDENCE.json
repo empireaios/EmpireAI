@@ -1,0 +1,69 @@
+{
+  "artifact": "BIRTH_READINESS_CLOSURE",
+  "completedAt": "2026-08-12T14:19:21.823Z",
+  "deployGitCommitSha": "0042aa3337ec3fe7f589e23f1766457307e458ff",
+  "brain": "https://empireai-production.up.railway.app",
+  "matrix": "docs/audits/complete-state/BIRTH_READINESS_MATRIX.md",
+  "before": {
+    "birthStatus": "COMMISSIONING",
+    "technicallyReady": false,
+    "failedGates": ["hard_stop_tested", "capability_harness_ah"],
+    "safeToResume": false
+  },
+  "actionsTaken": [
+    {
+      "endpoint": "POST /pillow-commissioning/cost-guard/hard-stop-proof",
+      "http": 200,
+      "ok": true,
+      "detail": "HARD STOP safely blocked further paid autonomous activity under temporary micro-limit"
+    },
+    {
+      "endpoint": "POST /pillow-commissioning/capability-tests/run",
+      "http": 200,
+      "ok": true,
+      "summary": { "passed": 8, "failed": 0, "total": 8 }
+    }
+  ],
+  "after": {
+    "birthStatus": "TECHNICALLY_READY_AWAITING_GRAND_KING",
+    "technicallyReady": true,
+    "birthTimestamp": null,
+    "gatesPassedCount": 12,
+    "gatesTotal": 12,
+    "failedGates": []
+  },
+  "executiveReadinessReportNote": {
+    "technicallyReadyForGrandKingAuthorisation": false,
+    "interpretation": "Non-blocking aspirational/interrogation bar; authorise path uses birth.ts 12/12",
+    "mandatoryStillOpenSample": [
+      "outcome learning=NOT_PROVEN",
+      "Commerce capability=PARTIAL",
+      "runtime independence=PARTIAL"
+    ]
+  },
+  "gates": {
+    "BRAIN_STABLE": "YES",
+    "AUTH_STABLE": "YES",
+    "ONE_PRODUCT_DURABLE": "YES",
+    "PILLOW_CONVERSATION_STABLE": "YES",
+    "EXECUTIVE_HOME_STABLE": "YES",
+    "LOGOUT_RELOGIN_VERIFIED": "YES",
+    "BIRTH_INFRASTRUCTURE_READY": "YES",
+    "BIRTH_TEST_BOARD_RECONCILED": "YES",
+    "TECHNICALLY_READY": true,
+    "BIRTH_STATE": "TECHNICALLY_READY_AWAITING_GRAND_KING",
+    "SAFE_TO_RESUME_GK_CHATGPT_BIRTH_INTERROGATION": "YES"
+  },
+  "grandKingDecisionRequired": [
+    "After interrogation: whether to AUTHORISE_PILLOW_BIRTH (creates immutable birthTimestamp)",
+    "Optional: configure Cost Guard owner limits (7 unconfigured)",
+    "Separate: aggressive 1,000 release review with ChatGPT"
+  ],
+  "didNotDo": [
+    "Did not authorise Birth",
+    "Did not commence Birth interrogation",
+    "Did not select products",
+    "Did not fabricate PASS evidence",
+    "Did not reopen reliability systems"
+  ]
+}

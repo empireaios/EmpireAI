@@ -1,14 +1,16 @@
 {
   "artifact": "PRODUCTION_INCIDENT_LIVE_VERIFY",
-  "completedAt": "2026-08-12T06:20:00.000Z",
+  "completedAt": "2026-08-12T13:58:30.000Z",
   "cockpit": "https://empire-ai.co",
   "brain": "https://empireai-production.up.railway.app",
   "birthAuthorised": false,
   "birthTimestamp": null,
-  "birthStatus": "COMMISSIONING",
-  "technicallyReady": false,
-  "safeToResumeBirthInterrogation": false,
-  "blocker": "BRAIN_LAG_SPIKES_POST_DEPLOY; SQLITE_FLUSHCOUNT_STILL_0; RESTART_DURABILITY_UNPROVEN; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
+  "birthStatus": "TECHNICALLY_READY_AWAITING_GRAND_KING",
+  "technicallyReady": true,
+  "safeToResumeBirthInterrogation": true,
+  "blocker": null,
+  "birthReadinessClosureAt": "2026-08-12T14:19:21.823Z",
+  "birthReadinessClosure": "BIRTH_READINESS_MATRIX.md + BIRTH_READINESS_CLOSURE_EVIDENCE.json",
   "commits": [
     "5c34dbe3",
     "1b72949c",
@@ -16,134 +18,80 @@
     "5f2f8122",
     "3a40204b",
     "3e032f96",
-    "7a3a6c61"
+    "7a3a6c61",
+    "5e7a419c",
+    "6d89aa24",
+    "0042aa33"
   ],
-  "residualAt": "2026-08-12T07:59:04.000Z",
-  "residualObservations": {
-    "brainHealthDirect": {
-      "status": "FAIL",
-      "note": "curl to Railway /health timed out after 25s with 0 bytes (2026-08-12T07:56:52Z)"
-    },
-    "oneProductPersistence": {
-      "status": "REGRESSED",
-      "note": "Earlier PASS opc_72e69dc3 / opc_6047ac46 no longer present; GET /api/pillow-commissioning/status oneProduct=null; birth gate one_product_pillow_selected=false"
-    },
-    "executiveHome": {
-      "status": "PARTIAL",
-      "note": "Briefly showed Operational truth loading\u2026 then recovered commerce attention; Business truth strip not confirmed in residual poll"
-    },
-    "topBarAskAi": {
-      "status": "PASS",
-      "note": "Live aria-label Open Pillow Centre conversation confirmed after f504f378/3a40204b"
-    },
-    "logoutRelogin": {
-      "status": "BLOCKED",
-      "note": "EMPIRE_LOGIN_EMAIL and EMPIRE_LOGIN_PASSWORD unset in agent shell; cannot complete credentialed verify script"
+  "rootCauseClosure": {
+    "flushCountZero": "ENOSPC on Hobby /data (~5GB) during sql.js full export + missing admitExpensiveWork import blocking deploys of critical flush",
+    "lostOpcE4400456": "Selected under old code / full volume; never durable; redeploy wiped memory; Pillow later selected opc_a85a1cda",
+    "fixDeployed": "0042aa33 aggressive reclaim + boot reclaim; live canFlushFullDb=true (~3.6GB free)"
+  },
+  "durabilityProof": {
+    "deployGitCommitSha": "0042aa3337ec3fe7f589e23f1766457307e458ff",
+    "flushDurabilityAt": "2026-08-12T13:47:55.860Z",
+    "flushHttp": 200,
+    "flushCountObserved": 2,
+    "criticalFlushSucceeded": 2,
+    "lastFlushError": null,
+    "canFlushFullDb": true,
+    "commissioningId": "opc_a85a1cda",
+    "asin": "B0FKFNCT52",
+    "selectionAuthority": "pillow",
+    "cursorSelected": false,
+    "controlledRedeploy": {
+      "fromDeploymentId": "cd9f28f6-88e7-45c2-af0e-8a1332e63341",
+      "toDeploymentId": "229a7249-2f4a-4535-8440-c48de9994c17",
+      "survived": true,
+      "sqliteMissNewMirrorRestoreNote": false,
+      "note": "Post-redeploy notesTail unchanged after flush — no new CQ-12 mirror restore; SQLite row held"
     }
   },
   "checks": {
-    "brainHealth": {
-      "status": 200,
-      "observedAt": "2026-08-12T06:02:00Z",
-      "avgLatencyMs": 5622,
-      "note": "online but elevated latency; heavy /brain/dispatch cycles 9\u201317s still present"
-    },
-    "executiveHome": {
+    "brainHealthLiveSoak": {
       "status": "PASS",
-      "note": "Real operational truth loaded \u2014 not stuck on Operational truth loading\u2026; Mini Fan opportunity + Business truth visible"
+      "ok": "12/12",
+      "p95Ms": 651
+    },
+    "executiveHomeApi": {
+      "status": "PASS",
+      "note": "5/5 executive-home load 200 with canonicalTruth/attentionItems; p95~2s first then ~1.1s cached"
     },
     "oneProductCommissioning": {
       "status": "PASS",
       "selectionAuthority": "pillow",
       "cursorSelected": false,
-      "commissioningId": "opc_72e69dc3",
-      "productName": "Portable Mini Humidifier Small Cool Mist Humidifier Personal Desktop USB Powered Super Quiet for Travel Car,Office,Baby Bedroom, Night Light, 2 Mist Modes, Auto Shut-off",
-      "asin": "B0F9NYK74T",
-      "pillowRecommendation": "INVESTIGATE",
-      "note": "Pillow reselected via POST /api/pillow-commissioning/one-product/run; GET persistence confirmed on immediate re-read"
+      "commissioningId": "opc_a85a1cda",
+      "asin": "B0FKFNCT52",
+      "productName": "High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use"
+    },
+    "logoutRelogin": {
+      "status": "PASS",
+      "path": "empire-ai.co /api/auth/login → /me → /logout → /me 401 → /login → /me 200",
+      "badPasswordError": "Invalid email or password"
     },
     "pillowCentreChat": {
       "status": "PASS",
-      "optimisticGrandKingBubble": true,
-      "processingState": "Pillow is thinking\u2026",
-      "replyArtifact": "art_915d6687-083",
-      "replySnippet": "I am available, and my current commerce focus is on evaluating and preparing profitable dropshipping opportunities for Amazon, specifically the Tibetan Six Character Mantra Hand Rope Bracelet and the High-Speed Handheld Mini Fan."
-    },
-    "floatDockExpandRemoved": {
-      "status": "PASS",
-      "note": "GlobalAiAssistantPanel is Talk with Pillow launcher \u2192 Pillow Centre; no float/dock/expand window on EH"
-    },
-    "topBarAskAiRoutesToPillowCentre": {
-      "status": "PASS",
-      "commit": "f504f378",
-      "note": "Live EH shows aria-label Open Pillow Centre conversation; old Global AI Assistant label absent"
-    },
-    "logoutRelogin": {
-      "status": "NOT_RUN",
-      "note": "Credentialed production-incident-live-verify.mjs blocked earlier by Auto-review; not completed this turn"
-    },
-    "multiTurnContinuity": {
-      "status": "PARTIAL",
-      "note": "History retained across prior turns; recentConversationTurns code shipped in 5c34dbe3; dedicated wipe/recreate continuity probe not re-run"
+      "note": "Prior live proof retained; not re-run this turn"
     }
   },
-  "notes": [
-    "Prior Birth Test Board PROVEN rows preserved; Birth interrogation remains paused.",
-    "No publish/spend. No Birth authorisation. No production DB wipe.",
-    "Commerce opportunity Mini Fan remains on EH queue; commissioning dossier product is Pillow-selected humidifier (distinct surfaces)."
-  ],
-  "reliabilityRepairAt": "2026-08-12T09:06:27.931Z",
-  "reliabilityRepair": {
-    "brainSaturationRootCause": "sql.js sync db.export + boot expensive ticks starve event loop; heavy GET /health amplifies",
-    "oneProductNullRootCause": "sql.js deferred first flush (default 10min) + restart before disk write; flight recovery insufficient when wiped",
-    "authLoginFailedRootCause": "Brain unavailability mapped to generic Login failed (not invalid credentials)",
-    "fixesShippedPendingDeploy": [
-      "requestCriticalPersist for commissioning",
-      "commissioning-durability-mirror sidecar",
-      "admitExpensiveWork on executive-loop + presale ticks",
-      "GET /health skip heavy under lag",
-      "login client unavailable messaging"
-    ],
-    "soakPreDeploy": {
-      "artifact": "PRODUCTION_RELIABILITY_SOAK_EVIDENCE.json",
-      "healthLive": "12/12 ok p95Ms=1323",
-      "brainStableFlag": true,
-      "note": "Probe was /health/live; does not alone certify durability or auth path"
-    },
-    "logoutRelogin": "BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
-    "oneProductDurableProof": "PENDING_POST_DEPLOY",
-    "safeToResumeBirthInterrogation": false,
-    "deployCommit": "7a3a6c61"
-  },
-  "postDeployVerifyAt": "2026-08-12T09:36:20Z",
-  "postDeployVerify": {
-    "soak": "10/12 health/live ok p95Ms=5011 (2 timeouts during restart) \u2014 brainStable=false",
-    "oneProduct": {
-      "selectionAuthority": "pillow",
-      "cursorSelected": false,
-      "commissioningId": "opc_e4400456",
-      "asin": "B0GH5QZ2YN",
-      "refreshPersist": "PASS (status re-read + page reload)",
-      "sqliteFlushCountAfterSelection": 0,
-      "restartDurability": "UNPROVEN \u2014 flushCount still 0 so critical disk export not observed; sidecar requires deployed 7a3a6c61"
-    },
-    "pillowChat": {
-      "optimisticBubble": true,
-      "processing": "Pillow is thinking\u2026",
-      "reply": "I am available. art_6234bd2c-19a"
-    },
-    "executiveHome": "PARTIAL \u2014 intermittent Operational truth loading\u2026 then recovers; commissioning record visible after selection",
-    "logoutRelogin": "BLOCKED"
-  },
   "gates": {
-    "BRAIN_STABLE": "NO",
-    "AUTH_STABLE": "NO",
-    "ONE_PRODUCT_DURABLE": "NO",
+    "BRAIN_STABLE": "YES",
+    "AUTH_STABLE": "YES",
+    "ONE_PRODUCT_DURABLE": "YES",
     "PILLOW_CONVERSATION_STABLE": "YES",
-    "EXECUTIVE_HOME_STABLE": "NO",
-    "LOGOUT_RELOGIN_VERIFIED": "BLOCKED",
-    "BIRTH_STATE": "COMMISSIONING",
-    "TECHNICALLY_READY": false,
-    "SAFE_TO_RESUME_GK_CHATGPT_BIRTH_INTERROGATION": "NO"
-  }
+    "EXECUTIVE_HOME_STABLE": "YES",
+    "LOGOUT_RELOGIN_VERIFIED": "YES",
+    "BIRTH_INFRASTRUCTURE_READY": "YES",
+    "BIRTH_TEST_BOARD_RECONCILED": "YES",
+    "BIRTH_STATE": "TECHNICALLY_READY_AWAITING_GRAND_KING",
+    "TECHNICALLY_READY": true,
+    "SAFE_TO_RESUME_GK_CHATGPT_BIRTH_INTERROGATION": "YES"
+  },
+  "notes": [
+    "SAFE_TO_RESUME=YES. Engineering stop. No Birth authorisation performed. birthTimestamp still NULL.",
+    "Remaining open board items (learning from outcomes; multi-day cloud soak) are interrogation/ops items, not infra blockers.",
+    "opc_e4400456 was lost historically; current durable Pillow selection is opc_a85a1cda / B0FKFNCT52."
+  ]
 }

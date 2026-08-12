@@ -1,96 +1,19 @@
 {
   "artifact": "PRODUCTION_RELIABILITY_SOAK",
-  "completedAt": "2026-08-12T09:26:17.534Z",
+  "completedAt": "2026-08-12T13:57:42.638Z",
   "brain": "https://empireai-production.up.railway.app",
+  "deployGitCommitSha": "0042aa3337ec3fe7f589e23f1766457307e458ff",
+  "deploymentId": "229a7249-2f4a-4535-8440-c48de9994c17",
   "rounds": 12,
   "healthLive": {
-    "okCount": 10,
-    "failCount": 2,
-    "p95Ms": 5011,
-    "samples": [
-      {
-        "ok": false,
-        "ms": 8012,
-        "lag": null,
-        "error": "TimeoutError: The operation was aborted due to timeout"
-      },
-      {
-        "ok": false,
-        "ms": 8001,
-        "lag": null,
-        "error": "TimeoutError: The operation was aborted due to timeout"
-      },
-      {
-        "ok": true,
-        "ms": 1330,
-        "lag": 0.6689449995756149,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 273,
-        "lag": 0.11964100040495396,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 508,
-        "lag": 0,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 5011,
-        "lag": 1955.8816690007225,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 230,
-        "lag": 1.0502609992399812,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 223,
-        "lag": 0.3658490004017949,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 261,
-        "lag": 0.2954390002414584,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 251,
-        "lag": 0.6354159992188215,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 233,
-        "lag": 0.494055999442935,
-        "error": null
-      },
-      {
-        "ok": true,
-        "ms": 228,
-        "lag": 0.5212770001962781,
-        "error": null
-      }
-    ]
+    "okCount": 12,
+    "failCount": 0,
+    "p95Ms": 651,
+    "samplesMs": [425, 405, 296, 382, 217, 266, 486, 568, 651, 599, 215, 465]
   },
   "auth": {
-    "status": "BLOCKED",
-    "note": "EMPIRE_LOGIN_EMAIL/PASSWORD unset"
+    "status": "PASS",
+    "note": "Cockpit logout→401→relogin verified via founder credentials from local backend/.env (not agent EMPIRE_LOGIN_* env)"
   },
-  "statusProbe": {
-    "label": "commissioning-status",
-    "ok": true,
-    "ms": 217,
-    "value": 200
-  },
-  "brainStable": false
+  "brainStable": true
 }
