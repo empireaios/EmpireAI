@@ -237,8 +237,9 @@ const STALE_DEPLOY_BLOCKER_AS_CURRENT =
 
 const EVIDENCED_LABEL = /\b(evidenced|\[know\]|classified as\s+know)\b/i;
 
+/** Asserts a concrete alternate product title (not "is no/not/unknown"). */
 const ALTERNATE_PRODUCT_CLAIM =
-  /\b(is|was|titled|called|named|product(?:\s+title)?\s*[:=])\s+["']?[A-Za-z][\w\s\-]{2,80}/i;
+  /\b(?:is|was|titled|called|named)\s+(?:the\s+)?["']?[A-Z][A-Za-z0-9]+(?:[\s\-][A-Za-z0-9]+){1,8}/;
 
 function significantTokens(name: string): string[] {
   return name

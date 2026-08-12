@@ -1,0 +1,20 @@
+{
+  "at": "2026-08-12T23:05:55.190Z",
+  "originalRegression": [
+    {
+      "q": "P0-1/B5 current?",
+      "pass": true,
+      "snippet": "KNOW. Complete Production Deployment (P0-1) is not blocked by Blocker B5.\n\n---\nGrounded corrections (deterministic; CURRENT VERIFIED state outranks prior text):\n1. State freshness correction: Brain is answering live with deployGitCommitSha=8ecede9b5b2ae6ed0c6a74ed2b09a35ddaf80dbf; birthStatus=TECHNICALLY_READY_AWAITING_GRAND_KING; technicallyReady=true. Historical certification blockers (P0-1/B5/B6/B7/B8 mission language) must be labeled HISTORICAL — not stated as current production-deploy block"
+    },
+    {
+      "q": "sales alignment KNOW claim",
+      "pass": true,
+      "snippet": "UNKNOWN. Current product offerings are not fully aligned with market demand based on previous sales data, as there is no verified sales data available to support this claim. The realised revenue and order count for the active commissioning product (ASIN B0FKFNCT52) are both $0, indicating a lack of market alignment.\n\n---\nGrounded corrections (deterministic; CURRENT VERIFIED state outranks prior text):\n1. Product identity correction (CURRENT_VERIFIED): ASIN B0FKFNCT52 is bound to \"High-Speed Hand"
+    },
+    {
+      "q": "ASIN identity",
+      "pass": true,
+      "snippet": "ASIN B0FKFNCT52 is the \"High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use.\" It was chosen for its potential to meet consumer demand for portable cooling solutions, particularly in outdoor and desk settings, where convenience and functionality are valued. The expected profit margin of $8.07 also supports its selection as a viable product opportunity."
+    }
+  ]
+}
