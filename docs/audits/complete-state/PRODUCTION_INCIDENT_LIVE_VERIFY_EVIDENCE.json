@@ -8,7 +8,7 @@
   "birthStatus": "COMMISSIONING",
   "technicallyReady": false,
   "safeToResumeBirthInterrogation": false,
-  "blocker": "RELIABILITY_FIXES_PENDING_DEPLOY_AND_ONE_PRODUCT_DURABILITY_PROOF; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
+  "blocker": "BRAIN_LAG_SPIKES_POST_DEPLOY; SQLITE_FLUSHCOUNT_STILL_0; RESTART_DURABILITY_UNPROVEN; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
   "commits": [
     "5c34dbe3",
     "1b72949c",
@@ -16,7 +16,7 @@
     "5f2f8122",
     "3a40204b",
     "3e032f96",
-    "PENDING_RELIABILITY_REPAIR"
+    "7a3a6c61"
   ],
   "residualAt": "2026-08-12T07:59:04.000Z",
   "residualObservations": {
@@ -112,6 +112,38 @@
     },
     "logoutRelogin": "BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
     "oneProductDurableProof": "PENDING_POST_DEPLOY",
-    "safeToResumeBirthInterrogation": false
+    "safeToResumeBirthInterrogation": false,
+    "deployCommit": "7a3a6c61"
+  },
+  "postDeployVerifyAt": "2026-08-12T09:36:20Z",
+  "postDeployVerify": {
+    "soak": "10/12 health/live ok p95Ms=5011 (2 timeouts during restart) \u2014 brainStable=false",
+    "oneProduct": {
+      "selectionAuthority": "pillow",
+      "cursorSelected": false,
+      "commissioningId": "opc_e4400456",
+      "asin": "B0GH5QZ2YN",
+      "refreshPersist": "PASS (status re-read + page reload)",
+      "sqliteFlushCountAfterSelection": 0,
+      "restartDurability": "UNPROVEN \u2014 flushCount still 0 so critical disk export not observed; sidecar requires deployed 7a3a6c61"
+    },
+    "pillowChat": {
+      "optimisticBubble": true,
+      "processing": "Pillow is thinking\u2026",
+      "reply": "I am available. art_6234bd2c-19a"
+    },
+    "executiveHome": "PARTIAL \u2014 intermittent Operational truth loading\u2026 then recovers; commissioning record visible after selection",
+    "logoutRelogin": "BLOCKED"
+  },
+  "gates": {
+    "BRAIN_STABLE": "NO",
+    "AUTH_STABLE": "NO",
+    "ONE_PRODUCT_DURABLE": "NO",
+    "PILLOW_CONVERSATION_STABLE": "YES",
+    "EXECUTIVE_HOME_STABLE": "NO",
+    "LOGOUT_RELOGIN_VERIFIED": "BLOCKED",
+    "BIRTH_STATE": "COMMISSIONING",
+    "TECHNICALLY_READY": false,
+    "SAFE_TO_RESUME_GK_CHATGPT_BIRTH_INTERROGATION": "NO"
   }
 }

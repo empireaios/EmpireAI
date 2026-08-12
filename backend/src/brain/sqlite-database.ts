@@ -288,13 +288,8 @@ export class EmpireDatabase {
     if (this.persistInFlight) {
       return;
     }
-    this.persistTimer = setTimeout(() => {
-      this.persistTimer = null;
-      void this.flushPersistAsync({ critical: true });
-    }, 250);
-    if (typeof this.persistTimer.unref === "function") {
-      this.persistTimer.unref();
-    }
+    // Immediate critical flush — commissioning must hit disk before a restart window.
+    void this.flushPersistAsync({ critical: true });
   }
 
   /** Batches writes — avoids blocking the event loop on every INSERT/UPDATE. */
