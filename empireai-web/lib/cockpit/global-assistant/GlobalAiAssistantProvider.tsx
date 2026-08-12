@@ -350,36 +350,54 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     }
   }, [founderShell?.data, state.context, state.pageOverride, syncExecutiveAwareness]);
 
+  const appendUserTurnNow = useCallback(
+    (query: string) => {
+      const session = appendPillowTurn(loadPillowSession(), {
+        role: "grand-king",
+        content: query,
+        screenPath: pathname,
+      });
+      setState((s) => ({
+        ...s,
+        conversation: session.turns,
+        hostSessionId: session.hostSessionId ?? s.hostSessionId,
+      }));
+    },
+    [pathname],
+  );
+
+  const appendPillowTurnOnly = useCallback(
+    (response: GlobalAssistantResponse, artifacts?: PillowChatArtifact[]) => {
+      const session = appendPillowTurn(loadPillowSession(), {
+        role: "pillow",
+        content: toExecutiveChatMessage(
+          response.interactionSummary,
+          EXECUTIVE_NOT_READY_REPLY,
+        ),
+        screenPath: pathname,
+        artifacts,
+      });
+      setState((s) => ({
+        ...s,
+        conversation: session.turns,
+        hostSessionId: session.hostSessionId ?? s.hostSessionId,
+        lastResponse: response,
+      }));
+    },
+    [pathname],
+  );
+
+  /** Legacy helper — user+response. Prefer appendUserTurnNow + appendPillowTurnOnly. */
   const recordConversation = useCallback(
     (
       query: string,
       response: GlobalAssistantResponse | null,
       artifacts?: PillowChatArtifact[],
     ) => {
-      let session: PillowSessionSnapshot | null = loadPillowSession();
-      session = appendPillowTurn(session, {
-        role: "grand-king",
-        content: query,
-        screenPath: pathname,
-      });
-      if (response) {
-        session = appendPillowTurn(session, {
-          role: "pillow",
-          content: toExecutiveChatMessage(
-            response.interactionSummary,
-            EXECUTIVE_NOT_READY_REPLY,
-          ),
-          screenPath: pathname,
-          artifacts,
-        });
-      }
-      setState((s) => ({
-        ...s,
-        conversation: session?.turns ?? s.conversation,
-        hostSessionId: session?.hostSessionId ?? s.hostSessionId,
-      }));
+      appendUserTurnNow(query);
+      if (response) appendPillowTurnOnly(response, artifacts);
     },
-    [pathname],
+    [appendPillowTurnOnly, appendUserTurnNow],
   );
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
@@ -443,13 +461,22 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       query: string,
       target?: GlobalAssistantTarget,
     ): Promise<boolean> => {
-      const workspaceContext = buildWorkspaceContext(state.context, state.pageOverride);
+      const buildContextWithContinuity = (): Record<string, unknown> => {
+        const base = buildWorkspaceContext(state.context, state.pageOverride);
+        const turns = (loadPillowSession()?.turns ?? [])
+          .slice(-12)
+          .map((t) => ({ role: t.role, content: t.content }));
+        return {
+          ...base,
+          recentConversationTurns: turns,
+        };
+      };
 
       const attemptChat = async (sessionId: string): Promise<boolean> => {
         const chatResult = await sendPillowChat({
           message: query,
           sessionId,
-          workspaceContext: workspaceContext as unknown as Record<string, unknown>,
+          workspaceContext: buildContextWithContinuity(),
         });
         const response = mapPillowChatToAssistantResponse(chatResult, query);
         // Never pass raw text as fallback — constitutional/infra leaks must not reach UX.
@@ -465,7 +492,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
             EXECUTIVE_PIPELINE_SOFT_REPLY,
           ),
         };
-        recordConversation(query, surfaced, chatResult.artifacts);
+        // User turn already rendered optimistically — append Pillow only.
+        appendPillowTurnOnly(surfaced, chatResult.artifacts);
         setState((s) => ({
           ...s,
           loading: false,
@@ -480,34 +508,50 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         return true;
       };
 
+      const isInvalidSessionError = (error: unknown): boolean => {
+        const msg = error instanceof Error ? error.message : String(error ?? "");
+        return /session.*(not found|invalid|expired)|404|401/i.test(msg);
+      };
+
       let sessionId = await ensureHostSession();
       if (!sessionId) return false;
 
       try {
         return await attemptChat(sessionId);
-      } catch {
-        // Automatic recovery: recreate session and retry once.
-        clearPillowHostSession();
-        markStarting("recovering");
-        sessionId = await ensureHostSession();
-        if (!sessionId) return false;
+      } catch (firstError) {
+        // Retry same session once before recreating — preserves server history under lag.
         try {
           return await attemptChat(sessionId);
-        } catch (error) {
+        } catch (secondError) {
+          if (!isInvalidSessionError(secondError) && !isInvalidSessionError(firstError)) {
+            // Lag/timeout — keep session id; do not wipe local continuity.
+            markStarting(
+              "delayed",
+              secondError instanceof Error ? secondError.message : EXECUTIVE_RECOVERING_LABEL,
+            );
+            return false;
+          }
           clearPillowHostSession();
-          markStarting(
-            "delayed",
-            error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
-          );
-          return false;
+          markStarting("recovering");
+          sessionId = await ensureHostSession();
+          if (!sessionId) return false;
+          try {
+            return await attemptChat(sessionId);
+          } catch (error) {
+            markStarting(
+              "delayed",
+              error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
+            );
+            return false;
+          }
         }
       }
     },
     [
+      appendPillowTurnOnly,
       buildWorkspaceContext,
       ensureHostSession,
       markStarting,
-      recordConversation,
       state.context,
       state.pageOverride,
     ],
@@ -515,6 +559,11 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
 
   const askPillow = useCallback(
     async (query: string, target?: GlobalAssistantTarget) => {
+      const trimmed = query.trim();
+      if (!trimmed) return;
+
+      // Render Grand King message immediately; show honest processing state while Pillow works.
+      appendUserTurnNow(trimmed);
       setState((s) => ({
         ...s,
         expanded: true,
@@ -524,16 +573,15 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       }));
 
       try {
-        // Always attempt the executive pipeline — soft reply only if session/chat cannot complete.
         if (!state.executiveReady) {
           void ensureHostSession();
         }
 
-        const sent = await sendViaPillow(query, target);
+        const sent = await sendViaPillow(trimmed, target);
         if (sent) return;
 
-        // Gate still enforced (no Brain fallback) — Grand King sees executive language only.
-        recordConversation(query, {
+        // Soft availability reply only — never invent a commercial answer.
+        appendPillowTurnOnly({
           action: "ask",
           currentContext: "Executive startup",
           reason: EXECUTIVE_NOT_READY_REPLY,
@@ -548,26 +596,19 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         });
         setState((s) => ({
           ...s,
-          lastResponse: {
-            action: "ask",
-            currentContext: "Executive startup",
-            reason: EXECUTIVE_NOT_READY_REPLY,
-            supportingEvidence: [],
-            recommendedNextAction: "Wait a moment, then ask again.",
-            confidence: "unavailable",
-            suggestedFollowUps: [],
-            interactionIntent: "general",
-            interactionSummary: EXECUTIVE_NOT_READY_REPLY,
-            computedAt: new Date().toISOString(),
-            futureCapabilities: [],
-          },
           connectionError: s.connectionError ?? EXECUTIVE_RECOVERING_LABEL,
         }));
       } finally {
         setState((s) => (s.loading ? { ...s, loading: false } : s));
       }
     },
-    [ensureHostSession, recordConversation, sendViaPillow, state.executiveReady],
+    [
+      appendPillowTurnOnly,
+      appendUserTurnNow,
+      ensureHostSession,
+      sendViaPillow,
+      state.executiveReady,
+    ],
   );
 
   const runAction = useCallback(

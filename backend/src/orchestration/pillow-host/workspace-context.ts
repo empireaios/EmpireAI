@@ -41,6 +41,16 @@ export const pillowWorkspaceContextSchema = z.object({
   repositoryFingerprint: z.string().nullable().optional(),
   recommendations: z.array(z.string()).max(12).optional(),
   risks: z.array(z.string()).max(12).optional(),
+  /** Client-held turns for continuity when host session was recreated under lag. */
+  recentConversationTurns: z
+    .array(
+      z.object({
+        role: z.enum(["grand-king", "pillow", "user", "assistant"]),
+        content: z.string().max(8000),
+      }),
+    )
+    .max(16)
+    .optional(),
 });
 
 export type PillowWorkspaceContext = z.infer<typeof pillowWorkspaceContextSchema>;
@@ -121,6 +131,16 @@ export function formatPillowWorkspaceContext(
       : null,
     context.risks?.length && includeOperationalRisks
       ? `Current risks: ${context.risks.join("; ")}`
+      : null,
+    context.recentConversationTurns?.length
+      ? [
+          "Prior conversation in this Grand King session (continuity — answer with this context when asked):",
+          ...context.recentConversationTurns.map((turn) => {
+            const role =
+              turn.role === "pillow" || turn.role === "assistant" ? "Pillow" : "Grand King";
+            return `${role}: ${turn.content}`;
+          }),
+        ].join("\n")
       : null,
   ].filter(Boolean);
 

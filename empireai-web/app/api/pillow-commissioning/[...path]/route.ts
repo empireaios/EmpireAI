@@ -1,4 +1,4 @@
-import { proxyBrainRequest } from "@/lib/brain/server-proxy";
+import { DISPATCH_UPSTREAM_TIMEOUT_MS, proxyBrainRequest } from "@/lib/brain/server-proxy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,7 +15,7 @@ async function proxyCommissioning(
 ): Promise<Response> {
   const url = new URL(request.url);
   const backendPath = `/pillow-commissioning/${pathSegments.join("/")}${url.search}`;
-  const init: RequestInit = {
+  const init: RequestInit & { upstreamTimeoutMs?: number } = {
     method,
     headers: {
       cookie: request.headers.get("cookie") ?? "",
@@ -24,6 +24,8 @@ async function proxyCommissioning(
         : {}),
     },
     cache: "no-store",
+    // Executive Home dossier/status must survive Brain lag (same class as auth timeouts).
+    upstreamTimeoutMs: DISPATCH_UPSTREAM_TIMEOUT_MS,
   };
   if (method !== "GET" && method !== "DELETE") {
     init.body = await request.text();

@@ -57,6 +57,11 @@ export type PillowWorkspaceContext = {
   repositoryFingerprint?: string | null;
   recommendations?: string[];
   risks?: string[];
+  /** Client-held turns for continuity when host session was recreated under lag. */
+  recentConversationTurns?: Array<{
+    role: "grand-king" | "pillow" | "user" | "assistant";
+    content: string;
+  }>;
 };
 
 export type PillowPageContextOverride = {

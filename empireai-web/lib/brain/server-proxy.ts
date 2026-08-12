@@ -259,8 +259,9 @@ export async function proxyBrainRequest(
       } catch (error) {
         lastError = error;
         const timedOut = error instanceof Error && error.name === "TimeoutError";
-        if (authPath && attempt < maxAttempts && !timedOut) {
-          await sleep(400 * attempt);
+        // Auth must retry timeouts too — Brain restart/sql.js flush commonly stalls login.
+        if (authPath && attempt < maxAttempts) {
+          await sleep(timedOut ? 800 * attempt : 400 * attempt);
           continue;
         }
         if (timedOut) {

@@ -247,7 +247,8 @@ export function PillowConversationWorkspace({
               autosize(e.target);
             }}
             onKeyDown={(e) => {
-              if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+              // Enter sends; Shift+Enter inserts newline (standard chat).
+              if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
                 onSend();
               }
