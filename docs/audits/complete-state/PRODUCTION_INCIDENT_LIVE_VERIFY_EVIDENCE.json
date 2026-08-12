@@ -47,9 +47,9 @@
       "note": "GlobalAiAssistantPanel is Talk with Pillow launcher → Pillow Centre; no float/dock/expand window on EH"
     },
     "topBarAskAiRoutesToPillowCentre": {
-      "status": "CODE_SHIPPED_AWAITING_PROD_CONFIRM",
+      "status": "PASS",
       "commit": "f504f378",
-      "note": "Live snapshot still showed aria-label Open Global AI Assistant before Vercel deploy of f504f378"
+      "note": "Live EH shows aria-label Open Pillow Centre conversation; old Global AI Assistant label absent"
     },
     "logoutRelogin": {
       "status": "NOT_RUN",

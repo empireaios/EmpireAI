@@ -36,7 +36,7 @@ See `PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json`.
 | Pillow one-product/run | **PASS** — Pillow selected humidifier `opc_72e69dc3` (Cursor did not pick) |
 | Pillow Centre chat | **PASS** — optimistic GK bubble + thinking + reply `art_915d6687-083` |
 | Float/Dock/Expand removed | **PASS** |
-| TopBar → Pillow Centre | code on `origin/main` `f504f378`; prod aria-label confirm pending deploy |
+| TopBar → Pillow Centre | **PASS** on live (`f504f378`) — Ask AI → Pillow Centre |
 | Logout → fresh login | **NOT RUN** (credential script approval) |
 | Birth timestamp | **NULL** / COMMISSIONING |
 | Safe to resume GK+ChatGPT Birth interrogation | **NO** — Brain still slow; full A–J not closed |
