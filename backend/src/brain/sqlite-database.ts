@@ -269,6 +269,34 @@ export class EmpireDatabase {
     this.db.close();
   }
 
+  /**
+   * Critical durability path (commissioning / birth gates).
+   * Bypasses the first-flush delay and lag-skip so a Railway restart before the
+   * default 10-minute window cannot erase in-memory SQL that was never exported.
+   * Still yields briefly so /health/live can run before sync export.
+   */
+  requestCriticalPersist(): void {
+    if (this.inMemory) {
+      return;
+    }
+    this.persistDirty = true;
+    persistStats.pending = true;
+    if (this.persistTimer !== null) {
+      clearTimeout(this.persistTimer);
+      this.persistTimer = null;
+    }
+    if (this.persistInFlight) {
+      return;
+    }
+    this.persistTimer = setTimeout(() => {
+      this.persistTimer = null;
+      void this.flushPersistAsync({ critical: true });
+    }, 250);
+    if (typeof this.persistTimer.unref === "function") {
+      this.persistTimer.unref();
+    }
+  }
+
   /** Batches writes — avoids blocking the event loop on every INSERT/UPDATE. */
   private schedulePersist(): void {
     if (this.inMemory) {
@@ -297,7 +325,7 @@ export class EmpireDatabase {
 
     this.persistTimer = setTimeout(() => {
       this.persistTimer = null;
-      void this.flushPersistAsync();
+      void this.flushPersistAsync({ critical: false });
     }, delay);
 
     if (typeof this.persistTimer.unref === "function") {
@@ -305,7 +333,7 @@ export class EmpireDatabase {
     }
   }
 
-  private async flushPersistAsync(): Promise<void> {
+  private async flushPersistAsync(opts: { critical: boolean }): Promise<void> {
     if (this.inMemory || !this.persistDirty) {
       return;
     }
@@ -317,11 +345,13 @@ export class EmpireDatabase {
       return;
     }
 
+    const critical = opts.critical;
+
     this.persistInFlight = (async () => {
       try {
-        // Prefer auth/health responsiveness over durability timing under lag.
-        await waitForEventLoopCapacity(5_000);
-        if (getRecentEventLoopLagMs() >= FLUSH_LAG_SKIP_MS) {
+        // Prefer auth/health responsiveness over durability timing under lag (non-critical).
+        await waitForEventLoopCapacity(critical ? 1_500 : 5_000);
+        if (!critical && getRecentEventLoopLagMs() >= FLUSH_LAG_SKIP_MS) {
           this.persistDirty = true;
           persistStats.pending = true;
           this.schedulePersist();
@@ -332,8 +362,9 @@ export class EmpireDatabase {
           persistStats.lastFlushMs === null
             ? Number.POSITIVE_INFINITY
             : Date.now() - persistStats.lastFlushMs;
-        // Under any residual lag, stretch flushes toward the hard ceiling.
+        // Under any residual lag, stretch flushes toward the hard ceiling (non-critical).
         if (
+          !critical &&
           sinceLastFlush < MAX_FLUSH_INTERVAL_MS &&
           getRecentEventLoopLagMs() >= Math.floor(FLUSH_LAG_SKIP_MS / 2)
         ) {
@@ -385,7 +416,11 @@ export class EmpireDatabase {
         this.persistInFlight = null;
         persistStats.pending = this.persistDirty;
         if (this.persistDirty) {
-          this.schedulePersist();
+          if (critical) {
+            this.requestCriticalPersist();
+          } else {
+            this.schedulePersist();
+          }
         }
       }
     })();

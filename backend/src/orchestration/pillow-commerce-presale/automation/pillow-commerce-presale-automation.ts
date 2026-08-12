@@ -45,6 +45,13 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
   outcome?: string;
 }> {
   try {
+    const admission = admitExpensiveWork("pillow-commerce-presale");
+    if (!admission.admit) {
+      return {
+        ok: false,
+        detail: `Admission deferred presale: ${admission.reason}`,
+      };
+    }
     const gate = assertPaidAutonomousAllowed(GRAND_KING_WORKSPACE_ID, 0.05);
     if (!gate.allowed) {
       return {
@@ -124,8 +131,8 @@ export class PillowCommercePresaleAutomationServer {
       setInterval(() => void runPillowCommercePresaleAutomationTick(), 4 * 60 * 60 * 1000),
     );
 
-    // Startup tick after Pillow host / approval gate have a chance to wire
-    const bootDelayMs = Number(process.env.PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS ?? 45_000);
+    // Defer boot tick past auth/health warm-up (was 45s — collided with restart storms).
+    const bootDelayMs = Number(process.env.PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS ?? 240_000);
     setTimeout(() => {
       void runPillowCommercePresaleAutomationTick().then((result) => {
         logger.info({ ...result, correlationId: randomUUID() }, "Pillow commerce pre-sale boot tick");

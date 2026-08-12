@@ -4,7 +4,7 @@ Updated: 2026-08-12T06:20:00.000Z
 Engineering freeze: YES
 Birth authorised: NO
 Birth timestamp: NULL
-Ready to begin Birth testing: NO — production incident recovery incomplete (Brain /health timeout + oneProduct null again + logout/relogin blocked)
+Ready to begin Birth testing: NO — reliability repair code shipping; oneProduct durability proof + logout/relogin still open
 Prior PROVEN rows below: preserved (not erased)
 
 Live commerce opportunity on EH (approval queue): Mini Fan (ASIN B0FKFNCT52)

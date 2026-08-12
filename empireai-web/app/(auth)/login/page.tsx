@@ -28,7 +28,11 @@ function LoginForm() {
     try {
       await login(email, password, next ?? undefined);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Authentication service unavailable. Please retry.",
+      );
     } finally {
       setSubmitting(false);
     }

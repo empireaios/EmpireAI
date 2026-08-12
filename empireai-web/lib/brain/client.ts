@@ -77,12 +77,22 @@ export async function fetchSessionUser() {
 }
 
 export async function login(email: string, password: string) {
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ email: email.trim(), password }),
-  });
+  let response: Response;
+  try {
+    response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ email: email.trim(), password }),
+    });
+  } catch {
+    throw normalizeError(
+      new Error(
+        "Authentication service unavailable. Empire Brain did not respond — retry shortly.",
+      ),
+      503,
+    );
+  }
 
   if (!response.ok) {
     const body = (await response.json().catch(() => ({}))) as {
@@ -90,8 +100,8 @@ export async function login(email: string, password: string) {
       message?: string;
     };
     const upstream = body.error ?? body.message;
-    let message = upstream ?? "Login failed";
-    if (!upstream) {
+    let message = upstream ?? null;
+    if (!message) {
       if (response.status === 502 || response.status === 503) {
         message =
           "Authentication service unavailable. Empire Brain is not ready — retry after restart.";
@@ -100,6 +110,9 @@ export async function login(email: string, password: string) {
           "Authentication timed out. Empire Brain may be restarting — retry shortly.";
       } else if (response.status === 401 || response.status === 403) {
         message = "Invalid email or password";
+      } else {
+        message =
+          "Authentication service unavailable. Please retry — this is not necessarily an invalid password.";
       }
     }
     throw normalizeError(new Error(message), response.status);

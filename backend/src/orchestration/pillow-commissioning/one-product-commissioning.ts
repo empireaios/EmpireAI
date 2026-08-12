@@ -9,6 +9,10 @@ import { getPillowCommercePresaleRepository } from "../pillow-commerce-presale/r
 import type { QualifiedOpportunity } from "../pillow-commerce-presale/models.js";
 import { listFlightEvents, recordFlightEvent } from "./flight-recorder.js";
 import { assertPaidAutonomousAllowed } from "./cost-guard.js";
+import {
+  readCommissioningDurabilityMirror,
+  writeCommissioningDurabilityMirror,
+} from "./commissioning-durability-mirror.js";
 
 export type CommissioningLifecycleStage =
   | "DISCOVERED"
@@ -112,6 +116,9 @@ function persistCommissioningRecord(record: OneProductCommissioningRecord): void
     json: JSON.stringify(record),
     updatedAt: record.updatedAt,
   });
+  // CQ-12: survive restart before deferred sql.js export (sidecar + critical flush).
+  writeCommissioningDurabilityMirror(record);
+  db.requestCriticalPersist();
 }
 
 /**
@@ -164,6 +171,38 @@ export function getOneProductCommissioningRecord(
 ): OneProductCommissioningRecord | null {
   const existing = readCommissioningRow(workspaceId);
   if (existing) return existing;
+
+  const mirrored = readCommissioningDurabilityMirror(workspaceId);
+  if (mirrored) {
+    // Restore authoritative SQLite row from durability mirror (Pillow selection intact).
+    persistCommissioningRecord({
+      ...mirrored,
+      updatedAt: new Date().toISOString(),
+      notes: [
+        ...(mirrored.notes ?? []),
+        "Restored from commissioning durability mirror after SQLite miss (CQ-12).",
+      ],
+    });
+    recordFlightEvent({
+      workspaceId,
+      eventType: "COMMISSIONING",
+      businessArea: "commerce",
+      subsystem: "one-product-commissioning",
+      objective: "Recover commissioning after SQLite miss via durability mirror",
+      decision: "RECOVERED_FROM_DURABILITY_MIRROR",
+      authority: "pillow",
+      result: `Restored Pillow selection ${mirrored.productName}`,
+      entityRefs: {
+        asin: mirrored.asin,
+        opportunityId: mirrored.opportunityId,
+        commissioningId: mirrored.commissioningId,
+      },
+      evidenceConsidered: ["commissioning-durability-mirror"],
+      nextAction: "Await Grand King decision — do not publish/spend",
+    });
+    return readCommissioningRow(workspaceId) ?? mirrored;
+  }
+
   return recoverCommissioningFromFlight(workspaceId);
 }
 

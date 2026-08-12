@@ -396,31 +396,49 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   });
 
   app.get("/health", async () => {
+    // Never starve /health/live: skip expensive guardian integrity / Redis under lag.
+    // Railway probes must use /health/live only (railway.toml).
+    const lagMs = getRecentEventLoopLagMs();
+    const skipHeavy = lagMs >= 80 || getSqlitePersistStats().flushInFlight;
+
     let guardianReport: Record<string, unknown> = { overall: "unknown" };
-    try {
-      guardianReport = (await brain.guardian.checkHealth(brain, {
-        recordRisks: false,
-      })) as unknown as Record<string, unknown>;
-    } catch (error) {
+    if (skipHeavy) {
       guardianReport = {
-        overall: "failed",
-        summary: error instanceof Error ? error.message : "Health check failed",
+        overall: "degraded",
+        summary: `Heavy /health skipped (lag=${Math.round(lagMs)}ms or sqlite flush in flight) — use /health/live`,
+        openRisks: 0,
       };
+    } else {
+      try {
+        guardianReport = (await brain.guardian.checkHealth(brain, {
+          recordRisks: false,
+        })) as unknown as Record<string, unknown>;
+      } catch (error) {
+        guardianReport = {
+          overall: "failed",
+          summary: error instanceof Error ? error.message : "Health check failed",
+        };
+      }
     }
 
-    let queueStats: Record<string, number> | { error: string } = {};
-    try {
-      queueStats = await brain.taskQueue.getStats();
-    } catch (error) {
-      queueStats = {
-        error: error instanceof Error ? error.message : "Queue unavailable",
-      };
+    let queueStats: Record<string, number> | { error: string; skipped?: boolean } = {};
+    if (skipHeavy) {
+      queueStats = { error: "skipped_under_lag", skipped: true };
+    } else {
+      try {
+        queueStats = await brain.taskQueue.getStats();
+      } catch (error) {
+        queueStats = {
+          error: error instanceof Error ? error.message : "Queue unavailable",
+        };
+      }
     }
 
     return {
-      status: "ok",
+      status: skipHeavy ? "degraded" : "ok",
       brain: "online",
       redisMode: brain.redisMode,
+      eventLoopLagMs: lagMs,
       observability: getObservabilitySnapshot(),
       guardian: {
         overall: guardianReport.overall,
@@ -429,6 +447,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       },
       llmProviders: brain.llmRouter.listAvailable(),
       queue: queueStats,
+      sqlite: getSqlitePersistStats(),
+      admission: getAdmissionStats(),
     };
   });
 

@@ -8,6 +8,7 @@ import { randomUUID } from "node:crypto";
 import type { ScheduledJobDefinition } from "../../../brain/scheduler.js";
 import { logger } from "../../../config/logger.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
+import { admitExpensiveWork } from "../../../runtime/production-admission-control.js";
 import { assertPaidAutonomousAllowed } from "../cost-guard.js";
 import { runExecutiveOperatingCycle } from "./cycle-runner.js";
 import { buildLiveCommercialSituation } from "./live-situation.js";
@@ -41,6 +42,13 @@ export async function runPillowExecutiveLoopAutomationTick(): Promise<{
   disposition?: string;
 }> {
   try {
+    const admission = admitExpensiveWork("executive-operating-loop");
+    if (!admission.admit) {
+      return {
+        ok: false,
+        detail: `Admission deferred executive loop: ${admission.reason}`,
+      };
+    }
     const gate = assertPaidAutonomousAllowed(GRAND_KING_WORKSPACE_ID, 0.01);
     if (!gate.allowed) {
       return {

@@ -1,0 +1,96 @@
+{
+  "artifact": "PRODUCTION_RELIABILITY_SOAK",
+  "completedAt": "2026-08-12T09:06:27.931Z",
+  "brain": "https://empireai-production.up.railway.app",
+  "rounds": 12,
+  "healthLive": {
+    "okCount": 12,
+    "failCount": 0,
+    "p95Ms": 1323,
+    "samples": [
+      {
+        "ok": true,
+        "ms": 490,
+        "lag": 5.760423999745399,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 299,
+        "lag": 0.6617939998395741,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 272,
+        "lag": 0.6747329998761415,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 233,
+        "lag": 0.3133669998496771,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 242,
+        "lag": 0.7169510000385344,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 239,
+        "lag": 0.06586700025945902,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 224,
+        "lag": 0.4553630002774298,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 264,
+        "lag": 0,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 241,
+        "lag": 6.828648999799043,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 238,
+        "lag": 0.13024399988353252,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 1323,
+        "lag": 848.6773020001128,
+        "error": null
+      },
+      {
+        "ok": true,
+        "ms": 273,
+        "lag": 0.8829140001907945,
+        "error": null
+      }
+    ]
+  },
+  "auth": {
+    "status": "BLOCKED",
+    "note": "EMPIRE_LOGIN_EMAIL/PASSWORD unset"
+  },
+  "statusProbe": {
+    "label": "commissioning-status",
+    "ok": true,
+    "ms": 893,
+    "value": 200
+  },
+  "brainStable": true
+}

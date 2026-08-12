@@ -8,13 +8,15 @@
   "birthStatus": "COMMISSIONING",
   "technicallyReady": false,
   "safeToResumeBirthInterrogation": false,
-  "blocker": "BRAIN_HEALTH_TIMEOUT_25S; ONE_PRODUCT_NULL_AGAIN_AFTER_PRIOR_PASS; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
+  "blocker": "RELIABILITY_FIXES_PENDING_DEPLOY_AND_ONE_PRODUCT_DURABILITY_PROOF; LOGOUT_RELOGIN_BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
   "commits": [
     "5c34dbe3",
     "1b72949c",
     "f504f378",
     "5f2f8122",
-    "3a40204b"
+    "3a40204b",
+    "3e032f96",
+    "PENDING_RELIABILITY_REPAIR"
   ],
   "residualAt": "2026-08-12T07:59:04.000Z",
   "residualObservations": {
@@ -28,7 +30,7 @@
     },
     "executiveHome": {
       "status": "PARTIAL",
-      "note": "Briefly showed Operational truth loading… then recovered commerce attention; Business truth strip not confirmed in residual poll"
+      "note": "Briefly showed Operational truth loading\u2026 then recovered commerce attention; Business truth strip not confirmed in residual poll"
     },
     "topBarAskAi": {
       "status": "PASS",
@@ -44,11 +46,11 @@
       "status": 200,
       "observedAt": "2026-08-12T06:02:00Z",
       "avgLatencyMs": 5622,
-      "note": "online but elevated latency; heavy /brain/dispatch cycles 9–17s still present"
+      "note": "online but elevated latency; heavy /brain/dispatch cycles 9\u201317s still present"
     },
     "executiveHome": {
       "status": "PASS",
-      "note": "Real operational truth loaded — not stuck on Operational truth loading…; Mini Fan opportunity + Business truth visible"
+      "note": "Real operational truth loaded \u2014 not stuck on Operational truth loading\u2026; Mini Fan opportunity + Business truth visible"
     },
     "oneProductCommissioning": {
       "status": "PASS",
@@ -63,13 +65,13 @@
     "pillowCentreChat": {
       "status": "PASS",
       "optimisticGrandKingBubble": true,
-      "processingState": "Pillow is thinking…",
+      "processingState": "Pillow is thinking\u2026",
       "replyArtifact": "art_915d6687-083",
       "replySnippet": "I am available, and my current commerce focus is on evaluating and preparing profitable dropshipping opportunities for Amazon, specifically the Tibetan Six Character Mantra Hand Rope Bracelet and the High-Speed Handheld Mini Fan."
     },
     "floatDockExpandRemoved": {
       "status": "PASS",
-      "note": "GlobalAiAssistantPanel is Talk with Pillow launcher → Pillow Centre; no float/dock/expand window on EH"
+      "note": "GlobalAiAssistantPanel is Talk with Pillow launcher \u2192 Pillow Centre; no float/dock/expand window on EH"
     },
     "topBarAskAiRoutesToPillowCentre": {
       "status": "PASS",
@@ -89,5 +91,27 @@
     "Prior Birth Test Board PROVEN rows preserved; Birth interrogation remains paused.",
     "No publish/spend. No Birth authorisation. No production DB wipe.",
     "Commerce opportunity Mini Fan remains on EH queue; commissioning dossier product is Pillow-selected humidifier (distinct surfaces)."
-  ]
+  ],
+  "reliabilityRepairAt": "2026-08-12T09:06:27.931Z",
+  "reliabilityRepair": {
+    "brainSaturationRootCause": "sql.js sync db.export + boot expensive ticks starve event loop; heavy GET /health amplifies",
+    "oneProductNullRootCause": "sql.js deferred first flush (default 10min) + restart before disk write; flight recovery insufficient when wiped",
+    "authLoginFailedRootCause": "Brain unavailability mapped to generic Login failed (not invalid credentials)",
+    "fixesShippedPendingDeploy": [
+      "requestCriticalPersist for commissioning",
+      "commissioning-durability-mirror sidecar",
+      "admitExpensiveWork on executive-loop + presale ticks",
+      "GET /health skip heavy under lag",
+      "login client unavailable messaging"
+    ],
+    "soakPreDeploy": {
+      "artifact": "PRODUCTION_RELIABILITY_SOAK_EVIDENCE.json",
+      "healthLive": "12/12 ok p95Ms=1323",
+      "brainStableFlag": true,
+      "note": "Probe was /health/live; does not alone certify durability or auth path"
+    },
+    "logoutRelogin": "BLOCKED_MISSING_EMPIRE_LOGIN_ENV",
+    "oneProductDurableProof": "PENDING_POST_DEPLOY",
+    "safeToResumeBirthInterrogation": false
+  }
 }

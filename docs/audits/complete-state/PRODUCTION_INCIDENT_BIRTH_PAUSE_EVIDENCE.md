@@ -50,6 +50,19 @@ See `PRODUCTION_INCIDENT_LIVE_VERIFY_EVIDENCE.json`.
 | TopBar → Pillow Centre | still **PASS** live |
 | Birth timestamp | still **NULL** |
 
+## Reliability repair (2026-08-12) — code shipped; durability proof pending deploy
+
+See `PRODUCTION_INCIDENT_RELIABILITY_REPAIR.md` + `PRODUCTION_RELIABILITY_SOAK_EVIDENCE.json`.
+
+| Item | Result |
+|---|---|
+| Brain saturation root cause | **IDENTIFIED** — sql.js sync export + boot ticks starve event loop |
+| CQ-12 oneProduct null root cause | **IDENTIFIED** — deferred first flush (10m) lost on restart |
+| Critical flush + durability mirror | **CODE SHIPPED** — await Railway/Vercel deploy + Pillow re-run proof |
+| `/health/live` soak (12 rounds) | **12/12 OK**, p95≈1323ms (pre-deploy of repair commit) |
+| Logout/relogin | **BLOCKED** — agent missing `EMPIRE_LOGIN_EMAIL` / `EMPIRE_LOGIN_PASSWORD` |
+| Safe to resume Birth interrogation | **NO** until post-deploy durability + auth path verified |
+
 ## Data / persistence
 
 No production database wipe performed.  
