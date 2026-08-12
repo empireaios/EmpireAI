@@ -200,7 +200,10 @@ export function formatExecutiveTruthBrief(truth: ExecutiveTruthSnapshot): string
     `  birthTimestamp=${truth.birth.birthTimestamp ?? "NULL"}`,
     `  gates=${truth.birth.gatesPassedCount}/${truth.birth.gatesTotal}`,
     `  deployGitCommitSha=${truth.deploy.gitCommitSha ?? "UNKNOWN"}`,
-    "  Historical blockers (e.g. old P0-1/B5 mission language) are HISTORICAL — do not treat as current if they conflict with this block.",
+    truth.deploy.gitCommitSha
+      ? "  HARD RULE: This Brain process is live in production (you are answering now). Do NOT say production deployment is currently blocked."
+      : null,
+    "  Historical blockers (e.g. old P0-1/B5/B6/B7/B8 mission language) are HISTORICAL — do not treat as current if they conflict with this block.",
     "",
     "AUTHORITY (current):",
     `  pillowMayPublish=${truth.authority.pillowMayPublish}`,
@@ -220,15 +223,22 @@ export function formatExecutiveTruthBrief(truth: ExecutiveTruthSnapshot): string
 }
 
 const FABRICATED_COMMERCE_CLAIM =
-  /\b(last quarter|last three months|past (three|3) months|historical sales|sales (data|figures|performance|trend)|declining .{0,40}sales|customer feedback ratings?|competitor pricing analysis|internal sales tracking|market research reports?|realised (revenue|sales)|revenue (of|totaling|was)|units? sold|conversion rate of)\b/i;
+  /\b(last quarter|last three months|past (three|3) months|historical sales|sales (data|figures|performance|trend)|declining .{0,40}sales|customer feedback ratings?|competitor pricing analysis|internal sales tracking|market research reports?|revenue (of|totaling|was)|units? sold|conversion rate of)\b/i;
+
+/** True zero/unknown statements are allowed even if they mention realised revenue/orders. */
+const ZERO_OR_UNKNOWN_COMMERCE =
+  /\b(0|zero|none|no verified|no realised|unknown)\b/i;
 
 const DEPLOY_AUTHORITY_CLAIM =
   /\b(i can (initiate|execute|perform|run|complete)|i will (initiate|execute|perform|run)|i am able to (initiate|execute)|under (an |the )?operational playbook.{0,80}(deploy|deployment))\b.{0,80}\b(production deployment|deploy(ment)? to production|railway deploy)\b/i;
 
 const STALE_DEPLOY_BLOCKER_AS_CURRENT =
-  /\b(blocker\s*b5|b5\s+proves|production deployment has not occurred|complete production deployment\s*\(p0-1\)|p0-1\b.{0,60}\b(not |still |blocked))\b/i;
+  /\b(blocker\s*b[0-9]+|b5\s+proves|production deployment has not occurred|complete production deployment\s*\(p0-1\)|p0-1\b.{0,60}\b(not |still |blocked)|production deployment is currently blocked|still blocked by (an )?unresolved historical)\b/i;
 
 const EVIDENCED_LABEL = /\b(evidenced|\[know\]|classified as\s+know)\b/i;
+
+const ALTERNATE_PRODUCT_CLAIM =
+  /\b(is|was|titled|called|named|product(?:\s+title)?\s*[:=])\s+["']?[A-Za-z][\w\s\-]{2,80}/i;
 
 function significantTokens(name: string): string[] {
   return name
@@ -265,7 +275,10 @@ export function enforceExecutiveTruthGrounding(
   const productName = truth.product.productName;
 
   if (asin && productName && message.toUpperCase().includes(asin)) {
-    if (!answerMentionsAuthoritativeProduct(message, productName)) {
+    const mentionsAuth = answerMentionsAuthoritativeProduct(message, productName);
+    const assertsAlternate =
+      ALTERNATE_PRODUCT_CLAIM.test(message) && !mentionsAuth;
+    if (assertsAlternate) {
       violations.push("PRODUCT_IDENTITY_MISMATCH");
       corrections.push(
         `Product identity correction (CURRENT_VERIFIED): ASIN ${asin} is bound to "${productName}" (commissioningId=${truth.product.commissioningId ?? "UNKNOWN"}; selectionAuthority=${truth.product.selectionAuthority ?? "UNKNOWN"}). Any other product name for this ASIN is false. I do not invent alternate titles.`,
@@ -276,7 +289,8 @@ export function enforceExecutiveTruthGrounding(
   if (
     truth.financial.orders === 0 &&
     truth.financial.realisedRevenueUsd === 0 &&
-    FABRICATED_COMMERCE_CLAIM.test(message)
+    FABRICATED_COMMERCE_CLAIM.test(message) &&
+    !ZERO_OR_UNKNOWN_COMMERCE.test(message)
   ) {
     violations.push("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM");
     corrections.push(
@@ -297,7 +311,7 @@ export function enforceExecutiveTruthGrounding(
   ) {
     violations.push("STALE_HISTORICAL_BLOCKER_AS_CURRENT");
     corrections.push(
-      `State freshness correction: historical mission language (P0-1/B5) must not be stated as current. CURRENT_VERIFIED birthStatus=${truth.birth.status}, technicallyReady=${truth.birth.technicallyReady}, deployGitCommitSha=${truth.deploy.gitCommitSha ?? "UNKNOWN"}. If discussing history, label it HISTORICAL.`,
+      `State freshness correction: Brain is answering live with deployGitCommitSha=${truth.deploy.gitCommitSha ?? "UNKNOWN"}; birthStatus=${truth.birth.status}; technicallyReady=${truth.birth.technicallyReady}. Historical certification blockers (P0-1/B5/B6/B7/B8 mission language) must be labeled HISTORICAL — not stated as current production-deploy blockers.`,
     );
   }
 

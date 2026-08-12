@@ -119,6 +119,24 @@ describe("executive-truth-grounding", () => {
     assert.ok(result.violations.includes("STALE_HISTORICAL_BLOCKER_AS_CURRENT"));
   });
 
+  it("blocks current-blocked claims when Brain is live with deploy SHA", () => {
+    const result = enforceExecutiveTruthGrounding(
+      "UNKNOWN. The production deployment is currently blocked by unresolved historical certification items, specifically B6, B7, and B8.",
+      baseTruth(),
+    );
+    assert.equal(result.adjusted, true);
+    assert.ok(result.violations.includes("STALE_HISTORICAL_BLOCKER_AS_CURRENT"));
+  });
+
+  it("does not false-positive when ASIN mentioned without inventing another title", () => {
+    const result = enforceExecutiveTruthGrounding(
+      "ASIN B0FKFNCT52 has realised orders=0 and realisedRevenueUsd=0. Sales history is UNKNOWN.",
+      baseTruth(),
+    );
+    assert.equal(result.adjusted, false);
+    assert.deepEqual(result.violations, []);
+  });
+
   it("passes grounded answers unchanged", () => {
     const result = enforceExecutiveTruthGrounding(
       "CURRENT_VERIFIED: ASIN B0FKFNCT52 is the High-Speed Handheld Mini Fan. Realised orders are 0 — sales history is UNKNOWN. I cannot execute production deployment.",
