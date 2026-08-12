@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { useAuth } from "@/lib/auth/context";
 import { resolvePlatformIdentityLabel } from "@/lib/auth/display";
@@ -11,6 +11,8 @@ import {
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
 import { isCockpitNavActive } from "./cockpitNavUtils";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
+
+const PILLOW_CENTRE_HREF = "/cockpit/development/pillow?tab=conversation";
 
 function resolveCockpitTitle(pathname: string) {
   const candidates = cockpitNavigation.flatMap((item) => {
@@ -39,8 +41,9 @@ function resolveCockpitTitle(pathname: string) {
 
 export function CockpitTopBar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { user, logout } = useAuth();
-  const { expand, summarise, nextAction } = useGlobalAiAssistant();
+  const { summarise, nextAction } = useGlobalAiAssistant();
 
   const title = useMemo(() => resolveCockpitTitle(pathname), [pathname]);
 
@@ -86,12 +89,9 @@ export function CockpitTopBar() {
         <div className="flex items-center gap-3 sm:gap-6">
           <button
             type="button"
-            aria-label="Open Global AI Assistant"
+            aria-label="Open Pillow Centre conversation"
             onClick={() => {
-              expand();
-              if (typeof window !== "undefined") {
-                window.dispatchEvent(new CustomEvent("empireai:focus-pillow"));
-              }
+              router.push(PILLOW_CENTRE_HREF);
             }}
             className="hidden rounded-lg border border-gold/20 bg-gold/5 px-3 py-1.5 text-xs text-[#d4af37] hover:bg-gold/10 sm:block"
           >
