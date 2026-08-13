@@ -97,3 +97,8 @@ export {
   getPillowExecutiveLoopSchedulerDefinitions,
   runPillowExecutiveLoopAutomationTick,
 } from "./executive-operating-loop/index.js";
+export {
+  runExecutiveBirthBootcamp,
+  allocatePortfolioAttention,
+  type BootcampReport,
+} from "./birth-bootcamp/index.js";

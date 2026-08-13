@@ -41,6 +41,7 @@ import { evaluateExecutiveBirthReadiness } from "../executive-operating-loop/bir
 import { runPillowCapabilityTests } from "../executive-operating-loop/capability-harness.js";
 import { runExecutiveOperatingCycle } from "../executive-operating-loop/cycle-runner.js";
 import { buildLiveCommercialSituation } from "../executive-operating-loop/live-situation.js";
+import { runExecutiveBirthBootcamp } from "../birth-bootcamp/index.js";
 import {
   getLatestExecutiveCycle,
   listExecutiveCycles,
@@ -388,6 +389,46 @@ export async function registerPillowCommissioningRoutes(
       const workspaceId = `${request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID}:capability-sandbox`;
       const result = runPillowCapabilityTests(workspaceId);
       return reply.send({ ok: true, ...result });
+    },
+  );
+
+  /**
+   * Synthetic Executive Birth Bootcamp (deterministic-first).
+   * Does NOT authorise Birth. Does NOT publish/spend. Not the sealed exam.
+   */
+  app.post(
+    "/pillow-commissioning/birth-bootcamp/run",
+    { preHandler: deps.authenticate },
+    async (request, reply) => {
+      const user = request.user!;
+      if (user.role !== "founder" && user.role !== "admin") {
+        return reply.code(403).send({ error: "Founder access required" });
+      }
+      const body = z
+        .object({
+          seed: z.number().int().optional(),
+          includeLegacyCapabilityHarness: z.boolean().optional(),
+        })
+        .parse(request.body ?? {});
+      const report = runExecutiveBirthBootcamp({
+        seed: body.seed,
+        includeLegacyCapabilityHarness: body.includeLegacyCapabilityHarness,
+      });
+      deps.auditLogger.write({
+        action: "tool.execute",
+        actor: user.email,
+        workspaceId: user.workspaceId ?? GRAND_KING_WORKSPACE_ID,
+        companyId: "grand-king",
+        correlationId: `birth-bootcamp-${report.seed}`,
+        metadata: {
+          tool: "pillow_commissioning.birth_bootcamp",
+          bootcampReady: report.bootcampReady,
+          scenarios: report.cost.scenariosExecuted,
+          llmCalls: report.cost.llmCalls,
+          birthAuthorised: false,
+        },
+      });
+      return reply.send({ ok: true, report });
     },
   );
 
