@@ -83,8 +83,24 @@ Auth messaging from the prior reliability repair is **preserved and correct** fo
 - Admission refuses work during flush.
 - Continuity health + sqlite persist stats remain on `/health` surfaces for pre-user degradation signals.
 
+## Post-deploy verification (live)
+
+| Item | Result |
+|---|---|
+| Active deploy | `f31aa6bf…` SUCCESS · SHA `cfab44a0` |
+| `/health/live` | 200 · lag≈0 · post-flush cooldown armed ×3 · no crash-loop |
+| Auth | login PASS · logout→relogin PASS · wrong password → `Invalid email or password` (not unavailable) |
+| oneProduct | `opc_a85a1cda` / `B0FKFNCT52` / pillow / `cursorSelected=false` survived redeploy |
+| SQLite | `canFlushFullDb=true` · `flushCount=3` · `lastFlushError=null` · flush ~19–22s |
+| Round 1 | `production-journey-verify` ALL STEPS PASSED |
+| Round 2 | `production-incident-live-verify` `safeToResumeBirthInterrogation=true` |
+| Round 3 | concurrent 10× `/health/live` during EH + Pillow session/chat — PASS |
+| Soak | 20/20 live · p50=237ms · p95=664ms · worst=664ms · failures=0 |
+
 ## Birth state (unchanged by design)
 
 - Birth examination **not** started  
 - Birth timestamp **NULL**  
 - Bootcamp remains mock training evidence only  
+- `SAFE_FOR_GK_CHATGPT_SEALED_EXAM=YES` only after the gates above — engineering stops here for sealed exam handoff.  
+
