@@ -336,15 +336,27 @@ async function main() {
       if (!cookie) await ensureLogin();
       if (i < chatBudget) {
         if (!pillowSessionId) {
-          const s = await fetch(`${COCKPIT}/api/pillow/session`, {
-            method: "POST",
-            headers: { "content-type": "application/json", cookie },
-            body: JSON.stringify({}),
-            signal: AbortSignal.timeout(60_000),
-          });
-          const sj = await s.json().catch(() => ({}));
-          pillowSessionId = sj.session?.sessionId || null;
-          if (!s.ok || !pillowSessionId) throw new Error(`pillow session ${s.status}`);
+          const deadline = Date.now() + 90_000;
+          while (Date.now() < deadline && !pillowSessionId) {
+            const s = await fetch(`${COCKPIT}/api/pillow/session`, {
+              method: "POST",
+              headers: { "content-type": "application/json", cookie },
+              body: JSON.stringify({}),
+              signal: AbortSignal.timeout(60_000),
+            });
+            const sj = await s.json().catch(() => ({}));
+            if (s.ok && sj.session?.sessionId) {
+              pillowSessionId = sj.session.sessionId;
+              break;
+            }
+            // Admission 503 / starting is retryable — do not erase as hard failure yet.
+            if (s.status === 503) {
+              await sleep(Math.max(2000, Number(sj.retryAfterSec || 2) * 1000));
+              continue;
+            }
+            throw new Error(`pillow session ${s.status} ${JSON.stringify(sj).slice(0, 160)}`);
+          }
+          if (!pillowSessionId) throw new Error("pillow session create timed out after 90s");
         }
         const c = await fetch(`${COCKPIT}/api/pillow/chat`, {
           method: "POST",

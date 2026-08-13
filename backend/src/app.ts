@@ -369,6 +369,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       status: "ok" as const,
       brain: "online" as const,
       eventLoopLagMs: getRecentEventLoopLagMs(),
+      eventLoopLagSmoothedMs: (await import("./runtime/event-loop-cooperative.js"))
+        .getSmoothedEventLoopLagMs(),
       sqlite: getSqlitePersistStats(),
       admission: getAdmissionStats(),
       disk: getVolumeDiskStats(env.DATABASE_PATH),
