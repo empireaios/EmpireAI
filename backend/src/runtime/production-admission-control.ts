@@ -12,10 +12,14 @@
  *
  * Health/auth routes must never call into this gate.
  */
-import { getRecentEventLoopLagMs } from "./event-loop-cooperative.js";
+import {
+  getRecentEventLoopLagMs,
+  getSmoothedEventLoopLagMs,
+} from "./event-loop-cooperative.js";
 import { getSqlitePersistStats } from "../brain/sqlite-database.js";
 
-const LAG_REJECT_MS = Number(process.env.ADMISSION_LAG_REJECT_MS ?? 250);
+/** Admission uses smoothed lag; default raised so ~500ms timer-noise cannot lock out Pillow. */
+const LAG_REJECT_MS = Number(process.env.ADMISSION_LAG_REJECT_MS ?? 1_500);
 const MAX_SESSION_CREATES = Math.max(
   1,
   Number(process.env.ADMISSION_MAX_PILLOW_SESSION_CREATES ?? 2),
@@ -51,7 +55,7 @@ export function getAdmissionStats(): {
     pillowSessionCreatesInFlight,
     maxPillowSessionCreates: MAX_SESSION_CREATES,
     lagRejectMs: LAG_REJECT_MS,
-    recentLagMs: getRecentEventLoopLagMs(),
+    recentLagMs: getSmoothedEventLoopLagMs(),
     sessionRateLimit: SESSION_RATE_LIMIT,
     sessionRateWindowMs: SESSION_RATE_WINDOW_MS,
     sessionCreatesInWindow: sessionCreateTimestamps.length,
@@ -74,7 +78,8 @@ const POST_FLUSH_DURATION_GATE_MS = Number(
 
 /** Reject expensive work when the loop is already saturated. */
 export function admitExpensiveWork(label = "work"): AdmissionDecision {
-  const lagMs = getRecentEventLoopLagMs();
+  const instantLagMs = getRecentEventLoopLagMs();
+  const lagMs = getSmoothedEventLoopLagMs();
   const sqlite = getSqlitePersistStats();
   // Never pile background automation onto a synchronous sql.js export window.
   if (sqlite.flushInFlight) {
@@ -86,6 +91,7 @@ export function admitExpensiveWork(label = "work"): AdmissionDecision {
     };
   }
   // After a long sync export, keep Tier-0 free while residual pressure drains.
+  // Ignore tiny flushes (< gate) so a 159ms write cannot open a 60s lockout.
   if (
     sqlite.lastFlushMs !== null &&
     sqlite.lastFlushDurationMs !== null &&
@@ -102,7 +108,7 @@ export function admitExpensiveWork(label = "work"): AdmissionDecision {
   if (lagMs >= LAG_REJECT_MS) {
     return {
       admit: false,
-      reason: `Event loop saturated (lag ${Math.round(lagMs)}ms) — refusing ${label}`,
+      reason: `Event loop saturated (smoothed lag ${Math.round(lagMs)}ms, instant ${Math.round(instantLagMs)}ms) — refusing ${label}`,
       retryAfterSec: Math.min(30, Math.max(2, Math.ceil(lagMs / 1000) + 1)),
       lagMs,
     };

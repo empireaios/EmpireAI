@@ -360,7 +360,19 @@ export class EmpireDatabase {
       try {
         // Prefer auth/health responsiveness over durability timing under lag (non-critical).
         await waitForEventLoopCapacity(critical ? 1_500 : 5_000);
-        if (!critical && getRecentEventLoopLagMs() >= FLUSH_LAG_SKIP_MS) {
+
+        const sinceLastFlush =
+          persistStats.lastFlushMs === null
+            ? Number.POSITIVE_INFINITY
+            : Date.now() - persistStats.lastFlushMs;
+        // Hard ceiling: never skip forever under sticky lag — durability must progress.
+        const forceByMaxInterval = !critical && sinceLastFlush >= MAX_FLUSH_INTERVAL_MS;
+
+        if (
+          !critical &&
+          !forceByMaxInterval &&
+          getRecentEventLoopLagMs() >= FLUSH_LAG_SKIP_MS
+        ) {
           this.persistDirty = true;
           persistStats.pending = true;
           this.schedulePersist();
@@ -385,13 +397,10 @@ export class EmpireDatabase {
           }
         }
 
-        const sinceLastFlush =
-          persistStats.lastFlushMs === null
-            ? Number.POSITIVE_INFINITY
-            : Date.now() - persistStats.lastFlushMs;
-        // Under any residual lag, stretch flushes toward the hard ceiling (non-critical).
+        // Under residual lag, stretch flushes toward the hard ceiling (non-critical).
         if (
           !critical &&
+          !forceByMaxInterval &&
           sinceLastFlush < MAX_FLUSH_INTERVAL_MS &&
           getRecentEventLoopLagMs() >= Math.floor(FLUSH_LAG_SKIP_MS / 2)
         ) {
