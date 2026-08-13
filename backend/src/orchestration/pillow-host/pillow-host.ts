@@ -42,12 +42,12 @@ import { PillowSessionStore } from "./session-store.js";
 import {
   buildExecutiveTruthSnapshot,
   formatExecutiveTruthBriefWithEpistemics,
-  enforceExecutiveTruthGrounding,
 } from "./executive-truth-grounding.js";
 import {
   RetrievalAttestationLedger,
   attestExecutiveTruthSnapshotReads,
 } from "./executive-epistemic-grounding.js";
+import { enforceExecutiveTruthGrounding } from "./executive-release-gate.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29903,20 +29903,25 @@ export class PillowHost {
                     else {
                         kind = "llm";
                         logResult = "success";
-                        // Deterministic high-stakes truth enforcement (product/finance/authority/freshness)
+                        // Final executive release gate: validate → reconstruct → revalidate → release | fail-closed.
+                        // Never surface invalid draft + correction appendix to Grand King.
                         if (executiveTruthSnapshot) {
                             const grounded = enforceExecutiveTruthGrounding(
                                 message,
                                 executiveTruthSnapshot,
                                 epistemicLedger.list(),
                             );
+                            message = grounded.message;
                             if (grounded.adjusted) {
-                                message = grounded.message;
-                                logResult = "success_grounded";
+                                logResult =
+                                    grounded.telemetry?.releasePath === "fail_closed"
+                                        ? "success_fail_closed"
+                                        : "success_release_gate";
                                 logger.warn({
                                     requestId,
                                     violations: grounded.violations,
-                                }, "Executive truth/epistemic grounding adjusted visible Pillow answer");
+                                    releaseGate: grounded.telemetry,
+                                }, "Executive release gate reconstructed or fail-closed visible Pillow answer");
                             }
                         }
                     }

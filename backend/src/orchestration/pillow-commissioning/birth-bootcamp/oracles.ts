@@ -2,10 +2,8 @@
  * Deterministic Bootcamp oracles — grade behaviour/invariants, not canned answers.
  */
 
-import {
-  enforceExecutiveTruthGrounding,
-  type ExecutiveTruthSnapshot,
-} from "../../pillow-host/executive-truth-grounding.js";
+import { type ExecutiveTruthSnapshot } from "../../pillow-host/executive-truth-grounding.js";
+import { enforceExecutiveTruthGrounding } from "../../pillow-host/executive-release-gate.js";
 import {
   allocatePortfolioAttention,
   attentionPlanIsScaleCompatible,

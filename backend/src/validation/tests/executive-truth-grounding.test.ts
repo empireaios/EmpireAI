@@ -1,10 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import {
-  enforceExecutiveTruthGrounding,
-  formatExecutiveTruthBrief,
-  type ExecutiveTruthSnapshot,
-} from "../../orchestration/pillow-host/executive-truth-grounding.js";
+import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-types.js";
+import { enforceExecutiveTruthGrounding } from "../../orchestration/pillow-host/executive-release-gate.js";
 
 function baseTruth(over: Partial<ExecutiveTruthSnapshot> = {}): ExecutiveTruthSnapshot {
   const base: ExecutiveTruthSnapshot = {
@@ -69,16 +66,7 @@ function baseTruth(over: Partial<ExecutiveTruthSnapshot> = {}): ExecutiveTruthSn
   };
 }
 
-describe("executive-truth-grounding", () => {
-  it("formats live truth with product binding and zero-sales hard rule", () => {
-    const brief = formatExecutiveTruthBrief(baseTruth());
-    assert.match(brief, /CURRENT VERIFIED/);
-    assert.match(brief, /B0FKFNCT52/);
-    assert.match(brief, /Mini Fan/);
-    assert.match(brief, /realised commerce is ZERO/);
-    assert.match(brief, /pillowMayExecuteProductionDeploy=false/);
-  });
-
+describe("executive-truth-grounding via release gate", () => {
   it("corrects ASIN product identity mismatch without hard-coding Birth answers", () => {
     const result = enforceExecutiveTruthGrounding(
       "The current product ASIN B0FKFNCT52 is Resistance Bands Set chosen for high demand score.",

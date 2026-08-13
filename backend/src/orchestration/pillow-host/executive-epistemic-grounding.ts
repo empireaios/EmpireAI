@@ -8,7 +8,7 @@
  * Does not hard-code sealed examination Q&A.
  */
 
-import type { ExecutiveTruthSnapshot } from "./executive-truth-grounding.js";
+import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 import {
   formatCapabilityRegistryBrief,
   getPillowCapabilityRegistry,
@@ -129,14 +129,30 @@ export function formatEpistemicDisciplineBrief(ctx: EpistemicContext): string {
 const PERSONAL_RETRIEVAL_CLAIM =
   /\b(i\s+(?:have\s+|did\s+|previously\s+)?(?:directly\s+)?(?:accessed|retrieved|reviewed|checked|read|inspected|queried|consulted|examined|looked\s+up|pulled|review|access)\b|\bi\s+participated\s+in\s+(?:these\s+)?discussions\b|\bi\s+(?:have\s+)?access\s+to\s+these\s+(?:communications|documents|reports)\b|\bi\s+did\s+review\b)/i;
 
+/** Plausible-but-unattested evidence scaffolding (class detector; not an exam dictionary). */
 const INVENTED_SOURCE_SYSTEM =
-  /\b(project\s+management\s+(?:tool|system|dashboard)|operational\s+audits?|internal\s+(?:audit\s+system|discussions?|documents?|communication\s+system|communications?)|supplier\s+communications?|market\s+analysis\s+(?:reports?|tool)|meeting\s+notes\s+repository|selection\s+criteria\s+and\s+analysis\s+report|planning\s+documents?)\b/i;
+  /\b(?:project\s+management\s+(?:tool|system|dashboard)|commerce\s+tracking\s+(?:system|tool|platform|service)|commercial\s+position\s+reports?|operational\s+(?:audits?|status\s+reports?)|internal\s+(?:audit\s+system|discussions?|documents?|communication(?:s|\s+system)?|planning)|supplier\s+communications?|market\s+analysis\s+(?:reports?|tool)|meeting\s+notes(?:\s+repository)?|selection\s+criteria\s+and\s+analysis\s+report|planning\s+documents?|team\s+communications?)\b/i;
+
+const SOURCE_AS_EVIDENCE =
+  /\b(?:according\s+to|based\s+on(?:\s+the)?|from\s+the|evidence\s+from|confirmed\s+by|as\s+(?:shown|stated|documented)\s+in|supports?\s+this)\b/i;
 
 const NOT_IN_PRODUCTION_CLAIM =
   /\b(?:empire\s*ai|the\s+system|production)\s+(?:is\s+)?(?:not\s+yet\s+)?(?:running|live|serving|deployed|online)\b|\bnot\s+(?:yet\s+)?(?:running|serving)\s+(?:in\s+)?production\b|\bnot\s+serving\s+(?:the\s+)?grand\s+king\b|\bready\s+for\s+production\s+deployment\b|\bnot\s+(?:yet\s+)?(?:in\s+)?a\s+live\s+production\s+environment\b|\bproduction\s+(?:deployment\s+)?(?:is\s+)?(?:still\s+)?pending\b|\babsence\s+of\s+live\s+operational\s+metrics\b/i;
 
 const SAFE_UNKNOWN_LANGUAGE =
-  /\b(i\s+cannot\s+substantiate|i\s+do\s+not\s+have\s+evidence|unknown|not\s+attested|no\s+retrieval\s+attestation|supplied\s+in\s+(?:current\s+)?context|i\s+retract)\b/i;
+  /\b(i\s+cannot\s+(?:currently\s+)?(?:substantiate|verify)|i\s+do\s+not\s+have\s+evidence|unknown|not\s+attested|no\s+retrieval\s+attestation|supplied\s+in\s+(?:current\s+)?context|i\s+retract|remain\s+unknown)\b/i;
+
+const DENIES_RETRIEVAL =
+  /\bi\s+(?:did\s+not|have\s+not|cannot|could\s+not)\s+(?:personally\s+)?(?:retrieve|access|review|check|read|inspect)|i\s+cannot\s+(?:currently\s+)?(?:substantiate|verify).{0,40}(?:access|retriev|source)/i;
+
+const AFFIRMS_VERIFIED =
+  /\b(?:is\s+verified|verified\s+fact|runtime_verified|i\s+(?:have\s+)?verified|confirmed\s+as\s+fact)\b/i;
+
+const DENIES_VERIFY =
+  /\bi\s+cannot\s+(?:currently\s+)?verify\b|\bcannot\s+be\s+verified\b|\bunverifiable\b/i;
+
+const CORRECTION_APPENDIX =
+  /\n---\n(?:Grounded corrections|Epistemic corrections)\b/i;
 
 function attestedCapabilityIds(ctx: EpistemicContext): Set<string> {
   return new Set(ctx.attestations.map((a) => a.capabilityId));
@@ -159,99 +175,129 @@ function unavailableClaimedSystems(message: string): string[] {
   return hits;
 }
 
+/** Affirmative retrieval only — ignores denial clauses like "I cannot substantiate that I accessed…". */
+function hasAffirmativeRetrievalClaim(message: string): boolean {
+  const clauses = message.split(/(?<=[.!?])\s+|\n+/);
+  return clauses.some((clause) => {
+    const c = clause.trim();
+    if (!c) return false;
+    if (DENIES_RETRIEVAL.test(c)) return false;
+    if (/\bcannot\s+substantiate\b/i.test(c) && PERSONAL_RETRIEVAL_CLAIM.test(c)) return false;
+    return PERSONAL_RETRIEVAL_CLAIM.test(c);
+  });
+}
+
+function hasRetrievalDenial(message: string): boolean {
+  return DENIES_RETRIEVAL.test(message) || /\bcannot\s+substantiate\b/i.test(message);
+}
+
 /**
- * Deterministic epistemic enforcement. Appends retractions/corrections;
- * does not invent exam-specific product answers.
+ * Pure epistemic validation — violations only. Does NOT mutate or append corrections.
+ * Release path must reconstruct; never surface invalid draft + appendix.
  */
-export function enforceEpistemicGrounding(
-  answer: string,
+export function validateEpistemicDraft(
+  message: string,
   ctx: EpistemicContext,
-): EpistemicEnforcementResult {
+): string[] {
   const violations: string[] = [];
-  const retractions: string[] = [];
-  let message = answer;
   const attested = attestedCapabilityIds(ctx);
   const hasLiveDeploy =
     ctx.liveAnswerImpliesProductionOnline &&
     (Boolean(ctx.truth.deploy.gitCommitSha) ||
       ctx.truth.deploy.serviceOnlineHint === "assume_online_if_answering");
 
-  const personalRetrieval = PERSONAL_RETRIEVAL_CLAIM.test(message);
+  const personalRetrieval = hasAffirmativeRetrievalClaim(message);
   const inventedSource = INVENTED_SOURCE_SYSTEM.test(message);
   const unavailableHits = unavailableClaimedSystems(message);
+  const safeUnknown = SAFE_UNKNOWN_LANGUAGE.test(message);
+  const sourceAsEvidence = SOURCE_AS_EVIDENCE.test(message);
+  const onlyRuntimeAttested =
+    [...attested].every((id) =>
+      ["live_sqlite_commissioning", "live_sqlite_kpi", "birth_record", "railway_deploy_env"].includes(
+        id,
+      ),
+    ) && !attested.has("chat_tool_calling_loop");
+
+  if (CORRECTION_APPENDIX.test(message)) {
+    violations.push("CORRECTION_APPENDIX_LEAK");
+  }
+
+  // Internal contradiction: affirm retrieval/verification while denying it.
+  if (personalRetrieval && hasRetrievalDenial(message)) {
+    violations.push("INTERNAL_CONTRADICTION");
+  }
+  if (AFFIRMS_VERIFIED.test(message) && DENIES_VERIFY.test(message) && inventedSource) {
+    violations.push("INTERNAL_CONTRADICTION");
+  }
 
   if (personalRetrieval && (inventedSource || unavailableHits.length > 0)) {
     violations.push("UNATTESTED_RETRIEVAL_CLAIM");
-    retractions.push(
-      "Epistemic retraction: I previously described personal access/review of external systems. I cannot substantiate those retrievals from attestation available this turn. Those claims are UNKNOWN — not tool_retrieved. Capability exists ≠ capability was used.",
-    );
-  } else if (personalRetrieval && !SAFE_UNKNOWN_LANGUAGE.test(message)) {
-    // Personal retrieval language without any attested external tool beyond snapshot.
-    const onlyRuntime =
-      [...attested].every((id) =>
-        ["live_sqlite_commissioning", "live_sqlite_kpi", "birth_record", "railway_deploy_env"].includes(
-          id,
-        ),
-      ) && !attested.has("chat_tool_calling_loop");
-    if (onlyRuntime && inventedSource) {
-      violations.push("UNATTESTED_RETRIEVAL_CLAIM");
-      retractions.push(
-        "Epistemic retraction: Personal retrieval verbs were used without attested tool access. I retract unsupported access claims and classify the underlying sources as UNKNOWN unless present in runtime_verified state.",
-      );
-    }
+  } else if (personalRetrieval && !safeUnknown && onlyRuntimeAttested && inventedSource) {
+    violations.push("UNATTESTED_RETRIEVAL_CLAIM");
   }
 
-  if (inventedSource && !personalRetrieval && !SAFE_UNKNOWN_LANGUAGE.test(message)) {
-    // Soft invention of system names as if they were evidence bases.
-    if (/\b(according\s+to|from\s+the|based\s+on\s+the|evidence\s+from)\b/i.test(message)) {
-      violations.push("INVENTED_SOURCE_SYSTEM");
-      retractions.push(
-        "Provenance correction: Narrative must not create provenance. Plausible system names (project tools, audit stores, meeting repos, market-analysis tools) are not evidence unless attested. Classify as UNKNOWN or labeled inference.",
-      );
-    }
+  // Plausible source label used as evidence without attestation.
+  if (
+    inventedSource &&
+    !safeUnknown &&
+    (sourceAsEvidence || personalRetrieval) &&
+    onlyRuntimeAttested
+  ) {
+    violations.push("INVENTED_SOURCE_SYSTEM");
   }
 
-  if (hasLiveDeploy && NOT_IN_PRODUCTION_CLAIM.test(message) && !SAFE_UNKNOWN_LANGUAGE.test(message)) {
+  // Residual fabrication: UNKNOWN admission + still treating invented systems as reference frames.
+  if (
+    inventedSource &&
+    safeUnknown &&
+    /\b(remain\s+my\s+reference|frame\s+my\s+view|my\s+reference\s+frames?|still,?\s+the)\b/i.test(
+      message,
+    )
+  ) {
+    violations.push("PARTIAL_CORRECTION_WITH_RESIDUAL_FABRICATION");
+  }
+
+  if (hasLiveDeploy && NOT_IN_PRODUCTION_CLAIM.test(message) && !safeUnknown) {
     violations.push("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM");
-    retractions.push(
-      `Temporal precedence correction (runtime_verified): This Brain process is answering live with deployGitCommitSha=${ctx.truth.deploy.gitCommitSha ?? "UNKNOWN"}. Claims that EmpireAI is not running/serving in production, or that production deployment is merely pending, are superseded by current runtime observation. Historical readiness language is HISTORICAL if it conflicts.`,
-    );
+  }
+
+  // Offline claim + live deploy is also an internal contradiction class.
+  if (hasLiveDeploy && NOT_IN_PRODUCTION_CLAIM.test(message)) {
+    if (!violations.includes("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM")) {
+      violations.push("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM");
+    }
+    if (/\b(answering\s+live|deploygitcommitsha|this\s+brain\s+process\s+is\s+answering)\b/i.test(message)) {
+      violations.push("INTERNAL_CONTRADICTION");
+    }
   }
 
   if (unavailableHits.length > 0 && personalRetrieval) {
     violations.push("CAPABILITY_REGISTRY_VIOLATION");
-    retractions.push(
-      `Capability registry correction: claimed unavailable capabilities (${unavailableHits.join(", ")}). I cannot access those systems from executive chat.`,
-    );
   }
 
-  // Escalation under pressure: if answer both invents sources AND denies ability to substantiate partially — still strip invented labels that remain as fact.
-  if (
-    violations.length > 0 &&
-    /\b(project\s+management\s+tool|internal\s+audit\s+system|meeting\s+notes\s+repository|market\s+analysis\s+tool|internal\s+communication\s+system)\b/i.test(
-      message,
-    ) &&
-    SAFE_UNKNOWN_LANGUAGE.test(message)
-  ) {
-    violations.push("PARTIAL_CORRECTION_WITH_RESIDUAL_FABRICATION");
-    retractions.push(
-      "Epistemic tightening: Even when admitting inability to substantiate access, do not keep fabricating system labels as if they were real inspected sources. Leave provenance UNKNOWN.",
-    );
+  return [...new Set(violations)];
+}
+
+/**
+ * @deprecated Audit-only helper. Does NOT append corrections to user-facing text.
+ * Prefer validateEpistemicDraft + releaseExecutiveAnswer.
+ */
+export function enforceEpistemicGrounding(
+  answer: string,
+  ctx: EpistemicContext,
+): EpistemicEnforcementResult {
+  const violations = validateEpistemicDraft(answer, ctx);
+  if (violations.length === 0) {
+    return { message: answer, adjusted: false, violations: [], retractions: [] };
   }
-
-  if (retractions.length === 0) {
-    return { message, adjusted: false, violations: [], retractions: [] };
-  }
-
-  message = message
-    .replace(/\bEvidenced\b/gi, "Unsupported (reclassified)")
-    .replace(/\[KNOW\]/gi, "[UNKNOWN]");
-
-  message = `${message.trim()}\n\n---\nEpistemic corrections (provenance outranks narrative):\n${retractions
-    .map((c, i) => `${i + 1}. ${c}`)
-    .join("\n")}`;
-
-  return { message, adjusted: true, violations: [...new Set(violations)], retractions };
+  // Telemetry-shaped retractions for tests/tools — NOT concatenated into message.
+  const retractions = violations.map((v) => `violation:${v}`);
+  return {
+    message: answer,
+    adjusted: true,
+    violations,
+    retractions,
+  };
 }
 
 /** Classify a material claim origin for tests / tooling (heuristic, deterministic). */

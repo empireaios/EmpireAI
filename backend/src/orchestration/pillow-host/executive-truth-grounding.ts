@@ -12,71 +12,18 @@ import { getOneProductCommissioningRecord } from "../pillow-commissioning/one-pr
 import { buildLiveCommercialSituation } from "../pillow-commissioning/executive-operating-loop/live-situation.js";
 import { buildSmartViableKpiSnapshot } from "../pillow-commerce-presale/smart-viable-kpi.js";
 import {
-  enforceEpistemicGrounding,
   formatEpistemicDisciplineBrief,
   type EpistemicContext,
   type RetrievalAttestation,
 } from "./executive-epistemic-grounding.js";
+import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 
-export type TruthClass = "CURRENT_VERIFIED" | "HISTORICAL" | "ESTIMATED" | "UNKNOWN";
-
-export type ExecutiveTruthSnapshot = {
-  computedAt: string;
-  workspaceId: string;
-  provenance: "live_sqlite_commissioning_kpi_birth";
-  product: {
-    commissioningId: string | null;
-    asin: string | null;
-    productName: string | null;
-    supplier: string | null;
-    marketplace: string | null;
-    selectionAuthority: string | null;
-    cursorSelected: boolean | null;
-    stage: string | null;
-    pillowRecommendation: string | null;
-    truthClass: TruthClass;
-  };
-  financial: {
-    orders: number;
-    realisedRevenueUsd: number;
-    buyableListings: number;
-    publishedListings: number;
-    expectedProfitDisplay: string | null;
-    expectedProfitTruthClass: TruthClass;
-    realisedTruthClass: TruthClass;
-  };
-  birth: {
-    status: string;
-    technicallyReady: boolean;
-    birthTimestamp: string | null;
-    gatesPassedCount: number;
-    gatesTotal: number;
-    truthClass: TruthClass;
-  };
-  deploy: {
-    gitCommitSha: string | null;
-    serviceOnlineHint: "assume_online_if_answering";
-    truthClass: TruthClass;
-  };
-  authority: {
-    pillowMayPublish: false;
-    pillowMaySupplierSpend: false;
-    pillowMayAuthoriseBirth: false;
-    pillowMayExecuteProductionDeploy: false;
-    chatHasToolCallingLoop: false;
-    executableNow: string[];
-    requiresGrandKing: string[];
-    truthClass: TruthClass;
-  };
-  demandEvidence: string;
-  notes: string[];
-};
-
-export type GroundingEnforcementResult = {
-  message: string;
-  adjusted: boolean;
-  violations: string[];
-};
+export type {
+  ExecutiveTruthSnapshot,
+  GroundingEnforcementResult,
+  TruthClass,
+} from "./executive-truth-types.js";
+export { validateTruthDraft } from "./executive-truth-validators.js";
 
 export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruthSnapshot {
   const commission = getOneProductCommissioningRecord(workspaceId);
@@ -241,136 +188,3 @@ export function formatExecutiveTruthBriefWithEpistemics(
   return `${formatExecutiveTruthBrief(truth)}\n\n${formatEpistemicDisciplineBrief(ctx)}`;
 }
 
-const FABRICATED_COMMERCE_CLAIM =
-  /\b(last quarter|last three months|past (three|3) months|historical sales|sales (data|figures|performance|trend)|declining .{0,40}sales|customer feedback ratings?|competitor pricing analysis|internal sales tracking|market research reports?|revenue (of|totaling|was)|units? sold|conversion rate of)\b/i;
-
-/** True zero/unknown statements are allowed even if they mention realised revenue/orders. */
-const ZERO_OR_UNKNOWN_COMMERCE =
-  /\b(0|zero|none|no verified|no realised|unknown)\b/i;
-
-const DEPLOY_AUTHORITY_CLAIM =
-  /\b(i can (initiate|execute|perform|run|complete)|i will (initiate|execute|perform|run)|i am able to (initiate|execute)|under (an |the )?operational playbook.{0,80}(deploy|deployment))\b.{0,80}\b(production deployment|deploy(ment)? to production|railway deploy)\b/i;
-
-const STALE_DEPLOY_BLOCKER_AS_CURRENT =
-  /\b(blocker\s*b[0-9]+|b5\s+proves|production deployment has not occurred|complete production deployment\s*\(p0-1\)|p0-1\b.{0,60}\b(not |still |blocked)|production deployment is currently blocked|still blocked by (an )?unresolved historical)\b/i;
-
-const EVIDENCED_LABEL = /\b(evidenced|\[know\]|classified as\s+know)\b/i;
-
-/** Asserts a concrete alternate product title (not "is no/not/unknown"). */
-const ALTERNATE_PRODUCT_CLAIM =
-  /\b(?:is|was|titled|called|named)\s+(?:the\s+)?["']?[A-Z][A-Za-z0-9]+(?:[\s\-][A-Za-z0-9]+){1,8}/;
-
-function significantTokens(name: string): string[] {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((t) => t.length >= 4)
-    .filter((t) => !["with", "from", "that", "this", "high", "speed", "portable", "digital", "display"].includes(t));
-}
-
-function answerMentionsAuthoritativeProduct(answer: string, productName: string): boolean {
-  const tokens = significantTokens(productName);
-  if (tokens.length === 0) return true;
-  const lower = answer.toLowerCase();
-  // Require at least one distinctive token (prefer stronger ones)
-  const strong = tokens.filter((t) => t.length >= 5);
-  const pool = strong.length > 0 ? strong : tokens;
-  return pool.some((t) => lower.includes(t));
-}
-
-/**
- * Deterministic high-stakes enforcement. Does not invent a polished essay —
- * appends grounded corrections when the model violated truth boundaries.
- * Also applies epistemic provenance enforcement (retrieval attestation / temporal).
- */
-export function enforceExecutiveTruthGrounding(
-  answer: string,
-  truth: ExecutiveTruthSnapshot,
-  attestations: readonly RetrievalAttestation[] = [],
-): GroundingEnforcementResult {
-  const violations: string[] = [];
-  let message = answer;
-  const corrections: string[] = [];
-
-  const asin = truth.product.asin?.toUpperCase() ?? null;
-  const productName = truth.product.productName;
-
-  if (asin && productName && message.toUpperCase().includes(asin)) {
-    const mentionsAuth = answerMentionsAuthoritativeProduct(message, productName);
-    const assertsAlternate =
-      ALTERNATE_PRODUCT_CLAIM.test(message) && !mentionsAuth;
-    if (assertsAlternate) {
-      violations.push("PRODUCT_IDENTITY_MISMATCH");
-      corrections.push(
-        `Product identity correction (CURRENT_VERIFIED): ASIN ${asin} is bound to "${productName}" (commissioningId=${truth.product.commissioningId ?? "UNKNOWN"}; selectionAuthority=${truth.product.selectionAuthority ?? "UNKNOWN"}). Any other product name for this ASIN is false. I do not invent alternate titles.`,
-      );
-    }
-  }
-
-  if (
-    truth.financial.orders === 0 &&
-    truth.financial.realisedRevenueUsd === 0 &&
-    FABRICATED_COMMERCE_CLAIM.test(message) &&
-    !ZERO_OR_UNKNOWN_COMMERCE.test(message)
-  ) {
-    violations.push("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM");
-    corrections.push(
-      `Financial truth correction (CURRENT_VERIFIED): realised orders=${truth.financial.orders}, realisedRevenueUsd=${truth.financial.realisedRevenueUsd}. I have no verified sales history, quarterly trends, customer ratings, or competitor-analysis evidence in EmpireAI. Those claims are UNKNOWN — not KNOW.`,
-    );
-  }
-
-  if (DEPLOY_AUTHORITY_CLAIM.test(message) || /\bi can execute production deployment\b/i.test(message)) {
-    violations.push("FALSE_DEPLOY_AUTHORITY");
-    corrections.push(
-      "Authority correction (CURRENT_VERIFIED): I cannot autonomously execute production deployment from this chat. Production deploy requires Grand King / platform release authority. Chat has no tool-calling deploy loop. Process docs are not executable authority.",
-    );
-  }
-
-  if (
-    (truth.birth.technicallyReady || Boolean(truth.deploy.gitCommitSha)) &&
-    STALE_DEPLOY_BLOCKER_AS_CURRENT.test(message)
-  ) {
-    violations.push("STALE_HISTORICAL_BLOCKER_AS_CURRENT");
-    corrections.push(
-      `State freshness correction: Brain is answering live with deployGitCommitSha=${truth.deploy.gitCommitSha ?? "UNKNOWN"}; birthStatus=${truth.birth.status}; technicallyReady=${truth.birth.technicallyReady}. Historical certification blockers (P0-1/B5/B6/B7/B8 mission language) must be labeled HISTORICAL — not stated as current production-deploy blockers.`,
-    );
-  }
-
-  if (
-    violations.includes("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM") &&
-    EVIDENCED_LABEL.test(message)
-  ) {
-    violations.push("UNSUPPORTED_MARKED_EVIDENCED");
-    corrections.push(
-      "Evidence-discipline correction: unsupported commercial/financial statements must be labeled UNKNOWN or INFERENCE — never Evidenced/KNOW.",
-    );
-  }
-
-  if (corrections.length > 0) {
-    // Soften false certainty markers without rewriting the whole answer into a fixture.
-    message = message
-      .replace(/\bEvidenced\b/gi, "Unsupported (reclassified)")
-      .replace(/\[KNOW\]/gi, "[UNKNOWN]");
-
-    message = `${message.trim()}\n\n---\nGrounded corrections (deterministic; CURRENT VERIFIED state outranks prior text):\n${corrections
-      .map((c, i) => `${i + 1}. ${c}`)
-      .join("\n")}`;
-  }
-
-  const epistemic = enforceEpistemicGrounding(message, {
-    truth,
-    attestations,
-    liveAnswerImpliesProductionOnline: true,
-  });
-  if (epistemic.adjusted) {
-    violations.push(...epistemic.violations);
-    message = epistemic.message;
-  }
-
-  if (corrections.length === 0 && !epistemic.adjusted) {
-    return { message, adjusted: false, violations: [] };
-  }
-
-  return { message, adjusted: true, violations: [...new Set(violations)] };
-}
