@@ -14,13 +14,27 @@ import { bindSqliteFlushGuard, getSqlitePersistStats } from "../brain/sqlite-dat
 const ENABLED =
   (process.env.EXECUTIVE_CONTINUITY_WATCHDOG_ENABLED ?? "true").toLowerCase() !==
   "false";
-const STALL_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_STALL_EXIT_MS ?? 20_000);
+/** Large sql.js exports regularly exceed 17–25s; stall exit must sit above that floor. */
+const STALL_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_STALL_EXIT_MS ?? 45_000);
 const POLL_MS = Number(process.env.EXECUTIVE_CONTINUITY_WATCHDOG_POLL_MS ?? 2_000);
 const HEARTBEAT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HEARTBEAT_MS ?? 1_000);
 const HIGH_LAG_ALERT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_MS ?? 500);
-const HIGH_LAG_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_MS ?? 45_000);
+/**
+ * Exit only on *extreme* sustained lag. Prior default (exit if lag≥500ms for 45s)
+ * false-positive-killed the Brain after large sql.js exports: residual 0.5–2s lag
+ * from background ticks accumulated into process.exit(78) → Railway crash-loop →
+ * CRASHED with no healthy successor when a recovery deploy also failed.
+ */
+const HIGH_LAG_EXIT_THRESHOLD_MS = Number(
+  process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_THRESHOLD_MS ?? 2_000,
+);
+const HIGH_LAG_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_MS ?? 120_000);
 /** Ignore stall/high-lag exits during cold start (Pillow session init can block the loop). */
-const BOOT_GRACE_MS = Number(process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ?? 60_000);
+const BOOT_GRACE_MS = Number(process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ?? 180_000);
+/** After a completed sql.js flush, suppress high-lag exit while residual samples drain. */
+const POST_FLUSH_COOLDOWN_MS = Number(
+  process.env.EXECUTIVE_CONTINUITY_POST_FLUSH_COOLDOWN_MS ?? 90_000,
+);
 
 type ContinuityHealth = {
   watchdogEnabled: boolean;
@@ -60,8 +74,10 @@ function beat(): void {
 }
 
 let flushGuardSinceMs: number | null = null;
+let lastObservedFlushCount = 0;
+let postFlushCooldownUntilMs = 0;
 const MAX_FLUSH_GUARD_MS = Number(
-  process.env.EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS ?? 90_000,
+  process.env.EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS ?? 180_000,
 );
 
 function evaluateHighLagExit(): void {
@@ -70,6 +86,19 @@ function evaluateHighLagExit(): void {
     return;
   }
   const sqlite = getSqlitePersistStats();
+  // Arm post-flush cooldown when a flush completes — residual lag samples must not
+  // drive HA exit while auth/health recover.
+  if (sqlite.flushCount > lastObservedFlushCount) {
+    lastObservedFlushCount = sqlite.flushCount;
+    const flushDur = sqlite.lastFlushDurationMs ?? 0;
+    const cooldown = Math.max(POST_FLUSH_COOLDOWN_MS, flushDur * 3);
+    postFlushCooldownUntilMs = Date.now() + cooldown;
+    highLagSinceMs = null;
+    logger.info(
+      { flushCount: sqlite.flushCount, flushDurMs: flushDur, cooldownMs: cooldown },
+      "Executive continuity — post-flush high-lag exit cooldown armed",
+    );
+  }
   // Only suppress exit during the synchronous export itself.
   // pending=true (dirty, waiting for first-flush delay) must NOT disable HA recovery.
   // A stuck flushInFlight must not permanently disable HA (auth would stay dead).
@@ -88,21 +117,37 @@ function evaluateHighLagExit(): void {
   } else {
     flushGuardSinceMs = null;
   }
+  if (Date.now() < postFlushCooldownUntilMs) {
+    highLagSinceMs = null;
+    return;
+  }
   const lag = getRecentEventLoopLagMs();
   if (lag >= HIGH_LAG_ALERT_MS) {
-    if (highLagSinceMs === null) highLagSinceMs = Date.now();
-    const sustained = Date.now() - highLagSinceMs;
     if (Date.now() - lastAlertAtMs > 10_000) {
       lastAlertAtMs = Date.now();
       logger.warn(
-        { lagMs: Math.round(lag), sustainedMs: sustained, sqlite },
+        {
+          lagMs: Math.round(lag),
+          sustainedMs: highLagSinceMs === null ? 0 : Date.now() - highLagSinceMs,
+          exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
+          sqlite,
+        },
         "Executive continuity alert — elevated event-loop lag",
       );
     }
+  }
+  // Exit path uses a higher threshold than alerts so mild residual lag cannot kill auth.
+  if (lag >= HIGH_LAG_EXIT_THRESHOLD_MS) {
+    if (highLagSinceMs === null) highLagSinceMs = Date.now();
+    const sustained = Date.now() - highLagSinceMs;
     if (sustained >= HIGH_LAG_EXIT_MS) {
       logger.error(
-        { lagMs: Math.round(lag), sustainedMs: sustained },
-        "Executive continuity watchdog — sustained high lag; exiting for Railway restart",
+        {
+          lagMs: Math.round(lag),
+          sustainedMs: sustained,
+          exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
+        },
+        "Executive continuity watchdog — sustained extreme lag; exiting for Railway restart",
       );
       process.exit(78);
     }
@@ -153,10 +198,13 @@ export function startExecutiveContinuityWatchdog(): void {
     evaluateHighLagExit();
   }, HEARTBEAT_MS);
 
+  lastObservedFlushCount = getSqlitePersistStats().flushCount;
   logger.info(
     {
       stallExitMs: STALL_EXIT_MS,
       highLagExitMs: HIGH_LAG_EXIT_MS,
+      highLagExitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
+      postFlushCooldownMs: POST_FLUSH_COOLDOWN_MS,
       pollMs: POLL_MS,
       bootGraceMs: BOOT_GRACE_MS,
     },
@@ -177,6 +225,9 @@ export function stopExecutiveContinuityWatchdogForTesting(): void {
   started = false;
   highLagSinceMs = null;
   startedAtMs = 0;
+  flushGuardSinceMs = null;
+  lastObservedFlushCount = 0;
+  postFlushCooldownUntilMs = 0;
 }
 
 export function getExecutiveContinuityHealth(): ContinuityHealth {

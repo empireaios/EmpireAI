@@ -32,7 +32,7 @@ setInterval(() => {
   const lastHeartbeatMs = Atomics.load(view, 0);
   if (lastHeartbeatMs <= 0) return;
   const stalledFor = Date.now() - lastHeartbeatMs;
-  const maxFlushGuardMs = Math.max(stallExitMs * 3, 90_000);
+  const maxFlushGuardMs = Math.max(stallExitMs * 4, 180_000);
   if (flushInFlight && stalledFor < maxFlushGuardMs) {
     return;
   }

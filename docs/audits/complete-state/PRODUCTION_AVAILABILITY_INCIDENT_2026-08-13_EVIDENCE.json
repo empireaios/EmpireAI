@@ -1,0 +1,74 @@
+{
+  "artifact": "PRODUCTION_AVAILABILITY_INCIDENT_2026-08-13",
+  "incidentObservedSgt": "2026-08-13T11:40:00+08:00",
+  "investigationUtc": "2026-08-13T03:45:00.000Z",
+  "userVisibleSequence": [
+    "cockpit Brain timeout",
+    "Checking session hang",
+    "Authentication service unavailable"
+  ],
+  "preIncident": {
+    "bootcampCommit": "ae113b5e",
+    "lastRunningBrainCommit": "d3dc4a21",
+    "birthTimestamp": null,
+    "birthAuthorised": false
+  },
+  "railway": {
+    "crashedDeploymentId": "389ea513-5cd8-4690-b0ae-8b5e5c2218e7",
+    "crashedCommit": "d3dc4a21b8ccd5dea9f4dea37daa4851dc891628",
+    "failedRecoveryDeploymentId": "1f6ca350-fe5b-48c1-b790-e719cad21794",
+    "failedRecoveryCommit": "ae113b5ef1649c2e1c28b86f15d84f108b603a0a",
+    "failedBuildError": "scenario-factory.ts TS1117 duplicate properties product/financial",
+    "preRepairLiveHealth": { "url": "https://empireai-production.up.railway.app/health/live", "status": 502 },
+    "preRepairBffAuthMe": { "url": "https://empire-ai.co/api/auth/me", "status": 502 }
+  },
+  "rootCause": {
+    "primary": "sql.js sync export + background ticks → event-loop lag → HA watchdog exit 78 → crash-loop → CRASHED",
+    "amplifier": "ae113b5e recovery deploy FAILED (TS1117) left no healthy successor",
+    "authMessaging": "CORRECT unavailable classification; Brain was down"
+  },
+  "classification": {
+    "A_saturation_recurrence": true,
+    "B_new_saturation_mechanism": "partial_same_family_ha_exit_on_residual_lag",
+    "C_boot_redeploy_transient": true,
+    "D_resource_exhaustion": false,
+    "E_db_volume_contention": "contributing_large_export",
+    "F_network_proxy_bff": "downstream_502",
+    "G_auth_specific": false,
+    "H_frontend_bootstrap": false,
+    "I_background_starvation": true,
+    "J_bootcamp": "CONTRIBUTED_recovery_blocker_not_crash_cause"
+  },
+  "repair": {
+    "status": "CODE_READY_AWAITING_DEPLOY_VERIFY",
+    "files": [
+      "backend/src/orchestration/pillow-commissioning/birth-bootcamp/scenario-factory.ts",
+      "backend/src/runtime/executive-continuity-watchdog.ts",
+      "backend/src/runtime/executive-continuity-watchdog-worker.ts",
+      "backend/src/runtime/event-loop-cooperative.ts",
+      "backend/src/runtime/production-admission-control.ts",
+      "backend/src/brain/sqlite-database.ts",
+      "backend/src/validation/tests/executive-continuity-watchdog.test.ts"
+    ]
+  },
+  "postDeployVerify": null,
+  "birth": {
+    "BIRTH_STATE": "PAUSED_PENDING_AVAILABILITY_CLOSURE",
+    "TECHNICALLY_READY": "HISTORICAL_YES_REVERIFY_AFTER_DEPLOY",
+    "BIRTH_TIMESTAMP": null
+  },
+  "gates": {
+    "BRAIN_STABLE": "NO",
+    "AUTH_STABLE": "NO",
+    "DATABASE_STABLE": "NO",
+    "ONE_PRODUCT_DURABLE": "NO",
+    "PILLOW_CONVERSATION_STABLE": "NO",
+    "EXECUTIVE_HOME_STABLE": "NO",
+    "COCKPIT_STABLE": "NO",
+    "GRAND_KING_FULL_USER_PATH_VERIFIED": "NO",
+    "RECURRENCE_ROOT_CAUSE_CLOSED": "PARTIAL_CODE",
+    "PRODUCTION_REGRESSION_PASS": "NO",
+    "BIRTH_TIMESTAMP": null,
+    "SAFE_FOR_GK_CHATGPT_SEALED_EXAM": "NO"
+  }
+}

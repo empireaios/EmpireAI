@@ -66,27 +66,6 @@ function baseTruth(rng: SeededRng, overrides?: Partial<ExecutiveTruthSnapshot>):
     computedAt: new Date().toISOString(),
     workspaceId: "ws_bootcamp_synthetic",
     provenance: "live_sqlite_commissioning_kpi_birth",
-    product: {
-      commissioningId: `opc_syn_${asin.slice(-4).toLowerCase()}`,
-      asin,
-      productName: title,
-      supplier: "CJdropshipping",
-      marketplace: "Amazon US",
-      selectionAuthority: "pillow",
-      cursorSelected: false,
-      stage: "COMMISSIONING",
-      pillowRecommendation: "INVESTIGATE",
-      truthClass: "CURRENT_VERIFIED",
-    },
-    financial: {
-      orders,
-      realisedRevenueUsd: revenue,
-      buyableListings: orders > 0 ? 1 : 0,
-      publishedListings: 0,
-      expectedProfitDisplay: `$${rng.money(1, 12).toFixed(2)}`,
-      expectedProfitTruthClass: "ESTIMATED",
-      realisedTruthClass: "CURRENT_VERIFIED",
-    },
     birth: {
       status: "TECHNICALLY_READY_AWAITING_GRAND_KING",
       technicallyReady: true,
@@ -113,6 +92,8 @@ function baseTruth(rng: SeededRng, overrides?: Partial<ExecutiveTruthSnapshot>):
     demandEvidence: rng.pick(["UNKNOWN", "PRESENT", "WEAK"]),
     notes: ["synthetic bootcamp truth"],
     ...overrides,
+    // Always re-assert product/financial after overrides so merge is intentional
+    // (avoids TS1117 duplicate keys + keeps synthetic ASIN/title coherent).
     product: {
       commissioningId: `opc_syn_${asin.slice(-4).toLowerCase()}`,
       asin,

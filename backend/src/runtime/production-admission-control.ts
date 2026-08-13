@@ -13,6 +13,7 @@
  * Health/auth routes must never call into this gate.
  */
 import { getRecentEventLoopLagMs } from "./event-loop-cooperative.js";
+import { getSqlitePersistStats } from "../brain/sqlite-database.js";
 
 const LAG_REJECT_MS = Number(process.env.ADMISSION_LAG_REJECT_MS ?? 250);
 const MAX_SESSION_CREATES = Math.max(
@@ -67,6 +68,16 @@ function pruneSessionRateWindow(): void {
 /** Reject expensive work when the loop is already saturated. */
 export function admitExpensiveWork(label = "work"): AdmissionDecision {
   const lagMs = getRecentEventLoopLagMs();
+  const sqlite = getSqlitePersistStats();
+  // Never pile background automation onto a synchronous sql.js export window.
+  if (sqlite.flushInFlight) {
+    return {
+      admit: false,
+      reason: `SQLite flush in flight — refusing ${label}`,
+      retryAfterSec: 5,
+      lagMs,
+    };
+  }
   if (lagMs >= LAG_REJECT_MS) {
     return {
       admit: false,

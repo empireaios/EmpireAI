@@ -20,6 +20,17 @@ export function isHeavyWorkPaused(): boolean {
   return heavyWorkPaused;
 }
 
+/**
+ * After a known synchronous block (sql.js export), the lag monitor reports a
+ * single huge sample. Clear it so residual ghost lag cannot keep admission
+ * closed or accumulate toward HA high-lag exit while the loop is healthy again.
+ */
+export function clearEventLoopLagAfterKnownBlock(reason = "known-block"): void {
+  recentLagMs = 0;
+  heavyWorkPaused = false;
+  logger.info({ reason }, "Event-loop lag cleared after known synchronous block");
+}
+
 export function startEventLoopLagMonitor(): void {
   if (monitorStarted) return;
   monitorStarted = true;

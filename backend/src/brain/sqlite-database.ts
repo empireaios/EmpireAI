@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import initSqlJs, { type BindParams } from "sql.js";
 import {
+  clearEventLoopLagAfterKnownBlock,
   getRecentEventLoopLagMs,
   waitForEventLoopCapacity,
 } from "../runtime/event-loop-cooperative.js";
@@ -400,6 +401,8 @@ export class EmpireDatabase {
           data = Buffer.from(this.db.export());
         } finally {
           setFlushInFlight(false);
+          // Drop the single giant lag sample from export so auth/admission recover immediately.
+          clearEventLoopLagAfterKnownBlock("sql.js-db.export");
         }
         await fs.promises.mkdir(path.dirname(this.filePath), { recursive: true });
         const tempPath = `${this.filePath}.tmp-${process.pid}`;
@@ -480,6 +483,7 @@ export class EmpireDatabase {
       data = this.db.export();
     } finally {
       setFlushInFlight(false);
+      clearEventLoopLagAfterKnownBlock("sql.js-db.export-sync-shutdown");
     }
     const tempPath = `${this.filePath}.tmp-shutdown`;
     fs.writeFileSync(tempPath, Buffer.from(data));
