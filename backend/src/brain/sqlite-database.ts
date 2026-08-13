@@ -5,8 +5,11 @@ import initSqlJs, { type BindParams } from "sql.js";
 import {
   clearEventLoopLagAfterKnownBlock,
   getRecentEventLoopLagMs,
+  getSmoothedEventLoopLagMs,
   waitForEventLoopCapacity,
 } from "../runtime/event-loop-cooperative.js";
+/** Non-critical force-flush only when smoothed lag is idle — never during sticky saturation. */
+const FORCE_FLUSH_IDLE_LAG_MS = Number(process.env.SQLITE_FORCE_FLUSH_IDLE_LAG_MS ?? 100);
 
 type SqlJsStatic = Awaited<ReturnType<typeof initSqlJs>>;
 type SqlJsDatabase = InstanceType<SqlJsStatic["Database"]>;
@@ -365,8 +368,21 @@ export class EmpireDatabase {
           persistStats.lastFlushMs === null
             ? Number.POSITIVE_INFINITY
             : Date.now() - persistStats.lastFlushMs;
-        // Hard ceiling: never skip forever under sticky lag — durability must progress.
-        const forceByMaxInterval = !critical && sinceLastFlush >= MAX_FLUSH_INTERVAL_MS;
+        // Overdue durability may force a flush ONLY when the loop is idle.
+        // Forcing under sticky lag caused a 283s main-thread export and locked out
+        // Grand King login (trust triple-proof T1 failure 2026-08-13).
+        const overdueByMaxInterval = !critical && sinceLastFlush >= MAX_FLUSH_INTERVAL_MS;
+        const idleForForce =
+          getSmoothedEventLoopLagMs() < FORCE_FLUSH_IDLE_LAG_MS &&
+          getRecentEventLoopLagMs() < FORCE_FLUSH_IDLE_LAG_MS * 2;
+        const forceByMaxInterval = overdueByMaxInterval && idleForForce;
+
+        if (!critical && overdueByMaxInterval && !idleForForce) {
+          this.persistDirty = true;
+          persistStats.pending = true;
+          this.schedulePersist();
+          return;
+        }
 
         if (
           !critical &&
