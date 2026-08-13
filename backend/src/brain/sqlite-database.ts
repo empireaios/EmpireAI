@@ -32,7 +32,11 @@ const MAX_FLUSH_INTERVAL_MS = Number(process.env.SQLITE_MAX_FLUSH_INTERVAL_MS ??
  * Delay the first sql.js export after process start.
  * Large DBs block the event loop for minutes during export — login/health must win first.
  */
-const FIRST_FLUSH_DELAY_MS = Number(process.env.SQLITE_FIRST_FLUSH_DELAY_MS ?? 600_000);
+/**
+ * Large sql.js DBs can block the loop for minutes on first export.
+ * Keep Tier-0 free through warm-up; commissioning still uses requestCriticalPersist().
+ */
+const FIRST_FLUSH_DELAY_MS = Number(process.env.SQLITE_FIRST_FLUSH_DELAY_MS ?? 3_600_000);
 const processStartedAtMs = Date.now();
 
 type RunResult = { changes: number; lastInsertRowid: number | bigint };

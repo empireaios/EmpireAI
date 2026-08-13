@@ -76,8 +76,9 @@ function beat(): void {
 let flushGuardSinceMs: number | null = null;
 let lastObservedFlushCount = 0;
 let postFlushCooldownUntilMs = 0;
+/** Must exceed worst-case sql.js export on large DBs (observed ~283s). */
 const MAX_FLUSH_GUARD_MS = Number(
-  process.env.EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS ?? 180_000,
+  process.env.EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS ?? 600_000,
 );
 
 function evaluateHighLagExit(): void {
