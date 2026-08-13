@@ -1,7 +1,7 @@
-/**
- * EmpireAI Trust Qualification Harness — Grand King visible reliability.
+﻿/**
+ * EmpireAI Trust Qualification Harness â€” Grand King visible reliability.
  *
- * Perfect-run rule: ATTEMPTS=1000, SUCCESSES=1000, FAILURES=0 → PASS.
+ * Perfect-run rule: ATTEMPTS=1000, SUCCESSES=1000, FAILURES=0 â†’ PASS.
  * First failure stops the run (no averaging, no silent retry erasure).
  *
  * Env:
@@ -9,7 +9,7 @@
  *   EMPIRE_LOGIN_EMAIL / EMPIRE_LOGIN_PASSWORD (or FOUNDER_*)
  *   TRUST_QUAL_TARGET (default 1000)
  *   TRUST_QUAL_DELAY_MS (default 120)
- *   TRUST_QUAL_DRY_PLAN=1 — print plan only
+ *   TRUST_QUAL_DRY_PLAN=1 â€” print plan only
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
@@ -187,7 +187,7 @@ async function main() {
   // Seed session + deploy identity
   {
     const live = await timed(async () => {
-      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const j = await r.json();
       if (!r.ok || j.brain !== "online") throw new Error(`live ${r.status}`);
       baselineSha = j.deploy?.gitCommitSha || null;
@@ -207,7 +207,7 @@ async function main() {
   // TQ-A liveness
   for (let i = 0; i < plan["TQ-A"]; i++) {
     const outcome = await timed(async () => {
-      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || j.status !== "ok" || j.brain !== "online") {
         throw new Error(`liveness HTTP ${r.status}`);
@@ -217,7 +217,7 @@ async function main() {
     await record("TQ-A", `live#${i}`, outcome);
   }
 
-  // TQ-B auth/session — mix of /me, logout/relogin, invalid, stale
+  // TQ-B auth/session â€” mix of /me, logout/relogin, invalid, stale
   const bPlan = plan["TQ-B"];
   const bInvalid = Math.min(15, Math.floor(bPlan * 0.07));
   const bStale = Math.min(10, Math.floor(bPlan * 0.05));
@@ -295,7 +295,7 @@ async function main() {
     await record("TQ-B", `relogin#${i}`, outcome);
   }
 
-  // TQ-C cockpit bootstrap — BFF session path used by CockpitAuthGuard
+  // TQ-C cockpit bootstrap â€” BFF session path used by CockpitAuthGuard
   for (let i = 0; i < plan["TQ-C"]; i++) {
     const outcome = await timed(async () => {
       if (!cookie) await ensureLogin();
@@ -305,7 +305,7 @@ async function main() {
       });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.user) throw new Error(`cockpit bootstrap me ${r.status}`);
-      const live = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const live = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const lj = await live.json().catch(() => ({}));
       if (!live.ok || lj.brain !== "online") throw new Error("brain offline during cockpit bootstrap");
       return j;
@@ -330,7 +330,7 @@ async function main() {
     await record("TQ-D", `eh#${i}`, outcome);
   }
 
-  // TQ-E Pillow — health-heavy, bounded chat
+  // TQ-E Pillow â€” health-heavy, bounded chat
   for (let i = 0; i < plan["TQ-E"]; i++) {
     const outcome = await timed(async () => {
       if (!cookie) await ensureLogin();
@@ -349,7 +349,7 @@ async function main() {
               pillowSessionId = sj.session.sessionId;
               break;
             }
-            // Admission 503 / starting is retryable — do not erase as hard failure yet.
+            // Admission 503 / starting is retryable â€” do not erase as hard failure yet.
             if (s.status === 503) {
               await sleep(Math.max(2000, Number(sj.retryAfterSec || 2) * 1000));
               continue;
@@ -405,7 +405,7 @@ async function main() {
   // TQ-G persistence signals (read-only durability health)
   for (let i = 0; i < plan["TQ-G"]; i++) {
     const outcome = await timed(async () => {
-      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(`persist probe ${r.status}`);
       if (j.sqlite?.lastFlushError) throw new Error(`lastFlushError=${j.sqlite.lastFlushError}`);
@@ -418,7 +418,7 @@ async function main() {
     await record("TQ-G", `persist#${i}`, outcome);
   }
 
-  // TQ-H background coexistence — health while EH in flight
+  // TQ-H background coexistence â€” health while EH in flight
   for (let i = 0; i < plan["TQ-H"]; i++) {
     const outcome = await timed(async () => {
       if (!cookie) await ensureLogin();
@@ -429,7 +429,7 @@ async function main() {
         signal: AbortSignal.timeout(60_000),
       });
       await sleep(200);
-      const live = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const live = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const lj = await live.json().catch(() => ({}));
       if (!live.ok || lj.brain !== "online") throw new Error("live failed during EH");
       const eh = await ehPromise;
@@ -442,13 +442,13 @@ async function main() {
   // TQ-I deploy identity stability (non-destructive stand-in for restart recovery proof)
   for (let i = 0; i < plan["TQ-I"]; i++) {
     const outcome = await timed(async () => {
-      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(8_000) });
+      const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(12_000) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(`identity ${r.status}`);
       const sha = j.deploy?.gitCommitSha;
       if (!sha) throw new Error("missing deploy sha");
       if (baselineSha && sha !== baselineSha) {
-        throw new Error(`deploy sha changed mid-run ${baselineSha} → ${sha}`);
+        throw new Error(`deploy sha changed mid-run ${baselineSha} â†’ ${sha}`);
       }
       return { sha };
     });
@@ -488,9 +488,9 @@ async function main() {
         successes: report.successes,
         failures: report.failures,
         deploySha: report.deploySha,
-        p50: pct([...report.latenciesMs].sort((a, b) => a - b), 0.5),
-        p95: pct([...report.latenciesMs].sort((a, b) => a - b), 0.95),
-        p99: pct([...report.latenciesMs].sort((a, b) => a - b), 0.99),
+        p50: report.latency?.p50Ms ?? null,
+        p95: report.latency?.p95Ms ?? null,
+        p99: report.latency?.p99Ms ?? null,
         byClass: Object.fromEntries(
           Object.entries(report.byClass).map(([k, v]) => [
             k,

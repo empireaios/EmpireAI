@@ -1,0 +1,147 @@
+{
+  "artifact": "EMPIREAI_TRUST_QUALIFICATION",
+  "startedAt": "2026-08-13T13:15:56.221Z",
+  "completedAt": "2026-08-13T13:26:30.456Z",
+  "cockpit": "https://empire-ai.co",
+  "brain": "https://empireai-production.up.railway.app",
+  "target": 1000,
+  "plan": {
+    "TQ-A": 380,
+    "TQ-B": 220,
+    "TQ-C": 100,
+    "TQ-D": 60,
+    "TQ-E": 50,
+    "TQ-F": 80,
+    "TQ-G": 40,
+    "TQ-H": 40,
+    "TQ-I": 20,
+    "TQ-J": 10
+  },
+  "deploySha": "afdc4ad974eef275be7027f49f6bbd5e74e17607",
+  "deploymentId": "5c1a01ff-f4a7-4dfc-a107-2ff4b1b03809",
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "byClass": {
+    "TQ-A": {
+      "planned": 380,
+      "attempts": 380,
+      "successes": 380,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 234,
+        "p95Ms": 296,
+        "worstMs": 1080
+      }
+    },
+    "TQ-B": {
+      "planned": 220,
+      "attempts": 220,
+      "successes": 220,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 556,
+        "p95Ms": 2586,
+        "worstMs": 2912
+      }
+    },
+    "TQ-C": {
+      "planned": 100,
+      "attempts": 100,
+      "successes": 100,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 770,
+        "p95Ms": 867,
+        "worstMs": 1002
+      }
+    },
+    "TQ-D": {
+      "planned": 60,
+      "attempts": 60,
+      "successes": 60,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 1134,
+        "p95Ms": 1311,
+        "worstMs": 1449
+      }
+    },
+    "TQ-E": {
+      "planned": 50,
+      "attempts": 50,
+      "successes": 50,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 377,
+        "p95Ms": 2312,
+        "worstMs": 3287
+      }
+    },
+    "TQ-F": {
+      "planned": 80,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 570,
+        "p95Ms": 633,
+        "worstMs": 718
+      }
+    },
+    "TQ-G": {
+      "planned": 40,
+      "attempts": 40,
+      "successes": 40,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 226,
+        "p95Ms": 318,
+        "worstMs": 342
+      }
+    },
+    "TQ-H": {
+      "planned": 40,
+      "attempts": 40,
+      "successes": 40,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 926,
+        "p95Ms": 1228,
+        "worstMs": 1400
+      }
+    },
+    "TQ-I": {
+      "planned": 20,
+      "attempts": 20,
+      "successes": 20,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 226,
+        "p95Ms": 252,
+        "worstMs": 252
+      }
+    },
+    "TQ-J": {
+      "planned": 10,
+      "attempts": 10,
+      "successes": 10,
+      "failures": 0,
+      "latency": {
+        "p50Ms": 384,
+        "p95Ms": 440,
+        "worstMs": 440
+      }
+    }
+  },
+  "firstFailure": null,
+  "result": "PASS",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "latency": {
+    "p50Ms": 530,
+    "p95Ms": 1137,
+    "p99Ms": 2592,
+    "worstMs": 3287
+  }
+}

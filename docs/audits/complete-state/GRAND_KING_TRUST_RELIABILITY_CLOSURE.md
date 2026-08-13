@@ -40,3 +40,20 @@
 
 Harness: `backend/scripts/empireai-trust-qualification.mjs`  
 Perfect-run: 1000/1000 or FAIL (stop on first failure).
+
+## Closure status (2026-08-13)
+
+| Item | Value |
+|---|---|
+| Active SHA | `afdc4ad9` |
+| Triple-proof | PASS (journey + live-verify + coexist) |
+| Trust Qualification | **1000 / 1000 / 0 = PASS** |
+| Evidence | `EMPIREAI_TRUST_QUALIFICATION_EVIDENCE.json` |
+| Birth timestamp | NULL |
+| Birth authorised | NO |
+
+### Additional repairs after resume
+
+1. `cd204a29` — never force overdue sql.js flush under sticky lag (idle-only force).  
+2. `afdc4ad9` — first flush delay 1h; HA flush guard 600s (observed exports ~237–283s).  
+3. Railway env: `SQLITE_FIRST_FLUSH_DELAY_MS=3600000`, `EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS=600000`.
