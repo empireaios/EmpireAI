@@ -20,9 +20,14 @@ Inadequate **epistemic / provenance boundary**: narrative phrases were treated a
 
 ## Proof
 
-- **Round A:** `executive-epistemic-grounding.test.ts` — PASS  
+- **Round A:** `executive-epistemic-grounding.test.ts` — 9/9 PASS (+ prior truth grounding 8/8 still PASS)  
 - **Round B:** `pillow-epistemic-adversarial-cert.mjs` — 12/12 PASS (randomized entities; no sealed Q&A)  
-- **Round C:** live production after deploy (synthetic probes only)
+- **Round C:** live `03b39ded` — journey ALL STEPS PASSED; synthetic epistemic probe PASS (`inventsAccess=false`, `claimsOffline=false`; reply stated no retrieval + live production)
+
+## Commits / deploy
+
+- Repair: `03b39ded0306d4ff5727d7fdadfcce298ecdc454`  
+- Production deployment active on that SHA (Round C verified)
 
 ## Anti-gaming
 
