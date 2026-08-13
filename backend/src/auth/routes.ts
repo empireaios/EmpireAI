@@ -8,11 +8,20 @@ import { type SessionStoreBackend, UserStore } from "./session-store.js";
 import { verifyPassword } from "./seed-users.js";
 import { resolvePlatformIdentity } from "./platform-identity.js";
 import { getDatabase } from "../brain/database.js";
+import { recordTier0Request, type Tier0Route } from "../runtime/tier0-control-plane.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1),
 });
+
+function tier0RouteFromUrl(url: string): Tier0Route {
+  if (url.startsWith("/auth/login")) return "auth_login";
+  if (url.startsWith("/auth/logout")) return "auth_logout";
+  if (url.startsWith("/auth/me")) return "auth_me";
+  if (url.startsWith("/auth/refresh")) return "auth_refresh";
+  return "other_tier0";
+}
 
 export async function registerAuthRoutes(
   app: FastifyInstance,
@@ -24,6 +33,19 @@ export async function registerAuthRoutes(
   const { sessionStore, auditLogger } = deps;
   const users = new UserStore(getDatabase());
   const authenticate = createAuthMiddleware(sessionStore);
+
+  app.addHook("onResponse", async (request, reply) => {
+    const path = request.url.split("?")[0] ?? "";
+    if (!path.startsWith("/auth/")) return;
+    const elapsed =
+      typeof reply.elapsedTime === "number" ? reply.elapsedTime : 0;
+    // Treat only 5xx as Tier-0 outages; 401 invalid/stale is structurally healthy.
+    recordTier0Request({
+      route: tier0RouteFromUrl(path),
+      durationMs: elapsed,
+      ok: reply.statusCode < 500,
+    });
+  });
 
   app.post("/auth/login", async (request, reply) => {
     const body = loginSchema.parse(request.body);

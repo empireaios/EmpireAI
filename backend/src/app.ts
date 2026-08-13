@@ -359,15 +359,20 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   });
 
   app.get("/health/live", async () => {
+    const started = performance.now();
     const { getVolumeDiskStats } = await import("./runtime/volume-disk-reclaim.js");
     const { env } = await import("./config/env.js");
-    return {
-      status: "ok",
-      brain: "online",
+    const { getTier0ControlPlaneSnapshot, recordTier0Request } = await import(
+      "./runtime/tier0-control-plane.js"
+    );
+    const payload = {
+      status: "ok" as const,
+      brain: "online" as const,
       eventLoopLagMs: getRecentEventLoopLagMs(),
       sqlite: getSqlitePersistStats(),
       admission: getAdmissionStats(),
       disk: getVolumeDiskStats(env.DATABASE_PATH),
+      tier0: getTier0ControlPlaneSnapshot(),
       // Railway injects RAILWAY_GIT_COMMIT_SHA — use for deploy identity proof.
       deploy: {
         gitCommitSha:
@@ -379,6 +384,12 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
       },
     };
+    recordTier0Request({
+      route: "health_live",
+      durationMs: performance.now() - started,
+      ok: true,
+    });
+    return payload;
   });
 
   // Process alive ≠ Grand King auth ready. Ops/probes use this; Railway stays on /health/live.

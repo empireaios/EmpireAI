@@ -367,6 +367,24 @@ export class EmpireDatabase {
           return;
         }
 
+        // Non-critical export needs ~2× DB bytes briefly; skip when volume cannot absorb it.
+        if (!critical) {
+          try {
+            const { getVolumeDiskStats } = await import(
+              "../runtime/volume-disk-reclaim.js"
+            );
+            const disk = getVolumeDiskStats(this.filePath);
+            if (disk.canFlushFullDb === false) {
+              this.persistDirty = true;
+              persistStats.pending = true;
+              this.schedulePersist();
+              return;
+            }
+          } catch {
+            // Disk stats unavailable — proceed; critical path still has reclaim helpers.
+          }
+        }
+
         const sinceLastFlush =
           persistStats.lastFlushMs === null
             ? Number.POSITIVE_INFINITY

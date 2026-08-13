@@ -65,6 +65,13 @@ function pruneSessionRateWindow(): void {
   }
 }
 
+const POST_FLUSH_PRESSURE_MS = Number(
+  process.env.ADMISSION_POST_FLUSH_PRESSURE_MS ?? 60_000,
+);
+const POST_FLUSH_DURATION_GATE_MS = Number(
+  process.env.ADMISSION_POST_FLUSH_DURATION_GATE_MS ?? 10_000,
+);
+
 /** Reject expensive work when the loop is already saturated. */
 export function admitExpensiveWork(label = "work"): AdmissionDecision {
   const lagMs = getRecentEventLoopLagMs();
@@ -74,6 +81,20 @@ export function admitExpensiveWork(label = "work"): AdmissionDecision {
     return {
       admit: false,
       reason: `SQLite flush in flight — refusing ${label}`,
+      retryAfterSec: 5,
+      lagMs,
+    };
+  }
+  // After a long sync export, keep Tier-0 free while residual pressure drains.
+  if (
+    sqlite.lastFlushMs !== null &&
+    sqlite.lastFlushDurationMs !== null &&
+    sqlite.lastFlushDurationMs >= POST_FLUSH_DURATION_GATE_MS &&
+    Date.now() - sqlite.lastFlushMs < POST_FLUSH_PRESSURE_MS
+  ) {
+    return {
+      admit: false,
+      reason: `Post-flush pressure window (lastFlush=${sqlite.lastFlushDurationMs}ms) — refusing ${label}`,
       retryAfterSec: 5,
       lagMs,
     };
