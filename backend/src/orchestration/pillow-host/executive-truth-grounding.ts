@@ -11,6 +11,12 @@ import { getBirthRecord } from "../pillow-commissioning/birth.js";
 import { getOneProductCommissioningRecord } from "../pillow-commissioning/one-product-commissioning.js";
 import { buildLiveCommercialSituation } from "../pillow-commissioning/executive-operating-loop/live-situation.js";
 import { buildSmartViableKpiSnapshot } from "../pillow-commerce-presale/smart-viable-kpi.js";
+import {
+  enforceEpistemicGrounding,
+  formatEpistemicDisciplineBrief,
+  type EpistemicContext,
+  type RetrievalAttestation,
+} from "./executive-epistemic-grounding.js";
 
 export type TruthClass = "CURRENT_VERIFIED" | "HISTORICAL" | "ESTIMATED" | "UNKNOWN";
 
@@ -222,6 +228,19 @@ export function formatExecutiveTruthBrief(truth: ExecutiveTruthSnapshot): string
   return lines.filter((x) => x != null).join("\n");
 }
 
+/** Truth brief + epistemic/capability discipline (attested retrievals optional). */
+export function formatExecutiveTruthBriefWithEpistemics(
+  truth: ExecutiveTruthSnapshot,
+  attestations: readonly RetrievalAttestation[] = [],
+): string {
+  const ctx: EpistemicContext = {
+    truth,
+    attestations,
+    liveAnswerImpliesProductionOnline: true,
+  };
+  return `${formatExecutiveTruthBrief(truth)}\n\n${formatEpistemicDisciplineBrief(ctx)}`;
+}
+
 const FABRICATED_COMMERCE_CLAIM =
   /\b(last quarter|last three months|past (three|3) months|historical sales|sales (data|figures|performance|trend)|declining .{0,40}sales|customer feedback ratings?|competitor pricing analysis|internal sales tracking|market research reports?|revenue (of|totaling|was)|units? sold|conversion rate of)\b/i;
 
@@ -263,10 +282,12 @@ function answerMentionsAuthoritativeProduct(answer: string, productName: string)
 /**
  * Deterministic high-stakes enforcement. Does not invent a polished essay —
  * appends grounded corrections when the model violated truth boundaries.
+ * Also applies epistemic provenance enforcement (retrieval attestation / temporal).
  */
 export function enforceExecutiveTruthGrounding(
   answer: string,
   truth: ExecutiveTruthSnapshot,
+  attestations: readonly RetrievalAttestation[] = [],
 ): GroundingEnforcementResult {
   const violations: string[] = [];
   let message = answer;
@@ -326,18 +347,30 @@ export function enforceExecutiveTruthGrounding(
     );
   }
 
-  if (corrections.length === 0) {
+  if (corrections.length > 0) {
+    // Soften false certainty markers without rewriting the whole answer into a fixture.
+    message = message
+      .replace(/\bEvidenced\b/gi, "Unsupported (reclassified)")
+      .replace(/\[KNOW\]/gi, "[UNKNOWN]");
+
+    message = `${message.trim()}\n\n---\nGrounded corrections (deterministic; CURRENT VERIFIED state outranks prior text):\n${corrections
+      .map((c, i) => `${i + 1}. ${c}`)
+      .join("\n")}`;
+  }
+
+  const epistemic = enforceEpistemicGrounding(message, {
+    truth,
+    attestations,
+    liveAnswerImpliesProductionOnline: true,
+  });
+  if (epistemic.adjusted) {
+    violations.push(...epistemic.violations);
+    message = epistemic.message;
+  }
+
+  if (corrections.length === 0 && !epistemic.adjusted) {
     return { message, adjusted: false, violations: [] };
   }
 
-  // Soften false certainty markers without rewriting the whole answer into a fixture.
-  message = message
-    .replace(/\bEvidenced\b/gi, "Unsupported (reclassified)")
-    .replace(/\[KNOW\]/gi, "[UNKNOWN]");
-
-  message = `${message.trim()}\n\n---\nGrounded corrections (deterministic; CURRENT VERIFIED state outranks prior text):\n${corrections
-    .map((c, i) => `${i + 1}. ${c}`)
-    .join("\n")}`;
-
-  return { message, adjusted: true, violations };
+  return { message, adjusted: true, violations: [...new Set(violations)] };
 }

@@ -41,9 +41,13 @@ import { getLastGovernanceKnowledgeAudit, resolvePillowRepositoryRootWithAudit, 
 import { PillowSessionStore } from "./session-store.js";
 import {
   buildExecutiveTruthSnapshot,
-  formatExecutiveTruthBrief,
+  formatExecutiveTruthBriefWithEpistemics,
   enforceExecutiveTruthGrounding,
 } from "./executive-truth-grounding.js";
+import {
+  RetrievalAttestationLedger,
+  attestExecutiveTruthSnapshotReads,
+} from "./executive-epistemic-grounding.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29772,11 +29776,20 @@ export class PillowHost {
             }
             // CURRENT VERIFIED operational truth — outranks stale repo/demo commerce context.
             let executiveTruthSnapshot = null;
+            const epistemicLedger = new RetrievalAttestationLedger();
             try {
                 executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
+                attestExecutiveTruthSnapshotReads(
+                    epistemicLedger,
+                    executiveTruthSnapshot,
+                    requestId,
+                );
                 operationalContext = {
                     ...operationalContext,
-                    liveOperationalTruthBrief: formatExecutiveTruthBrief(executiveTruthSnapshot),
+                    liveOperationalTruthBrief: formatExecutiveTruthBriefWithEpistemics(
+                        executiveTruthSnapshot,
+                        epistemicLedger.list(),
+                    ),
                     // Prevent Phase-7 static product catalog from inventing alternate products.
                     commerceIntelligenceBrief: undefined,
                 };
@@ -29895,6 +29908,7 @@ export class PillowHost {
                             const grounded = enforceExecutiveTruthGrounding(
                                 message,
                                 executiveTruthSnapshot,
+                                epistemicLedger.list(),
                             );
                             if (grounded.adjusted) {
                                 message = grounded.message;
@@ -29902,7 +29916,7 @@ export class PillowHost {
                                 logger.warn({
                                     requestId,
                                     violations: grounded.violations,
-                                }, "Executive truth grounding adjusted visible Pillow answer");
+                                }, "Executive truth/epistemic grounding adjusted visible Pillow answer");
                             }
                         }
                     }
