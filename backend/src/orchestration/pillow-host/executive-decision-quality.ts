@@ -137,7 +137,8 @@ export function assessDecisionQuality(
 
   // Zero realised commerce is a verified goal signal in truth snapshot.
   const zeroCommerce =
-    truth.financial.orders === 0 && truth.financial.realisedRevenueUsd === 0;
+    Number(truth?.financial?.orders ?? -1) === 0 &&
+    Number(truth?.financial?.realisedRevenueUsd ?? -1) === 0;
 
   for (const leap of GOAL_SOLUTION_LEAPS) {
     const goalHit =
@@ -206,8 +207,9 @@ export function repairDecisionQualityAnswer(
   assessment: DecisionQualityResult,
 ): string {
   const zeroCommerce =
-    truth.financial.orders === 0 && truth.financial.realisedRevenueUsd === 0;
-  const product = truth.product.productName ?? "the current candidate";
+    Number(truth?.financial?.orders ?? -1) === 0 &&
+    Number(truth?.financial?.realisedRevenueUsd ?? -1) === 0;
+  const product = truth?.product?.productName ?? "the current candidate";
 
   const latencyCase = /\blatency\b/i.test(draft) && /\bmigrat/i.test(draft);
   const churnOrConversion =

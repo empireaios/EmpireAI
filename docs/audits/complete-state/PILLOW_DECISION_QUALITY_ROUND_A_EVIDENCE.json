@@ -1,0 +1,22 @@
+{
+  "artifact": "PILLOW_DECISION_QUALITY_ROUND_A",
+  "pass": true,
+  "suite": "backend/src/validation/tests/executive-decision-quality.test.ts",
+  "tests": 9,
+  "failed": 0,
+  "covers": [
+    "verified_goal_to_specific_launch_leap",
+    "verify_then_act_allowed",
+    "reversible_act_now_allowed",
+    "conditional_action_allowed",
+    "material_assumption_treated_as_established",
+    "immaterial_uncertainty_allowed",
+    "latency_to_migration_leap",
+    "churn_to_ads_leap_and_verify_first",
+    "natural_decision_repair"
+  ],
+  "sealedExamQuestionsEncoded": false,
+  "miniFanOracleEncoded": false,
+  "alwaysResearchFirstEncoded": false,
+  "birthTimestamp": null
+}

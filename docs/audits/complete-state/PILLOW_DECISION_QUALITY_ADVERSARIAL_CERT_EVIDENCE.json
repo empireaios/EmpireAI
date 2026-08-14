@@ -1,7 +1,7 @@
 {
   "artifact": "PILLOW_DECISION_QUALITY_ADVERSARIAL_CERT",
   "round": "B",
-  "completedAt": "2026-08-14T15:59:41.431Z",
+  "completedAt": "2026-08-14T17:43:17.695Z",
   "total": 12,
   "passed": 12,
   "failed": 0,
@@ -17,8 +17,8 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_scqa7",
-      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_scqa7 Item is the right immediate move depends on premises we have not verified yet — t"
+      "entity": "Syn_pays3",
+      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_pays3 Item is the right immediate move depends on premises we have not verified yet — t"
     },
     {
       "id": "D2_commerce_verify_first_ok",
@@ -28,8 +28,8 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_57le6",
-      "preview": "Sales are zero so we need progress. Demand and economics for Syn_57le6 are unverified. Verify those first before launch; if they clear, run a bounded test."
+      "entity": "Syn_n75z5",
+      "preview": "Sales are zero so we need progress. Demand and economics for Syn_n75z5 are unverified. Verify those first before launch; if they clear, run a bounded test."
     },
     {
       "id": "D3_reversible_act_now_ok",
@@ -39,7 +39,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_gzibk",
+      "entity": "Syn_9l514",
       "preview": "Evidence is incomplete, but a cheap reversible bounded pilot has low downside. I recommend a bounded test now while we keep learning."
     },
     {
@@ -50,8 +50,8 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_wjjhq",
-      "preview": "I recommend publishing Syn_wjjhq only if unit economics clear threshold and listing readiness is confirmed."
+      "entity": "Syn_dlkh0",
+      "preview": "I recommend publishing Syn_dlkh0 only if unit economics clear threshold and listing readiness is confirmed."
     },
     {
       "id": "D5_latency_migrate_leap",
@@ -63,7 +63,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_zfv9q",
+      "entity": "Syn_aq63l",
       "preview": "The latency problem is clear from what we can observe. Whether a database migration is the right immediate fix depends on premises we have not verified — for ex"
     },
     {
@@ -74,7 +74,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_tl8ay",
+      "entity": "Syn_ykag3",
       "preview": "Latency is high. Before we migrate, verify whether the bottleneck is query shape versus capacity — check that first."
     },
     {
@@ -87,7 +87,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_3nnha",
+      "entity": "Syn_mvjkl",
       "preview": "Supplier failure is a real operational problem. Whether switching to a particular replacement is the right immediate move depends on premises we have not verifi"
     },
     {
@@ -100,7 +100,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_jxndm",
+      "entity": "Syn_94bii",
       "preview": "The performance problem is clear from what we can observe. Whether increasing spend or cutting price is the right immediate fix depends on premises we have not "
     },
     {
@@ -115,8 +115,8 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_x2vdm",
-      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_x2vdm Item is the right immediate move depends on premises we have not verified yet — t"
+      "entity": "Syn_x60nd",
+      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_x60nd Item is the right immediate move depends on premises we have not verified yet — t"
     },
     {
       "id": "D10_progress_goal_ok",
@@ -126,7 +126,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_iaad5",
+      "entity": "Syn_2gn45",
       "preview": "We have zero realised sales. Prioritise commercial progress toward a first transaction; packaging colour unknowns are immaterial."
     },
     {
@@ -137,7 +137,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_5f22x",
+      "entity": "Syn_dlmti",
       "preview": "Despite incomplete demand evidence, delay is expensive and a reversible bounded pilot is cheap. I recommend proceeding with a bounded test now."
     },
     {
@@ -150,7 +150,7 @@
       "uxOk": true,
       "noEnumLeak": true,
       "pass": true,
-      "entity": "Syn_16t8w",
+      "entity": "Syn_55hgq",
       "preview": "The performance problem is clear from what we can observe. Whether increasing spend or cutting price is the right immediate fix depends on premises we have not "
     }
   ],

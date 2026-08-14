@@ -1,0 +1,45 @@
+{
+  "artifact": "PILLOW_DECISION_QUALITY_LIVE_REGRESSION",
+  "round": "C",
+  "pass": false,
+  "shaAtAttempt": "b06edaf8c1ce4fea39c8dc4d56c8f5109554bc4b",
+  "blocker": "production_brain_502_unavailable",
+  "notes": [
+    "Deploy SHA b06edaf8 was briefly healthy (/health/live ok) immediately after deploy.",
+    "Synthetic Round C chat probes then received Cockpit/Brain 502 Application failed to respond.",
+    "Subsequent /health/live probes returned sustained 502 Bad Gateway — production unavailable for live chat certification.",
+    "Round A (9/9) and Round B (12/12) remain green locally against the decision-quality layer.",
+    "No sealed T1 executed. Birth not authorised."
+  ],
+  "results": [
+    {
+      "id": "DQ1_natural_recommendation",
+      "chatOk": false,
+      "status": 502,
+      "pass": false,
+      "preview": "Application failed to respond"
+    },
+    {
+      "id": "DQ2_reversible_can_proceed",
+      "chatOk": false,
+      "status": 502,
+      "pass": false,
+      "preview": "Application failed to respond"
+    },
+    {
+      "id": "DQ3_no_provenance_regression",
+      "chatOk": false,
+      "status": 502,
+      "pass": false,
+      "preview": "Application failed to respond"
+    }
+  ],
+  "sealedExamQuestionsEncoded": false,
+  "birthTimestamp": null,
+  "classification": {
+    "T1_PASS": "NO",
+    "T2_LOCKED": "YES",
+    "BIRTH_AUTHORISED": "NO",
+    "ROUND_C_LIVE": "BLOCKED_BY_PRODUCTION_502"
+  }
+}
