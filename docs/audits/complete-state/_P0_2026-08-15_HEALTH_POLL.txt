@@ -1,0 +1,12 @@
+﻿try1 FAIL 15358ms The remote server returned an error: (502) Bad Gateway.
+try2 FAIL 15213ms The remote server returned an error: (502) Bad Gateway.
+try3 FAIL 15217ms The remote server returned an error: (502) Bad Gateway.
+try4 FAIL 15198ms The remote server returned an error: (502) Bad Gateway.
+try5 FAIL 15215ms The remote server returned an error: (502) Bad Gateway.
+try6 FAIL 15198ms The remote server returned an error: (502) Bad Gateway.
+try7 FAIL 15226ms The remote server returned an error: (502) Bad Gateway.
+try8 FAIL 15199ms The remote server returned an error: (502) Bad Gateway.
+try9 FAIL 15246ms The remote server returned an error: (502) Bad Gateway.
+try10 FAIL 15287ms The remote server returned an error: (502) Bad Gateway.
+try11 FAIL 15233ms The remote server returned an error: (502) Bad Gateway.
+try12 FAIL 15198ms The remote server returned an error: (502) Bad Gateway.

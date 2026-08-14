@@ -2,8 +2,19 @@ import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
 import { logCaughtError } from "./config/log-caught-error.js";
 import { buildApp } from "./app.js";
+import {
+  startTier0IsolatedPrimary,
+  tier0IsolationEnabled,
+} from "./runtime/tier0-isolated-primary.js";
 
 async function main() {
+  // Production: isolate Tier-0 (auth/health) from sql.js Brain worker so
+  // synchronous multi-GB exports cannot lock Grand King out of login/session.
+  if (tier0IsolationEnabled()) {
+    await startTier0IsolatedPrimary();
+    return;
+  }
+
   // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).
   const { reclaimEphemeralVolumeFiles } = await import("./runtime/volume-reclaim.js");
   reclaimEphemeralVolumeFiles();
@@ -29,7 +40,14 @@ async function main() {
   process.on("SIGTERM", handleShutdown);
 
   await app.listen({ port: env.PORT, host: env.HOST });
-  logger.info({ port: env.PORT, earlyListen: productionEarlyListen }, "EmpireAI Brain API listening");
+  logger.info(
+    {
+      port: env.PORT,
+      earlyListen: productionEarlyListen,
+      role: process.env.EMPIRE_ROLE || "monolith",
+    },
+    "EmpireAI Brain API listening",
+  );
 
   const { startEventLoopLagMonitor } = await import("./runtime/event-loop-cooperative.js");
   startEventLoopLagMonitor();

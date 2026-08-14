@@ -1,0 +1,59 @@
+{
+  "artifact": "P0_PRODUCTION_RELIABILITY_INCIDENT_2026-08-15_FORENSICS",
+  "capturedAtUtc": "2026-08-14T19:47:08.750Z",
+  "observer": "Cursor agent Phase-1 forensics (pre-repair)",
+  "grandKingSymptoms": [
+    "Empire Brain is taking longer than expected. Your session may still be valid — retry or sign in again.",
+    "Authentication service unavailable. Please retry."
+  ],
+  "probes": {
+    "brain_health_live": {
+      "url": "https://empireai-production.up.railway.app/health/live",
+      "result": "HTTP 502 Bad Gateway",
+      "latencyMs": 15578,
+      "note": "Railway edge timeout ~15s with empty body — process not completing HTTP"
+    },
+    "brain_health_ready": { "result": "HTTP 502", "latencyMs": 15238 },
+    "brain_health": { "result": "HTTP 502", "latencyMs": 15226 },
+    "cockpit_auth_login": { "result": "client timeout", "latencyMs": 40244 },
+    "cockpit_auth_me": { "result": "client timeout", "latencyMs": 40036 },
+    "cockpit_pillow_health": { "result": "HTTP 504", "latencyMs": 10372 },
+    "cockpit_pillow_session": { "result": "HTTP 502", "latencyMs": 15397 }
+  },
+  "sustainedOutagePoll": {
+    "file": "_P0_2026-08-15_HEALTH_POLL.txt",
+    "attempts": 12,
+    "successes": 0,
+    "pattern": "12 consecutive /health/live 502s over ~341s",
+    "interpretation": "Not a sub-second blip; either multi-minute main-thread block (flush/export), crash-loop without healthy successor, or process dead behind Railway edge"
+  },
+  "lastKnownHealthyDeploy": {
+    "sha": "faebfd32a466ccf207000868ce535191ec029d0c",
+    "observedEarlierUtc": "2026-08-14T16:43Z approx",
+    "note": "Decision-quality Round C passed on this SHA while briefly healthy"
+  },
+  "trustQualificationBaseline": {
+    "sha": "afdc4ad974eef275be7027f49f6bbd5e74e17607",
+    "result": "1000/1000 PASS",
+    "window": "2026-08-13T13:15:56Z → 13:26:30Z (~10.5 min)",
+    "firstFlushDelayDefaultMs": 3600000
+  },
+  "changeAnalysisSinceTrustQual": {
+    "commits": [
+      "891c8fae Record 1000/1000 Trust Qualification PASS",
+      "03b39ded..faebfd32 Pillow epistemic / release / decision-quality work"
+    ],
+    "reliabilityCriticalPathDiff": "NO changes to sqlite-database.ts, admission-control, or watchdog after afdc4ad9 in the Pillow series",
+    "causation": "Pillow epistemic/decision commits not implicated as direct reliability-path editors; failure class predates them (sync sql.js export on shared event loop)"
+  },
+  "preliminaryRootCauseHypothesis": {
+    "class": "B_incompletely_repaired_variant",
+    "mechanism": "Single Node event loop shared by sql.js sync db.export() and Tier-0 auth/health. During export (observed historically up to ~283s) Railway returns 502; Cockpit maps to Authentication service unavailable / Brain taking longer.",
+    "whyNotProvenFromInternalsThisCapture": "Process unreachable — no live sqlite.flushInFlight sample obtainable during outage window",
+    "alternativeModesStillOpen": ["OOM crash-loop loading ~847MB DB into sql.js", "stuck flush beyond edge timeout", "platform networking"]
+  },
+  "birth": {
+    "BIRTH_AUTHORISED": "NO",
+    "BIRTH_TIMESTAMP": null
+  }
+}
