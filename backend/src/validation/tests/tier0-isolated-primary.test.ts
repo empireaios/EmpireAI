@@ -23,13 +23,16 @@ describe("tier0 isolated primary", () => {
     process.env.EMPIRE_TIER0_ISOLATION = prevIso;
   });
 
-  it("can disable isolation explicitly", () => {
+  it("enables isolation when Railway env is present", () => {
     const prevRole = process.env.EMPIRE_ROLE;
     const prevIso = process.env.EMPIRE_TIER0_ISOLATION;
+    const prevRail = process.env.RAILWAY_DEPLOYMENT_ID;
     delete process.env.EMPIRE_ROLE;
-    process.env.EMPIRE_TIER0_ISOLATION = "false";
-    assert.equal(tier0IsolationEnabled(), false);
+    process.env.EMPIRE_TIER0_ISOLATION = "true";
+    process.env.RAILWAY_DEPLOYMENT_ID = "test-deploy";
+    assert.equal(tier0IsolationEnabled(), true);
     process.env.EMPIRE_ROLE = prevRole;
     process.env.EMPIRE_TIER0_ISOLATION = prevIso;
+    process.env.RAILWAY_DEPLOYMENT_ID = prevRail;
   });
 });

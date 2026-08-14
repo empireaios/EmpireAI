@@ -11,10 +11,12 @@ async function main() {
   // Production: isolate Tier-0 (auth/health) from sql.js Brain worker so
   // synchronous multi-GB exports cannot lock Grand King out of login/session.
   if (tier0IsolationEnabled()) {
+    process.env.EMPIRE_BOOT_MODE = "tier0-primary";
     try {
       await startTier0IsolatedPrimary();
       return;
     } catch (error) {
+      process.env.EMPIRE_BOOT_MODE = "monolith-fallback";
       logCaughtError(
         logger,
         error,
@@ -22,6 +24,8 @@ async function main() {
       );
       // Fall through to monolith boot rather than leave Railway with no process.
     }
+  } else {
+    process.env.EMPIRE_BOOT_MODE = process.env.EMPIRE_ROLE === "brain-worker" ? "brain-worker" : "monolith";
   }
 
   // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).

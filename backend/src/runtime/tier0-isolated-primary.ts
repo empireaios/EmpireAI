@@ -46,7 +46,14 @@ export function tier0IsolationEnabled(): boolean {
   if (process.env.EMPIRE_ROLE === "brain-worker") return false;
   const raw = (process.env.EMPIRE_TIER0_ISOLATION ?? "true").toLowerCase();
   if (raw === "false" || raw === "0" || raw === "off") return false;
-  return env.NODE_ENV === "production" || raw === "force";
+  if (raw === "force") return true;
+  // Enable on Railway even if NODE_ENV is mis-set; default "true" opts in.
+  const onRailway = Boolean(
+    process.env.RAILWAY_ENVIRONMENT ||
+      process.env.RAILWAY_ENVIRONMENT_NAME ||
+      process.env.RAILWAY_DEPLOYMENT_ID,
+  );
+  return env.NODE_ENV === "production" || onRailway || raw === "1" || raw === "on";
 }
 
 function stableUserId(email: string): string {
@@ -132,15 +139,6 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   });
   await app.register(cors, { origin: true, credentials: true });
   await app.register(cookie);
-
-  // Preserve raw body for proxying non-JSON payloads.
-  app.addContentTypeParser(
-    ["application/json", "application/octet-stream", "text/plain"],
-    { parseAs: "buffer" },
-    (_req, body, done) => {
-      done(null, body);
-    },
-  );
 
   const authenticate = createAuthMiddleware(sessionStore);
   const startedAt = Date.now();

@@ -368,6 +368,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     const payload = {
       status: "ok" as const,
       brain: "online" as const,
+      bootMode: process.env.EMPIRE_BOOT_MODE || "monolith",
+      tier0Isolation: false,
       eventLoopLagMs: getRecentEventLoopLagMs(),
       eventLoopLagSmoothedMs: (await import("./runtime/event-loop-cooperative.js"))
         .getSmoothedEventLoopLagMs(),
