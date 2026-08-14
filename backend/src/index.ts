@@ -11,8 +11,17 @@ async function main() {
   // Production: isolate Tier-0 (auth/health) from sql.js Brain worker so
   // synchronous multi-GB exports cannot lock Grand King out of login/session.
   if (tier0IsolationEnabled()) {
-    await startTier0IsolatedPrimary();
-    return;
+    try {
+      await startTier0IsolatedPrimary();
+      return;
+    } catch (error) {
+      logCaughtError(
+        logger,
+        error,
+        "Tier-0 isolation failed to start — falling back to monolith Brain (auth may block during sql.js flush)",
+      );
+      // Fall through to monolith boot rather than leave Railway with no process.
+    }
   }
 
   // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).

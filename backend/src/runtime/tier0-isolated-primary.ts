@@ -14,7 +14,7 @@
  * Grand King login/session therefore survives worker flush, stall, or restart.
  */
 import { createHash } from "node:crypto";
-import { fork, type ChildProcess } from "node:child_process";
+import { spawn, type ChildProcess } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import Fastify from "fastify";
@@ -117,11 +117,12 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   if (redisOk) {
     sessionStore = new SessionStore(createRedisClient(env.REDIS_URL));
     logger.info("Tier-0 primary session store: Redis");
-  } else if (shouldAllowRedisDegradedMode()) {
-    sessionStore = new InMemorySessionStore();
-    logger.warn("Tier-0 primary session store: in-memory (degraded)");
   } else {
-    throw new Error("Tier-0 primary requires Redis (probe failed)");
+    // Prefer available Grand King auth over hard crash if Redis flaps during incident.
+    sessionStore = new InMemorySessionStore();
+    logger.error(
+      "Tier-0 primary Redis probe failed — using in-memory sessions so login remains possible",
+    );
   }
 
   const app = Fastify({
@@ -409,40 +410,56 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       PORT: String(workerState.port),
       HOST: "127.0.0.1",
     };
-    const child = fork(workerEntryPath(), [], {
-      env: childEnv,
-      stdio: "inherit",
-    });
-    workerState.child = child;
-    logger.info(
-      { workerPort: workerState.port, pid: child.pid },
-      "Tier-0 primary forked Brain worker",
-    );
-
-    child.on("exit", (code, signal) => {
-      workerState.child = null;
-      workerState.starting = false;
-      workerState.restarts += 1;
-      workerState.lastExitAt = Date.now();
-      workerState.lastExitCode = code;
-      logger.error(
-        { code, signal, restarts: workerState.restarts },
-        "Brain worker exited — Tier-0 primary remains up; respawning worker",
+    try {
+      const child = spawn(process.execPath, [workerEntryPath()], {
+        env: childEnv,
+        stdio: "inherit",
+        detached: false,
+      });
+      workerState.child = child;
+      logger.info(
+        { workerPort: workerState.port, pid: child.pid },
+        "Tier-0 primary spawned Brain worker",
       );
-      const delay = Math.min(30_000, 2_000 * Math.max(1, workerState.restarts));
-      setTimeout(() => spawnWorker(), delay);
-    });
 
-    child.on("spawn", () => {
+      child.on("exit", (code, signal) => {
+        workerState.child = null;
+        workerState.starting = false;
+        workerState.restarts += 1;
+        workerState.lastExitAt = Date.now();
+        workerState.lastExitCode = code;
+        logger.error(
+          { code, signal, restarts: workerState.restarts },
+          "Brain worker exited — Tier-0 primary remains up; respawning worker",
+        );
+        const delay = Math.min(30_000, 2_000 * Math.max(1, workerState.restarts));
+        setTimeout(() => spawnWorker(), delay);
+      });
+
+      child.on("error", (error) => {
+        workerState.child = null;
+        workerState.starting = false;
+        logger.error({ err: error }, "Brain worker spawn error");
+        setTimeout(() => spawnWorker(), 5_000);
+      });
+
+      child.on("spawn", () => {
+        workerState.starting = false;
+      });
+    } catch (error) {
       workerState.starting = false;
-    });
+      logger.error({ err: error }, "Brain worker spawn threw");
+      setTimeout(() => spawnWorker(), 5_000);
+    }
   }
-
-  spawnWorker();
 
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info(
     { port: env.PORT, workerPort: workerState.port },
     "Tier-0 isolated primary listening (auth/health independent of sql.js worker)",
   );
+
+  // Spawn heavy sql.js worker AFTER public Tier-0 is accepting traffic so
+  // Railway healthchecks and Grand King auth survive worker boot/OOM/flush.
+  setTimeout(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }
