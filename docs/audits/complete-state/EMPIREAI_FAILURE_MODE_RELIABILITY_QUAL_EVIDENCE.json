@@ -1,0 +1,139 @@
+{
+  "artifact": "EMPIREAI_FAILURE_MODE_RELIABILITY_QUAL",
+  "startedAt": "2026-08-14T23:49:01.749Z",
+  "completedAt": "2026-08-14T23:49:15.678Z",
+  "methodology": "State-transition / failure-mode proof — not a 1000-repetition optics harness",
+  "brain": "https://empireai-production.up.railway.app",
+  "cockpit": "https://empire-ai.co",
+  "results": [
+    {
+      "id": "Q1_health_live",
+      "ok": true,
+      "ms": 979,
+      "error": null,
+      "tier0Isolation": true,
+      "brain": "tier0_only",
+      "sha": "a835c0ee81284d90eaa61788c7207b469ea7d8af",
+      "workerOnline": false
+    },
+    {
+      "id": "Q2_auth_login",
+      "ok": true,
+      "ms": 1707,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_0",
+      "ok": true,
+      "ms": 1395,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_1",
+      "ok": true,
+      "ms": 574,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_2",
+      "ok": true,
+      "ms": 815,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_3",
+      "ok": true,
+      "ms": 582,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_4",
+      "ok": true,
+      "ms": 862,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_5",
+      "ok": true,
+      "ms": 1414,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_6",
+      "ok": true,
+      "ms": 665,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_7",
+      "ok": true,
+      "ms": 562,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_8",
+      "ok": true,
+      "ms": 548,
+      "error": null
+    },
+    {
+      "id": "Q3_session_me_9",
+      "ok": true,
+      "ms": 556,
+      "error": null
+    },
+    {
+      "id": "Q4_auth_health_coexist",
+      "ok": true,
+      "ms": 547,
+      "error": null
+    },
+    {
+      "id": "Q5_executive_home",
+      "ok": false,
+      "ms": 927,
+      "error": "EH 503 {\"error\":\"Brain worker temporarily unavailable\",\"code\":\"BRAIN_WORKER_UNAVAILABLE\",\"tier0Isolation\":true,\"retryable\":true"
+    },
+    {
+      "id": "Q6_pillow_session",
+      "ok": false,
+      "ms": 1061,
+      "error": "pillow session 503 {\"error\":\"Brain worker temporarily unavailable\",\"code\":\"BRAIN_WORKER_UNAVAILABLE\",\"tier0Isolation\":true,\"retryable\":true}"
+    },
+    {
+      "id": "Q7_persistence_signals",
+      "ok": true,
+      "ms": 255,
+      "error": null,
+      "flushInFlight": null,
+      "flushCount": null,
+      "lastFlushDurationMs": null,
+      "pending": false,
+      "isolation": true
+    },
+    {
+      "id": "Q8_invalid_credentials_not_unavailable",
+      "ok": true,
+      "ms": 438,
+      "error": null
+    }
+  ],
+  "gates": {
+    "TIER0_ISOLATION_LIVE": true,
+    "TIER0_AUTH_PROTECTED": true,
+    "SESSION_CONTINUITY_PROVEN": true,
+    "AUTH_HEALTH_COEXISTENCE": true,
+    "COCKPIT_EH_PROVEN": false,
+    "PILLOW_CONTINUITY_PROVEN": false,
+    "PERSISTENCE_SIGNALS_OBSERVED": true,
+    "INVALID_AUTH_NOT_MISCLASSIFIED": true,
+    "REAL_MULTI_GB_EXPORT_FORCED": false,
+    "NOTE_EXPORT_FORCED": "Does not force a destructive multi-minute export; isolation architecture is the protection under test."
+  },
+  "result": "FAIL",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "deploySha": "a835c0ee81284d90eaa61788c7207b469ea7d8af",
+  "deploymentId": "fa67dbf9-1998-4507-a063-5ed86c955cc2",
+  "sessionMeSuccesses": 10
+}

@@ -29,8 +29,11 @@ const HIGH_LAG_EXIT_THRESHOLD_MS = Number(
   process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_THRESHOLD_MS ?? 2_000,
 );
 const HIGH_LAG_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_MS ?? 120_000);
-/** Ignore stall/high-lag exits during cold start (Pillow session init can block the loop). */
-const BOOT_GRACE_MS = Number(process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ?? 180_000);
+/** Ignore stall/high-lag exits during cold start (Pillow session init / large sql.js load). */
+const BOOT_GRACE_MS = Number(
+  process.env.EXECUTIVE_CONTINUITY_BOOT_GRACE_MS ??
+    (process.env.EMPIRE_ROLE === "brain-worker" ? 600_000 : 180_000),
+);
 /** After a completed sql.js flush, suppress high-lag exit while residual samples drain. */
 const POST_FLUSH_COOLDOWN_MS = Number(
   process.env.EXECUTIVE_CONTINUITY_POST_FLUSH_COOLDOWN_MS ?? 90_000,
