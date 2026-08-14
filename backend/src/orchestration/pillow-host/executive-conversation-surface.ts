@@ -20,7 +20,7 @@ export type ExecutiveTaskIntent =
   | "general";
 
 const INTERNAL_ENUM =
-  /\b(CURRENT_VERIFIED|TOOL_ATTESTED|OWNER_SUPPLIED|HISTORICAL_VERIFIED|RUNTIME_VERIFIED|MODEL_INFERENCE|RetrievalAttestationLedger|CAPABILITY_REGISTRY|UNATTESTED_RETRIEVAL_CLAIM|INVENTED_SOURCE_SYSTEM)\b/gi;
+  /\b(CURRENT_VERIFIED|TOOL_ATTESTED|OWNER_SUPPLIED|HISTORICAL_VERIFIED|RUNTIME_VERIFIED|MODEL_INFERENCE|RetrievalAttestationLedger|CAPABILITY_REGISTRY|UNATTESTED_RETRIEVAL_CLAIM|INVENTED_SOURCE_SYSTEM|ACT_NOW|ACT_CONDITIONALLY|VERIFY_THEN_ACT|DEFER|DECISION_CRITICAL|MATERIAL_ASSUMPTION)\b/gi;
 
 const RAW_FIELD_LEAK =
   /\b(deployGitCommitSha|commissioningId|cursorSelected|selectionAuthority|realisedRevenueUsd|gitCommitSha|requestId|capabilityId|attestationId)\s*=\s*[^\s.;,)]+/gi;
@@ -198,9 +198,11 @@ export function buildNaturalExecutiveFallback(input: NaturalReconstructInput): s
       liveLine,
       `We're focused on ${product}.`,
       noSales
-        ? "Because we haven't proven demand with a first sale yet, I wouldn't scale spend or publish aggressively on hope alone."
-        : "We have early realised commerce, so next moves should protect that signal and deepen it.",
-      "Recommendation: prioritise cheap demand verification before irreversible spend — that's a judgment call under uncertainty, not a proven law.",
+        ? "We need commercial progress — realised sales are still zero."
+        : "We have early realised commerce, so next moves should protect and deepen that signal.",
+      noSales
+        ? `Whether ${product} should move next depends on demand attractiveness, unit economics, and readiness we have not verified yet. Those checks are usually cheap and could reverse the decision, so I would verify them first; if they clear, run a bounded test.`
+        : "Recommendation: deepen what is working with bounded experiments before irreversible spend — judgment under uncertainty, not proven law.",
       "If you want, I can walk through the evidence behind that view.",
     ].join(" ");
   }

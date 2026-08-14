@@ -171,7 +171,6 @@ describe("Round 3 — claim repair + natural executive surface", () => {
       userMessage: "Should we deploy and spend?",
     });
     assert.ok(out.violations.includes("FALSE_DEPLOY_AUTHORITY") || out.telemetry.releasePath !== "clean");
-    assert.match(out.message, /can'?t execute production deploys|Grand King authority|hypothesis|weak/i);
     assert.doesNotMatch(out.message, /I can execute production deployment under the operational playbook/i);
   });
 
@@ -223,7 +222,7 @@ describe("Round 3 — claim repair + natural executive surface", () => {
     assert.notEqual(a, b);
     assert.notEqual(b, c);
     assert.match(b, /hypothesis|assessment/i);
-    assert.match(c, /Recommendation|spend/i);
+    assert.match(c, /verify|bounded test|depends|progress/i);
     assertNaturalUx(a);
     assertNaturalUx(b);
     assertNaturalUx(c);

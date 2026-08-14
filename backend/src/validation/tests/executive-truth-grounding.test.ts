@@ -97,6 +97,7 @@ describe("executive-truth-grounding via release gate", () => {
     );
     assert.equal(result.adjusted, true);
     assert.ok(result.violations.includes("FALSE_DEPLOY_AUTHORITY"));
+    assert.doesNotMatch(result.message, /I can execute production deployment under the operational playbook/i);
   });
 
   it("blocks stale B5/P0-1 as current when deploy/birth ready", () => {

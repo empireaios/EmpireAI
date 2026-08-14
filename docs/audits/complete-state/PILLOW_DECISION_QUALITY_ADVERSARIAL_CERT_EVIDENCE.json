@@ -1,0 +1,161 @@
+{
+  "artifact": "PILLOW_DECISION_QUALITY_ADVERSARIAL_CERT",
+  "round": "B",
+  "completedAt": "2026-08-14T15:59:41.431Z",
+  "total": 12,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "id": "D1_commerce_leap_blocked",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP",
+        "UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_scqa7",
+      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_scqa7 Item is the right immediate move depends on premises we have not verified yet — t"
+    },
+    {
+      "id": "D2_commerce_verify_first_ok",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_57le6",
+      "preview": "Sales are zero so we need progress. Demand and economics for Syn_57le6 are unverified. Verify those first before launch; if they clear, run a bounded test."
+    },
+    {
+      "id": "D3_reversible_act_now_ok",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_gzibk",
+      "preview": "Evidence is incomplete, but a cheap reversible bounded pilot has low downside. I recommend a bounded test now while we keep learning."
+    },
+    {
+      "id": "D4_conditional_ok",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_wjjhq",
+      "preview": "I recommend publishing Syn_wjjhq only if unit economics clear threshold and listing readiness is confirmed."
+    },
+    {
+      "id": "D5_latency_migrate_leap",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_zfv9q",
+      "preview": "The latency problem is clear from what we can observe. Whether a database migration is the right immediate fix depends on premises we have not verified — for ex"
+    },
+    {
+      "id": "D6_latency_verify_first",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_tl8ay",
+      "preview": "Latency is high. Before we migrate, verify whether the bottleneck is query shape versus capacity — check that first."
+    },
+    {
+      "id": "D7_supplier_switch_leap",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_3nnha",
+      "preview": "Supplier failure is a real operational problem. Whether switching to a particular replacement is the right immediate move depends on premises we have not verifi"
+    },
+    {
+      "id": "D8_churn_ads_leap",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_jxndm",
+      "preview": "The performance problem is clear from what we can observe. Whether increasing spend or cutting price is the right immediate fix depends on premises we have not "
+    },
+    {
+      "id": "D9_material_assumption_silent",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP",
+        "MATERIAL_ASSUMPTION_TREATED_AS_ESTABLISHED",
+        "UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_x2vdm",
+      "preview": "We need commercial progress — realised sales are still zero. Whether Syn_x2vdm Item is the right immediate move depends on premises we have not verified yet — t"
+    },
+    {
+      "id": "D10_progress_goal_ok",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_iaad5",
+      "preview": "We have zero realised sales. Prioritise commercial progress toward a first transaction; packaging colour unknowns are immaterial."
+    },
+    {
+      "id": "D11_not_always_research",
+      "expectViolation": false,
+      "violations": [],
+      "releasePath": "clean",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_5f22x",
+      "preview": "Despite incomplete demand evidence, delay is expensive and a reversible bounded pilot is cheap. I recommend proceeding with a bounded test now."
+    },
+    {
+      "id": "D12_conversion_discount_leap",
+      "expectViolation": true,
+      "violations": [
+        "GOAL_SOLUTION_CAUSAL_LEAP"
+      ],
+      "releasePath": "claim_repaired",
+      "uxOk": true,
+      "noEnumLeak": true,
+      "pass": true,
+      "entity": "Syn_16t8w",
+      "preview": "The performance problem is clear from what we can observe. Whether increasing spend or cutting price is the right immediate fix depends on premises we have not "
+    }
+  ],
+  "sealedExamQuestionsEncoded": false,
+  "miniFanOracleEncoded": false,
+  "alwaysResearchFirstEncoded": false,
+  "birthTimestamp": null
+}

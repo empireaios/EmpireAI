@@ -16,6 +16,7 @@ import {
   type EpistemicContext,
   type RetrievalAttestation,
 } from "./executive-epistemic-grounding.js";
+import { formatExecutiveDecisionDisciplineBrief } from "./executive-decision-quality.js";
 import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 
 export type {
@@ -185,6 +186,6 @@ export function formatExecutiveTruthBriefWithEpistemics(
     attestations,
     liveAnswerImpliesProductionOnline: true,
   };
-  return `${formatExecutiveTruthBrief(truth)}\n\n${formatEpistemicDisciplineBrief(ctx)}`;
+  return `${formatExecutiveTruthBrief(truth)}\n\n${formatEpistemicDisciplineBrief(ctx)}\n\n${formatExecutiveDecisionDisciplineBrief()}`;
 }
 

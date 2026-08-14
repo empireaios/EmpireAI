@@ -30,6 +30,10 @@ import {
   type DisclosureLevel,
   type ExecutiveTaskIntent,
 } from "./executive-conversation-surface.js";
+import {
+  assessDecisionQuality,
+  repairDecisionQualityAnswer,
+} from "./executive-decision-quality.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -120,7 +124,8 @@ export function validateExecutiveDraft(
     liveAnswerImpliesProductionOnline: true,
   };
   const epiV = validateEpistemicDraft(draft, epiCtx);
-  const violations = [...new Set([...truthV, ...epiV])];
+  const decisionV = assessDecisionQuality(draft, truth).violations;
+  const violations = [...new Set([...truthV, ...epiV, ...decisionV])];
   if (CORRECTION_APPENDIX_LEAK.test(draft)) {
     violations.push("CORRECTION_APPENDIX_LEAK");
   }
@@ -442,6 +447,21 @@ export function releaseExecutiveAnswer(
     telemetry.draftValidationPass = true;
     const clean = tryRelease(draft.trim(), "clean", []);
     if (clean) return clean;
+  }
+
+  // Attempt 0.5: decision-quality repair (goal≠solution / material-assumption leaps).
+  const decisionCodes = new Set([
+    "GOAL_SOLUTION_CAUSAL_LEAP",
+    "MATERIAL_ASSUMPTION_TREATED_AS_ESTABLISHED",
+    "UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL",
+  ]);
+  if (first.violations.some((v) => decisionCodes.has(v))) {
+    telemetry.reconstructionAttempted = true;
+    telemetry.claimLevelRepairUsed = true;
+    const dq = assessDecisionQuality(draft, truth);
+    const decisionRepaired = repairDecisionQualityAnswer(draft, truth, dq);
+    const releasedDq = tryRelease(decisionRepaired, "claim_repaired", first.violations);
+    if (releasedDq) return releasedDq;
   }
 
   // Attempt 1: claim-level surgical repair (preserve task-specific reasoning).
