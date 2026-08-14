@@ -45,6 +45,8 @@ export type ReleaseGateTelemetry = {
   claimLevelRepairUsed: boolean;
   claimsKept: number;
   claimsDropped: number;
+  finalRevalidationPass: boolean;
+  supportMonotonicityPass: boolean;
   releasePath:
     | "clean"
     | "claim_repaired"
@@ -75,6 +77,8 @@ const PROVENANCE_VIOLATIONS = new Set([
   "CAPABILITY_REGISTRY_VIOLATION",
   "PARTIAL_CORRECTION_WITH_RESIDUAL_FABRICATION",
   "INTERNAL_CONTRADICTION",
+  "UNSUPPORTED_PROVENANCE_CLAIM",
+  "UNSUPPORTED_STATE_SEMANTICS",
 ]);
 
 const TEMPORAL_VIOLATIONS = new Set([
@@ -218,8 +222,11 @@ export function surgicalRepairDraft(
     const temporal = v.violations.some((x) => TEMPORAL_VIOLATIONS.has(x));
     const authority = v.violations.includes("FALSE_DEPLOY_AUTHORITY");
     const commerce = v.violations.includes("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM");
-    const invented = v.violations.includes("INVENTED_SOURCE_SYSTEM");
     const productMismatch = v.violations.includes("PRODUCT_IDENTITY_MISMATCH");
+    const invented =
+      v.violations.includes("INVENTED_SOURCE_SYSTEM") ||
+      v.violations.includes("UNSUPPORTED_PROVENANCE_CLAIM") ||
+      v.violations.includes("UNSUPPORTED_STATE_SEMANTICS");
 
     if (authority) {
       kept.push(rewriteAuthorityClaim());
@@ -245,6 +252,17 @@ export function surgicalRepairDraft(
       kept.push(
         "I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established.",
       );
+      changed = true;
+      continue;
+    }
+
+    if (
+      (v.violations.includes("UNSUPPORTED_STATE_SEMANTICS") ||
+        v.violations.includes("UNSUPPORTED_PROVENANCE_CLAIM")) &&
+      !v.violations.includes("UNATTESTED_RETRIEVAL_CLAIM")
+    ) {
+      // Drop invented analysis semantics; do not rewrite into stronger claims.
+      dropped += 1;
       changed = true;
       continue;
     }
@@ -352,6 +370,7 @@ function finalizeVisible(
 /**
  * Pre-release gate. Never returns invalid draft + correction appendix.
  * Prefers claim-level repair; natural reconstruct only when needed.
+ * FINAL natural text is always revalidated before release.
  */
 export function releaseExecutiveAnswer(
   draft: string,
@@ -376,10 +395,39 @@ export function releaseExecutiveAnswer(
     claimLevelRepairUsed: false,
     claimsKept: 0,
     claimsDropped: 0,
+    finalRevalidationPass: false,
+    supportMonotonicityPass: true,
     releasePath: "fail_closed",
     disclosureLevel: level,
     taskIntent: intent,
     uxFailures: [],
+  };
+
+  const tryRelease = (
+    candidate: string,
+    path: ReleaseGateTelemetry["releasePath"],
+    priorViolations: string[],
+  ): ExecutiveReleaseResult | null => {
+    const fin = finalizeVisible(candidate, level, options.userMessage);
+    const final = validateExecutiveDraft(fin.message, truth, attestations);
+    if (!final.ok) {
+      telemetry.finalRevalidationPass = false;
+      telemetry.supportMonotonicityPass = false;
+      return null;
+    }
+    telemetry.finalRevalidationPass = true;
+    telemetry.supportMonotonicityPass = true;
+    telemetry.releasePath = path;
+    telemetry.uxFailures = fin.uxFailures;
+    if (path !== "clean") {
+      telemetry.reconstructionSucceeded = true;
+    }
+    return {
+      message: fin.message,
+      released: true,
+      violations: priorViolations,
+      telemetry,
+    };
   };
 
   const first = validateExecutiveDraft(draft, truth, attestations);
@@ -392,21 +440,8 @@ export function releaseExecutiveAnswer(
 
   if (first.ok) {
     telemetry.draftValidationPass = true;
-    telemetry.releasePath = "clean";
-    const fin = finalizeVisible(draft.trim(), level, options.userMessage);
-    telemetry.uxFailures = fin.uxFailures;
-    // If clean draft still leaks internal enums (model echoed brief), sanitize — still "clean" path.
-    const recheck = validateExecutiveDraft(fin.message, truth, attestations);
-    if (!recheck.ok) {
-      // Sanitizer shouldn't introduce violations; if it did, fall through to repair.
-    } else {
-      return {
-        message: fin.message,
-        released: true,
-        violations: [],
-        telemetry,
-      };
-    }
+    const clean = tryRelease(draft.trim(), "clean", []);
+    if (clean) return clean;
   }
 
   // Attempt 1: claim-level surgical repair (preserve task-specific reasoning).
@@ -417,19 +452,8 @@ export function releaseExecutiveAnswer(
   telemetry.claimsDropped = surgical.dropped;
 
   if (!surgical.stillContaminated && surgical.message) {
-    const fin = finalizeVisible(surgical.message, level, options.userMessage);
-    const second = validateExecutiveDraft(fin.message, truth, attestations);
-    if (second.ok) {
-      telemetry.reconstructionSucceeded = true;
-      telemetry.releasePath = "claim_repaired";
-      telemetry.uxFailures = fin.uxFailures;
-      return {
-        message: fin.message,
-        released: true,
-        violations: first.violations,
-        telemetry,
-      };
-    }
+    const repaired = tryRelease(surgical.message, "claim_repaired", first.violations);
+    if (repaired) return repaired;
   }
 
   // Attempt 2: natural task-sensitive reconstruct (NOT Round-2 audit dump).
@@ -447,27 +471,20 @@ export function releaseExecutiveAnswer(
     hadProvenanceViolation: telemetry.provenanceViolationCount > 0,
     hadTemporalViolation: telemetry.temporalViolationCount > 0,
   });
-  const finNatural = finalizeVisible(natural, level, options.userMessage);
-  const third = validateExecutiveDraft(finNatural.message, truth, attestations);
-  if (third.ok) {
-    telemetry.reconstructionSucceeded = true;
-    telemetry.releasePath = "natural_reconstructed";
-    telemetry.uxFailures = finNatural.uxFailures;
-    return {
-      message: finNatural.message,
-      released: true,
-      violations: first.violations,
-      telemetry,
-    };
-  }
+  const naturalRelease = tryRelease(natural, "natural_reconstructed", first.violations);
+  if (naturalRelease) return naturalRelease;
 
-  // Attempt 3: fail-closed natural UNKNOWN.
+  // Attempt 3: fail-closed natural UNKNOWN — still revalidated.
   const closed = failClosedExecutiveAnswer(truth, level);
+  const closedFinal = validateExecutiveDraft(closed, truth, attestations);
   telemetry.failClosedUsed = true;
   telemetry.releasePath = "fail_closed";
+  telemetry.finalRevalidationPass = closedFinal.ok;
   telemetry.uxFailures = assessConversationalUx(closed).failures;
   return {
-    message: closed,
+    message: closedFinal.ok
+      ? closed
+      : "I don't have enough evidence to answer that confidently yet.",
     released: true,
     violations: first.violations,
     telemetry,

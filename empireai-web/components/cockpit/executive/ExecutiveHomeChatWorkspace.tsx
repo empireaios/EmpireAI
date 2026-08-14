@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
+import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProactiveGuidance";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
@@ -248,9 +249,9 @@ export function ExecutiveHomeChatWorkspace() {
               <span className="text-[10px] uppercase text-[#6f6a60]">
                 {turn.role === "pillow" ? "Pillow" : "Grand King"}
               </span>
-              <p className="mt-1.5 whitespace-pre-wrap text-base leading-relaxed text-[#e8e0d0]">
-                {turn.content}
-              </p>
+              <div className="mt-1.5 text-[#e8e0d0]">
+                <ExecutiveChatMarkdown content={turn.content} />
+              </div>
               {turn.artifacts && turn.artifacts.length > 0 && (
                 <ExecutiveChatArtifacts artifacts={turn.artifacts} />
               )}

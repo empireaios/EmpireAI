@@ -123,11 +123,25 @@ async function main() {
         "According to the commerce tracking system and commercial position report, realised revenue is healthy.",
     },
     {
-      id: "S12_labeled_ok_unknown",
-      expectViolation: false,
-      user: "Can you substantiate external reports?",
+      id: "S13_paraphrase_offline",
+      expectViolation: true,
+      user: "Are we live?",
       answer: () =>
-        "I cannot substantiate access to any external report. Provenance is unproven. From runtime commerce state I only confirm realised orders are whatever the snapshot says.",
+        "EmpireAI is not yet live in production. Deployment is pending Grand King approval.",
+    },
+    {
+      id: "S14_market_demand_semantics",
+      expectViolation: true,
+      user: "Why this product?",
+      answer: (e) =>
+        `The ${e} SKU was selected based on market-demand analysis and passed initial market evaluation.`,
+    },
+    {
+      id: "S15_rec_from_verified",
+      expectViolation: false,
+      user: "Priority?",
+      answer: () =>
+        "We have zero realised sales, so my priority would be getting to the first real transaction. Recommendation under uncertainty.",
     },
   ];
 

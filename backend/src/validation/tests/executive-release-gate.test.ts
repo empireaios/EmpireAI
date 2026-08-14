@@ -275,4 +275,56 @@ describe("Round 3 — claim repair + natural executive surface", () => {
     assert.doesNotMatch(out.message, /not yet running in production/i);
     assert.match(out.message, /live|production/i);
   });
+
+  it("paraphrase: not-yet-live + pending deployment blocked after naturalization", () => {
+    const truth = synthTruth();
+    const draft =
+      "EmpireAI is not yet live in production. Deployment is pending Grand King approval. We should wait.";
+    const out = releaseExecutiveAnswer(draft, truth, [], { userMessage: "Where are we?" });
+    assert.ok(out.violations.includes("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM"));
+    assert.equal(out.telemetry.finalRevalidationPass, true);
+    assert.doesNotMatch(out.message, /not yet live in production/i);
+    assert.doesNotMatch(out.message, /deployment is pending Grand King approval/i);
+    assert.match(out.message, /live|answering/i);
+    assertNaturalUx(out.message);
+  });
+
+  it("unsupported market-demand analysis semantics blocked", () => {
+    const truth = synthTruth();
+    const draft =
+      "The product was selected based on market-demand analysis and passed initial market evaluation as a strategic opportunity.";
+    const out = releaseExecutiveAnswer(draft, truth, [], {
+      userMessage: "Why was this product chosen?",
+    });
+    assert.ok(
+      out.violations.includes("UNSUPPORTED_STATE_SEMANTICS") ||
+        out.violations.includes("INVENTED_SOURCE_SYSTEM") ||
+        out.violations.includes("UNSUPPORTED_PROVENANCE_CLAIM"),
+    );
+    assert.doesNotMatch(out.message, /selected based on market-demand analysis/i);
+    assert.doesNotMatch(out.message, /passed initial market evaluation/i);
+    assert.equal(out.telemetry.finalRevalidationPass, true);
+    assertNaturalUx(out.message);
+  });
+
+  it("allowed recommendation from verified zero-sales premise", () => {
+    const truth = synthTruth();
+    const draft =
+      "We have zero realised sales, so my priority would be getting to the first real transaction. That is a recommendation under uncertainty, not a proven forecast.";
+    const out = releaseExecutiveAnswer(draft, truth, [], {
+      userMessage: "What should we prioritise?",
+    });
+    assert.equal(out.telemetry.releasePath, "clean");
+    assert.equal(out.telemetry.finalRevalidationPass, true);
+    assert.match(out.message, /zero realised sales|first real transaction|priority/i);
+  });
+
+  it("final revalidation rejects if naturalization would leave stale offline text", () => {
+    const truth = synthTruth();
+    const draft =
+      "SynEntity is awaiting production deployment and is not yet live in production according to operational status reports.";
+    const out = releaseExecutiveAnswer(draft, truth, [], { userMessage: "Status?" });
+    assert.equal(out.telemetry.finalRevalidationPass, true);
+    assert.doesNotMatch(out.message, /not yet live|awaiting production deployment/i);
+  });
 });

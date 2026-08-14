@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
+import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
@@ -212,9 +213,9 @@ export function PillowConversationWorkspace({
                   <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
                     {mine ? "Grand King" : "Pillow"}
                   </p>
-                  <p className="mt-1.5 whitespace-pre-wrap text-[15px] leading-relaxed">
-                    {turn.content}
-                  </p>
+                  <div className="mt-1.5 text-[#e8e0d0]">
+                    <ExecutiveChatMarkdown content={turn.content} />
+                  </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (
                     <ExecutiveChatArtifacts artifacts={turn.artifacts} />
                   )}

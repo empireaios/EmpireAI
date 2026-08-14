@@ -110,16 +110,18 @@ export function formatEpistemicDisciplineBrief(ctx: EpistemicContext): string {
   return [
     "--- Epistemic discipline (mandatory) ---",
     "Internal claim classes (do NOT dump these labels into ordinary Grand King replies): runtime_verified | tool_retrieved | supplied_context | historical_context | inference | hypothesis | recommendation | unknown",
-    "Speak to Grand King as a world-class executive partner: answer first, in natural language.",
+    "Speak to Grand King as a world-class executive partner: ANSWER FIRST, in natural language.",
+    "Match depth to the question: short question → short answer; deep ask → deeper synthesis. Do not mechanically emit What I Know / Inference / Uncertainty / Next Steps headings unless the question truly needs them.",
     "Do NOT open with verification boilerplate, enum names, deploy SHAs, commissioning IDs, or attestation jargon unless Grand King asks for technical evidence.",
     "NEVER claim you accessed/retrieved/reviewed/checked/read/inspected a system unless it appears in Attested retrievals.",
     "Knowing a sentence in context ≠ you personally retrieved its underlying source.",
-    "Do not invent dashboards, reports, emails, meetings, repositories, filenames, APIs, or metrics to fill gaps.",
-    "INFERENCE IS ALLOWED and often required: label it clearly in natural language (e.g. best assessment / hypothesis / probably), preserve uncertainty, say what would falsify it, and propose realistic next verification from capabilities that actually exist.",
+    "Do not invent dashboards, reports, emails, meetings, repositories, filenames, APIs, metrics, or 'market demand analysis' results to fill gaps.",
+    "Workflow labels (approval/pending/commissioning) do NOT invent business meaning such as 'passed market evaluation' or 'selected based on demand analysis' unless attested evidence supports that.",
+    "INFERENCE IS ALLOWED and often required: label it clearly in natural language, preserve uncertainty, say what would falsify it when useful, and propose realistic next verification from capabilities that actually exist.",
     "UNKNOWN means the proposition is unproven — not that you must refuse to reason. Reason around unknowns.",
     "High-risk actions (spend/publish/Birth/deploy) stay blocked without authority even if a hypothesis is reasonable.",
-    "Temporal precedence: current live runtime outranks historical waiting-to-go-live language.",
-    "If this Brain process is answering with a deploy SHA, EmpireAI IS serving via a live production Brain process. Do not claim production is not live/not serving.",
+    "Temporal precedence: if you are answering live in production, do not claim EmpireAI is not live or that deployment is still pending as current state.",
+    "Natural wording may change tone, not create new facts. Support strength must not increase during phrasing.",
     usedLine,
     "",
     formatCapabilityRegistryBrief(),
@@ -133,13 +135,20 @@ const PERSONAL_RETRIEVAL_CLAIM =
 
 /** Plausible-but-unattested evidence scaffolding (class detector; not an exam dictionary). */
 const INVENTED_SOURCE_SYSTEM =
-  /\b(?:project\s+management\s+(?:tool|system|dashboard)|commerce\s+tracking\s+(?:system|tool|platform|service)|commercial\s+position\s+reports?|operational\s+(?:audits?|status\s+reports?)|internal\s+(?:audit\s+system|discussions?|documents?|communication(?:s|\s+system)?|planning)|supplier\s+communications?|market\s+analysis\s+(?:reports?|tool)|meeting\s+notes(?:\s+repository)?|selection\s+criteria\s+and\s+analysis\s+report|planning\s+documents?|team\s+communications?)\b/i;
+  /\b(?:project\s+management\s+(?:tool|system|dashboard)|commerce\s+tracking\s+(?:system|tool|platform|service)|commercial\s+position\s+reports?|operational\s+(?:audits?|status\s+reports?)|internal\s+(?:audit\s+system|discussions?|documents?|communication(?:s|\s+system)?|planning)|supplier\s+communications?|market(?:[- ]demand)?\s+analysis(?:\s+(?:reports?|tool))?|market\s+evaluation|demand\s+analysis|meeting\s+notes(?:\s+repository)?|selection\s+criteria\s+and\s+analysis\s+report|planning\s+documents?|team\s+communications?)\b/i;
 
-const SOURCE_AS_EVIDENCE =
-  /\b(?:according\s+to|based\s+on(?:\s+the)?|from\s+the|evidence\s+from|confirmed\s+by|as\s+(?:shown|stated|documented)\s+in|supports?\s+this)\b/i;
+/** Provenance-bearing phrasing (semantic class — not a sealed-phrase dictionary). */
+const PROVENANCE_BEARING =
+  /\b(?:according\s+to|based\s+on(?:\s+the)?|from\s+the|evidence\s+from|confirmed\s+by|as\s+(?:shown|stated|documented)\s+in|research\s+indicates|analysis\s+(?:shows|identified|confirmed|indicates)|audits?\s+confirmed|internal\s+discussions?\s+show|the\s+tracking\s+system\s+shows|reports?\s+indicate)\b/i;
+
+const SOURCE_AS_EVIDENCE = PROVENANCE_BEARING;
+
+/** Unsupported business-meaning invented from workflow/state labels. */
+const UNSUPPORTED_STATE_SEMANTICS =
+  /\b(?:passed\s+(?:an?\s+)?(?:initial\s+)?market\s+evaluation|selected\s+based\s+on\s+(?:market(?:[- ]demand)?|demand)\s+analysis|identified\s+(?:this|it)\s+as\s+a\s+strategic\s+opportunity|market[- ]demand\s+analysis\s+identified)\b/i;
 
 const NOT_IN_PRODUCTION_CLAIM =
-  /\b(?:empire\s*ai|the\s+system|production)\s+(?:is\s+)?(?:not\s+yet\s+)?(?:running|live|serving|deployed|online)\b|\bnot\s+(?:yet\s+)?(?:running|serving)\s+(?:in\s+)?production\b|\bnot\s+serving\s+(?:the\s+)?grand\s+king\b|\bready\s+for\s+production\s+deployment\b|\bnot\s+(?:yet\s+)?(?:in\s+)?a\s+live\s+production\s+environment\b|\bproduction\s+(?:deployment\s+)?(?:is\s+)?(?:still\s+)?pending\b|\babsence\s+of\s+live\s+operational\s+metrics\b/i;
+  /\b(?:empire\s*ai|the\s+system|production|the\s+platform|the\s+service)\s+(?:is\s+)?(?:not\s+yet\s+)?(?:running|live|serving|deployed|online)\b|\bnot\s+(?:yet\s+)?(?:running|serving|live)\s+(?:in\s+)?production\b|\bnot\s+(?:yet\s+)?live\s+in\s+production\b|\bnot\s+serving\s+(?:the\s+)?grand\s+king\b|\bready\s+for\s+production\s+deployment\b|\bnot\s+(?:yet\s+)?(?:in\s+)?a\s+live\s+production\s+environment\b|\b(?:production\s+)?deployment\s+(?:is\s+)?(?:still\s+)?pending(?:\s+grand\s+king(?:\s+approval)?)?\b|\bawaiting\s+(?:production\s+)?deployment\b|\bpending\s+grand\s+king\s+approval.{0,40}\bdeploy/i;
 
 const SAFE_UNKNOWN_LANGUAGE =
   /\b(i\s+cannot\s+(?:currently\s+)?(?:substantiate|verify)|i\s+do\s+not\s+have\s+evidence|unknown|not\s+attested|no\s+retrieval\s+attestation|supplied\s+in\s+(?:current\s+)?context|i\s+retract|remain\s+unknown)\b/i;
@@ -212,7 +221,8 @@ export function validateEpistemicDraft(
   const inventedSource = INVENTED_SOURCE_SYSTEM.test(message);
   const unavailableHits = unavailableClaimedSystems(message);
   const safeUnknown = SAFE_UNKNOWN_LANGUAGE.test(message);
-  const sourceAsEvidence = SOURCE_AS_EVIDENCE.test(message);
+  const sourceAsEvidence = SOURCE_AS_EVIDENCE.test(message) || PROVENANCE_BEARING.test(message);
+  const unsupportedSemantics = UNSUPPORTED_STATE_SEMANTICS.test(message);
   const onlyRuntimeAttested =
     [...attested].every((id) =>
       ["live_sqlite_commissioning", "live_sqlite_kpi", "birth_record", "railway_deploy_env"].includes(
@@ -238,19 +248,27 @@ export function validateEpistemicDraft(
     violations.push("UNATTESTED_RETRIEVAL_CLAIM");
   }
 
-  // Plausible source label used as evidence without attestation.
-  // Labeled inference/hypothesis that merely mentions unavailable systems as absent is OK if not claiming retrieval.
+  // Plausible source / analysis used as evidence without attestation.
   if (
-    inventedSource &&
+    (inventedSource || unsupportedSemantics) &&
     !safeUnknown &&
-    (sourceAsEvidence || personalRetrieval) &&
+    (sourceAsEvidence || personalRetrieval || unsupportedSemantics) &&
     onlyRuntimeAttested
   ) {
     const labeled = /\b(i\s+(?:infer|suspect|think|assess)|inference|hypothesis|probably|likely|my\s+best\s+assessment)\b/i.test(
       message,
     );
-    if (!(labeled && !personalRetrieval && /\b(do\s+not\s+have|without|no\s+access|unavailable|cannot\s+retrieve)\b/i.test(message))) {
+    if (unsupportedSemantics && !labeled) {
+      violations.push("UNSUPPORTED_STATE_SEMANTICS");
+    }
+    if (
+      inventedSource &&
+      !(labeled && !personalRetrieval && /\b(do\s+not\s+have|without|no\s+access|unavailable|cannot\s+retrieve)\b/i.test(message))
+    ) {
       violations.push("INVENTED_SOURCE_SYSTEM");
+    }
+    if (sourceAsEvidence && inventedSource && !labeled) {
+      violations.push("UNSUPPORTED_PROVENANCE_CLAIM");
     }
   }
 
@@ -265,16 +283,11 @@ export function validateEpistemicDraft(
     violations.push("PARTIAL_CORRECTION_WITH_RESIDUAL_FABRICATION");
   }
 
-  if (hasLiveDeploy && NOT_IN_PRODUCTION_CLAIM.test(message) && !safeUnknown) {
-    violations.push("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM");
-  }
-
-  // Offline claim + live deploy is also an internal contradiction class.
+  // Temporal: live runtime outranks offline/pending-deploy current-state claims.
+  // Do not exempt merely because the word "unknown" appears elsewhere in the answer.
   if (hasLiveDeploy && NOT_IN_PRODUCTION_CLAIM.test(message)) {
-    if (!violations.includes("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM")) {
-      violations.push("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM");
-    }
-    if (/\b(answering\s+live|deploygitcommitsha|this\s+brain\s+process\s+is\s+answering)\b/i.test(message)) {
+    violations.push("STALE_OR_FALSE_PRODUCTION_OFFLINE_CLAIM");
+    if (/\b(answering\s+live|deploygitcommitsha|this\s+brain\s+process\s+is\s+answering|live\s+and\s+answering)\b/i.test(message)) {
       violations.push("INTERNAL_CONTRADICTION");
     }
   }
