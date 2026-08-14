@@ -235,11 +235,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   app.post("/auth/login", async (request, reply) => {
     const t0 = performance.now();
-    const raw = request.body;
-    const parsed =
-      Buffer.isBuffer(raw) || typeof raw === "string"
-        ? loginSchema.parse(JSON.parse(String(raw)))
-        : loginSchema.parse(raw);
+    const parsed = loginSchema.parse(request.body);
     const email = parsed.email.trim().toLowerCase();
     const account = authenticateSeedUser(email, parsed.password);
     if (!account) {
@@ -337,10 +333,14 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     });
   });
 
-  app.all("/*", async (request, reply) => {
+  app.setNotFoundHandler(async (request, reply) => {
     const urlPath = request.url.split("?")[0] ?? "";
     if (urlPath.startsWith("/auth/") || urlPath === "/health/live" || urlPath === "/health/ready") {
       return reply.code(404).send({ error: "not_found" });
+    }
+    // CORS preflight is handled by @fastify/cors — never proxy OPTIONS to the worker.
+    if (request.method === "OPTIONS") {
+      return reply.code(204).send();
     }
 
     const worker = await probeWorkerLive(1_500);
@@ -368,13 +368,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         signal: AbortSignal.timeout(120_000),
       };
       if (request.method !== "GET" && request.method !== "HEAD") {
-        const raw = request.body;
-        if (Buffer.isBuffer(raw)) {
-          init.body = raw;
-        } else if (typeof raw === "string") {
-          init.body = raw;
-        } else if (raw != null) {
-          init.body = JSON.stringify(raw);
+        if (request.body !== undefined && request.body !== null) {
+          init.body =
+            typeof request.body === "string" || Buffer.isBuffer(request.body)
+              ? (request.body as string | Buffer)
+              : JSON.stringify(request.body);
           headers["content-type"] = headers["content-type"] ?? "application/json";
           init.headers = headers;
         }
