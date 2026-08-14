@@ -29903,25 +29903,28 @@ export class PillowHost {
                     else {
                         kind = "llm";
                         logResult = "success";
-                        // Final executive release gate: validate → reconstruct → revalidate → release | fail-closed.
+                        // Final executive release gate: claim-level repair → natural surface.
                         // Never surface invalid draft + correction appendix to Grand King.
                         if (executiveTruthSnapshot) {
                             const grounded = enforceExecutiveTruthGrounding(
                                 message,
                                 executiveTruthSnapshot,
                                 epistemicLedger.list(),
+                                { userMessage: input.message },
                             );
                             message = grounded.message;
                             if (grounded.adjusted) {
                                 logResult =
                                     grounded.telemetry?.releasePath === "fail_closed"
                                         ? "success_fail_closed"
-                                        : "success_release_gate";
+                                        : grounded.telemetry?.releasePath === "claim_repaired"
+                                          ? "success_claim_repaired"
+                                          : "success_release_gate";
                                 logger.warn({
                                     requestId,
                                     violations: grounded.violations,
                                     releaseGate: grounded.telemetry,
-                                }, "Executive release gate reconstructed or fail-closed visible Pillow answer");
+                                }, "Executive release gate repaired or reconstructed visible Pillow answer");
                             }
                         }
                     }

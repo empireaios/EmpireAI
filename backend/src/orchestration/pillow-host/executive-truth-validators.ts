@@ -8,7 +8,7 @@ const FABRICATED_COMMERCE_CLAIM =
   /\b(last quarter|last three months|past (three|3) months|historical sales|sales (data|figures|performance|trend)|declining .{0,40}sales|customer feedback ratings?|competitor pricing analysis|internal sales tracking|market research reports?|revenue (of|totaling|was)|units? sold|conversion rate of)\b/i;
 
 const ZERO_OR_UNKNOWN_COMMERCE =
-  /\b(0|zero|none|no verified|no realised|unknown)\b/i;
+  /\b(0|zero|none|no verified|no realised|unknown|unproven|hypothesis|not\s+(?:yet\s+)?(?:established|proven)|i\s+infer|inference)\b/i;
 
 const DEPLOY_AUTHORITY_CLAIM =
   /\b(i can (initiate|execute|perform|run|complete)|i will (initiate|execute|perform|run)|i am able to (initiate|execute)|under (an |the )?operational playbook.{0,80}(deploy|deployment))\b.{0,80}\b(production deployment|deploy(ment)? to production|railway deploy)\b/i;

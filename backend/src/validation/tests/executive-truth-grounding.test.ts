@@ -75,7 +75,7 @@ describe("executive-truth-grounding via release gate", () => {
     assert.equal(result.adjusted, true);
     assert.ok(result.violations.includes("PRODUCT_IDENTITY_MISMATCH"));
     assert.match(result.message, /Mini Fan/);
-    assert.match(result.message, /CURRENT_VERIFIED/);
+    assert.doesNotMatch(result.message, /Resistance Bands Set/i);
   });
 
   it("blocks fabricated sales when realised commerce is zero", () => {
@@ -86,7 +86,8 @@ describe("executive-truth-grounding via release gate", () => {
     assert.equal(result.adjusted, true);
     assert.ok(result.violations.includes("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM"));
     assert.ok(result.violations.includes("UNSUPPORTED_MARKED_EVIDENCED"));
-    assert.match(result.message, /UNKNOWN/);
+    assert.match(result.message, /unproven|established|realised orders|don't have verified/i);
+    assert.doesNotMatch(result.message, /Evidenced/i);
   });
 
   it("blocks false production-deploy authority claims", () => {

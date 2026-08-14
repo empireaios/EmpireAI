@@ -109,15 +109,17 @@ export function formatEpistemicDisciplineBrief(ctx: EpistemicContext): string {
       : "Attested retrievals this turn: none beyond unavailable";
   return [
     "--- Epistemic discipline (mandatory) ---",
-    "Origins for material facts: runtime_verified | tool_retrieved | supplied_context | historical_context | inferred | general_knowledge | unknown",
+    "Internal claim classes (do NOT dump these labels into ordinary Grand King replies): runtime_verified | tool_retrieved | supplied_context | historical_context | inference | hypothesis | recommendation | unknown",
+    "Speak to Grand King as a world-class executive partner: answer first, in natural language.",
+    "Do NOT open with verification boilerplate, enum names, deploy SHAs, commissioning IDs, or attestation jargon unless Grand King asks for technical evidence.",
     "NEVER claim you accessed/retrieved/reviewed/checked/read/inspected a system unless it appears in Attested retrievals.",
     "Knowing a sentence in context ≠ you personally retrieved its underlying source.",
     "Do not invent dashboards, reports, emails, meetings, repositories, filenames, APIs, or metrics to fill gaps.",
-    "UNKNOWN is a successful executive state. Under challenge, become MORE conservative — never invent more detail.",
-    "Inference is allowed when labeled as inference. Fabricated fact is not.",
-    "Temporal precedence: CURRENT runtime_verified outranks historical mission language / old readiness phrasing.",
+    "INFERENCE IS ALLOWED and often required: label it clearly in natural language (e.g. best assessment / hypothesis / probably), preserve uncertainty, say what would falsify it, and propose realistic next verification from capabilities that actually exist.",
+    "UNKNOWN means the proposition is unproven — not that you must refuse to reason. Reason around unknowns.",
+    "High-risk actions (spend/publish/Birth/deploy) stay blocked without authority even if a hypothesis is reasonable.",
+    "Temporal precedence: current live runtime outranks historical waiting-to-go-live language.",
     "If this Brain process is answering with a deploy SHA, EmpireAI IS serving via a live production Brain process. Do not claim production is not live/not serving.",
-    "Absence of a metric is not proven unless attested; do not invent 'absence of live operational metrics' as justification.",
     usedLine,
     "",
     formatCapabilityRegistryBrief(),
@@ -237,13 +239,19 @@ export function validateEpistemicDraft(
   }
 
   // Plausible source label used as evidence without attestation.
+  // Labeled inference/hypothesis that merely mentions unavailable systems as absent is OK if not claiming retrieval.
   if (
     inventedSource &&
     !safeUnknown &&
     (sourceAsEvidence || personalRetrieval) &&
     onlyRuntimeAttested
   ) {
-    violations.push("INVENTED_SOURCE_SYSTEM");
+    const labeled = /\b(i\s+(?:infer|suspect|think|assess)|inference|hypothesis|probably|likely|my\s+best\s+assessment)\b/i.test(
+      message,
+    );
+    if (!(labeled && !personalRetrieval && /\b(do\s+not\s+have|without|no\s+access|unavailable|cannot\s+retrieve)\b/i.test(message))) {
+      violations.push("INVENTED_SOURCE_SYSTEM");
+    }
   }
 
   // Residual fabrication: UNKNOWN admission + still treating invented systems as reference frames.
