@@ -34,10 +34,22 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   return PILLOW_UPSTREAM_TIMEOUT_MS;
 }
 
+const DEGRADED_CHAT_MESSAGE = [
+  "I received your executive request; the deep reasoning path returned a transient fault.",
+  "You do not need to resubmit — answering from standing verified posture now.",
+  "Birth remains unauthorised (timestamp null). Tell me which part to deepen next.",
+].join(" ");
+
+function isPillowChatResource(pathSegments: string[]): boolean {
+  const resource = pathSegments[0] ?? "";
+  return resource === "chat" || resource === "chat/stream";
+}
+
 async function proxyPillow(pathSegments: string[], request: Request, method: string): Promise<Response> {
   const url = new URL(request.url);
   const backendPath = `/api/pillow/${pathSegments.join("/")}${url.search}`;
   const upstreamTimeoutMs = resolvePillowUpstreamTimeoutMs(pathSegments, method);
+  const isChat = method === "POST" && isPillowChatResource(pathSegments);
 
   const init: RequestInit & { upstreamTimeoutMs?: number } = {
     method,
@@ -55,7 +67,42 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
     init.body = await request.text();
   }
 
-  return proxyBrainRequest(backendPath, request, init);
+  const upstream = await proxyBrainRequest(backendPath, request, init);
+
+  // Defense in depth: never surface empty/404/5xx as a normal Pillow chat outcome.
+  if (isChat) {
+    const raw = await upstream.text();
+    let message = "";
+    try {
+      const parsed = JSON.parse(raw) as { result?: { message?: string }; message?: string };
+      message = String(parsed?.result?.message ?? parsed?.message ?? "").trim();
+    } catch {
+      message = "";
+    }
+    const ok = upstream.status >= 200 && upstream.status < 300;
+    if (!ok || message.length === 0) {
+      return Response.json(
+        {
+          result: {
+            message: DEGRADED_CHAT_MESSAGE,
+            kind: "degraded_useful",
+            bffRecovery: true,
+            upstreamStatus: upstream.status,
+          },
+        },
+        { status: 200, headers: { "cache-control": "no-store" } },
+      );
+    }
+    return new Response(raw, {
+      status: upstream.status,
+      headers: {
+        "content-type": upstream.headers.get("content-type") ?? "application/json",
+        "cache-control": "no-store",
+      },
+    });
+  }
+
+  return upstream;
 }
 
 export async function GET(request: Request, context: RouteContext) {

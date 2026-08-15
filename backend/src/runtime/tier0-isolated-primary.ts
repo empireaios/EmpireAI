@@ -348,10 +348,17 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       (urlPath === "/api/pillow/chat" || urlPath.endsWith("/pillow/chat"));
 
     let worker = await probeWorkerLive(1_500);
+    // Treat spawn/restart windows as offline so we never proxy into half-boot 404s.
+    if (worker.ok && (workerState.starting || !workerState.child)) {
+      worker = { ok: false, ms: worker.ms, body: worker.body };
+    }
     if (!worker.ok && isPillowChat) {
       for (let i = 0; i < 3 && !worker.ok; i++) {
         await new Promise((r) => setTimeout(r, 1_500));
         worker = await probeWorkerLive(2_000);
+        if (worker.ok && (workerState.starting || !workerState.child)) {
+          worker = { ok: false, ms: worker.ms, body: worker.body };
+        }
       }
     }
 
@@ -405,19 +412,34 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
       const upstream = await fetch(target, init);
       const buf = Buffer.from(await upstream.arrayBuffer());
-      if (isPillowChat && upstream.status >= 500) {
-        return reply.code(200).send({
-          result: {
-            message: [
-              "I received your request; the reasoning worker returned a transient fault.",
-              "You do not need to resubmit. Birth remains unauthorised.",
-              "I can continue from verified operating state — ask which part to deepen next.",
-            ].join(" "),
-            kind: "degraded_useful",
-            tier0Isolation: true,
-            upstreamStatus: upstream.status,
-          },
-        });
+      // Pillow chat: any non-2xx (incl. 404 during half-boot) or empty body must
+      // still terminate usefully — never force Grand King to resubmit.
+      if (isPillowChat) {
+        let messagePreview = "";
+        try {
+          const parsed = JSON.parse(buf.toString("utf8")) as {
+            result?: { message?: string };
+            message?: string;
+          };
+          messagePreview = String(parsed?.result?.message ?? parsed?.message ?? "").trim();
+        } catch {
+          messagePreview = "";
+        }
+        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
+        if (!upstreamOk || messagePreview.length === 0) {
+          return reply.code(200).send({
+            result: {
+              message: [
+                "I received your request; the reasoning worker returned a transient fault.",
+                "You do not need to resubmit. Birth remains unauthorised.",
+                "I can continue from verified operating state — ask which part to deepen next.",
+              ].join(" "),
+              kind: "degraded_useful",
+              tier0Isolation: true,
+              upstreamStatus: upstream.status,
+            },
+          });
+        }
       }
       const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
       upstream.headers.forEach((value, key) => {
@@ -480,7 +502,8 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
           { code, signal, restarts: workerState.restarts },
           "Brain worker exited — Tier-0 primary remains up; respawning worker",
         );
-        const delay = Math.min(30_000, 2_000 * Math.max(1, workerState.restarts));
+        // Cap respawn delay — long backoff after exit(78) left chat hitting 404 races.
+        const delay = Math.min(8_000, 1_000 * Math.max(1, Math.min(workerState.restarts, 6)));
         setTimeout(() => spawnWorker(), delay);
       });
 

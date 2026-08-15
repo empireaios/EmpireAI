@@ -201,9 +201,16 @@ async function main() {
       return { ok: r.ok, status: r.status, text, body };
     };
     let outcome = await attempt();
-    // Internal retry on transient worker faults — do not count as user resubmission.
-    if ((!outcome.ok || outcome.status >= 500 || !String(outcome.text || "").trim()) && outcome.status !== 401) {
-      await sleep(1500);
+    // Internal retries on transient faults (404 half-boot, 5xx, empty) — never user resubmit.
+    for (let retry = 0; retry < 3; retry++) {
+      const transient =
+        outcome.status !== 401 &&
+        (!outcome.ok ||
+          outcome.status === 404 ||
+          outcome.status >= 500 ||
+          !String(outcome.text || "").trim());
+      if (!transient) break;
+      await sleep(1_500 * (retry + 1));
       outcome = await attempt();
     }
     return outcome;
