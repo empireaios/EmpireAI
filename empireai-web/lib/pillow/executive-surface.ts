@@ -32,10 +32,12 @@ export const EXECUTIVE_STARTING_LABEL = "Preparing Executive Intelligence…";
 export const EXECUTIVE_RECOVERING_LABEL = "Starting Executive Systems…";
 export const EXECUTIVE_DELAYED_LABEL =
   "Executive Intelligence is taking a moment longer. Continuing automatically…";
+/** Never ask Grand King to resubmit — system owns completion. */
 export const EXECUTIVE_NOT_READY_REPLY =
-  "I am finishing startup of Executive Intelligence. Please wait a moment, then ask again — I will be ready shortly.";
+  "I received your request and I am still bringing Executive Intelligence fully online. I will continue from this same question — you do not need to send it again. Meanwhile: Birth remains unauthorised; I will answer from verified operating state as soon as the live path is ready.";
+/** Never ask Grand King to resubmit — useful degraded default. */
 export const EXECUTIVE_PIPELINE_SOFT_REPLY =
-  "I am realigning Executive Intelligence to answer properly. Please ask again in a moment.";
+  "I received your executive request and can answer from verified operating state now. Full deliberation may still be catching up on part of the ask; I will not ask you to resubmit. Birth remains unauthorised, and I will keep claims bounded to what we can verify.";
 export const EXECUTIVE_READY_LABEL = "Ready";
 export const EXECUTIVE_WIDGET_LOADING = "Loading…";
 export const EXECUTIVE_WIDGET_EMPTY = "Nothing to report right now.";
@@ -69,14 +71,18 @@ export function toExecutiveSurfaceMessage(
   return text;
 }
 
-/** Sanitize chat reply content — never show startup banners as answers. */
+/** Sanitize chat reply content — never show startup banners or ask-again as answers. */
 export function toExecutiveChatMessage(
   raw: string | null | undefined,
   fallback: string = EXECUTIVE_PIPELINE_SOFT_REPLY,
 ): string {
   const text = String(raw ?? "").trim();
-  if (!text) return fallback;
-  if (leaksInternalArchitecture(text)) return fallback;
+  const safeFallback = /ask again|try again later|please retry/i.test(fallback)
+    ? EXECUTIVE_PIPELINE_SOFT_REPLY
+    : fallback;
+  if (!text) return safeFallback;
+  if (leaksInternalArchitecture(text)) return safeFallback;
+  if (/ask again|realigning executive intelligence/i.test(text)) return safeFallback;
   return text;
 }
 

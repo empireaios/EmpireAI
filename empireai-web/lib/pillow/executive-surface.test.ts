@@ -34,7 +34,28 @@ describe("executive surface language", () => {
     );
     assert.equal(out, EXECUTIVE_PIPELINE_SOFT_REPLY);
     assert.equal(leaksInternalArchitecture(out), false);
+    assert.doesNotMatch(out, /ask again/i);
   });
+
+  test("soft and not-ready replies never demand user resubmission", () => {
+    assert.doesNotMatch(EXECUTIVE_PIPELINE_SOFT_REPLY, /ask again|try again later/i);
+    assert.doesNotMatch(EXECUTIVE_NOT_READY_REPLY, /ask again|try again later/i);
+    assert.match(EXECUTIVE_PIPELINE_SOFT_REPLY, /do not need to resubmit|not ask you to resubmit/i);
+  });
+
+  test("chat sanitizer requires safe fallback for architecture leaks", () => {
+    const leak =
+      "Constitutional gate: Pillow executive pipeline unavailable. Brain assistant fallback is disabled.";
+    assert.equal(
+      toExecutiveChatMessage(leak, EXECUTIVE_PIPELINE_SOFT_REPLY),
+      EXECUTIVE_PIPELINE_SOFT_REPLY,
+    );
+  });
+
+  test("not-ready reply never leaks architecture", () => {
+    assert.equal(leaksInternalArchitecture(EXECUTIVE_NOT_READY_REPLY), false);
+  });
+});
 
   test("chat sanitizer requires safe fallback for architecture leaks", () => {
     const leak =

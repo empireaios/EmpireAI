@@ -657,6 +657,7 @@ export async function registerPillowRoutes(
       requiredKnowledgeFilesFound: governance?.requiredKnowledgeFilesFound ?? false,
       missingKnowledgeFiles: governance?.missingKnowledgeFiles ?? [],
       doctrineFilesFound: governance?.doctrineFilesFound ?? 0,
+      responseReliability: (await import("../executive-response-completion.js")).getPillowResponseReliabilitySnapshot(),
     });
   });
 
