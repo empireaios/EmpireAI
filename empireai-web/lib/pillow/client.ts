@@ -145,12 +145,18 @@ export async function sendPillowChat(input: {
   sessionId: string;
   workspaceId?: string;
   workspaceContext?: Record<string, unknown>;
-}): Promise<PillowChatResult> {
-  const result = await pillowRequest<{ result: PillowChatResult }>("/api/pillow/chat", {
+}): Promise<PillowChatResult & { reboundSessionId?: string }> {
+  const result = await pillowRequest<{
+    result: PillowChatResult;
+    reboundSessionId?: string;
+  }>("/api/pillow/chat", {
     method: "POST",
     body: JSON.stringify(input),
   });
-  return result.result;
+  return {
+    ...result.result,
+    ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
+  };
 }
 
 export async function fetchPillowHistory(sessionId: string): Promise<{

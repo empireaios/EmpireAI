@@ -39834,19 +39834,50 @@ export async function registerPillowRoutes(
     );
 
     try {
-      const result = await pillowHost.routePrompt({
-        workspaceId,
-        sessionId: body.sessionId,
-        message: body.message,
-        actor: user.email,
-        correlationId: request.id,
-        provider: body.provider,
-        workspaceContext: body.workspaceContext,
-      });
+      let sessionId = body.sessionId;
+      let reboundSessionId: string | undefined;
+      let result;
+      try {
+        result = await pillowHost.routePrompt({
+          workspaceId,
+          sessionId,
+          message: body.message,
+          actor: user.email,
+          correlationId: request.id,
+          provider: body.provider,
+          workspaceContext: body.workspaceContext,
+        });
+      } catch (error) {
+        // Worker restart clears in-memory sessions — rebind once and complete
+        // the same request so Grand King never has to resubmit.
+        if (!(error instanceof PillowSessionNotFoundError)) throw error;
+        const rebound = pillowHost.createSession(workspaceId);
+        sessionId = rebound.sessionId;
+        reboundSessionId = rebound.sessionId;
+        logger.warn(
+          {
+            correlationId: request.id,
+            priorSessionId: body.sessionId,
+            reboundSessionId,
+            stage: "chat.session_rebind",
+          },
+          "Pillow chat session missing after worker restart; rebound and retry",
+        );
+        result = await pillowHost.routePrompt({
+          workspaceId,
+          sessionId,
+          message: body.message,
+          actor: user.email,
+          correlationId: request.id,
+          provider: body.provider,
+          workspaceContext: body.workspaceContext,
+        });
+      }
       logger.info(
         {
           correlationId: request.id,
-          sessionId: body.sessionId,
+          sessionId,
+          reboundSessionId: reboundSessionId ?? null,
           stage: "chat.exit",
           durationMs: Date.now() - chatStarted,
           trace: result.trace,
@@ -39854,7 +39885,10 @@ export async function registerPillowRoutes(
         },
         "Pillow chat request completed",
       );
-      return reply.send({ result });
+      return reply.send({
+        result,
+        ...(reboundSessionId ? { reboundSessionId } : {}),
+      });
     } catch (error) {
       if (error instanceof PillowSessionNotFoundError) {
         return reply.code(404).send({ error: error.message });
@@ -39901,15 +39935,35 @@ export async function registerPillowRoutes(
 
     try {
       writeEvent("started", { sessionId: body.sessionId });
-      const result = await pillowHost.routePrompt({
-        workspaceId,
-        sessionId: body.sessionId,
-        message: body.message,
-        actor: user.email,
-        correlationId: request.id,
-        provider: body.provider,
-        workspaceContext: body.workspaceContext,
-      });
+      let sessionId = body.sessionId;
+      let reboundSessionId: string | undefined;
+      let result;
+      try {
+        result = await pillowHost.routePrompt({
+          workspaceId,
+          sessionId,
+          message: body.message,
+          actor: user.email,
+          correlationId: request.id,
+          provider: body.provider,
+          workspaceContext: body.workspaceContext,
+        });
+      } catch (error) {
+        if (!(error instanceof PillowSessionNotFoundError)) throw error;
+        const rebound = pillowHost.createSession(workspaceId);
+        sessionId = rebound.sessionId;
+        reboundSessionId = rebound.sessionId;
+        writeEvent("session_rebound", { sessionId: reboundSessionId });
+        result = await pillowHost.routePrompt({
+          workspaceId,
+          sessionId,
+          message: body.message,
+          actor: user.email,
+          correlationId: request.id,
+          provider: body.provider,
+          workspaceContext: body.workspaceContext,
+        });
+      }
 
       const tokens = result.message.match(/\S+\s*|\s+/g) ?? [result.message];
       for (const token of tokens) {
@@ -39917,7 +39971,7 @@ export async function registerPillowRoutes(
         await new Promise((resolve) => setTimeout(resolve, 12));
       }
 
-      writeEvent("done", { result });
+      writeEvent("done", { result, ...(reboundSessionId ? { reboundSessionId } : {}) });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       writeEvent("error", { message });

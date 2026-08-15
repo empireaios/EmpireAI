@@ -478,6 +478,16 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           sessionId,
           workspaceContext: buildContextWithContinuity(),
         });
+        if (chatResult.reboundSessionId && chatResult.reboundSessionId !== sessionId) {
+          const existing = loadPillowSession();
+          savePillowSession({
+            turns: existing?.turns ?? [],
+            lastScreenPath: existing?.lastScreenPath ?? state.context.pathname,
+            updatedAt: new Date().toISOString(),
+            hostSessionId: chatResult.reboundSessionId,
+          });
+          markReady(chatResult.reboundSessionId, existing?.turns ?? []);
+        }
         const response = mapPillowChatToAssistantResponse(chatResult, query);
         // Never pass raw text as fallback — constitutional/infra leaks must not reach UX.
         const surfaced = {

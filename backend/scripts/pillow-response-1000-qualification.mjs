@@ -27,6 +27,10 @@ const OUT = path.join(ROOT, "docs/audits/complete-state");
 const ASK_AGAIN =
   /\b(please ask again|ask again in a moment|ask again later|try again later|realigning executive intelligence|please retry when the executive pipeline)\b/i;
 
+/** Tier-0/BFF canned degrade — availability OK, but not semantic qualification alone. */
+const TIER0_BOILERPLATE =
+  /reasoning worker returned a transient fault|deep reasoning (?:worker|path).*(?:restarting|transient fault)|standing verified posture now/i;
+
 function extractCookie(res) {
   const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
   for (const h of raw) {
@@ -38,6 +42,22 @@ function extractCookie(res) {
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+function usefulEnough(text, cls) {
+  const t = String(text || "").trim();
+  if (t.length < 24) return false;
+  if (ASK_AGAIN.test(t)) return false;
+  if (/^sorry\.?$/i.test(t)) return false;
+  // Pure infrastructure degrade without task substance is not a useful terminal for qual.
+  if (TIER0_BOILERPLATE.test(t) && t.length < 420) return false;
+  // Multi-part / structured: require multiple substantive sentences or numbered coverage signal
+  if (cls.startsWith("B_") || cls.startsWith("J_")) {
+    const hits = (t.match(/\d+[\).:]|part|theme|unknown|verified|orders|birth|revenue|focus/gi) || [])
+      .length;
+    if (hits < 3) return false;
+  }
+  return true;
 }
 
 function buildPlan(target) {
@@ -119,20 +139,6 @@ function promptFor(cls, i) {
   }
 }
 
-function usefulEnough(text, cls) {
-  const t = String(text || "").trim();
-  if (t.length < 24) return false;
-  if (ASK_AGAIN.test(t)) return false;
-  if (/^sorry\.?$/i.test(t)) return false;
-  // Multi-part / structured: require multiple substantive sentences or numbered coverage signal
-  if (cls.startsWith("B_") || cls.startsWith("J_")) {
-    const hits = (t.match(/\d+[\).:]|part|theme|unknown|verified|orders|birth|revenue|focus/gi) || [])
-      .length;
-    if (hits < 3) return false;
-  }
-  return true;
-}
-
 async function main() {
   const plan = buildPlan(TARGET);
   const report = {
@@ -188,6 +194,18 @@ async function main() {
     process.exit(2);
   }
 
+  async function refreshSession() {
+    const s = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({}),
+      signal: AbortSignal.timeout(90_000),
+    });
+    const j = await s.json().catch(() => ({}));
+    if (s.ok && j.session?.sessionId) sessionId = j.session.sessionId;
+    return Boolean(sessionId);
+  }
+
   async function chat(message) {
     const attempt = async () => {
       const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
@@ -197,20 +215,25 @@ async function main() {
         signal: AbortSignal.timeout(120_000),
       });
       const body = await r.json().catch(() => ({}));
+      if (body.reboundSessionId) sessionId = body.reboundSessionId;
       const text = body.result?.message ?? body.message ?? "";
       return { ok: r.ok, status: r.status, text, body };
     };
     let outcome = await attempt();
-    // Internal retries on transient faults (404 half-boot, 5xx, empty) — never user resubmit.
-    for (let retry = 0; retry < 3; retry++) {
+    // Internal retries on transient faults / session loss / pure tier0 boilerplate.
+    for (let retry = 0; retry < 4; retry++) {
+      const text = String(outcome.text || "").trim();
+      const boilerplate = TIER0_BOILERPLATE.test(text) && text.length < 420;
       const transient =
         outcome.status !== 401 &&
         (!outcome.ok ||
           outcome.status === 404 ||
           outcome.status >= 500 ||
-          !String(outcome.text || "").trim());
+          !text ||
+          boilerplate);
       if (!transient) break;
-      await sleep(1_500 * (retry + 1));
+      await sleep(1_200 * (retry + 1));
+      if (outcome.status === 404 || boilerplate) await refreshSession();
       outcome = await attempt();
     }
     return outcome;
