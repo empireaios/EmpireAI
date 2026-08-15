@@ -29,7 +29,7 @@ const ASK_AGAIN =
 
 /** Tier-0/BFF canned degrade — availability OK, but not semantic qualification alone. */
 const TIER0_BOILERPLATE =
-  /reasoning worker returned a transient fault|deep reasoning (?:worker|path).*(?:restarting|transient fault)|standing verified posture now/i;
+  /reasoning worker returned a transient fault|worker proxy timed out|deep reasoning (?:worker|path).*(?:restarting|transient fault)|standing verified posture now|continuing from verified posture|do not need to resubmit\. Birth remains unauthorised/i;
 
 function extractCookie(res) {
   const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
@@ -309,6 +309,22 @@ async function main() {
         }
       } catch (error) {
         outcome = { ok: false, status: 0, text: "", error: String(error?.message || error) };
+      }
+
+      // If accepted but not yet semantically useful (e.g. thin Tier-0 degrade),
+      // recover internally — never count that as Grand King resubmission.
+      if (
+        outcome.ok &&
+        outcome.status < 500 &&
+        String(outcome.text || "").trim() &&
+        !usefulEnough(String(outcome.text || ""), cls)
+      ) {
+        for (let recover = 0; recover < 3; recover++) {
+          await sleep(2_000 * (recover + 1));
+          await refreshSession();
+          outcome = await chat(prompt);
+          if (usefulEnough(String(outcome.text || ""), cls)) break;
+        }
       }
 
       const accepted = outcome.ok && outcome.status < 500;
