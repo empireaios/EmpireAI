@@ -181,16 +181,22 @@ async function main() {
     process.exit(2);
   }
 
-  const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
-    method: "POST",
-    headers: { "content-type": "application/json", cookie },
-    body: JSON.stringify({}),
-    signal: AbortSignal.timeout(90_000),
-  });
-  const sj = await sess.json().catch(() => ({}));
-  let sessionId = sj.session?.sessionId;
-  if (!sess.ok || !sessionId) {
-    console.error(JSON.stringify({ pass: false, reason: "session", status: sess.status, body: sj }));
+  let sessionId = null;
+  for (let attempt = 0; attempt < 12; attempt++) {
+    const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({}),
+      signal: AbortSignal.timeout(90_000),
+    });
+    const sj = await sess.json().catch(() => ({}));
+    sessionId = sj.session?.sessionId ?? null;
+    if (sess.ok && sessionId) break;
+    // Worker restart / HA window — wait and retry; do not ask the operator to resubmit.
+    await sleep(2_500 * (attempt + 1));
+  }
+  if (!sessionId) {
+    console.error(JSON.stringify({ pass: false, reason: "session", status: "exhausted_retries" }));
     process.exit(2);
   }
 
