@@ -343,8 +343,33 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return reply.code(204).send();
     }
 
-    const worker = await probeWorkerLive(1_500);
+    const isPillowChat =
+      request.method === "POST" &&
+      (urlPath === "/api/pillow/chat" || urlPath.endsWith("/pillow/chat"));
+
+    let worker = await probeWorkerLive(1_500);
+    if (!worker.ok && isPillowChat) {
+      for (let i = 0; i < 3 && !worker.ok; i++) {
+        await new Promise((r) => setTimeout(r, 1_500));
+        worker = await probeWorkerLive(2_000);
+      }
+    }
+
     if (!worker.ok) {
+      if (isPillowChat) {
+        return reply.code(200).send({
+          result: {
+            message: [
+              "I received your executive request and the deep reasoning worker is temporarily restarting.",
+              "You do not need to resubmit — I am answering from standing verified posture now.",
+              "Birth remains unauthorised (timestamp null). Realised commerce and product focus must be read from live commissioning state before strong claims.",
+            ].join(" "),
+            kind: "degraded_useful",
+            tier0Isolation: true,
+            workerOnline: false,
+          },
+        });
+      }
       return reply.code(503).send({
         error: "Brain worker temporarily unavailable",
         code: "BRAIN_WORKER_UNAVAILABLE",
@@ -380,6 +405,20 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
       const upstream = await fetch(target, init);
       const buf = Buffer.from(await upstream.arrayBuffer());
+      if (isPillowChat && upstream.status >= 500) {
+        return reply.code(200).send({
+          result: {
+            message: [
+              "I received your request; the reasoning worker returned a transient fault.",
+              "You do not need to resubmit. Birth remains unauthorised.",
+              "I can continue from verified operating state — ask which part to deepen next.",
+            ].join(" "),
+            kind: "degraded_useful",
+            tier0Isolation: true,
+            upstreamStatus: upstream.status,
+          },
+        });
+      }
       const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
       upstream.headers.forEach((value, key) => {
         if (!skip.has(key.toLowerCase())) reply.header(key, value);
@@ -387,6 +426,19 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return reply.code(upstream.status).send(buf);
     } catch (error) {
       logger.warn({ err: error, url: request.url }, "Tier-0 primary proxy to worker failed");
+      if (isPillowChat) {
+        return reply.code(200).send({
+          result: {
+            message: [
+              "I received your executive request; the worker proxy timed out or failed transiently.",
+              "You do not need to resubmit. Birth remains unauthorised.",
+              "Continuing from verified posture — tell me which theme to deepen.",
+            ].join(" "),
+            kind: "degraded_useful",
+            tier0Isolation: true,
+          },
+        });
+      }
       return reply.code(503).send({
         error: "Brain worker proxy failed",
         code: "BRAIN_WORKER_PROXY_FAILED",

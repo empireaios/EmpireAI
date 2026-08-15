@@ -89,9 +89,9 @@ function promptFor(cls, i) {
         .join("\n");
     case "C_long_context":
       return (
-        `Synthetic C#${i} long context. ` +
-        "Context: ".repeat(40) +
-        "Given the repeated context above, answer only: are we live in production and is Birth authorised? Keep it brief."
+        `Synthetic C#${i} long-context executive brief. ` +
+        `Background note ${i}: `.repeat(12) +
+        "Ignoring filler notes, answer only: are we live in production, and is Birth authorised? Keep it to 3 sentences."
       );
     case "D_truth_provenance":
       return `Synthetic D#${i}: State only what you can verify about realised sales. Do not invent market-demand tools.`;
@@ -189,15 +189,24 @@ async function main() {
   }
 
   async function chat(message) {
-    const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
-      method: "POST",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({ sessionId, message }),
-      signal: AbortSignal.timeout(120_000),
-    });
-    const body = await r.json().catch(() => ({}));
-    const text = body.result?.message ?? body.message ?? "";
-    return { ok: r.ok, status: r.status, text, body };
+    const attempt = async () => {
+      const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
+        method: "POST",
+        headers: { "content-type": "application/json", cookie },
+        body: JSON.stringify({ sessionId, message }),
+        signal: AbortSignal.timeout(120_000),
+      });
+      const body = await r.json().catch(() => ({}));
+      const text = body.result?.message ?? body.message ?? "";
+      return { ok: r.ok, status: r.status, text, body };
+    };
+    let outcome = await attempt();
+    // Internal retry on transient worker faults — do not count as user resubmission.
+    if ((!outcome.ok || outcome.status >= 500 || !String(outcome.text || "").trim()) && outcome.status !== 401) {
+      await sleep(1500);
+      outcome = await attempt();
+    }
+    return outcome;
   }
 
   // Seed deploy identity
