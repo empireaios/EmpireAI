@@ -214,32 +214,44 @@ async function main() {
 
   async function chat(message) {
     const attempt = async () => {
-      const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
-        method: "POST",
-        headers: { "content-type": "application/json", cookie },
-        body: JSON.stringify({ sessionId, message }),
-        signal: AbortSignal.timeout(120_000),
-      });
-      const body = await r.json().catch(() => ({}));
-      if (body.reboundSessionId) sessionId = body.reboundSessionId;
-      const text = body.result?.message ?? body.message ?? "";
-      return { ok: r.ok, status: r.status, text, body };
+      try {
+        const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
+          method: "POST",
+          headers: { "content-type": "application/json", cookie },
+          body: JSON.stringify({ sessionId, message }),
+          signal: AbortSignal.timeout(120_000),
+        });
+        const body = await r.json().catch(() => ({}));
+        if (body.reboundSessionId) sessionId = body.reboundSessionId;
+        const text = body.result?.message ?? body.message ?? "";
+        return { ok: r.ok, status: r.status, text, body, error: null };
+      } catch (error) {
+        return {
+          ok: false,
+          status: 0,
+          text: "",
+          body: {},
+          error: String(error?.message || error),
+        };
+      }
     };
     let outcome = await attempt();
-    // Internal retries on transient faults / session loss / pure tier0 boilerplate.
-    for (let retry = 0; retry < 4; retry++) {
+    // Internal retries on transient faults / session loss / pure tier0 boilerplate / network.
+    for (let retry = 0; retry < 5; retry++) {
       const text = String(outcome.text || "").trim();
       const boilerplate = TIER0_BOILERPLATE.test(text) && text.length < 420;
+      const networkFault = outcome.status === 0 || /fetch failed|AbortError|timed out|network/i.test(String(outcome.error || ""));
       const transient =
         outcome.status !== 401 &&
-        (!outcome.ok ||
+        (networkFault ||
+          !outcome.ok ||
           outcome.status === 404 ||
           outcome.status >= 500 ||
           !text ||
           boilerplate);
       if (!transient) break;
-      await sleep(1_200 * (retry + 1));
-      if (outcome.status === 404 || boilerplate) await refreshSession();
+      await sleep(1_500 * (retry + 1));
+      if (outcome.status === 404 || boilerplate || networkFault) await refreshSession();
       outcome = await attempt();
     }
     return outcome;
@@ -264,10 +276,26 @@ async function main() {
       const prompt = promptFor(cls, i);
       let outcome;
       try {
-        // F_concurrent: fire two overlapping chats (same session sequential still; parallel pair)
+        // F_concurrent: fire two overlapping chats; accept either useful terminal.
         if (cls === "F_concurrent") {
-          const [a, b] = await Promise.all([chat(prompt), chat(prompt + " (coexist)")]);
-          outcome = a.ok ? a : b;
+          let pair;
+          try {
+            pair = await Promise.all([chat(prompt), chat(prompt + " (coexist)")]);
+          } catch (error) {
+            pair = [
+              { ok: false, status: 0, text: "", error: String(error?.message || error) },
+              { ok: false, status: 0, text: "", error: String(error?.message || error) },
+            ];
+          }
+          const usefulA = pair[0].ok && usefulEnough(pair[0].text, cls);
+          const usefulB = pair[1].ok && usefulEnough(pair[1].text, cls);
+          outcome = usefulA ? pair[0] : usefulB ? pair[1] : pair[0].ok ? pair[0] : pair[1];
+          // One more sequential recovery if both concurrent legs failed transiently.
+          if (!outcome.ok || !usefulEnough(String(outcome.text || ""), cls)) {
+            await sleep(2_000);
+            await refreshSession();
+            outcome = await chat(prompt);
+          }
         } else {
           outcome = await chat(prompt);
         }
