@@ -51,11 +51,19 @@ function usefulEnough(text, cls) {
   if (/^sorry\.?$/i.test(t)) return false;
   // Pure infrastructure degrade without task substance is not a useful terminal for qual.
   if (TIER0_BOILERPLATE.test(t) && t.length < 420) return false;
-  // Multi-part / structured: require multiple substantive sentences or numbered coverage signal
+  // Multi-part / structured: numbered coverage OR substantive multi-theme prose.
   if (cls.startsWith("B_") || cls.startsWith("J_")) {
-    const hits = (t.match(/\d+[\).:]|part|theme|unknown|verified|orders|birth|revenue|focus/gi) || [])
-      .length;
-    if (hits < 3) return false;
+    const numbered = (t.match(/\d+\s*[\).:]/g) || []).length;
+    const themeHits = (
+      t.match(
+        /\b(verified|unknown|orders?|sales?|birth|revenue|focus|product|demand|premise|next step|realis[ea]d|commissioning)\b/gi,
+      ) || []
+    ).length;
+    const sentences = (t.match(/[.!?](?:\s|$)/g) || []).length;
+    if (numbered >= 3) return true;
+    if (themeHits >= 3 && (sentences >= 2 || t.length >= 160)) return true;
+    if (themeHits >= 2 && t.length >= 220) return true;
+    return false;
   }
   return true;
 }
