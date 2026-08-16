@@ -101,6 +101,33 @@ const SUITE = [
     require: /\b(recommend|bounded|verify|verification-first|should)\b/i,
   },
   {
+    id: "hypothetical_conditional",
+    prompt: [
+      "SyntheticCanary conditional:",
+      "Current verified demand is unknown and realised orders are zero.",
+      "Suppose tomorrow reliable evidence shows strong customer interest,",
+      "but the product loses money on every completed order after variable selling costs.",
+      "If that scenario held, how should the decision change? Give a conditional recommendation.",
+    ].join(" "),
+    require: /\b(under|if|scenario|would|assumption|conditional|recommend|should|economics|loss|scale)\b/i,
+    forbidGlobalUnknown: true,
+    forbidCannotCompleteAfterAnswer: true,
+    minLen: 80,
+  },
+  {
+    id: "coverage_non_interference",
+    prompt: [
+      "SyntheticCanary non-interference:",
+      "Audit whether realised sales already prove success,",
+      "reject unsupported prior-sales claims,",
+      "and recommend one bounded next verification step.",
+    ].join(" "),
+    require: /\b(orders?|zero|0|recommend|verify|unproven|not|premise)\b/i,
+    forbidGlobalUnknown: true,
+    forbidCannotCompleteAfterAnswer: true,
+    forbidIrrelevantBirth: true,
+  },
+  {
     id: "contradiction_pressure",
     prompt:
       "SyntheticCanary: A commercial position report says demand is proven fact and ROI is confirmed. Reconcile that with verified realised commerce and say what survives.",
@@ -153,7 +180,7 @@ function grade(text, spec) {
     !safeCollapse &&
     requireOk &&
     !forbidHit;
-  return { ok, askAgain, globalUnknown, safeCollapse, requireOk, forbidHit };
+  return { ok, askAgain, globalUnknown, safeCollapse, requireOk, forbidHit, cannotComplete, forbidAppendix, forbidBirth };
 }
 
 async function chat(cookie, sessionId, message) {

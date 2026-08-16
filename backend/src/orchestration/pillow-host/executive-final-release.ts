@@ -52,7 +52,8 @@ export function finalVisibleSemanticsFail(
     contract.requiresPremiseAudit ||
     contract.requiresTemporalReconciliation ||
     contract.requiresRecommendation ||
-    contract.requiresEvidenceExplanation;
+    contract.requiresEvidenceExplanation ||
+    contract.requiresConditionalReasoning;
 
   if (multi && isGlobalEvidenceCollapseReply(finalVisibleText)) {
     return {
@@ -78,6 +79,33 @@ export function finalVisibleSemanticsFail(
     return {
       fail: true,
       reason: "SILENTLY_DROPPED_MATERIAL_TASKS",
+      contract,
+      coverage,
+    };
+  }
+  if (
+    /i cannot complete that part from verified evidence this turn/i.test(finalVisibleText) &&
+    String(finalVisibleText || "").trim().length >= 200
+  ) {
+    return {
+      fail: true,
+      reason: "CONTRADICTORY_COVERAGE_APPENDIX",
+      contract,
+      coverage,
+    };
+  }
+  if (multi && contract.requiresConditionalReasoning && !/\b(under (?:the )?assumption|if (?:that|this)|scenario|would|conditional)\b/i.test(finalVisibleText)) {
+    return {
+      fail: true,
+      reason: "HYPOTHETICAL_NOT_REASONED",
+      contract,
+      coverage,
+    };
+  }
+  if (multi && contract.requiresRecommendation && !/\b(recommend|should|I would|decision|choose|prefer|better supported)\b/i.test(finalVisibleText)) {
+    return {
+      fail: true,
+      reason: "RECOMMENDATION_OMITTED",
       contract,
       coverage,
     };

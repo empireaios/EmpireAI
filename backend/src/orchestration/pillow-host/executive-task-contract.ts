@@ -14,12 +14,22 @@ export type ExecutiveTaskKind =
   | "operating_briefing"
   | "premise_audit"
   | "temporal_reconciliation"
+  | "conditional_reasoning"
   | "recommendation"
   | "evidence_explanation"
   | "inference"
   | "uncertainty"
   | "multipart_unit"
   | "general";
+
+/** Internal premise scope — never dump these labels into Grand King chat. */
+export type ReasoningPremiseType =
+  | "CURRENT_VERIFIED_FACT"
+  | "OWNER_CURRENT_ASSERTION"
+  | "HYPOTHETICAL"
+  | "HISTORICAL_CLAIM"
+  | "INFERENCE"
+  | "UNKNOWN";
 
 export type ExecutiveTaskUnit = {
   id: string;
@@ -35,6 +45,11 @@ export type ExecutiveTaskContract = {
   requiresEvidenceExplanation: boolean;
   requiresPremiseAudit: boolean;
   requiresTemporalReconciliation: boolean;
+  requiresConditionalReasoning: boolean;
+  /** Owner-supplied hypotheticals for this turn only — not current verified fact. */
+  hypotheticalPremises: string[];
+  /** Surface Birth only when the ask makes it relevant. */
+  birthRelevant: boolean;
   multipart: boolean;
 };
 
@@ -126,15 +141,57 @@ function splitMultipartUnits(message: string): string[] {
   return [];
 }
 
+/** Extract owner-scoped hypothetical premises (not current verified facts). */
+export function extractHypotheticalPremises(message: string): string[] {
+  const text = String(message || "").trim();
+  if (!text) return [];
+  const out: string[] = [];
+  const push = (raw: string) => {
+    const t = raw.replace(/\s+/g, " ").trim();
+    if (t.length < 12) return;
+    if (out.some((x) => x.toLowerCase() === t.toLowerCase())) return;
+    out.push(t.slice(0, 220));
+  };
+  for (const m of text.matchAll(
+    /(?:assume|supposing|suppose|imagine)(?:\s+that)?\s+(.{12,220}?)(?:\.|\n|;|$)/gi,
+  )) {
+    if (m[1]) push(m[1]);
+  }
+  for (const m of text.matchAll(
+    /\b(?:if|when)\s+(.{8,160}?)\s+(?:were|becomes?|became|were to become)\s+(.{8,160}?)(?:\.|\n|;|$)/gi,
+  )) {
+    if (m[1] && m[2]) push(`${m[1].trim()} → ${m[2].trim()}`);
+  }
+  for (const m of text.matchAll(
+    /\b(?:tomorrow|next (?:week|month)|in (?:this|that) (?:hypothetical )?scenario)[:,]?\s*(.{12,220}?)(?:\.|\n|;|$)/gi,
+  )) {
+    if (m[1]) push(m[1]);
+  }
+  for (const m of text.matchAll(
+    /\bfor (?:this|the) (?:hypothetical|scenario|thought experiment)[:,]?\s*(.{12,220}?)(?:\.|\n|;|$)/gi,
+  )) {
+    if (m[1]) push(m[1]);
+  }
+  return out.slice(0, 8);
+}
+
 function detectKindsInText(text: string): ExecutiveTaskKind[] {
   const m = text;
   const kinds: ExecutiveTaskKind[] = [];
   if (
-    /\b(premise|assumption|assumptions|audit (?:each|these|the)|evaluate (?:each|whether)|classify (?:each|these)|supported|contradicted|unverif)/i.test(
+    /\b(premise|assumption|assumptions|audit (?:each|these|the)|evaluate (?:each|whether)|classify (?:each|these)|supported|contradicted|unverif|claim[- ]by[- ]claim|better supported)/i.test(
       m,
     )
   ) {
     kinds.push("premise_audit");
+  }
+  if (
+    /\b(assume|suppos(?:e|ing)|hypothetic|if .{0,60} (?:were|becomes?|became)|under (?:the )?assumption|for (?:this|the) scenario|conditional(?:ly)?)\b/i.test(
+      m,
+    ) ||
+    extractHypotheticalPremises(m).length > 0
+  ) {
+    kinds.push("conditional_reasoning");
   }
   if (
     /\b(temporal|reconcil|histor(?:y|ical)|yesterday|today|tomorrow|superseded|was true|now true|future (?:state|hypothetical)|how (?:does|do) (?:this|that|the conclusion) change)/i.test(
@@ -144,7 +201,7 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
     kinds.push("temporal_reconciliation");
   }
   if (
-    /\b(recommend|what should (?:we|i) do|next (?:step|move)|priorit|play to win|bounded (?:test|experiment)|defer)\b/i.test(
+    /\b(recommend(?:ation)?|what should (?:we|i) do|next (?:step|move)|priorit|play to win|bounded (?:test|experiment)|defer|commercial decision|decide (?:today|which)|which (?:version|one) (?:is|would be) better|make a (?:decision|call))\b/i.test(
       m,
     )
   ) {
@@ -163,7 +220,7 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
     kinds.push("inference");
   }
   if (
-    /\b(what (?:don'?t|do not) we know|uncertain|unknown|missing evidence|what would falsify)\b/i.test(
+    /\b(what (?:don'?t|do not) we know|uncertain|unknown|missing evidence|what would falsify|identify unknowns)\b/i.test(
       m,
     )
   ) {
@@ -186,6 +243,8 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   const text = String(userMessage || "").trim();
   const parts = splitMultipartUnits(text);
   const globalKinds = detectKindsInText(text);
+  const hypotheticalPremises = extractHypotheticalPremises(text);
+  const birthRelevant = /\b(birth|authoris(?:e|ation)|gates?\s+pass)\b/i.test(text);
   const tasks: ExecutiveTaskUnit[] = [];
 
   if (parts.length >= 2) {
@@ -196,9 +255,11 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
         local[0] ??
         (globalKinds.includes("premise_audit")
           ? "premise_audit"
-          : globalKinds.includes("temporal_reconciliation")
-            ? "temporal_reconciliation"
-            : "multipart_unit");
+          : globalKinds.includes("conditional_reasoning")
+            ? "conditional_reasoning"
+            : globalKinds.includes("temporal_reconciliation")
+              ? "temporal_reconciliation"
+              : "multipart_unit");
       tasks.push({
         id: `t${i + 1}`,
         kind,
@@ -207,10 +268,23 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
       });
     }
   } else if (globalKinds.length > 0) {
-    for (let i = 0; i < globalKinds.length; i++) {
+    // Prefer distinct obligation kinds without duplicating the full prompt as N silent-drop traps.
+    const preferred = [
+      "conditional_reasoning",
+      "premise_audit",
+      "temporal_reconciliation",
+      "recommendation",
+      "evidence_explanation",
+      "uncertainty",
+      "inference",
+      "operating_briefing",
+    ] as ExecutiveTaskKind[];
+    const ordered = preferred.filter((k) => globalKinds.includes(k));
+    const use = ordered.length > 0 ? ordered : globalKinds;
+    for (let i = 0; i < use.length; i++) {
       tasks.push({
         id: `t${i + 1}`,
-        kind: globalKinds[i]!,
+        kind: use[i]!,
         text: text.slice(0, 280),
         required: true,
       });
@@ -224,19 +298,22 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     });
   }
 
-  // Cross-cutting obligations even when multipart already listed units.
   const requiresRecommendation =
     globalKinds.includes("recommendation") ||
-    /\b(recommend|what should (?:we|i) do|next (?:step|move))\b/i.test(text);
+    /\b(recommend(?:ation)?|what should (?:we|i) do|next (?:step|move)|commercial decision|decide (?:today|which))\b/i.test(
+      text,
+    );
   const requiresEvidenceExplanation =
     globalKinds.includes("evidence_explanation") ||
     /\b(how do you know|provenance|show (?:me )?the evidence)\b/i.test(text);
   const requiresPremiseAudit =
     globalKinds.includes("premise_audit") ||
-    /\b(premise|assumption)\b/i.test(text);
+    /\b(premise|assumption|claim[- ]by[- ]claim|better supported)\b/i.test(text);
   const requiresTemporalReconciliation =
     globalKinds.includes("temporal_reconciliation") ||
     /\b(reconcil|histor(?:y|ical)|yesterday|tomorrow|superseded)\b/i.test(text);
+  const requiresConditionalReasoning =
+    globalKinds.includes("conditional_reasoning") || hypotheticalPremises.length > 0;
 
   const ensureKind = (kind: ExecutiveTaskKind, label: string) => {
     if (tasks.some((t) => t.kind === kind)) return;
@@ -247,7 +324,13 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
       required: true,
     });
   };
-  if (requiresRecommendation) ensureKind("recommendation", "Provide a recommendation or conditional next move.");
+  if (requiresConditionalReasoning)
+    ensureKind(
+      "conditional_reasoning",
+      "Reason under the owner-supplied hypothetical without treating it as current verified fact.",
+    );
+  if (requiresRecommendation)
+    ensureKind("recommendation", "Provide a recommendation or conditional next move.");
   if (requiresEvidenceExplanation)
     ensureKind("evidence_explanation", "Explain how you know / provenance for key claims.");
   if (requiresPremiseAudit && parts.length < 2)
@@ -266,6 +349,9 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     requiresEvidenceExplanation,
     requiresPremiseAudit,
     requiresTemporalReconciliation,
+    requiresConditionalReasoning,
+    hypotheticalPremises,
+    birthRelevant,
     multipart: parts.length >= 2,
   };
 }
@@ -273,11 +359,13 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
 function kindSignals(kind: ExecutiveTaskKind): RegExp {
   switch (kind) {
     case "premise_audit":
-      return /\b(premise|assumption|supported|contradict|unverified|stale|inferred|cannot (?:establish|verify)|not established)\b/i;
+      return /\b(premise|assumption|supported|contradict|unverified|stale|inferred|cannot (?:establish|verify)|not established|better supported|version)\b/i;
     case "temporal_reconciliation":
       return /\b(histor(?:y|ical)|current(?:ly)?|future|superseded|was (?:true|correct)|now (?:true|verified)|yesterday|today|tomorrow|reconcil|changes? (?:the|our) conclusion)\b/i;
+    case "conditional_reasoning":
+      return /\b(under (?:the )?assumption|if (?:that|this|those)|in that scenario|conditional|would (?:change|not)|hypothetic|suppose|assuming|binding constraint|unit economics)\b/i;
     case "recommendation":
-      return /\b(recommend|should|next (?:step|move)|verify first|bounded|defer|conditional|priorit)\b/i;
+      return /\b(recommend(?:ation)?|should|next (?:step|move)|verify first|bounded|defer|conditional|priorit|better supported|I would|decision|choose|prefer|select|commercial (?:call|decision))\b/i;
     case "evidence_explanation":
       return /\b(because|source|provenance|how I know|from (?:live|verified|commissioning)|I can stand on|don't (?:yet )?have|not retrieved)\b/i;
     case "inference":
@@ -285,11 +373,11 @@ function kindSignals(kind: ExecutiveTaskKind): RegExp {
     case "uncertainty":
       return /\b(unknown|unproven|missing|uncertain|not (?:yet )?(?:verified|established)|would (?:falsify|change))\b/i;
     case "operating_briefing":
-      return /\b(live|product|orders?|revenue|birth|commerce|focus|posture|status)\b/i;
+      return /\b(live|product|orders?|revenue|commerce|focus|posture|status)\b/i;
     case "multipart_unit":
     case "general":
     default:
-      return /\b(live|product|orders?|birth|verified|unproven|recommend|because|premise|current|focus)\b/i;
+      return /\b(live|product|orders?|verified|unproven|recommend|because|premise|current|focus)\b/i;
   }
 }
 
@@ -335,7 +423,8 @@ export function assessTaskCoverage(
       contract.requiresPremiseAudit ||
       contract.requiresTemporalReconciliation ||
       contract.requiresRecommendation ||
-      contract.requiresEvidenceExplanation;
+      contract.requiresEvidenceExplanation ||
+      contract.requiresConditionalReasoning;
 
     let status: TaskCoverageStatus;
     let reason: string | undefined;
@@ -371,6 +460,35 @@ export function assessTaskCoverage(
         if (row.kind === "multipart_unit" && row.status === "silent_drop") {
           row.status = "partial";
           row.reason = "Numbered multi-part structure present.";
+        }
+      }
+    }
+  }
+
+  // Holistic completion: a substantive answer that already hits primary obligations
+  // must not leave sibling kinds as silent_drop (prevents contradictory appendices).
+  {
+    const completedOrPartial = byTask.filter(
+      (t) => t.status === "completed" || t.status === "partial",
+    ).length;
+    const substantive = text.trim().length >= 160;
+    const primaryHit =
+      (!contract.requiresRecommendation || kindSignals("recommendation").test(text)) &&
+      (!contract.requiresPremiseAudit ||
+        kindSignals("premise_audit").test(text) ||
+        completedOrPartial >= 1) &&
+      (!contract.requiresConditionalReasoning ||
+        kindSignals("conditional_reasoning").test(text) ||
+        /\b(under (?:the )?assumption|if (?:that|this)|scenario|would)\b/i.test(text));
+    if (
+      substantive &&
+      completedOrPartial >= 1 &&
+      (primaryHit || completedOrPartial >= Math.ceil(byTask.length / 2))
+    ) {
+      for (const row of byTask) {
+        if (row.status === "silent_drop") {
+          row.status = "partial";
+          row.reason = "Holistic semantic completion — no contradictory appendix.";
         }
       }
     }
@@ -418,8 +536,10 @@ function verifiedFactsBlock(truth: ExecutiveTruthSnapshot): {
 export function synthesizeTaskUnitAnswer(
   task: ExecutiveTaskUnit,
   truth: ExecutiveTruthSnapshot,
+  opts: { birthRelevant?: boolean; hypotheticalPremises?: readonly string[] } = {},
 ): string {
   const f = verifiedFactsBlock(truth);
+  const birthRelevant = Boolean(opts.birthRelevant);
   const live = f.live
     ? "EmpireAI is live and answering in production."
     : "I'm answering through the active Brain process.";
@@ -434,17 +554,20 @@ export function synthesizeTaskUnitAnswer(
         live,
         `Current product focus is ${f.product}.`,
         commerce,
-        f.birthNull ? "Birth has not been authorised." : "Birth timestamp is set in verified state.",
-      ].join(" ");
+        birthRelevant
+          ? f.birthNull
+            ? "Birth has not been authorised."
+            : "Birth timestamp is set in verified state."
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
     case "premise_audit": {
       return [
         "Premise audit:",
         `From verified state I can support focus on ${f.product} and ${commerce.toLowerCase()}`,
-        f.birthNull ? "Birth remains unauthorised." : "",
         "Premises that assert realised sales volume, demand strength, or unverified market facts stay unestablished — I will not treat those as supported.",
-      ]
-        .filter(Boolean)
-        .join(" ");
+      ].join(" ");
     }
     case "temporal_reconciliation":
       return [
@@ -453,16 +576,29 @@ export function synthesizeTaskUnitAnswer(
         f.live
           ? "Currently verified: we are live and answering now — that supersedes older pre-launch waiting claims."
           : "Currently verified service state is limited to this process answer.",
-        "Future or hypothetical states (projected sales, unrun experiments) remain unresolved until evidenced.",
-        "Conclusions that depended on being offline should change; conclusions that depend on unrealised demand should not.",
+        "Future or owner-supplied hypothetical states should be reasoned conditionally — they are not automatically current verified fact.",
+        "Conclusions that depended on being offline should change; conclusions that depend on unrealised demand should not unless a scoped hypothetical says otherwise.",
       ].join(" ");
+    case "conditional_reasoning": {
+      const premises = opts.hypotheticalPremises?.length
+        ? opts.hypotheticalPremises
+        : ["the owner-supplied scenario for this turn"];
+      return [
+        "Conditional reasoning for this request only — these premises are not asserted as current verified fact:",
+        ...premises.slice(0, 4).map((pr) => `• Under assumption: ${pr}`),
+        "What would change under those assumptions: conclusions that depend on them.",
+        "What would not automatically change: current verified commerce counts and product identity, unless the premises themselves redefine them.",
+        "When demand strength and adverse unit economics pull opposite directions, the binding constraint wins — do not scale losses merely because demand is strong; repair economics or withhold scale.",
+        `Current verified baseline for contrast only: focus remains ${f.product}; ${commerce.toLowerCase()}`,
+      ].join("\n");
+    }
     case "recommendation":
       return [
         "Recommendation:",
         f.orders === 0
           ? `I recommend a verification-first next step on ${f.product}: confirm the open commercial unknowns with a bounded check before any irreversible spend.`
           : `I recommend deepening what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
-        f.birthNull ? "Birth remains a Grand King decision." : "",
+        birthRelevant && f.birthNull ? "Birth remains a Grand King decision." : "",
       ]
         .filter(Boolean)
         .join(" ");
@@ -496,7 +632,7 @@ export function synthesizeTaskUnitAnswer(
 
 /**
  * Append natural coverage for silently dropped required tasks.
- * Preserves existing safe content; does not replace the whole answer.
+ * Non-destructive: never contradict an answer that already materially completes the ask.
  */
 export function appendMissingTaskCoverage(
   answer: string,
@@ -506,39 +642,132 @@ export function appendMissingTaskCoverage(
   let message = String(answer || "").trim();
   let coverage = assessTaskCoverage(message, contract);
   let appended = 0;
+  const synthOpts = {
+    birthRelevant: contract.birthRelevant,
+    hypotheticalPremises: contract.hypotheticalPremises,
+  };
+
+  if (coverage.silentlyDroppedTasks === 0 || answerMateriallySatisfiesContract(message, contract)) {
+    if (coverage.silentlyDroppedTasks > 0) {
+      for (const row of coverage.byTask) {
+        if (row.status === "silent_drop") {
+          row.status = "partial";
+          row.reason = "Already satisfied — coverage non-interference.";
+        }
+      }
+      coverage.silentlyDroppedTasks = 0;
+      coverage.partialTasks = coverage.byTask.filter((t) => t.status === "partial").length;
+    }
+    return { message, appended: 0, coverage };
+  }
 
   for (const row of coverage.byTask) {
     if (row.status !== "silent_drop") continue;
     const task = contract.tasks.find((t) => t.id === row.id);
     if (!task) continue;
-    const stub = synthesizeTaskUnitAnswer(task, truth);
+    const stub = synthesizeTaskUnitAnswer(task, truth, synthOpts);
+    if (message.includes(stub.slice(0, Math.min(80, stub.length)))) continue;
     message = `${message}${message ? "\n\n" : ""}${stub}`.trim();
     appended += 1;
   }
 
   coverage = assessTaskCoverage(message, contract);
-  // Any remaining silent drops → mark unavailable explicitly (still not silent).
+
+  if (answerMateriallySatisfiesContract(message, contract)) {
+    for (const row of coverage.byTask) {
+      if (row.status === "silent_drop") {
+        row.status = "partial";
+        row.reason = "Satisfied after coverage fill — no cannot-complete appendix.";
+      }
+    }
+    coverage.silentlyDroppedTasks = 0;
+    return { message, appended, coverage };
+  }
+
+  // Prefer synthesizer fill over generic cannot-complete; never spam multiple cannot-complete lines.
   if (coverage.silentlyDroppedTasks > 0) {
     const leftovers = coverage.byTask.filter((t) => t.status === "silent_drop");
+    const alreadyCannot = /i cannot complete that part from verified evidence this turn/i.test(
+      message,
+    );
     for (const row of leftovers) {
       const task = contract.tasks.find((t) => t.id === row.id);
       if (!task) continue;
-      message = `${message}\n\nFor “${task.text.slice(0, 80)}${task.text.length > 80 ? "…" : ""}”: I cannot complete that part from verified evidence this turn — it remains open rather than invented.`;
-      appended += 1;
+      const stub = synthesizeTaskUnitAnswer(task, truth, synthOpts);
+      if (!message.includes(stub.slice(0, Math.min(60, stub.length)))) {
+        message = `${message}\n\n${stub}`.trim();
+        appended += 1;
+        continue;
+      }
+      if (!alreadyCannot) {
+        message = `${message}\n\nFor “${task.text.slice(0, 80)}${task.text.length > 80 ? "…" : ""}”: I cannot complete that part from verified evidence this turn — it remains open rather than invented.`;
+        appended += 1;
+      }
+      row.status = "unavailable";
+      row.reason = "Explicitly marked unavailable after coverage pass.";
     }
     coverage = assessTaskCoverage(message, contract);
-    // Force silent drops to unavailable after explicit mark.
+  }
+
+  if (answerMateriallySatisfiesContract(message, contract)) {
+    for (const row of coverage.byTask) {
+      if (row.status === "silent_drop") {
+        row.status = "partial";
+        row.reason = "Final non-interference.";
+      }
+    }
+    coverage.silentlyDroppedTasks = 0;
+  } else {
     for (const row of coverage.byTask) {
       if (row.status === "silent_drop") {
         row.status = "unavailable";
-        row.reason = "Explicitly marked unavailable after coverage pass.";
+        row.reason = "Marked unavailable after coverage pass.";
       }
     }
-    coverage.silentlyDroppedTasks = coverage.byTask.filter((t) => t.status === "silent_drop").length;
+    coverage.silentlyDroppedTasks = 0;
     coverage.unavailableTasks = coverage.byTask.filter((t) => t.status === "unavailable").length;
   }
 
   return { message, appended, coverage };
+}
+
+/** True when the answer already materially completes the contract without further append. */
+export function answerMateriallySatisfiesContract(
+  answer: string,
+  contract: ExecutiveTaskContract,
+): boolean {
+  const text = String(answer || "").trim();
+  if (!text) return false;
+  const coverage = assessTaskCoverage(text, contract);
+  if (coverage.silentlyDroppedTasks === 0) return true;
+  if (text.length < 120) return false;
+  const kindsHit = contract.tasks.filter((t) => kindSignals(t.kind).test(text)).length;
+  if (kindsHit >= Math.ceil(contract.tasks.length * 0.5)) return true;
+  if (!contract.multipart && kindsHit >= 1 && text.length >= 200) return true;
+  if (
+    contract.requiresRecommendation &&
+    kindSignals("recommendation").test(text) &&
+    text.length >= 150 &&
+    (!contract.requiresPremiseAudit || kindSignals("premise_audit").test(text) || kindsHit >= 1)
+  ) {
+    return true;
+  }
+  if (
+    contract.requiresConditionalReasoning &&
+    (kindSignals("conditional_reasoning").test(text) ||
+      /\b(under (?:the )?assumption|if (?:that|this)|would change|scenario)\b/i.test(text)) &&
+    text.length >= 120
+  ) {
+    return true;
+  }
+  if (
+    text.length >= 200 &&
+    coverage.completedTasks + coverage.partialTasks >= 1 &&
+    /i cannot complete that part from verified evidence this turn/i.test(text)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -555,18 +784,23 @@ export function buildContractAwareReconstruct(
     if (!unique.has(key)) unique.set(key, t);
   }
   const units = [...unique.values()].slice(0, 20);
+  const opts = {
+    birthRelevant: contract.birthRelevant,
+    hypotheticalPremises: contract.hypotheticalPremises,
+  };
   if (units.length === 0) {
     return synthesizeTaskUnitAnswer(
       { id: "t1", kind: "operating_briefing", text: "briefing", required: true },
       truth,
+      opts,
     );
   }
   if (contract.multipart && units.length >= 2) {
     return units
-      .map((t, i) => `${i + 1}) ${synthesizeTaskUnitAnswer(t, truth)}`)
+      .map((t, i) => `${i + 1}) ${synthesizeTaskUnitAnswer(t, truth, opts)}`)
       .join("\n");
   }
-  return units.map((t) => synthesizeTaskUnitAnswer(t, truth)).join("\n\n");
+  return units.map((t) => synthesizeTaskUnitAnswer(t, truth, opts)).join("\n\n");
 }
 
 /** Compact brief for LLM prompt assembly (no internal enum dump to GK). */
@@ -576,7 +810,19 @@ export function formatTaskContractBrief(contract: ExecutiveTaskContract): string
     `Intent: ${contract.requestIntent}`,
     `Tasks (${contract.tasks.length}):`,
     ...contract.tasks.map((t, i) => `${i + 1}. [${t.kind}] ${t.text}`),
-    "If a part cannot be verified, say so for that part only and still complete the others.",
+    "If a part cannot be verified as current fact, say so for that part only and still complete the others.",
+    "Owner-supplied hypotheticals / 'assume' / 'suppose' / 'if X were true' are for CONDITIONAL reasoning only — do not treat them as current verified fact, and do not refuse the conditional ask.",
+    "Do not append 'cannot complete' after you have already answered an obligation.",
+    "Do not dump Birth state, repeated commerce footers, or protected facts unless they are requested or material to the ask.",
   ];
+  if (contract.hypotheticalPremises.length > 0) {
+    lines.push("Hypothetical premises for this turn only (not current verified fact):");
+    for (const h of contract.hypotheticalPremises.slice(0, 6)) {
+      lines.push(`- ${h}`);
+    }
+  }
+  if (contract.requiresRecommendation) {
+    lines.push("A recommendation or explicit commercial decision is required — do not omit it.");
+  }
   return lines.join("\n");
 }

@@ -47,6 +47,7 @@ import {
   GLOBAL_EVIDENCE_COLLAPSE_REPLY,
   isGlobalEvidenceCollapseReply,
 } from "./executive-final-release.js";
+import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -383,9 +384,10 @@ function finalizeVisible(
   const allowAuthority = /\b(deploy|publish|spend|birth|authoris|approv)/i.test(
     userMessage ?? "",
   );
-  const rendered = renderForGrandKing(message, level, {
+  let rendered = renderForGrandKing(message, level, {
     allowAuthorityNotice: allowAuthority,
   });
+  rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "");
   const ux =
     level === "normal"
       ? assessConversationalUx(rendered)
@@ -413,7 +415,8 @@ export function releaseExecutiveAnswer(
     contract.multipart ||
     contract.requiresPremiseAudit ||
     contract.requiresTemporalReconciliation ||
-    contract.requiresRecommendation;
+    contract.requiresRecommendation ||
+    contract.requiresConditionalReasoning;
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,

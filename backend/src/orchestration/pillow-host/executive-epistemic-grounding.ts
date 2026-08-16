@@ -119,6 +119,7 @@ export function formatEpistemicDisciplineBrief(ctx: EpistemicContext): string {
     "Workflow labels (approval/pending/commissioning) do NOT invent business meaning such as 'passed market evaluation' or 'selected based on demand analysis' unless attested evidence supports that.",
     "INFERENCE IS ALLOWED and often required: label it clearly in natural language, preserve uncertainty, say what would falsify it when useful, and propose realistic next verification from capabilities that actually exist.",
     "UNKNOWN means the proposition is unproven — not that you must refuse to reason. Reason around unknowns.",
+    "Owner-supplied hypotheticals (assume/suppose/if X were true) may be used for conditional reasoning without claiming they are current verified fact.",
     "High-risk actions (spend/publish/Birth/deploy) stay blocked without authority even if a hypothesis is reasonable.",
     "Temporal precedence: if you are answering live in production, do not claim EmpireAI is not live or that deployment is still pending as current state.",
     "Natural wording may change tone, not create new facts. Support strength must not increase during phrasing.",
