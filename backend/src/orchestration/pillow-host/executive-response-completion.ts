@@ -4,12 +4,17 @@
  * Never emit "please ask again" / "realigning… try again" as a chat outcome.
  * On primary failure: bounded internal retry, then useful degraded completion from verified context.
  */
-import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 import {
   buildNaturalExecutiveFallback,
   detectExecutiveTaskIntent,
   detectDisclosureLevel,
 } from "./executive-conversation-surface.js";
+import {
+  appendMissingTaskCoverage,
+  buildContractAwareReconstruct,
+  parseExecutiveTaskContract,
+} from "./executive-task-contract.js";
+import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 
 export type ResponseTerminalKind =
   | "complete"
@@ -183,35 +188,37 @@ export function buildUsefulDegradedExecutiveAnswer(input: {
   const units = countExecutiveTaskUnits(input.userMessage);
 
   if (input.truth) {
-    const base = buildNaturalExecutiveFallback({
-      productName: input.truth.product.productName,
-      asin: input.truth.product.asin,
-      orders: input.truth.financial.orders,
-      realisedRevenueUsd: input.truth.financial.realisedRevenueUsd,
-      birthTimestamp: input.truth.birth.birthTimestamp,
-      live:
-        Boolean(input.truth.deploy.gitCommitSha) ||
-        input.truth.deploy.serviceOnlineHint === "assume_online_if_answering",
-      intent,
-      level,
-      hadProvenanceViolation: false,
-      hadTemporalViolation: false,
-    });
+    const contract = parseExecutiveTaskContract(input.userMessage);
+    const multi =
+      contract.multipart ||
+      contract.tasks.length >= 2 ||
+      contract.requiresPremiseAudit ||
+      contract.requiresTemporalReconciliation ||
+      contract.requiresRecommendation;
 
-    const parts = [base];
+    const base = multi
+      ? buildContractAwareReconstruct(input.truth, contract)
+      : buildNaturalExecutiveFallback({
+          productName: input.truth.product.productName,
+          asin: input.truth.product.asin,
+          orders: input.truth.financial.orders,
+          realisedRevenueUsd: input.truth.financial.realisedRevenueUsd,
+          birthTimestamp: input.truth.birth.birthTimestamp,
+          live:
+            Boolean(input.truth.deploy.gitCommitSha) ||
+            input.truth.deploy.serviceOnlineHint === "assume_online_if_answering",
+          intent,
+          level,
+          hadProvenanceViolation: false,
+          hadTemporalViolation: false,
+        });
 
-    if (units >= 2) {
-      parts.push(
-        `You asked a structured multi-part question (${units} task units). I am answering from verified operating state for each theme I can support: current product focus, realised commerce, birth readiness, and what remains unverified.`,
-      );
-      parts.push(
-        "Where a specific part needs live market retrieval or a model deliberation I could not finish this turn, I mark that part as not yet verified rather than inventing it.",
-      );
-    }
+    const filled = appendMissingTaskCoverage(base, contract, input.truth);
+    const parts = [filled.message];
 
     if (input.authorityConstrained) {
       parts.push(
-        "One or more requested actions sit behind Grand King approval or constitutional limits — I will not bypass those. I still give you the operational picture above.",
+        "One or more requested actions sit behind Grand King approval or constitutional limits — I will not bypass those. I still complete the operational parts above.",
       );
     } else if (input.reason) {
       parts.push(

@@ -34,6 +34,14 @@ import {
   assessDecisionQuality,
   repairDecisionQualityAnswer,
 } from "./executive-decision-quality.js";
+import {
+  appendMissingTaskCoverage,
+  assessTaskCoverage,
+  buildContractAwareReconstruct,
+  parseExecutiveTaskContract,
+  type ExecutiveTaskContract,
+  type TaskCoverageReport,
+} from "./executive-task-contract.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -55,10 +63,15 @@ export type ReleaseGateTelemetry = {
     | "clean"
     | "claim_repaired"
     | "natural_reconstructed"
-    | "fail_closed";
+    | "fail_closed"
+    | "contract_coverage_filled";
   disclosureLevel: DisclosureLevel;
   taskIntent: ExecutiveTaskIntent;
   uxFailures: string[];
+  taskContractTaskCount: number;
+  silentlyDroppedMaterialTasks: number;
+  coverageAppendedUnits: number;
+  taskCoverage: TaskCoverageReport | null;
 };
 
 export type ExecutiveReleaseResult = {
@@ -70,6 +83,7 @@ export type ExecutiveReleaseResult = {
 
 export type ReleaseGateOptions = {
   userMessage?: string;
+  taskContract?: ExecutiveTaskContract;
 };
 
 const CORRECTION_APPENDIX_LEAK =
@@ -303,9 +317,11 @@ export function surgicalRepairDraft(
 
   const message = kept.join(" ").trim();
   const contaminationRatio = claims.length === 0 ? 1 : dropped / claims.length;
+  // Prefer preserving remaining safe claims over whole-answer reconstruct.
+  // Only force reconstruct when almost nothing usable survives.
   const stillContaminated =
     message.length < 24 ||
-    contaminationRatio > 0.65 ||
+    contaminationRatio > 0.85 ||
     (kept.length === 0);
 
   return {
@@ -385,6 +401,14 @@ export function releaseExecutiveAnswer(
 ): ExecutiveReleaseResult {
   const level = detectDisclosureLevel(options.userMessage);
   const intent = detectExecutiveTaskIntent(options.userMessage);
+  const contract =
+    options.taskContract ?? parseExecutiveTaskContract(options.userMessage);
+  const multiObligation =
+    contract.tasks.length >= 2 ||
+    contract.multipart ||
+    contract.requiresPremiseAudit ||
+    contract.requiresTemporalReconciliation ||
+    contract.requiresRecommendation;
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,
@@ -406,33 +430,78 @@ export function releaseExecutiveAnswer(
     disclosureLevel: level,
     taskIntent: intent,
     uxFailures: [],
+    taskContractTaskCount: contract.tasks.length,
+    silentlyDroppedMaterialTasks: 0,
+    coverageAppendedUnits: 0,
+    taskCoverage: null,
   };
 
-  const tryRelease = (
+  const sealWithCoverage = (
     candidate: string,
     path: ReleaseGateTelemetry["releasePath"],
     priorViolations: string[],
   ): ExecutiveReleaseResult | null => {
-    const fin = finalizeVisible(candidate, level, options.userMessage);
-    const final = validateExecutiveDraft(fin.message, truth, attestations);
-    if (!final.ok) {
-      telemetry.finalRevalidationPass = false;
-      telemetry.supportMonotonicityPass = false;
-      return null;
+    const filled = appendMissingTaskCoverage(candidate, contract, truth);
+    const reconstruct = multiObligation
+      ? buildContractAwareReconstruct(truth, contract)
+      : null;
+
+    const queue: Array<{
+      text: string;
+      path: ReleaseGateTelemetry["releasePath"];
+      appended: number;
+    }> = [];
+    // Clean validated drafts: fill missing parts without discarding the original answer.
+    queue.push({
+      text: filled.message,
+      path: filled.appended > 0 && path === "clean" ? "contract_coverage_filled" : path,
+      appended: filled.appended,
+    });
+    if (multiObligation && reconstruct && (filled.coverage.silentlyDroppedTasks > 0 || path !== "clean")) {
+      queue.push({
+        text: reconstruct,
+        path: path === "clean" ? "contract_coverage_filled" : "natural_reconstructed",
+        appended: contract.tasks.length,
+      });
     }
-    telemetry.finalRevalidationPass = true;
-    telemetry.supportMonotonicityPass = true;
-    telemetry.releasePath = path;
-    telemetry.uxFailures = fin.uxFailures;
-    if (path !== "clean") {
-      telemetry.reconstructionSucceeded = true;
+    queue.push({ text: candidate, path, appended: 0 });
+
+    const liveTruth =
+      Boolean(truth.deploy.gitCommitSha) ||
+      truth.deploy.serviceOnlineHint === "assume_online_if_answering";
+    const staleOffline = (text: string) =>
+      liveTruth &&
+      /\b(offline|not yet live|waiting to go live|pending deployment)\b/i.test(text);
+
+    for (const item of queue) {
+      if (staleOffline(item.text)) continue;
+      const fin = finalizeVisible(item.text, level, options.userMessage);
+      if (staleOffline(fin.message)) continue;
+      const final = validateExecutiveDraft(fin.message, truth, attestations);
+      if (!final.ok) continue;
+      const coverage = assessTaskCoverage(fin.message, contract);
+      if (multiObligation && coverage.silentlyDroppedTasks > 0 && item.appended === 0) {
+        continue;
+      }
+      telemetry.finalRevalidationPass = true;
+      telemetry.supportMonotonicityPass = true;
+      telemetry.releasePath = item.path;
+      telemetry.uxFailures = fin.uxFailures;
+      telemetry.coverageAppendedUnits = item.appended;
+      telemetry.taskCoverage = coverage;
+      telemetry.silentlyDroppedMaterialTasks = coverage.silentlyDroppedTasks;
+      if (item.path !== "clean") telemetry.reconstructionSucceeded = true;
+      return {
+        message: fin.message,
+        released: true,
+        violations: priorViolations,
+        telemetry,
+      };
     }
-    return {
-      message: fin.message,
-      released: true,
-      violations: priorViolations,
-      telemetry,
-    };
+
+    telemetry.finalRevalidationPass = false;
+    telemetry.supportMonotonicityPass = false;
+    return null;
   };
 
   const first = validateExecutiveDraft(draft, truth, attestations);
@@ -445,22 +514,23 @@ export function releaseExecutiveAnswer(
 
   if (first.ok) {
     telemetry.draftValidationPass = true;
-    const clean = tryRelease(draft.trim(), "clean", []);
+    const clean = sealWithCoverage(draft.trim(), "clean", []);
     if (clean) return clean;
   }
 
   // Attempt 0.5: decision-quality repair (goal≠solution / material-assumption leaps).
+  // When multi-obligation, prefer surgical+coverage over whole DQ rewrite.
   const decisionCodes = new Set([
     "GOAL_SOLUTION_CAUSAL_LEAP",
     "MATERIAL_ASSUMPTION_TREATED_AS_ESTABLISHED",
     "UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL",
   ]);
-  if (first.violations.some((v) => decisionCodes.has(v))) {
+  if (first.violations.some((v) => decisionCodes.has(v)) && !multiObligation) {
     telemetry.reconstructionAttempted = true;
     telemetry.claimLevelRepairUsed = true;
     const dq = assessDecisionQuality(draft, truth);
     const decisionRepaired = repairDecisionQualityAnswer(draft, truth, dq);
-    const releasedDq = tryRelease(decisionRepaired, "claim_repaired", first.violations);
+    const releasedDq = sealWithCoverage(decisionRepaired, "claim_repaired", first.violations);
     if (releasedDq) return releasedDq;
   }
 
@@ -471,40 +541,43 @@ export function releaseExecutiveAnswer(
   telemetry.claimsKept = surgical.kept;
   telemetry.claimsDropped = surgical.dropped;
 
-  if (!surgical.stillContaminated && surgical.message) {
-    const repaired = tryRelease(surgical.message, "claim_repaired", first.violations);
+  if (surgical.message && (!surgical.stillContaminated || multiObligation)) {
+    const repaired = sealWithCoverage(surgical.message, "claim_repaired", first.violations);
     if (repaired) return repaired;
   }
 
-  // Attempt 2: natural task-sensitive reconstruct (NOT Round-2 audit dump).
-  const natural = buildNaturalExecutiveFallback({
-    productName: truth.product.productName,
-    asin: truth.product.asin,
-    orders: truth.financial.orders,
-    realisedRevenueUsd: truth.financial.realisedRevenueUsd,
-    birthTimestamp: truth.birth.birthTimestamp,
-    live:
-      Boolean(truth.deploy.gitCommitSha) ||
-      truth.deploy.serviceOnlineHint === "assume_online_if_answering",
-    intent,
-    level,
-    hadProvenanceViolation: telemetry.provenanceViolationCount > 0,
-    hadTemporalViolation: telemetry.temporalViolationCount > 0,
-  });
-  const naturalRelease = tryRelease(natural, "natural_reconstructed", first.violations);
+  // Attempt 2: contract-aware reconstruct (preserves requested parts — not one safe summary).
+  const natural = multiObligation
+    ? buildContractAwareReconstruct(truth, contract)
+    : buildNaturalExecutiveFallback({
+        productName: truth.product.productName,
+        asin: truth.product.asin,
+        orders: truth.financial.orders,
+        realisedRevenueUsd: truth.financial.realisedRevenueUsd,
+        birthTimestamp: truth.birth.birthTimestamp,
+        live:
+          Boolean(truth.deploy.gitCommitSha) ||
+          truth.deploy.serviceOnlineHint === "assume_online_if_answering",
+        intent,
+        level,
+        hadProvenanceViolation: telemetry.provenanceViolationCount > 0,
+        hadTemporalViolation: telemetry.temporalViolationCount > 0,
+      });
+  const naturalRelease = sealWithCoverage(natural, "natural_reconstructed", first.violations);
   if (naturalRelease) return naturalRelease;
 
-  // Attempt 3: fail-closed natural UNKNOWN — still revalidated.
+  // Attempt 3: fail-closed — still coverage-fill so multi-part asks are not erased.
   const closed = failClosedExecutiveAnswer(truth, level);
-  const closedFinal = validateExecutiveDraft(closed, truth, attestations);
+  const closedFilled = sealWithCoverage(closed, "fail_closed", first.violations);
+  if (closedFilled) {
+    telemetry.failClosedUsed = true;
+    return closedFilled;
+  }
   telemetry.failClosedUsed = true;
   telemetry.releasePath = "fail_closed";
-  telemetry.finalRevalidationPass = closedFinal.ok;
-  telemetry.uxFailures = assessConversationalUx(closed).failures;
+  telemetry.finalRevalidationPass = false;
   return {
-    message: closedFinal.ok
-      ? closed
-      : "I don't have enough evidence to answer that confidently yet.",
+    message: "I don't have enough evidence to answer that confidently yet.",
     released: true,
     violations: first.violations,
     telemetry,

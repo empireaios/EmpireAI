@@ -49,6 +49,10 @@ import {
 } from "./executive-epistemic-grounding.js";
 import { enforceExecutiveTruthGrounding } from "./executive-release-gate.js";
 import {
+  formatTaskContractBrief,
+  parseExecutiveTaskContract,
+} from "./executive-task-contract.js";
+import {
   buildUsefulDegradedExecutiveAnswer,
   countExecutiveTaskUnits,
   ensureUsefulTerminalChatMessage,
@@ -29830,12 +29834,16 @@ export class PillowHost {
                     executiveTruthSnapshot,
                     requestId,
                 );
+                const taskContract = parseExecutiveTaskContract(input.message);
                 operationalContext = {
                     ...operationalContext,
-                    liveOperationalTruthBrief: formatExecutiveTruthBriefWithEpistemics(
-                        executiveTruthSnapshot,
-                        epistemicLedger.list(),
-                    ),
+                    liveOperationalTruthBrief: [
+                        formatExecutiveTruthBriefWithEpistemics(
+                            executiveTruthSnapshot,
+                            epistemicLedger.list(),
+                        ),
+                        formatTaskContractBrief(taskContract),
+                    ].join("\n\n"),
                     // Prevent Phase-7 static product catalog from inventing alternate products.
                     commerceIntelligenceBrief: undefined,
                 };

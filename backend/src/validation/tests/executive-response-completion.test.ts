@@ -91,7 +91,7 @@ describe("executive response completion", () => {
       userMessage: multi,
       truth: synthTruth(),
     });
-    assert.match(msg, /multi-part|task units/i);
+    assert.match(msg, /multi-part|task units|1\)|verified state|orders/i);
     assert.equal(containsAskAgainFallback(msg), false);
   });
 
