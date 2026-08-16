@@ -173,13 +173,19 @@ function grade(text, spec) {
   const globalUnknown = GLOBAL_UNKNOWN.test(text);
   const safeCollapse = SAFE_COLLAPSE.test(text);
   const requireOk = spec.require.test(text);
+  const cannotComplete = /i cannot complete that part from verified evidence this turn/i.test(text);
+  const birthHit = /\bbirth\b/i.test(text);
   const forbidHit = Boolean(spec.forbidGlobalUnknown && globalUnknown);
+  const forbidAppendix = Boolean(spec.forbidCannotCompleteAfterAnswer && cannotComplete && text.length >= 160);
+  const forbidBirth = Boolean(spec.forbidIrrelevantBirth && birthHit);
   const ok =
     text.length >= minLen &&
     !askAgain &&
     !safeCollapse &&
     requireOk &&
-    !forbidHit;
+    !forbidHit &&
+    !forbidAppendix &&
+    !forbidBirth;
   return { ok, askAgain, globalUnknown, safeCollapse, requireOk, forbidHit, cannotComplete, forbidAppendix, forbidBirth };
 }
 
