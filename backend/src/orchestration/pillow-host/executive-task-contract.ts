@@ -428,9 +428,9 @@ export function synthesizeTaskUnitAnswer(
     case "temporal_reconciliation":
       return [
         "Temporal read:",
-        "Historically, earlier waiting-to-go-live language may have been true at the time.",
+        "Historically, earlier pre-launch waiting language may have been true at the time.",
         f.live
-          ? "Currently verified: we are live and answering now — that supersedes offline/waiting claims."
+          ? "Currently verified: we are live and answering now — that supersedes older pre-launch waiting claims."
           : "Currently verified service state is limited to this process answer.",
         "Future or hypothetical states (projected sales, unrun experiments) remain unresolved until evidenced.",
         "Conclusions that depended on being offline should change; conclusions that depend on unrealised demand should not.",

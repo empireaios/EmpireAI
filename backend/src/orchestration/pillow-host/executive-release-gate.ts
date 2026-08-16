@@ -471,7 +471,9 @@ export function releaseExecutiveAnswer(
       truth.deploy.serviceOnlineHint === "assume_online_if_answering";
     const staleOffline = (text: string) =>
       liveTruth &&
-      /\b(offline|not yet live|waiting to go live|pending deployment)\b/i.test(text);
+      /\b(?:EmpireAI is offline|we(?:'re| are) offline|service is offline|not yet live|pending deployment)\b/i.test(
+        text,
+      );
 
     for (const item of queue) {
       if (staleOffline(item.text)) continue;
