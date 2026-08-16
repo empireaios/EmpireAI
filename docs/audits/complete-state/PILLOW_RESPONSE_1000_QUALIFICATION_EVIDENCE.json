@@ -1,0 +1,97 @@
+{
+  "artifact": "PILLOW_RESPONSE_1000_QUALIFICATION",
+  "startedAt": "2026-08-15T23:41:24.287Z",
+  "completedAt": "2026-08-16T01:26:42.211Z",
+  "target": 1000,
+  "plan": {
+    "A_normal": 250,
+    "B_multipart_5_10": 150,
+    "C_long_context": 100,
+    "D_truth_provenance": 100,
+    "E_inference_decision": 100,
+    "F_concurrent": 75,
+    "G_background": 75,
+    "H_worker_degrade": 50,
+    "I_auth_session": 40,
+    "J_structured_15_20": 30,
+    "K_transient_error": 20,
+    "L_idempotency": 10
+  },
+  "attempts": 1000,
+  "accepted": 1000,
+  "terminal": 1000,
+  "useful": 1000,
+  "empty": 0,
+  "askAgain": 0,
+  "lost": 0,
+  "userResubmissionRequired": 0,
+  "failures": 0,
+  "byClass": {
+    "A_normal": {
+      "planned": 250,
+      "ok": 250,
+      "fail": 0
+    },
+    "B_multipart_5_10": {
+      "planned": 150,
+      "ok": 150,
+      "fail": 0
+    },
+    "C_long_context": {
+      "planned": 100,
+      "ok": 100,
+      "fail": 0
+    },
+    "D_truth_provenance": {
+      "planned": 100,
+      "ok": 100,
+      "fail": 0
+    },
+    "E_inference_decision": {
+      "planned": 100,
+      "ok": 100,
+      "fail": 0
+    },
+    "F_concurrent": {
+      "planned": 75,
+      "ok": 75,
+      "fail": 0
+    },
+    "G_background": {
+      "planned": 75,
+      "ok": 75,
+      "fail": 0
+    },
+    "H_worker_degrade": {
+      "planned": 50,
+      "ok": 50,
+      "fail": 0
+    },
+    "I_auth_session": {
+      "planned": 40,
+      "ok": 40,
+      "fail": 0
+    },
+    "J_structured_15_20": {
+      "planned": 30,
+      "ok": 30,
+      "fail": 0
+    },
+    "K_transient_error": {
+      "planned": 20,
+      "ok": 20,
+      "fail": 0
+    },
+    "L_idempotency": {
+      "planned": 10,
+      "ok": 10,
+      "fail": 0
+    }
+  },
+  "firstFailure": null,
+  "deploySha": "e26ab149f7fbb9c19539be4debb8267e150bfe52",
+  "result": "PASS",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "sealedExamEncoded": false
+}
