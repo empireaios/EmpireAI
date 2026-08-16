@@ -163,7 +163,7 @@ describe("Wave3 architecture — Level A", () => {
     const contract = parseExecutiveTaskContract(user);
     assert.equal(contract.birthRelevant, false);
     const stub = synthesizeTaskUnitAnswer(
-      { id: "t1", kind: "operating_briefing", text: user, required: true },
+      { id: "t1", kind: "operating_briefing", text: user, sourceSpan: user, subject: user.slice(0, 80), requiredOperation: "state_briefing", required: true },
       synthTruth(),
       { birthRelevant: false },
     );

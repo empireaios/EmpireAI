@@ -21,33 +21,36 @@ const DOMAINS = [
   "strategy",
 ] as const;
 
-function shuffle(arr, seed) {
+function shuffle<T>(arr: T[], seed: number): T[] {
   const a = [...arr];
   let s = seed;
   for (let i = a.length - 1; i > 0; i--) {
     s = (s * 1103515245 + 12345) & 0x7fffffff;
     const j = s % (i + 1);
-    [a[i], a[j]] = [a[j], a[i]];
+    const left = a[i] as T;
+    const right = a[j] as T;
+    a[i] = right;
+    a[j] = left;
   }
   return a;
 }
 
-function truth(n) {
+function truth(n: number): ExecutiveTruthSnapshot {
   return {
     computedAt: new Date().toISOString(),
     workspaceId: `ws_het_b_${n}`,
-    provenance: "live_sqlite_commissioning_kpi_birth",
+    provenance: "live_sqlite_commissioning_kpi_birth" as const,
     product: {
       commissioningId: `opc_${n}`,
       asin: `B0H${String(n).padStart(7, "0")}`.slice(0, 10),
       productName: `Synthetic Domain Widget ${n}`,
       supplier: `Supplier${n % 7}`,
       marketplace: "Amazon US",
-      selectionAuthority: "pillow",
+      selectionAuthority: "pillow" as const,
       cursorSelected: false,
-      stage: "COMMISSIONING",
-      pillowRecommendation: "INVESTIGATE",
-      truthClass: "CURRENT_VERIFIED",
+      stage: "COMMISSIONING" as const,
+      pillowRecommendation: "INVESTIGATE" as const,
+      truthClass: "CURRENT_VERIFIED" as const,
     },
     financial: {
       orders: 0,
@@ -55,21 +58,21 @@ function truth(n) {
       buyableListings: 0,
       publishedListings: 0,
       expectedProfitDisplay: null,
-      expectedProfitTruthClass: "UNKNOWN",
-      realisedTruthClass: "CURRENT_VERIFIED",
+      expectedProfitTruthClass: "UNKNOWN" as const,
+      realisedTruthClass: "CURRENT_VERIFIED" as const,
     },
     birth: {
-      status: "TECHNICALLY_READY_AWAITING_GRAND_KING",
+      status: "TECHNICALLY_READY_AWAITING_GRAND_KING" as const,
       technicallyReady: true,
       birthTimestamp: null,
       gatesPassedCount: 12,
       gatesTotal: 12,
-      truthClass: "CURRENT_VERIFIED",
+      truthClass: "CURRENT_VERIFIED" as const,
     },
     deploy: {
       gitCommitSha: `hetb${n}`,
-      serviceOnlineHint: "assume_online_if_answering",
-      truthClass: "CURRENT_VERIFIED",
+      serviceOnlineHint: "assume_online_if_answering" as const,
+      truthClass: "CURRENT_VERIFIED" as const,
     },
     authority: {
       pillowMayPublish: false,
@@ -79,9 +82,9 @@ function truth(n) {
       chatHasToolCallingLoop: false,
       executableNow: ["Answer"],
       requiresGrandKing: ["Birth"],
-      truthClass: "CURRENT_VERIFIED",
+      truthClass: "CURRENT_VERIFIED" as const,
     },
-    demandEvidence: "UNKNOWN",
+    demandEvidence: "UNKNOWN" as const,
     notes: [],
   };
 }

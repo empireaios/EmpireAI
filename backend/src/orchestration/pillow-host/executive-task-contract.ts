@@ -770,8 +770,8 @@ export function detectSiblingTemplateCloning(
   let dup = 0;
   for (let i = 0; i < normalized.length; i++) {
     for (let j = i + 1; j < normalized.length; j++) {
-      const a = normalized[i];
-      const b = normalized[j];
+      const a = normalized[i]!;
+      const b = normalized[j]!;
       if (a.length < 40 || b.length < 40) continue;
       const ta = new Set(a.split(" ").filter((t) => t.length >= 4));
       const tb = new Set(b.split(" ").filter((t) => t.length >= 4));
