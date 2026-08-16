@@ -1,0 +1,69 @@
+{
+  "artifact": "PILLOW_SEMANTIC_TASK_COMPLETION_ROUND_C",
+  "startedAt": "2026-08-16T09:22:35.772Z",
+  "cases": [
+    {
+      "id": "operating_briefing",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "We need commercial progress — realised sales are still zero. Whether High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use is the right immediate move depends on premises we have"
+    },
+    {
+      "id": "premise_audit",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "1) We already have realised revenue this month. **False** — Current verified state shows zero realised revenue. 2) Our bound product identity is established in commissioning state. **True** — The product identity for the"
+    },
+    {
+      "id": "temporal_reconciliation",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "Reconciling historical waiting-to-go-live notes with current evidence reveals that the expectation of immediate revenue or market readiness was overly optimistic. The current state shows zero realised revenue and no conf"
+    },
+    {
+      "id": "mixed_recommendation",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "I recommend conducting a targeted market test with a small batch of the High-Speed Handheld Mini Fan. This test should involve listing the product on a limited scale, perhaps through a specific promotional campaign or ta"
+    },
+    {
+      "id": "ten_part",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "1) **Realised Revenue**: Current verified state shows zero realised revenue for the High-Speed Handheld Mini Fan. 2) **Product Identity**: The product identity for the High-Speed Handheld Mini Fan is confirmed in a commi"
+    },
+    {
+      "id": "unsupported_subsection",
+      "ok": true,
+      "status": 200,
+      "askAgain": false,
+      "safeCollapse": false,
+      "expectOk": true,
+      "preview": "1) **Realised order count**: Current verified state shows zero realised orders for the High-Speed Handheld Mini Fan. 2) **Confirm inbox sentiment from an unread supplier mailbox this week**: This information is currently"
+    }
+  ],
+  "askAgain": 0,
+  "safeCollapse": 0,
+  "failures": 0,
+  "result": "PASS",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "sealedExamEncoded": false,
+  "deploySha": "e0b94b90bde7dccc2017cb50437b9bfdc3323869",
+  "completedAt": "2026-08-16T09:23:25.429Z"
+}
