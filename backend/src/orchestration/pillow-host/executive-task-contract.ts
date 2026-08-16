@@ -318,10 +318,24 @@ export function assessTaskCoverage(
       task.kind === "multipart_unit" || contract.multipart
         ? tokenOverlapHit(task.text, text)
         : false;
-    const unavailableMarked =
-      /\b(cannot (?:establish|verify|complete)|not (?:yet )?(?:verified|available|established)|don't (?:yet )?have|unavailable for this part)\b/i.test(
+    // Unavailable must be local to the answer content — never use task.text signals
+    // (that falsely classified global "I don't have…" as covering typed obligations).
+    const localUnavailableMarked =
+      /\b(cannot (?:establish|verify|complete)|unavailable for this part|open for this part|not address(?:ed)? (?:in|for) this (?:part|turn)|remain(?:s)? open)\b/i.test(
         text,
-      ) && (signal || overlap || kindSignals(task.kind).test(task.text));
+      ) && (signal || overlap);
+    const globalDontHaveOnly =
+      /\b(don'?t (?:yet )?have enough|not enough (?:solid )?evidence|cannot answer that confidently)\b/i.test(
+        text,
+      ) && !signal && !overlap;
+
+    const multiMaterial =
+      contract.tasks.length >= 2 ||
+      contract.multipart ||
+      contract.requiresPremiseAudit ||
+      contract.requiresTemporalReconciliation ||
+      contract.requiresRecommendation ||
+      contract.requiresEvidenceExplanation;
 
     let status: TaskCoverageStatus;
     let reason: string | undefined;
@@ -332,9 +346,16 @@ export function assessTaskCoverage(
     } else if (overlap || signal) {
       status = "partial";
       reason = "Partial topical coverage without full obligation signal.";
-    } else if (unavailableMarked && contract.tasks.length === 1) {
+    } else if (localUnavailableMarked && !multiMaterial) {
       status = "unavailable";
       reason = "Explicitly marked unavailable.";
+    } else if (globalDontHaveOnly && multiMaterial) {
+      // Global UNKNOWN collapse must not terminate distinct material obligations.
+      status = task.required ? "silent_drop" : "unavailable";
+      reason = "Global evidence collapse does not cover this obligation.";
+    } else if (localUnavailableMarked) {
+      status = "unavailable";
+      reason = "Explicitly marked unavailable for this part.";
     } else {
       status = task.required ? "silent_drop" : "unavailable";
       reason = task.required ? "Required task not addressed in released answer." : undefined;

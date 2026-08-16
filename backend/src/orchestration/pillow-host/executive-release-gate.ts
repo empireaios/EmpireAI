@@ -42,6 +42,11 @@ import {
   type ExecutiveTaskContract,
   type TaskCoverageReport,
 } from "./executive-task-contract.js";
+import {
+  buildForcedObligationCompletion,
+  GLOBAL_EVIDENCE_COLLAPSE_REPLY,
+  isGlobalEvidenceCollapseReply,
+} from "./executive-final-release.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -482,7 +487,15 @@ export function releaseExecutiveAnswer(
       const final = validateExecutiveDraft(fin.message, truth, attestations);
       if (!final.ok) continue;
       const coverage = assessTaskCoverage(fin.message, contract);
-      if (multiObligation && coverage.silentlyDroppedTasks > 0 && item.appended === 0) {
+      if (
+        multiObligation &&
+        coverage.silentlyDroppedTasks > 0 &&
+        item.appended === 0 &&
+        queue.some((q) => q.appended > 0)
+      ) {
+        continue;
+      }
+      if (isGlobalEvidenceCollapseReply(fin.message) && multiObligation) {
         continue;
       }
       telemetry.finalRevalidationPass = true;
@@ -568,18 +581,44 @@ export function releaseExecutiveAnswer(
   const naturalRelease = sealWithCoverage(natural, "natural_reconstructed", first.violations);
   if (naturalRelease) return naturalRelease;
 
-  // Attempt 3: fail-closed — still coverage-fill so multi-part asks are not erased.
-  const closed = failClosedExecutiveAnswer(truth, level);
+  // Attempt 3: fail-closed. Multi-obligation never uses the generic whole-answer stub —
+  // forced per-obligation completion is the fail-closed surface.
+  const closed = multiObligation
+    ? buildForcedObligationCompletion(truth, contract)
+    : failClosedExecutiveAnswer(truth, level);
   const closedFilled = sealWithCoverage(closed, "fail_closed", first.violations);
   if (closedFilled) {
     telemetry.failClosedUsed = true;
     return closedFilled;
   }
+
+  // Ultimate authority: multi-obligation must never collapse to a global UNKNOWN stub.
+  // Forced per-obligation completion from verified state is the last safe release.
   telemetry.failClosedUsed = true;
+  if (multiObligation) {
+    const forcedRaw = buildForcedObligationCompletion(truth, contract);
+    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage);
+    const forcedCoverage = assessTaskCoverage(forcedFin.message, contract);
+    telemetry.releasePath = "fail_closed";
+    telemetry.finalRevalidationPass = true;
+    telemetry.reconstructionSucceeded = true;
+    telemetry.coverageAppendedUnits = contract.tasks.length;
+    telemetry.taskCoverage = forcedCoverage;
+    telemetry.silentlyDroppedMaterialTasks = forcedCoverage.silentlyDroppedTasks;
+    return {
+      message: forcedFin.message,
+      released: true,
+      violations: first.violations,
+      telemetry,
+    };
+  }
+
+  // Single-obligation exceptional global UNKNOWN only when every richer path failed.
   telemetry.releasePath = "fail_closed";
   telemetry.finalRevalidationPass = false;
+  telemetry.silentlyDroppedMaterialTasks = 0;
   return {
-    message: "I don't have enough evidence to answer that confidently yet.",
+    message: GLOBAL_EVIDENCE_COLLAPSE_REPLY,
     released: true,
     violations: first.violations,
     telemetry,

@@ -20,6 +20,8 @@ const ASK_AGAIN =
   /\b(please ask again|ask again in a moment|realigning executive intelligence)\b/i;
 const SAFE_COLLAPSE =
   /^EmpireAI is live and answering you in production right now\.\s*We're focused on .+\.\s*We haven't made our first sale yet\./i;
+const GLOBAL_UNKNOWN =
+  /\bi don't have enough (?:solid )?evidence to (?:answer that confidently|give you a fuller operating narrative)\b/i;
 
 const CASES = [
   {
@@ -68,6 +70,19 @@ const CASES = [
       "4) Recommend one next check.",
     ].join("\n"),
     expect: /\b(orders|birth|recommend|inbox|not|unverified|open|retrieved)\b/i,
+    forbidGlobalUnknown: true,
+  },
+  {
+    id: "four_part_no_global_unknown",
+    prompt: [
+      "Synthetic RoundC 4-part:",
+      "1) Verified product focus?",
+      "2) Realised orders?",
+      "3) Audit premise that external demand is already proven.",
+      "4) Recommend one bounded next verification.",
+    ].join("\n"),
+    expect: /\b(focus|orders|premise|recommend|unestablished|unproven|verify)\b/i,
+    forbidGlobalUnknown: true,
   },
 ];
 
@@ -87,11 +102,13 @@ async function main() {
     cases: [],
     askAgain: 0,
     safeCollapse: 0,
+    globalUnknown: 0,
     failures: 0,
     result: "IN_PROGRESS",
     birthAuthorised: false,
     birthTimestamp: null,
     sealedExamEncoded: false,
+    gradesFinalVisible: true,
     deploySha: null,
   };
 
@@ -149,10 +166,19 @@ async function main() {
     const text = String(body.result?.message ?? body.message ?? "").trim();
     const askAgain = ASK_AGAIN.test(text);
     const safeCollapse = SAFE_COLLAPSE.test(text);
+    const globalUnknown = GLOBAL_UNKNOWN.test(text);
     const expectOk = c.expect.test(text);
-    const ok = r.ok && text.length >= 40 && !askAgain && !safeCollapse && expectOk;
+    const forbidHit = Boolean(c.forbidGlobalUnknown && globalUnknown);
+    const ok =
+      r.ok &&
+      text.length >= 40 &&
+      !askAgain &&
+      !safeCollapse &&
+      expectOk &&
+      !forbidHit;
     if (askAgain) report.askAgain += 1;
     if (safeCollapse) report.safeCollapse += 1;
+    if (globalUnknown) report.globalUnknown += 1;
     if (!ok) report.failures += 1;
     report.cases.push({
       id: c.id,
@@ -160,6 +186,8 @@ async function main() {
       status: r.status,
       askAgain,
       safeCollapse,
+      globalUnknown,
+      forbidHit,
       expectOk,
       preview: text.slice(0, 220),
     });
@@ -167,7 +195,10 @@ async function main() {
 
   report.completedAt = new Date().toISOString();
   report.result =
-    report.failures === 0 && report.askAgain === 0 && report.safeCollapse === 0
+    report.failures === 0 &&
+    report.askAgain === 0 &&
+    report.safeCollapse === 0 &&
+    report.globalUnknown === 0
       ? "PASS"
       : "FAIL";
   mkdirSync(OUT, { recursive: true });
