@@ -38,6 +38,7 @@ import {
   appendMissingTaskCoverage,
   assessTaskCoverage,
   buildContractAwareReconstruct,
+  detectSiblingTemplateCloning,
   parseExecutiveTaskContract,
   type ExecutiveTaskContract,
   type TaskCoverageReport,
@@ -500,6 +501,10 @@ export function releaseExecutiveAnswer(
       }
       if (isGlobalEvidenceCollapseReply(fin.message) && multiObligation) {
         continue;
+      const clone = detectSiblingTemplateCloning(fin.message, contract);
+      if (clone.cloned) {
+        continue;
+      }
       }
       telemetry.finalRevalidationPass = true;
       telemetry.supportMonotonicityPass = true;

@@ -101,6 +101,40 @@ const SUITE = [
     require: /\b(recommend|bounded|verify|verification-first|should)\b/i,
   },
   {
+    id: "heterogeneous_audit_five",
+    prompt: [
+      "SyntheticCanary heterogeneous audit:",
+      "A) Is the claim that EmpireAI is still waiting to go live currently true?",
+      "B) Is the claim that realised revenue is already established this month true?",
+      "C) Is bound product identity established in commissioning?",
+      "D) Is an alleged external demand research memo substantiated by retrieval this turn?",
+      "E) Does product selection by itself imply likely commercial success?",
+      "Which claims are dangerous if treated as established?",
+      "Recommend one bounded next verification step.",
+    ].join("\n"),
+    require: /\b(live|orders?|zero|0|identity|product|research|retrieval|infer|recommend|should|dangerous|unproven|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidCannotCompleteAfterAnswer: true,
+    forbidSiblingClone: true,
+    minLen: 120,
+  },
+  {
+    id: "heterogeneous_reordered",
+    prompt: [
+      "SyntheticCanary hetero reorder:",
+      "1) Does selection imply likely success?",
+      "2) Is realised revenue already true?",
+      "3) Are we still waiting to go live?",
+      "4) Is product identity established?",
+      "5) Is external research substantiated?",
+      "6) Recommend a bounded next move.",
+    ].join("\n"),
+    require: /\b(infer|revenue|orders?|live|product|research|recommend|should)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    minLen: 100,
+  },
+  {
     id: "hypothetical_conditional",
     prompt: [
       "SyntheticCanary conditional:",
@@ -178,6 +212,11 @@ function grade(text, spec) {
   const forbidHit = Boolean(spec.forbidGlobalUnknown && globalUnknown);
   const forbidAppendix = Boolean(spec.forbidCannotCompleteAfterAnswer && cannotComplete && text.length >= 160);
   const forbidBirth = Boolean(spec.forbidIrrelevantBirth && birthHit);
+  const temporalHits = (text.match(/Temporal (?:read|audit)/gi) || []).length;
+  const temporalClone =
+    temporalHits >= 3 &&
+    !/Claim audit|Financial reading|Entity reading|Provenance audit|Inference audit/i.test(text);
+  const forbidClone = Boolean(spec.forbidSiblingClone && temporalClone);
   const ok =
     text.length >= minLen &&
     !askAgain &&
@@ -185,8 +224,20 @@ function grade(text, spec) {
     requireOk &&
     !forbidHit &&
     !forbidAppendix &&
-    !forbidBirth;
-  return { ok, askAgain, globalUnknown, safeCollapse, requireOk, forbidHit, cannotComplete, forbidAppendix, forbidBirth };
+    !forbidBirth &&
+    !forbidClone;
+  return {
+    ok,
+    askAgain,
+    globalUnknown,
+    safeCollapse,
+    requireOk,
+    forbidHit,
+    cannotComplete,
+    forbidAppendix,
+    forbidBirth,
+    forbidClone,
+  };
 }
 
 async function chat(cookie, sessionId, message) {

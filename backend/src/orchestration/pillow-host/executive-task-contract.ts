@@ -34,7 +34,11 @@ export type ReasoningPremiseType =
 export type ExecutiveTaskUnit = {
   id: string;
   kind: ExecutiveTaskKind;
+  /** Grand King source span for this obligation (stable identity). */
   text: string;
+  sourceSpan: string;
+  subject: string;
+  requiredOperation: string;
   required: boolean;
 };
 
@@ -138,7 +142,119 @@ function splitMultipartUnits(message: string): string[] {
     if (m?.[1]) bullets.push(m[1].trim());
   }
   if (bullets.length >= 3) return bullets;
+  const tableRows = lines.filter((l) => /\s\|\s/.test(l) || /^[^:]{3,40}:\s+\S/.test(l));
+  if (tableRows.length >= 3) return tableRows.map((l) => l.replace(/^[-*•]\s+/, "").trim());
+  const paras = text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter((p) => p.length >= 20 && p.length <= 320);
+  if (paras.length >= 3 && paras.length <= 12) return paras;
   return [];
+}
+
+function subjectFromSpan(span: string): string {
+  let t = String(span || "").replace(/\s+/g, " ").trim();
+  // Keep identity of the ask without echoing contaminated claim bodies.
+  t = t.replace(/\baccording to[^.]{0,80}/gi, "alleged external source claim");
+  t = t.replace(/\bwe sold \d+[^.]{0,40}/gi, "alleged sales-volume claim");
+  t = t.replace(/\bproject management dashboard\b/gi, "unattested dashboard");
+  t = t.replace(/\bcommercial position reports?\b/gi, "unattested report");
+  return t.slice(0, 100) || "this obligation";
+}
+
+function requiredOperationForKind(kind: ExecutiveTaskKind): string {
+  switch (kind) {
+    case "temporal_reconciliation":
+      return "audit_current_vs_historical";
+    case "premise_audit":
+      return "audit_claim_truth";
+    case "evidence_explanation":
+      return "audit_provenance";
+    case "inference":
+      return "audit_inference_validity";
+    case "conditional_reasoning":
+      return "reason_under_assumption";
+    case "recommendation":
+      return "recommend_or_decide";
+    case "uncertainty":
+      return "identify_unknowns";
+    case "operating_briefing":
+      return "state_briefing";
+    default:
+      return "answer_distinct_obligation";
+  }
+}
+
+/**
+ * Classify ONE obligation from its own source span only.
+ * Never inherit sibling/global kind dominance (fixes heterogeneous clone class).
+ */
+export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
+  const m = String(part || "").trim();
+  if (!m) return "multipart_unit";
+  const local = detectKindsInText(m);
+  if (local.length > 0) return local[0]!;
+
+  if (
+    /\b(research|provenance|substantiat|according to|study|report (?:shows|claims)|source for|evidence for)\b/i.test(
+      m,
+    )
+  ) {
+    return "evidence_explanation";
+  }
+  if (
+    /\b(revenue|orders?|sales?|profit|usd|\$[0-9]|financial|realised commerce|made (?:money|revenue))\b/i.test(
+      m,
+    )
+  ) {
+    return "premise_audit";
+  }
+  if (
+    /\b(asin|product (?:name|identity|focus)|entity identity|bound product|titled|named|called)\b/i.test(
+      m,
+    )
+  ) {
+    return "premise_audit";
+  }
+  if (
+    /\b(imply|implies|therefore|conclude|follows? that|mean(?:s)? that|likely success|selection (?:implies|means))\b/i.test(
+      m,
+    )
+  ) {
+    return "inference";
+  }
+  if (
+    /\b(deploy|deployment|offline|not (?:yet )?live|waiting to go live|currently (?:live|online)|is (?:EmpireAI|the service) live)\b/i.test(
+      m,
+    )
+  ) {
+    return "temporal_reconciliation";
+  }
+  if (/\b(histor(?:y|ical)|yesterday|superseded|was true|now true)\b/i.test(m)) {
+    return "temporal_reconciliation";
+  }
+  if (/\b(dangerous|which (?:are|is)|what should i do|recommend|next (?:step|move))\b/i.test(m)) {
+    return "recommendation";
+  }
+  return "multipart_unit";
+}
+
+function makeTaskUnit(
+  id: string,
+  kind: ExecutiveTaskKind,
+  span: string,
+  required = true,
+): ExecutiveTaskUnit {
+  const sourceSpan = span.slice(0, 280);
+  return {
+    id,
+    kind,
+    text: sourceSpan,
+    sourceSpan,
+    subject: subjectFromSpan(sourceSpan),
+    requiredOperation: requiredOperationForKind(kind),
+    required,
+  };
 }
 
 /** Extract owner-scoped hypothetical premises (not current verified facts). */
@@ -194,7 +310,7 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
     kinds.push("conditional_reasoning");
   }
   if (
-    /\b(temporal|reconcil|histor(?:y|ical)|yesterday|today|tomorrow|superseded|was true|now true|future (?:state|hypothetical)|how (?:does|do) (?:this|that|the conclusion) change)/i.test(
+    /\b(temporal|reconcil|histor(?:y|ical)|yesterday|tomorrow|superseded|was true|now true|future (?:state|hypothetical)|how (?:does|do) (?:this|that|the conclusion) change)/i.test(
       m,
     )
   ) {
@@ -250,25 +366,11 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   if (parts.length >= 2) {
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i]!;
-      const local = detectKindsInText(part);
-      const kind =
-        local[0] ??
-        (globalKinds.includes("premise_audit")
-          ? "premise_audit"
-          : globalKinds.includes("conditional_reasoning")
-            ? "conditional_reasoning"
-            : globalKinds.includes("temporal_reconciliation")
-              ? "temporal_reconciliation"
-              : "multipart_unit");
-      tasks.push({
-        id: `t${i + 1}`,
-        kind,
-        text: part.slice(0, 280),
-        required: true,
-      });
+      // LOCAL classification only — never let one sibling's kind dominate others.
+      const kind = classifyLocalObligationKind(part);
+      tasks.push(makeTaskUnit(`t${i + 1}`, kind, part, true));
     }
   } else if (globalKinds.length > 0) {
-    // Prefer distinct obligation kinds without duplicating the full prompt as N silent-drop traps.
     const preferred = [
       "conditional_reasoning",
       "premise_audit",
@@ -282,20 +384,12 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     const ordered = preferred.filter((k) => globalKinds.includes(k));
     const use = ordered.length > 0 ? ordered : globalKinds;
     for (let i = 0; i < use.length; i++) {
-      tasks.push({
-        id: `t${i + 1}`,
-        kind: use[i]!,
-        text: text.slice(0, 280),
-        required: true,
-      });
+      tasks.push(makeTaskUnit(`t${i + 1}`, use[i]!, text, true));
     }
   } else {
-    tasks.push({
-      id: "t1",
-      kind: "general",
-      text: text.slice(0, 280) || "Respond to the executive request.",
-      required: true,
-    });
+    tasks.push(
+      makeTaskUnit("t1", "general", text.slice(0, 280) || "Respond to the executive request.", true),
+    );
   }
 
   const requiresRecommendation =
@@ -317,12 +411,8 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
 
   const ensureKind = (kind: ExecutiveTaskKind, label: string) => {
     if (tasks.some((t) => t.kind === kind)) return;
-    tasks.push({
-      id: `tx_${kind}`,
-      kind,
-      text: label,
-      required: true,
-    });
+    // Additive only — must not reclassify existing siblings.
+    tasks.push(makeTaskUnit(`tx_${kind}`, kind, label, true));
   };
   if (requiresConditionalReasoning)
     ensureKind(
@@ -540,6 +630,7 @@ export function synthesizeTaskUnitAnswer(
 ): string {
   const f = verifiedFactsBlock(truth);
   const birthRelevant = Boolean(opts.birthRelevant);
+  const subject = (task.subject || task.sourceSpan || task.text || "this obligation").slice(0, 140);
   const live = f.live
     ? "EmpireAI is live and answering in production."
     : "I'm answering through the active Brain process.";
@@ -564,27 +655,30 @@ export function synthesizeTaskUnitAnswer(
         .join(" ");
     case "premise_audit": {
       return [
-        "Premise audit:",
-        `From verified state I can support focus on ${f.product} and ${commerce.toLowerCase()}`,
-        "Premises that assert realised sales volume, demand strength, or unverified market facts stay unestablished — I will not treat those as supported.",
+        `Claim audit for “${subject}”:`,
+        `Against verified state (focus ${f.product}; ${commerce.toLowerCase()}), I will not treat unsupported sales, demand-strength, or unverified market facts as established.`,
+        /revenue|orders?|sales?|profit|usd|financial/i.test(subject)
+          ? `Financial reading: ${commerce} Claims of realised revenue/sales beyond that stay unestablished.`
+          : /asin|product|entity|identity|named|titled/i.test(subject)
+            ? `Entity reading: verified focus remains ${f.product}${truth.product.asin ? ` (ASIN ${truth.product.asin})` : ""}. Alternate identities stay unsupported.`
+            : "I support only what verified commissioning/KPI state can carry for this claim.",
       ].join(" ");
     }
     case "temporal_reconciliation":
       return [
-        "Temporal read:",
+        `Temporal audit for “${subject}”:`,
         "Historically, earlier pre-launch waiting language may have been true at the time.",
         f.live
-          ? "Currently verified: we are live and answering now — that supersedes older pre-launch waiting claims."
+          ? "Currently verified: we are live and answering now — that supersedes older pre-launch waiting claims where they conflict."
           : "Currently verified service state is limited to this process answer.",
-        "Future or owner-supplied hypothetical states should be reasoned conditionally — they are not automatically current verified fact.",
-        "Conclusions that depended on being offline should change; conclusions that depend on unrealised demand should not unless a scoped hypothetical says otherwise.",
+        "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
       ].join(" ");
     case "conditional_reasoning": {
       const premises = opts.hypotheticalPremises?.length
         ? opts.hypotheticalPremises
         : ["the owner-supplied scenario for this turn"];
       return [
-        "Conditional reasoning for this request only — these premises are not asserted as current verified fact:",
+        `Conditional reasoning for “${subject}” (not current verified fact):`,
         ...premises.slice(0, 4).map((pr) => `• Under assumption: ${pr}`),
         "What would change under those assumptions: conclusions that depend on them.",
         "What would not automatically change: current verified commerce counts and product identity, unless the premises themselves redefine them.",
@@ -594,7 +688,7 @@ export function synthesizeTaskUnitAnswer(
     }
     case "recommendation":
       return [
-        "Recommendation:",
+        `Recommendation regarding “${subject}”:`,
         f.orders === 0
           ? `I recommend a verification-first next step on ${f.product}: confirm the open commercial unknowns with a bounded check before any irreversible spend.`
           : `I recommend deepening what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
@@ -604,18 +698,21 @@ export function synthesizeTaskUnitAnswer(
         .join(" ");
     case "evidence_explanation":
       return [
-        "How I know:",
+        `Provenance audit for “${subject}”:`,
         "Product focus and realised commerce come from live commissioning and KPI state for this workspace.",
         live,
-        "I did not retrieve external systems this turn — so claims that need those sources stay open.",
+        "I did not retrieve external systems this turn — so claims that need those sources stay open for this part only.",
       ].join(" ");
     case "inference":
       return [
-        `Inference (labeled, not established): commercial demand for ${f.product} is still unproven given ${commerce.toLowerCase()}`,
+        `Inference audit for “${subject}”:`,
+        `Labeled inference only: commercial demand for ${f.product} is still unproven given ${commerce.toLowerCase()}`,
+        "Selection, workflow labels, or unverified research do not by themselves imply likely commercial success.",
         "What would change that: realised sales traction or independently retrieved demand evidence.",
       ].join(" ");
     case "uncertainty":
       return [
+        `Unknowns for “${subject}”:`,
         "Material unknowns: commercial demand strength and anything not present in verified commissioning/KPI state.",
         commerce,
       ].join(" ");
@@ -623,11 +720,76 @@ export function synthesizeTaskUnitAnswer(
     case "general":
     default:
       return [
-        `For “${task.text.slice(0, 100)}${task.text.length > 100 ? "…" : ""}”:`,
+        `For “${subject}”:`,
         `from verified state — focus ${f.product}; ${commerce}`,
-        "I will not invent unsupported specifics for this part, and I will not repeat unverified quantity claims as fact.",
+        "I will not invent unsupported specifics for this part, and I will not reuse another sibling's conclusion as a substitute.",
       ].join(" ");
   }
+}
+
+/**
+ * Detect pathological cloning: heterogeneous obligations answered with near-identical semantics.
+ */
+export function detectSiblingTemplateCloning(
+  answer: string,
+  contract: ExecutiveTaskContract,
+): { cloned: boolean; duplicateBlocks: number; reason: string | null } {
+  if (!contract.multipart || contract.tasks.length < 3) {
+    return { cloned: false, duplicateBlocks: 0, reason: null };
+  }
+  const kinds = new Set(contract.tasks.map((t) => t.kind));
+  const subjects = new Set(
+    contract.tasks.map((t) => t.subject.toLowerCase().slice(0, 40)).filter(Boolean),
+  );
+  const heterogeneous = kinds.size >= 2 || subjects.size >= 3;
+  if (!heterogeneous) return { cloned: false, duplicateBlocks: 0, reason: null };
+
+  const text = String(answer || "");
+  const temporalHits = (text.match(/Temporal (?:read|audit)/gi) || []).length;
+  if (temporalHits >= 3 && kinds.size >= 2) {
+    return {
+      cloned: true,
+      duplicateBlocks: temporalHits,
+      reason: "Repeated temporal template across heterogeneous siblings.",
+    };
+  }
+
+  const blocks = text
+    .split(/\n+/)
+    .map((b) => b.replace(/^\s*\d+[\).:]\s*/, "").trim())
+    .filter((b) => b.length >= 60);
+  if (blocks.length < 3) return { cloned: false, duplicateBlocks: 0, reason: null };
+
+  const norm = (b: string) =>
+    b
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const normalized = blocks.map(norm);
+  let dup = 0;
+  for (let i = 0; i < normalized.length; i++) {
+    for (let j = i + 1; j < normalized.length; j++) {
+      const a = normalized[i];
+      const b = normalized[j];
+      if (a.length < 40 || b.length < 40) continue;
+      const ta = new Set(a.split(" ").filter((t) => t.length >= 4));
+      const tb = new Set(b.split(" ").filter((t) => t.length >= 4));
+      if (ta.size === 0 || tb.size === 0) continue;
+      let inter = 0;
+      for (const t of ta) if (tb.has(t)) inter += 1;
+      const jaccard = inter / new Set([...ta, ...tb]).size;
+      if (jaccard >= 0.82) dup += 1;
+    }
+  }
+  if (dup >= 2) {
+    return {
+      cloned: true,
+      duplicateBlocks: dup,
+      reason: "Near-identical semantic blocks across heterogeneous sibling obligations.",
+    };
+  }
+  return { cloned: false, duplicateBlocks: 0, reason: null };
 }
 
 /**
@@ -780,7 +942,7 @@ export function buildContractAwareReconstruct(
 ): string {
   const unique = new Map<string, ExecutiveTaskUnit>();
   for (const t of contract.tasks) {
-    const key = `${t.kind}:${t.text.slice(0, 40)}`;
+    const key = `${t.id}:${t.kind}:${(t.sourceSpan || t.text).slice(0, 60)}`;
     if (!unique.has(key)) unique.set(key, t);
   }
   const units = [...unique.values()].slice(0, 20);
@@ -790,7 +952,7 @@ export function buildContractAwareReconstruct(
   };
   if (units.length === 0) {
     return synthesizeTaskUnitAnswer(
-      { id: "t1", kind: "operating_briefing", text: "briefing", required: true },
+      makeTaskUnit("t1", "operating_briefing", "briefing", true),
       truth,
       opts,
     );
@@ -809,11 +971,15 @@ export function formatTaskContractBrief(contract: ExecutiveTaskContract): string
     "Executive task contract (complete every material ask; do not replace with a single safe summary):",
     `Intent: ${contract.requestIntent}`,
     `Tasks (${contract.tasks.length}):`,
-    ...contract.tasks.map((t, i) => `${i + 1}. [${t.kind}] ${t.text}`),
+    ...contract.tasks.map(
+      (t, i) =>
+        `${i + 1}. [${t.kind}/${t.requiredOperation}] ${t.sourceSpan || t.text}`,
+    ),
     "If a part cannot be verified as current fact, say so for that part only and still complete the others.",
     "Owner-supplied hypotheticals / 'assume' / 'suppose' / 'if X were true' are for CONDITIONAL reasoning only — do not treat them as current verified fact, and do not refuse the conditional ask.",
     "Do not append 'cannot complete' after you have already answered an obligation.",
     "Do not dump Birth state, repeated commerce footers, or protected facts unless they are requested or material to the ask.",
+    "Each numbered/lettered obligation is DISTINCT: answer it from its own source span. Do not clone one temporal/financial/entity paragraph onto unrelated siblings.",
   ];
   if (contract.hypotheticalPremises.length > 0) {
     lines.push("Hypothetical premises for this turn only (not current verified fact):");
