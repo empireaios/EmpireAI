@@ -223,6 +223,23 @@ async function main() {
     /* non-blocking */
   }
   let sessionId = null;
+  // Warm the worker before graded cases (first post-deploy ask often hits transient fault).
+  {
+    const warmSess = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({}),
+      signal: AbortSignal.timeout(90_000),
+    });
+    const wj = await warmSess.json().catch(() => ({}));
+    if (warmSess.ok && wj.session?.sessionId) sessionId = wj.session.sessionId;
+    await chat(
+      cookie,
+      sessionId,
+      "SyntheticCanary warm-up: reply with exactly one short sentence acknowledging readiness.",
+    );
+    await new Promise((r) => setTimeout(r, 3000));
+  }
   for (const c of CASES) {
     const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
       method: "POST",
@@ -235,9 +252,10 @@ async function main() {
     await new Promise((r) => setTimeout(r, 2000));
     let res = await chat(cookie, sessionId, c.prompt);
     sessionId = res.sessionId;
-    // One retry on transient worker faults (not a reasoning FAIL).
-    if (/transient fault|worker proxy timed out|temporarily restarting/i.test(res.text)) {
-      await new Promise((r) => setTimeout(r, 4000));
+    // Retries on transient worker faults (not a reasoning FAIL).
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (!/transient fault|worker proxy timed out|temporarily restarting/i.test(res.text)) break;
+      await new Promise((r) => setTimeout(r, 5000 * (attempt + 1)));
       res = await chat(cookie, sessionId, c.prompt);
       sessionId = res.sessionId;
     }

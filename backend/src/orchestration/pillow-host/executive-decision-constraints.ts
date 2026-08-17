@@ -63,7 +63,7 @@ const FULL_SCALE_UNLOCK =
   /\b(?:unlock(?:s|ed|ing)?\s+(?:the\s+)?(?:decision\s+to\s+)?(?:meaningful\s+)?scale|scale\s+(?:would\s+)?(?:be|become|becomes)\s+(?:eligible|unlocked|justified)|would\s+(?:then\s+)?(?:unlock|enable|justify)\s+(?:the\s+)?(?:decision\s+to\s+)?(?:meaningful\s+)?scale|make(?:s)?\s+(?:this\s+)?eligible\s+for\s+(?:meaningful\s+)?scal(?:e|ing))\b/i;
 
 const NEGATIVE_ECON =
-  /\b(?:negative\s+(?:contribution\s+)?(?:margin|unit\s+economics)|negative\s+contribution(?:\s+remains?)?|contribution\s+margin\s*(?:=|:)?\s*-|loses?\s+money\s+per\s+(?:sale|unit|order|transaction)|loss(?:es)?\s+per\s+(?:completed\s+)?(?:sale|unit|transaction)|unit\s+economics?\s+(?:are\s+)?(?:negative|adverse|underwater)|margin\s+(?:is\s+)?negative|unprofitable\s+per\s+(?:sale|unit)|remains?\s+negative|still\s+negative)\b/i;
+  /\b(?:negative\s+(?:contribution\s+)?(?:margin|unit\s+economics)|negative\s+contribution(?:\s+remains?)?|contribution\s+margin\s*(?:=|:)?\s*-|loses?\s+(?:money|[Ss]\$\s*\d+(?:\.\d+)?)\s+per\s+(?:sale|unit|order|transaction)|loss(?:es)?\s+per\s+(?:completed\s+)?(?:sale|unit|transaction)|unit\s+economics?\s+(?:are\s+)?(?:negative|adverse|underwater)|margin\s+(?:is\s+)?negative|unprofitable\s+per\s+(?:sale|unit)|remains?\s+negative|still\s+negative|currently\s+loses?\b)\b/i;
 
 const ECON_SUPERSEDED =
   /\b(?:margin\s+(?:is\s+)?(?:now\s+)?positive|contribution\s+(?:is\s+)?(?:now\s+)?positive|unit\s+economics?\s+(?:are\s+)?(?:now\s+)?(?:positive|repaired|fixed)|(?:verified|confirmed)\s+cost\s+reduction|economics?\s+(?:have\s+been\s+)?(?:repaired|resolved|cleared)|profitable\s+per\s+(?:sale|unit)\s+(?:is\s+)?(?:now\s+)?(?:verified|established))\b/i;
@@ -174,7 +174,16 @@ export function applyConstraintSupersession(
         /\b(?:unverified|possible|potential|if\s+(?:the\s+)?(?:additional\s+)?saving)\b/i.test(
           evidence,
         ) &&
-        !/\b(?:verified|confirmed)\s+(?:cost\s+reduction|saving|margin)|contribution\s+(?:is\s+)?(?:now\s+)?positive|margin\s+(?:is\s+)?(?:now\s+)?positive\b/i.test(
+        !/\b(?:contribution\s+(?:is\s+)?(?:now\s+)?positive|margin\s+(?:is\s+)?(?:now\s+)?positive|unit\s+economics?\s+(?:are\s+)?(?:now\s+)?positive)\b/i.test(
+          evidence,
+        )
+      ) {
+        return c;
+      }
+      // A verified partial cost cut that still leaves losses must not clear economics.
+      if (
+        NEGATIVE_ECON.test(evidence) &&
+        !/\b(?:contribution\s+(?:is\s+)?(?:now\s+)?positive|margin\s+(?:is\s+)?(?:now\s+)?positive|unit\s+economics?\s+(?:are\s+)?(?:now\s+)?positive)\b/i.test(
           evidence,
         )
       ) {
@@ -467,9 +476,19 @@ export function ensureRecommendationConstraintConsistency(
       if (isRec) {
         out.push(recommendationCompatibleWith(constraints));
       } else {
-        let fixed = slice
-          .replace(FULL_SCALE_UNLOCK, "clear only the economics gate — not full scale eligibility")
-          .replace(SCALE_ACTION, "withhold scale");
+        let fixed = slice.replace(
+          FULL_SCALE_UNLOCK,
+          "clear only the economics gate — not full scale eligibility",
+        );
+        // Only rewrite imperative scale actions, not “eligible for meaningful scaling” evidence asks.
+        if (
+          !/\b(?:exact evidence|evidence (?:would|needed|required)|what evidence)\b/i.test(slice)
+        ) {
+          fixed = fixed.replace(
+            /\b(?:scale(?:\s+up)?(?:\s+(?:production|marketing|spend|ads|advertising|inventory|operations))?|ramp(?:\s+up)?(?:\s+production)?)\b/gi,
+            "withhold scale",
+          );
+        }
         out.push(fixed);
         if (!respectsMultiGate(fixed)) {
           out.push("\n\n" + recommendationCompatibleWith(constraints));

@@ -196,6 +196,14 @@ describe("decision-gate multi-blocker Level A", () => {
     assert.equal(c.find((x) => x.class === "INVESTMENT_JUSTIFICATION")?.status, "active");
   });
 
+  it("partial verified cost cut with remaining loss does not clear economics", () => {
+    const ask =
+      "Synthetic: currently loses S$4 per transaction after a verified S$2 cost cut. Possible further S$5 saving is UNVERIFIED. Capacity capped at 120/week; expansion needs additional fixed investment.";
+    const c = extractMaterialConstraints(ask);
+    assert.equal(c.find((x) => x.class === "NEGATIVE_UNIT_ECONOMICS")?.status, "active");
+    assert.equal(c.find((x) => x.class === "CAPACITY_LIMIT")?.status, "active");
+  });
+
   it("numbered section line breaks separate inline 3.", () => {
     const raw =
       "Capacity remains limited and expansion needs additional fixed investment. 3. Impact of the Unverified Saving";
