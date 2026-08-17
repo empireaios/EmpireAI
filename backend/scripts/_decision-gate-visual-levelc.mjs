@@ -11,8 +11,14 @@ import { fileURLToPath } from "node:url";
 
 const COCKPIT = process.env.EMPIRE_COCKPIT_URL || "https://empire-ai.co";
 const BRAIN = process.env.EMPIRE_BRAIN_URL || "https://empireai-production.up.railway.app";
-const EMAIL = process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL;
-const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD;
+const EMAIL =
+  process.env.EMPIRE_LOGIN_EMAIL ||
+  process.env.FOUNDER_EMAIL ||
+  "founder@empireai.com";
+const PASSWORD =
+  process.env.EMPIRE_LOGIN_PASSWORD ||
+  process.env.FOUNDER_PASSWORD ||
+  "EmpireAI2026!";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = path.join(ROOT, "docs/audits/complete-state");
 
@@ -227,8 +233,14 @@ async function main() {
     const sj = await sess.json().catch(() => ({}));
     if (sess.ok && sj.session?.sessionId) sessionId = sj.session.sessionId;
     await new Promise((r) => setTimeout(r, 2000));
-    const res = await chat(cookie, sessionId, c.prompt);
+    let res = await chat(cookie, sessionId, c.prompt);
     sessionId = res.sessionId;
+    // One retry on transient worker faults (not a reasoning FAIL).
+    if (/transient fault|worker proxy timed out|temporarily restarting/i.test(res.text)) {
+      await new Promise((r) => setTimeout(r, 4000));
+      res = await chat(cookie, sessionId, c.prompt);
+      sessionId = res.sessionId;
+    }
     const g = grade(res.text, c);
     if (!g.ok || res.status >= 400) report.failures += 1;
     report.cases.push({

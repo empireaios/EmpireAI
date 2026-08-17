@@ -185,6 +185,17 @@ describe("decision-gate multi-blocker Level A", () => {
     assert.ok(el.blockedBy.length >= 2);
   });
 
+  it("draft requirement lists must not supersede capacity", () => {
+    const ask =
+      "Synthetic: negative contribution margin remains; capacity is capped; expansion requires additional fixed investment.";
+    const draft =
+      "Exact evidence for scale: Verified capacity expansion or optimization. Verified cost reduction.";
+    const c = extractMaterialConstraints(ask, draft);
+    assert.equal(c.find((x) => x.class === "CAPACITY_LIMIT")?.status, "active");
+    assert.equal(c.find((x) => x.class === "NEGATIVE_UNIT_ECONOMICS")?.status, "active");
+    assert.equal(c.find((x) => x.class === "INVESTMENT_JUSTIFICATION")?.status, "active");
+  });
+
   it("numbered section line breaks separate inline 3.", () => {
     const raw =
       "Capacity remains limited and expansion needs additional fixed investment. 3. Impact of the Unverified Saving";

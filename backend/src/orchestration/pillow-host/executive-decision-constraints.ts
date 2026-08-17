@@ -63,13 +63,13 @@ const FULL_SCALE_UNLOCK =
   /\b(?:unlock(?:s|ed|ing)?\s+(?:the\s+)?(?:decision\s+to\s+)?(?:meaningful\s+)?scale|scale\s+(?:would\s+)?(?:be|become|becomes)\s+(?:eligible|unlocked|justified)|would\s+(?:then\s+)?(?:unlock|enable|justify)\s+(?:the\s+)?(?:decision\s+to\s+)?(?:meaningful\s+)?scale|make(?:s)?\s+(?:this\s+)?eligible\s+for\s+(?:meaningful\s+)?scal(?:e|ing))\b/i;
 
 const NEGATIVE_ECON =
-  /\b(?:negative\s+(?:contribution\s+)?(?:margin|unit\s+economics)|contribution\s+margin\s*(?:=|:)?\s*-|loses?\s+money\s+per\s+(?:sale|unit|order|transaction)|loss(?:es)?\s+per\s+(?:completed\s+)?(?:sale|unit|transaction)|unit\s+economics?\s+(?:are\s+)?(?:negative|adverse|underwater)|margin\s+(?:is\s+)?negative|unprofitable\s+per\s+(?:sale|unit)|remains?\s+negative|still\s+negative)\b/i;
+  /\b(?:negative\s+(?:contribution\s+)?(?:margin|unit\s+economics)|negative\s+contribution(?:\s+remains?)?|contribution\s+margin\s*(?:=|:)?\s*-|loses?\s+money\s+per\s+(?:sale|unit|order|transaction)|loss(?:es)?\s+per\s+(?:completed\s+)?(?:sale|unit|transaction)|unit\s+economics?\s+(?:are\s+)?(?:negative|adverse|underwater)|margin\s+(?:is\s+)?negative|unprofitable\s+per\s+(?:sale|unit)|remains?\s+negative|still\s+negative)\b/i;
 
 const ECON_SUPERSEDED =
   /\b(?:margin\s+(?:is\s+)?(?:now\s+)?positive|contribution\s+(?:is\s+)?(?:now\s+)?positive|unit\s+economics?\s+(?:are\s+)?(?:now\s+)?(?:positive|repaired|fixed)|(?:verified|confirmed)\s+cost\s+reduction|economics?\s+(?:have\s+been\s+)?(?:repaired|resolved|cleared)|profitable\s+per\s+(?:sale|unit)\s+(?:is\s+)?(?:now\s+)?(?:verified|established))\b/i;
 
 const CAPACITY =
-  /\b(?:capacity\s+(?:limit|constraint|capped|exhausted|limited)|limited\s+to\s+\d+|cannot\s+(?:fulfill|fulfil)|warehouse\s+(?:full|capacity)|throughput\s+(?:limit|constrained)|insufficient\s+capacity|transactions?\s*\/\s*week|per\s+week\s+cap)\b/i;
+  /\b(?:capacity\s+(?:limit|constraint|capped|exhausted|limited)|(?:is\s+)?capped\s+capacity|capacity\s+is\s+capped|limited\s+to\s+\d+|cannot\s+(?:fulfill|fulfil)|warehouse\s+(?:full|capacity)|throughput\s+(?:limit|constrained)|insufficient\s+capacity|transactions?\s*\/\s*week|per\s+week\s+cap)\b/i;
 
 const INVESTMENT =
   /\b(?:additional\s+fixed\s+investment|fixed\s+investment\s+required|expansion\s+requires\s+(?:additional\s+)?(?:fixed\s+)?investment|capex\s+(?:required|needed)|investment\s+(?:not\s+)?(?:yet\s+)?(?:justified|verified|proven))\b/i;
@@ -146,7 +146,17 @@ export function extractMaterialConstraints(
     pushUnique(out, "TECHNICAL_INCOMPATIBILITY", "Technical or infrastructure incompatibility");
   }
 
-  return applyConstraintSupersession(out, draft || userMessage);
+  // Supersession must use owner/scenario evidence only — never the model draft.
+  // Drafts often list "Verified capacity expansion" as a *requirement*, which must not clear gates.
+  return applyConstraintSupersession(out, userMessage);
+}
+
+/** True when text is stating a requirement/wishlist rather than current verified clearance. */
+function looksLikeRequirementContext(evidenceText: string, matchIndex: number): boolean {
+  const window = evidenceText.slice(Math.max(0, matchIndex - 80), matchIndex + 40);
+  return /\b(?:require(?:s|d|ments?)?|need(?:s|ed)?|must|still\s+required|exact evidence|would\s+(?:clear|unlock)|to\s+(?:clear|unlock|make)|evidence\s+for)\b/i.test(
+    window,
+  );
 }
 
 /** Newer evidence can supersede an active constraint — never silently forget others. */
@@ -154,12 +164,20 @@ export function applyConstraintSupersession(
   constraints: readonly MaterialConstraint[],
   evidenceText: string,
 ): MaterialConstraint[] {
+  // Only owner/scenario evidence may clear gates. Model drafts are not evidence.
+  const evidence = String(evidenceText || "");
   return constraints.map((c) => {
     if (c.status !== "active") return c;
-    if (c.class === "NEGATIVE_UNIT_ECONOMICS" && ECON_SUPERSEDED.test(evidenceText)) {
+    if (c.class === "NEGATIVE_UNIT_ECONOMICS" && ECON_SUPERSEDED.test(evidence)) {
       // Unverified hypothetical savings must not clear economics.
-      if (/\b(?:unverified|possible|potential|if\s+(?:the\s+)?(?:additional\s+)?saving)\b/i.test(evidenceText) &&
-          !/\b(?:verified|confirmed)\s+(?:cost\s+reduction|saving|margin)\b/i.test(evidenceText)) {
+      if (
+        /\b(?:unverified|possible|potential|if\s+(?:the\s+)?(?:additional\s+)?saving)\b/i.test(
+          evidence,
+        ) &&
+        !/\b(?:verified|confirmed)\s+(?:cost\s+reduction|saving|margin)|contribution\s+(?:is\s+)?(?:now\s+)?positive|margin\s+(?:is\s+)?(?:now\s+)?positive\b/i.test(
+          evidence,
+        )
+      ) {
         return c;
       }
       return {
@@ -168,39 +186,39 @@ export function applyConstraintSupersession(
         summary: `${c.summary} (superseded by verified economics repair)`,
       };
     }
-    if (
-      c.class === "CAPACITY_LIMIT" &&
-      /\b(?:capacity\s+(?:is\s+)?(?:now\s+)?(?:expanded|resolved|cleared)|verified\s+capacity\s+expansion)\b/i.test(
-        evidenceText,
-      )
-    ) {
-      return {
-        ...c,
-        status: "superseded",
-        summary: `${c.summary} (superseded by verified capacity expansion)`,
-      };
+    if (c.class === "CAPACITY_LIMIT") {
+      const m = evidence.match(
+        /\b(?:capacity\s+(?:is\s+)?(?:now\s+)?(?:expanded|resolved|cleared)|(?:capacity\s+expanded\s+and\s+verified)|verified\s+capacity\s+expansion)\b/i,
+      );
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified capacity expansion)`,
+        };
+      }
     }
-    if (
-      c.class === "INVESTMENT_JUSTIFICATION" &&
-      /\b(?:investment\s+(?:is\s+)?(?:now\s+)?(?:justified|approved|verified)|ROI\s+(?:of\s+)?(?:the\s+)?investment\s+(?:is\s+)?(?:verified|positive|acceptable))\b/i.test(
-        evidenceText,
-      )
-    ) {
-      return {
-        ...c,
-        status: "superseded",
-        summary: `${c.summary} (superseded by verified investment justification)`,
-      };
+    if (c.class === "INVESTMENT_JUSTIFICATION") {
+      const m = evidence.match(
+        /\b(?:investment\s+(?:is\s+)?(?:now\s+)?(?:justified|approved|verified)|ROI\s+(?:of\s+)?(?:the\s+)?investment\s+(?:is\s+)?(?:verified|positive|acceptable)|investment\s+ROI\s+verified\s+acceptable)\b/i,
+      );
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified investment justification)`,
+        };
+      }
     }
-    if (
-      c.class === "UNVERIFIED_DEMAND" &&
-      /\b(?:verified|proven|confirmed)\s+(?:strong\s+)?demand\b/i.test(evidenceText)
-    ) {
-      return {
-        ...c,
-        status: "superseded",
-        summary: `${c.summary} (superseded by verified demand evidence)`,
-      };
+    if (c.class === "UNVERIFIED_DEMAND") {
+      const m = evidence.match(/\b(?:verified|proven|confirmed)\s+(?:strong\s+)?demand\b/i);
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified demand evidence)`,
+        };
+      }
     }
     return c;
   });
