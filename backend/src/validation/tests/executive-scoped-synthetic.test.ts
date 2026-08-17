@@ -246,6 +246,21 @@ describe("scoped synthetic + aggregate synthesis Level A", () => {
     assert.ok(fixed.includes("\n\n") || /A\)/.test(fixed));
   });
 
+  it("polish unflattens ### walls and strips live commerce demote in synthetic scope", () => {
+    const user = [
+      "Synthetic analysis only — not EmpireAI facts.",
+      "Audit: (1) forecast profit treated as realised, (2) selection treated as success proof.",
+      "Then decide: which is more dangerous for irreversible spend, and what should I do next?",
+    ].join("\n");
+    const wall =
+      "### Audit of Claims 1. **Forecast**: Treating forecast profit as realised is risky. 2. **Selection**: Selection is not success proof. I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established. ### Decision Claim 1 is more dangerous. ### Recommended Next Step I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established. Verify market demand with a bounded test.";
+    const polished = polishFinalVisibleAnswer(wall, user);
+    assert.ok((polished.match(/\n/g) || []).length >= 3, "must restore newlines");
+    assert.doesNotMatch(polished, /sales-history evidence beyond realised orders/i);
+    assert.doesNotMatch(polished, /Mini Fan|High-Speed Handheld/i);
+    assert.match(polished, /###\s+(Audit|Decision|Recommended)/i);
+  });
+
   it("dedupeProtectedStateBlocks keeps newlines between paragraphs", () => {
     const msg = "First para with realised orders note.\n\nSecond para stays separate.";
     const out = dedupeProtectedStateBlocks(msg);

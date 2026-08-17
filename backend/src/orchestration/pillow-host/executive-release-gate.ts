@@ -49,6 +49,11 @@ import {
   isGlobalEvidenceCollapseReply,
 } from "./executive-final-release.js";
 import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
+import {
+  detectReasoningScope,
+  isScopedAwayFromLiveEmpire,
+  type ReasoningScopeType,
+} from "./executive-scoped-reasoning.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -160,7 +165,27 @@ function splitClaims(draft: string): string[] {
     .filter((s) => s.length > 0);
 }
 
-function demoteUnsupportedFact(sentence: string): string | null {
+/** Reassemble claim sentences without flattening Markdown section structure. */
+function joinClaimsPreservingStructure(claims: readonly string[]): string {
+  if (claims.length === 0) return "";
+  let out = claims[0]!;
+  for (let i = 1; i < claims.length; i++) {
+    const next = claims[i]!;
+    const sectionStart =
+      /^(#{1,3}\s|[A-E][).]\s|\d+[).]\s|[-*•]\s|\*\*(?:Verdict|Decision|Need|Recommendation|What matters most))/i.test(
+        next,
+      );
+    out += sectionStart ? `\n\n${next}` : ` ${next}`;
+  }
+  return out.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+const LIVE_COMMERCE_DEMOTE =
+  "I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established.";
+const SCOPED_COMMERCE_DEMOTE =
+  "That performance claim is not established from the supplied scenario evidence — treat it as unproven.";
+
+function demoteUnsupportedFact(sentence: string, scopedAway = false): string | null {
   // Strip invented-source scaffolding and false certainty markers.
   let s = sentence
     .replace(
@@ -173,7 +198,7 @@ function demoteUnsupportedFact(sentence: string): string | null {
     )
     .replace(/\b(this\s+is\s+verified\s+fact|verified\s+fact|evidenced|\[know\]|know:|proven\s+fact)\b/gi, "")
     .replace(/\bunavailable sources\b/gi, "what we don't yet have")
-    .replace(/\s{2,}/g, " ")
+    .replace(/[^\S\n]{2,}/g, " ")
     .trim();
 
   if (!s || s.length < 12) return null;
@@ -188,7 +213,7 @@ function demoteUnsupportedFact(sentence: string): string | null {
       s,
     )
   ) {
-    return "I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established.";
+    return scopedAway ? SCOPED_COMMERCE_DEMOTE : LIVE_COMMERCE_DEMOTE;
   }
 
   return null;
@@ -214,6 +239,7 @@ export function surgicalRepairDraft(
   draft: string,
   truth: ExecutiveTruthSnapshot,
   attestations: readonly RetrievalAttestation[] = [],
+  options: { userMessage?: string; scopeType?: string } = {},
 ): {
   message: string;
   kept: number;
@@ -225,6 +251,11 @@ export function surgicalRepairDraft(
   if (claims.length === 0) {
     return { message: "", kept: 0, dropped: 0, repaired: false, stillContaminated: true };
   }
+
+  const scope =
+    options.scopeType ||
+    (options.userMessage ? detectReasoningScope(options.userMessage) : "CURRENT_REALITY");
+  const scopedAway = isScopedAwayFromLiveEmpire(scope as ReasoningScopeType);
 
   const kept: string[] = [];
   let dropped = 0;
@@ -260,24 +291,35 @@ export function surgicalRepairDraft(
       continue;
     }
 
+    // Synthetic/scenario analysis must not be rewritten into live EmpireAI product identity.
     if (productMismatch && truth.product.productName && truth.product.asin) {
-      kept.push(
-        `Our bound product is ${truth.product.productName} (ASIN ${truth.product.asin}).`,
-      );
+      if (scopedAway) {
+        kept.push(
+          "The scenario entity mapping is unproven from co-occurrence or naming alone — verify against an authoritative product-code mapping before treating identity as settled.",
+        );
+      } else {
+        kept.push(
+          `Our bound product is ${truth.product.productName} (ASIN ${truth.product.asin}).`,
+        );
+      }
       changed = true;
       continue;
     }
 
     if (temporal && !fatal) {
-      kept.push(rewriteTemporalClaim(claim, truth));
+      if (scopedAway) {
+        kept.push(
+          "A historical scenario note does not prove current state — verify whether that status still holds before treating it as present fact.",
+        );
+      } else {
+        kept.push(rewriteTemporalClaim(claim, truth));
+      }
       changed = true;
       continue;
     }
 
     if (commerce) {
-      kept.push(
-        "I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established.",
-      );
+      kept.push(scopedAway ? SCOPED_COMMERCE_DEMOTE : LIVE_COMMERCE_DEMOTE);
       changed = true;
       continue;
     }
@@ -294,7 +336,7 @@ export function surgicalRepairDraft(
     }
 
     if (invented && !v.violations.includes("UNATTESTED_RETRIEVAL_CLAIM")) {
-      const demoted = demoteUnsupportedFact(claim);
+      const demoted = demoteUnsupportedFact(claim, scopedAway);
       if (demoted) {
         const recheck = validateExecutiveDraft(demoted, truth, attestations);
         if (recheck.ok) {
@@ -307,7 +349,7 @@ export function surgicalRepairDraft(
 
     // Labeled inference that only tripped soft provenance: try keep after stripping source nouns.
     if (isLabeledInferenceOrHypothesis(claim) && !fatal) {
-      const demoted = demoteUnsupportedFact(claim);
+      const demoted = demoteUnsupportedFact(claim, scopedAway);
       if (demoted) {
         const recheck = validateExecutiveDraft(demoted, truth, attestations);
         if (recheck.ok) {
@@ -322,7 +364,7 @@ export function surgicalRepairDraft(
     changed = true;
   }
 
-  const message = kept.join(" ").trim();
+  const message = joinClaimsPreservingStructure(kept);
   const contaminationRatio = claims.length === 0 ? 1 : dropped / claims.length;
   // Prefer preserving remaining safe claims over whole-answer reconstruct.
   // Only force reconstruct when almost nothing usable survives.
@@ -502,10 +544,10 @@ export function releaseExecutiveAnswer(
       }
       if (isGlobalEvidenceCollapseReply(fin.message) && multiObligation) {
         continue;
+      }
       const clone = detectSiblingTemplateCloning(fin.message, contract);
       if (clone.cloned) {
         continue;
-      }
       }
       telemetry.finalRevalidationPass = true;
       telemetry.supportMonotonicityPass = true;
@@ -561,7 +603,10 @@ export function releaseExecutiveAnswer(
   // Attempt 1: claim-level surgical repair (preserve task-specific reasoning).
   telemetry.reconstructionAttempted = true;
   telemetry.claimLevelRepairUsed = true;
-  const surgical = surgicalRepairDraft(draft, truth, attestations);
+  const surgical = surgicalRepairDraft(draft, truth, attestations, {
+    userMessage: options.userMessage,
+    scopeType: contract.scopeType,
+  });
   telemetry.claimsKept = surgical.kept;
   telemetry.claimsDropped = surgical.dropped;
 

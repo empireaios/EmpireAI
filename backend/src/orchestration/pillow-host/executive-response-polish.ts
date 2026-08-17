@@ -123,24 +123,41 @@ export function dedupeProtectedStateBlocks(message: string): string {
 }
 
 /**
- * If a complex multipart answer is one wall of text, insert light section breaks
- * before numbered/lettered markers without inventing content.
+ * If a complex answer is one wall of text, insert light section breaks
+ * before numbered/lettered/heading markers without inventing content.
+ * Must run even when task count is small — LLM answers often flatten ### sections.
  */
 export function ensureScannableMultipartStructure(
   message: string,
   contract: ExecutiveTaskContract,
 ): string {
   let out = String(message || "").trim();
-  if (!contract.multipart && contract.tasks.length < 3) return out;
-  if (!isComplexWallOfText(out, contract.multipart || contract.tasks.length >= 3)) {
+  const hasInlineHeadings =
+    /#{1,3}\s+\S/.test(out) && ((out.match(/#{1,3}\s+/g) || []).length >= 2 || !/\n/.test(out));
+  const treatAsComplex =
+    contract.multipart ||
+    contract.tasks.length >= 3 ||
+    contract.requiresRiskRanking ||
+    contract.requiresVerificationPriority ||
+    contract.requiresRecommendation ||
+    contract.requiresPremiseAudit ||
+    hasInlineHeadings;
+  if (!isComplexWallOfText(out, treatAsComplex) && !hasInlineHeadings) {
     return out;
   }
-  // Insert breaks before A)/1)/Claim markers when flattened.
+  // Insert breaks before A)/1)/###/Claim markers when flattened.
   out = out
     .replace(/\s+([A-E][).]\s+)/g, "\n\n$1")
     .replace(/\s+(\d+[).]\s+)/g, "\n\n$1")
     .replace(/\s+(#{1,3}\s+)/g, "\n\n$1")
-    .replace(/\s+(\*\*(?:Verdict|Decision|Need|My recommendation|What matters most):?\*\*)/gi, "\n\n$1")
+    .replace(/([.!?])\s+(#{1,3}\s+)/g, "$1\n\n$2")
+    .replace(
+      /\s+(\*\*(?:Verdict|Decision|Need|My recommendation|What matters most|Recommendation):?\*\*)/gi,
+      "\n\n$1",
+    )
+    .replace(/\s+(###\s+(?:My recommendation|What matters most|Recommendation|Decision)\b)/gi, "\n\n$1")
+    // Heading glued to bold verdict on same line.
+    .replace(/(#{1,3}\s+[^\n*]{8,80}?)\s+(\*\*[^*\n]{3,80}\*\*)/g, "$1\n\n$2")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
   return out;

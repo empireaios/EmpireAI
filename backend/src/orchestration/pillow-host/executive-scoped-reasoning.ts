@@ -267,6 +267,43 @@ export function stripIrrelevantLiveGrounding(
     ) && !/\bsynthetic|for analysis|not (?:facts?|claims?) about EmpireAI\b/i.test(userMessage);
   if (liveAsk) return String(message || "").trim();
 
+  const isLiveBoilerplate = (s: string): boolean => {
+    if (
+      /\b(High-Speed Handheld|Mini Fan)\b/i.test(s) &&
+      !/\bsynthetic|scenario|claim audit|for analysis\b/i.test(s)
+    ) {
+      return true;
+    }
+    if (
+      /\b(realised orders? (?:and realised revenue )?remain(?:s)? zero|Current product focus is|focus remains .{0,80}; realised)\b/i.test(
+        s,
+      )
+    ) {
+      return true;
+    }
+    if (
+      /\bverified sales-history evidence beyond realised orders\b/i.test(s) ||
+      /\bOur bound product is\b/i.test(s)
+    ) {
+      return true;
+    }
+    if (/\bBirth has not been authorised\b/i.test(s)) return true;
+    if (
+      /\bEmpireAI is live and answering in production\b/i.test(s) &&
+      scope === "SYNTHETIC_ANALYSIS"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  /** Keep Markdown headings when a contaminated sentence starts with ### / **Decision**. */
+  const preserveLeadMarker = (s: string): string | null => {
+    const m = s.match(/^(#{1,3}\s+[^\n]+?)(?=\s+(?:I\s+don't|Our bound|EmpireAI|Birth|Current product)\b)/i);
+    if (m && m[1] && m[1].length >= 8) return m[1].trim();
+    return null;
+  };
+
   const paras = String(message || "").split(/\n{2,}/);
   const cleaned = paras
     .map((para) => {
@@ -274,26 +311,15 @@ export function stripIrrelevantLiveGrounding(
         .split(/(?<=[.!?])\s+/)
         .map((s) => s.trim())
         .filter(Boolean);
-      const kept = sentences.filter((s) => {
-        if (
-          /\b(High-Speed Handheld|Mini Fan)\b/i.test(s) &&
-          !/\bsynthetic|scenario|claim audit|for analysis\b/i.test(s)
-        ) {
-          return false;
+      const kept: string[] = [];
+      for (const s of sentences) {
+        if (!isLiveBoilerplate(s)) {
+          kept.push(s);
+          continue;
         }
-        if (
-          /\b(realised orders? (?:and realised revenue )?remain(?:s)? zero|Current product focus is|focus remains .{0,80}; realised)\b/i.test(
-            s,
-          )
-        ) {
-          return false;
-        }
-        if (/\bBirth has not been authorised\b/i.test(s)) return false;
-        if (/\bEmpireAI is live and answering in production\b/i.test(s) && scope === "SYNTHETIC_ANALYSIS") {
-          return false;
-        }
-        return true;
-      });
+        const lead = preserveLeadMarker(s);
+        if (lead) kept.push(lead);
+      }
       return kept.join(" ");
     })
     .filter((p) => p.trim().length > 0);
@@ -304,8 +330,11 @@ export function stripIrrelevantLiveGrounding(
 /** Heuristic: complex answer collapsed into one wall of text. */
 export function isComplexWallOfText(message: string, multipart: boolean): boolean {
   const t = String(message || "");
-  if (!multipart && t.length < 500) return false;
   const newlines = (t.match(/\n/g) || []).length;
+  const hasSectionMarkers = /#{1,3}\s+\S|[A-E][).]\s|\d+[).]\s/.test(t);
+  // Flattened Markdown headings must be repaired even under 500 chars.
+  if (multipart && hasSectionMarkers && newlines < 2 && t.length >= 160) return true;
+  if (!multipart && t.length < 500) return false;
   if (t.length >= 500 && newlines < 3) return true;
   if (t.length >= 900 && newlines < 6) return true;
   return false;
