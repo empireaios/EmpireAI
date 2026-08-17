@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  countInlineNextSectionOccurrences,
   countOrderedListBlocks,
   countTopLevelOrderedItems,
   looksLikeMarkdown,
@@ -62,5 +63,19 @@ describe("ExecutiveChatMarkdown helpers", () => {
     assert.equal(ols.length, 2);
     assert.equal(ols[0]!.items.length, 1);
     assert.equal(ols[1]!.items.length, 2);
+  });
+
+  it("inline next-section marker is split — no text. 3. Heading continuity", () => {
+    const src =
+      "1. First\nCapacity remains limited and needs additional fixed investment. 3. Impact of the Unverified Saving\nDetails here.\n4. Next Action";
+    assert.equal(countInlineNextSectionOccurrences(src) >= 1, true);
+    const blocks = parseExecutiveChatBlocks(src);
+    const ol = blocks.find((b) => b.type === "ol");
+    assert.ok(ol && ol.type === "ol");
+    assert.ok(ol.items.length >= 3);
+    assert.match(ol.items[1]!, /Impact of the Unverified/);
+    for (const item of ol.items) {
+      assert.equal(countInlineNextSectionOccurrences(item), 0);
+    }
   });
 });

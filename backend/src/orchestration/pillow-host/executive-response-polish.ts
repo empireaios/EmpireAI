@@ -123,6 +123,23 @@ export function dedupeProtectedStateBlocks(message: string): string {
 }
 
 /**
+ * Force top-level numbered sections onto their own lines.
+ * Fixes Grand-King-visible "…investment. 3. Impact…" inline flow.
+ *
+ * IMPORTANT: do NOT split value periods like "orders are 0. Focus…" —
+ * only split after sentence punctuation into N. / N) section markers (N>=1)
+ * when the following token looks like a section heading (capital / bold).
+ */
+export function ensureNumberedSectionLineBreaks(message: string): string {
+  let out = String(message || "");
+  // "…investment. 3. Impact…" / "…done. 1) Next…"
+  out = out.replace(/([.!?…])[ \t]+([1-9]\d?[.)]\s+(?:\*\*[A-Za-z]|[A-Z]))/g, "$1\n\n$2");
+  // Letter sections: "…done. B) Next…"
+  out = out.replace(/([.!?…])[ \t]+([A-E][.)]\s+(?:\*\*[A-Za-z]|[A-Z]))/g, "$1\n\n$2");
+  return out.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/**
  * If a complex answer is one wall of text, insert light section breaks
  * before numbered/lettered/heading markers without inventing content.
  * Must run even when task count is small — LLM answers often flatten ### sections.
@@ -131,7 +148,7 @@ export function ensureScannableMultipartStructure(
   message: string,
   contract: ExecutiveTaskContract,
 ): string {
-  let out = String(message || "").trim();
+  let out = ensureNumberedSectionLineBreaks(String(message || "").trim());
   const hasInlineHeadings =
     /#{1,3}\s+\S/.test(out) && ((out.match(/#{1,3}\s+/g) || []).length >= 2 || !/\n/.test(out));
   const treatAsComplex =
@@ -179,7 +196,9 @@ export function polishFinalVisibleAnswer(
   out = stripIrrelevantBirthState(out, userMessage);
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = dedupeProtectedStateBlocks(out);
+  out = ensureNumberedSectionLineBreaks(out);
   out = ensureScannableMultipartStructure(out, c);
+  out = ensureNumberedSectionLineBreaks(out);
   return out;
 }
 

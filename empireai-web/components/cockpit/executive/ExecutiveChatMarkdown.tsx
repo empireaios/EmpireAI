@@ -125,10 +125,13 @@ export function ExecutiveChatMarkdown({
         }
         if (b.type === "ol") {
           return (
-            <ol key={idx} className="list-decimal space-y-2.5 pl-5 marker:text-[#d4af37]/70">
+            <ol
+              key={idx}
+              className="list-decimal space-y-5 pl-5 marker:font-semibold marker:text-[#d4af37]/80"
+            >
               {b.items.map((item, j) => (
-                <li key={j} className="pl-0.5">
-                  {renderListItemBody(item)}
+                <li key={j} className="pl-1 pb-1">
+                  <div className="space-y-2">{renderListItemBody(item)}</div>
                 </li>
               ))}
             </ol>

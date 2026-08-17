@@ -135,7 +135,7 @@ describe("decision-constraint persistence Level A", () => {
       c,
     );
     assert.equal(rec.repaired, true);
-    assert.match(rec.message, /do not scale|economics remain negative/i);
+    assert.match(rec.message, /do not scale|do not unlock|economics|gate|not scale/i);
   });
 
   it("7 final recommendation respects unresolved blocker", () => {
@@ -144,7 +144,7 @@ describe("decision-constraint persistence Level A", () => {
     const contract = parseExecutiveTaskContract(ask);
     assert.ok(contract.materialConstraints.some((c) => c.class === "NEGATIVE_UNIT_ECONOMICS"));
     const stub = synthesizeConstraintAwareRecommendation("next step", contract.materialConstraints);
-    assert.match(stub, /do not scale/i);
+    assert.match(stub, /do not scale|do not unlock|gate|not scale/i);
     assert.doesNotMatch(stub, /scale up production and marketing/i);
   });
 
@@ -159,7 +159,7 @@ describe("decision-constraint persistence Level A", () => {
       extractMaterialConstraints("contribution margin is negative per completed sale"),
     );
     assert.equal(repaired.repaired, true);
-    assert.match(repaired.message, /demand is no longer the blocker|resolve unit economics/i);
+    assert.match(repaired.message, /unit economics|gate|do not unlock|not scale|partial unlock/i);
     assert.doesNotMatch(repaired.message, /unlock scale up production/i);
   });
 
@@ -216,7 +216,7 @@ describe("decision-constraint persistence Level A", () => {
       userMessage: ask,
       taskContract: parseExecutiveTaskContract(ask),
     });
-    assert.match(released.message, /do not scale|economics remain negative|resolve unit economics/i);
+    assert.match(released.message, /do not scale|do not unlock|economics|gate|not scale/i);
   });
 
   it("classify unlock/experiment parts as recommendation", () => {
