@@ -231,6 +231,15 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
   if (asksForRiskRanking(m)) return "risk_ranking";
   if (asksForVerificationPriority(m)) return "verification_priority";
 
+  // Decision-unlock / experiment / reversal are first-class recommendation work.
+  if (
+    /\b(?:what\s+(?:decision|this)\s+(?:would\s+)?unlock|decision\s+(?:that\s+)?(?:verification\s+)?unlocks?|unlocks?\s+(?:the\s+)?decision|choose\s+one\s+(?:next\s+)?experiment|next\s+experiment|critical\s+verification|reversal\s+evidence|what\s+would\s+(?:change|reverse))\b/i.test(
+      m,
+    )
+  ) {
+    return "recommendation";
+  }
+
   const local = detectKindsInText(m);
   // Avoid weak "operating/state" global signals turning every theme into a briefing clone.
   if (local.length > 0) {
@@ -278,7 +287,7 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
   if (/\b(histor(?:y|ical)|yesterday|superseded|was true|now true)\b/i.test(m)) {
     return "temporal_reconciliation";
   }
-  if (/\b(dangerous|which (?:are|is)|what should i do|recommend|next (?:step|move))\b/i.test(m)) {
+  if (/\b(dangerous|which (?:are|is)|what should i do|recommend|next (?:step|move)|next experiment|decision unlock|reversal)\b/i.test(m)) {
     return "recommendation";
   }
   return "multipart_unit";

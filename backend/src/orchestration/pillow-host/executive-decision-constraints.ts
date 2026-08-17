@@ -228,6 +228,11 @@ export function ensureRecommendationConstraintConsistency(
     return { message: text, repaired: false, violatedClass: null };
   }
 
+  const respectsNegEcon = (t: string) =>
+    /\b(?:do not scale|withhold scale|scale losses|until (?:margin|economics|contribution)|resolve unit economics|economics remain negative|binding (?:economic )?constraint)\b/i.test(
+      t,
+    );
+
   // Prefer checking recommendation / decision-unlock slices; fall back to whole text.
   const slices = text.split(/(?=^#{1,3}\s+)/m);
   let repaired = false;
@@ -243,8 +248,7 @@ export function ensureRecommendationConstraintConsistency(
       /\b(?:what\s+(?:decision|this)\s+(?:would\s+)?unlock|unlocks?\s+(?:the\s+)?(?:decision|scale))\b/i.test(
         slice,
       );
-    const target = isRec || slices.length === 1 ? slice : "";
-    if (!target) {
+    if (!isRec && slices.length > 1) {
       out.push(slice);
       continue;
     }
@@ -252,11 +256,9 @@ export function ensureRecommendationConstraintConsistency(
     if (hit) {
       repaired = true;
       violatedClass = hit.class;
-      // Keep non-recommendation body; replace conflicting recommendation slices.
       if (isRec) {
         out.push(recommendationCompatibleWith(constraints));
       } else {
-        // Whole-answer conflict: append corrective recommendation rather than wipe analysis.
         out.push(slice.replace(SCALE_ACTION, "withhold scale"));
         if (!/\bdo not scale\b/i.test(slice)) {
           out.push("\n\n" + recommendationCompatibleWith(constraints));
@@ -276,6 +278,14 @@ export function ensureRecommendationConstraintConsistency(
       violatedClass = hit.class;
       merged = `${merged}\n\n${recommendationCompatibleWith(constraints)}`.replace(/\n{3,}/g, "\n\n").trim();
     }
+  }
+
+  // Dropout class: economics active but answer never carries the constraint into decision/rec.
+  const neg = activeConstraints(constraints).find((c) => c.class === "NEGATIVE_UNIT_ECONOMICS");
+  if (neg && !respectsNegEcon(merged)) {
+    repaired = true;
+    violatedClass = violatedClass ?? neg.class;
+    merged = `${merged}\n\n${recommendationCompatibleWith(constraints)}`.replace(/\n{3,}/g, "\n\n").trim();
   }
 
   return { message: merged, repaired, violatedClass };

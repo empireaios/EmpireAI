@@ -204,6 +204,34 @@ describe("decision-constraint persistence Level A", () => {
     assert.match(released.message, /do not scale|economics|constraint/i);
   });
 
+  it("appends constraint recommendation when economics present but omitted from answer", () => {
+    const ask =
+      "Synthetic: contribution margin = -S$4 per sale. Choose one next experiment and what demand verification unlocks.";
+    const draft = [
+      "1) Sales happened.",
+      "2) Demand is interesting.",
+      "3) Run a survey.",
+    ].join("\n");
+    const released = releaseExecutiveAnswer(draft, truth(), [], {
+      userMessage: ask,
+      taskContract: parseExecutiveTaskContract(ask),
+    });
+    assert.match(released.message, /do not scale|economics remain negative|resolve unit economics/i);
+  });
+
+  it("classify unlock/experiment parts as recommendation", () => {
+    const ask = [
+      "Synthetic analysis:",
+      "4) Choose one next experiment.",
+      "5) Choose one critical verification.",
+      "6) Explain exactly what decision that verification unlocks.",
+      "7) State reversal evidence.",
+    ].join("\n");
+    const c = parseExecutiveTaskContract(ask);
+    const kinds = c.tasks.map((t) => t.kind);
+    assert.ok(kinds.every((k) => k === "recommendation"), String(kinds));
+  });
+
   it("synthesizeTaskUnitAnswer recommendation consumes materialConstraints", () => {
     const ask =
       "Synthetic: contribution margin is negative. What should we do next?";
