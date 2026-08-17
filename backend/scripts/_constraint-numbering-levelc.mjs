@@ -229,18 +229,26 @@ async function main() {
 
   let sessionId = null;
   for (const c of CASES) {
-    const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
-      method: "POST",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({}),
-      signal: AbortSignal.timeout(90_000),
-    });
-    const sj = await sess.json().catch(() => ({}));
-    if (sess.ok && sj.session?.sessionId) sessionId = sj.session.sessionId;
-    await new Promise((r) => setTimeout(r, 2000));
-    const res = await chat(cookie, sessionId, c.prompt);
-    sessionId = res.sessionId;
-    const g = grade(c.id, res.text, c);
+    let res = null;
+    let g = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
+        method: "POST",
+        headers: { "content-type": "application/json", cookie },
+        body: JSON.stringify({}),
+        signal: AbortSignal.timeout(90_000),
+      });
+      const sj = await sess.json().catch(() => ({}));
+      if (sess.ok && sj.session?.sessionId) sessionId = sj.session.sessionId;
+      await new Promise((r) => setTimeout(r, 2000 * attempt));
+      res = await chat(cookie, sessionId, c.prompt);
+      sessionId = res.sessionId;
+      g = grade(c.id, res.text, c);
+      if (!TIMEOUT_SOFT.test(res.text) && g.ok) break;
+      if (!TIMEOUT_SOFT.test(res.text) && !g.ok) break; // real grade fail, don't retry forever
+      console.error(`[${c.id}] soft-timeout attempt=${attempt}, retrying…`);
+      await new Promise((r) => setTimeout(r, 6000));
+    }
     if (!g.ok || res.status >= 400) report.failures += 1;
     report.cases.push({
       id: c.id,
@@ -249,7 +257,7 @@ async function main() {
       ...g,
       text: res.text,
     });
-    console.error(`[${c.id}] ok=${g.ok} constraint=${g.constraintOk} ordered=${g.orderedCount}`);
+    console.error(`[${c.id}] ok=${g.ok} soft=${g.soft} constraint=${g.constraintOk} ordered=${g.orderedCount}`);
   }
 
   report.completedAt = new Date().toISOString();
