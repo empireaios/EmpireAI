@@ -85,10 +85,11 @@ function parseBlocks(source: string): Block[] {
       blocks.push({ type: "ul", items });
       continue;
     }
-    if (/^\s*\d+[.)]\s+/.test(line)) {
+    // Numbered or lettered executive lists (1. / 1) / A) / A.)
+    if (/^\s*(?:\d+|[A-E])[.)]\s+/.test(line)) {
       const items: string[] = [];
-      while (i < lines.length && /^\s*\d+[.)]\s+/.test(lines[i] ?? "")) {
-        items.push((lines[i] ?? "").replace(/^\s*\d+[.)]\s+/, "").trim());
+      while (i < lines.length && /^\s*(?:\d+|[A-E])[.)]\s+/.test(lines[i] ?? "")) {
+        items.push((lines[i] ?? "").replace(/^\s*(?:\d+|[A-E])[.)]\s+/, "").trim());
         i += 1;
       }
       blocks.push({ type: "ol", items });
@@ -101,7 +102,7 @@ function parseBlocks(source: string): Block[] {
       (lines[i] ?? "").trim() &&
       !/^(#{1,3})\s+/.test(lines[i] ?? "") &&
       !/^\s*[-*]\s+/.test(lines[i] ?? "") &&
-      !/^\s*\d+[.)]\s+/.test(lines[i] ?? "")
+      !/^\s*(?:\d+|[A-E])[.)]\s+/.test(lines[i] ?? "")
     ) {
       parts.push(lines[i] ?? "");
       i += 1;
@@ -123,7 +124,9 @@ export function ExecutiveChatMarkdown({
 
   if (!looksLikeMarkdown(text)) {
     return (
-      <p className={`whitespace-pre-wrap leading-relaxed ${className}`.trim()}>
+      <p
+        className={`max-w-[42rem] whitespace-pre-wrap text-[15px] leading-[1.65] sm:text-base ${className}`.trim()}
+      >
         {text}
       </p>
     );
@@ -131,7 +134,9 @@ export function ExecutiveChatMarkdown({
 
   const blocks = parseBlocks(text);
   return (
-    <div className={`space-y-3 text-[15px] leading-relaxed sm:text-base ${className}`.trim()}>
+    <div
+      className={`max-w-[42rem] space-y-4 text-[15px] leading-[1.65] sm:text-base ${className}`.trim()}
+    >
       {blocks.map((b, idx) => {
         if (b.type === "h") {
           const sizes =
@@ -141,31 +146,38 @@ export function ExecutiveChatMarkdown({
                 ? "text-base font-semibold"
                 : "text-[15px] font-semibold";
           return (
-            <p key={idx} className={`${sizes} text-[#f0e6d2]`}>
+            <p
+              key={idx}
+              className={`${sizes} ${idx > 0 ? "pt-2" : ""} text-[#f0e6d2]`.trim()}
+            >
               {inlineFormat(b.text)}
             </p>
           );
         }
         if (b.type === "ul") {
           return (
-            <ul key={idx} className="list-disc space-y-1.5 pl-5">
+            <ul key={idx} className="list-disc space-y-2 pl-5 marker:text-[#d4af37]/70">
               {b.items.map((item, j) => (
-                <li key={j}>{inlineFormat(item)}</li>
+                <li key={j} className="pl-0.5">
+                  {inlineFormat(item)}
+                </li>
               ))}
             </ul>
           );
         }
         if (b.type === "ol") {
           return (
-            <ol key={idx} className="list-decimal space-y-1.5 pl-5">
+            <ol key={idx} className="list-decimal space-y-2.5 pl-5 marker:text-[#d4af37]/70">
               {b.items.map((item, j) => (
-                <li key={j}>{inlineFormat(item)}</li>
+                <li key={j} className="pl-0.5">
+                  {inlineFormat(item)}
+                </li>
               ))}
             </ol>
           );
         }
         return (
-          <p key={idx} className="whitespace-pre-wrap">
+          <p key={idx} className="whitespace-pre-wrap text-[#e8e0d0]/95">
             {inlineFormat(b.text)}
           </p>
         );

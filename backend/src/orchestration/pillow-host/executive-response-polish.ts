@@ -1,6 +1,7 @@
 /**
  * Single ownership for final-visible polish after release candidates are chosen.
  * Prevents coverage/protected-state layers from contradicting or spamming a completed answer.
+ * Preserves Markdown paragraph structure for Grand King readability.
  * Does not encode sealed examination content.
  */
 
@@ -9,6 +10,11 @@ import {
   parseExecutiveTaskContract,
   type ExecutiveTaskContract,
 } from "./executive-task-contract.js";
+import {
+  detectReasoningScope,
+  isComplexWallOfText,
+  stripIrrelevantLiveGrounding,
+} from "./executive-scoped-reasoning.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -37,6 +43,12 @@ function materiallySatisfied(text: string, contract: ExecutiveTaskContract): boo
     contract.requiresConditionalReasoning &&
     t.length >= 120 &&
     /\b(under (?:the )?assumption|if (?:that|this)|scenario|would change|conditional)\b/i.test(t)
+  ) {
+    return true;
+  }
+  if (
+    contract.requiresRiskRanking &&
+    /\b(most dangerous|what matters most|highest risk)\b/i.test(t)
   ) {
     return true;
   }
@@ -72,32 +84,66 @@ export function stripIrrelevantBirthState(message: string, userMessage: string):
   if (birthRelevant) return String(message || "").trim();
   return String(message || "")
     .replace(BIRTH_SENTENCE, " ")
-    .replace(/\s{2,}/g, " ")
+    .replace(/[^\S\n]{2,}/g, " ")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
 
 /**
- * Collapse duplicate protected commerce/status sentences.
+ * Collapse duplicate protected commerce/status sentences — preserve paragraphs.
  */
 export function dedupeProtectedStateBlocks(message: string): string {
-  const sentences = String(message || "")
-    .split(/(?<=[.!?])\s+/)
-    .map((s) => s.trim())
+  const paras = String(message || "")
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
     .filter(Boolean);
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const s of sentences) {
-    const isProtected =
-      /\b(realised orders|realised revenue|product focus|material unknowns|birth has)\b/i.test(s);
-    if (isProtected) {
-      const norm = s.toLowerCase().replace(/\d+/g, "#").replace(/\s+/g, " ");
-      if (seen.has(norm)) continue;
-      seen.add(norm);
+  const globalSeen = new Set<string>();
+  const outParas: string[] = [];
+
+  for (const para of paras) {
+    const sentences = para
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const kept: string[] = [];
+    for (const s of sentences) {
+      const isProtected =
+        /\b(realised orders|realised revenue|product focus|material unknowns|birth has)\b/i.test(s);
+      if (isProtected) {
+        const norm = s.toLowerCase().replace(/\d+/g, "#").replace(/\s+/g, " ");
+        if (globalSeen.has(norm)) continue;
+        globalSeen.add(norm);
+      }
+      kept.push(s);
     }
-    out.push(s);
+    if (kept.length > 0) outParas.push(kept.join(" "));
   }
-  return out.join(" ").replace(/\s{2,}/g, " ").trim();
+
+  return outParas.join("\n\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/**
+ * If a complex multipart answer is one wall of text, insert light section breaks
+ * before numbered/lettered markers without inventing content.
+ */
+export function ensureScannableMultipartStructure(
+  message: string,
+  contract: ExecutiveTaskContract,
+): string {
+  let out = String(message || "").trim();
+  if (!contract.multipart && contract.tasks.length < 3) return out;
+  if (!isComplexWallOfText(out, contract.multipart || contract.tasks.length >= 3)) {
+    return out;
+  }
+  // Insert breaks before A)/1)/Claim markers when flattened.
+  out = out
+    .replace(/\s+([A-E][).]\s+)/g, "\n\n$1")
+    .replace(/\s+(\d+[).]\s+)/g, "\n\n$1")
+    .replace(/\s+(#{1,3}\s+)/g, "\n\n$1")
+    .replace(/\s+(\*\*(?:Verdict|Decision|Need|My recommendation|What matters most):?\*\*)/gi, "\n\n$1")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  return out;
 }
 
 /**
@@ -110,10 +156,13 @@ export function polishFinalVisibleAnswer(
   contract?: ExecutiveTaskContract,
 ): string {
   const c = contract ?? parseExecutiveTaskContract(userMessage);
+  const scope = c.scopeType ?? detectReasoningScope(userMessage);
   let out = String(message || "").trim();
   out = stripContradictoryCoverageAppendix(out, c);
   out = stripIrrelevantBirthState(out, userMessage);
+  out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = dedupeProtectedStateBlocks(out);
+  out = ensureScannableMultipartStructure(out, c);
   return out;
 }
 

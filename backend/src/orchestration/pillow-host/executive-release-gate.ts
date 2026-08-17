@@ -381,6 +381,7 @@ function finalizeVisible(
   message: string,
   level: DisclosureLevel,
   userMessage?: string,
+  contract?: ReturnType<typeof parseExecutiveTaskContract>,
 ): { message: string; uxFailures: string[] } {
   const allowAuthority = /\b(deploy|publish|spend|birth|authoris|approv)/i.test(
     userMessage ?? "",
@@ -388,7 +389,7 @@ function finalizeVisible(
   let rendered = renderForGrandKing(message, level, {
     allowAuthorityNotice: allowAuthority,
   });
-  rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "");
+  rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   const ux =
     level === "normal"
       ? assessConversationalUx(rendered)
@@ -486,7 +487,7 @@ export function releaseExecutiveAnswer(
 
     for (const item of queue) {
       if (staleOffline(item.text)) continue;
-      const fin = finalizeVisible(item.text, level, options.userMessage);
+      const fin = finalizeVisible(item.text, level, options.userMessage, contract);
       if (staleOffline(fin.message)) continue;
       const final = validateExecutiveDraft(fin.message, truth, attestations);
       if (!final.ok) continue;
@@ -605,7 +606,7 @@ export function releaseExecutiveAnswer(
   telemetry.failClosedUsed = true;
   if (multiObligation) {
     const forcedRaw = buildForcedObligationCompletion(truth, contract);
-    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage);
+    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
     const forcedCoverage = assessTaskCoverage(forcedFin.message, contract);
     telemetry.releasePath = "fail_closed";
     telemetry.finalRevalidationPass = true;

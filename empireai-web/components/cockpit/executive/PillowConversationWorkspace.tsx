@@ -204,7 +204,7 @@ export function PillowConversationWorkspace({
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[min(42rem,92%)] rounded-2xl px-4 py-3.5 sm:px-5 ${
                     mine
                       ? "bg-[#d4af37]/15 text-[#f0d78c]"
                       : "border border-gold/10 bg-white/[0.03] text-[#e8e0d0]"
@@ -213,7 +213,7 @@ export function PillowConversationWorkspace({
                   <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
                     {mine ? "Grand King" : "Pillow"}
                   </p>
-                  <div className="mt-1.5 text-[#e8e0d0]">
+                  <div className="mt-2 text-[#e8e0d0]">
                     <ExecutiveChatMarkdown content={turn.content} />
                   </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (

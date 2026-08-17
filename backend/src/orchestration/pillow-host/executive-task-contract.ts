@@ -9,6 +9,19 @@
  */
 
 import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
+import {
+  asksForRiskRanking,
+  asksForVerificationPriority,
+  detectReasoningScope,
+  isScopedAwayFromLiveEmpire,
+  synthesizeEvidenceStructureAudit,
+  synthesizeRiskRanking,
+  synthesizeScopedRecommendation,
+  synthesizeVerificationPriority,
+  type ReasoningScopeType,
+} from "./executive-scoped-reasoning.js";
+
+export type { ReasoningScopeType };
 
 export type ExecutiveTaskKind =
   | "operating_briefing"
@@ -19,6 +32,8 @@ export type ExecutiveTaskKind =
   | "evidence_explanation"
   | "inference"
   | "uncertainty"
+  | "risk_ranking"
+  | "verification_priority"
   | "multipart_unit"
   | "general";
 
@@ -50,11 +65,15 @@ export type ExecutiveTaskContract = {
   requiresPremiseAudit: boolean;
   requiresTemporalReconciliation: boolean;
   requiresConditionalReasoning: boolean;
+  requiresRiskRanking: boolean;
+  requiresVerificationPriority: boolean;
   /** Owner-supplied hypotheticals for this turn only — not current verified fact. */
   hypotheticalPremises: string[];
   /** Surface Birth only when the ask makes it relevant. */
   birthRelevant: boolean;
   multipart: boolean;
+  /** CURRENT_REALITY vs SYNTHETIC_ANALYSIS / hypothetical / historical / comparative. */
+  scopeType: ReasoningScopeType;
 };
 
 export type TaskCoverageStatus =
@@ -180,6 +199,10 @@ function requiredOperationForKind(kind: ExecutiveTaskKind): string {
       return "identify_unknowns";
     case "operating_briefing":
       return "state_briefing";
+    case "risk_ranking":
+      return "rank_cross_obligation_risk";
+    case "verification_priority":
+      return "select_verification_priority";
     default:
       return "answer_distinct_obligation";
   }
@@ -192,8 +215,23 @@ function requiredOperationForKind(kind: ExecutiveTaskKind): string {
 export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
   const m = String(part || "").trim();
   if (!m) return "multipart_unit";
+
+  // Theme/note enumerations are distinct siblings — not whole-state briefings.
+  if (/\b(theme\s+\d+|note on theme|brief verified note on theme)\b/i.test(m)) {
+    return "multipart_unit";
+  }
+
+  if (asksForRiskRanking(m)) return "risk_ranking";
+  if (asksForVerificationPriority(m)) return "verification_priority";
+
   const local = detectKindsInText(m);
-  if (local.length > 0) return local[0]!;
+  // Avoid weak "operating/state" global signals turning every theme into a briefing clone.
+  if (local.length > 0) {
+    if (local[0] === "operating_briefing" && local.length === 1 && m.length < 120) {
+      return "multipart_unit";
+    }
+    return local[0]!;
+  }
 
   if (
     /\b(research|provenance|substantiat|according to|study|report (?:shows|claims)|source for|evidence for)\b/i.test(
@@ -210,7 +248,7 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
     return "premise_audit";
   }
   if (
-    /\b(asin|product (?:name|identity|focus)|entity identity|bound product|titled|named|called)\b/i.test(
+    /\b(asin|product (?:name|identity|focus)|entity identity|bound product|titled|named|called|same (?:entity|product)|co-occur)\b/i.test(
       m,
     )
   ) {
@@ -294,8 +332,10 @@ export function extractHypotheticalPremises(message: string): string[] {
 function detectKindsInText(text: string): ExecutiveTaskKind[] {
   const m = text;
   const kinds: ExecutiveTaskKind[] = [];
+  if (asksForRiskRanking(m)) kinds.push("risk_ranking");
+  if (asksForVerificationPriority(m)) kinds.push("verification_priority");
   if (
-    /\b(premise|assumption|assumptions|audit (?:each|these|the)|evaluate (?:each|whether)|classify (?:each|these)|supported|contradicted|unverif|claim[- ]by[- ]claim|better supported)/i.test(
+    /\b(premise|assumption|assumptions|audit (?:each|these|the)|evaluate (?:each|whether)|classify (?:each|these)|supported|contradicted|unverif|claim[- ]by[- ]claim|better supported)\b/i.test(
       m,
     )
   ) {
@@ -375,6 +415,8 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
       "conditional_reasoning",
       "premise_audit",
       "temporal_reconciliation",
+      "risk_ranking",
+      "verification_priority",
       "recommendation",
       "evidence_explanation",
       "uncertainty",
@@ -392,6 +434,7 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     );
   }
 
+  const scopeType = detectReasoningScope(text);
   const requiresRecommendation =
     globalKinds.includes("recommendation") ||
     /\b(recommend(?:ation)?|what should (?:we|i) do|next (?:step|move)|commercial decision|decide (?:today|which))\b/i.test(
@@ -408,6 +451,10 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     /\b(reconcil|histor(?:y|ical)|yesterday|tomorrow|superseded)\b/i.test(text);
   const requiresConditionalReasoning =
     globalKinds.includes("conditional_reasoning") || hypotheticalPremises.length > 0;
+  const requiresRiskRanking =
+    globalKinds.includes("risk_ranking") || asksForRiskRanking(text);
+  const requiresVerificationPriority =
+    globalKinds.includes("verification_priority") || asksForVerificationPriority(text);
 
   const ensureKind = (kind: ExecutiveTaskKind, label: string) => {
     if (tasks.some((t) => t.kind === kind)) return;
@@ -418,6 +465,16 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     ensureKind(
       "conditional_reasoning",
       "Reason under the owner-supplied hypothetical without treating it as current verified fact.",
+    );
+  if (requiresRiskRanking)
+    ensureKind(
+      "risk_ranking",
+      "Rank which claim is most dangerous for an irreversible financial decision.",
+    );
+  if (requiresVerificationPriority)
+    ensureKind(
+      "verification_priority",
+      "Choose the single most important additional verification.",
     );
   if (requiresRecommendation)
     ensureKind("recommendation", "Provide a recommendation or conditional next move.");
@@ -440,16 +497,19 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     requiresPremiseAudit,
     requiresTemporalReconciliation,
     requiresConditionalReasoning,
+    requiresRiskRanking,
+    requiresVerificationPriority,
     hypotheticalPremises,
     birthRelevant,
     multipart: parts.length >= 2,
+    scopeType,
   };
 }
 
 function kindSignals(kind: ExecutiveTaskKind): RegExp {
   switch (kind) {
     case "premise_audit":
-      return /\b(premise|assumption|supported|contradict|unverified|stale|inferred|cannot (?:establish|verify)|not established|better supported|version)\b/i;
+      return /\b(premise|assumption|supported|contradict|unverified|stale|inferred|cannot (?:establish|verify)|not established|better supported|version|verdict|unproven|unsupported)\b/i;
     case "temporal_reconciliation":
       return /\b(histor(?:y|ical)|current(?:ly)?|future|superseded|was (?:true|correct)|now (?:true|verified)|yesterday|today|tomorrow|reconcil|changes? (?:the|our) conclusion)\b/i;
     case "conditional_reasoning":
@@ -457,17 +517,21 @@ function kindSignals(kind: ExecutiveTaskKind): RegExp {
     case "recommendation":
       return /\b(recommend(?:ation)?|should|next (?:step|move)|verify first|bounded|defer|conditional|priorit|better supported|I would|decision|choose|prefer|select|commercial (?:call|decision))\b/i;
     case "evidence_explanation":
-      return /\b(because|source|provenance|how I know|from (?:live|verified|commissioning)|I can stand on|don't (?:yet )?have|not retrieved)\b/i;
+      return /\b(because|source|provenance|how I know|from (?:live|verified|commissioning)|I can stand on|don't (?:yet )?have|not retrieved|need)\b/i;
     case "inference":
-      return /\b(infer|hypothesis|assessment|suspect|likely|unproven)\b/i;
+      return /\b(infer|hypothesis|assessment|suspect|likely|unproven|invalid inference)\b/i;
     case "uncertainty":
       return /\b(unknown|unproven|missing|uncertain|not (?:yet )?(?:verified|established)|would (?:falsify|change))\b/i;
     case "operating_briefing":
       return /\b(live|product|orders?|revenue|commerce|focus|posture|status)\b/i;
+    case "risk_ranking":
+      return /\b(most dangerous|danger(?:ous)?|rank(?:ing)?|highest risk|irreversible|what matters most)\b/i;
+    case "verification_priority":
+      return /\b(verify first|verification priority|most important|priority|corroborat)\b/i;
     case "multipart_unit":
     case "general":
     default:
-      return /\b(live|product|orders?|verified|unproven|recommend|because|premise|current|focus)\b/i;
+      return /\b(live|product|orders?|verified|unproven|recommend|because|premise|current|focus|verdict|need)\b/i;
   }
 }
 
@@ -514,7 +578,9 @@ export function assessTaskCoverage(
       contract.requiresTemporalReconciliation ||
       contract.requiresRecommendation ||
       contract.requiresEvidenceExplanation ||
-      contract.requiresConditionalReasoning;
+      contract.requiresConditionalReasoning ||
+      contract.requiresRiskRanking ||
+      contract.requiresVerificationPriority;
 
     let status: TaskCoverageStatus;
     let reason: string | undefined;
@@ -621,16 +687,70 @@ function verifiedFactsBlock(truth: ExecutiveTruthSnapshot): {
 }
 
 /**
- * Natural per-task completion from verified state only — no invented evidence.
+ * Natural per-task completion.
+ * Under SYNTHETIC_ANALYSIS / comparative / historical scopes: evidence-structure reasoning
+ * without injecting live EmpireAI product/revenue/Birth.
  */
 export function synthesizeTaskUnitAnswer(
   task: ExecutiveTaskUnit,
   truth: ExecutiveTruthSnapshot,
-  opts: { birthRelevant?: boolean; hypotheticalPremises?: readonly string[] } = {},
+  opts: {
+    birthRelevant?: boolean;
+    hypotheticalPremises?: readonly string[];
+    scopeType?: ReasoningScopeType;
+    siblingSubjects?: readonly string[];
+  } = {},
 ): string {
+  const scope = opts.scopeType ?? "CURRENT_REALITY";
+  const scoped = isScopedAwayFromLiveEmpire(scope);
   const f = verifiedFactsBlock(truth);
   const birthRelevant = Boolean(opts.birthRelevant);
   const subject = (task.subject || task.sourceSpan || task.text || "this obligation").slice(0, 140);
+  const span = task.sourceSpan || task.text || subject;
+  const siblings =
+    opts.siblingSubjects && opts.siblingSubjects.length > 0
+      ? opts.siblingSubjects
+      : [subject];
+
+  if (task.kind === "risk_ranking") {
+    return synthesizeRiskRanking(siblings, span);
+  }
+  if (task.kind === "verification_priority") {
+    return synthesizeVerificationPriority(siblings, span);
+  }
+
+  if (scoped && task.kind !== "operating_briefing") {
+    switch (task.kind) {
+      case "premise_audit":
+      case "evidence_explanation":
+      case "inference":
+      case "uncertainty":
+      case "multipart_unit":
+      case "general":
+      case "temporal_reconciliation":
+        return synthesizeEvidenceStructureAudit(subject, span);
+      case "conditional_reasoning": {
+        const premises = opts.hypotheticalPremises?.length
+          ? opts.hypotheticalPremises
+          : ["the owner-supplied scenario for this turn"];
+        return [
+          `### Conditional reasoning — ${subject.slice(0, 80)}`,
+          "**Scope:** scenario only — not current EmpireAI fact.",
+          "",
+          ...premises.slice(0, 4).map((pr) => `- Under assumption: ${pr}`),
+          "",
+          "What would change under those assumptions: conclusions that depend on them.",
+          "What would not automatically change: any live EmpireAI commerce or product identity — those stay outside this scenario unless the owner explicitly ties them in.",
+          "When demand strength and adverse unit economics conflict, the binding economic constraint wins — do not scale losses merely because demand looks strong.",
+        ].join("\n");
+      }
+      case "recommendation":
+        return synthesizeScopedRecommendation(subject);
+      default:
+        return synthesizeEvidenceStructureAudit(subject, span);
+    }
+  }
+
   const live = f.live
     ? "EmpireAI is live and answering in production."
     : "I'm answering through the active Brain process.";
@@ -655,75 +775,88 @@ export function synthesizeTaskUnitAnswer(
         .join(" ");
     case "premise_audit": {
       return [
-        `Claim audit for “${subject}”:`,
-        `Against verified state (focus ${f.product}; ${commerce.toLowerCase()}), I will not treat unsupported sales, demand-strength, or unverified market facts as established.`,
+        `### Claim audit — ${subject.slice(0, 80)}`,
+        "**Verdict:** Treat unsupported sales, demand-strength, or unverified market facts as unestablished.",
+        "",
+        `Against verified state (focus ${f.product}; ${commerce.toLowerCase()}), I will not treat unsupported commercial claims as established.`,
         /revenue|orders?|sales?|profit|usd|financial/i.test(subject)
-          ? `Financial reading: ${commerce} Claims of realised revenue/sales beyond that stay unestablished.`
+          ? `**Financial reading:** ${commerce} Claims of realised revenue/sales beyond that stay unestablished.`
           : /asin|product|entity|identity|named|titled/i.test(subject)
-            ? `Entity reading: verified focus remains ${f.product}${truth.product.asin ? ` (ASIN ${truth.product.asin})` : ""}. Alternate identities stay unsupported.`
+            ? `**Entity reading:** verified focus remains ${f.product}${truth.product.asin ? ` (ASIN ${truth.product.asin})` : ""}. Alternate identities stay unsupported.`
             : "I support only what verified commissioning/KPI state can carry for this claim.",
-      ].join(" ");
+      ].join("\n");
     }
     case "temporal_reconciliation":
       return [
-        `Temporal audit for “${subject}”:`,
+        `### Temporal audit — ${subject.slice(0, 80)}`,
+        "**Verdict:** Current verified state supersedes older conflicting pre-launch language.",
+        "",
         "Historically, earlier pre-launch waiting language may have been true at the time.",
         f.live
           ? "Currently verified: we are live and answering now — that supersedes older pre-launch waiting claims where they conflict."
           : "Currently verified service state is limited to this process answer.",
+        "",
         "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
-      ].join(" ");
+      ].join("\n");
     case "conditional_reasoning": {
       const premises = opts.hypotheticalPremises?.length
         ? opts.hypotheticalPremises
         : ["the owner-supplied scenario for this turn"];
       return [
-        `Conditional reasoning for “${subject}” (not current verified fact):`,
-        ...premises.slice(0, 4).map((pr) => `• Under assumption: ${pr}`),
+        `### Conditional reasoning — ${subject.slice(0, 80)}`,
+        "**Scope:** owner assumptions for this turn only — not current verified fact.",
+        "",
+        ...premises.slice(0, 4).map((pr) => `- Under assumption: ${pr}`),
+        "",
         "What would change under those assumptions: conclusions that depend on them.",
         "What would not automatically change: current verified commerce counts and product identity, unless the premises themselves redefine them.",
         "When demand strength and adverse unit economics pull opposite directions, the binding constraint wins — do not scale losses merely because demand is strong; repair economics or withhold scale.",
+        "",
         `Current verified baseline for contrast only: focus remains ${f.product}; ${commerce.toLowerCase()}`,
       ].join("\n");
     }
     case "recommendation":
       return [
-        `Recommendation regarding “${subject}”:`,
+        "### My recommendation",
         f.orders === 0
-          ? `I recommend a verification-first next step on ${f.product}: confirm the open commercial unknowns with a bounded check before any irreversible spend.`
-          : `I recommend deepening what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
+          ? `**Decision:** Verification-first next step on ${f.product} — confirm open commercial unknowns with a bounded check before irreversible spend.`
+          : `**Decision:** Deepen what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
         birthRelevant && f.birthNull ? "Birth remains a Grand King decision." : "",
       ]
         .filter(Boolean)
-        .join(" ");
+        .join("\n");
     case "evidence_explanation":
       return [
-        `Provenance audit for “${subject}”:`,
+        `### Provenance — ${subject.slice(0, 80)}`,
+        "**Verdict:** Only live commissioning/KPI provenance stands this turn.",
+        "",
         "Product focus and realised commerce come from live commissioning and KPI state for this workspace.",
         live,
         "I did not retrieve external systems this turn — so claims that need those sources stay open for this part only.",
-      ].join(" ");
+      ].join("\n");
     case "inference":
       return [
-        `Inference audit for “${subject}”:`,
+        `### Inference — ${subject.slice(0, 80)}`,
+        "**Verdict:** Invalid to treat selection alone as likely commercial success.",
+        "",
         `Labeled inference only: commercial demand for ${f.product} is still unproven given ${commerce.toLowerCase()}`,
         "Selection, workflow labels, or unverified research do not by themselves imply likely commercial success.",
         "What would change that: realised sales traction or independently retrieved demand evidence.",
-      ].join(" ");
+      ].join("\n");
     case "uncertainty":
       return [
-        `Unknowns for “${subject}”:`,
+        `### Unknowns — ${subject.slice(0, 80)}`,
         "Material unknowns: commercial demand strength and anything not present in verified commissioning/KPI state.",
         commerce,
-      ].join(" ");
+      ].join("\n");
     case "multipart_unit":
     case "general":
     default:
       return [
-        `For “${subject}”:`,
-        `from verified state — focus ${f.product}; ${commerce}`,
+        `### ${subject.slice(0, 80)}`,
+        `Brief verified note: focus remains ${f.product}; ${commerce}`,
         "I will not invent unsupported specifics for this part, and I will not reuse another sibling's conclusion as a substitute.",
-      ].join(" ");
+      ].join("\n");
   }
 }
 
@@ -763,6 +896,12 @@ export function detectSiblingTemplateCloning(
   const norm = (b: string) =>
     b
       .toLowerCase()
+      .replace(/#{1,3}\s+/g, " ")
+      .replace(/\*\*?/g, " ")
+      .replace(
+        /\b(verdict|need|decision|claim audit|temporal audit|provenance|inference|for contrast only|what can be concluded|regarding|the supplied claim|independent|authoritative|treat the|do not|does not|should not|this turn|scenario)\b/g,
+        " ",
+      )
       .replace(/[^a-z0-9\s]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
@@ -772,17 +911,18 @@ export function detectSiblingTemplateCloning(
     for (let j = i + 1; j < normalized.length; j++) {
       const a = normalized[i]!;
       const b = normalized[j]!;
-      if (a.length < 40 || b.length < 40) continue;
-      const ta = new Set(a.split(" ").filter((t) => t.length >= 4));
-      const tb = new Set(b.split(" ").filter((t) => t.length >= 4));
-      if (ta.size === 0 || tb.size === 0) continue;
+      if (a.length < 50 || b.length < 50) continue;
+      const ta = new Set(a.split(" ").filter((t) => t.length >= 5));
+      const tb = new Set(b.split(" ").filter((t) => t.length >= 5));
+      if (ta.size < 4 || tb.size < 4) continue;
       let inter = 0;
       for (const t of ta) if (tb.has(t)) inter += 1;
       const jaccard = inter / new Set([...ta, ...tb]).size;
-      if (jaccard >= 0.82) dup += 1;
+      // High bar: shared executive vocabulary is normal; flag only near-copies.
+      if (jaccard >= 0.9) dup += 1;
     }
   }
-  if (dup >= 2) {
+  if (dup >= 3) {
     return {
       cloned: true,
       duplicateBlocks: dup,
@@ -807,6 +947,11 @@ export function appendMissingTaskCoverage(
   const synthOpts = {
     birthRelevant: contract.birthRelevant,
     hypotheticalPremises: contract.hypotheticalPremises,
+    scopeType: contract.scopeType,
+    siblingSubjects: contract.tasks
+      .filter((t) => t.kind !== "risk_ranking" && t.kind !== "verification_priority" && t.kind !== "recommendation")
+      .map((t) => t.subject || t.sourceSpan)
+      .filter(Boolean),
   };
 
   if (coverage.silentlyDroppedTasks === 0 || answerMateriallySatisfiesContract(message, contract)) {
@@ -946,9 +1091,20 @@ export function buildContractAwareReconstruct(
     if (!unique.has(key)) unique.set(key, t);
   }
   const units = [...unique.values()].slice(0, 20);
+  const siblingSubjects = units
+    .filter(
+      (t) =>
+        t.kind !== "risk_ranking" &&
+        t.kind !== "verification_priority" &&
+        t.kind !== "recommendation",
+    )
+    .map((t) => t.subject || t.sourceSpan)
+    .filter(Boolean);
   const opts = {
     birthRelevant: contract.birthRelevant,
     hypotheticalPremises: contract.hypotheticalPremises,
+    scopeType: contract.scopeType,
+    siblingSubjects,
   };
   if (units.length === 0) {
     return synthesizeTaskUnitAnswer(
@@ -959,8 +1115,14 @@ export function buildContractAwareReconstruct(
   }
   if (contract.multipart && units.length >= 2) {
     return units
-      .map((t, i) => `${i + 1}) ${synthesizeTaskUnitAnswer(t, truth, opts)}`)
-      .join("\n");
+      .map((t, i) => {
+        const body = synthesizeTaskUnitAnswer(t, truth, opts);
+        if (/^###\s/m.test(body)) {
+          return body.replace(/^###\s+/, `### ${i + 1}) `);
+        }
+        return `### ${i + 1}) ${(t.subject || t.sourceSpan || "obligation").slice(0, 80)}\n\n${body}`;
+      })
+      .join("\n\n");
   }
   return units.map((t) => synthesizeTaskUnitAnswer(t, truth, opts)).join("\n\n");
 }
@@ -980,12 +1142,29 @@ export function formatTaskContractBrief(contract: ExecutiveTaskContract): string
     "Do not append 'cannot complete' after you have already answered an obligation.",
     "Do not dump Birth state, repeated commerce footers, or protected facts unless they are requested or material to the ask.",
     "Each numbered/lettered obligation is DISTINCT: answer it from its own source span. Do not clone one temporal/financial/entity paragraph onto unrelated siblings.",
+    "For complex multipart asks: use Markdown headings and short sections (Verdict / Need / What matters most / My recommendation). Do not flatten 1–5 into one giant paragraph.",
+    "Sound like an executive — do not expose internal machinery names to Grand King.",
   ];
+  if (isScopedAwayFromLiveEmpire(contract.scopeType)) {
+    lines.push(
+      "SCOPE: This turn is SCOPED ANALYSIS (synthetic / comparative / historical). Reason about evidence structure of the supplied claims. Do NOT substitute live EmpireAI product identity, realised sales, or Birth state for synthetic entities. Do NOT promote scenario statements into current EmpireAI truth.",
+    );
+  }
   if (contract.hypotheticalPremises.length > 0) {
     lines.push("Hypothetical premises for this turn only (not current verified fact):");
     for (const h of contract.hypotheticalPremises.slice(0, 6)) {
       lines.push(`- ${h}`);
     }
+  }
+  if (contract.requiresRiskRanking) {
+    lines.push(
+      "Aggregate task required: rank which claim is most dangerous for an irreversible financial decision — do not omit it.",
+    );
+  }
+  if (contract.requiresVerificationPriority) {
+    lines.push(
+      "Aggregate task required: choose the single most important additional verification — do not omit it.",
+    );
   }
   if (contract.requiresRecommendation) {
     lines.push("A recommendation or explicit commercial decision is required — do not omit it.");

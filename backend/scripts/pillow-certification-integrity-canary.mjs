@@ -135,6 +135,145 @@ const SUITE = [
     minLen: 100,
   },
   {
+    id: "heterogeneous_same_truth_different_ops",
+    prompt: [
+      "SyntheticCanary same-truth different ops:",
+      "Using the same verified commercial state:",
+      "A) Report the current realised order count as a factual read.",
+      "B) Audit whether that order count proves durable demand.",
+      "C) Infer whether selection alone predicts success from that state.",
+      "D) Recommend one verification action that does not invent demand.",
+    ].join("\n"),
+    require: /\b(orders?|zero|0|demand|infer|recommend|not|prove|verified)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    minLen: 100,
+  },
+  {
+    id: "heterogeneous_unknown_sibling",
+    prompt: [
+      "SyntheticCanary unknown sibling:",
+      "1) Realised order count from verified state?",
+      "2) Confirm unread supplier-mailbox sentiment this week (not retrieved).",
+      "3) Is product identity established in commissioning?",
+      "4) Recommend one bounded next check.",
+    ].join("\n"),
+    require: /\b(orders?|mailbox|not|unverified|identity|recommend|should)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    minLen: 80,
+  },
+  {
+    id: "heterogeneous_hypothetical_sibling",
+    prompt: [
+      "SyntheticCanary hypothetical sibling:",
+      "A) Current realised orders?",
+      "B) Suppose tomorrow strong demand appears but unit economics stay negative — what changes conditionally?",
+      "C) Is Birth authorised right now?",
+      "D) Recommend one bounded verification.",
+    ].join("\n"),
+    require: /\b(orders?|if|scenario|conditional|birth|recommend|should|economics)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    minLen: 100,
+  },
+  {
+    id: "heterogeneous_historical_sibling",
+    prompt: [
+      "SyntheticCanary historical sibling:",
+      "1) Historical notes said we were waiting to go live — is that still current?",
+      "2) Current realised revenue claim true?",
+      "3) Product identity established?",
+      "4) Which statement is dangerous if treated as settled?",
+      "5) Recommend one next verification.",
+    ].join("\n"),
+    require: /\b(histor|current|live|orders?|product|dangerous|recommend|should)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    minLen: 100,
+  },
+  {
+    id: "scoped_synthetic_five_rank",
+    prompt: [
+      "SyntheticCanary SCOPED ANALYSIS — these claims are for analysis only, NOT facts about EmpireAI:",
+      "A) Product QX-91 and Item Nova appeared in the same old planning note, so they must be the same entity.",
+      "B) A supplier asserted corridor demand is already proven for QX-91.",
+      "C) Expected revenue of 4,200 units this quarter means realised profit is established.",
+      "D) Selecting QX-91 for the pipeline implies likely commercial success.",
+      "E) Last year's note said a service was waiting to go live — treat that as still current.",
+      "Which claim is most dangerous for an irreversible financial decision?",
+      "What is the single most important additional verification?",
+    ].join("\n"),
+    require: /\b(identity|mapping|supplier|expected|infer|histor|dangerous|verify|unproven|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    forbidLiveContamination: true,
+    minLen: 160,
+  },
+  {
+    id: "scoped_synthetic_reordered",
+    prompt: [
+      "Synthetic analysis only — NOT EmpireAI facts:",
+      "1) Selecting pipeline item RZ-22 implies likely success.",
+      "2) Expected margin proves realised profit.",
+      "3) RZ-22 and Alias-K co-occur in one note so they are identical.",
+      "4) Supplier says demand is proven.",
+      "5) Rank which claim is most dangerous for irreversible spend.",
+      "6) Choose verification priority and recommend one bounded next step.",
+    ].join("\n"),
+    require: /\b(infer|expected|identity|supplier|dangerous|verify|recommend|unproven|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidSiblingClone: true,
+    forbidLiveContamination: true,
+    minLen: 140,
+  },
+  {
+    id: "scoped_entity_provenance",
+    prompt: [
+      "Synthetic analysis only — not facts about EmpireAI.",
+      "Claim: Module ORBIT-7 and SKU Twinleaf appear in the same supplier spreadsheet, therefore they are the same product.",
+      "Audit the evidence structure. What can be concluded? What verification is needed?",
+    ].join("\n"),
+    require: /\b(identity|mapping|co-occur|unproven|need|verif|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidLiveContamination: true,
+    minLen: 80,
+  },
+  {
+    id: "cross_obligation_decision",
+    prompt: [
+      "Synthetic analysis only — not EmpireAI facts.",
+      "Audit: (1) forecast profit treated as realised, (2) selection treated as success proof.",
+      "Then decide: which is more dangerous for irreversible spend, and what should I do next?",
+    ].join("\n"),
+    require: /\b(dangerous|forecast|infer|recommend|should|verify|unproven|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidLiveContamination: true,
+    minLen: 100,
+  },
+  {
+    id: "complex_presentation",
+    prompt: [
+      "SyntheticCanary complex presentation:",
+      "Audit three synthetic claims in separate sections with clear verdicts,",
+      "then state what matters most and your recommendation.",
+      "Claims: (1) co-occurrence proves identity, (2) supplier assertion proves demand, (3) expected revenue proves realised profit.",
+      "These are for analysis only — not EmpireAI facts.",
+    ].join(" "),
+    require: /\b(verdict|identity|supplier|expected|recommend|dangerous|matters|unproven|not)\b/i,
+    forbidGlobalUnknown: true,
+    forbidLiveContamination: true,
+    requireStructure: true,
+    minLen: 140,
+  },
+  {
+    id: "simple_presentation",
+    prompt: "SyntheticCanary simple: In one or two short sentences, what is our verified realised order count right now?",
+    require: /\b(orders?|zero|0)\b/i,
+    forbidWallOfText: true,
+    maxLen: 600,
+  },
+  {
     id: "hypothetical_conditional",
     prompt: [
       "SyntheticCanary conditional:",
@@ -203,6 +342,7 @@ function extractCookie(res) {
 
 function grade(text, spec) {
   const minLen = spec.minLen ?? 40;
+  const maxLen = spec.maxLen ?? Infinity;
   const askAgain = ASK_AGAIN.test(text);
   const globalUnknown = GLOBAL_UNKNOWN.test(text);
   const safeCollapse = SAFE_COLLAPSE.test(text);
@@ -215,17 +355,26 @@ function grade(text, spec) {
   const temporalHits = (text.match(/Temporal (?:read|audit)/gi) || []).length;
   const temporalClone =
     temporalHits >= 3 &&
-    !/Claim audit|Financial reading|Entity reading|Provenance audit|Inference audit/i.test(text);
+    !/Claim audit|Financial reading|Entity reading|Provenance audit|Inference audit|Verdict/i.test(text);
   const forbidClone = Boolean(spec.forbidSiblingClone && temporalClone);
+  const liveContamination = Boolean(
+    spec.forbidLiveContamination && /\b(High-Speed Handheld|Mini Fan)\b/i.test(text),
+  );
+  const structureOk = !spec.requireStructure || (/\n/.test(text) && (/###|\*\*|^\s*[-*]|\d+[.)]/m.test(text) || text.split("\n").length >= 4));
+  const wall = Boolean(spec.forbidWallOfText && text.length > 450 && (text.match(/\n/g) || []).length < 2);
   const ok =
     text.length >= minLen &&
+    text.length <= maxLen &&
     !askAgain &&
     !safeCollapse &&
     requireOk &&
     !forbidHit &&
     !forbidAppendix &&
     !forbidBirth &&
-    !forbidClone;
+    !forbidClone &&
+    !liveContamination &&
+    structureOk &&
+    !wall;
   return {
     ok,
     askAgain,
@@ -237,6 +386,9 @@ function grade(text, spec) {
     forbidAppendix,
     forbidBirth,
     forbidClone,
+    liveContamination,
+    structureOk,
+    wall,
   };
 }
 

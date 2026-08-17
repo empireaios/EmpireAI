@@ -109,7 +109,7 @@ export function renderForGrandKing(
   if (!out) return out;
 
   if (level === "technical") {
-    return out.replace(EPISTEMIC_PREAMBLE, "").replace(/\s{2,}/g, " ").trim();
+    return out.replace(EPISTEMIC_PREAMBLE, "").replace(/[^\S\n]{2,}/g, " ").replace(/\n{3,}/g, "\n\n").trim();
   }
 
   out = out.replace(EPISTEMIC_PREAMBLE, "");
@@ -120,7 +120,8 @@ export function renderForGrandKing(
   out = out.replace(CLAIMS_REMAIN_UNKNOWN, "I don't have enough evidence from those sources yet.");
   out = out.replace(/\(\s*;\s*/g, "(").replace(/\s*;\s*\)/g, ")");
   out = out.replace(/\(\s*\)/g, "");
-  out = out.replace(/\s{2,}/g, " ").replace(/\s+\./g, ".");
+  // Preserve Markdown newlines — only collapse horizontal whitespace runs.
+  out = out.replace(/[^\S\n]{2,}/g, " ").replace(/[^\S\n]+\./g, ".");
 
   if (level === "normal" && !opts.allowAuthorityNotice) {
     out = out.replace(AUTHORITY_BOILERPLATE, " ");
@@ -134,7 +135,8 @@ export function renderForGrandKing(
     out = out.replace(/\bUNKNOWN\b/g, "unproven");
   }
 
-  out = out.replace(/\s{2,}/g, " ").replace(/\s+([,.;:!?])/g, "$1").trim();
+  out = out.replace(/[^\S\n]{2,}/g, " ").replace(/[^\S\n]+([,.;:!?])/g, "$1");
+  out = out.replace(/\n{3,}/g, "\n\n").trim();
   return out;
 }
 
