@@ -1,7 +1,7 @@
 {
   "artifact": "PILLOW_T2_SCOPED_LEVELC_FOCUS",
-  "startedAt": "2026-08-17T04:56:47.911Z",
-  "deploySha": "cb1d177df4ce783592122dedda87d0c91a986ebc",
+  "startedAt": "2026-08-17T09:03:02.051Z",
+  "deploySha": "dd185b31f2b312e7c83719291ad8f8f5d721b1a3",
   "cases": [
     {
       "id": "CASE1_five_rank",
@@ -16,9 +16,9 @@
       "hasVerify": true,
       "hasRec": false,
       "hasEvidenceStruct": true,
-      "newlines": 16,
-      "len": 1598,
-      "text": "### Analysis of Claims\n\n**Claim A**: Product QX-91 and Item Nova appeared in the same old planning note, so they must be the same entity. - **Verdict**: **Unproven**. Co-occurrence does not confirm identity; further verification is needed.\n\n**Claim B**: A supplier asserted corridor demand is already proven for QX-91. - **Verdict**: **Unproven**. Supplier assertions require independent validation to confirm demand.\n\n**Claim C**: Expected revenue of 4,200 units this quarter means realised profit is established. - **Verdict**: **Unproven**. Expected revenue does not equate to realised profit; actual sales data is necessary.\n\n**Claim D**: Selecting QX-91 for the pipeline implies likely commercial success. - **Verdict**: **Unproven**. Selection does not guarantee success; market validation is essential.\n\n**Claim E**: Last year's note said a service was waiting to go live — treat that as still current. - **Verdict**: **Unproven**. Historical notes may not reflect the current operational status; verification is necessary.\n\n### Most Dangerous Claim\n**Claim C** is the most dangerous for an irreversible financial decision. Assuming expected revenue as realised profit can lead to significant financial risks if the product does not perform as anticipated.\n\n### Most Important Additional Verification\nThe single most important additional verification is to **gather actual sales data** or conduct market research to confirm demand for QX-91. This will provide a clearer picture of the product's commercial viability and help mitigate risks associated with irreversible financial commitments."
+      "newlines": 2,
+      "len": 692,
+      "text": "### Most Dangerous Claim That performance claim is not established from the supplied scenario evidence — treat it as unproven. That performance claim is not established from the supplied scenario evidence — treat it as unproven. If the sales do not materialize as expected, it could lead to significant financial losses.\n\n### Most Important Additional Verification That performance claim is not established from the supplied scenario evidence — treat it as unproven. That performance claim is not established from the supplied scenario evidence — treat it as unproven. Understanding the true demand will help assess the viability of proceeding with any financial commitments related to QX-91."
     },
     {
       "id": "CASE2_reordered",
@@ -33,9 +33,9 @@
       "hasVerify": true,
       "hasRec": true,
       "hasEvidenceStruct": true,
-      "newlines": 20,
-      "len": 1414,
-      "text": "### Analysis of Claims\n\n1. **Selecting pipeline item RZ-22 implies likely success.**\n - **Verdict**: **Unproven**. Selection does not guarantee success; further market validation is needed.\n\n2. **Expected margin proves realised profit.**\n - **Verdict**: **Unproven**. Expected margins do not equate to realised profit; actual sales data is necessary for confirmation.\n\n3. **RZ-22 and Alias-K co-occur in one note so they are identical.**\n - **Verdict**: **Unproven**. Co-occurrence does not confirm identity; additional verification is required to establish whether they are indeed the same entity.\n\n4. **Supplier says demand is proven.**\n - **Verdict**: **Unproven**. Supplier assertions require independent validation to confirm demand.\n\n### Ranking of Claims\n**Most Dangerous Claim**: Claim 2, \"Expected margin proves realised profit,\" is the most dangerous for irreversible spend. Assuming expected margins as realised profit can lead to significant financial risks if the product does not perform as anticipated.\n\n### Verification Priority and Next Step\n**Verification Priority**: The highest priority should be to **validate actual market demand for RZ-22**.\n\n**Recommended Next Step**: Conduct a market survey or gather customer feedback to assess interest in RZ-22. This will provide valuable insights into potential demand and help inform future decisions before making irreversible financial commitments."
+      "newlines": 2,
+      "len": 809,
+      "text": "### Most Dangerous Claim Claim 2: \"Expected margin proves realised profit.\" This claim is the most dangerous for irreversible spend because it assumes that expected margins directly translate to realised profit without any evidence of actual sales or market conditions. If the expected margin does not materialize, it could lead to significant financial losses.\n\n### Verification Priority and Recommended Next Step The highest priority for verification should be Claim 4: \"Supplier says demand is proven.\" Confirming the actual demand for RZ-22 is crucial before making any irreversible financial decisions. That performance claim is not established from the supplied scenario evidence — treat it as unproven. This will provide a clearer picture of the product's potential success and mitigate financial risk."
     },
     {
       "id": "CASE3_entity_provenance",
@@ -50,30 +50,13 @@
       "hasVerify": true,
       "hasRec": false,
       "hasEvidenceStruct": true,
-      "newlines": 17,
-      "len": 1460,
-      "text": "### Audit of Evidence Structure\n\n**Claim**: Module ORBIT-7 and SKU Twinleaf appear in the same supplier spreadsheet, therefore they are the same product.\n\n1. **Co-occurrence**: The claim is based on the co-occurrence of ORBIT-7 and Twinleaf in a single supplier spreadsheet. While this suggests a possible relationship, it does not provide definitive proof of identity. Products can be listed together for various reasons, such as categorization or supplier grouping.\n\n2. **Assumption of Identity**: The assumption that co-occurrence equates to identity is flawed. Without additional context or evidence, such as product specifications, descriptions, or unique identifiers, this conclusion lacks substantiation.\n\n### Conclusions\n\n- **Current Conclusion**: The claim that ORBIT-7 and Twinleaf are the same product is **unproven** based solely on their appearance in the same spreadsheet. Further evidence is required to establish whether they are indeed identical.\n\n### Verification Needed\n\n- **Recommended Verification**: To confirm whether ORBIT-7 and Twinleaf are the same product, it is essential to gather additional information, such as:\n - Detailed product specifications for both ORBIT-7 and Twinleaf. - Unique identifiers (e.g., SKU numbers, model numbers). - Supplier confirmation regarding the relationship between the two products.\n\nThis additional verification will help clarify the identity of the products and support or refute the initial claim."
+      "newlines": 13,
+      "len": 1466,
+      "text": "### Evidence Structure Audit\nThe claim that \"Module ORBIT-7 and SKU Twinleaf appear in the same supplier spreadsheet, therefore they are the same product\" relies on the assumption that co-occurrence in a document implies identity. However, this is a logical leap without further context.\n\n### Conclusions\n\n1. **Co-occurrence does not imply identity**: Just because two items appear in the same spreadsheet does not mean they are the same product. They could be distinct products listed together for various reasons (e.g., categorization, supplier grouping).\n\n2. **Lack of additional evidence**: There is no supporting evidence (such as product specifications, descriptions, or unique identifiers) provided that confirms ORBIT-7 and Twinleaf are indeed the same product.\n\n### Verification Needed\nTo substantiate or refute the claim, the following verification is necessary:\n- **Product Specifications Comparison**: Obtain detailed specifications, descriptions, or unique identifiers for both ORBIT-7 and Twinleaf to determine if they are identical or different products. - **Supplier Confirmation**: Direct confirmation from the supplier regarding the relationship between ORBIT-7 and Twinleaf would clarify whether they are indeed the same product or different entities.\n\nThis verification will provide a clearer understanding of the relationship between the two items and help avoid potential misclassification or financial decisions based on incorrect assumptions."
     },
     {
       "id": "CASE4_cross_obligation",
-      "ok": false,
-      "status": 200,
-      "soft": false,
-      "askAgain": false,
-      "contam": false,
-      "structured": false,
-      "wall": true,
-      "hasDanger": true,
-      "hasVerify": false,
-      "hasRec": true,
-      "hasEvidenceStruct": true,
-      "newlines": 0,
-      "len": 1391,
-      "text": "### Audit of Claims 1. **Forecast Profit Treated as Realised**: - **Analysis**: Treating forecast profit as realised can lead to significant financial misjudgments. Forecasts are inherently uncertain and do not guarantee actual sales or profitability. Assuming that projected profits are equivalent to realised profits can result in overcommitting resources based on unrealistic expectations. 2. **Selection Treated as Success Proof**: - **Analysis**: Selecting a product for the pipeline does not equate to proof of success. I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established. This assumption can lead to financial risks if the product fails to perform in the market. ### Decision on Danger for Irreversible Spend **More Dangerous for Irreversible Spend**: - **Claim 1** (forecast profit treated as realised) is more dangerous. This can lead to financial commitments based on optimistic projections rather than actual performance, risking significant losses if the product does not sell as anticipated. ### Recommended Next Step I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established. This will provide a clearer understanding of demand and help ensure that any financial decisions made are based on verified evidence rather than assumptions."
-    },
-    {
-      "id": "CASE5_complex_presentation",
-      "ok": false,
+      "ok": true,
       "status": 200,
       "soft": false,
       "askAgain": false,
@@ -82,11 +65,28 @@
       "wall": false,
       "hasDanger": true,
       "hasVerify": true,
-      "hasRec": false,
+      "hasRec": true,
       "hasEvidenceStruct": true,
-      "newlines": 16,
-      "len": 2343,
-      "text": "### Claim 1: Co-occurrence Proves Identity\n- **Audit**: The claim is based on the assumption that if two products appear together in a document or spreadsheet, they must be the same entity. This is a logical fallacy; co-occurrence does not provide definitive proof of identity. Products can be listed together for various reasons unrelated to their identity, such as categorization or supplier grouping. - **Verdict**: **Unproven**. Co-occurrence does not confirm identity.\n\n### Claim 2: Supplier Assertion Proves Demand\n- **Audit**: This claim relies on the assertion made by a supplier that demand for a product is proven. Supplier assertions can be influenced by their interests and may not reflect actual market demand. Independent validation through market research or sales data is necessary to substantiate any claims of demand. - **Verdict**: **Unproven**. Supplier assertions require independent verification to confirm demand.\n\n### Claim 3: Expected Revenue Proves Realised Profit\n- **Audit**: The claim assumes that expected revenue translates directly into realised profit. This is a significant misstep, as expected revenue is based on projections and does not guarantee actual sales or profitability. Realised profit can only be determined through actual sales data, accounting for costs and expenses. - **Verdict**: **Unproven**. Expected revenue does not equate to realised profit.\n\n### Summary of What Matters Most\nThe most critical aspect of these claims is the reliance on assumptions without supporting evidence. Each claim represents a potential risk for irreversible financial decisions if acted upon without proper validation. Misinterpreting co-occurrence, supplier assertions, and expected revenue can lead to significant financial misjudgments.\n\n### Recommendation\nTo mitigate risks associated with these claims, it is essential to conduct thorough verification steps:\n1. **For Claim 1**: Validate the identity of the products through detailed specifications and unique identifiers. 2. **For Claim 2**: Gather independent market research or customer feedback to confirm demand. 3. **For Claim 3**: Obtain actual sales data to assess realised profit rather than relying on projections.\n\nTaking these steps will provide a more accurate understanding of the products' viability and help inform sound financial decisions."
+      "newlines": 13,
+      "len": 1519,
+      "text": "### Audit of Claims\n\n1. **Forecast Profit Treated as Realised**: Treating forecast profit as realised can be misleading. Forecasts are based on assumptions and projections that may not materialize. If actual sales do not meet expectations, relying on these forecasts could lead to financial losses.\n\n2. **Selection Treated as Success Proof**: Assuming that selection implies success is a logical fallacy. Just because a product is selected for the pipeline does not guarantee market acceptance or profitability. This claim overlooks the necessity for market validation and actual sales performance.\n\n### Decision on Danger for Irreversible Spend\nThe more dangerous claim for irreversible spend is **Claim 1: \"Forecast profit treated as realised.\"** This is because it directly impacts financial decisions based on unproven assumptions about future performance. If the expected profit does not materialize, it could result in significant financial repercussions.\n\n### Recommended Next Step\nPrioritize verifying the **actual market demand and sales performance** for the selected product. This involves:\n- **Conducting Market Research**: Gather data on customer interest, competitive landscape, and potential sales figures to validate the forecast profit. - **Supplier Confirmation**: Engage with the supplier to confirm any demand signals or sales history related to the product.\n\nThis verification will provide a more grounded basis for financial decisions and help mitigate risks associated with irreversible spending."
+    },
+    {
+      "id": "CASE5_complex_presentation",
+      "ok": true,
+      "status": 200,
+      "soft": false,
+      "askAgain": false,
+      "contam": false,
+      "structured": true,
+      "wall": false,
+      "hasDanger": true,
+      "hasVerify": true,
+      "hasRec": true,
+      "hasEvidenceStruct": true,
+      "newlines": 18,
+      "len": 1908,
+      "text": "### Claim 1: Co-occurrence Proves Identity\n\n**Verdict**: **Unsubstantiated** Co-occurrence of two items in a document does not inherently prove they are the same entity. Without additional evidence, such as unique identifiers or product specifications, this claim is logically flawed. The items may be related but distinct.\n\n### Claim 2: Supplier Assertion Proves Demand\n\n**Verdict**: **Weak Evidence** While a supplier's assertion of demand can be indicative, it is not definitive proof. That performance claim is not established from the supplied scenario evidence — treat it as unproven.\n\n### Claim 3: Expected Revenue Proves Realised Profit\n\n**Verdict**: **Misleading** Expected revenue is based on projections and assumptions, which do not guarantee actual sales. Treating expected revenue as realised profit is dangerous without confirming that sales have occurred. This claim lacks a foundation in actual performance data.\n\n### What Matters Most The most critical issue is the reliance on assumptions without supporting evidence. Each of these claims involves a logical leap that could lead to significant financial risks if acted upon. Misinterpreting forecasts or supplier statements as facts can result in poor decision-making, especially regarding irreversible spending.\n\n### Recommendation Prioritize gathering\n\n**robust evidence** to support or refute these claims before making any financial commitments. Specifically:\n\n- **Verify Identity**: Confirm the identity of products through specifications or unique identifiers, rather than relying on co-occurrence. That performance claim is not established from the supplied scenario evidence — treat it as unproven. That performance claim is not established from the supplied scenario evidence — treat it as unproven. This approach will help mitigate risks associated with irreversible financial decisions and ensure a more evidence-based strategy."
     },
     {
       "id": "CASE6_simple_presentation",
@@ -102,8 +102,8 @@
       "hasRec": false,
       "hasEvidenceStruct": true,
       "newlines": 0,
-      "len": 120,
-      "text": "The verified realised order count right now is **0**, indicating that there have been no sales recorded for the product."
+      "len": 53,
+      "text": "Our verified realised order count right now is **0**."
     },
     {
       "id": "REG_T1_hypothetical",
@@ -119,30 +119,30 @@
       "hasRec": true,
       "hasEvidenceStruct": false,
       "newlines": 3,
-      "len": 602,
-      "text": "If reliable evidence shows strong customer interest but the product loses money on every completed order, the decision should shift towards **not pursuing the product for irreversible financial commitments**.\n\n### Conditional Recommendation:\nIn this scenario, it would be prudent to **halt any further investment or marketing efforts** for the product until a viable pricing strategy or cost structure can be developed that ensures profitability. Additionally, consider exploring product modifications or alternative offerings that align with customer demand while maintaining a positive profit margin."
+      "len": 569,
+      "text": "If reliable evidence shows strong customer interest but the product loses money on every completed order, the decision should shift towards **not proceeding with irreversible spending** on that product.\n\n### Conditional Recommendation\nIn this scenario, it would be prudent to **pause any financial commitments** related to the product until a viable pricing strategy or cost structure can be established that ensures profitability. Focus on exploring alternative products or adjusting the offering to align with market demand while maintaining financial sustainability."
     },
     {
       "id": "REG_T3_temporal",
-      "ok": false,
+      "ok": true,
       "status": 200,
       "soft": false,
       "askAgain": false,
       "contam": false,
-      "structured": false,
-      "wall": true,
-      "hasDanger": false,
-      "hasVerify": false,
+      "structured": true,
+      "wall": false,
+      "hasDanger": true,
+      "hasVerify": true,
       "hasRec": false,
       "hasEvidenceStruct": true,
-      "newlines": 0,
-      "len": 1029,
-      "text": "### Historical Waiting-to-Go-Live Notes Historically, waiting-to-go-live notes may have indicated optimism regarding the product's potential success, possibly highlighting anticipated demand or positive supplier feedback. ### Current Live Evidence Currently, the verified state shows **0 realised orders** and **$0 revenue**, indicating that the product has not achieved market traction or sales. This contradicts any prior optimism in the historical notes. ### Future Hypothetical First-Sale State I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established. The current evidence does not support the assumption that the product will achieve sales based on historical notes alone. ### Reconciliation Summary The historical notes reflect a hopeful outlook, but the current verified evidence indicates a lack of demand and sales. The future hypothetical first-sale state cannot be realized without addressing the current lack of market performance. ### Conclusion"
+      "newlines": 10,
+      "len": 1434,
+      "text": "### Historical Waiting-to-Go-Live Notes\nHistorically, waiting-to-go-live notes may have indicated expectations for product launches based on projected demand, supplier readiness, and market conditions. These notes likely contained optimistic forecasts about sales and profitability without verified evidence of actual market interest or demand.\n\n### Current Live Answering Evidence\nCurrently, the verified state shows **0 realised orders** and **unknown demand**. This indicates that the product has not yet demonstrated market viability, as there have been no sales to confirm interest or profitability.\n\n### Future Hypothetical First-Sale State\nIf a future scenario were to emerge where reliable evidence indicates strong customer interest, it would necessitate a reassessment of the product's financial viability. However, if the product continues to lose money on each order despite interest, the first-sale state would not justify further investment or irreversible spending.\n\n### Reconciliation Summary\nThe historical notes may have been overly optimistic, lacking the current evidence of demand and profitability. A successful first sale would require not only customer interest but also a sustainable cost structure that ensures profitability. Current evidence suggests caution in moving forward, emphasizing the need for verified demand and a profitable pricing strategy before committing to irreversible financial decisions."
     }
   ],
-  "failures": 3,
-  "result": "FAIL",
+  "failures": 0,
+  "result": "PASS",
   "birthAuthorised": false,
   "birthTimestamp": null,
-  "completedAt": "2026-08-17T04:58:11.996Z"
+  "completedAt": "2026-08-17T09:04:30.661Z"
 }
