@@ -143,7 +143,14 @@ export function buildForcedObligationCompletion(
     truth.birth.birthTimestamp == null ? "Birth has not been authorised." : "",
   ].filter(Boolean);
   for (const task of contract.tasks.slice(0, 20)) {
-    lines.push(synthesizeTaskUnitAnswer(task, truth));
+    lines.push(
+      synthesizeTaskUnitAnswer(task, truth, {
+        birthRelevant: contract.birthRelevant,
+        hypotheticalPremises: contract.hypotheticalPremises,
+        scopeType: contract.scopeType,
+        materialConstraints: contract.materialConstraints,
+      }),
+    );
   }
   return lines.join("\n\n");
 }

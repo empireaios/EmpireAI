@@ -54,6 +54,10 @@ import {
   isScopedAwayFromLiveEmpire,
   type ReasoningScopeType,
 } from "./executive-scoped-reasoning.js";
+import {
+  ensureRecommendationConstraintConsistency,
+  extractMaterialConstraints,
+} from "./executive-decision-constraints.js";
 
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
@@ -431,6 +435,14 @@ function finalizeVisible(
   let rendered = renderForGrandKing(message, level, {
     allowAuthorityNotice: allowAuthority,
   });
+  // Merge ask + draft constraints so LLM-discovered economics bind the final recommendation.
+  const seeded = contract?.materialConstraints ?? [];
+  const mergedConstraints = extractMaterialConstraints(userMessage ?? "", rendered);
+  for (const c of seeded) {
+    if (!mergedConstraints.some((m) => m.class === c.class)) mergedConstraints.push(c);
+  }
+  const consistency = ensureRecommendationConstraintConsistency(rendered, mergedConstraints);
+  rendered = consistency.message;
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   const ux =
     level === "normal"

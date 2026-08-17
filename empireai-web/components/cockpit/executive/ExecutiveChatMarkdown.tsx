@@ -5,15 +5,12 @@
  */
 
 import React from "react";
-import { looksLikeMarkdown } from "@/lib/cockpit/executive/executive-chat-markdown";
+import {
+  looksLikeMarkdown,
+  parseExecutiveChatBlocks,
+} from "@/lib/cockpit/executive/executive-chat-markdown";
 
-export { looksLikeMarkdown };
-
-type Block =
-  | { type: "p"; text: string }
-  | { type: "h"; level: 1 | 2 | 3; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] };
+export { looksLikeMarkdown, parseExecutiveChatBlocks };
 
 function inlineFormat(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
@@ -56,60 +53,21 @@ function inlineFormat(text: string): React.ReactNode[] {
   return nodes;
 }
 
-function parseBlocks(source: string): Block[] {
-  const lines = source.replace(/\r\n/g, "\n").split("\n");
-  const blocks: Block[] = [];
-  let i = 0;
-  while (i < lines.length) {
-    const line = lines[i] ?? "";
-    if (!line.trim()) {
-      i += 1;
-      continue;
-    }
-    const heading = /^(#{1,3})\s+(.+)$/.exec(line);
-    if (heading) {
-      blocks.push({
-        type: "h",
-        level: Math.min(3, heading[1].length) as 1 | 2 | 3,
-        text: heading[2].trim(),
-      });
-      i += 1;
-      continue;
-    }
-    if (/^\s*[-*]\s+/.test(line)) {
-      const items: string[] = [];
-      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i] ?? "")) {
-        items.push((lines[i] ?? "").replace(/^\s*[-*]\s+/, "").trim());
-        i += 1;
-      }
-      blocks.push({ type: "ul", items });
-      continue;
-    }
-    // Numbered or lettered executive lists (1. / 1) / A) / A.)
-    if (/^\s*(?:\d+|[A-E])[.)]\s+/.test(line)) {
-      const items: string[] = [];
-      while (i < lines.length && /^\s*(?:\d+|[A-E])[.)]\s+/.test(lines[i] ?? "")) {
-        items.push((lines[i] ?? "").replace(/^\s*(?:\d+|[A-E])[.)]\s+/, "").trim());
-        i += 1;
-      }
-      blocks.push({ type: "ol", items });
-      continue;
-    }
-    const parts: string[] = [line];
-    i += 1;
-    while (
-      i < lines.length &&
-      (lines[i] ?? "").trim() &&
-      !/^(#{1,3})\s+/.test(lines[i] ?? "") &&
-      !/^\s*[-*]\s+/.test(lines[i] ?? "") &&
-      !/^\s*(?:\d+|[A-E])[.)]\s+/.test(lines[i] ?? "")
-    ) {
-      parts.push(lines[i] ?? "");
-      i += 1;
-    }
-    blocks.push({ type: "p", text: parts.join(" ").replace(/\s+/g, " ").trim() });
-  }
-  return blocks;
+function renderListItemBody(item: string): React.ReactNode {
+  const lines = item.split("\n");
+  if (lines.length === 1) return inlineFormat(item);
+  return (
+    <span className="whitespace-pre-wrap">
+      {lines.map((ln, k) => (
+        <React.Fragment key={k}>
+          {k > 0 ? "\n" : null}
+          {/^\s*[-*]\s+/.test(ln)
+            ? inlineFormat(ln.replace(/^\s*[-*]\s+/, "• "))
+            : inlineFormat(ln)}
+        </React.Fragment>
+      ))}
+    </span>
+  );
 }
 
 export function ExecutiveChatMarkdown({
@@ -132,7 +90,7 @@ export function ExecutiveChatMarkdown({
     );
   }
 
-  const blocks = parseBlocks(text);
+  const blocks = parseExecutiveChatBlocks(text);
   return (
     <div
       className={`max-w-[42rem] space-y-4 text-[15px] leading-[1.65] sm:text-base ${className}`.trim()}
@@ -170,7 +128,7 @@ export function ExecutiveChatMarkdown({
             <ol key={idx} className="list-decimal space-y-2.5 pl-5 marker:text-[#d4af37]/70">
               {b.items.map((item, j) => (
                 <li key={j} className="pl-0.5">
-                  {inlineFormat(item)}
+                  {renderListItemBody(item)}
                 </li>
               ))}
             </ol>

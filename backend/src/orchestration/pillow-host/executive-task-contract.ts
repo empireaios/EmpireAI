@@ -20,8 +20,13 @@ import {
   synthesizeVerificationPriority,
   type ReasoningScopeType,
 } from "./executive-scoped-reasoning.js";
+import {
+  extractMaterialConstraints,
+  synthesizeConstraintAwareRecommendation,
+  type MaterialConstraint,
+} from "./executive-decision-constraints.js";
 
-export type { ReasoningScopeType };
+export type { ReasoningScopeType, MaterialConstraint };
 
 export type ExecutiveTaskKind =
   | "operating_briefing"
@@ -74,6 +79,8 @@ export type ExecutiveTaskContract = {
   multipart: boolean;
   /** CURRENT_REALITY vs SYNTHETIC_ANALYSIS / hypothetical / historical / comparative. */
   scopeType: ReasoningScopeType;
+  /** Material decision constraints that must survive into final recommendation. */
+  materialConstraints: MaterialConstraint[];
 };
 
 export type TaskCoverageStatus =
@@ -435,6 +442,7 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   }
 
   const scopeType = detectReasoningScope(text);
+  const materialConstraints = extractMaterialConstraints(text);
   const requiresRecommendation =
     globalKinds.includes("recommendation") ||
     /\b(recommend(?:ation)?|what should (?:we|i) do|next (?:step|move)|commercial decision|decide (?:today|which))\b/i.test(
@@ -503,6 +511,7 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     birthRelevant,
     multipart: parts.length >= 2,
     scopeType,
+    materialConstraints,
   };
 }
 
@@ -699,6 +708,7 @@ export function synthesizeTaskUnitAnswer(
     hypotheticalPremises?: readonly string[];
     scopeType?: ReasoningScopeType;
     siblingSubjects?: readonly string[];
+    materialConstraints?: readonly MaterialConstraint[];
   } = {},
 ): string {
   const scope = opts.scopeType ?? "CURRENT_REALITY";
@@ -711,6 +721,7 @@ export function synthesizeTaskUnitAnswer(
     opts.siblingSubjects && opts.siblingSubjects.length > 0
       ? opts.siblingSubjects
       : [subject];
+  const constraints = opts.materialConstraints ?? [];
 
   if (task.kind === "risk_ranking") {
     return synthesizeRiskRanking(siblings, span);
@@ -745,7 +756,9 @@ export function synthesizeTaskUnitAnswer(
         ].join("\n");
       }
       case "recommendation":
-        return synthesizeScopedRecommendation(subject);
+        return constraints.length > 0
+          ? synthesizeConstraintAwareRecommendation(subject, constraints)
+          : synthesizeScopedRecommendation(subject);
       default:
         return synthesizeEvidenceStructureAudit(subject, span);
     }
@@ -816,15 +829,17 @@ export function synthesizeTaskUnitAnswer(
       ].join("\n");
     }
     case "recommendation":
-      return [
-        "### My recommendation",
-        f.orders === 0
-          ? `**Decision:** Verification-first next step on ${f.product} — confirm open commercial unknowns with a bounded check before irreversible spend.`
-          : `**Decision:** Deepen what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
-        birthRelevant && f.birthNull ? "Birth remains a Grand King decision." : "",
-      ]
-        .filter(Boolean)
-        .join("\n");
+      return constraints.length > 0
+        ? synthesizeConstraintAwareRecommendation(subject, constraints)
+        : [
+            "### My recommendation",
+            f.orders === 0
+              ? `**Decision:** Verification-first next step on ${f.product} — confirm open commercial unknowns with a bounded check before irreversible spend.`
+              : `**Decision:** Deepen what is already working on ${f.product} with a bounded experiment before irreversible spend.`,
+            birthRelevant && f.birthNull ? "Birth remains a Grand King decision." : "",
+          ]
+            .filter(Boolean)
+            .join("\n");
     case "evidence_explanation":
       return [
         `### Provenance — ${subject.slice(0, 80)}`,
@@ -948,6 +963,7 @@ export function appendMissingTaskCoverage(
     birthRelevant: contract.birthRelevant,
     hypotheticalPremises: contract.hypotheticalPremises,
     scopeType: contract.scopeType,
+    materialConstraints: contract.materialConstraints,
     siblingSubjects: contract.tasks
       .filter((t) => t.kind !== "risk_ranking" && t.kind !== "verification_priority" && t.kind !== "recommendation")
       .map((t) => t.subject || t.sourceSpan)
@@ -1104,6 +1120,7 @@ export function buildContractAwareReconstruct(
     birthRelevant: contract.birthRelevant,
     hypotheticalPremises: contract.hypotheticalPremises,
     scopeType: contract.scopeType,
+    materialConstraints: contract.materialConstraints,
     siblingSubjects,
   };
   if (units.length === 0) {
