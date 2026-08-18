@@ -125,6 +125,16 @@ describe("post-foundation repair 1 — heterogeneous obligations Level A", () =>
     assert.doesNotMatch(out, /Mini Fan|Birth remains|Brief verified note/i);
   });
 
+  it("10b short synthetic evidence never dumps live product briefing", () => {
+    const user =
+      'SyntheticCanaryRepair1-short — analysis only / scenario-only. Is "Service Riven will succeed commercially" established from the claim alone? Do not mention EmpireAI live products, Birth, or Mini Fan.';
+    const contaminated =
+      "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display. We haven't made our first sale yet. Birth hasn't been authorised yet.";
+    const out = releaseExecutiveAnswer(contaminated, truth(), [], { userMessage: user }).message;
+    assert.doesNotMatch(out, /Mini Fan|EmpireAI is live and answering you in production|first sale yet/i);
+    assert.match(out, /unproven|unsupported|not established|scenario|claim|succeed/i);
+  });
+
   it("11 degraded path preserves useful sections without contamination", () => {
     const prompt = heteroPrompt(31);
     const msg = buildUsefulDegradedExecutiveAnswer({

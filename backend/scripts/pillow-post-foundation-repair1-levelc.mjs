@@ -130,7 +130,7 @@ const CASES = [
     id: "CASE6_simple_evidence",
     freshSession: true,
     message:
-      'SyntheticCanaryRepair1-C6: In two short sentences, is "Service Riven will succeed commercially" established from the claim alone? Analysis only — no EmpireAI live state.',
+      'SyntheticCanaryRepair1-C6 — analysis only / scenario-only. Is "Service Riven will succeed commercially" established from the claim alone? Two short sentences. Do not mention EmpireAI live products, Birth, Mini Fan, or realised revenue.',
     forbid: [GOV, RESUBMIT, COMMERCE, DELEGATION],
     require: [/unproven|unsupported|not established|scenario|claim/i],
   },
@@ -149,15 +149,21 @@ const CASES = [
   },
   {
     id: "CASE8_long_mixed_synthesis",
-    freshSession: false,
+    freshSession: true,
     message: [
-      "SyntheticCanaryRepair1-C8 — continue analysis only on a fresh industrial-equipment pack.",
-      "Forecast $5100; realised $1250; refund 120 units; co-occurrence of Node Quill and Part Meridian; supplier +9%; independent +15%; later registry for Node Quill.",
-      "Answer 1–6 briefly then give a final synthesis. Do not inject live EmpireAI commerce or Grand King approval language.",
-      "1) forecast vs realised 2) refund net 3) entity identity 4) supplier vs independent 5) supersession 6) synthesis",
+      "SyntheticCanaryRepair1-C8 — analysis only for a hypothetical industrial-equipment company.",
+      "Pack: forecast $5100; realised $1250; refund 120 units; co-occurrence of Node Quill and Part Meridian; supplier +9%; independent +15%; later registry for Node Quill.",
+      "1) Classify forecast vs realised.",
+      "2) Compute net after refunds from stated figures only.",
+      "3) Decide whether Node Quill and Part Meridian are the same entity.",
+      "4) Weigh supplier claim vs independent evidence.",
+      "5) What does the later registry update supersede?",
+      "6) Executive synthesis across the above.",
+      "Do not inject live EmpireAI commerce, Mini Fan, Birth, or Grand King approval language.",
     ].join("\n"),
     forbid: [GOV, RESUBMIT, COMMERCE, DELEGATION, CLONE_VERDICT],
     require: [/forecast|estimate/i, /identity|entity/i, /supersed|synthes/i],
+    minSections: 5,
   },
 ];
 

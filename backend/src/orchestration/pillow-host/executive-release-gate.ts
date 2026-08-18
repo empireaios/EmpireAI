@@ -61,6 +61,34 @@ import {
   extractMaterialConstraints,
 } from "./executive-decision-constraints.js";
 
+/** True when a scoped synthetic answer illegally injects live EmpireAI briefing residue. */
+export function isLiveEmpireContaminationInScopedAnswer(
+  text: string,
+  truth: ExecutiveTruthSnapshot,
+  userMessage?: string,
+): boolean {
+  const scope = detectReasoningScope(userMessage ?? "");
+  if (!isScopedAwayFromLiveEmpire(scope)) return false;
+  const t = String(text || "");
+  if (
+    /\b(?:Mini Fan|Brief verified note|realised revenue remain zero)\b/i.test(t) ||
+    /EmpireAI is live and answering you in production/i.test(t) ||
+    /We haven't made our first sale yet/i.test(t)
+  ) {
+    return true;
+  }
+  const pn = String(truth.product.productName || "").trim();
+  if (pn.length >= 16 && t.includes(pn)) return true;
+  // Birth status dump on asks that never mention Birth.
+  if (
+    /Birth has(?:n't| not) been authorised/i.test(t) &&
+    !/\bbirth\b/i.test(userMessage ?? "")
+  ) {
+    return true;
+  }
+  return false;
+}
+
 export type ReleaseGateTelemetry = {
   draftValidationPass: boolean;
   validationViolationCount: number;
@@ -512,6 +540,7 @@ export function releaseExecutiveAnswer(
     contract.requiresRecommendation ||
     contract.requiresConditionalReasoning ||
     contract.requiresAuthorityAnalysis;
+  const scopedAway = isScopedAwayFromLiveEmpire(contract.scopeType);
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,
@@ -600,6 +629,15 @@ export function releaseExecutiveAnswer(
       if (clone.cloned) {
         continue;
       }
+      if (
+        isLiveEmpireContaminationInScopedAnswer(
+          fin.message,
+          truth,
+          options.userMessage,
+        )
+      ) {
+        continue;
+      }
       telemetry.finalRevalidationPass = true;
       telemetry.supportMonotonicityPass = true;
       telemetry.releasePath = item.path;
@@ -667,30 +705,33 @@ export function releaseExecutiveAnswer(
   }
 
   // Attempt 2: contract-aware reconstruct (preserves requested parts — not one safe summary).
-  const natural = multiObligation
-    ? buildContractAwareReconstruct(truth, contract)
-    : buildNaturalExecutiveFallback({
-        productName: truth.product.productName,
-        asin: truth.product.asin,
-        orders: truth.financial.orders,
-        realisedRevenueUsd: truth.financial.realisedRevenueUsd,
-        birthTimestamp: truth.birth.birthTimestamp,
-        live:
-          Boolean(truth.deploy.gitCommitSha) ||
-          truth.deploy.serviceOnlineHint === "assume_online_if_answering",
-        intent,
-        level,
-        hadProvenanceViolation: telemetry.provenanceViolationCount > 0,
-        hadTemporalViolation: telemetry.temporalViolationCount > 0,
-      });
+  // Synthetic / scenario scope must never fall through to live EmpireAI product briefing.
+  const natural =
+    multiObligation || scopedAway
+      ? buildContractAwareReconstruct(truth, contract)
+      : buildNaturalExecutiveFallback({
+          productName: truth.product.productName,
+          asin: truth.product.asin,
+          orders: truth.financial.orders,
+          realisedRevenueUsd: truth.financial.realisedRevenueUsd,
+          birthTimestamp: truth.birth.birthTimestamp,
+          live:
+            Boolean(truth.deploy.gitCommitSha) ||
+            truth.deploy.serviceOnlineHint === "assume_online_if_answering",
+          intent,
+          level,
+          hadProvenanceViolation: telemetry.provenanceViolationCount > 0,
+          hadTemporalViolation: telemetry.temporalViolationCount > 0,
+        });
   const naturalRelease = sealWithCoverage(natural, "natural_reconstructed", first.violations);
   if (naturalRelease) return naturalRelease;
 
   // Attempt 3: fail-closed. Multi-obligation never uses the generic whole-answer stub —
   // forced per-obligation completion is the fail-closed surface.
-  const closed = multiObligation
-    ? buildForcedObligationCompletion(truth, contract)
-    : failClosedExecutiveAnswer(truth, level);
+  const closed =
+    multiObligation || scopedAway
+      ? buildForcedObligationCompletion(truth, contract)
+      : failClosedExecutiveAnswer(truth, level);
   const closedFilled = sealWithCoverage(closed, "fail_closed", first.violations);
   if (closedFilled) {
     telemetry.failClosedUsed = true;
@@ -754,6 +795,26 @@ export function releaseExecutiveAnswer(
     telemetry.coverageAppendedUnits = contract.tasks.length;
     telemetry.taskCoverage = forcedCoverage;
     telemetry.silentlyDroppedMaterialTasks = forcedCoverage.silentlyDroppedTasks;
+    return {
+      message: stripped,
+      released: true,
+      violations: first.violations,
+      telemetry,
+    };
+  }
+
+  // Ultimate authority for single-obligation synthetic: still no live briefing dump.
+  if (scopedAway) {
+    const forcedRaw = buildForcedObligationCompletion(truth, contract);
+    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
+    const stripped = stripIrrelevantLifecycleContamination(
+      forcedFin.message,
+      options.userMessage,
+      contract,
+    );
+    telemetry.releasePath = "fail_closed";
+    telemetry.finalRevalidationPass = true;
+    telemetry.reconstructionSucceeded = true;
     return {
       message: stripped,
       released: true,
