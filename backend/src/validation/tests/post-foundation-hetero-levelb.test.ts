@@ -99,8 +99,10 @@ describe("post-foundation repair 1 — Level B randomized", () => {
 
     // Bundle retrieval should stay latent in the visible answer even if lessons exist.
     try {
-      const bundle = await buildReasoningBundleForWorkspace({
+      const bundle = buildReasoningBundleForWorkspace({
         workspaceId: "ws_hetero_b",
+        currentObjective: null,
+        executiveConstitutionSummary: "synthetic evidence audit",
         userMessage: prompt,
       });
       const blob = JSON.stringify(bundle ?? {}).toLowerCase();

@@ -33,8 +33,6 @@ import {
   listInstitutionalMemory,
   resetInstitutionalMemoryRepository,
 } from "../../orchestration/executive-learning/institutional-memory-service.js";
-import { releaseExecutiveAnswer } from "../../orchestration/pillow-host/executive-release-gate.js";
-import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-types.js";
 
 function truth(): ExecutiveTruthSnapshot {
   return {
@@ -169,61 +167,10 @@ describe("foundation reset — birth lessons + corpus + streak", () => {
   });
 
   it("7 constitutional corpus grades evidence and authority specimens", () => {
-    const truth: ExecutiveTruthSnapshot = {
-      computedAt: new Date().toISOString(),
-      workspaceId: "ws_fr_corpus",
-      provenance: "test",
-      product: {
-        commissioningId: "c",
-        asin: "B0TEST",
-        productName: "Live Bound Widget Under Test",
-        supplier: "S",
-        marketplace: "US",
-        selectionAuthority: "pillow",
-        cursorSelected: false,
-        stage: "COMMISSIONING",
-        pillowRecommendation: "INVESTIGATE",
-        truthClass: "CURRENT_VERIFIED",
-      },
-      financial: {
-        orders: 0,
-        realisedRevenueUsd: 0,
-        buyableListings: 0,
-        publishedListings: 0,
-        expectedProfitDisplay: null,
-        expectedProfitTruthClass: "UNKNOWN",
-        realisedTruthClass: "CURRENT_VERIFIED",
-      },
-      birth: {
-        status: "TECHNICALLY_READY_AWAITING_GRAND_KING",
-        technicallyReady: true,
-        birthTimestamp: null,
-        gatesPassedCount: 12,
-        gatesTotal: 12,
-        truthClass: "CURRENT_VERIFIED",
-      },
-      deploy: {
-        gitCommitSha: "abc",
-        serviceOnlineHint: "assume_online_if_answering",
-        truthClass: "CURRENT_VERIFIED",
-      },
-      authority: {
-        pillowMayPublish: false,
-        pillowMaySupplierSpend: false,
-        pillowMayAuthoriseBirth: false,
-        pillowMayExecuteProductionDeploy: false,
-        chatHasToolCallingLoop: false,
-        executableNow: ["Answer"],
-        requiresGrandKing: ["Birth"],
-        truthClass: "CURRENT_VERIFIED",
-      },
-      demandEvidence: "UNKNOWN",
-      notes: [],
-    };
     // Use the real release path — stub synthesizers miss hetero/governance oracles
     // (Foundation contradiction: weak stubs can PASS while live reconstruct fails).
     const run = runConstitutionalCorpus(
-      (prompt) => releaseExecutiveAnswer("", truth, [], { userMessage: prompt }).message,
+      (prompt) => releaseExecutiveAnswer("", truth(), [], { userMessage: prompt }).message,
       2,
     );
     assert.equal(run.fail, 0, JSON.stringify(run.results.filter((r) => !r.ok)));
