@@ -93,7 +93,71 @@ export function synthesizeEvidenceStructureAudit(
   let conclude =
     "What can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.";
 
-  if (/expected|forecast|projected|estimate|projected profit|expected (?:revenue|profit)/i.test(s)) {
+  // Operation-specific branches first — shared evidence context must not clone one template.
+  if (
+    /synthes|across the (?:above|audits|claims)|executive (?:synthesis|conclusion|summary)|overall (?:reading|conclusion)|integrate (?:the |these )?findings/i.test(
+      s,
+    )
+  ) {
+    verdict = "Cross-evidence synthesis (local)";
+    reason =
+      "Synthesis must integrate sibling findings without replacing them: keep forecasts labeled as estimates, identity mappings open unless registry-proven, and supplier assertions below independent corroboration.";
+    need =
+      "A short integrated reading that preserves distinct obligation outcomes — not a repeated single-claim verdict.";
+    conclude =
+      "What can be concluded: the pack supports cautious, labeled conclusions only; no single sibling unlocks the rest.";
+  } else if (
+    /customer(?:s)? (?:count|vs|versus)|order count|customers? vs orders?|reconcile (?:customer|order)/i.test(
+      s,
+    )
+  ) {
+    verdict = "Quantity classes are not interchangeable";
+    reason =
+      "Customer count and order count measure different events. Co-listed totals do not prove one-to-one equivalence without a join key.";
+    need = "primary records that define the unit of count for each metric and any mapping between them.";
+    conclude =
+      "What can be concluded: treat customer and order figures as distinct evidence classes until reconciled explicitly.";
+  } else if (
+    /refund|net after|after refund|compute net|arithmetic|subtract(?:ed|ion)?/i.test(s)
+  ) {
+    verdict = "Arithmetic requires stated operands";
+    reason =
+      "Net-after-refund conclusions need explicit gross, refund, and unit definitions from the pack. Missing operands stay locally unknown — do not invent ledger math.";
+    need = "the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand.";
+    conclude =
+      "What can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.";
+  } else if (
+    /each (?:quoted )?claim|claim[- ]by[- ]claim|verdict each|quoted claims?|five (?:separate )?claims?/i.test(
+      s,
+    )
+  ) {
+    verdict = "Claims retain distinct identity";
+    reason =
+      "A multi-claim audit must score each quoted claim on its own evidence class. Shared scenario context does not make claims interchangeable.";
+    need = "per-claim verdicts with local unknowns — never one blanket unsupported template for the whole set.";
+    conclude =
+      "What can be concluded: claim-level outcomes must remain separable in the visible answer.";
+  } else if (
+    /weigh|supplier.{0,40}independent|independent.{0,40}supplier|vs\.? independent|versus independent/i.test(
+      s,
+    )
+  ) {
+    verdict = "Provenance ranking required";
+    reason =
+      "Supplier assertions sit below independent studies or third-party corroboration when both address the same metric. Neither automatically becomes realised ledger fact.";
+    need = "explicit comparison of claim provenance and what each source can actually support.";
+    conclude =
+      "What can be concluded: prefer independent corroboration over partner assertion; still label both as non-ledger unless transactions exist.";
+  } else if (
+    /supersed|later (?:registry|update|transaction|ledger|study)|what does (?:the )?later/i.test(s)
+  ) {
+    verdict = "Scoped supersession only";
+    reason =
+      "Later verified evidence supersedes only the claims it updates. A registry or transaction update does not blanket-erase unrelated forecasts or identity notes.";
+    need = "state which prior claim is updated, which remains untouched, and what stays open.";
+    conclude =
+      "What can be concluded: supersession is local to overlapping subjects — not global pack overwrite.";
+  } else if (/expected|forecast|projected|estimate|projected profit|expected (?:revenue|profit)|forecast vs|vs\.? realised/i.test(s)) {
     verdict = "Unsupported as realised result";
     reason =
       "An expected, forecast, or estimated figure is not realised profit and is not transaction evidence.";
@@ -102,7 +166,7 @@ export function synthesizeEvidenceStructureAudit(
     conclude =
       "What can be concluded: the figure may be a planning estimate; it does not establish realised economics.";
   } else if (
-    /same (?:note|document|list|file)|appear(?:ed|s)? (?:together|in the same)|co-occur|mapped to|is the same (?:as|entity)|identical to|refers to the same/i.test(
+    /same (?:note|document|list|file|entity)|appear(?:ed|s)? (?:together|in the same)|co-occur|mapped to|is the same (?:as|entity)|identical to|refers to the same|two skus|same entity/i.test(
       s,
     )
   ) {

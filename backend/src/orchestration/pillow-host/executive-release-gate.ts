@@ -40,6 +40,7 @@ import {
   buildContractAwareReconstruct,
   detectSiblingTemplateCloning,
   parseExecutiveTaskContract,
+  synthesizeTaskUnitAnswer,
   type ExecutiveTaskContract,
   type TaskCoverageReport,
 } from "./executive-task-contract.js";
@@ -48,6 +49,7 @@ import {
   GLOBAL_EVIDENCE_COLLAPSE_REPLY,
   isGlobalEvidenceCollapseReply,
 } from "./executive-final-release.js";
+import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
 import {
   detectReasoningScope,
@@ -423,16 +425,52 @@ export function failClosedExecutiveAnswer(
   return renderForGrandKing(raw, level);
 }
 
+/**
+ * Strip governance/recovery residue that must not appear on pure evidence audits.
+ */
+export function stripIrrelevantLifecycleContamination(
+  message: string,
+  userMessage: string | undefined,
+  contract?: ExecutiveTaskContract,
+): string {
+  let out = String(message || "");
+  const authorityAsk =
+    hasAuthoritySemanticsMarker(userMessage ?? "") ||
+    Boolean(contract?.requiresAuthorityAnalysis) ||
+    Boolean(contract?.tasks.some((t) => /authority|delegation|capability|execution|governance|approval/i.test(t.kind)));
+
+  if (!authorityAsk) {
+    out = out.replace(
+      /\s*One or more requested actions sit behind Grand King approval or constitutional limits[^.]*\.\s*(?:I still complete the operational parts above\.)?/gi,
+      " ",
+    );
+  }
+  out = out.replace(
+    /\s*I am continuing from this same request context[^.]*\./gi,
+    " ",
+  );
+  out = out.replace(
+    /\s*you do not need to resubmit the question[^.]*\./gi,
+    " ",
+  );
+  out = out.replace(
+    /\s*Full model deliberation was temporarily unavailable on this turn[^.]*\./gi,
+    " ",
+  );
+  return out.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function finalizeVisible(
   message: string,
   level: DisclosureLevel,
   userMessage?: string,
   contract?: ReturnType<typeof parseExecutiveTaskContract>,
 ): { message: string; uxFailures: string[] } {
-  const allowAuthority = /\b(deploy|publish|spend|birth|authoris|approv)/i.test(
-    userMessage ?? "",
-  );
-  let rendered = renderForGrandKing(message, level, {
+  const cleaned = stripIrrelevantLifecycleContamination(message, userMessage, contract);
+  const allowAuthority =
+    hasAuthoritySemanticsMarker(userMessage ?? "") ||
+    /\b(deploy|publish|spend|birth|authoris|approv)/i.test(userMessage ?? "");
+  let rendered = renderForGrandKing(cleaned, level, {
     allowAuthorityNotice: allowAuthority,
   });
   // Merge ask + draft constraints so LLM-discovered economics bind the final recommendation.
@@ -660,12 +698,56 @@ export function releaseExecutiveAnswer(
   }
 
   // Ultimate authority: multi-obligation must never collapse to a global UNKNOWN stub.
-  // Forced per-obligation completion from verified state is the last safe release.
+  // Forced per-obligation completion from verified state is the last safe release —
+  // but still must not ship sibling template clones or governance/recovery residue.
   telemetry.failClosedUsed = true;
   if (multiObligation) {
-    const forcedRaw = buildForcedObligationCompletion(truth, contract);
+    let forcedRaw = buildForcedObligationCompletion(truth, contract);
+    let forcedClone = detectSiblingTemplateCloning(forcedRaw, contract);
+    if (forcedClone.cloned) {
+      // Rebuild once from contract synthesizers (operation-differentiated) as last resort.
+      forcedRaw = buildContractAwareReconstruct(truth, contract);
+      forcedClone = detectSiblingTemplateCloning(forcedRaw, contract);
+    }
     const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
-    const forcedCoverage = assessTaskCoverage(forcedFin.message, contract);
+    const stripped = stripIrrelevantLifecycleContamination(
+      forcedFin.message,
+      options.userMessage,
+      contract,
+    );
+    const stillCloned = detectSiblingTemplateCloning(stripped, contract);
+    if (stillCloned.cloned) {
+      // Prefer an explicit local-unknown framing over cloned generic verdicts.
+      const lines = contract.tasks.slice(0, 20).map((t, i) => {
+        const body = synthesizeTaskUnitAnswer(t, truth, {
+          birthRelevant: contract.birthRelevant,
+          hypotheticalPremises: contract.hypotheticalPremises,
+          scopeType: contract.scopeType,
+          materialConstraints: contract.materialConstraints,
+          siblingSubjects: contract.tasks.map((x) => x.subject),
+        });
+        return `### ${i + 1}) ${(t.subject || t.sourceSpan).slice(0, 100)}\n\n${body}`;
+      });
+      const rebuilt = stripIrrelevantLifecycleContamination(
+        lines.join("\n\n"),
+        options.userMessage,
+        contract,
+      );
+      const rebuiltCoverage = assessTaskCoverage(rebuilt, contract);
+      telemetry.releasePath = "fail_closed";
+      telemetry.finalRevalidationPass = true;
+      telemetry.reconstructionSucceeded = true;
+      telemetry.coverageAppendedUnits = contract.tasks.length;
+      telemetry.taskCoverage = rebuiltCoverage;
+      telemetry.silentlyDroppedMaterialTasks = rebuiltCoverage.silentlyDroppedTasks;
+      return {
+        message: rebuilt,
+        released: true,
+        violations: first.violations,
+        telemetry,
+      };
+    }
+    const forcedCoverage = assessTaskCoverage(stripped, contract);
     telemetry.releasePath = "fail_closed";
     telemetry.finalRevalidationPass = true;
     telemetry.reconstructionSucceeded = true;
@@ -673,7 +755,7 @@ export function releaseExecutiveAnswer(
     telemetry.taskCoverage = forcedCoverage;
     telemetry.silentlyDroppedMaterialTasks = forcedCoverage.silentlyDroppedTasks;
     return {
-      message: forcedFin.message,
+      message: stripped,
       released: true,
       violations: first.violations,
       telemetry,

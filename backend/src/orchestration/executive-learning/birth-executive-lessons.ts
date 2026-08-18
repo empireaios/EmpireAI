@@ -200,13 +200,29 @@ export function birthExecutiveLessonSeeds(
       canonicalKey: "birth.lesson.sibling_identity",
       title: "Different obligations retain distinct semantic identity",
       statement:
-        "Heterogeneous sibling tasks must keep distinct kinds and answers. Do not clone one sibling's template across the set.",
+        "Complex evidence audits contain heterogeneous operations. Shared evidence context does not make sibling obligations semantically interchangeable. Coverage requires per-obligation completion; unrelated governance or recovery doctrine must remain latent.",
       memoryClass: "decision_principle",
-      tags: ["task-completion", "multipart", "birth"],
-      evidenceRefs: ["executive-heterogeneous-obligations"],
-      reasoningAreas: ["decision_principles"],
+      tags: ["task-completion", "multipart", "evidence", "routing", "birth"],
+      evidenceRefs: [
+        "executive-heterogeneous-obligations",
+        "wave1-clean-cert-t1-independent-failure",
+        "post-foundation-repair-1",
+      ],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
       capabilityFamily: "task_completion",
       failureClass: "sibling_template_cloning",
+    }),
+    base({
+      canonicalKey: "birth.lesson.no_lifecycle_residue_on_evidence",
+      title: "Reliability lifecycle language must not contaminate semantic answers",
+      statement:
+        "Accepted-request recovery and constitutional-limit notices are lifecycle controls. They must not appear in ordinary completed evidence or analysis answers unless the current ask materially requires authority/governance handling or a true non-terminal recovery state.",
+      memoryClass: "decision_principle",
+      tags: ["reliability", "ux", "contamination", "birth"],
+      evidenceRefs: ["post-foundation-repair-1", "executive-response-completion"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "accepted_request_reliability",
+      failureClass: "accepted_request_residue_contamination",
     }),
     base({
       canonicalKey: "birth.lesson.evidence_ne_authority_route",

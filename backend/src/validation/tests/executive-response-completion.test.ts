@@ -74,8 +74,21 @@ describe("executive response completion", () => {
       reason: "llm_timeout",
     });
     assert.equal(containsAskAgainFallback(msg), false);
-    assert.match(msg, /do not need to resubmit|not ask you to resubmit/i);
-    assert.match(msg, /Synthetic Response Widget|live/i);
+    assert.doesNotMatch(msg, /do not need to resubmit/i);
+    assert.doesNotMatch(msg, /sit behind Grand King approval/i);
+    assert.match(msg, /Synthetic Response Widget|live|verified|orders/i);
+  });
+
+  it("does not inject governance on evidence-only degraded path", () => {
+    const msg = buildUsefulDegradedExecutiveAnswer({
+      userMessage:
+        "SyntheticCanaryEvidence: classify forecast vs realised; what does later ledger supersede?",
+      truth: synthTruth(),
+      reason: "visible_answer_gate",
+      authorityConstrained: true,
+    });
+    assert.doesNotMatch(msg, /sit behind Grand King approval/i);
+    assert.doesNotMatch(msg, /do not need to resubmit/i);
   });
 
   it("addresses multi-part structure without inventing sealed answers", () => {

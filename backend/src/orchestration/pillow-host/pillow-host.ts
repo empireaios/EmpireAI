@@ -60,6 +60,7 @@ import {
   recordPillowResponseAccepted,
   recordPillowResponseTerminal,
 } from "./executive-response-completion.js";
+import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29676,7 +29677,7 @@ export class PillowHost {
                     userMessage: input.message,
                     truth: executiveTruthSnapshot,
                     reason: refusal,
-                    authorityConstrained: true,
+                    authorityConstrained: hasAuthoritySemanticsMarker(input.message),
                 });
                 const assistantTurn = {
                     role: "assistant",
@@ -29729,6 +29730,7 @@ export class PillowHost {
                     userMessage: input.message,
                     truth: executiveTruthSnapshot,
                     reason: constitutionalGate.refusalMessage ?? "authority_constrained",
+                    // Constitutional gate refusal is authority-relevant only when the ask carries authority semantics.
                     authorityConstrained: true,
                 });
                 const assistantTurn = {
@@ -29975,7 +29977,7 @@ export class PillowHost {
                             userMessage: input.message,
                             truth: executiveTruthSnapshot,
                             reason: "visible_answer_gate",
-                            authorityConstrained: true,
+                            authorityConstrained: hasAuthoritySemanticsMarker(input.message),
                         });
                         message = sealed.message;
                         degradedUsed = sealed.degradedUsed || true;

@@ -14,6 +14,7 @@ import {
   buildContractAwareReconstruct,
   parseExecutiveTaskContract,
 } from "./executive-task-contract.js";
+import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 
 export type ResponseTerminalKind =
@@ -216,31 +217,26 @@ export function buildUsefulDegradedExecutiveAnswer(input: {
     const filled = appendMissingTaskCoverage(base, contract, input.truth);
     const parts = [filled.message];
 
-    if (input.authorityConstrained) {
+    // Governance language only when the ask itself carries authority/execution semantics.
+    const authorityAsk = hasAuthoritySemanticsMarker(input.userMessage);
+    if (input.authorityConstrained && authorityAsk) {
       parts.push(
         "One or more requested actions sit behind Grand King approval or constitutional limits — I will not bypass those. I still complete the operational parts above.",
       );
-    } else if (input.reason) {
-      parts.push(
-        "Full model deliberation was temporarily unavailable on this turn; the above is grounded in current verified state so you are not left without an answer.",
-      );
     }
+    // No "resubmit" / recovery boilerplate on ordinary degraded semantic completions.
+    // Lifecycle reliability is tracked in telemetry; user-facing residue contaminates evidence audits.
 
-    parts.push(
-      "I am continuing from this same request context — you do not need to resubmit the question for me to keep working from it.",
-    );
-
-    return parts.join(" ");
+    return parts.join("\n\n");
   }
 
-  // No truth snapshot — still useful, never ask-again.
+  // No truth snapshot — still useful, never ask-again / never fake governance.
   return [
     "I am live and received your request.",
     units >= 2
-      ? `You sent a multi-part executive ask (${units} units). I cannot complete full deliberation on every unit this instant, but I will not ask you to resend it.`
-      : "I cannot complete full deliberation this instant, but I will not ask you to resend the question.",
-    "From standing operating posture: Birth remains unauthorised until Grand King decides; realised commerce and product focus must be read from live commissioning state before strong claims.",
-    "Tell me which part you want deepened first and I will continue from this same thread.",
+      ? `You sent a multi-part executive ask (${units} units). I cannot complete full deliberation on every unit this instant from verified state alone.`
+      : "I cannot complete full deliberation this instant from verified state alone.",
+    "I will continue from this same thread when you deepen a specific part — without treating this as a governance refusal.",
   ].join(" ");
 }
 

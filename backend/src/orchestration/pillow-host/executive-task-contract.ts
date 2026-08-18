@@ -278,6 +278,29 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
   const authorityKind = classifyAuthorityKind(m);
   if (authorityKind) return authorityKind;
 
+  // Heterogeneous evidence-audit operations — do not flatten all to premise_audit.
+  if (
+    /\b(synthes|executive (?:synthesis|conclusion|summary)|across the (?:above|audits|claims)|integrate (?:the |these )?findings|overall (?:reading|conclusion))\b/i.test(
+      m,
+    )
+  ) {
+    return "recommendation";
+  }
+  if (
+    /\b(supersed|later (?:registry|update|transaction|ledger)|what does (?:the )?later|temporal)\b/i.test(
+      m,
+    )
+  ) {
+    return "temporal_reconciliation";
+  }
+  if (
+    /\b(weigh|supplier.{0,60}independent|independent.{0,60}(?:supplier|study|evidence)|provenance)\b/i.test(
+      m,
+    )
+  ) {
+    return "evidence_explanation";
+  }
+
   // Decision-unlock / experiment / reversal are first-class recommendation work.
   if (
     /\b(?:what\s+(?:decision|this)\s+(?:would\s+)?unlock|decision\s+(?:that\s+)?(?:verification\s+)?unlocks?|unlocks?\s+(?:the\s+)?decision|choose\s+one\s+(?:next\s+)?experiment|next\s+experiment|critical\s+verification|reversal\s+evidence|what\s+would\s+(?:change|reverse))\b/i.test(
@@ -719,7 +742,30 @@ export function assessTaskCoverage(
 
     let status: TaskCoverageStatus;
     let reason: string | undefined;
-    if (signal && (task.kind !== "multipart_unit" || overlap || contract.tasks.length <= 3)) {
+    // Multipart / multi-task: kind signal on the whole answer is insufficient —
+    // require local token overlap so siblings cannot share one topical hit.
+    const multiStrict =
+      contract.multipart ||
+      contract.tasks.length >= 4 ||
+      (contract.tasks.length >= 3 && new Set(contract.tasks.map((t) => t.kind)).size >= 2);
+    if (multiStrict) {
+      if (overlap && signal) {
+        status = "completed";
+      } else if (overlap) {
+        status = "partial";
+        reason = "Local subject overlap without full kind signal.";
+      } else if (signal && task.kind !== "multipart_unit" && task.kind !== "premise_audit") {
+        // Aggregate kinds (recommendation / risk / verification) may be global once.
+        status = "partial";
+        reason = "Kind signal present; local subject overlap weak.";
+      } else if (localUnavailableMarked) {
+        status = "unavailable";
+        reason = "Explicitly marked unavailable for this part.";
+      } else {
+        status = task.required ? "silent_drop" : "unavailable";
+        reason = task.required ? "Required task not addressed locally in released answer." : undefined;
+      }
+    } else if (signal && (task.kind !== "multipart_unit" || overlap || contract.tasks.length <= 3)) {
       status = "completed";
     } else if (overlap && signal) {
       status = "completed";
@@ -756,9 +802,9 @@ export function assessTaskCoverage(
     }
   }
 
-  // Holistic completion: a substantive answer that already hits primary obligations
-  // must not leave sibling kinds as silent_drop (prevents contradictory appendices).
-  {
+  // Holistic completion: only for small non-multipart asks.
+  // Large heterogeneous audits must not clear silent_drops via one topical hit.
+  if (!contract.multipart && contract.tasks.length <= 3) {
     const completedOrPartial = byTask.filter(
       (t) => t.status === "completed" || t.status === "partial",
     ).length;
@@ -1039,14 +1085,15 @@ export function detectSiblingTemplateCloning(
   answer: string,
   contract: ExecutiveTaskContract,
 ): { cloned: boolean; duplicateBlocks: number; reason: string | null } {
-  if (!contract.multipart || contract.tasks.length < 3) {
+  const taskCount = contract.tasks.length;
+  if (taskCount < 3 && !contract.multipart) {
     return { cloned: false, duplicateBlocks: 0, reason: null };
   }
   const kinds = new Set(contract.tasks.map((t) => t.kind));
   const subjects = new Set(
     contract.tasks.map((t) => t.subject.toLowerCase().slice(0, 40)).filter(Boolean),
   );
-  const heterogeneous = kinds.size >= 2 || subjects.size >= 3;
+  const heterogeneous = kinds.size >= 2 || subjects.size >= 3 || taskCount >= 5;
   if (!heterogeneous) return { cloned: false, duplicateBlocks: 0, reason: null };
 
   const text = String(answer || "");
@@ -1059,10 +1106,37 @@ export function detectSiblingTemplateCloning(
     };
   }
 
-  const blocks = text
+  // Same verdict reused across many sibling sections → generic template dominance.
+  const verdictHits = (text.match(/\*\*Verdict:\*\*\s*Unsupported as realised result/gi) || [])
+    .length;
+  if (verdictHits >= 3 && taskCount >= 4) {
+    return {
+      cloned: true,
+      duplicateBlocks: verdictHits,
+      reason: "Repeated generic realised-result verdict across heterogeneous siblings.",
+    };
+  }
+  const genericFinHits = (
+    text.match(/\*\*Verdict:\*\*\s*Unsupported as established fact/gi) || []
+  ).length;
+  if (genericFinHits >= 3 && taskCount >= 4) {
+    return {
+      cloned: true,
+      duplicateBlocks: genericFinHits,
+      reason: "Repeated generic established-fact verdict across heterogeneous siblings.",
+    };
+  }
+
+  // Prefer section-level blocks (### / numbered) over raw newline fragments.
+  const sectionBlocks = text
+    .split(/(?=^#{1,3}\s+|^(?:\d{1,2}|[A-H]|Q\d{1,2})[\).:]\s+)/m)
+    .map((b) => b.trim())
+    .filter((b) => b.length >= 80);
+  const lineBlocks = text
     .split(/\n+/)
     .map((b) => b.replace(/^\s*\d+[\).:]\s*/, "").trim())
     .filter((b) => b.length >= 60);
+  const blocks = sectionBlocks.length >= 3 ? sectionBlocks : lineBlocks;
   if (blocks.length < 3) return { cloned: false, duplicateBlocks: 0, reason: null };
 
   const norm = (b: string) =>
@@ -1083,18 +1157,18 @@ export function detectSiblingTemplateCloning(
     for (let j = i + 1; j < normalized.length; j++) {
       const a = normalized[i]!;
       const b = normalized[j]!;
-      if (a.length < 50 || b.length < 50) continue;
-      const ta = new Set(a.split(" ").filter((t) => t.length >= 5));
-      const tb = new Set(b.split(" ").filter((t) => t.length >= 5));
+      if (a.length < 40 || b.length < 40) continue;
+      const ta = new Set(a.split(" ").filter((t) => t.length >= 4));
+      const tb = new Set(b.split(" ").filter((t) => t.length >= 4));
       if (ta.size < 4 || tb.size < 4) continue;
       let inter = 0;
       for (const t of ta) if (tb.has(t)) inter += 1;
       const jaccard = inter / new Set([...ta, ...tb]).size;
-      // High bar: shared executive vocabulary is normal; flag only near-copies.
-      if (jaccard >= 0.9) dup += 1;
+      // Flag near-copies; shared executive vocabulary alone should not trip this.
+      if (jaccard >= 0.78) dup += 1;
     }
   }
-  if (dup >= 3) {
+  if (dup >= 2) {
     return {
       cloned: true,
       duplicateBlocks: dup,
