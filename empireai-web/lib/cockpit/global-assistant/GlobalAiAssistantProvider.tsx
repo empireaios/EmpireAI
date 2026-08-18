@@ -482,7 +482,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           const existing = loadPillowSession();
           savePillowSession({
             turns: existing?.turns ?? [],
-            lastScreenPath: existing?.lastScreenPath ?? state.context.pathname,
+            lastScreenPath: existing?.lastScreenPath ?? pathname,
             updatedAt: new Date().toISOString(),
             hostSessionId: chatResult.reboundSessionId,
           });
