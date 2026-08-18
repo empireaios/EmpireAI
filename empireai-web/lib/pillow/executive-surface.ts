@@ -34,10 +34,10 @@ export const EXECUTIVE_DELAYED_LABEL =
   "Executive Intelligence is taking a moment longer. Continuing automatically…";
 /** Never ask Grand King to resubmit — system owns completion. */
 export const EXECUTIVE_NOT_READY_REPLY =
-  "I received your request and I am still bringing Executive Intelligence fully online. I will continue from this same question — you do not need to send it again. Meanwhile: Birth remains unauthorised; I will answer from verified operating state as soon as the live path is ready.";
+  "I received your request and I am still bringing Executive Intelligence fully online. I will continue from this same question — you do not need to send it again.";
 /** Never ask Grand King to resubmit — useful degraded default. */
 export const EXECUTIVE_PIPELINE_SOFT_REPLY =
-  "I received your executive request and can answer from verified operating state now. Full deliberation may still be catching up on part of the ask; I will not ask you to resubmit. Birth remains unauthorised, and I will keep claims bounded to what we can verify.";
+  "I received your executive request and can answer from verified operating state now. Full deliberation may still be catching up on part of the ask; I will not ask you to resubmit, and I will keep claims bounded to what we can verify.";
 export const EXECUTIVE_READY_LABEL = "Ready";
 export const EXECUTIVE_WIDGET_LOADING = "Loading…";
 export const EXECUTIVE_WIDGET_EMPTY = "Nothing to report right now.";
