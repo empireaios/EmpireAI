@@ -12,6 +12,7 @@ import {
 } from "../../orchestration/pillow-host/executive-task-contract.js";
 import {
   detectReasoningScope,
+  hasSyntheticAnalysisMarker,
   stripIrrelevantLiveGrounding,
   synthesizeEvidenceStructureAudit,
 } from "../../orchestration/pillow-host/executive-scoped-reasoning.js";
@@ -217,6 +218,12 @@ describe("scoped synthetic + aggregate synthesis Level A", () => {
     assert.match(cleaned, /Claim A is unproven/i);
   });
 
+  it("SyntheticCanary compound labels detect as synthetic analysis scope", () => {
+    assert.equal(hasSyntheticAnalysisMarker("SyntheticCanary: what remains blocked?"), true);
+    assert.equal(detectReasoningScope("SyntheticCanary simple: reply with one short sentence."), "SYNTHETIC_ANALYSIS");
+    assert.equal(detectReasoningScope("SyntheticCanary concurrent A: one sentence on capacity."), "SYNTHETIC_ANALYSIS");
+  });
+
   it("synthetic multipart stub never injects Brief verified commerce footnote", () => {
     const out = synthesizeTaskUnitAnswer(
       {
@@ -248,6 +255,30 @@ describe("scoped synthetic + aggregate synthesis Level A", () => {
     );
     assert.doesNotMatch(stripped, /Brief verified note|Mini Fan|realised revenue remain zero/i);
     assert.match(stripped, /Capacity stays blocked/i);
+
+    // Scope may still be CURRENT_REALITY if only compound labels are present — strip must still run.
+    const strippedCurrentScope = stripIrrelevantLiveGrounding(
+      "Ready.\n\nBrief verified note: focus remains High-Speed Handheld Mini Fan; Realised orders and realised revenue remain zero.",
+      "SyntheticCanary simple: reply with exactly one short sentence acknowledging readiness.",
+      "CURRENT_REALITY",
+    );
+    assert.doesNotMatch(strippedCurrentScope, /Brief verified note|Mini Fan|realised revenue remain zero/i);
+    assert.match(strippedCurrentScope, /Ready/i);
+
+    const outUnscoped = synthesizeTaskUnitAnswer(
+      {
+        id: "u2",
+        kind: "general",
+        text: "acknowledge",
+        subject: "SyntheticCanary simple: acknowledge readiness",
+        sourceSpan: "SyntheticCanary simple",
+        requiredOperation: "answer_unit",
+        required: true,
+      },
+      truth(),
+      { scopeType: "CURRENT_REALITY" },
+    );
+    assert.doesNotMatch(outUnscoped, /Brief verified note|Mini Fan|realised revenue remain zero/i);
   });
 
   it("polish preserves paragraph structure (no wall-of-text join)", () => {

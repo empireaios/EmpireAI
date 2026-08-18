@@ -877,11 +877,12 @@ export function synthesizeTaskUnitAnswer(
     case "general":
     default: {
       // Never inject live product/commerce footnotes into synthetic/scenario stubs.
+      // Use prefix match so SyntheticCanary compounds are covered (\bsynthetic\b alone misses them).
       if (
         scoped ||
-        /\bsynthetic\b/i.test(subject) ||
-        /\bsynthetic\b/i.test(span) ||
-        /\bsynthetic\b/i.test(opts.siblingSubjects?.join(" ") ?? "")
+        /\bsynthetic/i.test(subject) ||
+        /\bsynthetic/i.test(span) ||
+        /\bsynthetic/i.test(opts.siblingSubjects?.join(" ") ?? "")
       ) {
         return synthesizeEvidenceStructureAudit(subject, span);
       }

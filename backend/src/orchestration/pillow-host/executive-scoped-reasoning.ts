@@ -11,14 +11,25 @@ export type ReasoningScopeType =
   | "HISTORICAL_ANALYSIS"
   | "COMPARATIVE_SCENARIO";
 
+/** True for SyntheticCanary / synthetic-* labels (word-boundary alone misses compounds). */
+export function hasSyntheticAnalysisMarker(message: string): boolean {
+  const t = String(message || "");
+  return (
+    /\bsynthetic\w*/i.test(t) ||
+    /\bfor analysis(?:\s+only)?\b/i.test(t) ||
+    /\bnot (?:facts?|claims?) about EmpireAI\b/i.test(t) ||
+    /\bclaims? for analysis\b/i.test(t) ||
+    /\bthought experiment\b/i.test(t) ||
+    /\bscenario[- ]only\b/i.test(t) ||
+    /\bhypothetical (?:claim|product|entity|scenario)\b/i.test(t) ||
+    /\banalysis scenario\b/i.test(t)
+  );
+}
+
 /** Detect analysis scope from Grand King's message (not from live state). */
 export function detectReasoningScope(message: string): ReasoningScopeType {
   const t = String(message || "");
-  if (
-    /\b(synthetic|for analysis(?:\s+only)?|not (?:facts?|claims?) about EmpireAI|claims? for analysis|thought experiment|scenario[- ]only|hypothetical (?:claim|product|entity|scenario)|analysis scenario)\b/i.test(
-      t,
-    )
-  ) {
+  if (hasSyntheticAnalysisMarker(t)) {
     return "SYNTHETIC_ANALYSIS";
   }
   if (
@@ -258,13 +269,13 @@ export function stripIrrelevantLiveGrounding(
   userMessage: string,
   scope: ReasoningScopeType,
 ): string {
-  if (!isScopedAwayFromLiveEmpire(scope) && !/\bsynthetic\b/i.test(userMessage)) {
+  if (!isScopedAwayFromLiveEmpire(scope) && !hasSyntheticAnalysisMarker(userMessage)) {
     return String(message || "").trim();
   }
   const liveAsk =
     /\b(EmpireAI|our (?:current|live|realised)|bound product|commissioning|Birth)\b/i.test(
       userMessage,
-    ) && !/\bsynthetic|for analysis|not (?:facts?|claims?) about EmpireAI\b/i.test(userMessage);
+    ) && !hasSyntheticAnalysisMarker(userMessage);
   if (liveAsk) return String(message || "").trim();
 
   const isLiveBoilerplate = (s: string): boolean => {
