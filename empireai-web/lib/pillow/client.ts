@@ -10,7 +10,7 @@ import type {
 } from "./types";
 import { toExecutiveSurfaceMessage } from "./executive-surface";
 
-const PILLOW_REQUEST_TIMEOUT_MS = 60_000;
+const PILLOW_REQUEST_TIMEOUT_MS = 128_000;
 const PILLOW_SESSION_TIMEOUT_MS = 130_000;
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 400;

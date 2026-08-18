@@ -35,9 +35,9 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
 }
 
 const DEGRADED_CHAT_MESSAGE = [
-  "I received your executive request; the deep reasoning path returned a transient fault.",
-  "You do not need to resubmit — answering from standing verified posture now.",
-  "Birth remains unauthorised (timestamp null). Tell me which part to deepen next.",
+  "I accepted your request, but the deep reasoning path could not finish after bounded recovery.",
+  "This is a temporary infrastructure limit — not a question about your task.",
+  "Please send the same ask once more in a moment.",
 ].join(" ");
 
 function isPillowChatResource(pathSegments: string[]): boolean {
@@ -45,11 +45,42 @@ function isPillowChatResource(pathSegments: string[]): boolean {
   return resource === "chat" || resource === "chat/stream";
 }
 
+function extractMessageFromBody(raw: string): string {
+  try {
+    const parsed = JSON.parse(raw) as { result?: { message?: string }; message?: string };
+    return String(parsed?.result?.message ?? parsed?.message ?? "").trim();
+  } catch {
+    return "";
+  }
+}
+
+function looksLikeForbiddenInfraDecoration(message: string, userAsk: string): boolean {
+  const ask = String(userAsk || "");
+  const synthetic =
+    /\b(?:synthetic(?:canary)?|scenario\s+only|do\s+not\s+mention\s+(?:empireai|birth))\b/i.test(ask);
+  if (synthetic || !/\bbirth\b/i.test(ask)) {
+    if (/\bBirth remains unauthoris/i.test(message)) return true;
+    if (/\brealised commerce|product focus|commissioning state\b/i.test(message)) return true;
+  }
+  if (/\btell me which (?:theme|part) to deepen\b/i.test(message)) return true;
+  if (/\bworker proxy timed out\b/i.test(message)) return true;
+  return false;
+}
+
 async function proxyPillow(pathSegments: string[], request: Request, method: string): Promise<Response> {
   const url = new URL(request.url);
   const backendPath = `/api/pillow/${pathSegments.join("/")}${url.search}`;
   const upstreamTimeoutMs = resolvePillowUpstreamTimeoutMs(pathSegments, method);
   const isChat = method === "POST" && isPillowChatResource(pathSegments);
+  const bodyText = method !== "GET" && method !== "DELETE" ? await request.text() : undefined;
+  let userAsk = "";
+  if (isChat && bodyText) {
+    try {
+      userAsk = String((JSON.parse(bodyText) as { message?: string }).message ?? "");
+    } catch {
+      userAsk = "";
+    }
+  }
 
   const init: RequestInit & { upstreamTimeoutMs?: number } = {
     method,
@@ -62,32 +93,33 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
     cache: "no-store",
     upstreamTimeoutMs,
   };
+  if (bodyText !== undefined) init.body = bodyText;
 
-  if (method !== "GET" && method !== "DELETE") {
-    init.body = await request.text();
+  // Reasoning chat: one BFF-level retry on gateway timeouts / 5xx (idempotent).
+  const maxAttempts = isChat ? 2 : 1;
+  let upstream = await proxyBrainRequest(backendPath, request, init);
+  if (isChat) {
+    for (let attempt = 1; attempt < maxAttempts; attempt++) {
+      const status = upstream.status;
+      if (!(status === 502 || status === 503 || status === 504)) break;
+      await new Promise((r) => setTimeout(r, 800 * attempt));
+      upstream = await proxyBrainRequest(backendPath, request, init);
+    }
   }
 
-  const upstream = await proxyBrainRequest(backendPath, request, init);
-
-  // Defense in depth: never surface empty/404/5xx as a normal Pillow chat outcome.
   if (isChat) {
     const raw = await upstream.text();
-    let message = "";
-    try {
-      const parsed = JSON.parse(raw) as { result?: { message?: string }; message?: string };
-      message = String(parsed?.result?.message ?? parsed?.message ?? "").trim();
-    } catch {
-      message = "";
-    }
+    const message = extractMessageFromBody(raw);
     const ok = upstream.status >= 200 && upstream.status < 300;
-    if (!ok || message.length === 0) {
+    if (!ok || message.length === 0 || looksLikeForbiddenInfraDecoration(message, userAsk)) {
       return Response.json(
         {
           result: {
             message: DEGRADED_CHAT_MESSAGE,
-            kind: "degraded_useful",
+            kind: "terminal_infrastructure",
             bffRecovery: true,
             upstreamStatus: upstream.status,
+            userResubmissionRequired: true,
           },
         },
         { status: 200, headers: { "cache-control": "no-store" } },

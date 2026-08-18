@@ -36,6 +36,14 @@ import {
 import { resolvePlatformIdentity } from "../auth/platform-identity.js";
 import { createAuthMiddleware } from "../auth/middleware.js";
 import { recordTier0Request } from "./tier0-control-plane.js";
+import {
+  acceptPillowChatRequest,
+  buildTerminalInfrastructureMessage,
+  extractChatMessagePreview,
+  PILLOW_CHAT_TIMEOUTS,
+  runAcceptedPillowChatRecovery,
+  type PillowProxyAttemptResult,
+} from "./pillow-accepted-request-recovery.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -134,7 +142,8 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   const app = Fastify({
     logger: false,
-    requestTimeout: 120_000,
+    // Must exceed pillow chat recovery budget so Fastify does not kill mid-retry.
+    requestTimeout: 150_000,
     bodyLimit: 25 * 1024 * 1024,
   });
   await app.register(cors, { origin: true, credentials: true });
@@ -347,36 +356,138 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       request.method === "POST" &&
       (urlPath === "/api/pillow/chat" || urlPath.endsWith("/pillow/chat"));
 
-    let worker = await probeWorkerLive(1_500);
-    // Treat spawn/restart windows as offline so we never proxy into half-boot 404s.
-    if (worker.ok && (workerState.starting || !workerState.child)) {
-      worker = { ok: false, ms: worker.ms, body: worker.body };
+    const headers: Record<string, string> = {};
+    for (const [k, v] of Object.entries(request.headers)) {
+      if (v == null) continue;
+      if (k === "host" || k === "connection" || k === "content-length") continue;
+      headers[k] = Array.isArray(v) ? v.join(",") : String(v);
     }
-    if (!worker.ok && isPillowChat) {
-      for (let i = 0; i < 3 && !worker.ok; i++) {
-        await new Promise((r) => setTimeout(r, 1_500));
-        worker = await probeWorkerLive(2_000);
-        if (worker.ok && (workerState.starting || !workerState.child)) {
-          worker = { ok: false, ms: worker.ms, body: worker.body };
+
+    const rawBody =
+      request.method !== "GET" && request.method !== "HEAD" && request.body != null
+        ? typeof request.body === "string" || Buffer.isBuffer(request.body)
+          ? (request.body as string | Buffer)
+          : JSON.stringify(request.body)
+        : undefined;
+    if (rawBody !== undefined) {
+      headers["content-type"] = headers["content-type"] ?? "application/json";
+    }
+
+    async function probeWorkerOk(timeoutMs: number): Promise<boolean> {
+      let worker = await probeWorkerLive(timeoutMs);
+      if (worker.ok && (workerState.starting || !workerState.child)) {
+        return false;
+      }
+      return worker.ok;
+    }
+
+    async function proxyOnce(timeoutMs: number): Promise<PillowProxyAttemptResult> {
+      if (!(await probeWorkerOk(Math.min(2_000, timeoutMs)))) {
+        return { ok: false, reason: "worker_unavailable" };
+      }
+      const target = `http://127.0.0.1:${workerState.port}${request.url}`;
+      try {
+        const init: RequestInit = {
+          method: request.method,
+          headers: { ...headers },
+          signal: AbortSignal.timeout(timeoutMs),
+        };
+        if (rawBody !== undefined) init.body = rawBody;
+        const upstream = await fetch(target, init);
+        const buf = Buffer.from(await upstream.arrayBuffer());
+        const messagePreview = extractChatMessagePreview(buf);
+        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
+        if (!upstreamOk) {
+          return {
+            ok: false,
+            reason: "upstream_error",
+            status: upstream.status,
+          };
         }
+        if (isPillowChat && messagePreview.length === 0) {
+          return { ok: false, reason: "empty_message", status: upstream.status };
+        }
+        return {
+          ok: true,
+          status: upstream.status,
+          body: buf,
+          headers: upstream.headers,
+          messagePreview,
+        };
+      } catch (error) {
+        const timedOut = error instanceof Error && error.name === "TimeoutError";
+        return {
+          ok: false,
+          reason: timedOut ? "timeout" : "network",
+          error,
+        };
       }
     }
 
-    if (!worker.ok) {
-      if (isPillowChat) {
-        return reply.code(200).send({
-          result: {
-            message: [
-              "I received your executive request and the deep reasoning worker is temporarily restarting.",
-              "You do not need to resubmit — I am answering from standing verified posture now.",
-              "Birth remains unauthorised (timestamp null). Realised commerce and product focus must be read from live commissioning state before strong claims.",
-            ].join(" "),
-            kind: "degraded_useful",
-            tier0Isolation: true,
-            workerOnline: false,
-          },
-        });
+    if (isPillowChat) {
+      let parsedMsg = "";
+      let sessionId: string | null = null;
+      try {
+        const parsed = JSON.parse(
+          typeof rawBody === "string"
+            ? rawBody
+            : Buffer.isBuffer(rawBody)
+              ? rawBody.toString("utf8")
+              : "{}",
+        ) as { message?: string; sessionId?: string };
+        parsedMsg = String(parsed.message ?? "");
+        sessionId = parsed.sessionId ? String(parsed.sessionId) : null;
+      } catch {
+        parsedMsg = "";
       }
+      const accepted = acceptPillowChatRequest({ message: parsedMsg, sessionId });
+      headers["x-empire-pillow-request-id"] = accepted.requestId;
+      headers["x-empire-pillow-request-kind"] = accepted.kind;
+
+      const result = await runAcceptedPillowChatRecovery({
+        accepted,
+        probeWorker: probeWorkerOk,
+        attempt: async (timeoutMs, attemptIndex) => {
+          logger.info(
+            {
+              requestId: accepted.requestId,
+              attemptIndex,
+              timeoutMs,
+              sessionId: accepted.sessionId,
+            },
+            "pillow_chat_accepted_attempt",
+          );
+          return proxyOnce(timeoutMs);
+        },
+        onEvent: (event, detail) => {
+          logger.info({ event, ...detail, requestId: accepted.requestId }, "pillow_chat_recovery");
+        },
+        totalBudgetMs: PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs,
+      });
+
+      if (result.ok) {
+        const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
+        result.headers.forEach((value, key) => {
+          if (!skip.has(key.toLowerCase())) reply.header(key, value);
+        });
+        reply.header("x-empire-pillow-request-id", accepted.requestId);
+        reply.header("x-empire-pillow-recovery", "completed");
+        return reply.code(result.status).send(result.body);
+      }
+
+      return reply.code(200).send({
+        result: {
+          message: buildTerminalInfrastructureMessage(accepted),
+          kind: "terminal_infrastructure",
+          tier0Isolation: true,
+          requestId: accepted.requestId,
+          recoveryExhausted: true,
+          userResubmissionRequired: true,
+        },
+      });
+    }
+
+    if (!(await probeWorkerOk(1_500))) {
       return reply.code(503).send({
         error: "Brain worker temporarily unavailable",
         code: "BRAIN_WORKER_UNAVAILABLE",
@@ -385,89 +496,21 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       });
     }
 
-    const target = `http://127.0.0.1:${workerState.port}${request.url}`;
-    const headers: Record<string, string> = {};
-    for (const [k, v] of Object.entries(request.headers)) {
-      if (v == null) continue;
-      if (k === "host" || k === "connection" || k === "content-length") continue;
-      headers[k] = Array.isArray(v) ? v.join(",") : String(v);
-    }
-
-    try {
-      const init: RequestInit = {
-        method: request.method,
-        headers,
-        signal: AbortSignal.timeout(120_000),
-      };
-      if (request.method !== "GET" && request.method !== "HEAD") {
-        if (request.body !== undefined && request.body !== null) {
-          init.body =
-            typeof request.body === "string" || Buffer.isBuffer(request.body)
-              ? (request.body as string | Buffer)
-              : JSON.stringify(request.body);
-          headers["content-type"] = headers["content-type"] ?? "application/json";
-          init.headers = headers;
-        }
-      }
-
-      const upstream = await fetch(target, init);
-      const buf = Buffer.from(await upstream.arrayBuffer());
-      // Pillow chat: any non-2xx (incl. 404 during half-boot) or empty body must
-      // still terminate usefully — never force Grand King to resubmit.
-      if (isPillowChat) {
-        let messagePreview = "";
-        try {
-          const parsed = JSON.parse(buf.toString("utf8")) as {
-            result?: { message?: string };
-            message?: string;
-          };
-          messagePreview = String(parsed?.result?.message ?? parsed?.message ?? "").trim();
-        } catch {
-          messagePreview = "";
-        }
-        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
-        if (!upstreamOk || messagePreview.length === 0) {
-          return reply.code(200).send({
-            result: {
-              message: [
-                "I received your request; the reasoning worker returned a transient fault.",
-                "You do not need to resubmit. Birth remains unauthorised.",
-                "I can continue from verified operating state — ask which part to deepen next.",
-              ].join(" "),
-              kind: "degraded_useful",
-              tier0Isolation: true,
-              upstreamStatus: upstream.status,
-            },
-          });
-        }
-      }
+    const once = await proxyOnce(120_000);
+    if (once.ok) {
       const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
-      upstream.headers.forEach((value, key) => {
+      once.headers.forEach((value, key) => {
         if (!skip.has(key.toLowerCase())) reply.header(key, value);
       });
-      return reply.code(upstream.status).send(buf);
-    } catch (error) {
-      logger.warn({ err: error, url: request.url }, "Tier-0 primary proxy to worker failed");
-      if (isPillowChat) {
-        return reply.code(200).send({
-          result: {
-            message: [
-              "I received your executive request; the worker proxy timed out or failed transiently.",
-              "You do not need to resubmit. Birth remains unauthorised.",
-              "Continuing from verified posture — tell me which theme to deepen.",
-            ].join(" "),
-            kind: "degraded_useful",
-            tier0Isolation: true,
-          },
-        });
-      }
-      return reply.code(503).send({
-        error: "Brain worker proxy failed",
-        code: "BRAIN_WORKER_PROXY_FAILED",
-        tier0Isolation: true,
-        retryable: true,
-      });
+      return reply.code(once.status).send(once.body);
     }
+    logger.warn({ reason: once.reason, url: request.url }, "Tier-0 primary proxy to worker failed");
+    return reply.code(503).send({
+      error: "Brain worker proxy failed",
+      code: "BRAIN_WORKER_PROXY_FAILED",
+      tier0Isolation: true,
+      retryable: true,
+    });
   });
 
   function spawnWorker(): void {
