@@ -1,66 +1,54 @@
 /**
- * Foundation Reset Level C — production canary (synthetic prompts only).
+ * Foundation Reset Level C — production Cockpit canary (synthetic only).
  * Does NOT run sealed Wave exams. Does NOT authorize Birth.
  *
- * Usage:
- *   node backend/scripts/pillow-foundation-reset-levelc.mjs
- *
- * Env: EMPIRE_COCKPIT_URL, EMPIRE_BRAIN_URL, EMPIRE_LOGIN_EMAIL, EMPIRE_LOGIN_PASSWORD
+ * Usage: node backend/scripts/pillow-foundation-reset-levelc.mjs
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const COCKPIT = process.env.EMPIRE_COCKPIT_URL ?? "https://empire-ai.co";
-const BRAIN = process.env.EMPIRE_BRAIN_URL ?? "https://empireai-production.up.railway.app";
-const EMAIL = process.env.EMPIRE_LOGIN_EMAIL ?? "founder@empireai.com";
-const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD ?? "EmpireAI2026!";
+const COCKPIT = process.env.EMPIRE_COCKPIT_URL || "https://empire-ai.co";
+const BRAIN = process.env.EMPIRE_BRAIN_URL || "https://empireai-production.up.railway.app";
+const EMAIL =
+  process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL || "founder@empireai.com";
+const PASSWORD =
+  process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD || "EmpireAI2026!";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const OUT_DIR = path.join(ROOT, "docs/audits/complete-state");
-const EVIDENCE = path.join(OUT_DIR, "FOUNDATION_PRODUCTION_CERTIFICATION.json");
+const OUT = path.join(ROOT, "docs/audits/complete-state");
+const EVIDENCE = path.join(OUT, "FOUNDATION_PRODUCTION_CERTIFICATION.json");
 
-function cookieJar(res) {
-  const raw =
-    typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
-  const hdr = res.headers.get("set-cookie");
-  const all = raw.length ? raw : hdr ? [hdr] : [];
-  return all.map((c) => c.split(";")[0]).filter(Boolean);
-}
+const DELEGATION_HIJACK = /###\s*Delegation reading/i;
+const CLAIM_HIJACK = /### Claim audit|Treat unsupported sales, demand-strength/i;
+const COMMERCE = /\b(?:Mini Fan|Brief verified note|realised revenue remain zero)\b/i;
+const ASK_AGAIN = /\b(?:tell me which theme|please ask again|do not need to resubmit)\b/i;
 
-async function timedFetch(url, init = {}, timeoutMs = 120_000) {
-  const t0 = Date.now();
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    const res = await fetch(url, { ...init, signal: ctrl.signal });
-    const text = await res.text();
-    let json = null;
-    try {
-      json = JSON.parse(text);
-    } catch {
-      json = null;
-    }
-    return { ok: res.ok, status: res.status, ms: Date.now() - t0, json, text, headers: res.headers };
-  } catch (error) {
-    return {
-      ok: false,
-      status: 0,
-      ms: Date.now() - t0,
-      json: null,
-      text: error instanceof Error ? error.message : String(error),
-      headers: null,
-      error: true,
-    };
-  } finally {
-    clearTimeout(timer);
+function extractCookie(res) {
+  const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
+  for (const h of raw) {
+    const m = String(h).match(/^empireai_session=([^;]+)/);
+    if (m) return `empireai_session=${m[1]}`;
   }
+  return null;
 }
 
-function extractAnswer(json) {
-  if (!json || typeof json !== "object") return "";
-  return String(
-    json.message ?? json.answer ?? json.reply ?? json.content ?? json.text ?? "",
-  );
+async function chat(cookie, sessionId, message) {
+  const t0 = Date.now();
+  const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
+    method: "POST",
+    headers: { "content-type": "application/json", cookie },
+    body: JSON.stringify({ sessionId, message }),
+    signal: AbortSignal.timeout(180_000),
+  });
+  const body = await r.json().catch(() => ({}));
+  const text = String(body.result?.message ?? body.message ?? "").trim();
+  return {
+    status: r.status,
+    text,
+    sessionId: body.reboundSessionId || sessionId,
+    ms: Date.now() - t0,
+    requestId: body.result?.requestId ?? null,
+  };
 }
 
 const PROBES = [
@@ -76,7 +64,7 @@ const PROBES = [
       "3) What does the later transaction supersede?",
       "4) What remains unproven?",
     ].join("\n"),
-    forbid: [/### Delegation reading/i, /Mini Fan/i, /realised revenue remain zero/i],
+    forbid: [DELEGATION_HIJACK, COMMERCE, ASK_AGAIN],
     require: [/forecast|estimate|unproven|identity|supersed/i],
   },
   {
@@ -88,7 +76,7 @@ const PROBES = [
       "2) Is system spend capability present from this chat?",
       "3) Did execution occur?",
     ].join("\n"),
-    forbid: [/### Claim audit/i, /Mini Fan/i, /realised revenue remain zero/i],
+    forbid: [CLAIM_HIJACK, COMMERCE, ASK_AGAIN],
     require: [/authori|capability|execution|cannot|not (?:yet )?connected/i],
   },
   {
@@ -102,121 +90,180 @@ const PROBES = [
       "3) Is spend capability present from this chat?",
       "Do not mention live EmpireAI products, Birth, or realised revenue.",
     ].join("\n"),
-    forbid: [/Mini Fan/i, /realised revenue remain zero/i],
+    forbid: [COMMERCE, ASK_AGAIN],
     require: [/forecast|estimate|authori|capability/i],
   },
   {
     id: "synthetic_isolation",
     message:
       'SyntheticCanaryFoundation-S1: Scenario-only. Audit whether "Service Riven will succeed commercially" is established. Do not mention EmpireAI live products, Birth, or realised revenue.',
-    forbid: [/Mini Fan/i, /Birth remains/i, /realised revenue remain zero/i],
+    forbid: [COMMERCE, /Birth remains/i, ASK_AGAIN],
     require: [/unproven|unsupported|scenario|not established/i],
   },
   {
     id: "simple_followup_reliability",
     message:
       "SyntheticCanaryFoundation-R1: In one short paragraph, can Pillow chat execute paid ads from this chat today?",
-    forbid: [/tell me which theme|please ask again|do not need to resubmit/i],
+    forbid: [ASK_AGAIN, COMMERCE],
     require: [/cannot|capability|not (?:yet )?connected|execute|authori/i],
   },
 ];
 
 async function main() {
-  mkdirSync(OUT_DIR, { recursive: true });
-  const results = [];
-  let cookie = "";
-
-  const login = await timedFetch(`${BRAIN}/api/auth/login`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
-  });
-  const jar = cookieJar(login);
-  cookie = jar.join("; ");
-  results.push({ step: "login", ok: login.ok, status: login.status, ms: login.ms });
-
-  const seed = await timedFetch(`${BRAIN}/api/pillow/institutional-memory/seed`, {
-    method: "POST",
-    headers: { "content-type": "application/json", cookie },
-    body: JSON.stringify({}),
-  });
-  results.push({
-    step: "seed_institutional_memory",
-    ok: seed.ok,
-    status: seed.status,
-    ms: seed.ms,
-    body: seed.json,
-  });
-
-  const foundation = await timedFetch(
-    `${BRAIN}/api/pillow/executive-learning/foundation-state`,
-    { headers: { cookie } },
-  );
-  results.push({
-    step: "foundation_state",
-    ok: foundation.ok,
-    status: foundation.status,
-    ms: foundation.ms,
-    totals: foundation.json?.totals,
-    waves: foundation.json?.waves,
-    birthAuthorised: foundation.json?.birthAuthorised,
-  });
-
-  for (const probe of PROBES) {
-    const sessionId = `foundation-c-${probe.id}-${Date.now()}`;
-    const res = await timedFetch(
-      `${BRAIN}/api/pillow/chat`,
-      {
-        method: "POST",
-        headers: { "content-type": "application/json", cookie },
-        body: JSON.stringify({
-          message: probe.message,
-          sessionId,
-          workspaceContext: {
-            screenPath: "/cockpit",
-            screenId: "SCR-FOUNDATION-C",
-            module: "executive-home",
-            workflow: "foundation-reset-levelc",
-            purpose: "Foundation reset Level C canary",
-          },
-        }),
-      },
-      180_000,
-    );
-    const answer = extractAnswer(res.json) || res.text;
-    const forbidHits = probe.forbid.filter((r) => r.test(answer)).map(String);
-    const requireOk = probe.require.some((r) => r.test(answer));
-    const ok = res.ok && forbidHits.length === 0 && requireOk && answer.length > 40;
-    results.push({
-      step: `probe_${probe.id}`,
-      ok,
-      status: res.status,
-      ms: res.ms,
-      forbidHits,
-      requireOk,
-      answerPreview: String(answer).slice(0, 400),
-    });
-  }
-
-  const pass = results.filter((r) => r.ok).length;
-  const fail = results.filter((r) => !r.ok).length;
-  const payload = {
+  mkdirSync(OUT, { recursive: true });
+  const report = {
     mission: "PILLOW_FOUNDATION_RESET",
-    generatedAt: new Date().toISOString(),
-    cockpit: COCKPIT,
-    brain: BRAIN,
-    pass,
-    fail,
+    startedAt: new Date().toISOString(),
+    deploySha: null,
+    results: [],
+    fail: 0,
     WAVE_1_CURRENT_CERTIFICATION: "RESET / NOT CURRENTLY CERTIFIED",
     WAVE_2_CURRENT_CERTIFICATION: "NOT CERTIFIED",
     WAVE_3: "LOCKED",
     BIRTH_AUTHORISED: false,
     BIRTH_TIMESTAMP: null,
-    results,
   };
-  writeFileSync(EVIDENCE, JSON.stringify(payload, null, 2));
-  console.log(JSON.stringify({ pass, fail, evidence: EVIDENCE }, null, 2));
-  process.exit(fail === 0 ? 0 : 1);
+
+  try {
+    const live = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(20_000) });
+    const lj = await live.json();
+    report.deploySha = lj.deploy?.gitCommitSha ?? null;
+  } catch {
+    /* non-blocking */
+  }
+
+  const login = await fetch(`${COCKPIT}/api/auth/login`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+    signal: AbortSignal.timeout(55_000),
+  });
+  const cookie = extractCookie(login);
+  report.results.push({ step: "login", ok: login.ok && Boolean(cookie), status: login.status });
+  if (!login.ok || !cookie) {
+    writeFileSync(EVIDENCE, JSON.stringify(report, null, 2));
+    console.error(JSON.stringify({ pass: false, reason: "login", status: login.status }));
+    process.exit(2);
+  }
+
+  // Seed + foundation inspect via Brain (same session cookie if shared; else best-effort).
+  try {
+    const seed = await fetch(`${BRAIN}/api/pillow/institutional-memory/seed`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({}),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const sj = await seed.json().catch(() => ({}));
+    report.results.push({
+      step: "seed_institutional_memory",
+      ok: seed.ok,
+      status: seed.status,
+      seeded: sj.seeded ?? sj.keys?.length,
+    });
+  } catch (e) {
+    report.results.push({
+      step: "seed_institutional_memory",
+      ok: false,
+      error: e instanceof Error ? e.message : String(e),
+    });
+  }
+
+  try {
+    const fs = await fetch(`${BRAIN}/api/pillow/executive-learning/foundation-state`, {
+      headers: { cookie },
+      signal: AbortSignal.timeout(60_000),
+    });
+    const fj = await fs.json().catch(() => ({}));
+    report.results.push({
+      step: "foundation_state",
+      ok: fs.ok,
+      status: fs.status,
+      totals: fj.totals,
+      waves: fj.waves,
+      birthAuthorised: fj.birthAuthorised,
+    });
+    report.foundationState = {
+      totals: fj.totals,
+      schemaVersion: fj.schemaVersion,
+      waves: fj.waves,
+    };
+  } catch (e) {
+    report.results.push({
+      step: "foundation_state",
+      ok: false,
+      error: e instanceof Error ? e.message : String(e),
+    });
+  }
+
+  // Fresh session per probe for permanence / no prior chat dependency.
+  for (const probe of PROBES) {
+    const sess = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({}),
+      signal: AbortSignal.timeout(90_000),
+    });
+    const sj = await sess.json().catch(() => ({}));
+    let sessionId =
+      sj.sessionId ||
+      sj.id ||
+      sj.result?.sessionId ||
+      sj.session?.sessionId ||
+      sj.data?.sessionId;
+    if (!sessionId) {
+      report.fail += 1;
+      report.results.push({
+        step: `probe_${probe.id}`,
+        ok: false,
+        reason: "session",
+        keys: Object.keys(sj || {}),
+      });
+      continue;
+    }
+
+    const r = await chat(cookie, sessionId, probe.message);
+    const forbidHits = probe.forbid.filter((re) => re.test(r.text)).map(String);
+    const requireOk = probe.require.some((re) => re.test(r.text));
+    const ok =
+      r.status === 200 &&
+      forbidHits.length === 0 &&
+      requireOk &&
+      r.text.length >= 40 &&
+      !ASK_AGAIN.test(r.text);
+    if (!ok) report.fail += 1;
+    report.results.push({
+      step: `probe_${probe.id}`,
+      ok,
+      status: r.status,
+      ms: r.ms,
+      requestId: r.requestId,
+      forbidHits,
+      requireOk,
+      len: r.text.length,
+      answerPreview: r.text.slice(0, 500),
+    });
+    console.log(`[${probe.id}] ok=${ok} ms=${r.ms} len=${r.text.length}`);
+  }
+
+  report.completedAt = new Date().toISOString();
+  report.pass = report.results.filter((r) => r.ok).length;
+  report.result = report.fail === 0 ? "PASS" : "FAIL";
+  writeFileSync(EVIDENCE, JSON.stringify(report, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        result: report.result,
+        fail: report.fail,
+        pass: report.pass,
+        deploySha: report.deploySha,
+        evidence: EVIDENCE,
+      },
+      null,
+      2,
+    ),
+  );
+  process.exit(report.fail === 0 ? 0 : 1);
 }
 
 main().catch((e) => {
