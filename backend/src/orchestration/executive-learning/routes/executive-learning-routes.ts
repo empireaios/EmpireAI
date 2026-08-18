@@ -259,6 +259,65 @@ export async function registerExecutiveLearningRoutes(
     },
   );
 
+  /** Grand King inspectability — lessons + capability/certification state (no chain-of-thought). */
+  app.get(
+    "/api/pillow/executive-learning/foundation-state",
+    { preHandler: auth },
+    async (request, reply) => {
+      const query = z
+        .object({ workspaceId: z.string().optional() })
+        .parse(request.query);
+      const workspaceId = query.workspaceId ?? request.user!.workspaceId ?? GRAND_KING_WORKSPACE_ID;
+      const { getExecutiveCapabilityState, describeTenXGauntletFramework } = await import(
+        "../../pillow-host/certification-constitution.js"
+      );
+      const { CONSTITUTIONAL_SPECIMENS } = await import(
+        "../../pillow-host/constitutional-regression-corpus.js"
+      );
+      const memories = listInstitutionalMemory(workspaceId);
+      const birthLessons = memories.filter(
+        (m) =>
+          (m.canonicalKey ?? "").startsWith("birth.lesson.") ||
+          (m.canonicalKey ?? "").startsWith("birth.doctrine.") ||
+          (m.tags ?? []).includes("birth"),
+      );
+      const superseded = memories.filter((m) => m.status === "superseded" || m.supersededBy);
+      const capabilityState = getExecutiveCapabilityState();
+      return reply.send({
+        workspaceId,
+        schemaVersion: capabilityState.schemaVersion,
+        lessonCorpusVersion: "birth-lessons-1",
+        regressionCorpusVersion: "constitutional-corpus-1",
+        totals: {
+          institutionalMemories: memories.length,
+          birthLessons: birthLessons.length,
+          superseded: superseded.length,
+          specimens: CONSTITUTIONAL_SPECIMENS.length,
+        },
+        birthLessons: birthLessons.map((m) => ({
+          learningId: m.learningId,
+          canonicalKey: m.canonicalKey,
+          title: m.title,
+          status: m.status,
+          authority: m.authority,
+          epistemicStatus: m.epistemicStatus,
+          confidence: m.confidence,
+          tags: m.tags,
+          evidenceRefs: m.evidenceRefs,
+          supersedes: m.supersedes,
+          supersededBy: m.supersededBy,
+          approvedAt: m.approvedAt,
+        })),
+        capabilities: capabilityState.capabilities,
+        waves: capabilityState.waves,
+        gauntlet: describeTenXGauntletFramework(),
+        birthAuthorised: false,
+        birthTimestamp: null,
+        missionId: "PILLOW-FOUNDATION-RESET",
+      });
+    },
+  );
+
   app.post(
     "/api/pillow/institutional-memory/seed",
     { preHandler: auth },
@@ -293,6 +352,8 @@ export async function registerExecutiveLearningRoutes(
             "commerce",
             "pillow_self_improvement",
             "collaboration",
+            "decision_principle",
+            "governance",
           ]),
           authority: z.string().min(1),
           epistemicStatus: z.string().min(1),

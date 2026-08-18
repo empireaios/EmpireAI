@@ -339,17 +339,71 @@ export function buildReasoningBundleForWorkspace(input: {
   currentObjective: string | null;
   executiveConstitutionSummary: string;
   executivePerspectives?: string[];
+  /** Optional current user message — enables bounded relevant retrieval. */
+  userMessage?: string;
 }): ExecutiveLearningReasoningBundle {
   repository.ensureTables();
   repository.expireSessionContext(input.workspaceId);
   const approved = repository.listApprovedKnowledge(input.workspaceId);
   const sessionContext = repository.listSessionContext(input.workspaceId);
 
+  // Bounded relevance: when a user message is present, prefer tag/keyword hits.
+  let filtered = approved;
+  if (input.userMessage && input.userMessage.trim().length >= 12) {
+    const msg = input.userMessage.toLowerCase();
+    const tags: string[] = [];
+    const keywords: string[] = [];
+    if (/\b(authori|delegat|spend|ceiling|approval|governance|capability|execution)\b/i.test(msg)) {
+      tags.push("authority", "governance", "wave2", "capability");
+      keywords.push("authorization", "delegation", "execution", "capability");
+    }
+    if (
+      /\b(evidence|audit|forecast|estimate|realised|claim|provenance|supplier|identity|co-occurr|synthetic)\b/i.test(
+        msg,
+      )
+    ) {
+      tags.push("evidence", "synthetic", "entity", "financial", "birth");
+      keywords.push("estimate", "identity", "synthetic", "forecast", "unproven");
+    }
+    if (/\b(gate|constraint|unlock|scaling|unit economics)\b/i.test(msg)) {
+      tags.push("decision", "constraints", "birth");
+      keywords.push("gate", "unlock", "constraint");
+    }
+    if (tags.length + keywords.length > 0) {
+      filtered = selectRelevantFromApproved(approved, { tags, keywords, limit: 14 });
+    }
+  }
+
   return buildExecutiveLearningReasoningBundle({
     currentObjective: input.currentObjective,
     executiveConstitutionSummary: input.executiveConstitutionSummary,
-    approvedKnowledge: approved,
+    approvedKnowledge: filtered,
     pendingSessionContext: sessionContext,
     executivePerspectives: input.executivePerspectives,
   });
+}
+
+function selectRelevantFromApproved(
+  approved: import("@empireai/pillow").ExecutiveKnowledgeEntry[],
+  query: { tags: string[]; keywords: string[]; limit: number },
+): import("@empireai/pillow").ExecutiveKnowledgeEntry[] {
+  const tags = query.tags.map((t) => t.toLowerCase());
+  const keywords = query.keywords.map((k) => k.toLowerCase());
+  const scored = approved
+    .filter((item) => item.status === "approved")
+    .map((item) => {
+      let score = 0;
+      const itemTags = (item.tags ?? []).map((t) => t.toLowerCase());
+      const blob = `${item.title} ${item.description}`.toLowerCase();
+      for (const t of tags) if (itemTags.includes(t) || blob.includes(t)) score += 3;
+      for (const k of keywords) if (blob.includes(k)) score += 2;
+      // Always keep constitutional / birth doctrine lightly available.
+      if (itemTags.includes("constitution") || item.authority === "grand_king_directive") score += 1;
+      return { item, score };
+    })
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, query.limit)
+    .map((s) => s.item);
+  return scored.length > 0 ? scored : approved.slice(0, query.limit);
 }

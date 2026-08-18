@@ -404,22 +404,32 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
   const auth = classifyAuthorityKind(m);
   if (auth) kinds.push(auth);
   if (hasAuthoritySemanticsMarker(m)) {
-    if (/\b(delegat|discretion|ceiling|standing|one[- ]time|automatic(?:ally)? adjust|anything below)\b/i.test(m)) {
+    // Only add sibling authority kinds when classifyAuthorityKind already agreed,
+    // or when explicit agency phrases appear — never bare "standing"/"ceiling".
+    if (
+      /\b(delegat|discretion|you may (?:spend|adjust)|anything below|standing (?:authori|delegat)|one[- ]time (?:authori|approval|spend)|automatic(?:ally)? adjust)\b/i.test(
+        m,
+      )
+    ) {
       if (!kinds.includes("delegation_analysis")) kinds.push("delegation_analysis");
     }
-    if (/\b(capability|connected|integration|actually (?:spend|execute))\b/i.test(m)) {
+    if (
+      /\b(system capability|connected (?:integration|channel)|actually (?:spend|execute)|executable now|execution available|is execution available)\b/i.test(
+        m,
+      )
+    ) {
       if (!kinds.includes("capability_analysis")) kinds.push("capability_analysis");
     }
     if (/\b(governance|constitutional|policy|permitted|forbidden)\b/i.test(m)) {
       if (!kinds.includes("governance_analysis")) kinds.push("governance_analysis");
     }
-    if (/\b(execution|did not (?:spend|execute)|side effect)\b/i.test(m)) {
+    if (/\b(execution occur|did not (?:spend|execute)|side effect|confirm (?:the )?execution)\b/i.test(m)) {
       if (!kinds.includes("execution_analysis")) kinds.push("execution_analysis");
     }
-    if (/\b(approval|do not ask again|without another approval)\b/i.test(m)) {
+    if (/\b(do not ask again|without another approval|approval required)\b/i.test(m)) {
       if (!kinds.includes("approval_requirement")) kinds.push("approval_requirement");
     }
-    if (/\b(stop[- ]loss|kill switch|audit trail|controls?)\b/i.test(m)) {
+    if (/\b(stop[- ]loss|kill switch|audit trail)\b/i.test(m)) {
       if (!kinds.includes("delegation_controls")) kinds.push("delegation_controls");
     }
     if (!kinds.some(isAuthorityTaskKind)) kinds.push("authority_analysis");

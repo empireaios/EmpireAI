@@ -44,14 +44,55 @@ export type DelegationObject = {
 /** Owner / governance language that must not become claim-audit. */
 export function hasAuthoritySemanticsMarker(text: string): boolean {
   const t = String(text || "");
-  return (
-    /\b(authori[sz]e|authori[sz]ation|delegat(?:e|ion|ed|ing)?|discretion|approval(?:s)?|governance|capability|executable|execution authority|owner (?:intent|authority|instruction)|grand king|do not (?:ask|seek) (?:again|another approval)|without (?:another |further )?approval|you may (?:spend|decide|choose|adjust|launch|manage)|anything below|up to (?:s\$|\$|sgd|usd)?\s*[\d,]+|budget ceiling|spend ceiling|standing (?:authority|delegation)|one[- ]time (?:authori|approval|spend)|revoke|revocation|supersede[sd]?|kill switch|stop[- ]loss|within (?:this |the )?(?:limit|ceiling|budget))\b/i.test(
-      t,
-    ) ||
-    /\b(?:who (?:may|can|is authorised)|may (?:i|you|pillow)|does this (?:instruction|message|authori)|is (?:this|that) (?:enough|sufficient) (?:to )?(?:authori|delegat|spend|execute))\b/i.test(
+  // Money bounds alone are NOT authority — require owner-agency collocates.
+  // Bare "approval" / "capability" / "you may decide" (epistemic) must not hijack evidence audits.
+  if (
+    /\b(authori[sz]e|authori[sz]ation|delegat(?:e|ion|ed|ing)?|discretion|governance|execution authority|owner (?:intent|authority|instruction)|do not (?:ask|seek) (?:again|another approval)|without (?:another |further )?approval|you may (?:spend|adjust|launch|manage)|anything below|budget ceiling|spend ceiling|standing (?:authority|delegation)|one[- ]time (?:authori|approval|spend)|revoke|revocation|kill switch|stop[- ]loss)\b/i.test(
       t,
     )
-  );
+  ) {
+    return true;
+  }
+  // Supersession of authority only — not temporal "what does evidence supersede?"
+  if (
+    /\bsupersede/i.test(t) &&
+    /\b(authori|delegat|discretion|prior grant|spend ceiling|standing (?:authori|delegat)|older (?:instruction|authori|delegat)|revoke)\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  if (
+    /\b(?:who (?:may|can|is authorised)|may (?:i|you|pillow) (?:spend|execute|launch|publish|buy)|does this (?:instruction|message|authori)|is (?:this|that) (?:enough|sufficient) (?:to )?(?:authori|delegat|spend|execute))\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  // Ceiling / up-to only when spend/delegation agency is present.
+  if (
+    /\b(up to|below|under|within)\b.{0,40}\b(?:s\$|\$|sgd|usd)?\s*[\d,]+/i.test(t) &&
+    /\b(authori|delegat|you may|pillow may|spend|ceiling|discretion|budget (?:cap|limit)|do not ask)\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  if (
+    /\bwithin (?:this |the )?(?:limit|ceiling|budget)\b/i.test(t) &&
+    /\b(authori|delegat|you may|spend|discretion)\b/i.test(t)
+  ) {
+    return true;
+  }
+  // Explicit system-capability / execution-availability asks (not bare "capability" elsewhere).
+  if (
+    /\b(system capability|connected (?:integration|channel)|can (?:the )?system actually (?:spend|execute|launch)|executable now|in-chat tool[- ]calling|is (?:system )?(?:spend )?capability present|capability present|execution available|is execution available)\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -62,7 +103,15 @@ export function classifyAuthorityKind(part: string): AuthorityTaskKind | null {
   const m = String(part || "").trim();
   if (!m || !hasAuthoritySemanticsMarker(m)) return null;
 
-  if (/\b(revok\w*|supersede\w*|newer (?:instruction|authori)|withdraw (?:authori|delegat)|cancel (?:the )?delegat)\b/i.test(m)) {
+  if (
+    /\b(revok\w*|newer (?:instruction|authori)|withdraw (?:authori|delegat)|cancel (?:the )?delegat)\b/i.test(
+      m,
+    ) ||
+    (/\bsupersede/i.test(m) &&
+      /\b(authori|delegat|discretion|prior grant|standing (?:authori|delegat)|older (?:instruction|authori|delegat))\b/i.test(
+        m,
+      ))
+  ) {
     return "delegation_analysis";
   }
   if (
@@ -73,14 +122,14 @@ export function classifyAuthorityKind(part: string): AuthorityTaskKind | null {
     return "delegation_controls";
   }
   if (
-    /\b(can (?:the )?system|system capability|connected|integration|actually (?:spend|execute|launch|publish)|do we have (?:a |an )?(?:ads?|advertising|spend|payment|supplier) (?:api|integration|channel)|executable now|tool[- ]calling)\b/i.test(
+    /\b(can (?:the )?system|system capability|connected (?:integration|channel)|actually (?:spend|execute|launch|publish)|do we have (?:a |an )?(?:ads?|advertising|spend|payment|supplier) (?:api|integration|channel)|executable now|tool[- ]calling|execution available|is execution available)\b/i.test(
       m,
     )
   ) {
     return "capability_analysis";
   }
   if (
-    /\b(did (?:you|it|pillow) (?:spend|execute|launch|pay)|was (?:it |the action )?executed|execution occurred|perform(?:ed)? the (?:spend|purchase|launch)|confirm (?:the )?execution)\b/i.test(
+    /\b(did (?:you|it|pillow) (?:spend|execute|launch|pay)|was (?:it |the action )?executed|execution occur|perform(?:ed)? the (?:spend|purchase|launch)|confirm (?:the )?execution)\b/i.test(
       m,
     )
   ) {
@@ -101,9 +150,10 @@ export function classifyAuthorityKind(part: string): AuthorityTaskKind | null {
     return "approval_requirement";
   }
   if (
-    /\b(delegat|discretion|you may (?:decide|choose|adjust|spend)|anything below|standing|one[- ]time|automatic(?:ally)? adjust|within .{0,40}(?:ceiling|limit|budget)|up to (?:s\$|\$))\b/i.test(
+    /\b(delegat|discretion|you may (?:spend|adjust|launch|manage)|anything below|standing (?:authori|delegat)|one[- ]time (?:authori|approval|spend)|automatic(?:ally)? adjust|within .{0,40}(?:ceiling|limit|budget)|up to (?:s\$|\$))\b/i.test(
       m,
-    )
+    ) &&
+    hasAuthoritySemanticsMarker(m)
   ) {
     return "delegation_analysis";
   }

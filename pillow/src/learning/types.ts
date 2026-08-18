@@ -36,7 +36,9 @@ export type ReasoningArea =
   | "engineering_philosophy"
   | "commercial_philosophy"
   | "risk_tolerance"
-  | "recurring_preferences";
+  | "recurring_preferences"
+  | "evidence_discipline"
+  | "authority_governance";
 
 export type LearningSource =
   | "conversation"
@@ -47,7 +49,9 @@ export type LearningSource =
   | "commerce_event"
   | "operational_event"
   | "outcome"
-  | "collaboration";
+  | "collaboration"
+  | "birth_engineering"
+  | "validated_repair";
 
 /** Epistemic status — never flatten hypothesis into fact. */
 export type MemoryEpistemicStatus =
@@ -58,7 +62,8 @@ export type MemoryEpistemicStatus =
   | "RECOMMENDATION"
   | "OWNER_DIRECTIVE"
   | "INFERENCE"
-  | "OUTCOME";
+  | "OUTCOME"
+  | "VALIDATED_PRINCIPLE";
 
 /** Authority / provenance of the memory statement. */
 export type MemoryAuthority =
@@ -72,7 +77,8 @@ export type MemoryAuthority =
   | "system_observed"
   | "derived_inference"
   | "model_hypothesis"
-  | "estimated_value";
+  | "estimated_value"
+  | "validated_repair";
 
 export type InstitutionalMemoryClass =
   | "grand_king_directive"
@@ -82,7 +88,9 @@ export type InstitutionalMemoryClass =
   | "semantic"
   | "commerce"
   | "pillow_self_improvement"
-  | "collaboration";
+  | "collaboration"
+  | "decision_principle"
+  | "governance";
 
 export interface LearningObservation {
   observation: string;

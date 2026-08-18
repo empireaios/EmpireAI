@@ -18,6 +18,7 @@ import type { AuditLogger } from "../../brain/audit/audit-logger.js";
 import { GRAND_KING_WORKSPACE_ID } from "../../grand-king/constants.js";
 import { logger } from "../../config/logger.js";
 import { SqliteExecutiveLearningRepository } from "./repository/sqlite-executive-learning-repository.js";
+import { seedBirthExecutiveLessons } from "./birth-executive-lessons.js";
 
 export type CaptureInstitutionalMemoryInput = {
   workspaceId: string;
@@ -61,12 +62,63 @@ function ensureRepo(): SqliteExecutiveLearningRepository {
   return repository;
 }
 
+/**
+ * Memory write authority — untrusted content cannot become high-authority doctrine.
+ * Prevents prompt-injection / supplier text from rewriting constitutional governance.
+ */
+export function assertDurableWriteAllowed(
+  input: CaptureInstitutionalMemoryInput,
+): { ok: true } | { ok: false; reason: string } {
+  const untrustedAuthorities: MemoryAuthority[] = [
+    "model_hypothesis",
+    "supplier_data",
+    "marketplace_data",
+    "estimated_value",
+    "derived_inference",
+  ];
+  const isUntrusted = untrustedAuthorities.includes(input.authority);
+  const isDoctrineClass =
+    input.memoryClass === "grand_king_directive" ||
+    input.memoryClass === "governance" ||
+    input.category === "A";
+  if (isUntrusted && isDoctrineClass) {
+    return { ok: false, reason: "untrusted_authority_cannot_write_doctrine" };
+  }
+  if (
+    isUntrusted &&
+    /\b(unlimited spending|authorizes? unlimited|birth (?:is |was )?authori|rewrite (?:the )?constitution)\b/i.test(
+      `${input.title} ${input.statement}`,
+    )
+  ) {
+    return { ok: false, reason: "poison_phrase_blocked" };
+  }
+  if (
+    input.authority === "grand_king_directive" &&
+    (input.source === "conversation" || input.source === "pattern_detection") &&
+    !input.approvedBy
+  ) {
+    return { ok: false, reason: "conversation_cannot_self_author_gk_directive" };
+  }
+  return { ok: true };
+}
+
 /** Persist a durable institutional memory unit into the Executive Knowledge Base. */
 export function captureInstitutionalMemory(
   input: CaptureInstitutionalMemoryInput,
   auditLogger?: AuditLogger,
 ): InstitutionalMemoryCaptureResult {
   try {
+    const gate = assertDurableWriteAllowed(input);
+    if (!gate.ok) {
+      return {
+        ok: false,
+        created: false,
+        updated: false,
+        learningId: null,
+        degraded: gate.reason,
+        entry: null,
+      };
+    }
     const repo = ensureRepo();
     const existing = repo.findApprovedByCanonicalKey(input.workspaceId, input.canonicalKey);
     if (existing) {
@@ -391,7 +443,13 @@ export function seedInstitutionalMemoryBootstrap(
       if (result.created) seeded += 1;
     }
   }
-  logger.info({ workspaceId, seeded, total: keys.length }, "Institutional memory bootstrap complete");
+  const birth = seedBirthExecutiveLessons(workspaceId, auditLogger);
+  keys.push(...birth.keys);
+  seeded += birth.created;
+  logger.info(
+    { workspaceId, seeded, total: keys.length, birthCreated: birth.created },
+    "Institutional memory bootstrap complete",
+  );
   return { seeded, keys };
 }
 

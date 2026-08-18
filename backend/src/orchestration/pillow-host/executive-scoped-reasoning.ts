@@ -271,9 +271,11 @@ export function stripIrrelevantLiveGrounding(
 ): string {
   // Import deferred via dynamic pattern avoided — callers may also pass authority asks.
   const authorityBlocksCommerce =
-    /\b(authori[sz]|delegat|discretion|you may (?:spend|decide)|approval|governance|capability|execution authority|do not ask again|anything below|budget ceiling)\b/i.test(
+    (/\b(authori[sz]|delegat|discretion|you may (?:spend|adjust)|approval gate|governance|system capability|execution authority|do not ask again|anything below|budget ceiling|spend ceiling)\b/i.test(
       userMessage,
-    ) &&
+    ) ||
+      (/\b(up to|below|under)\b.{0,40}\$/i.test(userMessage) &&
+        /\b(authori|delegat|you may|spend|discretion)\b/i.test(userMessage))) &&
     !/\b(realised (?:orders?|revenue)|sales? (?:count|volume)|demand strength|bound product|asin|commissioning)\b/i.test(
       userMessage,
     );

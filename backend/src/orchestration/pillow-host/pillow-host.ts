@@ -29860,6 +29860,7 @@ export class PillowHost {
                     currentObjective: objectiveState.currentObjective.title ?? null,
                     executiveConstitutionSummary: executiveReasoning.briefingAnchor,
                     executivePerspectives: executiveReasoning.executiveReasoningNotes,
+                    userMessage: input.message,
                 });
             const contextWithReasoning = {
                 ...operationalContext,

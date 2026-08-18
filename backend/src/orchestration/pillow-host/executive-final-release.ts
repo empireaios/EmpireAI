@@ -135,18 +135,24 @@ export function buildForcedObligationCompletion(
   if (!isGlobalEvidenceCollapseReply(filled.message) && filled.message.trim().length >= 40) {
     return filled.message;
   }
-  // Ultra-minimal: one verified line + per-task open/answered markers.
+  const scoped =
+    contract.scopeType === "SYNTHETIC_ANALYSIS" ||
+    contract.scopeType === "HYPOTHETICAL" ||
+    contract.scopeType === "COMPARATIVE_SCENARIO" ||
+    contract.scopeType === "HISTORICAL_ANALYSIS";
   const product =
     truth.product.productName ??
     (truth.product.asin ? `bound product (${truth.product.asin})` : "our bound product");
-  const lines = [
-    `EmpireAI is answering live. Focus remains ${product}. Realised orders are ${truth.financial.orders}.`,
-    truth.birth.birthTimestamp == null ? "Birth has not been authorised." : "",
-  ].filter(Boolean);
+  const lines = scoped
+    ? ["Synthetic / scenario analysis — live EmpireAI product and commerce state are out of scope for this reply."]
+    : [
+        `EmpireAI is answering live. Focus remains ${product}. Realised orders are ${truth.financial.orders}.`,
+        truth.birth.birthTimestamp == null ? "Birth has not been authorised." : "",
+      ].filter(Boolean);
   for (const task of contract.tasks.slice(0, 20)) {
     lines.push(
       synthesizeTaskUnitAnswer(task, truth, {
-        birthRelevant: contract.birthRelevant,
+        birthRelevant: contract.birthRelevant && !scoped,
         hypotheticalPremises: contract.hypotheticalPremises,
         scopeType: contract.scopeType,
         materialConstraints: contract.materialConstraints,
