@@ -269,13 +269,28 @@ export function stripIrrelevantLiveGrounding(
   userMessage: string,
   scope: ReasoningScopeType,
 ): string {
-  if (!isScopedAwayFromLiveEmpire(scope) && !hasSyntheticAnalysisMarker(userMessage)) {
+  // Import deferred via dynamic pattern avoided — callers may also pass authority asks.
+  const authorityBlocksCommerce =
+    /\b(authori[sz]|delegat|discretion|you may (?:spend|decide)|approval|governance|capability|execution authority|do not ask again|anything below|budget ceiling)\b/i.test(
+      userMessage,
+    ) &&
+    !/\b(realised (?:orders?|revenue)|sales? (?:count|volume)|demand strength|bound product|asin|commissioning)\b/i.test(
+      userMessage,
+    );
+
+  if (
+    !isScopedAwayFromLiveEmpire(scope) &&
+    !hasSyntheticAnalysisMarker(userMessage) &&
+    !authorityBlocksCommerce
+  ) {
     return String(message || "").trim();
   }
   const liveAsk =
     /\b(EmpireAI|our (?:current|live|realised)|bound product|commissioning|Birth)\b/i.test(
       userMessage,
-    ) && !hasSyntheticAnalysisMarker(userMessage);
+    ) &&
+    !hasSyntheticAnalysisMarker(userMessage) &&
+    !authorityBlocksCommerce;
   if (liveAsk) return String(message || "").trim();
 
   const isLiveBoilerplate = (s: string): boolean => {

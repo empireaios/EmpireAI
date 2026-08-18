@@ -13,6 +13,7 @@ import {
   asksForRiskRanking,
   asksForVerificationPriority,
   detectReasoningScope,
+  hasSyntheticAnalysisMarker,
   isScopedAwayFromLiveEmpire,
   synthesizeEvidenceStructureAudit,
   synthesizeRiskRanking,
@@ -25,8 +26,16 @@ import {
   synthesizeConstraintAwareRecommendation,
   type MaterialConstraint,
 } from "./executive-decision-constraints.js";
+import {
+  authorityAskBlocksCommerceGrounding,
+  authorityKindSignals,
+  classifyAuthorityKind,
+  hasAuthoritySemanticsMarker,
+  synthesizeAuthorityUnitAnswer,
+  type AuthorityTaskKind,
+} from "./executive-authority-semantics.js";
 
-export type { ReasoningScopeType, MaterialConstraint };
+export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
 export type ExecutiveTaskKind =
   | "operating_briefing"
@@ -39,6 +48,13 @@ export type ExecutiveTaskKind =
   | "uncertainty"
   | "risk_ranking"
   | "verification_priority"
+  | "authority_analysis"
+  | "delegation_analysis"
+  | "governance_analysis"
+  | "capability_analysis"
+  | "execution_analysis"
+  | "approval_requirement"
+  | "delegation_controls"
   | "multipart_unit"
   | "general";
 
@@ -72,6 +88,7 @@ export type ExecutiveTaskContract = {
   requiresConditionalReasoning: boolean;
   requiresRiskRanking: boolean;
   requiresVerificationPriority: boolean;
+  requiresAuthorityAnalysis: boolean;
   /** Owner-supplied hypotheticals for this turn only — not current verified fact. */
   hypotheticalPremises: string[];
   /** Surface Birth only when the ask makes it relevant. */
@@ -210,9 +227,35 @@ function requiredOperationForKind(kind: ExecutiveTaskKind): string {
       return "rank_cross_obligation_risk";
     case "verification_priority":
       return "select_verification_priority";
+    case "authority_analysis":
+      return "analyze_owner_authority";
+    case "delegation_analysis":
+      return "analyze_delegated_discretion";
+    case "governance_analysis":
+      return "analyze_governance_permission";
+    case "capability_analysis":
+      return "analyze_system_capability";
+    case "execution_analysis":
+      return "analyze_actual_execution";
+    case "approval_requirement":
+      return "analyze_approval_requirement";
+    case "delegation_controls":
+      return "analyze_delegation_controls";
     default:
       return "answer_distinct_obligation";
   }
+}
+
+function isAuthorityTaskKind(kind: ExecutiveTaskKind): kind is AuthorityTaskKind {
+  return (
+    kind === "authority_analysis" ||
+    kind === "delegation_analysis" ||
+    kind === "governance_analysis" ||
+    kind === "capability_analysis" ||
+    kind === "execution_analysis" ||
+    kind === "approval_requirement" ||
+    kind === "delegation_controls"
+  );
 }
 
 /**
@@ -230,6 +273,10 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
 
   if (asksForRiskRanking(m)) return "risk_ranking";
   if (asksForVerificationPriority(m)) return "verification_priority";
+
+  // Authority / delegation / governance before claim-audit or $ → premise_audit.
+  const authorityKind = classifyAuthorityKind(m);
+  if (authorityKind) return authorityKind;
 
   // Decision-unlock / experiment / reversal are first-class recommendation work.
   if (
@@ -256,7 +303,9 @@ export function classifyLocalObligationKind(part: string): ExecutiveTaskKind {
   ) {
     return "evidence_explanation";
   }
+  // Budget ceilings in delegation text are not commercial claim audits.
   if (
+    !hasAuthoritySemanticsMarker(m) &&
     /\b(revenue|orders?|sales?|profit|usd|\$[0-9]|financial|realised commerce|made (?:money|revenue))\b/i.test(
       m,
     )
@@ -350,7 +399,36 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
   const kinds: ExecutiveTaskKind[] = [];
   if (asksForRiskRanking(m)) kinds.push("risk_ranking");
   if (asksForVerificationPriority(m)) kinds.push("verification_priority");
+
+  // Authority family first — prevents audit/evaluate/classify → premise_audit hijack.
+  const auth = classifyAuthorityKind(m);
+  if (auth) kinds.push(auth);
+  if (hasAuthoritySemanticsMarker(m)) {
+    if (/\b(delegat|discretion|ceiling|standing|one[- ]time|automatic(?:ally)? adjust|anything below)\b/i.test(m)) {
+      if (!kinds.includes("delegation_analysis")) kinds.push("delegation_analysis");
+    }
+    if (/\b(capability|connected|integration|actually (?:spend|execute))\b/i.test(m)) {
+      if (!kinds.includes("capability_analysis")) kinds.push("capability_analysis");
+    }
+    if (/\b(governance|constitutional|policy|permitted|forbidden)\b/i.test(m)) {
+      if (!kinds.includes("governance_analysis")) kinds.push("governance_analysis");
+    }
+    if (/\b(execution|did not (?:spend|execute)|side effect)\b/i.test(m)) {
+      if (!kinds.includes("execution_analysis")) kinds.push("execution_analysis");
+    }
+    if (/\b(approval|do not ask again|without another approval)\b/i.test(m)) {
+      if (!kinds.includes("approval_requirement")) kinds.push("approval_requirement");
+    }
+    if (/\b(stop[- ]loss|kill switch|audit trail|controls?)\b/i.test(m)) {
+      if (!kinds.includes("delegation_controls")) kinds.push("delegation_controls");
+    }
+    if (!kinds.some(isAuthorityTaskKind)) kinds.push("authority_analysis");
+  }
+
+  // Skip claim-audit when the turn is primarily authority/delegation semantics.
+  const authorityPrimary = kinds.some(isAuthorityTaskKind);
   if (
+    !authorityPrimary &&
     /\b(premise|assumption|assumptions|audit (?:each|these|the)|evaluate (?:each|whether)|classify (?:each|these)|supported|contradicted|unverif|claim[- ]by[- ]claim|better supported)\b/i.test(
       m,
     )
@@ -363,7 +441,10 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
     ) ||
     extractHypotheticalPremises(m).length > 0
   ) {
-    kinds.push("conditional_reasoning");
+    // "assume you may spend" is still authority — do not force conditional unless hypothesis-shaped.
+    if (!authorityPrimary || extractHypotheticalPremises(m).length > 0) {
+      kinds.push("conditional_reasoning");
+    }
   }
   if (
     /\b(temporal|reconcil|histor(?:y|ical)|yesterday|tomorrow|superseded|was true|now true|future (?:state|hypothetical)|how (?:does|do) (?:this|that|the conclusion) change)/i.test(
@@ -416,7 +497,6 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   const parts = splitMultipartUnits(text);
   const globalKinds = detectKindsInText(text);
   const hypotheticalPremises = extractHypotheticalPremises(text);
-  const birthRelevant = /\b(birth|authoris(?:e|ation)|gates?\s+pass)\b/i.test(text);
   const tasks: ExecutiveTaskUnit[] = [];
 
   if (parts.length >= 2) {
@@ -428,6 +508,13 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     }
   } else if (globalKinds.length > 0) {
     const preferred = [
+      "authority_analysis",
+      "delegation_analysis",
+      "governance_analysis",
+      "capability_analysis",
+      "execution_analysis",
+      "approval_requirement",
+      "delegation_controls",
       "conditional_reasoning",
       "premise_audit",
       "temporal_reconciliation",
@@ -460,18 +547,23 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   const requiresEvidenceExplanation =
     globalKinds.includes("evidence_explanation") ||
     /\b(how do you know|provenance|show (?:me )?the evidence)\b/i.test(text);
+  const authorityPrimary = globalKinds.some(isAuthorityTaskKind) || hasAuthoritySemanticsMarker(text);
   const requiresPremiseAudit =
-    globalKinds.includes("premise_audit") ||
-    /\b(premise|assumption|claim[- ]by[- ]claim|better supported)\b/i.test(text);
+    !authorityPrimary &&
+    (globalKinds.includes("premise_audit") ||
+      /\b(premise|claim[- ]by[- ]claim|better supported)\b/i.test(text));
   const requiresTemporalReconciliation =
     globalKinds.includes("temporal_reconciliation") ||
     /\b(reconcil|histor(?:y|ical)|yesterday|tomorrow|superseded)\b/i.test(text);
   const requiresConditionalReasoning =
-    globalKinds.includes("conditional_reasoning") || hypotheticalPremises.length > 0;
+    globalKinds.includes("conditional_reasoning") ||
+    (!authorityPrimary && hypotheticalPremises.length > 0);
   const requiresRiskRanking =
     globalKinds.includes("risk_ranking") || asksForRiskRanking(text);
   const requiresVerificationPriority =
     globalKinds.includes("verification_priority") || asksForVerificationPriority(text);
+  const requiresAuthorityAnalysis =
+    authorityPrimary || globalKinds.some(isAuthorityTaskKind);
 
   const ensureKind = (kind: ExecutiveTaskKind, label: string) => {
     if (tasks.some((t) => t.kind === kind)) return;
@@ -501,6 +593,10 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     ensureKind("premise_audit", "Audit supplied premises individually.");
   if (requiresTemporalReconciliation && !tasks.some((t) => t.kind === "temporal_reconciliation"))
     ensureKind("temporal_reconciliation", "Reconcile historical, current, and future evidence.");
+  if (requiresAuthorityAnalysis && parts.length < 2 && !tasks.some((t) => isAuthorityTaskKind(t.kind))) {
+    const ak = classifyAuthorityKind(text) ?? "authority_analysis";
+    ensureKind(ak, "Analyze owner authorization, delegation, governance, capability, and execution distinctly.");
+  }
 
   const primary =
     globalKinds[0] ??
@@ -516,8 +612,10 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     requiresConditionalReasoning,
     requiresRiskRanking,
     requiresVerificationPriority,
+    requiresAuthorityAnalysis,
     hypotheticalPremises,
-    birthRelevant,
+    // "authorization" alone must not surface Birth.
+    birthRelevant: /\bbirth\b/i.test(text),
     multipart: parts.length >= 2,
     scopeType,
     materialConstraints,
@@ -546,10 +644,18 @@ function kindSignals(kind: ExecutiveTaskKind): RegExp {
       return /\b(most dangerous|danger(?:ous)?|rank(?:ing)?|highest risk|irreversible|what matters most)\b/i;
     case "verification_priority":
       return /\b(verify first|verification priority|most important|priority|corroborat)\b/i;
+    case "authority_analysis":
+    case "delegation_analysis":
+    case "governance_analysis":
+    case "capability_analysis":
+    case "execution_analysis":
+    case "approval_requirement":
+    case "delegation_controls":
+      return authorityKindSignals(kind);
     case "multipart_unit":
     case "general":
     default:
-      return /\b(live|product|orders?|verified|unproven|recommend|because|premise|current|focus|verdict|need)\b/i;
+      return /\b(live|product|orders?|verified|unproven|recommend|because|premise|current|focus|verdict|need|authori|delegat|capability)\b/i;
   }
 }
 
@@ -598,7 +704,8 @@ export function assessTaskCoverage(
       contract.requiresEvidenceExplanation ||
       contract.requiresConditionalReasoning ||
       contract.requiresRiskRanking ||
-      contract.requiresVerificationPriority;
+      contract.requiresVerificationPriority ||
+      contract.requiresAuthorityAnalysis;
 
     let status: TaskCoverageStatus;
     let reason: string | undefined;
@@ -737,6 +844,14 @@ export function synthesizeTaskUnitAnswer(
   }
   if (task.kind === "verification_priority") {
     return synthesizeVerificationPriority(siblings, span);
+  }
+  if (isAuthorityTaskKind(task.kind)) {
+    return synthesizeAuthorityUnitAnswer(
+      task.kind,
+      subject,
+      truth,
+      `${span} ${opts.siblingSubjects?.join(" ") ?? ""}`,
+    );
   }
 
   if (scoped && task.kind !== "operating_briefing") {
@@ -885,6 +1000,18 @@ export function synthesizeTaskUnitAnswer(
         /\bsynthetic/i.test(opts.siblingSubjects?.join(" ") ?? "")
       ) {
         return synthesizeEvidenceStructureAudit(subject, span);
+      }
+      if (
+        hasAuthoritySemanticsMarker(subject) ||
+        hasAuthoritySemanticsMarker(span) ||
+        authorityAskBlocksCommerceGrounding(`${subject} ${span}`)
+      ) {
+        return synthesizeAuthorityUnitAnswer(
+          classifyAuthorityKind(`${subject} ${span}`) ?? "authority_analysis",
+          subject,
+          truth,
+          span,
+        );
       }
       return [
         `### ${subject.slice(0, 80)}`,

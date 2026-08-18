@@ -472,7 +472,8 @@ export function releaseExecutiveAnswer(
     contract.requiresPremiseAudit ||
     contract.requiresTemporalReconciliation ||
     contract.requiresRecommendation ||
-    contract.requiresConditionalReasoning;
+    contract.requiresConditionalReasoning ||
+    contract.requiresAuthorityAnalysis;
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,

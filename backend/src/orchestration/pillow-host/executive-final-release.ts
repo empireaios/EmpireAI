@@ -53,7 +53,8 @@ export function finalVisibleSemanticsFail(
     contract.requiresTemporalReconciliation ||
     contract.requiresRecommendation ||
     contract.requiresEvidenceExplanation ||
-    contract.requiresConditionalReasoning;
+    contract.requiresConditionalReasoning ||
+    contract.requiresAuthorityAnalysis;
 
   if (multi && isGlobalEvidenceCollapseReply(finalVisibleText)) {
     return {
