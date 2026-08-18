@@ -875,12 +875,22 @@ export function synthesizeTaskUnitAnswer(
       ].join("\n");
     case "multipart_unit":
     case "general":
-    default:
+    default: {
+      // Never inject live product/commerce footnotes into synthetic/scenario stubs.
+      if (
+        scoped ||
+        /\bsynthetic\b/i.test(subject) ||
+        /\bsynthetic\b/i.test(span) ||
+        /\bsynthetic\b/i.test(opts.siblingSubjects?.join(" ") ?? "")
+      ) {
+        return synthesizeEvidenceStructureAudit(subject, span);
+      }
       return [
         `### ${subject.slice(0, 80)}`,
         `Brief verified note: focus remains ${f.product}; ${commerce}`,
         "I will not invent unsupported specifics for this part, and I will not reuse another sibling's conclusion as a substitute.",
       ].join("\n");
+    }
   }
 }
 

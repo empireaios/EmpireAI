@@ -268,9 +268,14 @@ export function stripIrrelevantLiveGrounding(
   if (liveAsk) return String(message || "").trim();
 
   const isLiveBoilerplate = (s: string): boolean => {
+    if (/\bBrief verified note:\s*focus remains\b/i.test(s)) {
+      return true;
+    }
     if (
       /\b(High-Speed Handheld|Mini Fan)\b/i.test(s) &&
-      !/\bsynthetic|scenario|claim audit|for analysis\b/i.test(s)
+      (!/\bsynthetic|scenario|claim audit|for analysis\b/i.test(s) ||
+        /\bBrief verified note\b/i.test(s) ||
+        /\bfocus remains\b/i.test(s))
     ) {
       return true;
     }

@@ -217,6 +217,38 @@ describe("scoped synthetic + aggregate synthesis Level A", () => {
     assert.match(cleaned, /Claim A is unproven/i);
   });
 
+  it("synthetic multipart stub never injects Brief verified commerce footnote", () => {
+    const out = synthesizeTaskUnitAnswer(
+      {
+        id: "u1",
+        kind: "multipart_unit",
+        text: "what remains blocked",
+        subject: "SyntheticCanary: what remains blocked if economics clear",
+        sourceSpan: "SyntheticCanary scenario only",
+        required: true,
+      },
+      truth(),
+      {
+        scopeType: "SYNTHETIC_ANALYSIS",
+        siblingSubjects: ["SyntheticCanary economics", "SyntheticCanary capacity"],
+      },
+    );
+    assert.doesNotMatch(out, /Brief verified note|focus remains|Mini Fan|realised revenue remain zero/i);
+    assert.match(out, /Verdict|Unsupported|Unproven|evidence/i);
+
+    const stripped = stripIrrelevantLiveGrounding(
+      [
+        "Capacity stays blocked.",
+        "### SyntheticCanary: what remains blocked",
+        "Brief verified note: focus remains High-Speed Handheld Mini Fan With Digital Display; Realised orders and realised revenue remain zero.",
+      ].join("\n"),
+      "SyntheticCanary: In two short sentences, what remains blocked if economics clear",
+      "SYNTHETIC_ANALYSIS",
+    );
+    assert.doesNotMatch(stripped, /Brief verified note|Mini Fan|realised revenue remain zero/i);
+    assert.match(stripped, /Capacity stays blocked/i);
+  });
+
   it("polish preserves paragraph structure (no wall-of-text join)", () => {
     const md = [
       "### Claim A",
