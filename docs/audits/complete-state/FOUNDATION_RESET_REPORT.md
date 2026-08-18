@@ -44,34 +44,22 @@ See `MEMORY_EKLS_FORENSICS.md`.
 ## P–T Persistence / ablation
 
 - Local Level A/B: PASS (fresh process + SQLite persistence for seeds).
-- Worker restart / Railway deploy boundary: exercised after deploy (see FOUNDATION_PRODUCTION_CERTIFICATION.json).
-- Memory ablation: architectural capabilities remain primary for many classes; durable lessons now contribute to retrieval bundle — report PARTIAL contribution until post-deploy ablation canary.
+- **Deployment boundary:** PASS — Railway deploy `42d29517` on SHA `90350010` + Level C fresh sessions.
+- **Fresh-session transfer:** PASS — each Level C probe used a new Pillow session.
+- **Worker restart (explicit mid-flight restart without deploy):** PARTIAL — not separately injected; covered by deploy process recycle + volume `/data`.
+- **Memory ablation (MEMORY_ON vs OFF):** PARTIAL — not run as a live production experiment; many capabilities remain architectural (B) with lessons (A) now also retrieved into the reasoning bundle.
 
-## U–Y Routing + corpus
+## Production Level C
 
-- Orion-class generalized: `cr.evidence_ne_delegation` (no Orion/R-72).
-- Authority-class: `cr.authority_ne_claim_audit`.
-- Cross-capability: `cr.mixed_evidence_authority`.
-- Level B randomized (5 variants/specimen): PASS locally.
-
-## Z–AE Constitution / inspectability
-
-- Streak reset on material failure; change-impact via path heuristics.
-- 10× gauntlet **framework** descriptor present (not a Wave close run).
-- Grand King inspect API: foundation-state.
-- Mission contract: `PILLOW_MISSION_CONTRACT.md`.
-
-## AF–AH Security / cost
-
-- Poisoning: model_hypothesis cannot write Category A governance.
-- Secrets / CoT: not persisted as lessons.
-- Retrieval bounded to reduce prompt bloat.
-
-## AI–AK Levels
-
-- Level A: PASS (authority 20+; foundation routing/lessons/corpus/streak).
-- Level B: PASS (randomized corpus + poison gate).
-- Level C: post-deploy canary via `pillow-foundation-reset-levelc.mjs`.
+- Artifact: `FOUNDATION_PRODUCTION_CERTIFICATION.json`
+- Result: **PASS** (fail=0, pass=8 including login/seed/foundation-state + 5 probes)
+- Deploy SHA: `903500106a061ff4269c3ede04cb953554f420cc`
+- Live birth lessons visible: **16**; institutional memories: **174**; specimens: **7**
+- Evidence≠authority hijack: PASS
+- Authority≠claim audit: PASS
+- Mixed composition: PASS
+- Synthetic isolation: PASS
+- Accepted-request reliability signal: PASS
 
 ## AP–AS Certification state + next action
 
@@ -80,4 +68,4 @@ See `MEMORY_EKLS_FORENSICS.md`.
 - Wave 3 = LOCKED  
 - Birth unauthorized  
 
-**Exact next action for Grand King + ChatGPT:** begin a NEW clean Wave 1 recertification streak against the constitutional corpus + permanence tests on the deployed foundation SHA — do not treat historical Wave PASSes as current certification.
+**Exact next action for Grand King + ChatGPT:** begin a NEW clean Wave 1 recertification streak against the constitutional corpus + permanence tests on deployed foundation SHA `90350010` — do not treat historical Wave PASSes as current certification.
