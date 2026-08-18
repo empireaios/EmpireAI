@@ -24,7 +24,8 @@ const FORBIDDEN_FALLBACK =
   /worker proxy timed out|tell me which theme to deepen|do not need to resubmit\. Birth remains|ask which part to deepen/i;
 const ASK_AGAIN = /\b(please ask again|ask again in a moment)\b/i;
 const BIRTH_INJECT = /\bBirth remains unauthoris/i;
-const COMMERCE_INJECT = /\b(?:realised commerce|Mini Fan|B0FKFNCT52|commissioning state)\b/i;
+const COMMERCE_INJECT =
+  /\b(?:realised commerce|Mini Fan|B0FKFNCT52|commissioning state|Brief verified note|focus remains .{0,120}; Realised orders|realised revenue remain zero)\b/i;
 
 function extractCookie(res) {
   const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
