@@ -574,9 +574,10 @@ export function releaseExecutiveAnswer(
     priorViolations: string[],
   ): ExecutiveReleaseResult | null => {
     const filled = appendMissingTaskCoverage(candidate, contract, truth);
-    const reconstruct = multiObligation
-      ? buildContractAwareReconstruct(truth, contract)
-      : null;
+    const reconstruct =
+      multiObligation || scopedAway
+        ? buildContractAwareReconstruct(truth, contract)
+        : null;
 
     const queue: Array<{
       text: string;
@@ -589,11 +590,23 @@ export function releaseExecutiveAnswer(
       path: filled.appended > 0 && path === "clean" ? "contract_coverage_filled" : path,
       appended: filled.appended,
     });
-    if (multiObligation && reconstruct && (filled.coverage.silentlyDroppedTasks > 0 || path !== "clean")) {
+    const candidateContaminated = isLiveEmpireContaminationInScopedAnswer(
+      filled.message,
+      truth,
+      options.userMessage,
+    );
+    if (
+      reconstruct &&
+      (multiObligation ||
+        scopedAway ||
+        candidateContaminated ||
+        filled.coverage.silentlyDroppedTasks > 0 ||
+        path !== "clean")
+    ) {
       queue.push({
         text: reconstruct,
         path: path === "clean" ? "contract_coverage_filled" : "natural_reconstructed",
-        appended: contract.tasks.length,
+        appended: Math.max(1, contract.tasks.length),
       });
     }
     queue.push({ text: candidate, path, appended: 0 });

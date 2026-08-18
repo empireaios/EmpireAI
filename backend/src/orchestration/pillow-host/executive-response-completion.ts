@@ -15,6 +15,10 @@ import {
   parseExecutiveTaskContract,
 } from "./executive-task-contract.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
+import {
+  detectReasoningScope,
+  isScopedAwayFromLiveEmpire,
+} from "./executive-scoped-reasoning.js";
 import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 
 export type ResponseTerminalKind =
@@ -196,23 +200,25 @@ export function buildUsefulDegradedExecutiveAnswer(input: {
       contract.requiresPremiseAudit ||
       contract.requiresTemporalReconciliation ||
       contract.requiresRecommendation;
+    const scopedAway = isScopedAwayFromLiveEmpire(detectReasoningScope(input.userMessage));
 
-    const base = multi
-      ? buildContractAwareReconstruct(input.truth, contract)
-      : buildNaturalExecutiveFallback({
-          productName: input.truth.product.productName,
-          asin: input.truth.product.asin,
-          orders: input.truth.financial.orders,
-          realisedRevenueUsd: input.truth.financial.realisedRevenueUsd,
-          birthTimestamp: input.truth.birth.birthTimestamp,
-          live:
-            Boolean(input.truth.deploy.gitCommitSha) ||
-            input.truth.deploy.serviceOnlineHint === "assume_online_if_answering",
-          intent,
-          level,
-          hadProvenanceViolation: false,
-          hadTemporalViolation: false,
-        });
+    const base =
+      multi || scopedAway
+        ? buildContractAwareReconstruct(input.truth, contract)
+        : buildNaturalExecutiveFallback({
+            productName: input.truth.product.productName,
+            asin: input.truth.product.asin,
+            orders: input.truth.financial.orders,
+            realisedRevenueUsd: input.truth.financial.realisedRevenueUsd,
+            birthTimestamp: input.truth.birth.birthTimestamp,
+            live:
+              Boolean(input.truth.deploy.gitCommitSha) ||
+              input.truth.deploy.serviceOnlineHint === "assume_online_if_answering",
+            intent,
+            level,
+            hadProvenanceViolation: false,
+            hadTemporalViolation: false,
+          });
 
     const filled = appendMissingTaskCoverage(base, contract, input.truth);
     const parts = [filled.message];

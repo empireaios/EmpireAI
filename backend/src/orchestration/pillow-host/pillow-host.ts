@@ -47,7 +47,7 @@ import {
   RetrievalAttestationLedger,
   attestExecutiveTruthSnapshotReads,
 } from "./executive-epistemic-grounding.js";
-import { enforceExecutiveTruthGrounding } from "./executive-release-gate.js";
+import { enforceExecutiveTruthGrounding, isLiveEmpireContaminationInScopedAnswer } from "./executive-release-gate.js";
 import {
   formatTaskContractBrief,
   parseExecutiveTaskContract,
@@ -30060,6 +30060,7 @@ export class PillowHost {
                 logResult = "degraded_no_provider";
             }
             // Final safety: never emit ask-again / infra-leak as the visible answer.
+            // Also never leave synthetic-scoped answers as live Mini Fan briefings.
             {
                 const sealed = ensureUsefulTerminalChatMessage({
                     draft: message,
@@ -30073,6 +30074,24 @@ export class PillowHost {
                     if (kind === "constitutional_refusal" || kind === "command_fallback") {
                         kind = "degraded_useful";
                     }
+                }
+                if (
+                    executiveTruthSnapshot &&
+                    isLiveEmpireContaminationInScopedAnswer(
+                        message,
+                        executiveTruthSnapshot,
+                        input.message,
+                    )
+                ) {
+                    const repaired = enforceExecutiveTruthGrounding(
+                        message,
+                        executiveTruthSnapshot,
+                        epistemicLedger.list(),
+                        { userMessage: input.message },
+                    );
+                    message = repaired.message;
+                    degradedUsed = true;
+                    logResult = "degraded_synthetic_live_strip";
                 }
             }
             markStage("llmMs");
