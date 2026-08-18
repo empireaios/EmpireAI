@@ -193,9 +193,14 @@ async function main() {
     signal: AbortSignal.timeout(90_000),
   });
   const sj = await sess.json().catch(() => ({}));
-  let sessionId = sj.sessionId || sj.id || sj.result?.sessionId;
+  let sessionId =
+    sj.sessionId ||
+    sj.id ||
+    sj.result?.sessionId ||
+    sj.session?.sessionId ||
+    sj.data?.sessionId;
   if (!sessionId) {
-    console.error(JSON.stringify({ pass: false, reason: "session", body: sj }));
+    console.error(JSON.stringify({ pass: false, reason: "session", keys: Object.keys(sj || {}) }));
     process.exit(2);
   }
 
