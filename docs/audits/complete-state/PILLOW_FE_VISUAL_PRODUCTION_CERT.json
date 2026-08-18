@@ -1,0 +1,153 @@
+{
+  "artifact": "PILLOW_FE_VISUAL_PRODUCTION_CERT",
+  "startedAt": "2026-08-18T01:04:57.230Z",
+  "stamp": {
+    "surface": "empireai-web",
+    "eosUxMarker": "type now; Send when ready",
+    "eosFixInBundle": true,
+    "gitCommitSha": "31b7788aa6a367cafdbbba2201b82100447476c4",
+    "gitCommitRef": "main",
+    "deploymentId": "dpl_HrXdLFLT7hDjZSioXSkpBgyx4B4m",
+    "servedAt": "2026-08-18T01:05:00.984Z"
+  },
+  "path": "/cockpit/development/pillow?tab=conversation",
+  "cases": [
+    {
+      "id": "VIS_7_SECTIONS",
+      "ok": true,
+      "status": 200,
+      "inlineNext": 0,
+      "olCount": 1,
+      "olItems": 7,
+      "orderedOk": true,
+      "visuallySeparated": true,
+      "nestedOk": true,
+      "simpleOk": true,
+      "looksMarkdown": true,
+      "blocks": [
+        {
+          "type": "ol",
+          "n": 7
+        },
+        {
+          "type": "h",
+          "n": 1
+        },
+        {
+          "type": "p",
+          "n": 1
+        },
+        {
+          "type": "p",
+          "n": 1
+        },
+        {
+          "type": "p",
+          "n": 1
+        },
+        {
+          "type": "ul",
+          "n": 1
+        },
+        {
+          "type": "p",
+          "n": 1
+        }
+      ],
+      "len": 2112,
+      "text": "1) **Economics reading**\n - Current economic indicators show a negative contribution margin. - Expansion efforts require significant investment to enhance profitability.\n\n2) **Capacity reading**\n - Current capacity is capped, limiting growth potential. - Additional resources or infrastructure are needed to increase capacity.\n\n3) **Unverified saving**\n - Potential savings have not been verified due to lack of data. - Further analysis is needed to identify and confirm any savings opportunities.\n\n4) **Partial unlock**\n - Some operational aspects are partially unlocked but require full authorization for expansion. - Further investment is necessary to unlock additional capabilities.\n\n5) **Exact evidence for scale**\n - Evidence for scaling operations remains limited; demand evidence is currently unknown. - Historical data does not support a robust scaling strategy without verified demand.\n\n6) **Best next action**\n - Conduct a detailed market analysis to gather demand evidence and identify viable opportunities. - Assess potential investments needed to increase capacity and support expansion.\n\n7) **Recommendation**\n - Proceed with a market analysis and feasibility study to validate demand and identify necessary investments for capacity expansion. This will help ensure that future growth efforts are grounded in solid evidence and aligned with economic realities.\n\n### My recommendation\n**Decision:** Do not unlock meaningful scaling yet — at least one material gate remains open.\n\n**Gate status:** Meaningful scaling is not eligible while these gates remain open: unit economics acceptable; capacity available or expansion justified.\n\n**Exact evidence still required for meaningful scaling:**\n- Verified contribution that is non-negative (or otherwise acceptable) after variable costs — not an unverified possible saving. - Verified capacity to support the intended volume, or a justified expansion plan that clears the capacity gate.\n\n**Partial unlock:** Strongest justified next step: a bounded action within current capacity (or a diligence step on expansion investment) — not irreversible scale."
+    },
+    {
+      "id": "VIS_3_SECTIONS",
+      "ok": true,
+      "status": 200,
+      "inlineNext": 0,
+      "olCount": 1,
+      "olItems": 3,
+      "orderedOk": true,
+      "visuallySeparated": true,
+      "nestedOk": true,
+      "simpleOk": true,
+      "looksMarkdown": true,
+      "blocks": [
+        {
+          "type": "ol",
+          "n": 3
+        }
+      ],
+      "len": 800,
+      "text": "1) **Active blockers**\n - Core Constitution (CTD)\n - Architecture Constraints (ACD)\n - Reality Integration (REAL)\n - Global Components (GC)\n - Release & Go-Live\n - Governance & Milestones (BL-A)\n - Live Amazon SP-API credentials (REAL-002B)\n - PROOF-001 (first verified live net profit)\n - GK-GOLIVE-APPROVAL\n\n2) **What one verified saving would clear**\n - A verified saving of at least $5,000 in operational costs could clear some current blockers, allowing for potential investment in capacity expansion and unlocking further growth opportunities.\n\n3) **What would still block meaningful scaling**\n - Even with verified savings, capacity limitations and the need for additional investment in infrastructure would still block meaningful scaling until those resources are secured and operationalized."
+    },
+    {
+      "id": "VIS_SIMPLE",
+      "ok": true,
+      "status": 200,
+      "inlineNext": 0,
+      "olCount": 0,
+      "olItems": 0,
+      "orderedOk": true,
+      "visuallySeparated": true,
+      "nestedOk": true,
+      "simpleOk": true,
+      "looksMarkdown": false,
+      "blocks": [
+        {
+          "type": "p",
+          "n": 1
+        }
+      ],
+      "len": 42,
+      "text": "Our verified realised order count is zero."
+    }
+  ],
+  "failures": 0,
+  "result": "PASS",
+  "birthAuthorised": false,
+  "birthTimestamp": null,
+  "wave2Locked": true,
+  "completedAt": "2026-08-18T01:30:11.391Z",
+  "gates": {
+    "LIVE_FRONTEND_STAMP_ADVANCED": true,
+    "LIVE_FRONTEND_CONTAINS_VISUAL_REPAIR": true,
+    "TOP_LEVEL_SEQUENCE_1_TO_N": true,
+    "TOP_LEVEL_SECTIONS_VISUALLY_SEPARATED": true,
+    "INLINE_NEXT_SECTION_OCCURRENCES": 0,
+    "NESTED_BULLETS_PRESERVED": true,
+    "SIMPLE_RESPONSE_NOT_OVERFORMATTED": true,
+    "BIRTH_AUTHORISED": false,
+    "WAVE_2_LOCKED": true,
+    "VERCEL_ROOT_CAUSE_PROVEN": true,
+    "EMPIREAI_WEB_BUILD_PASS": true,
+    "FRONTEND_DEPLOY_SUCCESS": true,
+    "PRODUCTION_FRONTEND_REGRESSION_PASS": true
+  },
+  "domPillowCentre": {
+    "url": "https://empire-ai.co/cockpit/development/pillow?tab=conversation",
+    "stampSha": "31b7788aa6a367cafdbbba2201b82100447476c4",
+    "olClassName": "list-decimal space-y-5 pl-5 marker:font-semibold marker:text-[#d4af37]/80",
+    "liCount": 7,
+    "sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "gapsPx": [
+      20,
+      20,
+      20,
+      19,
+      21,
+      19
+    ],
+    "minGapPx": 19,
+    "visuallySeparated": true,
+    "inlineNextOccurrences": 0,
+    "nestedBulletsInsideItem2": true,
+    "nestedAsTextBulletsNotSeparateTopLevel": true,
+    "liveFrontendContainsVisualRepair": true
+  }
+}
