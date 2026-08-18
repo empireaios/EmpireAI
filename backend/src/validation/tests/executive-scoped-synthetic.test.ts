@@ -225,6 +225,7 @@ describe("scoped synthetic + aggregate synthesis Level A", () => {
         text: "what remains blocked",
         subject: "SyntheticCanary: what remains blocked if economics clear",
         sourceSpan: "SyntheticCanary scenario only",
+        requiredOperation: "answer_unit",
         required: true,
       },
       truth(),
