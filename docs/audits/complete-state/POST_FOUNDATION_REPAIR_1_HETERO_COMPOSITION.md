@@ -72,3 +72,14 @@ BIRTH_TIMESTAMP=NULL
 ```
 
 Grand King + ChatGPT restart Wave 1 T1 with a **new** unseen test after deploy.
+
+## Deploy / Level C resume notes
+
+| SHA | Role |
+|-----|------|
+| `85a6500e` | Core hetero + governance/recovery repair |
+| `baf64d7a` | TSC fix for Railway build |
+| `1495a973` | Synthetic-scoped release reconstruct (Level C 7/8; CASE6 still Mini Fan) |
+| `ba470bb4` | Final chat-path hard-strip of synthetic→live briefing |
+
+Level C evidence artifact: `POST_FOUNDATION_REPAIR_1_LEVEL_C.json` (re-run after `ba470bb4` is live).
