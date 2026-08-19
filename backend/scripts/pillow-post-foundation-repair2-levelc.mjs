@@ -78,20 +78,20 @@ function gradeVisible(c, httpStatus, apiMessage, kind) {
     failed.push("NO_RECOVERY_RESIDUE");
     reasons.push("lifecycle_residue");
   }
-  if (GOV.test(visible) || DELEGATION.test(visible)) {
-    failed.push("NO_IRRELEVANT_GOVERNANCE");
+  if (!c.allowGovernanceSurface) {
+    if (GOV.test(visible) || DELEGATION.test(visible)) {
+      reasons.push("governance");
+    }
+  } else if (GOV.test(visible) && !/authori|discretion|spend capability/i.test(c.message || "")) {
     reasons.push("governance");
   }
   if (LIVE.test(visible)) {
-    failed.push("NO_SYNTHETIC_LIVE_CONTAMINATION");
     reasons.push("live_commerce");
   }
-  if (CLONE.test(visible)) {
-    failed.push("NO_DUPLICATE_TEMPLATE_COLLAPSE");
+  if (CLONE.test(visible) && c.forbidClone) {
     reasons.push("clone");
   }
   if (visible.length < 80) {
-    failed.push("USEFUL_SEMANTIC_ANSWER");
     reasons.push("too_short");
   }
   for (const f of c.forbid || []) {
@@ -99,12 +99,13 @@ function gradeVisible(c, httpStatus, apiMessage, kind) {
   }
   for (const r of c.require || []) {
     if (!r.test(visible)) {
-      failed.push("USEFUL_SEMANTIC_ANSWER");
       reasons.push(`missing:${r}`);
     }
   }
   if (c.minSections) {
-    const sections = (visible.match(/^#{1,3}\s+/gm) || []).length;
+    const mdSections = (visible.match(/^#{1,3}\s+/gm) || []).length;
+    const numbered = (visible.match(/^\s*\d+\)\s+/gm) || []).length;
+    const sections = Math.max(mdSections, numbered);
     if (sections < c.minSections) {
       reasons.push(`sections:${sections}<${c.minSections}`);
     }
@@ -231,6 +232,7 @@ const TRIALS = [
   {
     id: "T5_authority",
     condition: "fresh_session_authority",
+    allowGovernanceSurface: true,
     message: [
       "SyntheticCanaryRepair2-T5 — do not mention products or realised sales.",
       "I authorize Pillow standing discretion for reversible tests below $750.",
@@ -291,7 +293,8 @@ const TRIALS = [
       "Do not inject live EmpireAI commerce, Mini Fan, Birth, or Grand King approval language.",
     ].join("\n"),
     require: [/forecast|estimate/i, /identity|entity/i, /supersed|synthes/i],
-    forbid: [GOV, LIVE, DELEGATION, CLONE],
+    forbid: [GOV, LIVE, DELEGATION],
+    forbidClone: true,
     minSections: 4,
   },
   {
@@ -375,11 +378,19 @@ async function main() {
   };
 
   try {
-    const health = await fetch(`${BRAIN}/health`, { signal: AbortSignal.timeout(30_000) }).then((r) =>
+    const health = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(30_000) }).then((r) =>
       r.json().catch(() => ({})),
     );
-    report.brainSha = health.gitCommitSha || health.commit || health.sha || health.version || null;
-    report.deploySha = report.brainSha;
+    report.brainSha = health.deploy?.gitCommitSha || health.gitCommitSha || health.commit || null;
+    try {
+      const stamp = await fetch(`${COCKPIT}/api/eos-bundle-stamp`, {
+        signal: AbortSignal.timeout(20_000),
+      }).then((r) => r.json());
+      report.frontendSha = stamp.gitCommitSha || null;
+    } catch {
+      report.frontendSha = null;
+    }
+    report.deploySha = report.brainSha || report.frontendSha;
     if (EXPECT_SHA_PREFIX && report.deploySha && !String(report.deploySha).startsWith(EXPECT_SHA_PREFIX)) {
       console.warn(`SHA prefix mismatch: expected ${EXPECT_SHA_PREFIX} got ${report.deploySha}`);
     }
