@@ -1,15 +1,16 @@
 # POST-FOUNDATION REPAIR 3 — Temporal occurrence + claim completeness + language + structure
 
 **Severity:** P0 Birth-blocking (engineering qualification only)  
-**Live SHA:** `64d17ca3`  
+**Live SHA (Level C):** `64d17ca3`  
+**Seal / current tip:** `1313b161` (seal) · `4d87378d` (docs/Level C script sync, pushed)  
 **Do not:** replay Lumen · run Wave T1/T2 · certify Wave 1 · authorize Birth
 
 ## Live ETA (seal)
 
 | Field | Value |
 |---|---|
-| CURRENT_LOCAL_TIME | 2026-08-20 ~02:16 +08:00 |
-| CURRENT_PHASE | SEALED |
+| CURRENT_LOCAL_TIME | 2026-08-20 03:26:48 +08:00 |
+| CURRENT_PHASE | SEALED / STOP |
 | PROGRESS | 100% |
 | WAVE_1 | UNCERTIFIED |
 | WAVE_1_CLEAN_STREAK | 0 |
