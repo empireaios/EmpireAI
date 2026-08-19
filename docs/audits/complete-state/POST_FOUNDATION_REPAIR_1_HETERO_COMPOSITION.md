@@ -79,7 +79,17 @@ Grand King + ChatGPT restart Wave 1 T1 with a **new** unseen test after deploy.
 |-----|------|
 | `85a6500e` | Core hetero + governance/recovery repair |
 | `baf64d7a` | TSC fix for Railway build |
-| `1495a973` | Synthetic-scoped release reconstruct (Level C 7/8; CASE6 still Mini Fan) |
+| `1495a973` | Synthetic-scoped release reconstruct (Level C 7/8; CASE6 Mini Fan) |
 | `ba470bb4` | Final chat-path hard-strip of synthetic→live briefing |
+| `6e2bc5a3` | **LIVE** — Level C **8/8 PASS** (2026-08-19) |
 
-Level C evidence artifact: `POST_FOUNDATION_REPAIR_1_LEVEL_C.json` (re-run after `ba470bb4` is live).
+Level C evidence: `POST_FOUNDATION_REPAIR_1_LEVEL_C.json`
+
+```
+WAVE_1_CURRENT_CERTIFICATION=UNCERTIFIED
+WAVE_1_CLEAN_STREAK=0
+WAVE_2_CURRENT_CERTIFICATION=UNCERTIFIED
+WAVE_3=LOCKED
+BIRTH_AUTHORISED=NO
+BIRTH_TIMESTAMP=NULL
+```

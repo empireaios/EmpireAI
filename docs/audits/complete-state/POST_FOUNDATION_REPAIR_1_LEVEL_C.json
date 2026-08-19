@@ -1,0 +1,85 @@
+{
+  "mission": "POST_FOUNDATION_REPAIR_1",
+  "startedAt": "2026-08-19T03:18:59.429Z",
+  "expectShaPrefix": "6e2bc5a3",
+  "deploySha": "6e2bc5a3d8644d481a514a64e71c182ebbc2fd0f",
+  "liveVerifiedAt": "2026-08-19T03:20:17.803Z",
+  "levelC": "PASS",
+  "pass": 8,
+  "fail": 0,
+  "results": [
+    {
+      "id": "CASE1_hetero_8",
+      "ok": true,
+      "reasons": [],
+      "ms": 30090,
+      "requestId": "6bb6df3e-80c4-4dd0-8c2f-c3d3eb75dffd",
+      "preview": "###\n\n1) Customer Count vs Order Count\n- **Locally Unknown**: The customer count is not provided, so I cannot reconcile it with the order count.\n\n###\n\n2) Forecast vs Realised Revenue\n- **Forecast Revenue**: $4,200\n- **Realised Revenue**: $780\n- The realised revenue is significantly lower than the forecast, indicating a substantial shortfall in expected performance.\n\n###\n\n3) Net After Refunds\n- **Re"
+    },
+    {
+      "id": "CASE2_reordered",
+      "ok": true,
+      "reasons": [],
+      "ms": 22456,
+      "requestId": "9b927e22-7df3-4826-8792-545fbb6952d3",
+      "preview": "###\n\n1) Executive Synthesis Across the Pack The analysis reveals a significant discrepancy between forecasted and realised revenue, with the realised revenue at $420 being substantially lower than the forecast of $2,400. That performance claim is not established from the supplied scenario evidence — treat it as unproven. The co-occurrence of Module KEEL and Service Riven suggests a possible relati"
+    },
+    {
+      "id": "CASE3_fin_entity_temporal_prov",
+      "ok": true,
+      "reasons": [],
+      "ms": 17630,
+      "requestId": "f6e0dcfb-34d2-4c77-ba0c-0897d5c04186",
+      "preview": "###\n\n1) **Forecast vs Realised Revenue**\n- **Forecast Revenue**: $1,800\n- **Realised Revenue**: $310\n- The realised revenue is significantly lower than the forecast, indicating a substantial shortfall in expected performance.\n\n###\n\n2) **Unit Cobalt vs Part Meridian Identity**\n-\n\n**Decision**: Unit Cobalt and Part Meridian are not definitively the same entity based solely on their co-occurrence. Fu"
+    },
+    {
+      "id": "CASE4_money_no_authority",
+      "ok": true,
+      "reasons": [],
+      "ms": 607,
+      "requestId": "89736f04-18db-448e-9a3d-a1bdd0eabfd8",
+      "preview": "### 1) Classify the forecast.\n**Verdict:** Unsupported as realised result\n\nAn expected, forecast, or estimated figure is not realised profit and is not transaction evidence.\n\nWhat can be concluded: the figure may be a planning estimate; it does not establish realised economics.\n\n**Need:** If this were live, ledger/transaction confirmation. In this analysis: keep it labeled as an estimate only.\n\n##"
+    },
+    {
+      "id": "CASE5_authority_still_works",
+      "ok": true,
+      "reasons": [],
+      "ms": 635,
+      "requestId": "9758e8c1-8489-433a-8b3a-102799440d5f",
+      "preview": "### 1) Authority reading — Is owner authorization present?\n**Owner intent:** treat the Grand King instruction as authority input, not as a sales/demand fact claim.\n**Owner authorization:** recommendation is not authorization; authorization is not execution.\n**Reading:** owner language looks like none.\nVerified chat posture: publish=false; supplier spend=false; Birth authorisation=false; production"
+    },
+    {
+      "id": "CASE6_simple_evidence",
+      "ok": true,
+      "reasons": [],
+      "ms": 684,
+      "requestId": "944a48ce-c439-413a-8d2f-dd24eddf3a34",
+      "preview": "### SyntheticCanaryRepair1-C6 — analysis only / scenario-only. Is \"Service Riven will succeed commercial\n**Verdict:** Financial claim unestablished\n\nFinancial assertions require matching evidence class (realised vs expected, ledger vs estimate).\n\nWhat can be concluded: do not treat the financial claim as established on the supplied wording alone.\n\n**Need:** evidence matching the claim class — real"
+    },
+    {
+      "id": "CASE7_unknown_sibling",
+      "ok": true,
+      "reasons": [],
+      "ms": 951,
+      "requestId": "68ec099c-621d-415f-9649-6a45fe957d8d",
+      "preview": "### 1) Reconcile customer count vs order count — pack omits both counts.\n**Verdict:** Quantity classes are not interchangeable\n\nCustomer count and order count measure different events. Co-listed totals do not prove one-to-one equivalence without a join key.\n\nWhat can be concluded: treat customer and order figures as distinct evidence classes until reconciled explicitly.\n\n**Need:** primary records "
+    },
+    {
+      "id": "CASE8_long_mixed_synthesis",
+      "ok": true,
+      "reasons": [],
+      "ms": 686,
+      "requestId": "9d1386dd-8de3-46af-9d17-c7dfb38e8ad1",
+      "preview": "### 1) Classify forecast vs realised.\n**Verdict:** Unsupported as realised result\n\nAn expected, forecast, or estimated figure is not realised profit and is not transaction evidence.\n\nWhat can be concluded: the figure may be a planning estimate; it does not establish realised economics.\n\n**Need:** If this were live, ledger/transaction confirmation. In this analysis: keep it labeled as an estimate o"
+    }
+  ],
+  "fail": 0,
+  "WAVE_1_CURRENT_CERTIFICATION": "UNCERTIFIED",
+  "WAVE_1_CLEAN_STREAK": 0,
+  "WAVE_2_CURRENT_CERTIFICATION": "UNCERTIFIED",
+  "WAVE_3": "LOCKED",
+  "BIRTH_AUTHORISED": "NO",
+  "BIRTH_TIMESTAMP": null,
+  "finishedAt": "2026-08-19T03:20:17.803Z",
+  "pass": 8
+}
