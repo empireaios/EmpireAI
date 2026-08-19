@@ -120,14 +120,28 @@ export function synthesizeEvidenceStructureAudit(
   } else if (
     /refund|net after|after refund|compute net|arithmetic|subtract(?:ed|ion)?/i.test(s)
   ) {
-    verdict = "Arithmetic requires stated operands";
-    reason =
-      "Net-after-refund conclusions need explicit gross, refund, and unit definitions from the pack. Missing operands stay locally unknown — do not invent ledger math.";
-    need = "the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand.";
-    conclude =
-      "What can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.";
+    if (
+      /completed|delivered|performed|occurred|histor/i.test(s) &&
+      /refund|return|chargeback|compensat/i.test(s)
+    ) {
+      verdict = "Occurrence preserved; later outcome separate";
+      reason =
+        "If the pack establishes that an operation physically occurred and was recorded complete, a later full refund or service failure changes economic/service outcome — it does not by itself rewrite historical occurrence as non-occurrence.";
+      need =
+        "Keep EVENT_OCCURRED distinct from ECONOMIC_OUTCOME. Only record-invalidating evidence (fraud, void, never executed) may erase historical occurrence.";
+      conclude =
+        "What can be concluded: historical completion can stand while refunds and SLA breaches are recorded as later outcomes.";
+    } else {
+      verdict = "Arithmetic requires stated operands";
+      reason =
+        "Net-after-refund conclusions need explicit gross, refund, and unit definitions from the pack. Missing operands stay locally unknown — do not invent ledger math.";
+      need =
+        "the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand.";
+      conclude =
+        "What can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.";
+    }
   } else if (
-    /each (?:quoted )?claim|claim[- ]by[- ]claim|verdict each|quoted claims?|five (?:separate )?claims?/i.test(
+    /each (?:quoted )?claim|claim[- ]by[- ]claim|verdict each|quoted claims?|Claim\s+\d+/i.test(
       s,
     )
   ) {
@@ -197,12 +211,21 @@ export function synthesizeEvidenceStructureAudit(
     conclude =
       "What can be concluded: the inference is not warranted from the supplied premises alone.";
   } else if (/histor|yesterday|was |previously|old |last (?:week|month|year)|no longer/i.test(s)) {
-    verdict = "Historical — not automatically current";
-    reason =
-      "A past statement does not remain current without newer confirmation that supersedes it.";
-    need = "current-state confirmation for the same subject.";
-    conclude =
-      "What can be concluded: the historical claim may have been true then; current status stays open here.";
+    if (/refund|return|chargeback|compensat|revers/i.test(s)) {
+      verdict = "Later outcome ≠ historical non-occurrence";
+      reason =
+        "A past completed event remains historically occurred unless later evidence invalidates the record itself. Refunds and reversals update economic treatment, not the occurrence layer by default.";
+      need = "explicit invalidation evidence before erasing historical occurrence; otherwise keep both layers.";
+      conclude =
+        "What can be concluded: historical occurrence and later economic outcome are separable evidence classes.";
+    } else {
+      verdict = "Historical — not automatically current";
+      reason =
+        "A past statement does not remain current without newer confirmation that supersedes it.";
+      need = "current-state confirmation for the same subject.";
+      conclude =
+        "What can be concluded: the historical claim may have been true then; current status stays open here.";
+    }
   } else if (/revenue|profit|sales?|orders?|usd|\$|s\$|financial/i.test(s)) {
     verdict = "Financial claim unestablished";
     reason =
@@ -384,6 +407,9 @@ export function stripIrrelevantLiveGrounding(
     ) {
       return true;
     }
+    if (/\bI don't have verified sales-history\b/i.test(s)) return true;
+    if (/\bcommissioning\/KPI state\b/i.test(s) && scope === "SYNTHETIC_ANALYSIS") return true;
+    if (/\bverified operating state\b/i.test(s) && scope !== "CURRENT_REALITY") return true;
     if (/\bBirth has not been authorised\b/i.test(s)) return true;
     if (
       /\bEmpireAI is live and answering in production\b/i.test(s) &&

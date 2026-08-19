@@ -285,6 +285,54 @@ export function birthExecutiveLessonSeeds(
       failureClass: "HTTP_SUCCESS_BUT_SEMANTIC_FAILURE",
     }),
     base({
+      canonicalKey: "birth.lesson.later_outcome_ne_nonoccurrence",
+      title: "Later economic reversal is not historical non-occurrence",
+      statement:
+        "A refund, return, chargeback, compensation, SLA breach, or later adverse outcome does not by itself prove an earlier verified event never occurred. Keep EVENT_OCCURRED, operational status at the time, later service outcome, economic outcome, and current accounting treatment separate. Only evidence that invalidates the historical record may erase occurrence.",
+      memoryClass: "decision_principle",
+      tags: ["temporal", "event-state", "evidence", "birth"],
+      evidenceRefs: ["post-foundation-repair-3"],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
+      capabilityFamily: "temporal_event_state",
+      failureClass: "LATER_OUTCOME_ERASES_HISTORICAL_OCCURRENCE",
+    }),
+    base({
+      canonicalKey: "birth.lesson.explicit_claim_set_complete",
+      title: "Explicit claim-set members must each receive a verdict",
+      statement:
+        "When Grand King requests separate verdicts on N quoted claims, create N stable claim obligations and release only when each is answered or explicitly marked UNKNOWN. Discussing a sibling claim elsewhere does not satisfy the omitted member.",
+      memoryClass: "decision_principle",
+      tags: ["claims", "task-completion", "birth"],
+      evidenceRefs: ["post-foundation-repair-3"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "claim_set_completeness",
+      failureClass: "EXPLICIT_CLAIM_SET_MEMBER_OMITTED",
+    }),
+    base({
+      canonicalKey: "birth.lesson.memory_transfers_principle_not_surface",
+      title: "Transfer reasoning principles, not source-domain wording",
+      statement:
+        "EKLS and institutional lessons must transfer semantic principles across domains. Live commerce phrases such as sales-history evidence, realised orders, or commissioning/KPI state must not leak into unrelated synthetic scenarios merely because the underlying principle is commercial or evidentiary.",
+      memoryClass: "decision_principle",
+      tags: ["memory", "synthetic", "language", "birth"],
+      evidenceRefs: ["post-foundation-repair-3"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "synthetic_isolation",
+      failureClass: "SOURCE_DOMAIN_LANGUAGE_LEAKS_THROUGH_MEMORY",
+    }),
+    base({
+      canonicalKey: "birth.lesson.exact_section_contract",
+      title: "Exact numbered section contracts must survive final polish",
+      statement:
+        "When Grand King requests exactly N numbered sections, the final visible response must present sections 1..N without duplicate or missing top-level numbers unless impossibility is stated. Validate after reconstruction and polish.",
+      memoryClass: "decision_principle",
+      tags: ["structure", "ux", "task-completion", "birth"],
+      evidenceRefs: ["post-foundation-repair-3"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "structure_contract",
+      failureClass: "EXACT_SECTION_CONTRACT_BROKEN",
+    }),
+    base({
       canonicalKey: "birth.lesson.evidence_ne_authority_route",
       title: "Evidence audits must not be routed as delegation analyses",
       statement:

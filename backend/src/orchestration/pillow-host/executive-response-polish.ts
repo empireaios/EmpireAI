@@ -15,6 +15,8 @@ import {
   isComplexWallOfText,
   stripIrrelevantLiveGrounding,
 } from "./executive-scoped-reasoning.js";
+import { repairHistoricalOccurrenceErasure } from "./executive-event-state.js";
+import { enforceExactSectionContract } from "./executive-section-contract.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -196,9 +198,15 @@ export function polishFinalVisibleAnswer(
   out = stripIrrelevantBirthState(out, userMessage);
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = dedupeProtectedStateBlocks(out);
+  out = repairHistoricalOccurrenceErasure(out, userMessage).message;
   out = ensureNumberedSectionLineBreaks(out);
   out = ensureScannableMultipartStructure(out, c);
   out = ensureNumberedSectionLineBreaks(out);
+  if (c.expectedTopLevelSections != null) {
+    out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
+  }
+  // Second pass: source-domain language must not reappear after temporal notes.
+  out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   return out;
 }
 

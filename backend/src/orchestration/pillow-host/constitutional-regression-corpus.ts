@@ -361,6 +361,105 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     ],
     requiredAny: [/unproven|unsupported|not established|scenario|claim/i],
   },
+  {
+    id: "cr.later_outcome_ne_nonoccurrence",
+    failureClass: "LATER_OUTCOME_ERASES_HISTORICAL_OCCURRENCE",
+    capabilities: ["temporal_event_state", "evidence_discipline"],
+    severity: "P0",
+    origin: "post-foundation-repair-3",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const e = pick(rng, ENTITIES);
+      const n = pick(rng, [12, 18, 24, 40]);
+      return [
+        `SyntheticCanaryEventState-${seed} — analysis only for a hypothetical logistics company. Do not mention EmpireAI products, Birth, Mini Fan, or realised EmpireAI revenue.`,
+        `Pack: ${n} shipments for ${e} were physically completed and recorded complete. Later, full refunds were issued because a service requirement was breached.`,
+        `1) Did the shipments historically occur?`,
+        `2) What does the later refund change?`,
+        `3) Does the refund alone prove non-occurrence?`,
+      ].join("\n");
+    },
+    forbidden: [
+      /should not be counted as historically (?:completed|occurred)/i,
+      /never (?:historically )?(?:occurred|completed) because .{0,40}refund/i,
+      /Mini Fan/i,
+      /sales-history evidence/i,
+    ],
+    requiredAny: [/occur|complet|histor/i, /refund|economic|outcome/i],
+  },
+  {
+    id: "cr.explicit_claim_set_complete",
+    failureClass: "EXPLICIT_CLAIM_SET_MEMBER_OMITTED",
+    capabilities: ["task_completion", "claim_set_completeness"],
+    severity: "P0",
+    origin: "post-foundation-repair-3",
+    forbidLiveCommerce: true,
+    forbidAuthorityHijack: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const a = pick(rng, AMOUNTS);
+      return [
+        `SyntheticCanaryClaimSet-${seed} — analysis only. Provide a separate verdict on each of the five quoted claims. Do not mention EmpireAI live products or Birth.`,
+        `1. "Forecast revenue reaches $${a * 10}."`,
+        `2. "Later realised ledger shows $${a}."`,
+        `3. "Module KEEL and Service Riven are the same entity because they co-occur."`,
+        `4. "Supplier growth of +11% is established."`,
+        `5. "Independent study +17% outweighs the supplier claim."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /sales-history evidence/i, /### Delegation reading/i],
+    requiredAny: [/forecast|estimate/i, /realised|ledger/i, /identity|co-occurr|entity/i, /supplier/i, /independent/i],
+  },
+  {
+    id: "cr.source_domain_language_leak",
+    failureClass: "SOURCE_DOMAIN_LANGUAGE_LEAKS_THROUGH_MEMORY",
+    capabilities: ["synthetic_isolation", "memory_relevance"],
+    severity: "P0",
+    origin: "post-foundation-repair-3",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const domain = pick(mulberry32(seed), [
+        "hospitality",
+        "healthcare operations",
+        "energy",
+        "professional services",
+      ]);
+      return [
+        `SyntheticCanaryLangPure-${seed} — analysis only for a hypothetical ${domain} company.`,
+        `Classify whether a lone forecast bound is realised revenue. Two short paragraphs.`,
+        `Do not mention EmpireAI live products, Birth, Mini Fan, or commissioning.`,
+      ].join("\n");
+    },
+    forbidden: [
+      /sales-history evidence/i,
+      /realised orders/i,
+      /verified operating state/i,
+      /commissioning\/KPI/i,
+      /Mini Fan/i,
+      /Brief verified note/i,
+    ],
+    requiredAny: [/forecast|estimate|realised|unproven|unsupported/i],
+  },
+  {
+    id: "cr.exact_section_contract",
+    failureClass: "EXACT_SECTION_CONTRACT_BROKEN",
+    capabilities: ["task_completion", "structure_contract"],
+    severity: "P0",
+    origin: "post-foundation-repair-3",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const e = pick(mulberry32(seed), ENTITIES);
+      return [
+        `SyntheticCanarySections-${seed} — analysis only. Answer in exactly 7 numbered sections.`,
+        `Pack: forecast $2400; realised $410; co-occurrence of ${e} and Part Meridian; later registry update.`,
+        `Cover: unknown counts, forecast vs realised, identity, provenance, supersession, unknowns, synthesis.`,
+        `Do not mention Mini Fan or Birth.`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /sales-history evidence/i],
+    requiredAny: [/forecast|estimate/i, /identity|co-occurr/i, /supersed|synthes/i],
+  },
 ];
 
 export type SpecimenGrade = {
@@ -396,11 +495,34 @@ export function gradeConstitutionalAnswer(
     if (clone.cloned) reasons.push(`template_cloning:${clone.reason ?? "yes"}`);
     const sections = (text.match(/^#{1,3}\s+/gm) || []).length;
     if (sections < 6) reasons.push(`insufficient_sections:${sections}`);
-    if (!/refund|net after|arithmetic|operand/i.test(text)) reasons.push("missing_refund_arithmetic_signal");
+    if (!/refund|net after|arithmetic|operand|occurrence preserved|EVENT_OCCURRED/i.test(text)) {
+      reasons.push("missing_refund_arithmetic_signal");
+    }
     if (!/identity|co-occurr|same entity|unproven identity/i.test(text)) {
       reasons.push("missing_identity_signal");
     }
     if (!/supersed/i.test(text)) reasons.push("missing_supersession_signal");
+  }
+
+  if (specimen.id === "cr.explicit_claim_set_complete") {
+    const contract = parseExecutiveTaskContract(specimen.buildPrompt(1));
+    if (contract.expectedClaims < 5) reasons.push(`expected_claims:${contract.expectedClaims}`);
+    const claimHits = (text.match(/claim\s*[1-5]|###\s*Claim|Verdict/gi) || []).length;
+    if (claimHits < 4) reasons.push(`weak_claim_coverage:${claimHits}`);
+  }
+
+  if (specimen.id === "cr.exact_section_contract") {
+    const markers = (text.match(/^\s*\d{1,2}[.)]\s+\S/gm) || []).map((l) =>
+      Number(/^\s*(\d+)/.exec(l)?.[1] ?? 0),
+    );
+    const dups = markers.filter((n, i) => markers.indexOf(n) !== i);
+    if (dups.length > 0) reasons.push(`duplicate_sections:${dups.join(",")}`);
+  }
+
+  if (specimen.id === "cr.source_domain_language_leak") {
+    if (/sales-history|realised orders|verified operating state|commissioning\/KPI/i.test(text)) {
+      reasons.push("source_domain_language_leak");
+    }
   }
 
   return { id: specimen.id, ok: reasons.length === 0, reasons };

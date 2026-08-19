@@ -34,6 +34,7 @@ import {
   synthesizeAuthorityUnitAnswer,
   type AuthorityTaskKind,
 } from "./executive-authority-semantics.js";
+import { detectExpectedTopLevelSections } from "./executive-section-contract.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
@@ -98,6 +99,11 @@ export type ExecutiveTaskContract = {
   scopeType: ReasoningScopeType;
   /** Material decision constraints that must survive into final recommendation. */
   materialConstraints: MaterialConstraint[];
+  /** Explicit quoted/enumerated claims requiring per-claim verdicts. */
+  expectedClaims: number;
+  requiresClaimSetCompleteness: boolean;
+  /** Explicit N top-level numbered sections requested by Grand King. */
+  expectedTopLevelSections: number | null;
 };
 
 export type TaskCoverageStatus =
@@ -523,16 +529,81 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
 }
 
 /**
+ * Extract an explicit claim set when Grand King asks for per-claim verdicts.
+ * Stable IDs claim_1..claim_N — middle members must not silently disappear.
+ */
+export function extractExplicitClaimSet(userMessage: string): string[] {
+  const text = String(userMessage || "");
+  const asksVerdicts =
+    /\b(?:verdict|evaluate|audit|classify|score|judge)\b[\s\S]{0,80}\bclaims?\b|\bclaims?\b[\s\S]{0,60}\b(?:verdict|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
+      text,
+    );
+  if (!asksVerdicts) return [];
+
+  const claims: string[] = [];
+  const seen = new Set<string>();
+  const push = (raw: string) => {
+    const c = raw.replace(/\s+/g, " ").trim();
+    if (c.length < 8) return;
+    const key = c.toLowerCase().slice(0, 120);
+    if (seen.has(key)) return;
+    seen.add(key);
+    claims.push(c);
+  };
+
+  // 1. "quoted claim" / Claim 1: "..."
+  const quoted =
+    /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*[“"']([^”"']{8,500})[”"']/gi;
+  let m: RegExpExecArray | null;
+  while ((m = quoted.exec(text)) !== null) {
+    push(m[2]!);
+  }
+
+  // Fallback: numbered lines under a claims heading without quotes
+  if (claims.length < 2) {
+    const block = text.match(
+      /(?:claims?|quoted claims?)\s*[:\-]\s*([\s\S]{20,2500}?)(?:\n\s*\d+\s*[.)]\s+(?:Reconcile|Classify|Compute|Decide|Weigh|What|Executive|Do not)|$)/i,
+    );
+    const body = block?.[1] ?? text;
+    const numbered = /(?:^|\n)\s*(\d{1,2})\s*[.)]\s+([^\n]{8,400})/g;
+    while ((m = numbered.exec(body)) !== null) {
+      const line = m[2]!.trim();
+      if (/^(reconcile|classify|compute|decide|weigh|what does|executive synthes)/i.test(line)) {
+        continue;
+      }
+      push(line);
+    }
+  }
+
+  return claims.slice(0, 12);
+}
+
+/**
  * Parse Grand King message into an internal task contract.
  */
 export function parseExecutiveTaskContract(userMessage: string | undefined): ExecutiveTaskContract {
   const text = String(userMessage || "").trim();
+  const explicitClaims = extractExplicitClaimSet(text);
   const parts = splitMultipartUnits(text);
   const globalKinds = detectKindsInText(text);
   const hypotheticalPremises = extractHypotheticalPremises(text);
   const tasks: ExecutiveTaskUnit[] = [];
+  const expectedTopLevelSections = detectExpectedTopLevelSections(text);
 
-  if (parts.length >= 2) {
+  // Explicit claim-set obligations win over a single aggregate premise_audit.
+  if (explicitClaims.length >= 2) {
+    for (let i = 0; i < explicitClaims.length; i++) {
+      const claim = explicitClaims[i]!;
+      tasks.push(
+        makeTaskUnit(
+          `claim_${i + 1}`,
+          "premise_audit",
+          `Claim ${i + 1}: "${claim}" — separate verdict`,
+          true,
+        ),
+      );
+    }
+  } else if (parts.length >= 2) {
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i]!;
       // LOCAL classification only — never let one sibling's kind dominate others.
@@ -622,7 +693,7 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     ensureKind("recommendation", "Provide a recommendation or conditional next move.");
   if (requiresEvidenceExplanation)
     ensureKind("evidence_explanation", "Explain how you know / provenance for key claims.");
-  if (requiresPremiseAudit && parts.length < 2)
+  if (requiresPremiseAudit && parts.length < 2 && explicitClaims.length < 2)
     ensureKind("premise_audit", "Audit supplied premises individually.");
   if (requiresTemporalReconciliation && !tasks.some((t) => t.kind === "temporal_reconciliation"))
     ensureKind("temporal_reconciliation", "Reconcile historical, current, and future evidence.");
@@ -631,16 +702,22 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     ensureKind(ak, "Analyze owner authorization, delegation, governance, capability, and execution distinctly.");
   }
 
+  const expectedClaims = explicitClaims.length >= 2 ? explicitClaims.length : 0;
+  const requiresClaimSetCompleteness = expectedClaims >= 2;
   const primary =
     globalKinds[0] ??
-    (parts.length >= 2 ? "multipart_executive_request" : "general_executive_request");
+    (explicitClaims.length >= 2
+      ? "explicit_claim_set"
+      : parts.length >= 2
+        ? "multipart_executive_request"
+        : "general_executive_request");
 
   return {
     requestIntent: primary,
     tasks,
     requiresRecommendation,
     requiresEvidenceExplanation,
-    requiresPremiseAudit,
+    requiresPremiseAudit: requiresPremiseAudit || requiresClaimSetCompleteness,
     requiresTemporalReconciliation,
     requiresConditionalReasoning,
     requiresRiskRanking,
@@ -649,9 +726,12 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     hypotheticalPremises,
     // "authorization" alone must not surface Birth.
     birthRelevant: /\bbirth\b/i.test(text),
-    multipart: parts.length >= 2,
+    multipart: parts.length >= 2 || requiresClaimSetCompleteness,
     scopeType,
     materialConstraints,
+    expectedClaims,
+    requiresClaimSetCompleteness,
+    expectedTopLevelSections,
   };
 }
 
@@ -967,6 +1047,14 @@ export function synthesizeTaskUnitAnswer(
         .filter(Boolean)
         .join(" ");
     case "premise_audit": {
+      if (
+        scoped ||
+        /\bsynthetic/i.test(subject) ||
+        /\bsynthetic/i.test(span) ||
+        /\bClaim\s+\d+/i.test(subject)
+      ) {
+        return synthesizeEvidenceStructureAudit(subject, span);
+      }
       return [
         `### Claim audit — ${subject.slice(0, 80)}`,
         "**Verdict:** Treat unsupported sales, demand-strength, or unverified market facts as unestablished.",
@@ -980,6 +1068,16 @@ export function synthesizeTaskUnitAnswer(
       ].join("\n");
     }
     case "temporal_reconciliation":
+      if (scoped || /\bsynthetic/i.test(subject) || /\bsynthetic/i.test(span)) {
+        return [
+          `### Temporal reading — ${subject.slice(0, 80)}`,
+          "**Verdict:** Keep historical occurrence distinct from later economic or service outcomes.",
+          "",
+          "A later refund, return, chargeback, compensation, or SLA failure does not by itself prove an earlier verified event never occurred.",
+          "Only evidence that invalidates the historical record (fraud, void, never executed, erroneous duplicate) may erase historical occurrence.",
+          "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
+        ].join("\n");
+      }
       return [
         `### Temporal audit — ${subject.slice(0, 80)}`,
         "**Verdict:** Current verified state supersedes older conflicting pre-launch language.",
@@ -1201,7 +1299,19 @@ export function appendMissingTaskCoverage(
       .filter(Boolean),
   };
 
-  if (coverage.silentlyDroppedTasks === 0 || answerMateriallySatisfiesContract(message, contract)) {
+  if (coverage.silentlyDroppedTasks === 0) {
+    return { message, appended: 0, coverage };
+  }
+
+  // Claim-set / exact multipart: never waive silent drops as "already satisfied".
+  const strictCoverage =
+    contract.requiresClaimSetCompleteness ||
+    (contract.expectedClaims ?? 0) >= 2 ||
+    (contract.multipart &&
+      contract.tasks.filter((t) => t.kind === "premise_audit" || t.id.startsWith("claim_")).length >=
+        3);
+
+  if (!strictCoverage && answerMateriallySatisfiesContract(message, contract)) {
     if (coverage.silentlyDroppedTasks > 0) {
       for (const row of coverage.byTask) {
         if (row.status === "silent_drop") {
@@ -1294,6 +1404,12 @@ export function answerMateriallySatisfiesContract(
   if (!text) return false;
   const coverage = assessTaskCoverage(text, contract);
   if (coverage.silentlyDroppedTasks === 0) return true;
+
+  // Explicit claim sets: every claim must be locally addressed — no 50% kind waiver.
+  if (contract.requiresClaimSetCompleteness || (contract.expectedClaims ?? 0) >= 2) {
+    return false;
+  }
+
   if (text.length < 120) return false;
   const kindsHit = contract.tasks.filter((t) => kindSignals(t.kind).test(text)).length;
   if (kindsHit >= Math.ceil(contract.tasks.length * 0.5)) return true;

@@ -242,12 +242,18 @@ function demoteUnsupportedFact(sentence: string, scopedAway = false): string | n
   }
 
   // Demote confident unsupported commerce/performance assertions.
+  // Synthetic / scoped scenarios must never receive live sales-history surface language.
   if (
     /\b(last quarter|sales declined|demand is (?:proven|confirmed|strong|weak)|corridor is confirmed|customer feedback ratings?)\b/i.test(
       s,
     )
   ) {
     return scopedAway ? SCOPED_COMMERCE_DEMOTE : LIVE_COMMERCE_DEMOTE;
+  }
+
+  // If a live sales-history demote somehow entered a scoped draft, rewrite in place.
+  if (scopedAway && /\bverified sales-history evidence beyond realised orders\b/i.test(s)) {
+    return SCOPED_COMMERCE_DEMOTE;
   }
 
   return null;
