@@ -3,6 +3,7 @@
  * Does NOT replay Asteria / sealed Wave exams. Does NOT certify Wave 1.
  *
  * Usage: node backend/scripts/pillow-post-foundation-repair1-levelc.mjs
+ * Expect deploy SHA containing hard-strip for synthetic→live briefing (ba470bb4+).
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
