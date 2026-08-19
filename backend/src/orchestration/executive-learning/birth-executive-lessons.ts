@@ -225,6 +225,66 @@ export function birthExecutiveLessonSeeds(
       failureClass: "accepted_request_residue_contamination",
     }),
     base({
+      canonicalKey: "birth.lesson.first_accepted_must_complete",
+      title: "First accepted request must complete usefully or fail honestly",
+      statement:
+        "For certification and Grand King traffic, the first accepted user request is authoritative. Soft verified-operating-state or catching-up boilerplate is not a completed executive answer. If infrastructure cannot finish, surface an honest terminal — never a fake success.",
+      memoryClass: "decision_principle",
+      tags: ["reliability", "first-request", "certification", "birth"],
+      evidenceRefs: ["post-foundation-repair-2"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "first_request_completion",
+      failureClass: "FIRST_ACCEPTED_REQUEST_DEGRADED_INSTEAD_OF_COMPLETED",
+    }),
+    base({
+      canonicalKey: "birth.lesson.normal_response_no_recovery_residue",
+      title: "Normal completed answers must not carry recovery residue",
+      statement:
+        "Phrases about resubmit, catching up, continuing from this request, or bringing systems online must not appear in normal successfully completed reasoning answers.",
+      memoryClass: "decision_principle",
+      tags: ["reliability", "ux", "birth"],
+      evidenceRefs: ["post-foundation-repair-2"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "accepted_request_reliability",
+      failureClass: "NORMAL_RESPONSE_RECOVERY_RESIDUE",
+    }),
+    base({
+      canonicalKey: "birth.lesson.certification_grades_visible_surface",
+      title: "Certification must grade Grand-King-visible surface",
+      statement:
+        "A production certification that grades only HTTP 200 or raw API text while the Cockpit sanitizer shows soft fallback is a false PASS. Oracle must grade the final visible response and reject terminal/fallback as useful semantic completion.",
+      memoryClass: "decision_principle",
+      tags: ["certification", "integrity", "birth"],
+      evidenceRefs: ["post-foundation-repair-2"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "certification_integrity",
+      failureClass: "CERTIFICATION_FALSE_PASS",
+    }),
+    base({
+      canonicalKey: "birth.lesson.first_request_vs_retry",
+      title: "Retry success cannot rewrite first-request failure",
+      statement:
+        "A later retry or warm second turn must not convert an initial first-request certification failure into PASS. Aggregate streaks must report first-request failures separately.",
+      memoryClass: "decision_principle",
+      tags: ["certification", "first-request", "birth"],
+      evidenceRefs: ["post-foundation-repair-2"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "certification_integrity",
+      failureClass: "FIRST_REQUEST_VS_RETRY_DIVERGENCE",
+    }),
+    base({
+      canonicalKey: "birth.lesson.http_success_ne_semantic_success",
+      title: "HTTP success is not semantic success",
+      statement:
+        "HTTP 200 with empty, terminal, partial, duplicate-template, or useless prose is semantic failure for certification even when transport succeeded.",
+      memoryClass: "decision_principle",
+      tags: ["certification", "reliability", "birth"],
+      evidenceRefs: ["post-foundation-repair-2"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "certification_integrity",
+      failureClass: "HTTP_SUCCESS_BUT_SEMANTIC_FAILURE",
+    }),
+    base({
       canonicalKey: "birth.lesson.evidence_ne_authority_route",
       title: "Evidence audits must not be routed as delegation analyses",
       statement:

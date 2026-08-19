@@ -10,9 +10,11 @@ import type {
 } from "./types";
 import { toExecutiveSurfaceMessage } from "./executive-surface";
 
-const PILLOW_REQUEST_TIMEOUT_MS = 128_000;
-const PILLOW_SESSION_TIMEOUT_MS = 130_000;
-const MAX_RETRIES = 3;
+/** Outer of BFF (280s) — must exceed upstream so first request can finish. */
+const PILLOW_REQUEST_TIMEOUT_MS = 290_000;
+const PILLOW_SESSION_TIMEOUT_MS = 60_000;
+/** One automatic retry only — never hide first-request failure behind a warm streak. */
+const MAX_RETRIES = 2;
 const BASE_DELAY_MS = 400;
 
 function sleep(ms: number): Promise<void> {

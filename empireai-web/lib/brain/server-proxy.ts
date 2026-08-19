@@ -6,11 +6,11 @@ const AUTH_UPSTREAM_TIMEOUT_MS = 55_000;
 const DISPATCH_UPSTREAM_TIMEOUT_MS = 55_000;
 /**
  * Pillow chat: context assembly + LLM + Tier-0 bounded recovery.
- * Must stay under Vercel route maxDuration (130s on pillow catch-all).
- * Must exceed Tier-0 recovery budget (~118s) so BFF is not the shorter killer.
+ * Must stay under Vercel route maxDuration (300s on pillow catch-all — Repair 2).
+ * Must exceed Tier-0 recovery budget so BFF is not the shorter killer.
  */
-const PILLOW_UPSTREAM_TIMEOUT_MS = 125_000;
-const PILLOW_SESSION_UPSTREAM_TIMEOUT_MS = 130_000;
+const PILLOW_UPSTREAM_TIMEOUT_MS = 280_000;
+const PILLOW_SESSION_UPSTREAM_TIMEOUT_MS = 60_000;
 const PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS = 10_000;
 
 /** Resolve Brain API base URL for server-side BFF proxy routes. */

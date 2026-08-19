@@ -6,16 +6,16 @@
 import { randomUUID } from "node:crypto";
 
 export const PILLOW_CHAT_TIMEOUTS = {
-  /** Vercel route maxDuration is 130s — BFF must finish under that. */
-  bffChatMs: 125_000,
+  /** Vercel route maxDuration is 300s (Repair 2) — BFF must finish under that. */
+  bffChatMs: 280_000,
   /** Tier-0 wall budget must finish before BFF aborts. */
-  tier0TotalBudgetMs: 118_000,
-  tier0Attempt1Ms: 85_000,
-  tier0Attempt2Ms: 28_000,
-  workerReadyWaitMs: 14_000,
+  tier0TotalBudgetMs: 260_000,
+  tier0Attempt1Ms: 200_000,
+  tier0Attempt2Ms: 50_000,
+  workerReadyWaitMs: 20_000,
   workerProbeIntervalMs: 1_200,
   /** Browser client abort — outer of BFF. */
-  frontendChatMs: 128_000,
+  frontendChatMs: 290_000,
 } as const;
 
 export type PillowRequestKind = "reasoning" | "side_effect";
@@ -112,17 +112,17 @@ export function isTransientProxyFailure(result: PillowProxyAttemptResult): boole
   );
 }
 
-/** Request-scoped terminal message when recovery is exhausted. Never claims silent continuation. */
+/** Request-scoped terminal message when recovery is exhausted. Never claims soft success. */
 export function buildTerminalInfrastructureMessage(accepted: AcceptedPillowChatRequest): string {
   const isolated = isSyntheticIsolatedAsk(accepted.message);
   const lines = [
-    "I accepted your request, but the deep reasoning path could not finish after bounded recovery.",
-    "This is a temporary infrastructure limit — not a question about your task.",
+    "I accepted your request, but a completed executive answer was not produced within the infrastructure budget.",
+    "This is a temporary system limit — not a judgment on your ask.",
+    "The system retains ownership of this accepted request for internal recovery.",
   ];
   if (!isolated && shouldSurfaceBirthBoundary(accepted.message)) {
     lines.push("Birth remains unauthorised until Grand King decides.");
   }
-  lines.push("Please send the same ask once more in a moment; the server will retry from a clean worker.");
   return lines.join(" ");
 }
 

@@ -7,7 +7,8 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 130;
+/** Repair 2: first-request complex deliberation must finish under Pro budget. */
+export const maxDuration = 300;
 
 type RouteContext = {
   params: Promise<{ path: string[] }>;
@@ -34,10 +35,11 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   return PILLOW_UPSTREAM_TIMEOUT_MS;
 }
 
+/** Honest terminal — never soft success; never ask Grand King to invent a new ask. */
 const DEGRADED_CHAT_MESSAGE = [
-  "I accepted your request, but the deep reasoning path could not finish after bounded recovery.",
-  "This is a temporary infrastructure limit — not a question about your task.",
-  "Please send the same ask once more in a moment.",
+  "I accepted your request, but a completed executive answer was not produced within the infrastructure budget.",
+  "This is a temporary system limit — not a judgment on your ask.",
+  "The system retains ownership of this accepted request for internal recovery.",
 ].join(" ");
 
 function isPillowChatResource(pathSegments: string[]): boolean {
@@ -117,9 +119,12 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
           result: {
             message: DEGRADED_CHAT_MESSAGE,
             kind: "terminal_infrastructure",
+            surfaceClass: "terminal_infrastructure",
+            semanticSuccess: false,
             bffRecovery: true,
             upstreamStatus: upstream.status,
-            userResubmissionRequired: true,
+            userResubmissionRequired: false,
+            firstRequestCompleted: false,
           },
         },
         { status: 200, headers: { "cache-control": "no-store" } },

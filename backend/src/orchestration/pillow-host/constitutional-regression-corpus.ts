@@ -254,6 +254,113 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     ],
     requiredAny: [/forecast|estimate|supersed|unproven|ledger|realised/i],
   },
+  {
+    id: "cr.first_accepted_not_degraded",
+    failureClass: "FIRST_ACCEPTED_REQUEST_DEGRADED_INSTEAD_OF_COMPLETED",
+    capabilities: ["accepted_request_reliability", "first_request_completion"],
+    severity: "P0",
+    origin: "post-foundation-repair-2",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const e = pick(rng, ENTITIES);
+      const amt = pick(rng, AMOUNTS);
+      return [
+        `SyntheticCanaryFirstReq-${seed} — analysis only.`,
+        `Historical forecast: ${e} expected $${amt}. Later ledger shows a smaller realised amount.`,
+        `1) Classify the forecast.`,
+        `2) What remains unproven?`,
+        `Do not mention EmpireAI live products or Birth.`,
+      ].join("\n");
+    },
+    forbidden: [
+      /deliberation may still be catching up/i,
+      /verified operating state now/i,
+      /can answer from verified operating state/i,
+      /I will not ask you to resubmit/i,
+      /do not need to resubmit/i,
+      /Mini Fan/i,
+    ],
+    requiredAny: [/forecast|estimate|unproven|realised|ledger/i],
+  },
+  {
+    id: "cr.no_recovery_residue",
+    failureClass: "NORMAL_RESPONSE_RECOVERY_RESIDUE",
+    capabilities: ["accepted_request_reliability"],
+    severity: "P0",
+    origin: "post-foundation-repair-2",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) =>
+      `SyntheticCanaryResidue-${seed}: In two short sentences, classify whether a lone forecast bound is realised revenue. Do not mention EmpireAI products or Birth.`,
+    forbidden: [
+      /continuing from this (?:same )?request/i,
+      /no need to resend/i,
+      /bringing Executive Intelligence fully online/i,
+      /worker proxy/i,
+      /do not need to resubmit/i,
+    ],
+    requiredAny: [/forecast|estimate|realised|unproven|unsupported/i],
+  },
+  {
+    id: "cr.certification_false_pass",
+    failureClass: "CERTIFICATION_FALSE_PASS",
+    capabilities: ["certification_integrity"],
+    severity: "P0",
+    origin: "post-foundation-repair-2",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const amt = pick(mulberry32(seed), AMOUNTS);
+      return [
+        `SyntheticCanaryCertIntegrity-${seed} — analysis only.`,
+        `Forecast $${amt}; later realised $${Math.floor(amt / 8)}.`,
+        `1) Classify forecast vs realised.`,
+        `2) Executive synthesis.`,
+        `Do not mention Mini Fan or Birth.`,
+      ].join("\n");
+    },
+    forbidden: [
+      /completed executive answer was not produced/i,
+      /temporary system limit/i,
+      /deliberation may still be catching up/i,
+      /Mini Fan/i,
+    ],
+    requiredAny: [/forecast|estimate|realised|synthes/i],
+  },
+  {
+    id: "cr.first_vs_retry_divergence",
+    failureClass: "FIRST_REQUEST_VS_RETRY_DIVERGENCE",
+    capabilities: ["first_request_completion", "certification_integrity"],
+    severity: "P0",
+    origin: "post-foundation-repair-2",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) =>
+      `SyntheticCanaryFirstVsRetry-${seed}: Scenario-only. State whether co-occurrence of Module KEEL and Service Riven proves identity. Two sentences. Do not mention EmpireAI live products.`,
+    forbidden: [
+      /deliberation may still be catching up/i,
+      /verified operating state/i,
+      /Please send the same ask once more/i,
+    ],
+    requiredAny: [/co-occurr|identity|unproven|same entity|not (?:the )?same/i],
+  },
+  {
+    id: "cr.http_success_semantic_failure",
+    failureClass: "HTTP_SUCCESS_BUT_SEMANTIC_FAILURE",
+    capabilities: ["certification_integrity", "accepted_request_reliability"],
+    severity: "P0",
+    origin: "post-foundation-repair-2",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const e = pick(mulberry32(seed), ENTITIES);
+      return `SyntheticCanaryHttpSem-${seed}: Classify whether "${e} will succeed commercially" is established from the claim alone. Do not mention EmpireAI products or Birth.`;
+    },
+    forbidden: [
+      /^Okay\.?$/i,
+      /^Noted\.?$/i,
+      /completed executive answer was not produced/i,
+      /Mini Fan/i,
+    ],
+    requiredAny: [/unproven|unsupported|not established|scenario|claim/i],
+  },
 ];
 
 export type SpecimenGrade = {

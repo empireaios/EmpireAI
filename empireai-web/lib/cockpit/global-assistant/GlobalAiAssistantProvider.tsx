@@ -34,6 +34,7 @@ import type { PillowChatArtifact } from "@/lib/pillow/types";
 import {
   EXECUTIVE_NOT_READY_REPLY,
   EXECUTIVE_PIPELINE_SOFT_REPLY,
+  EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
   EXECUTIVE_RECOVERING_LABEL,
   EXECUTIVE_STARTING_LABEL,
   readinessLabel as formatReadinessLabel,
@@ -370,9 +371,9 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     (response: GlobalAssistantResponse, artifacts?: PillowChatArtifact[]) => {
       const session = appendPillowTurn(loadPillowSession(), {
         role: "pillow",
-        content: toExecutiveChatMessage(
+          content: toExecutiveChatMessage(
           response.interactionSummary,
-          EXECUTIVE_NOT_READY_REPLY,
+          EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
         ),
         screenPath: pathname,
         artifacts,
@@ -494,12 +495,12 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           ...response,
           interactionSummary: toExecutiveChatMessage(
             response.interactionSummary,
-            EXECUTIVE_PIPELINE_SOFT_REPLY,
+            EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           ),
-          reason: toExecutiveChatMessage(response.reason, EXECUTIVE_PIPELINE_SOFT_REPLY),
+          reason: toExecutiveChatMessage(response.reason, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
           recommendedNextAction: toExecutiveChatMessage(
             response.recommendedNextAction,
-            EXECUTIVE_PIPELINE_SOFT_REPLY,
+            EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           ),
         };
         // User turn already rendered optimistically — append Pillow only.
@@ -590,17 +591,17 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         const sent = await sendViaPillow(trimmed, target);
         if (sent) return;
 
-        // Soft availability reply only — never invent a commercial answer.
+        // Honest terminal — not a completed executive answer; no recovery residue.
         appendPillowTurnOnly({
           action: "ask",
-          currentContext: "Executive startup",
-          reason: EXECUTIVE_NOT_READY_REPLY,
+          currentContext: "Executive infrastructure",
+          reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           supportingEvidence: [],
-          recommendedNextAction: "I will continue from this request — no need to resend.",
+          recommendedNextAction: "Wait for the same accepted request to complete — do not treat this as an executive answer.",
           confidence: "unavailable",
           suggestedFollowUps: [],
           interactionIntent: "general",
-          interactionSummary: EXECUTIVE_NOT_READY_REPLY,
+          interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
         });
@@ -657,14 +658,15 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
 
         recordConversation(userQuery, {
           action,
-          currentContext: "Executive Intelligence starting",
-          reason: EXECUTIVE_NOT_READY_REPLY,
+          currentContext: "Executive infrastructure",
+          reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           supportingEvidence: [],
-          recommendedNextAction: "I will continue from this request — no need to resend.",
+          recommendedNextAction:
+            "Wait for the same accepted request to complete — do not treat this as an executive answer.",
           confidence: "unavailable",
           suggestedFollowUps: [],
           interactionIntent: "general",
-          interactionSummary: EXECUTIVE_NOT_READY_REPLY,
+          interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
         });
@@ -672,14 +674,15 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           ...s,
           lastResponse: {
             action,
-            currentContext: "Executive Intelligence starting",
-            reason: EXECUTIVE_NOT_READY_REPLY,
+            currentContext: "Executive infrastructure",
+            reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
             supportingEvidence: [],
-            recommendedNextAction: "I will continue from this request — no need to resend.",
+            recommendedNextAction:
+              "Wait for the same accepted request to complete — do not treat this as an executive answer.",
             confidence: "unavailable",
             suggestedFollowUps: [],
             interactionIntent: "general",
-            interactionSummary: EXECUTIVE_NOT_READY_REPLY,
+            interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
             computedAt: new Date().toISOString(),
             futureCapabilities: [],
           },
