@@ -32,8 +32,6 @@ import { createPillowHostSession, fetchPillowHistory, sendPillowChat } from "@/l
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
 import type { PillowChatArtifact } from "@/lib/pillow/types";
 import {
-  EXECUTIVE_NOT_READY_REPLY,
-  EXECUTIVE_PIPELINE_SOFT_REPLY,
   EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
   EXECUTIVE_RECOVERING_LABEL,
   EXECUTIVE_STARTING_LABEL,
