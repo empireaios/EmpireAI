@@ -375,24 +375,31 @@ async function main() {
   };
 
   try {
-    const health = await fetch(`${BRAIN}/api/health`, { signal: AbortSignal.timeout(15_000) }).then((r) =>
+    const health = await fetch(`${BRAIN}/health`, { signal: AbortSignal.timeout(30_000) }).then((r) =>
       r.json().catch(() => ({})),
     );
-    report.brainSha = health.gitCommitSha || health.commit || health.sha || null;
+    report.brainSha = health.gitCommitSha || health.commit || health.sha || health.version || null;
     report.deploySha = report.brainSha;
     if (EXPECT_SHA_PREFIX && report.deploySha && !String(report.deploySha).startsWith(EXPECT_SHA_PREFIX)) {
       console.warn(`SHA prefix mismatch: expected ${EXPECT_SHA_PREFIX} got ${report.deploySha}`);
     }
 
-    const cookie = await login();
+    const loginRes = await fetch(`${COCKPIT}/api/auth/login`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const cookie = extractCookie(loginRes);
+    if (!cookie) throw new Error(`login_failed_${loginRes.status}`);
     let priorSession = null;
     const latencies = [];
 
     for (const trial of TRIALS) {
-      const sessionId =
-        trial.reusePriorSession && priorSession ? priorSession : await freshSession(cookie);
-      if (!trial.reusePriorSession) priorSession = sessionId;
-      else priorSession = sessionId;
+      const sessionId = trial.reusePriorSession && priorSession
+        ? priorSession
+        : `pfr2_${trial.id}_${Date.now()}`;
+      priorSession = sessionId;
 
       console.log(`[LevelC] ${trial.id} session=${sessionId.slice(0, 8)}…`);
       const chat = await firstRequestChat(cookie, sessionId, trial.message);
