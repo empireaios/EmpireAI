@@ -1,78 +1,78 @@
 {
   "mission": "REASONING_CORE_SIMPLIFICATION",
-  "startedAt": "2026-08-20T11:55:38.369Z",
-  "brainSha": "b9a62bbe8bf7f03100ae578f738e2cbb2ab9d8c7",
-  "frontendSha": "b9a62bbe8bf7f03100ae578f738e2cbb2ab9d8c7",
+  "startedAt": "2026-08-20T12:53:50.954Z",
+  "brainSha": "7038c3b13993cccf20c880720dacbf226693b266",
+  "frontendSha": "7038c3b13993cccf20c880720dacbf226693b266",
   "results": [
     {
       "id": "L0_entity",
       "ok": true,
       "reasons": [],
-      "ms": 7080,
+      "ms": 8193,
       "kind": "llm",
-      "preview": "1. \"ZX-11 is definitely Partner Assembly.\"\n\n**Verdict:** This claim is **false**. The verified asset registry indicates that ZX-11 is not Partner Assembly; it is distinct from QR-42, which is identified as Partner Assembly.\n\n2. \"ZX-11 is No"
+      "preview": "1. **Claim:** \"ZX-11 is definitely Partner Assembly.\"\n\n**Verdict:** This claim is **false**. The verified asset registry identifies ZX-11 as the North Pier Module, not Partner Assembly.\n\n2. **Claim:** \"ZX-11 is North Pier Module.\"\n\n**Verdic"
     },
     {
       "id": "L0_population",
       "ok": true,
       "reasons": [],
-      "ms": 8872,
+      "ms": 6174,
       "kind": "llm",
-      "preview": "**Verdict:** This claim is **false**. The statement \"All 120 deployed sites demonstrate a 10% saving\" cannot be verified because the average reduction of 10% is only applicable to the 80 currently valid measured sites. The performance of th"
+      "preview": "**Claim:** \"All 120 deployed sites demonstrate a 10% saving.\"\n\n**Verdict:** This claim is **false**. The 10% average reduction is only applicable to the 80 currently valid measured sites, not the entire population of 120 deployed sites. The"
     },
     {
       "id": "L0_occurrence",
       "ok": true,
       "reasons": [],
-      "ms": 4214,
+      "ms": 6597,
       "kind": "llm",
-      "preview": "1) **Did shipments historically occur?**\n\n**Verdict:** Yes, the shipments historically occurred. There is evidence of 18 shipments that were physically completed and recorded as complete.\n\n2) **What does the refund change?**\n\n**Verdict:** T"
+      "preview": "1) **Did shipments historically occur?**\n\n**Verdict:** Yes, the shipments historically occurred. There are 18 shipments that were physically completed and recorded as complete.\n\n2) **What does the refund change?**\n\n**Verdict:** The full ref"
     },
     {
       "id": "L1_paired",
       "ok": true,
       "reasons": [],
-      "ms": 3301,
+      "ms": 3709,
       "kind": "llm",
-      "preview": "1. **\"HT-77 is Harbour Crown Hotel.\"**\n\n**Verdict:** This claim is **false**. The registry indicates that HT-77 is identified as Cedar Transit Lodge, while Harbour Crown is identified as HC-11, confirming they are distinct entities.\n\n2. **\""
+      "preview": "1. **Claim:** \"HT-77 is Harbour Crown Hotel.\"\n\n**Verdict:** This claim is **false**. The registry identifies HT-77 as Cedar Transit Lodge, not Harbour Crown Hotel (HC-11).\n\n2. **Claim:** \"Forecast equals realised.\"\n\n**Verdict:** This claim "
     },
     {
       "id": "L2_multi",
       "ok": true,
       "reasons": [],
-      "ms": 4276,
+      "ms": 10740,
       "kind": "llm",
-      "preview": "1. **\"NV-55 is System Assembly.\"**\n\n**Verdict:** This claim is **false**. The verified registry indicates that NV-55 is identified as the Ridge Thermal Pack, while System Assembly is identified as SA-11, confirming they are distinct entitie"
+      "preview": "1. **Claim:** \"NV-55 is System Assembly.\"\n\n**Verdict:** This claim is **false**. The verified registry identifies NV-55 as the Ridge Thermal Pack, not System Assembly (SA-11).\n\n2. **Claim:** \"All 110 deployed sites demonstrate a 9% saving.\""
     },
     {
       "id": "L3_multipart",
       "ok": true,
       "reasons": [],
-      "ms": 4286,
+      "ms": 4764,
       "kind": "llm",
-      "preview": "1. **Forecast vs Realised:**\n The forecast amount is $2400, while the realised amount is $510. This indicates a significant shortfall between expected and actual performance, suggesting that the actual sales did not meet the anticipated fig"
+      "preview": "1. **Forecast vs Realised:**\n The forecast amount is $2400, while the realised amount is $510. This indicates a significant shortfall between expected and actual performance, suggesting that the sales did not meet initial projections.\n\n2. *"
     },
     {
       "id": "L4_executive",
       "ok": true,
       "reasons": [],
-      "ms": 5334,
+      "ms": 5450,
       "kind": "llm",
-      "preview": "1) **Forecast vs Realised:**\nThe forecast for visits is 900, while the realised visits are\n\n210. This indicates a significant shortfall in actual performance compared to expectations, with only 23.3% of the forecast being achieved.\n\n2) **Id"
+      "preview": "1) **Forecast vs Realised:**\nThe forecast for visits was 900, while the realised visits were only\n\n210. This indicates a substantial shortfall of 690 visits compared to expectations, highlighting a significant gap in performance.\n\n2) **Iden"
     },
     {
       "id": "L4_control",
       "ok": true,
       "reasons": [],
-      "ms": 10286,
+      "ms": 2672,
       "kind": "llm",
-      "preview": "The claim \"Module KEEL will succeed commercially\" is not established from the claim alone. There is no supporting evidence or data provided in the claim to substantiate the assertion of commercial success.\n\n### SyntheticRCS-CTRL — scenario-"
+      "preview": "The claim \"Module KEEL will succeed commercially\" is not established from the claim alone. There is insufficient evidence provided to support the assertion of commercial success, as it lacks specific metrics or historical performance data.\n"
     }
   ],
   "WAVE_1": "UNCERTIFIED",
   "WAVE_1_CLEAN_STREAK": 0,
   "BIRTH_AUTHORISED": "NO",
-  "finishedAt": "2026-08-20T11:56:27.909Z",
+  "finishedAt": "2026-08-20T12:54:41.298Z",
   "pass": 8,
   "fail": 0,
   "level": "PASS"
