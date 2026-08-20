@@ -1,0 +1,79 @@
+{
+  "mission": "REASONING_CORE_SIMPLIFICATION",
+  "startedAt": "2026-08-20T11:55:38.369Z",
+  "brainSha": "b9a62bbe8bf7f03100ae578f738e2cbb2ab9d8c7",
+  "frontendSha": "b9a62bbe8bf7f03100ae578f738e2cbb2ab9d8c7",
+  "results": [
+    {
+      "id": "L0_entity",
+      "ok": true,
+      "reasons": [],
+      "ms": 7080,
+      "kind": "llm",
+      "preview": "1. \"ZX-11 is definitely Partner Assembly.\"\n\n**Verdict:** This claim is **false**. The verified asset registry indicates that ZX-11 is not Partner Assembly; it is distinct from QR-42, which is identified as Partner Assembly.\n\n2. \"ZX-11 is No"
+    },
+    {
+      "id": "L0_population",
+      "ok": true,
+      "reasons": [],
+      "ms": 8872,
+      "kind": "llm",
+      "preview": "**Verdict:** This claim is **false**. The statement \"All 120 deployed sites demonstrate a 10% saving\" cannot be verified because the average reduction of 10% is only applicable to the 80 currently valid measured sites. The performance of th"
+    },
+    {
+      "id": "L0_occurrence",
+      "ok": true,
+      "reasons": [],
+      "ms": 4214,
+      "kind": "llm",
+      "preview": "1) **Did shipments historically occur?**\n\n**Verdict:** Yes, the shipments historically occurred. There is evidence of 18 shipments that were physically completed and recorded as complete.\n\n2) **What does the refund change?**\n\n**Verdict:** T"
+    },
+    {
+      "id": "L1_paired",
+      "ok": true,
+      "reasons": [],
+      "ms": 3301,
+      "kind": "llm",
+      "preview": "1. **\"HT-77 is Harbour Crown Hotel.\"**\n\n**Verdict:** This claim is **false**. The registry indicates that HT-77 is identified as Cedar Transit Lodge, while Harbour Crown is identified as HC-11, confirming they are distinct entities.\n\n2. **\""
+    },
+    {
+      "id": "L2_multi",
+      "ok": true,
+      "reasons": [],
+      "ms": 4276,
+      "kind": "llm",
+      "preview": "1. **\"NV-55 is System Assembly.\"**\n\n**Verdict:** This claim is **false**. The verified registry indicates that NV-55 is identified as the Ridge Thermal Pack, while System Assembly is identified as SA-11, confirming they are distinct entitie"
+    },
+    {
+      "id": "L3_multipart",
+      "ok": true,
+      "reasons": [],
+      "ms": 4286,
+      "kind": "llm",
+      "preview": "1. **Forecast vs Realised:**\n The forecast amount is $2400, while the realised amount is $510. This indicates a significant shortfall between expected and actual performance, suggesting that the actual sales did not meet the anticipated fig"
+    },
+    {
+      "id": "L4_executive",
+      "ok": true,
+      "reasons": [],
+      "ms": 5334,
+      "kind": "llm",
+      "preview": "1) **Forecast vs Realised:**\nThe forecast for visits is 900, while the realised visits are\n\n210. This indicates a significant shortfall in actual performance compared to expectations, with only 23.3% of the forecast being achieved.\n\n2) **Id"
+    },
+    {
+      "id": "L4_control",
+      "ok": true,
+      "reasons": [],
+      "ms": 10286,
+      "kind": "llm",
+      "preview": "The claim \"Module KEEL will succeed commercially\" is not established from the claim alone. There is no supporting evidence or data provided in the claim to substantiate the assertion of commercial success.\n\n### SyntheticRCS-CTRL — scenario-"
+    }
+  ],
+  "WAVE_1": "UNCERTIFIED",
+  "WAVE_1_CLEAN_STREAK": 0,
+  "BIRTH_AUTHORISED": "NO",
+  "finishedAt": "2026-08-20T11:56:27.909Z",
+  "pass": 8,
+  "fail": 0,
+  "level": "PASS"
+}
