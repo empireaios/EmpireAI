@@ -591,6 +591,7 @@ export function releaseExecutiveAnswer(
       appended: number;
     }> = [];
     // Clean validated drafts: fill missing parts without discarding the original answer.
+    // Prefer coverage fill over full reconstruct — reduce competing semantic inventors.
     queue.push({
       text: filled.message,
       path: filled.appended > 0 && path === "clean" ? "contract_coverage_filled" : path,
@@ -601,13 +602,12 @@ export function releaseExecutiveAnswer(
       truth,
       options.userMessage,
     );
+    // Reconstruct only when fill still drops material tasks or contamination — not as a default second author.
     if (
       reconstruct &&
-      (multiObligation ||
-        scopedAway ||
-        candidateContaminated ||
-        filled.coverage.silentlyDroppedTasks > 0 ||
-        path !== "clean")
+      (candidateContaminated ||
+        (filled.coverage.silentlyDroppedTasks > 0 && filled.appended === 0) ||
+        path === "fail_closed")
     ) {
       queue.push({
         text: reconstruct,

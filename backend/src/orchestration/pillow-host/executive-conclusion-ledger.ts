@@ -4,6 +4,12 @@
  * Does not encode sealed examination content.
  */
 
+import {
+  buildCanonicalCaseState,
+  verdictClaimAgainstCanonical,
+  type CanonicalCaseState,
+} from "./executive-canonical-state.js";
+
 export type LedgerVerdict = "supported" | "contradicted" | "unproven" | "unknown";
 
 export type LedgerEntry = {
@@ -217,7 +223,14 @@ export function assessClaimEnumeration(
 function verdictForClaimAgainstLedger(
   claim: ClaimObligation,
   ledger: LedgerEntry[],
+  canonical?: CanonicalCaseState | null,
 ): { verdict: LedgerVerdict; justification: string } | null {
+  // Prefer canonical case state — single derivation of material conclusions.
+  if (canonical) {
+    const v = verdictClaimAgainstCanonical(claim.sourceText, canonical);
+    return { verdict: v.verdict, justification: v.justification };
+  }
+
   const t = claim.sourceText;
 
   // Identity equality claim: "HT-88 is Harbour Crown Hotel"
@@ -284,8 +297,9 @@ export function synthesizeClaimVerdictBlock(
   claim: ClaimObligation,
   ledger: LedgerEntry[],
   domainHint?: string,
+  canonical?: CanonicalCaseState | null,
 ): string {
-  const fromLedger = verdictForClaimAgainstLedger(claim, ledger);
+  const fromLedger = verdictForClaimAgainstLedger(claim, ledger, canonical);
   const verdict = fromLedger?.verdict ?? "unproven";
   const justification =
     fromLedger?.justification ??
@@ -327,13 +341,13 @@ function stripAllClaimBlocks(answer: string): string {
 }
 
 /**
- * Ensure Claim 1..N appear in original order. Missing blocks use ledger-aware verdicts.
+ * Ensure Claim 1..N appear in original order. Verdicts prefer canonical case state.
  * Later claim audits that reverse earlier verified conclusions are rewritten.
  */
 export function enforceClaimEnumeration(
   answer: string,
   claims: ClaimObligation[],
-  options: { domainHint?: string } = {},
+  options: { domainHint?: string; userMessage?: string; canonical?: CanonicalCaseState | null } = {},
 ): { message: string; repaired: boolean; report: ReturnType<typeof assessClaimEnumeration> } {
   if (claims.length < 2) {
     return {
@@ -344,20 +358,23 @@ export function enforceClaimEnumeration(
   }
   const original = String(answer || "").trim();
   const ledger = buildConclusionLedger(original);
+  const canonical =
+    options.canonical ??
+    (options.userMessage ? buildCanonicalCaseState(options.userMessage) : null);
   let repaired = false;
 
   const orderedBlocks: string[] = [];
   for (const c of claims) {
     let block = extractClaimBlock(original, c.index);
-    const fromLedger = verdictForClaimAgainstLedger(c, ledger);
+    const fromLedger = verdictForClaimAgainstLedger(c, ledger, canonical);
     if (!block) {
-      block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint);
+      block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
     } else if (
       fromLedger?.verdict === "contradicted" &&
-      /\*\*Verdict:\*\*\s*Supported\b/i.test(block)
+      /\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)/i.test(block)
     ) {
-      block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint);
+      block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
     } else if (!/^#{1,3}\s*Claim\s*\d+/im.test(block)) {
       block = `### Claim ${c.index}\n\n${block}`;
@@ -366,32 +383,10 @@ export function enforceClaimEnumeration(
     orderedBlocks.push(block.trim());
   }
 
-  // Rebuild: non-claim body + claims in original order (prevents middle-claim append-at-end).
-  const before = assessClaimEnumeration(original, claims);
-  const needsReorder =
-    before.missing.length > 0 ||
-    before.duplicate.length > 0 ||
-    repaired ||
-    !claims.every((c, i) => {
-      const next = claims[i + 1];
-      if (!next) return true;
-      const a = original.search(new RegExp(`#{1,3}\\s*Claim\\s*${c.index}\\b`, "i"));
-      const b = original.search(new RegExp(`#{1,3}\\s*Claim\\s*${next.index}\\b`, "i"));
-      if (a < 0 || b < 0) return true;
-      return a < b;
-    });
-
-  let message = original;
-  // Always rebuild claim blocks in order when a claim set is present — prevents
-  // middle-drop append-at-end and Supported-vs-ledger drift.
-  {
-    const body = stripAllClaimBlocks(original);
-    message = `${body}\n\n${orderedBlocks.join("\n\n")}`.replace(/\n{3,}/g, "\n\n").trim();
-    if (message !== original) repaired = true;
-  }
-
-  const report = assessClaimEnumeration(message, claims);
-  return { message, repaired, report };
+  const body = stripAllClaimBlocks(original);
+  const message = `${body}\n\n${orderedBlocks.join("\n\n")}`.replace(/\n{3,}/g, "\n\n").trim();
+  if (message !== original) repaired = true;
+  return { message, repaired, report: assessClaimEnumeration(message, claims) };
 }
 
 export function detectMaterialInternalContradictions(answer: string): string[] {

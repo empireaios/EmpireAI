@@ -39,6 +39,11 @@ import {
   parseClaimObligationsFromContractTasks,
 } from "./executive-conclusion-ledger.js";
 import { detectExpectedTopLevelSections } from "./executive-section-contract.js";
+import {
+  buildCanonicalCaseState,
+  extractQuotedClaimsOnly,
+  formatCanonicalStateBrief,
+} from "./executive-canonical-state.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
@@ -537,49 +542,8 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
  * Stable IDs claim_1..claim_N — middle members must not silently disappear.
  */
 export function extractExplicitClaimSet(userMessage: string): string[] {
-  const text = String(userMessage || "");
-  const asksVerdicts =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,100}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\baudit\s+(?:of\s+)?(?:the\s+)?(?:quoted\s+)?claims?\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
-      text,
-    );
-  if (!asksVerdicts) return [];
-
-  const claims: string[] = [];
-  const seen = new Set<string>();
-  const push = (raw: string) => {
-    const c = raw.replace(/\s+/g, " ").trim();
-    if (c.length < 8) return;
-    const key = c.toLowerCase().slice(0, 120);
-    if (seen.has(key)) return;
-    seen.add(key);
-    claims.push(c);
-  };
-
-  // 1. "quoted claim" / Claim 1: "..."
-  const quoted =
-    /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*[“"']([^”"']{8,500})[”"']/gi;
-  let m: RegExpExecArray | null;
-  while ((m = quoted.exec(text)) !== null) {
-    push(m[2]!);
-  }
-
-  // Fallback: numbered lines under a claims heading without quotes
-  if (claims.length < 2) {
-    const block = text.match(
-      /(?:claims?|quoted claims?)\s*[:\-]\s*([\s\S]{20,2500}?)(?:\n\s*\d+\s*[.)]\s+(?:Reconcile|Classify|Compute|Decide|Weigh|What|Executive|Do not)|$)/i,
-    );
-    const body = block?.[1] ?? text;
-    const numbered = /(?:^|\n)\s*(\d{1,2})\s*[.)]\s+([^\n]{8,400})/g;
-    while ((m = numbered.exec(body)) !== null) {
-      const line = m[2]!.trim();
-      if (/^(reconcile|classify|compute|decide|weigh|what does|executive synthes)/i.test(line)) {
-        continue;
-      }
-      push(line);
-    }
-  }
-
-  return claims.slice(0, 12);
+  // Canonical path: quoted claims only — never section headings as claims.
+  return extractQuotedClaimsOnly(userMessage);
 }
 
 /**
@@ -1529,7 +1493,10 @@ export function buildContractAwareReconstruct(
 }
 
 /** Compact brief for LLM prompt assembly (no internal enum dump to GK). */
-export function formatTaskContractBrief(contract: ExecutiveTaskContract): string {
+export function formatTaskContractBrief(
+  contract: ExecutiveTaskContract,
+  userMessage?: string,
+): string {
   const lines = [
     "Executive task contract (complete every material ask; do not replace with a single safe summary):",
     `Intent: ${contract.requestIntent}`,
@@ -1545,7 +1512,11 @@ export function formatTaskContractBrief(contract: ExecutiveTaskContract): string
     "Each numbered/lettered obligation is DISTINCT: answer it from its own source span. Do not clone one temporal/financial/entity paragraph onto unrelated siblings.",
     "For complex multipart asks: use Markdown headings and short sections (Verdict / Need / What matters most / My recommendation). Do not flatten 1–5 into one giant paragraph.",
     "Sound like an executive — do not expose internal machinery names to Grand King.",
+    "Canonical propositions (if present below) are authoritative for this turn — do not reverse verified entity, population, forecast≠realised, or occurrence conclusions.",
   ];
+  if (userMessage) {
+    lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
+  }
   if (isScopedAwayFromLiveEmpire(contract.scopeType)) {
     lines.push(
       "SCOPE: This turn is SCOPED ANALYSIS (synthetic / comparative / historical). Reason about evidence structure of the supplied claims. Do NOT substitute live EmpireAI product identity, realised sales, or Birth state for synthetic entities. Do NOT promote scenario statements into current EmpireAI truth.",

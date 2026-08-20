@@ -381,6 +381,54 @@ export function birthExecutiveLessonSeeds(
       failureClass: "SOURCE_DOMAIN_SURFACE_LANGUAGE_CONTAMINATION",
     }),
     base({
+      canonicalKey: "birth.lesson.registry_outranks_cooccurrence",
+      title: "Verified registry outranks planning co-occurrence for identity",
+      statement:
+        "When a verified asset registry binds an ID to a name, planning-row co-occurrence or association does not override that identity. Claims equating the ID to a different entity are contradicted.",
+      memoryClass: "decision_principle",
+      tags: ["identity", "evidence", "birth"],
+      evidenceRefs: ["reasoning-core-simplification"],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
+      capabilityFamily: "entity_identity",
+      failureClass: "VERIFIED_REGISTRY_IGNORED_FOR_IDENTITY",
+    }),
+    base({
+      canonicalKey: "birth.lesson.measured_subset_not_full_population",
+      title: "Measured-subset results do not generalize to full deployed population",
+      statement:
+        "A percentage result established on a valid measured subset must not be asserted for the full deployed population when unmeasured or invalid units remain.",
+      memoryClass: "decision_principle",
+      tags: ["population", "scope", "birth"],
+      evidenceRefs: ["reasoning-core-simplification"],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
+      capabilityFamily: "population_scope",
+      failureClass: "MEASURED_SUBSET_GENERALIZED_TO_FULL_POPULATION",
+    }),
+    base({
+      canonicalKey: "birth.lesson.section_headings_are_not_claims",
+      title: "Section headings are not claim-set members",
+      statement:
+        "Only explicitly quoted claims enter claim_1..N. Cover/reconcile/classify section instructions must not be misread as claims or spawn a second claim-audit synthesizer block.",
+      memoryClass: "decision_principle",
+      tags: ["claims", "schema", "birth"],
+      evidenceRefs: ["reasoning-core-simplification"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "claim_set_completeness",
+      failureClass: "REQUEST_SCHEMA_MISREAD_AS_CLAIM_SET",
+    }),
+    base({
+      canonicalKey: "birth.lesson.no_duplicate_post_answer_synthesis",
+      title: "Do not append a second semantic claim-audit after the answer",
+      statement:
+        "A completed claim audit must not be duplicated by a later synthesizer. Duplicate Claim Verdicts/Audit headings indicate competing semantic authorities.",
+      memoryClass: "decision_principle",
+      tags: ["synthesis", "architecture", "birth"],
+      evidenceRefs: ["reasoning-core-simplification"],
+      reasoningAreas: ["decision_principles"],
+      capabilityFamily: "structure_contract",
+      failureClass: "DUPLICATE_POST_ANSWER_SYNTHESIS",
+    }),
+    base({
       canonicalKey: "birth.lesson.evidence_ne_authority_route",
       title: "Evidence audits must not be routed as delegation analyses",
       statement:

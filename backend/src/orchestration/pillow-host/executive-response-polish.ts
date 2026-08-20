@@ -26,6 +26,10 @@ import {
   realizeDomainNativeMemorySurface,
 } from "./executive-memory-realization.js";
 import { isScopedAwayFromLiveEmpire } from "./executive-scoped-reasoning.js";
+import {
+  buildCanonicalCaseState,
+  stripDuplicateClaimAuditBlocks,
+} from "./executive-canonical-state.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -208,12 +212,29 @@ export function polishFinalVisibleAnswer(
   out = stripIrrelevantBirthState(out, userMessage);
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = dedupeProtectedStateBlocks(out);
+  out = stripDuplicateClaimAuditBlocks(out);
+  // Temporal: validate/repair against occurrence principle (domain-native; no doctrine dump).
   out = repairHistoricalOccurrenceErasure(out, userMessage).message;
 
+  const canonical = buildCanonicalCaseState(userMessage);
   const claims = parseClaimObligationsFromContractTasks(c.tasks);
-  if (claims.length >= 2) {
-    out = enforceClaimEnumeration(out, claims, {
+  // Prefer canonical claim set when contract miscounted section headings as claims.
+  const claimObligations =
+    claims.length >= 2
+      ? claims
+      : canonical.claims.length >= 2
+        ? canonical.claims.map((cl) => ({
+            id: `claim_${cl.index}`,
+            index: cl.index,
+            sourceText: cl.text,
+            subject: cl.text.slice(0, 120),
+          }))
+        : [];
+  if (claimObligations.length >= 2) {
+    out = enforceClaimEnumeration(out, claimObligations, {
       domainHint: detectScenarioDomain(userMessage),
+      userMessage,
+      canonical,
     }).message;
   }
 
@@ -223,10 +244,11 @@ export function polishFinalVisibleAnswer(
   if (c.expectedTopLevelSections != null) {
     out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
   }
-  // Re-apply claim enumeration after section renumber so Claim 1..N cannot be lost.
-  if (claims.length >= 2) {
-    out = enforceClaimEnumeration(out, claims, {
+  if (claimObligations.length >= 2) {
+    out = enforceClaimEnumeration(out, claimObligations, {
       domainHint: detectScenarioDomain(userMessage),
+      userMessage,
+      canonical,
     }).message;
   }
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);

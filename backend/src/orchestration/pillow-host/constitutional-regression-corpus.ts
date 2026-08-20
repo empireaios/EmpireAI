@@ -541,6 +541,81 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     ],
     requiredAny: [/forecast|patient|visit|realised|unproven/i],
   },
+  {
+    id: "cr.verified_registry_ignored_for_identity",
+    failureClass: "VERIFIED_REGISTRY_IGNORED_FOR_IDENTITY",
+    capabilities: ["entity_identity", "evidence_precedence"],
+    severity: "P0",
+    origin: "reasoning-core-simplification",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const e = pick(mulberry32(seed), ENTITIES);
+      return [
+        `SyntheticCanaryRegistry-${seed} — analysis only.`,
+        `Verified asset registry: ZX-11 = North Pier Module. ${e} = Partner Assembly; distinct.`,
+        `Separate verdict on: "ZX-11 is Partner Assembly."`,
+        `Do not mention Mini Fan or Birth.`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /\*\*Verdict:\*\*\s*Supported/i],
+    requiredAny: [/North Pier|Contradict|distinct|registry/i],
+  },
+  {
+    id: "cr.measured_subset_generalized_to_full_population",
+    failureClass: "MEASURED_SUBSET_GENERALIZED_TO_FULL_POPULATION",
+    capabilities: ["population_scope"],
+    severity: "P0",
+    origin: "reasoning-core-simplification",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryPopulation-${seed} — industrial analysis only.`,
+        `120 deployed sites. 80 currently valid measured. 10% average reduction across the 80 valid measured sites.`,
+        `Separate verdict on: "All 120 deployed sites demonstrate a 10% saving."`,
+        `Do not mention Mini Fan.`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /All 120[\s\S]{0,120}\*\*Verdict:\*\*\s*Supported/i],
+    requiredAny: [/80|valid measured|Contradict|does not apply to all/i],
+  },
+  {
+    id: "cr.request_schema_misread_as_claim_set",
+    failureClass: "REQUEST_SCHEMA_MISREAD_AS_CLAIM_SET",
+    capabilities: ["claim_set_completeness"],
+    severity: "P0",
+    origin: "reasoning-core-simplification",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanarySchema-${seed} — analysis only. Answer in exactly 4 numbered sections.`,
+        `Cover: forecast vs realised; identity; then claim audit of:`,
+        `1. "Forecast equals realised."`,
+        `2. "ZX-11 is Partner Assembly."`,
+        `Then synthesis. Section headings are not claims.`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i],
+    requiredAny: [/Claim\s*1/i, /Claim\s*2/i],
+  },
+  {
+    id: "cr.duplicate_post_answer_synthesis",
+    failureClass: "DUPLICATE_POST_ANSWER_SYNTHESIS",
+    capabilities: ["structure_contract"],
+    severity: "P1",
+    origin: "reasoning-core-simplification",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryDupSynth-${seed} — analysis only.`,
+        `Provide a separate verdict on each of the three quoted claims.`,
+        `1. "Forecast $900."`,
+        `2. "Realised $200."`,
+        `3. "Identity is proven by co-occurrence."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i],
+    requiredAny: [/Claim\s*1/i, /Claim\s*2/i, /Claim\s*3/i],
+  },
 ];
 
 export type SpecimenGrade = {
@@ -630,6 +705,16 @@ export function gradeConstitutionalAnswer(
     if (/sales-history|realised orders|verified operating state|commissioning\/KPI/i.test(text)) {
       reasons.push("source_domain_surface_contamination");
     }
+  }
+
+  if (specimen.id === "cr.request_schema_misread_as_claim_set") {
+    const contract = parseExecutiveTaskContract(specimen.buildPrompt(1));
+    if (contract.expectedClaims !== 2) reasons.push(`expected_claims:${contract.expectedClaims}`);
+  }
+
+  if (specimen.id === "cr.duplicate_post_answer_synthesis") {
+    const headings = (text.match(/^#{1,3}\s*Claim\s+(?:Verdicts?|Audit)\b/gim) || []).length;
+    if (headings > 1) reasons.push(`duplicate_claim_audit_headings:${headings}`);
   }
 
   return { id: specimen.id, ok: reasons.length === 0, reasons };

@@ -29844,7 +29844,7 @@ export class PillowHost {
                             executiveTruthSnapshot,
                             epistemicLedger.list(),
                         ),
-                        formatTaskContractBrief(taskContract),
+                        formatTaskContractBrief(taskContract, input.message),
                     ].join("\n\n"),
                     // Prevent Phase-7 static product catalog from inventing alternate products.
                     commerceIntelligenceBrief: undefined,
