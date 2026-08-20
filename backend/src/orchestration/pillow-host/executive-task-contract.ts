@@ -539,7 +539,7 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
 export function extractExplicitClaimSet(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asksVerdicts =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,100}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,100}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\baudit\s+(?:of\s+)?(?:the\s+)?(?:quoted\s+)?claims?\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
       text,
     );
   if (!asksVerdicts) return [];

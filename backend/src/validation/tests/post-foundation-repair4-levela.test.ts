@@ -345,6 +345,34 @@ describe("Post-Foundation Repair 4 — Level A", () => {
     assert.doesNotMatch(out, /sales-history evidence beyond realised orders/i);
   });
 
+  it("14b claim-audit phrasing under exact section contract still fills claims", () => {
+    const ask = [
+      "SyntheticCanaryR4Audit — analysis only. Answer in exactly 6 numbered sections.",
+      "Cover forecast vs realised; identity; occurrence; then claim audit of:",
+      `1. "HT-77 is Harbour Crown Hotel."`,
+      `2. "Forecast equals realised."`,
+      `3. "The stay never historically occurred because of the refund."`,
+      "Then unknowns and synthesis.",
+    ].join("\n");
+    const c = parseExecutiveTaskContract(ask);
+    assert.equal(c.expectedClaims, 3, JSON.stringify(extractExplicitClaimSet(ask)));
+    assert.equal(c.expectedTopLevelSections, 6);
+    const draft = [
+      "1. Forecast not realised.",
+      "2. HT-77 is Cedar Transit Lodge.",
+      "3. Stay historically occurred.",
+      "4. Audit deferred.",
+      "5. Unknowns open.",
+      "6. Synthesis stable.",
+    ].join("\n");
+    const out = polishFinalVisibleAnswer(draft, ask, c);
+    const claims = parseClaimObligationsFromContractTasks(c.tasks);
+    assert.equal(assessClaimEnumeration(out, claims).missing.length, 0, out);
+    assert.match(out, /Claim\s*1/i);
+    assert.match(out, /Claim\s*2/i);
+    assert.match(out, /Claim\s*3/i);
+  });
+
   it("15 constitutional classes + birth lessons present", () => {
     const classes = new Set(CONSTITUTIONAL_SPECIMENS.map((s) => s.failureClass));
     for (const fc of [

@@ -223,6 +223,12 @@ export function polishFinalVisibleAnswer(
   if (c.expectedTopLevelSections != null) {
     out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
   }
+  // Re-apply claim enumeration after section renumber so Claim 1..N cannot be lost.
+  if (claims.length >= 2) {
+    out = enforceClaimEnumeration(out, claims, {
+      domainHint: detectScenarioDomain(userMessage),
+    }).message;
+  }
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = realizeDomainNativeMemorySurface(out, userMessage, scoped).message;
   return out;
