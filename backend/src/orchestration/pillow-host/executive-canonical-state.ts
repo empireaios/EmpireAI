@@ -98,7 +98,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
 
   const claims: string[] = [];
   const seen = new Set<string>();
-  const push = (raw: string) => {
+  const push = (raw: string, indexKey?: string) => {
     const c = raw.replace(/\s+/g, " ").trim();
     if (c.length < 8) return;
     // Reject section-instruction lines misread as claims.
@@ -109,7 +109,10 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     ) {
       return;
     }
-    const key = c.toLowerCase().slice(0, 120);
+    // Numbered claims may repeat the same proposition (claim_1 and claim_2 identical text).
+    const key = indexKey
+      ? `${indexKey}:${c.toLowerCase().slice(0, 120)}`
+      : c.toLowerCase().slice(0, 120);
     if (seen.has(key)) return;
     seen.add(key);
     claims.push(c);
@@ -119,7 +122,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*[“"']([^”"']{8,500})[”"']/gi;
   let m: RegExpExecArray | null;
   while ((m = quoted.exec(text)) !== null) {
-    push(m[2]!);
+    push(m[2]!, m[1]!);
   }
 
   // "claim audit of:" block — only quoted lines
@@ -128,8 +131,12 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
       /claim\s+audit\s+of\s*:?\s*([\s\S]{10,2000}?)(?:\n\s*(?:Then|Cover|Do not|Answer|Executive)|$)/i,
     );
     if (block?.[1]) {
+      let qi = 0;
       const q = /[“"']([^”"']{8,500})[”"']/g;
-      while ((m = q.exec(block[1])) !== null) push(m[1]!);
+      while ((m = q.exec(block[1])) !== null) {
+        qi += 1;
+        push(m[1]!, String(qi));
+      }
     }
   }
 
