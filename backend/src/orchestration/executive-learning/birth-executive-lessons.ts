@@ -137,6 +137,18 @@ export function birthExecutiveLessonSeeds(
       failureClass: "partial_gate_full_unlock",
     }),
     base({
+      canonicalKey: "birth.lesson.eligibility_ne_preference",
+      title: "Eligibility is not comparative preference",
+      statement:
+        "A candidate may become eligible only after every required gate passes. Eligibility does not automatically mean best — compare eligible options using the supplied objective and evidence. Next evidence that clears one blocker must not be narrated as changing the recommendation while other independent blockers remain.",
+      memoryClass: "decision_principle",
+      tags: ["decision", "gates", "preference", "birth"],
+      evidenceRefs: ["decision-gate-propagation", "executive-decision-constraints"],
+      reasoningAreas: ["decision_principles", "commercial_philosophy"],
+      capabilityFamily: "decision_constraints",
+      failureClass: "eligibility_preference_collapse",
+    }),
+    base({
       canonicalKey: "birth.lesson.auth_ne_capability",
       title: "Owner authorization is not system capability",
       statement:

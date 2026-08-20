@@ -6,6 +6,12 @@
  * Does not encode sealed examination content.
  */
 
+import {
+  buildActionEligibilityStates,
+  formatActionEligibilityBrief,
+  type ActionEligibility,
+} from "./executive-decision-constraints.js";
+
 export type PropositionStatus =
   | "VERIFIED"
   | "CONTRADICTED"
@@ -70,6 +76,8 @@ export type CanonicalCaseState = {
   financial: { gross: number | null; refund: number | null; net: number | null };
   claims: Array<{ index: number; text: string }>;
   propositions: CanonicalProposition[];
+  /** Multi-gate decision eligibility per action/candidate (ELIGIBLE ≠ BEST). */
+  decisionActions: ActionEligibility[];
   failureStageHints: string[];
 };
 
@@ -412,6 +420,8 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
           ? "logistics"
           : "generic";
 
+  const decisionActions = buildActionEligibilityStates(text);
+
   return {
     domainHint,
     entities,
@@ -423,6 +433,7 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
     financial: { gross, refund, net },
     claims,
     propositions,
+    decisionActions,
     failureStageHints: [],
   };
 }
@@ -586,6 +597,9 @@ export function formatCanonicalStateBrief(state: CanonicalCaseState): string {
   }
   if (state.claims.length) {
     lines.push(`- CLAIMS expected=${state.claims.length} (quoted only; section headings are not claims)`);
+  }
+  if (state.decisionActions.some((a) => a.requiredGates.length > 0)) {
+    lines.push(formatActionEligibilityBrief(state.decisionActions));
   }
   return lines.join("\n");
 }

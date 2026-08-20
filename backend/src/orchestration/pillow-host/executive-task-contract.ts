@@ -980,7 +980,7 @@ export function synthesizeTaskUnitAnswer(
     return synthesizeRiskRanking(siblings, span);
   }
   if (task.kind === "verification_priority") {
-    return synthesizeVerificationPriority(siblings, span);
+    return synthesizeVerificationPriority(siblings, span, constraints);
   }
   if (isAuthorityTaskKind(task.kind)) {
     return synthesizeAuthorityUnitAnswer(
@@ -1513,6 +1513,8 @@ export function formatTaskContractBrief(
     "For complex multipart asks: use Markdown headings and short sections (Verdict / Need / What matters most / My recommendation). Do not flatten 1–5 into one giant paragraph.",
     "Sound like an executive — do not expose internal machinery names to Grand King.",
     "Canonical propositions (if present below) are authoritative for this turn — do not reverse verified entity, population, forecast≠realised, or occurrence conclusions.",
+    "Decision gates: CLEARING ONE BLOCKER ≠ DECISION UNLOCK when another required gate remains FAIL/UNKNOWN. ELIGIBLE ≠ BEST — separate eligibility from preference.",
+    "If asked what evidence could CHANGE the recommendation: propose only evidence capable of a decision-state change, or say no single item clears all blockers and name remaining gates.",
   ];
   if (userMessage) {
     lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
@@ -1535,7 +1537,7 @@ export function formatTaskContractBrief(
   }
   if (contract.requiresVerificationPriority) {
     lines.push(
-      "Aggregate task required: choose the single most important additional verification — do not omit it.",
+      "Aggregate task required: choose the single most important additional verification — do not omit it. If multi-gate blockers apply and the ask is decision-changing evidence, do not pretend one gate clear unlocks the decision.",
     );
   }
   if (contract.requiresRecommendation) {

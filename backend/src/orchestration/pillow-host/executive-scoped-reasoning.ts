@@ -4,6 +4,16 @@
  * Does not encode sealed exam content or fixed product fixtures.
  */
 
+import {
+  asksForDecisionChangingEvidence,
+  asksForNextEvidence,
+  asksForReversalConditions,
+  buildActionEligibilityStates,
+  synthesizeNextEvidenceDecisionImpact,
+  synthesizeReversalConditions,
+  type MaterialConstraint,
+} from "./executive-decision-constraints.js";
+
 export type ReasoningScopeType =
   | "CURRENT_REALITY"
   | "SYNTHETIC_ANALYSIS"
@@ -69,7 +79,7 @@ export function asksForRiskRanking(message: string): boolean {
 }
 
 export function asksForVerificationPriority(message: string): boolean {
-  return /\b(verify first|verification priority|most important (?:additional )?(?:verification|verify|check|evidence)|which evidence|priority (?:check|verification|evidence)|single most important (?:additional )?(?:verification|verify)|what should (?:i|we) verify)\b/i.test(
+  return /\b(verify first|verification priority|most important (?:additional )?(?:verification|verify|check|evidence)|which evidence|priority (?:check|verification|evidence)|single most important (?:additional )?(?:verification|verify)|what should (?:i|we) verify|single most valuable next evidence|most valuable next (?:evidence|verification)|evidence that could change)\b/i.test(
     message,
   );
 }
@@ -302,25 +312,43 @@ export function synthesizeRiskRanking(
 export function synthesizeVerificationPriority(
   siblingSubjects: readonly string[],
   sourceSpan = "choose verification priority",
+  materialConstraints: readonly MaterialConstraint[] = [],
 ): string {
-  const joined = siblingSubjects.join(" ").toLowerCase();
+  const joined = `${siblingSubjects.join(" ")} ${sourceSpan}`;
+
+  // Multi-gate path: next evidence must respect remaining blockers.
+  const actions = buildActionEligibilityStates(joined, materialConstraints);
+  const primary =
+    actions.find((a) => a.requiredGates.some((g) => g.status !== "PASS")) ?? actions[0];
+  if (primary && primary.requiredGates.filter((g) => g.status !== "PASS").length > 0) {
+    if (asksForReversalConditions(joined)) return synthesizeReversalConditions(primary);
+    if (
+      asksForDecisionChangingEvidence(joined) ||
+      asksForNextEvidence(joined) ||
+      primary.requiredGates.filter((g) => g.status !== "PASS").length >= 2
+    ) {
+      return synthesizeNextEvidenceDecisionImpact(primary, joined);
+    }
+  }
+
+  const lower = joined.toLowerCase();
   let priority =
     "Verify the financially consequential claim against primary evidence before any irreversible spend.";
   let why =
     "Money and permanence amplify error — settle the financial evidence class first.";
 
-  if (/same|identity|mapped|co-occur|entity|product.?code/i.test(joined)) {
+  if (/same|identity|mapped|co-occur|entity|product.?code/i.test(lower)) {
     priority =
       "Verify entity/product-code identity against an authoritative mapping or source record.";
     why =
       "If identity is wrong, every downstream financial or demand conclusion is contaminated.";
   }
-  if (/supplier|assert|external (?:research|memo)|demand/i.test(joined) && !/identity|mapped/i.test(joined)) {
+  if (/supplier|assert|external (?:research|memo)|demand/i.test(lower) && !/identity|mapped/i.test(lower)) {
     priority =
       "Obtain independent corroboration for the strongest external assertion before treating demand as proven.";
     why = "Partner assertions are cheap to produce and expensive to act on.";
   }
-  if (/expected|forecast|profit|revenue|sales/i.test(joined)) {
+  if (/expected|forecast|profit|revenue|sales/i.test(lower)) {
     priority =
       "Separate expected/forecast figures from realised transaction evidence — confirm which class each number belongs to.";
     why = "Confusing estimates with realised results is a classic irreversible-spend failure mode.";

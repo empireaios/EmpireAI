@@ -513,7 +513,11 @@ function finalizeVisible(
   for (const c of seeded) {
     if (!mergedConstraints.some((m) => m.class === c.class)) mergedConstraints.push(c);
   }
-  const consistency = ensureRecommendationConstraintConsistency(rendered, mergedConstraints);
+  const consistency = ensureRecommendationConstraintConsistency(
+    rendered,
+    mergedConstraints,
+    userMessage ?? "",
+  );
   rendered = consistency.message;
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   const ux =

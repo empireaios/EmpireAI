@@ -131,6 +131,27 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/gate|economics|capacity|not (?:yet )?unlock|remain/i],
   },
   {
+    id: "cr.next_evidence_multi_gate",
+    failureClass: "partial_gate_full_unlock",
+    capabilities: ["decision_constraints"],
+    severity: "P0",
+    origin: "decision-gate-propagation",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const thr = pick(rng, [80, 90, 95]);
+      const ceil = pick(rng, [10_000, 12_000, 15_000]);
+      return [
+        `SyntheticCanaryNextEv-${seed} — analysis only. Do not mention Mini Fan or Birth.`,
+        `Candidate B requires: performance >= ${thr}% threshold; expenditure <= approved ceiling $${ceil}.`,
+        `Both gates currently fail.`,
+        `What new evidence could CHANGE the recommendation toward Candidate B?`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /Birth remains/i],
+    requiredAny: [/remain|both|expenditure|performance|gate|not (?:enough|yet)|CLEARING ONE|blocker/i],
+  },
+  {
     id: "cr.no_ask_again",
     failureClass: "ask_again_fallback",
     capabilities: ["accepted_request_reliability"],

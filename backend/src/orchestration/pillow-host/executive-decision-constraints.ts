@@ -16,6 +16,8 @@ export type MaterialConstraintClass =
   | "CASH_CONSTRAINT"
   | "SUPPLIER_CONSTRAINT"
   | "TECHNICAL_INCOMPATIBILITY"
+  | "PERFORMANCE_THRESHOLD"
+  | "EXPENDITURE_CEILING"
   | "OTHER";
 
 export type MaterialConstraintStatus = "active" | "superseded";
@@ -36,7 +38,9 @@ export type DecisionGateId =
   | "evidence"
   | "cash"
   | "supplier"
-  | "technical";
+  | "technical"
+  | "performance"
+  | "expenditure";
 
 export type DecisionGateStatus = "PASS" | "FAIL" | "UNKNOWN";
 
@@ -53,6 +57,31 @@ export type ScaleEligibility = {
   cleared: DecisionGate[];
   partialUnlock: string;
   exactEvidenceForScale: string[];
+};
+
+/** Per-action / per-candidate multi-gate eligibility (canonical decision state). */
+export type ActionEligibility = {
+  actionId: string;
+  actionLabel: string;
+  requiredGates: DecisionGate[];
+  currentlyEligible: boolean;
+  /** Eligible ≠ preferred. Null when comparative rank is not supplied. */
+  comparativelyPreferred: boolean | null;
+  preferenceNote: string | null;
+};
+
+export type EvidenceImpactClass =
+  | "uncertainty_reduction"
+  | "single_blocker_clear"
+  | "decision_state_change"
+  | "insufficient_alone";
+
+export type EvidenceGateImpact = {
+  proposedEvidence: string;
+  gatesCleared: DecisionGateId[];
+  gatesRemaining: DecisionGate[];
+  wouldChangeDecisionEligibility: boolean;
+  impactClass: EvidenceImpactClass;
 };
 
 const SCALE_ACTION =
@@ -75,22 +104,44 @@ const INVESTMENT =
   /\b(?:additional\s+fixed\s+investment|fixed\s+investment\s+required|expansion\s+requires\s+(?:additional\s+)?(?:fixed\s+)?investment|capex\s+(?:required|needed)|investment\s+(?:not\s+)?(?:yet\s+)?(?:justified|verified|proven))\b/i;
 
 const AUTHORITY =
-  /\b(?:without\s+(?:Grand\s+King|owner)\s+authorit|authority\s+(?:restriction|blocker|required)|cannot\s+(?:deploy|publish|authorise\s+Birth|authorize\s+Birth)|Birth\s+(?:not\s+)?authoris)\b/i;
+  /\b(?:without\s+(?:Grand\s+King|owner)\s+authorit|authority\s+(?:restriction|blocker|required)|cannot\s+(?:deploy|publish|authorise\s+Birth|authorize\s+Birth)|Birth\s+(?:not\s+)?authoris|safety\s+(?:authorization|authorisation)\s+(?:missing|required|not\s+(?:yet\s+)?(?:obtained|cleared|granted)|fails?)|(?:missing|lacking|no)\s+safety\s+(?:authorization|authorisation)|safety\s+gate\s+(?:fails?|open|FAIL))\b/i;
 
 const UNVERIFIED_DEMAND =
   /\b(?:unverified\s+demand|demand\s+(?:is\s+)?unverified|supplier\s+(?:claims?|assert(?:s|ed|ion)?)\s+(?:strong\s+)?demand|demand\s+(?:remains?\s+)?unproven)\b/i;
 
 const INSUFFICIENT_EVIDENCE =
-  /\b(?:insufficient\s+(?:verified\s+)?evidence|not\s+enough\s+(?:verified\s+)?evidence|evidence\s+(?:is\s+)?insufficient)\b/i;
+  /\b(?:insufficient\s+(?:verified\s+)?(?:operating\s+)?evidence|not\s+enough\s+(?:verified\s+)?(?:operating\s+)?evidence|evidence\s+(?:is\s+)?insufficient|(?:lacking|missing|insufficient)\s+operating\s+evidence|operating\s+evidence\s+(?:insufficient|missing|lacking|fails?))\b/i;
 
 const CASH =
-  /\b(?:insufficient\s+cash|cash\s+(?:constraint|runway)|budget\s+ceiling|cannot\s+fund)\b/i;
+  /\b(?:insufficient\s+cash|cash\s+(?:constraint|runway)|budget\s+ceiling|cannot\s+fund|budget\s+(?:compatibility|compatible)\s+(?:fails?|not\s+met|missing|FAIL)|(?:fails?|missing)\s+budget\s+compatibility)\b/i;
+
+const EXPENDITURE =
+  /\b(?:expenditure\s+(?:exceeds|over|above|beyond|fails?)\s+(?:the\s+)?(?:approved\s+)?(?:ceiling|budget|cap)|(?:over|above|beyond)\s+(?:the\s+)?(?:approved\s+)?(?:expenditure|spend)\s+(?:ceiling|cap)|expenditure\s+(?:ceiling|gate)\s+(?:FAIL|fails?|open|active)|spend\s+(?:exceeds|over)\s+(?:approved\s+)?ceiling)\b/i;
+
+const PERFORMANCE =
+  /\b(?:performance\s+(?:is\s+|remains\s+)?(?:below|under|short\s+of|fails?)\s+(?:the\s+)?threshold|(?:fails?|miss(?:es|ing)|below)\s+performance\s+(?:threshold|gate|requirement)|performance\s+(?:threshold|gate)\s+(?:FAIL|fails?|open|not\s+met)|performance\s*<\s*(?:the\s+)?threshold)\b/i;
 
 const SUPPLIER =
   /\b(?:supplier\s+(?:constraint|blocker|unavailable|cannot)|MOQ\s+(?:blocker|constraint))\b/i;
 
 const TECHNICAL =
   /\b(?:technical\s+incompatib|infrastructure\s+(?:incompatib|dependency\s+blocker)|incompatible\s+infrastructure)\b/i;
+
+const PERFORMANCE_CLEARED =
+  /\b(?:performance\s+(?:now\s+)?(?:meets|clears|passes|above|at\s+or\s+above)\s+(?:the\s+)?threshold|verified\s+(?:improved\s+)?performance\s+(?:meeting|above|clearing|passes)\s+(?:the\s+)?threshold|performance\s+gate\s+(?:PASS|cleared|resolved))\b/i;
+
+const EXPENDITURE_CLEARED =
+  /\b(?:expenditure\s+(?:now\s+)?(?:within|under|below|inside)\s+(?:the\s+)?(?:approved\s+)?(?:ceiling|budget|cap)|spend\s+(?:now\s+)?(?:within|under)\s+(?:approved\s+)?ceiling|expenditure\s+gate\s+(?:PASS|cleared|resolved)|verified\s+expenditure\s+(?:within|under)\s+ceiling)\b/i;
+
+const AUTHORITY_CLEARED =
+  /\b(?:(?:safety\s+)?(?:authorization|authorisation)\s+(?:obtained|cleared|granted|approved)|authority\s+(?:gate\s+)?(?:PASS|cleared|resolved)|Grand\s+King\s+(?:has\s+)?authoris)\b/i;
+
+const EVIDENCE_CLEARED =
+  /\b(?:sufficient\s+operating\s+evidence\s+(?:verified|established|obtained)|operating\s+evidence\s+(?:now\s+)?(?:sufficient|verified|cleared)|evidence\s+gate\s+(?:PASS|cleared))\b/i;
+
+/** Evidence that claims a single verification fully changes the recommendation. */
+const DECISION_CHANGE_CLAIM =
+  /\b(?:(?:would|could|can)\s+(?:then\s+)?(?:change|reverse|unlock)\s+the\s+(?:recommendation|decision)|(?:change|reverse)\s+the\s+recommendation|make(?:s)?\s+(?:candidate\s+[A-Z]\s+)?(?:eligible|preferred)|unlock(?:s)?\s+(?:eligibility|the\s+decision))\b/i;
 
 function pushUnique(
   out: MaterialConstraint[],
@@ -138,6 +189,35 @@ export function extractMaterialConstraints(
   }
   if (CASH.test(corpus)) {
     pushUnique(out, "CASH_CONSTRAINT", "Cash or budget constraint");
+  }
+  if (EXPENDITURE.test(corpus)) {
+    pushUnique(out, "EXPENDITURE_CEILING", "Expenditure exceeds approved ceiling");
+  }
+  if (
+    PERFORMANCE.test(corpus) ||
+    (/\bperformance\s*(?:>=\s*|>\s*|meets?\s+|threshold\b)/i.test(corpus) &&
+      /\b(?:fail|below|not\s+met|currently\s+fail|both\s+currently\s+fail)\b/i.test(corpus))
+  ) {
+    pushUnique(out, "PERFORMANCE_THRESHOLD", "Performance below required threshold");
+  }
+  if (
+    !out.some((c) => c.class === "EXPENDITURE_CEILING") &&
+    /\bexpenditure\s*(?:<=\s*|<\s*|ceiling\b|budget\b)/i.test(corpus) &&
+    /\b(?:fail|exceed|over|above|currently\s+fail|both\s+currently\s+fail)\b/i.test(corpus)
+  ) {
+    pushUnique(out, "EXPENDITURE_CEILING", "Expenditure exceeds approved ceiling");
+  }
+  if (
+    /\bsafety\s+(?:authorization|authorisation)\b/i.test(corpus) &&
+    /\b(?:require|missing|fail|not\s+(?:yet\s+)?(?:obtained|cleared)|blocker)\b/i.test(corpus)
+  ) {
+    pushUnique(out, "AUTHORITY_RESTRICTION", "Authority or approval restriction");
+  }
+  if (
+    /\boperating\s+evidence\b/i.test(corpus) &&
+    /\b(?:insufficient|require|missing|fail|not\s+enough)\b/i.test(corpus)
+  ) {
+    pushUnique(out, "INSUFFICIENT_EVIDENCE", "Insufficient verified evidence");
   }
   if (SUPPLIER.test(corpus)) {
     pushUnique(out, "SUPPLIER_CONSTRAINT", "Supplier constraint");
@@ -229,6 +309,46 @@ export function applyConstraintSupersession(
         };
       }
     }
+    if (c.class === "PERFORMANCE_THRESHOLD") {
+      const m = evidence.match(PERFORMANCE_CLEARED);
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified performance clearance)`,
+        };
+      }
+    }
+    if (c.class === "EXPENDITURE_CEILING" || c.class === "CASH_CONSTRAINT") {
+      const m = evidence.match(EXPENDITURE_CLEARED);
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified expenditure/budget clearance)`,
+        };
+      }
+    }
+    if (c.class === "AUTHORITY_RESTRICTION") {
+      const m = evidence.match(AUTHORITY_CLEARED);
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified authority/safety clearance)`,
+        };
+      }
+    }
+    if (c.class === "INSUFFICIENT_EVIDENCE") {
+      const m = evidence.match(EVIDENCE_CLEARED);
+      if (m && m.index != null && !looksLikeRequirementContext(evidence, m.index)) {
+        return {
+          ...c,
+          status: "superseded",
+          summary: `${c.summary} (superseded by verified operating evidence)`,
+        };
+      }
+    }
     return c;
   });
 }
@@ -250,8 +370,10 @@ const CLASS_TO_GATE: Partial<
     label: "required investment economically justified",
   },
   AUTHORITY_RESTRICTION: { id: "authority", label: "authority/safety clear" },
-  INSUFFICIENT_EVIDENCE: { id: "evidence", label: "material evidence sufficient" },
+  INSUFFICIENT_EVIDENCE: { id: "evidence", label: "material/operating evidence sufficient" },
   CASH_CONSTRAINT: { id: "cash", label: "cash/budget sufficient" },
+  EXPENDITURE_CEILING: { id: "expenditure", label: "expenditure within approved ceiling" },
+  PERFORMANCE_THRESHOLD: { id: "performance", label: "performance meets threshold" },
   SUPPLIER_CONSTRAINT: { id: "supplier", label: "supplier constraint cleared" },
   TECHNICAL_INCOMPATIBILITY: { id: "technical", label: "technical compatibility" },
 };
@@ -307,6 +429,10 @@ export function assessScaleEligibility(
         return "Explicit Grand King authority for the restricted action.";
       case "cash":
         return "Verified cash/budget headroom for the proposed action.";
+      case "expenditure":
+        return "Verified expenditure within the approved ceiling (or an approved ceiling change).";
+      case "performance":
+        return "Verified performance at or above the required threshold.";
       case "supplier":
         return "Verified clearance of the supplier/MOQ constraint.";
       case "technical":
@@ -435,8 +561,10 @@ export function synthesizeExactEvidenceForDecision(
 export function ensureRecommendationConstraintConsistency(
   message: string,
   constraints: readonly MaterialConstraint[],
+  userMessage = "",
 ): { message: string; repaired: boolean; violatedClass: string | null } {
   const text = String(message || "").trim();
+  const ask = String(userMessage || text);
   if (!text || activeConstraints(constraints).length === 0) {
     return { message: text, repaired: false, violatedClass: null };
   }
@@ -542,7 +670,9 @@ export function ensureRecommendationConstraintConsistency(
     const genericOnly =
       /\b(?:not established|unsupported as established|claim remains unproven)\b/i.test(merged) &&
       eligibility.exactEvidenceForScale.length > 0 &&
-      !/\b(?:capacity|investment|contribution|gate|economics)\b/i.test(merged.slice(-500));
+      !/\b(?:capacity|investment|contribution|gate|economics|performance|expenditure|authority)\b/i.test(
+        merged.slice(-500),
+      );
     if (genericOnly || (eligibility.exactEvidenceForScale.length > 0 && !/\bExact evidence still required|Clearing one gate is not enough\b/i.test(merged))) {
       if (!/\bExact evidence for\b|\bExact evidence still required\b/i.test(merged)) {
         repaired = true;
@@ -550,6 +680,43 @@ export function ensureRecommendationConstraintConsistency(
           /\n{3,}/g,
           "\n\n",
         ).trim();
+      }
+    }
+  }
+
+  // Decision-change / next-evidence / reversal asks: refuse single-gate unlock narratives.
+  if (
+    asksForDecisionChangingEvidence(ask) ||
+    asksForReversalConditions(ask) ||
+    asksForNextEvidence(ask)
+  ) {
+    const actions = buildActionEligibilityStates(ask, constraints);
+    const primary = actions[0];
+    if (primary && primary.requiredGates.filter((g) => g.status !== "PASS").length >= 2) {
+      const remaining = primary.requiredGates.filter((g) => g.status !== "PASS");
+      const claimsFullUnlock =
+        DECISION_CHANGE_CLAIM.test(merged) &&
+        !/\b(?:remain|still\s+block|other\s+gate|not\s+enough|alone\s+does\s+not|would\s+not\s+(?:yet\s+)?change|insufficient\s+alone)\b/i.test(
+          merged,
+        );
+      const mentionsOnlyOneGate =
+        remaining.length >= 2 &&
+        remaining.filter((g) => {
+          const re = new RegExp(g.label.split(" ")[0]!, "i");
+          return re.test(merged) || new RegExp(g.id, "i").test(merged);
+        }).length === 1 &&
+        !/\b(?:all\s+(?:remaining\s+)?gates|both\s+(?:gates|blockers)|every\s+(?:remaining\s+)?gate)\b/i.test(
+          merged,
+        );
+      if (claimsFullUnlock || mentionsOnlyOneGate || !/\bgate|remain|blocker|eligible/i.test(merged)) {
+        repaired = true;
+        violatedClass = violatedClass ?? remaining[0]?.constraintClass ?? "OTHER";
+        const inject = asksForReversalConditions(ask)
+          ? synthesizeReversalConditions(primary)
+          : synthesizeNextEvidenceDecisionImpact(primary, ask);
+        if (!/\bCLEARING ONE BLOCKER|would not (?:yet )?change decision eligibility|REMAINING_GATES\b/i.test(merged)) {
+          merged = `${merged}\n\n${inject}`.replace(/\n{3,}/g, "\n\n").trim();
+        }
       }
     }
   }
@@ -564,6 +731,17 @@ export function synthesizeConstraintAwareRecommendation(
 ): string {
   const active = activeConstraints(constraints);
   if (active.length > 0) {
+    const actions = buildActionEligibilityStates(subject, constraints);
+    const primary = actions[0];
+    if (primary && asksForReversalConditions(subject)) {
+      return synthesizeReversalConditions(primary);
+    }
+    if (
+      primary &&
+      (asksForDecisionChangingEvidence(subject) || asksForNextEvidence(subject))
+    ) {
+      return synthesizeNextEvidenceDecisionImpact(primary, subject);
+    }
     if (/\bexact evidence|what evidence would|eligible for .{0,40}scal/i.test(subject)) {
       return synthesizeExactEvidenceForDecision(constraints);
     }
@@ -575,4 +753,330 @@ export function synthesizeConstraintAwareRecommendation(
     "",
     `Regarding “${(subject || "this ask").slice(0, 100)}”: prefer a bounded verification step over acting as if unconstrained scale were already justified.`,
   ].join("\n");
+}
+
+export function asksForDecisionChangingEvidence(message: string): boolean {
+  return /\b(?:change(?:s)?\s+the\s+recommendation|evidence\s+that\s+could\s+change|what\s+new\s+evidence\s+could\s+change|could\s+change\s+the\s+(?:recommendation|decision)|decision[- ]state\s+change)\b/i.test(
+    message,
+  );
+}
+
+export function asksForReversalConditions(message: string): boolean {
+  return /\b(?:what\s+would\s+(?:make\s+you\s+)?reverse(?:\s+toward|\s+to)?|reversal\s+(?:toward|to|condition)|reverse\s+toward\s+candidate)\b/i.test(
+    message,
+  );
+}
+
+export function asksForNextEvidence(message: string): boolean {
+  return /\b(?:single\s+most\s+valuable\s+next\s+evidence|most\s+valuable\s+next\s+(?:evidence|verification)|next\s+(?:most\s+)?valuable\s+evidence|highest[- ]value\s+next\s+verification)\b/i.test(
+    message,
+  );
+}
+
+/** Which gates would this proposed evidence clear? */
+export function evaluateEvidenceGateImpact(
+  action: ActionEligibility,
+  proposedEvidence: string,
+): EvidenceGateImpact {
+  const evidence = String(proposedEvidence || "");
+  const failing = action.requiredGates.filter((g) => g.status !== "PASS");
+  const asConstraints: MaterialConstraint[] = action.requiredGates
+    .filter((g) => g.constraintClass)
+    .map((g, i) => ({
+      id: `g_${g.id}_${i}`,
+      class: g.constraintClass!,
+      status: g.status === "PASS" ? ("superseded" as const) : ("active" as const),
+      summary: g.label,
+    }));
+  const after = applyConstraintSupersession(asConstraints, evidence);
+  const clearedIds: DecisionGateId[] = [];
+  for (const c of after) {
+    if (c.status === "superseded") {
+      const gate = CLASS_TO_GATE[c.class];
+      if (gate) clearedIds.push(gate.id);
+    }
+  }
+  // Heuristic: if evidence only names one failing gate class without supersession phrases, treat as single clear intent.
+  if (clearedIds.length === 0 && failing.length > 0) {
+    for (const g of failing) {
+      if (new RegExp(g.id, "i").test(evidence) || new RegExp(g.label.split(/\s+/)[0]!, "i").test(evidence)) {
+        if (
+          /\b(?:verify|confirm|improve|obtain|clear|meet|pass)\b/i.test(evidence) &&
+          !/\b(?:and|both|all)\b/i.test(evidence)
+        ) {
+          clearedIds.push(g.id);
+          break;
+        }
+      }
+    }
+  }
+  const uniqueCleared = [...new Set(clearedIds)];
+  const remaining = failing.filter((g) => !uniqueCleared.includes(g.id));
+  const wouldChange = remaining.length === 0 && failing.length > 0;
+  let impactClass: EvidenceImpactClass;
+  if (wouldChange) impactClass = "decision_state_change";
+  else if (uniqueCleared.length === 1 && remaining.length > 0) impactClass = "single_blocker_clear";
+  else if (uniqueCleared.length === 0) impactClass = "uncertainty_reduction";
+  else impactClass = "insufficient_alone";
+
+  return {
+    proposedEvidence: evidence,
+    gatesCleared: uniqueCleared,
+    gatesRemaining: remaining,
+    wouldChangeDecisionEligibility: wouldChange,
+    impactClass,
+  };
+}
+
+function preferenceFromText(text: string, actionLabel: string): {
+  comparativelyPreferred: boolean | null;
+  preferenceNote: string | null;
+} {
+  const t = String(text || "");
+  if (
+    /\b(?:even\s+if\s+eligible|eligible\s+does\s+not\s+(?:mean|equal)\s+best|not\s+(?:comparatively\s+)?(?:best|preferred)|comparative\s+evidence\s+does\s+not\s+justify)\b/i.test(
+      t,
+    )
+  ) {
+    return {
+      comparativelyPreferred: false,
+      preferenceNote:
+        "ELIGIBLE ≠ BEST — comparative evidence still required before preferring this action.",
+    };
+  }
+  const prefer =
+    new RegExp(
+      `\\b(?:prefer|recommend|choose|best)\\b[\\s\\S]{0,40}\\b${actionLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
+      "i",
+    ).test(t) ||
+    new RegExp(
+      `\\b${actionLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b[\\s\\S]{0,40}\\b(?:preferred|best|recommended)\\b`,
+      "i",
+    ).test(t);
+  if (prefer) {
+    return {
+      comparativelyPreferred: true,
+      preferenceNote: "Comparative preference stated only among eligible options.",
+    };
+  }
+  return { comparativelyPreferred: null, preferenceNote: null };
+}
+
+/**
+ * Build per-action gate eligibility from owner pack (+ optional pre-extracted constraints).
+ * Candidate blocks are preferred; otherwise a single primary decision action is used.
+ */
+export function buildActionEligibilityStates(
+  userMessage: string,
+  seededConstraints?: readonly MaterialConstraint[],
+): ActionEligibility[] {
+  const text = String(userMessage || "");
+  const actions: ActionEligibility[] = [];
+
+  const candidateRe =
+    /\bCandidate\s+([A-Z])\b[\s\S]{0,400}?(?=\bCandidate\s+[A-Z]\b|$)/gi;
+  let m: RegExpExecArray | null;
+  while ((m = candidateRe.exec(text)) !== null) {
+    const label = `Candidate ${m[1]}`;
+    const block = m[0];
+    const fromBlock = extractMaterialConstraints(block);
+    const inferred = inferGatesFromRequirementLanguage(block);
+    const mergedConstraints = [...fromBlock];
+    for (const g of inferred) {
+      if (g.constraintClass && !mergedConstraints.some((c) => c.class === g.constraintClass)) {
+        mergedConstraints.push({
+          id: `inf_${g.id}`,
+          class: g.constraintClass,
+          status: "active",
+          summary: g.label,
+        });
+      }
+    }
+    const required = buildScaleDecisionGates(
+      mergedConstraints.length ? mergedConstraints : extractMaterialConstraints(text),
+    );
+    const pref = preferenceFromText(text, label);
+    actions.push({
+      actionId: `candidate_${String(m[1]).toLowerCase()}`,
+      actionLabel: label,
+      requiredGates: required,
+      currentlyEligible: required.length > 0 && required.every((g) => g.status === "PASS"),
+      comparativelyPreferred: pref.comparativelyPreferred,
+      preferenceNote: pref.preferenceNote,
+    });
+  }
+
+  if (actions.length === 0) {
+    const constraints =
+      seededConstraints && seededConstraints.length > 0
+        ? [...seededConstraints]
+        : extractMaterialConstraints(text);
+    const gates = buildScaleDecisionGates(constraints);
+    const pref = preferenceFromText(text, "primary decision");
+    actions.push({
+      actionId: "primary_decision",
+      actionLabel: "primary decision",
+      requiredGates: gates,
+      currentlyEligible: gates.length > 0 && gates.every((g) => g.status === "PASS"),
+      comparativelyPreferred: pref.comparativelyPreferred,
+      preferenceNote: pref.preferenceNote,
+    });
+  }
+
+  return actions;
+}
+
+function inferGatesFromRequirementLanguage(block: string): DecisionGate[] {
+  const constraints = extractMaterialConstraints(
+    [
+      PERFORMANCE.test(block) || /performance\s*(?:>=\s*|threshold)/i.test(block)
+        ? "performance is below the threshold"
+        : "",
+      EXPENDITURE.test(block) || /expenditure\s*(?:<=\s*|ceiling)/i.test(block)
+        ? "expenditure exceeds the approved ceiling"
+        : "",
+      /safety\s+(?:authorization|authorisation)/i.test(block)
+        ? "safety authorization missing"
+        : "",
+      /budget\s+compatibility/i.test(block) ? "budget compatibility fails" : "",
+      /operating\s+evidence/i.test(block) ? "insufficient operating evidence" : "",
+      /unit\s+economics|contribution/i.test(block) ? "negative unit economics" : "",
+      /capacity/i.test(block) ? "capacity is limited to 100 transactions/week" : "",
+    ]
+      .filter(Boolean)
+      .join("; "),
+  );
+  return buildScaleDecisionGates(constraints);
+}
+
+export function synthesizeNextEvidenceDecisionImpact(
+  action: ActionEligibility,
+  userMessage: string,
+): string {
+  const failing = action.requiredGates.filter((g) => g.status !== "PASS");
+  const lines = [
+    "### Next evidence vs decision eligibility",
+    `**Action:** ${action.actionLabel}`,
+    `**CURRENTLY_ELIGIBLE:** ${action.currentlyEligible ? "YES" : "NO"}`,
+    `**REQUIRED_GATES:** ${
+      action.requiredGates.map((g) => `${g.id}=${g.status}`).join("; ") || "(none identified)"
+    }`,
+  ];
+
+  if (failing.length === 0) {
+    lines.push(
+      "",
+      "All identified gates pass — eligibility is clear. Preference still requires comparative evidence (ELIGIBLE ≠ BEST).",
+    );
+    if (action.preferenceNote) lines.push(`**Preference:** ${action.preferenceNote}`);
+    return lines.join("\n");
+  }
+
+  if (failing.length === 1) {
+    lines.push(
+      "",
+      `A single verification that clears **${failing[0]!.label}** would change decision eligibility.`,
+      `Highest-value next verification: verified clearance of ${failing[0]!.label}.`,
+    );
+    return lines.join("\n");
+  }
+
+  const wantsChange =
+    asksForDecisionChangingEvidence(userMessage) ||
+    /\bchange\s+the\s+recommendation\b/i.test(userMessage);
+
+  lines.push(
+    "",
+    "**CLEARING ONE BLOCKER ≠ DECISION UNLOCK** while other required blockers remain active.",
+    "",
+    `No single evidence item clears all independent blockers (${failing.map((g) => g.label).join("; ")}).`,
+  );
+
+  if (wantsChange) {
+    lines.push(
+      "",
+      "Evidence that could **change** the recommendation must clear **every** currently failing gate — not only one attractive improvement.",
+      "",
+      "**REMAINING_GATES (all must pass for eligibility):**",
+      ...failing.map((g) => `- ${g.label} (${g.id}=${g.status})`),
+      "",
+      `Highest-value next verification: clear ${failing[0]!.label} — **and** explicitly note that ${failing
+        .slice(1)
+        .map((g) => g.label)
+        .join("; ")} would still remain.`,
+    );
+  } else {
+    lines.push(
+      "",
+      `Highest-value next verification (uncertainty / one-blocker class): clear ${failing[0]!.label}.`,
+      `**REMAINING_GATES after that alone:** ${failing
+        .slice(1)
+        .map((g) => g.label)
+        .join("; ") || "none"}.`,
+      "That verification would **not** yet change decision eligibility.",
+    );
+  }
+
+  if (action.comparativelyPreferred === false || action.preferenceNote) {
+    lines.push(
+      "",
+      `**ELIGIBILITY vs PREFERENCE:** ${
+        action.preferenceNote ??
+        "Even after all gates pass, comparative evidence must still justify preferring this action."
+      }`,
+    );
+  }
+
+  return lines.join("\n");
+}
+
+export function synthesizeReversalConditions(action: ActionEligibility): string {
+  const failing = action.requiredGates.filter((g) => g.status !== "PASS");
+  const lines = [
+    `### Reversal conditions — ${action.actionLabel}`,
+    `REVERSE_TO_${action.actionId.toUpperCase()} only if:`,
+  ];
+  if (action.requiredGates.length === 0) {
+    lines.push("- (no binding gates identified from the pack — state residual uncertainty)");
+  } else {
+    for (const g of action.requiredGates) {
+      lines.push(`- ${g.label} = PASS (currently ${g.status})`);
+    }
+  }
+  lines.push(
+    "- AND comparative evidence then makes this action preferable among eligible options.",
+    "",
+    "Do not reverse on a single attractive improvement while another required gate remains FAIL/UNKNOWN.",
+  );
+  if (failing.length > 0) {
+    lines.push(
+      "",
+      `Currently binding gates that must all be addressed: ${failing.map((g) => g.label).join("; ")}.`,
+    );
+  }
+  lines.push(
+    "",
+    "**ELIGIBILITY ≠ PREFERENCE:** clearing gates makes the action selectable; preference still needs comparative justification.",
+  );
+  return lines.join("\n");
+}
+
+/** Compact brief for canonical / prompt injection. */
+export function formatActionEligibilityBrief(
+  actions: readonly ActionEligibility[],
+): string {
+  if (!actions.length) return "";
+  const lines = [
+    "[Canonical decision-gate state — CLEARING ONE BLOCKER ≠ DECISION UNLOCK; ELIGIBLE ≠ BEST]",
+  ];
+  for (const a of actions) {
+    lines.push(
+      `- ACTION=${a.actionLabel} CURRENTLY_ELIGIBLE=${a.currentlyEligible ? "YES" : "NO"}`,
+    );
+    for (const g of a.requiredGates) {
+      lines.push(`  GATE_${g.id}=${g.status} (${g.label})`);
+    }
+    if (a.preferenceNote) lines.push(`  PREFERENCE_NOTE=${a.preferenceNote}`);
+  }
+  return lines.join("\n");
 }
