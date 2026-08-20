@@ -226,9 +226,12 @@ function verdictForClaimAgainstLedger(
   canonical?: CanonicalCaseState | null,
 ): { verdict: LedgerVerdict; justification: string } | null {
   // Prefer canonical case state — single derivation of material conclusions.
+  // If the pack/ask omitted a binding that the answer already established, fall through to ledger.
   if (canonical) {
     const v = verdictClaimAgainstCanonical(claim.sourceText, canonical);
-    return { verdict: v.verdict, justification: v.justification };
+    if (v.verdict !== "unproven") {
+      return { verdict: v.verdict, justification: v.justification };
+    }
   }
 
   const t = claim.sourceText;
@@ -394,13 +397,16 @@ export function detectMaterialInternalContradictions(answer: string): string[] {
   const ledger = buildConclusionLedger(text);
   const issues: string[] = [];
 
-  // Supported claim that asserts X=Y while ledger has X=Z or X≠Y
-  const claimSupports = [
-    ...text.matchAll(/###\s*Claim\s*(\d+)[\s\S]{0,400}?\*\*Verdict:\*\*\s*Supported([\s\S]{0,400}?)(?=###\s*Claim|\n###\s+(?!Claim)|$)/gi),
+  // Per-claim blocks only — never let Claim N's Supported bleed into Claim M's match.
+  const claimIndexes = [
+    ...new Set(
+      [...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi)].map((m) => Number(m[1])),
+    ),
   ];
-  for (const m of claimSupports) {
-    const body = m[0]!;
-    const idClaim = /\b([A-Z]{1,4}-?\d{1,4})\s+is\s+([A-Z][A-Za-z0-9\s-]{2,60})/i.exec(body);
+  for (const idx of claimIndexes) {
+    const block = extractClaimBlock(text, idx);
+    if (!block || !/\*\*Verdict:\*\*\s*Supported\b/i.test(block)) continue;
+    const idClaim = /\b([A-Z]{1,4}-?\d{1,4})\s+is\s+([A-Z][A-Za-z0-9\s-]{2,60})/i.exec(block);
     if (!idClaim) continue;
     const code = idClaim[1]!;
     const named = idClaim[2]!.trim();
@@ -408,12 +414,16 @@ export function detectMaterialInternalContradictions(answer: string): string[] {
       (e) => e.kind === "entity_identity" && e.id === `entity.${normKey(code)}` && !e.value.startsWith("NOT "),
     );
     if (pos && normKey(pos.value) !== normKey(named) && pos.status === "verified") {
-      issues.push(`claim_${m[1]}_supports_${code}=${named}_but_ledger_${code}=${pos.value}`);
+      issues.push(`claim_${idx}_supports_${code}=${named}_but_ledger_${code}=${pos.value}`);
     }
-  }
-
-  if (FORECAST_NE_REALISED.test(text) && /forecast[\s\S]{0,80}\*\*Verdict:\*\*\s*Supported/i.test(text)) {
-    issues.push("forecast_ne_realised_but_forecast_claim_supported");
+    if (
+      /\b(forecast|expected|estimate).{0,40}(is|equals|=|reaches).{0,20}(realised|realized|actual)|forecast equals realised/i.test(
+        block,
+      ) &&
+      ledger.some((e) => e.id === "finance.forecast_ne_realised")
+    ) {
+      issues.push(`claim_${idx}_supports_forecast_eq_realised_but_ledger_ne`);
+    }
   }
 
   if (OCCURRED.test(text) && NEVER_OCCURRED.test(text)) {

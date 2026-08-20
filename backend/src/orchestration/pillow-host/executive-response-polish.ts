@@ -216,7 +216,7 @@ export function polishFinalVisibleAnswer(
   // Temporal: validate/repair against occurrence principle (domain-native; no doctrine dump).
   out = repairHistoricalOccurrenceErasure(out, userMessage).message;
 
-  const canonical = buildCanonicalCaseState(userMessage);
+  const canonical = buildCanonicalCaseState(`${userMessage}\n${out}`);
   const claims = parseClaimObligationsFromContractTasks(c.tasks);
   // Prefer canonical claim set when contract miscounted section headings as claims.
   const claimObligations =
