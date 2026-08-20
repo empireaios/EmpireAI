@@ -460,6 +460,87 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     forbidden: [/Mini Fan/i, /sales-history evidence/i],
     requiredAny: [/forecast|estimate/i, /identity|co-occurr/i, /supersed|synthes/i],
   },
+  {
+    id: "cr.explicit_middle_claim_dropped",
+    failureClass: "EXPLICIT_MIDDLE_CLAIM_DROPPED",
+    capabilities: ["claim_set_completeness", "task_completion"],
+    severity: "P0",
+    origin: "post-foundation-repair-4",
+    forbidLiveCommerce: true,
+    forbidAuthorityHijack: true,
+    buildPrompt: (seed) => {
+      const a = pick(mulberry32(seed), AMOUNTS);
+      return [
+        `SyntheticCanaryMiddleClaim-${seed} — analysis only. Provide a separate verdict on each of the five quoted claims in original order.`,
+        `1. "Forecast revenue reaches $${a * 8}."`,
+        `2. "Later realised ledger shows $${a}."`,
+        `3. "HT-88 is Harbour Crown Hotel."`,
+        `4. "Independent rating +12% outweighs supplier."`,
+        `5. "The completed stay never historically occurred because of a later refund."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /sales-history evidence/i, /### Delegation reading/i],
+    requiredAny: [/Claim\s*1/i, /Claim\s*2/i, /Claim\s*3/i, /Claim\s*4/i, /Claim\s*5/i],
+  },
+  {
+    id: "cr.later_section_contradicts_earlier",
+    failureClass: "LATER_SECTION_CONTRADICTS_EARLIER_VERIFIED_CONCLUSION",
+    capabilities: ["cross_section_consistency"],
+    severity: "P0",
+    origin: "post-foundation-repair-4",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryLedger-${seed} — analysis only. Do not mention Mini Fan or Birth.`,
+        `Pack: property registry shows HT-88 = Hillside Transit Hotel; Harbour Crown Hotel = HC-11; they are distinct.`,
+        `Then provide a separate verdict on each quoted claim:`,
+        `1. "HT-88 is Harbour Crown Hotel."`,
+        `2. "Forecast equals realised."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /Claim\s*1[\s\S]{0,200}\*\*Verdict:\*\*\s*Supported/i],
+    requiredAny: [/Hillside|distinct|Contradict/i],
+  },
+  {
+    id: "cr.retrieved_lesson_text_leak",
+    failureClass: "RETRIEVED_LESSON_TEXT_LEAKS_INTO_FINAL_RESPONSE",
+    capabilities: ["memory_realization"],
+    severity: "P0",
+    origin: "post-foundation-repair-4",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryLessonSurf-${seed} — hospitality analysis only.`,
+        `Stays completed; later refund after service breach. Did stays historically occur?`,
+        `Do not dump doctrine templates.`,
+      ].join("\n");
+    },
+    forbidden: [/\*\*Event-state reading:\*\*/i, /chargeback, compensation, SLA breach/i, /sales-history evidence/i],
+    requiredAny: [/occur|complet|refund|economic/i],
+  },
+  {
+    id: "cr.source_domain_surface_contamination",
+    failureClass: "SOURCE_DOMAIN_SURFACE_LANGUAGE_CONTAMINATION",
+    capabilities: ["synthetic_isolation", "memory_realization"],
+    severity: "P0",
+    origin: "post-foundation-repair-4",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryDomainPure-${seed} — analysis only for a hypothetical healthcare clinic.`,
+        `Classify whether forecast patient volume equals realised visits. Two short paragraphs.`,
+        `Do not mention EmpireAI live products, Birth, Mini Fan, or commissioning.`,
+      ].join("\n");
+    },
+    forbidden: [
+      /sales-history evidence/i,
+      /realised orders/i,
+      /verified operating state/i,
+      /commissioning\/KPI/i,
+      /Mini Fan/i,
+    ],
+    requiredAny: [/forecast|patient|visit|realised|unproven/i],
+  },
 ];
 
 export type SpecimenGrade = {
@@ -522,6 +603,32 @@ export function gradeConstitutionalAnswer(
   if (specimen.id === "cr.source_domain_language_leak") {
     if (/sales-history|realised orders|verified operating state|commissioning\/KPI/i.test(text)) {
       reasons.push("source_domain_language_leak");
+    }
+  }
+
+  if (specimen.id === "cr.explicit_middle_claim_dropped") {
+    for (const n of [1, 2, 3, 4, 5]) {
+      if (!new RegExp(`Claim\\s*${n}\\b`, "i").test(text)) {
+        reasons.push(`missing_claim_${n}`);
+      }
+    }
+  }
+
+  if (specimen.id === "cr.later_section_contradicts_earlier") {
+    if (/Claim\s*1[\s\S]{0,280}\*\*Verdict:\*\*\s*Supported/i.test(text)) {
+      reasons.push("identity_claim_supported_against_ledger");
+    }
+  }
+
+  if (specimen.id === "cr.retrieved_lesson_text_leak") {
+    if (/\*\*Event-state reading:\*\*|chargeback, compensation, SLA breach/i.test(text)) {
+      reasons.push("lesson_text_dumped");
+    }
+  }
+
+  if (specimen.id === "cr.source_domain_surface_contamination") {
+    if (/sales-history|realised orders|verified operating state|commissioning\/KPI/i.test(text)) {
+      reasons.push("source_domain_surface_contamination");
     }
   }
 

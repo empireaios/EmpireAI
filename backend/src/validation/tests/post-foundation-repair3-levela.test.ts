@@ -101,7 +101,7 @@ describe("Post-Foundation Repair 3 — Level A", () => {
     const fixed = repairHistoricalOccurrenceErasure(erased, ask);
     assert.equal(fixed.repaired, true);
     assert.equal(answerErasesHistoricalOccurrence(fixed.message), false);
-    assert.match(fixed.message, /does not by itself prove|historically occurred|Event-state/i);
+    assert.match(fixed.message, /does not by itself prove|historically occurred|economic treatment/i);
   });
 
   it("2 later fraud evidence may invalidate occurrence", () => {
@@ -112,7 +112,7 @@ describe("Post-Foundation Repair 3 — Level A", () => {
       "The shipment record is invalid.",
       ask,
     );
-    assert.match(out.message, /invalid|fraud|never executed|Event-state/i);
+    assert.match(out.message, /invalid|fraud|never executed/i);
   });
 
   it("3 purchase→return / payment→chargeback / activation→cancel patterns", () => {

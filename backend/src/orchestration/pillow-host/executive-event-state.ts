@@ -6,7 +6,8 @@
  * EVENT_OCCURRED | OPERATIONAL_STATUS_AT_TIME | LATER_SERVICE_OUTCOME |
  * ECONOMIC_OUTCOME | CURRENT_ACCOUNTING_TREATMENT
  *
- * Does not encode sealed examination content.
+ * Repair 4: realize the principle in domain-native language — never dump
+ * chargeback/sales-history doctrine blocks into hotel/logistics answers.
  */
 
 export type EventStateLayer =
@@ -15,6 +16,26 @@ export type EventStateLayer =
   | "LATER_SERVICE_OUTCOME"
   | "ECONOMIC_OUTCOME"
   | "CURRENT_ACCOUNTING_TREATMENT";
+
+export type ScenarioDomain =
+  | "hospitality"
+  | "logistics"
+  | "software"
+  | "healthcare"
+  | "manufacturing"
+  | "generic";
+
+export function detectScenarioDomain(userMessage: string): ScenarioDomain {
+  const t = String(userMessage || "").toLowerCase();
+  if (/\b(hotel|hospitality|room[- ]?nights?|guest|property registry|harbour|hillside)\b/i.test(t)) {
+    return "hospitality";
+  }
+  if (/\b(shipment|logistics|delivery|freight|route completion)\b/i.test(t)) return "logistics";
+  if (/\b(subscription|incident|uptime|saas|software)\b/i.test(t)) return "software";
+  if (/\b(patient|hospital|clinic|healthcare|care episode)\b/i.test(t)) return "healthcare";
+  if (/\b(manufactur|factory|units produced|assembly)\b/i.test(t)) return "manufacturing";
+  return "generic";
+}
 
 /** Pack establishes earlier performance/completion AND a later reversal-class outcome. */
 export function packEstablishesOccurrenceThenLaterReversal(userMessage: string): boolean {
@@ -51,76 +72,88 @@ export function answerErasesHistoricalOccurrence(answer: string): boolean {
   return ERASURE_PATTERNS.some((r) => r.test(String(answer || "")));
 }
 
-export const OCCURRENCE_PRESERVATION_NOTE = [
-  "**Event-state reading:** A later refund, return, chargeback, compensation, SLA breach, or adverse economic outcome does not by itself prove the earlier verified event never occurred.",
-  "Keep separate: historical occurrence, operational status at the time, later service outcome, economic outcome, and current accounting treatment.",
-  "Only evidence that specifically invalidates the historical record (fraud, void, never executed, erroneous duplicate) may erase historical occurrence.",
-].join(" ");
+/** Domain-native one-liner — principle applied, not doctrine dumped. */
+export function occurrencePreservationNote(domain: ScenarioDomain): string {
+  switch (domain) {
+    case "hospitality":
+      return "A later refund after a service breach changes economic treatment; it does not by itself erase that the completed stays historically occurred.";
+    case "logistics":
+      return "A later delivery credit or refund changes settlement; it does not by itself erase that the shipment was historically completed.";
+    case "software":
+      return "A later credit or cancellation after activation changes billing treatment; it does not by itself erase that the activation historically occurred.";
+    case "healthcare":
+      return "Later compensation or reversal changes financial treatment; it does not by itself erase that the care episode historically occurred.";
+    case "manufacturing":
+      return "A later return or credit changes economic treatment; it does not by itself erase that the completed units historically occurred.";
+    default:
+      return "A later refund or reversal changes economic treatment; it does not by itself erase that the earlier verified event historically occurred.";
+  }
+}
 
-export const OCCURRENCE_INVALIDATION_NOTE = [
-  "**Event-state reading:** Later verified evidence indicates the earlier record itself is invalid (fraudulent, void, erroneous, or never executed).",
-  "In that case historical occurrence may be treated as not established — because the record was invalidated, not merely because economics later reversed.",
-].join(" ");
+export function occurrenceInvalidationNote(domain: ScenarioDomain): string {
+  void domain;
+  return "Later verified evidence shows the earlier record itself is invalid (fraudulent, void, erroneous, or never executed) — occurrence may be treated as not established for that reason.";
+}
 
 /**
- * Repair answers that collapse later reversal into historical non-occurrence
- * when the pack did not supply record-invalidation evidence.
+ * Repair answers that collapse later reversal into historical non-occurrence.
+ * Prefer in-place phrase repair; append at most one short domain-native sentence.
+ * Never surface chargeback/sales-history doctrine templates.
  */
 export function repairHistoricalOccurrenceErasure(
   answer: string,
   userMessage: string,
-): { message: string; repaired: boolean } {
+): { message: string; repaired: boolean; lessonTextSurfaced: boolean } {
   const text = String(answer || "").trim();
-  if (!text) return { message: text, repaired: false };
+  if (!text) return { message: text, repaired: false, lessonTextSurfaced: false };
 
+  const domain = detectScenarioDomain(userMessage);
   const packReversal = packEstablishesOccurrenceThenLaterReversal(userMessage);
   const packInvalidates = packSuppliesOccurrenceInvalidation(userMessage);
-  if (!packReversal && !answerErasesHistoricalOccurrence(text)) {
-    return { message: text, repaired: false };
+
+  // Strip any prior doctrine dumps (Repair 3 residue).
+  let out = text
+    .replace(/\n*\*\*Event-state reading:\*\*[^\n]*(?:\n(?!\n)[^\n]*)*/gi, "")
+    .replace(/\n*Event-state reading:[^\n]*/gi, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  if (!packReversal && !answerErasesHistoricalOccurrence(out)) {
+    return { message: out, repaired: out !== text, lessonTextSurfaced: false };
   }
 
   if (packInvalidates) {
-    // Ensure invalidation framing is present; do not force occurrence preservation.
-    if (!/invalidat|fraud|void|never executed|erroneous/i.test(text)) {
+    if (!/invalidat|fraud|void|never executed|erroneous/i.test(out)) {
       return {
-        message: `${text}\n\n${OCCURRENCE_INVALIDATION_NOTE}`.trim(),
+        message: `${out}\n\n${occurrenceInvalidationNote(domain)}`.trim(),
         repaired: true,
+        lessonTextSurfaced: false,
       };
     }
-    return { message: text, repaired: false };
+    return { message: out, repaired: out !== text, lessonTextSurfaced: false };
   }
 
-  if (!answerErasesHistoricalOccurrence(text) && !packReversal) {
-    return { message: text, repaired: false };
-  }
-
-  let out = text;
-  let repaired = false;
-
+  let repaired = out !== text;
   for (const pattern of ERASURE_PATTERNS) {
     if (pattern.test(out)) {
       out = out.replace(
         pattern,
-        "the later economic or service outcome changed accounting treatment, but the earlier verified event remains historically occurred unless the record itself is invalidated",
+        "the later economic outcome changed accounting treatment, but the earlier verified event remains historically occurred unless the record itself is invalidated",
       );
       repaired = true;
     }
   }
 
-  if (packReversal && answerErasesHistoricalOccurrence(text)) {
-    // After pattern replace, still append canonical note if erasure residue remains.
-    if (answerErasesHistoricalOccurrence(out) || !/Event-state reading/i.test(out)) {
-      out = `${out}\n\n${OCCURRENCE_PRESERVATION_NOTE}`.trim();
-      repaired = true;
-    }
-  } else if (packReversal && /refund|return|chargeback|compensat/i.test(out) && /histor/i.test(out)) {
-    if (!/Event-state reading|does not by itself prove the earlier/i.test(out)) {
-      out = `${out}\n\n${OCCURRENCE_PRESERVATION_NOTE}`.trim();
-      repaired = true;
-    }
+  const needsNative =
+    packReversal &&
+    (answerErasesHistoricalOccurrence(text) ||
+      (/refund|return|credit|compensat/i.test(out) && /histor|occur|complet/i.test(out)));
+  if (needsNative && !/does not by itself (?:mean|prove|erase)/i.test(out)) {
+    out = `${out}\n\n${occurrencePreservationNote(domain)}`.trim();
+    repaired = true;
   }
 
-  return { message: out.replace(/\n{3,}/g, "\n\n").trim(), repaired };
+  return { message: out.replace(/\n{3,}/g, "\n\n").trim(), repaired, lessonTextSurfaced: false };
 }
 
 /** Scenario-native demotion — never live sales-history phrasing. */
@@ -134,10 +167,33 @@ export function isSourceDomainLanguageLeak(text: string): boolean {
   const t = String(text || "");
   return (
     /\bverified sales-history evidence beyond realised orders\b/i.test(t) ||
+    /\bI don't have verified sales-history\b/i.test(t) ||
     /\brealised orders (?:and realised revenue )?remain(?:s)? zero\b/i.test(t) ||
     /\bCurrent product focus is\b/i.test(t) ||
     /\bBrief verified note:\s*focus remains\b/i.test(t) ||
     /\bcommissioning\/KPI state\b/i.test(t) ||
-    /\bverified operating state now\b/i.test(t)
+    /\bverified operating state now\b/i.test(t) ||
+    /\b\*\*Event-state reading:\*\*/i.test(t) ||
+    /\bchargeback, compensation, SLA breach\b/i.test(t)
   );
+}
+
+/** Strip source-domain / doctrine surface from synthetic answers. */
+export function stripSourceDomainSurfaceLanguage(answer: string, userMessage: string): string {
+  const scoped =
+    /\bsynthetic\w*|\bscenario[- ]only\b|\bfor analysis(?:\s+only)?\b|\bhypothetical\b/i.test(
+      userMessage,
+    );
+  if (!scoped && !/\bhotel|hospitality|logistics|shipment|healthcare|subscription\b/i.test(userMessage)) {
+    return String(answer || "").trim();
+  }
+  return String(answer || "")
+    .replace(/[^.!\n]*verified sales-history evidence beyond realised orders[^.!\n]*[.!]?/gi, "")
+    .replace(/[^.!\n]*I don't have verified sales-history[^.!\n]*[.!]?/gi, "")
+    .replace(/\n*\*\*Event-state reading:\*\*[^\n]*(?:\n(?!\n)[^\n]*)*/gi, "")
+    .replace(/\bcommissioning\/KPI state\b/gi, "scenario evidence")
+    .replace(/\brealised orders\b/gi, "realised counts")
+    .replace(/[^\S\n]{2,}/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }

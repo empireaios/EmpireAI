@@ -17,6 +17,15 @@ import {
 } from "./executive-scoped-reasoning.js";
 import { repairHistoricalOccurrenceErasure } from "./executive-event-state.js";
 import { enforceExactSectionContract } from "./executive-section-contract.js";
+import {
+  enforceClaimEnumeration,
+  parseClaimObligationsFromContractTasks,
+} from "./executive-conclusion-ledger.js";
+import {
+  detectScenarioDomain,
+  realizeDomainNativeMemorySurface,
+} from "./executive-memory-realization.js";
+import { isScopedAwayFromLiveEmpire } from "./executive-scoped-reasoning.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -193,20 +202,29 @@ export function polishFinalVisibleAnswer(
 ): string {
   const c = contract ?? parseExecutiveTaskContract(userMessage);
   const scope = c.scopeType ?? detectReasoningScope(userMessage);
+  const scoped = isScopedAwayFromLiveEmpire(scope);
   let out = String(message || "").trim();
   out = stripContradictoryCoverageAppendix(out, c);
   out = stripIrrelevantBirthState(out, userMessage);
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = dedupeProtectedStateBlocks(out);
   out = repairHistoricalOccurrenceErasure(out, userMessage).message;
+
+  const claims = parseClaimObligationsFromContractTasks(c.tasks);
+  if (claims.length >= 2) {
+    out = enforceClaimEnumeration(out, claims, {
+      domainHint: detectScenarioDomain(userMessage),
+    }).message;
+  }
+
   out = ensureNumberedSectionLineBreaks(out);
   out = ensureScannableMultipartStructure(out, c);
   out = ensureNumberedSectionLineBreaks(out);
   if (c.expectedTopLevelSections != null) {
     out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
   }
-  // Second pass: source-domain language must not reappear after temporal notes.
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
+  out = realizeDomainNativeMemorySurface(out, userMessage, scoped).message;
   return out;
 }
 

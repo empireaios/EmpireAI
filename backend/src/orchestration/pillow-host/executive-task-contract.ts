@@ -34,6 +34,10 @@ import {
   synthesizeAuthorityUnitAnswer,
   type AuthorityTaskKind,
 } from "./executive-authority-semantics.js";
+import {
+  claimLocallyRendered,
+  parseClaimObligationsFromContractTasks,
+} from "./executive-conclusion-ledger.js";
 import { detectExpectedTopLevelSections } from "./executive-section-contract.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
@@ -535,7 +539,7 @@ function detectKindsInText(text: string): ExecutiveTaskKind[] {
 export function extractExplicitClaimSet(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asksVerdicts =
-    /\b(?:verdict|evaluate|audit|classify|score|judge)\b[\s\S]{0,80}\bclaims?\b|\bclaims?\b[\s\S]{0,60}\b(?:verdict|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,100}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
       text,
     );
   if (!asksVerdicts) return [];
@@ -590,8 +594,22 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   const tasks: ExecutiveTaskUnit[] = [];
   const expectedTopLevelSections = detectExpectedTopLevelSections(text);
 
-  // Explicit claim-set obligations win over a single aggregate premise_audit.
+  // Explicit claim-set obligations — keep numbered analysis sections too when present.
   if (explicitClaims.length >= 2) {
+    if (parts.length >= 2) {
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i]!;
+        // Skip the part that is only the claim list itself.
+        if (
+          /(?:quoted\s+)?claims?/i.test(part) &&
+          (part.match(/[“"']/g) || []).length >= 4
+        ) {
+          continue;
+        }
+        const kind = classifyLocalObligationKind(part);
+        tasks.push(makeTaskUnit(`t${i + 1}`, kind, part, true));
+      }
+    }
     for (let i = 0; i < explicitClaims.length; i++) {
       const claim = explicitClaims[i]!;
       tasks.push(
@@ -792,6 +810,25 @@ export function assessTaskCoverage(
 ): TaskCoverageReport {
   const text = String(answer || "");
   const byTask = contract.tasks.map((task) => {
+    const claimObligations = parseClaimObligationsFromContractTasks(contract.tasks);
+    const thisClaim = claimObligations.find((c) => c.id === task.id);
+
+    // Claim obligations: require local Claim N / quote+verdict — never whole-answer token overlap.
+    if (thisClaim) {
+      const local = claimLocallyRendered(thisClaim, text);
+      if (local) {
+        return { id: task.id, kind: task.kind, status: "completed" as TaskCoverageStatus };
+      }
+      return {
+        id: task.id,
+        kind: task.kind,
+        status: (task.required ? "silent_drop" : "unavailable") as TaskCoverageStatus,
+        reason: task.required
+          ? `Claim ${thisClaim.index} not rendered locally in released answer.`
+          : undefined,
+      };
+    }
+
     const signal = kindSignals(task.kind).test(text);
     const overlap =
       task.kind === "multipart_unit" || contract.multipart
