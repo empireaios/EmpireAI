@@ -71,8 +71,12 @@ const TRIALS = [
       "Both gates currently fail.",
       "What new evidence could CHANGE the recommendation toward Candidate B?",
     ].join("\n"),
-    require: [/remain|both|expenditure|performance|gate|blocker|not (?:enough|yet)|CLEARING ONE/i],
-    forbid: [/Mini Fan/i],
+    require: [
+      /expenditure|ceiling|budget/i,
+      /performance/i,
+      /remain|both|blocker|CLEARING ONE|not (?:enough|yet)|alone|still/i,
+    ],
+    forbid: [/Mini Fan/i, /HT-77|Harbour Crown|ZX-11/i],
   },
   {
     id: "DG_auth_budget_ops_reverse",
@@ -82,19 +86,19 @@ const TRIALS = [
       "Authorization missing; budget compatibility fails; operating evidence insufficient.",
       "What would make you reverse toward Candidate C?",
     ].join("\n"),
-    require: [/authori|safety|budget|evidence|gate|PASS|eligible|prefer/i],
-    forbid: [/Mini Fan/i],
+    require: [/authori|safety/i, /budget|cash|expenditure/i, /evidence|operating/i],
+    forbid: [/Mini Fan/i, /HT-77|Harbour Crown/i],
   },
   {
     id: "DG_one_clear_not_unlock",
     message: [
-      "SyntheticDG-03 — commerce analysis only.",
+      "SyntheticDG-03 — commerce analysis only. Do not mention Mini Fan or Birth.",
       "Module has negative unit economics and capacity limited to 100 transactions/week.",
       "Owner evidence: contribution is now positive after verified repair.",
       "Does this unlock meaningful scaling? State remaining gates.",
     ].join("\n"),
-    require: [/capacity|remain|gate|not (?:yet )?unlock|partial/i],
-    forbid: [/fully unlocked|scale freely|all gates clear/i],
+    require: [/capacity/i, /remain|gate|not (?:yet )?unlock|partial|still/i],
+    forbid: [/fully unlocked|scale freely|all gates clear/i, /HT-77|Harbour Crown|ZX-11|Cedar Transit/i],
   },
   {
     id: "DG_eligible_ne_best",
@@ -104,18 +108,18 @@ const TRIALS = [
       "Even if eligible, comparative evidence does not justify Candidate A as best.",
       "Is Candidate A currently eligible? Should it be preferred?",
     ].join("\n"),
-    require: [/eligib|prefer|compar|not (?:automatically )?best|ELIGIBLE/i],
-    forbid: [/Mini Fan/i],
+    require: [/eligib/i, /prefer|compar|not (?:automatically )?best|ELIGIBLE/i],
+    forbid: [/Mini Fan/i, /HT-77|Harbour Crown/i],
   },
   {
     id: "DG_next_valuable_vs_decision",
     message: [
-      "SyntheticDG-05 — industrial analysis only.",
+      "SyntheticDG-05 — industrial analysis only. Do not mention Mini Fan.",
       "Candidate B requires: performance >= threshold; expenditure <= approved ceiling. Both currently fail.",
       "What is the single most valuable next evidence? Distinguish uncertainty reduction vs decision-state change.",
     ].join("\n"),
-    require: [/performance|expenditure|remain|gate|not (?:yet )?change|decision/i],
-    forbid: [/Mini Fan/i],
+    require: [/performance/i, /expenditure|ceiling/i, /remain|gate|not (?:yet )?change|decision|blocker/i],
+    forbid: [/Mini Fan/i, /HT-77|Harbour Crown/i],
   },
   {
     id: "DG_rcs_entity_control",
@@ -177,7 +181,8 @@ async function main() {
         reasons: g.reasons,
         ms: c.ms,
         kind: c.kind,
-        preview: g.visible.slice(0, 280),
+        preview: g.visible.slice(0, 600),
+        full: g.visible,
       });
       console.log(`  -> ${g.ok ? "PASS" : "FAIL"} ${c.ms}ms ${g.reasons.join("|") || "none"}`);
     }
