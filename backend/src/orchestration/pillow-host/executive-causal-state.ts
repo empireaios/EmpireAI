@@ -686,6 +686,20 @@ export function ensureCausalClaimConsistency(
     }
   }
 
+  // Ask for risk/lesson with demonstrated mechanism — inject even if LLM is generic.
+  if (
+    causal.demonstratedRiskMechanism &&
+    /\b(?:risk\s+lesson|follow[- ]?up|strongest\s+supported|what\s+(?:should|is)\s+the\s+(?:main|key|strongest)\s+(?:risk|lesson|follow))\b/i.test(
+      ask,
+    ) &&
+    !/demonstrated\s+mechanism|failover\/mitigation|protect resources under failover|bound mitigation blast/i.test(
+      out,
+    )
+  ) {
+    repaired = true;
+    out = `${out}\n\n${synthesizeCausalRiskLesson(causal)}`;
+  }
+
   if (
     causal.demonstratedRiskMechanism &&
     /\b(?:continue\s+monitoring|keep\s+monitoring|monitor\s+(?:and\s+)?(?:observe|watch))\b/i.test(

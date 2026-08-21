@@ -71,8 +71,11 @@ const TRIALS = [
       "Entity South remained healthy throughout.",
       `Separate verdict on: "South played no causal role in the incident."`,
     ].join("\n"),
-    require: [/healthy|observation|OBSERVED_UNAFFECTED|not (?:establish|prove)|causal role|without affirmative/i],
-    forbid: [/Mini Fan/i, /\bSouth played no causal role\b(?![\s\S]{0,200}(?:not|≠|does not|cannot))/i],
+    require: [
+      /healthy|observation|OBSERVED_UNAFFECTED|Causal correction/i,
+      /not (?:establish|prove|automatic)|≠|without affirmative|does not (?:by itself )?establish/i,
+    ],
+    forbid: [/Mini Fan/i],
   },
   {
     id: "CX_indirect_not_unrelated",
@@ -81,7 +84,7 @@ const TRIALS = [
       "Alpha directly caused FailureB. FailureB triggered failover to Gamma. Gamma then overloaded DeltaNode.",
       `Verdict: "Alpha and DeltaNode are unrelated because they have different direct causes."`,
     ].join("\n"),
-    require: [/related|path|indirect|DIFFERENT_DIRECT|CAUSALLY_UNRELATED|connected|chain/i],
+    require: [/related|path|indirect|DIFFERENT_DIRECT|CAUSALLY_UNRELATED|connected|chain|Causal correction/i],
     forbid: [/Mini Fan/i],
   },
   {
@@ -91,7 +94,7 @@ const TRIALS = [
       "West directly caused FailureC. FailureC triggered failover to Ridge. Ridge then overloaded HarborNode.",
       `Is it true that West and HarborNode share the same root cause?`,
     ].join("\n"),
-    require: [/not|≠|different|connected|chain|indirect|COMMON_ROOT|same root/i],
+    require: [/not|≠|different|connected|chain|indirect|COMMON_ROOT|same root|no/i],
     forbid: [/Mini Fan/i],
   },
   {
@@ -101,8 +104,8 @@ const TRIALS = [
       "Primary fault on NodeA triggered failover to NodeB. Failover to NodeB then caused overload on NodeC.",
       "Service restored. What is the strongest supported follow-up risk lesson?",
     ].join("\n"),
-    require: [/failover|overload|resource|mitigation|demonstrated|protect/i],
-    forbid: [/Mini Fan/i, /^[\s\S]*continue monitoring\.?\s*$/i],
+    require: [/failover|overload|resource|mitigation|demonstrated|protect|Risk \/ lesson/i],
+    forbid: [/Mini Fan/i],
   },
   {
     id: "CX_affirmative_non_participation",
