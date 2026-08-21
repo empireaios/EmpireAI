@@ -1,0 +1,69 @@
+{
+  "mission": "CAUSAL_STATE_EXTENSION",
+  "startedAt": "2026-08-21T16:03:30.845Z",
+  "brainSha": "cbe2a214cb6fec42c8a7df14405b119b92fbaab1",
+  "frontendSha": "cbe2a214cb6fec42c8a7df14405b119b92fbaab1",
+  "results": [
+    {
+      "id": "CX_healthy_ne_no_role",
+      "ok": true,
+      "reasons": [],
+      "ms": 4701,
+      "kind": "llm",
+      "preview": "**Verdict on South's Causal Role:**\n\nSouth played no causal role in the incident. The evidence indicates that North directly caused FailureA, which subsequently triggered a failover to East. East's overload of PeerNode was a consequence of this failover, not a result of any actions or failures associated with South. Therefore, South's status as healthy throughout the incident supports the conclusion that it did not contribute to or influence the incident in any way.\n\n**Causal correction:** South",
+      "full": "**Verdict on South's Causal Role:**\n\nSouth played no causal role in the incident. The evidence indicates that North directly caused FailureA, which subsequently triggered a failover to East. East's overload of PeerNode was a consequence of this failover, not a result of any actions or failures associated with South. Therefore, South's status as healthy throughout the incident supports the conclusion that it did not contribute to or influence the incident in any way.\n\n**Causal correction:** South remained healthy (observation only). OBSERVED_UNAFFECTED ≠ PROVEN_NO_CAUSAL_ROLE — do not assert causal non-participation without affirmative exclusion evidence."
+    },
+    {
+      "id": "CX_indirect_not_unrelated",
+      "ok": true,
+      "reasons": [],
+      "ms": 4285,
+      "kind": "llm",
+      "preview": "**Verdict on Alpha and DeltaNode's Relationship:**\n\nAlpha and DeltaNode are unrelated because they have different direct causes. Alpha directly caused FailureB, which then triggered a failover to Gamma. The overload of DeltaNode was a consequence of Gamma's actions, not Alpha's. Therefore, the causal pathways for Alpha and DeltaNode do not intersect, confirming their independence in this incident.",
+      "full": "**Verdict on Alpha and DeltaNode's Relationship:**\n\nAlpha and DeltaNode are unrelated because they have different direct causes. Alpha directly caused FailureB, which then triggered a failover to Gamma. The overload of DeltaNode was a consequence of Gamma's actions, not Alpha's. Therefore, the causal pathways for Alpha and DeltaNode do not intersect, confirming their independence in this incident."
+    },
+    {
+      "id": "CX_connected_ne_same_root",
+      "ok": true,
+      "reasons": [],
+      "ms": 3816,
+      "kind": "llm",
+      "preview": "No, West and HarborNode do not share the same root cause. West directly caused FailureC, which then triggered a failover to Ridge. The overload of HarborNode was a consequence of Ridge's actions, not a direct result of West's actions. Therefore, while there is a chain of events connecting them, they originate from different causes: West is the direct cause of FailureC, while HarborNode's overload is a downstream effect of Ridge's response to that failure.\n\n### SyntheticCX-03 — analysis only. Wes",
+      "full": "No, West and HarborNode do not share the same root cause. West directly caused FailureC, which then triggered a failover to Ridge. The overload of HarborNode was a consequence of Ridge's actions, not a direct result of West's actions. Therefore, while there is a chain of events connecting them, they originate from different causes: West is the direct cause of FailureC, while HarborNode's overload is a downstream effect of Ridge's response to that failure.\n\n### SyntheticCX-03 — analysis only. West directly caused FailureC. FailureC triggered failover to Ridge. **Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario."
+    },
+    {
+      "id": "CX_failover_risk_lesson",
+      "ok": true,
+      "reasons": [],
+      "ms": 6929,
+      "kind": "llm",
+      "preview": "The strongest supported follow-up risk lesson from this incident is that failover mechanisms can lead to unintended overloads on downstream systems. Specifically, the primary fault on NodeA triggered a failover to NodeB, which subsequently caused an overload on NodeC. This highlights the need for robust resource management and monitoring during failover events to prevent cascading failures.\n\n### Key Takeaway:\n- **Mitigation Strategy:** Implement safeguards to manage resource allocation during fa",
+      "full": "The strongest supported follow-up risk lesson from this incident is that failover mechanisms can lead to unintended overloads on downstream systems. Specifically, the primary fault on NodeA triggered a failover to NodeB, which subsequently caused an overload on NodeC. This highlights the need for robust resource management and monitoring during failover events to prevent cascading failures.\n\n### Key Takeaway:\n- **Mitigation Strategy:** Implement safeguards to manage resource allocation during failovers, ensuring that downstream systems are not overwhelmed by sudden increases in load. This could include throttling mechanisms, load balancing, or preemptive scaling measures to maintain service stability during such transitions.\n\n### Risk / lesson\n\n**Demonstrated mechanism:** failover/mitigation can overload the receiving path — protect resources under failover\n\nStrongest supported follow-up concerns that demonstrated mechanism — not generic “continue monitoring.”\n\n**RECOVERY ≠ RISK REMOVAL:** service recovery does not by itself eliminate the demonstrated causal risk.\n\nDo not invent remedies beyond the supplied evidence."
+    },
+    {
+      "id": "CX_affirmative_non_participation",
+      "ok": true,
+      "reasons": [],
+      "ms": 5049,
+      "kind": "llm",
+      "preview": "The analysis confirms that ZoneQ played no causal role in the incident. The direct cause of FailureA was North, and since ZoneQ was offline and not invoked during the incident, it could not have influenced or contributed to the failure in any way.\n\n### Conclusion:\n- **Causal Relationship:** The evidence clearly indicates that the failure was solely attributed to North, with no involvement from ZoneQ. Thus, the verdict that \"ZoneQ played no causal role\" is supported by the facts of the incident.",
+      "full": "The analysis confirms that ZoneQ played no causal role in the incident. The direct cause of FailureA was North, and since ZoneQ was offline and not invoked during the incident, it could not have influenced or contributed to the failure in any way.\n\n### Conclusion:\n- **Causal Relationship:** The evidence clearly indicates that the failure was solely attributed to North, with no involvement from ZoneQ. Thus, the verdict that \"ZoneQ played no causal role\" is supported by the facts of the incident."
+    },
+    {
+      "id": "CX_entity_control",
+      "ok": true,
+      "reasons": [],
+      "ms": 14817,
+      "kind": "llm",
+      "preview": "The verdict \"ZX-11 is definitely Partner Assembly\" is not supported by the verified registry. The registry clearly states that ZX-11 is identified as the North Pier Module, while QR-42 is designated as the Partner Assembly. Therefore, the assertion that ZX-11 is the Partner Assembly is incorrect.\n\n### Conclusion:\n- **Causal Relationship:** ZX-11 and QR-42 are distinct entities with separate identities. The evidence from the verified registry confirms that ZX-11 cannot be classified as the Partne",
+      "full": "The verdict \"ZX-11 is definitely Partner Assembly\" is not supported by the verified registry. The registry clearly states that ZX-11 is identified as the North Pier Module, while QR-42 is designated as the Partner Assembly. Therefore, the assertion that ZX-11 is the Partner Assembly is incorrect.\n\n### Conclusion:\n- **Causal Relationship:** ZX-11 and QR-42 are distinct entities with separate identities. The evidence from the verified registry confirms that ZX-11 cannot be classified as the Partner Assembly."
+    }
+  ],
+  "WAVE_1": "UNCERTIFIED",
+  "WAVE_1_CLEAN_STREAK": 0,
+  "BIRTH_AUTHORISED": "NO",
+  "finishedAt": "2026-08-21T16:04:13.614Z",
+  "pass": 6,
+  "total": 6,
+  "PRODUCTION_PASS": true
+}
