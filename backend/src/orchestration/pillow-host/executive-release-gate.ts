@@ -60,6 +60,7 @@ import {
   ensureRecommendationConstraintConsistency,
   extractMaterialConstraints,
 } from "./executive-decision-constraints.js";
+import { ensureCausalClaimConsistency } from "./executive-causal-state.js";
 
 /** True when a scoped synthetic answer illegally injects live EmpireAI briefing residue. */
 export function isLiveEmpireContaminationInScopedAnswer(
@@ -519,6 +520,8 @@ function finalizeVisible(
     userMessage ?? "",
   );
   rendered = consistency.message;
+  const causalFix = ensureCausalClaimConsistency(rendered, userMessage ?? "");
+  rendered = causalFix.message;
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   const ux =
     level === "normal"

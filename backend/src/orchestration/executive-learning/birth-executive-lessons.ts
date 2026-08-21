@@ -149,6 +149,18 @@ export function birthExecutiveLessonSeeds(
       failureClass: "eligibility_preference_collapse",
     }),
     base({
+      canonicalKey: "birth.lesson.observation_ne_causation",
+      title: "Observed health is not proven causal non-participation",
+      statement:
+        "OBSERVED_UNAFFECTED ≠ PROVEN_NO_CAUSAL_ROLE. An entity remaining healthy establishes observation only. Assert causal non-participation only with affirmative exclusion/path evidence. DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED; CAUSALLY_CONNECTED ≠ SAME_ROOT_CAUSE. Prefer demonstrated failure mechanisms over generic monitoring advice; recovery does not automatically remove residual causal risk.",
+      memoryClass: "decision_principle",
+      tags: ["causal", "observation", "incident", "birth"],
+      evidenceRefs: ["causal-state-extension", "executive-causal-state"],
+      reasoningAreas: ["decision_principles", "risk_tolerance", "engineering_philosophy"],
+      capabilityFamily: "causal_reasoning",
+      failureClass: "observation_as_non_participation",
+    }),
+    base({
       canonicalKey: "birth.lesson.auth_ne_capability",
       title: "Owner authorization is not system capability",
       statement:

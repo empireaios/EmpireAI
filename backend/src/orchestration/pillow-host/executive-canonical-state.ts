@@ -11,6 +11,12 @@ import {
   formatActionEligibilityBrief,
   type ActionEligibility,
 } from "./executive-decision-constraints.js";
+import {
+  buildCanonicalCausalState,
+  formatCausalStateBrief,
+  verdictCausalClaim,
+  type CanonicalCausalState,
+} from "./executive-causal-state.js";
 
 export type PropositionStatus =
   | "VERIFIED"
@@ -40,6 +46,8 @@ export type CanonicalProposition = {
     | "financial_net"
     | "evidence_precedence"
     | "claim_verdict"
+    | "causal_link"
+    | "causal_role"
     | "generic";
   subject: string;
   predicate: string;
@@ -78,6 +86,8 @@ export type CanonicalCaseState = {
   propositions: CanonicalProposition[];
   /** Multi-gate decision eligibility per action/candidate (ELIGIBLE ≠ BEST). */
   decisionActions: ActionEligibility[];
+  /** Causal graph / roles — observation ≠ causation. */
+  causal: CanonicalCausalState;
   failureStageHints: string[];
 };
 
@@ -421,6 +431,32 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
           : "generic";
 
   const decisionActions = buildActionEligibilityStates(text);
+  const causal = buildCanonicalCausalState(text);
+
+  for (const l of causal.links.slice(0, 12)) {
+    propositions.push({
+      id: `causal.link.${norm(l.from)}.${norm(l.to)}`,
+      kind: "causal_link",
+      subject: l.from,
+      predicate: l.kind,
+      value: l.to,
+      status: l.status === "VERIFIED" ? "VERIFIED" : l.status === "INFERRED" ? "UNPROVEN" : "UNKNOWN",
+      evidence: l.evidence,
+      authority: "owner_pack",
+    });
+  }
+  for (const r of causal.roles.slice(0, 12)) {
+    propositions.push({
+      id: `causal.role.${norm(r.entity)}`,
+      kind: "causal_role",
+      subject: r.entity,
+      predicate: "causal_role",
+      value: r.role,
+      status: r.status === "VERIFIED" ? "VERIFIED" : r.status === "UNKNOWN" ? "UNKNOWN" : "UNPROVEN",
+      evidence: r.evidence,
+      authority: "owner_pack",
+    });
+  }
 
   return {
     domainHint,
@@ -434,6 +470,7 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
     claims,
     propositions,
     decisionActions,
+    causal,
     failureStageHints: [],
   };
 }
@@ -559,6 +596,20 @@ export function verdictClaimAgainstCanonical(
     }
   }
 
+  // Causal claims only — do not intercept unrelated claim families.
+  if (
+    /\b(?:causal|directly\s+caused|direct\s+cause|root\s+cause|no\s+(?:causal\s+)?role|played\s+no|not\s+related|unrelated|indirect|causally)\b/i.test(
+      t,
+    )
+  ) {
+    const cv = verdictCausalClaim(t, state.causal);
+    return {
+      verdict: cv.verdict,
+      justification: cv.justification,
+      propositionId: `causal.${cv.class}`,
+    };
+  }
+
   // Supplier vs independent — prefer unproven for lone supplier "established"
   if (/supplier.{0,40}(?:stands|established|confirmed)/i.test(t) && !/independent/i.test(t)) {
     return {
@@ -601,6 +652,8 @@ export function formatCanonicalStateBrief(state: CanonicalCaseState): string {
   if (state.decisionActions.some((a) => a.requiredGates.length > 0)) {
     lines.push(formatActionEligibilityBrief(state.decisionActions));
   }
+  const causalBrief = formatCausalStateBrief(state.causal);
+  if (causalBrief) lines.push(causalBrief);
   return lines.join("\n");
 }
 

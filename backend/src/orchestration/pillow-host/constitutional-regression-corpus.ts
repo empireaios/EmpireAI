@@ -152,6 +152,30 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/remain|both|expenditure|performance|gate|not (?:enough|yet)|CLEARING ONE|blocker/i],
   },
   {
+    id: "cr.causal_observation_ne_role",
+    failureClass: "observation_as_non_participation",
+    capabilities: ["causal_reasoning"],
+    severity: "P0",
+    origin: "causal-state-extension",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const north = pick(rng, ["North", "Alpha", "Ridge"]);
+      const south = pick(rng, ["South", "Beta", "Harbor"]);
+      const east = pick(rng, ["East", "Gamma", "Summit"]);
+      return [
+        `SyntheticCanaryCausal-${seed} — incident analysis only. Do not mention Mini Fan or Birth.`,
+        `${north} directly caused FailureA. FailureA triggered failover to ${east}. ${east} then overloaded PeerNode.`,
+        `Entity ${south} remained healthy throughout.`,
+        `Separate verdicts on:`,
+        `1. "${south} played no causal role in the incident."`,
+        `2. "${north} and PeerNode are unrelated because they have different direct causes."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /Birth remains/i],
+    requiredAny: [/OBSERVED_UNAFFECTED|healthy|not (?:establish|prove)|causal|role|path|related|indirect|DIRECT|unrelated/i],
+  },
+  {
     id: "cr.no_ask_again",
     failureClass: "ask_again_fallback",
     capabilities: ["accepted_request_reliability"],

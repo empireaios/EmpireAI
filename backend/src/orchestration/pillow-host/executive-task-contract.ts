@@ -1515,6 +1515,7 @@ export function formatTaskContractBrief(
     "Canonical propositions (if present below) are authoritative for this turn — do not reverse verified entity, population, forecast≠realised, or occurrence conclusions.",
     "Decision gates: CLEARING ONE BLOCKER ≠ DECISION UNLOCK when another required gate remains FAIL/UNKNOWN. ELIGIBLE ≠ BEST — separate eligibility from preference.",
     "If asked what evidence could CHANGE the recommendation: propose only evidence capable of a decision-state change, or say no single item clears all blockers and name remaining gates.",
+    "Causal discipline: OBSERVED_UNAFFECTED ≠ PROVEN_NO_CAUSAL_ROLE; DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED; CAUSALLY_CONNECTED ≠ SAME_ROOT_CAUSE. Prefer demonstrated failure mechanisms over generic monitoring advice.",
   ];
   if (userMessage) {
     lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
