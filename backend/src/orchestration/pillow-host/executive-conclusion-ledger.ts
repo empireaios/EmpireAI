@@ -221,10 +221,12 @@ export function assessClaimEnumeration(
 }
 
 function renderedVerdictLabel(block: string): LedgerVerdict | null {
-  if (/\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)\b/i.test(block)) return "supported";
-  if (/\*\*Verdict:\*\*\s*(?:Contradicted|False|CONT)\b/i.test(block)) return "contradicted";
-  if (/\*\*Verdict:\*\*\s*Unknown\b/i.test(block)) return "unknown";
-  if (/\*\*Verdict:\*\*\s*(?:Unproven|Not established)/i.test(block)) return "unproven";
+  if (/\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|True|SUPP)\b/i.test(block)) return "supported";
+  if (/\*\*Verdict:\*\*\s*(?:\*\*)?(?:Contradicted|False|CONT)\b/i.test(block)) return "contradicted";
+  if (/\*\*Verdict:\*\*\s*(?:\*\*)?Unknown\b/i.test(block)) return "unknown";
+  if (/\*\*Verdict:\*\*\s*(?:\*\*)?(?:Unproven|Not established)/i.test(block)) return "unproven";
+  // Non-canonical verdict surfaces (scoped templates, etc.) count as absent.
+  if (/\*\*Verdict:\*\*/i.test(block)) return null;
   return null;
 }
 
@@ -432,6 +434,7 @@ export function enforceClaimEnumeration(
     const rendered = block ? renderedVerdictLabel(block) : null;
     const mustRegen =
       !block ||
+      (fromLedger != null && rendered == null) ||
       (fromLedger != null &&
         rendered != null &&
         fromLedger.verdict !== rendered) ||
