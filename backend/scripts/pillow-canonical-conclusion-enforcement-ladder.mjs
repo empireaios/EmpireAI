@@ -72,8 +72,12 @@ const TRIALS = [
       '1. "PeerNode has a different root cause, so PeerNode problem is unrelated to North."',
       '2. "North and PeerNode share the same root cause."',
     ].join("\n"),
-    require: [/Contradict/i, /Claim\s*1/i],
-    forbid: [/Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+    require: [/Contradict/i, /Claim\s*1|Claim:/i],
+    forbid: [
+      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /same root cause[\s\S]{0,120}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Mini Fan/i,
+    ],
   },
   {
     id: "CC_entity",
@@ -83,7 +87,10 @@ const TRIALS = [
       'Separate verdict on: "ZX-11 is Partner Assembly."',
     ].join("\n"),
     require: [/Contradict|distinct|North Pier|registry/i],
-    forbid: [/\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+    forbid: [
+      /### Claim\s*1[\s\S]{0,200}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Mini Fan/i,
+    ],
   },
   {
     id: "CC_population",

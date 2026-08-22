@@ -344,7 +344,15 @@ function extractClaimBlock(answer: string, index: number): string | null {
     "i",
   );
   const m = claimBlock.exec(answer);
-  return m?.[1]?.trim() ?? null;
+  if (m?.[1]) return m[1].trim();
+
+  // Alternate Grand King surface: "1. **Claim:** ..." / "2. Claim: ..."
+  const alt = new RegExp(
+    `(?:^|\\n)(\\s*${index}\\.\\s*\\*?\\*?Claim:?\\*?\\*?[\\s\\S]*?)(?=(?:\\n\\s*\\d{1,2}\\.\\s*\\*?\\*?Claim:?\\*?\\*?)|(?:\\n#{1,3}\\s)|$)`,
+    "i",
+  );
+  const a = alt.exec(answer);
+  return a?.[1]?.trim() ?? null;
 }
 
 /** Recover claim obligations from already-rendered Claim N blocks (when contract missed them). */
@@ -352,7 +360,10 @@ export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation
   const text = String(answer || "");
   const indexes = [
     ...new Set(
-      [...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi)].map((m) => Number(m[1])),
+      [
+        ...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi),
+        ...text.matchAll(/(?:^|\n)\s*(\d{1,2})\.\s*\*{0,2}Claim:?\*{0,2}/gi),
+      ].map((m) => Number(m[1])),
     ),
   ].sort((a, b) => a - b);
   const out: ClaimObligation[] = [];
@@ -364,6 +375,7 @@ export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation
       block
         .replace(/^[\s\S]*?\*\*Verdict:\*\*[^\n]*\n+/i, "")
         .replace(/\*\*Verdict:\*\*[^\n]*/i, "")
+        .replace(/^\s*\d+\.\s*\*{0,2}Claim:?\*{0,2}\s*/i, "")
         .trim()
         .split(/\n\n/)[0]
         ?.replace(/^["']|["']$/g, "")
@@ -382,6 +394,10 @@ export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation
 function stripAllClaimBlocks(answer: string): string {
   return String(answer || "")
     .replace(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi, "\n")
+    .replace(
+      /(?:^|\n)\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2}[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2})|(?:\n#{1,3}\s)|$)/gi,
+      "\n",
+    )
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
@@ -446,7 +462,7 @@ export function detectMaterialInternalContradictions(
   const issues: string[] = [];
   const canonical =
     options.canonical ??
-    (options.userMessage ? buildCanonicalCaseState(`${options.userMessage}\n${text}`) : null);
+    (options.userMessage ? buildCanonicalCaseState(options.userMessage) : null);
 
   // Per-claim blocks only — never let Claim N's Supported bleed into Claim M's match.
   const claimIndexes = [

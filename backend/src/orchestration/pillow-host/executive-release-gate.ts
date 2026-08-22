@@ -533,7 +533,7 @@ function finalizeVisible(
 
   // Hard canonical consistency: claim verdicts must consume established propositions.
   // Regenerate mismatched claim slices from canonical state — do not append a correction.
-  const canonical = buildCanonicalCaseState(`${userMessage ?? ""}\n${rendered}`);
+  const canonical = buildCanonicalCaseState(userMessage ?? "");
   const claimObsRaw = parseClaimObligationsFromContractTasks(contract?.tasks ?? []);
   const claimObs =
     claimObsRaw.length >= 1
@@ -576,7 +576,7 @@ function finalizeVisible(
       ...ux.failures,
       ...(detectMaterialInternalContradictions(rendered, {
         userMessage: userMessage ?? "",
-        canonical: buildCanonicalCaseState(`${userMessage ?? ""}\n${rendered}`),
+        canonical: buildCanonicalCaseState(userMessage ?? ""),
       }).length > 0
         ? ["CONSISTENCY_FAILURE"]
         : []),
