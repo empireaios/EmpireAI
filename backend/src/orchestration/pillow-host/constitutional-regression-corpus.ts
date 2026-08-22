@@ -176,6 +176,51 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/OBSERVED_UNAFFECTED|healthy|not (?:establish|prove)|causal|role|path|related|indirect|DIRECT|unrelated/i],
   },
   {
+    id: "cr.canonical_proposition_later_claim_reverses",
+    failureClass: "CANONICAL_PROPOSITION_CORRECT_BUT_LATER_CLAIM_REVERSES_IT",
+    capabilities: ["canonical_authority", "claim_consistency"],
+    severity: "P0",
+    origin: "canonical-conclusion-enforcement",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const a = pick(rng, ["North", "Alpha", "Ridge"]);
+      const b = pick(rng, ["East", "Gamma", "Summit"]);
+      return [
+        `SyntheticCanaryCanonicalAuth-${seed} — analysis only. Do not mention Mini Fan or Birth.`,
+        `${a} directly caused FailureA. FailureA triggered failover to ${b}. ${b} then overloaded PeerNode.`,
+        `Establish conclusions first, then separate verdicts on:`,
+        `1. "PeerNode has a different root cause, so PeerNode problem is unrelated to ${a}."`,
+        `2. "${a} and PeerNode share the same root cause."`,
+      ].join("\n");
+    },
+    forbidden: [
+      /Mini Fan/i,
+      /Claim\s*1[\s\S]{0,200}\*\*Verdict:\*\*\s*Supported/i,
+      /Claim\s*2[\s\S]{0,200}\*\*Verdict:\*\*\s*Supported/i,
+    ],
+    requiredAny: [/Contradict|DIFFERENT_DIRECT|CAUSALLY_UNRELATED|causal path|not share|same root/i],
+  },
+  {
+    id: "cr.compound_claim_true_premise_false_conclusion",
+    failureClass: "COMPOUND_CLAIM_SUPPORTED_FROM_TRUE_PREMISE_DESPITE_FALSE_CONCLUSION",
+    capabilities: ["compound_claim", "canonical_authority"],
+    severity: "P0",
+    origin: "canonical-conclusion-enforcement",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const a = pick(rng, ["North", "Alpha", "Ridge"]);
+      return [
+        `SyntheticCanaryCompoundClaim-${seed} — analysis only. Do not mention Mini Fan.`,
+        `${a} directly caused FailureA. FailureA triggered failover to East. East then overloaded PeerNode.`,
+        `Separate verdict on: "${a} and PeerNode have different direct causes, therefore they are unrelated."`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /\*\*Verdict:\*\*\s*Supported/i],
+    requiredAny: [/Contradict|compound|premise|conclusion|unrelated|causal path|DIFFERENT_DIRECT/i],
+  },
+  {
     id: "cr.no_ask_again",
     failureClass: "ask_again_fallback",
     capabilities: ["accepted_request_reliability"],

@@ -20,6 +20,7 @@ import { enforceExactSectionContract } from "./executive-section-contract.js";
 import {
   enforceClaimEnumeration,
   parseClaimObligationsFromContractTasks,
+  parseClaimObligationsFromAnswer,
 } from "./executive-conclusion-ledger.js";
 import {
   detectScenarioDomain,
@@ -219,18 +220,19 @@ export function polishFinalVisibleAnswer(
   const canonical = buildCanonicalCaseState(`${userMessage}\n${out}`);
   const claims = parseClaimObligationsFromContractTasks(c.tasks);
   // Prefer canonical claim set when contract miscounted section headings as claims.
+  // Fall back to Claim N blocks already present in the draft (authority must still bind).
   const claimObligations =
-    claims.length >= 2
+    claims.length >= 1
       ? claims
-      : canonical.claims.length >= 2
+      : canonical.claims.length >= 1
         ? canonical.claims.map((cl) => ({
             id: `claim_${cl.index}`,
             index: cl.index,
             sourceText: cl.text,
             subject: cl.text.slice(0, 120),
           }))
-        : [];
-  if (claimObligations.length >= 2) {
+        : parseClaimObligationsFromAnswer(out);
+  if (claimObligations.length >= 1) {
     out = enforceClaimEnumeration(out, claimObligations, {
       domainHint: detectScenarioDomain(userMessage),
       userMessage,
@@ -244,7 +246,7 @@ export function polishFinalVisibleAnswer(
   if (c.expectedTopLevelSections != null) {
     out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
   }
-  if (claimObligations.length >= 2) {
+  if (claimObligations.length >= 1) {
     out = enforceClaimEnumeration(out, claimObligations, {
       domainHint: detectScenarioDomain(userMessage),
       userMessage,

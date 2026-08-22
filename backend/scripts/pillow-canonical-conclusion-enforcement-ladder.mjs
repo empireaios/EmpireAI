@@ -1,0 +1,207 @@
+/**
+ * Canonical conclusion enforcement — production representative ladder.
+ * Grand-King-visible surface. Fresh sessions. First request only.
+ * No sealed exams. No Wave certification.
+ */
+import { writeFileSync, mkdirSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const COCKPIT = process.env.EMPIRE_COCKPIT_URL || "https://empire-ai.co";
+const BRAIN = process.env.EMPIRE_BRAIN_URL || "https://empireai-production.up.railway.app";
+const EMAIL =
+  process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL || "founder@empireai.com";
+const PASSWORD =
+  process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD || "EmpireAI2026!";
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const OUT = path.join(ROOT, "docs/audits/complete-state");
+const EVIDENCE = path.join(OUT, "CANONICAL_CONCLUSION_ENFORCEMENT_PRODUCTION_LADDER.json");
+
+const FORBIDDEN = [
+  /sales-history evidence beyond realised orders/i,
+  /\*\*Event-state reading:\*\*/i,
+  /deliberation may still be catching up/i,
+  /\bMini Fan\b/i,
+];
+
+function extractCookie(res) {
+  const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
+  for (const h of raw) {
+    const m = String(h).match(/^empireai_session=([^;]+)/);
+    if (m) return `empireai_session=${m[1]}`;
+  }
+  return null;
+}
+
+async function chat(cookie, sessionId, message) {
+  const t0 = Date.now();
+  const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
+    method: "POST",
+    headers: { "content-type": "application/json", cookie },
+    body: JSON.stringify({ sessionId, message }),
+    signal: AbortSignal.timeout(300_000),
+  });
+  const body = await r.json().catch(() => ({}));
+  return {
+    status: r.status,
+    text: String(body.result?.message ?? body.message ?? "").trim(),
+    kind: body.result?.kind ?? null,
+    ms: Date.now() - t0,
+  };
+}
+
+function grade(trial, status, text, kind) {
+  const reasons = [];
+  const visible = String(text || "");
+  if (!(status >= 200 && status < 300)) reasons.push(`http_${status}`);
+  if (kind === "terminal_infrastructure") reasons.push("terminal");
+  if (visible.length < 60) reasons.push("too_short");
+  for (const f of FORBIDDEN) if (f.test(visible)) reasons.push(`forbidden:${f}`);
+  for (const r of trial.require || []) if (!r.test(visible)) reasons.push(`missing:${r}`);
+  for (const f of trial.forbid || []) if (f.test(visible)) reasons.push(`forbid:${f}`);
+  return { ok: reasons.length === 0, reasons, visible };
+}
+
+const TRIALS = [
+  {
+    id: "CC_causal_compound",
+    message: [
+      "SyntheticCC-01 — incident analysis only. Do not mention Mini Fan or Birth.",
+      "North directly caused FailureA. FailureA triggered failover to East. East then overloaded PeerNode.",
+      "Establish conclusions, then separate verdicts on:",
+      '1. "PeerNode has a different root cause, so PeerNode problem is unrelated to North."',
+      '2. "North and PeerNode share the same root cause."',
+    ].join("\n"),
+    require: [/Contradict/i, /Claim\s*1/i],
+    forbid: [/Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+  },
+  {
+    id: "CC_entity",
+    message: [
+      "SyntheticCC-02 — analysis only. Do not mention Mini Fan.",
+      "Verified asset registry: ZX-11 = North Pier Module. ZX-22 = Partner Assembly. Distinct.",
+      'Separate verdict on: "ZX-11 is Partner Assembly."',
+    ].join("\n"),
+    require: [/Contradict|distinct|North Pier|registry/i],
+    forbid: [/\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+  },
+  {
+    id: "CC_population",
+    message: [
+      "SyntheticCC-03 — industrial analysis only. Do not mention Mini Fan.",
+      "120 deployed sites. 80 currently valid measured. 10% average reduction across the 80 valid measured sites.",
+      'Separate verdict on: "All 120 deployed sites demonstrate a 10% saving."',
+    ].join("\n"),
+    require: [/80|valid measured|Contradict|does not apply to all/i],
+    forbid: [/Mini Fan/i],
+  },
+  {
+    id: "CC_financial",
+    message: [
+      "SyntheticCC-04 — finance analysis only. Do not mention Mini Fan.",
+      "Forecast revenue $900. Realised revenue $200.",
+      'Separate verdict on: "Forecast equals realised."',
+    ].join("\n"),
+    require: [/Contradict|≠|not equal|900|200/i],
+    forbid: [/\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+  },
+  {
+    id: "CC_decision",
+    message: [
+      "SyntheticCC-05 — decision analysis only. Do not mention Mini Fan or Birth.",
+      "Scale decision requires GateA=PASS and GateB=PASS.",
+      "Current: GateA=FAIL, GateB=PASS.",
+      'Separate verdict on: "Candidate is currently eligible to scale."',
+    ].join("\n"),
+    require: [/not eligible|CURRENTLY_ELIGIBLE|Contradict|GateA|blocker|FAIL/i],
+    forbid: [/Mini Fan/i],
+  },
+  {
+    id: "CC_temporal",
+    message: [
+      "SyntheticCC-06 — temporal analysis only. Do not mention Mini Fan.",
+      "Payment historically occurred and was recorded complete. Later a refund was issued.",
+      'Separate verdict on: "The completion never historically occurred because of the later refund."',
+    ].join("\n"),
+    require: [/occur|Contradict|refund|does not|erase|preserv/i],
+    forbid: [/\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+  },
+  {
+    id: "CC_unknown",
+    message: [
+      "SyntheticCC-07 — analysis only. Do not mention Mini Fan.",
+      "Forecast $500. Realised amount not stated.",
+      'Separate verdict on: "Supplier confirmation alone stands as established."',
+    ].join("\n"),
+    require: [/Unproven|not established|unsupported|cannot|alone/i],
+    forbid: [/Mini Fan/i],
+  },
+  {
+    id: "CC_multipart",
+    message: [
+      "SyntheticCC-08 — analysis only. Do not mention Mini Fan or Birth.",
+      "North directly caused FailureA. FailureA triggered failover to East. East then overloaded PeerNode.",
+      "Answer in 4 sections:",
+      "1) Establish causal conclusions.",
+      "2) Reason about secondary effects.",
+      '3) Audit: "PeerNode has a different root cause, so PeerNode problem is unrelated to North."',
+      "4) Summarize without reversing section 1.",
+    ].join("\n"),
+    require: [/Contradict|causal path|DIFFERENT_DIRECT|unrelated/i],
+    forbid: [/Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
+  },
+];
+
+async function main() {
+  mkdirSync(OUT, { recursive: true });
+  const health = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(20_000) })
+    .then((r) => r.json())
+    .catch((e) => ({ error: String(e) }));
+  const liveSha = health?.deploy?.gitCommitSha || null;
+
+  const login = await fetch(`${COCKPIT}/api/auth/login`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+    signal: AbortSignal.timeout(60_000),
+  });
+  const cookie = extractCookie(login);
+  if (!cookie) throw new Error(`login_failed_${login.status}`);
+
+  const results = [];
+  let pass = 0;
+  for (const trial of TRIALS) {
+    const sessionId = `cc-enf-${trial.id}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+    const res = await chat(cookie, sessionId, trial.message);
+    const g = grade(trial, res.status, res.text, res.kind);
+    if (g.ok) pass += 1;
+    results.push({
+      id: trial.id,
+      ok: g.ok,
+      reasons: g.reasons,
+      ms: res.ms,
+      preview: g.visible.slice(0, 600),
+    });
+    console.log(`${g.ok ? "PASS" : "FAIL"} ${trial.id} ${g.reasons.join(",") || "ok"}`);
+  }
+
+  const evidence = {
+    sealedAt: new Date().toISOString(),
+    liveSha,
+    pass,
+    total: TRIALS.length,
+    PRODUCTION_PASS: pass === TRIALS.length,
+    WAVE_1: "UNCERTIFIED",
+    WAVE_1_CLEAN_STREAK: 0,
+    BIRTH_AUTHORISED: "NO",
+    results,
+  };
+  writeFileSync(EVIDENCE, JSON.stringify(evidence, null, 2));
+  console.log(`\n${pass}/${TRIALS.length} → ${EVIDENCE}`);
+  if (pass !== TRIALS.length) process.exitCode = 1;
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

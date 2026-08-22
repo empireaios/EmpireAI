@@ -6,9 +6,9 @@
 
 import {
   buildCanonicalCaseState,
-  verdictClaimAgainstCanonical,
   type CanonicalCaseState,
 } from "./executive-canonical-state.js";
+import { assessClaimAgainstCanonical } from "./executive-claim-proposition.js";
 
 export type LedgerVerdict = "supported" | "contradicted" | "unproven" | "unknown";
 
@@ -220,17 +220,28 @@ export function assessClaimEnumeration(
   };
 }
 
+function renderedVerdictLabel(block: string): LedgerVerdict | null {
+  if (/\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)\b/i.test(block)) return "supported";
+  if (/\*\*Verdict:\*\*\s*(?:Contradicted|False|CONT)\b/i.test(block)) return "contradicted";
+  if (/\*\*Verdict:\*\*\s*Unknown\b/i.test(block)) return "unknown";
+  if (/\*\*Verdict:\*\*\s*(?:Unproven|Not established)/i.test(block)) return "unproven";
+  return null;
+}
+
 function verdictForClaimAgainstLedger(
   claim: ClaimObligation,
   ledger: LedgerEntry[],
   canonical?: CanonicalCaseState | null,
 ): { verdict: LedgerVerdict; justification: string } | null {
-  // Prefer canonical case state — single derivation of material conclusions.
-  // If the pack/ask omitted a binding that the answer already established, fall through to ledger.
+  // Prefer canonical compound assessment — every material clause must agree for SUPPORTED.
+  // Downstream must not invent an alternative truth when canonical resolves a proposition.
   if (canonical) {
-    const v = verdictClaimAgainstCanonical(claim.sourceText, canonical);
-    if (v.verdict !== "unproven") {
-      return { verdict: v.verdict, justification: v.justification };
+    const v = assessClaimAgainstCanonical(claim.sourceText, canonical);
+    if (v.overall !== "unproven" || v.components.length > 0) {
+      // Even unproven from compound assess is authoritative when material props were mapped.
+      if (v.components.some((c) => c.proposition.kind !== "generic") || v.overall !== "unproven") {
+        return { verdict: v.overall, justification: v.justification };
+      }
     }
   }
 
@@ -336,6 +347,38 @@ function extractClaimBlock(answer: string, index: number): string | null {
   return m?.[1]?.trim() ?? null;
 }
 
+/** Recover claim obligations from already-rendered Claim N blocks (when contract missed them). */
+export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation[] {
+  const text = String(answer || "");
+  const indexes = [
+    ...new Set(
+      [...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi)].map((m) => Number(m[1])),
+    ),
+  ].sort((a, b) => a - b);
+  const out: ClaimObligation[] = [];
+  for (const index of indexes) {
+    const block = extractClaimBlock(text, index);
+    if (!block) continue;
+    const quoted =
+      /[“"']([^”"']{8,500})[”"']/.exec(block)?.[1]?.trim() ||
+      block
+        .replace(/^[\s\S]*?\*\*Verdict:\*\*[^\n]*\n+/i, "")
+        .replace(/\*\*Verdict:\*\*[^\n]*/i, "")
+        .trim()
+        .split(/\n\n/)[0]
+        ?.replace(/^["']|["']$/g, "")
+        .trim();
+    if (!quoted || quoted.length < 8) continue;
+    out.push({
+      id: `claim_${index}`,
+      index,
+      sourceText: quoted,
+      subject: quoted.slice(0, 120),
+    });
+  }
+  return out;
+}
+
 function stripAllClaimBlocks(answer: string): string {
   return String(answer || "")
     .replace(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi, "\n")
@@ -352,7 +395,7 @@ export function enforceClaimEnumeration(
   claims: ClaimObligation[],
   options: { domainHint?: string; userMessage?: string; canonical?: CanonicalCaseState | null } = {},
 ): { message: string; repaired: boolean; report: ReturnType<typeof assessClaimEnumeration> } {
-  if (claims.length < 2) {
+  if (claims.length < 1) {
     return {
       message: String(answer || "").trim(),
       repaired: false,
@@ -370,20 +413,22 @@ export function enforceClaimEnumeration(
   for (const c of claims) {
     let block = extractClaimBlock(original, c.index);
     const fromLedger = verdictForClaimAgainstLedger(c, ledger, canonical);
-    if (!block) {
+    const rendered = block ? renderedVerdictLabel(block) : null;
+    const mustRegen =
+      !block ||
+      (fromLedger != null &&
+        rendered != null &&
+        fromLedger.verdict !== rendered) ||
+      (fromLedger?.verdict === "contradicted" &&
+        /\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)/i.test(block || ""));
+    if (mustRegen) {
       block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
-    } else if (
-      fromLedger?.verdict === "contradicted" &&
-      /\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)/i.test(block)
-    ) {
-      block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
-      repaired = true;
-    } else if (!/^#{1,3}\s*Claim\s*\d+/im.test(block)) {
+    } else if (block && !/^#{1,3}\s*Claim\s*\d+/im.test(block)) {
       block = `### Claim ${c.index}\n\n${block}`;
       repaired = true;
     }
-    orderedBlocks.push(block.trim());
+    orderedBlocks.push(block!.trim());
   }
 
   const body = stripAllClaimBlocks(original);
@@ -392,10 +437,16 @@ export function enforceClaimEnumeration(
   return { message, repaired, report: assessClaimEnumeration(message, claims) };
 }
 
-export function detectMaterialInternalContradictions(answer: string): string[] {
+export function detectMaterialInternalContradictions(
+  answer: string,
+  options: { userMessage?: string; canonical?: CanonicalCaseState | null } = {},
+): string[] {
   const text = String(answer || "");
   const ledger = buildConclusionLedger(text);
   const issues: string[] = [];
+  const canonical =
+    options.canonical ??
+    (options.userMessage ? buildCanonicalCaseState(`${options.userMessage}\n${text}`) : null);
 
   // Per-claim blocks only — never let Claim N's Supported bleed into Claim M's match.
   const claimIndexes = [
@@ -405,16 +456,41 @@ export function detectMaterialInternalContradictions(answer: string): string[] {
   ];
   for (const idx of claimIndexes) {
     const block = extractClaimBlock(text, idx);
-    if (!block || !/\*\*Verdict:\*\*\s*Supported\b/i.test(block)) continue;
+    if (!block) continue;
+    const rendered = renderedVerdictLabel(block);
+    const quoted =
+      /"([^"]{8,400})"/.exec(block)?.[1] ||
+      /(?:Claim\s+\d+[^\n]*\n+\*\*Verdict:\*\*[^\n]*\n+\n)"?([^"\n]{8,400})/.exec(block)?.[1];
+
+    if (canonical && quoted && rendered) {
+      const assessed = assessClaimAgainstCanonical(quoted, canonical);
+      if (assessed.overall !== rendered && assessed.overall !== "unproven") {
+        issues.push(
+          `claim_${idx}_verdict_${rendered}_but_canonical_${assessed.overall}`,
+        );
+      }
+      if (
+        rendered === "supported" &&
+        assessed.truePremiseFalseConclusion
+      ) {
+        issues.push(`claim_${idx}_compound_true_premise_false_conclusion_marked_supported`);
+      }
+    }
+
+    if (!rendered || rendered !== "supported") continue;
     const idClaim = /\b([A-Z]{1,4}-?\d{1,4})\s+is\s+([A-Z][A-Za-z0-9\s-]{2,60})/i.exec(block);
-    if (!idClaim) continue;
-    const code = idClaim[1]!;
-    const named = idClaim[2]!.trim();
-    const pos = ledger.find(
-      (e) => e.kind === "entity_identity" && e.id === `entity.${normKey(code)}` && !e.value.startsWith("NOT "),
-    );
-    if (pos && normKey(pos.value) !== normKey(named) && pos.status === "verified") {
-      issues.push(`claim_${idx}_supports_${code}=${named}_but_ledger_${code}=${pos.value}`);
+    if (idClaim) {
+      const code = idClaim[1]!;
+      const named = idClaim[2]!.trim();
+      const pos = ledger.find(
+        (e) =>
+          e.kind === "entity_identity" &&
+          e.id === `entity.${normKey(code)}` &&
+          !e.value.startsWith("NOT "),
+      );
+      if (pos && normKey(pos.value) !== normKey(named) && pos.status === "verified") {
+        issues.push(`claim_${idx}_supports_${code}=${named}_but_ledger_${code}=${pos.value}`);
+      }
     }
     if (
       /\b(forecast|expected|estimate).{0,40}(is|equals|=|reaches).{0,20}(realised|realized|actual)|forecast equals realised/i.test(
@@ -423,6 +499,13 @@ export function detectMaterialInternalContradictions(answer: string): string[] {
       ledger.some((e) => e.id === "finance.forecast_ne_realised")
     ) {
       issues.push(`claim_${idx}_supports_forecast_eq_realised_but_ledger_ne`);
+    }
+    if (
+      rendered === "supported" &&
+      /\bunrelated|not\s+related|causally\s+independent\b/i.test(block) &&
+      canonical?.causal.links.some((l) => l.kind === "INDIRECT_CAUSAL_DEPENDENCY")
+    ) {
+      issues.push(`claim_${idx}_supports_unrelated_but_canonical_path_exists`);
     }
   }
 

@@ -61,6 +61,14 @@ import {
   extractMaterialConstraints,
 } from "./executive-decision-constraints.js";
 import { ensureCausalClaimConsistency } from "./executive-causal-state.js";
+import {
+  detectMaterialInternalContradictions,
+  enforceClaimEnumeration,
+  parseClaimObligationsFromContractTasks,
+  parseClaimObligationsFromAnswer,
+} from "./executive-conclusion-ledger.js";
+import { buildCanonicalCaseState } from "./executive-canonical-state.js";
+import { detectScenarioDomain } from "./executive-memory-realization.js";
 
 /** True when a scoped synthetic answer illegally injects live EmpireAI briefing residue. */
 export function isLiveEmpireContaminationInScopedAnswer(
@@ -522,12 +530,58 @@ function finalizeVisible(
   rendered = consistency.message;
   const causalFix = ensureCausalClaimConsistency(rendered, userMessage ?? "");
   rendered = causalFix.message;
+
+  // Hard canonical consistency: claim verdicts must consume established propositions.
+  // Regenerate mismatched claim slices from canonical state — do not append a correction.
+  const canonical = buildCanonicalCaseState(`${userMessage ?? ""}\n${rendered}`);
+  const claimObsRaw = parseClaimObligationsFromContractTasks(contract?.tasks ?? []);
+  const claimObs =
+    claimObsRaw.length >= 1
+      ? claimObsRaw
+      : canonical.claims.length >= 1
+        ? canonical.claims.map((cl) => ({
+            id: `claim_${cl.index}`,
+            index: cl.index,
+            sourceText: cl.text,
+            subject: cl.text.slice(0, 120),
+          }))
+        : parseClaimObligationsFromAnswer(rendered);
+  if (claimObs.length >= 1) {
+    rendered = enforceClaimEnumeration(rendered, claimObs, {
+      domainHint: detectScenarioDomain(userMessage ?? ""),
+      userMessage: userMessage ?? "",
+      canonical,
+    }).message;
+  }
+  const consistencyIssues = detectMaterialInternalContradictions(rendered, {
+    userMessage: userMessage ?? "",
+    canonical,
+  });
+  if (consistencyIssues.length > 0 && claimObs.length >= 1) {
+    rendered = enforceClaimEnumeration(rendered, claimObs, {
+      domainHint: detectScenarioDomain(userMessage ?? ""),
+      userMessage: userMessage ?? "",
+      canonical,
+    }).message;
+  }
+
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   const ux =
     level === "normal"
       ? assessConversationalUx(rendered)
       : { ok: true, failures: [] as string[] };
-  return { message: rendered, uxFailures: ux.failures };
+  return {
+    message: rendered,
+    uxFailures: [
+      ...ux.failures,
+      ...(detectMaterialInternalContradictions(rendered, {
+        userMessage: userMessage ?? "",
+        canonical: buildCanonicalCaseState(`${userMessage ?? ""}\n${rendered}`),
+      }).length > 0
+        ? ["CONSISTENCY_FAILURE"]
+        : []),
+    ],
+  };
 }
 
 /**
@@ -637,6 +691,7 @@ export function releaseExecutiveAnswer(
       if (staleOffline(item.text)) continue;
       const fin = finalizeVisible(item.text, level, options.userMessage, contract);
       if (staleOffline(fin.message)) continue;
+      if (fin.uxFailures.includes("CONSISTENCY_FAILURE")) continue;
       const final = validateExecutiveDraft(fin.message, truth, attestations);
       if (!final.ok) continue;
       const coverage = assessTaskCoverage(fin.message, contract);

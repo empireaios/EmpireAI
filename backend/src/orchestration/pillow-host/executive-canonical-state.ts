@@ -18,6 +18,9 @@ import {
   type CanonicalCausalState,
 } from "./executive-causal-state.js";
 
+// Note: compound claim assessment lives in executive-claim-proposition.ts and is
+// consumed by claim-enumeration / release paths — not imported here (cycle avoidance).
+
 export type PropositionStatus =
   | "VERIFIED"
   | "CONTRADICTED"
@@ -143,10 +146,10 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     push(m[2]!, m[1]!);
   }
 
-  // "claim audit of:" block — only quoted lines
+  // "claim audit of:" / "Audit claims:" / "verdicts on:" block — only quoted lines
   if (claims.length < 2) {
     const block = text.match(
-      /claim\s+audit\s+of\s*:?\s*([\s\S]{10,2000}?)(?:\n\s*(?:Then|Cover|Do not|Answer|Executive)|$)/i,
+      /(?:claim\s+audit\s+of|audit\s+claims?|verdicts?\s+on|separate\s+verdicts?\s+on)\s*:?\s*([\s\S]{10,2000}?)(?:\n\s*(?:Then|Cover|Do not|Answer|Executive|\d\)\s*Summar)|$)/i,
     );
     if (block?.[1]) {
       let qi = 0;
@@ -155,6 +158,20 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
         qi += 1;
         push(m[1]!, String(qi));
       }
+    }
+  }
+
+  // Fallback: any numbered or bullet-quoted lines near a claim/verdict ask
+  if (claims.length < 2) {
+    let qi = claims.length;
+    const q = /(?:^|\n)\s*(?:\d{1,2}\s*[.):\-]\s*)?[“"']([^”"']{8,500})[”"']/g;
+    while ((m = q.exec(text)) !== null) {
+      const near = text.slice(Math.max(0, (m.index ?? 0) - 80), (m.index ?? 0) + 20);
+      if (!/claim|verdict|audit|evaluate/i.test(near) && !/claim|verdict|audit/i.test(text.slice(0, 200))) {
+        continue;
+      }
+      qi += 1;
+      push(m[1]!, String(qi));
     }
   }
 

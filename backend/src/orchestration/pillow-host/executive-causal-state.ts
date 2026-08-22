@@ -501,6 +501,9 @@ export function verdictCausalClaim(
     ) ||
     /\b(?:no\s+(?:causal\s+)?(?:link|connection|relation)\s+between)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
       t,
+    ) ||
+    /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,100}?\bis\s+unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+      t,
     );
   if (unrelated) {
     const a = unrelated[1]!;
@@ -672,6 +675,17 @@ export function ensureCausalClaimConsistency(
     }
   }
 
+  // Ask explicitly audits "no causal role" for an unaffected entity.
+  if (
+    /\bplayed\s+no\s+(?:causal\s+)?role\b/i.test(ask) &&
+    causal.roles.some((r) => r.role === "UNAFFECTED_OBSERVED") &&
+    !/OBSERVED_UNAFFECTED|PROVEN_NO_CAUSAL_ROLE|without affirmative/i.test(out)
+  ) {
+    const r = causal.roles.find((x) => x.role === "UNAFFECTED_OBSERVED")!;
+    repaired = true;
+    out = `${out}\n\n**Causal correction:** ${r.entity} remained healthy (observation only). OBSERVED_UNAFFECTED ≠ PROVEN_NO_CAUSAL_ROLE — do not assert causal non-participation without affirmative exclusion evidence.`;
+  }
+
   if (
     /\b(?:not\s+related|unrelated|no\s+causal\s+(?:link|connection)|causally\s+independent)\b/i.test(
       out,
@@ -679,8 +693,34 @@ export function ensureCausalClaimConsistency(
   ) {
     const connectedPairs = causal.links.filter((l) => l.kind === "INDIRECT_CAUSAL_DEPENDENCY");
     if (connectedPairs.length > 0) {
-      repaired = true;
-      if (!/DIFFERENT_DIRECT_CAUSES|CAUSALLY_UNRELATED|causal path/i.test(out)) {
+      // Prefer regenerating Supported claim slices over appending a correction paragraph.
+      const claimBlocks = [
+        ...out.matchAll(
+          /(?:^|\n)((?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?)(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi,
+        ),
+      ];
+      let sliceRepaired = false;
+      for (const m of claimBlocks) {
+        const block = m[1]!;
+        if (
+          /\*\*Verdict:\*\*\s*Supported\b/i.test(block) &&
+          /\bunrelated|not\s+related|causally\s+independent\b/i.test(block)
+        ) {
+          const fixed = block
+            .replace(/\*\*Verdict:\*\*\s*Supported\b/i, "**Verdict:** Contradicted")
+            .replace(
+              /(Supported[\s\S]*?)$/i,
+              "DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. A supported premise that causes differ does not make the whole claim SUPPORTED when a causal path connects the entities.",
+            );
+          if (fixed !== block) {
+            out = out.replace(block, fixed);
+            sliceRepaired = true;
+            repaired = true;
+          }
+        }
+      }
+      if (!sliceRepaired && !/DIFFERENT_DIRECT_CAUSES|CAUSALLY_UNRELATED|causal path/i.test(out)) {
+        repaired = true;
         out = `${out}\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.`;
       }
     }

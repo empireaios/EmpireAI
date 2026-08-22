@@ -161,6 +161,30 @@ export function birthExecutiveLessonSeeds(
       failureClass: "observation_as_non_participation",
     }),
     base({
+      canonicalKey: "birth.lesson.canonical_proposition_authority",
+      title: "Canonical propositions bind later claim verdicts",
+      statement:
+        "Once a proposition is resolved from verified case evidence, later claim audits, summaries, and executive conclusions must reference that proposition. They may explain it differently but must not silently reverse it. Compound claims require every material asserted component to be supported — a true premise plus a false or unproven conclusion cannot be SUPPORTED. Mismatch is CONSISTENCY_FAILURE; regenerate the affected slice from canonical state.",
+      memoryClass: "decision_principle",
+      tags: ["canonical", "claim", "consistency", "birth"],
+      evidenceRefs: ["canonical-conclusion-enforcement", "executive-claim-proposition"],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
+      capabilityFamily: "canonical_authority",
+      failureClass: "CANONICAL_PROPOSITION_CORRECT_BUT_LATER_CLAIM_REVERSES_IT",
+    }),
+    base({
+      canonicalKey: "birth.lesson.compound_claim_all_components",
+      title: "Compound claims are not supported from one true premise",
+      statement:
+        "COMPOUND_CLAIM_SUPPORTED_FROM_TRUE_PREMISE_DESPITE_FALSE_CONCLUSION is forbidden. Decompose material propositions, map to canonical IDs, and derive the overall verdict from those results. Support requires every material asserted component necessary to the proposition.",
+      memoryClass: "decision_principle",
+      tags: ["compound", "claim", "canonical", "birth"],
+      evidenceRefs: ["canonical-conclusion-enforcement", "executive-claim-proposition"],
+      reasoningAreas: ["decision_principles", "evidence_discipline"],
+      capabilityFamily: "compound_claim",
+      failureClass: "COMPOUND_CLAIM_SUPPORTED_FROM_TRUE_PREMISE_DESPITE_FALSE_CONCLUSION",
+    }),
+    base({
       canonicalKey: "birth.lesson.auth_ne_capability",
       title: "Owner authorization is not system capability",
       statement:
