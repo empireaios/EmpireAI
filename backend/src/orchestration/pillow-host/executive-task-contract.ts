@@ -184,28 +184,107 @@ function significantTokens(text: string): string[] {
     .slice(0, 24);
 }
 
-function splitMultipartUnits(message: string): string[] {
+/**
+ * Chronology / evidence stamps — never obligation identities.
+ * TIMESTAMPS_ARE_NOT_TASKS.
+ */
+export function lineStartsWithTemporalStamp(line: string): boolean {
+  const t = String(line || "").trim();
+  if (!t) return false;
+  // HH:MM / H:MM / HH:MM:SS / optional AM/PM
+  if (/^\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AaPp][Mm])?\b/.test(t)) return true;
+  // ISO date, optional time
+  if (/^\d{4}[-/]\d{1,2}[-/]\d{1,2}(?:[ T]\d{1,2}:\d{2}(?::\d{2})?)?/.test(t)) return true;
+  // Day Month Year (optional time)
+  if (/^\d{1,2}\s+[A-Za-z]{3,9}\.?\s+\d{4}(?:\s+\d{1,2}:\d{2})?/.test(t)) return true;
+  return false;
+}
+
+/**
+ * When Grand King asks for exactly N sections, take the first consecutive 1..N run.
+ * Evidence logs after that (timestamps, extra numbered readings) must not become tasks.
+ */
+export function extractConsecutiveSectionRun(
+  message: string,
+  expected: number,
+): string[] | null {
+  if (!Number.isFinite(expected) || expected < 2 || expected > 30) return null;
+  const lines = String(message || "")
+    .split(/\n+/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+  for (let i = 0; i < lines.length; i++) {
+    if (lineStartsWithTemporalStamp(lines[i]!)) continue;
+    const first = /^1[\).]\s*(.+)$/.exec(lines[i]!);
+    if (!first?.[1]) continue;
+    const out = [first[1].trim()];
+    let ok = true;
+    for (let n = 2; n <= expected; n++) {
+      const line = lines[i + n - 1];
+      if (!line || lineStartsWithTemporalStamp(line)) {
+        ok = false;
+        break;
+      }
+      const m = new RegExp(`^${n}[\\).]\\s*(.+)$`).exec(line);
+      if (!m?.[1]) {
+        ok = false;
+        break;
+      }
+      out.push(m[1].trim());
+    }
+    if (ok && out.length === expected) return out;
+  }
+  return null;
+}
+
+function splitMultipartUnits(message: string, expectedTopLevelSections?: number | null): string[] {
   const text = String(message || "").trim();
   if (!text) return [];
+
+  if (expectedTopLevelSections != null) {
+    const run = extractConsecutiveSectionRun(text, expectedTopLevelSections);
+    if (run) return run;
+  }
+
   const lines = text.split(/\n+/).map((l) => l.trim()).filter(Boolean);
   const numbered: string[] = [];
   for (const line of lines) {
-    const m = line.match(/^(?:\d{1,2}[\).\:]|[A-H][\).\:]|Q\d{1,2}[\).\:]|Part\s+\d+[\).:]?)\s*(.+)$/i);
+    // Timestamps like 08:00 must never match as "08" + ":" list markers.
+    if (lineStartsWithTemporalStamp(line)) continue;
+    // Colon list marker only when NOT starting a clock time (negative lookahead).
+    const m = line.match(
+      /^(?:\d{1,2}(?:[\).]|:(?!\d))|[A-H][\).:]|Q\d{1,2}[\).:]|Part\s+\d+[\).:]?)\s*(.+)$/i,
+    );
     if (m?.[1]) numbered.push(m[1].trim());
   }
-  if (numbered.length >= 2) return numbered;
+  if (numbered.length >= 2) {
+    if (
+      expectedTopLevelSections != null &&
+      numbered.length > expectedTopLevelSections
+    ) {
+      // Prefer a clean 1..N prefix when present among markers.
+      const run = extractConsecutiveSectionRun(text, expectedTopLevelSections);
+      if (run) return run;
+      return numbered.slice(0, expectedTopLevelSections);
+    }
+    return numbered;
+  }
   const bullets: string[] = [];
   for (const line of lines) {
+    if (lineStartsWithTemporalStamp(line)) continue;
     const m = line.match(/^[-*•]\s+(\S.+)$/);
     if (m?.[1]) bullets.push(m[1].trim());
   }
   if (bullets.length >= 3) return bullets;
-  const tableRows = lines.filter((l) => /\s\|\s/.test(l) || /^[^:]{3,40}:\s+\S/.test(l));
+  const tableRows = lines
+    .filter((l) => !lineStartsWithTemporalStamp(l))
+    .filter((l) => /\s\|\s/.test(l) || /^[^:]{3,40}:\s+\S/.test(l));
   if (tableRows.length >= 3) return tableRows.map((l) => l.replace(/^[-*•]\s+/, "").trim());
   const paras = text
     .split(/\n\s*\n/)
     .map((p) => p.trim())
-    .filter((p) => p.length >= 20 && p.length <= 320);
+    .filter((p) => p.length >= 20 && p.length <= 320)
+    .filter((p) => !lineStartsWithTemporalStamp(p));
   if (paras.length >= 3 && paras.length <= 12) return paras;
   return [];
 }
@@ -552,11 +631,11 @@ export function extractExplicitClaimSet(userMessage: string): string[] {
 export function parseExecutiveTaskContract(userMessage: string | undefined): ExecutiveTaskContract {
   const text = String(userMessage || "").trim();
   const explicitClaims = extractExplicitClaimSet(text);
-  const parts = splitMultipartUnits(text);
+  const expectedTopLevelSections = detectExpectedTopLevelSections(text);
+  const parts = splitMultipartUnits(text, expectedTopLevelSections);
   const globalKinds = detectKindsInText(text);
   const hypotheticalPremises = extractHypotheticalPremises(text);
   const tasks: ExecutiveTaskUnit[] = [];
-  const expectedTopLevelSections = detectExpectedTopLevelSections(text);
 
   // Explicit claim-set obligations — keep numbered analysis sections too when present.
   if (explicitClaims.length >= 2) {

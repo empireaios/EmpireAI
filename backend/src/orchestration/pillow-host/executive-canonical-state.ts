@@ -185,20 +185,26 @@ function parseEntities(text: string): {
   const entities: Record<string, { name: string; authority: EvidenceAuthority }> = {};
   const distinctPairs: Array<[string, string]> = [];
 
+  // Quoted claim bodies are propositions under audit — never identity bindings.
+  const forBind = String(text || "").replace(/[“"']([^”"']{8,500})[”"']/g, " ");
+
+  const rank = (a: EvidenceAuthority): number =>
+    a === "verified_registry" ? 3 : a === "owner_pack" ? 2 : a === "planning_cooccurrence" ? 1 : 0;
+
   const eq =
-    /\b([A-Z]{1,4}-?\d{1,4})\s*(?:=|is|equals?|maps?\s+to)\s+([A-Z][A-Za-z0-9\s-]{2,60}?)(?:\.|,|;|\n|$)/g;
+    /\b([A-Z]{1,4}-?\d{1,4})\s*(?:=|is|equals?|maps?\s+to)\s*([A-Z][A-Za-z0-9\s-]{2,60}?)(?:\.|,|;|\n|$|\()/g;
   let m: RegExpExecArray | null;
-  while ((m = eq.exec(text)) !== null) {
+  while ((m = eq.exec(forBind)) !== null) {
     const code = m[1]!.trim();
     const name = m[2]!.trim();
-    const window = text.slice(Math.max(0, m.index - 40), m.index + 80);
+    const window = forBind.slice(Math.max(0, m.index - 40), m.index + 80);
     const authority: EvidenceAuthority = /registry|verified asset|asset registry/i.test(window)
       ? "verified_registry"
       : /planning|co-occur|same (?:file|note|list)/i.test(window)
         ? "planning_cooccurrence"
         : "owner_pack";
-    // Registry outranks planning if both appear.
-    if (!entities[code] || authority === "verified_registry") {
+    const prev = entities[code];
+    if (!prev || rank(authority) > rank(prev.authority)) {
       entities[code] = { name, authority };
     }
   }
@@ -206,7 +212,7 @@ function parseEntities(text: string): {
   // Named = code (Harbour Crown = HC-11)
   const namedEq =
     /\b([A-Z][A-Za-z0-9\s-]{2,40}?)\s*(?:=|is)\s+([A-Z]{1,4}-?\d{1,4})\b/g;
-  while ((m = namedEq.exec(text)) !== null) {
+  while ((m = namedEq.exec(forBind)) !== null) {
     const name = m[1]!.trim();
     const code = m[2]!.trim();
     if (!entities[code]) entities[code] = { name, authority: "owner_pack" };

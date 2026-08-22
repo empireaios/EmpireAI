@@ -221,6 +221,34 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/Contradict|compound|premise|conclusion|unrelated|causal path|DIFFERENT_DIRECT/i],
   },
   {
+    id: "cr.timestamps_are_not_tasks",
+    failureClass: "TIMESTAMPS_ARE_NOT_TASKS",
+    capabilities: ["task_schema", "synthetic_scope"],
+    severity: "P0",
+    origin: "helix-catastrophic-closure",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const a = pick(rng, ["North", "Alpha", "Ridge"]);
+      return [
+        `SyntheticCanaryStampSchema-${seed} — industrial analysis only. Do not mention Mini Fan or Birth.`,
+        `Answer in exactly 6 numbered sections:`,
+        `1) Timeline summary`,
+        `2) Causal chain`,
+        `3) Contradictions`,
+        `4) What is unknown`,
+        `5) Strongest supported conclusion`,
+        `6) Next verification`,
+        `08:00 ${a} pressure dropped.`,
+        `08:20 Backup engaged.`,
+        `09:10 Secondary unit overloaded.`,
+        `09:40 Service restored.`,
+      ].join("\n");
+    },
+    forbidden: [/Mini Fan/i, /\bBirth\b/i, /realised orders/i, /###\s*1[05]\b/],
+    requiredAny: [/Timeline|Causal|unknown|verification|section/i],
+  },
+  {
     id: "cr.no_ask_again",
     failureClass: "ask_again_fallback",
     capabilities: ["accepted_request_reliability"],
@@ -800,6 +828,13 @@ export function gradeConstitutionalAnswer(
   if (specimen.id === "cr.request_schema_misread_as_claim_set") {
     const contract = parseExecutiveTaskContract(specimen.buildPrompt(1));
     if (contract.expectedClaims !== 2) reasons.push(`expected_claims:${contract.expectedClaims}`);
+  }
+
+  if (specimen.id === "cr.timestamps_are_not_tasks") {
+    const contract = parseExecutiveTaskContract(specimen.buildPrompt(1));
+    const core = contract.tasks.filter((t) => /^t\d+$/.test(t.id));
+    if (core.length !== 6) reasons.push(`timestamp_inflated_tasks:${core.length}`);
+    if (core.some((t) => /^\d{2}\s/.test(t.sourceSpan))) reasons.push("timestamp_residue_as_task");
   }
 
   if (specimen.id === "cr.duplicate_post_answer_synthesis") {
