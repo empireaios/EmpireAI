@@ -59,6 +59,10 @@ function grade(trial, status, text, kind) {
   for (const f of FORBIDDEN) if (f.test(visible)) reasons.push(`forbidden:${f}`);
   for (const r of trial.require || []) if (!r.test(visible)) reasons.push(`missing:${r}`);
   for (const f of trial.forbid || []) if (f.test(visible)) reasons.push(`forbid:${f}`);
+  if (trial.maxSections != null) {
+    const n = [...visible.matchAll(/^\s*(\d{1,2})[.)]\s+\S/gm)].length;
+    if (n > trial.maxSections) reasons.push(`fabricated_sections:${n}>${trial.maxSections}`);
+  }
   return { ok: reasons.length === 0, reasons, visible };
 }
 

@@ -1,0 +1,40 @@
+{
+  "sealedAt": "2026-08-22T13:31:20.467Z",
+  "liveSha": "0aa55373c05cee640561c05053e9e2aee1ea384f",
+  "pass": 4,
+  "total": 4,
+  "PRODUCTION_PASS": true,
+  "WAVE_1": "UNCERTIFIED",
+  "WAVE_1_CLEAN_STREAK": 0,
+  "BIRTH_AUTHORISED": "NO",
+  "results": [
+    {
+      "id": "TS_six_sections_many_stamps",
+      "ok": true,
+      "reasons": [],
+      "ms": 10475,
+      "preview": "1) **Timeline summary**\n- 08:00: Pump A pressure dropped. - 08:20: Backup loop engaged on NodeB. - 08:45: Vibration on NodeC detected. - 09:10: Secondary cooler tripped. - 09:40: Service restored. - 10:05: Post-incident note filed.\n\n2) **Causal chain**\n- The drop in pressure of Pump A at 08:00 likely initiated a series of events leading to system instability. - This prompted the engagement of the backup loop on NodeB at 08:20 to mitigate the issue. - The vibration detected on NodeC at 08:45 may indicate a secondary effect of the pressure drop or an independent fault. - The tripping of the seco"
+    },
+    {
+      "id": "TS_dates_and_money",
+      "ok": true,
+      "reasons": [],
+      "ms": 3852,
+      "preview": "1) **Chronology**\n- 08:00: Berth sensor dropped. - 09:10: Pier overload occurred.\n\n2) **Cost signals**\n- Item 1 (related to the berth sensor issue) incurred a cost of $400. - Item 2 (related to the pier overload) incurred a cost of $120.\n\n3) **Unknowns**\n- The specific cause of the berth sensor drop isn't established yet. - The extent of the pier overload and its impact on operations is also unclear. - Any potential long-term costs or damages resulting from these incidents remain unassessed.\n\n4) **Next check**\n- Investigate the cause of the berth sensor drop to determine if it was a technical "
+    },
+    {
+      "id": "TS_table_and_correction",
+      "ok": true,
+      "reasons": [],
+      "ms": 5167,
+      "preview": "1) **Table reading**\n- At 08:00, the reading was 12. - At 08:20, the reading was 40.\n\n2) **Causal note**\n- The increase in the reading from 12 to 40 could indicate a significant change in the laboratory process, but the later correction suggests that the 08:20 reading was not reliable due to sensor noise.\n\n3) **Correction handling**\n- The note at 09:55 clarifies that the earlier reading of 40 at 08:20 was erroneous and should not be used for analysis or decision-making regarding the laboratory process.\n\n4) **Supported conclusion**\n- The data indicates that the initial reading of 12 is valid, w"
+    },
+    {
+      "id": "TS_control_stamp_in_title",
+      "ok": true,
+      "reasons": [],
+      "ms": 3347,
+      "preview": "1) **Summary of the 08:00–09:40 window**\n- At 08:00, an incident began, leading to operational disruptions. - By 08:20, a transfer process was initiated to address the issue. - Service was restored by 09:40, indicating the incident was resolved and normal operations resumed.\n\n2) **Causal reading**\n- The incident at 08:00 likely triggered a series of actions, including the transfer process at 08:20 to mitigate the impact. The successful restoration of service by 09:40 suggests that the transfer was effective in resolving the underlying issue.\n\n3) **Unknowns**\n- The specific nature of the incide"
+    }
+  ]
+}
