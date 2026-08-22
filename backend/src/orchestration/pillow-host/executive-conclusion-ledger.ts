@@ -354,7 +354,15 @@ function extractClaimBlock(answer: string, index: number): string | null {
     "i",
   );
   const a = alt.exec(answer);
-  return a?.[1]?.trim() ?? null;
+  if (a?.[1]) return a[1].trim();
+
+  // Numbered bold proposition: "1. **quoted or bare claim text**" + Verdict
+  const boldProp = new RegExp(
+    `(?:^|\\n)(\\s*${index}\\.\\s*\\*\\*[^*\\n]{8,500}\\*\\*[\\s\\S]*?)(?=(?:\\n\\s*\\d{1,2}\\.\\s*\\*\\*)|(?:\\n#{1,3}\\s)|$)`,
+    "i",
+  );
+  const b = boldProp.exec(answer);
+  return b?.[1]?.trim() ?? null;
 }
 
 /** Recover claim obligations from already-rendered Claim N blocks (when contract missed them). */
@@ -400,6 +408,11 @@ function stripAllClaimBlocks(answer: string): string {
       /(?:^|\n)\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2}[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2})|(?:\n#{1,3}\s)|$)/gi,
       "\n",
     )
+    // Numbered bold proposition + verdict surfaces (LLM often omits the word "Claim")
+    .replace(
+      /(?:^|\n)\s*\d{1,2}\.\s*\*\*[^*\n]{8,500}\*\*\s*(?:\n\s*[-–—]\s*)?\n+\s*\*\*Verdict:\*\*[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*\*)|(?:\n#{1,3}\s)|$)/gi,
+      "\n",
+    )
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
@@ -431,15 +444,9 @@ export function enforceClaimEnumeration(
   for (const c of claims) {
     let block = extractClaimBlock(original, c.index);
     const fromLedger = verdictForClaimAgainstLedger(c, ledger, canonical);
-    const rendered = block ? renderedVerdictLabel(block) : null;
-    const mustRegen =
-      !block ||
-      (fromLedger != null && rendered == null) ||
-      (fromLedger != null &&
-        rendered != null &&
-        fromLedger.verdict !== rendered) ||
-      (fromLedger?.verdict === "contradicted" &&
-        /\*\*Verdict:\*\*\s*(?:Supported|True|SUPP)/i.test(block || ""));
+    // Canonical/ledger mapping is authoritative: always render claim slices from it.
+    // Downstream may not keep an LLM surface that silently reverses established propositions.
+    const mustRegen = !block || fromLedger != null;
     if (mustRegen) {
       block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
