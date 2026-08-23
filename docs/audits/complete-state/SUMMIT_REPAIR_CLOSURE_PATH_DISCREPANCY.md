@@ -42,5 +42,19 @@ Architectural gate: claim authority only runs when obligations are extracted. Ex
 5. Tester: explicit per-claim verdict grading + negative controls (false-pass=0).
 6. Production ladder: `expectClaimVerdicts` + unquoted raw trial.
 
-## Qualification
-See seal section after deploy.
+## Qualification (sealed)
+
+| Gate | Result |
+|------|--------|
+| Negative control false-pass | **0** |
+| Raw user-prompt compound via `releaseExecutiveAnswer` | **100/100** |
+| Prior atomic compound + canonical | PASS |
+| Timestamps atomic | PASS |
+| L0–L4 + causal + decision | PASS |
+| Production canonical ladder | **11/11** (incl. unquoted raw) on `5214d003` |
+| Production timestamps | **4/4** |
+| Production reasoning core | **8/8** |
+
+**FINAL_UNCHANGED_LIVE_SHA=`5214d00381337aa7e5f6463e563fe72437089d19`**
+
+WAVE_1 remains UNCERTIFIED. Birth not authorised. Cursor PASS = zero Wave credit.

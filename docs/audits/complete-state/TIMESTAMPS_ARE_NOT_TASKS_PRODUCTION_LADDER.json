@@ -1,6 +1,6 @@
 {
-  "sealedAt": "2026-08-23T01:22:54.023Z",
-  "liveSha": "f69c117df5f14866f4b3cc5cd09cbbb22b3ab949",
+  "sealedAt": "2026-08-23T11:35:18.984Z",
+  "liveSha": "5214d00381337aa7e5f6463e563fe72437089d19",
   "pass": 4,
   "total": 4,
   "PRODUCTION_PASS": true,
@@ -12,29 +12,29 @@
       "id": "TS_six_sections_many_stamps",
       "ok": true,
       "reasons": [],
-      "ms": 16212,
-      "preview": "###\n\n1) Timeline Summary\n- **08:00:** Pump A pressure dropped. - **08:20:** Backup loop engaged on NodeB. - **08:45:** Vibration on NodeC. - **09:10:** Secondary cooler tripped. - **09:40:** Service restored. - **10:05:** Post-incident note filed.\n\n###\n\n2) Causal Chain\nThe timeline indicates a sequence of events where the initial drop in pressure of Pump A may have triggered a series of failures. The engagement of the backup loop on NodeB suggests an immediate response to mitigate the issue caused by Pump\n\nA. The subsequent vibration on NodeC could indicate a related failure or stress in the s"
+      "ms": 5694,
+      "preview": "###\n\n1) Timeline Summary\n\n- **08:00**: Pump A pressure dropped. - **08:20**: Backup loop engaged on NodeB. - **08:45**: Vibration detected on NodeC. - **09:10**: Secondary cooler tripped. - **09:40**: Service restored. - **10:05**: Post-incident note filed.\n\n###\n\n2) Causal Chain\n\n- The drop in pressure at **08:00** from Pump A likely initiated a series of events. - The engagement of the backup loop on NodeB at **08:20** suggests a response to the pressure drop, indicating that NodeB was affected by the incident. - The vibration on NodeC at **08:45** may be a secondary effect related to the ope"
     },
     {
       "id": "TS_dates_and_money",
       "ok": true,
       "reasons": [],
-      "ms": 16866,
-      "preview": "###\n\n1) Chronology\n- **2026-03-12 08:00:** Berth sensor dropped, indicating a potential issue with monitoring or operational readiness at the berth. - **2026-03-12 09:10:** Pier overload occurred, suggesting that the situation escalated due to the earlier sensor failure, leading to operational strain on the pier.\n\n###\n\n2) Cost Signals\n- **Item 1:** Cost of $400 associated with the operational impact or remediation related to the berth sensor drop. - **Item 2:** Cost of $120 linked to the pier overload, indicating additional expenses incurred due to the overload situation.\n\n###\n\n3) Unknowns\n- T"
+      "ms": 3895,
+      "preview": "###\n\n1) Chronology\n\n- **2026-03-12 08:00**: Berth sensor dropped, indicating a potential failure in monitoring or operational readiness. - **2026-03-12 09:10**: Pier overload occurred, likely as a consequence of the earlier sensor drop, affecting operational capacity.\n\n###\n\n2) Cost Signals\n\n- **Item 1**: Cost of $400 associated with the operational impact or repairs related to the berth sensor drop. - **Item 2**: Cost of $120 related to the pier overload, possibly for emergency measures or mitigation efforts.\n\n###\n\n3) Unknowns\n\n- The specific cause of the berth sensor drop isn't established ye"
     },
     {
       "id": "TS_table_and_correction",
       "ok": true,
       "reasons": [],
-      "ms": 16703,
-      "preview": "###\n\n1) Table Reading\nThe table presents two readings taken at specific times: - **08:00:** Reading of\n\n2. - **08:20:** Reading of\n\n40.\n\n###\n\n3) Causal Note\nThe increase in reading from 12 to 40 between 08:00 and 08:20 suggests a significant change in the measured parameter. However, the later correction indicates that the reading at 08:20 was due to sensor noise and not an actual measurement of the process.\n\n###\n\n4) Correction Handling\nThe correction issued at 09:55 clarifies that the earlier reading of 40 was not valid. This indicates that the data collected at 08:20 should be disregarded, a"
+      "ms": 13131,
+      "preview": "###\n\n1) Table Reading\n\n- The recorded readings are as follows: - **08:00**: Reading of **12**. - **08:20**: Reading of **40**.\n\n###\n\n2) Causal Note\n\n- The significant increase in the reading from **12** at **08:00** to **40** at **08:20** suggests a possible change in the laboratory process or conditions. However, the later correction indicates that the **08:20** reading may not reflect an actual change due to sensor noise.\n\n###\n\n3) Correction Handling\n\n- The note at **09:55** states that the **08:20** reading was identified as sensor noise. This correction implies that the earlier reading sho"
     },
     {
       "id": "TS_control_stamp_in_title",
       "ok": true,
       "reasons": [],
-      "ms": 6680,
-      "preview": "###\n\n1) Summary of the 08:00–09:40 Window\n- **08:00:** The initial stage begins, indicating the start of operations or monitoring. - **08:20:** A transfer occurs, suggesting a shift in resources or responsibilities, possibly in response to an incident or operational need. - **09:40:** Service or functionality is restored, marking the resolution of the earlier issue and the return to normal operations.\n\n###\n\n2) Causal Reading\nThe timeline indicates a sequence where an event or condition at 08:00 led to a necessary transfer of resources at 08:20. This transfer likely aimed to address a problem o"
+      "ms": 7324,
+      "preview": "###\n\n1) Summary of the 08:00–09:40 Window\n\n- **08:00**: The window begins with an unspecified event or condition. - **08:20**: A transfer occurs, indicating a shift in resources, personnel, or operational focus. - **09:40**: Service or functionality is restored, suggesting that the earlier issue has been addressed.\n\n###\n\n2) Causal Reading\n\n- The initial event at **08:00** likely set off a chain reaction leading to the transfer at **08:20**. This transfer may have been a response to mitigate the impact of the situation that arose at the start of the window. The restoration at **09:40** indicate"
     }
   ]
 }

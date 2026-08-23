@@ -1,62 +1,62 @@
 {
   "mission": "REASONING_CORE_SIMPLIFICATION",
-  "startedAt": "2026-08-23T01:22:54.195Z",
-  "brainSha": "f69c117df5f14866f4b3cc5cd09cbbb22b3ab949",
-  "frontendSha": "f69c117df5f14866f4b3cc5cd09cbbb22b3ab949",
+  "startedAt": "2026-08-23T11:35:19.141Z",
+  "brainSha": "5214d00381337aa7e5f6463e563fe72437089d19",
+  "frontendSha": "5214d00381337aa7e5f6463e563fe72437089d19",
   "results": [
     {
       "id": "L0_entity",
       "ok": true,
       "reasons": [],
-      "ms": 5915,
+      "ms": 7096,
       "kind": "llm",
-      "preview": "### Claim Analysis\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"ZX-11 is definitely Partner Assembly.\"\n\nVerified identity: ZX-11 = North Pier Module (verified_registry). \"Partner Assembly\" is bound to a different registry identity.\n\n### Claim 2"
+      "preview": "### Claim Audits\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"ZX-11 is definitely Partner Assembly.\"\n\nVerified identity: ZX-11 = North Pier Module (verified_registry). \"Partner Assembly\" is bound to a different registry identity.\n\n### Claim 2\n*"
     },
     {
       "id": "L0_population",
       "ok": true,
       "reasons": [],
-      "ms": 16659,
+      "ms": 16625,
       "kind": "llm",
-      "preview": "### Claim Verdict\n\n**Verdict:** Contradicted\n\n\"All 120 deployed sites demonstrate a 10% saving.\"\n\nThe claim is contradicted because the 10% average reduction is only applicable to the 80 currently valid measured sites. The total population "
+      "preview": "### Claim Audit\n\n**Claim:** \"All 120 deployed sites demonstrate a 10% saving.\"\n\n**Verdict:** Contradicted\n\nThe claim is contradicted because the 10% average reduction is only applicable to the 80 currently valid measured sites, not the enti"
     },
     {
       "id": "L0_occurrence",
       "ok": true,
       "reasons": [],
-      "ms": 16244,
+      "ms": 16808,
       "kind": "llm",
-      "preview": "###\n\n1) Did Shipments Historically Occur? Yes, the 18 shipments were physically completed and recorded as complete. This confirms that the shipments did occur historically.\n\n###\n\n2) What Does the Refund Change? The full refunds for the SLA "
+      "preview": "### Analysis\n\n1) **Did shipments historically occur?**\n\n- Yes, the 18 shipments were physically completed and recorded as complete, confirming that the shipments did occur historically.\n\n2) **What does the refund change?**\n\n- The full refun"
     },
     {
       "id": "L1_paired",
       "ok": true,
       "reasons": [],
-      "ms": 11234,
+      "ms": 9126,
       "kind": "llm",
-      "preview": "### Claim Verdicts\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"HT-77 is Harbour Crown Hotel.\"\n\nVerified identity: HT-77 = Cedar Transit Lodge (verified_registry). Claim asserts HT-77 = Harbour Crown Hotel.\n\n### Claim 2\n**Verdict:** Contradicte"
+      "preview": "### Claim Audits\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"HT-77 is Harbour Crown Hotel.\"\n\nVerified identity: HT-77 = Cedar Transit Lodge (verified_registry). Claim asserts HT-77 = Harbour Crown Hotel.\n\n### Claim 2\n**Verdict:** Contradicted\n"
     },
     {
       "id": "L2_multi",
       "ok": true,
       "reasons": [],
-      "ms": 7823,
+      "ms": 9456,
       "kind": "llm",
-      "preview": "### Claim Verdicts\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"NV-55 is System Assembly.\"\n\nVerified identity: NV-55 = Ridge Thermal Pack (verified_registry). \"System Assembly\" is bound to a different registry identity.\n\n### Claim 2\n**Verdict:*"
+      "preview": "### Claim Audits\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"NV-55 is System Assembly.\"\n\nVerified identity: NV-55 = Ridge Thermal Pack (verified_registry). \"System Assembly\" is bound to a different registry identity.\n\n### Claim 2\n**Verdict:** "
     },
     {
       "id": "L3_multipart",
       "ok": true,
       "reasons": [],
-      "ms": 11069,
+      "ms": 10560,
       "kind": "llm",
-      "preview": "###\n\n1. Forecast vs Realised\nThe forecast for the project was $2400, while the realised amount is significantly lower at $510. This indicates a substantial shortfall between expected and actual financial performance, suggesting potential is"
+      "preview": "###\n\n1) Forecast vs Realised\n\n- The forecast for the product is **$2400**, while the realised revenue is **$510**. This indicates a significant shortfall in actual revenue compared to what was projected.\n\n###\n\n2) Identity\n\n- ZX-11 is identi"
     },
     {
       "id": "L4_executive",
       "ok": true,
       "reasons": [],
-      "ms": 9128,
+      "ms": 9705,
       "kind": "llm",
       "preview": "### 1) Forecast vs realised.\n\n### Forecast vs realised.\n**Verdict:** Unsupported as realised result\n\nAn expected, forecast, or estimated figure is not realised profit and is not transaction evidence.\n\nWhat can be concluded: the figure may b"
     },
@@ -64,7 +64,7 @@
       "id": "L4_control",
       "ok": true,
       "reasons": [],
-      "ms": 585,
+      "ms": 619,
       "kind": "degraded_useful",
       "preview": "### SyntheticRCS-CTRL — scenario-only. Is \"Module KEEL will succeed commercially\" established from the c\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settl"
     }
@@ -72,7 +72,7 @@
   "WAVE_1": "UNCERTIFIED",
   "WAVE_1_CLEAN_STREAK": 0,
   "BIRTH_AUTHORISED": "NO",
-  "finishedAt": "2026-08-23T01:24:14.800Z",
+  "finishedAt": "2026-08-23T11:36:40.679Z",
   "pass": 8,
   "fail": 0,
   "level": "PASS"
