@@ -493,7 +493,8 @@ export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation
 }
 
 function stripAllClaimBlocks(answer: string): string {
-  return String(answer || "")
+  const normalized = String(answer || "").replace(/\r\n/g, "\n");
+  return normalized
     .replace(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi, "\n")
     .replace(
       /(?:^|\n)\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2}[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2})|(?:\n#{1,3}\s)|$)/gi,
@@ -502,6 +503,11 @@ function stripAllClaimBlocks(answer: string): string {
     // Numbered bold proposition + verdict surfaces (LLM often omits the word "Claim")
     .replace(
       /(?:^|\n)\s*\d{1,2}\.\s*\*\*[^*\n]{8,500}\*\*\s*(?:\n\s*[-–—]\s*)?\n+\s*\*\*Verdict:\*\*[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*\*)|(?:\n#{1,3}\s)|$)/gi,
+      "\n",
+    )
+    // Numbered quoted claim + verdict (LLM often omits the word "Claim")
+    .replace(
+      /(?:^|\n)\s*\d{1,2}\.\s*["“][^"”\n]{8,500}["”][\s\S]*?\*\*Verdict:\*\*[^\n]*(?:\n(?!\s*\d{1,2}\.\s)(?!#{1,3}\s)[^\n]*)*/gi,
       "\n",
     )
     .replace(/\n{3,}/g, "\n\n")
