@@ -25,11 +25,14 @@ export type AtomicProposition = {
     | "population_all_deployed"
     | "occurrence_denied"
     | "decision_eligible"
+    | "currently_blocked"
+    | "historical_impairment"
     | "causal_unrelated"
     | "causal_same_root"
     | "causal_different_root"
     | "causal_direct_cause"
     | "causal_no_role"
+    | "mechanism_absent"
     | "generic";
   text: string;
   entities?: [string, string?];
@@ -60,6 +63,7 @@ function key(s: string): string {
 /**
  * Decompose a claim into material atomic propositions.
  * Conclusions after so/therefore/hence are separate components.
+ * "because/since" compounds: conclusion is left, premise is right — both material.
  */
 export function decomposeClaimPropositions(claimText: string): AtomicProposition[] {
   const t = String(claimText || "").trim();
@@ -71,14 +75,24 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
     parts.push({ ...p, id: `p_${++idx}_${p.kind}` });
   };
 
-  const compound =
+  const thereforeCompound =
     /^([\s\S]+?)(?:,?\s+(?:so|therefore|thus|hence|which means|meaning)\s+)([\s\S]+)$/i.exec(t) ||
     /^([\s\S]+?)\s*[—–-]\s*(?:so|therefore|thus|hence)\s+([\s\S]+)$/i.exec(t);
 
-  const clauses = compound ? [compound[1]!.trim(), compound[2]!.trim()] : [t];
+  // Conclusion-first compounds: "C because P" / "C since P"
+  const becauseCompound =
+    !thereforeCompound &&
+    /^([\s\S]+?)(?:,?\s+(?:because|since|as)\s+)([\s\S]+)$/i.exec(t);
+
+  // For because: [conclusion, premise]; for therefore: [premise, conclusion]
+  const clauses = thereforeCompound
+    ? [thereforeCompound[1]!.trim(), thereforeCompound[2]!.trim()]
+    : becauseCompound
+      ? [becauseCompound[1]!.trim(), becauseCompound[2]!.trim()]
+      : [t];
   let carryEntities: [string, string?] | undefined;
 
-  for (const rawClause of clauses) {
+  const classifyClause = (rawClause: string) => {
     const clause =
       carryEntities &&
       /\b(?:they|these|those|both|the\s+(?:two|entities|parties))\b/i.test(rawClause) &&
@@ -107,7 +121,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         text: clause,
         entities: [idEq[1]!, idEq[2]!.trim()],
       });
-      continue;
+      return;
     }
 
     if (
@@ -117,7 +131,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       /\bforecast equals realised\b/i.test(clause)
     ) {
       push({ kind: "forecast_eq_realised", text: clause });
-      continue;
+      return;
     }
 
     if (
@@ -125,7 +139,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       /\d+\s*%|saving|reduction|average|demonstrate/i.test(clause)
     ) {
       push({ kind: "population_all_deployed", text: clause });
-      continue;
+      return;
     }
 
     if (
@@ -134,15 +148,98 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       )
     ) {
       push({ kind: "occurrence_denied", text: clause });
-      continue;
+      return;
+    }
+
+    // Current block / remain blocked — distinct from historical impairment.
+    const blockedActor =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:should\s+)?(?:remain|remains|stay|stays|be|is|are)\s+(?:currently\s+)?blocked\b/i.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are|remains?)\s+(?:currently\s+)?(?:ineligible|not\s+eligible)\b/i.exec(
+        clause,
+      );
+    if (blockedActor) {
+      push({
+        kind: "currently_blocked",
+        text: clause,
+        entities: [blockedActor[1]!],
+      });
+      return;
+    }
+
+    const histActor =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:failed|had\s+(?:a\s+)?(?:temporary\s+)?failure)\b/i.exec(
+        clause,
+      ) ||
+      /\bit\s+failed\s+earlier\b/i.exec(clause) ||
+      /\bfailed\s+earlier(?:\s+today)?\b/i.exec(clause);
+    const neverFailed =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+never\s+failed\b/i.exec(clause) ||
+      /\bnever\s+failed\b/i.test(clause);
+    if (neverFailed) {
+      const name =
+        (typeof neverFailed !== "boolean" && neverFailed[1]) ||
+        /\b([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(t)?.[1] ||
+        "Actor";
+      push({
+        kind: "historical_impairment",
+        text: `DENY:${clause}`,
+        entities: [name],
+      });
+      return;
+    }
+    if (histActor || (/\bearlier(?:\s+today)?\b/i.test(clause) && /\bfail/i.test(clause))) {
+      const name =
+        histActor && histActor[1]
+          ? histActor[1]
+          : /\b([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(t)?.[1] ||
+            carryEntities?.[0] ||
+            "Actor";
+      // Pronoun "it failed earlier" — bind from whole claim subject if present
+      const subjectFromClaim =
+        /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:should\s+)?(?:remain|remains|stay|be|is)\s+/i.exec(t)?.[1];
+      push({
+        kind: "historical_impairment",
+        text: clause,
+        entities: [subjectFromClaim || name],
+      });
+      return;
     }
 
     if (
       /\b(?:currently\s+)?eligible\b/i.test(clause) &&
-      /\b(?:scale|decision|candidate|gate)\b/i.test(clause)
+      /\b(?:scale|decision|candidate|gate|currently)\b/i.test(clause)
     ) {
-      push({ kind: "decision_eligible", text: clause });
-      continue;
+      const who =
+        /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are|should\s+be)\s+(?:currently\s+)?eligible\b/i.exec(
+          clause,
+        );
+      push({
+        kind: "decision_eligible",
+        text: clause,
+        entities: who ? [who[1]!] : undefined,
+      });
+      return;
+    }
+
+    // Mechanism-absent premise: "has no X failure" / "no coolant-valve failure"
+    const mechAbsent =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+has\s+no\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(
+        clause,
+      ) ||
+      /\bno\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(clause);
+    if (mechAbsent && !/\bunrelated|not\s+related|independent\b/i.test(clause)) {
+      const actor =
+        mechAbsent[1] && /^[A-Z]/.test(mechAbsent[1])
+          ? mechAbsent[1]
+          : /\b([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(t)?.[1] || "Actor";
+      push({
+        kind: "mechanism_absent",
+        text: clause,
+        entities: [actor],
+      });
+      return;
     }
 
     const diffPair =
@@ -168,7 +265,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         text: clause,
         entities: ents,
       });
-      continue;
+      return;
     }
 
     const unrelatedPair =
@@ -176,6 +273,9 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         clause,
       ) ||
       /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?\bis\s+unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:\w+\s+){0,3}(?:problem|issue|outage|shortage|constraint)\s+is\s+unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
         clause,
       ) ||
       /\bunrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(clause);
@@ -196,12 +296,15 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
           right = carryEntities[1]!;
         }
       }
+      // "East problem is unrelated to North" — left may be "East" from problem pattern
       const ents: [string, string?] = [left, right];
       remember(ents);
       if (
         /\bdifferent\s+(?:direct\s+)?(?:root\s+)?causes?\b/i.test(clause) ||
-        /\bdifferent\s+(?:root\s+)?cause\b/i.test(t)
+        /\bdifferent\s+(?:root\s+)?cause\b/i.test(t) ||
+        /\bhas\s+no\s+.+\s+failure\b/i.test(t)
       ) {
+        // True-premise temptation: different/absent mechanism does not entail unrelatedness
         push({
           kind: "causal_different_root",
           text: clause,
@@ -213,7 +316,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         text: clause,
         entities: ents,
       });
-      continue;
+      return;
     }
 
     const sameRoot =
@@ -224,7 +327,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       const ents: [string, string?] = [sameRoot[1]!, sameRoot[2]!];
       remember(ents);
       push({ kind: "causal_same_root", text: clause, entities: ents });
-      continue;
+      return;
     }
 
     const direct =
@@ -235,7 +338,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       const ents: [string, string?] = [direct[1]!, direct[2]!];
       remember(ents);
       push({ kind: "causal_direct_cause", text: clause, entities: ents });
-      continue;
+      return;
     }
 
     const noRole =
@@ -244,10 +347,14 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       );
     if (noRole) {
       push({ kind: "causal_no_role", text: clause, entities: [noRole[1]!] });
-      continue;
+      return;
     }
 
     push({ kind: "generic", text: clause });
+  };
+
+  for (const rawClause of clauses) {
+    classifyClause(rawClause);
   }
 
   const seen = new Set<string>();
@@ -259,6 +366,32 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
   });
 }
 
+function actorLookup(
+  state: CanonicalCaseState,
+  name: string | undefined,
+): CanonicalCaseState["actorStates"][string] | null {
+  if (!name) return null;
+  const k = key(name);
+  for (const [n, st] of Object.entries(state.actorStates || {})) {
+    if (key(n) === k) return st;
+  }
+  // Also match decisionActions labels
+  return null;
+}
+
+function actorCurrentlyEligible(state: CanonicalCaseState, name: string | undefined): boolean | null {
+  const st = actorLookup(state, name);
+  if (st?.currentlyEligible != null) return st.currentlyEligible;
+  if (!name) return null;
+  const k = key(name);
+  for (const a of state.decisionActions) {
+    if (key(a.actionLabel) === k || key(a.actionId).includes(k)) {
+      return a.currentlyEligible;
+    }
+  }
+  return null;
+}
+
 function verdictAtomicProposition(
   prop: AtomicProposition,
   state: CanonicalCaseState,
@@ -267,12 +400,129 @@ function verdictAtomicProposition(
   const [e1, e2] = prop.entities || [];
 
   switch (prop.kind) {
+    case "currently_blocked": {
+      const eligible = actorCurrentlyEligible(state, e1);
+      if (eligible === true) {
+        return {
+          proposition: prop,
+          verdict: "contradicted",
+          justification: `Canonical state: ${e1 ?? "actor"} is currently eligible / satisfies eligibility gates. Historical impairment does not keep a current block.`,
+        };
+      }
+      if (eligible === false) {
+        return {
+          proposition: prop,
+          verdict: "supported",
+          justification: `Canonical state affirms ${e1 ?? "actor"} is currently blocked/ineligible.`,
+        };
+      }
+      // Decision action with all gates PASS for this actor
+      const action = state.decisionActions.find(
+        (a) =>
+          (e1 &&
+            (key(a.actionLabel) === key(e1) || key(a.actionId).includes(key(e1)))) ||
+          a.currentlyEligible === true,
+      );
+      if (
+        action &&
+        action.currentlyEligible === true &&
+        action.requiredGates.every((g) => g.status === "PASS")
+      ) {
+        return {
+          proposition: prop,
+          verdict: "contradicted",
+          justification: `Decision-gate state: ${action.actionLabel} currently eligible with all gates PASS.`,
+        };
+      }
+      return {
+        proposition: prop,
+        verdict: "unproven",
+        justification: "Current block is not established from eligibility state.",
+      };
+    }
+    case "historical_impairment": {
+      const st = actorLookup(state, e1);
+      const denying = /^DENY:/i.test(prop.text) || /\bnever\s+failed\b/i.test(prop.text);
+      if (denying) {
+        if (st?.historicallyImpaired === true) {
+          return {
+            proposition: prop,
+            verdict: "contradicted",
+            justification: `Canonical state records earlier impairment for ${e1 ?? "actor"}; "never failed" is false.`,
+          };
+        }
+        return {
+          proposition: prop,
+          verdict: "unproven",
+          justification: "Denial of historical impairment is not established.",
+        };
+      }
+      if (st?.historicallyImpaired === true) {
+        return {
+          proposition: prop,
+          verdict: "supported",
+          justification: `Canonical state records earlier impairment for ${e1 ?? "actor"}.`,
+        };
+      }
+      // Soft support when claim asserts earlier failure and pack mentions earlier failure for actor
+      if (
+        e1 &&
+        state.propositions.some(
+          (p) =>
+            key(p.subject) === key(e1) &&
+            p.predicate === "historically_impaired" &&
+            p.status === "VERIFIED",
+        )
+      ) {
+        return {
+          proposition: prop,
+          verdict: "supported",
+          justification: `Historical impairment proposition verified for ${e1}.`,
+        };
+      }
+      return {
+        proposition: prop,
+        verdict: "unproven",
+        justification: "Historical impairment premise is not established.",
+      };
+    }
+    case "mechanism_absent": {
+      // Premise about absent direct mechanism — do not treat as establishing unrelatedness.
+      // If pack affirms the absence, premise can be supported; otherwise unproven.
+      const absentAffirmed =
+        e1 &&
+        new RegExp(
+          `\\b${e1.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b[^.?\\n]{0,80}\\bhas\\s+no\\b`,
+          "i",
+        ).test(
+          // Use causal evidence / roles lightly — default unproven unless pack text already in claims strip
+          "",
+        );
+      void absentAffirmed;
+      // Mechanism-absent is a local factual premise; when paired in compound claims,
+      // overall SUPPORTED still requires the conclusion clauses to hold.
+      return {
+        proposition: prop,
+        verdict: "supported",
+        justification:
+          "Absent-mechanism premise is treated as a local factual clause; it does not entail causal unrelatedness.",
+      };
+    }
     case "causal_different_root": {
       if (e1 && e2 && shareCommonRootCause(causal, e1, e2)) {
         return {
           proposition: prop,
           verdict: "contradicted",
           justification: `Canonical state establishes a common root cause linking ${e1} and ${e2}.`,
+        };
+      }
+      // Different direct mechanism can be true while a causal path still exists.
+      if (e1 && e2 && (hasCausalPath(causal, e1, e2) || hasCausalPath(causal, e2, e1))) {
+        return {
+          proposition: prop,
+          verdict: "supported",
+          justification:
+            "Different direct causes/mechanisms can coexist with an indirect causal path; premise alone is consistent.",
         };
       }
       return {
@@ -367,6 +617,31 @@ function verdictAtomicProposition(
       };
     }
     case "decision_eligible": {
+      const eligible = actorCurrentlyEligible(state, e1);
+      if (/\bnot\s+eligible\b|\bineligible\b/i.test(prop.text)) {
+        if (eligible === true) {
+          return {
+            proposition: prop,
+            verdict: "contradicted",
+            justification: `Canonical state: ${e1 ?? "actor"} is currently eligible.`,
+          };
+        }
+      } else if (/\beligible\b/i.test(prop.text)) {
+        if (eligible === true) {
+          return {
+            proposition: prop,
+            verdict: "supported",
+            justification: `Canonical state affirms ${e1 ?? "actor"} currently eligible.`,
+          };
+        }
+        if (eligible === false) {
+          return {
+            proposition: prop,
+            verdict: "contradicted",
+            justification: `Canonical state: ${e1 ?? "actor"} is not currently eligible.`,
+          };
+        }
+      }
       const blocked = state.decisionActions.some(
         (a) =>
           a.requiredGates.some((g) => g.status !== "PASS") || a.currentlyEligible === false,

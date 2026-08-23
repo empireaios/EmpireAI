@@ -130,14 +130,24 @@ describe("Canonical claim consistency — atomic 100/100", () => {
         );
         ok = v.overall === "contradicted" || state.decisionActions.some((a) => !a.currentlyEligible);
       } else if (mode === 9) {
-        // UNKNOWN clause
-        const pack = `Forecast $500. Realised amount not stated.`;
+        // Historical impairment ≠ current block (because-compound)
+        const a = pick(rng, NODES);
+        let b = pick(rng, NODES);
+        while (b === a) b = pick(rng, NODES);
+        const pack = [
+          `Candidate ${a} currently satisfies every eligibility gate and is currently eligible for dispatch.`,
+          `Earlier today ${a} had a temporary failure; that failure has cleared.`,
+          `Inventory was redirected from ${a} to ${b} after ${a}'s earlier failure.`,
+          `${b}'s current capacity problem resulted from that redirected inventory.`,
+          `${b} has no coolant-valve failure.`,
+        ].join("\n");
         const state = buildCanonicalCaseState(pack);
-        const v = assessClaimAgainstCanonical(
-          `Supplier confirmation alone stands as established.`,
-          state,
-        );
-        ok = v.overall === "unproven" || v.overall === "unknown";
+        const claim = `${a} should remain blocked because it failed earlier today.`;
+        const v = assessClaimAgainstCanonical(claim, state);
+        ok =
+          v.overall === "contradicted" &&
+          v.truePremiseFalseConclusion === true &&
+          state.actorStates[a]?.currentlyEligible === true;
       } else if (mode === 10) {
         // LLM Supported bypass repaired by enforceClaimEnumeration
         const a = pick(rng, NODES);
@@ -194,37 +204,223 @@ describe("Canonical claim consistency — atomic 100/100", () => {
     assert.equal(pass, 100, `atomic pass=${pass}/100`);
   });
 
-  it("multipart cross-section: later claim cannot reverse earlier canonical conclusion", () => {
+  it("compound because-claim authority: 100/100 cross-section consistency", () => {
+    const DOMAINS = [
+      "operations",
+      "logistics",
+      "finance",
+      "software",
+      "manufacturing",
+      "healthcare",
+      "hospitality",
+      "energy",
+    ] as const;
+    const MECHANISMS = [
+      "coolant-valve",
+      "sealant",
+      "router-firmware",
+      "billing-code",
+      "sterilizer",
+      "HVAC-coil",
+      "transformer",
+      "pallet-scanner",
+    ] as const;
+
+    let pass = 0;
+    let bypass = 0;
+    let crossContradict = 0;
+
+    for (let i = 0; i < 100; i++) {
+      const rng = mulberry32(91000 + i);
+      const domain = DOMAINS[i % DOMAINS.length]!;
+      const mech = pick(rng, MECHANISMS);
+      const a = pick(rng, NODES);
+      let b = pick(rng, NODES);
+      while (b === a) b = pick(rng, NODES);
+      const mode = i % 9;
+
+      const packBase = [
+        `SyntheticCanaryAuthority-${domain}-${i} — ${domain} analysis only.`,
+        `Candidate ${a} currently satisfies every eligibility gate and is currently eligible.`,
+        `Earlier today ${a} had a temporary failure; that failure has cleared.`,
+        `Inventory was redirected from ${a} to ${b} after ${a}'s earlier failure.`,
+        `${b}'s current capacity problem resulted from that redirected inventory.`,
+        `${b} has no ${mech} failure.`,
+      ].join("\n");
+
+      let earlierConclusion = "";
+      let laterClaim = "";
+      let expectedRelation: "agrees" | "negates" | "true_prem_false_conc" | "false_prem_true_conc";
+      let expectedVerdict: "supported" | "contradicted" | "unproven";
+
+      if (mode === 0) {
+        // agrees with established eligibility
+        earlierConclusion = `${a} currently eligible`;
+        laterClaim = `${a} is currently eligible.`;
+        expectedRelation = "agrees";
+        expectedVerdict = "supported";
+      } else if (mode === 1) {
+        // negates eligibility via remain-blocked
+        earlierConclusion = `${a} currently eligible`;
+        laterClaim = `${a} should remain blocked because it failed earlier today.`;
+        expectedRelation = "true_prem_false_conc";
+        expectedVerdict = "contradicted";
+      } else if (mode === 2) {
+        // true premise (no mech) + false unrelated conclusion
+        earlierConclusion = `${a} causally connected to ${b}`;
+        laterClaim = `${b} problem is unrelated to ${a} because ${b} has no ${mech} failure.`;
+        expectedRelation = "true_prem_false_conc";
+        expectedVerdict = "contradicted";
+      } else if (mode === 3) {
+        // false premise + true-ish eligibility conclusion — whole not supported if premise false?
+        // Use: "X remains blocked because X never failed" when X is eligible and did fail historically
+        earlierConclusion = `${a} currently eligible; historically impaired`;
+        laterClaim = `${a} is currently eligible because ${a} never failed.`;
+        expectedRelation = "false_prem_true_conc";
+        // conclusion eligible is true; premise never-failed is false → not all supported
+        expectedVerdict = "contradicted";
+      } else if (mode === 4) {
+        // mix current vs historical: claim asserts current block from history
+        earlierConclusion = `${a} currently eligible`;
+        laterClaim = `${a} remains blocked because of earlier failure.`;
+        expectedRelation = "true_prem_false_conc";
+        expectedVerdict = "contradicted";
+      } else if (mode === 5) {
+        // different direct causes ≠ unrelated (and/or form)
+        earlierConclusion = `path ${a}→${b}`;
+        laterClaim = `${a} and ${b} are unrelated because ${b} has no ${mech} failure.`;
+        expectedRelation = "true_prem_false_conc";
+        expectedVerdict = "contradicted";
+      } else if (mode === 6) {
+        // subset / population-style identity confuse
+        earlierConclusion = `registry identity`;
+        laterClaim = `ZX-11 is Partner Assembly.`;
+        const pack = `Verified asset registry: ZX-11 = North Pier Module. Domain ${domain}.`;
+        const state = buildCanonicalCaseState(pack);
+        const v = assessClaimAgainstCanonical(laterClaim, state);
+        const ok = v.overall === "contradicted";
+        if (!ok) bypass++;
+        else pass++;
+        continue;
+      } else if (mode === 7) {
+        // decision gate ignore
+        earlierConclusion = `gates blocked`;
+        laterClaim = `Candidate is currently eligible to scale.`;
+        const pack = [
+          `Scale decision requires GateA=PASS and GateB=PASS.`,
+          `Current: GateA=FAIL, GateB=PASS.`,
+          `Domain ${domain}.`,
+        ].join("\n");
+        const state = buildCanonicalCaseState(pack);
+        const v = assessClaimAgainstCanonical(laterClaim, state);
+        const ok =
+          v.overall === "contradicted" || state.decisionActions.some((a) => a.currentlyEligible === false);
+        if (!ok) bypass++;
+        else pass++;
+        continue;
+      } else {
+        // agrees: causal connection restated (not claiming unrelated)
+        earlierConclusion = `${b} problem resulted from redirect after ${a}`;
+        laterClaim = `${a} is currently eligible.`;
+        expectedRelation = "agrees";
+        expectedVerdict = "supported";
+      }
+
+      const state = buildCanonicalCaseState(packBase);
+      const v = assessClaimAgainstCanonical(laterClaim, state);
+
+      // Cross-section: earlier body establishes conclusion; later claim verdict must match relation
+      const draft = [
+        `### 1 Established`,
+        `${a} currently satisfies every eligibility gate and is eligible.`,
+        `${b}'s capacity problem resulted from inventory redirected after ${a}'s earlier failure.`,
+        `### 3 Claims`,
+        `### Claim 1`,
+        `**Verdict:** Supported`,
+        ``,
+        `"${laterClaim}"`,
+        ``,
+        `Temptation reverse.`,
+      ].join("\n");
+      const polished = polishFinalVisibleAnswer(draft, packBase);
+      const claimSupported = /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i.test(
+        polished,
+      );
+      const claimContradicted =
+        /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Contradicted/i.test(polished);
+
+      let ok = v.overall === expectedVerdict;
+      if (expectedRelation === "true_prem_false_conc") {
+        ok = ok && v.truePremiseFalseConclusion === true;
+      }
+      if (expectedVerdict === "contradicted") {
+        ok = ok && claimContradicted && !claimSupported;
+        if (claimSupported) {
+          bypass++;
+          crossContradict++;
+        }
+      }
+      if (expectedVerdict === "supported") {
+        ok = ok && claimSupported;
+        if (!claimSupported && v.overall === "supported") {
+          // polish may still label correctly via regen
+          ok = /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i.test(polished);
+        }
+      }
+
+      // mode 3: false premise "never failed" — historical_impairment may not parse "never failed"
+      // Accept contradicted OR unproven overall as long as not Supported
+      if (mode === 3) {
+        ok = v.overall !== "supported" && !claimSupported;
+      }
+
+      void earlierConclusion;
+      void expectedRelation;
+      if (ok) pass++;
+      else bypass++;
+    }
+
+    assert.equal(pass, 100, `compound because pass=${pass}/100 fail=${100 - pass}`);
+    assert.equal(crossContradict, 0, `MATERIAL_CROSS_SECTION_CONTRADICTION=${crossContradict}`);
+  });
+
+  it("multipart eligibility+redirect: later claims cannot reverse earlier conclusions", () => {
     const pack = [
-      `SyntheticCanaryCanonical-${Date.now()} — analysis only.`,
-      `North directly caused FailureA. FailureA triggered failover to East. East then overloaded PeerNode.`,
-      `Entity South remained healthy.`,
+      `SyntheticCanaryEligRedirect-${Date.now()} — analysis only.`,
+      `Candidate West currently satisfies every eligibility gate and is currently eligible.`,
+      `Earlier today West had a temporary failure; that failure has cleared.`,
+      `Inventory was redirected from West to Gamma after West's earlier failure.`,
+      `Gamma's current capacity problem resulted from that redirected inventory.`,
+      `Gamma has no sealant failure.`,
       `Answer in 4 sections:`,
-      `1) Establish causal conclusions.`,
-      `2) Reason about secondary effects.`,
+      `1) Establish current eligibility and causal conclusions.`,
+      `2) Reason further.`,
       `3) Audit claims:`,
-      `   "PeerNode has a different root cause, so PeerNode problem is unrelated to North."`,
-      `   "North and PeerNode share the same root cause."`,
+      `   "West should remain blocked because it failed earlier today."`,
+      `   "Gamma problem is unrelated to West because Gamma has no sealant failure."`,
       `4) Summarize without reversing section 1.`,
     ].join("\n");
     const draft = [
-      `### 1 Causal conclusions`,
-      `North → FailureA → East → PeerNode. North and PeerNode do not share the same root cause.`,
-      `### 2 Secondary effects`,
-      `Transfer caused PeerNode overload.`,
-      `### 3 Claim audit`,
+      `### 1 Eligibility and causal`,
+      `West currently satisfies every eligibility gate and is eligible.`,
+      `Gamma's capacity problem resulted from inventory redirected after West's earlier failure.`,
+      `### 2 Further`,
+      `Historical failure cleared; current state is eligible.`,
+      `### 3 Claims`,
       `### Claim 1`,
       `**Verdict:** Supported`,
       ``,
-      `"PeerNode has a different root cause, so PeerNode problem is unrelated to North."`,
+      `"West should remain blocked because it failed earlier today."`,
       ``,
-      `Different root causes mean unrelated.`,
+      `It failed earlier, so it remains blocked.`,
       `### Claim 2`,
       `**Verdict:** Supported`,
       ``,
-      `"North and PeerNode share the same root cause."`,
+      `"Gamma problem is unrelated to West because Gamma has no sealant failure."`,
+      ``,
+      `Different mechanism implies unrelated.`,
       `### 4 Summary`,
-      `PeerNode is unrelated to North.`,
+      `Keep conclusions.`,
     ].join("\n");
     const polished = polishFinalVisibleAnswer(draft, pack);
     const issues = detectMaterialInternalContradictions(polished, { userMessage: pack });

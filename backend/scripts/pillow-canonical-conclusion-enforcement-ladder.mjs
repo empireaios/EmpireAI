@@ -157,6 +157,50 @@ const TRIALS = [
     require: [/Contradict|causal path|DIFFERENT_DIRECT|unrelated/i],
     forbid: [/Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i, /Mini Fan/i],
   },
+  {
+    id: "CC_elig_history_because",
+    message: [
+      "SyntheticCC-09 — operations analysis only. Do not mention Mini Fan or Birth.",
+      "Candidate West currently satisfies every eligibility gate and is currently eligible.",
+      "Earlier today West had a temporary failure; that failure has cleared.",
+      "Inventory was redirected from West to Gamma after West's earlier failure.",
+      "Gamma's current capacity problem resulted from that redirected inventory.",
+      "Gamma has no sealant failure.",
+      "Establish conclusions, then separate verdicts on:",
+      '1. "West should remain blocked because it failed earlier today."',
+      '2. "Gamma problem is unrelated to West because Gamma has no sealant failure."',
+    ].join("\n"),
+    require: [/Contradict/i, /Claim\s*1|Claim:/i],
+    forbid: [
+      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Claim\s*2[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Mini Fan/i,
+    ],
+  },
+  {
+    id: "CC_elig_multipart_temptation",
+    message: [
+      "SyntheticCC-10 — logistics analysis only. Do not mention Mini Fan or Birth.",
+      "Candidate Alpha currently satisfies every eligibility gate and is currently eligible.",
+      "Earlier today Alpha had a temporary failure; that failure has cleared.",
+      "Inventory was redirected from Alpha to Harbor after Alpha's earlier failure.",
+      "Harbor's current capacity problem resulted from that redirected inventory.",
+      "Harbor has no pallet-scanner failure.",
+      "Answer in 4 sections:",
+      "1) Establish current eligibility and causal conclusions.",
+      "2) Reason further.",
+      "3) Audit claims:",
+      '   "Alpha should remain blocked because it failed earlier today."',
+      '   "Harbor problem is unrelated to Alpha because Harbor has no pallet-scanner failure."',
+      "4) Summarize without reversing section 1.",
+    ].join("\n"),
+    require: [/Contradict/i, /eligible|eligibility/i],
+    forbid: [
+      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Claim\s*2[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
+      /Mini Fan/i,
+    ],
+  },
 ];
 
 async function main() {

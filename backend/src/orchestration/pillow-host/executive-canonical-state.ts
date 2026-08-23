@@ -51,6 +51,7 @@ export type CanonicalProposition = {
     | "claim_verdict"
     | "causal_link"
     | "causal_role"
+    | "decision_eligible"
     | "generic";
   subject: string;
   predicate: string;
@@ -89,6 +90,18 @@ export type CanonicalCaseState = {
   propositions: CanonicalProposition[];
   /** Multi-gate decision eligibility per action/candidate (ELIGIBLE ≠ BEST). */
   decisionActions: ActionEligibility[];
+  /**
+   * Named actors' current vs historical status from owner pack.
+   * Historical impairment does not by itself keep current eligibility blocked.
+   */
+  actorStates: Record<
+    string,
+    {
+      currentlyEligible: boolean | null;
+      historicallyImpaired: boolean | null;
+      impairmentCleared: boolean | null;
+    }
+  >;
   /** Causal graph / roles — observation ≠ causation. */
   causal: CanonicalCausalState;
   failureStageHints: string[];
@@ -264,6 +277,154 @@ function parsePopulation(text: string): PopulationState {
     resultAppliesTo,
     unmeasuredOrInvalid,
   };
+}
+
+/**
+ * Parse named actors' current eligibility vs historical impairment from owner pack.
+ * Historical failure alone does not imply current block when current eligibility is affirmed.
+ */
+function parseActorStates(text: string): CanonicalCaseState["actorStates"] {
+  const out: CanonicalCaseState["actorStates"] = {};
+  const STOP = new Set(
+    [
+      "the",
+      "this",
+      "that",
+      "each",
+      "every",
+      "earlier",
+      "later",
+      "claim",
+      "section",
+      "answer",
+      "and",
+      "or",
+      "for",
+      "from",
+      "after",
+      "before",
+      "with",
+      "into",
+      "onto",
+      "when",
+      "then",
+      "also",
+      "both",
+      "candidate",
+    ].map((s) => s.toLowerCase()),
+  );
+  const ensure = (name: string) => {
+    const k = name.trim();
+    if (!k || k.length < 2) return null;
+    if (STOP.has(k.toLowerCase())) return null;
+    // Require proper-name shape (leading capital) — /i must not bind "and".
+    if (!/^[A-Z][A-Za-z0-9_-]*$/.test(k)) return null;
+    if (!out[k]) {
+      out[k] = {
+        currentlyEligible: null,
+        historicallyImpaired: null,
+        impairmentCleared: null,
+      };
+    }
+    return out[k]!;
+  };
+
+  // Strip quoted claim surfaces so audit temptations do not bind actor state.
+  const body = String(text || "").replace(/[“"']([^”"']{8,500})[”"']/g, " ");
+
+  let m: RegExpExecArray | null;
+  // Do not use /i on actor capture — JS /i makes [A-Z] match lowercase stopwords.
+  const eligibleRes = [
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+currently\s+satisfies\s+every\s+eligibility\s+gate\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+currently\s+eligible\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+eligible\b(?!\s+gate)/g,
+    /\bCandidate\s+([A-Z][A-Za-z0-9_-]{1,40})\s+[^.?\n]{0,100}\bcurrently\s+eligible\b/g,
+  ];
+  for (const re of eligibleRes) {
+    while ((m = re.exec(body)) !== null) {
+      const a = ensure(m[1]!);
+      if (a) a.currentlyEligible = true;
+    }
+  }
+
+  const histRes = [
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:had|experienced)\s+(?:a\s+)?(?:temporary\s+)?failure\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+earlier\s+failure\b/g,
+    /\bearlier(?:\s+today)?[^.?\n]{0,60}\b([A-Z][A-Za-z0-9_-]{1,40})\b[^.?\n]{0,40}\bfail(?:ure|ed)\b/g,
+  ];
+  for (const re of histRes) {
+    while ((m = re.exec(body)) !== null) {
+      const a = ensure(m[1]!);
+      if (a) a.historicallyImpaired = true;
+    }
+  }
+
+  if (
+    /\b(?:failure|impairment|outage)\s+has\s+cleared\b/i.test(body) ||
+    /\bthat\s+failure\s+has\s+cleared\b/i.test(body) ||
+    /\bcleared\b[^.?\n]{0,40}\b(?:failure|impairment)\b/i.test(body)
+  ) {
+    for (const a of Object.values(out)) {
+      if (a.historicallyImpaired) a.impairmentCleared = true;
+    }
+  }
+
+  // Explicit current block from owner narrative (not claim quotes).
+  const blockedRes =
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|remains)\s+(?:currently\s+)?(?:blocked|ineligible)\b/g;
+  while ((m = blockedRes.exec(body)) !== null) {
+    const a = ensure(m[1]!);
+    if (a && a.currentlyEligible !== true) a.currentlyEligible = false;
+  }
+
+  return out;
+}
+
+function mergeActorEligibilityIntoActions(
+  actions: ActionEligibility[],
+  actors: CanonicalCaseState["actorStates"],
+): ActionEligibility[] {
+  const next = [...actions];
+  for (const [name, st] of Object.entries(actors)) {
+    if (st.currentlyEligible !== true) continue;
+    const existing = next.find(
+      (a) =>
+        a.actionLabel.toLowerCase().includes(name.toLowerCase()) ||
+        a.actionId.toLowerCase().includes(name.toLowerCase()),
+    );
+    if (existing) {
+      existing.currentlyEligible = true;
+      if (existing.requiredGates.length === 0) {
+        existing.requiredGates = [
+          {
+            id: "operating_evidence",
+            label: "Eligibility gates (pack-affirmed)",
+            status: "PASS",
+            constraintClass: null,
+          },
+        ];
+      } else {
+        for (const g of existing.requiredGates) g.status = "PASS";
+      }
+    } else {
+      next.push({
+        actionId: `actor_${name.toLowerCase()}`,
+        actionLabel: name,
+        requiredGates: [
+          {
+            id: "operating_evidence",
+            label: "Eligibility gates (pack-affirmed)",
+            status: "PASS",
+            constraintClass: null,
+          },
+        ],
+        currentlyEligible: true,
+        comparativelyPreferred: null,
+        preferenceNote: null,
+      });
+    }
+  }
+  return next;
 }
 
 /**
@@ -453,8 +614,54 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
           ? "logistics"
           : "generic";
 
-  const decisionActions = buildActionEligibilityStates(text);
+  const actorStates = parseActorStates(text);
+  const decisionActions = mergeActorEligibilityIntoActions(
+    buildActionEligibilityStates(text),
+    actorStates,
+  );
   const causal = buildCanonicalCausalState(text);
+
+  for (const [actor, st] of Object.entries(actorStates)) {
+    if (st.currentlyEligible === true) {
+      propositions.push({
+        id: `actor.${norm(actor)}.currently_eligible`,
+        kind: "decision_eligible",
+        subject: actor,
+        predicate: "currently_eligible",
+        value: "true",
+        status: "VERIFIED",
+        evidence: `${actor} currently eligible / satisfies eligibility gates`,
+        authority: "owner_pack",
+        temporalScope: "CURRENT",
+      });
+    }
+    if (st.historicallyImpaired === true) {
+      propositions.push({
+        id: `actor.${norm(actor)}.historically_impaired`,
+        kind: "event_occurrence",
+        subject: actor,
+        predicate: "historically_impaired",
+        value: "true",
+        status: "VERIFIED",
+        evidence: `${actor} had earlier failure/impairment`,
+        authority: "owner_pack",
+        temporalScope: "HISTORICAL",
+      });
+    }
+    if (st.impairmentCleared === true) {
+      propositions.push({
+        id: `actor.${norm(actor)}.impairment_cleared`,
+        kind: "decision_eligible",
+        subject: actor,
+        predicate: "impairment_cleared",
+        value: "true",
+        status: "VERIFIED",
+        evidence: `${actor} historical impairment cleared; does not keep current block`,
+        authority: "owner_pack",
+        temporalScope: "CURRENT",
+      });
+    }
+  }
 
   for (const l of causal.links.slice(0, 12)) {
     propositions.push({
@@ -493,6 +700,7 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
     claims,
     propositions,
     decisionActions,
+    actorStates,
     causal,
     failureStageHints: [],
   };

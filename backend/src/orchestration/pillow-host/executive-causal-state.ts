@@ -279,6 +279,84 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     }
   }
 
+  // Resource / inventory redirect: origin → destination is a causal dependency path.
+  // Different direct mechanism at destination does not erase this connection.
+  const redirectRes = [
+    /\b(?:inventory|capacity|stock|load|traffic|workload|supply|allocation)\s+(?:was\s+|were\s+)?redirected\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\bredirected\s+(?:inventory|capacity|stock|load|traffic|workload|supply)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b(?:inventory|capacity|stock|load)\s+(?:was\s+|were\s+)?(?:moved|shifted|transferred)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+  ];
+  for (const re of redirectRes) {
+    let rm: RegExpExecArray | null;
+    while ((rm = re.exec(text)) !== null) {
+      pushLink(links, rm[1]!, rm[2]!, "UPSTREAM_TRIGGER", rm[0]!.trim());
+      pushLink(
+        links,
+        rm[1]!,
+        rm[2]!,
+        "INDIRECT_CAUSAL_DEPENDENCY",
+        rm[0]!.trim(),
+        "VERIFIED",
+      );
+      upsertRole(roles, rm[1]!, "INDIRECT_PARTICIPANT", rm[0]!.trim());
+      upsertRole(roles, rm[2]!, "DOWNSTREAM_CONSEQUENCE", rm[0]!.trim());
+      events.push(normEntity(rm[2]!));
+    }
+  }
+
+  // "Y's problem resulted from [redirect / X / that …]"
+  const resultedRes = [
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+|secondary\s+)?problem\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:redirected\s+)?(?:inventory|capacity|stock|load|traffic|workload|allocation|redirect)\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:\w+\s+){0,3}problem\s+resulted\s+from\b[^.?\n]{0,100}\bafter\s+([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:issue|outage|shortage|constraint)\s+(?:was|is)\s+(?:a\s+)?(?:result|consequence)\s+of\b[^.?\n]{0,80}\b([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+  ];
+  for (const re of resultedRes) {
+    let sm: RegExpExecArray | null;
+    while ((sm = re.exec(text)) !== null) {
+      const downstream = sm[1]!;
+      const upstream = sm[2];
+      if (upstream) {
+        pushLink(
+          links,
+          upstream,
+          downstream,
+          "INDIRECT_CAUSAL_DEPENDENCY",
+          sm[0]!.trim(),
+          "VERIFIED",
+        );
+        upsertRole(roles, upstream, "INDIRECT_PARTICIPANT", sm[0]!.trim());
+        upsertRole(roles, downstream, "DOWNSTREAM_CONSEQUENCE", sm[0]!.trim());
+      } else {
+        // Link any known redirect origin → this downstream entity
+        for (const l of [...links]) {
+          if (
+            (l.kind === "UPSTREAM_TRIGGER" || l.kind === "INDIRECT_CAUSAL_DEPENDENCY") &&
+            key(l.to) === key(downstream)
+          ) {
+            // already linked via redirect
+            upsertRole(roles, downstream, "DOWNSTREAM_CONSEQUENCE", sm[0]!.trim());
+          } else if (
+            (l.kind === "UPSTREAM_TRIGGER" || l.kind === "INDIRECT_CAUSAL_DEPENDENCY") &&
+            key(l.to) !== key(downstream) &&
+            /redirect/i.test(l.evidence)
+          ) {
+            pushLink(
+              links,
+              l.from,
+              downstream,
+              "INDIRECT_CAUSAL_DEPENDENCY",
+              sm[0]!.trim(),
+              "INFERRED",
+            );
+            upsertRole(roles, l.from, "INDIRECT_PARTICIPANT", sm[0]!.trim());
+            upsertRole(roles, downstream, "DOWNSTREAM_CONSEQUENCE", sm[0]!.trim());
+          }
+        }
+      }
+      events.push(normEntity(downstream));
+    }
+  }
+
   const common =
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+share\s+(?:the\s+)?(?:same\s+)?(?:common\s+)?root\s+cause\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
       text,

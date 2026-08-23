@@ -14,7 +14,13 @@ export type LedgerVerdict = "supported" | "contradicted" | "unproven" | "unknown
 
 export type LedgerEntry = {
   id: string;
-  kind: "entity_identity" | "forecast_vs_realised" | "event_occurrence" | "generic";
+  kind:
+    | "entity_identity"
+    | "forecast_vs_realised"
+    | "event_occurrence"
+    | "actor_eligibility"
+    | "causal_connection"
+    | "generic";
   subject: string;
   value: string;
   status: "verified" | "unproven" | "unknown";
@@ -170,6 +176,42 @@ export function buildConclusionLedger(answer: string): LedgerEntry[] {
     });
   }
 
+  // Current eligibility established in earlier answer sections.
+  const eligRes =
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:currently\s+)?(?:satisfies\s+every\s+eligibility\s+gate|(?:is|are)\s+currently\s+eligible|(?:is|are)\s+eligible)\b/gi;
+  while ((m = eligRes.exec(text)) !== null) {
+    const who = m[1]!.trim();
+    if (/^(Claim|Section|Answer|The|This)$/i.test(who)) continue;
+    push({
+      id: `actor.${normKey(who)}.currently_eligible`,
+      kind: "actor_eligibility",
+      subject: who,
+      value: "currently_eligible",
+      status: "verified",
+      supportSnippet: m[0]!.slice(0, 160),
+    });
+  }
+
+  // Causal connection established earlier (redirect / resulted-from).
+  const causalRes = [
+    /\b(?:inventory|capacity|stock|load|traffic|workload)\s+(?:was\s+|were\s+)?redirected\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+)?problem\s+resulted\s+from\b[^.?\n]{0,100}\b([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+  ];
+  for (const re of causalRes) {
+    while ((m = re.exec(text)) !== null) {
+      const a = m[1]!.trim();
+      const b = m[2]!.trim();
+      push({
+        id: `causal.${normKey(a)}.${normKey(b)}`,
+        kind: "causal_connection",
+        subject: a,
+        value: b,
+        status: "verified",
+        supportSnippet: m[0]!.slice(0, 160),
+      });
+    }
+  }
+
   return entries;
 }
 
@@ -239,15 +281,64 @@ function verdictForClaimAgainstLedger(
   // Downstream must not invent an alternative truth when canonical resolves a proposition.
   if (canonical) {
     const v = assessClaimAgainstCanonical(claim.sourceText, canonical);
-    if (v.overall !== "unproven" || v.components.length > 0) {
-      // Even unproven from compound assess is authoritative when material props were mapped.
-      if (v.components.some((c) => c.proposition.kind !== "generic") || v.overall !== "unproven") {
-        return { verdict: v.overall, justification: v.justification };
-      }
+    if (v.components.some((c) => c.proposition.kind !== "generic") || v.overall !== "unproven") {
+      return { verdict: v.overall, justification: v.justification };
     }
   }
 
   const t = claim.sourceText;
+
+  // Current-block claim vs earlier eligibility conclusion
+  const blockedClaim =
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:should\s+)?(?:remain|remains|stay|be|is)\s+(?:currently\s+)?blocked\b/i.exec(
+      t,
+    ) ||
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+(?:currently\s+)?(?:ineligible|not\s+eligible)\b/i.exec(
+      t,
+    );
+  if (blockedClaim) {
+    const who = blockedClaim[1]!;
+    const elig = ledger.find(
+      (e) =>
+        e.kind === "actor_eligibility" &&
+        e.id === `actor.${normKey(who)}.currently_eligible` &&
+        e.status === "verified",
+    );
+    if (elig) {
+      return {
+        verdict: "contradicted",
+        justification: `Earlier verified conclusion: ${who} is currently eligible; a later claim that ${who} remains blocked reverses that proposition.`,
+      };
+    }
+  }
+
+  // Unrelated claim vs earlier causal connection
+  if (/\bunrelated|not\s+related|causally\s+independent\b/i.test(t)) {
+    const pair =
+      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,100}?unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        t,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:are|were)\s+(?:unrelated|not\s+related)/i.exec(
+        t,
+      );
+    if (pair) {
+      const a = pair[1]!;
+      const b = pair[2]!;
+      const link = ledger.find(
+        (e) =>
+          e.kind === "causal_connection" &&
+          e.status === "verified" &&
+          ((normKey(e.subject) === normKey(a) && normKey(e.value) === normKey(b)) ||
+            (normKey(e.subject) === normKey(b) && normKey(e.value) === normKey(a))),
+      );
+      if (link) {
+        return {
+          verdict: "contradicted",
+          justification: `Earlier verified conclusion established a causal connection between ${a} and ${b}; unrelatedness reverses that proposition.`,
+        };
+      }
+    }
+  }
 
   // Identity equality claim: "HT-88 is Harbour Crown Hotel"
   const idClaim = /\b([A-Z]{1,4}-?\d{1,4})\s+is\s+([A-Z][A-Za-z0-9\s-]{2,60})/i.exec(t);
@@ -444,9 +535,10 @@ export function enforceClaimEnumeration(
   for (const c of claims) {
     let block = extractClaimBlock(original, c.index);
     const fromLedger = verdictForClaimAgainstLedger(c, ledger, canonical);
-    // Canonical/ledger mapping is authoritative: always render claim slices from it.
-    // Downstream may not keep an LLM surface that silently reverses established propositions.
-    const mustRegen = !block || fromLedger != null;
+    // Always regenerate claim slices when canonical/ledger can speak, or when no block.
+    // Never keep an LLM Supported that silently reverses established propositions.
+    // Safety: if canonical exists, always regen — null fromLedger still synthesizes Unproven.
+    const mustRegen = !block || fromLedger != null || Boolean(canonical);
     if (mustRegen) {
       block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
@@ -490,14 +582,17 @@ export function detectMaterialInternalContradictions(
 
     if (canonical && quoted && rendered) {
       const assessed = assessClaimAgainstCanonical(quoted, canonical);
-      if (assessed.overall !== rendered && assessed.overall !== "unproven") {
-        issues.push(
-          `claim_${idx}_verdict_${rendered}_but_canonical_${assessed.overall}`,
-        );
+      if (assessed.overall !== rendered) {
+        // Including unproven vs supported — Supported must not survive unresolved contradiction to established state.
+        if (!(assessed.overall === "unproven" && rendered === "unproven")) {
+          issues.push(
+            `claim_${idx}_verdict_${rendered}_but_canonical_${assessed.overall}`,
+          );
+        }
       }
       if (
         rendered === "supported" &&
-        assessed.truePremiseFalseConclusion
+        (assessed.truePremiseFalseConclusion || assessed.overall !== "supported")
       ) {
         issues.push(`claim_${idx}_compound_true_premise_false_conclusion_marked_supported`);
       }

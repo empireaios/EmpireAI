@@ -331,7 +331,8 @@ describe("Reasoning Core Simplification — corpus + fresh session invariant", (
 
   it("new failure classes present", () => {
     const classes = new Set(CONSTITUTIONAL_SPECIMENS.map((s) => s.failureClass));
-    // Added below in corpus update — soft check if present after patch
-    void classes;
+    assert.ok(classes.has("COMPOUND_CLAIM_SUPPORTED_FROM_TRUE_PREMISE_DESPITE_FALSE_CONCLUSION"));
+    assert.ok(classes.has("CURRENT_ELIGIBILITY_REVERSED_BY_HISTORICAL_BECAUSE_COMPOUND"));
+    assert.ok(classes.has("TIMESTAMPS_ARE_NOT_TASKS"));
   });
 });

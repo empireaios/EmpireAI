@@ -221,6 +221,37 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/Contradict|compound|premise|conclusion|unrelated|causal path|DIFFERENT_DIRECT/i],
   },
   {
+    id: "cr.eligibility_history_because_compound",
+    failureClass: "CURRENT_ELIGIBILITY_REVERSED_BY_HISTORICAL_BECAUSE_COMPOUND",
+    capabilities: ["compound_claim", "canonical_authority", "decision_gate"],
+    severity: "P0",
+    origin: "canonical-conclusion-authority-closure",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      const rng = mulberry32(seed);
+      const a = pick(rng, ["West", "Alpha", "Ridge"]);
+      const b = pick(rng, ["Gamma", "Summit", "Harbor"]);
+      const mech = pick(rng, ["sealant", "router-firmware", "billing-code"]);
+      return [
+        `SyntheticCanaryEligAuth-${seed} — analysis only. Do not mention Mini Fan or Birth.`,
+        `Candidate ${a} currently satisfies every eligibility gate and is currently eligible.`,
+        `Earlier today ${a} had a temporary failure; that failure has cleared.`,
+        `Inventory was redirected from ${a} to ${b} after ${a}'s earlier failure.`,
+        `${b}'s current capacity problem resulted from that redirected inventory.`,
+        `${b} has no ${mech} failure.`,
+        `Establish conclusions, then separate verdicts on:`,
+        `1. "${a} should remain blocked because it failed earlier today."`,
+        `2. "${b} problem is unrelated to ${a} because ${b} has no ${mech} failure."`,
+      ].join("\n");
+    },
+    forbidden: [
+      /Mini Fan/i,
+      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i,
+      /Claim\s*2[\s\S]{0,220}\*\*Verdict:\*\*\s*Supported/i,
+    ],
+    requiredAny: [/Contradict|eligible|historical|causal|unrelated|premise|conclusion/i],
+  },
+  {
     id: "cr.timestamps_are_not_tasks",
     failureClass: "TIMESTAMPS_ARE_NOT_TASKS",
     capabilities: ["task_schema", "synthetic_scope"],
