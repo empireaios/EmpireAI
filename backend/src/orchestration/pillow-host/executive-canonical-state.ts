@@ -125,7 +125,7 @@ function num(m: RegExpExecArray | null, i = 1): number | null {
 export function extractQuotedClaimsOnly(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asks =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bjudge\s*:/i.test(
       text,
     );
   if (!asks) return [];
@@ -194,7 +194,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
       /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*(?![“"'])([^\n]{12,400})/gi;
     while ((m = unquoted.exec(text)) !== null) {
       const near = text.slice(Math.max(0, m.index - 120), m.index + 20);
-      if (!/claim|verdict|audit|evaluate|judge/i.test(near) && !asks) continue;
+      if (!/claim|verdict|audit|evaluate|judge|assess/i.test(near) && !asks) continue;
       const line = m[2]!.replace(/\s+/g, " ").trim();
       if (
         /^(?:establish|reason|summarize|cover|answer|claim\s+audit|audit\s+claims?|further|timeline|causal|contradictions?|what is unknown|next verification)\b/i.test(
@@ -205,13 +205,32 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
       }
       // Require proposition shape — not bare section titles.
       if (
-        !/\b(?:because|should|remain|unrelated|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never)\b/i.test(
+        !/\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share)\b/i.test(
           line,
         )
       ) {
         continue;
       }
       push(line, m[1]!);
+    }
+  }
+
+  // Soft single-claim asks (unquoted, unnumbered): assess/judge/verdict on: <proposition>
+  if (claims.length < 1) {
+    const soft =
+      /\b(?:assess\s+this\s+claim|separate\s+verdict\s+on|verdict\s+on|judge)\s*:?\s*(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+        text,
+      );
+    if (soft) {
+      const line = (soft[1] || soft[2] || "").replace(/\s+/g, " ").trim();
+      if (
+        line &&
+        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore)\b/i.test(
+          line,
+        )
+      ) {
+        push(line, "1");
+      }
     }
   }
 
