@@ -229,12 +229,14 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
         events.push(normEntity(m[2]!));
       } else if (m[1]) {
         // "failover to X" alone — link prior failure context if any
-        const priors = priorFailureActorsFromText(text).filter((p) => key(p) !== key(m[1]!));
+        const dest = m[1]!;
+        const evidence = m[0]!.trim();
+        const priors = priorFailureActorsFromText(text).filter((p) => key(p) !== key(dest));
         const from = priors[0] || "UpstreamFailure";
-        pushLink(links, from, m[1]!, "UPSTREAM_TRIGGER", m[0]!.trim());
-        pushLink(links, from, m[1]!, "INDIRECT_CAUSAL_DEPENDENCY", m[0]!.trim(), "VERIFIED");
-        upsertRole(roles, m[1]!, "MITIGATION_ACTOR", m[0]!.trim());
-        events.push(normEntity(m[1]!));
+        pushLink(links, from, dest, "UPSTREAM_TRIGGER", evidence);
+        pushLink(links, from, dest, "INDIRECT_CAUSAL_DEPENDENCY", evidence, "VERIFIED");
+        upsertRole(roles, dest, "MITIGATION_ACTOR", evidence);
+        events.push(normEntity(dest));
       }
     }
   }
