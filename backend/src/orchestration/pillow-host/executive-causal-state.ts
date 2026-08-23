@@ -104,6 +104,19 @@ function isEntityToken(s: string): boolean {
   return true;
 }
 
+/** Named actors associated with an upstream failure/outage/trip in the pack. */
+function priorFailureActorsFromText(text: string): string[] {
+  const found: string[] = [];
+  const failRe =
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:had\s+(?:a\s+)?(?:temporary\s+)?|(?:stockout|outage|trip|failure|stall)\s+at\s+)?(?:[a-z0-9_-]+\s+){0,3}(?:failure|outage|trip|stockout|stall|downtime)\b/gi;
+  let fm: RegExpExecArray | null;
+  while ((fm = failRe.exec(text)) !== null) {
+    const name = fm[1]!;
+    if (isEntityToken(name) && !found.some((x) => key(x) === key(name))) found.push(name);
+  }
+  return found;
+}
+
 function pushLink(
   links: CausalLink[],
   from: string,
@@ -192,6 +205,8 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
 
   const triggerRes = [
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+triggered\s+(?:a\s+|the\s+)?failover\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:\s+(?:outage|failure|trip|stall|downtime|stockout))?\s+triggered\s+(?:a\s+|the\s+)?failover\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:\s+[a-z0-9_-]+){0,4}\s+triggered\s+(?:a\s+|the\s+)?failover\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:led\s+to|initiated)\s+(?:a\s+|the\s+)?(?:failover|mitigation|handoff)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\bfailover\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\bfailover\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
@@ -201,12 +216,23 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     while ((m = re.exec(text)) !== null) {
       if (m[2]) {
         pushLink(links, m[1]!, m[2]!, "UPSTREAM_TRIGGER", m[0]!.trim());
+        pushLink(
+          links,
+          m[1]!,
+          m[2]!,
+          "INDIRECT_CAUSAL_DEPENDENCY",
+          m[0]!.trim(),
+          "VERIFIED",
+        );
         upsertRole(roles, m[2]!, "MITIGATION_ACTOR", m[0]!.trim());
         upsertRole(roles, m[1]!, "INDIRECT_PARTICIPANT", m[0]!.trim());
         events.push(normEntity(m[2]!));
       } else if (m[1]) {
         // "failover to X" alone — link prior failure context if any
-        pushLink(links, "UpstreamFailure", m[1]!, "UPSTREAM_TRIGGER", m[0]!.trim());
+        const priors = priorFailureActorsFromText(text).filter((p) => key(p) !== key(m[1]!));
+        const from = priors[0] || "UpstreamFailure";
+        pushLink(links, from, m[1]!, "UPSTREAM_TRIGGER", m[0]!.trim());
+        pushLink(links, from, m[1]!, "INDIRECT_CAUSAL_DEPENDENCY", m[0]!.trim(), "VERIFIED");
         upsertRole(roles, m[1]!, "MITIGATION_ACTOR", m[0]!.trim());
         events.push(normEntity(m[1]!));
       }
@@ -279,34 +305,50 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     }
   }
 
+  const priorFailureActors = (): string[] => priorFailureActorsFromText(text);
+
   // Resource / inventory redirect: origin → destination is a causal dependency path.
   // Different direct mechanism at destination does not erase this connection.
   const redirectRes = [
     /\b(?:inventory|capacity|stock|load|traffic|workload|supply|allocation)\s+(?:was\s+|were\s+)?redirected\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
     /\bredirected\s+(?:inventory|capacity|stock|load|traffic|workload|supply)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
     /\b(?:inventory|capacity|stock|load)\s+(?:was\s+|were\s+)?(?:moved|shifted|transferred)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\bworkload\s+(?:was\s+)?(?:shifted|transferred|moved)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:onto|to)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:failure|outage|trip|stockout).{0,100}?(?:caused|led\s+to).{0,80}?(?:shift(?:ed)?|transfer(?:red)?|move(?:d)?)\s+(?:workload|load|inventory|traffic|capacity).{0,20}?(?:onto|to)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b(?:that\s+)?(?:failure|outage|trip)\s+caused\s+(?:operations\s+to\s+)?(?:shift|transfer|move)\s+workload\s+onto\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\boperations\s+shifted\s+workload\s+onto\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
   ];
   for (const re of redirectRes) {
     let rm: RegExpExecArray | null;
     while ((rm = re.exec(text)) !== null) {
-      pushLink(links, rm[1]!, rm[2]!, "UPSTREAM_TRIGGER", rm[0]!.trim());
+      let from = rm[1];
+      let to = rm[2];
+      // Single capture: destination only — bind prior failure actor(s).
+      if (!to && from) {
+        to = from;
+        const priors = priorFailureActors().filter((p) => key(p) !== key(to!));
+        from = priors[0] || "UpstreamFailure";
+      }
+      if (!from || !to) continue;
+      pushLink(links, from, to, "UPSTREAM_TRIGGER", rm[0]!.trim());
       pushLink(
         links,
-        rm[1]!,
-        rm[2]!,
+        from,
+        to,
         "INDIRECT_CAUSAL_DEPENDENCY",
         rm[0]!.trim(),
         "VERIFIED",
       );
-      upsertRole(roles, rm[1]!, "INDIRECT_PARTICIPANT", rm[0]!.trim());
-      upsertRole(roles, rm[2]!, "DOWNSTREAM_CONSEQUENCE", rm[0]!.trim());
-      events.push(normEntity(rm[2]!));
+      upsertRole(roles, from, "INDIRECT_PARTICIPANT", rm[0]!.trim());
+      upsertRole(roles, to, "DOWNSTREAM_CONSEQUENCE", rm[0]!.trim());
+      events.push(normEntity(to));
     }
   }
 
-  // "Y's problem resulted from [redirect / X / that …]"
+  // "Y's problem/constraint resulted from [redirect / transfer / X / that …]"
   const resultedRes = [
-    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+|secondary\s+)?problem\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:redirected\s+)?(?:inventory|capacity|stock|load|traffic|workload|allocation|redirect)\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+|secondary\s+)?problem\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:redirected\s+)?(?:inventory|capacity|stock|load|traffic|workload|allocation|redirect|transfer)\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+)?(?:constraint|shortage|overload)\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:workload\s+)?(?:transfer|redirect|shift|failover|handoff)\b/gi,
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:\w+\s+){0,3}problem\s+resulted\s+from\b[^.?\n]{0,100}\bafter\s+([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\b/gi,
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:issue|outage|shortage|constraint)\s+(?:was|is)\s+(?:a\s+)?(?:result|consequence)\s+of\b[^.?\n]{0,80}\b([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
   ];

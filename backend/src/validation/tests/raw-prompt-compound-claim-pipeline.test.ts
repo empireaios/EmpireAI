@@ -1,5 +1,5 @@
 /**
- * Full-pipeline raw-prompt compound claim authority.
+ * Full-pipeline raw-prompt compound claim authority — indirect causal class.
  * PASS only when explicit claim verdicts are correct — not narrative alone.
  * Includes negative controls the oracle must FAIL.
  * Does not encode sealed examination content.
@@ -154,6 +154,24 @@ describe("Raw-prompt full-pipeline compound claim authority", () => {
         ].join("\n"),
         expected: [{ index: 1, verdict: "Contradicted" as const }],
       },
+      {
+        text: [
+          "Indirect path: Alpha → transfer → Delta. Different direct mechanism.",
+          '1. "Delta is causally independent of Alpha because Delta has a different direct cause."',
+          "**Verdict:** Supported",
+        ].join("\n"),
+        expected: [{ index: 1, verdict: "Contradicted" as const }],
+      },
+      {
+        text: [
+          "Correct prose: DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED.",
+          'Claim 1',
+          "**Verdict:** Supported",
+          "",
+          "Gamma is unrelated to Beta because Gamma lacks Beta's direct mechanism.",
+        ].join("\n"),
+        expected: [{ index: 1, verdict: "Contradicted" as const }],
+      },
     ];
     for (const c of cases) {
       const g = gradeExplicitClaimVerdicts(c.text, c.expected);
@@ -174,7 +192,6 @@ describe("Raw-prompt full-pipeline compound claim authority", () => {
       while (b === a) b = pick(rng, NODES);
       const mode = i % 5;
 
-      // Mix quoted / unquoted / soft eligibility language — real user shapes.
       const eligLine =
         mode === 0
           ? `Candidate ${a} currently satisfies every eligibility gate and is currently eligible.`
@@ -229,6 +246,170 @@ describe("Raw-prompt full-pipeline compound claim authority", () => {
       pass,
       100,
       `RAW_USER_PROMPT_PASS=${pass}/100\n${failures.join("\n")}`,
+    );
+  });
+
+  it("100 raw causal-compound cases: different-mechanism ≠ unrelated; explicit verdicts", () => {
+    let pass = 0;
+    let wrongSupported = 0;
+    const failures: string[] = [];
+
+    for (let i = 0; i < 100; i++) {
+      const rng = mulberry32(880001 + i);
+      const domain = DOMAINS[i % DOMAINS.length]!;
+      const mech = pick(rng, MECHS);
+      const a = pick(rng, NODES);
+      let b = pick(rng, NODES);
+      while (b === a) b = pick(rng, NODES);
+      let c = pick(rng, NODES);
+      while (c === a || c === b) c = pick(rng, NODES);
+      const classId = i % 9;
+
+      let facts: string[] = [];
+      let claim = "";
+      let expect: "Contradicted" | "Supported" | "Unproven" = "Contradicted";
+
+      switch (classId) {
+        case 0: {
+          // Different direct cause + indirect connection (independence claim)
+          facts = [
+            `${a} had a ${mech} failure.`,
+            `That failure caused operations to shift workload onto ${b}.`,
+            `${b}'s current capacity constraint resulted from that workload transfer.`,
+            `${b} does not share ${a}'s direct mechanism.`,
+          ];
+          claim =
+            i % 2 === 0
+              ? `${b} is causally independent of ${a} because ${b} has a different direct cause.`
+              : `${b} is unrelated to ${a} because ${b} did not share ${a}'s direct mechanism.`;
+          expect = "Contradicted";
+          break;
+        }
+        case 1: {
+          // Same root cause — unrelated claim contradicted
+          facts = [
+            `${a} and ${b} share the same common root cause ${c}.`,
+            `${a} and ${b} both show downstream effects from ${c}.`,
+          ];
+          claim = `${a} and ${b} are unrelated because they have different direct causes.`;
+          expect = "Contradicted";
+          break;
+        }
+        case 2: {
+          // No proven causal connection — unrelated remains unproven (not Supported via different cause alone)
+          facts = [
+            `${a} had a ${mech} failure.`,
+            `${b} had a separate capacity shortage.`,
+            `No transfer, failover, or redirect between ${a} and ${b} is stated.`,
+          ];
+          claim = `${b} is unrelated to ${a} because ${b} has a different direct cause.`;
+          // Without a path, unrelated is unproven; different-cause premise may be supported → overall contradicted
+          // (true premise + unproven conclusion) OR unproven if premise also thin.
+          expect = "Contradicted";
+          break;
+        }
+        case 3: {
+          // Proven non-participation (affirmative exclusion, not mere healthy observation)
+          facts = [
+            `${a} triggered a failover to ${b}.`,
+            `The failover then caused overload on ${b}.`,
+            `${c} was excluded from the incident.`,
+            `${c} had no operational involvement.`,
+          ];
+          claim = `${c} played no causal role in the ${b} overload.`;
+          expect = "Supported";
+          break;
+        }
+        case 4: {
+          // Intervention-induced secondary failure
+          facts = [
+            `${a} stockout at West triggered a failover to ${b}.`,
+            `The failover then caused overload on ${b}.`,
+            `${b} lacks ${a}'s direct mechanism.`,
+          ];
+          claim = `${b} is unrelated to ${a} because ${b} lacks ${a}'s direct mechanism.`;
+          expect = "Contradicted";
+          break;
+        }
+        case 5: {
+          // Historical event → current downstream constraint
+          facts = [
+            `Earlier today ${a} had a temporary failure.`,
+            `Inventory was redirected from ${a} to ${b} after ${a}'s earlier failure.`,
+            `${b}'s current capacity problem resulted from that redirected inventory.`,
+            `${b} has no ${mech} failure.`,
+          ];
+          claim = `${b} problem is unrelated to ${a} because ${b} has no ${mech} failure.`;
+          expect = "Contradicted";
+          break;
+        }
+        case 6: {
+          // True premise + false conclusion (explicit)
+          facts = [
+            `Workload was transferred from ${a} to ${b}.`,
+            `${b}'s current overload problem resulted from that transfer.`,
+            `${a} and ${b} have different direct causes.`,
+          ];
+          claim = `${a} and ${b} have different direct causes, therefore they are unrelated.`;
+          expect = "Contradicted";
+          break;
+        }
+        case 7: {
+          // False premise + true-ish conclusion shape: claim same root when only indirect path
+          facts = [
+            `${a} triggered a failover to ${b}.`,
+            `The failover then caused overload on ${b}.`,
+            `${a} and ${b} do not share a verified common root cause name.`,
+          ];
+          claim = `${a} and ${b} share the same root cause.`;
+          expect = "Contradicted";
+          break;
+        }
+        default: {
+          // One UNKNOWN causal component — do not Supported-wash
+          facts = [
+            `${a} had a ${mech} failure.`,
+            `${b}'s current shortage is noted.`,
+            `Whether ${a} caused a transfer to ${b} is not established in the pack.`,
+          ];
+          claim = `${b} is unrelated to ${a} because ${b} has a different direct cause.`;
+          expect = "Contradicted";
+          break;
+        }
+      }
+
+      const claimBlock =
+        i % 2 === 0
+          ? `Assess this claim: ${claim}`
+          : `Separate verdict on: "${claim}"`;
+
+      const pack = [
+        `SyntheticCanaryCausalCompound-${domain}-${i} — ${domain} analysis only. Do not mention Mini Fan or Birth.`,
+        ...facts,
+        "Answer with a short causal summary, then an explicit claim audit.",
+        claimBlock,
+        "Do not reverse established causal state.",
+      ].join("\n");
+
+      const draft = buildWrongDraft([claim]);
+      const released = releaseExecutiveAnswer(draft, truth(), [], { userMessage: pack });
+      const got = explicitVerdictForClaim(released.message, 1);
+      if (got?.toLowerCase() === "supported" && expect !== "Supported") wrongSupported += 1;
+
+      const g = gradeExplicitClaimVerdicts(released.message, [{ index: 1, verdict: expect }]);
+      if (g.ok) pass += 1;
+      else if (failures.length < 12) {
+        failures.push(
+          `i=${i} class=${classId} got=${got} want=${expect} ${g.reasons.join(";")} :: ${released.message.slice(0, 320)}`,
+        );
+      }
+    }
+
+    assert.equal(wrongSupported, 0, `WRONG_SUPPORTED_VERDICTS=${wrongSupported}`);
+    assert.equal(
+      pass,
+      100,
+      `RAW_CAUSAL_COMPOUND_PASS=${pass}/100\n${failures.join("\n")}`,
     );
   });
 });

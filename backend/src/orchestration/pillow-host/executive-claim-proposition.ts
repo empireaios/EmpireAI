@@ -223,6 +223,24 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       return;
     }
 
+    // Mechanism-absent / different-mechanism premise (incl. "did not share X's direct mechanism")
+    const shareMech =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:did|does)\s+not\s+share\s+([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+direct\s+(?:mechanism|cause)\b/i.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+lacks\s+([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+direct\s+(?:mechanism|cause)\b/i.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+does\s+not\s+have\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      );
+    if (shareMech && !/\bunrelated|independent\b/i.test(clause)) {
+      const ents: [string, string?] = [shareMech[1]!, shareMech[2]!];
+      remember(ents);
+      push({ kind: "causal_different_root", text: clause, entities: ents });
+      return;
+    }
+
     // Mechanism-absent premise: "has no X failure" / "no coolant-valve failure"
     const mechAbsent =
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+has\s+no\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(
@@ -245,18 +263,25 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
     const diffPair =
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:have|had|share)\s+different\s+(?:direct\s+)?(?:root\s+)?causes?\b/i.exec(
         clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+have\s+different\s+direct\s+mechanisms?\b/i.exec(
+        clause,
       );
     const diffRoot =
       diffPair ||
       /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?(?:different|distinct)\s+(?:direct\s+)?(?:root\s+)?causes?\b/i.exec(
         clause,
       ) ||
-      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+has\s+a\s+different\s+(?:root\s+)?cause\b/i.exec(clause);
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+has\s+a\s+different\s+(?:direct\s+)?(?:root\s+)?cause\b/i.exec(
+        clause,
+      ) ||
+      /\b(?:they|these|those|both)\s+have\s+different\s+direct\s+mechanisms?\b/i.exec(clause);
     if (diffRoot && !/\bunrelated|not\s+related|independent\b/i.test(clause)) {
-      const left = diffRoot[1]!;
+      const left = diffRoot[1] || carryEntities?.[0] || "Actor";
       const right =
         diffRoot[2] ||
         /\b(?:from|than|to)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(clause)?.[1] ||
+        carryEntities?.[1] ||
         /\bunrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(t)?.[1];
       const ents: [string, string?] = [left, right];
       remember(ents);
@@ -272,6 +297,9 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:are|were)\s+(?:not\s+related|unrelated|causally\s+independent|independent)\b/i.exec(
         clause,
       ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?\bis\s+(?:causally\s+)?(?:unrelated|independent)\s+(?:of|to|from)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      ) ||
       /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?\bis\s+unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
         clause,
       ) ||
@@ -285,7 +313,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       let right = unrelatedPair[2] || "";
       if (!unrelatedPair[2]) {
         const pair =
-          /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,120}?unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+          /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,120}?(?:unrelated|independent)\s+(?:of|to|from)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
             t,
           );
         if (pair) {
@@ -296,15 +324,16 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
           right = carryEntities[1]!;
         }
       }
-      // "East problem is unrelated to North" — left may be "East" from problem pattern
       const ents: [string, string?] = [left, right];
       remember(ents);
       if (
         /\bdifferent\s+(?:direct\s+)?(?:root\s+)?causes?\b/i.test(clause) ||
-        /\bdifferent\s+(?:root\s+)?cause\b/i.test(t) ||
-        /\bhas\s+no\s+.+\s+failure\b/i.test(t)
+        /\bdifferent\s+(?:direct\s+)?(?:root\s+)?cause\b/i.test(t) ||
+        /\bdifferent\s+direct\s+mechanisms?\b/i.test(t) ||
+        /\bhas\s+no\s+.+\s+failure\b/i.test(t) ||
+        /\b(?:did|does)\s+not\s+share\b/i.test(t) ||
+        /\blacks\b.{0,40}\bdirect\b/i.test(t)
       ) {
-        // True-premise temptation: different/absent mechanism does not entail unrelatedness
         push({
           kind: "causal_different_root",
           text: clause,
@@ -677,7 +706,33 @@ export function assessClaimAgainstCanonical(
   const components = decomposeClaimPropositions(claimText).map((p) =>
     verdictAtomicProposition(p, state),
   );
-  const material = components.filter((c) => c.proposition.kind !== "generic");
+  let material = components.filter((c) => c.proposition.kind !== "generic");
+
+  // Independence/unrelatedness asserted in the claim must stay material.
+  // A supported different-mechanism premise alone must not yield overall SUPPORTED.
+  const assertsIndependence =
+    /\b(?:unrelated|causally\s+independent|independent\s+of|no\s+causal\s+(?:link|connection|relationship))\b/i.test(
+      claimText,
+    );
+  const hasUnrelatedProp = material.some((c) => c.proposition.kind === "causal_unrelated");
+  if (assertsIndependence && !hasUnrelatedProp) {
+    const pair =
+      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?(?:unrelated|independent)\s+(?:of|to|from)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        claimText,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(claimText);
+    const injected = verdictAtomicProposition(
+      {
+        id: "p_injected_causal_unrelated",
+        kind: "causal_unrelated",
+        text: claimText,
+        entities: pair ? [pair[1]!, pair[2]!] : undefined,
+      },
+      state,
+    );
+    material = [...material, injected];
+  }
+
   const use = material.length > 0 ? material : components;
 
   const anyContradicted = use.some((c) => c.verdict === "contradicted");
