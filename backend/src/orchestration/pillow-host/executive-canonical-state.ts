@@ -397,10 +397,9 @@ function mergeActorEligibilityIntoActions(
       if (existing.requiredGates.length === 0) {
         existing.requiredGates = [
           {
-            id: "operating_evidence",
+            id: "evidence",
             label: "Eligibility gates (pack-affirmed)",
             status: "PASS",
-            constraintClass: null,
           },
         ];
       } else {
@@ -412,10 +411,9 @@ function mergeActorEligibilityIntoActions(
         actionLabel: name,
         requiredGates: [
           {
-            id: "operating_evidence",
+            id: "evidence",
             label: "Eligibility gates (pack-affirmed)",
             status: "PASS",
-            constraintClass: null,
           },
         ],
         currentlyEligible: true,
