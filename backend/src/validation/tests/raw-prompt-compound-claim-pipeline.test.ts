@@ -7,7 +7,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { releaseExecutiveAnswer } from "../../orchestration/pillow-host/executive-release-gate.js";
-import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-grounding.js";
+import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-types.js";
 
 function mulberry32(a: number) {
   return () => {
@@ -82,7 +82,7 @@ function truth(): ExecutiveTruthSnapshot {
     },
     demandEvidence: "UNKNOWN",
     notes: [],
-  } as ExecutiveTruthSnapshot;
+  } as unknown as ExecutiveTruthSnapshot;
 }
 
 /** Explicit verdict for claim index — not narrative Contradict elsewhere. */
