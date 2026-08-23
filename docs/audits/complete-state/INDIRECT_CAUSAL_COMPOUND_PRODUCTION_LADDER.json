@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-08-23T21:21:27.955Z",
+  "liveSha": "",
+  "expectSha": null,
+  "trials": 4,
+  "pass": 4,
+  "passRate": "4/4",
+  "wrongSupportedVerdicts": 0,
+  "results": [
+    {
+      "id": "ICC_ops_independent",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "ms": 4947,
+      "preview": "Inlet's capacity constraint is indeed a consequence of the workload transfer from Cedar due to the sealant failure. This indicates a causal relationship between Cedar and Inlet, as the failure at Cedar directly impacted Inlet's operations.\n\nAssessing the claim that \"Inlet is causally independent of Cedar because Inlet has a different direct cause,\" it is not accurate. While Inlet may have its own direct causes for its capacity constraints, the transfer of workload from Cedar due to the sealant failure establishes a dependency. Therefore, Inlet is not causally independent of Cedar in this context; rather, it is affected by Cedar's operational issues.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Inlet is causally independent of Cedar because Inlet "
+    },
+    {
+      "id": "ICC_logistics_share_mech",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "ms": 3634,
+      "preview": "The claim that \"Quay is unrelated to Orbit because Quay did not share Orbit's direct mechanism\" is not accurate. Although Quay may lack Orbit's direct mechanism, the stockout at Depot, which is linked to Orbit, triggered a failover to Quay. This failover caused an overload on Quay, establishing a causal relationship between the two.\n\n### Claim Assessment\n\n**Verdict:** Contradicted\n\nQuay is not causally independent of Orbit, as the operational shift due to the stockout at Depot directly connects them, despite the lack of shared mechanisms. The assertion that they are unrelated overlooks the indirect causal influence from Orbit to Quay through the failover event.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Quay is unrelated to Orbit because Quay d"
+    },
+    {
+      "id": "ICC_energy_lacks",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "ms": 4322,
+      "preview": "The claim that \"Basin is unrelated to Pylon because Basin lacks Pylon's direct mechanism\" is not accurate. The transformer trip at Pylon directly caused a mitigation handoff to Basin, leading to a transfer of workload. This transfer is the root cause of Basin's current overload problem, establishing a causal relationship between the two entities.\n\n### Claim Assessment\n\n**Verdict:** Contradicted\n\nBasin is not causally independent of Pylon, as the operational issues at Basin are a direct consequence of the events triggered by Pylon. The lack of a shared direct mechanism does not negate the causal connection established by the workload transfer.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Basin is unrelated to Pylon because Basin lacks Pylon's dire"
+    },
+    {
+      "id": "ICC_true_premise_false_conclusion",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "ms": 4297,
+      "preview": "The statement \"Mesa and Cove have different direct causes, therefore they are unrelated\" is not accurate. While it is true that Mesa and Cove may have different direct causes for their respective issues, the redirection of inventory from Mesa to Cove establishes a causal link between the two. Cove's current capacity problem is a direct consequence of the inventory transfer, which was initiated due to Mesa's earlier failure.\n\n### Claim Assessment\n\n**Verdict:** Contradicted\n\nMesa and Cove are not causally independent; the operational issues at Cove are a result of the actions taken in response to Mesa's failure. The assertion that they are unrelated overlooks the impact of the inventory redirection.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Mesa"
+    }
+  ],
+  "wave1": "UNCERTIFIED",
+  "birthAuthorised": "NO",
+  "codeSha": "77d1283e3f4ce906567f892870d4fdeadb501f35",
+  "deploymentId": "1f58f809-abb6-466d-b846-e8b0c754a3a5",
+  "liveShaNote": "railway up omits RAILWAY_GIT_COMMIT_SHA; deploymentId is production truth",
+  "productionFirstVisibleValidation": "PASS"
+}
