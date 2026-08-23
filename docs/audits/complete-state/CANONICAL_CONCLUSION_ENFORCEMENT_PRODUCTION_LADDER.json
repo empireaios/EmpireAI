@@ -1,8 +1,8 @@
 {
-  "sealedAt": "2026-08-22T03:07:07.590Z",
-  "liveSha": "f41ae6805dad5c8a31786f8fd52113d4ddd97d0d",
-  "pass": 8,
-  "total": 8,
+  "sealedAt": "2026-08-23T01:21:56.338Z",
+  "liveSha": "f69c117df5f14866f4b3cc5cd09cbbb22b3ab949",
+  "pass": 10,
+  "total": 10,
   "PRODUCTION_PASS": true,
   "WAVE_1": "UNCERTIFIED",
   "WAVE_1_CLEAN_STREAK": 0,
@@ -12,57 +12,71 @@
       "id": "CC_causal_compound",
       "ok": true,
       "reasons": [],
-      "ms": 8240,
-      "preview": "### Conclusions\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"PeerNode has a different root cause, so PeerNode problem is unrelated to North.\"\n\nCompound claim mixes a supported premise with a contradicted conclusion. Overall cannot be SUPPORTED. DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. Canonical path connects PeerNode and North.\n\n### Claim 2\n**Verdict:** Contradicted\n\n\"North and PeerNode share the same root cause.\"\n\nCAUSALLY_CONNECTED ≠ SAME_ROOT_CAUSE. North and PeerNode are connected but do not share a verified common root."
+      "ms": 4748,
+      "preview": "### Conclusions\n\n### Summary\nThe analysis shows that PeerNode's issues are indeed related to North through the failure mechanism established by FailureA.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that have different direct causes.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"PeerNode has a different root cause, so PeerNode problem is unrelated to North.\"\n\nCompound claim mixes a supported premise with a contradicted conclusion. Overall cannot be SUPPORTED. DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. Canonical path connects Pee"
     },
     {
       "id": "CC_entity",
       "ok": true,
       "reasons": [],
-      "ms": 3182,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"ZX-11 is Partner Assembly.\"\n\n**Verdict:** Contradicted\n\nZX-11 is verified as the North Pier Module, while ZX-22 is identified as the Partner Assembly. Therefore, the claim that \"ZX-11 is Partner Assembly\" is incorrect and contradicted by the verified asset registry.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"ZX-11 is Partner Assembly.\"\n\nVerified identity: ZX-11 = North Pier Module (verified_registry). \"Partner Assembly\" is bound to a different registry identity."
+      "ms": 3307,
+      "preview": "### Conclusions\n\n### Claim Analysis\nThe analysis of the claim \"ZX-11 is Partner Assembly\" reveals a clear distinction between the two entities based on the verified asset registry.\n\n### Claim Verdict\n\n**Verdict:** Contradicted\n\n\"ZX-11 is Partner Assembly.\"\n\nThis claim is contradicted by the verified asset registry, which clearly states that ZX-11 is identified as the North Pier Module, while ZX-22 is designated as the Partner Assembly. Therefore, they are distinct entities.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"ZX-11 is Partner Assembly.\"\n\nVerified identity: ZX-11 = North Pier Module (verif"
     },
     {
       "id": "CC_population",
       "ok": true,
       "reasons": [],
-      "ms": 4029,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"All 120 deployed sites demonstrate a 10% saving.\"\n\n**Verdict:** Contradicted\n\nThe claim cannot be supported because the 10% average reduction is only established for the 80 currently valid measured sites. It does not extend to the entire population of 120 deployed sites, as the status of the remaining 40 sites isn't established yet or unmeasured. Therefore, the assertion that all sites demonstrate the same savings is incorrect.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"All 120 deployed sites demonstrate a 10% saving.\"\n\nResult 10% applies to 80 valid measured si"
+      "ms": 5151,
+      "preview": "### Conclusions\n\n### Claim Analysis\nThe claim \"All 120 deployed sites demonstrate a 10% saving\" requires careful evaluation against the provided data.\n\n### Claim Verdict\n\n**Verdict:** Contradicted\n\n\"All 120 deployed sites demonstrate a 10% saving.\"\n\nThis claim is contradicted because the 10% average reduction is only established across the 80 currently valid measured sites. The remaining 40 deployed sites are not included in this measurement, and their performance or savings are unknown. Therefore, it cannot be asserted that all 120 sites demonstrate the same saving.\n\n### Claim 1\n**Verdict:** "
     },
     {
       "id": "CC_financial",
       "ok": true,
       "reasons": [],
-      "ms": 2798,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"Forecast equals realised.\"\n\n**Verdict:** Contradicted That performance claim is not established from the supplied scenario evidence — treat it as unproven. Therefore, the claim is incorrect and contradicted by the financial data provided.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Forecast equals realised.\"\n\nForecast 900 ≠ realised 200."
+      "ms": 1975,
+      "preview": "### Conclusions\n\n### Claim Analysis The claim \"Forecast equals realised\" needs to be assessed based on the provided financial figures.\n\n### Claim Verdict\n\n**Verdict:** Contradicted \"Forecast equals realised.\" That performance claim is not established from the supplied scenario evidence — treat it as unproven. The two figures are significantly different, indicating that the forecast has not been met.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Forecast equals realised.\"\n\nForecast 900 ≠ realised 200."
     },
     {
       "id": "CC_decision",
       "ok": true,
       "reasons": [],
-      "ms": 3090,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"Candidate is currently eligible to scale.\"\n\n**Verdict:** Contradicted\n\nThe claim is contradicted because the scale decision requires both GateA and GateB to pass. Since GateA is currently a fail, the candidate is not eligible to scale.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Candidate is currently eligible to scale.\"\n\nCanonical decision-gate state: CURRENTLY_ELIGIBLE=NO while blockers remain."
+      "ms": 2624,
+      "preview": "### Conclusions\n\n### Claim Analysis\nThe claim \"Candidate is currently eligible to scale\" must be evaluated against the current gate status.\n\n### Claim Verdict\n\n**Verdict:** Contradicted\n\n\"Candidate is currently eligible to scale.\"\n\nThe eligibility for scaling requires both GateA and GateB to pass. Since GateA is currently marked as FAIL, the candidate is not eligible to scale at this time.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Candidate is currently eligible to scale.\"\n\nCanonical decision-gate state: CURRENTLY_ELIGIBLE=NO while blockers remain."
     },
     {
       "id": "CC_temporal",
       "ok": true,
       "reasons": [],
-      "ms": 9873,
+      "ms": 12517,
       "preview": "### SyntheticCC-06 — temporal analysis only. Payment historically occurred and\n\n**Verdict:** Occurrence preserved; later outcome separate\n\nIf the pack establishes that an operation physically occurred and was recorded complete, a later full refund or service failure changes economic/service outcome — it does not by itself rewrite historical occurrence as non-occurrence.\n\nWhat can be concluded: historical completion can stand while refunds and SLA breaches are recorded as later outcomes.\n\n**Need:** Keep EVENT_OCCURRED distinct from ECONOMIC_OUTCOME. Only record-invalidating evidence (fraud, voi"
     },
     {
       "id": "CC_unknown",
       "ok": true,
       "reasons": [],
-      "ms": 8579,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"Supplier confirmation alone stands as established.\"\n\n**Verdict:** Contradicted\n\nThe claim is contradicted because supplier confirmation does not inherently validate or establish financial outcomes. Without a realized amount or additional evidence supporting the claim, it cannot be deemed established.\n\n### Claim 1\n\n**Verdict:** Contradicted\n\n\"Supplier confirmation alone stands as established.\"\n\nSupplier confirmation lacks sufficient context to validate financial outcomes without realized amounts or further evidence."
+      "ms": 8244,
+      "preview": "### Conclusions\n\n### Claim Analysis\nThe claim \"Supplier confirmation alone stands as established\" needs to be evaluated in light of the provided financial figures and context.\n\n### Claim Verdict\n\n**Verdict:** Contradicted\n\n\"Supplier confirmation alone stands as established.\"\n\nThis claim is contradicted because the absence of a stated realised amount means that the confirmation does not provide sufficient evidence to establish the financial outcome. Without realised revenue or a clear connection to the forecast, the supplier confirmation lacks the necessary context to stand as an established fa"
     },
     {
       "id": "CC_multipart",
       "ok": true,
       "reasons": [],
-      "ms": 21768,
-      "preview": "###\n\n1) Establish Causal Conclusions\n\n- North directly caused FailureA, establishing a direct causal link. - FailureA triggered a failover to East, indicating that East's operation was a response to the failure initiated by North. - East then overloaded PeerNode, demonstrating that the consequences of FailureA extended downstream to affect PeerNode.\n\n###\n\n2) Reason About Secondary Effects\n\nThe failover to East as a response to FailureA indicates a secondary effect where East's operational capacity was impacted by the initial failure. This led to an overload on PeerNode, suggesting that the sys"
+      "ms": 19131,
+      "preview": "###\n\n1) Establish Causal Conclusions\nThe analysis establishes a clear causal chain: North directly caused FailureA, which subsequently triggered a failover to East. This failover led to East becoming overloaded, which in turn affected PeerNode. Therefore, the issues with PeerNode are indirectly linked to North through the sequence of events initiated by FailureA.\n\n###\n\n2) Reason About Secondary Effects\nThe failover to East as a result of FailureA introduces secondary effects that impact the overall system. The overload of East can lead to performance degradation, increased latency, or potentia"
+    },
+    {
+      "id": "CC_elig_history_because",
+      "ok": true,
+      "reasons": [],
+      "ms": 3123,
+      "preview": "### Conclusions\n\nThe analysis indicates that while West experienced a temporary failure earlier today, it has since cleared, and West currently satisfies all eligibility gates. The redirection of inventory from West to Gamma has led to Gamma's capacity problem, establishing a causal link between the two candidates.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"West should remain blocked because it failed earlier today.\"\n\nCompound claim mixes a supported premise with a contradicted conclusion. Overall cannot be SUPPORTED. Canonical state: West is currently eligible / satisfies eligibility gates. His"
+    },
+    {
+      "id": "CC_elig_multipart_temptation",
+      "ok": true,
+      "reasons": [],
+      "ms": 9411,
+      "preview": "###\n\n1) Establish Current Eligibility and Causal Conclusions\nCandidate Alpha currently satisfies all eligibility gates and is therefore eligible for operations. Although Alpha experienced a temporary failure earlier today, this issue has since cleared. The redirection of inventory from Alpha to Harbor, following Alpha's failure, has resulted in Harbor's current capacity problem. This establishes a causal link between Alpha's earlier failure and the operational challenges faced by Harbor.\n\n###\n\n2) Reason Further\nThe temporary failure of Alpha and the subsequent redirection of inventory to Harbo"
     }
   ]
 }
