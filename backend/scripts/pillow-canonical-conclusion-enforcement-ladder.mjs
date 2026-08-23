@@ -50,6 +50,18 @@ async function chat(cookie, sessionId, message) {
   };
 }
 
+function explicitClaimVerdict(visible, index) {
+  const claimHdr = new RegExp(
+    `Claim\\s*${index}\\b[\\s\\S]{0,500}?\\*\\*Verdict:\\*\\*\\s*(?:\\*\\*)?(Supported|Contradicted|Unproven)`,
+    "i",
+  );
+  const numbered = new RegExp(
+    `(?:^|\\n)\\s*${index}\\.\\s*[\\s\\S]{0,400}?\\*\\*Verdict:\\*\\*\\s*(?:\\*\\*)?(Supported|Contradicted|Unproven)`,
+    "im",
+  );
+  return claimHdr.exec(visible)?.[1] || numbered.exec(visible)?.[1] || null;
+}
+
 function grade(trial, status, text, kind) {
   const reasons = [];
   const visible = String(text || "");
@@ -59,6 +71,14 @@ function grade(trial, status, text, kind) {
   for (const f of FORBIDDEN) if (f.test(visible)) reasons.push(`forbidden:${f}`);
   for (const r of trial.require || []) if (!r.test(visible)) reasons.push(`missing:${r}`);
   for (const f of trial.forbid || []) if (f.test(visible)) reasons.push(`forbid:${f}`);
+  // Explicit claim verdicts — narrative Contradict alone cannot compensate.
+  for (const ev of trial.expectClaimVerdicts || []) {
+    const got = explicitClaimVerdict(visible, ev.index);
+    if (!got) reasons.push(`claim_${ev.index}_VERDICT_MISSING`);
+    else if (got.toLowerCase() !== String(ev.verdict).toLowerCase()) {
+      reasons.push(`claim_${ev.index}_got_${got}_want_${ev.verdict}`);
+    }
+  }
   return { ok: reasons.length === 0, reasons, visible };
 }
 
@@ -170,11 +190,11 @@ const TRIALS = [
       '1. "West should remain blocked because it failed earlier today."',
       '2. "Gamma problem is unrelated to West because Gamma has no sealant failure."',
     ].join("\n"),
-    require: [/Contradict/i, /Claim\s*1|Claim:/i],
-    forbid: [
-      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
-      /Claim\s*2[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
-      /Mini Fan/i,
+    require: [/eligible|eligibility|redirect|causal/i],
+    forbid: [/Mini Fan/i],
+    expectClaimVerdicts: [
+      { index: 1, verdict: "Contradicted" },
+      { index: 2, verdict: "Contradicted" },
     ],
   },
   {
@@ -194,11 +214,33 @@ const TRIALS = [
       '   "Harbor problem is unrelated to Alpha because Harbor has no pallet-scanner failure."',
       "4) Summarize without reversing section 1.",
     ].join("\n"),
-    require: [/Contradict/i, /eligible|eligibility/i],
-    forbid: [
-      /Claim\s*1[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
-      /Claim\s*2[\s\S]{0,220}\*\*Verdict:\*\*\s*(?:\*\*)?Supported/i,
-      /Mini Fan/i,
+    require: [/eligible|eligibility/i],
+    forbid: [/Mini Fan/i],
+    expectClaimVerdicts: [
+      { index: 1, verdict: "Contradicted" },
+      { index: 2, verdict: "Contradicted" },
+    ],
+  },
+  {
+    id: "CC_unquoted_raw_user_shape",
+    message: [
+      "SyntheticCC-11 — energy analysis only. Do not mention Mini Fan or Birth.",
+      "Delta cleared its earlier outage and is cleared for dispatch today.",
+      "Earlier today Delta had a temporary failure; that failure has cleared.",
+      "Inventory was redirected from Delta to Summit after Delta's earlier failure.",
+      "Summit's current capacity problem resulted from that redirected inventory.",
+      "Summit has no transformer failure.",
+      "Audit these claims separately:",
+      "1. Delta should remain blocked because it failed earlier today.",
+      "2. Summit problem is unrelated to Delta because Summit has no transformer failure.",
+      "3. Delta remains ineligible because historical impairment still controls.",
+    ].join("\n"),
+    require: [/eligible|cleared|redirect|causal/i],
+    forbid: [/Mini Fan/i],
+    expectClaimVerdicts: [
+      { index: 1, verdict: "Contradicted" },
+      { index: 2, verdict: "Contradicted" },
+      { index: 3, verdict: "Contradicted" },
     ],
   },
 ];

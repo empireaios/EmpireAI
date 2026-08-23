@@ -453,34 +453,72 @@ function extractClaimBlock(answer: string, index: number): string | null {
     "i",
   );
   const b = boldProp.exec(answer);
-  return b?.[1]?.trim() ?? null;
+  if (b?.[1]) return b[1].trim();
+
+  // Numbered quoted claim without the word Claim: 1. "…" + Verdict
+  const quotedNum = new RegExp(
+    `(?:^|\\n)(\\s*${index}\\.\\s*["“][^"”\\n]{8,500}["”][\\s\\S]*?)(?=(?:\\n\\s*\\d{1,2}\\.\\s)|(?:\\n#{1,3}\\s)|$)`,
+    "i",
+  );
+  const q = quotedNum.exec(answer);
+  if (q?.[1]) return q[1].trim();
+
+  // Numbered bare claim + Verdict
+  const bareNum = new RegExp(
+    `(?:^|\\n)(\\s*${index}\\.\\s+(?!["“#])[^\\n]{12,400}\\n+\\s*\\*\\*Verdict:\\*\\*[\\s\\S]*?)(?=(?:\\n\\s*\\d{1,2}\\.\\s)|(?:\\n#{1,3}\\s)|$)`,
+    "i",
+  );
+  const n = bareNum.exec(answer);
+  return n?.[1]?.trim() ?? null;
 }
 
 /** Recover claim obligations from already-rendered Claim N blocks (when contract missed them). */
 export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation[] {
-  const text = String(answer || "");
+  const text = String(answer || "").replace(/\r\n/g, "\n");
   const indexes = [
     ...new Set(
       [
         ...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi),
         ...text.matchAll(/(?:^|\n)\s*(\d{1,2})\.\s*\*{0,2}Claim:?\*{0,2}/gi),
+        // Numbered quoted claim surfaces without the word "Claim"
+        ...text.matchAll(/(?:^|\n)\s*(\d{1,2})\.\s*["“][^"”\n]{8,500}["”]/gi),
+        // Numbered unquoted claim + nearby Verdict
+        ...text.matchAll(
+          /(?:^|\n)\s*(\d{1,2})\.\s+(?!["“])([^\n]{12,400})\n+\s*\*\*Verdict:\*\*/gi,
+        ),
       ].map((m) => Number(m[1])),
     ),
   ].sort((a, b) => a - b);
   const out: ClaimObligation[] = [];
   for (const index of indexes) {
     const block = extractClaimBlock(text, index);
-    if (!block) continue;
-    const quoted =
-      /[“"']([^”"']{8,500})[”"']/.exec(block)?.[1]?.trim() ||
-      block
-        .replace(/^[\s\S]*?\*\*Verdict:\*\*[^\n]*\n+/i, "")
-        .replace(/\*\*Verdict:\*\*[^\n]*/i, "")
-        .replace(/^\s*\d+\.\s*\*{0,2}Claim:?\*{0,2}\s*/i, "")
-        .trim()
-        .split(/\n\n/)[0]
-        ?.replace(/^["']|["']$/g, "")
-        .trim();
+    let quoted =
+      (block && /[“"']([^”"']{8,500})[”"']/.exec(block)?.[1]?.trim()) ||
+      null;
+    if (!quoted && block) {
+      quoted =
+        block
+          .replace(/^[\s\S]*?\*\*Verdict:\*\*[^\n]*\n+/i, "")
+          .replace(/\*\*Verdict:\*\*[^\n]*/i, "")
+          .replace(/^\s*\d+\.\s*\*{0,2}Claim:?\*{0,2}\s*/i, "")
+          .trim()
+          .split(/\n\n/)[0]
+          ?.replace(/^["']|["']$/g, "")
+          .trim() || null;
+    }
+    // Fallback: numbered line in the answer body
+    if (!quoted) {
+      const line =
+        new RegExp(
+          `(?:^|\\n)\\s*${index}\\.\\s*["“]([^"”\\n]{8,500})["”]`,
+          "i",
+        ).exec(text)?.[1] ||
+        new RegExp(
+          `(?:^|\\n)\\s*${index}\\.\\s+(?!["“])([^\\n]{12,400})`,
+          "i",
+        ).exec(text)?.[1];
+      quoted = line?.trim() || null;
+    }
     if (!quoted || quoted.length < 8) continue;
     out.push({
       id: `claim_${index}`,

@@ -125,7 +125,7 @@ function num(m: RegExpExecArray | null, i = 1): number | null {
 export function extractQuotedClaimsOnly(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asks =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b/i.test(
       text,
     );
   if (!asks) return [];
@@ -162,7 +162,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   // "claim audit of:" / "Audit claims:" / "verdicts on:" block — only quoted lines
   if (claims.length < 2) {
     const block = text.match(
-      /(?:claim\s+audit\s+of|audit\s+claims?|verdicts?\s+on|separate\s+verdicts?\s+on)\s*:?\s*([\s\S]{10,2000}?)(?:\n\s*(?:Then|Cover|Do not|Answer|Executive|\d\)\s*Summar)|$)/i,
+      /(?:claim\s+audit\s+of|audit\s+(?:these\s+)?claims?|verdicts?\s+on|separate\s+verdicts?\s+on|give\s+separate\s+verdicts?\s+on)\s*:?\s*([\s\S]{10,2000}?)(?:\n\s*(?:Then|Cover|Do not|Answer|Executive|\d\)\s*Summar)|$)/i,
     );
     if (block?.[1]) {
       let qi = 0;
@@ -188,7 +188,50 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     }
   }
 
+  // Unquoted numbered claims under an audit/verdict ask (real user prompts often omit quotes).
+  if (claims.length < 2) {
+    const unquoted =
+      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*(?![“"'])([^\n]{12,400})/gi;
+    while ((m = unquoted.exec(text)) !== null) {
+      const near = text.slice(Math.max(0, m.index - 120), m.index + 20);
+      if (!/claim|verdict|audit|evaluate|judge/i.test(near) && !asks) continue;
+      const line = m[2]!.replace(/\s+/g, " ").trim();
+      if (
+        /^(?:establish|reason|summarize|cover|answer|claim\s+audit|audit\s+claims?|further|timeline|causal|contradictions?|what is unknown|next verification)\b/i.test(
+          line,
+        )
+      ) {
+        continue;
+      }
+      // Require proposition shape — not bare section titles.
+      if (
+        !/\b(?:because|should|remain|unrelated|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never)\b/i.test(
+          line,
+        )
+      ) {
+        continue;
+      }
+      push(line, m[1]!);
+    }
+  }
+
   return claims.slice(0, 12);
+}
+
+/** Strip claim-audit temptation lines so they cannot bind actor/canonical narrative state. */
+export function stripClaimAskSurfaces(text: string): string {
+  let out = String(text || "");
+  // Quoted numbered claims
+  out = out.replace(
+    /(?:^|\n)\s*(?:Claim\s*)?\d{1,2}\s*[.):\-]\s*[“"'][^”"']{8,500}[”"'][^\n]*/gi,
+    "\n",
+  );
+  // Unquoted numbered claims in audit blocks
+  out = out.replace(
+    /(?:^|\n)\s*(?:Claim\s*)?\d{1,2}\s*[.):\-]\s+(?![“"'])(?:[A-Z][^\n]{11,400})/gi,
+    "\n",
+  );
+  return out;
 }
 
 function parseEntities(text: string): {
@@ -330,7 +373,11 @@ function parseActorStates(text: string): CanonicalCaseState["actorStates"] {
   };
 
   // Strip quoted claim surfaces so audit temptations do not bind actor state.
-  const body = String(text || "").replace(/[“"']([^”"']{8,500})[”"']/g, " ");
+  // Also strip unquoted numbered claim-ask lines.
+  const body = stripClaimAskSurfaces(String(text || "")).replace(
+    /[“"']([^”"']{8,500})[”"']/g,
+    " ",
+  );
 
   let m: RegExpExecArray | null;
   // Do not use /i on actor capture — JS /i makes [A-Z] match lowercase stopwords.
@@ -339,6 +386,8 @@ function parseActorStates(text: string): CanonicalCaseState["actorStates"] {
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+currently\s+eligible\b/g,
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+eligible\b(?!\s+gate)/g,
     /\bCandidate\s+([A-Z][A-Za-z0-9_-]{1,40})\s+[^.?\n]{0,100}\bcurrently\s+eligible\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are)\s+cleared\s+for\s+(?:dispatch|operations|service)\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+cleared\s+its\s+earlier\s+(?:outage|failure|impairment)\b/g,
   ];
   for (const re of eligibleRes) {
     while ((m = re.exec(body)) !== null) {
@@ -431,42 +480,44 @@ function mergeActorEligibilityIntoActions(
  */
 export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState {
   const text = String(userMessage || "");
-  const { entities, distinctPairs } = parseEntities(text);
-  const population = parsePopulation(text);
+  // Claim-audit temptation lines must not bind narrative actor/causal state.
+  const narrative = stripClaimAskSurfaces(text);
+  const { entities, distinctPairs } = parseEntities(narrative);
+  const population = parsePopulation(narrative);
 
   const forecast = num(
     /\bforecast(?:\s+(?:revenue|occupancy|visits?))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
-      text,
-    ) || /\bforecast\s+\$?\s*([\d,]+)/i.exec(text),
+      narrative,
+    ) || /\bforecast\s+\$?\s*([\d,]+)/i.exec(narrative),
   );
   const realised = num(
     /\brealis(?:ed|ed)(?:\s+(?:ledger|revenue|visits?))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
-      text,
-    ) || /\brealis(?:ed|ed)\s+\$?\s*([\d,]+)/i.exec(text),
+      narrative,
+    ) || /\brealis(?:ed|ed)\s+\$?\s*([\d,]+)/i.exec(narrative),
   );
 
   // Occurrence: completed/delivered language without requiring "occurred" word
   const occurred =
     /\b(completed|delivered|performed|occurred|recorded (?:as )?complete|physically (?:occurred|completed)|service performed|stays completed|units completed)\b/i.test(
-      text,
+      narrative,
     )
       ? true
       : null;
   const laterReversal =
     /\b(refund|return(?:ed)?|charge\s*-?backs?|compensat|reversal|SLA (?:breach|failure))\b/i.test(
-      text,
+      narrative,
     );
   const invalidated =
     /\b(fraud(?:ulent)?|never (?:actually )?executed|erroneous (?:record|entry)|void(?:ed)?(?:\s+record|\s+entry)?|fabricat(?:ed|ion)|record (?:was )?false)\b/i.test(
-      text,
+      narrative,
     );
 
-  const gross = num(/\bgross\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(text));
-  const refund = num(/\brefund(?:s|ed)?\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(text));
+  const gross = num(/\bgross\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(narrative));
+  const refund = num(/\brefund(?:s|ed)?\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(narrative));
   const net =
     gross != null && refund != null
       ? gross - refund
-      : num(/\bnet\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(text));
+      : num(/\bnet\s*[:=]?\s*\$?\s*([\d,]+)/i.exec(narrative));
 
   const claimTexts = extractQuotedClaimsOnly(text);
   const claims = claimTexts.map((t, i) => ({ index: i + 1, text: t }));
@@ -602,22 +653,22 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
     authority: "owner_pack",
   });
 
-  const domainHint = /\bhotel|hospitality|room[- ]?nights?\b/i.test(text)
+  const domainHint = /\bhotel|hospitality|room[- ]?nights?\b/i.test(narrative)
     ? "hospitality"
-    : /\bbattery|industrial|manufactur|deployed sites?\b/i.test(text)
+    : /\bbattery|industrial|manufactur|deployed sites?\b/i.test(narrative)
       ? "industrial"
-      : /\bhealthcare|patient|clinic\b/i.test(text)
+      : /\bhealthcare|patient|clinic\b/i.test(narrative)
         ? "healthcare"
-        : /\blogistics|shipment\b/i.test(text)
+        : /\blogistics|shipment\b/i.test(narrative)
           ? "logistics"
           : "generic";
 
-  const actorStates = parseActorStates(text);
+  const actorStates = parseActorStates(narrative);
   const decisionActions = mergeActorEligibilityIntoActions(
-    buildActionEligibilityStates(text),
+    buildActionEligibilityStates(narrative),
     actorStates,
   );
-  const causal = buildCanonicalCausalState(text);
+  const causal = buildCanonicalCausalState(narrative);
 
   for (const [actor, st] of Object.entries(actorStates)) {
     if (st.currentlyEligible === true) {
