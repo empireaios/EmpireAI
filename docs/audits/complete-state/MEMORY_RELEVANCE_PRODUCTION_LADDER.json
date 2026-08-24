@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-24T22:43:27.423Z",
-  "liveSha": "429433d600a5aaee34c03435c8516d3647852652",
-  "deploymentId": "9ee88fec-cb2a-4aa8-aed8-3971749fbb8b",
+  "generatedAt": "2026-08-24T23:33:42.358Z",
+  "liveSha": "0f30aaa88d830131b3bc8ee7614de34b1abc1944",
+  "deploymentId": "7054b35e-e343-4104-8c05-ae98b7e4116b",
   "trials": 8,
   "pass": 8,
   "passRate": "8/8",
@@ -12,64 +12,64 @@
       "class": "irrelevant_temptation",
       "ok": true,
       "reasons": [],
-      "ms": 11485,
-      "preview": "**Conclusions:**\n1. Line Cobalt is currently eligible and has resolved its earlier temporary process issue.\n\n2. The workload from Line Cobalt was redirected to Line Argon due to the process issue, which has created a capacity constraint at Line Argon.\n\n**Causal Chain:**\n- The temporary process issue at Line Cobalt led to a decision to redirect workload to Line Argon. - This redirection has caused a capacity constraint at Line Argon, indicating that the issues at both lines are interconnected.\n\n**Claim Verdict:**\nThe statement \"Line Argon problem is unrelated to Line Cobalt because Line Argon has no process issue\" is **incorrect**. The capacity constraint at Line Argon is directly related to the workload it received from Line Cobalt during its earlier process issue. Therefore, the problems at both lines are causally linked."
+      "ms": 8690,
+      "preview": "**Conclusions:**\n\n1. **Line Cobalt's Status:** Line Cobalt currently meets all eligibility gates and is eligible for operations. The temporary process issue that occurred earlier has been resolved.\n\n2. **Workload Redirection:** The workload was redirected from Line Cobalt to Line Argon due to the earlier issue. This redirection indicates that Line Cobalt was temporarily unable to handle its full workload, necessitating the shift to Line Argon.\n\n3. **Line Argon's Capacity Constraint:** Line Argon is experiencing a capacity constraint as a direct result of the redirected workload from Line Cobalt. This means that the increased demand on Line Argon is related to the operational status of Line Cobalt.\n\n4. **Historical Context:** The earlier issue with Line Cobalt is documented, and the current operational state of both lines is clear, with no lingering effects from the previous issue affecti"
     },
     {
       "id": "MR_relevant_hospitality",
       "class": "relevant_application",
       "ok": true,
       "reasons": [],
-      "ms": 3492,
-      "preview": "The occurrence of the earlier verified stays remains intact; the later full refund does not erase the fact that those stays historically occurred. The refund addresses the service breach but does not negate the completion of the stays themselves.\n\n### SyntheticMR-02 — hospitality analysis only. Stays completed and re\n**Verdict:** Occurrence preserved; later outcome separate\n\nIf the pack establishes that an operation physically occurred and was recorded complete, a later economic reversal changes settlement — it does not by itself rewrite historical occurrence as non-occurrence.\n\nWhat can be concluded: historical completion can stand while later economic outcomes are recorded separately.\n\n**Need:** Keep occurrence distinct from later economic treatment. Only record-invalidating evidence (fraud, void, never executed) may erase historical occurrence.\n\nA later refund after a service breach c"
+      "ms": 5729,
+      "preview": "The later refund does not erase the fact that the earlier verified stays historically occurred. The stays were completed and recorded as such, and while the refund indicates a service breach, it does not negate the occurrence of the stays. The economic reading reflects that the stays happened, but the refund signifies a subsequent acknowledgment of a service issue. Thus, the occurrence stands, while the economic impact is adjusted by the refund.\n\n### SyntheticMR-02 — hospitality analysis only. Stays completed and re\n**Verdict:** Occurrence preserved; later outcome separate\n\nIf the pack establishes that an operation physically occurred and was recorded complete, a later economic reversal changes settlement — it does not by itself rewrite historical occurrence as non-occurrence.\n\nWhat can be concluded: historical completion can stand while later economic outcomes are recorded separately.\n\n"
     },
     {
       "id": "MR_multipart_ops",
       "class": "multipart",
       "ok": true,
       "reasons": [],
-      "ms": 2239,
-      "preview": "###\n\n1) Current eligibility of Depot Ridge.\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n###\n\n2) Historical note: temporary shortage cleared yesterday.\n\n**Verdict:** Historical — not automatically current\n\nA past statement does not remain current without newer confirmation that supersedes it.\n\nWhat can be concluded: the historical claim may have been true then; current status stays open here.\n\n**Need:** current-state confirmation for the same subject.\n\n###\n\n3) Separate verdict: Forecast equals realised (forecast 4000, realised 900).\n\n**Verdict:** Unsupported as realised result\n\nAn expec"
+      "ms": 2490,
+      "preview": "1) **Current Eligibility of Depot Ridge:** Depot Ridge currently satisfies every eligibility gate and is eligible for operations.\n\n2) **Historical Note:** The temporary shortage was cleared yesterday, indicating that any operational constraints have been resolved.\n\n3) **Separate Verdict:** The forecast of 4000 equals the realised figure of 900, confirming that while the forecast was significantly higher, the actual performance did not meet expectations.\n\nIn summary, Depot Ridge is eligible, the previous shortage has been resolved, and there is a notable discrepancy between the forecasted and realised figures.\n\n### Claim 1\n**Verdict:** Unproven / not established\n\n\"Separate verdict: Forecast equals realised (forecast 4000, realised 900).\"\n\nNot established from the supplied generic scenario evidence alone."
     },
     {
       "id": "MR_simple",
       "class": "simple",
       "ok": true,
       "reasons": [],
-      "ms": 2263,
-      "preview": "Node Cedar currently meets all necessary eligibility criteria, allowing it to proceed with operations. There are no outstanding issues or constraints affecting its status, ensuring it is ready for action.\n\n### SyntheticMR-04 — energy ops only. Node Cedar is currently eligible\n\nWhat can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.\n\n**Need:** the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand."
+      "ms": 2645,
+      "preview": "Node Cedar is currently eligible, having satisfied all necessary eligibility gates. There are no outstanding issues or constraints affecting its operational status.\n\n### SyntheticMR-04 — energy ops only. Node Cedar is currently eligible\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario."
     },
     {
       "id": "MR_timestamp",
       "class": "timestamp_heavy",
       "ok": true,
       "reasons": [],
-      "ms": 2381,
-      "preview": "Yes, the delivery was completed successfully on 2026-08-21 at 14:00. The current status is closed as of 2026-08-22 at 10:00, indicating that all operations related to this shipment have concluded."
+      "ms": 2342,
+      "preview": "Yes, the delivery was completed as Shipment K was delivered on 2026-08-21 at 14:00. The current status is closed as of 2026-08-22 at 10:00. There are no refunds associated with this delivery."
     },
     {
       "id": "MR_claim_verdict",
       "class": "claim_verdict",
       "ok": true,
       "reasons": [],
-      "ms": 9466,
-      "preview": "The claim \"QR-17 is Partner Frame\" is **contradicted**. The verified asset registry clearly states that QR-17 is identified as the North Basin Module, while QR-19 is designated as the Partner Frame, confirming they are distinct entities.\n\n### Claim Verdict:\n\n\"QR-17 is Partner Frame.\"\n\nVerified identity: QR-17 = North Basin Module (verified_registry). \"Partner Frame\" is bound to a different registry identity.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"QR-17 is Partner Frame.\"\n\nVerified identity: QR-17 = North Basin Module (verified_registry). \"Partner Frame\" is bound to a different registry identity."
+      "ms": 3147,
+      "preview": "The statement \"QR-17 is Partner Frame\" is **false**. The verified asset registry clearly identifies QR-17 as the North Basin Module, distinct from QR-19, which is the Partner Frame.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"QR-17 is Partner Frame.\"\n\nVerified identity: QR-17 = North Basin Module (verified_registry). \"Partner Frame\" is bound to a different registry identity."
     },
     {
       "id": "MR_causal",
       "class": "causal",
       "ok": true,
       "reasons": [],
-      "ms": 16471,
-      "preview": "The assertion \"Clinic East shortage is unrelated to Clinic West because Clinic East never had an operator shortage\" is **incorrect**.\n\n### Assessment:\n\n1. **Causal Link:** The capacity shortage at Clinic East directly results from the reassignment of work due to the earlier staffing shortage at Clinic West. Therefore, the two clinics are causally connected.\n\n2. **Operator Shortage Clarification:** While it is true that Clinic East never had an operator shortage, this fact does not negate the relationship between the two clinics. The reassignment of work from Clinic West to Clinic East is the key factor leading to the current capacity shortage at Clinic East.\n\n### Conclusion:\nThe shortage at Clinic East is indeed related to the earlier staffing issues at Clinic West, making the claim inaccurate. The two clinics' situations are interconnected, despite Clinic East not having a prior operato"
+      "ms": 16247,
+      "preview": "The statement \"Clinic East shortage is unrelated to Clinic West because Clinic East never had an operator shortage\" is **false**.\n\n### Assessment:\n1. **Causal Relationship:** The capacity shortage at Clinic East is a direct result of the workload reassignment from Clinic West, which had an earlier staffing shortage. Therefore, the two clinics are interconnected in terms of staffing and capacity issues.\n\n2. **Operator Shortage Clarification:** While it is true that Clinic East never had an operator shortage, this does not negate the fact that its current capacity shortage is linked to the reassignment of work from Clinic West.\n\nIn summary, the shortages at both clinics are related due to the operational decisions made in response to Clinic West's earlier staffing issues.\n\n**Causal correction:** DIFFERENT_DIRECT_CAUSES ≠ CAUSALLY_UNRELATED. An indirect causal path may connect events that h"
     },
     {
       "id": "MR_decision",
       "class": "decision",
       "ok": true,
       "reasons": [],
-      "ms": 8152,
-      "preview": "**Recommendation:** Open the next shift at Store Mesa under the current constraints.\n\n**Why:** Store Mesa is currently eligible, with both the inventory and staffing gates passing. This indicates that the store is adequately prepared to handle operations without any outstanding issues.\n\n**Main Risk:** Monitor for any unforeseen operational challenges that may arise during the new shift.\n\n**Immediate Next Action:** Initiate the process to open the next shift as planned. No Grand King approval is required for this action."
+      "ms": 12800,
+      "preview": "**Recommendation:** Proceed to open the next shift at Store Mesa.\n\n**Why:** Store Mesa is currently eligible, with both the inventory and staffing gates passing. This indicates that the operational conditions are favorable for opening the next shift.\n\n**Main Risk:** The primary risk involves potential unforeseen operational challenges that may arise during the shift, but given the current eligibility status, these risks are manageable.\n\n**Immediate Next Action:** Prepare for the shift opening by ensuring all operational protocols are in place.\n\nNo Grand King approval is required for this action as it falls within the current operational capacity."
     }
   ],
   "wave1": "UNCERTIFIED",
