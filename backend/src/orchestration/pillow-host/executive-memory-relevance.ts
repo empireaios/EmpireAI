@@ -42,6 +42,9 @@ const UNMAPPED_ECONOMIC_DOCTRINE: RegExp[] = [
   /\n*Keep EVENT_OCCURRED distinct from ECONOMIC_OUTCOME\.[^\n]*/gi,
   /\n*Earlier analysis established historical occurrence; a later (?:refund|economic outcome) alone does not erase that occurrence\.?/gi,
   /\n*A later economic reversal changes settlement treatment; it does not by itself erase that the earlier verified event historically occurred\.?/gi,
+  /\n*Recommendation:\s*Do not select on price alone: require a clear refund\/returns policy[^\n]*/gi,
+  /\n*Net-after-refund conclusions need explicit gross, refund, and unit definitions from the pack\.[^\n]*/gi,
+  /\n*\*\*Verdict:\*\*\s*Arithmetic requires stated operands[^\n]*/gi,
   /\n*\*\*Event-state reading:\*\*[^\n]*(?:\n(?!\n)[^\n]*)*/gi,
   /\n*Event-state reading:[^\n]*/gi,
 ];
@@ -104,6 +107,21 @@ export function stripUnmappedVisibleDoctrine(
       /\n*[^\n]*refund, return, chargeback, compensation[^\n]*never occurred\.?/gi,
       "",
     );
+    // Supplier refund-policy deliberation lead-in is latent unless supplier/price selection is asked.
+    if (!/\b(?:supplier|cheapest|unit price|refund\s+policy|returns?\s+policy)\b/i.test(userMessage)) {
+      out = out.replace(
+        /\n*Recommendation:\s*Do not select on price alone:[^\n]*(?:\n(?!\n)[^\n]*)*/gi,
+        "",
+      );
+      out = out.replace(
+        /\n*\*\*Verdict:\*\*\s*Arithmetic requires stated operands[\s\S]*?(?=(?:\n#{1,3}\s)|\n\n|$)/gi,
+        "\n",
+      );
+      out = out.replace(
+        /\n*Net-after-refund conclusions need explicit gross[\s\S]*?(?=(?:\n#{1,3}\s)|\n\n|$)/gi,
+        "\n",
+      );
+    }
   }
 
   out = out.replace(/\n{3,}/g, "\n\n").trim();

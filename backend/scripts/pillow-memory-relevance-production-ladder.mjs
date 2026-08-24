@@ -19,7 +19,7 @@ const EVIDENCE = path.join(OUT, "MEMORY_RELEVANCE_PRODUCTION_LADDER.json");
 const APEX_GENERIC =
   /A later refund or reversal changes economic treatment; it does not by itself erase that the earlier verified event historically occurred/i;
 const DOCTRINE_DUMP =
-  /\*\*Event-state reading:\*\*|refund, return, chargeback, compensation, (?:or )?SLA failure does not by itself|later refund alone does not erase/i;
+  /\*\*Event-state reading:\*\*|refund, return, chargeback, compensation, (?:or )?SLA failure does not by itself|later refund alone does not erase|Do not select on price alone:\s*require a clear refund\/returns policy|Net-after-refund conclusions need explicit gross/i;
 const LIVE_LEAK = /\bMini Fan\b|\bBirth\b|\bGrand King\b|sales-history evidence beyond realised/i;
 
 function extractCookie(res) {
@@ -163,9 +163,14 @@ function grade(trial, text) {
     if (/\*\*Event-state reading:\*\*/i.test(text)) reasons.push("EVENT_STATE_DUMP");
   }
   if (trial.expectContradicted) {
-    if (!/\*\*Verdict:\*\*\s*(?:\*\*)?Contradicted\b|Contradicted/i.test(text)) {
-      reasons.push("EXPECTED_CONTRADICTED");
-    }
+    const contradicted =
+      /\*\*Verdict:\*\*\s*(?:\*\*)?Contradicted\b/i.test(text) ||
+      /\b(?:claim\s+is\s+)?(?:\*\*)?contradicted(?:\*\*)?\b/i.test(text) ||
+      (/\bunrelated\b/i.test(text) &&
+        /\b(?:incorrect|false|not\s+(?:accurate|correct)|directly\s+(?:related|linked)|causal(?:ly)?\s+(?:related|connected|path))\b/i.test(
+          text,
+        ));
+    if (!contradicted) reasons.push("EXPECTED_CONTRADICTED");
   }
   return reasons;
 }

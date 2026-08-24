@@ -44,7 +44,7 @@ const OVERPROVISION =
   /\b(most expensive|upgrade every|never face capacity|over[- ]?provision|max(imum)? plan|premium (tier|plan) for (all|every))\b/i;
 
 const REFUND_UNCLEAR =
-  /\b(refund (policy )?(is )?(unclear|unknown|missing)|unclear .{0,24}refund|no (clear )?refund)\b/i;
+  /\b(?:refund\s+policy\s+(?:is\s+)?(?:unclear|unknown|missing)|(?:unclear|unknown|missing)\s+.{0,24}refund\s+policy|no\s+(?:clear\s+)?refund\s+policy|without\s+(?:a\s+)?(?:clear\s+)?refund\s+policy)\b/i;
 
 const CHEAPEST_ONLY =
   /\b(cheapest|lowest price|lowest[- ]cost).{0,80}(even though|despite|although|ignore)\b/i;
