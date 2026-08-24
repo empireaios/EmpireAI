@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-08-24T12:25:05.154Z",
+  "liveSha": "",
+  "deploymentId": "84f1d708-6866-47a5-991f-30d4a14adf72",
+  "trials": 4,
+  "pass": 4,
+  "passRate": "4/4",
+  "wrongSupportedVerdicts": 0,
+  "leftoverSupported": 0,
+  "results": [
+    {
+      "id": "OVA_ops_reassign",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "leftover": false,
+      "ms": 9502,
+      "preview": "Inlet's current capacity shortage is directly related to Cedar's staffing shortage. The reassignment of work from Cedar to Inlet means that Inlet's capacity was committed to the additional work, leading to its current shortage. Therefore, the claim that Inlet's current capacity shortage is unrelated to Cedar is incorrect.\n\n### Assessment of the Claim\n\n1. **Causal Relationship**: The reassignment of jobs due to Cedar's staffing issues created a demand on Inlet's resources, which resulted in a capacity shortage.\n\n2. **Operator Shortage**: The assertion that Inlet never had an operator shortage does not negate the fact that its capacity was impacted by the reassignment of work from Cedar. The capacity shortage is a result of the committed resources, not a lack of operators.\n\nIn summary, Inlet's capacity shortage is indeed related to Cedar's staffing issues, as the reassignment of work direc"
+    },
+    {
+      "id": "OVA_hospitality",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "leftover": false,
+      "ms": 5171,
+      "preview": "Harbor's current capacity shortage is directly related to the reassignment of the booking load from Lodge. The reassignment means that Harbor's resources were committed to the additional workload, leading to its current capacity shortage. Therefore, the claim that Harbor's current capacity shortage is unrelated to Lodge is incorrect.\n\n### Assessment of the Claim\n\n1. **Causal Relationship**: The reassignment of the booking load from Lodge to Harbor created a demand on Harbor's resources, which resulted in its capacity shortage.\n\n2. **Staffing Shortage**: The assertion that Harbor never had a staffing shortage does not negate the impact of the reassigned workload. The capacity shortage stems from the reassignment, not from a lack of staff.\n\nIn summary, Harbor's capacity shortage is indeed related to Lodge's staffing issues, as the reassignment of work directly affected Harbor's available c"
+    },
+    {
+      "id": "OVA_logistics",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "leftover": false,
+      "ms": 4962,
+      "preview": "Quay's current capacity shortage is directly related to the committed load from Depot due to the earlier operator shortage. The reassignment of work from Depot to Quay means that Quay's resources were impacted by the additional workload, leading to its current capacity shortage. Therefore, the claim that Quay's current capacity shortage is unrelated to Depot is incorrect.\n\n### Assessment of the Claim\n\n1. **Causal Relationship**: The reassignment of work from Depot to Quay created a demand on Quay's resources, which resulted in its capacity shortage.\n\n2. **Operator Shortage**: The assertion that Quay never had an operator shortage does not negate the fact that its capacity was affected by the reassigned workload from Depot. The capacity shortage is a result of the committed load, not a lack of operators.\n\nIn summary, Quay's capacity shortage is indeed related to Depot's staffing issues, a"
+    },
+    {
+      "id": "OVA_entity",
+      "ok": true,
+      "reasons": [],
+      "got": "Contradicted",
+      "expect": "Contradicted",
+      "leftover": false,
+      "ms": 3366,
+      "preview": "The claim \"ZX-11 is Partner Assembly\" is incorrect.\n\n### Assessment of the Claim\n\n1. **Verified Asset Registry**: The verified asset registry clearly states that ZX-11 is identified as the North Pier Module, while ZX-22 is identified as the Partner Assembly.\n\n2. **Distinct Entities**: The registry confirms that ZX-11 and ZX-22 are distinct entities, meaning they cannot be equated or identified as the same.\n\n### Claim Verdict\n\n\"ZX-11 is Partner Assembly.\" This claim is contradicted by the verified asset registry, which establishes ZX-11 as the North Pier Module and ZX-22 as the Partner Assembly.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"ZX-11 is Partner Assembly.\"\n\nVerified identity: ZX-11 = North Pier Module (verified_registry). \"Partner Assembly\" is bound to a different registry identity."
+    }
+  ],
+  "wave1": "UNCERTIFIED",
+  "birthAuthorised": "NO",
+  "codeSha": "939ede6b9b698b4aa364c7a26aadadf2bab17fb5",
+  "liveShaNote": "railway up omits RAILWAY_GIT_COMMIT_SHA; deploymentId is production truth",
+  "productionFirstVisibleValidation": "PASS"
+}
