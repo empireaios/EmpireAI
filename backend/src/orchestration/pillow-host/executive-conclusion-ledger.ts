@@ -277,11 +277,12 @@ function verdictForClaimAgainstLedger(
   ledger: LedgerEntry[],
   canonical?: CanonicalCaseState | null,
 ): { verdict: LedgerVerdict; justification: string } | null {
-  // Prefer canonical compound assessment — every material clause must agree for SUPPORTED.
-  // Downstream must not invent an alternative truth when canonical resolves a proposition.
+  // Prefer canonical when it resolves a proposition.
+  // Unproven from canonical must not block ledger cross-section binding
+  // (analysis → claim → synthesis) — only resolved canonical verdicts own the surface.
   if (canonical) {
     const v = assessClaimAgainstCanonical(claim.sourceText, canonical);
-    if (v.components.some((c) => c.proposition.kind !== "generic") || v.overall !== "unproven") {
+    if (v.overall === "supported" || v.overall === "contradicted" || v.overall === "unknown") {
       return { verdict: v.overall, justification: v.justification };
     }
   }
@@ -392,7 +393,7 @@ function verdictForClaimAgainstLedger(
       return {
         verdict: "contradicted",
         justification:
-          "Earlier analysis established historical occurrence; a later refund alone does not erase that occurrence.",
+          "Earlier analysis established historical occurrence; a later economic outcome alone does not erase that occurrence.",
       };
     }
   }

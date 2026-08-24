@@ -8,6 +8,10 @@
  *
  * Repair 4: realize the principle in domain-native language — never dump
  * chargeback/sales-history doctrine blocks into hotel/logistics answers.
+ *
+ * Memory relevance: a retrieved occurrence lesson may inform reasoning without
+ * appending lesson prose. Visible doctrine only when the task requires it
+ * (occurrence erasure in draft, or user asks occurrence vs economic).
  */
 
 export type EventStateLayer =
@@ -37,18 +41,37 @@ export function detectScenarioDomain(userMessage: string): ScenarioDomain {
   return "generic";
 }
 
-/** Pack establishes earlier performance/completion AND a later reversal-class outcome. */
+/** Strip negated "no refund/compensation" phrases before economic-reversal detection. */
+function stripEconomicNegations(text: string): string {
+  return String(text || "")
+    .replace(
+      /\bno\s+(?:commercial\s+)?(?:refund|return|charge\s*-?back|compensation|reversal)s?\b(?:\s+or\s+(?:refund|return|charge\s*-?back|compensation|reversal)s?)*\b[^.?\n]{0,80}/gi,
+      " ",
+    )
+    .replace(/\b(?:refund|compensation|chargeback)\s+is\s+(?:not\s+)?(?:in\s+scope|discussed|relevant)\b/gi, " ");
+}
+
+/**
+ * Pack establishes earlier performance/completion AND a later *economic*
+ * reversal-class outcome (refund / commercial return / chargeback / compensation).
+ *
+ * Operational later outcomes alone (SLA alarm, quality failure, process rework return)
+ * are NOT economic reversals and must not activate refund doctrine.
+ */
 export function packEstablishesOccurrenceThenLaterReversal(userMessage: string): boolean {
-  const t = String(userMessage || "");
+  const raw = String(userMessage || "");
+  const t = stripEconomicNegations(raw);
   const occurred =
-    /\b(completed|delivered|performed|shipped|fulfilled|settled|occurred|recorded (?:as )?complete|physically (?:occurred|completed)|service (?:was )?performed|activated|payment (?:was )?settled)\b/i.test(
+    /\b(completed|delivered|performed|shipped|fulfilled|settled|occurred|recorded (?:as )?complete|physically (?:occurred|completed)|service (?:was )?performed|activated|payment (?:was )?settled|stays completed|units completed)\b/i.test(
       t,
     );
-  const laterReversal =
-    /\b(refund|full refund|return(?:ed)?|charge\s*-?backs?|charged\s+back|compensat(?:ed|ion)|revers(?:al|ed)|cancell(?:ed|ation) after|SLA (?:breach|failure)|quality failure|later (?:adverse|economic) outcome)\b/i.test(
+  if (!occurred) return false;
+
+  const laterEconomic =
+    /\b(?:(?:later|full)\s+)?refunds?\b|\bcharged?\s*-?backs?\b|\b(?:later\s+)?compensat(?:ed|ion)\b|\beconomic\s+revers(?:al|ed)\b|\blater\s+(?:adverse\s+)?economic\s+outcome\b|\blater\s+return(?:ed)?\b|\b(?:purchase|order|product|item|goods|sale|units?)\s+return(?:ed)?\b|\breturn(?:ed)?\s+(?:for\s+)?(?:a\s+)?(?:refund|credit)\b|\bcancell(?:ed|ation)\s+after\b|\bcredit\s+(?:issued|applied)\b/i.test(
       t,
     );
-  return occurred && laterReversal;
+  return laterEconomic;
 }
 
 /** Pack supplies evidence that the earlier record itself is void/fraudulent/never executed. */
@@ -70,6 +93,28 @@ const ERASURE_PATTERNS: RegExp[] = [
 
 export function answerErasesHistoricalOccurrence(answer: string): boolean {
   return ERASURE_PATTERNS.some((r) => r.test(String(answer || "")));
+}
+
+/**
+ * User explicitly asks whether later economic outcomes erase historical occurrence,
+ * or asks for the occurrence↔economic principle itself.
+ * Keyword "historical" alone is insufficient.
+ */
+export function userAsksOccurrenceVsEconomic(userMessage: string): boolean {
+  const t = String(userMessage || "");
+  return (
+    /\b(?:does|did|can|will)\s+(?:a\s+)?(?:later\s+)?(?:refund|return|charge\s*-?back|compensation|reversal|credit)\b[^.?\n]{0,80}\b(?:erase|negate|cancel|prove|mean|imply).{0,40}(?:occur|complet|histor)/i.test(
+      t,
+    ) ||
+    /\b(?:historically\s+occur(?:red)?|historical\s+occurrence).{0,60}(?:despite|after|vs\.?|versus|or).{0,40}(?:refund|return|charge\s*-?back|compensat|reversal|credit)/i.test(
+      t,
+    ) ||
+    /\b(?:refund|return|charge\s*-?back).{0,40}(?:erase|negate|prove\s+(?:non[- ]?occurrence|never\s+occur))/i.test(
+      t,
+    ) ||
+    /\bkeep\s+historical\s+occurrence\s+distinct\b/i.test(t) ||
+    /\bEVENT_OCCURRED\b.*\bECONOMIC_OUTCOME\b/i.test(t)
+  );
 }
 
 /** Domain-native one-liner — principle applied, not doctrine dumped. */
@@ -97,7 +142,9 @@ export function occurrenceInvalidationNote(domain: ScenarioDomain): string {
 
 /**
  * Repair answers that collapse later reversal into historical non-occurrence.
- * Prefer in-place phrase repair; append at most one short domain-native sentence.
+ * Prefer in-place phrase repair; append at most one short domain-native sentence
+ * only when the draft erased occurrence and the pack establishes economic reversal
+ * (or the user explicitly asks occurrence vs economic).
  * Never surface chargeback/sales-history doctrine templates.
  */
 export function repairHistoricalOccurrenceErasure(
@@ -110,6 +157,8 @@ export function repairHistoricalOccurrenceErasure(
   const domain = detectScenarioDomain(userMessage);
   const packReversal = packEstablishesOccurrenceThenLaterReversal(userMessage);
   const packInvalidates = packSuppliesOccurrenceInvalidation(userMessage);
+  const erasedOriginally = answerErasesHistoricalOccurrence(text);
+  const asksOccurrence = userAsksOccurrenceVsEconomic(userMessage);
 
   // Strip any prior doctrine dumps (Repair 3 residue).
   let out = text
@@ -118,7 +167,7 @@ export function repairHistoricalOccurrenceErasure(
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-  if (!packReversal && !answerErasesHistoricalOccurrence(out)) {
+  if (!packReversal && !erasedOriginally) {
     return { message: out, repaired: out !== text, lessonTextSurfaced: false };
   }
 
@@ -144,16 +193,22 @@ export function repairHistoricalOccurrenceErasure(
     }
   }
 
+  // Visible lesson text only when repairing erasure or answering an explicit ask —
+  // never because the draft casually mentioned "return"/"historically".
   const needsNative =
     packReversal &&
-    (answerErasesHistoricalOccurrence(text) ||
-      (/refund|return|credit|compensat/i.test(out) && /histor|occur|complet/i.test(out)));
-  if (needsNative && !/does not by itself (?:mean|prove|erase)/i.test(out)) {
+    (erasedOriginally || asksOccurrence) &&
+    !/does not by itself (?:mean|prove|erase)/i.test(out);
+  if (needsNative) {
     out = `${out}\n\n${occurrencePreservationNote(domain)}`.trim();
     repaired = true;
   }
 
-  return { message: out.replace(/\n{3,}/g, "\n\n").trim(), repaired, lessonTextSurfaced: false };
+  return {
+    message: out.replace(/\n{3,}/g, "\n\n").trim(),
+    repaired,
+    lessonTextSurfaced: needsNative,
+  };
 }
 
 /** Scenario-native demotion — never live sales-history phrasing. */

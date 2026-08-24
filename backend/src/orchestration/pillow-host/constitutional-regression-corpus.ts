@@ -668,6 +668,31 @@ export const CONSTITUTIONAL_SPECIMENS: ConstitutionalSpecimen[] = [
     requiredAny: [/occur|complet|refund|economic/i],
   },
   {
+    id: "cr.unrelated_durable_lesson_surfaced",
+    failureClass: "UNRELATED_DURABLE_LESSON_SURFACED_IN_FINAL_RESPONSE",
+    capabilities: ["memory_relevance", "synthetic_isolation"],
+    severity: "P0",
+    origin: "wave1-memory-relevance-closure",
+    forbidLiveCommerce: true,
+    buildPrompt: (seed) => {
+      return [
+        `SyntheticCanaryMemRel-${seed} — fab eligibility analysis only. Do not mention Mini Fan or Birth.`,
+        `Line Cobalt is currently eligible. Historical impairment cleared.`,
+        `Workload redirected from Cobalt to Argon; Argon's current constraint resulted from that redirect.`,
+        `No commercial refund or economic reversal is in the pack.`,
+        `Assess whether Argon's problem is unrelated to Cobalt.`,
+      ].join("\n");
+    },
+    forbidden: [
+      /A later refund or reversal changes economic treatment; it does not by itself erase/i,
+      /\*\*Event-state reading:\*\*/i,
+      /chargeback, compensation, SLA breach/i,
+      /Mini Fan/i,
+      /\bBirth\b/i,
+    ],
+    requiredAny: [/eligib|redirect|causal|Contradict|related/i],
+  },
+  {
     id: "cr.source_domain_surface_contamination",
     failureClass: "SOURCE_DOMAIN_SURFACE_LANGUAGE_CONTAMINATION",
     capabilities: ["synthetic_isolation", "memory_realization"],

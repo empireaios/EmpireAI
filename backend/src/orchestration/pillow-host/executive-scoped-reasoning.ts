@@ -132,15 +132,15 @@ export function synthesizeEvidenceStructureAudit(
   ) {
     if (
       /completed|delivered|performed|occurred|histor/i.test(s) &&
-      /refund|return|chargeback|compensat/i.test(s)
+      /\b(?:refunds?|charge\s*-?backs?|compensat(?:ed|ion)|economic\s+revers)/i.test(s)
     ) {
       verdict = "Occurrence preserved; later outcome separate";
       reason =
-        "If the pack establishes that an operation physically occurred and was recorded complete, a later full refund or service failure changes economic/service outcome — it does not by itself rewrite historical occurrence as non-occurrence.";
+        "If the pack establishes that an operation physically occurred and was recorded complete, a later economic reversal changes settlement — it does not by itself rewrite historical occurrence as non-occurrence.";
       need =
-        "Keep EVENT_OCCURRED distinct from ECONOMIC_OUTCOME. Only record-invalidating evidence (fraud, void, never executed) may erase historical occurrence.";
+        "Keep occurrence distinct from later economic treatment. Only record-invalidating evidence (fraud, void, never executed) may erase historical occurrence.";
       conclude =
-        "What can be concluded: historical completion can stand while refunds and SLA breaches are recorded as later outcomes.";
+        "What can be concluded: historical completion can stand while later economic outcomes are recorded separately.";
     } else {
       verdict = "Arithmetic requires stated operands";
       reason =
@@ -220,11 +220,11 @@ export function synthesizeEvidenceStructureAudit(
       "outcome evidence (validated demand or realised traction) before treating success as likely.";
     conclude =
       "What can be concluded: the inference is not warranted from the supplied premises alone.";
-  } else if (/histor|yesterday|was |previously|old |last (?:week|month|year)|no longer/i.test(s)) {
-    if (/refund|return|chargeback|compensat|revers/i.test(s)) {
+  } else if (/histor|yesterday|previously|old |last (?:week|month|year)|no longer/i.test(s)) {
+    if (/\b(?:refunds?|charge\s*-?backs?|compensat(?:ed|ion)|economic\s+revers)/i.test(s)) {
       verdict = "Later outcome ≠ historical non-occurrence";
       reason =
-        "A past completed event remains historically occurred unless later evidence invalidates the record itself. Refunds and reversals update economic treatment, not the occurrence layer by default.";
+        "A past completed event remains historically occurred unless later evidence invalidates the record itself. Later economic outcomes update settlement treatment, not the occurrence layer by default.";
       need = "explicit invalidation evidence before erasing historical occurrence; otherwise keep both layers.";
       conclude =
         "What can be concluded: historical occurrence and later economic outcome are separable evidence classes.";

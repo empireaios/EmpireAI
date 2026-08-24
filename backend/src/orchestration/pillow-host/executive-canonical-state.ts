@@ -253,10 +253,20 @@ export function stripClaimAskSurfaces(text: string): string {
     /(?:^|\n)\s*(?:Claim\s*)?\d{1,2}\s*[.):\-]\s*[“"'][^”"']{8,500}[”"'][^\n]*/gi,
     "\n",
   );
-  // Unquoted numbered claims in audit blocks
+  // Unquoted numbered claims in audit blocks — preserve registry/identity bindings
+  // (e.g. "1) Identify HT-58 from registry: HT-58 = Hillside Transit Hotel.")
   out = out.replace(
     /(?:^|\n)\s*(?:Claim\s*)?\d{1,2}\s*[.):\-]\s+(?![“"'])(?:[A-Z][^\n]{11,400})/gi,
-    "\n",
+    (match) => {
+      if (
+        /\bfrom\s+registry\b/i.test(match) ||
+        /\b[A-Z]{1,4}-?\d{1,4}\s*=\s*[A-Z][A-Za-z]/i.test(match) ||
+        /\bmaps?\s+to\b/i.test(match)
+      ) {
+        return match;
+      }
+      return "\n";
+    },
   );
   return out;
 }

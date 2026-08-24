@@ -16,6 +16,7 @@ import {
   stripIrrelevantLiveGrounding,
 } from "./executive-scoped-reasoning.js";
 import { repairHistoricalOccurrenceErasure } from "./executive-event-state.js";
+import { validateVisibleBlockRelevance } from "./executive-memory-relevance.js";
 import { enforceExactSectionContract } from "./executive-section-contract.js";
 import {
   enforceClaimEnumeration,
@@ -255,6 +256,8 @@ export function polishFinalVisibleAnswer(
   }
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = realizeDomainNativeMemorySurface(out, userMessage, scoped).message;
+  // Final gate: unmapped economic-occurrence doctrine must not surface.
+  out = validateVisibleBlockRelevance(out, userMessage).message;
   return out;
 }
 

@@ -27,6 +27,10 @@ import {
   type MaterialConstraint,
 } from "./executive-decision-constraints.js";
 import {
+  packEstablishesOccurrenceThenLaterReversal,
+  userAsksOccurrenceVsEconomic,
+} from "./executive-event-state.js";
+import {
   authorityAskBlocksCommerceGrounding,
   authorityKindSignals,
   classifyAuthorityKind,
@@ -1147,14 +1151,27 @@ export function synthesizeTaskUnitAnswer(
             : "I support only what verified commissioning/KPI state can carry for this claim.",
       ].join("\n");
     }
-    case "temporal_reconciliation":
+    case "temporal_reconciliation": {
+      const packText = `${subject} ${span}`;
+      const economicOccurrence =
+        packEstablishesOccurrenceThenLaterReversal(packText) ||
+        userAsksOccurrenceVsEconomic(packText);
       if (scoped || /\bsynthetic/i.test(subject) || /\bsynthetic/i.test(span)) {
+        if (economicOccurrence) {
+          return [
+            `### Temporal reading — ${subject.slice(0, 80)}`,
+            "**Verdict:** Keep historical occurrence distinct from later economic outcomes.",
+            "",
+            "A later economic reversal changes settlement treatment; it does not by itself erase that the earlier verified event historically occurred.",
+            "Only evidence that invalidates the historical record (fraud, void, never executed, erroneous duplicate) may erase historical occurrence.",
+            "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
+          ].join("\n");
+        }
         return [
           `### Temporal reading — ${subject.slice(0, 80)}`,
-          "**Verdict:** Keep historical occurrence distinct from later economic or service outcomes.",
+          "**Verdict:** Current scenario state supersedes older conflicting scenario language where they address the same subject.",
           "",
-          "A later refund, return, chargeback, compensation, or SLA failure does not by itself prove an earlier verified event never occurred.",
-          "Only evidence that invalidates the historical record (fraud, void, never executed, erroneous duplicate) may erase historical occurrence.",
+          "Historical notes may have been true at the time; current eligibility and status must be read from the latest verified scenario facts.",
           "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
         ].join("\n");
       }
@@ -1169,6 +1186,7 @@ export function synthesizeTaskUnitAnswer(
         "",
         "This temporal conclusion applies to this claim only — it does not rewrite sibling audits.",
       ].join("\n");
+    }
     case "conditional_reasoning": {
       const premises = opts.hypotheticalPremises?.length
         ? opts.hypotheticalPremises
