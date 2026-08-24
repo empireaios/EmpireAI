@@ -125,7 +125,7 @@ function num(m: RegExpExecArray | null, i = 1): number | null {
 export function extractQuotedClaimsOnly(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asks =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bjudge\s*:/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bjudge\s*:|(?:^|\n)\s*\d{1,2}\s*[.):\-]\s*Claim\s*:/i.test(
       text,
     );
   if (!asks) return [];
@@ -216,20 +216,28 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   }
 
   // Soft single-claim asks (unquoted, unnumbered): assess/judge/verdict on: <proposition>
+  // Also numbered section "3. Claim: <proposition>"
   if (claims.length < 1) {
     const soft =
       /\b(?:assess\s+this\s+claim|separate\s+verdict\s+on|verdict\s+on|judge)\s*:?\s*(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
         text,
+      ) ||
+      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+        text,
       );
     if (soft) {
-      const line = (soft[1] || soft[2] || "").replace(/\s+/g, " ").trim();
+      const line = (soft[2] || soft[3] || soft[1] || "").replace(/\s+/g, " ").trim();
+      const idx =
+        soft[1] && /^\d+$/.test(soft[1]) ? soft[1] : "1";
+      const proposition =
+        soft[1] && /^\d+$/.test(soft[1]) ? (soft[2] || soft[3] || "").replace(/\s+/g, " ").trim() : line;
       if (
-        line &&
-        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore)\b/i.test(
-          line,
+        proposition &&
+        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+)\b/i.test(
+          proposition,
         )
       ) {
-        push(line, "1");
+        push(proposition, idx);
       }
     }
   }
@@ -878,21 +886,20 @@ export function verdictClaimAgainstCanonical(
     }
   }
 
-  // Occurrence denial via later refund
+  // Occurrence denial when occurrence is established
   if (
     (/never\s+(?:historically\s+)?occurred|did not (?:historically )?occur|never occurred/i.test(t) ||
       /event never occurred/i.test(t) ||
       /completion never historically occurred/i.test(t)) &&
-    (/refund|return|later|compensat/i.test(t) || state.occurrence.laterReversal)
+    state.occurrence.occurred &&
+    !state.occurrence.invalidated
   ) {
-    if (state.occurrence.occurred && !state.occurrence.invalidated) {
-      return {
-        verdict: "contradicted",
-        justification:
-          "Historical occurrence is established; a later refund/outcome does not by itself erase occurrence.",
-        propositionId: "event.occurrence",
-      };
-    }
+    return {
+      verdict: "contradicted",
+      justification:
+        "Historical occurrence is established in the pack; denying occurrence contradicts canonical state.",
+      propositionId: "event.occurrence",
+    };
   }
 
   // Causal claims only — do not intercept unrelated claim families.

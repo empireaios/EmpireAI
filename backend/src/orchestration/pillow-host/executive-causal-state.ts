@@ -307,7 +307,44 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     }
   }
 
-  const priorFailureActors = (): string[] => priorFailureActorsFromText(text);
+  const priorFailureActors = (): string[] => {
+    const fromText = priorFailureActorsFromText(text);
+    const staff =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+had\s+(?:an?\s+)?(?:earlier\s+)?(?:staffing|operator)\s+shortage\b/gi;
+    let sm: RegExpExecArray | null;
+    while ((sm = staff.exec(text)) !== null) {
+      const name = sm[1]!;
+      if (isEntityToken(name) && !fromText.some((x) => key(x) === key(name))) fromText.push(name);
+    }
+    return fromText;
+  };
+
+  // Job / load reassignment: origin shortage → destination commitment is an indirect path.
+  const reassignRes = [
+    /\b(?:job|work|booking\s+load|load|task)\s+(?:was\s+|were\s+|to\s+be\s+)?reassigned\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\breassigned\s+(?:the\s+)?(?:job|work|booking\s+load|load)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b(?:operations\s+)?reassigned\s+(?:the\s+)?(?:booking\s+load|work|job|load)\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b(?:work|job|load)\s+(?:was\s+|to\s+be\s+)?reassigned\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:staffing|operator)\s+shortage\s+caused\s+(?:a\s+)?(?:job|work|load)\s+to\s+be\s+reassigned\s+(?:from\s+\1\s+)?to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+  ];
+  for (const re of reassignRes) {
+    let rm: RegExpExecArray | null;
+    while ((rm = re.exec(text)) !== null) {
+      let from = rm[1];
+      let to = rm[2];
+      if (!to && from) {
+        to = from;
+        const priors = priorFailureActors().filter((p) => key(p) !== key(to!));
+        from = priors[0] || "UpstreamFailure";
+      }
+      if (!from || !to) continue;
+      pushLink(links, from, to, "UPSTREAM_TRIGGER", rm[0]!.trim());
+      pushLink(links, from, to, "INDIRECT_CAUSAL_DEPENDENCY", rm[0]!.trim(), "VERIFIED");
+      upsertRole(roles, from, "INDIRECT_PARTICIPANT", rm[0]!.trim());
+      upsertRole(roles, to, "DOWNSTREAM_CONSEQUENCE", rm[0]!.trim());
+      events.push(normEntity(to));
+    }
+  }
 
   // Resource / inventory redirect: origin → destination is a causal dependency path.
   // Different direct mechanism at destination does not erase this connection.
@@ -347,10 +384,10 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     }
   }
 
-  // "Y's problem/constraint resulted from [redirect / transfer / X / that …]"
+  // "Y's problem/constraint resulted from [redirect / transfer / reassignment / committed capacity]"
   const resultedRes = [
-    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+|secondary\s+)?problem\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:redirected\s+)?(?:inventory|capacity|stock|load|traffic|workload|allocation|redirect|transfer)\b/gi,
-    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+)?(?:constraint|shortage|overload)\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:workload\s+)?(?:transfer|redirect|shift|failover|handoff)\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+|secondary\s+)?problem\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:redirected\s+)?(?:inventory|capacity|stock|load|traffic|workload|allocation|redirect|transfer|reassignment|committed\s+capacity)\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:capacity\s+|inventory\s+|overload\s+)?(?:constraint|shortage|overload)\s+resulted\s+from\s+(?:that\s+)?(?:the\s+)?(?:workload\s+)?(?:transfer|redirect|shift|failover|handoff|reassignment|committed\s+(?:capacity|load))\b/gi,
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:current\s+)?(?:\w+\s+){0,3}problem\s+resulted\s+from\b[^.?\n]{0,100}\bafter\s+([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\b/gi,
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:issue|outage|shortage|constraint)\s+(?:was|is)\s+(?:a\s+)?(?:result|consequence)\s+of\b[^.?\n]{0,80}\b([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
   ];
@@ -371,18 +408,17 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
         upsertRole(roles, upstream, "INDIRECT_PARTICIPANT", sm[0]!.trim());
         upsertRole(roles, downstream, "DOWNSTREAM_CONSEQUENCE", sm[0]!.trim());
       } else {
-        // Link any known redirect origin → this downstream entity
+        // Link any known redirect/reassignment origin → this downstream entity
         for (const l of [...links]) {
           if (
             (l.kind === "UPSTREAM_TRIGGER" || l.kind === "INDIRECT_CAUSAL_DEPENDENCY") &&
             key(l.to) === key(downstream)
           ) {
-            // already linked via redirect
             upsertRole(roles, downstream, "DOWNSTREAM_CONSEQUENCE", sm[0]!.trim());
           } else if (
             (l.kind === "UPSTREAM_TRIGGER" || l.kind === "INDIRECT_CAUSAL_DEPENDENCY") &&
             key(l.to) !== key(downstream) &&
-            /redirect/i.test(l.evidence)
+            /redirect|reassign|transfer|shift|failover/i.test(l.evidence)
           ) {
             pushLink(
               links,

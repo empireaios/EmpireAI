@@ -241,12 +241,15 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       return;
     }
 
-    // Mechanism-absent premise: "has no X failure" / "no coolant-valve failure"
+    // Mechanism-absent premise: "has no X failure" / "never had an operator shortage"
     const mechAbsent =
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+has\s+no\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(
         clause,
       ) ||
-      /\bno\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(clause);
+      /\bno\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b/i.exec(clause) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+never\s+had\s+(?:an?\s+)?([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,3})\s+(?:shortage|failure|outage)\b/i.exec(
+        clause,
+      );
     if (mechAbsent && !/\bunrelated|not\s+related|independent\b/i.test(clause)) {
       const actor =
         mechAbsent[1] && /^[A-Z]/.test(mechAbsent[1])
@@ -332,13 +335,21 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         /\bdifferent\s+direct\s+mechanisms?\b/i.test(t) ||
         /\bhas\s+no\s+.+\s+failure\b/i.test(t) ||
         /\b(?:did|does)\s+not\s+share\b/i.test(t) ||
-        /\blacks\b.{0,40}\bdirect\b/i.test(t)
+        /\blacks\b.{0,40}\bdirect\b/i.test(t) ||
+        /\bnever\s+had\b/i.test(t)
       ) {
         push({
           kind: "causal_different_root",
           text: clause,
           entities: ents,
         });
+        if (/\bnever\s+had\b|\bhas\s+no\b|\blacks\b/i.test(t)) {
+          push({
+            kind: "mechanism_absent",
+            text: clause,
+            entities: [ents[0]],
+          });
+        }
       }
       push({
         kind: "causal_unrelated",

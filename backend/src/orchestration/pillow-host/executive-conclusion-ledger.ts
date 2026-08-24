@@ -553,6 +553,24 @@ function stripAllClaimBlocks(answer: string): string {
 }
 
 /**
+ * When canonical owns claim verdicts, LLM body must not keep competing **Verdict:** surfaces.
+ * Explanation prose may remain; contradictory verdict labels may not.
+ */
+export function stripCompetingVerdictSurfaces(body: string): string {
+  let out = String(body || "");
+  // Standalone markdown verdict lines outside Claim blocks
+  out = out.replace(/(?:^|\n)\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)[^\n]*/gi, "\n");
+  // "The claim is Supported" / "— Supported," / "verdict: Supported"
+  out = out.replace(
+    /\b(?:the\s+claim\s+is|claim\s+assessment\s*:?[^.]*?|this\s+(?:claim|assertion)\s+is)\s+Supported\b/gi,
+    "the claim is under canonical audit",
+  );
+  out = out.replace(/\s+[—–-]\s*Supported\b/gi, "");
+  out = out.replace(/\bverdict\s*(?:is|:)\s*Supported\b/gi, "verdict pending canonical claim block");
+  return out.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/**
  * Ensure Claim 1..N appear in original order. Verdicts prefer canonical case state.
  * Later claim audits that reverse earlier verified conclusions are rewritten.
  */
@@ -593,7 +611,9 @@ export function enforceClaimEnumeration(
     orderedBlocks.push(block!.trim());
   }
 
-  const body = stripAllClaimBlocks(original);
+  // Canonical Claim blocks are the sole verdict authority for these obligations.
+  let body = stripCompetingVerdictSurfaces(stripAllClaimBlocks(original));
+  if (body !== stripAllClaimBlocks(original)) repaired = true;
   const message = `${body}\n\n${orderedBlocks.join("\n\n")}`.replace(/\n{3,}/g, "\n\n").trim();
   if (message !== original) repaired = true;
   return { message, repaired, report: assessClaimEnumeration(message, claims) };

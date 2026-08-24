@@ -119,6 +119,26 @@ export function finalVisibleSemanticsFail(
       coverage,
     };
   }
+  // Resolved claim authority: no competing **Verdict:** Supported outside Claim blocks
+  // when a Claim N block already carries Contradicted/Unproven from canonical.
+  const claimContradicted = /Claim\s*\d+\b[\s\S]{0,200}\*\*Verdict:\*\*\s*(?:\*\*)?(?:Contradicted|Unproven)/i.test(
+    finalVisibleText,
+  );
+  const body = String(finalVisibleText || "").replace(
+    /(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi,
+    "\n",
+  );
+  if (
+    claimContradicted &&
+    /\*\*Verdict:\*\*\s*(?:\*\*)?Supported\b/i.test(body)
+  ) {
+    return {
+      fail: true,
+      reason: "RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED",
+      contract,
+      coverage,
+    };
+  }
   return { fail: false, reason: null, contract, coverage };
 }
 
