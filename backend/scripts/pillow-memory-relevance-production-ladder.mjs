@@ -20,7 +20,8 @@ const APEX_GENERIC =
   /A later refund or reversal changes economic treatment; it does not by itself erase that the earlier verified event historically occurred/i;
 const DOCTRINE_DUMP =
   /\*\*Event-state reading:\*\*|refund, return, chargeback, compensation, (?:or )?SLA failure does not by itself|later refund alone does not erase|Do not select on price alone:\s*require a clear refund\/returns policy|Net-after-refund conclusions need explicit gross/i;
-const LIVE_LEAK = /\bMini Fan\b|\bBirth\b|\bGrand King\b|sales-history evidence beyond realised/i;
+const LIVE_LEAK =
+  /\bMini Fan\b|\bBirth\b|sales-history evidence beyond realised|verified sales-history/i;
 
 function extractCookie(res) {
   const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
