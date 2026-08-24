@@ -121,6 +121,18 @@ export function stripUnmappedVisibleDoctrine(
         /\n*Net-after-refund conclusions need explicit gross[\s\S]*?(?=(?:\n#{1,3}\s)|\n\n|$)/gi,
         "\n",
       );
+      out = out.replace(
+        /\n*What can be concluded: perform only the arithmetic the pack supports[^\n]*/gi,
+        "",
+      );
+      out = out.replace(
+        /\n*\*\*Need:\*\*\s*the stated gross\/realised figure, refund quantity or amount[^\n]*/gi,
+        "",
+      );
+      out = out.replace(
+        /\n*the stated gross\/realised figure, refund quantity or amount[^\n]*/gi,
+        "",
+      );
     }
   }
 

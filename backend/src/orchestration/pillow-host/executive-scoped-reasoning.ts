@@ -128,11 +128,15 @@ export function synthesizeEvidenceStructureAudit(
     conclude =
       "What can be concluded: treat customer and order figures as distinct evidence classes until reconciled explicitly.";
   } else if (
-    /refund|net after|after refund|compute net|arithmetic|subtract(?:ed|ion)?/i.test(s)
+    /(?:net after|after refund|compute net|arithmetic|subtract(?:ed|ion)?)/i.test(s) ||
+    (/\brefunds?\b/i.test(s) &&
+      !/\bno\s+(?:commercial\s+)?refunds?\b/i.test(s) &&
+      !/\brefund\s+is\s+(?:not\s+)?(?:in\s+scope|discussed|relevant)\b/i.test(s))
   ) {
     if (
       /completed|delivered|performed|occurred|histor/i.test(s) &&
-      /\b(?:refunds?|charge\s*-?backs?|compensat(?:ed|ion)|economic\s+revers)/i.test(s)
+      /\b(?:refunds?|charge\s*-?backs?|compensat(?:ed|ion)|economic\s+revers)/i.test(s) &&
+      !/\bno\s+(?:commercial\s+)?refunds?\b/i.test(s)
     ) {
       verdict = "Occurrence preserved; later outcome separate";
       reason =
@@ -141,7 +145,7 @@ export function synthesizeEvidenceStructureAudit(
         "Keep occurrence distinct from later economic treatment. Only record-invalidating evidence (fraud, void, never executed) may erase historical occurrence.";
       conclude =
         "What can be concluded: historical completion can stand while later economic outcomes are recorded separately.";
-    } else {
+    } else if (/\brefunds?\b/i.test(s) && !/\bno\s+(?:commercial\s+)?refunds?\b/i.test(s)) {
       verdict = "Arithmetic requires stated operands";
       reason =
         "Net-after-refund conclusions need explicit gross, refund, and unit definitions from the pack. Missing operands stay locally unknown — do not invent ledger math.";
@@ -149,6 +153,14 @@ export function synthesizeEvidenceStructureAudit(
         "the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand.";
       conclude =
         "What can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.";
+    } else {
+      // "No refund" / eligibility-only packs must not enter refund arithmetic doctrine.
+      verdict = "Unsupported as established fact";
+      reason =
+        "The supplied claim does not carry enough evidential force on its own to treat it as settled.";
+      need = "independent verification against an authoritative source for this scenario.";
+      conclude =
+        "What can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.";
     }
   } else if (
     /each (?:quoted )?claim|claim[- ]by[- ]claim|verdict each|quoted claims?|Claim\s+\d+/i.test(

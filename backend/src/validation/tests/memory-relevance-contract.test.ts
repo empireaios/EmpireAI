@@ -99,6 +99,21 @@ describe("memory relevance contract", () => {
     assert.ok(!gate.message.includes(APEX_GENERIC));
   });
 
+  it("simple eligibility with 'No refund' does not surface refund arithmetic stubs", () => {
+    const pack =
+      "SyntheticMR-04 — energy ops only. Do not mention Mini Fan or Birth.\nNode Cedar is currently eligible. Summarize eligibility in two sentences. No refund.";
+    const dirty = [
+      "Node Cedar is currently eligible.",
+      "",
+      "What can be concluded: perform only the arithmetic the pack supports; otherwise mark the net figure locally unavailable.",
+      "",
+      "**Need:** the stated gross/realised figure, refund quantity or amount, and whether units or currency are the operand.",
+    ].join("\n");
+    const polished = polishFinalVisibleAnswer(dirty, pack);
+    assert.doesNotMatch(polished, /refund quantity or amount|perform only the arithmetic the pack supports/i);
+    assert.match(polished, /currently eligible/i);
+  });
+
   it("assessment distinguishes retrieved/relevant/visible", () => {
     const a = assessOccurrenceLessonRelevance(
       "Line completed. Historical cleared. Currently eligible.",
