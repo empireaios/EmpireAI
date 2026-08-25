@@ -2,9 +2,9 @@
 
 **Authority:** Grand King  
 **Mission:** CROSS_REPAIR_INVARIANT_PRESERVATION (P0 / Wave-1 / Birth-blocking)  
-**FINAL_UNCHANGED_LIVE_SHA (code):** `4ab8cefd51216cf5d312f6b24d64700cadbaeced`  
-**Deployment ID:** `0a90b2f9-78d4-4296-b991-fdac635d9550`  
-**Prior live candidate:** `0f30aaa88d830131b3bc8ee7614de34b1abc1944`  
+**FINAL_UNCHANGED_LIVE_SHA (code):** `470aa13bf2cc72be65549bb079fbb6dd6db3b84e`  
+**Deployment ID:** `b2bf7737-a518-42e8-a03e-9731d92a1df8`  
+**Prior sealed candidate:** `4ab8cefd51216cf5d312f6b24d64700cadbaeced`  
 **Docs seal SHA:** (this commit; separate from code SHA)
 
 ## Certification state (unchanged — Cursor PASS ≠ Wave credit)
@@ -26,8 +26,10 @@ Independent Crestline-class failure after memory-relevance repair on `0f30aaa8`:
 4. Existing suites often used quoted / stronger fixtures than real Crestline soft prompts.
 5. Graders that only checked prose (not explicit `**Verdict:**`) could miss Supported leftovers.
 
+**Follow-up residual (closed on `470aa13b`):** bare `Assess:` / `Assess: "..."` also extracted zero claims when the draft lacked `### Claim N` markers → soft `**Verdict:** Supported` survived. Fixed by binding `\bassess\s*:` as a soft claim cue (colon required so narrative “assess risk…” does not bind).
+
 **CRESTLINE_REGRESSION_ROOT_CAUSE_PROVEN=YES**  
-**WHY_0F30AAA8_REGRESSION_MISSED=soft_claim_newline_gap + fixture_stronger_than_raw + no_cross_invariant_deploy_gate**
+**WHY_0F30AAA8_REGRESSION_MISSED=soft_claim_newline_gap + bare_Assess_cue_gap + fixture_stronger_than_raw + no_cross_invariant_deploy_gate**
 
 ## B–J. Architecture & gates
 
@@ -37,47 +39,48 @@ Independent Crestline-class failure after memory-relevance repair on `0f30aaa8`:
 | RAW_VARIANTS_PER_INVARIANT | ≥5 |
 | CROSS_INVARIANT_CASES | ≥100 |
 | PAIRWISE_INTERACTION_CASES | ≥100 |
-| FAST_INVARIANT_GATE | PASS (`npm run gate:fast-invariant`) |
-| DEPLOY_INVARIANT_GATE | PASS (`npm run gate:deploy-invariant`; wired into `verify:production-deploy`) |
-| FULL_CERTIFICATION_GATE | PASS (`npm run gate:full-certification`) |
-| CHANGE_IMPACT_MAPPING | YES (`describeChangeImpact` / `requiredRegressionsForPaths`) |
-| PERMANENT_SEMANTIC_WORKFLOW_INTEGRATED | YES — see `CROSS_REPAIR_INVARIANT_PRESERVATION_WORKFLOW.md` |
-| Interaction matrix | YES — `buildCriticalInteractionMatrix` + deploy pairwise suite |
+| FAST_INVARIANT_GATE | PASS |
+| DEPLOY_INVARIANT_GATE | PASS (15/15 on `470aa13b`; wired into `verify:production-deploy`) |
+| FULL_CERTIFICATION_GATE | PASS (IC stack; deploy gate reconfirmed) |
+| CHANGE_IMPACT_MAPPING | YES |
+| PERMANENT_SEMANTIC_WORKFLOW_INTEGRATED | YES — `CROSS_REPAIR_INVARIANT_PRESERVATION_WORKFLOW.md` |
+| Bare `Assess:` soft cue regression | PASS (fast + deploy) |
 
 ## K–O. Repair + preservation
 
 | Gate | Result |
 |------|--------|
-| Soft newline claim extract | FIXED (`executive-canonical-state.ts`) |
-| Single soft claim → claim_1 bind | FIXED (`executive-task-contract.ts`) |
-| `no causal relationship` pairing | FIXED (`executive-claim-proposition.ts`) |
-| CRESTLINE_FAILURE_CLASS_GENERALIZED_PASS | YES (randomized domains; no sealed names) |
-| MEMORY_RELEVANCE_PASS / IRRELEVANT_VISIBLE_DOCTRINE | 0 |
-| RESOLVED_VERDICT_AUTHORITY / LLM_RESOLVED_VERDICT_OVERRIDE | 0 (resolved-verdict-authority regression PASS) |
+| Soft newline claim extract | FIXED |
+| Bare `Assess:` cue bind | FIXED (`470aa13b`) |
+| Single soft claim → claim_1 bind | FIXED |
+| `no causal relationship` pairing | FIXED |
+| CRESTLINE_FAILURE_CLASS_GENERALIZED_PASS | YES |
+| MEMORY_RELEVANCE / IRRELEVANT_VISIBLE_DOCTRINE | 0 |
+| RESOLVED_VERDICT_AUTHORITY / LLM override | 0 |
 | NEGATIVE_CONTROL_FALSE_PASS | 0 |
 
 ## P–Q. Regression + production
 
 | Gate | Result |
 |------|--------|
-| FULL_EXISTING_REGRESSION_PASS | YES — L1–L4, repair3/4, causal, memory raw, timestamps, verdict authority, accepted-request, foundation/constitutional |
-| PRODUCTION_FIRST_VISIBLE_PASS | YES — 8/8 combined ladder |
+| DEPLOY_INVARIANT_GATE on live candidate | PASS 15/15 |
+| PRODUCTION_FIRST_VISIBLE_PASS | YES — 8/8 on `470aa13b` |
 | Evidence | `INDEPENDENT_CLOSURE_PRODUCTION_COMBINED_LADDER.json` |
 | IRRELEVANT_VISIBLE_DOCTRINE (prod) | 0 |
 | FINAL_VERDICT_MISMATCH (prod) | 0 |
 
 ## R–T. Cost / commits / SHA
 
-- Production ladder wall ~59s; per-trial ~2–13s first-visible.
-- Code commit: `4ab8cefd` — soft-claim causal binding + IC gates + workflow.
-- Docs seal: this commit (does not change live code SHA).
-- **FINAL_CANDIDATE_SINGLE_SHA=YES** — live code unchanged at `4ab8cefd`.
+- Production ladder wall ~65s.
+- Code: `4ab8cefd` → `470aa13b` (bare `Assess:`).
+- Docs seal: this commit.
+- **FINAL_CANDIDATE_SINGLE_SHA=YES** — live code `470aa13b` / dep `b2bf7737`.
 
 ## U. Remaining weaknesses
 
-- Some first-visible answers still use prose “supported/not supported” before canonical `### Claim N` / `**Verdict:**` blocks; graders must keep grading the explicit verdict.
-- Population-scope prose can still over-assert before the explicit Unproven/Contradicted block (IC-10/IC-14 tension under LLM narration).
-- `railway up` (upload) does not inject `RAILWAY_GIT_COMMIT_SHA`; use `railway redeploy --from-source` for SHA-visible production candidates.
+- Prose may say “supported” before canonical Claim/`**Verdict:**` blocks.
+- Interrogative soft forms (`Is … unrelated because …?`) remain thinner than `Assess:` cues.
+- Prefer `railway redeploy --from-source` for SHA injection.
 
 ## V. Certification state
 
