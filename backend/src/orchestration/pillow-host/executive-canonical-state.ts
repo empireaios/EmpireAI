@@ -153,10 +153,18 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   };
 
   const quoted =
-    /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*[“"']([^”"']{8,500})[”"']/gi;
+    /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*[“"]([^”"]{8,500})[”"]/gi;
   let m: RegExpExecArray | null;
   while ((m = quoted.exec(text)) !== null) {
     push(m[2]!, m[1]!);
+  }
+  // Single-quoted numbered claims (no apostrophe-bearing body expected)
+  if (claims.length < 1) {
+    const singleQ =
+      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*'([^']{8,500})'/gi;
+    while ((m = singleQ.exec(text)) !== null) {
+      push(m[2]!, m[1]!);
+    }
   }
 
   // "claim audit of:" / "Audit claims:" / "verdicts on:" block — only quoted lines
@@ -166,7 +174,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     );
     if (block?.[1]) {
       let qi = 0;
-      const q = /[“"']([^”"']{8,500})[”"']/g;
+      const q = /[“"]([^”"]{8,500})[”"]/g;
       while ((m = q.exec(block[1])) !== null) {
         qi += 1;
         push(m[1]!, String(qi));
@@ -177,7 +185,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   // Fallback: any numbered or bullet-quoted lines near a claim/verdict ask
   if (claims.length < 2) {
     let qi = claims.length;
-    const q = /(?:^|\n)\s*(?:\d{1,2}\s*[.):\-]\s*)?[“"']([^”"']{8,500})[”"']/g;
+    const q = /(?:^|\n)\s*(?:\d{1,2}\s*[.):\-]\s*)?[“"]([^”"]{8,500})[”"]/g;
     while ((m = q.exec(text)) !== null) {
       const near = text.slice(Math.max(0, (m.index ?? 0) - 80), (m.index ?? 0) + 20);
       if (
@@ -208,7 +216,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
       }
       // Require proposition shape — not bare section titles.
       if (
-        !/\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share)\b/i.test(
+        !/\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+|no\s+causal|causal\s+relationship|nothing\s+to\s+do\s+with)\b/i.test(
           line,
         )
       ) {
@@ -225,10 +233,10 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     // Bare "Assess:" (quoted or newline proposition) is a real Crestline/MR soft cue —
     // require the colon so "assess risk …" narrative does not bind as a claim ask.
     const soft =
-      /\b(?:assess\s+this\s+claim\s*:?|assess\s*:|separate\s+verdict\s+on\s*:?|verdict\s+on\s*:?|judge(?:\s+this\s+claim)?\s*:?)\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+      /\b(?:assess\s+this\s+claim\s*:?|assess\s*:|separate\s+verdict\s+on\s*:?|verdict\s+on\s*:?|judge(?:\s+this\s+claim)?\s*:?)\s*(?:\r?\n\s*)?(?:[“"]([^”"]{12,400})[”"]|([^\n]{12,400}))/i.exec(
         text,
       ) ||
-      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:\r?\n\s*)?(?:[“"]([^”"]{12,400})[”"]|([^\n]{12,400}))/i.exec(
         text,
       );
     if (soft) {
@@ -239,7 +247,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
         soft[1] && /^\d+$/.test(soft[1]) ? (soft[2] || soft[3] || "").replace(/\s+/g, " ").trim() : line;
       if (
         proposition &&
-        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+|no\s+causal|causal\s+relationship)\b/i.test(
+        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+|no\s+causal|causal\s+relationship|nothing\s+to\s+do\s+with)\b/i.test(
           proposition,
         )
       ) {

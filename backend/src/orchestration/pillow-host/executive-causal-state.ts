@@ -544,30 +544,78 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
   };
 }
 
+/**
+ * Expand multi-word labels (Bench Quay → Quay) and graph nodes that share
+ * the distinctive last token so claim entities bind to causal pack names.
+ */
+function entityCandidateKeys(name: string, state: CanonicalCausalState): string[] {
+  const raw = key(name);
+  if (!raw) return [];
+  const out = new Set<string>([raw]);
+  const tokens = String(name || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (tokens.length >= 2) {
+    const lastTok = tokens[tokens.length - 1]!;
+    const last = key(lastTok);
+    if (last && !RESERVED.has(lastTok.toLowerCase())) out.add(last);
+  }
+  const nodes = new Set<string>();
+  for (const l of state.links) {
+    nodes.add(l.from);
+    nodes.add(l.to);
+  }
+  for (const r of state.roles) nodes.add(r.entity);
+  const rawLast = tokens.length ? key(tokens[tokens.length - 1]!) : "";
+  for (const n of nodes) {
+    const nk = key(n);
+    const nTokens = String(n)
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    const nLast = nTokens.length ? key(nTokens[nTokens.length - 1]!) : "";
+    if (
+      nk === raw ||
+      (rawLast && (nk === rawLast || nLast === raw || nLast === rawLast))
+    ) {
+      out.add(nk);
+      if (nLast) out.add(nLast);
+    }
+  }
+  return [...out];
+}
+
 export function hasCausalPath(
   state: CanonicalCausalState,
   from: string,
   to: string,
 ): boolean {
-  const start = key(from);
-  const goal = key(to);
-  if (!start || !goal) return false;
+  const starts = entityCandidateKeys(from, state);
+  const goals = new Set(entityCandidateKeys(to, state));
+  if (starts.length < 1 || goals.size < 1) return false;
   const adj = new Map<string, string[]>();
   for (const l of state.links) {
     if (l.kind === "CORRELATION_ONLY") continue;
-    const a = key(l.from);
-    const b = key(l.to);
-    if (!adj.has(a)) adj.set(a, []);
-    adj.get(a)!.push(b);
+    const aKeys = entityCandidateKeys(l.from, state);
+    const bKeys = entityCandidateKeys(l.to, state);
+    for (const a of aKeys) {
+      if (!adj.has(a)) adj.set(a, []);
+      for (const b of bKeys) {
+        if (a !== b) adj.get(a)!.push(b);
+      }
+    }
   }
   const seen = new Set<string>();
-  const stack = [start];
+  const stack = [...starts];
   while (stack.length) {
     const cur = stack.pop()!;
-    if (cur === goal) return true;
     if (seen.has(cur)) continue;
     seen.add(cur);
-    for (const nxt of adj.get(cur) || []) stack.push(nxt);
+    for (const nxt of adj.get(cur) || []) {
+      if (goals.has(nxt)) return true;
+      stack.push(nxt);
+    }
   }
   return false;
 }

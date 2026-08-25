@@ -9,6 +9,10 @@ import {
   type CanonicalCaseState,
 } from "./executive-canonical-state.js";
 import { assessClaimAgainstCanonical } from "./executive-claim-proposition.js";
+import {
+  buildFinalVerdictObject,
+  reconcileExplanationWithLockedVerdict,
+} from "./executive-final-verdict.js";
 
 export type LedgerVerdict = "supported" | "contradicted" | "unproven" | "unknown";
 
@@ -282,7 +286,9 @@ function verdictForClaimAgainstLedger(
   // (analysis → claim → synthesis) — only resolved canonical verdicts own the surface.
   if (canonical) {
     const v = assessClaimAgainstCanonical(claim.sourceText, canonical);
-    if (v.overall === "supported" || v.overall === "contradicted" || v.overall === "unknown") {
+    const material = v.components.filter((c) => c.proposition.kind !== "generic");
+    // Material propositions → canonical owns Supported/Contradicted/Unproven/Unknown.
+    if (material.length >= 1) {
       return { verdict: v.overall, justification: v.justification };
     }
   }
@@ -314,9 +320,13 @@ function verdictForClaimAgainstLedger(
   }
 
   // Unrelated claim vs earlier causal connection
-  if (/\bunrelated|not\s+related|causally\s+independent\b/i.test(t)) {
+  if (
+    /\bunrelated|not\s+related|causally\s+independent|nothing\s+to\s+do\s+with|no\s+causal\s+(?:link|connection|relationship)\b/i.test(
+      t,
+    )
+  ) {
     const pair =
-      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,100}?unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+      /\b([A-Z][A-Za-z0-9_-]*(?:\s+[A-Z][A-Za-z0-9_-]*){0,2}).{0,100}?(?:unrelated\s+to|nothing\s+to\s+do\s+with)\s+([A-Z][A-Za-z0-9_-]*(?:\s+[A-Z][A-Za-z0-9_-]*){0,2})\b/i.exec(
         t,
       ) ||
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:are|were)\s+(?:unrelated|not\s+related)/i.exec(
@@ -407,21 +417,40 @@ export function synthesizeClaimVerdictBlock(
   domainHint?: string,
   canonical?: CanonicalCaseState | null,
 ): string {
+  const locked = canonical
+    ? buildFinalVerdictObject(claim.id, claim.sourceText, canonical)
+    : null;
   const fromLedger = verdictForClaimAgainstLedger(claim, ledger, canonical);
-  const verdict = fromLedger?.verdict ?? "unproven";
-  const justification =
-    fromLedger?.justification ??
-    (domainHint
-      ? `Not established from the supplied ${domainHint} scenario evidence alone.`
-      : "Not established from the supplied scenario evidence alone.");
+
+  // RESOLVED → canonical owns the final visible verdict. LLM may not override.
+  let verdict: LedgerVerdict =
+    locked?.resolutionStatus === "RESOLVED"
+      ? locked.canonicalVerdict
+      : (fromLedger?.verdict ?? "unproven");
+  let justification =
+    locked?.resolutionStatus === "RESOLVED"
+      ? locked.explanationInput
+      : (fromLedger?.justification ??
+        (domainHint
+          ? `Not established from the supplied ${domainHint} scenario evidence alone.`
+          : "Not established from the supplied scenario evidence alone."));
+
+  if (locked?.resolutionStatus === "RESOLVED") {
+    const recon = reconcileExplanationWithLockedVerdict(justification, locked);
+    justification = recon.explanation;
+    verdict = locked.canonicalVerdict;
+  }
+
   const label =
-    verdict === "supported"
-      ? "Supported"
-      : verdict === "contradicted"
-        ? "Contradicted"
-        : verdict === "unknown"
-          ? "Unknown"
-          : "Unproven / not established";
+    locked?.resolutionStatus === "RESOLVED"
+      ? locked.finalVisibleVerdict
+      : verdict === "supported"
+        ? "Supported"
+        : verdict === "contradicted"
+          ? "Contradicted"
+          : verdict === "unknown"
+            ? "Unknown"
+            : "Unproven / not established";
   return [
     `### Claim ${claim.index}`,
     `**Verdict:** ${label}`,
@@ -559,8 +588,19 @@ function stripAllClaimBlocks(answer: string): string {
  */
 export function stripCompetingVerdictSurfaces(body: string): string {
   let out = String(body || "");
-  // Standalone markdown verdict lines outside Claim blocks
-  out = out.replace(/(?:^|\n)\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)[^\n]*/gi, "\n");
+  // Standalone markdown verdict lines (including mid-line after a period)
+  out = out.replace(
+    /(?:^|\n)\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)[^\n]*/gi,
+    "\n",
+  );
+  out = out.replace(
+    /([.!?])\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)\b[^\n]*/gi,
+    "$1",
+  );
+  out = out.replace(
+    /\s+\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)\b/gi,
+    "",
+  );
   // "The claim is Supported" / "— Supported," / "verdict: Supported"
   out = out.replace(
     /\b(?:the\s+claim\s+is|claim\s+assessment\s*:?[^.]*?|this\s+(?:claim|assertion)\s+is)\s+Supported\b/gi,
@@ -568,6 +608,31 @@ export function stripCompetingVerdictSurfaces(body: string): string {
   );
   out = out.replace(/\s+[—–-]\s*Supported\b/gi, "");
   out = out.replace(/\bverdict\s*(?:is|:)\s*Supported\b/gi, "verdict pending canonical claim block");
+  return out.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/**
+ * When canonical locks CONTRADICTED on an independence/unrelatedness claim,
+ * body prose must not assert that independence holds.
+ */
+export function scrubContradictedIndependenceProse(body: string): string {
+  let out = String(body || "");
+  out = out.replace(
+    /\b(?:so|therefore|thus|hence)\s+(?:the\s+)?(?:shortage|problem|issue|constraint)\s+is\s+(?:independent|unrelated)\b/gi,
+    "but an indirect causal link remains in canonical state",
+  );
+  out = out.replace(
+    /\b(?:is|are)\s+(?:therefore\s+)?(?:fully\s+)?(?:independent|unrelated)\b(?![^.!?\n]{0,40}(?:not|false|incorrect|contradict))/gi,
+    "remain causally linked via the established transfer path",
+  );
+  out = out.replace(
+    /\bhas\s+nothing\s+to\s+do\s+with\b(?![^.!?\n]{0,40}(?:not|false|incorrect|contradict))/gi,
+    "is not free of causal connection to",
+  );
+  out = out.replace(
+    /\bDifferent\s+direct\s+mechanism\s+implies\s+unrelated\b/gi,
+    "Different direct mechanism does not entail causal unrelatedness",
+  );
   return out.replace(/\n{3,}/g, "\n\n").trim();
 }
 
@@ -598,10 +663,17 @@ export function enforceClaimEnumeration(
   for (const c of claims) {
     let block = extractClaimBlock(original, c.index);
     const fromLedger = verdictForClaimAgainstLedger(c, ledger, canonical);
-    // Always regenerate claim slices when canonical/ledger can speak, or when no block.
-    // Never keep an LLM Supported that silently reverses established propositions.
-    // Safety: if canonical exists, always regen — null fromLedger still synthesizes Unproven.
-    const mustRegen = !block || fromLedger != null || Boolean(canonical);
+    const locked = canonical
+      ? buildFinalVerdictObject(c.id, c.sourceText, canonical)
+      : null;
+    // RESOLVED claims: always regenerate from canonical (FINAL_VERDICT_LOCKED).
+    // UNRESOLVED: do not over-determinize — keep LLM block when present.
+    const mustRegen =
+      !block ||
+      locked?.resolutionStatus === "RESOLVED" ||
+      (fromLedger != null &&
+        (fromLedger.verdict === "supported" || fromLedger.verdict === "contradicted")) ||
+      (Boolean(canonical) && locked?.resolutionStatus === "RESOLVED");
     if (mustRegen) {
       block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
@@ -612,9 +684,29 @@ export function enforceClaimEnumeration(
     orderedBlocks.push(block!.trim());
   }
 
-  // Canonical Claim blocks are the sole verdict authority for these obligations.
+  // Canonical Claim blocks are the sole verdict authority for resolved obligations.
   let body = stripCompetingVerdictSurfaces(stripAllClaimBlocks(original));
-  if (body !== stripAllClaimBlocks(original)) repaired = true;
+  const anyResolvedContradicted = claims.some((c) => {
+    const locked = canonical
+      ? buildFinalVerdictObject(c.id, c.sourceText, canonical)
+      : null;
+    return (
+      locked?.resolutionStatus === "RESOLVED" && locked.canonicalVerdict === "contradicted"
+    );
+  });
+  if (anyResolvedContradicted) {
+    body = scrubContradictedIndependenceProse(body);
+    body = stripCompetingVerdictSurfaces(body);
+  } else if (
+    claims.some((c) => {
+      const locked = canonical
+        ? buildFinalVerdictObject(c.id, c.sourceText, canonical)
+        : null;
+      return locked?.resolutionStatus === "RESOLVED";
+    })
+  ) {
+    body = stripCompetingVerdictSurfaces(body);
+  }
   const message = `${body}\n\n${orderedBlocks.join("\n\n")}`.replace(/\n{3,}/g, "\n\n").trim();
   if (message !== original) repaired = true;
   return { message, repaired, report: assessClaimEnumeration(message, claims) };

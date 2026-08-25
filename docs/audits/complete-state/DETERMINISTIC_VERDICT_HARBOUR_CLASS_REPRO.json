@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-08-25T15:53:11.165Z",
+  "rows": [
+    {
+      "id": "lab_transfer_nothing_to_do",
+      "extracted": 1,
+      "canonicalOverall": "contradicted",
+      "softFinal": "Contradicted",
+      "claimFinal": "Contradicted",
+      "releaseFinal": "Contradicted",
+      "leftoverSupportedSoft": 0,
+      "leftoverSupportedRelease": 0
+    },
+    {
+      "id": "retail_unrelated_never_had",
+      "extracted": 1,
+      "canonicalOverall": "contradicted",
+      "softFinal": "Contradicted",
+      "claimFinal": "Contradicted",
+      "releaseFinal": "Contradicted",
+      "leftoverSupportedSoft": 0,
+      "leftoverSupportedRelease": 0
+    },
+    {
+      "id": "energy_no_causal_soft_draft",
+      "extracted": 1,
+      "canonicalOverall": "contradicted",
+      "softFinal": "Contradicted",
+      "claimFinal": "Contradicted",
+      "releaseFinal": "Contradicted",
+      "leftoverSupportedSoft": 0,
+      "leftoverSupportedRelease": 0
+    },
+    {
+      "id": "soft_supported_no_claim_markers",
+      "extracted": 1,
+      "canonicalOverall": "contradicted",
+      "softFinal": "Contradicted",
+      "claimFinal": "Contradicted",
+      "releaseFinal": "Contradicted",
+      "leftoverSupportedSoft": 0,
+      "leftoverSupportedRelease": 0
+    }
+  ]
+}

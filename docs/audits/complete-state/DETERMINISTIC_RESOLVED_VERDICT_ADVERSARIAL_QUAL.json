@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-08-25T16:13:23.828Z",
+  "corpusTotal": 370,
+  "resolvedCount": 315,
+  "compoundCount": 175,
+  "temptationCount": 295,
+  "judgmentCount": 55,
+  "RESOLVED_FINAL_VERDICT_ERROR": 0,
+  "LEFTOVER_SUPPORTED_OVERRIDES": 0,
+  "OVER_DETERMINIZATION": 0,
+  "resolvedErrors": [],
+  "overDetErrors": [],
+  "thresholds": {
+    "resolvedMin": 200,
+    "compoundMin": 100,
+    "temptationMin": 50,
+    "judgmentMin": 50
+  },
+  "pass": true
+}

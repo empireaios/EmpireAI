@@ -51,6 +51,7 @@ import {
 } from "./executive-final-release.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
+import { countLeftoverSupportedOverrides } from "./executive-final-verdict.js";
 import {
   detectReasoningScope,
   isScopedAwayFromLiveEmpire,
@@ -66,6 +67,7 @@ import {
   enforceClaimEnumeration,
   parseClaimObligationsFromContractTasks,
   parseClaimObligationsFromAnswer,
+  stripCompetingVerdictSurfaces,
 } from "./executive-conclusion-ledger.js";
 import { buildCanonicalCaseState } from "./executive-canonical-state.js";
 import { detectScenarioDomain } from "./executive-memory-realization.js";
@@ -566,6 +568,22 @@ function finalizeVisible(
   }
 
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
+  if (countLeftoverSupportedOverrides(rendered) > 0) {
+    rendered = stripCompetingVerdictSurfaces(
+      rendered.replace(
+        /(?:^|\n)(?!#{1,3}\s*Claim\s*\d)([\s\S]*?)(?=(?:\n#{1,3}\s*Claim\s*\d)|$)/gi,
+        (chunk) => stripCompetingVerdictSurfaces(chunk),
+      ),
+    );
+    // Re-enforce claim blocks after leftover Supported purge.
+    if (claimObs.length >= 1) {
+      rendered = enforceClaimEnumeration(rendered, claimObs, {
+        domainHint: detectScenarioDomain(userMessage ?? ""),
+        userMessage: userMessage ?? "",
+        canonical,
+      }).message;
+    }
+  }
   const ux =
     level === "normal"
       ? assessConversationalUx(rendered)
@@ -579,6 +597,9 @@ function finalizeVisible(
         canonical: buildCanonicalCaseState(userMessage ?? ""),
       }).length > 0
         ? ["CONSISTENCY_FAILURE"]
+        : []),
+      ...(countLeftoverSupportedOverrides(rendered) > 0
+        ? ["RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED"]
         : []),
     ],
   };

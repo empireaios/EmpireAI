@@ -22,8 +22,18 @@ const r = spawnSync(
   { cwd: backendRoot, stdio: "inherit", env: process.env },
 );
 if (r.status !== 0) {
-  console.error("DEPLOY_INVARIANT_GATE: FAIL");
+  console.error("DEPLOY_INVARIANT_GATE: FAIL (test suites)");
   process.exit(r.status ?? 1);
+}
+
+const qual = spawnSync(
+  process.execPath,
+  ["--import", "tsx", "scripts/resolved-verdict-adversarial-qualify.mjs"],
+  { cwd: backendRoot, stdio: "inherit", env: process.env },
+);
+if (qual.status !== 0) {
+  console.error("DEPLOY_INVARIANT_GATE: FAIL (resolved-verdict-adversarial-qualify)");
+  process.exit(qual.status ?? 1);
 }
 console.log("DEPLOY_INVARIANT_GATE: PASS");
 process.exit(0);
