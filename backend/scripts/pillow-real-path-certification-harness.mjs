@@ -39,16 +39,26 @@ function extractCookie(res) {
 }
 
 async function createSession(cookie, forceNew = true) {
-  const r = await fetch(`${COCKPIT}/api/pillow/session`, {
-    method: "POST",
-    headers: { "content-type": "application/json", cookie },
-    body: JSON.stringify({ forceNew }),
-    signal: AbortSignal.timeout(60_000),
-  });
-  const body = await r.json().catch(() => ({}));
-  const sessionId = body.session?.sessionId || body.sessionId;
-  if (!sessionId) throw new Error(`session_create_failed status=${r.status}`);
-  return sessionId;
+  let lastErr = "session_create_failed";
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const r = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({ forceNew }),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const body = await r.json().catch(() => ({}));
+    const sessionId = body.session?.sessionId || body.sessionId;
+    if (sessionId) return sessionId;
+    lastErr = `session_create_failed status=${r.status} body=${JSON.stringify(body).slice(0, 200)}`;
+    if (r.status === 503 || r.status === 429) {
+      await new Promise((res) => setTimeout(res, 2000 * (attempt + 1)));
+      continue;
+    }
+    break;
+  }
+  // Fallback: mint id; chat rebound now uses forceNew:true on the brain.
+  return `rp-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
 }
 
 async function chat(cookie, sessionId, message, recentTurns = []) {
