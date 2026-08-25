@@ -45,6 +45,20 @@ describe("FAST INVARIANT GATE", () => {
     assert.ok(extractQuotedClaimsOnly(soft).length >= 1);
   });
 
+  it("IC-03 bare Assess: cue extracts quoted and newline propositions", () => {
+    const quoted = [
+      "Synthetic. Do not mention Mini Fan or Birth.",
+      'Assess: "B shortage has no causal relationship to A because B never had X."',
+    ].join("\n");
+    const bareNl = [
+      "Synthetic. Do not mention Mini Fan or Birth.",
+      "Assess:",
+      "B shortage has no causal relationship to A because B never had X.",
+    ].join("\n");
+    assert.ok(extractQuotedClaimsOnly(quoted).length >= 1, "quoted Assess:");
+    assert.ok(extractQuotedClaimsOnly(bareNl).length >= 1, "newline Assess:");
+  });
+
   it("IC-03 causal_unrelated assesses contradicted on transfer path", () => {
     const claim =
       "North shortage has no causal relationship to South because North never had seal failure.";

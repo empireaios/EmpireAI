@@ -125,7 +125,7 @@ function num(m: RegExpExecArray | null, i = 1): number | null {
 export function extractQuotedClaimsOnly(userMessage: string): string[] {
   const text = String(userMessage || "");
   const asks =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bjudge\s*:|(?:^|\n)\s*\d{1,2}\s*[.):\-]\s*Claim\s*:/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bassess\s*:|\bjudge\s*:|(?:^|\n)\s*\d{1,2}\s*[.):\-]\s*Claim\s*:/i.test(
       text,
     );
   if (!asks) return [];
@@ -180,7 +180,10 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     const q = /(?:^|\n)\s*(?:\d{1,2}\s*[.):\-]\s*)?[“"']([^”"']{8,500})[”"']/g;
     while ((m = q.exec(text)) !== null) {
       const near = text.slice(Math.max(0, (m.index ?? 0) - 80), (m.index ?? 0) + 20);
-      if (!/claim|verdict|audit|evaluate/i.test(near) && !/claim|verdict|audit/i.test(text.slice(0, 200))) {
+      if (
+        !/claim|verdict|audit|evaluate|judge|assess/i.test(near) &&
+        !/claim|verdict|audit|assess\s*:/i.test(text.slice(0, 200))
+      ) {
         continue;
       }
       qi += 1;
@@ -219,8 +222,10 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   // Allow newline between cue and proposition (real Crestline-class prompts).
   // Also numbered section "3. Claim: <proposition>"
   if (claims.length < 1) {
+    // Bare "Assess:" (quoted or newline proposition) is a real Crestline/MR soft cue —
+    // require the colon so "assess risk …" narrative does not bind as a claim ask.
     const soft =
-      /\b(?:assess\s+this\s+claim|separate\s+verdict\s+on|verdict\s+on|judge(?:\s+this\s+claim)?)\s*:?\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+      /\b(?:assess\s+this\s+claim\s*:?|assess\s*:|separate\s+verdict\s+on\s*:?|verdict\s+on\s*:?|judge(?:\s+this\s+claim)?\s*:?)\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
         text,
       ) ||
       /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(

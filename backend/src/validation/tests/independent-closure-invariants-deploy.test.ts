@@ -351,6 +351,44 @@ describe("DEPLOY INVARIANT GATE — IC-03 Crestline-class soft + quoted", () => 
       assert.equal(explicitVerdict(out), "Contradicted", out.slice(0, 500));
     }
   });
+
+  it("bare Assess: soft Supported without Claim markers → Contradicted", () => {
+    const rng = mulberry32(0xba5e);
+    for (let i = 0; i < 5; i++) {
+      const d = pick(rng, DOMAINS);
+      const a = pick(rng, ACTORS);
+      const b = pick(rng, ACTORS.filter((x) => x !== a));
+      const mech = pick(rng, MECHS);
+      const res = pick(rng, RESOURCES);
+      const claim = `${b}'s ${res} shortage has no causal relationship to ${a} because ${b} never had a ${mech} failure.`;
+      const packQuoted = [
+        `SyntheticBareQ-${d}-${i} — ${d} only. Do not mention Mini Fan or Birth.`,
+        `${a} had a ${mech} failure. Work redirected to ${b}. ${b} shortage resulted from that redirect.`,
+        `${b} never had a ${mech} failure.`,
+        `Assess: "${claim}"`,
+      ].join("\n");
+      const packNl = [
+        `SyntheticBareN-${d}-${i} — ${d} only. Do not mention Mini Fan or Birth.`,
+        `${a} had a ${mech} failure. Work redirected to ${b}. ${b} shortage resulted from that redirect.`,
+        `${b} never had a ${mech} failure.`,
+        `Assess:`,
+        claim,
+      ].join("\n");
+      const softDraft = [
+        "### Conclusions",
+        "Transfer noted.",
+        "**Verdict:** Supported",
+        `"${claim}"`,
+        "Different direct mechanism implies unrelated.",
+      ].join("\n");
+      for (const pack of [packQuoted, packNl]) {
+        assert.ok(extractQuotedClaimsOnly(pack).length >= 1, pack.slice(0, 160));
+        const out = polishFinalVisibleAnswer(softDraft, pack);
+        assert.equal((out.match(/\*\*Verdict:\*\*\s*Supported/gi) || []).length, 0, out.slice(0, 400));
+        assert.match(out, /\*\*Verdict:\*\*\s*(?:\*\*)?Contradicted/i);
+      }
+    }
+  });
 });
 
 describe("DEPLOY INVARIANT GATE — >=5 raw variants per IC-01..25", () => {
