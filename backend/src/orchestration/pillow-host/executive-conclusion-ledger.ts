@@ -672,8 +672,7 @@ export function enforceClaimEnumeration(
       !block ||
       locked?.resolutionStatus === "RESOLVED" ||
       (fromLedger != null &&
-        (fromLedger.verdict === "supported" || fromLedger.verdict === "contradicted")) ||
-      (Boolean(canonical) && locked?.resolutionStatus === "RESOLVED");
+        (fromLedger.verdict === "supported" || fromLedger.verdict === "contradicted"));
     if (mustRegen) {
       block = synthesizeClaimVerdictBlock(c, ledger, options.domainHint, canonical);
       repaired = true;
