@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-08-25T02:37:44.274Z",
+  "liveSha": "4ab8cefd51216cf5d312f6b24d64700cadbaeced",
+  "deploymentId": "0a90b2f9-78d4-4296-b991-fdac635d9550",
+  "trials": 8,
+  "pass": 8,
+  "passRate": "8/8",
+  "IRRELEVANT_VISIBLE_DOCTRINE": 0,
+  "FINAL_VERDICT_MISMATCH": 0,
+  "results": [
+    {
+      "id": "IC_mem_causal_soft",
+      "class": "memory+causality+verdict",
+      "ok": true,
+      "reasons": [],
+      "ms": 6633,
+      "preview": "The claim that \"Nexus capacity shortage has no causal relationship to Prism because Nexus never had a thermal trip\" is **not supported**.\n\n### Assessment:\n\n1. **Causal Relationship**: The capacity shortage in Nexus is a direct consequence of the reassignment of work from Prism to Nexus. Therefore, even though Nexus did not experience a thermal trip, the reassignment of load from Prism directly impacted Nexus's capacity.\n\n2. **Thermal Trip Irrelevance**: The assertion that Nexus never had a thermal trip does not negate the causal link between the reassignment of work and the resulting capacity shortage. The critical factor is the commitment of Nexus's capacity to handle the additional load from Prism, which led to the shortage.\n\nIn conclusion, the Nexus capacity shortage is indeed causally related to the situation with Prism, despite Nexus not experiencing a thermal trip.\n\n### Claim 1\n**V"
+    },
+    {
+      "id": "IC_mem_claim_registry",
+      "class": "memory+claim_verdict",
+      "ok": true,
+      "reasons": [],
+      "ms": 3709,
+      "preview": "The claim \"LM-44 is Partner Frame\" is **contradicted**.\n\n### Assessment:\n\n1. **Verified Registry**: The verified registry distinctly identifies LM-44 as the Lakeside Module and LM-55 as the Partner Frame. This clear differentiation establishes that LM-44 and LM-55 are separate entities.\n\n2. **Conclusion**: Since LM-44 is confirmed to be the Lakeside Module, the assertion that it is the Partner Frame is incorrect.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"LM-44 is Partner Frame.\"\n\nVerified identity: LM-44 = Lakeside Module (verified_registry). \"Partner Frame\" is bound to a different registry identity."
+    },
+    {
+      "id": "IC_causal_current_state",
+      "class": "causality+current_historical",
+      "ok": true,
+      "reasons": [],
+      "ms": 4528,
+      "preview": "The claim \"Harbor bed shortage is unrelated to Cedar because Harbor never had a staffing shortage\" is **not supported**.\n\n### Assessment:\n\n1. **Causal Relationship**: The bed shortage in Harbor is a direct consequence of the work being redirected from Cedar. The previous staffing shortage at Cedar, which has since cleared, led to the decision to reassign work, impacting Harbor's current capacity.\n\n2. **Irrelevance of Harbor's Staffing History**: The fact that Harbor never had a staffing shortage does not negate the causal link between the reassignment of work from Cedar and the resulting bed shortage in Harbor. The key factor is the impact of Cedar's earlier staffing situation on Harbor's current capacity.\n\nIn conclusion, the bed shortage in Harbor is causally related to the earlier staffing issues at Cedar, despite Harbor not experiencing a staffing shortage itself.\n\n### Claim 1\n**Verdi"
+    },
+    {
+      "id": "IC_timestamps_multipart",
+      "class": "timestamps+structure",
+      "ok": true,
+      "reasons": [],
+      "ms": 3687,
+      "preview": "1) **Was delivery completed?**\nYes, delivery was completed. Shipment R was delivered on 2026-08-21 at 14:00.\n\n2) **What is current status?**\nThe current status is closed as of 2026-08-22 at 10:00."
+    },
+    {
+      "id": "IC_population_forecast",
+      "class": "population+forecast",
+      "ok": true,
+      "reasons": [],
+      "ms": 2765,
+      "preview": "1. **Verdict on \"The full population rate is 9%.\"**\nThis claim is **supported**. The measurement of a subset (n=60) from a population (M=600) indicates that 9% of the sample reflects the population rate.\n\n2. **Verdict on \"Forecast equals realised.\"**\nThis claim is **contradicted**. The forecast throughput is 5000, while the realised amount is 1100, indicating that they do not equal each other.\n\n### Claim 1\n**Verdict:** Unproven / not established\n\n\"The full population rate is 9%.\"\n\nNot established from the supplied generic scenario evidence alone.\n\n### Claim 2\n**Verdict:** Unproven / not established\n\n\"Forecast equals realised.\"\n\nNot established from the supplied generic scenario evidence alone."
+    },
+    {
+      "id": "IC_synthetic_isolation",
+      "class": "synthetic+memory",
+      "ok": true,
+      "reasons": [],
+      "ms": 2109,
+      "preview": "Store Mesa is currently eligible for operations, having passed the inventory gate. This status indicates that it meets the necessary criteria for proceeding without any refund implications.\n\n### SyntheticIC-P06 — retail ops brief only. Store Mesa currently elig\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario."
+    },
+    {
+      "id": "IC_claim_completeness",
+      "class": "claim_completeness+consistency",
+      "ok": true,
+      "reasons": [],
+      "ms": 3409,
+      "preview": "### 1) \"Forecast equals realised.\"\n\n### \"Forecast equals realised.\"\n**Verdict:** Unsupported as realised result\n\nAn expected, forecast, or estimated figure is not realised profit and is not transaction evidence.\n\nWhat can be concluded: the figure may be a planning estimate; it does not establish realised economics.\n\n**Need:** If this were live, ledger/transaction confirmation. In this analysis: keep it labeled as an estimate only.\n\n### 2) \"TR-21 is Harbour Crown Depot.\"\n\n### \"TR-21 is Harbour Crown Depot.\"\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n### 3) \"Deliveries never historically"
+    },
+    {
+      "id": "IC_compound_unrelated",
+      "class": "causality+compound_claim",
+      "ok": true,
+      "reasons": [],
+      "ms": 13380,
+      "preview": "The claim \"Cobalt has a different direct cause, therefore Cobalt is unrelated to Quay\" is **not supported**.\n\n### Assessment:\n\n1. **Causal Relationship**: The technician shortage in Cobalt is a direct result of the work being redirected from Line Quay due to the seal failure. Therefore, the issues in Quay and Cobalt are interconnected.\n\n2. **Different Direct Causes**: While it's true that Cobalt never had a seal failure, this fact does not negate the relationship between the two lines. The technician shortage in Cobalt arose specifically because of the operational changes made in response to the issues at Quay.\n\nIn conclusion, the assertion that Cobalt is unrelated to Quay based on the different direct causes is incorrect.\n\n### Claim Verdict\n\n\"Cobalt has a different direct cause, therefore Cobalt is unrelated to Quay.\"\n\nThe premise fails to account for the operational impact stemming fro"
+    }
+  ],
+  "wave1": "UNCERTIFIED",
+  "wave1CleanStreak": 0,
+  "wave2": "UNCERTIFIED",
+  "wave3": "LOCKED",
+  "birthAuthorised": "NO",
+  "birthTimestamp": null
+}
