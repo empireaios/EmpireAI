@@ -337,7 +337,10 @@ function parseEntities(text: string): {
 function parsePopulation(text: string): PopulationState {
   const deployed = num(
     /\b(\d{1,5})\s+(?:deployed|sites?\s+deployed|deployed\s+sites?)\b/i.exec(text) ||
-      /\bdeployed\s*[:=]?\s*(\d{1,5})\b/i.exec(text),
+      /\bdeployed\s*[:=]?\s*(\d{1,5})\b/i.exec(text) ||
+      /\b(\d{1,5})\s+units?\s+total\b/i.exec(text) ||
+      /\bfleet(?:\s+pack)?\s*[:=]?\s*(\d{1,5})\b/i.exec(text) ||
+      /\b(\d{1,5})\s+(?:units?|sites?)\s+in\s+(?:the\s+)?(?:fleet|pack|population)\b/i.exec(text),
   );
   const measuredInitial = num(
     /\b(\d{1,5})\s+(?:originally\s+)?measured\b/i.exec(text) ||
@@ -346,13 +349,18 @@ function parsePopulation(text: string): PopulationState {
   const measuredValid = num(
     /\b(\d{1,5})\s+(?:currently\s+)?valid(?:ly)?\s+measured\b/i.exec(text) ||
       /\b(?:valid\s+measured|measured\s+valid)\s*[:=]?\s*(\d{1,5})\b/i.exec(text) ||
-      /\bacross\s+(?:the\s+)?(\d{1,5})\s+valid\b/i.exec(text),
+      /\bacross\s+(?:the\s+)?(\d{1,5})\s+valid\b/i.exec(text) ||
+      /\b(?:exactly\s+)?(\d{1,5})\s+units?\s+received\b/i.exec(text) ||
+      /\b(\d{1,5})\s+units?\s+(?:received|got|completed)\s+(?:the\s+)?(?:retrofit|upgrade|treatment)\b/i.exec(
+        text,
+      ) ||
+      /\b(\d{1,5})\s+of\s+\d+\s+units?\s+(?:received|got|completed)\b/i.exec(text),
   );
   const pct = /(\d{1,3}(?:\.\d+)?)\s*%/.exec(text);
   const resultLabel = pct ? `${pct[1]}%` : null;
 
   let resultAppliesTo: PopulationState["resultAppliesTo"] = "unknown";
-  if (measuredValid != null && /valid|measured\s+sites?/i.test(text)) {
+  if (measuredValid != null && /valid|measured\s+sites?|received|retrofit/i.test(text)) {
     resultAppliesTo = "measured_valid";
   } else if (measuredInitial != null) {
     resultAppliesTo = "measured_initial";
@@ -537,14 +545,20 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
   const population = parsePopulation(narrative);
 
   const forecast = num(
-    /\bforecast(?:\s+(?:revenue|occupancy|visits?))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
+    /\bforecast(?:\s+(?:revenue|occupancy|visits?|profit|margin))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
       narrative,
-    ) || /\bforecast\s+\$?\s*([\d,]+)/i.exec(narrative),
+    ) ||
+      /\bforecast(?:\s+\w+){0,8}?\s+(?:was|is|=|:)\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(narrative) ||
+      /\bforecast\s+\$?\s*([\d,]+)/i.exec(narrative),
   );
   const realised = num(
-    /\brealis(?:ed|ed)(?:\s+(?:ledger|revenue|visits?))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
+    /\brealis(?:ed|ed)(?:\s+(?:ledger|revenue|visits?|profit|margin))?\s*[:=]?\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
       narrative,
-    ) || /\brealis(?:ed|ed)\s+\$?\s*([\d,]+)/i.exec(narrative),
+    ) ||
+      /\brealis(?:ed|ed)(?:\s+\w+){0,8}?\s+(?:was|is|=|:)\s*\$?\s*([\d,]+(?:\.\d+)?)/i.exec(
+        narrative,
+      ) ||
+      /\brealis(?:ed|ed)\s+\$?\s*([\d,]+)/i.exec(narrative),
   );
 
   // Occurrence: completed/delivered language without requiring "occurred" word
@@ -892,19 +906,24 @@ export function verdictClaimAgainstCanonical(
   const allSites =
     /\ball\s+(\d+)\b/i.exec(t) ||
     /\b(\d+)\s+deployed sites?\s+demonstrate/i.exec(t) ||
-    /(?:across|for)\s+(?:all\s+)?(\d+)\s+(?:deployed\s+)?sites?/i.exec(t);
-  if (allSites && /\d+\s*%|saving|reduction|average/i.test(t)) {
+    /(?:across|for)\s+(?:all\s+)?(\d+)\s+(?:deployed\s+)?(?:sites?|units?)/i.exec(t);
+  if (
+    allSites &&
+    /\d+\s*%|saving|reduction|average|demonstrate|retrofit/i.test(t)
+  ) {
     const claimedN = Number(allSites[1]);
     const pop = state.population;
     if (
       pop.deployed != null &&
       pop.measuredValid != null &&
       pop.measuredValid < pop.deployed &&
-      (pop.resultAppliesTo === "measured_valid" || claimedN === pop.deployed)
+      (pop.resultAppliesTo === "measured_valid" ||
+        claimedN === pop.deployed ||
+        claimedN > pop.measuredValid)
     ) {
       return {
         verdict: "contradicted",
-        justification: `Result ${pop.resultLabel ?? ""} applies to ${pop.measuredValid} valid measured sites, not all ${pop.deployed} deployed.`,
+        justification: `Result ${pop.resultLabel ?? "applies"} to ${pop.measuredValid} measured/received units, not all ${pop.deployed}.`,
         propositionId: "population.result_scope",
       };
     }
