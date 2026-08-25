@@ -1,0 +1,297 @@
+{
+  "generatedAt": "2026-08-25T20:55:20.088Z",
+  "PRODUCTION_FIRST_VISIBLE_PASS": "PASS",
+  "healthBefore": {
+    "ok": false,
+    "gitCommitSha": null,
+    "raw": {
+      "error": "Brain worker temporarily unavailable",
+      "code": "BRAIN_WORKER_UNAVAILABLE",
+      "tier0Isolation": true,
+      "retryable": true
+    }
+  },
+  "healthAfter": {
+    "ok": true,
+    "gitCommitSha": null,
+    "raw": {
+      "status": "ok",
+      "brain": "online",
+      "redisMode": "connected",
+      "eventLoopLagMs": 0.3867929999832995,
+      "observability": {
+        "totalRequests": 72,
+        "errorRequests": 0,
+        "errorRate": 0,
+        "avgLatencyMs": 496,
+        "recent": [
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:04.735Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:04.737Z"
+          },
+          {
+            "path": "/api/pillow/chat",
+            "method": "POST",
+            "statusCode": 200,
+            "durationMs": 3661,
+            "at": "2026-08-25T20:55:08.398Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:08.898Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:08.899Z"
+          },
+          {
+            "path": "/api/pillow/session",
+            "method": "POST",
+            "statusCode": 201,
+            "durationMs": 179,
+            "at": "2026-08-25T20:55:09.079Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:09.517Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:09.518Z"
+          },
+          {
+            "path": "/api/pillow/chat",
+            "method": "POST",
+            "statusCode": 200,
+            "durationMs": 2404,
+            "at": "2026-08-25T20:55:11.923Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:12.295Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:12.296Z"
+          },
+          {
+            "path": "/api/pillow/session",
+            "method": "POST",
+            "statusCode": 201,
+            "durationMs": 179,
+            "at": "2026-08-25T20:55:12.476Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:12.907Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:12.908Z"
+          },
+          {
+            "path": "/api/pillow/chat",
+            "method": "POST",
+            "statusCode": 200,
+            "durationMs": 1511,
+            "at": "2026-08-25T20:55:14.420Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:14.818Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:14.819Z"
+          },
+          {
+            "path": "/api/pillow/chat",
+            "method": "POST",
+            "statusCode": 200,
+            "durationMs": 1971,
+            "at": "2026-08-25T20:55:16.791Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 0,
+            "at": "2026-08-25T20:55:17.131Z"
+          },
+          {
+            "path": "/health/live",
+            "method": "GET",
+            "statusCode": 200,
+            "durationMs": 1,
+            "at": "2026-08-25T20:55:17.133Z"
+          }
+        ]
+      },
+      "guardian": {
+        "overall": "degraded",
+        "summary": "Guardian overall=degraded; failed=0; degraded=1; total=13",
+        "openRisks": 0
+      },
+      "llmProviders": [
+        "openai"
+      ],
+      "queue": {
+        "waiting": 0,
+        "active": 0,
+        "completed": 51,
+        "failed": 0,
+        "delayed": 3
+      },
+      "sqlite": {
+        "pending": true,
+        "flushCount": 0,
+        "lastFlushMs": null,
+        "lastFlushDurationMs": null,
+        "flushInFlight": false,
+        "lastFlushError": null,
+        "lastFlushErrorAt": null,
+        "criticalFlushRequested": 0,
+        "criticalFlushSucceeded": 0
+      },
+      "admission": {
+        "pillowSessionCreatesInFlight": 0,
+        "maxPillowSessionCreates": 2,
+        "lagRejectMs": 1500,
+        "recentLagMs": 0.6251400000182912,
+        "sessionRateLimit": 4,
+        "sessionRateWindowMs": 10000,
+        "sessionCreatesInWindow": 1
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "prod_causal_compound",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 5402,
+      "status": 200,
+      "head": "**Verdict:** The claim \"Ridge Quay's operator shortage is not free of causal connection to Ridge Mesa because Quay itself never lost staff\" is **not supported**.\n\n**Need:** The operator shortage at Quay is directly linked to the reassignment of work from Mesa, which indicates that the shortage is a consequence of Mesa's staffing issues.\n\n**What matters most:** While Quay did not lose staff to attrition, the reassignment of work due to Mesa's staffing shortage implies that Quay's operator shortag"
+    },
+    {
+      "id": "prod_current_historical",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 2607,
+      "status": 200,
+      "head": "### Claim 1\n**Verdict:** Contradicted\n\n\"Completion for unit K-9 never historically occurred.\"\n\nHistorical occurrence is established in the pack; denying occurrence contradicts canonical state."
+    },
+    {
+      "id": "prod_certificate",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 2493,
+      "status": 200,
+      "head": "The claim that \"OL-220 is currently blocked from dispatch because the license lapsed\" is not supported by the current verified status. OL-220 is ACTIVE and currently authorised for dispatch, indicating that there is no lapse in the license that would prevent it from being dispatched.\n\nIn summary, the claim is false.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"OL-220 is currently blocked from dispatch because the license lapsed.\"\n\nVerified identity: OL-220 = ACTIVE and currently authorised for dispa"
+    },
+    {
+      "id": "prod_population",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 3502,
+      "status": 200,
+      "head": "**Verdict:** The claim \"All 12 units demonstrate the retrofit savings\" is not supported.\n\n**Need:** To assess the claim, we must consider the population of units and the retrofit distribution.\n\n**What matters most:**\n- There are 12 units in total. - Out of these, only 7 units received the retrofit. - The remaining 5 units did not receive the retrofit.\n\nSince only the 7 retrofitted units can demonstrate the retrofit savings, it is incorrect to claim that all 12 units demonstrate these savings.\n\n*"
+    },
+    {
+      "id": "prod_financial",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 2001,
+      "status": 200,
+      "head": "The claim \"Forecast equals realised for batch B7\" is not supported by the provided data. The forecast profit for batch B7 was $40, while the realised profit is $18. Therefore, the two figures do not match, indicating that the forecast does not equal the realised profit.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Forecast equals realised for batch B7.\"\n\nForecast 40 ≠ realised 18."
+    },
+    {
+      "id": "prod_unresolved_judgment",
+      "ok": true,
+      "reasons": [],
+      "verdict": null,
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 4071,
+      "status": 200,
+      "head": "**Verdict:** Vendor North is not necessarily the better commercial choice overall.\n\n**Need:** To assess the claim, we must consider the implications of faster delivery versus higher costs and the trade-offs involved.\n\n**What matters most:**\n1. **Delivery Speed:** Vendor North's faster delivery can enhance customer satisfaction and potentially lead to quicker sales, which is valuable in a competitive market.\n\n2. **Cost Efficiency:** Vendor South's lower cost could lead to better margins, especial"
+    },
+    {
+      "id": "prod_memory_temptation",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 2786,
+      "status": 200,
+      "head": "**Verdict**: The claim \"Store Cobalt's capacity shortage remain causally linked via the established transfer path to Store Argon because Cobalt never had a staffing failure\" is **false**.\n\n**Need**: To assess the relationship between the capacity shortage at Store Cobalt and the staffing failure at Store Argon.\n\n**What matters most**: The key point is that Cobalt's capacity was committed to work redirected from Argon due to its staffing failure. This means that while Cobalt itself did not experi"
+    },
+    {
+      "id": "prod_warm_session",
+      "ok": true,
+      "reasons": [],
+      "verdict": "Contradicted",
+      "leftoverSupported": 0,
+      "liveContam": false,
+      "ms": 2357,
+      "status": 200,
+      "head": "The claim that \"Nexus capacity shortage is not free of causal connection to Prism because Nexus never had a thermal trip\" is not supported by the current context. The capacity shortage at Nexus is directly linked to the reassignment of work from Prism, which experienced a thermal trip. Therefore, the assertion that Nexus's capacity issues remain causally linked via the established transfer path to Prism is inaccurate, as the shortage arose from Nexus's commitment to handle the additional load re"
+    }
+  ]
+}

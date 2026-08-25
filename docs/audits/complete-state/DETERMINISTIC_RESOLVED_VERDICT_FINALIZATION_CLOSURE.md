@@ -77,10 +77,30 @@ Evidence:
 
 ## Production / SHA
 
-Filled after single deploy + first-visible production validation (separate section / commit if docs-only follow).
+| Field | Value |
+|------|-------|
+| SEMANTIC_CODE_SHA | `3b60fd7cb475c225301a3ad6293428afd037e130` |
+| REPO_TIP_SHA | `3b60fd7cb475c225301a3ad6293428afd037e130` |
+| RUNNING_BRAIN_SHA | `3b60fd7cb475c225301a3ad6293428afd037e130` |
+| RUNNING_FRONTEND_SHA | Cockpit BFF (empire-ai.co) — not redeployed this mission |
+| DEPLOYMENT_ID | `206f7f43-5a59-4b40-b175-4277c4d1b201` |
+| CERTIFIED_SHA | Engineering closure only — **not** Wave-certified |
+| Path-parity base preserved | `239cc95b` |
 
-## Non-goals
+Semantic lineage (single consolidated live candidate):
 
-- Do not certify Wave 1
-- Do not authorise Birth
-- Do not replay Harbour / Crestline / Meridian / Apex / Orchid / Nova / Summit / Atlas / Redwood / Silverline
+1. `e717df6f` — canonical final-verdict lock
+2. `d69856af` — Railway tsc fix
+3. `3b60fd7c` — forecast/population pack binding (live tip)
+
+`PRODUCTION_FIRST_VISIBLE_PASS=PASS` — evidence: `DETERMINISTIC_RESOLVED_VERDICT_PRODUCTION_FIRST_VISIBLE.json` (8/8: causal compound, current/historical, certificate, population, financial, unresolved judgment, memory temptation, warm session).
+
+## Remaining weaknesses
+
+- Independence scrub can rewrite claim-quote wording awkwardly in narrative body (`nothing to do with` → `not free of causal connection`) while Claim-block verdict stays correct.
+- Certificate identity justification can over-bind ACTIVE phrasing into identity string; verdict still Contradicted.
+- `/health` omits SHA; use `/health/live.deploy.gitCommitSha`.
+
+## Wave state (unchanged)
+
+WAVE_1=UNCERTIFIED · WAVE_1_CLEAN_STREAK=0 · WAVE_2=UNCERTIFIED · WAVE_3=LOCKED · BIRTH_AUTHORISED=NO · no Cursor Wave credit.
