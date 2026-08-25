@@ -642,8 +642,9 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
   const tasks: ExecutiveTaskUnit[] = [];
 
   // Explicit claim-set obligations — keep numbered analysis sections too when present.
-  if (explicitClaims.length >= 2) {
-    if (parts.length >= 2) {
+  // Single soft claim (Crestline-class) must still bind as claim_1.
+  if (explicitClaims.length >= 1) {
+    if (explicitClaims.length >= 2 && parts.length >= 2) {
       for (let i = 0; i < parts.length; i++) {
         const part = parts[i]!;
         // Skip the part that is only the claim list itself.
@@ -652,6 +653,16 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
           (part.match(/[“"']/g) || []).length >= 4
         ) {
           continue;
+        }
+        const kind = classifyLocalObligationKind(part);
+        tasks.push(makeTaskUnit(`t${i + 1}`, kind, part, true));
+      }
+    } else if (explicitClaims.length === 1 && parts.length >= 2) {
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i]!;
+        if (/assess\s+this\s+claim|separate\s+verdict|judge\s*:/i.test(part) && parts.length > 1) {
+          // Keep non-claim analysis parts; claim itself is added below.
+          if (/^(?:assess\s+this\s+claim|separate\s+verdict|judge)\b/i.test(part.trim())) continue;
         }
         const kind = classifyLocalObligationKind(part);
         tasks.push(makeTaskUnit(`t${i + 1}`, kind, part, true));

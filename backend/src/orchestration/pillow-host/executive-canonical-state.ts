@@ -216,13 +216,14 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
   }
 
   // Soft single-claim asks (unquoted, unnumbered): assess/judge/verdict on: <proposition>
+  // Allow newline between cue and proposition (real Crestline-class prompts).
   // Also numbered section "3. Claim: <proposition>"
   if (claims.length < 1) {
     const soft =
-      /\b(?:assess\s+this\s+claim|separate\s+verdict\s+on|verdict\s+on|judge)\s*:?\s*(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+      /\b(?:assess\s+this\s+claim|separate\s+verdict\s+on|verdict\s+on|judge(?:\s+this\s+claim)?)\s*:?\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
         text,
       ) ||
-      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
+      /(?:^|\n)\s*(?:Claim\s*)?(\d{1,2})\s*[.):\-]\s*Claim\s*:\s*(?:\r?\n\s*)?(?:[“"']([^”"']{12,400})[”"']|([^\n]{12,400}))/i.exec(
         text,
       );
     if (soft) {
@@ -233,7 +234,7 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
         soft[1] && /^\d+$/.test(soft[1]) ? (soft[2] || soft[3] || "").replace(/\s+/g, " ").trim() : line;
       if (
         proposition &&
-        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+)\b/i.test(
+        /\b(?:because|should|remain|unrelated|independent|ineligible|eligible|equals?|occurred|forecast|realised|is|are|has|have|never|lacks|share|therefore|demonstrate|all\s+\d+|no\s+causal|causal\s+relationship)\b/i.test(
           proposition,
         )
       ) {

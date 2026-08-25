@@ -309,6 +309,12 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:\w+\s+){0,3}(?:problem|issue|outage|shortage|constraint)\s+is\s+unrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
         clause,
       ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:\w+\s+){0,6}(?:has|have)\s+no\s+causal\s+(?:link|connection|relationship)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      ) ||
+      /\bno\s+causal\s+(?:link|connection|relationship)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      ) ||
       /\bunrelated\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(clause);
 
     if (unrelatedPair) {
@@ -728,7 +734,10 @@ export function assessClaimAgainstCanonical(
   const hasUnrelatedProp = material.some((c) => c.proposition.kind === "causal_unrelated");
   if (assertsIndependence && !hasUnrelatedProp) {
     const pair =
-      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,80}?(?:unrelated|independent)\s+(?:of|to|from)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+      /\b([A-Z][A-Za-z0-9_-]{1,40}).{0,100}?(?:unrelated|independent)\s+(?:of|to|from)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        claimText,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:\w+\s+){0,6}(?:has|have)\s+no\s+causal\s+(?:link|connection|relationship)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
         claimText,
       ) ||
       /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(claimText);
