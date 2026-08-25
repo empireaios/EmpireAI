@@ -200,7 +200,10 @@ export function buildUsefulDegradedExecutiveAnswer(input: {
       contract.requiresPremiseAudit ||
       contract.requiresTemporalReconciliation ||
       contract.requiresRecommendation;
-    const scopedAway = isScopedAwayFromLiveEmpire(detectReasoningScope(input.userMessage));
+    const scopedAway = isScopedAwayFromLiveEmpire(
+      detectReasoningScope(input.userMessage),
+      input.userMessage,
+    );
 
     const base =
       multi || scopedAway

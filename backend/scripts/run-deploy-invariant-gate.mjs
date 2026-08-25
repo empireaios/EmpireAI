@@ -12,6 +12,7 @@ const backendRoot = path.resolve(__dirname, "..");
 const suites = [
   "src/validation/tests/independent-closure-invariants-fast.test.ts",
   "src/validation/tests/independent-closure-invariants-deploy.test.ts",
+  "src/validation/tests/path-parity-scope-isolation.test.ts",
 ];
 
 console.log("DEPLOY_INVARIANT_GATE: starting");

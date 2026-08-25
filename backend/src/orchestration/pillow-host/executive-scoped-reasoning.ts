@@ -27,12 +27,19 @@ export function hasSyntheticAnalysisMarker(message: string): boolean {
   return (
     /\bsynthetic\w*/i.test(t) ||
     /\bfor analysis(?:\s+only)?\b/i.test(t) ||
+    /\banalysis only\b/i.test(t) ||
     /\bnot (?:facts?|claims?) about EmpireAI\b/i.test(t) ||
     /\bclaims? for analysis\b/i.test(t) ||
     /\bthought experiment\b/i.test(t) ||
     /\bscenario[- ]only\b/i.test(t) ||
+    /\b(?:operational|executive)\s+scenario\b/i.test(t) ||
+    /\bkeep (?:the )?answer on this scenario\b/i.test(t) ||
     /\bhypothetical (?:claim|product|entity|scenario)\b/i.test(t) ||
-    /\banalysis scenario\b/i.test(t)
+    /\banalysis scenario\b/i.test(t) ||
+    // Owner-stated isolation: current ask must not ground in live commerce/Birth.
+    /\bdo not mention\b[\s\S]{0,120}\b(?:mini\s*fan|birth|realised orders?|live commerce)\b/i.test(
+      t,
+    )
   );
 }
 
@@ -66,10 +73,27 @@ export function detectReasoningScope(message: string): ReasoningScopeType {
   return "CURRENT_REALITY";
 }
 
-export function isScopedAwayFromLiveEmpire(scope: ReasoningScopeType): boolean {
-  // Only pure synthetic analysis forbids live product/revenue injection.
-  // Historical / comparative / hypothetical EmpireAI asks may still need live contrast.
-  return scope === "SYNTHETIC_ANALYSIS";
+/**
+ * Scopes that must not inject live EmpireAI product/revenue/Birth into answers.
+ * Aligns with synthesizeTaskUnitAnswer contract: synthetic / comparative / historical /
+ * hypothetical scenario reasoning stays evidence-structure unless the ask is live EmpireAI.
+ */
+export function isScopedAwayFromLiveEmpire(
+  scope: ReasoningScopeType,
+  message?: string,
+): boolean {
+  if (scope === "SYNTHETIC_ANALYSIS") return true;
+  const t = String(message || "");
+  if (!t) return false;
+  // Explicit live-Empire contrast asks may still need live grounding.
+  if (/\b(?:our|EmpireAI) (?:current|live|realised|product|orders?|revenue)\b/i.test(t)) {
+    return false;
+  }
+  return (
+    scope === "HYPOTHETICAL" ||
+    scope === "COMPARATIVE_SCENARIO" ||
+    scope === "HISTORICAL_ANALYSIS"
+  );
 }
 
 export function asksForRiskRanking(message: string): boolean {
@@ -408,7 +432,7 @@ export function stripIrrelevantLiveGrounding(
     );
 
   if (
-    !isScopedAwayFromLiveEmpire(scope) &&
+    !isScopedAwayFromLiveEmpire(scope, userMessage) &&
     !hasSyntheticAnalysisMarker(userMessage) &&
     !authorityBlocksCommerce
   ) {

@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-08-25T10:07:46.881Z",
+  "hypothesis": "Unscoped scenario asks synthesize live Mini Fan + temporal templates; cert packs use Synthetic* markers.",
+  "rows": [
+    {
+      "id": "cert_style_synthetic_prefix",
+      "scope": "SYNTHETIC_ANALYSIS",
+      "marker": true,
+      "scoped": true,
+      "contaminated": false,
+      "preview": "### scenario\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, no"
+    },
+    {
+      "id": "real_style_no_synthetic_word",
+      "scope": "SYNTHETIC_ANALYSIS",
+      "marker": true,
+      "scoped": true,
+      "contaminated": false,
+      "preview": "### scenario\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, no"
+    },
+    {
+      "id": "isolation_cue_do_not_mention",
+      "scope": "SYNTHETIC_ANALYSIS",
+      "marker": true,
+      "scoped": true,
+      "contaminated": false,
+      "preview": "### scenario\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, no"
+    },
+    {
+      "id": "analysis_only_no_synthetic",
+      "scope": "SYNTHETIC_ANALYSIS",
+      "marker": true,
+      "scoped": true,
+      "contaminated": false,
+      "preview": "### scenario\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, no"
+    }
+  ],
+  "contaminatedCount": 0
+}

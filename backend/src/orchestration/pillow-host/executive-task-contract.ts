@@ -1059,11 +1059,14 @@ export function synthesizeTaskUnitAnswer(
   } = {},
 ): string {
   const scope = opts.scopeType ?? "CURRENT_REALITY";
-  const scoped = isScopedAwayFromLiveEmpire(scope);
-  const f = verifiedFactsBlock(truth);
   const birthRelevant = Boolean(opts.birthRelevant);
   const subject = (task.subject || task.sourceSpan || task.text || "this obligation").slice(0, 140);
   const span = task.sourceSpan || task.text || subject;
+  const scoped = isScopedAwayFromLiveEmpire(
+    scope,
+    `${task.text ?? ""} ${task.sourceSpan ?? ""} ${subject}`,
+  );
+  const f = verifiedFactsBlock(truth);
   const siblings =
     opts.siblingSubjects && opts.siblingSubjects.length > 0
       ? opts.siblingSubjects
@@ -1629,7 +1632,7 @@ export function formatTaskContractBrief(
   if (userMessage) {
     lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
   }
-  if (isScopedAwayFromLiveEmpire(contract.scopeType)) {
+  if (isScopedAwayFromLiveEmpire(contract.scopeType, userMessage)) {
     lines.push(
       "SCOPE: This turn is SCOPED ANALYSIS (synthetic / comparative / historical). Reason about evidence structure of the supplied claims. Do NOT substitute live EmpireAI product identity, realised sales, or Birth state for synthetic entities. Do NOT promote scenario statements into current EmpireAI truth.",
     );

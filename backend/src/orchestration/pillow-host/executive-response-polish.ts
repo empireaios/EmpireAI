@@ -208,7 +208,7 @@ export function polishFinalVisibleAnswer(
 ): string {
   const c = contract ?? parseExecutiveTaskContract(userMessage);
   const scope = c.scopeType ?? detectReasoningScope(userMessage);
-  const scoped = isScopedAwayFromLiveEmpire(scope);
+  const scoped = isScopedAwayFromLiveEmpire(scope, userMessage);
   let out = String(message || "").trim();
   out = stripContradictoryCoverageAppendix(out, c);
   out = stripIrrelevantBirthState(out, userMessage);

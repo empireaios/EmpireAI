@@ -39674,6 +39674,8 @@ export async function registerPillowRoutes(
     const body = z
       .object({
         workspaceId: z.string().min(1).optional(),
+        /** When true, never reuse a warm workspace session (certification / isolation). */
+        forceNew: z.boolean().optional(),
       })
       .parse(request.body ?? {});
 
@@ -39706,13 +39708,18 @@ export async function registerPillowRoutes(
 
     beginPillowSessionCreate();
     try {
-      const session = pillowHost.createSession(workspaceId);
+      const session = pillowHost.createSession(workspaceId, {
+        forceNew: body.forceNew === true,
+      });
       auditLogger.write({
         action: "pillow.session.create",
         actor: user.email,
         workspaceId,
         correlationId: request.id,
-        metadata: { sessionId: session.sessionId },
+        metadata: {
+          sessionId: session.sessionId,
+          forceNew: body.forceNew === true,
+        },
       });
       return reply.code(201).send({ session });
     } catch (error) {
@@ -39851,7 +39858,8 @@ export async function registerPillowRoutes(
         // Worker restart clears in-memory sessions — rebind once and complete
         // the same request so Grand King never has to resubmit.
         if (!(error instanceof PillowSessionNotFoundError)) throw error;
-        const rebound = pillowHost.createSession(workspaceId);
+        // Certification / rebound after worker restart must not reuse a warm contaminated session.
+        const rebound = pillowHost.createSession(workspaceId, { forceNew: true });
         sessionId = rebound.sessionId;
         reboundSessionId = rebound.sessionId;
         logger.warn(
@@ -39888,6 +39896,20 @@ export async function registerPillowRoutes(
       return reply.send({
         result,
         ...(reboundSessionId ? { reboundSessionId } : {}),
+        requestProvenance: {
+          requestId: result?.trace?.requestId ?? request.id,
+          sessionId,
+          workspaceId,
+          codeSha:
+            process.env.RAILWAY_GIT_COMMIT_SHA ||
+            process.env.RAILWAY_GIT_COMMIT ||
+            null,
+          deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
+          entrypoint: "POST /api/pillow/chat",
+          reboundSessionId: reboundSessionId ?? null,
+          // Engineering telemetry — not a user-facing surface.
+          layer: "brain-pillow-host",
+        },
       });
     } catch (error) {
       if (error instanceof PillowSessionNotFoundError) {
@@ -39950,7 +39972,8 @@ export async function registerPillowRoutes(
         });
       } catch (error) {
         if (!(error instanceof PillowSessionNotFoundError)) throw error;
-        const rebound = pillowHost.createSession(workspaceId);
+        // Certification / rebound after worker restart must not reuse a warm contaminated session.
+        const rebound = pillowHost.createSession(workspaceId, { forceNew: true });
         sessionId = rebound.sessionId;
         reboundSessionId = rebound.sessionId;
         writeEvent("session_rebound", { sessionId: reboundSessionId });

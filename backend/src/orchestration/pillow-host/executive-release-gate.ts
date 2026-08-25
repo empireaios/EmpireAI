@@ -77,7 +77,7 @@ export function isLiveEmpireContaminationInScopedAnswer(
   userMessage?: string,
 ): boolean {
   const scope = detectReasoningScope(userMessage ?? "");
-  if (!isScopedAwayFromLiveEmpire(scope)) return false;
+  if (!isScopedAwayFromLiveEmpire(scope, userMessage)) return false;
   const t = String(text || "");
   if (
     /\b(?:Mini Fan|Brief verified note|realised revenue remain zero)\b/i.test(t) ||
@@ -304,7 +304,7 @@ export function surgicalRepairDraft(
   const scope =
     options.scopeType ||
     (options.userMessage ? detectReasoningScope(options.userMessage) : "CURRENT_REALITY");
-  const scopedAway = isScopedAwayFromLiveEmpire(scope as ReasoningScopeType);
+  const scopedAway = isScopedAwayFromLiveEmpire(scope as ReasoningScopeType, options.userMessage);
 
   const kept: string[] = [];
   let dropped = 0;
@@ -607,7 +607,7 @@ export function releaseExecutiveAnswer(
     contract.requiresRecommendation ||
     contract.requiresConditionalReasoning ||
     contract.requiresAuthorityAnalysis;
-  const scopedAway = isScopedAwayFromLiveEmpire(contract.scopeType);
+  const scopedAway = isScopedAwayFromLiveEmpire(contract.scopeType, options.userMessage);
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,

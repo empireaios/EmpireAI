@@ -53,6 +53,10 @@ import {
   parseExecutiveTaskContract,
 } from "./executive-task-contract.js";
 import {
+  detectReasoningScope,
+  isScopedAwayFromLiveEmpire,
+} from "./executive-scoped-reasoning.js";
+import {
   buildUsefulDegradedExecutiveAnswer,
   countExecutiveTaskUnits,
   ensureUsefulTerminalChatMessage,
@@ -379,13 +383,20 @@ export class PillowHost {
             this.health = this.getHealth();
         }
     }
-    createSession(workspaceId) {
+    createSession(workspaceId, options) {
         this.ensureRunning();
         const bootstrap = this.pillowSession.bootstrap;
-        const { session, reused } = this.sessionStore.getOrCreate(workspaceId, {
-            repositoryFingerprint: this.pillowSession.contextBuilder.repositoryFingerprint,
-            currentMission: bootstrap.currentMission,
-        });
+        const forceNew = Boolean(options?.forceNew);
+        const created = forceNew
+            ? { session: this.sessionStore.create(workspaceId, {
+                repositoryFingerprint: this.pillowSession.contextBuilder.repositoryFingerprint,
+                currentMission: bootstrap.currentMission,
+            }), reused: false }
+            : this.sessionStore.getOrCreate(workspaceId, {
+                repositoryFingerprint: this.pillowSession.contextBuilder.repositoryFingerprint,
+                currentMission: bootstrap.currentMission,
+            });
+        const { session, reused } = created;
         this.touchActivity();
         if (!reused) {
             this.auditLogger?.write({
@@ -393,7 +404,7 @@ export class PillowHost {
                 actor: "pillow-host",
                 workspaceId,
                 correlationId: session.sessionId,
-                metadata: { sessionId: session.sessionId, reused: false },
+                metadata: { sessionId: session.sessionId, reused: false, forceNew },
             });
         }
         return session;
@@ -29827,8 +29838,15 @@ export class PillowHost {
                 };
             }
             // CURRENT VERIFIED operational truth — outranks stale repo/demo commerce context.
+            // Under scoped/synthetic analysis, do NOT inject live product/Birth into the LLM brief
+            // (otherwise models echo Mini Fan / temporal audit into scenario answers).
             let executiveTruthSnapshot = null;
             const epistemicLedger = new RetrievalAttestationLedger();
+            const reasoningScope = detectReasoningScope(input.message);
+            const scopedAwayFromLive = isScopedAwayFromLiveEmpire(
+                reasoningScope,
+                input.message,
+            );
             try {
                 executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
                 attestExecutiveTruthSnapshotReads(
@@ -29839,13 +29857,20 @@ export class PillowHost {
                 const taskContract = parseExecutiveTaskContract(input.message);
                 operationalContext = {
                     ...operationalContext,
-                    liveOperationalTruthBrief: [
-                        formatExecutiveTruthBriefWithEpistemics(
-                            executiveTruthSnapshot,
-                            epistemicLedger.list(),
-                        ),
-                        formatTaskContractBrief(taskContract, input.message),
-                    ].join("\n\n"),
+                    liveOperationalTruthBrief: scopedAwayFromLive
+                        ? [
+                            "SCOPE: SCOPED/SCENARIO ANALYSIS ONLY for this turn.",
+                            "Do not inject live EmpireAI product identity, Mini Fan, realised orders/revenue, or Birth authorization into the answer.",
+                            "Reason from the owner-supplied scenario and evidence structure only.",
+                            formatTaskContractBrief(taskContract, input.message),
+                          ].join("\n\n")
+                        : [
+                            formatExecutiveTruthBriefWithEpistemics(
+                                executiveTruthSnapshot,
+                                epistemicLedger.list(),
+                            ),
+                            formatTaskContractBrief(taskContract, input.message),
+                          ].join("\n\n"),
                     // Prevent Phase-7 static product catalog from inventing alternate products.
                     commerceIntelligenceBrief: undefined,
                 };
