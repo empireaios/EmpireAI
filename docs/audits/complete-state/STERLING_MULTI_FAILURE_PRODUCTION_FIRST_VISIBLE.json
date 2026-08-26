@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-08-26T03:58:06.080Z",
+  "PRODUCTION_FIRST_VISIBLE_PASS": "PASS",
+  "before": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5"
+    }
+  },
+  "after": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5"
+    }
+  },
+  "rows": [
+    {
+      "id": "prod_nested_structure",
+      "ok": true,
+      "topLevel": 3,
+      "verdicts": 1,
+      "liveContam": false,
+      "ms": 7549,
+      "status": 200,
+      "head": "1. **Snapshot Table of Lane Metrics**\n - **Lane Apex**:\n - Jobs: 200\n - Verified: 200\n - Success Rate: 94.2%\n - **Lane Basin**:\n - Jobs: 150\n - Verified: 150\n - Success Rate: 92.8%\n - **Lane Cove**:\n - Jobs: 250\n - Sampled: 50\n - Sample Rate: 97.1% (no verified full-population rate)\n\n2. **Evidence-Strength Ranking of Lanes**\n - **Lane Apex**: Highest confidence due to verified full-population audi"
+    },
+    {
+      "id": "prod_five_claims",
+      "ok": true,
+      "topLevel": 0,
+      "verdicts": 5,
+      "liveContam": false,
+      "ms": 6092,
+      "status": 200,
+      "head": "### Claim Audit Results\n\n### Summary\nNone of the claims are supported by the evidence provided. Each claim contains inaccuracies or misinterpretations of the operational realities.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Line Beta shortage has nothing to do with Line Alpha because Beta never lost staff.\"\n\nCompound claim: a supported premise does not make the whole claim SUPPORTED when another mat"
+    },
+    {
+      "id": "prod_evidence_rank",
+      "ok": true,
+      "topLevel": 3,
+      "verdicts": 0,
+      "liveContam": false,
+      "ms": 3097,
+      "status": 200,
+      "head": "Based on the current evidence base for performance, the stores can be ranked as follows:\n\n1. **Store Pine**: Verified full-population July audit with 240/240 jobs completed, achieving a performance rate of 95.0%. This indicates a strong and reliable performance across all jobs.\n\n2. **Store Maple**: Also a verified full-population July audit with 180/180 jobs completed, showing a performance rate o"
+    },
+    {
+      "id": "prod_financial",
+      "ok": true,
+      "topLevel": 0,
+      "verdicts": 2,
+      "liveContam": false,
+      "ms": 4737,
+      "status": 200,
+      "head": "The claim that \"Forecast equals realised for batch B7\" is not supported.\n\n**Verdict:**\n- **Forecast Profit for Batch B7:** $40\n- **Realised Profit for Batch B7:** $18\n\nSince the forecast profit does not match the realised profit, the statement is false. The realised profit is significantly lower than the forecast, indicating a discrepancy between expectations and actual performance.\n\n### Claim 1\n*"
+    },
+    {
+      "id": "prod_causal",
+      "ok": true,
+      "topLevel": 2,
+      "verdicts": 1,
+      "liveContam": false,
+      "ms": 3916,
+      "status": 200,
+      "head": "### Verdict\nThe claim that \"Ridge Quay's operator shortage is not free of causal connection to Ridge Mesa because Quay itself never lost staff\" is **not supported**.\n\n### Need\nTo assess the causal relationship between the staffing issues at Ridge Mesa and Ridge Quay, we must consider the evidence provided about the reassignment of work and its implications.\n\n### What Matters Most\n\n1. **Causal Link"
+    },
+    {
+      "id": "prod_memory_temptation",
+      "ok": true,
+      "topLevel": 0,
+      "verdicts": 1,
+      "liveContam": false,
+      "ms": 23101,
+      "status": 200,
+      "head": "**Verdict**: The claim that \"Store Cobalt's capacity shortage remain causally linked via the established transfer path to Store Argon because Cobalt never had a staffing failure\" is **not supported**.\n\n**Need**: To assess the relationship between the staffing issues at Depot Argon and the capacity shortage at Store Cobalt, we must consider the implications of the redirected work due to Argon's sta"
+    },
+    {
+      "id": "prod_warm_combined",
+      "ok": true,
+      "topLevel": 3,
+      "verdicts": 1,
+      "liveContam": false,
+      "ms": 19999,
+      "status": 200,
+      "head": "1. **Snapshot**: The current analysis indicates a verified full population of 120 out of 120, with a performance rate of 91%. A secondary verified population of 100 out of 100 reflects a 90% performance rate. A random sample of 40 out of 200 shows a 96% sample rate, though it lacks a verified full population rate.\n\n2. **Evidence-strength ranking**:\n - **Red**: Verified full-population 120/120, 91%"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-25T16:15:05.684Z",
+  "generatedAt": "2026-08-26T04:09:18.991Z",
   "harness": "REAL_PATH_CERTIFICATION",
-  "liveSha": "f986276316c61b5a4703175de007cf283d82edd3",
-  "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+  "liveSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+  "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
   "workerOnline": true,
   "trials": 8,
   "pass": 8,
@@ -15,144 +15,144 @@
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 16083,
+      "ms": 6610,
       "provenance": {
-        "requestId": "req-7",
-        "sessionId": "5a909cd8-a6b7-4e2b-a430-db5013889b1d",
+        "requestId": "req-11",
+        "sessionId": "290ebce4-855b-4b89-895f-ea614fb85326",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation at plant RidgeLine involves a series of interconnected events that led to a capacity shortage at Depot South. Here's a breakdown of the causal chain:\n\n1. **Routing Failure at Depot North**: The initial issue began with a routing failure at Depot North, which necessitated the redirection of work to Depot South. This failure could have been due to various factors, such as logistical errors, equipment failures, or unforeseen circumstances.\n\n2. **Redirection of Work**: As a response to"
+      "preview": "The situation involves a causal chain stemming from the routing failure at Depot North, which led to the redirection of work to Depot South. Here’s the breakdown:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This incident caused a disruption in the normal flow of operations, necessitating the rerouting of tasks or shipments to another depot.\n\n2. **Redirection to Depot South**: As a result of the failure at Depot North, operations were shifted to Depot South to maintain service level"
     },
     {
       "id": "RP_fresh_1",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 4358,
+      "ms": 11341,
       "provenance": {
-        "requestId": "req-d",
-        "sessionId": "8ccc3ac5-f587-45f1-95ff-89e6749560f6",
+        "requestId": "req-1a",
+        "sessionId": "024de756-8426-498d-b682-efc8cd668f11",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation involves a causal chain stemming from the routing failure at Depot North, which directly impacted Depot South's capacity.\n\n### Causal Chain Analysis\n\n1. **Routing Failure at Depot North**: This failure necessitated the redirection of logistics operations to Depot South.\n\n2. **Increased Demand on Depot South**: As a result of the redirection, Depot South experienced an influx of work that it was not originally prepared to handle.\n\n3. **Capacity Shortage at Depot South**: The sudden "
+      "preview": "The situation at plant RidgeLine involves a causal chain that connects the routing failure at Depot North to the capacity shortage at Depot South. Here's the breakdown:\n\n### Causal Chain Analysis\n\n1. **Routing Failure at Depot North**: The initial issue began with a failure in the routing system at Depot North. This disruption meant that the expected flow of goods and materials was interrupted.\n\n2. **Redirect to Depot South**: To mitigate the impact of the failure at Depot North, operations were"
     },
     {
       "id": "RP_fresh_2",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 8548,
+      "ms": 5326,
       "provenance": {
-        "requestId": "req-j",
-        "sessionId": "fbf296de-1720-4c9e-a9fa-786d40a3a818",
+        "requestId": "req-1m",
+        "sessionId": "1e6e4bc9-e55f-42b9-81bc-ba9262e83ba5",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation involving Depot North and Depot South can be analyzed through the following causal chain:\n\n1. **Routing Failure at Depot North**: The initial failure at Depot North necessitated a redirection of logistics operations. This failure likely caused delays or disruptions in the expected workflow, impacting the overall supply chain.\n\n2. **Redirection to Depot South**: To mitigate the impact of the failure at Depot North, operations were redirected to Depot South. This redirection was an i"
+      "preview": "The operational scenario for plant RidgeLine reveals a clear causal chain linking the routing failure at Depot North to the capacity shortage at Depot South.\n\n### Causal Chain Explanation\n\n1. **Routing Failure at Depot North**: This initial event disrupted the normal flow of goods, necessitating a redirection of work to another facility.\n\n2. **Redirection to Depot South**: As a response to the failure at Depot North, operations were shifted to Depot South to maintain service levels and meet dema"
     },
     {
       "id": "RP_fresh_3",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 15216,
+      "ms": 7386,
       "provenance": {
-        "requestId": "req-p",
-        "sessionId": "2e01f9eb-2927-4c22-9b96-0fd73b01d33a",
+        "requestId": "req-1s",
+        "sessionId": "da2e60f2-e418-470b-8577-dc08c2ecf5f8",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation at plant RidgeLine involves a causal chain that begins with the routing failure at Depot North. Here's how the events unfolded:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This initial failure disrupted the normal flow of logistics, necessitating a redirection of shipments that would typically have been handled by Depot North.\n\n2. **Redirection to Depot South**: As a result of the failure at Depot North, shipments were redirected to Depot South to maintain the supply "
+      "preview": "The situation involves a causal chain stemming from a routing failure at Depot North, which led to a redirection of work to Depot South. Here's the analysis:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This failure prevented Depot North from fulfilling its scheduled operations, necessitating a rerouting of tasks.\n\n2. **Redirection to Depot South**: Due to the failure at Depot North, operations were redirected to Depot South to maintain service continuity.\n\n3. **Capacity Shortage at"
     },
     {
       "id": "RP_fresh_4",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 7167,
+      "ms": 9895,
       "provenance": {
-        "requestId": "req-11",
-        "sessionId": "aa8b34e6-8500-4cc1-94c2-38dcbb87382a",
+        "requestId": "req-1y",
+        "sessionId": "1e231f2f-a67c-42ae-bc1e-2b359674be4f",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The logistics scenario involving Depot North and Depot South presents a clear causal chain:\n\n1. **Routing Failure at Depot North**: The initial issue began with a routing failure at Depot North, which necessitated a redirection of logistics operations.\n\n2. **Redirection to Depot South**: As a result of the failure at Depot North, operations were redirected to Depot South to fulfill the logistical needs that could not be met by North.\n\n3. **Capacity Shortage at Depot South**: The influx of redire"
+      "preview": "The situation at plant RidgeLine involves a direct causal chain stemming from the routing failure at Depot North. Here’s the breakdown:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This incident caused a disruption in the logistics operations, leading to a need for immediate rerouting of shipments to maintain service levels.\n\n2. **Redirection to Depot South**: To compensate for the failure at Depot North, operations were redirected to Depot South. This was a necessary step to ensure"
     },
     {
       "id": "RP_fresh_5",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 5547,
+      "ms": 5151,
       "provenance": {
-        "requestId": "req-17",
-        "sessionId": "667d3325-f5b6-4808-81b5-c6f41958c5f1",
+        "requestId": "req-24",
+        "sessionId": "b1a04fe6-751c-4a40-b8f7-4203978ba987",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation involves a causal chain stemming from the routing failure at Depot North, which led to a series of operational consequences affecting Depot South.\n\n### Causal Chain Analysis\n\n1. **Routing Failure at Depot North**: This incident caused a disruption in the planned logistics operations, necessitating a redirection of work to Depot South.\n\n2. **Redirection to Depot South**: The immediate response to the failure was to shift the workload that would normally be handled by Depot North to "
+      "preview": "The situation involves a causal chain stemming from the routing failure at Depot North, which led to the redirection of work to Depot South. Here’s the breakdown:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This failure meant that Depot North could not fulfill its expected logistics operations, necessitating a shift in workload.\n\n2. **Redirection to Depot South**: As a response to the failure at Depot North, operations were redirected to Depot South to maintain service levels and m"
     },
     {
       "id": "RP_fresh_6",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 4967,
+      "ms": 5414,
       "provenance": {
-        "requestId": "req-1d",
-        "sessionId": "4e98d7f3-c26c-4566-829f-b7c1910b94b4",
+        "requestId": "req-2b",
+        "sessionId": "f0aa5b66-fb4f-4f01-8fcc-850d0ccb33e1",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The operational scenario at plant RidgeLine involves a series of logistical events that can be analyzed as follows:\n\n### Causal Chain Analysis\n\n1. **Routing Failure at Depot North**: This event initiated the need for a redirection of logistics operations. The failure at Depot North meant that it could not fulfill its scheduled deliveries.\n\n2. **Redirection to Depot South**: In response to the failure at Depot North, logistics operations were redirected to Depot South to maintain supply chain con"
+      "preview": "The situation at plant RidgeLine involves a sequence of events that directly links the routing failure at Depot North to the capacity shortage at Depot South.\n\n### Causal Chain Explanation\n\n1. **Routing Failure at Depot North**: The initial issue began with a routing failure at Depot North. This failure likely disrupted the planned logistics operations, preventing the timely dispatch of goods or resources.\n\n2. **Redirection to Depot South**: In response to the failure at Depot North, operations "
     },
     {
       "id": "RP_fresh_7",
       "state": "fresh",
       "ok": true,
       "reasons": [],
-      "ms": 4739,
+      "ms": 11942,
       "provenance": {
-        "requestId": "req-1j",
-        "sessionId": "3c3c8128-e315-4f6e-9e23-a723b03f2dc5",
+        "requestId": "req-2h",
+        "sessionId": "31ec73ca-fedf-4e59-8d21-e7a48c0ae928",
         "workspaceId": "ws_empire_1",
-        "codeSha": "f986276316c61b5a4703175de007cf283d82edd3",
-        "deploymentId": "2a99ac42-41eb-4876-89bc-9204fd6d078a",
+        "codeSha": "66d98803cd1df48131ca24d504b9be71c50b8388",
+        "deploymentId": "7dffc14f-eb95-4980-a7ca-cbf9a10ba9e5",
         "entrypoint": "POST /api/pillow/chat",
         "reboundSessionId": null,
         "layer": "brain-pillow-host"
       },
-      "preview": "The situation involves a causal chain stemming from a routing failure at Depot North, which led to a redirection of work to Depot South. Here’s the analysis:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This failure disrupted the normal flow of operations, necessitating a redirection of tasks or shipments.\n\n2. **Redirection to Depot South**: As a result of the failure at Depot North, the workload was shifted to Depot South to maintain operational continuity and meet demand.\n\n3. **Ca"
+      "preview": "The situation at plant RidgeLine involves a causal chain between the routing failure at Depot North and the subsequent capacity shortage at Depot South. Here’s the analysis:\n\n### Causal Chain\n\n1. **Routing Failure at Depot North**: This failure necessitated a redirection of work that was originally planned for Depot North.\n\n2. **Redirection to Depot South**: As a result of the failure, tasks or shipments that would have been handled by Depot North were redirected to Depot South.\n\n3. **Capacity S"
     }
   ],
   "wave1": "UNCERTIFIED",
