@@ -219,30 +219,48 @@ export function buildConclusionLedger(answer: string): LedgerEntry[] {
   return entries;
 }
 
+/**
+ * Claim is complete only when Claim N block includes an explicit **Verdict:**
+ * Quote text alone (or a sibling claim's verdict) is not an audit.
+ */
 export function claimLocallyRendered(claim: ClaimObligation, answer: string): boolean {
   const text = String(answer || "");
   const idx = claim.index;
-  const marker = new RegExp(
-    `(?:^|\\n)\\s*(?:#{1,3}\\s*)?Claim\\s*${idx}\\b|(?:^|\\n)\\s*${idx}\\s*[.):\\-]\\s*(?:["“]|Verdict|Supported|Contradict|Unproven|Unknown)`,
+  const claimBlock = new RegExp(
+    `(?:^|\\n)((?:#{1,3}\\s*)?Claim\\s*${idx}\\b[\\s\\S]*?)(?=(?:\\n(?:#{1,3}\\s*)?Claim\\s*\\d+\\b)|$)`,
+    "i",
+  ).exec(text)?.[1];
+  if (claimBlock && /\*\*Verdict:\*\*/i.test(claimBlock)) return true;
+
+  const numbered = new RegExp(
+    `(?:^|\\n)\\s*${idx}\\s*[.):\\-]\\s*["“][^"”\\n]{8,500}["”][\\s\\S]{0,240}?\\*\\*Verdict:\\*\\*[\\s\\S]{0,80}?(?=(?:\\n\\s*\\d{1,2}\\s*[.):\\-]\\s*["“])|(?:\\n(?:#{1,3}\\s*)?Claim\\s*\\d+)|$)`,
     "i",
   ).test(text);
-  if (marker) return true;
-  const quote = claim.sourceText.slice(0, Math.min(48, claim.sourceText.length));
-  if (quote.length >= 12) {
-    const qi = text.toLowerCase().indexOf(quote.toLowerCase());
-    if (qi >= 0) {
-      const window = text.slice(Math.max(0, qi - 80), qi + quote.length + 160);
-      if (
-        /\b(verdict|supported|contradict|unproven|unsupported|unknown|not established)\b/i.test(
-          window,
-        ) &&
-        new RegExp(`Claim\\s*${idx}\\b`, "i").test(window)
-      ) {
-        return true;
-      }
-    }
+  return numbered;
+}
+
+/** True when every claim has Claim N + **Verdict:**. */
+export function assessClaimCompletenessGate(
+  answer: string,
+  claims: ClaimObligation[],
+): {
+  expected: number;
+  renderedWithVerdict: number;
+  missingVerdict: number[];
+  ok: boolean;
+} {
+  const missingVerdict: number[] = [];
+  let renderedWithVerdict = 0;
+  for (const c of claims) {
+    if (claimLocallyRendered(c, answer)) renderedWithVerdict += 1;
+    else missingVerdict.push(c.index);
   }
-  return false;
+  return {
+    expected: claims.length,
+    renderedWithVerdict,
+    missingVerdict,
+    ok: claims.length < 1 || (missingVerdict.length === 0 && renderedWithVerdict === claims.length),
+  };
 }
 
 export function assessClaimEnumeration(
@@ -666,10 +684,13 @@ export function enforceClaimEnumeration(
     const locked = canonical
       ? buildFinalVerdictObject(c.id, c.sourceText, canonical)
       : null;
+    const blockHasVerdict = Boolean(block && /\*\*Verdict:\*\*/i.test(block));
     // RESOLVED claims: always regenerate from canonical (FINAL_VERDICT_LOCKED).
-    // UNRESOLVED: do not over-determinize — keep LLM block when present.
+    // Any Claim N surface without **Verdict:** is incomplete — regenerate.
+    // UNRESOLVED with complete LLM verdict: do not over-determinize.
     const mustRegen =
       !block ||
+      !blockHasVerdict ||
       locked?.resolutionStatus === "RESOLVED" ||
       (fromLedger != null &&
         (fromLedger.verdict === "supported" || fromLedger.verdict === "contradicted"));

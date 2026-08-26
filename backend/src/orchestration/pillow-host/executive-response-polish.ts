@@ -17,8 +17,10 @@ import {
 } from "./executive-scoped-reasoning.js";
 import { repairHistoricalOccurrenceErasure } from "./executive-event-state.js";
 import { validateVisibleBlockRelevance } from "./executive-memory-relevance.js";
-import { enforceExactSectionContract } from "./executive-section-contract.js";
+import { enforceExactSectionContract, extractRequestedSectionTitles } from "./executive-section-contract.js";
+import { repairEvidenceStrengthRanking } from "./executive-evidence-ranking.js";
 import {
+  assessClaimCompletenessGate,
   enforceClaimEnumeration,
   parseClaimObligationsFromContractTasks,
   parseClaimObligationsFromAnswer,
@@ -241,11 +243,15 @@ export function polishFinalVisibleAnswer(
     }).message;
   }
 
+  // Evidence-strength ranking before structure demotion so nested ranks stay inside section.
+  out = repairEvidenceStrengthRanking(out, userMessage).message;
+
   out = ensureNumberedSectionLineBreaks(out);
   out = ensureScannableMultipartStructure(out, c);
   out = ensureNumberedSectionLineBreaks(out);
   if (c.expectedTopLevelSections != null) {
-    out = enforceExactSectionContract(out, c.expectedTopLevelSections).message;
+    const titles = extractRequestedSectionTitles(userMessage);
+    out = enforceExactSectionContract(out, c.expectedTopLevelSections, titles).message;
   }
   if (claimObligations.length >= 1) {
     out = enforceClaimEnumeration(out, claimObligations, {
@@ -253,6 +259,14 @@ export function polishFinalVisibleAnswer(
       userMessage,
       canonical,
     }).message;
+    const completeness = assessClaimCompletenessGate(out, claimObligations);
+    if (!completeness.ok) {
+      out = enforceClaimEnumeration(out, claimObligations, {
+        domainHint: detectScenarioDomain(userMessage),
+        userMessage,
+        canonical,
+      }).message;
+    }
   }
   out = stripIrrelevantLiveGrounding(out, userMessage, scope);
   out = realizeDomainNativeMemorySurface(out, userMessage, scoped).message;

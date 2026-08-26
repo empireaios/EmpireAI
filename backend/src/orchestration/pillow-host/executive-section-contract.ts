@@ -1,6 +1,7 @@
 /**
  * Exact top-level numbered section contract for final-visible answers.
- * Validates AFTER reconstruction/polish. Does not invent missing content.
+ * Distinguishes TOP_LEVEL sections from nested numbered items inside a section.
+ * Does not invent missing content. Does not encode sealed exams.
  */
 
 export type SectionContractReport = {
@@ -10,6 +11,7 @@ export type SectionContractReport = {
   duplicateNumbers: number[];
   missingNumbers: number[];
   markers: number[];
+  nestedPromoted: number;
 };
 
 const WORD_TO_NUM: Record<string, number> = {
@@ -35,9 +37,8 @@ export function detectExpectedTopLevelSections(userMessage: string): number | nu
     const n = WORD_TO_NUM[raw] ?? Number(raw);
     if (Number.isFinite(n) && n >= 2 && n <= 20) return n;
   }
-  // Explicit "answer in N numbered parts/sections"
   const parts = t.match(
-    /\b(?:in|as|use)\s+(\d+|five|six|seven|eight)\s+(?:numbered\s+)?(?:parts|sections|headings)\b/i,
+    /\b(?:in|as|use|with|answer(?:\s+with)?)\s+(\d+|five|six|seven|eight)\s+(?:numbered\s+)?(?:parts|sections|headings)\b/i,
   );
   if (parts) {
     const raw = parts[1]!.toLowerCase();
@@ -47,26 +48,121 @@ export function detectExpectedTopLevelSections(userMessage: string): number | nu
   return null;
 }
 
-/** Top-level markers: line-start N. or N) only (not nested bullets). */
+/** Extract requested section title hints "1. Foo" from the user ask (for matching). */
+export function extractRequestedSectionTitles(userMessage: string): string[] {
+  const expected = detectExpectedTopLevelSections(userMessage);
+  if (expected == null) return [];
+  const text = String(userMessage || "");
+  const titles: string[] = [];
+  for (let i = 1; i <= expected; i++) {
+    const m = new RegExp(
+      `(?:^|\\n)\\s*${i}[.)]\\s+([^\\n]{3,120})`,
+      "i",
+    ).exec(text);
+    if (m?.[1]) titles.push(m[1].trim());
+  }
+  return titles;
+}
+
+function isNestedIndent(line: string): boolean {
+  return /^[ \t]{2,}/.test(line);
+}
+
+/**
+ * Top-level markers when no expected N: line-start N. / N) excluding nested indent.
+ */
 export function extractTopLevelSectionMarkers(answer: string): number[] {
   const lines = String(answer || "").split(/\n/);
   const markers: number[] = [];
   for (const line of lines) {
     const m = /^\s*(\d{1,2})[.)]\s+\S/.exec(line);
     if (!m) continue;
-    // Skip deeply indented nested items (4+ spaces / tab)
-    if (/^[ \t]{4,}/.test(line)) continue;
+    if (isNestedIndent(line)) continue;
     const n = Number(m[1]);
     if (n >= 1 && n <= 30) markers.push(n);
   }
   return markers;
 }
 
+/**
+ * When expected N is known, keep only the N top-level section starts.
+ * Nested lists that continue numbering (3,4,5 inside section 2) or restart at 1
+ * are excluded from top-level count.
+ */
+export function extractContractTopLevelMarkers(
+  answer: string,
+  expected: number | null,
+  sectionTitles: string[] = [],
+): { markers: number[]; nestedPromoted: number } {
+  if (expected == null || expected < 2) {
+    return { markers: extractTopLevelSectionMarkers(answer), nestedPromoted: 0 };
+  }
+  const lines = String(answer || "").split(/\n/);
+  const markers: number[] = [];
+  let nestedPromoted = 0;
+  let nextExpected = 1;
+  let openSection = false;
+
+  for (const line of lines) {
+    const m = /^(\s*)(\d{1,2})[.)]\s+(\S.*)$/.exec(line);
+    if (!m) continue;
+    if (isNestedIndent(line)) continue;
+    const n = Number(m[2]);
+    const body = m[3]!.trim();
+    const titleHint =
+      sectionTitles[nextExpected - 1] &&
+      sectionTitles[nextExpected - 1]!.length >= 4 &&
+      body.toLowerCase().includes(
+        sectionTitles[nextExpected - 1]!.toLowerCase().slice(0, 24),
+      );
+
+    // Accept as next top-level if number matches nextExpected, or title matches.
+    if (n === nextExpected || (titleHint && nextExpected <= expected)) {
+      markers.push(nextExpected);
+      nextExpected += 1;
+      openSection = true;
+      if (nextExpected > expected) openSection = false;
+      continue;
+    }
+
+    // Extra numbered line while collecting 1..N — nested item promoted to top-level shape.
+    if (nextExpected <= expected + 1 && markers.length >= 1) {
+      nestedPromoted += 1;
+      continue;
+    }
+    if (markers.length >= expected) {
+      nestedPromoted += 1;
+    }
+  }
+
+  // Fallback: if we failed to bind titles and got nothing, use first contiguous 1..N run.
+  if (markers.length < expected) {
+    const all = extractTopLevelSectionMarkers(answer);
+    const run: number[] = [];
+    for (let i = 1; i <= expected; i++) {
+      if (all.includes(i)) run.push(i);
+      else break;
+    }
+    if (run.length === expected) {
+      return {
+        markers: run,
+        nestedPromoted: Math.max(0, all.length - expected),
+      };
+    }
+  }
+
+  return { markers, nestedPromoted };
+}
+
 export function assessSectionContract(
   answer: string,
   expected: number | null,
+  sectionTitles: string[] = [],
 ): SectionContractReport {
-  const markers = extractTopLevelSectionMarkers(answer);
+  const { markers, nestedPromoted } =
+    expected != null
+      ? extractContractTopLevelMarkers(answer, expected, sectionTitles)
+      : { markers: extractTopLevelSectionMarkers(answer), nestedPromoted: 0 };
   const visible = markers.length;
   const duplicateNumbers = markers.filter((n, i) => markers.indexOf(n) !== i);
   const uniqDups = [...new Set(duplicateNumbers)];
@@ -79,7 +175,8 @@ export function assessSectionContract(
     sequenceOk =
       markers.length === expected &&
       markers.every((n, i) => n === i + 1) &&
-      uniqDups.length === 0;
+      uniqDups.length === 0 &&
+      nestedPromoted === 0;
   } else {
     sequenceOk = uniqDups.length === 0;
   }
@@ -90,36 +187,76 @@ export function assessSectionContract(
     duplicateNumbers: uniqDups,
     missingNumbers,
     markers,
+    nestedPromoted,
   };
 }
 
 /**
- * Renumber top-level section markers to 1..K in document order.
- * Does not invent sections. Collapses duplicate numbers.
+ * Demote numbered lines that are not the N contract section headers into nested bullets.
+ */
+export function demoteNestedNumberedItems(
+  answer: string,
+  expected: number,
+  sectionTitles: string[] = [],
+): string {
+  const lines = String(answer || "").split(/\n/);
+  let nextExpected = 1;
+  const out: string[] = [];
+  let nestedIdx = 0;
+
+  for (const line of lines) {
+    const m = /^(\s*)(\d{1,2})([.)]\s+)(\S.*)$/.exec(line);
+    if (!m || isNestedIndent(line)) {
+      out.push(line);
+      continue;
+    }
+    const n = Number(m[2]);
+    const body = m[4]!.trim();
+    const titleHint =
+      sectionTitles[nextExpected - 1] &&
+      sectionTitles[nextExpected - 1]!.length >= 4 &&
+      body.toLowerCase().includes(
+        sectionTitles[nextExpected - 1]!.toLowerCase().slice(0, 24),
+      );
+
+    if (nextExpected <= expected && (n === nextExpected || titleHint)) {
+      out.push(`${nextExpected}${m[3]}${m[4]}`);
+      nextExpected += 1;
+      nestedIdx = 0;
+      continue;
+    }
+
+    // Nested item — indent and use bullet to avoid top-level collision.
+    nestedIdx += 1;
+    out.push(`    - ${body}`);
+  }
+  return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/**
+ * Renumber only the N top-level contract sections; leave nested bullets alone.
  */
 export function renumberTopLevelSections(answer: string, expected?: number | null): string {
+  if (expected != null && expected >= 2) {
+    // Prefer demotion path for exact contracts.
+    return demoteNestedNumberedItems(answer, expected);
+  }
   const lines = String(answer || "").split(/\n/);
   let idx = 0;
   const out = lines.map((line) => {
     const m = /^(\s*)(\d{1,2})([.)]\s+)(\S.*)$/.exec(line);
     if (!m) return line;
-    if (/^[ \t]{4,}/.test(line)) return line;
+    if (isNestedIndent(line)) return line;
     idx += 1;
-    if (expected != null && idx > expected) {
-      // Extra markers beyond expected — keep content, drop number collision by continuing
-    }
     return `${m[1]}${idx}${m[3]}${m[4]}`;
   });
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
-/**
- * Enforce exact section contract when expected N is known.
- * If too few sections, cannot invent — leave content and append an honest note.
- */
 export function enforceExactSectionContract(
   answer: string,
   expected: number | null,
+  sectionTitles: string[] = [],
 ): { message: string; report: SectionContractReport; repaired: boolean } {
   let message = String(answer || "").trim();
   let repaired = false;
@@ -127,18 +264,23 @@ export function enforceExactSectionContract(
     return { message, report: assessSectionContract(message, expected), repaired: false };
   }
 
-  let report = assessSectionContract(message, expected);
-  if (report.duplicateNumbers.length > 0 || !report.markers.every((n, i) => n === i + 1)) {
-    message = renumberTopLevelSections(message, expected);
+  let report = assessSectionContract(message, expected, sectionTitles);
+  if (
+    report.nestedPromoted > 0 ||
+    report.visible !== expected ||
+    report.duplicateNumbers.length > 0 ||
+    !report.markers.every((n, i) => n === i + 1)
+  ) {
+    message = demoteNestedNumberedItems(message, expected, sectionTitles);
     repaired = true;
-    report = assessSectionContract(message, expected);
+    report = assessSectionContract(message, expected, sectionTitles);
   }
 
-  // If still short after renumber (content lacked enough markers), do not invent bodies.
+  // If still short after demotion, do not invent bodies.
   if (report.visible < expected && !/section contract|could not materialise all/i.test(message)) {
     message = `${message}\n\n**Section contract:** ${report.visible} of ${expected} requested top-level numbered sections are visible; missing section numbers remain open rather than invented.`;
     repaired = true;
-    report = assessSectionContract(message, expected);
+    report = assessSectionContract(message, expected, sectionTitles);
   }
 
   return { message, report, repaired };

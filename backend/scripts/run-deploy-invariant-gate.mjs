@@ -35,5 +35,15 @@ if (qual.status !== 0) {
   console.error("DEPLOY_INVARIANT_GATE: FAIL (resolved-verdict-adversarial-qualify)");
   process.exit(qual.status ?? 1);
 }
+
+const sterling = spawnSync(
+  process.execPath,
+  ["--import", "tsx", "scripts/sterling-multi-failure-qualify.mjs"],
+  { cwd: backendRoot, stdio: "inherit", env: process.env },
+);
+if (sterling.status !== 0) {
+  console.error("DEPLOY_INVARIANT_GATE: FAIL (sterling-multi-failure-qualify)");
+  process.exit(sterling.status ?? 1);
+}
 console.log("DEPLOY_INVARIANT_GATE: PASS");
 process.exit(0);

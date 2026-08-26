@@ -53,6 +53,20 @@ import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js"
 import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
 import { countLeftoverSupportedOverrides } from "./executive-final-verdict.js";
 import {
+  assessClaimCompletenessGate,
+  detectMaterialInternalContradictions,
+  enforceClaimEnumeration,
+  parseClaimObligationsFromContractTasks,
+  parseClaimObligationsFromAnswer,
+  stripCompetingVerdictSurfaces,
+} from "./executive-conclusion-ledger.js";
+import {
+  assessSectionContract,
+  extractRequestedSectionTitles,
+  enforceExactSectionContract,
+} from "./executive-section-contract.js";
+import { repairEvidenceStrengthRanking } from "./executive-evidence-ranking.js";
+import {
   detectReasoningScope,
   isScopedAwayFromLiveEmpire,
   type ReasoningScopeType,
@@ -62,13 +76,6 @@ import {
   extractMaterialConstraints,
 } from "./executive-decision-constraints.js";
 import { ensureCausalClaimConsistency } from "./executive-causal-state.js";
-import {
-  detectMaterialInternalContradictions,
-  enforceClaimEnumeration,
-  parseClaimObligationsFromContractTasks,
-  parseClaimObligationsFromAnswer,
-  stripCompetingVerdictSurfaces,
-} from "./executive-conclusion-ledger.js";
 import { buildCanonicalCaseState } from "./executive-canonical-state.js";
 import { detectScenarioDomain } from "./executive-memory-realization.js";
 
@@ -567,6 +574,25 @@ function finalizeVisible(
     }).message;
   }
 
+  rendered = repairEvidenceStrengthRanking(rendered, userMessage ?? "").message;
+  if (contract?.expectedTopLevelSections != null) {
+    rendered = enforceExactSectionContract(
+      rendered,
+      contract.expectedTopLevelSections,
+      extractRequestedSectionTitles(userMessage ?? ""),
+    ).message;
+  }
+  if (claimObs.length >= 1) {
+    const completeness = assessClaimCompletenessGate(rendered, claimObs);
+    if (!completeness.ok) {
+      rendered = enforceClaimEnumeration(rendered, claimObs, {
+        domainHint: detectScenarioDomain(userMessage ?? ""),
+        userMessage: userMessage ?? "",
+        canonical,
+      }).message;
+    }
+  }
+
   rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
   if (countLeftoverSupportedOverrides(rendered) > 0) {
     rendered = stripCompetingVerdictSurfaces(
@@ -600,6 +626,17 @@ function finalizeVisible(
         : []),
       ...(countLeftoverSupportedOverrides(rendered) > 0
         ? ["RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED"]
+        : []),
+      ...(contract?.expectedTopLevelSections != null &&
+      !assessSectionContract(
+        rendered,
+        contract.expectedTopLevelSections,
+        extractRequestedSectionTitles(userMessage ?? ""),
+      ).sequenceOk
+        ? ["TOP_LEVEL_SECTION_COUNT_MISMATCH"]
+        : []),
+      ...(claimObs.length >= 1 && !assessClaimCompletenessGate(rendered, claimObs).ok
+        ? ["EXPLICIT_VERDICT_OMISSION"]
         : []),
     ],
   };

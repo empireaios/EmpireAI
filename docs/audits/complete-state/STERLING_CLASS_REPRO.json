@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-08-26T03:24:55.366Z",
+  "structureRows": [
+    {
+      "id": "struct_logistics",
+      "REQUESTED_SECTION_COUNT": 6,
+      "RENDERED_TOP_LEVEL_SECTION_COUNT_DRAFT": 9,
+      "markersDraft": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "RENDERED_AFTER_POLISH": 6,
+      "markersPolish": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "enforcedVisible": 6,
+      "mismatch": false
+    },
+    {
+      "id": "struct_hospitality",
+      "REQUESTED_SECTION_COUNT": 6,
+      "RENDERED_TOP_LEVEL_SECTION_COUNT_DRAFT": 9,
+      "markersDraft": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "RENDERED_AFTER_POLISH": 6,
+      "markersPolish": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "enforcedVisible": 6,
+      "mismatch": false
+    },
+    {
+      "id": "struct_energy",
+      "REQUESTED_SECTION_COUNT": 6,
+      "RENDERED_TOP_LEVEL_SECTION_COUNT_DRAFT": 9,
+      "markersDraft": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "RENDERED_AFTER_POLISH": 6,
+      "markersPolish": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "enforcedVisible": 6,
+      "mismatch": false
+    }
+  ],
+  "claimRows": [
+    {
+      "id": "claims_mfg",
+      "EXPLICIT_CLAIM_COUNT": 5,
+      "EXPLICIT_VERDICT_COUNT_DRAFT": 1,
+      "enumBefore": {
+        "expected": 5,
+        "rendered": 1,
+        "missing": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "duplicate": []
+      },
+      "EXPLICIT_VERDICT_COUNT_POLISH": 4,
+      "enumAfter": {
+        "expected": 5,
+        "rendered": 4,
+        "missing": [
+          1
+        ],
+        "duplicate": []
+      },
+      "missingAfter": [
+        1
+      ],
+      "verdictsEnforced": 4
+    },
+    {
+      "id": "claims_fin",
+      "EXPLICIT_CLAIM_COUNT": 5,
+      "EXPLICIT_VERDICT_COUNT_DRAFT": 1,
+      "enumBefore": {
+        "expected": 5,
+        "rendered": 1,
+        "missing": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "duplicate": []
+      },
+      "EXPLICIT_VERDICT_COUNT_POLISH": 4,
+      "enumAfter": {
+        "expected": 5,
+        "rendered": 4,
+        "missing": [
+          1
+        ],
+        "duplicate": []
+      },
+      "missingAfter": [
+        1
+      ],
+      "verdictsEnforced": 4
+    },
+    {
+      "id": "claims_ops",
+      "EXPLICIT_CLAIM_COUNT": 5,
+      "EXPLICIT_VERDICT_COUNT_DRAFT": 1,
+      "enumBefore": {
+        "expected": 5,
+        "rendered": 1,
+        "missing": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "duplicate": []
+      },
+      "EXPLICIT_VERDICT_COUNT_POLISH": 5,
+      "enumAfter": {
+        "expected": 5,
+        "rendered": 5,
+        "missing": [],
+        "duplicate": []
+      },
+      "missingAfter": [],
+      "verdictsEnforced": 5
+    }
+  ],
+  "rankingPacks": [
+    {
+      "id": "rank_retail",
+      "expected": [
+        "Pine",
+        "Maple",
+        "Birch"
+      ],
+      "note": "ranking objective evidence-strength; assess after implement"
+    },
+    {
+      "id": "rank_clinic",
+      "expected": [
+        "WardA",
+        "WardB",
+        "WardC"
+      ],
+      "note": "ranking objective evidence-strength; assess after implement"
+    },
+    {
+      "id": "rank_wh",
+      "expected": [
+        "DockX",
+        "DockY",
+        "DockZ"
+      ],
+      "note": "ranking objective evidence-strength; assess after implement"
+    }
+  ]
+}
