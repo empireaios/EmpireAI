@@ -901,11 +901,26 @@ export function releaseExecutiveAnswer(
       forcedClone = detectSiblingTemplateCloning(forcedRaw, contract);
     }
     const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
-    const stripped = stripIrrelevantLifecycleContamination(
+    let stripped = stripIrrelevantLifecycleContamination(
       forcedFin.message,
       options.userMessage,
       contract,
     );
+    stripped = stripInternalValidatorDiagnostics(stripped);
+    // Ultimate fail-closed must still honor hard final-visible contracts (no bypass).
+    if (hasHardFinalVisibleFailure(forcedFin.uxFailures) || hasHardFinalVisibleFailure(
+      assessFinalVisibleContract({
+        answer: stripped,
+        userMessage: options.userMessage ?? "",
+        expectedTopLevelSections: contract.expectedTopLevelSections,
+        sectionTitles: extractRequestedSectionTitles(options.userMessage ?? ""),
+        claims: parseClaimObligationsFromContractTasks(contract.tasks),
+      }).failures,
+    )) {
+      // Last materialization pass through finalizeVisible (ranking/section/claim repairs).
+      stripped = finalizeVisible(stripped, level, options.userMessage, contract).message;
+      stripped = stripInternalValidatorDiagnostics(stripped);
+    }
     const stillCloned = detectSiblingTemplateCloning(stripped, contract);
     if (stillCloned.cloned) {
       // Prefer an explicit local-unknown framing over cloned generic verdicts.
@@ -919,11 +934,13 @@ export function releaseExecutiveAnswer(
         });
         return `### ${i + 1}) ${(t.subject || t.sourceSpan).slice(0, 100)}\n\n${body}`;
       });
-      const rebuilt = stripIrrelevantLifecycleContamination(
+      let rebuilt = stripIrrelevantLifecycleContamination(
         lines.join("\n\n"),
         options.userMessage,
         contract,
       );
+      rebuilt = finalizeVisible(rebuilt, level, options.userMessage, contract).message;
+      rebuilt = stripInternalValidatorDiagnostics(rebuilt);
       const rebuiltCoverage = assessTaskCoverage(rebuilt, contract);
       telemetry.releasePath = "fail_closed";
       telemetry.finalRevalidationPass = true;
