@@ -224,7 +224,16 @@ export function assessFinalVisibleContract(args: {
 
   let evidenceRankingOk: boolean | null = null;
   if (classifyRankingObjective(args.userMessage) === "EVIDENCE_STRENGTH") {
-    const bad = detectValueForStrengthSubstitution(answer, args.userMessage);
+    const records = parseCanonicalEvidenceRecords(args.userMessage);
+    const ranked = rankByEvidenceStrength(records);
+    const expected = ranked.map((r) => r.subject.toLowerCase());
+    const text = String(answer || "").toLowerCase();
+    const subjectsPresent = expected.filter((name) =>
+      new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text),
+    ).length;
+    const bad =
+      detectValueForStrengthSubstitution(answer, args.userMessage) ||
+      (records.length >= 2 && subjectsPresent < Math.min(2, expected.length));
     evidenceRankingOk = !bad;
     if (bad) failures.push("VALUE_FOR_STRENGTH_SUBSTITUTION");
   }

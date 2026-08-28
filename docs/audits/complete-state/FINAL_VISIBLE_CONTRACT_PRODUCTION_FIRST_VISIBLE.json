@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-08-28T16:22:33.336Z",
+  "PRODUCTION_FIRST_VISIBLE_PASS": "PASS",
+  "before": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "ba304f300a7eeb2bec272eb61033651e3663ddc7",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "26cb4f8e-3e46-4818-8a20-62fb803e2a7c"
+    }
+  },
+  "after": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "ba304f300a7eeb2bec272eb61033651e3663ddc7",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "26cb4f8e-3e46-4818-8a20-62fb803e2a7c"
+    }
+  },
+  "rows": [
+    {
+      "id": "prod_exact_sections_nested",
+      "ok": true,
+      "ms": 6934,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### 1) Snapshot\n\n### Snapshot\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n### 2) Evidence-str"
+    },
+    {
+      "id": "prod_five_claim_verdicts",
+      "ok": true,
+      "ms": 5583,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### Claim Audit Results\n\n### Summary\nAll five claims have been found not supported based on the provided evidence. Each claim contains inaccuracies or fails to acknowledge relevant causal relationships.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Line Beta shortage has nothing to do with Line Alpha because Beta never lost staff.\"\n\nCompound claim: a supported premise does not make the whole claim SUPP"
+    },
+    {
+      "id": "prod_partial_vs_full_evidence",
+      "ok": true,
+      "ms": 2905,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### SyntheticFV-Rank — Cobalt fleet only. Rank by strength of fleet-wi\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative sourc"
+    },
+    {
+      "id": "prod_population_scope",
+      "ok": true,
+      "ms": 2979,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### Measured Reduction Summary\n\n- **Harbor Operations:**\n - Valid Measured: 28\n - Deployed Population: 40\n - Measured Reduction: **8.5%**\n\n- **Peer Operations:**\n - Valid Measured: 25\n - Full Population: 25\n - Measured Reduction: **8%**\n\nThis indicates that the Harbor operations have a slightly higher measured reduction compared to the peer operations, reflecting a more effective performance in th"
+    },
+    {
+      "id": "prod_financial",
+      "ok": true,
+      "ms": 2302,
+      "status": 200,
+      "hasDiag": false,
+      "head": "The claim that \"Forecast equals realised for batch B7\" is not supported by the provided data.\n\n- The forecast profit for batch B7 is $40. - The realised profit for batch B7 is $18.\n\nSince the forecast profit does not equal the realised profit, the claim is false.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Forecast equals realised for batch B7.\"\n\nForecast 40 ≠ realised 18."
+    },
+    {
+      "id": "prod_corrected_evidence",
+      "ok": true,
+      "ms": 1684,
+      "status": 200,
+      "hasDiag": false,
+      "head": "The current certified gain is not 12%. The corrected verified audit indicates that the actual gain is 4%. Therefore, the claim that the current certified gain is 12% is inaccurate.\n\n### Claim 1: \"The current certified gain is 12%.\" — separate verdict\n**Verdict:** Claims retain distinct identity\n\nA multi-claim audit must score each quoted claim on its own evidence class. Shared scenario context doe"
+    },
+    {
+      "id": "prod_causal",
+      "ok": true,
+      "ms": 4124,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### Verdict\nThe claim \"Ridge Quay's operator shortage is not free of causal connection to Ridge Mesa because Quay itself never lost staff\" is **not supported** by the evidence.\n\n### Need\nTo assess the relationship between the staffing issues at Ridge Mesa and Ridge Quay, we need to consider the causal connections between the two. The evidence indicates that the staffing shortage at Ridge Mesa led "
+    },
+    {
+      "id": "prod_memory_temptation",
+      "ok": true,
+      "ms": 3427,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### Verdict\nThe claim \"Store Cobalt's capacity shortage remain causally linked via the established transfer path to Store Argon because Cobalt never had a staffing failure\" is **unsupported** based on the provided context.\n\n### Need\nTo assess the relationship between the staffing issues at Depot Argon and the capacity shortage at Store Cobalt, we must consider the implications of the redirected wo"
+    },
+    {
+      "id": "prod_warm_combined",
+      "ok": true,
+      "ms": 5123,
+      "status": 200,
+      "hasDiag": false,
+      "head": "### 1) Snapshot\n\n### Snapshot\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n### 2) Evidence-str"
+    }
+  ]
+}

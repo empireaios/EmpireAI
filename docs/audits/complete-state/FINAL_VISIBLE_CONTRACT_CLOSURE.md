@@ -2,7 +2,13 @@
 
 **Status:** ENGINEERING CLOSED (Wave-1 remains UNCERTIFIED; Birth NOT authorised)
 
-## Wave state (unchanged)
+**SEMANTIC_CODE_SHA:** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
+**CERTIFIED_SHA (engineering):** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
+**RUNNING_BRAIN_SHA:** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
+**DEPLOYMENT_ID:** `26cb4f8e-3e46-4818-8a20-62fb803e2a7c`  
+**Base preserved:** `66d98803` (Sterling classes) · `3b60fd7c` (verdict ownership) · `239cc95b` (path parity)
+
+## Wave state (unchanged — Cursor PASS = zero Wave credit)
 
 WAVE_1=UNCERTIFIED · WAVE_1_CLEAN_STREAK=0 · WAVE_2=UNCERTIFIED · WAVE_3=LOCKED · BIRTH_AUTHORISED=NO
 
@@ -12,34 +18,34 @@ WAVE_1=UNCERTIFIED · WAVE_1_CLEAN_STREAK=0 · WAVE_2=UNCERTIFIED · WAVE_3=LOCK
 |------|------------|
 | False section-contract diagnostic leak | YES |
 | Missing verdicts despite claim text | YES |
-| Evidence ranking by measured magnitude (28/40 @ 8.5% vs 25/25 @ 8%) | YES |
+| Evidence ranking by measured magnitude | YES |
 | Dropped population scope qualifier | YES |
 
-## Architecture
+## Final-visible boundary
 
-**FINAL_VISIBLE_CONTRACT_BOUNDARY:**  
-`FINAL_RESPONSE_BEFORE_TRANSPORT → assessFinalVisibleContract / stripInternalValidatorDiagnostics → PASS|regenerate|fail-closed → TRANSPORT`
+`FINAL_RESPONSE_BEFORE_TRANSPORT → stripInternalValidatorDiagnostics → assessFinalVisibleContract → PASS|regenerate|fail-closed → TRANSPORT`
 
-One parser implementation for release + certification: `executive-final-visible-contract.ts`.
+One parser: `executive-final-visible-contract.ts` (release + certification).
 
 ## Mutator simplification
 
-| Class | Before | After |
-|------|--------|-------|
-| STRUCTURE_MUTATORS | enforceExactSectionContract (demote + **diagnostic append**) ×2 (finalize+polish), renumber, reconstruct, coverage append | demote only (candidate repair); **diagnostic append REMOVED**; hard gate fails shortfall |
-| CLAIM_MUTATORS | enforceClaimEnumeration + soft EXPLICIT_VERDICT_OMISSION telemetry | enforce remains candidate materializer; **hard fail** on omission; strip orphans without Verdict; final-string claim contract |
+| | Before | After |
+|--|--------|-------|
+| STRUCTURE_MUTATORS | demote + **diagnostic append** ×2 | demote only; diagnostic **REMOVED**; hard gate |
+| CLAIM_MUTATORS | soft omission telemetry | orphan strip + hard fail on omission |
+
+STRUCTURE_MUTATORS_BEFORE≈8 writers · AFTER≈6 (diagnostic append gone; dual enforce demoted to demote-only)  
+CLAIM_MUTATORS_BEFORE≈7 · AFTER≈7 (same writers; hard gate ownership added; strip orphans fixed)
 
 ## Evidence quality
 
-- `MEASURED_VALUE ≠ EVIDENCE_STRENGTH` end-to-end
-- `obs < pop` never `FULL_POPULATION` (PARTIAL)
-- Ranking objective: evidence cues win over % cues
-- Scope qualifier preserved / overgeneralization gated
+- MEASURED_VALUE ≠ EVIDENCE_STRENGTH
+- obs < pop → PARTIAL (never FULL)
+- Scope qualifiers preserved / overgeneralization gated
+- Stub answers without ranked subjects fail VALUE_FOR_STRENGTH_SUBSTITUTION
 
-## Qualification (local)
+## Gates
 
-See `FINAL_VISIBLE_CONTRACT_QUAL.json` / `FINAL_VISIBLE_CONTRACT_REPRO.json`.
-
-FAST / DEPLOY / FULL wired.
-
-Production SHAs filled after single deploy.
+FAST / DEPLOY / FULL PASS · PRODUCTION_FIRST_VISIBLE PASS on `ba304f30` / `26cb4f8e`  
+INTERNAL_VALIDATOR_DIAGNOSTIC_VISIBLE=0 on production ladder  
+OBJECTIVE_VALIDATOR_FALSE_PASS=0 · FALSE_FAIL=0
