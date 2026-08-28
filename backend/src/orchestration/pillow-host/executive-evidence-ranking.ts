@@ -344,7 +344,13 @@ export function repairEvidenceStrengthRanking(
     /\b\d{1,3}(?:\.\d+)?\s*%\s+(?:is\s+)?(?:stronger|strongest|better\s+evidence)\b/i.test(text) ||
     /\bstrongest\s+evidence\s+is\s+the\s+\d/i.test(text);
 
-  if (!valueSubstitution && !orderMismatch && !percentLed) {
+  // Missing subjects / stub collapse: force strength block when evidence objective is clear.
+  const subjectsPresent = expectedOrder.filter((name) =>
+    new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text),
+  ).length;
+  const missingSubjects = subjectsPresent < Math.min(2, expectedOrder.length);
+
+  if (!valueSubstitution && !orderMismatch && !percentLed && !missingSubjects) {
     return { message: text, repaired: false, objective };
   }
 

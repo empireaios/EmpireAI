@@ -75,7 +75,10 @@ export function extractTopLevelSectionMarkers(answer: string): number[] {
   const lines = String(answer || "").split(/\n/);
   const markers: number[] = [];
   for (const line of lines) {
-    const m = /^\s*(\d{1,2})[.)]\s+\S/.exec(line);
+    // Plain "1. Title" / "1) Title" or markdown "### 1. Title" / "### 1) Title"
+    const m =
+      /^\s*(?:#{1,3}\s*)?(\d{1,2})[.)]\s+\S/.exec(line) ||
+      /^\s*#{1,3}\s*(\d{1,2})\s+[A-Za-z]/.exec(line);
     if (!m) continue;
     if (isNestedIndent(line)) continue;
     const n = Number(m[1]);
@@ -104,7 +107,8 @@ export function extractContractTopLevelMarkers(
   let openSection = false;
 
   for (const line of lines) {
-    const m = /^(\s*)(\d{1,2})[.)]\s+(\S.*)$/.exec(line);
+    const m = /^(\s*)(?:#{1,3}\s*)?(\d{1,2})[.)]\s+(\S.*)$/.exec(line) ||
+      /^(\s*)#{1,3}\s*(\d{1,2})\s+(\S.*)$/.exec(line);
     if (!m) continue;
     if (isNestedIndent(line)) continue;
     const n = Number(m[2]);
@@ -205,13 +209,26 @@ export function demoteNestedNumberedItems(
   let nestedIdx = 0;
 
   for (const line of lines) {
-    const m = /^(\s*)(\d{1,2})([.)]\s+)(\S.*)$/.exec(line);
+    const m =
+      /^(\s*)(?:#{1,3}\s*)?(\d{1,2})([.)]\s+)(\S.*)$/.exec(line) ||
+      /^(\s*)(#{1,3}\s*)(\d{1,2})(\s+)(\S.*)$/.exec(line);
     if (!m || isNestedIndent(line)) {
       out.push(line);
       continue;
     }
-    const n = Number(m[2]);
-    const body = m[4]!.trim();
+    // Normalize ### N Title → N. Title for contract demotion path.
+    let n: number;
+    let sep: string;
+    let body: string;
+    if (m.length === 5) {
+      n = Number(m[2]);
+      sep = m[3]!;
+      body = m[4]!.trim();
+    } else {
+      n = Number(m[3]);
+      sep = ". ";
+      body = m[5]!.trim();
+    }
     const titleHint =
       sectionTitles[nextExpected - 1] &&
       sectionTitles[nextExpected - 1]!.length >= 4 &&
@@ -220,7 +237,7 @@ export function demoteNestedNumberedItems(
       );
 
     if (nextExpected <= expected && (n === nextExpected || titleHint)) {
-      out.push(`${nextExpected}${m[3]}${m[4]}`);
+      out.push(`${nextExpected}${sep}${body}`);
       nextExpected += 1;
       nestedIdx = 0;
       continue;
