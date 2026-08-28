@@ -2,11 +2,12 @@
 
 **Status:** ENGINEERING CLOSED (Wave-1 remains UNCERTIFIED; Birth NOT authorised)
 
-**SEMANTIC_CODE_SHA:** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
-**CERTIFIED_SHA (engineering):** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
-**RUNNING_BRAIN_SHA:** `ba304f300a7eeb2bec272eb61033651e3663ddc7`  
-**DEPLOYMENT_ID:** `26cb4f8e-3e46-4818-8a20-62fb803e2a7c`  
-**Base preserved:** `66d98803` (Sterling classes) · `3b60fd7c` (verdict ownership) · `239cc95b` (path parity)
+**SEMANTIC_CODE_SHA:** `39ce4c2fdce3832c963085ee81752a648e448177`  
+**CERTIFIED_SHA (engineering):** `39ce4c2fdce3832c963085ee81752a648e448177`  
+**RUNNING_BRAIN_SHA:** `39ce4c2fdce3832c963085ee81752a648e448177`  
+**DEPLOYMENT_ID:** `a49bfbee` (full id from `/health/live.deploy.deploymentId`)  
+**REPO_TIP_SHA:** `39ce4c2fdce3832c963085ee81752a648e448177`  
+**Base preserved:** `66d98803` · `3b60fd7c` · `239cc95b`
 
 ## Wave state (unchanged — Cursor PASS = zero Wave credit)
 
@@ -25,27 +26,35 @@ WAVE_1=UNCERTIFIED · WAVE_1_CLEAN_STREAK=0 · WAVE_2=UNCERTIFIED · WAVE_3=LOCK
 
 `FINAL_RESPONSE_BEFORE_TRANSPORT → stripInternalValidatorDiagnostics → assessFinalVisibleContract → PASS|regenerate|fail-closed → TRANSPORT`
 
-One parser: `executive-final-visible-contract.ts` (release + certification).
+One parser: `executive-final-visible-contract.ts` (release + certification + production grader).
 
 ## Mutator simplification
 
 | | Before | After |
 |--|--------|-------|
-| STRUCTURE_MUTATORS | demote + **diagnostic append** ×2 | demote only; diagnostic **REMOVED**; hard gate |
-| CLAIM_MUTATORS | soft omission telemetry | orphan strip + hard fail on omission |
+| STRUCTURE | demote + **diagnostic append** ×2 | demote only; diagnostic **REMOVED**; hard gate |
+| CLAIM | soft omission telemetry | orphan strip + hard fail |
+| FAIL-CLOSED | bypassed final contract | re-runs finalizeVisible + strip diagnostics |
 
-STRUCTURE_MUTATORS_BEFORE≈8 writers · AFTER≈6 (diagnostic append gone; dual enforce demoted to demote-only)  
-CLAIM_MUTATORS_BEFORE≈7 · AFTER≈7 (same writers; hard gate ownership added; strip orphans fixed)
+STRUCTURE_MUTATORS_BEFORE≈8 · AFTER≈6  
+CLAIM_MUTATORS_BEFORE≈7 · AFTER≈7 (hard gate ownership; orphan strip fixed)
 
 ## Evidence quality
 
 - MEASURED_VALUE ≠ EVIDENCE_STRENGTH
 - obs < pop → PARTIAL (never FULL)
-- Scope qualifiers preserved / overgeneralization gated
-- Stub answers without ranked subjects fail VALUE_FOR_STRENGTH_SUBSTITUTION
+- Scope qualifiers preserved
+- Missing ranked subjects → VALUE_FOR_STRENGTH_SUBSTITUTION
 
 ## Gates
 
-FAST / DEPLOY / FULL PASS · PRODUCTION_FIRST_VISIBLE PASS on `ba304f30` / `26cb4f8e`  
-INTERNAL_VALIDATOR_DIAGNOSTIC_VISIBLE=0 on production ladder  
-OBJECTIVE_VALIDATOR_FALSE_PASS=0 · FALSE_FAIL=0
+FAST / DEPLOY / FULL PASS  
+IC real-path PASS  
+PRODUCTION_FIRST_VISIBLE PASS on `39ce4c2f`  
+INTERNAL_VALIDATOR_DIAGNOSTIC_VISIBLE=0  
+OBJECTIVE_VALIDATOR_FALSE_PASS=0 · FALSE_FAIL=0  
+KNOWN_P0=0 · KNOWN_P1=0 (engineering)
+
+## Remaining weakness
+
+Some ranking-only asks still draft a claim-template preamble before the injected evidence-strength block. Contract gates pass when the strength order is present; first-pass narrative quality for pure ranking asks remains a follow-on polish item (not a Wave cert).
