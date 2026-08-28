@@ -45,5 +45,15 @@ if (sterling.status !== 0) {
   console.error("DEPLOY_INVARIANT_GATE: FAIL (sterling-multi-failure-qualify)");
   process.exit(sterling.status ?? 1);
 }
+
+const finalVisible = spawnSync(
+  process.execPath,
+  ["--import", "tsx", "scripts/final-visible-contract-qualify.mjs"],
+  { cwd: backendRoot, stdio: "inherit", env: process.env },
+);
+if (finalVisible.status !== 0) {
+  console.error("DEPLOY_INVARIANT_GATE: FAIL (final-visible-contract-qualify)");
+  process.exit(finalVisible.status ?? 1);
+}
 console.log("DEPLOY_INVARIANT_GATE: PASS");
 process.exit(0);

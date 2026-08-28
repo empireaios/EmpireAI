@@ -276,12 +276,7 @@ export function enforceExactSectionContract(
     report = assessSectionContract(message, expected, sectionTitles);
   }
 
-  // If still short after demotion, do not invent bodies.
-  if (report.visible < expected && !/section contract|could not materialise all/i.test(message)) {
-    message = `${message}\n\n**Section contract:** ${report.visible} of ${expected} requested top-level numbered sections are visible; missing section numbers remain open rather than invented.`;
-    repaired = true;
-    report = assessSectionContract(message, expected, sectionTitles);
-  }
-
+  // Never append section-contract diagnostics into user-visible text.
+  // Shortfall is reported via assessSectionContract / final-visible gate (fail/regenerate).
   return { message, report, repaired };
 }

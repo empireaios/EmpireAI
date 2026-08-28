@@ -61,11 +61,18 @@ import {
   stripCompetingVerdictSurfaces,
 } from "./executive-conclusion-ledger.js";
 import {
-  assessSectionContract,
   extractRequestedSectionTitles,
   enforceExactSectionContract,
 } from "./executive-section-contract.js";
-import { repairEvidenceStrengthRanking } from "./executive-evidence-ranking.js";
+import {
+  preservePopulationScopeQualifiers,
+  repairEvidenceStrengthRanking,
+} from "./executive-evidence-ranking.js";
+import {
+  assessFinalVisibleContract,
+  hasHardFinalVisibleFailure,
+  stripInternalValidatorDiagnostics,
+} from "./executive-final-visible-contract.js";
 import {
   detectReasoningScope,
   isScopedAwayFromLiveEmpire,
@@ -575,6 +582,7 @@ function finalizeVisible(
   }
 
   rendered = repairEvidenceStrengthRanking(rendered, userMessage ?? "").message;
+  rendered = preservePopulationScopeQualifiers(rendered, userMessage ?? "").message;
   if (contract?.expectedTopLevelSections != null) {
     rendered = enforceExactSectionContract(
       rendered,
@@ -610,6 +618,18 @@ function finalizeVisible(
       }).message;
     }
   }
+
+  // Final boundary: strip machinery diagnostics, then objectively grade THIS string.
+  rendered = stripInternalValidatorDiagnostics(rendered);
+  const titles = extractRequestedSectionTitles(userMessage ?? "");
+  const finalContract = assessFinalVisibleContract({
+    answer: rendered,
+    userMessage: userMessage ?? "",
+    expectedTopLevelSections: contract?.expectedTopLevelSections ?? null,
+    sectionTitles: titles,
+    claims: claimObs,
+  });
+
   const ux =
     level === "normal"
       ? assessConversationalUx(rendered)
@@ -627,17 +647,7 @@ function finalizeVisible(
       ...(countLeftoverSupportedOverrides(rendered) > 0
         ? ["RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED"]
         : []),
-      ...(contract?.expectedTopLevelSections != null &&
-      !assessSectionContract(
-        rendered,
-        contract.expectedTopLevelSections,
-        extractRequestedSectionTitles(userMessage ?? ""),
-      ).sequenceOk
-        ? ["TOP_LEVEL_SECTION_COUNT_MISMATCH"]
-        : []),
-      ...(claimObs.length >= 1 && !assessClaimCompletenessGate(rendered, claimObs).ok
-        ? ["EXPLICIT_VERDICT_OMISSION"]
-        : []),
+      ...finalContract.failures,
     ],
   };
 }
@@ -749,7 +759,8 @@ export function releaseExecutiveAnswer(
       if (staleOffline(item.text)) continue;
       const fin = finalizeVisible(item.text, level, options.userMessage, contract);
       if (staleOffline(fin.message)) continue;
-      if (fin.uxFailures.includes("CONSISTENCY_FAILURE")) continue;
+      // Hard final-visible contract: section/claim/diagnostic/evidence — fail candidate, never leak diagnostics.
+      if (hasHardFinalVisibleFailure(fin.uxFailures)) continue;
       const final = validateExecutiveDraft(fin.message, truth, attestations);
       if (!final.ok) continue;
       const coverage = assessTaskCoverage(fin.message, contract);

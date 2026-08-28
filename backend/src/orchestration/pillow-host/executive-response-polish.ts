@@ -18,7 +18,11 @@ import {
 import { repairHistoricalOccurrenceErasure } from "./executive-event-state.js";
 import { validateVisibleBlockRelevance } from "./executive-memory-relevance.js";
 import { enforceExactSectionContract, extractRequestedSectionTitles } from "./executive-section-contract.js";
-import { repairEvidenceStrengthRanking } from "./executive-evidence-ranking.js";
+import {
+  preservePopulationScopeQualifiers,
+  repairEvidenceStrengthRanking,
+} from "./executive-evidence-ranking.js";
+import { stripInternalValidatorDiagnostics } from "./executive-final-visible-contract.js";
 import {
   assessClaimCompletenessGate,
   enforceClaimEnumeration,
@@ -245,12 +249,14 @@ export function polishFinalVisibleAnswer(
 
   // Evidence-strength ranking before structure demotion so nested ranks stay inside section.
   out = repairEvidenceStrengthRanking(out, userMessage).message;
+  out = preservePopulationScopeQualifiers(out, userMessage).message;
 
   out = ensureNumberedSectionLineBreaks(out);
   out = ensureScannableMultipartStructure(out, c);
   out = ensureNumberedSectionLineBreaks(out);
   if (c.expectedTopLevelSections != null) {
     const titles = extractRequestedSectionTitles(userMessage);
+    // Demote nested numbers only — never append section-contract diagnostics.
     out = enforceExactSectionContract(out, c.expectedTopLevelSections, titles).message;
   }
   if (claimObligations.length >= 1) {
@@ -272,6 +278,8 @@ export function polishFinalVisibleAnswer(
   out = realizeDomainNativeMemorySurface(out, userMessage, scoped).message;
   // Final gate: unmapped economic-occurrence doctrine must not surface.
   out = validateVisibleBlockRelevance(out, userMessage).message;
+  // Never leak internal validator diagnostics into Grand King-visible text.
+  out = stripInternalValidatorDiagnostics(out);
   return out;
 }
 

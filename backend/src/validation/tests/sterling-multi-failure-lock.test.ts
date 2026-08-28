@@ -98,6 +98,9 @@ describe("Sterling multi-failure lock", () => {
     assert.equal(ranked[0]?.subject, "Pine");
     assert.equal(ranked[1]?.subject, "Maple");
     assert.equal(ranked[2]?.subject, "Birch");
-    assert.equal(ranked[2]?.samplingMethod, "SAMPLE");
+    assert.ok(
+      ranked[2]?.samplingMethod === "SAMPLE" || ranked[2]?.samplingMethod === "PARTIAL",
+      "incomplete coverage must not be FULL_POPULATION",
+    );
   });
 });

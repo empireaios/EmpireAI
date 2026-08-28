@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-08-28T14:40:41.094Z",
+  "PRE_FIX_SECTION_FAILURE_REPRODUCED": true,
+  "PRE_FIX_CLAIM_FAILURE_REPRODUCED": true,
+  "PRE_FIX_RANKING_FAILURE_REPRODUCED": true,
+  "PRE_FIX_SCOPE_FAILURE_REPRODUCED": true,
+  "sectionRepros": [
+    {
+      "domain": "Harbor",
+      "PRE_FIX_SECTION_FAILURE_REPRODUCED": true,
+      "DIAGNOSTIC_LEAKED": true,
+      "AFTER_STRIP_OK": true,
+      "ENFORCE_NO_LONGER_APPENDS": true
+    },
+    {
+      "domain": "Atlas",
+      "PRE_FIX_SECTION_FAILURE_REPRODUCED": true,
+      "DIAGNOSTIC_LEAKED": true,
+      "AFTER_STRIP_OK": true,
+      "ENFORCE_NO_LONGER_APPENDS": true
+    },
+    {
+      "domain": "Cobalt",
+      "PRE_FIX_SECTION_FAILURE_REPRODUCED": true,
+      "DIAGNOSTIC_LEAKED": true,
+      "AFTER_STRIP_OK": true,
+      "ENFORCE_NO_LONGER_APPENDS": true
+    }
+  ],
+  "claimRepros": [
+    {
+      "domain": "Riverton",
+      "PRE_FIX_CLAIM_FAILURE_REPRODUCED": true,
+      "missingVerdict": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "domain": "Quartz",
+      "PRE_FIX_CLAIM_FAILURE_REPRODUCED": true,
+      "missingVerdict": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "domain": "Marble",
+      "PRE_FIX_CLAIM_FAILURE_REPRODUCED": true,
+      "missingVerdict": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "rankingRepros": [
+    {
+      "pair": [
+        "Cedar",
+        "Orchid"
+      ],
+      "objective": "EVIDENCE_STRENGTH",
+      "expectedFirst": "Orchid",
+      "PRE_FIX_RANKING_FAILURE_REPRODUCED": true
+    },
+    {
+      "pair": [
+        "Harbor",
+        "Atlas"
+      ],
+      "objective": "EVIDENCE_STRENGTH",
+      "expectedFirst": "Atlas",
+      "PRE_FIX_RANKING_FAILURE_REPRODUCED": true
+    },
+    {
+      "pair": [
+        "Cobalt",
+        "Quartz"
+      ],
+      "objective": "EVIDENCE_STRENGTH",
+      "expectedFirst": "Quartz",
+      "PRE_FIX_RANKING_FAILURE_REPRODUCED": true
+    }
+  ],
+  "scopeRepros": [
+    {
+      "domain": "Harbor",
+      "PRE_FIX_SCOPE_FAILURE_REPRODUCED": true
+    },
+    {
+      "domain": "Atlas",
+      "PRE_FIX_SCOPE_FAILURE_REPRODUCED": true
+    },
+    {
+      "domain": "Cobalt",
+      "PRE_FIX_SCOPE_FAILURE_REPRODUCED": true
+    }
+  ]
+}

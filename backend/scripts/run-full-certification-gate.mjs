@@ -17,6 +17,7 @@ const suites = [
   "src/validation/tests/resolved-verdict-authority.test.ts",
   "src/validation/tests/deterministic-resolved-verdict-lock.test.ts",
   "src/validation/tests/sterling-multi-failure-lock.test.ts",
+  "src/validation/tests/final-visible-contract-lock.test.ts",
   "src/validation/tests/path-parity-scope-isolation.test.ts",
   "src/validation/tests/memory-relevance-contract.test.ts",
   "src/validation/tests/memory-relevance-raw-pipeline.test.ts",
