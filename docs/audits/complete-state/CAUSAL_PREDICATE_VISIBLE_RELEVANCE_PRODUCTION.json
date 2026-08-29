@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-08-29T16:12:21.609Z",
+  "PRODUCTION_FIRST_VISIBLE_PASS": "PASS",
+  "before": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "c534deaed70a147270121f74b317f49528a06876",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "5134ae50-ba0f-48c9-b66e-2be88b4ddc9c"
+    }
+  },
+  "after": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "c534deaed70a147270121f74b317f49528a06876",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "5134ae50-ba0f-48c9-b66e-2be88b4ddc9c"
+    }
+  },
+  "rows": [
+    {
+      "id": "prod_direct_vs_indirect",
+      "ok": true,
+      "ms": 8991,
+      "status": 200,
+      "head": "1. **Snapshot**\n North's failure directly caused FailureA, which subsequently triggered a failover to East. This failover led to an overload of PeerNode.\n\n2. **Direct causes**\n - North's failure is identified as the direct cause of FailureA. - FailureA initiated the failover process to East. - The overload of PeerNode is a consequence of the failover from East.\n\n3. **Claim audit**\n - **Claim 1:** \"North's failure directly caused PeerNode's overload.\"\n\n- **Claim 2:** \"North and PeerNode are causa"
+    },
+    {
+      "id": "prod_unrelated_vs_connected",
+      "ok": true,
+      "ms": 3973,
+      "status": 200,
+      "head": "**Need:** The assessment relies on the fact that Inlet's capacity shortage arose from the redirection of work from Cedar, which had a seal failure. Since Inlet itself never experienced a seal failure, it indicates that the capacity shortage is not directly caused by Cedar's failure.\n\n**What matters most:** The causal relationship is established through the operational context. Inlet's capacity issues are a result of workload management rather than a failure in its own operations.\n\n**My recommend"
+    },
+    {
+      "id": "prod_common_root",
+      "ok": true,
+      "ms": 4447,
+      "status": 200,
+      "head": "**Verdict:** The claim \"Ridge and Quay share the same root cause\" is **not supported**.\n\n**Need:** To assess the claim, we must analyze the causal relationships established in the provided context.\n\n**Analysis:**\n- **Ridge** is identified as a **direct cause** of **FailureA**. - **FailureA** triggered a failover to **Harbor**, which subsequently overloaded **Quay**. - The causal links indicate that **Ridge** directly causes **FailureA**, while **Harbor** is the intermediary that leads to the ove"
+    },
+    {
+      "id": "prod_five_claim_exact_sections",
+      "ok": true,
+      "ms": 5306,
+      "status": 200,
+      "head": "1) Snapshot\n\n### Snapshot\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n2) Direct causes\n\n### Direct causes\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enoug"
+    },
+    {
+      "id": "prod_risk_requested",
+      "ok": true,
+      "ms": 4115,
+      "status": 200,
+      "head": "1. **Snapshot**\n The North module has experienced an overload, leading to a failover to the East module. This situation indicates a potential strain on the system's capacity to handle operational demands effectively.\n\n2. **Mechanism**\n The failover mechanism was triggered due to the North module exceeding its operational limits, causing it to redirect traffic or processes to the East module. This is a protective measure to maintain service continuity and prevent system failure.\n\n3. **Remaining r"
+    },
+    {
+      "id": "prod_risk_not_requested",
+      "ok": true,
+      "ms": 2371,
+      "status": 200,
+      "head": "1. **Snapshot**\n The North region has experienced an overload, leading to a failover to the East region. This situation requires immediate attention to ensure operational stability and to prevent further disruptions.\n\n2. **Mechanism**\n The overload in the North region likely resulted from an unexpected surge in demand or resource allocation issues. The failover mechanism was activated to redirect operations to the East region, which is designed to handle additional capacity during such incidents"
+    },
+    {
+      "id": "prod_rec_requested",
+      "ok": true,
+      "ms": 7214,
+      "status": 200,
+      "head": "1. **Snapshot**\nThe current operational state indicates that the North system has experienced an overload, leading to a failover to the East system. This situation requires immediate attention to ensure stability and prevent further disruptions in service.\n\n2. **Mechanism**\nThe failover mechanism was triggered due to the North system exceeding its operational capacity. This overload can be attributed to increased demand or insufficient resource allocation, which necessitated redirecting operatio"
+    },
+    {
+      "id": "prod_rec_not_requested",
+      "ok": true,
+      "ms": 7077,
+      "status": 200,
+      "head": "1. **Snapshot**\n The North system has experienced an overload, which has resulted in a failover to the East system. This transition aims to maintain operational continuity and manage the increased load effectively.\n\n2. **Mechanism**\n The failover mechanism is designed to redirect traffic and operational demands from the North system to the East system when certain thresholds are exceeded. This ensures that service remains uninterrupted and performance standards are upheld during peak loads.\n\n3. "
+    },
+    {
+      "id": "prod_memory_temptation",
+      "ok": true,
+      "ms": 7643,
+      "status": 200,
+      "head": "1. **Snapshot**\nCobalt is currently experiencing a capacity shortage that has arisen due to a redirect of work from Argon. Despite this, it is noted that Cobalt has not failed in staffing.\n\n2. **Claim Audit**\nThe claim \"Cobalt's capacity shortage has no causal relationship to Argon because Cobalt never failed staffing\" is flawed. While it is true that Cobalt has not failed staffing, the capacity shortage is directly linked to the work redirected from Argon. Therefore, the assertion that there is"
+    },
+    {
+      "id": "prod_warm",
+      "ok": true,
+      "ms": 10001,
+      "status": 200,
+      "head": "1. **Snapshot**\nMesa experienced a thermal failure, leading to the reassignment of its work to Quay. Subsequently, Quay became overloaded, but it is noted that Quay itself never experienced a thermal failure.\n\n2. **Direct Causes**\n- Mesa's thermal failure is a direct event that triggered a series of actions, including the reassignment of work to Quay. - Quay's overload is a consequence of the increased workload it received from Mesa after the thermal failure.\n\n3. **Claim Audit**\n- **Claim 1:** \""
+    }
+  ]
+}
