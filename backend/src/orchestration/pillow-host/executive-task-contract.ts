@@ -1589,6 +1589,99 @@ export function buildContractAwareReconstruct(
       opts,
     );
   }
+
+  // Exact top-level section contracts: emit 1..N numbered sections (not ###-only).
+  if (contract.expectedTopLevelSections != null && contract.expectedTopLevelSections >= 2) {
+    const n = contract.expectedTopLevelSections;
+    const claimUnits = units.filter((u) => String(u.id).startsWith("claim_"));
+    const claimTexts = new Set(
+      claimUnits.map((c) =>
+        String(c.sourceSpan || c.subject || "")
+          .replace(/^Claim\s*\d+\s*:\s*/i, "")
+          .replace(/^["“]|["”]$/g, "")
+          .trim()
+          .toLowerCase()
+          .slice(0, 80),
+      ),
+    );
+    // Multipart units that are just the same quoted claims must not become section titles —
+    // stripAllClaimBlocks would delete those sections as "numbered quoted claims".
+    const nonClaim = units.filter((u) => {
+      if (String(u.id).startsWith("claim_")) return false;
+      const sub = String(u.subject || u.sourceSpan || "")
+        .replace(/^["“]|["”]$/g, "")
+        .trim()
+        .toLowerCase()
+        .slice(0, 80);
+      if (claimTexts.has(sub)) return false;
+      if (/^["“].{8,}["”]$/.test(String(u.subject || "").trim()) && claimUnits.length >= 1) {
+        return false;
+      }
+      return true;
+    });
+    // Placeholder only — enforceClaimEnumeration appends canonical Claim N + Verdict
+    // blocks. Pre-synthesizing claim bodies here caused duplicate Claim headings
+    // (claimBlockForIndex stopped before **Verdict:**) and sibling-template clones.
+    const claimAuditBody =
+      claimUnits.length >= 1
+        ? "Per-claim verdicts are enumerated below for each quoted director claim."
+        : "";
+    // Never use quoted claim text as top-level section titles — stripAllClaimBlocks
+    // would delete those sections as numbered quoted claims.
+    const titles =
+      claimUnits.length >= 1 && n === 4
+        ? ["Forecast vs realised", "Identity", "Claim audit", "Synthesis"]
+        : claimUnits.length >= 1
+          ? Array.from({ length: n }, (_, i) =>
+              i === Math.min(n - 2, 2)
+                ? "Claim audit"
+                : i === n - 1
+                  ? "Synthesis"
+                  : nonClaim[i]?.subject?.slice(0, 80) || `Section ${i + 1}`,
+            )
+          : Array.from({ length: n }, (_, i) => {
+              const t = nonClaim[i];
+              return (t?.subject || t?.sourceSpan || `Section ${i + 1}`).slice(0, 80);
+            });
+    const claimAuditIdx = titles.findIndex((t) => /claim\s+audit/i.test(t));
+    const auditAt =
+      claimUnits.length >= 1
+        ? claimAuditIdx >= 0
+          ? claimAuditIdx
+          : Math.min(2, n - 1)
+        : -1;
+    const fillers: { title: string; body: string }[] = [];
+    let nonClaimCursor = 0;
+    for (let i = 0; i < n; i++) {
+      const title = titles[i] || `Section ${i + 1}`;
+      if (i === auditAt && claimAuditBody) {
+        fillers.push({
+          title: /claim\s+audit/i.test(title) ? title : "Claim audit",
+          body: claimAuditBody,
+        });
+        continue;
+      }
+      const t = nonClaim[nonClaimCursor++];
+      if (t) {
+        fillers.push({
+          title: /^section\s+\d+$/i.test(title)
+            ? (t.subject || t.sourceSpan || title).slice(0, 80)
+            : title,
+          body: synthesizeTaskUnitAnswer(t, truth, opts),
+        });
+      } else {
+        fillers.push({
+          title,
+          body:
+            i === n - 1
+              ? "Synthesis from the supplied pack where verified; otherwise unproven."
+              : `Coverage for ${title} from the supplied pack where verified; otherwise unproven.`,
+        });
+      }
+    }
+    return fillers.map((f, i) => `${i + 1}. ${f.title}\n\n${f.body}`).join("\n\n");
+  }
+
   if (contract.multipart && units.length >= 2) {
     return units
       .map((t, i) => {

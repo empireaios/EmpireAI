@@ -581,9 +581,13 @@ export function parseClaimObligationsFromAnswer(answer: string): ClaimObligation
 function stripAllClaimBlocks(answer: string): string {
   const normalized = String(answer || "").replace(/\r\n/g, "\n");
   return normalized
-    .replace(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi, "\n")
+    // True Claim N audit surfaces only — never "N. Claim audit" section titles.
     .replace(
-      /(?:^|\n)\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2}[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*{0,2}Claim:?\*{0,2})|(?:\n#{1,3}\s)|$)/gi,
+      /(?:^|\n)(?:#{1,3}\s*)?Claim\s*\d+\b(?!\s+audit\b)[\s\S]*?(?=(?:\n(?:#{1,3}\s*)?Claim\s*\d+\b)|$)/gi,
+      "\n",
+    )
+    .replace(
+      /(?:^|\n)\s*\d{1,2}\.\s*\*{0,2}Claim\s*:?\s*\d+\b[\s\S]*?(?=(?:\n\s*\d{1,2}\.\s*\*{0,2}Claim\s*:?\s*\d+\b)|(?:\n#{1,3}\s)|$)/gi,
       "\n",
     )
     // Numbered bold proposition + optional verdict (strip orphans without Verdict too)

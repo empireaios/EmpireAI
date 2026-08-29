@@ -16,6 +16,7 @@ const suites = [
   "src/validation/tests/deterministic-resolved-verdict-lock.test.ts",
   "src/validation/tests/sterling-multi-failure-lock.test.ts",
   "src/validation/tests/final-visible-contract-lock.test.ts",
+  "src/validation/tests/transport-boundary-contract-lock.test.ts",
 ];
 const r = spawnSync(
   process.execPath,

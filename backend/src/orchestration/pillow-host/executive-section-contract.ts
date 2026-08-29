@@ -48,18 +48,52 @@ export function detectExpectedTopLevelSections(userMessage: string): number | nu
   return null;
 }
 
-/** Extract requested section title hints "1. Foo" from the user ask (for matching). */
+/**
+ * Extract requested section title hints from the user ask (for matching).
+ * Prefers Cover:/structure prose over numbered claim quotes nested under a claim audit.
+ */
 export function extractRequestedSectionTitles(userMessage: string): string[] {
   const expected = detectExpectedTopLevelSections(userMessage);
   if (expected == null) return [];
   const text = String(userMessage || "");
+
+  // "Cover: forecast vs realised; identity; then claim audit of: … Then synthesis."
+  const cover = /\bCover:\s*([^\n]+)/i.exec(text);
+  if (cover?.[1]) {
+    const parts = cover[1]
+      .split(/\s*;\s*|\s+then\s+/i)
+      .map((s) =>
+        s
+          .replace(/\bclaim\s+audit\s+of:?\s*$/i, "Claim audit")
+          .replace(/\bof:?\s*$/i, "")
+          .trim(),
+      )
+      .filter((s) => s.length >= 3 && !/^["“]/.test(s));
+    const titles = parts.map((t) =>
+      /claim\s+audit/i.test(t) ? "Claim audit" : t.replace(/^of:?\s*/i, "").trim(),
+    );
+    if (/\bThen\s+synthesis\b/i.test(text) && !titles.some((t) => /synthesis/i.test(t))) {
+      titles.push("Synthesis");
+    }
+    if (titles.length >= 2) {
+      while (titles.length < expected) {
+        titles.push(`Section ${titles.length + 1}`);
+      }
+      return titles.slice(0, expected);
+    }
+  }
+
   const titles: string[] = [];
   for (let i = 1; i <= expected; i++) {
     const m = new RegExp(
       `(?:^|\\n)\\s*${i}[.)]\\s+([^\\n]{3,120})`,
       "i",
     ).exec(text);
-    if (m?.[1]) titles.push(m[1].trim());
+    if (!m?.[1]) continue;
+    const title = m[1].trim();
+    // Numbered quoted lines under a claim-audit ask are claims, not section titles.
+    if (/^["“]/.test(title) && /\bclaim\s+audit\b/i.test(text)) continue;
+    titles.push(title);
   }
   return titles;
 }

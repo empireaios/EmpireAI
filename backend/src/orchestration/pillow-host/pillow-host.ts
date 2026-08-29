@@ -49,6 +49,12 @@ import {
 } from "./executive-epistemic-grounding.js";
 import { enforceExecutiveTruthGrounding, isLiveEmpireContaminationInScopedAnswer } from "./executive-release-gate.js";
 import {
+  authorizeTransportRelease,
+  resolveTransportClaimObligations,
+} from "./executive-final-visible-contract.js";
+import { parseClaimObligationsFromContractTasks } from "./executive-conclusion-ledger.js";
+import { extractRequestedSectionTitles } from "./executive-section-contract.js";
+import {
   formatTaskContractBrief,
   parseExecutiveTaskContract,
 } from "./executive-task-contract.js";
@@ -30117,6 +30123,30 @@ export class PillowHost {
                     message = repaired.message;
                     degradedUsed = true;
                     logResult = "degraded_synthetic_live_strip";
+                }
+                // Last semantic boundary before transport: re-authorize after any
+                // post-grounding host mutation (ensureUsefulTerminal / degraded paths).
+                {
+                    const transportContract = parseExecutiveTaskContract(input.message);
+                    const transportAuth = authorizeTransportRelease({
+                        answer: message,
+                        userMessage: input.message,
+                        expectedTopLevelSections: transportContract.expectedTopLevelSections,
+                        sectionTitles: extractRequestedSectionTitles(input.message),
+                        claims: resolveTransportClaimObligations({
+                            userMessage: input.message,
+                            answer: message,
+                            contractClaims: parseClaimObligationsFromContractTasks(
+                                transportContract.tasks,
+                            ),
+                        }),
+                    });
+                    if (!transportAuth.authorized) {
+                        message = transportAuth.message;
+                        logResult = "transport_contract_blocked";
+                    } else {
+                        message = transportAuth.message;
+                    }
                 }
             }
             markStage("llmMs");

@@ -124,8 +124,9 @@ function num(m: RegExpExecArray | null, i = 1): number | null {
 /** Extract explicit quoted claims only — never section headings as claims. */
 export function extractQuotedClaimsOnly(userMessage: string): string[] {
   const text = String(userMessage || "");
+  // Allow short intervening words: "5 director claims", "five separate quoted claims".
   const asks =
-    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bassess\s*:|\bjudge\s*:|(?:^|\n)\s*\d{1,2}\s*[.):\-]\s*Claim\s*:/i.test(
+    /\b(?:verdicts?|evaluate|audit|classify|score|judge|assess)\b[\s\S]{0,120}\bclaims?\b|\bclaims?\b[\s\S]{0,80}\b(?:verdicts?|separately|each|individually)\b|\bclaim[- ]by[- ]claim\b|\bclaim\s+audit\b|\bseparate\s+verdicts?\b|\bverdicts?\s+on\b|\b(?:five|5|six|6|seven|7|eight|8|\d+)\s+(?:\w+\s+){0,4}(?:separate\s+)?(?:quoted\s+)?claims?\b|\baudit\s+these\s+claims?\b|\bgive\s+separate\s+verdicts?\b|\bassess\s+this\s+claim\b|\bassess\s*:|\bjudge\s*:|(?:^|\n)\s*\d{1,2}\s*[.):\-]\s*Claim\s*:/i.test(
       text,
     );
   if (!asks) return [];

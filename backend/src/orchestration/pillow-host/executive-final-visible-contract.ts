@@ -6,6 +6,7 @@
 
 import {
   assessClaimCompletenessGate,
+  parseClaimObligationsFromAnswer,
   type ClaimObligation,
 } from "./executive-conclusion-ledger.js";
 import {
@@ -18,6 +19,7 @@ import {
   rankByEvidenceStrength,
   sampleOvergeneralizedToPopulation,
 } from "./executive-evidence-ranking.js";
+import { extractQuotedClaimsOnly } from "./executive-canonical-state.js";
 
 export type FinalVisibleContractResult = {
   ok: boolean;
@@ -34,7 +36,97 @@ export type FinalVisibleContractResult = {
   diagnosticsVisible: number;
   evidenceRankingOk: boolean | null;
   scopeOk: boolean | null;
+  /** Transport-boundary provenance (objective counts only). */
+  provenance: TransportContractProvenance;
 };
+
+export type TransportContractProvenance = {
+  expectedClaims: number;
+  expectedVerdicts: number;
+  finalTransportClaimCount: number;
+  finalTransportVerdictCount: number;
+  validatorRan: boolean;
+  validatorResult: "PASS" | "FAIL";
+  validatorFailureReasons: string[];
+  releaseAuthorized: boolean;
+};
+
+/**
+ * Resolve claim obligations for the FINAL string.
+ * Prefer contract obligations; fall back to visible Claim N surfaces and user quotes.
+ * Prevents claims=[] blind spot when the answer itself presents Claim 1..N.
+ */
+export function resolveTransportClaimObligations(args: {
+  userMessage: string;
+  answer: string;
+  contractClaims?: ClaimObligation[];
+}): ClaimObligation[] {
+  const fromContract = args.contractClaims ?? [];
+  if (fromContract.length >= 1) return fromContract;
+
+  const fromAnswer = parseClaimObligationsFromAnswer(args.answer).filter((c) => {
+    const t = String(c.sourceText || "").trim();
+    // Reject section titles misread as claims ("Claim audit").
+    if (/^audit\b/i.test(t)) return false;
+    if (t.length < 8) return false;
+    return true;
+  });
+  if (fromAnswer.length >= 1) return fromAnswer;
+
+  const quotes = extractQuotedClaimsOnly(args.userMessage);
+  if (quotes.length >= 1) {
+    return quotes.map((q, i) => ({
+      id: `claim_${i + 1}`,
+      index: i + 1,
+      sourceText: q,
+      subject: q.slice(0, 120),
+    }));
+  }
+  return [];
+}
+
+/** Count Claim N heading surfaces and explicit **Verdict:** lines in claim blocks. */
+export function countFinalTransportClaimVerdicts(answer: string): {
+  claimCount: number;
+  verdictCount: number;
+} {
+  const text = String(answer || "");
+  // Only true claim audit surfaces — not "4. Claim audit" section titles.
+  const heads = [
+    ...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)Claim\s*(\d+)\b(?!\s+audit\b)/gi),
+    ...text.matchAll(/(?:^|\n)Claim\s*(\d+)\s*[:.—-]/gi),
+  ].map((m) => Number(m[1]));
+  const uniq = [...new Set(heads)].sort((a, b) => a - b);
+  let contiguous = 0;
+  for (let i = 1; i <= 30; i++) {
+    if (uniq.includes(i)) contiguous = i;
+    else break;
+  }
+  const expected = contiguous > 0 ? contiguous : uniq.length;
+  let verdictCount = 0;
+  for (let i = 1; i <= expected; i++) {
+    const block = claimBlockForIndex(text, i);
+    if (block && /\*\*Verdict:\*\*/i.test(block)) verdictCount += 1;
+  }
+  if (expected < 1) {
+    const numbered = [
+      ...text.matchAll(
+        /(?:^|\n)\s*(\d{1,2})\.\s*["“][^"”\n]{8,500}["”][\s\S]{0,240}?\*\*Verdict:\*\*/gi,
+      ),
+    ];
+    const orphans = [
+      ...text.matchAll(/(?:^|\n)\s*(\d{1,2})\.\s*["“][^"”\n]{8,500}["”]/gi),
+    ];
+    if (orphans.length >= 1) {
+      return {
+        claimCount: orphans.length,
+        verdictCount: numbered.length,
+      };
+    }
+  }
+  return { claimCount: expected, verdictCount };
+}
+
 
 const DIAGNOSTIC_PATTERNS: RegExp[] = [
   /\*{0,2}Section contract:\*{0,2}/i,
@@ -82,9 +174,9 @@ export function countInternalValidatorDiagnostics(answer: string): number {
 }
 
 function claimBlockForIndex(answer: string, index: number): string | null {
-  // Only treat markdown/heading Claim N surfaces as block starts — not prose "Claim N lacks…".
+  // Heading Claim N with or without markdown ### — not prose "Claim N lacks…".
   const m = new RegExp(
-    `(?:^|\\n)((?:#{1,3}\\s*)Claim\\s*${index}\\b[\\s\\S]*?)(?=(?:\\n(?:#{1,3}\\s*)Claim\\s*\\d+\\b)|$)`,
+    `(?:^|\\n)((?:#{1,3}\\s*)?Claim\\s*${index}\\b[\\s\\S]*?)(?=(?:\\n(?:#{1,3}\\s*)?Claim\\s*\\d+\\b)|$)`,
     "i",
   ).exec(String(answer || ""));
   return m?.[1] ?? null;
@@ -115,9 +207,9 @@ export function assessFinalVisibleClaimContract(
       missingReason.push(c.index);
     }
   }
-  // Count duplicate Claim N headings (markdown heading form only).
+  // Count duplicate Claim N headings (with or without ###).
   const allClaimHeads = [
-    ...String(answer || "").matchAll(/(?:^|\n)(?:#{1,3}\s*)Claim\s*(\d+)\b/gi),
+    ...String(answer || "").matchAll(/(?:^|\n)(?:#{1,3}\s*)?Claim\s*(\d+)\b/gi),
   ];
   const counts = new Map<number, number>();
   for (const m of allClaimHeads) {
@@ -186,6 +278,8 @@ export function detectValueForStrengthSubstitution(
 
 /**
  * Assess the exact final visible string against objective contracts.
+ * Always resolves claim obligations from contract OR final-surface OR user quotes
+ * so claims=[] cannot blind the verdict gate (Valence-class break).
  */
 export function assessFinalVisibleContract(args: {
   answer: string;
@@ -212,14 +306,30 @@ export function assessFinalVisibleContract(args: {
     if (section.nestedPromoted > 0) failures.push("NESTED_ITEM_PROMOTED_TO_TOP_LEVEL");
   }
 
+  const resolvedClaims = resolveTransportClaimObligations({
+    userMessage: args.userMessage,
+    answer,
+    contractClaims: args.claims,
+  });
+
   let claims: FinalVisibleContractResult["claims"] = null;
-  if (args.claims.length >= 1) {
-    claims = assessFinalVisibleClaimContract(answer, args.claims);
+  if (resolvedClaims.length >= 1) {
+    claims = assessFinalVisibleClaimContract(answer, resolvedClaims);
     if (claims.missingVerdict.length > 0 || claims.renderedWithVerdict !== claims.expected) {
       failures.push("EXPLICIT_VERDICT_OMISSION");
     }
     if (claims.missingReason.length > 0) failures.push("CLAIM_REASON_OMISSION");
     if (claims.duplicateClaimIndexes.length > 0) failures.push("CLAIM_DUPLICATION");
+  }
+
+  // Surface-count hard check: visible claim texts without matching verdicts.
+  const surface = countFinalTransportClaimVerdicts(answer);
+  if (
+    surface.claimCount >= 1 &&
+    surface.verdictCount !== surface.claimCount &&
+    !failures.includes("EXPLICIT_VERDICT_OMISSION")
+  ) {
+    failures.push("EXPLICIT_VERDICT_OMISSION");
   }
 
   let evidenceRankingOk: boolean | null = null;
@@ -239,11 +349,46 @@ export function assessFinalVisibleContract(args: {
   }
 
   let scopeOk: boolean | null = null;
-  if (parseCanonicalEvidenceRecords(args.userMessage).some((r) => r.samplingMethod === "SAMPLE" || (r.coverageRatio != null && r.coverageRatio < 1))) {
+  if (
+    parseCanonicalEvidenceRecords(args.userMessage).some(
+      (r) => r.samplingMethod === "SAMPLE" || (r.coverageRatio != null && r.coverageRatio < 1),
+    )
+  ) {
     const over = sampleOvergeneralizedToPopulation(answer, args.userMessage);
     scopeOk = !over;
     if (over) failures.push("SAMPLE_TO_POPULATION_OVERGENERALIZATION");
   }
+
+  const expectedClaims = Math.max(resolvedClaims.length, surface.claimCount);
+  const expectedVerdicts = expectedClaims;
+  const finalTransportVerdictCount =
+    claims?.renderedWithVerdict ?? surface.verdictCount;
+  const releaseAuthorized = !failures.some((f) =>
+    [
+      "INTERNAL_DIAGNOSTIC_LEAK",
+      "TOP_LEVEL_SECTION_COUNT_MISMATCH",
+      "NESTED_ITEM_PROMOTED_TO_TOP_LEVEL",
+      "EXPLICIT_VERDICT_OMISSION",
+      "CLAIM_REASON_OMISSION",
+      "CLAIM_DUPLICATION",
+      "VALUE_FOR_STRENGTH_SUBSTITUTION",
+      "SAMPLE_TO_POPULATION_OVERGENERALIZATION",
+      "CONSISTENCY_FAILURE",
+      "RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED",
+      "TRANSPORT_CONTRACT_FAIL",
+    ].includes(f),
+  );
+
+  const provenance: TransportContractProvenance = {
+    expectedClaims,
+    expectedVerdicts,
+    finalTransportClaimCount: Math.max(surface.claimCount, resolvedClaims.length),
+    finalTransportVerdictCount,
+    validatorRan: true,
+    validatorResult: releaseAuthorized ? "PASS" : "FAIL",
+    validatorFailureReasons: failures,
+    releaseAuthorized,
+  };
 
   return {
     ok: failures.length === 0,
@@ -253,6 +398,7 @@ export function assessFinalVisibleContract(args: {
     diagnosticsVisible,
     evidenceRankingOk,
     scopeOk,
+    provenance,
   };
 }
 
@@ -268,8 +414,63 @@ export const HARD_FINAL_VISIBLE_FAILURES = new Set([
   "SAMPLE_TO_POPULATION_OVERGENERALIZATION",
   "CONSISTENCY_FAILURE",
   "RESOLVED_VERDICT_OVERRIDE_LEFTOVER_SUPPORTED",
+  "TRANSPORT_CONTRACT_FAIL",
 ]);
 
 export function hasHardFinalVisibleFailure(failures: string[]): boolean {
   return failures.some((f) => HARD_FINAL_VISIBLE_FAILURES.has(f));
 }
+
+/** Clean scoped failure — no fabricated content, no internal diagnostic codes. */
+export function cleanScopedContractFailureMessage(userMessage: string): string {
+  void userMessage;
+  return [
+    "I cannot release this answer in its current form.",
+    "Required objective output contracts are not satisfied,",
+    "so the incomplete response remains open rather than being released as complete.",
+  ].join(" ");
+}
+
+/**
+ * Authoritative transport-boundary gate. Must run AFTER all semantic writers.
+ * RELEASE_AUTHORIZED = FALSE when FINAL_TRANSPORT_VERDICT_COUNT != EXPECTED_VERDICTS.
+ */
+export function authorizeTransportRelease(args: {
+  answer: string;
+  userMessage: string;
+  expectedTopLevelSections: number | null;
+  sectionTitles?: string[];
+  claims: ClaimObligation[];
+}): {
+  authorized: boolean;
+  message: string;
+  assessment: FinalVisibleContractResult;
+  postValidationMutation: boolean;
+} {
+  const assessment = assessFinalVisibleContract(args);
+  const hard = hasHardFinalVisibleFailure(assessment.failures);
+  if (!hard && assessment.provenance.releaseAuthorized) {
+    return {
+      authorized: true,
+      message: String(args.answer || ""),
+      assessment,
+      postValidationMutation: false,
+    };
+  }
+  return {
+    authorized: false,
+    message: cleanScopedContractFailureMessage(args.userMessage),
+    assessment: {
+      ...assessment,
+      failures: [...assessment.failures, "TRANSPORT_CONTRACT_FAIL"],
+      provenance: {
+        ...assessment.provenance,
+        releaseAuthorized: false,
+        validatorResult: "FAIL",
+        validatorFailureReasons: [...assessment.failures, "TRANSPORT_CONTRACT_FAIL"],
+      },
+    },
+    postValidationMutation: false,
+  };
+}
+

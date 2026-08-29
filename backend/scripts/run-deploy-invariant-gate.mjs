@@ -55,5 +55,15 @@ if (finalVisible.status !== 0) {
   console.error("DEPLOY_INVARIANT_GATE: FAIL (final-visible-contract-qualify)");
   process.exit(finalVisible.status ?? 1);
 }
+
+const transport = spawnSync(
+  process.execPath,
+  ["--import", "tsx", "scripts/transport-boundary-contract-qualify.mjs"],
+  { cwd: backendRoot, stdio: "inherit", env: process.env },
+);
+if (transport.status !== 0) {
+  console.error("DEPLOY_INVARIANT_GATE: FAIL (transport-boundary-contract-qualify)");
+  process.exit(transport.status ?? 1);
+}
 console.log("DEPLOY_INVARIANT_GATE: PASS");
 process.exit(0);

@@ -70,7 +70,9 @@ import {
 } from "./executive-evidence-ranking.js";
 import {
   assessFinalVisibleContract,
+  authorizeTransportRelease,
   hasHardFinalVisibleFailure,
+  resolveTransportClaimObligations,
   stripInternalValidatorDiagnostics,
 } from "./executive-final-visible-contract.js";
 import {
@@ -551,17 +553,21 @@ function finalizeVisible(
   // Regenerate mismatched claim slices from canonical state — do not append a correction.
   const canonical = buildCanonicalCaseState(userMessage ?? "");
   const claimObsRaw = parseClaimObligationsFromContractTasks(contract?.tasks ?? []);
-  const claimObs =
-    claimObsRaw.length >= 1
-      ? claimObsRaw
-      : canonical.claims.length >= 1
-        ? canonical.claims.map((cl) => ({
-            id: `claim_${cl.index}`,
-            index: cl.index,
-            sourceText: cl.text,
-            subject: cl.text.slice(0, 120),
-          }))
-        : parseClaimObligationsFromAnswer(rendered);
+  const claimObs = resolveTransportClaimObligations({
+    userMessage: userMessage ?? "",
+    answer: rendered,
+    contractClaims:
+      claimObsRaw.length >= 1
+        ? claimObsRaw
+        : canonical.claims.length >= 1
+          ? canonical.claims.map((cl) => ({
+              id: `claim_${cl.index}`,
+              index: cl.index,
+              sourceText: cl.text,
+              subject: cl.text.slice(0, 120),
+            }))
+          : [],
+  });
   if (claimObs.length >= 1) {
     rendered = enforceClaimEnumeration(rendered, claimObs, {
       domainHint: detectScenarioDomain(userMessage ?? ""),
@@ -907,20 +913,47 @@ export function releaseExecutiveAnswer(
       contract,
     );
     stripped = stripInternalValidatorDiagnostics(stripped);
-    // Ultimate fail-closed must still honor hard final-visible contracts (no bypass).
-    if (hasHardFinalVisibleFailure(forcedFin.uxFailures) || hasHardFinalVisibleFailure(
-      assessFinalVisibleContract({
+    // Ultimate fail-closed: every candidate must pass transport authorize — no bypass.
+    const titles = extractRequestedSectionTitles(options.userMessage ?? "");
+    const claimObsUltimate = resolveTransportClaimObligations({
+      userMessage: options.userMessage ?? "",
+      answer: stripped,
+      contractClaims: parseClaimObligationsFromContractTasks(contract.tasks),
+    });
+    let auth = authorizeTransportRelease({
+      answer: stripped,
+      userMessage: options.userMessage ?? "",
+      expectedTopLevelSections: contract.expectedTopLevelSections,
+      sectionTitles: titles,
+      claims: claimObsUltimate,
+    });
+    if (!auth.authorized) {
+      // One more finalize pass then re-authorize.
+      stripped = finalizeVisible(stripped, level, options.userMessage, contract).message;
+      stripped = stripInternalValidatorDiagnostics(stripped);
+      auth = authorizeTransportRelease({
         answer: stripped,
         userMessage: options.userMessage ?? "",
         expectedTopLevelSections: contract.expectedTopLevelSections,
-        sectionTitles: extractRequestedSectionTitles(options.userMessage ?? ""),
-        claims: parseClaimObligationsFromContractTasks(contract.tasks),
-      }).failures,
-    )) {
-      // Last materialization pass through finalizeVisible (ranking/section/claim repairs).
-      stripped = finalizeVisible(stripped, level, options.userMessage, contract).message;
-      stripped = stripInternalValidatorDiagnostics(stripped);
+        sectionTitles: titles,
+        claims: resolveTransportClaimObligations({
+          userMessage: options.userMessage ?? "",
+          answer: stripped,
+          contractClaims: parseClaimObligationsFromContractTasks(contract.tasks),
+        }),
+      });
     }
+    if (!auth.authorized) {
+      telemetry.releasePath = "fail_closed";
+      telemetry.finalRevalidationPass = false;
+      return {
+        message: auth.message,
+        released: true,
+        violations: [...first.violations, "TRANSPORT_CONTRACT_FAIL"],
+        telemetry,
+      };
+    }
+    stripped = auth.message;
     const stillCloned = detectSiblingTemplateCloning(stripped, contract);
     if (stillCloned.cloned) {
       // Prefer an explicit local-unknown framing over cloned generic verdicts.
@@ -941,15 +974,26 @@ export function releaseExecutiveAnswer(
       );
       rebuilt = finalizeVisible(rebuilt, level, options.userMessage, contract).message;
       rebuilt = stripInternalValidatorDiagnostics(rebuilt);
-      const rebuiltCoverage = assessTaskCoverage(rebuilt, contract);
+      const rebuiltAuth = authorizeTransportRelease({
+        answer: rebuilt,
+        userMessage: options.userMessage ?? "",
+        expectedTopLevelSections: contract.expectedTopLevelSections,
+        sectionTitles: titles,
+        claims: resolveTransportClaimObligations({
+          userMessage: options.userMessage ?? "",
+          answer: rebuilt,
+          contractClaims: parseClaimObligationsFromContractTasks(contract.tasks),
+        }),
+      });
+      const rebuiltCoverage = assessTaskCoverage(rebuiltAuth.message, contract);
       telemetry.releasePath = "fail_closed";
-      telemetry.finalRevalidationPass = true;
+      telemetry.finalRevalidationPass = rebuiltAuth.authorized;
       telemetry.reconstructionSucceeded = true;
       telemetry.coverageAppendedUnits = contract.tasks.length;
       telemetry.taskCoverage = rebuiltCoverage;
       telemetry.silentlyDroppedMaterialTasks = rebuiltCoverage.silentlyDroppedTasks;
       return {
-        message: rebuilt,
+        message: rebuiltAuth.message,
         released: true,
         violations: first.violations,
         telemetry,
@@ -1004,6 +1048,7 @@ export function releaseExecutiveAnswer(
 
 /**
  * Compatibility entry used by pillow-host and unit tests.
+ * LAST_SEMANTIC_WRITER → authorizeTransportRelease → TRANSPORT.
  */
 export function enforceExecutiveTruthGrounding(
   answer: string,
@@ -1012,10 +1057,32 @@ export function enforceExecutiveTruthGrounding(
   options: ReleaseGateOptions = {},
 ): GroundingEnforcementResult & { telemetry: ReleaseGateTelemetry } {
   const released = releaseExecutiveAnswer(answer, truth, attestations, options);
+  const contract =
+    options.taskContract ?? parseExecutiveTaskContract(options.userMessage ?? "");
+  const claims = resolveTransportClaimObligations({
+    userMessage: options.userMessage ?? "",
+    answer: released.message,
+    contractClaims: parseClaimObligationsFromContractTasks(contract.tasks),
+  });
+  const auth = authorizeTransportRelease({
+    answer: released.message,
+    userMessage: options.userMessage ?? "",
+    expectedTopLevelSections: contract.expectedTopLevelSections,
+    sectionTitles: extractRequestedSectionTitles(options.userMessage ?? ""),
+    claims,
+  });
+  const telemetry = {
+    ...released.telemetry,
+    uxFailures: auth.authorized
+      ? released.telemetry.uxFailures
+      : [...released.telemetry.uxFailures, ...auth.assessment.failures],
+  };
   return {
-    message: released.message,
-    adjusted: released.telemetry.releasePath !== "clean",
-    violations: released.violations,
-    telemetry: released.telemetry,
+    message: auth.message,
+    adjusted: released.telemetry.releasePath !== "clean" || !auth.authorized,
+    violations: auth.authorized
+      ? released.violations
+      : [...released.violations, "TRANSPORT_CONTRACT_FAIL"],
+    telemetry,
   };
 }
