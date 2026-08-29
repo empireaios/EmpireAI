@@ -246,6 +246,8 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:outage|failure|incident)\s+caused\s+(?:traffic|work|workload|load)\s+to\s+be\s+redirected\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b(?:traffic|work|workload|load)\s+(?:was\s+|were\s+)?redirected\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+redirected\s+(?:traffic|work|workload|load)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    // "Argon failure redirected work to Cobalt"
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:outage|failure|incident)\s+redirected\s+(?:traffic|work|workload|load)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b([A-Z][A-Za-z0-9_-]{1,40})\s+then\s+(?:overloaded|saturated|exhausted)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:memory\s+exhaustion|outage)\s+resulted\s+(?:from|after)\s+[^.\n]{0,80}?redirect/gi,
   ];

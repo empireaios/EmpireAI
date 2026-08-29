@@ -145,5 +145,9 @@ export function countLeftoverSupportedOverrides(finalVisible: string): number {
       finalVisible,
     );
   if (!hasLockedContradicted) return 0;
-  return (body.match(/\*\*Verdict:\*\*\s*(?:\*\*)?Supported\b/gi) || []).length;
+  return (
+    (body.match(/\*\*Verdict:\*\*\s*(?:\*\*)?Supported\b/gi) || []).length +
+    (body.match(/\bis\s+\*\*Supported\*\*/gi) || []).length +
+    (body.match(/\*\*Supported\*\*(?=\s*[.!]|\s*$)/gi) || []).length
+  );
 }

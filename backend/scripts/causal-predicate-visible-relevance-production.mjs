@@ -133,23 +133,31 @@ const CASES = [
     id: "prod_unrelated_vs_connected",
     message: [
       "SyntheticCPRV-Unrel — software only. Do not mention Mini Fan or Birth.",
-      "Cedar had seal failure. Work redirected from Cedar to Inlet. Inlet shortage resulted from that redirect.",
+      "Cedar had a seal failure. Work redirected from Cedar to Inlet. Inlet's current capacity shortage resulted from that redirect.",
       "Inlet never had a seal failure.",
-      "Assess: Inlet shortage is unrelated to Cedar because Inlet did not suffer a seal failure.",
+      'Assess: "Inlet\'s capacity shortage has no causal relationship to Cedar because Inlet never had a seal failure."',
     ].join("\n"),
-    check: (t) =>
-      !liveContam(t) &&
-      /Contradict/i.test(t) &&
-      !/\*\*Verdict:\*\*\s*Supported/i.test(t),
+    check: (t) => {
+      const v = verdictAt(t, 1) || "";
+      return (
+        !liveContam(t) &&
+        /Contradict/i.test(v) &&
+        !/\bis\s+\*\*Supported\*\*/i.test(t) &&
+        !/\*\*Verdict:\*\*\s*Supported/i.test(t)
+      );
+    },
   },
   {
     id: "prod_common_root",
     message: [
       "SyntheticCPRV-Root — manufacturing only. Do not mention Mini Fan or Birth.",
       "Ridge directly caused FailureA. FailureA triggered failover to Harbor. Harbor then overloaded Quay.",
-      "Assess: Ridge and Quay share the same root cause.",
+      'Assess: "Ridge and Quay share the same root cause."',
     ].join("\n"),
-    check: (t) => !liveContam(t) && /Contradict/i.test(t),
+    check: (t) => {
+      const v = verdictAt(t, 1) || "";
+      return !liveContam(t) && /Contradict/i.test(v);
+    },
   },
   {
     id: "prod_five_claim_exact_sections",
@@ -274,17 +282,22 @@ const CASES = [
     ],
     message: [
       "SyntheticCPRV-Mem — professional only. Do not mention Mini Fan or Birth.",
-      "Argon failure redirected work to Cobalt. Cobalt shortage resulted. Cobalt never failed staffing.",
+      "Argon failure redirected work to Cobalt. Cobalt's current capacity shortage resulted from that redirect. Cobalt never failed staffing.",
       "Answer in exactly 3 numbered sections.",
       "1. Snapshot",
       "2. Claim audit",
       "3. Closing",
-      'Assess: "Cobalt shortage is unrelated to Argon because Cobalt never failed staffing."',
+      'Assess: "Cobalt\'s capacity shortage has no causal relationship to Argon because Cobalt never failed staffing."',
     ].join("\n"),
-    check: (t) =>
-      !liveContam(t) &&
-      noPrePostLeak(t, 3) &&
-      /Contradict/i.test(t),
+    check: (t) => {
+      const v = verdictAt(t, 1) || "";
+      return (
+        !liveContam(t) &&
+        noPrePostLeak(t, 3) &&
+        /Contradict/i.test(v) &&
+        !/\bis\s+\*\*Supported\*\*/i.test(t)
+      );
+    },
   },
   {
     id: "prod_warm",

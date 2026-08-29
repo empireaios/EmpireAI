@@ -620,6 +620,11 @@ export function stripCompetingVerdictSurfaces(body: string): string {
     /(?:^|\n)\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)[^\n]*/gi,
     "\n",
   );
+  // Freeform "**Verdict:** … is **SUPPORTED**." competing with Claim blocks
+  out = out.replace(
+    /(?:^|\n)\s*\*\*Verdict:\*\*[^\n]{0,240}?\bis\s+\*\*Supported\*\*[^\n]*/gi,
+    "\n",
+  );
   out = out.replace(
     /([.!?])\s*\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)\b[^\n]*/gi,
     "$1",
@@ -628,6 +633,13 @@ export function stripCompetingVerdictSurfaces(body: string): string {
     /\s+\*\*Verdict:\*\*\s*(?:\*\*)?(?:Supported|Contradicted|Unproven|Unknown|True|False)\b/gi,
     "",
   );
+  // Freeform "is **SUPPORTED**" / "**SUPPORTED**." lead-ins competing with Claim blocks
+  out = out.replace(
+    /\*\*Verdict:\*\*[^\n]{0,200}?\bis\s+\*\*Supported\*\*/gi,
+    "**Verdict:** under canonical claim audit",
+  );
+  out = out.replace(/\bis\s+\*\*Supported\*\*/gi, "is under canonical claim audit");
+  out = out.replace(/\*\*Supported\*\*(?=\s*[.!]|\s*$)/gi, "under canonical audit");
   // "The claim is Supported" / "— Supported," / "verdict: Supported"
   out = out.replace(
     /\b(?:the\s+claim\s+is|claim\s+assessment\s*:?[^.]*?|this\s+(?:claim|assertion)\s+is)\s+Supported\b/gi,
