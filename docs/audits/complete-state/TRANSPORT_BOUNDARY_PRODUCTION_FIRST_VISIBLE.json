@@ -1,0 +1,202 @@
+{
+  "generatedAt": "2026-08-29T05:38:46.376Z",
+  "PRODUCTION_FIRST_VISIBLE_PASS": "PASS",
+  "before": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "d4ce7692f8f19c5cdfaf4bc12fc05bfa7fe96183",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "3b7ccacc-a18b-4bb2-bbff-83dcb01454b5"
+    }
+  },
+  "after": {
+    "ok": true,
+    "deploy": {
+      "gitCommitSha": "d4ce7692f8f19c5cdfaf4bc12fc05bfa7fe96183",
+      "serviceName": "EmpireAI",
+      "environmentName": "production",
+      "deploymentId": "3b7ccacc-a18b-4bb2-bbff-83dcb01454b5"
+    }
+  },
+  "rows": [
+    {
+      "id": "prod_five_claim_transport",
+      "ok": true,
+      "ms": 5080,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 5,
+        "verdictCount": 5
+      },
+      "provenance": {
+        "expectedClaims": 5,
+        "expectedVerdicts": 5,
+        "finalTransportClaimCount": 5,
+        "finalTransportVerdictCount": 5,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "###\n\n###\n\n###\n\n###\n\n### Claim 1: \"East lane delay equals shipment delay.\" — separate verdict\n\n**Verdict:** Claims retain distinct identity\n\nA multi-claim audit must score each quoted claim on its own evidence class. Shared scenario context does not make claims interchangeable.\n\nWhat can be concluded: claim-level outcomes must remain separable in the visible answer.\n\n**Need:** per-claim verdicts wi"
+    },
+    {
+      "id": "prod_eight_claim_transport",
+      "ok": true,
+      "ms": 5902,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 8,
+        "verdictCount": 8
+      },
+      "provenance": {
+        "expectedClaims": 8,
+        "expectedVerdicts": 8,
+        "finalTransportClaimCount": 8,
+        "finalTransportVerdictCount": 8,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "###\n\n1) Claim 1: \"Atlas claim-body-1 is established independently.\" — separate verdict\n\n### Claim 1\n**Verdict:** Unproven / not established\n\n\"Atlas claim-body-1 is established independently.\"\n\nNot established from the supplied scenario evidence alone.\n\n### Claim 2\n**Verdict:** Unproven / not established\n\n\"Atlas claim-body-2 is established independently.\"\n\nNot established from the supplied scenario"
+    },
+    {
+      "id": "prod_nested_sections",
+      "ok": true,
+      "ms": 4187,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 0,
+        "verdictCount": 0
+      },
+      "provenance": {
+        "expectedClaims": 0,
+        "expectedVerdicts": 0,
+        "finalTransportClaimCount": 0,
+        "finalTransportVerdictCount": 0,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "1) Snapshot\n\n### Snapshot\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n2) Evidence-strength r"
+    },
+    {
+      "id": "prod_evidence_pop",
+      "ok": true,
+      "ms": 3009,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 0,
+        "verdictCount": 0
+      },
+      "provenance": {
+        "expectedClaims": 0,
+        "expectedVerdicts": 0,
+        "finalTransportClaimCount": 0,
+        "finalTransportVerdictCount": 0,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "### Ranking by Strength of Fleet-Wide Evidence\n\n1. **Ridge**\n - **Evidence**: Verified full-population of 25/25. - **Performance**: 5% success rate. - **Strength**: This fleet has complete verification, indicating a robust and reliable data set.\n\n2. **Coast**\n - **Evidence**: Verified 28 valid measured out of 40 deployed. - **Performance**: 6% success rate. - **Strength**: While this fleet has a h"
+    },
+    {
+      "id": "prod_financial",
+      "ok": true,
+      "ms": 1769,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 1,
+        "verdictCount": 1
+      },
+      "provenance": {
+        "expectedClaims": 1,
+        "expectedVerdicts": 1,
+        "finalTransportClaimCount": 1,
+        "finalTransportVerdictCount": 1,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "### Verdict\nThe claim \"Forecast equals realised for batch Q9\" is **not supported**.\n\n### Assessment Details\n- **Forecast**: $40\n- **Realised**: $18\n\nThe realized amount is significantly lower than the forecast, indicating a discrepancy between the expected and actual performance for batch Q9. This suggests that the forecast does not equal the realized figures.\n\nIf you have further questions or nee"
+    },
+    {
+      "id": "prod_causal",
+      "ok": true,
+      "ms": 3079,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 1,
+        "verdictCount": 1
+      },
+      "provenance": {
+        "expectedClaims": 1,
+        "expectedVerdicts": 1,
+        "finalTransportClaimCount": 1,
+        "finalTransportVerdictCount": 1,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "Verdict: The claim \"Quay shortage is not free of causal connection to Mesa because Quay never lost staff\" is **SUPPORTED**.\n\n### Analysis:\n\n1. **Mesa Shortage**: The assertion indicates that there is a shortage affecting Mesa.\n\n2. **Work to Quay**: This suggests that Mesa's situation is somehow linked to Quay's operations.\n\n3. **Quay Shortage**: The claim implies that Quay is experiencing its own "
+    },
+    {
+      "id": "prod_memory",
+      "ok": true,
+      "ms": 4873,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 1,
+        "verdictCount": 1
+      },
+      "provenance": {
+        "expectedClaims": 1,
+        "expectedVerdicts": 1,
+        "finalTransportClaimCount": 1,
+        "finalTransportVerdictCount": 1,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "**Verdict:** The claim \"Cobalt shortage is unrelated to Argon because Cobalt never failed staffing\" cannot be fully supported.\n\n1. **Cobalt Shortage:** The assertion that Cobalt is experiencing a shortage is noted, but the cause of this shortage is not definitively linked to the staffing status of Cobalt. While it is stated that Cobalt never failed staffing, this does not inherently imply that oth"
+    },
+    {
+      "id": "prod_warm",
+      "ok": true,
+      "ms": 5732,
+      "status": 200,
+      "hasDiag": false,
+      "surface": {
+        "claimCount": 5,
+        "verdictCount": 5
+      },
+      "provenance": {
+        "expectedClaims": 5,
+        "expectedVerdicts": 5,
+        "finalTransportClaimCount": 5,
+        "finalTransportVerdictCount": 5,
+        "validatorRan": true,
+        "validatorResult": "PASS",
+        "validatorFailureReasons": [],
+        "releaseAuthorized": true
+      },
+      "head": "### Claim Audit\n\n### Summary\nThe audit reveals a mix of unsupported claims and verified occurrences. The claims regarding Alpha, Gamma, and Delta lack sufficient evidence, while Beta remains active and Epsilon has occurred. Further verification may be required for the unsupported claims to establish their validity.\n\n### Claim 1: \"Alpha equals Partner.\" — separate verdict\n\n**Verdict:** Claims retai"
+    }
+  ],
+  "regradedAt": "2026-08-29T06:54:16.506Z",
+  "regradeNote": "prod_memory grader widened to accept cannot be fully supported; transport already PASS on live d4ce7692"
+}

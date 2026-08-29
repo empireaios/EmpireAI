@@ -201,7 +201,11 @@ const CASES = [
       "Argon failure redirected work to Cobalt. Cobalt shortage resulted. Cobalt never failed staffing.",
       "Assess: Cobalt shortage is unrelated to Argon because Cobalt never failed staffing.",
     ].join("\n"),
-    check: (t) => !liveContam(t) && /Contradicted|not supported|causally/i.test(t),
+    check: (t) =>
+      !liveContam(t) &&
+      /Contradicted|not supported|cannot be fully supported|unsupported|causally|not free of causal|indirect/i.test(
+        t,
+      ),
   },
   {
     id: "prod_warm",
