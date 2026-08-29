@@ -22,6 +22,10 @@ import {
   validateVisibleBlockRelevance,
 } from "../../orchestration/pillow-host/executive-memory-relevance.js";
 import { polishFinalVisibleAnswer } from "../../orchestration/pillow-host/executive-response-polish.js";
+import {
+  assessVisibleContractEnvelope,
+  enforceVisibleContractEnvelope,
+} from "../../orchestration/pillow-host/executive-final-visible-contract.js";
 
 const APEX =
   /A later refund or reversal changes economic treatment; it does not by itself erase that the earlier verified event historically occurred/i;
@@ -59,6 +63,27 @@ describe("FAST INVARIANT GATE", () => {
     assert.ok(extractQuotedClaimsOnly(bareNl).length >= 1, "newline Assess:");
   });
 
+  it("IC-03 causal grades: DIRECT / INDIRECT / COMMON_ROOT / UNRELATED", () => {
+    const pack = [
+      "North directly caused FailureA. FailureA triggered failover to East. East then overloaded PeerNode.",
+      "North never shared a common root with PeerNode beyond the cascade.",
+      "Assess claims.",
+    ].join("\n");
+    const can = buildCanonicalCaseState(pack);
+    const direct = "North's failure directly caused PeerNode's overload.";
+    const unrelated =
+      "PeerNode is unrelated to North because PeerNode did not suffer the original failure.";
+    const sameRoot = "North and PeerNode share the same root cause.";
+    const connected = "North and PeerNode are causally connected.";
+    assert.ok(decomposeClaimPropositions(direct).some((p) => p.kind === "causal_direct_cause"));
+    assert.ok(decomposeClaimPropositions(unrelated).some((p) => p.kind === "causal_unrelated"));
+    assert.equal(assessClaimAgainstCanonical(direct, can).overall, "contradicted", "DIRECT");
+    assert.equal(assessClaimAgainstCanonical(unrelated, can).overall, "contradicted", "UNRELATED");
+    assert.equal(assessClaimAgainstCanonical(sameRoot, can).overall, "contradicted", "COMMON_ROOT");
+    assert.ok(decomposeClaimPropositions(connected).some((p) => p.kind === "causal_connected"));
+    assert.equal(assessClaimAgainstCanonical(connected, can).overall, "supported", "INDIRECT");
+  });
+
   it("IC-03 causal_unrelated assesses contradicted on transfer path", () => {
     const claim =
       "North shortage has no causal relationship to South because North never had seal failure.";
@@ -73,6 +98,21 @@ describe("FAST INVARIANT GATE", () => {
     assert.ok(props.some((p) => p.kind === "causal_unrelated"));
     const can = buildCanonicalCaseState(pack);
     assert.equal(assessClaimAgainstCanonical(claim, can).overall, "contradicted");
+  });
+
+  it("IC-16/22 visible contract envelope: no unrequested pre/post semantic blocks", () => {
+    const pack =
+      "SyntheticEnv — ops only. Answer in exactly 5 numbered sections.\n1. A\n2. B\n3. C\n4. D\n5. E";
+    const body = [1, 2, 3, 4, 5].map((n) => `${n}. Section ${n}\nBody.`).join("\n\n");
+    const dirty =
+      "Recommendation: Validate performance / evidence first, then scale only what clears constitutional and commercial thresholds.\n\n" +
+      body +
+      "\n\n### Risk / lesson\nGeneric failover doctrine.";
+    const enf = enforceVisibleContractEnvelope(dirty, 5, pack);
+    const env = assessVisibleContractEnvelope(enf.message, 5, pack);
+    assert.equal(env.failures.length, 0);
+    assert.ok(!/^Recommendation:/im.test(enf.message));
+    assert.ok(!/### Risk \/ lesson/i.test(enf.message));
   });
 
   it("IC-20 irrelevant doctrine strips when no refund obligation", () => {

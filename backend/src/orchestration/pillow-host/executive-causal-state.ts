@@ -241,6 +241,42 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
     }
   }
 
+  // Traffic/workload redirect (Bluehaven-class natural language).
+  const bluehavenRedirectRes = [
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:outage|failure|incident)\s+caused\s+(?:traffic|work|workload|load)\s+to\s+be\s+redirected\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b(?:traffic|work|workload|load)\s+(?:was\s+|were\s+)?redirected\s+from\s+([A-Z][A-Za-z0-9_-]{1,40})\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+redirected\s+(?:traffic|work|workload|load)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+then\s+(?:overloaded|saturated|exhausted)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:memory\s+exhaustion|outage)\s+resulted\s+(?:from|after)\s+[^.\n]{0,80}?redirect/gi,
+  ];
+  for (const re of bluehavenRedirectRes) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const raw = m[0]!.trim();
+      if (m[1] && m[2]) {
+        const kind = /then\s+(?:overloaded|saturated|exhausted)/i.test(raw)
+          ? "DIRECT_CAUSE"
+          : "UPSTREAM_TRIGGER";
+        pushLink(links, m[1]!, m[2]!, kind as CausalRelationKind, raw);
+        pushLink(links, m[1]!, m[2]!, "INDIRECT_CAUSAL_DEPENDENCY", raw, "VERIFIED");
+        upsertRole(roles, m[1]!, "INDIRECT_PARTICIPANT", raw);
+        upsertRole(roles, m[2]!, "DOWNSTREAM_CONSEQUENCE", raw);
+        events.push(normEntity(m[2]!));
+      } else if (m[1] && /memory\s+exhaustion|outage\s+resulted/i.test(raw)) {
+        const dest = m[1]!;
+        const sources = links
+          .filter((l) => l.kind === "UPSTREAM_TRIGGER" && key(l.to) === key(dest))
+          .map((l) => l.from);
+        const upstream = sources[0];
+        if (upstream) {
+          pushLink(links, upstream, dest, "INDIRECT_CAUSAL_DEPENDENCY", raw, "VERIFIED");
+          upsertRole(roles, dest, "DOWNSTREAM_CONSEQUENCE", raw);
+          events.push(normEntity(dest));
+        }
+      }
+    }
+  }
+
   const secondaryRes = [
     /\b(?:failover|mitigation|handoff)\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\s+then\s+caused\s+overload\s+on\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
     /\b(?:failover|mitigation|handoff|recovery\s+action)\s+(?:then\s+)?(?:directly\s+)?(?:caused|produced)\s+(?:an?\s+)?(?:overload|secondary\s+failure|cascade)\s+(?:on|of|at)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/g,
@@ -724,12 +760,18 @@ export function verdictCausalClaim(
   }
 
   const directClaim =
-    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+(?:the\s+)?direct\s+cause\s+of\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+(?:the\s+)?direct\s+cause\s+of\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
+      t,
+    ) ||
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+directly\s+caused\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
+      t,
+    ) ||
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+[^.?\n]{0,80}?\sdirectly\s+caused\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
       t,
     );
   if (directClaim) {
-    const a = directClaim[1]!;
-    const b = directClaim[2]!;
+    const a = directClaim[1]!.replace(/'s$/i, "");
+    const b = directClaim[2]!.replace(/'s$/i, "");
     if (isDirectCause(state, a, b)) {
       return {
         verdict: "supported",
@@ -775,6 +817,30 @@ export function verdictCausalClaim(
     return {
       verdict: "unproven",
       justification: `Common root cause for ${a} and ${b} is not established.`,
+      class: "connection_vs_common_root",
+    };
+  }
+
+  const connected =
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:are|were)\s+causally\s+connected\b/i.exec(
+      t,
+    ) ||
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+causally\s+connected\s+(?:to|with)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+      t,
+    );
+  if (connected) {
+    const a = connected[1]!;
+    const b = connected[2]!;
+    if (hasCausalPath(state, a, b) || hasCausalPath(state, b, a)) {
+      return {
+        verdict: "supported",
+        justification: `INDIRECT_CAUSAL_CONNECTION / path exists between ${a} and ${b}.`,
+        class: "connection_vs_common_root",
+      };
+    }
+    return {
+      verdict: "unproven",
+      justification: `Causal connection between ${a} and ${b} is not established.`,
       class: "connection_vs_common_root",
     };
   }
@@ -932,12 +998,20 @@ export function ensureCausalClaimConsistency(
     }
   }
 
-  // Ask for risk/lesson with demonstrated mechanism — inject even if LLM is generic.
+  // Soft Risk/lesson appendix only when user asked for risk/lesson AND no exact N-section contract.
+  // Exact section answers must keep risk content inside a numbered section, not post-N.
+  const exactSections =
+    /\b(?:exactly\s+)?(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:numbered\s+)?(?:top-?level\s+)?sections?\b/i.test(
+      ask,
+    );
+  const riskExplicitlyAsked =
+    /\b(?:risk\s*\/?\s*lesson|follow[- ]?up|strongest\s+supported|what\s+(?:should|is)\s+the\s+(?:main|key|strongest)\s+(?:risk|lesson|follow)|include\s+(?:a\s+)?risk)\b/i.test(
+      ask,
+    );
   if (
     causal.demonstratedRiskMechanism &&
-    /\b(?:risk\s+lesson|follow[- ]?up|strongest\s+supported|what\s+(?:should|is)\s+the\s+(?:main|key|strongest)\s+(?:risk|lesson|follow))\b/i.test(
-      ask,
-    ) &&
+    riskExplicitlyAsked &&
+    !exactSections &&
     !/demonstrated\s+mechanism|failover\/mitigation|protect resources under failover|bound mitigation blast/i.test(
       out,
     )
@@ -948,6 +1022,7 @@ export function ensureCausalClaimConsistency(
 
   if (
     causal.demonstratedRiskMechanism &&
+    !exactSections &&
     /\b(?:continue\s+monitoring|keep\s+monitoring|monitor\s+(?:and\s+)?(?:observe|watch))\b/i.test(
       out,
     ) &&

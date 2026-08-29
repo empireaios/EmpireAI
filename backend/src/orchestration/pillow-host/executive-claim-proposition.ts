@@ -31,6 +31,7 @@ export type AtomicProposition = {
     | "causal_same_root"
     | "causal_different_root"
     | "causal_direct_cause"
+    | "causal_connected"
     | "causal_no_role"
     | "mechanism_absent"
     | "generic";
@@ -60,9 +61,26 @@ function key(s: string): string {
     .replace(/^_|_$/g, "");
 }
 
-/** Multi-word proper names: "Bench Quay", "Store Cobalt", "HT-58". */
+/** Multi-word proper names: "Bench Quay", "Store Cobalt", "HT-58".
+ * Must NOT be used under the /i flag — [A-Z] would match lowercase and
+ * swallow claim nouns ("East problem"). Use ENTITY_NAME_CI for case-insensitive.
+ */
 const ENTITY_NAME =
   String.raw`[A-Z][A-Za-z0-9_-]*(?:\s+[A-Z][A-Za-z0-9_-]*){0,2}`;
+/** Case-insensitive single-token entity (proper names still preferred by callers). */
+const ENTITY_TOKEN = String.raw`[A-Za-z][A-Za-z0-9_-]{1,40}`;
+
+const CLAIM_NOUN_SUFFIX =
+  /\s+(?:problem|issue|outage|shortage|constraint|failure|incident|exhaustion)\s*$/i;
+
+/** Prefer head entity token — "Beta outage" → "Beta". */
+export function headCausalEntity(raw: string | undefined): string {
+  const s = String(raw || "").trim();
+  if (!s) return "";
+  const stripped = s.replace(CLAIM_NOUN_SUFFIX, "").trim();
+  const head = (stripped.split(/\s+/)[0] || stripped).replace(/'s$/i, "");
+  return head.replace(/^["'“”]|["'“”]$/g, "");
+}
 
 const UNRELATED_MARK =
   String.raw`(?:unrelated|causally\s+independent|independent|not\s+related|has\s+nothing\s+to\s+do\s+with|nothing\s+to\s+do\s+with|no\s+causal\s+(?:link|connection|relationship))`;
@@ -248,7 +266,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       return;
     }
 
-    // Mechanism-absent premise: "has no X failure" / "never had an operator shortage" / "never lost staff"
+    // Mechanism-absent premise: "has no X failure" / "never had …" / "never lost staff" / "did not suffer X"
     const mechAbsent =
       new RegExp(
         String.raw`\b(${ENTITY_NAME})\s+has\s+no\s+([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\s+failure\b`,
@@ -262,6 +280,10 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       new RegExp(
         String.raw`\b(${ENTITY_NAME})\s+(?:itself\s+)?never\s+lost\s+staff\b`,
         "i",
+      ).exec(clause) ||
+      new RegExp(
+        String.raw`\b(${ENTITY_TOKEN})\s+(?:did\s+not|didn't|does\s+not|doesn't)\s+suffer\s+(?:an?\s+|a\s+)?([A-Za-z0-9_-]+(?:[-\s][A-Za-z0-9_-]+){0,4})\b`,
+        "i",
       ).exec(clause);
     if (
       mechAbsent &&
@@ -269,10 +291,11 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
         clause,
       )
     ) {
-      const actor =
-        mechAbsent[1] && /^[A-Z]/.test(mechAbsent[1])
+      const rawActor =
+        mechAbsent[1] && /^[A-Za-z]/.test(mechAbsent[1])
           ? mechAbsent[1]
           : new RegExp(String.raw`\b(${ENTITY_NAME})\b`).exec(t)?.[1] || "Actor";
+      const actor = headCausalEntity(rawActor) || rawActor;
       push({
         kind: "mechanism_absent",
         text: clause,
@@ -316,51 +339,54 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
 
     const unrelatedPair =
       new RegExp(
-        String.raw`\b(${ENTITY_NAME})\s+(?:and|&)\s+(${ENTITY_NAME})\s+(?:are|were)\s+(?:not\s+related|unrelated|causally\s+independent|independent)\b`,
+        String.raw`\b(${ENTITY_TOKEN})\s+(?:and|&)\s+(${ENTITY_TOKEN})\s+(?:are|were)\s+(?:not\s+related|unrelated|causally\s+independent|independent)\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\b(${ENTITY_NAME}).{0,100}?\bis\s+(?:causally\s+)?(?:unrelated|independent)\s+(?:of|to|from)\s+(${ENTITY_NAME})\b`,
+        String.raw`\b(${ENTITY_TOKEN}).{0,100}?\bis\s+(?:causally\s+)?(?:unrelated|independent)\s+(?:of|to|from)\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\b(${ENTITY_NAME}).{0,100}?\bis\s+unrelated\s+to\s+(${ENTITY_NAME})\b`,
+        String.raw`\b(${ENTITY_TOKEN}).{0,100}?\bis\s+unrelated\s+to\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\b(${ENTITY_NAME})(?:'s)?\s+(?:\w+\s+){0,4}(?:problem|issue|outage|shortage|constraint)\s+(?:is\s+unrelated\s+to|has\s+nothing\s+to\s+do\s+with)\s+(${ENTITY_NAME})\b`,
+        String.raw`\b(${ENTITY_TOKEN})(?:'s)?\s+(?:\w+\s+){0,4}(?:problem|issue|outage|shortage|constraint)\s+(?:is\s+unrelated\s+to|has\s+nothing\s+to\s+do\s+with|had\s+no\s+causal\s+relationship\s+to)\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\b(${ENTITY_NAME})(?:'s)?\s+(?:\w+\s+){0,6}(?:has|have)\s+(?:nothing\s+to\s+do\s+with|no\s+causal\s+(?:link|connection|relationship)\s+to)\s+(${ENTITY_NAME})\b`,
+        String.raw`\b(${ENTITY_TOKEN})(?:'s)?\s+(?:\w+\s+){0,6}(?:has|have|had)\s+(?:nothing\s+to\s+do\s+with|no\s+causal\s+(?:link|connection|relationship)\s+to)\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\b(?:has\s+)?nothing\s+to\s+do\s+with\s+(${ENTITY_NAME})\b`,
+        String.raw`\b(?:has\s+)?nothing\s+to\s+do\s+with\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
       new RegExp(
-        String.raw`\bno\s+causal\s+(?:link|connection|relationship)\s+to\s+(${ENTITY_NAME})\b`,
+        String.raw`\bno\s+causal\s+(?:link|connection|relationship)\s+to\s+(${ENTITY_TOKEN})\b`,
         "i",
       ).exec(clause) ||
-      new RegExp(String.raw`\bunrelated\s+to\s+(${ENTITY_NAME})\b`, "i").exec(clause);
+      new RegExp(String.raw`\bunrelated\s+to\s+(${ENTITY_TOKEN})\b`, "i").exec(clause);
 
     if (unrelatedPair) {
-      let left = unrelatedPair[1]!;
-      let right = unrelatedPair[2] || "";
+      let left = headCausalEntity(unrelatedPair[1]!) || unrelatedPair[1]!;
+      let right = headCausalEntity(unrelatedPair[2] || "") || unrelatedPair[2] || "";
       if (!unrelatedPair[2]) {
         const pair =
           new RegExp(
-            String.raw`\b(${ENTITY_NAME}).{0,140}?(?:unrelated|independent|nothing\s+to\s+do\s+with)\s+(?:of|to|from\s+)?(${ENTITY_NAME})\b`,
+            String.raw`\b(${ENTITY_TOKEN}).{0,140}?(?:unrelated|independent|nothing\s+to\s+do\s+with|no\s+causal\s+relationship)\s+(?:of|to|from\s+)?(${ENTITY_TOKEN})\b`,
             "i",
           ).exec(t);
         if (pair) {
-          left = pair[1]!;
-          right = pair[2]!;
+          left = headCausalEntity(pair[1]!) || pair[1]!;
+          right = headCausalEntity(pair[2]!) || pair[2]!;
         } else if (carryEntities?.[1]) {
-          left = carryEntities[0];
-          right = carryEntities[1]!;
+          left = headCausalEntity(carryEntities[0]) || carryEntities[0];
+          right = headCausalEntity(carryEntities[1]!) || carryEntities[1]!;
         }
+      } else {
+        left = headCausalEntity(left) || left;
+        right = headCausalEntity(right) || right;
       }
       const ents: [string, string?] = [left, right];
       remember(ents);
@@ -379,7 +405,7 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
           text: clause,
           entities: ents,
         });
-        if (/\bnever\s+had\b|\bhas\s+no\b|\blacks\b|\bnever\s+lost\s+staff\b/i.test(t)) {
+        if (/\bnever\s+had\b|\bhas\s+no\b|\blacks\b|\bnever\s+lost\s+staff\b|\bdid\s+not\s+suffer\b|\bdidn't\s+suffer\b/i.test(t)) {
           push({
             kind: "mechanism_absent",
             text: clause,
@@ -406,12 +432,41 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
       return;
     }
 
+    const connected =
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:and|&)\s+([A-Z][A-Za-z0-9_-]{1,40})\s+(?:are|were)\s+causally\s+connected\b/i.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+causally\s+connected\s+(?:to|with)\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      ) ||
+      /\b(?:there\s+is|there\s+exists)\s+(?:an?\s+)?(?:indirect\s+)?causal\s+(?:connection|link|path)\s+between\s+([A-Z][A-Za-z0-9_-]{1,40})\s+and\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+        clause,
+      );
+    if (connected) {
+      const ents: [string, string?] = [
+        headCausalEntity(connected[1]!) || connected[1]!,
+        headCausalEntity(connected[2]!) || connected[2]!,
+      ];
+      remember(ents);
+      push({ kind: "causal_connected", text: clause, entities: ents });
+      return;
+    }
+
     const direct =
-      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+(?:the\s+)?direct\s+cause\s+of\s+([A-Z][A-Za-z0-9_-]{1,40})\b/i.exec(
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|was)\s+(?:the\s+)?direct\s+cause\s+of\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})\s+directly\s+caused\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
+        clause,
+      ) ||
+      /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+[^.?\n]{0,80}?\sdirectly\s+caused\s+([A-Z][A-Za-z0-9_-]{1,40})\b/.exec(
         clause,
       );
     if (direct) {
-      const ents: [string, string?] = [direct[1]!, direct[2]!];
+      const ents: [string, string?] = [
+        headCausalEntity(direct[1]!) || direct[1]!,
+        headCausalEntity(direct[2]!) || direct[2]!,
+      ];
       remember(ents);
       push({ kind: "causal_direct_cause", text: clause, entities: ents });
       return;
@@ -666,6 +721,20 @@ function verdictAtomicProposition(
         proposition: prop,
         verdict: "unproven",
         justification: "Direct causation is not established.",
+      };
+    }
+    case "causal_connected": {
+      if (e1 && e2 && (hasCausalPath(causal, e1, e2) || hasCausalPath(causal, e2, e1))) {
+        return {
+          proposition: prop,
+          verdict: "supported",
+          justification: `INDIRECT_CAUSAL_CONNECTION / path exists between ${e1} and ${e2} (not necessarily same root or direct).`,
+        };
+      }
+      return {
+        proposition: prop,
+        verdict: "unproven",
+        justification: "Causal connection is not established from supplied evidence.",
       };
     }
     case "causal_no_role": {

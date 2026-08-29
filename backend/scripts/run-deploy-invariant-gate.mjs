@@ -65,5 +65,21 @@ if (transport.status !== 0) {
   console.error("DEPLOY_INVARIANT_GATE: FAIL (transport-boundary-contract-qualify)");
   process.exit(transport.status ?? 1);
 }
+
+for (const script of [
+  "scripts/causal-predicate-qualify.mjs",
+  "scripts/visible-relevance-qualify.mjs",
+  "scripts/causal-relevance-combined-qualify.mjs",
+]) {
+  const q = spawnSync(process.execPath, ["--import", "tsx", script], {
+    cwd: backendRoot,
+    stdio: "inherit",
+    env: process.env,
+  });
+  if (q.status !== 0) {
+    console.error(`DEPLOY_INVARIANT_GATE: FAIL (${script})`);
+    process.exit(q.status ?? 1);
+  }
+}
 console.log("DEPLOY_INVARIANT_GATE: PASS");
 process.exit(0);

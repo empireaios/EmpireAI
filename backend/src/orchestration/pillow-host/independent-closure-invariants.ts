@@ -41,7 +41,7 @@ export type IndependentClosureInvariant = {
 export const INDEPENDENT_CLOSURE_INVARIANTS: readonly IndependentClosureInvariant[] = [
   { id: "IC-01", name: "CURRENT_STATE_AUTHORITY", failureClass: "HISTORICAL_OVERRIDES_CURRENT", severity: "P0" },
   { id: "IC-02", name: "HISTORICAL_ELIGIBILITY_DOES_NOT_PERSIST", failureClass: "STALE_ELIGIBILITY", severity: "P0" },
-  { id: "IC-03", name: "INDIRECT_CAUSAL_CONNECTION", failureClass: "DIFFERENT_MECHANISM_IMPLIES_UNRELATED", severity: "P0" },
+  { id: "IC-03", name: "CAUSAL_PREDICATE_GRADES", failureClass: "DIRECT_INDIRECT_UNRELATED_COLLAPSE", severity: "P0" },
   { id: "IC-04", name: "COMMON_ROOT_VS_CONNECTION", failureClass: "CONNECTED_EQUALS_SAME_ROOT", severity: "P0" },
   { id: "IC-05", name: "RESOLVED_VERDICT_OWNERSHIP", failureClass: "LLM_RESOLVED_VERDICT_OVERRIDE", severity: "P0" },
   { id: "IC-06", name: "TRUE_PREMISE_FALSE_CONCLUSION", failureClass: "COMPOUND_SUPPORTED_FROM_PREMISE", severity: "P0" },
@@ -103,11 +103,11 @@ const PATH_TO_INVARIANTS: Array<{ match: RegExp; ids: IndependentClosureInvarian
   { match: /executive-memory-relevance|executive-event-state|executive-memory-realization/, ids: ["IC-09", "IC-20", "IC-21", "IC-22"] },
   { match: /executive-response-polish|executive-final-release|executive-release-gate/, ids: ["IC-05", "IC-16", "IC-20", "IC-22", "IC-18"] },
   { match: /executive-task-contract|executive-section-contract|timestamps|lineStartsWithTemporal/, ids: ["IC-15", "IC-16", "IC-13"] },
-  { match: /executive-evidence-ranking|executive-final-visible-contract/, ids: ["IC-10", "IC-16", "IC-13", "IC-05"] },
-  { match: /executive-section-contract/, ids: ["IC-16", "IC-13"] },
+  { match: /executive-evidence-ranking|executive-final-visible-contract/, ids: ["IC-10", "IC-16", "IC-13", "IC-05", "IC-22"] },
+  { match: /executive-section-contract/, ids: ["IC-16", "IC-13", "IC-22"] },
   { match: /executive-scoped-reasoning/, ids: ["IC-17", "IC-18", "IC-19", "IC-09"] },
   { match: /executive-decision|decision-gate|decision-constraints/, ids: ["IC-07", "IC-08", "IC-24"] },
-  { match: /executive-deliberation|signals\.ts/, ids: ["IC-20", "IC-21", "IC-22"] },
+  { match: /executive-deliberation|signals\.ts/, ids: ["IC-20", "IC-21", "IC-22", "IC-16"] },
   { match: /accepted-request|recovery/, ids: ["IC-25"] },
   { match: /constitutional-regression/, ids: ["IC-03", "IC-05", "IC-20", "IC-18"] },
 ];

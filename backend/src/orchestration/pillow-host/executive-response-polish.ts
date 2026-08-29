@@ -22,7 +22,7 @@ import {
   preservePopulationScopeQualifiers,
   repairEvidenceStrengthRanking,
 } from "./executive-evidence-ranking.js";
-import { stripInternalValidatorDiagnostics } from "./executive-final-visible-contract.js";
+import { stripInternalValidatorDiagnostics, enforceVisibleContractEnvelope } from "./executive-final-visible-contract.js";
 import {
   assessClaimCompletenessGate,
   enforceClaimEnumeration,
@@ -280,6 +280,7 @@ export function polishFinalVisibleAnswer(
   out = validateVisibleBlockRelevance(out, userMessage).message;
   // Never leak internal validator diagnostics into Grand King-visible text.
   out = stripInternalValidatorDiagnostics(out);
+  out = enforceVisibleContractEnvelope(out, c.expectedTopLevelSections, userMessage).message;
   return out;
 }
 

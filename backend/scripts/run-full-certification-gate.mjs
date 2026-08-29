@@ -19,6 +19,7 @@ const suites = [
   "src/validation/tests/sterling-multi-failure-lock.test.ts",
   "src/validation/tests/final-visible-contract-lock.test.ts",
   "src/validation/tests/transport-boundary-contract-lock.test.ts",
+  "src/validation/tests/causal-predicate-envelope-lock.test.ts",
   "src/validation/tests/path-parity-scope-isolation.test.ts",
   "src/validation/tests/memory-relevance-contract.test.ts",
   "src/validation/tests/memory-relevance-raw-pipeline.test.ts",
@@ -42,6 +43,25 @@ for (const suite of suites) {
     failed += 1;
   }
 }
+
+for (const script of [
+  "scripts/causal-predicate-qualify.mjs",
+  "scripts/visible-relevance-qualify.mjs",
+  "scripts/causal-relevance-combined-qualify.mjs",
+  "scripts/transport-boundary-contract-qualify.mjs",
+]) {
+  console.log(`\n▶ ${script}`);
+  const q = spawnSync(process.execPath, ["--import", "tsx", script], {
+    cwd: backendRoot,
+    stdio: "inherit",
+    env: process.env,
+  });
+  if (q.status !== 0) {
+    console.error(`FAIL: ${script}`);
+    failed += 1;
+  }
+}
+
 if (failed > 0) {
   console.error(`FULL_CERTIFICATION_GATE: FAIL (${failed} suites)`);
   process.exit(1);

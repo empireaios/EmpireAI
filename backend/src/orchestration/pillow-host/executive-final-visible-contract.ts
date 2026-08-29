@@ -173,6 +173,128 @@ export function countInternalValidatorDiagnostics(answer: string): number {
   return n;
 }
 
+/**
+ * Exact N-section envelope: unrequested text before Section 1 or after Section N.
+ * Does not suppress content that belongs inside numbered sections.
+ */
+export function assessVisibleContractEnvelope(
+  answer: string,
+  expectedTopLevelSections: number | null,
+  userMessage = "",
+): {
+  preSectionBlocks: number;
+  postSectionBlocks: number;
+  failures: string[];
+} {
+  const failures: string[] = [];
+  if (expectedTopLevelSections == null || expectedTopLevelSections < 2) {
+    return { preSectionBlocks: 0, postSectionBlocks: 0, failures };
+  }
+  const text = String(answer || "").replace(/\r\n/g, "\n").trim();
+  const first = /(?:^|\n)(?:#{1,3}\s*)?1[.)]\s+\S/.exec(text);
+  const lastRe = new RegExp(
+    `(?:^|\\n)(?:#{1,3}\\s*)?${expectedTopLevelSections}[.)]\\s+\\S[\\s\\S]*$`,
+    "m",
+  );
+  let preSectionBlocks = 0;
+  let postSectionBlocks = 0;
+  if (first && first.index != null && first.index > 0) {
+    const before = text.slice(0, first.index).trim();
+    if (
+      before.length >= 24 &&
+      /Recommendation:|Uncertainty:|Risk\s*\/\s*lesson|constitutional|commercial thresholds/i.test(
+        before,
+      )
+    ) {
+      preSectionBlocks = 1;
+      failures.push("UNREQUESTED_PRE_SECTION_SEMANTIC_TEXT");
+    }
+  }
+  // After last section: leftover ### Risk / lesson or Recommendation blocks.
+  const markers = [
+    ...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?(\d{1,2})[.)]\s+\S/g),
+  ];
+  const lastIdx = markers
+    .map((m) => Number(m[1]))
+    .filter((n) => n === expectedTopLevelSections)
+    .pop();
+  if (lastIdx === expectedTopLevelSections) {
+    const lastMatch = [...text.matchAll(/(?:^|\n)(?:#{1,3}\s*)?\d{1,2}[.)]\s+\S/g)].find(
+      (m) => Number(/(\d{1,2})/.exec(m[0])?.[1]) === expectedTopLevelSections,
+    );
+    // Find content after section N body ends at next top-level numbered or EOF —
+    // detect trailing Risk/lesson / Recommendation that are not the section title.
+    const trailing = text.split(
+      new RegExp(`(?:^|\\n)(?:#{1,3}\\s*)?${expectedTopLevelSections}[.)]\\s+[^\\n]+`),
+    )[1] || "";
+    // Strip nested claim/body until a new ### Risk/lesson or Recommendation: lead
+    if (
+      /(?:^|\n)#{1,3}\s*Risk\s*\/\s*lesson\b/i.test(trailing) ||
+      /(?:^|\n)Recommendation:\s+/i.test(trailing)
+    ) {
+      const riskAsked = /\b(?:risk\s*\/?\s*lesson|include\s+(?:a\s+)?risk|what\s+risk)\b/i.test(
+        userMessage,
+      );
+      const recAsked = /\b(?:recommend|recommendation|what\s+should\s+we\s+do)\b/i.test(
+        userMessage,
+      );
+      if (/(?:^|\n)#{1,3}\s*Risk\s*\/\s*lesson\b/i.test(trailing) && !riskAsked) {
+        postSectionBlocks += 1;
+        failures.push("UNREQUESTED_POST_FINAL_SECTION_TEXT");
+      }
+      if (/(?:^|\n)Recommendation:\s+/i.test(trailing) && !recAsked) {
+        postSectionBlocks += 1;
+        if (!failures.includes("UNREQUESTED_POST_FINAL_SECTION_TEXT")) {
+          failures.push("UNREQUESTED_POST_FINAL_SECTION_TEXT");
+        }
+      }
+    }
+  }
+  void lastRe;
+  return { preSectionBlocks, postSectionBlocks, failures };
+}
+
+/** Strip unrequested pre/post envelope blocks for exact N-section answers. */
+export function enforceVisibleContractEnvelope(
+  answer: string,
+  expectedTopLevelSections: number | null,
+  userMessage = "",
+): { message: string; repaired: boolean } {
+  if (expectedTopLevelSections == null || expectedTopLevelSections < 2) {
+    return { message: String(answer || ""), repaired: false };
+  }
+  let out = String(answer || "").replace(/\r\n/g, "\n");
+  let repaired = false;
+  // Drop Recommendation/Uncertainty leads before first numbered section.
+  const lead = /^(?:Recommendation:|Uncertainty:)[^\n]*(?:\n(?!\s*(?:#{1,3}\s*)?1[.)]\s)[^\n]*)*\n+/i;
+  if (lead.test(out) && /(?:^|\n)(?:#{1,3}\s*)?1[.)]\s+\S/.test(out)) {
+    out = out.replace(lead, "");
+    repaired = true;
+  }
+  // Drop trailing ### Risk / lesson when not requested.
+  const riskAsked = /\b(?:risk\s*\/?\s*lesson|include\s+(?:a\s+)?risk|what\s+risk)\b/i.test(
+    userMessage,
+  );
+  if (!riskAsked) {
+    const stripped = out.replace(
+      /(?:\n|^)#{1,3}\s*Risk\s*\/\s*lesson\b[\s\S]*$/i,
+      "",
+    );
+    if (stripped !== out) {
+      out = stripped;
+      repaired = true;
+    }
+  }
+  // Drop trailing Causal correction soft appends under exact sections.
+  const corr = out.replace(/(?:\n|^)\*\*Causal correction:\*\*[^\n]*(?:\n(?!#{1,3}\s|\d+[.)]\s)[^\n]*)*/gi, "\n");
+  if (corr !== out) {
+    out = corr;
+    repaired = true;
+  }
+  return { message: out.replace(/\n{3,}/g, "\n\n").trim(), repaired };
+}
+
+
 function claimBlockForIndex(answer: string, index: number): string | null {
   // Heading Claim N with or without markdown ### — not prose "Claim N lacks…".
   const m = new RegExp(
@@ -304,6 +426,12 @@ export function assessFinalVisibleContract(args: {
       failures.push("TOP_LEVEL_SECTION_COUNT_MISMATCH");
     }
     if (section.nestedPromoted > 0) failures.push("NESTED_ITEM_PROMOTED_TO_TOP_LEVEL");
+    const envelope = assessVisibleContractEnvelope(
+      answer,
+      args.expectedTopLevelSections,
+      args.userMessage,
+    );
+    failures.push(...envelope.failures);
   }
 
   const resolvedClaims = resolveTransportClaimObligations({
@@ -368,6 +496,8 @@ export function assessFinalVisibleContract(args: {
       "INTERNAL_DIAGNOSTIC_LEAK",
       "TOP_LEVEL_SECTION_COUNT_MISMATCH",
       "NESTED_ITEM_PROMOTED_TO_TOP_LEVEL",
+      "UNREQUESTED_PRE_SECTION_SEMANTIC_TEXT",
+      "UNREQUESTED_POST_FINAL_SECTION_TEXT",
       "EXPLICIT_VERDICT_OMISSION",
       "CLAIM_REASON_OMISSION",
       "CLAIM_DUPLICATION",
@@ -407,6 +537,8 @@ export const HARD_FINAL_VISIBLE_FAILURES = new Set([
   "INTERNAL_DIAGNOSTIC_LEAK",
   "TOP_LEVEL_SECTION_COUNT_MISMATCH",
   "NESTED_ITEM_PROMOTED_TO_TOP_LEVEL",
+  "UNREQUESTED_PRE_SECTION_SEMANTIC_TEXT",
+  "UNREQUESTED_POST_FINAL_SECTION_TEXT",
   "EXPLICIT_VERDICT_OMISSION",
   "CLAIM_REASON_OMISSION",
   "CLAIM_DUPLICATION",

@@ -71,6 +71,7 @@ import {
 import {
   assessFinalVisibleContract,
   authorizeTransportRelease,
+  enforceVisibleContractEnvelope,
   hasHardFinalVisibleFailure,
   resolveTransportClaimObligations,
   stripInternalValidatorDiagnostics,
@@ -625,8 +626,13 @@ function finalizeVisible(
     }
   }
 
-  // Final boundary: strip machinery diagnostics, then objectively grade THIS string.
+  // Final boundary: strip machinery diagnostics + unrequested envelope, then grade.
   rendered = stripInternalValidatorDiagnostics(rendered);
+  rendered = enforceVisibleContractEnvelope(
+    rendered,
+    contract?.expectedTopLevelSections ?? null,
+    userMessage ?? "",
+  ).message;
   const titles = extractRequestedSectionTitles(userMessage ?? "");
   const finalContract = assessFinalVisibleContract({
     answer: rendered,

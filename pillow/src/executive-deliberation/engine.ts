@@ -491,9 +491,19 @@ export function toExecutiveDeliberationPublicSummary(
 export function alignVisibleAnswerWithDeliberation(
   visibleAnswer: string,
   deliberation: ExecutiveDeliberationResult,
+  options?: { userMessage?: string },
 ): { message: string; fidelityAdjusted: boolean } {
   const answer = visibleAnswer?.trim() ?? "";
   if (!answer || deliberation.significance === "routine") {
+    return { message: answer, fidelityAdjusted: false };
+  }
+  // Exact N-section contracts: never prepend Recommendation/Uncertainty before Section 1.
+  const ask = String(options?.userMessage || "");
+  if (
+    /\b(?:exactly\s+)?(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:numbered\s+)?(?:top-?level\s+)?sections?\b/i.test(
+      ask,
+    )
+  ) {
     return { message: answer, fidelityAdjusted: false };
   }
 

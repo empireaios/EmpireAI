@@ -29996,6 +29996,7 @@ export class PillowHost {
                         const aligned = alignVisibleAnswerWithDeliberation(
                             message,
                             executiveReasoning.deliberation,
+                            { userMessage: input.message },
                         );
                         message = aligned.message;
                         deliberationFidelityAdjusted = aligned.fidelityAdjusted;
