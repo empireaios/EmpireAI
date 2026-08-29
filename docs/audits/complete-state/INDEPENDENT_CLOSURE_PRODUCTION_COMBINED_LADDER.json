@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-25T10:53:10.052Z",
-  "liveSha": "239cc95bec99c74586b951a98e82d009aed27c38",
-  "deploymentId": "9c1f1868-0a32-4e65-a95e-3356d9eb98a4",
+  "generatedAt": "2026-08-25T06:39:56.268Z",
+  "liveSha": "470aa13bf2cc72be65549bb079fbb6dd6db3b84e",
+  "deploymentId": "b2bf7737-a518-42e8-a03e-9731d92a1df8",
   "trials": 8,
   "pass": 8,
   "passRate": "8/8",
@@ -13,55 +13,55 @@
       "class": "memory+causality+verdict",
       "ok": true,
       "reasons": [],
-      "ms": 8791,
-      "preview": "### Conclusions\nThe claim that \"Nexus capacity shortage has no causal relationship to Prism because Nexus never had a thermal trip\" is **not supported**. The evidence indicates that Nexus's current capacity shortage is a direct result of the workload reassignment from Prism, which experienced a thermal trip. Therefore, while Nexus itself did not experience a thermal trip, it is still causally linked to the capacity shortage due to the reassignment of load from Prism.\n\n### Assessment of the Claim\n- **Causal Relationship**: The reassignment of work from Prism to Nexus due to Prism's thermal trip establishes a causal link. The capacity shortage in Nexus is a consequence of this reassignment. - **Nexus's Status**: The fact that Nexus never had a thermal trip does not negate the causal relationship; it merely indicates that Nexus's capacity issues stem from the operational demands placed on i"
+      "ms": 5945,
+      "preview": "Conclusions:\nThe claim that \"Nexus capacity shortage has no causal relationship to Prism because Nexus never had a thermal trip\" is **not supported**. The Nexus capacity shortage is directly linked to the reassignment of load from Prism to Nexus. Although Nexus itself did not experience a thermal trip, the commitment of its capacity to the reassigned load from Prism is the root cause of the current shortage.\n\nAssessment of the Claim:\n1. **Causal Relationship**: There is a causal relationship between the reassignment of work from Prism to Nexus and the current capacity shortage in Nexus. The reassignment necessitated the use of Nexus's capacity, which is now insufficient due to this commitment.\n\n2. **Nexus Thermal Trip**: The assertion that Nexus never had a thermal trip does not negate the causal link. The critical factor is the load reassignment from Prism, not the operational status of"
     },
     {
       "id": "IC_mem_claim_registry",
       "class": "memory+claim_verdict",
       "ok": true,
       "reasons": [],
-      "ms": 2895,
-      "preview": "**Verdict on Claim: \"LM-44 is Partner Frame.\"**\n\n- **Claim:** \"LM-44 is Partner Frame.\"\n- **Verdict:** **Contradicted.**\n\n**Explanation:** The verified registry clearly states that LM-44 is identified as the Lakeside Module, while LM-55 is identified as the Partner Frame. Therefore, the claim that LM-44 is the Partner Frame is incorrect.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"LM-44 is Partner Frame.\"\n\nVerified identity: LM-44 = Lakeside Module (verified_registry). \"Partner Frame\" is bound to a different registry identity."
+      "ms": 2916,
+      "preview": "**Verdict on Claim: \"LM-44 is Partner Frame.\"**\n**Contradicted.**\n\nThe verified registry clearly identifies LM-44 as the Lakeside Module and LM-55 as the Partner Frame, confirming that they are distinct entities. Therefore, the claim that \"LM-44 is Partner Frame\" is incorrect.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"LM-44 is Partner Frame.\"\n\nVerified identity: LM-44 = Lakeside Module (verified_registry). \"Partner Frame\" is bound to a different registry identity."
     },
     {
       "id": "IC_causal_current_state",
       "class": "causality+current_historical",
       "ok": true,
       "reasons": [],
-      "ms": 4569,
-      "preview": "**Verdict**: The claim that \"Harbor bed shortage is unrelated to Cedar because Harbor never had a staffing shortage\" is not supported.\n\n**Need**: The assertion relies on the premise that Harbor's bed shortage is solely independent of any staffing issues, specifically those related to Cedar. However, the context indicates that work was redirected from Cedar to Harbor, which directly ties Cedar's previous staffing issues to the current situation at Harbor.\n\n**What matters most**: The critical connection here is the redirection of work from Cedar to Harbor. This suggests that while Harbor may not have had a staffing shortage, the influx of redirected work could have contributed to the bed shortage. Therefore, the bed shortage at Harbor cannot be deemed entirely unrelated to Cedar's earlier staffing issues.\n\n**My recommendation**: It would be prudent to investigate further into how the redir"
+      "ms": 5075,
+      "preview": "The claim that \"Harbor bed shortage is unrelated to Cedar because Harbor never had a staffing shortage\" is **not supported**.\n\n### Assessment:\n\n1. **Causal Relationship**: The current bed shortage at Harbor is a direct consequence of the work being redirected from Cedar to Harbor. This redirection indicates that Cedar's earlier staffing shortage had a downstream effect on Harbor's capacity.\n\n2. **Harbor's Staffing Status**: The fact that Harbor never had a staffing shortage does not negate the causal link. The key factor is the impact of Cedar's staffing situation on the workload and capacity at Harbor.\n\nIn summary, the claim fails because it overlooks the critical connection between Cedar's earlier staffing issues and the current situation at Harbor.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Harbor bed shortage is unrelated to Cedar because Harbor never had a staffing shortage.\"\n\nCompoun"
     },
     {
       "id": "IC_timestamps_multipart",
       "class": "timestamps+structure",
       "ok": true,
       "reasons": [],
-      "ms": 2336,
-      "preview": "1) Yes, delivery was completed on 2026-08-21 at 14:00 when Shipment R was delivered.\n\n2) The current status is closed as of 2026-08-22 at 10:00. No refund is applicable."
+      "ms": 11674,
+      "preview": "1) **Was delivery completed?**\nYes, delivery was completed. Shipment R was delivered on August 21, 2026.\n\n2) **What is current status?**\nThe current status is closed as of August 22, 2026. No refund is applicable."
     },
     {
       "id": "IC_population_forecast",
       "class": "population+forecast",
       "ok": true,
       "reasons": [],
-      "ms": 2259,
-      "preview": "### Verdicts\n\n### Claim 1\n**Verdict:** Unproven / not established\n\n\"The full population rate is 9%.\"\n\nNot established from the supplied generic scenario evidence alone.\n\n### Claim 2\n**Verdict:** Unproven / not established\n\n\"Forecast equals realised.\"\n\nNot established from the supplied generic scenario evidence alone."
+      "ms": 3058,
+      "preview": "1. **Verdict on Claim: \"The full population rate is 9%.\"**\n **Supported.** The measurement of a subset (n=60) from a population (M=600) indicates that 9% is the observed rate, which can be interpreted as the full population rate based on the provided data.\n\n2. **Verdict on Claim: \"Forecast equals realised.\"**\n **Contradicted.** The forecast throughput is 5000, while the realised amount is\n\n1100. Therefore, the claim that \"forecast equals realised\" is incorrect.\n\n### Claim 1\n**Verdict:** Unproven / not established\n\n\"The full population rate is 9%.\"\n\nNot established from the supplied generic scenario evidence alone.\n\n### Claim 2\n**Verdict:** Unproven / not established\n\n\"Forecast equals realised.\"\n\nNot established from the supplied generic scenario evidence alone."
     },
     {
       "id": "IC_synthetic_isolation",
       "class": "synthetic+memory",
       "ok": true,
       "reasons": [],
-      "ms": 2079,
-      "preview": "Store Mesa is currently eligible for retail operations, having successfully passed the inventory gate. There are no refund options available at this time.\n\n### SyntheticIC-P06 — retail ops brief only. Store Mesa currently elig\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario."
+      "ms": 1577,
+      "preview": "Store Mesa is currently eligible for operations, having successfully passed the inventory gate. There are no refunds applicable at this time.\n\n### SyntheticIC-P06 — retail ops brief only. Store Mesa currently elig\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario."
     },
     {
       "id": "IC_claim_completeness",
       "class": "claim_completeness+consistency",
       "ok": true,
       "reasons": [],
-      "ms": 2481,
+      "ms": 4237,
       "preview": "### 1) \"Forecast equals realised.\"\n\n### \"Forecast equals realised.\"\n**Verdict:** Unsupported as realised result\n\nAn expected, forecast, or estimated figure is not realised profit and is not transaction evidence.\n\nWhat can be concluded: the figure may be a planning estimate; it does not establish realised economics.\n\n**Need:** If this were live, ledger/transaction confirmation. In this analysis: keep it labeled as an estimate only.\n\n### 2) \"TR-21 is Harbour Crown Depot.\"\n\n### \"TR-21 is Harbour Crown Depot.\"\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.\n\n**Need:** independent verification against an authoritative source for this scenario.\n\n### 3) \"Deliveries never historically"
     },
     {
@@ -69,8 +69,8 @@
       "class": "causality+compound_claim",
       "ok": true,
       "reasons": [],
-      "ms": 6022,
-      "preview": "### Verdict on Claim\n\n**Claim:** \"Cobalt has a different direct cause, therefore Cobalt is unrelated to Quay.\"\n\n### Rationale\n\n1. **Causal Connection:** The assertion that Cobalt is unrelated to Quay based solely on the premise of a different direct cause does not hold. Just because Cobalt did not experience a seal failure does not imply that it is entirely unrelated to the issues faced by Quay. The technician shortage at Cobalt was a direct result of the work being redirected from Quay, indicating a connection between the two lines.\n\n2. **Observed Impact:** The operational decisions affecting Quay directly influenced the resource allocation and staffing at Cobalt. Therefore, while the direct causes of failure may differ, the operational interdependencies suggest a relationship exists.\n\nIn summary, the claim that Cobalt is unrelated to Quay based on differing direct causes is not support"
+      "ms": 6933,
+      "preview": "**Verdict on Claim: \"Cobalt has a different direct cause, therefore Cobalt is unrelated to Quay.\"**\n\n**Contradicted.** The technician shortage at Cobalt is a direct consequence of the work being redirected from Line Quay due to the seal failure. While Cobalt itself did not experience a seal failure, the operational changes stemming from Quay's issue directly impacted Cobalt's capacity. Therefore, the claim that Cobalt is unrelated to Quay is incorrect.\n\n### Claim 1\n**Verdict:** Contradicted\n\n\"Cobalt has a different direct cause, therefore Cobalt is unrelated to Quay.\"\n\nCompound claim: a supported premise does not make the whole claim SUPPORTED when another material clause is unproven or false."
     }
   ],
   "wave1": "UNCERTIFIED",
