@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-08-30T22:01:41.739Z",
+  "LIVE_SHA": "b96dc08fd27c021b91b99630ba1ae7d592fd7a0c",
+  "passCount": 10,
+  "total": 10,
+  "PRODUCTION_DECISION_STATE_PASS": "PASS",
+  "results": [
+    {
+      "id": "one_eligible_select",
+      "ok": true,
+      "ms": 10278,
+      "status": 200,
+      "detail": "elig=true rec=true v=Contradicted/Contradicted/Contradicted",
+      "head": "1) Snapshot\n\n### Snapshot\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI op"
+    },
+    {
+      "id": "zero_eligible",
+      "ok": true,
+      "ms": 14601,
+      "status": 200,
+      "detail": "zero_eligible_action",
+      "head": "1. **Snapshot**\n Currently, there are two candidates under consideration for procurement:\n - **ASH**: Cost is S$360,000 (FAIL), delivery rate is 96% (FAIL), and approval is pending (FAIL). - **ELM**: Cost is S$380,000 (FAIL), delivery rate is 95% (FAIL), and approval is pending ("
+    },
+    {
+      "id": "multi_cheapest",
+      "ok": true,
+      "ms": 11883,
+      "status": 200,
+      "detail": "cheapest_eligible",
+      "head": "1. **Eligible Set**\n The eligible suppliers are:\n - PINE: Cost S$400,000, Delivery 95%, Approval Granted\n - TEAK: Cost S$350,000, Delivery 96%, Approval Granted\n\n2. **Recommendation**\n I recommend selecting TEAK as the supplier. It is the cheapest eligible option at S$350,000 whi"
+    },
+    {
+      "id": "pending_not_pass",
+      "ok": true,
+      "ms": 2934,
+      "status": 200,
+      "detail": "v1=Contradicted",
+      "head": "1) Rule: eligible only if approval granted (pending fails).\n\n### Rule: eligible only if approval granted (pending fails).\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concl"
+    },
+    {
+      "id": "forecast_vs_gate",
+      "ok": true,
+      "ms": 7359,
+      "status": 200,
+      "detail": "hard_gate_beats_forecast",
+      "head": "1. **Gates**\n - **CORRIDOR_A**: Contribution 12% PASS; Stock unavailable FAIL; Policy clear PASS. - **CORRIDOR_B**: Contribution 9% PASS; Stock available PASS; Policy clear PASS.\n\n2. **Recommendation**\n Based on the evaluation, **CORRIDOR_B** is the only currently eligible candid"
+    },
+    {
+      "id": "history_case_a",
+      "ok": true,
+      "ms": 1946,
+      "status": 200,
+      "detail": "seed",
+      "head": "1. **Snapshot**\nThe analysis of SyntheticDecHistA indicates that the software is ready for deployment, with a cost assessment passing at 100 and a delivery rate of 99%. All necessary approvals have been granted, confirming that the project meets the required standards for executi"
+    },
+    {
+      "id": "history_case_b_no_volt",
+      "ok": true,
+      "ms": 2805,
+      "status": 200,
+      "detail": "no_foreign_volt",
+      "head": "1. **Snapshot**\nThe analysis of SyntheticDecHistB shows that the hospitality solution, QUAY, has achieved a delivery rate of 95% and has received all necessary approvals. This confirms that QUAY meets the eligibility criteria for deployment.\n\n2. **Recommendation**\nI recommend sel"
+    },
+    {
+      "id": "cont_base",
+      "ok": true,
+      "ms": 2294,
+      "status": 200,
+      "detail": "pending_none",
+      "head": "1. **Snapshot**\n Currently, there are no eligible candidates for selection. The only candidate, DOCK, has a cost of $400,000, which is within the budget limit of $500,000; however, it has a pending approval status, which results in a failure to meet the eligibility criteria.\n\n2. "
+    },
+    {
+      "id": "cont_approval_cleared",
+      "ok": true,
+      "ms": 2253,
+      "status": 200,
+      "detail": "continuation_select",
+      "head": "1. **Snapshot**\nThe only candidate, DOCK, has a cost of $400,000, which is within the budget limit of $500,000. The approval status has now changed to granted, making DOCK eligible for selection.\n\n2. **Recommendation**\nI recommend selecting DOCK as it meets all eligibility criter"
+    },
+    {
+      "id": "exact_n_claims",
+      "ok": true,
+      "ms": 2839,
+      "status": 200,
+      "detail": "sec=4 v=Contradicted/Supported",
+      "head": "1. **Snapshot**\n - ALPHA has received approval and is currently eligible for action. - BETA's approval is pending and currently fails to meet eligibility criteria.\n\n2. **Eligible set**\n - The only currently eligible candidate is ALPHA.\n\n3. **Claim audit**\n - **Claim 1:** \"BETA is"
+    }
+  ]
+}
