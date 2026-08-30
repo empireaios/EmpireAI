@@ -47,6 +47,187 @@ const TIMESTAMP_TOKENS =
 
 const ENTITY_TOKEN = /\b([A-Z][A-Za-z0-9_-]{2,40})(?:\s+[A-Z][A-Za-z0-9_-]{2,40}){0,2}\b/g;
 
+/** Never treat these as case specimen entities (firewall must not scrub prose). */
+const ENTITY_STOPWORDS = new Set(
+  [
+    "The",
+    "This",
+    "That",
+    "These",
+    "Those",
+    "Then",
+    "Than",
+    "When",
+    "Where",
+    "What",
+    "Which",
+    "While",
+    "With",
+    "From",
+    "Into",
+    "Onto",
+    "Over",
+    "Under",
+    "After",
+    "Before",
+    "During",
+    "Following",
+    "Because",
+    "However",
+    "Therefore",
+    "Thus",
+    "Also",
+    "Only",
+    "Once",
+    "Each",
+    "Both",
+    "Some",
+    "Any",
+    "All",
+    "None",
+    "Other",
+    "Another",
+    "Same",
+    "New",
+    "Next",
+    "Prior",
+    "Previous",
+    "Current",
+    "Answer",
+    "Audit",
+    "Assess",
+    "Claim",
+    "Claims",
+    "Verdict",
+    "Section",
+    "Sections",
+    "Snapshot",
+    "Mechanism",
+    "Closing",
+    "Causes",
+    "Cause",
+    "Path",
+    "Direct",
+    "Indirect",
+    "Comparison",
+    "Lesson",
+    "Lessons",
+    "Risk",
+    "Recommendation",
+    "Supported",
+    "Unsupported",
+    "Contradicted",
+    "Unproven",
+    "Unknown",
+    "True",
+    "False",
+    "Need",
+    "What",
+    "My",
+    "Our",
+    "Your",
+    "Their",
+    "Its",
+    "And",
+    "But",
+    "For",
+    "Not",
+    "Yes",
+    "No",
+    "Do",
+    "Does",
+    "Did",
+    "Is",
+    "Are",
+    "Was",
+    "Were",
+    "Be",
+    "Been",
+    "Being",
+    "Have",
+    "Has",
+    "Had",
+    "Can",
+    "Could",
+    "Would",
+    "Should",
+    "May",
+    "Might",
+    "Must",
+    "Will",
+    "Shall",
+    "At",
+    "By",
+    "On",
+    "In",
+    "Of",
+    "To",
+    "As",
+    "Or",
+    "If",
+    "It",
+    "An",
+    "A",
+    "Synthetic",
+    "FailureA",
+    "PeerNode",
+    "UpstreamFailure",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Memory",
+    "Clusters",
+    "Cluster",
+    "Module",
+    "System",
+    "Systems",
+    "Orders",
+    "Order",
+    "Workload",
+    "Work",
+    "Traffic",
+    "Capacity",
+    "Shortage",
+    "Exhaustion",
+    "Overload",
+    "Failure",
+    "Incident",
+    "Outage",
+    "Healthy",
+    "Restored",
+    "Cleared",
+    "Deployment",
+    "Software",
+    "Warehouse",
+    "Printer",
+    "Packing",
+  ].map((w) => w.toLowerCase()),
+);
+
+function isDistinctiveCaseEntity(raw: string): boolean {
+  const e = String(raw || "").trim();
+  if (!e || e.length < 4) return false;
+  if (ENTITY_STOPWORDS.has(e.toLowerCase())) return false;
+  if (/^Synthetic/i.test(e)) return false;
+  if (
+    /^(?:Claim|Verdict|Section|Snapshot|Audit|Answer|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|FailureA|PeerNode|UpstreamFailure)$/i.test(
+      e,
+    )
+  ) {
+    return false;
+  }
+  // Prefer proper-noun / compound tokens (NorthHub, Cobalt, power-board-ish names).
+  if (/^[A-Z][a-z]+(?:[A-Z][a-z]+)+$/.test(e)) return true; // CamelCase compound
+  if (/^[A-Z][a-z]{3,}$/.test(e)) return true; // Title case length>=4
+  if (/^[A-Z]{2,}[a-z]/.test(e)) return true;
+  if (/[_-]/.test(e) && e.length >= 5) return true;
+  return false;
+}
+
 const PRINCIPLE_MARKERS =
   /\b(?:different\s+direct\s+causes|indirect(?:ly)?\s+connected|path\s+exists|DIRECT\s*[≠!=]+\s*INDIRECT|CAUSALLY_CONNECTED|common\s+root|principle|lesson\s*:|general(?:ized)?\s+rule)\b/i;
 
@@ -85,19 +266,24 @@ export function extractCaseFingerprint(text: string, caseId: string): CaseFinger
   let m: RegExpExecArray | null;
   const entRe = new RegExp(ENTITY_TOKEN.source, "g");
   while ((m = entRe.exec(t)) !== null) {
+    const full = String(m[0] || "").trim();
     const e = m[1]!;
-    if (
-      /^(?:Synthetic|Claim|Verdict|Section|Snapshot|Audit|Answer|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|FailureA|PeerNode|UpstreamFailure)$/i.test(
-        e,
-      )
-    ) {
+    // Prefer multi-token spans when captured; otherwise single distinctive token.
+    if (full.includes(" ") && isDistinctiveCaseEntity(full.split(/\s+/)[0]!)) {
+      entities.push(full);
       continue;
     }
+    if (!isDistinctiveCaseEntity(e)) continue;
     entities.push(e);
   }
   const timestamps = uniq([...(t.match(TIMESTAMP_TOKENS) || [])]);
   const numbers = uniq([...(t.match(/\b\d{2,7}\b/g) || [])]);
-  const mechanisms = uniq([...(t.match(MECHANISM_TOKENS) || [])]);
+  const mechanisms = uniq([...(t.match(MECHANISM_TOKENS) || [])]).filter((mech) => {
+    // Prefer multi-word / hyphenated mechanisms; drop bare "clusters" noise.
+    const m = String(mech || "").toLowerCase();
+    if (m === "cluster" || m === "clusters") return false;
+    return m.length >= 5;
+  });
   const domainTokens = uniq([
     ...((t.match(
       /\b(?:warehouse|cluster|printer|packing|logistics|hospitality|retail|marketplace|supplier|listing|inventory|shipping)\b/gi,
@@ -288,12 +474,13 @@ export function enforceCurrentCaseFactFirewall(
   for (const fp of priorFingerprints) {
     for (const ent of fp.entities) {
       if (currentKeys.has(key(ent))) continue;
-      if (ent.length < 3) continue;
-      const re = new RegExp(`\\b${ent.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
+      if (!isDistinctiveCaseEntity(ent.split(/\s+/)[0]!) && !isDistinctiveCaseEntity(ent)) continue;
+      // Case-sensitive-ish: require capitalised specimen token so prose "the" never matches.
+      const re = new RegExp(`\\b${ent.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g");
       if (re.test(cleaned)) {
         entityLeak += 1;
         leaks.push(`entity:${ent}`);
-        cleaned = cleaned.replace(re, "[foreign-case-entity]");
+        cleaned = cleaned.replace(re, "");
       }
     }
     for (const ts of fp.timestamps) {
@@ -302,7 +489,7 @@ export function enforceCurrentCaseFactFirewall(
       if (re.test(cleaned)) {
         eventLeak += 1;
         leaks.push(`timestamp:${ts}`);
-        cleaned = cleaned.replace(re, "[foreign-case-time]");
+        cleaned = cleaned.replace(re, "");
       }
     }
     for (const mech of fp.mechanisms) {
@@ -312,7 +499,7 @@ export function enforceCurrentCaseFactFirewall(
       if (re.test(cleaned) && current.mechanisms.length > 0) {
         domainSub += 1;
         leaks.push(`mechanism:${mech}`);
-        cleaned = cleaned.replace(re, "[foreign-case-mechanism]");
+        cleaned = cleaned.replace(re, "");
       }
     }
   }
@@ -323,7 +510,10 @@ export function enforceCurrentCaseFactFirewall(
     FOREIGN_CASE_EVENT_LEAK: eventLeak,
     FOREIGN_CASE_DOMAIN_SUBSTITUTION: domainSub,
     leaks,
-    cleaned: cleaned.replace(/\n{3,}/g, "\n\n").trim(),
+    cleaned: cleaned
+      .replace(/[ \t]{2,}/g, " ")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim(),
   };
 }
 

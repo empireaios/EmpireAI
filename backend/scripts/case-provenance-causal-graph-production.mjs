@@ -146,14 +146,16 @@ async function main() {
         /Memory was cleared/i,
         /07:30\s+software\s+deployment/i,
         /\bClusters restored\b/i,
-        /\bCobalt\b/i,
-        /\bArgon\b/i,
+        /\bCobalt\b/,
+        /\bArgon\b/,
+        /\[foreign-case-/i,
       ]);
       const direct = verdictOf(t, "directly caused");
       const connected = verdictOf(t, "causally connected");
+      const pathLanguage = /\bDIRECT\b.*\bINDIRECT\b|\bmulti[- ]?hop\b|\bindirect\b|\bpath\b/i.test(t);
       const ok =
         !foreign &&
-        (direct === "contradicted" || /\bDIRECT\b.*\bINDIRECT\b|\bmulti[- ]?hop\b|\bpath\b/i.test(t)) &&
+        (direct === "contradicted" || (direct !== "supported" && pathLanguage)) &&
         connected !== "contradicted";
       return {
         ok,

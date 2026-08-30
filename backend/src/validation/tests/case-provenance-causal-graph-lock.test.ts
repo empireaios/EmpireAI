@@ -63,6 +63,7 @@ describe("Case provenance + executable causal graph lock", () => {
     assert.equal(fw.ok, false);
     assert.ok(fw.FOREIGN_CASE_EVENT_LEAK + fw.FOREIGN_CASE_DOMAIN_SUBSTITUTION > 0);
     assert.ok(!/Tuesday 10:20/i.test(fw.cleaned));
+    assert.ok(!/\[foreign-case-/i.test(fw.cleaned));
     const polished = polishFinalVisibleAnswer(dirty, current, undefined, {
       priorFingerprints: [prior],
       caseMode: "NEW_BOUNDED_CASE",
