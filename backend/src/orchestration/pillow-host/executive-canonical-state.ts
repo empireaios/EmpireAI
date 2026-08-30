@@ -10,7 +10,12 @@ import {
   buildActionEligibilityStates,
   formatActionEligibilityBrief,
   type ActionEligibility,
+  type DecisionGate,
 } from "./executive-decision-constraints.js";
+import {
+  buildDecisionCaseState,
+  type DecisionCaseState,
+} from "./executive-decision-case-state.js";
 import {
   buildCanonicalCausalState,
   formatCausalStateBrief,
@@ -90,6 +95,8 @@ export type CanonicalCaseState = {
   propositions: CanonicalProposition[];
   /** Multi-gate decision eligibility per action/candidate (ELIGIBLE ≠ BEST). */
   decisionActions: ActionEligibility[];
+  /** Authoritative multi-candidate commercial decision case (null when not applicable). */
+  decisionCase: DecisionCaseState | null;
   /**
    * Named actors' current vs historical status from owner pack.
    * Historical impairment does not by itself keep current eligibility blocked.
@@ -741,10 +748,58 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
           : "generic";
 
   const actorStates = parseActorStates(narrative);
-  const decisionActions = mergeActorEligibilityIntoActions(
+  const decisionCase = buildDecisionCaseState(narrative);
+  let decisionActions = mergeActorEligibilityIntoActions(
     buildActionEligibilityStates(narrative),
     actorStates,
   );
+  // Named commercial candidates override / extend action eligibility from decision case.
+  if (decisionCase && decisionCase.candidates.length > 0) {
+    const fromCase: ActionEligibility[] = decisionCase.candidates.map((c) => ({
+      actionId: c.candidateId,
+      actionLabel: c.displayName,
+      requiredGates: c.gates.map(
+        (g): DecisionGate => ({
+          id:
+            g.id === "cost_ceiling" || g.id === "expenditure"
+              ? "expenditure"
+              : g.id === "delivery_sla" || g.id === "quality" || g.id === "performance"
+                ? "performance"
+                : g.id === "approval" || g.id === "policy"
+                  ? "authority"
+                  : g.id === "stock" || g.id === "capacity"
+                    ? "capacity"
+                    : g.id === "evidence"
+                      ? "evidence"
+                      : g.id === "margin_floor" || g.id === "contribution_min"
+                        ? "unit_economics"
+                        : "supplier",
+          label: g.label,
+          status: g.status,
+        }),
+      ),
+      currentlyEligible: c.currentlyEligible,
+      comparativelyPreferred:
+        decisionCase.recommendation.selectedId != null &&
+        decisionCase.recommendation.selectedId === c.displayName
+          ? true
+          : null,
+      preferenceNote: null,
+    }));
+    // Prefer case-derived actions when present
+    decisionActions = mergeActorEligibilityIntoActions(fromCase, actorStates);
+    for (const c of decisionCase.candidates) {
+      const prev = actorStates[c.displayName] || {
+        currentlyEligible: null,
+        historicallyImpaired: null,
+        impairmentCleared: null,
+      };
+      actorStates[c.displayName] = {
+        ...prev,
+        currentlyEligible: c.currentlyEligible,
+      };
+    }
+  }
   const causal = buildCanonicalCausalState(narrative);
 
   for (const [actor, st] of Object.entries(actorStates)) {
@@ -826,6 +881,7 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
     claims,
     propositions,
     decisionActions,
+    decisionCase,
     actorStates,
     causal,
     failureStageHints: [],

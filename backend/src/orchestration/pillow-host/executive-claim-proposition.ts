@@ -26,6 +26,7 @@ export type AtomicProposition = {
     | "population_all_deployed"
     | "occurrence_denied"
     | "decision_eligible"
+    | "decision_eligible_count"
     | "currently_blocked"
     | "historical_impairment"
     | "causal_unrelated"
@@ -234,13 +235,26 @@ export function decomposeClaimPropositions(claimText: string): AtomicProposition
     }
 
     if (
-      /\b(?:currently\s+)?eligible\b/i.test(clause) &&
-      /\b(?:scale|decision|candidate|gate|currently)\b/i.test(clause)
+      /\bat\s+least\s+(?:two|2|\d+)\b/i.test(clause) &&
+      /\b(?:eligible|qualify|qualifies|suppliers?|candidates?)\b/i.test(clause)
+    ) {
+      push({
+        kind: "decision_eligible_count",
+        text: clause,
+        entities: undefined,
+      });
+      return;
+    }
+
+    if (
+      /\b(?:currently\s+)?eligible\b/i.test(clause) ||
+      /\b(?:already\s+)?(?:qualif(?:y|ies|ied)|eligible)\b/i.test(clause)
     ) {
       const who =
-        /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are|should\s+be)\s+(?:currently\s+)?eligible\b/i.exec(
+        /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:is|are|should\s+be|remains?)\s+(?:already\s+|currently\s+)?eligible\b/.exec(
           clause,
-        );
+        ) ||
+        /\b([A-Z][A-Za-z0-9_-]{1,40})\s+(?:already\s+)?(?:qualif(?:y|ies|ied))\b/.exec(clause);
       push({
         kind: "decision_eligible",
         text: clause,
@@ -512,9 +526,16 @@ function actorLookup(
 }
 
 function actorCurrentlyEligible(state: CanonicalCaseState, name: string | undefined): boolean | null {
+  if (!name) return null;
+  if (state.decisionCase) {
+    const k = key(name);
+    const c = state.decisionCase.candidates.find(
+      (x) => key(x.displayName) === k || x.candidateId === k,
+    );
+    if (c) return c.currentlyEligible;
+  }
   const st = actorLookup(state, name);
   if (st?.currentlyEligible != null) return st.currentlyEligible;
-  if (!name) return null;
   const k = key(name);
   for (const a of state.decisionActions) {
     if (key(a.actionLabel) === k || key(a.actionId).includes(k)) {
@@ -776,6 +797,19 @@ function verdictAtomicProposition(
     }
     case "decision_eligible": {
       const eligible = actorCurrentlyEligible(state, e1);
+      // "eligible because pending" is always false under mandatory-approval gates
+      if (
+        /\beligible\b/i.test(prop.text) &&
+        /\bpending\b/i.test(prop.text) &&
+        !/\bnot\s+eligible\b/i.test(prop.text)
+      ) {
+        return {
+          proposition: prop,
+          verdict: "contradicted",
+          justification:
+            "Pending mandatory approval is not PASS; candidate is not currently eligible.",
+        };
+      }
       if (/\bnot\s+eligible\b|\bineligible\b/i.test(prop.text)) {
         if (eligible === true) {
           return {
@@ -784,7 +818,14 @@ function verdictAtomicProposition(
             justification: `Canonical state: ${e1 ?? "actor"} is currently eligible.`,
           };
         }
-      } else if (/\beligible\b/i.test(prop.text)) {
+        if (eligible === false) {
+          return {
+            proposition: prop,
+            verdict: "supported",
+            justification: `Canonical state: ${e1 ?? "actor"} is not currently eligible.`,
+          };
+        }
+      } else if (/\beligible\b|\bqualif/i.test(prop.text)) {
         if (eligible === true) {
           return {
             proposition: prop,
@@ -800,16 +841,32 @@ function verdictAtomicProposition(
           };
         }
       }
-      const blocked = state.decisionActions.some(
-        (a) =>
-          a.requiredGates.some((g) => g.status !== "PASS") || a.currentlyEligible === false,
-      );
-      if (blocked && /\beligible\b/i.test(prop.text) && !/\bnot\s+eligible\b/i.test(prop.text)) {
+      break;
+    }
+    case "decision_eligible_count": {
+      const dc = state.decisionCase;
+      if (!dc) break;
+      const n = dc.eligibleSet.length;
+      const wantGe =
+        /\bat\s+least\s+(\d+|two|three|four|five)\b/i.exec(prop.text)?.[1] ||
+        /\b(\d+|two)\s+(?:or\s+more\s+)?(?:suppliers?|candidates?)\b/i.exec(prop.text)?.[1];
+      let need = 2;
+      if (wantGe) {
+        const w = String(wantGe).toLowerCase();
+        need = w === "two" ? 2 : w === "three" ? 3 : Number(w) || 2;
+      }
+      if (/\bat\s+least\b|\bor\s+more\b|>=\s*\d/i.test(prop.text)) {
+        if (n >= need) {
+          return {
+            proposition: prop,
+            verdict: "supported",
+            justification: `ELIGIBLE_SET size=${n} meets ≥${need}.`,
+          };
+        }
         return {
           proposition: prop,
           verdict: "contradicted",
-          justification:
-            "Canonical decision-gate state: CURRENTLY_ELIGIBLE=NO while blockers remain.",
+          justification: `ELIGIBLE_SET={${dc.eligibleSet.join(",") || "∅"}} size=${n} < ${need}.`,
         };
       }
       break;

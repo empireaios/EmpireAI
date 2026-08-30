@@ -44,6 +44,7 @@ import {
   type CaseFingerprint,
   type CaseMode,
 } from "./executive-case-provenance.js";
+import { repairDecisionVisibility } from "./executive-decision-case-state.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -300,6 +301,10 @@ export function polishFinalVisibleAnswer(
       provenance.priorFingerprints,
       mode,
     ).cleaned;
+  }
+  // Authoritative decision state: eligible set / recommendation must not diverge.
+  if (canonical.decisionCase) {
+    out = repairDecisionVisibility(out, canonical.decisionCase);
   }
   return out;
 }

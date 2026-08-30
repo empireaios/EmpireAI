@@ -71,6 +71,7 @@ for (const script of [
   "scripts/visible-relevance-qualify.mjs",
   "scripts/causal-relevance-combined-qualify.mjs",
   "scripts/case-provenance-causal-graph-qualify.mjs",
+  "scripts/decision-state-authority-qualify.mjs",
 ]) {
   const q = spawnSync(process.execPath, ["--import", "tsx", script], {
     cwd: backendRoot,
