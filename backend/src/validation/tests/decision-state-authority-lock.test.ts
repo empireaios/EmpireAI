@@ -80,7 +80,37 @@ describe("Decision-state authority lock", () => {
     assert.equal(assessDecisionVisibilityConsistency(dirty, d).ok, false);
     const fixed = repairDecisionVisibility(dirty, d);
     assert.ok(!/Eligible Suppliers:.*\bOak\b/i.test(fixed));
-    assert.ok(/SELECT FLINT/i.test(fixed) || !/DO NOT SELECT ANY/i.test(fixed));
+    assert.ok(/SELECT FLINT/i.test(fixed));
+    assert.ok(!/DO NOT SELECT ANY/i.test(fixed));
+  });
+
+  it("same-line peers and soft-correct inject DO NOT SELECT / SELECT", () => {
+    const exact = buildDecisionCaseState(
+      [
+        "Rule: eligible if approval granted.",
+        "ALPHA: approval granted PASS. BETA: approval PENDING FAIL.",
+      ].join("\n"),
+    )!;
+    assert.deepEqual(exact.eligibleSet, ["ALPHA"]);
+    const soft = repairDecisionVisibility(
+      "1. Snapshot\nMaybe wait.\n2. Recommendation\nDefer for now.\n3. Closing\nOk.",
+      exact,
+    );
+    assert.ok(/SELECT ALPHA/i.test(soft));
+
+    const zero = buildDecisionCaseState(
+      [
+        "Rule: cost <= 300000; delivery >= 99%; approval granted.",
+        "ASH: cost 360000 FAIL; delivery 96% FAIL; approval PENDING FAIL.",
+        "ELM: cost 380000 FAIL; delivery 95% FAIL; approval PENDING FAIL.",
+      ].join("\n"),
+    )!;
+    assert.equal(zero.recommendation.status, "DO_NOT_SELECT");
+    const zfix = repairDecisionVisibility(
+      "1. Snapshot\nBoth fail criteria.\n2. Recommendation\nConsider waiting.\n3. Closing\nOk.",
+      zero,
+    );
+    assert.ok(/DO NOT SELECT ANY/i.test(zfix));
   });
 
   it("polish locks claim verdicts from decision case", () => {

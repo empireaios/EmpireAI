@@ -161,6 +161,14 @@ export function stripInternalValidatorDiagnostics(answer: string): string {
     /(?:^|\n)[^\n]*(?:claim obligation|coverage failure|recovery state|validator result|internal diagnostic)[^\n]*/gi,
     "\n",
   );
+  out = out.replace(
+    /(?:^|\n)\s*\[Decision state[^\]]*\][^\n]*(?:\n\s*-\s[^\n]+)*/gi,
+    "\n",
+  );
+  out = out.replace(
+    /(?:^|\n)\s*\*{0,2}(?:ELIGIBLE_SET|CURRENT_RECOMMENDATION|REVERSAL_CONDITIONS)\s*[:=][^\n]*/gi,
+    "\n",
+  );
   return out.replace(/\n{3,}/g, "\n\n").trim();
 }
 

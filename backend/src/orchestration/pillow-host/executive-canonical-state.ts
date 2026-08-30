@@ -14,6 +14,7 @@ import {
 } from "./executive-decision-constraints.js";
 import {
   buildDecisionCaseState,
+  formatDecisionCaseBrief,
   type DecisionCaseState,
 } from "./executive-decision-case-state.js";
 import {
@@ -1077,7 +1078,9 @@ export function formatCanonicalStateBrief(state: CanonicalCaseState): string {
   if (state.claims.length) {
     lines.push(`- CLAIMS expected=${state.claims.length} (quoted only; section headings are not claims)`);
   }
-  if (state.decisionActions.some((a) => a.requiredGates.length > 0)) {
+  if (state.decisionCase) {
+    lines.push(formatDecisionCaseBrief(state.decisionCase));
+  } else if (state.decisionActions.some((a) => a.requiredGates.length > 0)) {
     lines.push(formatActionEligibilityBrief(state.decisionActions));
   }
   const causalBrief = formatCausalStateBrief(state.causal);
