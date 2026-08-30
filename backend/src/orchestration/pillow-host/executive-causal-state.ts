@@ -82,8 +82,13 @@ const RESERVED = new Set([
   "the",
   "a",
   "an",
-  "root",
+  "that",
+  "this",
+  "those",
+  "these",
+  "caused",
   "cause",
+  "root",
   "common",
   "then",
   "and",
@@ -95,6 +100,15 @@ const RESERVED = new Set([
   "zone",
   "primary",
   "peer",
+  "orders",
+  "order",
+  "workload",
+  "work",
+  "traffic",
+  "load",
+  "increased",
+  "packing",
+  "demand",
 ]);
 
 function isEntityToken(s: string): boolean {
@@ -176,7 +190,22 @@ function upsertRole(
 
 /** Build causal state from owner pack (deterministic). */
 export function buildCanonicalCausalState(userMessage: string): CanonicalCausalState {
-  const text = String(userMessage || "");
+  // Exclude claim-ask temptation lines so "X directly caused Y" claims do not
+  // invent DIRECT_CAUSE edges that collapse multi-hop topology.
+  let text = String(userMessage || "");
+  text = text.replace(
+    /(?:^|\n)\s*(?:Claim\s*)?\d{1,2}\s*[.):\-]\s*[“"'][^”"']{8,500}[”"'][^\n]*/gi,
+    "\n",
+  );
+  text = text.replace(
+    /(?:^|\n)\s*[“"]([^”"]{8,500})[”"][^\n]*/g,
+    (full, body: string) =>
+      /\bdirectly\s+caused\b|\bunrelated\b|\bshare\s+the\s+same\s+root\b|\bcausally\s+connected\b/i.test(
+        body,
+      )
+        ? "\n"
+        : full,
+  );
   const links: CausalLink[] = [];
   const roles: CausalEntityRole[] = [];
   const events: string[] = [];
@@ -275,6 +304,93 @@ export function buildCanonicalCausalState(userMessage: string): CanonicalCausalS
           upsertRole(roles, dest, "DOWNSTREAM_CONSEQUENCE", raw);
           events.push(normEntity(dest));
         }
+      }
+    }
+  }
+
+  // Generic event-chain NL: "X caused Y" / "That X caused Y" with multi-word events.
+  // Builds executable topology even when actors are hubs and events are lowercase nouns.
+  const eventChainRes = [
+    /\b(?:that\s+|the\s+)?([a-z][a-z0-9_-]*(?:\s+[a-z][a-z0-9_-]*){0,4})\s+caused\s+(?:the\s+)?([a-z][a-z0-9_-]*(?:\s+[a-z][a-z0-9_-]*){0,4})\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+([a-z][a-z0-9_-]*(?:\s+[a-z][a-z0-9_-]*){0,3})\s+caused\s+(?:the\s+)?([a-z][a-z0-9_-]*(?:\s+[a-z][a-z0-9_-]*){0,4})\b/g,
+    /\b(?:orders?|workload|work|traffic|load)\s+(?:to\s+be\s+)?redirected\s+to\s+([A-Z][A-Za-z0-9_-]{1,40})\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})(?:'s)?\s+(?:packing[- ]?capacity|capacity|memory)\s+(?:exhaustion|shortage|overload)\s+resulted\s+from\b/gi,
+    /\b([A-Z][A-Za-z0-9_-]{1,40})\s+[^.?\n]{0,60}?\b(?:power[- ]?board|printer|module)\s+failed\b/gi,
+  ];
+  const eventNode = (raw: string): string => {
+    const cleaned = String(raw || "")
+      .trim()
+      .replace(/^(?:that|the|a|an)\s+/i, "");
+    const node = cleaned
+      .split(/\s+/)
+      .filter((w) => w && !RESERVED.has(w.toLowerCase()))
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join("")
+      .replace(/[^A-Za-z0-9]/g, "")
+      .slice(0, 48);
+    if (!node || RESERVED.has(key(node)) || node.length < 4) return "";
+    return node;
+  };
+
+  for (const re of eventChainRes) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const raw = m[0]!.trim();
+      if (/orders?|workload|work|traffic|load/.test(raw) && /redirected\s+to/i.test(raw) && m[1]) {
+        const dest = m[1]!;
+        const priors = links
+          .filter((l) => l.kind === "DIRECT_CAUSE" || l.kind === "UPSTREAM_TRIGGER")
+          .map((l) => l.to);
+        const from =
+          priors[priors.length - 1] || priorFailureActorsFromText(text)[0] || "UpstreamFailure";
+        pushLink(links, from, dest, "UPSTREAM_TRIGGER", raw);
+        pushLink(links, from, dest, "INDIRECT_CAUSAL_DEPENDENCY", raw, "VERIFIED");
+        for (const actor of priorFailureActorsFromText(text)) {
+          if (key(actor) !== key(dest)) {
+            pushLink(links, actor, dest, "INDIRECT_CAUSAL_DEPENDENCY", raw, "INFERRED");
+          }
+        }
+        events.push(normEntity(dest));
+        continue;
+      }
+      if (/resulted\s+from/i.test(raw) && m[1]) {
+        const dest = m[1]!;
+        const sources = links.map((l) => l.to).filter((x) => key(x) !== key(dest));
+        const from = sources[sources.length - 1] || "UpstreamFailure";
+        pushLink(links, from, dest, "INDIRECT_CAUSAL_DEPENDENCY", raw, "VERIFIED");
+        for (const actor of priorFailureActorsFromText(text)) {
+          if (key(actor) !== key(dest)) {
+            pushLink(links, actor, dest, "INDIRECT_CAUSAL_DEPENDENCY", raw, "INFERRED");
+          }
+        }
+        events.push(normEntity(dest));
+        continue;
+      }
+      if (/failed\b/i.test(raw) && m[1]) {
+        const actor = m[1]!;
+        const ev = eventNode(raw.includes("power") ? "power board failure" : "local failure");
+        if (!ev) continue;
+        pushLink(links, actor, ev, "DIRECT_CAUSE", raw);
+        upsertRole(roles, actor, "DIRECT_CAUSE_ACTOR", raw);
+        events.push(normEntity(ev));
+        continue;
+      }
+      if (m[1] && m[2] && !m[3]) {
+        const a = eventNode(m[1]!);
+        const b = eventNode(m[2]!);
+        if (!a || !b || key(a) === key(b)) continue;
+        pushLink(links, a, b, "DIRECT_CAUSE", raw);
+        pushLink(links, a, b, "INDIRECT_CAUSAL_DEPENDENCY", raw, "VERIFIED");
+        events.push(normEntity(b));
+      } else if (m[1] && m[2] && m[3]) {
+        const actor = m[1]!;
+        const evA = eventNode(m[2]!);
+        const evB = eventNode(m[3]!);
+        if (!evA || !evB) continue;
+        pushLink(links, actor, evA, "DIRECT_CAUSE", raw);
+        pushLink(links, evA, evB, "DIRECT_CAUSE", raw);
+        pushLink(links, actor, evB, "INDIRECT_CAUSAL_DEPENDENCY", raw, "INFERRED");
+        events.push(normEntity(evB));
       }
     }
   }
@@ -677,12 +793,49 @@ export function isDirectCause(
   from: string,
   to: string,
 ): boolean {
-  return state.links.some(
-    (l) =>
-      key(l.from) === key(from) &&
-      key(l.to) === key(to) &&
-      (l.kind === "DIRECT_CAUSE" || l.kind === "COMMON_ROOT_CAUSE"),
-  );
+  const fromKeys = new Set(entityCandidateKeys(from, state));
+  const toKeys = new Set(entityCandidateKeys(to, state));
+  return state.links.some((l) => {
+    if (l.kind !== "DIRECT_CAUSE" && l.kind !== "COMMON_ROOT_CAUSE") return false;
+    const a = entityCandidateKeys(l.from, state);
+    const b = entityCandidateKeys(l.to, state);
+    return a.some((x) => fromKeys.has(x)) && b.some((y) => toKeys.has(y));
+  });
+}
+
+/** Shortest causal path length (edges), or null if no path. */
+export function causalPathLength(
+  state: CanonicalCausalState,
+  from: string,
+  to: string,
+): number | null {
+  const starts = entityCandidateKeys(from, state);
+  const goals = new Set(entityCandidateKeys(to, state));
+  if (starts.length < 1 || goals.size < 1) return null;
+  const adj = new Map<string, string[]>();
+  for (const l of state.links) {
+    if (l.kind === "CORRELATION_ONLY") continue;
+    const aKeys = entityCandidateKeys(l.from, state);
+    const bKeys = entityCandidateKeys(l.to, state);
+    for (const a of aKeys) {
+      if (!adj.has(a)) adj.set(a, []);
+      for (const b of bKeys) {
+        if (a !== b) adj.get(a)!.push(b);
+      }
+    }
+  }
+  const q: Array<{ node: string; dist: number }> = starts.map((n) => ({ node: n, dist: 0 }));
+  const seen = new Set<string>();
+  while (q.length) {
+    const cur = q.shift()!;
+    if (seen.has(cur.node)) continue;
+    seen.add(cur.node);
+    if (goals.has(cur.node) && cur.dist > 0) return cur.dist;
+    for (const nxt of adj.get(cur.node) || []) {
+      if (!seen.has(nxt)) q.push({ node: nxt, dist: cur.dist + 1 });
+    }
+  }
+  return null;
 }
 
 export function roleFor(state: CanonicalCausalState, entity: string): CausalEntityRole | null {

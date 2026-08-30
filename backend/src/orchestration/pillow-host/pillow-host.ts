@@ -35,6 +35,10 @@ import { createBrainLLMAdapter } from "./brain-llm-adapter.js";
 import { newPillowRequestId, PillowRequestLogger } from "./pillow-logger.js";
 import { formatPillowWorkspaceContext, buildScreenAwarenessBrief } from "./workspace-context.js";
 import {
+  classifyCaseMode,
+  filterPriorTurnsForCaseProvenance,
+} from "./executive-case-provenance.js";
+import {
   shouldRunConversationalPipeline,
 } from "../../domain/services/executive-conversational-routing.js";
 import { getLastGovernanceKnowledgeAudit, resolvePillowRepositoryRootWithAudit, } from "./resolve-repo-root.js";
@@ -171,9 +175,11 @@ function stripExecutiveResponseLabels(message) {
         .replace(/^\[(Repository Fact|General Knowledge|Live Information Unavailable|Web Search Report)\]\s*/gim, "")
         .trim();
 }
-function buildPriorConversationTurnsForLlm(history) {
-    if (!history || history.length <= 1)
-        return undefined;
+/** Case-mode + prior fingerprints for history filter and post-LLM foreign-fact firewall. */
+function resolveCaseProvenanceContext(history, currentMessage = "") {
+    if (!history || history.length <= 1) {
+        return { mode: classifyCaseMode(String(currentMessage || ""), []), priorFingerprints: [], turns: [] };
+    }
     const prior = history
         .slice(0, -1)
         .slice(-MAX_LLM_CONVERSATION_TURNS)
@@ -182,7 +188,21 @@ function buildPriorConversationTurnsForLlm(history) {
         role: turn.role,
         content: turn.content,
     }));
-    return prior.length > 0 ? prior : undefined;
+    if (prior.length < 1) {
+        return { mode: classifyCaseMode(String(currentMessage || ""), []), priorFingerprints: [], turns: [] };
+    }
+    const priorUser = prior.filter((t) => t.role === "user").map((t) => String(t.content || ""));
+    const mode = classifyCaseMode(String(currentMessage || ""), priorUser);
+    const filtered = filterPriorTurnsForCaseProvenance(prior, String(currentMessage || ""), mode);
+    return {
+        mode,
+        priorFingerprints: filtered.priorFingerprints,
+        turns: filtered.turns,
+    };
+}
+function buildPriorConversationTurnsForLlm(history, currentMessage = "") {
+    const ctx = resolveCaseProvenanceContext(history, currentMessage);
+    return ctx.turns.length > 0 ? ctx.turns : undefined;
 }
 function mapCommerceReportForOperatingModel(report) {
     if (!report)
@@ -29951,13 +29971,14 @@ export class PillowHost {
             let degradedUsed = false;
             if (this.llmLayer && providers.length > 0) {
                 try {
+                    const caseProvenance = resolveCaseProvenanceContext(session.conversationHistory, llmUserMessage);
                     const llmArgs = {
                         operationalContext: contextWithReasoning,
                         executiveReasoning,
                         executiveLearningBundle,
                         executiveCouncilRecommendation,
                         userMessage: llmUserMessage,
-                        priorConversationTurns: buildPriorConversationTurnsForLlm(session.conversationHistory),
+                        priorConversationTurns: caseProvenance.turns.length > 0 ? caseProvenance.turns : undefined,
                         executiveConversationMode: conversationalPipeline,
                         workspaceId: input.workspaceId,
                         correlationId: input.correlationId,
@@ -30026,7 +30047,11 @@ export class PillowHost {
                                 message,
                                 executiveTruthSnapshot,
                                 epistemicLedger.list(),
-                                { userMessage: input.message },
+                                {
+                                    userMessage: input.message,
+                                    priorFingerprints: caseProvenance.priorFingerprints,
+                                    caseMode: caseProvenance.mode,
+                                },
                             );
                             message = grounded.message;
                             if (grounded.adjusted) {
@@ -30119,7 +30144,14 @@ export class PillowHost {
                         message,
                         executiveTruthSnapshot,
                         epistemicLedger.list(),
-                        { userMessage: input.message },
+                        (() => {
+                            const p = resolveCaseProvenanceContext(session.conversationHistory, input.message);
+                            return {
+                                userMessage: input.message,
+                                priorFingerprints: p.priorFingerprints,
+                                caseMode: p.mode,
+                            };
+                        })(),
                     );
                     message = repaired.message;
                     degradedUsed = true;

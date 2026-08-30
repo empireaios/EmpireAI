@@ -51,6 +51,7 @@ import {
 } from "./executive-final-release.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 import { polishFinalVisibleAnswer } from "./executive-response-polish.js";
+import type { CaseFingerprint, CaseMode } from "./executive-case-provenance.js";
 import { countLeftoverSupportedOverrides } from "./executive-final-verdict.js";
 import {
   assessClaimCompletenessGate,
@@ -158,6 +159,9 @@ export type ExecutiveReleaseResult = {
 export type ReleaseGateOptions = {
   userMessage?: string;
   taskContract?: ExecutiveTaskContract;
+  /** Prior-turn case fingerprints for NEW_BOUNDED_CASE foreign-fact firewall. */
+  priorFingerprints?: readonly CaseFingerprint[];
+  caseMode?: CaseMode;
 };
 
 const CORRECTION_APPENDIX_LEAK =
@@ -527,6 +531,10 @@ function finalizeVisible(
   level: DisclosureLevel,
   userMessage?: string,
   contract?: ReturnType<typeof parseExecutiveTaskContract>,
+  provenance?: {
+    priorFingerprints?: readonly CaseFingerprint[];
+    caseMode?: CaseMode;
+  },
 ): { message: string; uxFailures: string[] } {
   const cleaned = stripIrrelevantLifecycleContamination(message, userMessage, contract);
   const allowAuthority =
@@ -608,7 +616,7 @@ function finalizeVisible(
     }
   }
 
-  rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract);
+  rendered = polishFinalVisibleAnswer(rendered, userMessage ?? "", contract, provenance);
   if (countLeftoverSupportedOverrides(rendered) > 0) {
     rendered = stripCompetingVerdictSurfaces(
       rendered.replace(
@@ -688,6 +696,13 @@ export function releaseExecutiveAnswer(
     contract.requiresConditionalReasoning ||
     contract.requiresAuthorityAnalysis;
   const scopedAway = isScopedAwayFromLiveEmpire(contract.scopeType, options.userMessage);
+  const provenanceCtx =
+    options.priorFingerprints && options.priorFingerprints.length > 0
+      ? {
+          priorFingerprints: options.priorFingerprints,
+          caseMode: options.caseMode,
+        }
+      : undefined;
 
   const telemetry: ReleaseGateTelemetry = {
     draftValidationPass: false,
@@ -769,7 +784,7 @@ export function releaseExecutiveAnswer(
 
     for (const item of queue) {
       if (staleOffline(item.text)) continue;
-      const fin = finalizeVisible(item.text, level, options.userMessage, contract);
+      const fin = finalizeVisible(item.text, level, options.userMessage, contract, provenanceCtx);
       if (staleOffline(fin.message)) continue;
       // Hard final-visible contract: section/claim/diagnostic/evidence — fail candidate, never leak diagnostics.
       if (hasHardFinalVisibleFailure(fin.uxFailures)) continue;
@@ -912,7 +927,7 @@ export function releaseExecutiveAnswer(
       forcedRaw = buildContractAwareReconstruct(truth, contract);
       forcedClone = detectSiblingTemplateCloning(forcedRaw, contract);
     }
-    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
+    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract, provenanceCtx);
     let stripped = stripIrrelevantLifecycleContamination(
       forcedFin.message,
       options.userMessage,
@@ -935,7 +950,7 @@ export function releaseExecutiveAnswer(
     });
     if (!auth.authorized) {
       // One more finalize pass then re-authorize.
-      stripped = finalizeVisible(stripped, level, options.userMessage, contract).message;
+      stripped = finalizeVisible(stripped, level, options.userMessage, contract, provenanceCtx).message;
       stripped = stripInternalValidatorDiagnostics(stripped);
       auth = authorizeTransportRelease({
         answer: stripped,
@@ -978,7 +993,7 @@ export function releaseExecutiveAnswer(
         options.userMessage,
         contract,
       );
-      rebuilt = finalizeVisible(rebuilt, level, options.userMessage, contract).message;
+      rebuilt = finalizeVisible(rebuilt, level, options.userMessage, contract, provenanceCtx).message;
       rebuilt = stripInternalValidatorDiagnostics(rebuilt);
       const rebuiltAuth = authorizeTransportRelease({
         answer: rebuilt,
@@ -1023,7 +1038,7 @@ export function releaseExecutiveAnswer(
   // Ultimate authority for single-obligation synthetic: still no live briefing dump.
   if (scopedAway) {
     const forcedRaw = buildForcedObligationCompletion(truth, contract);
-    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract);
+    const forcedFin = finalizeVisible(forcedRaw, level, options.userMessage, contract, provenanceCtx);
     const stripped = stripIrrelevantLifecycleContamination(
       forcedFin.message,
       options.userMessage,

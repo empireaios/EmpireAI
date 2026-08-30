@@ -13,6 +13,7 @@ import {
   hasCausalPath,
   shareCommonRootCause,
   isDirectCause,
+  causalPathLength,
   roleFor,
 } from "./executive-causal-state.js";
 
@@ -703,10 +704,22 @@ function verdictAtomicProposition(
     case "causal_direct_cause": {
       if (e1 && e2) {
         if (isDirectCause(causal, e1, e2)) {
+          const plen = causalPathLength(causal, e1, e2);
+          // A direct edge must be the sole hop — multi-edge paths are indirect.
+          if (plen == null || plen === 1) {
+            return {
+              proposition: prop,
+              verdict: "supported",
+              justification: `Verified direct cause ${e1} → ${e2}.`,
+            };
+          }
+        }
+        const plen = causalPathLength(causal, e1, e2);
+        if (plen != null && plen > 1) {
           return {
             proposition: prop,
-            verdict: "supported",
-            justification: `Verified direct cause ${e1} → ${e2}.`,
+            verdict: "contradicted",
+            justification: `DIRECT ≠ INDIRECT. PATH_LENGTH(${e1},${e2})=${plen}; DIRECT_EDGE=FALSE.`,
           };
         }
         if (hasCausalPath(causal, e1, e2)) {

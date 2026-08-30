@@ -38,6 +38,12 @@ import {
   buildCanonicalCaseState,
   stripDuplicateClaimAuditBlocks,
 } from "./executive-canonical-state.js";
+import {
+  classifyCaseMode,
+  enforceCurrentCaseFactFirewall,
+  type CaseFingerprint,
+  type CaseMode,
+} from "./executive-case-provenance.js";
 
 const CANNOT_COMPLETE_APPENDIX =
   /(?:\n\n)?For\s+[“"][^”"]{0,120}[”"]:\s*I cannot complete that part from verified evidence this turn[^.]*\./gi;
@@ -211,6 +217,10 @@ export function polishFinalVisibleAnswer(
   message: string,
   userMessage: string,
   contract?: ExecutiveTaskContract,
+  provenance?: {
+    priorFingerprints?: readonly CaseFingerprint[];
+    caseMode?: CaseMode;
+  },
 ): string {
   const c = contract ?? parseExecutiveTaskContract(userMessage);
   const scope = c.scopeType ?? detectReasoningScope(userMessage);
@@ -281,6 +291,16 @@ export function polishFinalVisibleAnswer(
   // Never leak internal validator diagnostics into Grand King-visible text.
   out = stripInternalValidatorDiagnostics(out);
   out = enforceVisibleContractEnvelope(out, c.expectedTopLevelSections, userMessage).message;
+  // Bounded-case fact firewall: foreign specimen facts must not survive release.
+  if (provenance?.priorFingerprints && provenance.priorFingerprints.length > 0) {
+    const mode = provenance.caseMode ?? classifyCaseMode(userMessage);
+    out = enforceCurrentCaseFactFirewall(
+      out,
+      userMessage,
+      provenance.priorFingerprints,
+      mode,
+    ).cleaned;
+  }
   return out;
 }
 
