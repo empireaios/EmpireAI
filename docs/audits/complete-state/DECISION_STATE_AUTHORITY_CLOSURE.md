@@ -127,7 +127,7 @@ Production ladder case latencies ~2–15s first-visible (see production JSON `ms
 | RUNNING_FRONTEND | empire-ai.co (cockpit BFF; unchanged this mission) |
 | DEPLOYMENT_ID | `fb365025-f364-402f-a2c3-cf87d7d00b08` |
 | CERTIFIED_SHA | `b96dc08f` (engineering seal only) |
-| DOCS_SEAL_SHA | set at docs seal commit |
+| DOCS_SEAL_SHA | `3552c40438934d80a3e370291e71f0fd9384ae98` |
 
 ## AA. Remaining weaknesses
 
