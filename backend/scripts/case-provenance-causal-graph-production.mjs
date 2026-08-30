@@ -136,8 +136,9 @@ async function main() {
       "2. Causes",
       "3. Claim audit",
       "4. Closing",
-      'Audit: "NorthHub\'s power-board failure directly caused SouthHub\'s packing-capacity exhaustion."',
-      'Also: "NorthHub and SouthHub are causally connected."',
+      "Audit these claims with explicit Verdict each:",
+      '"NorthHub\'s power-board failure directly caused SouthHub\'s packing-capacity exhaustion."',
+      '"NorthHub and SouthHub are causally connected."',
     ].join("\n"),
     (t) => {
       const foreign = hasAny(t, [
@@ -171,7 +172,8 @@ async function main() {
       "SyntheticProvC — hospitality only. New bounded case. Do not mention Mini Fan.",
       "Oak booking-engine failed. Work redirected to Pine. Pine room-slot exhaustion resulted.",
       "Answer in exactly 3 numbered sections: 1. Snapshot 2. Claim audit 3. Closing.",
-      'Audit: "Oak\'s booking-engine failure directly caused Pine\'s room-slot exhaustion."',
+      "Audit these claims with explicit Verdict each:",
+      '"Oak\'s booking-engine failure directly caused Pine\'s room-slot exhaustion."',
     ].join("\n"),
     (t) => {
       const foreign = hasAny(t, [
@@ -246,8 +248,9 @@ async function main() {
       "SyntheticPrincipleApply — manufacturing only. New bounded case. Do not mention Mini Fan.",
       "Volt breaker failure redirected work to Grid. Grid feeder overload resulted.",
       "Answer in exactly 3 numbered sections: 1. Snapshot 2. Claim audit 3. Closing.",
-      'Audit: "Volt\'s breaker failure directly caused Grid\'s feeder overload."',
-      'Also: "Volt and Grid are causally connected."',
+      "Audit these claims with explicit Verdict each:",
+      '"Volt\'s breaker failure directly caused Grid\'s feeder overload."',
+      '"Volt and Grid are causally connected."',
     ].join("\n"),
     (t) => {
       const foreign = /Mesa|Quay|thermal/i.test(t);

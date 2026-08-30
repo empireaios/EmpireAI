@@ -11,6 +11,7 @@ import {
   extractCaseFingerprint,
 } from "../../orchestration/pillow-host/executive-case-provenance.js";
 import { buildCanonicalCaseState } from "../../orchestration/pillow-host/executive-canonical-state.js";
+import { extractQuotedClaimsOnly } from "../../orchestration/pillow-host/executive-canonical-state.js";
 import {
   assessClaimAgainstCanonical,
   decomposeClaimPropositions,
@@ -113,5 +114,23 @@ describe("Case provenance + executable causal graph lock", () => {
       assessClaimAgainstCanonical("Ridge and Quay share the same root cause.", can).overall,
       "contradicted",
     );
+  });
+
+  it("Audit:/Also: prefixed quotes extract as claims", () => {
+    const msg = [
+      "SyntheticAuditCue — warehouse only.",
+      "NorthHub printer power-board failed.",
+      "That power-board failure caused dispatch failure.",
+      "Dispatch failure caused orders to be redirected to SouthHub.",
+      "SouthHub packing-capacity exhaustion resulted from that redirected workload.",
+      "3. Claim audit",
+      'Audit: "NorthHub\'s power-board failure directly caused SouthHub\'s packing-capacity exhaustion."',
+      'Also: "NorthHub and SouthHub are causally connected."',
+    ].join("\n");
+    const quotes = extractQuotedClaimsOnly(msg);
+    assert.ok(quotes.length >= 2, `got ${quotes.length}`);
+    const can = buildCanonicalCaseState(msg);
+    assert.equal(assessClaimAgainstCanonical(quotes[0]!, can).overall, "contradicted");
+    assert.equal(assessClaimAgainstCanonical(quotes[1]!, can).overall, "supported");
   });
 });

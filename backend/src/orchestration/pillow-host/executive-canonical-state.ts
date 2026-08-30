@@ -227,6 +227,17 @@ export function extractQuotedClaimsOnly(userMessage: string): string[] {
     }
   }
 
+  // "Audit:" / "Also:" / "Claim:" prefixed quotes on the same line (common real prompts).
+  if (claims.length < 2) {
+    let qi = claims.length;
+    const prefixed =
+      /(?:^|\n)\s*(?:Audit|Also|Claim|Assess|Judge)\s*:\s*[“"]([^”"]{8,500})[”"]/gi;
+    while ((m = prefixed.exec(text)) !== null) {
+      qi += 1;
+      push(m[1]!, String(qi));
+    }
+  }
+
   // Soft single-claim asks (unquoted, unnumbered): assess/judge/verdict on: <proposition>
   // Allow newline between cue and proposition (real Crestline-class prompts).
   // Also numbered section "3. Claim: <proposition>"
