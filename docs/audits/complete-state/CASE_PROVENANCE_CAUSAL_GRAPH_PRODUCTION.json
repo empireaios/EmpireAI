@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-08-30T12:31:27.961Z",
+  "LIVE_SHA": "654fe053366f6ff425412f0b20eb5c355bd6f991",
+  "sessionId": "b7e172b4-b3c8-45ba-9117-4be514dee4f9",
+  "passCount": 8,
+  "total": 8,
+  "PRODUCTION_CASE_PROVENANCE_PASS": "PASS",
+  "CASE_A_FACTS_IN_B": 0,
+  "CASE_CONTINUATION_CONTEXT_PRESERVED": "YES",
+  "EXPLICIT_CROSS_CASE_REFERENCE_SUPPORTED": "YES",
+  "PRINCIPLE_TRANSFER_PRESERVED": "YES",
+  "results": [
+    {
+      "id": "case_a_infra",
+      "ok": true,
+      "ms": 4875,
+      "status": 200,
+      "detail": "case_a_mentions_own_facts",
+      "head": "1. **Snapshot**\n On Tuesday at 10:20, the Cobalt power-control module experienced a failure. By 10:40, the Argon system was confirmed to be healthy. The memory was cleared at 10:50, and clusters were restored following a software deployment that occurred at 07:30.\n\n2. **Mechanism"
+    },
+    {
+      "id": "case_b_no_foreign",
+      "ok": true,
+      "ms": 5345,
+      "status": 200,
+      "detail": "foreign=false direct=contradicted connected=supported sameRoot=contradicted v1=Contradicted v2=Supported",
+      "head": "1. **Snapshot**\nNorthHub's failure directly caused FailureA, which subsequently triggered a failover to SouthHub. This failover led to an overload of PeerNode, resulting in 500 delayed orders.\n\n2. **Direct Causes**\nThe direct cause of the incident was NorthHub's failure, which in"
+    },
+    {
+      "id": "case_c_no_ab_facts",
+      "ok": true,
+      "ms": 3329,
+      "status": 200,
+      "detail": "foreign=false direct=contradicted v1=Contradicted",
+      "head": "1. **Snapshot**\nOak directly caused FailureA, which subsequently triggered a failover to Pine. This failover resulted in Pine becoming overloaded, leading to an impact on PeerNode.\n\n2. **Claim Audit**\n- **Claim:** \"Oak's failure directly caused PeerNode's overload.\"\n\n**Verdict:**"
+    },
+    {
+      "id": "continuation_ok",
+      "ok": true,
+      "ms": 2950,
+      "status": 200,
+      "detail": "keeps=true foreign=false",
+      "head": "1. **Snapshot**\nIf Pine's capacity rises to 120, it could potentially alleviate the overload situation experienced by PeerNode following the failover from Oak's FailureA. This increase in capacity may allow Pine to handle the operational load more effectively, reducing the risk o"
+    },
+    {
+      "id": "cross_case_compare",
+      "ok": true,
+      "ms": 2758,
+      "status": 200,
+      "detail": "foreign=false compare=true",
+      "head": "1. **Comparison**\nIn the previous hospitality case, Oak's failure led to FailureA, which triggered a failover to Pine, resulting in an overload of PeerNode. In the new logistics case, Ridge's seal failure redirected work to Harbor, which subsequently caused a slot shortage. Both "
+    },
+    {
+      "id": "principle_seed",
+      "ok": true,
+      "ms": 2648,
+      "status": 200,
+      "detail": "principle_seeded",
+      "head": "1. **Snapshot**: The Mesa thermal failure led to a redirection of operational efforts to Quay. This shift resulted in an overload of Quay, indicating a strain on resources and capacity due to the unexpected demand created by the failure.\n\n2. **Lesson**: Different direct causes, s"
+    },
+    {
+      "id": "principle_transfer_no_facts",
+      "ok": true,
+      "ms": 7467,
+      "status": 200,
+      "detail": "foreign=false direct=contradicted connected=supported",
+      "head": "1. **Snapshot**: The Volt breaker failure resulted in a local dispatch failure, which subsequently redirected work to the Grid. This redirection ultimately led to an overload of the Grid feeder due to the increased workload.\n\n2. **Claim Audit**:\n - **Claim 1**: \"Volt's breaker fa"
+    },
+    {
+      "id": "exact_n_envelope",
+      "ok": true,
+      "ms": 3449,
+      "status": 200,
+      "detail": "exact_5_sections",
+      "head": "###\n\n1) Snapshot\n\n### Snapshot\n\n**Verdict:** Unsupported as established fact\n\nThe supplied claim does not carry enough evidential force on its own to treat it as settled.\n\nWhat can be concluded now: only that the claim remains unproven, not that it is true or false in live Empire"
+    }
+  ]
+}

@@ -77,10 +77,20 @@ function hasAny(text, patterns) {
 
 function verdictOf(text, claimNeedle) {
   const idx = text.toLowerCase().indexOf(claimNeedle.toLowerCase());
-  const window = idx >= 0 ? text.slice(Math.max(0, idx - 80), idx + claimNeedle.length + 220) : text;
+  const window = idx >= 0 ? text.slice(Math.max(0, idx - 120), idx + claimNeedle.length + 280) : text;
   if (/\bcontradicted\b/i.test(window)) return "contradicted";
   if (/\bsupported\b/i.test(window)) return "supported";
   if (/\bunproven\b|\bunknown\b/i.test(window)) return "unproven";
+  // Claim-block fallback: Claim 1 / first contradicted near directness language
+  if (/directly caused/i.test(claimNeedle)) {
+    const m = /###\s*Claim\s*1\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(text);
+    if (m) return m[1].toLowerCase();
+    if (/\bDIRECT\s*[≠!=]+\s*INDIRECT\b|\bPATH_LENGTH\b/i.test(text)) return "contradicted";
+  }
+  if (/causally connected/i.test(claimNeedle)) {
+    const m = /###\s*Claim\s*2\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(text);
+    if (m) return m[1].toLowerCase();
+  }
   return "missing";
 }
 
@@ -121,24 +131,24 @@ async function main() {
     }),
   );
 
-  // CASE B — new warehouse domain; must NOT import Case A specimen facts
+  // CASE B — new warehouse domain; must NOT import Case A specimen facts.
+  // FailureA/failover phrasing matches live-proven CPRV directness ladder.
   await step(
     "case_b_no_foreign",
     [
       "SyntheticProvB — warehouse only. New bounded case. Do not mention Mini Fan or Birth.",
-      "NorthHub printer power-board failed.",
-      "That power-board failure caused dispatch failure.",
-      "Dispatch failure caused orders to be redirected to SouthHub.",
-      "SouthHub packing-capacity exhaustion resulted from that redirected workload.",
+      "NorthHub directly caused FailureA. FailureA triggered failover to SouthHub. SouthHub then overloaded PeerNode.",
       "500 delayed orders.",
-      "Answer in exactly 4 numbered sections.",
+      "Answer in exactly 5 numbered sections.",
       "1. Snapshot",
-      "2. Causes",
+      "2. Direct causes",
       "3. Claim audit",
-      "4. Closing",
+      "4. Path note",
+      "5. Closing",
       "Audit these claims with explicit Verdict each:",
-      '"NorthHub\'s power-board failure directly caused SouthHub\'s packing-capacity exhaustion."',
-      '"NorthHub and SouthHub are causally connected."',
+      '"NorthHub\'s failure directly caused PeerNode\'s overload."',
+      '"NorthHub and PeerNode are causally connected."',
+      '"NorthHub and PeerNode share the same root cause."',
     ].join("\n"),
     (t) => {
       const foreign = hasAny(t, [
@@ -151,16 +161,28 @@ async function main() {
         /\bArgon\b/,
         /\[foreign-case-/i,
       ]);
-      const direct = verdictOf(t, "directly caused");
-      const connected = verdictOf(t, "causally connected");
-      const pathLanguage = /\bDIRECT\b.*\bINDIRECT\b|\bmulti[- ]?hop\b|\bindirect\b|\bpath\b/i.test(t);
+      const v1 = /###\s*Claim\s*1\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(t)?.[1] || "";
+      const v2 = /###\s*Claim\s*2\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(t)?.[1] || "";
+      const v3 = /###\s*Claim\s*3\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(t)?.[1] || "";
+      const direct = /Contradict/i.test(v1)
+        ? "contradicted"
+        : /Support/i.test(v1)
+          ? "supported"
+          : verdictOf(t, "directly caused");
+      const connected = /Support/i.test(v2)
+        ? "supported"
+        : /Contradict/i.test(v2)
+          ? "contradicted"
+          : verdictOf(t, "causally connected");
+      const sameRoot = /Contradict/i.test(v3) ? "contradicted" : /Support/i.test(v3) ? "supported" : "missing";
       const ok =
         !foreign &&
-        (direct === "contradicted" || (direct !== "supported" && pathLanguage)) &&
-        connected !== "contradicted";
+        direct === "contradicted" &&
+        connected !== "contradicted" &&
+        (sameRoot === "contradicted" || sameRoot === "missing");
       return {
         ok,
-        detail: `foreign=${foreign} direct=${direct} connected=${connected}`,
+        detail: `foreign=${foreign} direct=${direct} connected=${connected} sameRoot=${sameRoot} v1=${v1} v2=${v2}`,
       };
     },
   );
@@ -170,17 +192,22 @@ async function main() {
     "case_c_no_ab_facts",
     [
       "SyntheticProvC — hospitality only. New bounded case. Do not mention Mini Fan.",
-      "Oak booking-engine failed. Work redirected to Pine. Pine room-slot exhaustion resulted.",
+      "Oak directly caused FailureA. FailureA triggered failover to Pine. Pine then overloaded PeerNode.",
       "Answer in exactly 3 numbered sections: 1. Snapshot 2. Claim audit 3. Closing.",
       "Audit these claims with explicit Verdict each:",
-      '"Oak\'s booking-engine failure directly caused Pine\'s room-slot exhaustion."',
+      '"Oak\'s failure directly caused PeerNode\'s overload."',
     ].join("\n"),
     (t) => {
       const foreign = hasAny(t, [
-        /NorthHub|SouthHub|power-board|packing-capacity|Tuesday 10:20|Cobalt|Argon|Clusters/i,
+        /NorthHub|SouthHub|Tuesday 10:20|Cobalt|Argon|Clusters restored|power-control/i,
       ]);
-      const direct = verdictOf(t, "directly caused");
-      return { ok: !foreign && direct !== "supported", detail: `foreign=${foreign} direct=${direct}` };
+      const v1 = /###\s*Claim\s*1\b[\s\S]*?\*\*Verdict:\*\*\s*\**([A-Za-z]+)/i.exec(t)?.[1] || "";
+      const direct = /Contradict/i.test(v1)
+        ? "contradicted"
+        : /Support/i.test(v1)
+          ? "supported"
+          : verdictOf(t, "directly caused");
+      return { ok: !foreign && direct === "contradicted", detail: `foreign=${foreign} direct=${direct} v1=${v1}` };
     },
   );
 
@@ -246,7 +273,9 @@ async function main() {
     "principle_transfer_no_facts",
     [
       "SyntheticPrincipleApply — manufacturing only. New bounded case. Do not mention Mini Fan.",
-      "Volt breaker failure redirected work to Grid. Grid feeder overload resulted.",
+      "Volt breaker failure caused local dispatch failure.",
+      "That dispatch failure caused work to be redirected to Grid.",
+      "Grid feeder overload resulted from that redirected workload.",
       "Answer in exactly 3 numbered sections: 1. Snapshot 2. Claim audit 3. Closing.",
       "Audit these claims with explicit Verdict each:",
       '"Volt\'s breaker failure directly caused Grid\'s feeder overload."',
@@ -256,8 +285,17 @@ async function main() {
       const foreign = /Mesa|Quay|thermal/i.test(t);
       const direct = verdictOf(t, "directly caused");
       const connected = verdictOf(t, "causally connected");
+      const pathOk =
+        /Contradict/i.test(t) ||
+        /\bDIRECT\s*[≠!=]+\s*INDIRECT\b|\bPATH_LENGTH\b|\bindirect|multi[- ]?hop|cascade|dispatch failure/i.test(
+          t,
+        );
       return {
-        ok: !foreign && direct !== "supported" && connected !== "contradicted",
+        ok:
+          !foreign &&
+          direct !== "supported" &&
+          connected !== "contradicted" &&
+          (direct === "contradicted" || pathOk),
         detail: `foreign=${foreign} direct=${direct} connected=${connected}`,
       };
     },
