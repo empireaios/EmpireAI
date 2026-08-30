@@ -755,25 +755,36 @@ export function buildCanonicalCaseState(userMessage: string): CanonicalCaseState
   );
   // Named commercial candidates override / extend action eligibility from decision case.
   if (decisionCase && decisionCase.candidates.length > 0) {
+    const mapGateId = (
+      id: string,
+    ): import("./executive-decision-constraints.js").DecisionGateId => {
+      switch (id) {
+        case "cost_ceiling":
+          return "expenditure";
+        case "delivery_sla":
+        case "quality":
+          return "performance";
+        case "approval":
+        case "policy":
+          return "authority";
+        case "stock":
+        case "capacity":
+          return "capacity";
+        case "evidence":
+          return "evidence";
+        case "margin_floor":
+        case "contribution_min":
+          return "unit_economics";
+        default:
+          return "supplier";
+      }
+    };
     const fromCase: ActionEligibility[] = decisionCase.candidates.map((c) => ({
       actionId: c.candidateId,
       actionLabel: c.displayName,
       requiredGates: c.gates.map(
         (g): DecisionGate => ({
-          id:
-            g.id === "cost_ceiling" || g.id === "expenditure"
-              ? "expenditure"
-              : g.id === "delivery_sla" || g.id === "quality" || g.id === "performance"
-                ? "performance"
-                : g.id === "approval" || g.id === "policy"
-                  ? "authority"
-                  : g.id === "stock" || g.id === "capacity"
-                    ? "capacity"
-                    : g.id === "evidence"
-                      ? "evidence"
-                      : g.id === "margin_floor" || g.id === "contribution_min"
-                        ? "unit_economics"
-                        : "supplier",
+          id: mapGateId(g.id),
           label: g.label,
           status: g.status,
         }),
