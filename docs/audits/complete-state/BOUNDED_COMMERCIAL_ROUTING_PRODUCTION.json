@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-08-31T02:05:04.837Z",
+  "LIVE_SHA": "5fe9b38438ceabfdd4c974b19e2da2f5fd52368f",
+  "DEPLOYMENT_ID": "e0be4889-325d-4e4b-8b31-0067348cf8d7",
+  "passCount": 13,
+  "total": 13,
+  "PRODUCTION_BOUNDED_ROUTING_PASS": "PASS",
+  "results": [
+    {
+      "id": "bounded_supplier",
+      "ok": true,
+      "ms": 12552,
+      "status": 200,
+      "detail": "takeover=false",
+      "head": "1. **Snapshot**\n The procurement analysis identifies three candidates: FLINT, MAPLE, and OAK. Based on the eligibility criteria of cost, delivery performance, and approval status, only one candidate meets all requirements.\n\n2. **Gate Detail**\n - **FLINT**: Cost = 360,000 (PASS), Delivery = 96% (PASS), Approval = Grante"
+    },
+    {
+      "id": "bounded_corridor",
+      "ok": true,
+      "ms": 18171,
+      "status": 200,
+      "detail": "corridor",
+      "head": "1. **Gates**\n - **CORRIDOR_A**: Contribution 12% - PASS; Stock - FAIL; Policy - PASS. - **CORRIDOR_B**: Contribution 9% - PASS; Stock - PASS; Policy - PASS.\n\n2. **Recommendation**\n - Select **CORRIDOR_B** as it is the only currently eligible candidate with both stock availability and a clear policy.\n\n3. **Closing**\n - "
+    },
+    {
+      "id": "bounded_noncommercial",
+      "ok": true,
+      "ms": 3082,
+      "status": 200,
+      "detail": "lane",
+      "head": "1. **Snapshot**\n - **LANE_X**: Transit time is 36 hours, and approval is granted. This lane meets the eligibility criteria. - **LANE_Y**: Transit time is 55 hours, but while approval is granted, it fails to meet the transit time requirement.\n\n2. **Recommendation**\n - Proceed with **LANE_X** as it is the only lane that "
+    },
+    {
+      "id": "no_magic_marker",
+      "ok": true,
+      "ms": 3200,
+      "status": 200,
+      "detail": "no_magic",
+      "head": "1. **Snapshot**\n Acme has three suppliers evaluated based on their cost, delivery performance, and approval status. The criteria for eligibility are that the cost must be less than or equal to $400,000, the delivery must be 94% or higher, and approval must be granted.\n\n2. **Eligible set**\n The only eligible supplier is"
+    },
+    {
+      "id": "live_orders_query",
+      "ok": true,
+      "ms": 1356,
+      "status": 200,
+      "detail": "live",
+      "head": "EmpireAI has received zero realised orders."
+    },
+    {
+      "id": "live_then_seed",
+      "ok": true,
+      "ms": 2607,
+      "status": 200,
+      "detail": "seed_live",
+      "head": "I don't have enough solid evidence to give you a fuller operating narrative from this turn alone. What I can say: I'm answering live, we're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use, and realised orders are 0. Anything beyond that I'd treat as open until "
+    },
+    {
+      "id": "bounded_after_live",
+      "ok": true,
+      "ms": 2069,
+      "status": 200,
+      "detail": "after_live",
+      "head": "1. **Snapshot**: The current operational state indicates that QUILL has received approval and is eligible for action, while INK is pending and not eligible due to a failure in approval. This establishes QUILL as the sole candidate for proceeding.\n\n2. **Recommendation**: I recommend selecting QUILL for execution based o"
+    },
+    {
+      "id": "bounded_then_seed",
+      "ok": true,
+      "ms": 1887,
+      "status": 200,
+      "detail": "seed_bound",
+      "head": "1. **Snapshot**\n The current operational status indicates that the approval for the WASP (Winning Action Strategy Plan) has been granted, allowing us to proceed with the outlined tasks. The focus remains on enhancing the EmpireAI capabilities while ensuring compliance with the established governance and operational fra"
+    },
+    {
+      "id": "live_after_bounded",
+      "ok": true,
+      "ms": 2051,
+      "status": 200,
+      "detail": "live_after",
+      "head": "1. **Snapshot**\n EmpireAI's current realised order count is **0**. This reflects the verified state indicating that no orders have been completed or recorded at this time.\n\n2. **Closing**\n As there are no realised orders, it is essential to focus on strategies that can drive demand and convert potential interest into a"
+    },
+    {
+      "id": "five_claim_audit",
+      "ok": true,
+      "ms": 4635,
+      "status": 200,
+      "detail": "verdicts=10",
+      "head": "1. **Snapshot**\n - ALPHA has received approval and is currently eligible. - BETA's approval is pending, making it ineligible at this time.\n\n2. **Eligible set**\n - The only currently eligible candidate is ALPHA.\n\n3. **Claim audit**\n - **Claim:** \"BETA is currently eligible.\"\n\n**Verdict:** NO. BETA is not not currently e"
+    },
+    {
+      "id": "seven_section",
+      "ok": true,
+      "ms": 15939,
+      "status": 200,
+      "detail": "markers=1,2,3,4,5,6,7",
+      "head": "1. **Snapshot**\n The procurement analysis focuses on two candidates: PINE and TEAK. PINE is currently eligible for selection based on the specified criteria.\n\n2. **Economics**\n - **PINE**: Cost is $400,000, with a delivery rate of 95% and approval granted. - **TEAK**: Cost is $410,000, with a delivery rate of 96% but a"
+    },
+    {
+      "id": "warm_a",
+      "ok": true,
+      "ms": 2344,
+      "status": 200,
+      "detail": "warm_a",
+      "head": "1. **Snapshot**\nThe current directive is to proceed with the SyntheticBoundWarmA project, which is software only. The VOLT assessment indicates that the cost is 100, delivery is at 99% pass, and approval has been granted. This positions the project favorably for execution, aligning with our objectives to enhance the Em"
+    },
+    {
+      "id": "warm_b",
+      "ok": true,
+      "ms": 3686,
+      "status": 200,
+      "detail": "warm_b",
+      "head": "1. **Snapshot**\nThe directive for the SyntheticBoundWarmB project is confirmed, focusing on hospitality only. The QUAY assessment shows a delivery rate of 95%, which passes the eligibility criterion, and approval has been granted. This positions QUAY as a suitable candidate for execution, aligning with our goal to enha"
+    }
+  ]
+}
