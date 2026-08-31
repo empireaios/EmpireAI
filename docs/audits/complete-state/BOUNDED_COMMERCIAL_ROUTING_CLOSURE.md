@@ -134,7 +134,7 @@ Production case latencies ~1–18s. No extra LLM judge calls for routing (determ
 | CERTIFIED_SHA | `5fe9b384` (engineering) |
 | RUNNING_BRAIN_SHA | `5fe9b384…` |
 | DEPLOYMENT_ID | `e0be4889-325d-4e4b-8b31-0067348cf8d7` |
-| DOCS_SEAL_SHA | set at docs seal commit |
+| DOCS_SEAL_SHA | `f9cd5d9e8385d764e000205f989871f9fe7a9c8c` |
 | FINAL_CANDIDATE_SINGLE_SHA | YES |
 | KNOWN_P0 / P1 | 0 / 0 |
 
