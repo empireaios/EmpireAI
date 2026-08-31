@@ -13,6 +13,7 @@ import {
   synthesizeReversalConditions,
   type MaterialConstraint,
 } from "./executive-decision-constraints.js";
+import { isBoundedDecisionScenario } from "./executive-request-execution-plan.js";
 
 export type ReasoningScopeType =
   | "CURRENT_REALITY"
@@ -69,6 +70,10 @@ export function detectReasoningScope(message: string): ReasoningScopeType {
     !/\b(EmpireAI is|our realised|our current product)\b/i.test(t)
   ) {
     return "HISTORICAL_ANALYSIS";
+  }
+  // Multi-candidate commercial decision packs are bounded analysis even without magic words.
+  if (isBoundedDecisionScenario(t)) {
+    return "SYNTHETIC_ANALYSIS";
   }
   return "CURRENT_REALITY";
 }
@@ -127,8 +132,22 @@ export function synthesizeEvidenceStructureAudit(
   let conclude =
     "What can be concluded now: only that the claim remains unproven, not that it is true or false in live EmpireAI operations.";
 
-  // Operation-specific branches first — shared evidence context must not clone one template.
+  // Section / task titles are obligations — not propositions requiring epistemic Unsupported.
   if (
+    /^(?:snapshot|gate(?:s| detail)?|eligible\s*set|recommendation|closing|conclusion|economics?(?:\s+table)?|twelve-week|evidence(?:\s+reconcil\w*)?|reversal|overview|criteria)$/i.test(
+      label.trim(),
+    ) ||
+    /^(?:\d+[.)]\s*)?(?:snapshot|gate|eligible|recommend|closing|econom|evidence|reversal)/i.test(
+      label.trim(),
+    )
+  ) {
+    verdict = "Task obligation (not a claim)";
+    reason =
+      "This heading is a requested analysis section. Evaluate it from the supplied scenario pack — do not treat the title itself as an unsupported factual claim.";
+    need = "complete the section using owner-supplied scenario facts and derived arithmetic.";
+    conclude =
+      "What can be concluded: section titles are output obligations inside the bounded case, not live EmpireAI propositions.";
+  } else if (
     /synthes|across the (?:above|audits|claims)|executive (?:synthesis|conclusion|summary)|overall (?:reading|conclusion)|integrate (?:the |these )?findings/i.test(
       s,
     )

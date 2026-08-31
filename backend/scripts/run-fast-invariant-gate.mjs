@@ -20,6 +20,7 @@ const suites = [
   "src/validation/tests/causal-predicate-envelope-lock.test.ts",
   "src/validation/tests/case-provenance-causal-graph-lock.test.ts",
   "src/validation/tests/decision-state-authority-lock.test.ts",
+  "src/validation/tests/bounded-commercial-routing-lock.test.ts",
 ];
 const r = spawnSync(
   process.execPath,

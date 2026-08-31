@@ -176,6 +176,7 @@ export function buildForcedObligationCompletion(
         hypotheticalPremises: contract.hypotheticalPremises,
         scopeType: contract.scopeType,
         materialConstraints: contract.materialConstraints,
+        userMessage: contract.sourceMessage,
       }),
     );
   }

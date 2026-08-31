@@ -985,8 +985,11 @@ export function releaseExecutiveAnswer(
           scopeType: contract.scopeType,
           materialConstraints: contract.materialConstraints,
           siblingSubjects: contract.tasks.map((x) => x.subject),
+          userMessage: contract.sourceMessage || options.userMessage,
         });
-        return `### ${i + 1}) ${(t.subject || t.sourceSpan).slice(0, 100)}\n\n${body}`;
+        const title = (t.subject || t.sourceSpan).slice(0, 100);
+        const stripped = body.replace(/^#{1,3}\s+[^\n]*\n+/, "");
+        return `### ${i + 1}) ${title}\n\n${stripped}`.trim();
       });
       let rebuilt = stripIrrelevantLifecycleContamination(
         lines.join("\n\n"),

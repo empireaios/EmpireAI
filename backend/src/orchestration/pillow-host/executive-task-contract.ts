@@ -48,6 +48,8 @@ import {
   extractQuotedClaimsOnly,
   formatCanonicalStateBrief,
 } from "./executive-canonical-state.js";
+import { buildDecisionCaseState } from "./executive-decision-case-state.js";
+import { synthesizeBoundedDecisionObligation } from "./executive-request-execution-plan.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
@@ -117,6 +119,8 @@ export type ExecutiveTaskContract = {
   requiresClaimSetCompleteness: boolean;
   /** Explicit N top-level numbered sections requested by Grand King. */
   expectedTopLevelSections: number | null;
+  /** Original user message — used for decisionCase / bounded synthesis. */
+  sourceMessage?: string;
 };
 
 export type TaskCoverageStatus =
@@ -808,6 +812,7 @@ export function parseExecutiveTaskContract(userMessage: string | undefined): Exe
     expectedClaims,
     requiresClaimSetCompleteness,
     expectedTopLevelSections,
+    sourceMessage: text,
   };
 }
 
@@ -1056,15 +1061,26 @@ export function synthesizeTaskUnitAnswer(
     scopeType?: ReasoningScopeType;
     siblingSubjects?: readonly string[];
     materialConstraints?: readonly MaterialConstraint[];
+    /** Full user pack — enables decisionCase-aware synthesis. */
+    userMessage?: string;
   } = {},
 ): string {
   const scope = opts.scopeType ?? "CURRENT_REALITY";
   const birthRelevant = Boolean(opts.birthRelevant);
   const subject = (task.subject || task.sourceSpan || task.text || "this obligation").slice(0, 140);
   const span = task.sourceSpan || task.text || subject;
+  const packText =
+    opts.userMessage ||
+    [span, ...(opts.siblingSubjects ?? []), opts.hypotheticalPremises?.join(" ") ?? ""]
+      .filter(Boolean)
+      .join("\n");
+  const decisionCase =
+    buildDecisionCaseState(opts.userMessage || "") ||
+    buildDecisionCaseState(packText) ||
+    null;
   const scoped = isScopedAwayFromLiveEmpire(
     scope,
-    `${task.text ?? ""} ${task.sourceSpan ?? ""} ${subject}`,
+    `${task.text ?? ""} ${task.sourceSpan ?? ""} ${subject} ${opts.userMessage ?? ""}`,
   );
   const f = verifiedFactsBlock(truth);
   const siblings =
@@ -1072,6 +1088,25 @@ export function synthesizeTaskUnitAnswer(
       ? opts.siblingSubjects
       : [subject];
   const constraints = opts.materialConstraints ?? [];
+
+  // Valid decision case: specialized path precedes generic epistemic Unsupported.
+  if (decisionCase && task.kind !== "operating_briefing") {
+    if (task.kind === "recommendation") {
+      const rec = synthesizeBoundedDecisionObligation("Recommendation", decisionCase, packText);
+      if (rec) return rec;
+    }
+    const bounded = synthesizeBoundedDecisionObligation(subject, decisionCase, packText);
+    if (bounded) return bounded;
+    // Claim audits: do not replace with Unsupported takeover — leave a scenario-scoped shell.
+    if (task.kind === "premise_audit" && /Claim\s*\d+/i.test(subject)) {
+      return [
+        `### ${subject.slice(0, 100)}`,
+        "**Scope:** scenario claim audit — evaluate against supplied decision state, not live EmpireAI verification.",
+        "",
+        "Score this quoted claim against the canonical eligible set / gates for this case. Do not demand external live verification for owner-supplied scenario facts.",
+      ].join("\n");
+    }
+  }
 
   if (task.kind === "risk_ranking") {
     return synthesizeRiskRanking(siblings, span);
@@ -1405,6 +1440,7 @@ export function appendMissingTaskCoverage(
     hypotheticalPremises: contract.hypotheticalPremises,
     scopeType: contract.scopeType,
     materialConstraints: contract.materialConstraints,
+    userMessage: contract.sourceMessage,
     siblingSubjects: contract.tasks
       .filter((t) => t.kind !== "risk_ranking" && t.kind !== "verification_priority" && t.kind !== "recommendation")
       .map((t) => t.subject || t.sourceSpan)
@@ -1580,6 +1616,7 @@ export function buildContractAwareReconstruct(
     hypotheticalPremises: contract.hypotheticalPremises,
     scopeType: contract.scopeType,
     materialConstraints: contract.materialConstraints,
+    userMessage: contract.sourceMessage,
     siblingSubjects,
   };
   if (units.length === 0) {
@@ -1679,17 +1716,22 @@ export function buildContractAwareReconstruct(
         });
       }
     }
-    return fillers.map((f, i) => `${i + 1}. ${f.title}\n\n${f.body}`).join("\n\n");
+    return fillers
+      .map((f, i) => {
+        const body = String(f.body || "").replace(/^#{1,3}\s+[^\n]*\n+/, "").trim();
+        return `${i + 1}. ${f.title}\n\n${body}`;
+      })
+      .join("\n\n");
   }
 
   if (contract.multipart && units.length >= 2) {
     return units
       .map((t, i) => {
         const body = synthesizeTaskUnitAnswer(t, truth, opts);
-        if (/^###\s/m.test(body)) {
-          return body.replace(/^###\s+/, `### ${i + 1}) `);
-        }
-        return `### ${i + 1}) ${(t.subject || t.sourceSpan || "obligation").slice(0, 80)}\n\n${body}`;
+        const title = (t.subject || t.sourceSpan || "obligation").slice(0, 80);
+        // Single heading authority: N) title — strip any leading ### from body to avoid all-1 / double heads.
+        const stripped = body.replace(/^#{1,3}\s+[^\n]*\n+/, "");
+        return `### ${i + 1}) ${title}\n\n${stripped}`.trim();
       })
       .join("\n\n");
   }
