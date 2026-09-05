@@ -49,7 +49,12 @@ import {
   formatCanonicalStateBrief,
 } from "./executive-canonical-state.js";
 import { buildDecisionCaseState } from "./executive-decision-case-state.js";
-import { synthesizeBoundedDecisionObligation } from "./executive-request-execution-plan.js";
+import {
+  isOpenExecutiveReasoningAsk,
+  shouldAuthorWithEvidenceStructureAudit,
+  synthesizeBoundedDecisionObligation,
+  synthesizeOpenExecutiveReasoning,
+} from "./executive-request-execution-plan.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
@@ -1124,15 +1129,29 @@ export function synthesizeTaskUnitAnswer(
   }
 
   if (scoped && task.kind !== "operating_briefing") {
+    const packForAuthority = `${opts.userMessage ?? ""} ${subject} ${span}`;
+    const mayUseEpistemicWriter = shouldAuthorWithEvidenceStructureAudit({
+      taskKind: task.kind,
+      subject,
+      userMessage: opts.userMessage,
+    });
     switch (task.kind) {
       case "premise_audit":
       case "evidence_explanation":
-      case "inference":
       case "uncertainty":
+        if (mayUseEpistemicWriter) {
+          return synthesizeEvidenceStructureAudit(subject, span);
+        }
+        return synthesizeOpenExecutiveReasoning(subject, opts.userMessage);
+      case "inference":
       case "multipart_unit":
       case "general":
       case "temporal_reconciliation":
-        return synthesizeEvidenceStructureAudit(subject, span);
+        // Demote Unsupported full-answer writer for open/bounded executive work.
+        if (mayUseEpistemicWriter) {
+          return synthesizeEvidenceStructureAudit(subject, span);
+        }
+        return synthesizeOpenExecutiveReasoning(subject, opts.userMessage || packForAuthority);
       case "conditional_reasoning": {
         const premises = opts.hypotheticalPremises?.length
           ? opts.hypotheticalPremises
@@ -1153,7 +1172,10 @@ export function synthesizeTaskUnitAnswer(
           ? synthesizeConstraintAwareRecommendation(subject, constraints)
           : synthesizeScopedRecommendation(subject);
       default:
-        return synthesizeEvidenceStructureAudit(subject, span);
+        if (mayUseEpistemicWriter) {
+          return synthesizeEvidenceStructureAudit(subject, span);
+        }
+        return synthesizeOpenExecutiveReasoning(subject, opts.userMessage);
     }
   }
 
@@ -1186,7 +1208,16 @@ export function synthesizeTaskUnitAnswer(
         /\bsynthetic/i.test(span) ||
         /\bClaim\s+\d+/i.test(subject)
       ) {
-        return synthesizeEvidenceStructureAudit(subject, span);
+        if (
+          shouldAuthorWithEvidenceStructureAudit({
+            taskKind: "premise_audit",
+            subject,
+            userMessage: opts.userMessage,
+          })
+        ) {
+          return synthesizeEvidenceStructureAudit(subject, span);
+        }
+        return synthesizeOpenExecutiveReasoning(subject, opts.userMessage);
       }
       return [
         `### Claim audit — ${subject.slice(0, 80)}`,
@@ -1300,7 +1331,16 @@ export function synthesizeTaskUnitAnswer(
         /\bsynthetic/i.test(span) ||
         /\bsynthetic/i.test(opts.siblingSubjects?.join(" ") ?? "")
       ) {
-        return synthesizeEvidenceStructureAudit(subject, span);
+        if (
+          shouldAuthorWithEvidenceStructureAudit({
+            taskKind: task.kind,
+            subject,
+            userMessage: opts.userMessage,
+          })
+        ) {
+          return synthesizeEvidenceStructureAudit(subject, span);
+        }
+        return synthesizeOpenExecutiveReasoning(subject, opts.userMessage);
       }
       if (
         hasAuthoritySemanticsMarker(subject) ||
@@ -1768,9 +1808,15 @@ export function formatTaskContractBrief(
     lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
   }
   if (isScopedAwayFromLiveEmpire(contract.scopeType, userMessage)) {
-    lines.push(
-      "SCOPE: This turn is SCOPED ANALYSIS (synthetic / comparative / historical). Reason about evidence structure of the supplied claims. Do NOT substitute live EmpireAI product identity, realised sales, or Birth state for synthetic entities. Do NOT promote scenario statements into current EmpireAI truth.",
-    );
+    if (isOpenExecutiveReasoningAsk(userMessage || "")) {
+      lines.push(
+        "SCOPE: This turn is OPEN / SCENARIO EXECUTIVE REASONING (synthetic or strategic). Decompose the objective, state ASSUMPTIONS / EVIDENCE_NEEDED / UNCERTAINTY, and propose first moves. Do NOT replace the answer with a generic Unsupported/Unverified stub. Do NOT invent live EmpireAI stock, orders, revenue, or API state. Do NOT promote scenario statements into current EmpireAI truth.",
+      );
+    } else {
+      lines.push(
+        "SCOPE: This turn is SCOPED ANALYSIS (synthetic / comparative / historical). Reason from owner-supplied scenario facts. Do NOT substitute live EmpireAI product identity, realised sales, or Birth state for synthetic entities. Do NOT promote scenario statements into current EmpireAI truth. Use evidence-structure Unsupported verdicts only when auditing explicit claims — not as a replacement for executive planning or bounded decisions.",
+      );
+    }
   }
   if (contract.hypotheticalPremises.length > 0) {
     lines.push("Hypothetical premises for this turn only (not current verified fact):");

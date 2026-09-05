@@ -256,7 +256,11 @@ export function synthesizeEvidenceStructureAudit(
       "authoritative product-code / identity mapping from a primary registry or source record.";
     conclude =
       "What can be concluded: identity is unproven. Treat the mapping as open until verified.";
-  } else if (/supplier|vendor|partner (?:says|claims|assert|told)|according to (?:the )?supplier/i.test(s)) {
+  } else if (
+    /(?:supplier|vendor|partner)\s+(?:says|claims|asserts?|told|reports?)|according to (?:the )?(?:supplier|vendor|partner)|(?:supplier|vendor|partner) assertion/i.test(
+      s,
+    )
+  ) {
     verdict = "Unverified assertion";
     reason =
       "A supplier or partner assertion is not independent market evidence and should not be treated as confirmed demand or performance.";

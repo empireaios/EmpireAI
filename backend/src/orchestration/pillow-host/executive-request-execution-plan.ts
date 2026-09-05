@@ -85,6 +85,135 @@ export function detectRequestExecutionMode(message: string): RequestExecutionMod
 }
 
 /**
+ * True when the ask is open strategic / process reasoning — not a claim audit.
+ * Epistemic Unsupported templates must not replace these answers.
+ */
+export function isOpenExecutiveReasoningAsk(message: string): boolean {
+  const t = String(message || "");
+  if (isLiveEmpireAiFactQuery(t) || isLiveEmpireAiDecisionAsk(t)) return false;
+  // Lettered/numbered claim packs are audits even if they also ask "what next".
+  if (isClaimEvidenceAuditAsk(t)) return false;
+  return (
+    /\b(?:decompos(?:e|ition)|executable plan|what would you do first|how (?:would|should|do) (?:you|i|we) (?:start|begin|approach|proceed)|design a .{0,60}(?:process|strategy|system|plan)|build a .{0,80}(?:business|strategy|process|plan)|strategy for|first (?:steps?|moves?|actions?)|break (?:this|it) down)\b/i.test(
+      t,
+    ) ||
+    (/\b(?:synthetic|hypothetical|scenario)\b/i.test(t) &&
+      /\b(?:what (?:would|should) (?:you|i|we) do|how (?:to|would|should)|plan|approach|process)\b/i.test(
+        t,
+      ))
+  );
+}
+
+/**
+ * True when epistemic evidence-structure audit may author a unit answer.
+ * Classifiers/annotations remain fine elsewhere; this gates FULL_ANSWER use.
+ */
+export function isClaimEvidenceAuditAsk(message: string): boolean {
+  const t = String(message || "");
+  if (
+    /\b(?:audit(?:ing)?(?:\s+these)?\s+claims?|claim[- ]by[- ]claim|verdict each|quoted claims?|Claim\s*\d+|premise audit|evidence structure|unsupported as|treat (?:it|this) as settled|is (?:this|that) (?:true|established|verified)|weigh (?:the )?evidence|these claims are|claims? are NOT facts|each claim)\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  if (
+    /\b(?:audit|verdict)\b/i.test(t) &&
+    /\b(?:claim|premise|assertion|forecast|supplier (?:says|claims))\b/i.test(t)
+  ) {
+    return true;
+  }
+  // Lettered claim packs (A)… E)…) with proposition-like siblings.
+  const lettered = (t.match(/^[A-E]\)\s+\S/gm) || []).length;
+  if (lettered >= 3) return true;
+  return false;
+}
+
+/** Subject text that is a proposition to audit, not an open strategy ask. */
+export function subjectLooksLikePropositionalClaim(subject: string): boolean {
+  const s = String(subject || "");
+  if (isOpenExecutiveReasoningAsk(s) && !/\b(?:asserted|implies|means|same entity|proven)\b/i.test(s)) {
+    return false;
+  }
+  return (
+    /\b(?:must be|means|implies|asserted|already proven|established|same entity|realised profit|treat (?:that|this|it) as still|appeared in the same|co-occurr|supplier asserted|expected revenue|selecting .{0,60} implies)\b/i.test(
+      s,
+    ) || /^["'“]/.test(s.trim())
+  );
+}
+
+/** Detect generic epistemic stub that replaced executive reasoning. */
+export function isGenericEpistemicStubSurface(text: string): boolean {
+  const s = String(text || "");
+  return (
+    /\*\*Verdict:\*\*\s*(?:Unsupported as established fact|Unverified assertion|Unsupported as realised result)/i.test(
+      s,
+    ) &&
+    /\*\*Need:\*\*/i.test(s) &&
+    !/\b(?:Eligible (?:Suppliers|set)|Current action:\s*SELECT|Recommended first moves|ASSUMPTION|EVIDENCE_NEEDED)\b/i.test(
+      s,
+    )
+  );
+}
+
+/**
+ * Open / bounded executive shell when reconstruct needs a writer but epistemic
+ * Unsupported must not author the whole answer.
+ */
+export function synthesizeOpenExecutiveReasoning(
+  subject: string,
+  userMessage?: string,
+): string {
+  const label = (subject || "Open executive objective").slice(0, 100);
+  const pack = String(userMessage || subject || "");
+  const marketplace =
+    /\bAmazon\b/i.test(pack) ? "Amazon (or named marketplace in the objective)" : "the target marketplace";
+  return [
+    `### ${label}`,
+    "**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.",
+    "Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.",
+    "",
+    "**Recommended first moves:**",
+    `1. Define hard gates for ${marketplace}: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.`,
+    "2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.",
+    "3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.",
+    "4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.",
+    "5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.",
+    "",
+    "**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state.",
+    "**EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence.",
+    "**UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
+  ].join("\n");
+}
+
+/**
+ * Whether synthesizeEvidenceStructureAudit may REPLACE a task unit answer.
+ * Classifiers may still annotate; this demotes full-answer authority.
+ */
+export function shouldAuthorWithEvidenceStructureAudit(input: {
+  taskKind: string;
+  subject: string;
+  userMessage?: string;
+}): boolean {
+  const pack = `${input.userMessage ?? ""} ${input.subject ?? ""}`;
+  // Open strategy never uses Unsupported as the whole answer.
+  if (isOpenExecutiveReasoningAsk(input.userMessage || input.subject || "")) return false;
+  if (isBoundedDecisionScenario(pack) && buildDecisionCaseState(pack)) return false;
+  // Explicit claim/evidence audit kinds keep the classifier-as-writer for those units.
+  if (
+    input.taskKind === "premise_audit" ||
+    input.taskKind === "evidence_explanation" ||
+    input.taskKind === "uncertainty"
+  ) {
+    return true;
+  }
+  if (isClaimEvidenceAuditAsk(pack)) return true;
+  if (subjectLooksLikePropositionalClaim(input.subject || "")) return true;
+  // Multipart/general/inference/temporal under scoped mode: do NOT default to Unsupported.
+  return false;
+}
+
+/**
  * When a section title / obligation is a decision task (not a factual claim),
  * emit scenario analysis from canonical decision state — never Unsupported stub.
  * Returns null if this subject should use another synthesizer (e.g. quoted claim).

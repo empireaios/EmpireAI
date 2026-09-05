@@ -29881,13 +29881,19 @@ export class PillowHost {
                     requestId,
                 );
                 const taskContract = parseExecutiveTaskContract(input.message);
+                const openReasoning =
+                    /\b(?:decompos|what would you do first|executable plan|design a |build a .{0,40}business)\b/i.test(
+                        input.message,
+                    );
                 operationalContext = {
                     ...operationalContext,
                     liveOperationalTruthBrief: scopedAwayFromLive
                         ? [
                             "SCOPE: SCOPED/SCENARIO ANALYSIS ONLY for this turn.",
                             "Do not inject live EmpireAI product identity, Mini Fan, realised orders/revenue, or Birth authorization into the answer.",
-                            "Reason from the owner-supplied scenario and evidence structure only.",
+                            openReasoning
+                                ? "Decompose the objective; state assumptions and evidence needed. Do not replace the answer with a generic Unsupported/Unverified stub."
+                                : "Reason from the owner-supplied scenario. Use Unsupported verdicts only when auditing explicit claims — not as a replacement for bounded executive decisions.",
                             formatTaskContractBrief(taskContract, input.message),
                           ].join("\n\n")
                         : [

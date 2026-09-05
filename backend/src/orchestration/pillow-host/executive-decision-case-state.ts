@@ -229,6 +229,27 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     for (const p of peers) push(p.name, p.body);
   }
 
+  // Light eligibility peers: "NEXO granted. PICO pending." (no colon required)
+  // Only when an eligibility/approval rule is present — avoids inventing candidates.
+  // Do NOT use the /i flag on the name capture — it would match the word "approval".
+  if (
+    /\b(?:eligible\s+if|approval\s+granted|rule\s*:)\b/i.test(text) ||
+    /\beligible\b/i.test(text)
+  ) {
+    const lightRe =
+      /\b([A-Z][A-Z0-9_-]{1,24})\b\s+(granted|pending|cleared|PASS|FAIL|PENDING|Granted|Pending|Cleared)\b/g;
+    let lm: RegExpExecArray | null;
+    while ((lm = lightRe.exec(text)) !== null) {
+      const name = lm[1]!;
+      const status = lm[2]!;
+      if (SKIP_CANDIDATE_NAMES.test(name)) continue;
+      if (/^(?:PASS|FAIL|PENDING|GRANTED|CLEARED|APPROVAL|ELIGIBLE|RULE|SELECT)$/i.test(name)) {
+        continue;
+      }
+      push(name, `approval ${status}`);
+    }
+  }
+
   // Candidate A / Candidate B blocks — only when commercial gate language is present
   const candRe =
     /\bCandidate\s+([A-Z0-9_-]+)\b\s*:?\s*([\s\S]{0,500}?)(?=\bCandidate\s+[A-Z0-9_-]+\b|$)/gi;

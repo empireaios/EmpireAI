@@ -23,6 +23,7 @@ const suites = [
   "src/validation/tests/case-provenance-causal-graph-lock.test.ts",
   "src/validation/tests/decision-state-authority-lock.test.ts",
   "src/validation/tests/bounded-commercial-routing-lock.test.ts",
+  "src/validation/tests/unblock-epistemic-open-bounded-lock.test.ts",
   "src/validation/tests/path-parity-scope-isolation.test.ts",
   "src/validation/tests/memory-relevance-contract.test.ts",
   "src/validation/tests/memory-relevance-raw-pipeline.test.ts",
@@ -54,6 +55,7 @@ for (const script of [
   "scripts/case-provenance-causal-graph-qualify.mjs",
   "scripts/decision-state-authority-qualify.mjs",
   "scripts/bounded-commercial-routing-qualify.mjs",
+  "scripts/unblock-epistemic-open-bounded-qualify.mjs",
   "scripts/transport-boundary-contract-qualify.mjs",
 ]) {
   console.log(`\n▶ ${script}`);

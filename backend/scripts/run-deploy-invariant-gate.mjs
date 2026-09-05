@@ -73,6 +73,7 @@ for (const script of [
   "scripts/case-provenance-causal-graph-qualify.mjs",
   "scripts/decision-state-authority-qualify.mjs",
   "scripts/bounded-commercial-routing-qualify.mjs",
+  "scripts/unblock-epistemic-open-bounded-qualify.mjs",
 ]) {
   const q = spawnSync(process.execPath, ["--import", "tsx", script], {
     cwd: backendRoot,

@@ -21,6 +21,7 @@ const suites = [
   "src/validation/tests/case-provenance-causal-graph-lock.test.ts",
   "src/validation/tests/decision-state-authority-lock.test.ts",
   "src/validation/tests/bounded-commercial-routing-lock.test.ts",
+  "src/validation/tests/unblock-epistemic-open-bounded-lock.test.ts",
 ];
 const r = spawnSync(
   process.execPath,

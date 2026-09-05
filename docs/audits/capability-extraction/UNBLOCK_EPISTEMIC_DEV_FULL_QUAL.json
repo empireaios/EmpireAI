@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-09-05T13:12:57.801Z",
+  "DEV_FULL_PASS": true,
+  "EC18_SHORT_OPEN_CASES": 50,
+  "LIVE_TO_BOUNDED": 50,
+  "BOUNDED_TO_LIVE": 50,
+  "EC24_CASES": 50,
+  "COMMERCIAL_SHORT_CASES": 75,
+  "OPEN_UNSUPPORTED_STUB_TAKEOVER": 0,
+  "WARM_BOUNDED_UNSUPPORTED_TAKEOVER": 0,
+  "LIVE_FACT_FABRICATION": 0,
+  "FOREIGN_CASE_FACT_LEAK": 0,
+  "MODE_TRANSITION_ERROR": 0,
+  "PRESERVE_MATERIAL_REGRESSION": 0,
+  "LIVE_EPISTEMIC_CAUTION_PRESERVED": true,
+  "EPISTEMIC_WRITERS_NOTE": "synthesizeEvidenceStructureAudit demoted from default general/multipart full-answer; retained for claim audit kinds"
+}
