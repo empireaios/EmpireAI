@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-09-06T08:06:04.095Z",
+  "RUNNING_BRAIN_SHA": "",
+  "DEPLOYMENT_ID": "cc3d9632-feb3-49b9-9022-154204ce2870",
+  "PRODUCTION_FIRST_VISIBLE_PASS": true,
+  "failures": 0,
+  "results": [
+    {
+      "id": "open_strategy",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"9bd5277f-48bc-4e81-9243-9b9fc878f5a8\",\"sessionId\":\"4363ad4b-5af5-4580-b710-8d072abf5ede\",\"workspaceId\":\"ws_empire_1\",\"message\":\"To design a synthetic supplier-selection process for a marketplace business, the first step would be to define the criteria for supplier selection. This involves identifying key factors that align with the marketplace's goals, such as:\\n\\n1. **Quality of Products**: Assessing the quality standards of the suppliers' products.\\n\\n2. **Pricing**: Evaluating the competitiveness of pricing structures.\\n\\n3. **Reliability**: Analyzing the supplier's track record in terms of delivery times and order fulfillment.\\n\\n4. **Reputation**: Considering customer reviews and feedback about the suppliers.\\n\\n5. **Compliance**: Ensuring suppliers meet legal ",
+      "stub": false,
+      "ms": 5771
+    },
+    {
+      "id": "bounded_supplier",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"85fe6ee2-67f5-4861-a57c-dbb7c5c34b3d\",\"sessionId\":\"3e983103-96c6-4b7e-b71f-7490db371f0e\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The currently eligible supplier is QUILL, as it has passed the necessary approval criteria. EMBER is not eligible due to a failure in the approval process. Selecting QUILL will allow us to proceed with the synthetic procurement as planned, aligning with our objectives to enhance the Empire's capabilities.\\n\\n### Synthetic procurement. Eligible if approval granted. QUILL granted. EMBER pending. Select the curren\\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\\n\\n**Recommended first moves:**\\n1. Defi",
+      "stub": false,
+      "ms": 1710
+    },
+    {
+      "id": "bounded_product",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"2dc165a6-f77a-4a75-8f76-9b1f9bef95d3\",\"sessionId\":\"9c334206-5376-4e26-840a-c277239b1a93\",\"workspaceId\":\"ws_empire_1\",\"message\":\"ProductB is currently eligible, as it has a return rate of 6%, which is below the hard gate threshold of 8%. ProductA, with a return rate of 11%, exceeds this threshold and is therefore not eligible.\\n\\n### Synthetic product pick. Hard gate returns <= 8%. ProductA returns 11%. ProductB returns 6%. Which pr\\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\\n\\n**Recommended first moves:**\\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, sto",
+      "stub": false,
+      "ms": 2282
+    },
+    {
+      "id": "bounded_corridor",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"289dfb3d-a1a2-4e12-91cc-ff695f235a1c\",\"sessionId\":\"384bfa28-07dd-439d-8815-1dd414fd8a69\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The selected approach is to proceed with **PATH_A**, as it is the only currently eligible candidate with a clear policy and available stock. This decision aligns with the intent to create a synthetic corridor effectively.\\n\\n### Synthetic corridor. Eligible if policy clear AND stock available. PATH_A: policy clear; stock availa\\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\\n\\n**Recommended first moves:**\\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/c",
+      "stub": false,
+      "ms": 2746
+    },
+    {
+      "id": "live_unknown",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"dd3dec75-f0de-4984-beb0-cd026c521b30\",\"sessionId\":\"8ee54c4a-411a-4654-9344-091e38e4d127\",\"workspaceId\":\"ws_empire_1\",\"message\":\"EmpireAI's current realised order count is zero.\",\"kind\":\"llm\",\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"mode\":\"general_intelligence\",\"tokens\":{\"promptTokens\":27736,\"completionTokens\":10,\"totalTokens\":27746},\"latencyMs\":834,\"trace\":{\"digitalSoulGateMs\":0,\"commandMs\":2,\"contextMs\":0,\"executiveReasoningMs\":0,\"executiveDeliberationMs\":0,\"executiveCouncilMs\":20,\"llmMs\":800,\"totalMs\":834},\"command\":{\"intent\":\"unknown\",\"category\":\"general\",\"plan\":{\"intent\":\"unknown\",\"category\":\"general\",\"objective\":\"Grand King command: unknown\",\"relevantModules\":[\"repository_memory\",\"empire_ai_orchestrator\"],\"dependencyChecks\":[{\"id\":\"BOOTSTRAP\",\"label\":\"Pillow ",
+      "stub": false,
+      "ms": 1409
+    },
+    {
+      "id": "live_then_bounded",
+      "ok": true,
+      "texts": [
+        "{\"result\":{\"requestId\":\"4701f9c6-9a58-439f-bc1a-e005b7a12c62\",\"sessionId\":\"3da97a32-2c0a-43e8-8e90-db1d31423100\",\"workspaceId\":\"ws_empire_1\",\"message\":\"EmpireAI has received zero realised orders.\",\"kind\":\"llm\",\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"mode\":\"general_intelligence\",\"tokens\":{\"promptTokens\":27712,\"completionTokens\":8,\"totalTokens\":27720},\"latencyMs\":930,\"trace\":{\"digitalSoulGateMs\":0,\"commandMs\":2,\"contextMs\":0,\"executiveReasoningMs\":0,\"executiveDeliberationMs\":0,\"executiveCouncilMs\":19,\"llmMs\":905,\"totalMs\":930},\"command\":{\"intent\":\"unknown\",\"category\":\"general\",\"plan\":{\"intent",
+        "{\"result\":{\"requestId\":\"86faee54-b8a1-4de6-99fe-ef17fc5622db\",\"sessionId\":\"3da97a32-2c0a-43e8-8e90-db1d31423100\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The recommended path is to proceed with the synthetic new case as requested. The currently eligible supplier is RADIX, which has passed the necessary approval.\\n\\nThe main risk involves potential opportunity costs if a higher-value alternative is overlooked. The immediate next action is to initiate the engagement with RADIX for the new case.\\n\\nNo further Grand King approval is required at this stage since RADIX is already eligible.\\n\\n### Synt"
+      ],
+      "stub": false
+    },
+    {
+      "id": "bounded_then_live",
+      "ok": true,
+      "texts": [
+        "{\"result\":{\"requestId\":\"b286bfdf-804b-4ea7-afe6-361e12270419\",\"sessionId\":\"8ccabb9b-e60d-43c9-a796-b99c858af354\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The current eligibility status is as follows:\\n\\n- **TIDE**: Eligible. Approval has been granted. - **ULTRA**: Not eligible. Approval has not been granted.\\n\\nTherefore, TIDE is the only option currently eligible for action. If you require further details or next steps regarding TIDE, please let me know.\\n\\n### Recommendation\\n**Current action:** SELECT TIDE. TIDE is the sole currently eligible candidate.\",\"kind\":\"llm\",\"provider\":\"openai\",\"mode",
+        "{\"result\":{\"requestId\":\"0c896700-4b16-412a-9aee-6c35be428c26\",\"sessionId\":\"8ccabb9b-e60d-43c9-a796-b99c858af354\",\"workspaceId\":\"ws_empire_1\",\"message\":\"EmpireAI's current realised revenue is **$0**. There have been no realised sales to date. If you need further insights or have additional questions, please let me know.\",\"kind\":\"llm\",\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"mode\":\"general_intelligence\",\"tokens\":{\"promptTokens\":27849,\"completionTokens\":36,\"totalTokens\":27885},\"latencyMs\":1208,\"trace\":{\"digitalSoulGateMs\":0,\"commandMs\":2,\"contextMs\":0,\"executiveReasoningMs\":0,\"executiveDelibera"
+      ],
+      "stub": false
+    },
+    {
+      "id": "principle_transfer",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"dba9c2df-a7a9-4c7e-b748-f7b6e2fb5aac\",\"sessionId\":\"45669be1-ca39-4437-b327-eb3e4843432c\",\"workspaceId\":\"ws_empire_1\",\"message\":\"Based on the synthetic principle you've provided, the selection will be as follows:\\n\\n- **Selected Option**: VISTA\\n - **Eligibility**: VISTA is currently eligible as it has received approval.\\n\\n- **WISP**: Not selected due to its pending approval status, which makes it ineligible at this time.\\n\\nThis decision aligns with the principle that pending approvals are not currently eligible for selection. If there are any further actions or considerations needed, please let me know.\\n\\n### Synthetic principle. Rule: pending approval is not currently eligible. VISTA: approval granted. WISP\\n**Scope:** open / scenario executive reasoning — not a",
+      "stub": false,
+      "ms": 1972
+    },
+    {
+      "id": "self_correction",
+      "ok": true,
+      "text": "{\"result\":{\"requestId\":\"7dbf5642-436c-44cf-82d5-343bfb3321bd\",\"sessionId\":\"804a435e-9f16-40da-bf07-d16a9ed475eb\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The contribution of S$20 is confirmed as correct.\\n\\n### Synthetic arithmetic check. Contribution is S$20 exactly. Confirm whether S$20 is correct in one sen\\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\\n\\n**Recommended first moves:**\\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\\n\\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\\n\\n3. Comp",
+      "stub": false,
+      "ms": 1474
+    }
+  ],
+  "REPRESENTATIVE_REVIEW_COUNT": 9,
+  "MATERIAL_ANOMALIES": 0,
+  "LATENCY_P50_MS": 1972,
+  "LATENCY_P95_MS": 5771,
+  "review": [
+    {
+      "id": "open_strategy",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"9bd5277f-48bc-4e81-9243-9b9fc878f5a8\",\"sessionId\":\"4363ad4b-5af5-4580-b710-8d072abf5ede\",\"workspaceId\":\"ws_empire_1\",\"message\":\"To design a synthetic supplier-selection process for a marketplace business, the first step would be to define the criteria for supplier selection. This involves identifying key factors that align with the marketplace's goals, such as:\\n\\n1. **Qual"
+    },
+    {
+      "id": "bounded_supplier",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"85fe6ee2-67f5-4861-a57c-dbb7c5c34b3d\",\"sessionId\":\"3e983103-96c6-4b7e-b71f-7490db371f0e\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The currently eligible supplier is QUILL, as it has passed the necessary approval criteria. EMBER is not eligible due to a failure in the approval process. Selecting QUILL will allow us to proceed with the synthetic procurement as planned, aligning"
+    },
+    {
+      "id": "bounded_product",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"2dc165a6-f77a-4a75-8f76-9b1f9bef95d3\",\"sessionId\":\"9c334206-5376-4e26-840a-c277239b1a93\",\"workspaceId\":\"ws_empire_1\",\"message\":\"ProductB is currently eligible, as it has a return rate of 6%, which is below the hard gate threshold of 8%. ProductA, with a return rate of 11%, exceeds this threshold and is therefore not eligible.\\n\\n### Synthetic product pick. Hard gate returns"
+    },
+    {
+      "id": "bounded_corridor",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"289dfb3d-a1a2-4e12-91cc-ff695f235a1c\",\"sessionId\":\"384bfa28-07dd-439d-8815-1dd414fd8a69\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The selected approach is to proceed with **PATH_A**, as it is the only currently eligible candidate with a clear policy and available stock. This decision aligns with the intent to create a synthetic corridor effectively.\\n\\n### Synthetic corridor."
+    },
+    {
+      "id": "live_unknown",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"dd3dec75-f0de-4984-beb0-cd026c521b30\",\"sessionId\":\"8ee54c4a-411a-4654-9344-091e38e4d127\",\"workspaceId\":\"ws_empire_1\",\"message\":\"EmpireAI's current realised order count is zero.\",\"kind\":\"llm\",\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"mode\":\"general_intelligence\",\"tokens\":{\"promptTokens\":27736,\"completionTokens\":10,\"totalTokens\":27746},\"latencyMs\":834,\"trace\":{\"digitalSoulGa"
+    },
+    {
+      "id": "live_then_bounded",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"4701f9c6-9a58-439f-bc1a-e005b7a12c62\",\"sessionId\":\"3da97a32-2c0a-43e8-8e90-db1d31423100\",\"workspaceId\":\"ws_empire_1\",\"message\":\"EmpireAI has received zero realised orders.\",\"kind\":\"llm\",\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"mode\":\"general_intelligence\",\"tokens\":{\"promptTokens\":27712,\"completionTokens\":8,\"totalTokens\":27720},\"latencyMs\":930,\"trace\":{\"digitalSoulGateMs\":"
+    },
+    {
+      "id": "bounded_then_live",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"b286bfdf-804b-4ea7-afe6-361e12270419\",\"sessionId\":\"8ccabb9b-e60d-43c9-a796-b99c858af354\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The current eligibility status is as follows:\\n\\n- **TIDE**: Eligible. Approval has been granted. - **ULTRA**: Not eligible. Approval has not been granted.\\n\\nTherefore, TIDE is the only option currently eligible for action. If you require further "
+    },
+    {
+      "id": "principle_transfer",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"dba9c2df-a7a9-4c7e-b748-f7b6e2fb5aac\",\"sessionId\":\"45669be1-ca39-4437-b327-eb3e4843432c\",\"workspaceId\":\"ws_empire_1\",\"message\":\"Based on the synthetic principle you've provided, the selection will be as follows:\\n\\n- **Selected Option**: VISTA\\n - **Eligibility**: VISTA is currently eligible as it has received approval.\\n\\n- **WISP**: Not selected due to its pending approva"
+    },
+    {
+      "id": "self_correction",
+      "DID_PILLOW_ACTUALLY_REASON": true,
+      "DID_GENERIC_STUB_REPLACE_REASONING": false,
+      "WAS_ANSWER_EXECUTIVE_USEFUL": true,
+      "excerpt": "{\"result\":{\"requestId\":\"7dbf5642-436c-44cf-82d5-343bfb3321bd\",\"sessionId\":\"804a435e-9f16-40da-bf07-d16a9ed475eb\",\"workspaceId\":\"ws_empire_1\",\"message\":\"The contribution of S$20 is confirmed as correct.\\n\\n### Synthetic arithmetic check. Contribution is S$20 exactly. Confirm whether S$20 is correct in one sen\\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario"
+    }
+  ]
+}

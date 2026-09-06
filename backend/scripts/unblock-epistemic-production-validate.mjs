@@ -8,14 +8,29 @@ import { fileURLToPath } from "node:url";
 
 const COCKPIT = process.env.EMPIRE_COCKPIT_URL || "https://empire-ai.co";
 const BRAIN = process.env.EMPIRE_BRAIN_URL || "https://empireai-production.up.railway.app";
-const EMAIL = process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL;
-const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD;
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = path.join(ROOT, "docs/audits/capability-extraction");
 const EXPECT_SHA = process.env.EXPECT_SEMANTIC_SHA || "";
 
+function loadDotEnv() {
+  try {
+    const envPath = path.join(ROOT, "backend/.env");
+    const raw = readFileSync(envPath, "utf8");
+    for (const line of raw.split(/\n/)) {
+      const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
+      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^"|"$/g, "").trim();
+    }
+  } catch {
+    /* optional */
+  }
+}
+
+loadDotEnv();
+
+const EMAIL = process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL;
+const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD;
 if (!EMAIL || !PASSWORD) {
-  console.error("Missing login credentials in environment");
+  console.error("Missing EMPIRE_LOGIN_EMAIL/PASSWORD or FOUNDER_EMAIL/PASSWORD");
   process.exit(2);
 }
 
@@ -181,18 +196,6 @@ const cases = [
 ];
 
 async function main() {
-  // Load dotenv if present
-  try {
-    const envPath = path.join(ROOT, "backend/.env");
-    const raw = readFileSync(envPath, "utf8");
-    for (const line of raw.split(/\n/)) {
-      const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
-      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^"|"$/g, "");
-    }
-  } catch {
-    /* optional */
-  }
-
   const h = await health();
   const sha = String(h?.deploy?.gitCommitSha || "");
   const deploymentId = String(h?.deploy?.deploymentId || "");
