@@ -20,30 +20,14 @@ import {
 } from "../../orchestration/pillow-host/executive-request-execution-plan.js";
 import { synthesizeEvidenceStructureAudit } from "../../orchestration/pillow-host/executive-scoped-reasoning.js";
 import { buildDecisionCaseState } from "../../orchestration/pillow-host/executive-decision-case-state.js";
-import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-types.js";
 
-function truth(): ExecutiveTruthSnapshot {
+function truth() {
   return {
-    computedAt: new Date().toISOString(),
-    workspaceId: "ws_unblock_ep",
-    provenance: "live_sqlite_commissioning_kpi_birth",
-    product: {
-      commissioningId: "opc_ep",
-      asin: "B0EP000001",
-      productName: "Live Bound Widget Under Test",
-      supplier: "SupplierX",
-      marketplace: "Amazon US",
-      selectionAuthority: "pillow",
-      cursorSelected: false,
-      stage: "COMMISSIONING",
-    },
-    financial: { orders: 0, realisedRevenueUsd: 0, currency: "USD" },
-    birth: { birthTimestamp: null, birthAuthorised: false },
-    deploy: {
-      gitCommitSha: "deadbeef",
-      serviceOnlineHint: "assume_online_if_answering",
-    },
-  } as ExecutiveTruthSnapshot;
+    birth: { birthTimestamp: null as string | null },
+    product: { productName: "Mini Fan", asin: null as string | null },
+    financial: { orders: 0, revenue: 0 },
+    deploy: { serviceOnlineHint: "assume_online_if_answering" as const },
+  };
 }
 
 const OPEN_ASK =
@@ -71,11 +55,11 @@ describe("UNBLOCK epistemic open/bounded writer authority", () => {
 
   it("EC18 reconstruct does not emit Unverified assertion stub", () => {
     const c = parseExecutiveTaskContract(OPEN_ASK);
-    const unit = synthesizeTaskUnitAnswer(c.tasks[0]!, truth(), { userMessage: OPEN_ASK });
+    const unit = synthesizeTaskUnitAnswer(c.tasks[0]!, truth() as never, { userMessage: OPEN_ASK });
     assert.equal(isGenericEpistemicStubSurface(unit), false);
     assert.match(unit, /Recommended first moves|ASSUMPTIONS|EVIDENCE_NEEDED/i);
     assert.doesNotMatch(unit, /Unverified assertion/i);
-    const rec = buildContractAwareReconstruct(truth(), c);
+    const rec = buildContractAwareReconstruct(truth() as never, c);
     assert.equal(isGenericEpistemicStubSurface(rec), false);
     assert.doesNotMatch(rec, /\*\*Verdict:\*\*\s*Unverified assertion/i);
   });
