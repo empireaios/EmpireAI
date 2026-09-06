@@ -1100,9 +1100,11 @@ export function synthesizeTaskUnitAnswer(
   const constraints = opts.materialConstraints ?? [];
 
   // Deterministic commercial arithmetic precedes epistemic / open shells.
+  // When a decision case is also present, prefer decision synthesis (brief injects exact math).
   const packForArith = `${opts.userMessage ?? ""} ${subject} ${span}`;
   if (
     task.kind !== "operating_briefing" &&
+    !decisionCase &&
     isCommercialArithmeticAsk(packForArith)
   ) {
     const arith = synthesizeCommercialArithmeticAnswer(packForArith, subject);

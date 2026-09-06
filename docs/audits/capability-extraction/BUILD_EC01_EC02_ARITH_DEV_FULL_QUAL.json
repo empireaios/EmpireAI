@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T14:26:10.309Z",
+  "generatedAt": "2026-09-06T14:49:47.078Z",
   "DEV_ARITH_FULL_PASS": true,
   "INTERNAL_PRECISION_POLICY": "IEEE float64 for intermediates; percentage fee = price × (pct/100) at full precision before subtraction.",
   "VISIBLE_ROUNDING_POLICY": "Round only the final contribution/margin for display to 2 decimal places; do not round intermediate fee amounts before contribution.",
