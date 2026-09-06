@@ -354,6 +354,14 @@ export function synthesizeCommercialArithmeticAnswer(
     return null;
   }
   const r = resolveCommercialArithmetic(message);
+  // Forecast/realised ledger asks without a unit selling price are not unit-econ calculator cases.
+  if (
+    !r.ok &&
+    r.operands.forecastVsRealised &&
+    /SELLING_PRICE unknown/i.test(r.unknownReason || "")
+  ) {
+    return null;
+  }
   if (!r.ok && r.unknownReason) {
     return [
       `### ${subject.slice(0, 100)}`,
