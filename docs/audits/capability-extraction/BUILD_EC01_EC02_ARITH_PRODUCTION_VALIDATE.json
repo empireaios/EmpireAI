@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-06T23:30:33.251Z",
+  "DEPLOYMENT_ID": "0c0c3115-a222-445d-8950-8552e524abad",
+  "RUNNING_BRAIN_SHA": "",
+  "PRODUCTION_FIRST_VISIBLE_PASS": true,
+  "failures": 0,
+  "results": [
+    {
+      "id": "pct_fee_product",
+      "ok": true,
+      "text": "The contribution per order is S$15.76.\n\nThis is calculated as follows:\n\n- Selling Price: S$39.90\n- Supplier Cost: S$12.35\n- Shipping: S$4.80\n- Marketplace Fee (14.5% of Selling Price): S$5.79\n- Refund Allowance: S$1.20\n\n**Contribution Calculation:**\n\\[\n\\text{Contribution} = \\text{Selling Price} - (\\text{Supplier Cost} + \\text{Shipping} + \\text{Marketplace Fee} + \\text{Refund Allowance})\n\\]\n\\[\n\\text{Contribution} = 39.90 - (12.35 + 4.80 + 5.79 + 1.20)\n\\]\n\\[\n\\text{Contribution} = 39.90 - 24.14 = 15.76\n\\]\n\nFinal contribution per order = S$15.76.",
+      "stub": false,
+      "ms": 5951
+    },
+    {
+      "id": "fixed_fee_product",
+      "ok": true,
+      "text": "The contribution per order is calculated as follows:\n\n- **Price:** S$50.00\n- **Cost:** S$20.00\n- **Shipping:** S$5.00\n- **Marketplace fixed fee:** S$3.50\n- **Refund/return allowance:** S$0.00\n\n**Contribution per order = Price - (Cost + Shipping + Marketplace fixed fee + Refund)**\n\nCalculating this gives:\n\n**Contribution per order = S$50 - (S$20 + S$5 + S$3.50 + S$0) = S$50 - S$28.50 = S$21.50**\n\nTherefore, the contribution per order is **S$21.50**.",
+      "stub": false,
+      "ms": 2876
+    },
+    {
+      "id": "negative_contribution",
+      "ok": true,
+      "text": "To calculate the contribution per order, we can break down the costs and revenues as follows:\n\n- **Price**: S$20.00\n- **Cost**: S$18.00\n- **Shipping**: S$4.00\n- **Marketplace Fee (10% of price)**: S$2.00 (10% of S$20)\n- **Refund/Return Allowance**: S$1.00\n\nNow, we can calculate the total expenses:\n\n1. Total Cost = Cost + Shipping + Marketplace Fee + Refund\n - Total Cost = S$18.00 + S$4.00 + S$2.00 + S$1.00 = S$25.00\n\n2. Contribution per order = Price - Total Cost\n - Contribution per order = S$20.00 - S$25.00 = S$-5.00\n\n**Contribution per order**: S$-5.00\n\nThis indicates a loss of S$5.00 for each order.",
+      "stub": false,
+      "ms": 2772
+    },
+    {
+      "id": "forecast_vs_realised",
+      "ok": true,
+      "text": "### Realised Contribution per Order\n\n**Realised Figures:**\n- **Revenue:** S$900\n- **COGS:** S$500\n- **Fees:** S$80\n- **Shipping:** S$60\n- **Refunds:** S$40\n- **Orders:** 80\n\n**Calculating Realised Contribution:**\n\n1. **Total Costs:**\n - COGS + Fees + Shipping + Refunds\n - S$500 + S$80 + S$60 + S$40 = S$680\n\n2. **Realised Contribution:**\n - Revenue - Total Costs\n - S$900 - S$680 = S$220\n\n3. **Realised Contribution per Order:**\n - Total Realised Contribution / Number of Orders\n - S$220 / 80 = S$2.75\n\n### Summary\n- **Realised Contribution per Order:** S$2.75\n\nThis separates the realised figures from the forecasted contribution of S$12 per order, as requested.",
+      "stub": false,
+      "ms": 3387
+    },
+    {
+      "id": "supplier_decision_with_arith",
+      "ok": true,
+      "text": "**Recommended Path:** Select QUILL for the order.\n\n**Why:** The contribution per order is calculated as follows:\n\n- **Price:** S$40.00\n- **Supplier Cost:** S$18.00\n- **Shipping:** S$4.00\n- **Marketplace Fee (6% of price):** S$2.40\n- **Refund/Return Allowance:** S$1.00\n\n**Contribution per Order Calculation:**\n\\[\n\\text{Contribution} = \\text{Price} - (\\text{Supplier Cost} + \\text{Shipping} + \\text{Marketplace Fee} + \\text{Refund})\n\\]\n\\[\n\\text{Contribution} = 40 - (18 + 4 + 2.40 + 1) = 40 - 25.40 = S$14.60\n\\]\n\n**Main Risk:** The main risk lies in the pending approval for EMBER, which could affect the overall execution if not granted.\n\n**Immediate Next Action:** Proceed with selecting QUILL as th",
+      "stub": false,
+      "ms": 3262
+    },
+    {
+      "id": "missing_fee",
+      "ok": true,
+      "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n\n**Contribution/order:** UNKNOWN\nMarketplace fee is mentioned but neither a percentage nor a fixed amount is supplied — CONTRIBUTION=UNKNOWN.\n**Need:** marketplace fee % of price or fixed fee amount.",
+      "stub": false,
+      "ms": 2291
+    },
+    {
+      "id": "mixed_currency",
+      "ok": true,
+      "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n\n**Contribution/order:** UNKNOWN\nMixed currencies without an explicit FX conversion rate — keep ledgers separate.\n**Currency:** MIXED — no invented FX. Provide a conversion rate or keep one currency.",
+      "stub": false,
+      "ms": 2975
+    },
+    {
+      "id": "warm_bounded",
+      "ok": true,
+      "texts": [
+        "EmpireAI has received zero realised orders to date.",
+        "### Synthetic new case. Price S$40, cost S$18, ship S$4, fee 6% of price, refund S$1. Contribution/order\n**Scope:** arithmetic and economics from supplied scenario figures only.\n\n- **RADIX**: metric from pack lines; eligible=YES\n- **SOLAR**: metric from pack lines; eligible=NO\n\n**Deterministic contribution/order:** S$14.60\n- Price: S$40.00\n- Supplier cost: S$18.00\n- Shipping: S$4.00\n- Marketplace fee (6% of price): S$2.40\n- Refund/return allowance: S$1.00\n- **Contribution/order:** S$14.60\n\n**Cur"
+      ],
+      "stub": false
+    },
+    {
+      "id": "open_g1_preserve",
+      "ok": true,
+      "text": "To design a synthetic supplier-selection process, the first step would be to define the selection criteria based on the strategic objectives of the Empire. This involves identifying key factors such as:\n\n1. **Quality Standards**: Establish the required quality benchmarks for products or services.\n\n2. **Cost Efficiency**: Determine acceptable pricing structures that align with budget constraints.\n\n3. **Reliability**: Assess suppliers' track records for timely deliveries and consistent performance.\n\n4. **Capacity**: Evaluate the suppliers' ability to meet volume demands.\n\n5. **Sustainability Practices**: Consider environmental and ethical standards in supplier operations.\n\n### Why This Step? D",
+      "stub": false,
+      "ms": 3274
+    },
+    {
+      "id": "classic_ec01",
+      "ok": true,
+      "text": "S$14.60\n\n### Synthetic probe only. Price S$40, supplier cost S$18, shipping S$4, marketplace fee 6% of price, ref\n**Scope:** scenario arithmetic — deterministic calculator (authoritative).\n\n- Price: S$40.00\n- Supplier cost: S$18.00\n- Shipping: S$4.00\n- Marketplace fee (6% of price): S$2.40\n- Refund/return allowance: S$1.00\n- **Contribution/order:** S$14.60\n\nFormula: contribution = price − supplier − shipping − marketplace_%fee − marketplace_fixed − return − other\n\n**Contribution/order = S$14.60** (exact; do not round to a whole number).",
+      "stub": false,
+      "ms": 1273
+    }
+  ],
+  "REPRESENTATIVE_REVIEW_COUNT": 10,
+  "MATERIAL_ANOMALIES": 0,
+  "LATENCY_P50_MS": 2935,
+  "LATENCY_P95_MS": 5951,
+  "EXTRA_LLM_CALLS": 0
+}

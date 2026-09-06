@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-09-06T23:31:53.594Z",
+  "DEPLOYMENT_ID": "0c0c3115-a222-445d-8950-8552e524abad",
+  "RUNNING_BRAIN_SHA": "",
+  "EC01_BEFORE": "PARTIAL",
+  "EC01_AFTER": "DEMONSTRATED",
+  "EC01_DELTA": "IMPROVED",
+  "EC02_BEFORE": "NOT_DEMONSTRATED",
+  "EC02_AFTER": "DEMONSTRATED",
+  "EC02_DELTA": "IMPROVED",
+  "EC03_DELTA": "UNCHANGED",
+  "EC10_DELTA": "UNCHANGED",
+  "EC18_DELTA": "UNCHANGED",
+  "EC25_WARM_DELTA": "UNCHANGED",
+  "results": [
+    {
+      "id": "EC01",
+      "before": "PARTIAL (S$15 vs ~14.60)",
+      "ok": true,
+      "delta": "IMPROVED",
+      "text": "S$14.60\n\n### Synthetic probe only. Price S$40, supplier cost S$18, shipping S$4, marketplace fee 6% of price, ref\n**Scope:** scenario arithmetic — deterministic calculator (authoritative).\n\n- Price: S$40.00\n- Supplier cost: S$18.00\n- Shipping: S$4.00\n- Marketplace fee (6% of price): S$2.40\n- Refund/return allowance: S$1.00\n- **Contribution/order:** S$14.60\n\nFormula: contribution = price − supplier − shipping − marketplace_%fee − marketplace_fixed − return − other\n\n**Contribution/order = S$14.60*",
+      "stub": false,
+      "ms": 1526
+    },
+    {
+      "id": "EC02",
+      "before": "NOT_DEMONSTRATED / S$13 vs ~12.60",
+      "ok": true,
+      "delta": "IMPROVED",
+      "text": "To calculate the contribution per order after the cost rise, we can break down the costs as follows:\n\n1. **Price**: S$40.00\n2. **Supplier Cost**: S$20.00\n3. **Shipping**: S$4.00\n4. **Marketplace Fee (6% of Price)**: S$2.40 (which is 6% of S$40.00)\n5. **Refund Allowance**: S$1.00\n\nNow, we can calculate the total costs:\n- Total Costs = Supplier Cost + Shipping + Marketplace Fee + Refund Allowance\n- Total Costs = S$20.00 + S$4.00 + S$2.40 + S$1.00 = S$27.40\n\nFinally, we can calculate the contributi",
+      "stub": false,
+      "ms": 2636
+    },
+    {
+      "id": "EC03",
+      "before": "DEMONSTRATED",
+      "ok": true,
+      "delta": "UNCHANGED",
+      "text": "### Realised Contribution Per Order\n\n**Realised Financials:**\n- **Revenue:** S$900\n- **COGS (Cost of Goods Sold):** S$500\n- **Fees:** S$80\n- **Shipping:** S$60\n- **Refunds:** S$40\n- **Orders:** 80\n\n**Calculating Realised Contribution:**\n\n1. **Total Costs:**\n - COGS + Fees + Shipping + Refunds = S$500 + S$80 + S$60 + S$40 = S$680\n\n2. **Realised Contribution:**\n - Revenue - Total Costs = S$900 - S$680 = S$220\n\n3. **Contribution Per Order:**\n - Realised Contribution / Orders = S$220 / 80 = S$2.75\n\n",
+      "stub": false,
+      "ms": 3017
+    },
+    {
+      "id": "EC10",
+      "before": "DEMONSTRATED",
+      "ok": true,
+      "delta": "UNCHANGED",
+      "text": "The current recommendation is to proceed with selecting QUILL, as it is the only eligible candidate with approval granted. This selection aligns with the objective of maximizing Long-Term Empire Value under Grand King authority. If you approve this recommendation, it is expected to enhance the Empire's prosperity and resilience in the long term.",
+      "stub": false,
+      "ms": 1548
+    },
+    {
+      "id": "EC18",
+      "before": "IMPROVED after UNBLOCK",
+      "ok": true,
+      "delta": "UNCHANGED",
+      "text": "To design a synthetic supplier-selection process, the first step would be to define the criteria for supplier evaluation. This includes identifying key factors such as:\n\n1. **Cost**: Assessing the pricing structure and payment terms.\n\n2. **Quality**: Evaluating the quality of products or services offered.\n\n3. **Reliability**: Considering the supplier's track record for timely delivery and consistency.\n\n4. **Capacity**: Ensuring the supplier can meet demand levels.\n\n5. **Compliance**: Checking ad",
+      "stub": false,
+      "ms": 2691
+    },
+    {
+      "id": "EC25_WARM",
+      "before": "IMPROVED after UNBLOCK",
+      "ok": true,
+      "delta": "UNCHANGED",
+      "texts": [
+        "EmpireAI has received zero realised orders.",
+        "**Recommended Path:** Proceed with the synthetic new case as requested.\n\n**Why:** The contribution per order is calculated to be S$14.60, and since RADIX is granted and approval is pending, it is the only eligible option at this time.\n\n**Main Risk:** The main risk involves the opportunity cost if a higher expected value alternative is ignored.\n\n**Immediate Next Action:** Prepare for approval to pr"
+      ],
+      "stub": false
+    }
+  ]
+}
