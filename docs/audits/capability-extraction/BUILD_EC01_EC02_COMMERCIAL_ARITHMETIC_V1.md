@@ -14,7 +14,7 @@
 | SEMANTIC_CODE_SHA | `b5928344` |
 | RUNNING_BRAIN_SHA | null on `railway up` (expected) |
 | DEPLOYMENT_ID | `0c0c3115-a222-445d-8950-8552e524abad` |
-| DOCS_SEAL_SHA | (this docs commit) |
+| DOCS_SEAL_SHA | `b9f1b950` |
 
 ---
 
