@@ -1,4 +1,4 @@
-# BUILD: EC01/EC02 Commercial Arithmetic Precision V1
+# BUILD EC01/EC02 — Commercial Arithmetic Precision V1
 
 **MISSION_TYPE:** DEVELOPMENT_BUILD  
 **TARGET:** EC01_EC02_COMMERCIAL_ARITHMETIC  
@@ -14,54 +14,46 @@
 | SEMANTIC_CODE_SHA | `b5928344` |
 | RUNNING_BRAIN_SHA | null on `railway up` (expected) |
 | DEPLOYMENT_ID | `0c0c3115-a222-445d-8950-8552e524abad` |
-| DOCS_SEAL_SHA | `b9f1b950` |
-
----
+| DOCS_SEAL_SHA | (this docs commit) |
 
 ## A. EC01/02 baseline failures
 
-| Probe | Expected | Before (Pillow) | Class |
+| Probe | Expected | Baseline Pillow | Class |
 |---|---|---|---|
-| EC01 classic | ~S$14.60 | **S$15** | NATIVE_CAPABILITY_GAP (fee% rounding) |
-| EC02 cost shock | ~S$12.60 | **S$13** | follows prior rounding |
-| Decimal fee | 39.90 / 12.35 / 4.80 / 14.5% / 1.20 → **15.76** | often whole-number approx | premature rounding |
+| EC01 L0 | ~S$14.60 | **S$15** | NATIVE_CAPABILITY_GAP (fee% rounding) |
+| EC02 L0 | ~S$12.60 | **S$13** | Follow-on of same arithmetic gap |
 
-Differed from recent orchestration/stub failures → **BUILD** justified; scope kept to commercial arithmetic.
-
----
+Not orchestration/Unsupported takeover — deterministic math was approximated by the LLM.
 
 ## B. Existing arithmetic architecture
 
-| Field | Value |
+| Item | Finding |
 |---|---|
 | EXISTING_ARITHMETIC_AUTHORITIES | presale `calculateExpectedContribution` (absolute fees); pricing-worker fee%×price; decision-case `parseMoney`/`parsePct`; **no** prior executive fee%→contribution calculator on chat path |
-| DUPLICATION | avoided — single new executive module |
+| DUPLICATION | avoided — one new executive module |
 | REUSED_COMPONENTS | contribution formula shape from presale; fee%×price from pricing-worker |
-| CHOSEN | new `executive-commercial-arithmetic.ts` + task-contract / release-gate / bounded-decision inject |
-
----
+| Chosen module | `backend/src/orchestration/pillow-host/executive-commercial-arithmetic.ts` |
 
 ## C. Chosen implementation
 
-1. **Parse** commercial operands (price, supplier, shipping, % fee, fixed fee, refund, other, currency).
-2. **Compute** deterministically:  
-   `contribution = price − supplier − shipping − (price × fee%/100) − fixed − return − other`
-3. **Authority path:**
-   - Pure arith asks → `synthesizeCommercialArithmeticAnswer`
-   - Decision + arith → decision synthesis **injects** calculator contribution (does not suppress SELECT)
-   - Release gate → `repairAnswerWithCalculator` overrides invented FX / false-complete / wrong rounding
-4. **Unknown discipline:** missing fee → `CONTRIBUTION=UNKNOWN`; MIXED currency without FX → no invented conversion; forecast/realised ledgers not forced through unit-price UNKNOWN.
+**Principle:** Pillow interprets → structured operands → deterministic calculator → verified numeric result → Pillow reasons.
 
----
+Wiring:
+1. **Task synthesizer** — pure arithmetic asks use `synthesizeCommercialArithmeticAnswer` before epistemic/open shells.
+2. **Decision cases** — eligibility/selection remains decision authority; economics branch injects calculator contribution.
+3. **Release gate** — `repairAnswerWithCalculator` overrides invented FX, false-complete fee-unknown claims, and numeric mismatches.
+4. **LLM brief** — `DETERMINISTIC_ARITHMETIC` injected when contribution is resolved.
+
+**Does not:** invent missing costs, invent FX, combine forecast/realised ledgers, or teach arithmetic via prose prompts.
 
 ## D. Precision / rounding policy
 
-| Field | Policy |
+| Policy | Value |
 |---|---|
-| INTERNAL_PRECISION_POLICY | IEEE float64 for intermediates; percentage fee = price × (pct/100) at full precision before subtraction |
-| VISIBLE_ROUNDING_POLICY | Round only final contribution/margin for display to **2 decimal places**; do not round intermediate fee amounts before contribution |
+| INTERNAL_PRECISION_POLICY | IEEE float64 intermediates; percentage fee = price × (pct/100) at full precision before subtraction |
+| VISIBLE_ROUNDING_POLICY | Round only final contribution/margin for display to 2 decimal places; do not round intermediate fee amounts before contribution |
 
----
+Example: 14.5% × S$39.90 = 5.7855 internally → contribution 15.7645 → display **S$15.76**.
 
 ## E–I. Qualification (DEV_ARITH_FULL)
 
@@ -76,90 +68,91 @@ Evidence: `BUILD_EC01_EC02_ARITH_DEV_FULL_QUAL.json`
 | INVENTED_FX | 0 |
 | INVENTED_COST | 0 |
 | FALSE_COMPLETE_ECONOMICS | 0 |
-| DEV_ARITH_FAST_PASS | YES (core lock + %) |
+| CROSS_SECTION_ARITHMETIC_MISMATCH | 0 (repair enforces) |
+| DEV_ARITH_FAST_PASS | YES (core lock + qualify) |
 | DEV_ARITH_FULL_PASS | YES |
-| PRESERVE_REGRESSION_PASS | YES (PRESERVE_MATERIAL_REGRESSION=0) |
-
----
+| PRESERVE_REGRESSION_PASS | YES / PRESERVE_MATERIAL_REGRESSION=0 |
 
 ## J–K. PRESERVE + G1/G2
 
 | Gate | Result |
 |---|---|
-| PRESERVE_MATERIAL_REGRESSION | 0 |
-| G1_OPEN_STUB | **CLEARED** |
-| G2_WARM_TRANSITION | **CLEARED** |
-| G4_ARITHMETIC | **CLEARED** |
+| G1_OPEN_STUB | **CLEARED** (open supplier-process plan; no Unsupported takeover) |
+| G2_WARM_TRANSITION | **CLEARED** (live zero-orders → bounded RADIX + S$14.60) |
+| PRESERVE EC03/EC10/EC18/warm EC25 | no material regression on delta slice |
 
----
-
-## L. Capability delta (small production slice)
+## L. Capability delta
 
 Evidence: `BUILD_EC01_EC02_ARITH_CAPABILITY_DELTA.json`
 
 | Capability | Before | After | Delta |
 |---|---|---|---|
-| EC01 | PARTIAL (15 vs 14.60) | exact 14.60 | **IMPROVED** |
-| EC02 | NOT_DEMONSTRATED (13 vs 12.60) | exact 12.60 | **IMPROVED** |
-| EC03 | DEMONSTRATED | realised 2.75 kept separate | **UNCHANGED** |
-| EC10 | DEMONSTRATED | gate-correct | **UNCHANGED** |
-| EC18 | IMPROVED (prior UNBLOCK) | open plan, no stub | **UNCHANGED** |
-| EC25 warm | IMPROVED (prior UNBLOCK) | RADIX + 14.60, no Unsupported | **UNCHANGED** |
-
----
+| EC01 | PARTIAL (15 vs 14.60) | DEMONSTRATED (14.60) | **IMPROVED** |
+| EC02 | NOT_DEMONSTRATED (13 vs 12.60) | DEMONSTRATED (12.60) | **IMPROVED** |
+| EC03 | DEMONSTRATED | still separates forecast/realised | **UNCHANGED** |
+| EC10 | DEMONSTRATED | gate-correct select | **UNCHANGED** |
+| EC18 | IMPROVED (UNBLOCK) | open plan, no stub | **UNCHANGED** |
+| EC25 warm | IMPROVED (UNBLOCK) | RADIX + 14.60 | **UNCHANGED** |
 
 ## M. Representative production review
 
 Evidence: `BUILD_EC01_EC02_ARITH_PRODUCTION_VALIDATE.json`  
-**REPRESENTATIVE_REVIEW_COUNT=10** · **MATERIAL_ANOMALIES=0** · **PRODUCTION_FIRST_VISIBLE_PASS=YES**
+**REPRESENTATIVE_REVIEW_COUNT:** 10  
+**MATERIAL_ANOMALIES:** 0  
+**PRODUCTION_FIRST_VISIBLE_PASS:** YES
 
-### Before → After (classic)
+| Case | Observed |
+|---|---|
+| percentage-fee 39.90 / 14.5% | **S$15.76** |
+| fixed-fee | **S$21.50** |
+| negative contribution | **S$-5.00** |
+| forecast vs realised | realised **S$2.75**; forecast kept separate |
+| supplier + arith | **S$14.60** + QUILL |
+| missing fee | **UNKNOWN** (no invented fee) |
+| mixed currency | **MIXED / no invented FX** |
+| warm bounded | zero orders → RADIX + **S$14.60** |
+| open G1 | plan steps; no Unsupported takeover |
+| classic EC01 | **S$14.60** (not 15) |
 
-| Case | Before | After |
-|---|---|---|
-| Price 40 / cost 18 / ship 4 / fee 6% / refund 1 | **S$15** | **S$14.60** |
-| Cost rises to 20 | **S$13** | **S$12.60** |
-| 39.90 / 12.35 / 4.80 / 14.5% / 1.20 | rounded whole | **S$15.76** |
-| Missing fee | invented partial | **UNKNOWN** |
-| SGD + USD without FX | invented rate | **MIXED / no invented FX** |
-| Warm + select | Unsupported risk historically | **RADIX SELECT + S$14.60** |
+### Before → after (classic)
 
----
+| | Text |
+|---|---|
+| BEFORE | contribution ≈ **S$15** |
+| AFTER | **Contribution/order = S$14.60** (calculator-authoritative) |
 
 ## N. Latency
 
-| Metric | Baseline (capability extraction) | Candidate (prod validate) |
-|---|---|---|
-| P50 | ~4142 ms | **2935 ms** |
-| P95 | ~14017 ms | **5951 ms** |
-| EXTRA_LLM_CALLS | — | **0** |
+| Metric | Value |
+|---|---|
+| BASELINE_P50 / P95 (capability extraction envelope) | 4142 / 14017 ms |
+| CANDIDATE_P50 / P95 (production validate) | **2935 / 5951** ms |
+| EXTRA_LLM_CALLS | **0** |
 
-Deterministic calculator adds negligible latency (no extra LLM round-trip).
+Deterministic calculator adds negligible latency; no extra LLM round-trip.
 
----
+## O. SHAs / deployment
 
-## O. Remaining weaknesses
+See table at top. Semantic tip includes: `8448b70b` (feat) → repair series → `b5928344` (decision economics inject).
 
-- Forecast/realised **ledger** totals still rely on LLM arithmetic when not unit-price shaped (EC03 preserved; not a second calculator layer).
-- Some LLM bodies still narrate math; calculator/repair ensures authoritative figure when unit economics resolve.
-- `RUNNING_BRAIN_SHA` remains null on CLI `railway up` (known).
+## P. Remaining weaknesses
 
----
+- Forecast/realised **ledger totals** still rely on LLM arithmetic when no unit selling-price operands exist (EC03 path intentionally leaves calculator); unit-price contribution path is calculator-owned.
+- Some LLM bodies still narrate correct math; release repair / synthesizer enforce authority when they diverge.
+- No general algebra / tax / multi-currency FX engine (by design).
 
-## P. Wave-entry gate
+## Q. Wave-entry gate
 
 | Gate | Status |
 |---|---|
 | G1_OPEN_STUB | CLEARED |
 | G2_WARM_TRANSITION | CLEARED |
 | G4_ARITHMETIC | **CLEARED** |
-| WAVE_1_ENTRY_READY | **YES** (engineering view — ChatGPT/Grand King decide entry) |
+| WAVE_1_ENTRY_READY | **YES** (engineering view — ChatGPT/Grand King decide MEASURE_MORE) |
 
 **Do not restart Wave automatically.**
 
----
-
-## Q. Exact next action
+## R. Exact next action
 
 **STOP.** Return to Grand King + ChatGPT.  
 ChatGPT decides whether Wave 1 entry is satisfied or MEASURE_MORE capabilities require development first.
@@ -175,4 +168,22 @@ WAVE_2=UNCERTIFIED
 WAVE_3=LOCKED
 BIRTH_AUTHORISED=NO
 WAVE_CREDIT=0
+```
+
+## Final stop block
+
+```
+MISSION_TYPE=DEVELOPMENT_BUILD
+TARGET=EC01_EC02_COMMERCIAL_ARITHMETIC
+TARGET_CLOSED=YES
+G1_OPEN_STUB=CLEARED
+G2_WARM_TRANSITION=CLEARED
+G4_ARITHMETIC=CLEARED
+WAVE_1_ENTRY_READY=YES
+WAVE_CREDIT=0
+WAVE_1=UNCERTIFIED
+WAVE_1_CLEAN_STREAK=0
+BIRTH_AUTHORISED=NO
+
+STOP.
 ```
