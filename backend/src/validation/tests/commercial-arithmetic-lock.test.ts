@@ -14,6 +14,7 @@ import {
   roundMoneyVisible,
   synthesizeCommercialArithmeticAnswer,
   detectArithmeticMismatch,
+  repairAnswerWithCalculator,
 } from "../../orchestration/pillow-host/executive-commercial-arithmetic.js";
 import {
   parseExecutiveTaskContract,
@@ -140,5 +141,23 @@ describe("EC01/EC02 commercial arithmetic", () => {
     );
     assert.ok(a);
     assert.match(a!, /20\.00/); // 50-20-5-5=20
+  });
+
+  it("repair overrides invented FX on MIXED currency", () => {
+    const msg =
+      "Synthetic. Price S$40, supplier cost USD 18, shipping S$4, fee 6% of price. Contribution?";
+    const bad =
+      "Assuming an exchange rate of 1 USD = S$1.35, contribution is S$8.10.";
+    const fixed = repairAnswerWithCalculator(bad, msg);
+    assert.match(fixed, /MIXED|no invented FX|UNKNOWN/i);
+    assert.doesNotMatch(fixed, /1\s*USD\s*=\s*S\$1\.35/);
+  });
+
+  it("repair overrides false-complete when fee unknown", () => {
+    const msg =
+      "Synthetic. Price S$40, cost S$18, shipping S$4, marketplace fee unknown. Contribution per order?";
+    const bad = "Contribution per order = S$18.00 after subtracting known costs.";
+    const fixed = repairAnswerWithCalculator(bad, msg);
+    assert.match(fixed, /UNKNOWN/i);
   });
 });

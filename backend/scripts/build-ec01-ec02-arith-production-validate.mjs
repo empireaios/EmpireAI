@@ -126,8 +126,9 @@ const cases = [
     ok: (t) =>
       !stubTakeover(t) &&
       /\brealis/i.test(t) &&
-      /\bforecast\b/i.test(t) &&
-      !/invented FX/i.test(t),
+      /2\.75/.test(t) &&
+      !/(?:exchange\s+rate|1\s*USD\s*=)/i.test(t) &&
+      !/(?:blended|combined)\s+contribution/i.test(t),
   },
   {
     id: "supplier_decision_with_arith",
@@ -139,13 +140,19 @@ const cases = [
     id: "missing_fee",
     prompt:
       "Synthetic. Price S$40, cost S$18, shipping S$4, marketplace fee unknown. Contribution per order?",
-    ok: (t) => /UNKNOWN|unknown|cannot|need/i.test(t) && !/\$15\b|14\.60/.test(t),
+    ok: (t) =>
+      /\bUNKNOWN\b/i.test(t) &&
+      !/(?:contribution[^\n]{0,40}(?:S\$|\$)\s*18\.00)/i.test(t) &&
+      !stubTakeover(t),
   },
   {
     id: "mixed_currency",
     prompt:
       "Synthetic. Price S$40, supplier cost USD 18, shipping S$4, fee 6% of price. Contribution?",
-    ok: (t) => /MIXED|FX|conversion|separate|cannot/i.test(t) && !stubTakeover(t),
+    ok: (t) =>
+      /(?:MIXED|no invented FX|conversion rate|UNKNOWN)/i.test(t) &&
+      !/(?:1\s*USD\s*=|assuming\s+(?:an\s+)?(?:exchange\s+)?rate)/i.test(t) &&
+      !stubTakeover(t),
   },
   {
     id: "warm_bounded",

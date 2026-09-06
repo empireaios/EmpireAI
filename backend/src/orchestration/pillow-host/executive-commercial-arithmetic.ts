@@ -401,12 +401,61 @@ export function detectArithmeticMismatch(
   return false;
 }
 
+function answerInventsFx(answer: string): boolean {
+  return /(?:exchange\s+rate|assuming\s+(?:an\s+)?(?:exchange\s+)?rate|1\s*USD\s*=|convert(?:ed|ing)?\s+(?:to|into)\s+S\$|USD\s+\d+[^\n]{0,40}S\$)/i.test(
+    answer,
+  );
+}
+
+function answerAssertsNumericContribution(answer: string): boolean {
+  return (
+    /contribution[^\n]{0,64}(?:S\$|SGD|US\$|\$)?\s*-?\d+(?:\.\d+)?/i.test(answer) &&
+    !/\bUNKNOWN\b/i.test(answer)
+  );
+}
+
+/**
+ * Calculator authority on release: exact numbers win; UNKNOWN/MIXED overrides
+ * invented FX or false-complete contribution claims.
+ */
 export function repairAnswerWithCalculator(answer: string, message: string): string {
   if (!isCommercialArithmeticAsk(message)) return answer;
+  if (/Deterministic contribution\/order|deterministic calculator \(authoritative\)/i.test(answer)) {
+    return answer;
+  }
   const r = resolveCommercialArithmetic(message);
-  if (!r.ok || r.displayContribution == null) return answer;
-  if (!detectArithmeticMismatch(answer, r)) return answer;
-  if (/Deterministic contribution\/order/i.test(answer)) return answer;
+  const synth = synthesizeCommercialArithmeticAnswer(message);
+
+  if (!r.ok) {
+    if (!synth) return answer;
+    const needsOverride =
+      answerInventsFx(answer) ||
+      answerAssertsNumericContribution(answer) ||
+      (r.currency === "MIXED" && !/no invented FX|MIXED|conversion rate/i.test(answer)) ||
+      (r.operands.feeMentionedWithoutValue &&
+        !/\bUNKNOWN\b|cannot (?:be )?(?:definitively )?calculat|fee (?:is )?(?:unknown|unstated|missing)/i.test(
+          answer,
+        ));
+    if (needsOverride) return synth;
+    if (!/\bUNKNOWN\b|no invented FX/i.test(answer)) {
+      return `${answer.trim()}\n\n${synth}`;
+    }
+    return answer;
+  }
+
+  if (r.displayContribution == null) return answer;
+  if (answerInventsFx(answer)) return synth || answer;
+  if (!detectArithmeticMismatch(answer, r) && answer.includes(r.contribution!.toFixed(2))) {
+    return answer;
+  }
+  // Pure arithmetic asks: replace with calculator body. Decision asks: append exact figure.
+  if (
+    synth &&
+    !/\b(?:select|eligible|granted|pending|recommend)\b/i.test(message) &&
+    detectArithmeticMismatch(answer, r)
+  ) {
+    return synth;
+  }
   return `${answer.trim()}\n\n**Deterministic contribution/order:** ${r.displayContribution} (calculator-authoritative; do not use a rounded whole-number substitute).`;
 }
 
