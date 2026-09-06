@@ -7,6 +7,7 @@ import {
   buildDecisionCaseState,
   type DecisionCaseState,
 } from "./executive-decision-case-state.js";
+import { resolveCommercialArithmetic } from "./executive-commercial-arithmetic.js";
 
 export type RequestExecutionMode =
   | "BOUNDED_HYPOTHETICAL_ANALYSIS"
@@ -221,7 +222,7 @@ export function shouldAuthorWithEvidenceStructureAudit(input: {
 export function synthesizeBoundedDecisionObligation(
   subject: string,
   state: DecisionCaseState,
-  _userMessage?: string,
+  userMessage?: string,
 ): string | null {
   const label = (subject || "analysis").replace(/^Claim\s*\d+\s*:\s*/i, "").trim().slice(0, 100);
   const s = label.toLowerCase();
@@ -311,13 +312,30 @@ export function synthesizeBoundedDecisionObligation(
         c.supportedMetric != null ? `supportedMetric=${c.supportedMetric}` : "metric from pack lines";
       return `- **${c.displayName}**: ${metric}; eligible=${c.currentlyEligible ? "YES" : "NO"}`;
     });
+    const arith = userMessage ? resolveCommercialArithmetic(userMessage) : null;
+    const arithLines =
+      arith?.ok && arith.displayContribution
+        ? [
+            "",
+            `**Deterministic contribution/order:** ${arith.displayContribution}`,
+            ...arith.breakdownLines.map((l) => `- ${l}`),
+          ]
+        : arith?.unknownReason
+          ? ["", `**Contribution/order:** UNKNOWN — ${arith.unknownReason}`]
+          : ["", "Perform stated calculations from pack values."];
+    const selectLine =
+      state.recommendation.status === "SELECT" && state.recommendation.selectedId
+        ? ["", `**Current action:** SELECT ${state.recommendation.selectedId}.`]
+        : [];
     return [
       `### ${label}`,
       "**Scope:** arithmetic and economics from supplied scenario figures only.",
       "",
       ...econ,
+      ...arithLines,
+      ...selectLine,
       "",
-      "Perform stated calculations from pack values. Do not demand external verification for owner-supplied scenario operands.",
+      "Do not demand external verification for owner-supplied scenario operands.",
     ].join("\n");
   }
 
