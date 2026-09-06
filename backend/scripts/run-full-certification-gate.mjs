@@ -56,6 +56,7 @@ for (const script of [
   "scripts/decision-state-authority-qualify.mjs",
   "scripts/bounded-commercial-routing-qualify.mjs",
   "scripts/unblock-epistemic-open-bounded-qualify.mjs",
+  "scripts/build-ec01-ec02-arith-qualify.mjs",
   "scripts/transport-boundary-contract-qualify.mjs",
 ]) {
   console.log(`\n▶ ${script}`);

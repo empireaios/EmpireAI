@@ -74,6 +74,7 @@ for (const script of [
   "scripts/decision-state-authority-qualify.mjs",
   "scripts/bounded-commercial-routing-qualify.mjs",
   "scripts/unblock-epistemic-open-bounded-qualify.mjs",
+  "scripts/build-ec01-ec02-arith-qualify.mjs",
 ]) {
   const q = spawnSync(process.execPath, ["--import", "tsx", script], {
     cwd: backendRoot,

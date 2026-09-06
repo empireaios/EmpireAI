@@ -30,6 +30,7 @@ import {
   type DisclosureLevel,
   type ExecutiveTaskIntent,
 } from "./executive-conversation-surface.js";
+import { repairAnswerWithCalculator } from "./executive-commercial-arithmetic.js";
 import {
   assessDecisionQuality,
   repairDecisionQualityAnswer,
@@ -823,8 +824,12 @@ export function releaseExecutiveAnswer(
       telemetry.taskCoverage = coverage;
       telemetry.silentlyDroppedMaterialTasks = coverage.silentlyDroppedTasks;
       if (item.path !== "clean") telemetry.reconstructionSucceeded = true;
+      const arithRepaired = repairAnswerWithCalculator(
+        fin.message,
+        options.userMessage ?? "",
+      );
       return {
-        message: fin.message,
+        message: arithRepaired,
         released: true,
         violations: priorViolations,
         telemetry,

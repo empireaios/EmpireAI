@@ -55,6 +55,11 @@ import {
   synthesizeBoundedDecisionObligation,
   synthesizeOpenExecutiveReasoning,
 } from "./executive-request-execution-plan.js";
+import {
+  formatCommercialArithmeticBrief,
+  isCommercialArithmeticAsk,
+  synthesizeCommercialArithmeticAnswer,
+} from "./executive-commercial-arithmetic.js";
 
 export type { ReasoningScopeType, MaterialConstraint, AuthorityTaskKind };
 
@@ -1094,6 +1099,16 @@ export function synthesizeTaskUnitAnswer(
       : [subject];
   const constraints = opts.materialConstraints ?? [];
 
+  // Deterministic commercial arithmetic precedes epistemic / open shells.
+  const packForArith = `${opts.userMessage ?? ""} ${subject} ${span}`;
+  if (
+    task.kind !== "operating_briefing" &&
+    isCommercialArithmeticAsk(packForArith)
+  ) {
+    const arith = synthesizeCommercialArithmeticAnswer(packForArith, subject);
+    if (arith) return arith;
+  }
+
   // Valid decision case: specialized path precedes generic epistemic Unsupported.
   if (decisionCase && task.kind !== "operating_briefing") {
     if (task.kind === "recommendation") {
@@ -1806,6 +1821,8 @@ export function formatTaskContractBrief(
   ];
   if (userMessage) {
     lines.push(formatCanonicalStateBrief(buildCanonicalCaseState(userMessage)));
+    const arithBrief = formatCommercialArithmeticBrief(userMessage);
+    if (arithBrief) lines.push(arithBrief);
   }
   if (isScopedAwayFromLiveEmpire(contract.scopeType, userMessage)) {
     if (isOpenExecutiveReasoningAsk(userMessage || "")) {

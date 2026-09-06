@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-09-06T13:55:30.256Z",
+  "DEV_ARITH_FULL_PASS": true,
+  "INTERNAL_PRECISION_POLICY": "IEEE float64 for intermediates; percentage fee = price × (pct/100) at full precision before subtraction.",
+  "VISIBLE_ROUNDING_POLICY": "Round only the final contribution/margin for display to 2 decimal places; do not round intermediate fee amounts before contribution.",
+  "EC01_RAW_CASES": 150,
+  "EC02_UNIT_ECONOMIC_CASES": 150,
+  "DECIMAL_EDGE_CASES": 100,
+  "INTEGRATED_COMMERCIAL_CASES": 75,
+  "INVENTED_FX": 0,
+  "INVENTED_COST": 0,
+  "FALSE_COMPLETE_ECONOMICS": 0,
+  "MATERIAL_ARITHMETIC_ERROR": 0,
+  "UNIT_ECONOMIC_ERROR": 0,
+  "PREMATURE_ROUNDING_ERROR": 0,
+  "G1_OPEN_STUB": "CLEARED",
+  "G2_WARM_TRANSITION": "CLEARED",
+  "PRESERVE_MATERIAL_REGRESSION": 0,
+  "EXISTING_ARITHMETIC_AUTHORITIES": "presale calculateExpectedContribution (abs fees); pricing-worker fee%; decision-case parseMoney/parsePct; no prior executive fee% contribution calculator",
+  "REUSED_COMPONENTS": "contribution formula shape from presale; fee%×price from pricing-worker; new executive-commercial-arithmetic.ts"
+}
