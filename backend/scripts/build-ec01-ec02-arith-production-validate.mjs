@@ -141,8 +141,10 @@ const cases = [
     prompt:
       "Synthetic. Price S$40, cost S$18, shipping S$4, marketplace fee unknown. Contribution per order?",
     ok: (t) =>
-      /\bUNKNOWN\b/i.test(t) &&
-      !/(?:contribution[^\n]{0,40}(?:S\$|\$)\s*18\.00)/i.test(t) &&
+      /Contribution\/order:\*\*\s*UNKNOWN|Contribution\/order:\s*UNKNOWN|CONTRIBUTION\s*=\s*UNKNOWN/i.test(
+        t,
+      ) &&
+      !/assume(?:s|d|ing)?\s+(?:the\s+)?(?:marketplace\s+)?fee\s+is\s+zero/i.test(t) &&
       !stubTakeover(t),
   },
   {

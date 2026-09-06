@@ -407,11 +407,25 @@ function answerInventsFx(answer: string): boolean {
   );
 }
 
+/** True when calculator already authored an authoritative UNKNOWN block. */
+function hasAuthoritativeUnknown(answer: string): boolean {
+  return (
+    /\*\*Contribution\/order:\*\*\s*UNKNOWN\b/i.test(answer) ||
+    /Contribution\/order:\s*UNKNOWN\b/i.test(answer) ||
+    /CONTRIBUTION\s*=\s*UNKNOWN\b/i.test(answer) ||
+    (/deterministic calculator/i.test(answer) && /\bUNKNOWN\b/.test(answer))
+  );
+}
+
 function answerAssertsNumericContribution(answer: string): boolean {
   return (
-    /contribution[^\n]{0,64}(?:S\$|SGD|US\$|\$)?\s*-?\d+(?:\.\d+)?/i.test(answer) &&
-    !/\bUNKNOWN\b/i.test(answer)
+    /contribution[^\n]{0,80}(?:S\$|SGD|US\$|\$)?\s*-?\d+(?:\.\d+)?/i.test(answer) &&
+    !hasAuthoritativeUnknown(answer)
   );
+}
+
+function answerAssumesMissingFeeZero(answer: string): boolean {
+  return /assume(?:s|d|ing)?\s+(?:the\s+)?(?:marketplace\s+)?fee\s+is\s+zero/i.test(answer);
 }
 
 /**
@@ -427,17 +441,22 @@ export function repairAnswerWithCalculator(answer: string, message: string): str
   const synth = synthesizeCommercialArithmeticAnswer(message);
 
   if (!r.ok) {
+    // Forecast vs realised ledgers are not unit-price contribution — do not force UNKNOWN.
+    if (
+      r.operands.forecastVsRealised &&
+      /SELLING_PRICE unknown/i.test(r.unknownReason || "")
+    ) {
+      return answer;
+    }
     if (!synth) return answer;
     const needsOverride =
       answerInventsFx(answer) ||
       answerAssertsNumericContribution(answer) ||
+      answerAssumesMissingFeeZero(answer) ||
       (r.currency === "MIXED" && !/no invented FX|MIXED|conversion rate/i.test(answer)) ||
-      (r.operands.feeMentionedWithoutValue &&
-        !/\bUNKNOWN\b|cannot (?:be )?(?:definitively )?calculat|fee (?:is )?(?:unknown|unstated|missing)/i.test(
-          answer,
-        ));
+      (r.operands.feeMentionedWithoutValue && !hasAuthoritativeUnknown(answer));
     if (needsOverride) return synth;
-    if (!/\bUNKNOWN\b|no invented FX/i.test(answer)) {
+    if (!hasAuthoritativeUnknown(answer) && !/no invented FX/i.test(answer)) {
       return `${answer.trim()}\n\n${synth}`;
     }
     return answer;
