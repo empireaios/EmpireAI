@@ -142,8 +142,9 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   const app = Fastify({
     logger: false,
-    // Must exceed pillow chat recovery budget so Fastify does not kill mid-retry.
-    requestTimeout: 150_000,
+    // Must exceed pillow chat recovery budget (260s) + BFF headroom so Fastify
+    // does not kill mid-retry. Aligned with PILLOW_CHAT_TIMEOUTS.frontendChatMs.
+    requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
   await app.register(cors, { origin: true, credentials: true });

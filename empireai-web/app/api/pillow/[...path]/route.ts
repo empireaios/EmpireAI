@@ -4,6 +4,7 @@ import {
   PILLOW_UPSTREAM_TIMEOUT_MS,
   proxyBrainRequest,
 } from "@/lib/brain/server-proxy";
+import { decideBffChatSurface, DEGRADED_CHAT_MESSAGE } from "@/lib/pillow/bff-chat-sanitize";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,38 +36,9 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   return PILLOW_UPSTREAM_TIMEOUT_MS;
 }
 
-/** Honest terminal — never soft success; never ask Grand King to invent a new ask. */
-const DEGRADED_CHAT_MESSAGE = [
-  "I accepted your request, but a completed executive answer was not produced within the infrastructure budget.",
-  "This is a temporary system limit — not a judgment on your ask.",
-  "The system retains ownership of this accepted request for internal recovery.",
-].join(" ");
-
 function isPillowChatResource(pathSegments: string[]): boolean {
   const resource = pathSegments[0] ?? "";
   return resource === "chat" || resource === "chat/stream";
-}
-
-function extractMessageFromBody(raw: string): string {
-  try {
-    const parsed = JSON.parse(raw) as { result?: { message?: string }; message?: string };
-    return String(parsed?.result?.message ?? parsed?.message ?? "").trim();
-  } catch {
-    return "";
-  }
-}
-
-function looksLikeForbiddenInfraDecoration(message: string, userAsk: string): boolean {
-  const ask = String(userAsk || "");
-  const synthetic =
-    /\b(?:synthetic(?:canary)?|scenario\s+only|do\s+not\s+mention\s+(?:empireai|birth))\b/i.test(ask);
-  if (synthetic || !/\bbirth\b/i.test(ask)) {
-    if (/\bBirth remains unauthoris/i.test(message)) return true;
-    if (/\brealised commerce|product focus|commissioning state\b/i.test(message)) return true;
-  }
-  if (/\btell me which (?:theme|part) to deepen\b/i.test(message)) return true;
-  if (/\bworker proxy timed out\b/i.test(message)) return true;
-  return false;
 }
 
 async function proxyPillow(pathSegments: string[], request: Request, method: string): Promise<Response> {
@@ -111,9 +83,14 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
 
   if (isChat) {
     const raw = await upstream.text();
-    const message = extractMessageFromBody(raw);
     const ok = upstream.status >= 200 && upstream.status < 300;
-    if (!ok || message.length === 0 || looksLikeForbiddenInfraDecoration(message, userAsk)) {
+    const decision = decideBffChatSurface({
+      upstreamOk: ok,
+      rawBody: raw,
+      userAsk,
+    });
+
+    if (decision.degrade) {
       return Response.json(
         {
           result: {
@@ -123,6 +100,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
             semanticSuccess: false,
             bffRecovery: true,
             upstreamStatus: upstream.status,
+            degradeReason: decision.reason,
             userResubmissionRequired: false,
             firstRequestCompleted: false,
           },
@@ -130,6 +108,32 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
         { status: 200, headers: { "cache-control": "no-store" } },
       );
     }
+
+    if (decision.stripped) {
+      try {
+        const parsed = JSON.parse(raw) as Record<string, unknown>;
+        if (parsed && typeof parsed === "object") {
+          const result =
+            parsed.result && typeof parsed.result === "object"
+              ? { ...(parsed.result as Record<string, unknown>) }
+              : {};
+          result.message = decision.message;
+          parsed.result = result;
+          if (typeof parsed.message === "string") parsed.message = decision.message;
+          return new Response(JSON.stringify(parsed), {
+            status: upstream.status,
+            headers: {
+              "content-type": "application/json",
+              "cache-control": "no-store",
+              "x-empire-bff-footer-stripped": "1",
+            },
+          });
+        }
+      } catch {
+        /* fall through */
+      }
+    }
+
     return new Response(raw, {
       status: upstream.status,
       headers: {
