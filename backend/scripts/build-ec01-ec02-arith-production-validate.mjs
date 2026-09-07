@@ -76,11 +76,12 @@ async function chat(cookie, sessionId, message) {
       message,
       workspaceContext: {
         screenPath: "/cockpit/development/pillow",
-        screenId: "pillow-centre",
+        screenId: "SCR-800",
         screenTitle: "Pillow Centre",
+        module: "executive",
       },
     }),
-    signal: AbortSignal.timeout(180_000),
+    signal: AbortSignal.timeout(290_000),
   });
   const body = await r.json().catch(() => ({}));
   const text =
@@ -89,7 +90,13 @@ async function chat(cookie, sessionId, message) {
     body?.message ||
     body?.reply ||
     JSON.stringify(body);
-  return { status: r.status, text: String(text), ms: Date.now() - t0 };
+  return {
+    status: r.status,
+    text: String(text),
+    ms: Date.now() - t0,
+    bffRecovery: Boolean(body?.result?.bffRecovery),
+    infra: /infrastructure budget/i.test(String(text)),
+  };
 }
 
 function stubTakeover(text) {
@@ -198,30 +205,51 @@ async function main() {
     if (c.sequence) {
       let okAll = true;
       const texts = [];
+      let anyInfra = false;
       for (const step of c.sequence) {
         const r = await chat(cookie, sessionId, step.prompt);
         latencies.push(r.ms);
         texts.push(r.text);
-        if (!step.ok(r.text)) okAll = false;
+        if (r.infra || r.bffRecovery) anyInfra = true;
+        if (!step.ok(r.text) || r.infra || r.bffRecovery) okAll = false;
       }
-      results.push({ id: c.id, ok: okAll, texts: texts.map((t) => t.slice(0, 500)), stub: texts.some(stubTakeover) });
+      results.push({
+        id: c.id,
+        ok: okAll,
+        texts: texts.map((t) => t.slice(0, 500)),
+        stub: texts.some(stubTakeover),
+        infra: anyInfra,
+      });
       if (!okAll) failures++;
     } else {
       const r = await chat(cookie, sessionId, c.prompt);
       latencies.push(r.ms);
-      const ok = c.ok(r.text);
-      results.push({ id: c.id, ok, text: r.text.slice(0, 700), stub: stubTakeover(r.text), ms: r.ms });
+      const ok = c.ok(r.text) && !r.infra && !r.bffRecovery;
+      results.push({
+        id: c.id,
+        ok,
+        text: r.text.slice(0, 700),
+        stub: stubTakeover(r.text),
+        ms: r.ms,
+        infra: r.infra,
+        bffRecovery: r.bffRecovery,
+      });
       if (!ok) failures++;
     }
   }
 
   latencies.sort((a, b) => a - b);
+  const infraCount = results.filter((r) => r.infra || r.bffRecovery).length;
   const summary = {
     generatedAt: new Date().toISOString(),
     DEPLOYMENT_ID: deploymentId,
     RUNNING_BRAIN_SHA: String(h?.deploy?.gitCommitSha || ""),
     PRODUCTION_FIRST_VISIBLE_PASS: failures === 0,
+    GK_PATH_EQUIVALENCE: failures === 0 && infraCount === 0,
+    GK_PATH_NOTE:
+      "Uses empire-ai.co BFF + SCR-800 workspaceContext; infra/bffRecovery counts as FAIL. Full GK_PATH_QUALIFICATION is backend/scripts/gk-path-qualification.mjs.",
     failures,
+    POST_FIX_INFRASTRUCTURE_FALLBACK: infraCount,
     results,
     REPRESENTATIVE_REVIEW_COUNT: results.length,
     MATERIAL_ANOMALIES: failures,
@@ -231,7 +259,20 @@ async function main() {
   };
   mkdirSync(OUT, { recursive: true });
   writeFileSync(path.join(OUT, "BUILD_EC01_EC02_ARITH_PRODUCTION_VALIDATE.json"), JSON.stringify(summary, null, 2));
-  console.log(JSON.stringify({ pass: failures === 0, failures, p50: summary.LATENCY_P50_MS, p95: summary.LATENCY_P95_MS }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        pass: failures === 0,
+        GK_PATH_EQUIVALENCE: summary.GK_PATH_EQUIVALENCE,
+        failures,
+        infra: infraCount,
+        p50: summary.LATENCY_P50_MS,
+        p95: summary.LATENCY_P95_MS,
+      },
+      null,
+      2,
+    ),
+  );
   if (failures > 0) process.exit(1);
 }
 
