@@ -17,7 +17,7 @@
 | INFRASTRUCTURE_SHA | `c03f3788` |
 | FRONTEND/BFF_SHA | `c03f3788` |
 | DEPLOYMENT_ID (qual window) | `6c21ea0e-3d17-4536-9324-7a23b2d77c27` (Brain tip advancing to `63f38d9c…` / `c03f3788`) |
-| DOCS_SEAL_SHA | (this docs commit) |
+| DOCS_SEAL_SHA | `ffc6f3f2` |
 
 ---
 
