@@ -116,9 +116,9 @@ export function isTransientProxyFailure(result: PillowProxyAttemptResult): boole
 export function buildTerminalInfrastructureMessage(accepted: AcceptedPillowChatRequest): string {
   const isolated = isSyntheticIsolatedAsk(accepted.message);
   const lines = [
-    "I accepted your request, but a completed executive answer was not produced within the infrastructure budget.",
-    "This is a temporary system limit — not a judgment on your ask.",
-    "The system retains ownership of this accepted request for internal recovery.",
+    "I accepted your request, but a completed executive answer was not produced in this response window.",
+    "This is a temporary production-shell / transport limit — not a judgment on your ask.",
+    "Please retry the same ask; there is no durable background recovery after this reply.",
   ];
   if (!isolated && shouldSurfaceBirthBoundary(accepted.message)) {
     lines.push("Birth remains unauthorised until Grand King decides.");

@@ -192,7 +192,7 @@ describe("Post-Foundation Repair 2 — Level A", () => {
       kind: "reasoning",
     });
     assert.doesNotMatch(msg, /Please send the same ask|ask again|resubmit/i);
-    assert.match(msg, /retains ownership|internal recovery|temporary system limit/i);
+    assert.match(msg, /no durable background recovery|temporary production-shell|response window/i);
   });
 
   it("12 constitutional corpus includes Repair 2 classes", () => {

@@ -58,7 +58,7 @@ export const EXECUTIVE_DELAYED_LABEL =
  * executive answer. Certification must treat this as semantic failure.
  */
 export const EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY =
-  "I accepted your request, but a completed executive answer was not produced within the infrastructure budget. This is a temporary system limit — not a judgment on your ask. The system retains ownership of this accepted request for internal recovery.";
+  "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. Please retry the same ask; there is no durable background recovery after this reply.";
 
 /**
  * @deprecated Repair 2: never use soft success fallback. Alias kept so call sites
@@ -93,7 +93,10 @@ export function isTerminalInfrastructureSurface(text: string | null | undefined)
   if (!t.trim()) return true;
   if (/completed executive answer was not produced/i.test(t)) return true;
   if (/deep reasoning path could not finish after bounded recovery/i.test(t)) return true;
-  if (/temporary (?:system|infrastructure) limit/i.test(t) && /not (?:a judgment|a question about your task)/i.test(t)) {
+  if (
+    /temporary (?:system|infrastructure|production-shell|transport) limit/i.test(t) &&
+    /not (?:a judgment|a question about your task)/i.test(t)
+  ) {
     return true;
   }
   return false;
@@ -130,7 +133,9 @@ export function toExecutiveSurfaceMessage(
 /**
  * Sanitize chat reply content for Grand King visibility.
  * Never invent a soft "I can answer now / catching up" success answer.
- * Empty, leak-only, or ask-again bodies become honest terminal infrastructure.
+ * Empty, leak-only, or ask-again-only bodies become honest terminal infrastructure.
+ * Substantive executive answers are preserved even if they contain a short
+ * "ask again" / "resubmit" substring (shell must not wipe valid meaning).
  */
 export function toExecutiveChatMessage(
   raw: string | null | undefined,
@@ -144,11 +149,25 @@ export function toExecutiveChatMessage(
       : fallback;
 
   if (!text) return safeFallback;
-  if (hasForbiddenLifecycleResidue(text)) return EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY;
-  if (/ask again|please send the same ask|try again later|resubmit|re-?send the (?:same )?ask/i.test(text)) {
+  if (isTerminalInfrastructureSurface(text)) {
     return EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY;
   }
-  if (isTerminalInfrastructureSurface(text)) {
+
+  const substantive =
+    text.length >= 80 &&
+    /\b(?:select|recommend|contribution|eligible|supplier|gate|first|plan|orders?|unknown|margin)\b/i.test(
+      text,
+    );
+
+  if (hasForbiddenLifecycleResidue(text) && !substantive) {
+    return EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY;
+  }
+  if (
+    /ask again|please send the same ask|try again later|resubmit|re-?send the (?:same )?ask/i.test(
+      text,
+    ) &&
+    !substantive
+  ) {
     return EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY;
   }
 
@@ -157,6 +176,7 @@ export function toExecutiveChatMessage(
     if (stripped.length >= 80 && !leaksInternalArchitecture(stripped)) {
       return stripped;
     }
+    if (substantive && stripped.length >= 40) return stripped;
     return safeFallback;
   }
 

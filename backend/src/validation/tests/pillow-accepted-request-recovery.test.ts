@@ -126,7 +126,8 @@ describe("pillow accepted-request recovery Level A", () => {
     const a = acceptPillowChatRequest({ message: "Synthetic: complete all seven sections." });
     const msg = buildTerminalInfrastructureMessage(a);
     assert.doesNotMatch(msg, /which (?:theme|part) to deepen/i);
-    assert.match(msg, /infrastructure/i);
+    assert.match(msg, /production-shell|response window|transport limit/i);
+    assert.doesNotMatch(msg, /retains ownership/i);
   });
 
   it("10 idempotency: reasoning kind only; side_effect throws", async () => {
