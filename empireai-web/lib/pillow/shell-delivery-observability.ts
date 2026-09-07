@@ -26,6 +26,12 @@ export type ShellDeliveryTrace = {
   requestId: string | null;
   sessionId: string | null;
   ts: string;
+  sessionClass: "unknown" | "fresh" | "long" | "qualification";
+  contextSize: number | null;
+  brainStarted: boolean;
+  brainCompleted: boolean;
+  brainDurationMs: number | null;
+  shellDurationMs: number | null;
   brainCompletionState: "SUCCESS" | "EMPTY" | "ERROR" | "UNKNOWN";
   brainOutputValidNonempty: boolean;
   brainOutputLength: number;
@@ -85,6 +91,31 @@ export function shellDeliveryDashboard() {
     DEGRADED_TERMINALS: degraded,
     TRANSPORT_FAILURES: transport,
     BRAIN_TO_USER_EQUIVALENT: equivalent,
-    recent: rows.slice(0, 20),
+    /** V2 permanent dashboard columns */
+    columns: [
+      "TRACE_ID",
+      "SESSION_CLASS",
+      "CONTEXT_SIZE",
+      "BRAIN_STARTED",
+      "BRAIN_COMPLETED",
+      "BRAIN_DURATION",
+      "SHELL_DURATION",
+      "DELIVERY_CLASS",
+      "FAILURE_CLASS",
+    ],
+    recent: rows.slice(0, 20).map((r) => ({
+      TRACE_ID: r.traceId,
+      SESSION_CLASS: r.sessionClass,
+      CONTEXT_SIZE: r.contextSize,
+      BRAIN_STARTED: r.brainStarted,
+      BRAIN_COMPLETED: r.brainCompleted,
+      BRAIN_DURATION: r.brainDurationMs,
+      SHELL_DURATION: r.shellDurationMs,
+      DELIVERY_CLASS: r.deliveryClass,
+      FAILURE_CLASS: r.failureClass,
+      requestId: r.requestId,
+      sessionId: r.sessionId,
+      ts: r.ts,
+    })),
   };
 }

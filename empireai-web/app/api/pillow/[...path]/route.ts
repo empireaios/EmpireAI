@@ -37,6 +37,9 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   if (resource === "shell-observability") {
     return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
   }
+  if (resource === "delivery-forensics") {
+    return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
+  }
   if (method === "GET") {
     return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
   }
@@ -66,6 +69,22 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
       { ok: true, dashboard: shellDeliveryDashboard() },
       { status: 200, headers: { "cache-control": "no-store" } },
     );
+  }
+
+  // Durable Tier-0 forensics — proxy to Brain primary (survives worker recycle).
+  if (method === "GET" && pathSegments[0] === "delivery-forensics") {
+    const url = new URL(request.url);
+    const upstream = await proxyBrainRequest(
+      `/api/pillow/delivery-forensics${url.search}`,
+      request,
+      {
+        method: "GET",
+        headers: { cookie: request.headers.get("cookie") ?? "" },
+        cache: "no-store",
+        upstreamTimeoutMs: PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS,
+      },
+    );
+    return upstream;
   }
 
   const url = new URL(request.url);
@@ -110,6 +129,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
   }
 
   if (isChat) {
+    const t0 = Date.now();
     const raw = await upstream.text();
     const ok = upstream.status >= 200 && upstream.status < 300;
     const requestId = upstream.headers.get("x-empire-pillow-request-id");
@@ -125,6 +145,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
       sessionId,
       requestId,
       component: "bff.proxyPillow.chat",
+      shellDurationMs: Date.now() - t0,
     });
 
     const obsHeaders = new Headers({

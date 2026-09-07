@@ -101,15 +101,22 @@ export function extractChatMessagePreview(buf: Buffer): string {
 
 export function isTransientProxyFailure(result: PillowProxyAttemptResult): boolean {
   if (result.ok) return false;
-  return (
+  if (
     result.reason === "timeout" ||
     result.reason === "network" ||
     result.reason === "worker_unavailable" ||
-    result.reason === "empty_message" ||
-    (result.reason === "upstream_error" &&
-      typeof result.status === "number" &&
-      (result.status === 502 || result.status === 503 || result.status === 504 || result.status === 404))
-  );
+    result.reason === "empty_message"
+  ) {
+    return true;
+  }
+  // Reasoning chat: any 5xx / 404 during worker recycle must retry. Prior bug:
+  // only 502/503/504/404 were transient, so worker 500 after flap → immediate terminal.
+  // Missing status is also treated as transient (defensive — do not terminal on attempt 1).
+  if (result.reason === "upstream_error") {
+    if (typeof result.status !== "number") return true;
+    return result.status === 404 || (result.status >= 500 && result.status <= 599);
+  }
+  return false;
 }
 
 /** Request-scoped terminal message when recovery is exhausted. Never claims soft success. */
@@ -201,7 +208,11 @@ export async function runAcceptedPillowChatRecovery(opts: {
       probe: opts.probeWorker,
       maxWaitMs: Math.min(workerWaitMs, remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs)),
     });
-    if (becameReady) emit("worker_ready", { phase: "pre_attempt" });
+    if (becameReady) {
+      emit("worker_ready", { phase: "pre_attempt" });
+      // Brief settle after recycle — live probe can pass before chat route is stable.
+      await new Promise((r) => setTimeout(r, 1_500));
+    }
   }
 
   const t1 = attemptTimeoutForBudget(

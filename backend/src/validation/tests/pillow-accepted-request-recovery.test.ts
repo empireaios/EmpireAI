@@ -82,6 +82,38 @@ describe("pillow accepted-request recovery Level A", () => {
     assert.ok(probes >= 2);
   });
 
+  it("3b HTTP 500 after worker flap retries (GK checkpoint class)", async () => {
+    let attempts = 0;
+    const accepted = acceptPillowChatRequest({
+      message: "Atlas Boreal Crest eligibility short ask",
+    });
+    const result = await runAcceptedPillowChatRecovery({
+      accepted,
+      probeWorker: async () => true,
+      attempt: async () => {
+        attempts += 1;
+        if (attempts === 1) {
+          return { ok: false, reason: "upstream_error", status: 500 };
+        }
+        return {
+          ok: true,
+          status: 200,
+          body: Buffer.from(
+            JSON.stringify({ result: { message: "Eligible={Atlas}; select Atlas." } }),
+          ),
+          headers: new Headers(),
+          messagePreview: "Eligible={Atlas}; select Atlas.",
+        };
+      },
+      totalBudgetMs: 30_000,
+      attempt1Ms: 5_000,
+      attempt2Ms: 5_000,
+      workerWaitMs: 10,
+    });
+    assert.equal(result.ok, true);
+    assert.equal(attempts, 2);
+  });
+
   it("4 timeout hierarchy constants are ordered FE >= BFF >= Tier0 budget", () => {
     assert.ok(PILLOW_CHAT_TIMEOUTS.frontendChatMs >= PILLOW_CHAT_TIMEOUTS.bffChatMs);
     assert.ok(PILLOW_CHAT_TIMEOUTS.bffChatMs >= PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs);
@@ -201,5 +233,15 @@ describe("pillow accepted-request recovery Level A", () => {
   it("14 400 upstream is not treated as worker-unavailable class only", () => {
     const r: PillowProxyAttemptResult = { ok: false, reason: "upstream_error", status: 400 };
     assert.equal(isTransientProxyFailure(r), false);
+  });
+
+  it("15 worker 500 upstream is transient (GK checkpoint class)", () => {
+    const r: PillowProxyAttemptResult = { ok: false, reason: "upstream_error", status: 500 };
+    assert.equal(isTransientProxyFailure(r), true);
+  });
+
+  it("16 upstream_error without status is transient (defensive)", () => {
+    const r: PillowProxyAttemptResult = { ok: false, reason: "upstream_error" };
+    assert.equal(isTransientProxyFailure(r), true);
   });
 });

@@ -93,4 +93,28 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
       assert.equal(d.degrade, false, message);
     }
   });
+
+  it("Tier-0 terminal_infrastructure is NOT brain success", () => {
+    const terminal =
+      "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. Please retry the same ask; there is no durable background recovery after this reply.";
+    const d = decideBffChatSurface({
+      upstreamOk: true,
+      rawBody: JSON.stringify({
+        result: {
+          message: terminal,
+          kind: "terminal_infrastructure",
+          recoveryExhausted: true,
+          brainCompleted: false,
+        },
+      }),
+      userAsk: "Atlas Boreal Crest eligibility",
+    });
+    assert.equal(d.degrade, true);
+    if (d.degrade) {
+      assert.equal(d.reason, "upstream_tier0_terminal");
+      assert.equal(d.deliveryClass, "DEGRADED_TERMINAL");
+      assert.equal(d.brainToUserEquivalent, false);
+      assert.equal(d.brainExtracted, "");
+    }
+  });
 });

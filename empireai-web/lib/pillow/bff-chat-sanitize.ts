@@ -115,10 +115,34 @@ export function isTransportFailureMessage(message: string): boolean {
   return /\bworker proxy timed out\b/i.test(message);
 }
 
+/** Tier-0 recovery exhaustion is not a successful brain answer. */
+export function isUpstreamTier0Terminal(rawBody: string, extracted: string): boolean {
+  try {
+    const parsed = JSON.parse(rawBody) as {
+      result?: {
+        kind?: string;
+        recoveryExhausted?: boolean;
+        brainCompleted?: boolean;
+      };
+    };
+    const kind = String(parsed?.result?.kind ?? "");
+    if (kind === "terminal_infrastructure") return true;
+    if (parsed?.result?.recoveryExhausted === true) return true;
+    if (parsed?.result?.brainCompleted === false) return true;
+  } catch {
+    /* fall through */
+  }
+  return /completed executive answer was not produced/i.test(String(extracted || ""));
+}
+
 export type BffChatDegradeDecision =
   | {
       degrade: true;
-      reason: "upstream_non_2xx" | "transport_failure_message" | "brain_empty";
+      reason:
+        | "upstream_non_2xx"
+        | "transport_failure_message"
+        | "brain_empty"
+        | "upstream_tier0_terminal";
       failureClass: FailureClass;
       brainExtracted: string;
       deliveredMessage: string;
@@ -196,6 +220,20 @@ export function decideBffChatSurface(input: {
     };
   }
 
+  // Tier-0 terminal must not be labeled BRAIN_ANSWER_UNCHANGED / brain success.
+  if (isUpstreamTier0Terminal(input.rawBody, extracted)) {
+    return {
+      degrade: true,
+      reason: "upstream_tier0_terminal",
+      failureClass: "BRAIN_ERROR",
+      brainExtracted: "",
+      deliveredMessage: extracted.length > 0 ? extracted : DEGRADED_CHAT_MESSAGE,
+      stripped: false,
+      deliveryClass: "DEGRADED_TERMINAL",
+      brainToUserEquivalent: false,
+    };
+  }
+
   // INVARIANT: nonempty brain success never becomes degraded terminal.
   if (extracted.length > 0) {
     if (stripped.length > 0) {
@@ -245,19 +283,35 @@ export function buildShellTraceFromDecision(input: {
   sessionId?: string | null;
   requestId?: string | null;
   component?: string;
+  sessionClass?: "unknown" | "fresh" | "long" | "qualification";
+  contextSize?: number | null;
+  shellDurationMs?: number | null;
 }): ShellDeliveryTrace {
   const d = input.decision;
   const delivered = d.degrade ? d.deliveredMessage : d.message;
   const brainHash = hashText(d.brainExtracted);
   const shellHash = hashText(delivered);
   const materialChange = brainHash !== shellHash;
+  const isTier0Terminal = d.degrade && d.reason === "upstream_tier0_terminal";
+  const brainCompleted = !d.degrade && d.brainExtracted.length > 0;
   const trace: ShellDeliveryTrace = {
     traceId: newShellTraceId(),
     requestId: input.requestId ?? null,
     sessionId: input.sessionId ?? null,
     ts: new Date().toISOString(),
-    brainCompletionState:
-      d.brainExtracted.length > 0 ? "SUCCESS" : input.upstreamStatus >= 500 ? "ERROR" : "EMPTY",
+    sessionClass: input.sessionClass ?? "unknown",
+    contextSize: input.contextSize ?? null,
+    brainStarted: d.brainExtracted.length > 0 || isTier0Terminal || !d.degrade,
+    brainCompleted,
+    brainDurationMs: null,
+    shellDurationMs: input.shellDurationMs ?? null,
+    brainCompletionState: brainCompleted
+      ? "SUCCESS"
+      : isTier0Terminal || d.reason === "upstream_non_2xx"
+        ? "ERROR"
+        : d.brainExtracted.length === 0
+          ? "EMPTY"
+          : "UNKNOWN",
     brainOutputValidNonempty: d.brainExtracted.length > 0,
     brainOutputLength: d.brainExtracted.length,
     brainOutputHash: brainHash,

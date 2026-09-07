@@ -44,6 +44,16 @@ import {
   runAcceptedPillowChatRecovery,
   type PillowProxyAttemptResult,
 } from "./pillow-accepted-request-recovery.js";
+import {
+  deliveryForensicsDashboard,
+  hashText,
+  listDeliveryForensics,
+  newDeliveryTraceId,
+  previewText,
+  recordDeliveryForensic,
+  searchDeliveryForensics,
+  type DeliveryForensicEvent,
+} from "./pillow-delivery-forensics.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -241,6 +251,25 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     };
     // Auth succeeds on primary even if worker is down.
     return reply.send(payload);
+  });
+
+  /** Durable delivery forensics — lives on Tier-0 primary (survives worker recycle). */
+  app.get("/api/pillow/delivery-forensics", async (request, reply) => {
+    const q = String((request.query as { q?: string })?.q ?? "").trim();
+    const limit = Number((request.query as { limit?: string })?.limit ?? 40);
+    const rows = q ? searchDeliveryForensics(q) : listDeliveryForensics(limit);
+    return reply.send({
+      ok: true,
+      dashboard: deliveryForensicsDashboard(),
+      rows,
+      deploy: {
+        gitCommitSha:
+          process.env.RAILWAY_GIT_COMMIT_SHA ||
+          process.env.RAILWAY_GIT_COMMIT ||
+          null,
+        deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
+      },
+    });
   });
 
   app.post("/auth/login", async (request, reply) => {
@@ -445,26 +474,47 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       headers["x-empire-pillow-request-id"] = accepted.requestId;
       headers["x-empire-pillow-request-kind"] = accepted.kind;
 
+      const forensicTraceId = newDeliveryTraceId();
+      let brainStarted = false;
+      let attemptCount = 0;
+      let lastUpstreamStatus: number | null = null;
+      let lastFailureReason: string | null = null;
+      const tAccept = Date.now();
+
       const result = await runAcceptedPillowChatRecovery({
         accepted,
         probeWorker: probeWorkerOk,
         attempt: async (timeoutMs, attemptIndex) => {
+          brainStarted = true;
+          attemptCount = attemptIndex;
           logger.info(
             {
               requestId: accepted.requestId,
               attemptIndex,
               timeoutMs,
               sessionId: accepted.sessionId,
+              forensicTraceId,
             },
             "pillow_chat_accepted_attempt",
           );
-          return proxyOnce(timeoutMs);
+          const once = await proxyOnce(timeoutMs);
+          if (!once.ok && once.status != null) lastUpstreamStatus = once.status;
+          if (!once.ok) lastFailureReason = once.reason;
+          if (once.ok) lastUpstreamStatus = once.status;
+          return once;
         },
         onEvent: (event, detail) => {
-          logger.info({ event, ...detail, requestId: accepted.requestId }, "pillow_chat_recovery");
+          logger.info(
+            { event, ...detail, requestId: accepted.requestId, forensicTraceId },
+            "pillow_chat_recovery",
+          );
+          if (event === "worker_unavailable") lastFailureReason = "worker_unavailable";
         },
         totalBudgetMs: PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs,
       });
+
+      const elapsed = Date.now() - tAccept;
+      const deployId = process.env.RAILWAY_DEPLOYMENT_ID || null;
 
       if (result.ok) {
         const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
@@ -473,9 +523,73 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         });
         reply.header("x-empire-pillow-request-id", accepted.requestId);
         reply.header("x-empire-pillow-recovery", "completed");
+        reply.header("x-empire-delivery-trace-id", forensicTraceId);
+        const preview = result.messagePreview;
+        recordDeliveryForensic({
+          traceId: forensicTraceId,
+          requestId: accepted.requestId,
+          sessionId: accepted.sessionId,
+          ts: new Date().toISOString(),
+          acceptedAt: accepted.acceptedAt,
+          requestPreview: previewText(accepted.message),
+          requestHash: hashText(accepted.message),
+          sessionClass: "unknown",
+          brainStarted: true,
+          brainCompleted: true,
+          brainOutputNonempty: preview.length > 0,
+          brainOutputLength: preview.length,
+          brainOutputHash: hashText(preview),
+          brainDurationMs: elapsed,
+          shellDurationMs: elapsed,
+          deliveryClass: "BRAIN_ANSWER",
+          failureClass: "NONE",
+          upstreamStatus: result.status,
+          recoveryAttempts: attemptCount,
+          terminalReason: null,
+          deploymentId: deployId,
+        });
         return reply.code(result.status).send(result.body);
       }
 
+      const failureClass: DeliveryForensicEvent["failureClass"] =
+        lastFailureReason === "worker_unavailable"
+          ? "WORKER_UNAVAILABLE"
+          : lastFailureReason === "timeout"
+            ? "TIMEOUT"
+            : lastFailureReason === "empty_message"
+              ? "BRAIN_COMPLETED_EMPTY"
+              : brainStarted
+                ? "BRAIN_STARTED_NOT_COMPLETED"
+                : "BRAIN_NEVER_STARTED";
+
+      recordDeliveryForensic({
+        traceId: forensicTraceId,
+        requestId: accepted.requestId,
+        sessionId: accepted.sessionId,
+        ts: new Date().toISOString(),
+        acceptedAt: accepted.acceptedAt,
+        requestPreview: previewText(accepted.message),
+        requestHash: hashText(accepted.message),
+        sessionClass: "unknown",
+        brainStarted,
+        brainCompleted: false,
+        brainOutputNonempty: false,
+        brainOutputLength: 0,
+        brainOutputHash: null,
+        brainDurationMs: elapsed,
+        shellDurationMs: elapsed,
+        deliveryClass: "DEGRADED_TERMINAL",
+        failureClass:
+          lastFailureReason === "upstream_error" ? "UPSTREAM_ERROR" : failureClass,
+        upstreamStatus: lastUpstreamStatus,
+        recoveryAttempts: attemptCount,
+        terminalReason: lastFailureReason,
+        deploymentId: deployId,
+      });
+
+      reply.header("x-empire-pillow-request-id", accepted.requestId);
+      reply.header("x-empire-pillow-recovery", "exhausted");
+      reply.header("x-empire-delivery-trace-id", forensicTraceId);
       return reply.code(200).send({
         result: {
           message: buildTerminalInfrastructureMessage(accepted),
@@ -484,6 +598,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
           requestId: accepted.requestId,
           recoveryExhausted: true,
           userResubmissionRequired: true,
+          deliveryTraceId: forensicTraceId,
+          failureClass:
+            lastFailureReason === "upstream_error" ? "UPSTREAM_ERROR" : failureClass,
+          brainStarted,
+          brainCompleted: false,
         },
       });
     }
