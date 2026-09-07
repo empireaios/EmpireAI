@@ -1,0 +1,183 @@
+{
+  "generatedAt": "2026-09-07T11:44:29.801Z",
+  "ROUTE": "GK_PATH_QUALIFICATION",
+  "GK_PATH_EQUIVALENCE": true,
+  "EQUIVALENCE_REQUIREMENTS": [
+    "BFF https://empire-ai.co/api/pillow/chat",
+    "auth empireai_session cookie via /api/auth/login",
+    "workspaceContext.screenId=SCR-800",
+    "workspaceContext.module=executive",
+    "chat timeout 290s (client-aligned)",
+    "infra budget terminal = FAIL",
+    "bffRecovery true = FAIL"
+  ],
+  "DEPLOYMENT_ID": "08943019-2814-47c9-ab20-416e489258b5",
+  "RUNNING_BRAIN_SHA": "",
+  "POST_FIX_GK_PATH_CASES": 12,
+  "POST_FIX_INFRASTRUCTURE_FALLBACK": 0,
+  "failures": 0,
+  "LATENCY_P50_MS": 3407,
+  "LATENCY_P95_MS": 17905,
+  "results": [
+    {
+      "id": "arith",
+      "ok": true,
+      "status": 200,
+      "ms": 4570,
+      "text": "The contribution per order is S$14.60.\nHere's the breakdown:\n- **Price:** S$40.00\n- **Cost:** S$18.00\n- **Shipping:** S$4.00\n- **Marketplace fee (6% of price):** S$2.40\n- **Refund allowance:** S$1.00\n**Contribution Calculation:**\n\\[\n\\text{Contribution} = \\text{Price} - (\\text{Cost} + \\text{Shipping} + \\text{Marketplace Fee} + \\text{Refund})\n\\]\n\\[\n\\text{Contribution} = 40 - (18 + 4 + 2.40 + 1) = 40 - 25.40 = 14.60\n\\]\nIf you need further analysis or actions, please let me know!",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "multi_gate",
+      "ok": true,
+      "status": 200,
+      "ms": 3819,
+      "text": "To calculate the contribution per order, we can break down the costs and revenues as follows:\n1. ****: S$40\n2. ****: S$18\n3. ****: S$4\n4. **Fee (6% of )**: 0.06 × S$40 = S$2.40\n5. ****: S$1\nNow, we can calculate the contribution:\n**Total Revenue**: S$40\n**Total Costs**: + + Fee + = S$18 + S$4 + S$2.40 + S$1 = S$25.40\n** per Order**: Total Revenue - Total Costs\n= S$40 - S$25.40 = S$14.60\nTherefore, the contribution per order is **S$14.60**.\n### Recommendation\n**Current action:** SELECT QUILL. QUI",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "open_strategy",
+      "ok": true,
+      "status": 200,
+      "ms": 4362,
+      "text": "To design a short supplier-selection process, I would recommend the following steps:\n###\n1. Define Selection Criteria\nEstablish clear criteria for evaluating potential suppliers. This may include factors such as price, quality, reliability, delivery times, and compliance with regulations.\n###\n2. Identify Potential Suppliers\nCompile a list of potential suppliers who meet the defined criteria. This can be done through market research, referrals, or industry networks.\n###\n3. Request Proposals\nSend ",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "bounded_supplier",
+      "ok": true,
+      "status": 200,
+      "ms": 2952,
+      "text": "**Recommended Path:** Select VISTA as the supplier.\n**Why:** VISTA is the only currently eligible candidate with approval granted, aligning with the request for a bounded supplier decision.\n**Main Risk:** The main risk lies in the potential opportunity cost if a higher-value alternative is overlooked.\n**Immediate Next Action:** Proceed with the selection of VISTA and prepare for the next steps in the supplier onboarding process.\n**Approval Required:** None, as VISTA has already received approval",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "live_unknown_fact",
+      "ok": true,
+      "status": 200,
+      "ms": 2180,
+      "text": "EmpireAI has received **zero realised orders**. The current commercial history is classified as **unproven** due to the absence of any sales. If you need further insights or actions, please let me know!",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "warm_transition",
+      "ok": true,
+      "steps": [
+        {
+          "prompt": "How many realised orders has EmpireAI received? Briefly.",
+          "status": 200,
+          "ms": 2073,
+          "text": "EmpireAI has received **zero realised orders**. The commercial history remains **unknown** as there have been no sales recorded. If you have further inquiries or need assistance with another matter, feel free to ask!",
+          "kind": "llm",
+          "bffRecovery": false,
+          "degradeReason": null,
+          "infra": false,
+          "stub": false
+        },
+        {
+          "prompt": "Synthetic new case. Price S$40, cost S$18, ship S$4, fee 6% of price, refund S$1",
+          "status": 200,
+          "ms": 2573,
+          "text": "**Contribution per order:** S$14.60\n**Details:**\n- Price: S$40.00\n- : S$18.00\n- : S$4.00\n- fee (6% of price): S$2.40\n- allowance: S$1.00\n**Calculation:**\nContribution = Price - ( + + Fee + )\nContribution = S$40 - (S$18 + S$4 + S$2.40 + S$1)\nContribution = S$40 - S$25.40 = S$14.60\n**Eligibility:** RADIX is granted, and the order is eligible if approval is granted. Would you like to proceed with any",
+          "kind": "llm",
+          "bffRecovery": false,
+          "degradeReason": null,
+          "infra": false,
+          "stub": false
+        }
+      ]
+    },
+    {
+      "id": "pct_fee",
+      "ok": true,
+      "status": 200,
+      "ms": 3206,
+      "text": "The contribution per order is **S$15.76**.\n### Breakdown:\n- **Price:** S$39.90\n- **Supplier Cost:** S$12.35\n- **Shipping:** S$4.80\n- **Marketplace Fee (14.5% of Price):** S$5.79\n- **Refund Allowance:** S$1.20\n### Contribution Calculation:\n\\[\n\\text{Contribution} = \\text{Price} - (\\text{Supplier Cost} + \\text{Shipping} + \\text{Marketplace Fee} + \\text{Refund})\n\\]\n\\[\n\\text{Contribution} = 39.90 - (12.35 + 4.80 + 5.79 + 1.20) = 39.90 - 24.14 = 15.76\n\\]\nIf you need further assistance or actions, plea",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "negative_contrib",
+      "ok": true,
+      "status": 200,
+      "ms": 3407,
+      "text": "The contribution per order is **S$-5.00**.\n### Breakdown:\n- **Price:** S$20.00\n- **Cost:** S$18.00\n- **Shipping:** S$4.00\n- **Marketplace Fee (10% of Price):** S$2.00\n- **Refund Allowance:** S$1.00\n### Contribution Calculation:\n\\[\n\\text{Contribution} = \\text{Price} - (\\text{Cost} + \\text{Shipping} + \\text{Marketplace Fee} + \\text{Refund})\n\\]\n\\[\n\\text{Contribution} = 20 - (18 + 4 + 2 +\n1) = 20 - 25 = -5.00\n\\]\nIf you need further analysis or actions, please let me know!",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "missing_fee",
+      "ok": true,
+      "status": 200,
+      "ms": 12307,
+      "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nMarketplace fee is mentioned but neither a percentage nor a fixed amount is supplied — CONTRIBUTION=UNKNOWN.\n**Need:** marketplace fee % of price or fixed fee amount.",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "mixed_fx",
+      "ok": true,
+      "status": 200,
+      "ms": 9591,
+      "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nMixed currencies without an explicit FX conversion rate — keep ledgers separate.\n**Currency:** MIXED — no invented FX. Provide a conversion rate or keep one currency.",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "hard_gate_def",
+      "ok": true,
+      "status": 200,
+      "ms": 2009,
+      "text": "A hard gate in supplier selection is a mandatory criterion that must be met for a supplier to be considered eligible, such as compliance with regulatory standards or financial stability.\n### In one sentence, what is a hard gate in supplier selection? Brief verified note: focus remains High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use; Realised orders and realised revenue remain zero. I will not invent unsupported specifics for this part, and I will n",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    },
+    {
+      "id": "operating_brief_short",
+      "ok": true,
+      "status": 200,
+      "ms": 17905,
+      "text": "We need commercial progress — realised sales are still zero. Whether High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use is the right immediate move depends on premises we have not verified yet — typically demand attractiveness, unit economics, and operational readiness. Those checks are usually cheap relative to committing to one specific path, and they could reverse the decision, so I would verify them first. If they clear a sensible threshold, proce",
+      "kind": "llm",
+      "bffRecovery": false,
+      "degradeReason": null,
+      "infra": false,
+      "stub": false
+    }
+  ]
+}
