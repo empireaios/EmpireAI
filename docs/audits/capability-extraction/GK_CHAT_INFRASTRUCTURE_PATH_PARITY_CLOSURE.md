@@ -19,7 +19,7 @@
 | RUNNING_BRAIN_SHA | null on `railway up` (expected) |
 | DEPLOYMENT_ID | `08943019-2814-47c9-ab20-416e489258b5` |
 | FRONTEND_DEPLOYMENT | Vercel production for `empire-ai.co` (BFF route from `1d0f5c59`+) |
-| DOCS_SEAL_SHA | (this docs commit) |
+| DOCS_SEAL_SHA | `e5f9815c` |
 
 Pillow semantic code was **not** modified in this mission.
 
