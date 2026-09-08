@@ -187,7 +187,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
       return Response.json(
         {
           result: {
-            message: DEGRADED_CHAT_MESSAGE,
+            message: decision.deliveredMessage,
             kind: "terminal_infrastructure",
             surfaceClass: "terminal_infrastructure",
             semanticSuccess: false,
@@ -199,7 +199,8 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
             brainToUserEquivalent: false,
             shellTraceId: trace.traceId,
             brainOutputHash: trace.brainOutputHash,
-            userResubmissionRequired: true,
+            requestId: requestId ?? undefined,
+            userResubmissionRequired: decision.reason !== "upstream_tier0_terminal",
             firstRequestCompleted: false,
           },
         },
