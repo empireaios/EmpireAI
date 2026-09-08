@@ -609,6 +609,23 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
           terminalReason: null,
           deploymentId: deployId,
         });
+        // Ensure durable Tier-0 requestId is visible in body (worker may emit its own uuid).
+        try {
+          const parsed = JSON.parse(result.body.toString("utf8")) as Record<string, unknown>;
+          if (parsed && typeof parsed === "object") {
+            const resObj =
+              parsed.result && typeof parsed.result === "object"
+                ? { ...(parsed.result as Record<string, unknown>) }
+                : {};
+            resObj.requestId = accepted.requestId;
+            resObj.durableRequestId = accepted.requestId;
+            resObj.durableRequest = true;
+            parsed.result = resObj;
+            return reply.code(result.status).send(Buffer.from(JSON.stringify(parsed)));
+          }
+        } catch {
+          /* fall through */
+        }
         return reply.code(result.status).send(result.body);
       }
 

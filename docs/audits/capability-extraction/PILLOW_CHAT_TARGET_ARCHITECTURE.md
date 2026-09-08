@@ -116,3 +116,22 @@ Not legitimate: identical resubmit after Zod/admission failure or after worker f
 `ARCHITECTURE_READY_INTERNAL=YES` only after fault injection.  
 `ARCHITECTURE_READY_EXTERNAL=UNCONFIRMED` until one GK checkpoint.  
 Next external fail â†’ STOP (architecture review again; no silent patch).
+
+---
+
+## Implementation seal (post-MVA)
+
+| Field | Value |
+|---|---|
+| ARCHITECTURAL_CHANGE_IMPLEMENTED | YES — Option E MVA |
+| PILLOW_REASONING_CHANGED | NO (b5928344) |
+| REQUEST_PERSISTENCE | Tier-0 Redis/memory pillow:chatreq:* |
+| RESULT_PERSISTENCE | COMPLETED stored; GET /api/pillow/chat-request/:id |
+| RETRY_OWNER | Tier-0 |
+| DELIVERY_MODEL | Sync HTTP primary; durable retrieve via pcr_* header |
+| WORKER_RECYCLE_BEHAVIOR | Durable record outlives worker; continuity turns admitted |
+| FAULT_INJECTION | Gen3 10/10 Fresh 5/5 Long 10/10 Stateful 5/5 Recycle 10/10 Transport 5/5 WINDOW=0 |
+| ARCHITECTURE_READY_INTERNAL | YES |
+| ARCHITECTURE_READY_EXTERNAL | UNCONFIRMED |
+
+Exact next action: Grand King ONE short checkpoint. Fail => STOP, no silent patch.

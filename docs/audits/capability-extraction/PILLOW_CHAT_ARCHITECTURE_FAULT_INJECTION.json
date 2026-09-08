@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-09-08T11:03:42.050Z",
+  "DEPLOYMENT_ID": "068137e0-a8e1-43de-aac9-20d704819c1e",
+  "RUNNING_BRAIN_SHA": "e6e8ccd9dcb3040b61ff3d46324f0a035465bfec",
+  "GEN3_OVERSIZED_CONTEXT": "10/10",
+  "FRESH_CASES": "5/5",
+  "LONG_SESSION_CASES": "10/10",
+  "STATEFUL_CASES": "5/5",
+  "WORKER_RECYCLE_CASES": "10/10",
+  "TRANSPORT_INTERRUPTION_CASES": "5/5",
+  "REQUEST_LOST": 0,
+  "COMPLETED_RESULT_LOST": 0,
+  "LONG_SESSION_DELIVERY_FAILURE": 0,
+  "WORKER_RECYCLE_DELIVERY_FAILURE": 0,
+  "RETRYABLE_5XX_TERMINAL": 0,
+  "RESPONSE_WINDOW_TERMINAL": 0,
+  "ARCHITECTURE_READY_INTERNAL": true,
+  "ARCHITECTURE_READY_EXTERNAL": "UNCONFIRMED",
+  "gen3": [
+    {
+      "id": "G3_1",
+      "ok": true,
+      "ms": 3501,
+      "kind": "llm",
+      "requestId": "fe574f2c-cfa0-4b24-ac1b-45dcd9ed16b5"
+    },
+    {
+      "id": "G3_2",
+      "ok": true,
+      "ms": 12002,
+      "kind": "llm",
+      "requestId": "796c1b93-6ab9-471e-a0dc-670e5ecf7d81"
+    },
+    {
+      "id": "G3_3",
+      "ok": true,
+      "ms": 3202,
+      "kind": "llm",
+      "requestId": "129294a8-8c2b-412d-902f-079a62ce89ad"
+    },
+    {
+      "id": "G3_4",
+      "ok": true,
+      "ms": 3760,
+      "kind": "llm",
+      "requestId": "1065cdc6-4a8d-4ce2-953c-16fdeb7036b2"
+    },
+    {
+      "id": "G3_5",
+      "ok": true,
+      "ms": 3469,
+      "kind": "llm",
+      "requestId": "c4ad7531-88cc-4f9c-9c6d-7894edbaca87"
+    },
+    {
+      "id": "G3_6",
+      "ok": true,
+      "ms": 4578,
+      "kind": "llm",
+      "requestId": "e673e628-7198-4f20-a4ac-e819ee0e3dfb"
+    },
+    {
+      "id": "G3_7",
+      "ok": true,
+      "ms": 3855,
+      "kind": "llm",
+      "requestId": "cb84a8a0-9251-4075-b8e4-bb5292877877"
+    },
+    {
+      "id": "G3_8",
+      "ok": true,
+      "ms": 3251,
+      "kind": "llm",
+      "requestId": "71287854-ea88-4500-aa16-454aad3a3ad9"
+    },
+    {
+      "id": "G3_9",
+      "ok": true,
+      "ms": 3087,
+      "kind": "llm",
+      "requestId": "6cbc4e56-ff4e-4a7c-87c8-75807b110088"
+    },
+    {
+      "id": "G3_10",
+      "ok": true,
+      "ms": 3173,
+      "kind": "llm",
+      "requestId": "c923cca9-71d5-402c-8004-41a298947261"
+    }
+  ],
+  "fresh": [
+    {
+      "id": "F1",
+      "ok": true,
+      "ms": 3548,
+      "kind": "llm"
+    },
+    {
+      "id": "F2",
+      "ok": true,
+      "ms": 13747,
+      "kind": "llm"
+    },
+    {
+      "id": "F3",
+      "ok": true,
+      "ms": 12878,
+      "kind": "llm"
+    },
+    {
+      "id": "F4",
+      "ok": true,
+      "ms": 2538,
+      "kind": "llm"
+    },
+    {
+      "id": "F5",
+      "ok": true,
+      "ms": 6093,
+      "kind": "llm"
+    }
+  ],
+  "warm": [
+    {
+      "ok": true,
+      "ms": 16488
+    },
+    {
+      "ok": true,
+      "ms": 16945
+    },
+    {
+      "ok": true,
+      "ms": 17656
+    },
+    {
+      "ok": true,
+      "ms": 16754
+    },
+    {
+      "ok": true,
+      "ms": 16382
+    },
+    {
+      "ok": false,
+      "ms": 14906
+    },
+    {
+      "ok": false,
+      "ms": 15273
+    },
+    {
+      "ok": true,
+      "ms": 14004
+    },
+    {
+      "ok": true,
+      "ms": 3185
+    },
+    {
+      "ok": true,
+      "ms": 3506
+    },
+    {
+      "ok": true,
+      "ms": 17324
+    },
+    {
+      "ok": true,
+      "ms": 16942
+    }
+  ],
+  "longProbes": [
+    {
+      "id": "L1",
+      "ok": true,
+      "ms": 10810
+    },
+    {
+      "id": "L2",
+      "ok": true,
+      "ms": 8144
+    },
+    {
+      "id": "L3",
+      "ok": true,
+      "ms": 10828
+    },
+    {
+      "id": "L4",
+      "ok": true,
+      "ms": 8171
+    },
+    {
+      "id": "L5",
+      "ok": true,
+      "ms": 19400
+    },
+    {
+      "id": "L6",
+      "ok": true,
+      "ms": 2841
+    },
+    {
+      "id": "L7",
+      "ok": true,
+      "ms": 7643
+    },
+    {
+      "id": "L8",
+      "ok": true,
+      "ms": 8417
+    },
+    {
+      "id": "L9",
+      "ok": true,
+      "ms": 14294
+    },
+    {
+      "id": "L10",
+      "ok": true,
+      "ms": 4867
+    }
+  ],
+  "stateful": [
+    {
+      "id": "S1",
+      "ok": true,
+      "ms": 9339
+    },
+    {
+      "id": "S2",
+      "ok": true,
+      "ms": 16785
+    },
+    {
+      "id": "S3",
+      "ok": true,
+      "ms": 8771
+    },
+    {
+      "id": "S4",
+      "ok": true,
+      "ms": 6681
+    },
+    {
+      "id": "S5",
+      "ok": true,
+      "ms": 18099
+    }
+  ],
+  "recycle": [
+    {
+      "id": "R1",
+      "ok": true,
+      "ms": 21831
+    },
+    {
+      "id": "R2",
+      "ok": true,
+      "ms": 4314
+    },
+    {
+      "id": "R3",
+      "ok": true,
+      "ms": 4170
+    },
+    {
+      "id": "R4",
+      "ok": true,
+      "ms": 6422
+    },
+    {
+      "id": "R5",
+      "ok": true,
+      "ms": 3139
+    },
+    {
+      "id": "R6",
+      "ok": true,
+      "ms": 6117
+    },
+    {
+      "id": "R7",
+      "ok": true,
+      "ms": 9574
+    },
+    {
+      "id": "R8",
+      "ok": true,
+      "ms": 9081
+    },
+    {
+      "id": "R9",
+      "ok": true,
+      "ms": 13348
+    },
+    {
+      "id": "R10",
+      "ok": true,
+      "ms": 4298
+    }
+  ],
+  "transport": [
+    {
+      "id": "T1",
+      "ok": true,
+      "retrieved": true
+    },
+    {
+      "id": "T2",
+      "ok": true,
+      "retrieved": true
+    },
+    {
+      "id": "T3",
+      "ok": true,
+      "retrieved": true
+    },
+    {
+      "id": "T4",
+      "ok": true,
+      "retrieved": true
+    },
+    {
+      "id": "T5",
+      "ok": true,
+      "retrieved": true
+    }
+  ],
+  "TRANSPORT_NOTE": "Header x-empire-pillow-request-id (pcr_*) retrieves COMPLETED; body.result.requestId may be worker uuid — prefer header or durableRequestId",
+  "TRANSPORT_REPROBE_AT": "2026-09-08T11:06:33.792Z"
+}
