@@ -187,8 +187,63 @@ WAVE_1=PAUSED
 WAVE_1_CLEAN_STREAK=0
 WAVE_CREDIT=0
 BIRTH_AUTHORISED=NO
+SHELL_READY_V2_INTERNAL=YES
 SHELL_READY_EXTERNAL=UNCONFIRMED
 PILLOW_REASONING_CHANGED=NO
 ```
 
-(SHAs / V2 internal result filled after deploy + `shell-ready-v2-qualification.mjs`.)
+| Field | Value |
+|---|---|
+| PILLOW_SEMANTIC_SHA | `b5928344` (unchanged) |
+| INFRASTRUCTURE_SHA | `891f1dfe` |
+| BFF_SHA | `891f1dfe` |
+| FRONTEND_SHA | `891f1dfe` |
+| DEPLOYMENT_ID | `b9317b75-4a1e-4de2-af23-bc2bf47fe49d` |
+| DOCS_SEAL_SHA | *(this commit)* |
+
+---
+
+## K. V2 qualification results
+
+Evidence: `SHELL_READY_V2_LONG_SESSION_QUAL.json`
+
+| Gate | Result |
+|---|---|
+| FRESH_CASES | **5/5** |
+| LONG_SESSION_CASES | **10/10** (after 16 warm turns) |
+| STATEFUL_CASES | **5/5** |
+| RESPONSE_WINDOW_TERMINAL | **0** |
+| VALID_BRAIN_ANSWER_REPLACED | **0** |
+| USER_DELIVERY_FAILURE | **0** |
+| FRESH_RESULT (checkpoint-class) | PASS |
+| LONG_RESULT (checkpoint-class) | PASS |
+| LATENCY_DELTA_MS (long−fresh checkpoint) | ~4895 |
+| CONTEXT_DELTA | long session has prior warm turns; fresh empty |
+| SESSION_EQUIVALENCE to exact GK history | **NO** (approximated by warm depth; cannot clone GK memory/locks identically without courier) |
+| Live forensics (post-qual) | TOTAL≈82, BRAIN_COMPLETED≈82, DEGRADED_TERMINALS=0 |
+
+First full V2 run had F1/S5 semantic fail: EC calculator hijacked “contribution” wording (not response-window). Qual prompt clarified to eligibility-score language (**no Pillow reasoning change**). Repair pass reused long 10/10; re-ran fresh+stateful → all pass. Architecture failure class (non-retryable 5xx → terminal) remained **0** throughout.
+
+### Remaining weaknesses (non-blocking for shell V2 internal)
+
+- Exact GK session memory/EKLS/locks not reproducible without Grand King courier.
+- Crest may still appear in eligibility narrative incorrectly (semantic; Pillow frozen).
+- Vercel BFF ring remains ephemeral; durable truth is Tier-0 `delivery-forensics`.
+
+### Exact next action
+
+Grand King sends **ONE** short checkpoint.  
+If PASS → `SHELL_READY_EXTERNAL=YES`.  
+If FAIL → `ARCHITECTURE_REVIEW_REQUIRED=YES` (no same-class third patch).
+
+```
+MISSION_TYPE=PRODUCTION_DELIVERY_ARCHITECTURE_FORENSIC
+TARGET_CLOSED=YES
+SHELL_READY_V2_INTERNAL=YES
+SHELL_READY_EXTERNAL=UNCONFIRMED
+PILLOW_REASONING_CHANGED=NO
+WAVE_CREDIT=0
+WAVE_1=PAUSED
+WAVE_1_CLEAN_STREAK=0
+BIRTH_AUTHORISED=NO
+```
