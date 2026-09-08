@@ -195,10 +195,10 @@ PILLOW_REASONING_CHANGED=NO
 | Field | Value |
 |---|---|
 | PILLOW_SEMANTIC_SHA | `b5928344` (unchanged) |
-| INFRASTRUCTURE_SHA | `891f1dfe` |
+| INFRASTRUCTURE_SHA | `891f1dfe` (fix) / tip `edbbba6d` (docs seal) |
 | BFF_SHA | `891f1dfe` |
 | FRONTEND_SHA | `891f1dfe` |
-| DEPLOYMENT_ID | `b9317b75-4a1e-4de2-af23-bc2bf47fe49d` |
+| DEPLOYMENT_ID (V2 repair window) | `16f13895-c9dc-49f6-bef2-d51b01c75c9d` |
 | DOCS_SEAL_SHA | *(this commit)* |
 
 ---
@@ -217,7 +217,7 @@ Evidence: `SHELL_READY_V2_LONG_SESSION_QUAL.json`
 | USER_DELIVERY_FAILURE | **0** |
 | FRESH_RESULT (checkpoint-class) | PASS |
 | LONG_RESULT (checkpoint-class) | PASS |
-| LATENCY_DELTA_MS (long−fresh checkpoint) | ~4895 |
+| LATENCY_DELTA_MS (long−fresh checkpoint) | ~4025 (repair window) |
 | CONTEXT_DELTA | long session has prior warm turns; fresh empty |
 | SESSION_EQUIVALENCE to exact GK history | **NO** (approximated by warm depth; cannot clone GK memory/locks identically without courier) |
 | Live forensics (post-qual) | TOTAL≈82, BRAIN_COMPLETED≈82, DEGRADED_TERMINALS=0 |
