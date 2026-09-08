@@ -40,6 +40,9 @@ function resolvePillowUpstreamTimeoutMs(pathSegments: string[], method: string):
   if (resource === "delivery-forensics") {
     return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
   }
+  if (resource === "chat-request" || resource === "chat-requests") {
+    return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
+  }
   if (method === "GET") {
     return PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS;
   }
@@ -91,14 +94,35 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
   const backendPath = `/api/pillow/${pathSegments.join("/")}${url.search}`;
   const upstreamTimeoutMs = resolvePillowUpstreamTimeoutMs(pathSegments, method);
   const isChat = method === "POST" && isPillowChatResource(pathSegments);
-  const bodyText = method !== "GET" && method !== "DELETE" ? await request.text() : undefined;
+  let bodyText = method !== "GET" && method !== "DELETE" ? await request.text() : undefined;
   let userAsk = "";
   let sessionId: string | null = null;
   if (isChat && bodyText) {
     try {
-      const parsed = JSON.parse(bodyText) as { message?: string; sessionId?: string };
+      const parsed = JSON.parse(bodyText) as {
+        message?: string;
+        sessionId?: string;
+        workspaceContext?: {
+          recentConversationTurns?: Array<{ role?: string; content?: string }>;
+        };
+      };
       userAsk = String(parsed.message ?? "");
       sessionId = parsed.sessionId ? String(parsed.sessionId) : null;
+      // BFF context admission (Gen3 class) — truncate continuity turns before Brain Zod.
+      const turns = parsed.workspaceContext?.recentConversationTurns;
+      if (Array.isArray(turns)) {
+        parsed.workspaceContext = {
+          ...parsed.workspaceContext,
+          recentConversationTurns: turns.slice(-16).map((t) => ({
+            ...t,
+            content:
+              String(t?.content ?? "").length > 8000
+                ? `${String(t.content).slice(0, 7970)}…`
+                : t?.content,
+          })),
+        };
+        bodyText = JSON.stringify(parsed);
+      }
     } catch {
       userAsk = "";
     }

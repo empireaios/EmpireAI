@@ -119,13 +119,36 @@ export function isTransientProxyFailure(result: PillowProxyAttemptResult): boole
   return false;
 }
 
-/** Request-scoped terminal message when recovery is exhausted. Never claims soft success. */
-export function buildTerminalInfrastructureMessage(accepted: AcceptedPillowChatRequest): string {
+/** Request-scoped terminal when recovery is exhausted. Never claims soft success. */
+export function buildTerminalInfrastructureMessage(
+  accepted: AcceptedPillowChatRequest,
+  failureClass:
+    | "BUDGET_EXHAUSTED"
+    | "WORKER_UNAVAILABLE"
+    | "BRAIN_RETRYABLE_FAILURE"
+    | "REQUEST_NOT_ACCEPTED"
+    | "UPSTREAM_ERROR"
+    | "TIMEOUT"
+    | "BRAIN_FATAL_FAILURE" = "BUDGET_EXHAUSTED",
+): string {
   const isolated = isSyntheticIsolatedAsk(accepted.message);
+  if (failureClass === "REQUEST_NOT_ACCEPTED") {
+    const lines = [
+      "I could not accept this request in its current envelope (validation/admission).",
+      "The payload was adjusted where possible; if this persists, shorten prior chat continuity or retry with a fresh session.",
+      "This is not a judgment on your executive ask.",
+    ];
+    if (!isolated && shouldSurfaceBirthBoundary(accepted.message)) {
+      lines.push("Birth remains unauthorised until Grand King decides.");
+    }
+    return lines.join(" ");
+  }
   const lines = [
-    "I accepted your request, but a completed executive answer was not produced in this response window.",
+    failureClass === "BUDGET_EXHAUSTED" || failureClass === "TIMEOUT"
+      ? "I accepted your request, but a completed executive answer was not produced in this response window."
+      : "I accepted your request, but a completed executive answer was not produced due to a temporary infrastructure fault.",
     "This is a temporary production-shell / transport limit — not a judgment on your ask.",
-    "Please retry the same ask; there is no durable background recovery after this reply.",
+    "If a request id was issued, the system may retain ownership; otherwise please retry the same ask.",
   ];
   if (!isolated && shouldSurfaceBirthBoundary(accepted.message)) {
     lines.push("Birth remains unauthorised until Grand King decides.");

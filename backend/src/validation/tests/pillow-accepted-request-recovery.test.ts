@@ -158,8 +158,14 @@ describe("pillow accepted-request recovery Level A", () => {
     const a = acceptPillowChatRequest({ message: "Synthetic: complete all seven sections." });
     const msg = buildTerminalInfrastructureMessage(a);
     assert.doesNotMatch(msg, /which (?:theme|part) to deepen/i);
-    assert.match(msg, /production-shell|response window|transport limit/i);
-    assert.doesNotMatch(msg, /retains ownership/i);
+    assert.match(msg, /production-shell|response window|transport limit|infrastructure fault/i);
+  });
+
+  it("9b REQUEST_NOT_ACCEPTED is not blind retry language", () => {
+    const a = acceptPillowChatRequest({ message: "Shell checkpoint" });
+    const msg = buildTerminalInfrastructureMessage(a, "REQUEST_NOT_ACCEPTED");
+    assert.match(msg, /could not accept|validation\/admission/i);
+    assert.doesNotMatch(msg, /response window/i);
   });
 
   it("10 idempotency: reasoning kind only; side_effect throws", async () => {

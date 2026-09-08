@@ -54,6 +54,18 @@ import {
   searchDeliveryForensics,
   type DeliveryForensicEvent,
 } from "./pillow-delivery-forensics.js";
+import {
+  acceptDurableChatRequest,
+  admitChatRequestBody,
+  chatRequestDashboard,
+  completeChatRequest,
+  configureChatRequestStore,
+  failChatRequest,
+  getChatRequest,
+  listRecentChatRequests,
+  markChatRequestDelivered,
+  markChatRequestRunning,
+} from "./pillow-chat-request-store.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -139,12 +151,19 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   const redisOk = await probeRedisAvailable(env.REDIS_URL);
   let sessionStore: SessionStoreBackend;
+  let redisClient: ReturnType<typeof createRedisClient> | null = null;
   if (redisOk) {
-    sessionStore = new SessionStore(createRedisClient(env.REDIS_URL));
-    logger.info("Tier-0 primary session store: Redis");
+    redisClient = createRedisClient(env.REDIS_URL);
+    sessionStore = new SessionStore(redisClient);
+    configureChatRequestStore({
+      get: (k) => redisClient!.get(k),
+      setex: (k, sec, v) => redisClient!.setex(k, sec, v),
+    });
+    logger.info("Tier-0 primary session store: Redis (chat request durability enabled)");
   } else {
     // Prefer available Grand King auth over hard crash if Redis flaps during incident.
     sessionStore = new InMemorySessionStore();
+    configureChatRequestStore(null);
     logger.error(
       "Tier-0 primary Redis probe failed — using in-memory sessions so login remains possible",
     );
@@ -269,6 +288,28 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
           null,
         deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
       },
+    });
+  });
+
+  /** Durable chat request/result — Option E MVA. */
+  app.get("/api/pillow/chat-request/:requestId", async (request, reply) => {
+    const requestId = String((request.params as { requestId?: string }).requestId ?? "");
+    const rec = await getChatRequest(requestId);
+    if (!rec) {
+      return reply.code(404).send({ ok: false, error: "request_not_found", requestId });
+    }
+    if (rec.status === "COMPLETED" && rec.deliveryState === "NOT_DELIVERED") {
+      await markChatRequestDelivered(requestId, "RETRIEVED");
+    }
+    return reply.send({ ok: true, request: rec, dashboard: chatRequestDashboard() });
+  });
+
+  app.get("/api/pillow/chat-requests", async (request, reply) => {
+    const limit = Number((request.query as { limit?: string })?.limit ?? 40);
+    return reply.send({
+      ok: true,
+      dashboard: chatRequestDashboard(),
+      rows: listRecentChatRequests(limit),
     });
   });
 
@@ -411,18 +452,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return worker.ok;
     }
 
-    async function proxyOnce(timeoutMs: number): Promise<PillowProxyAttemptResult> {
+    async function proxyOnce(
+      timeoutMs: number,
+      bodyOverride?: string | Buffer,
+    ): Promise<PillowProxyAttemptResult> {
       if (!(await probeWorkerOk(Math.min(2_000, timeoutMs)))) {
         return { ok: false, reason: "worker_unavailable" };
       }
       const target = `http://127.0.0.1:${workerState.port}${request.url}`;
+      const bodyForProxy = bodyOverride !== undefined ? bodyOverride : rawBody;
       try {
         const init: RequestInit = {
           method: request.method,
           headers: { ...headers },
           signal: AbortSignal.timeout(timeoutMs),
         };
-        if (rawBody !== undefined) init.body = rawBody;
+        if (bodyForProxy !== undefined) init.body = bodyForProxy;
         const upstream = await fetch(target, init);
         const buf = Buffer.from(await upstream.arrayBuffer());
         const messagePreview = extractChatMessagePreview(buf);
@@ -455,24 +500,33 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     }
 
     if (isPillowChat) {
+      const admitted = admitChatRequestBody(
+        typeof rawBody === "string" || Buffer.isBuffer(rawBody) ? rawBody : rawBody,
+      );
+      const chatBodyText = admitted.bodyText || "{}";
       let parsedMsg = "";
       let sessionId: string | null = null;
       try {
-        const parsed = JSON.parse(
-          typeof rawBody === "string"
-            ? rawBody
-            : Buffer.isBuffer(rawBody)
-              ? rawBody.toString("utf8")
-              : "{}",
-        ) as { message?: string; sessionId?: string };
+        const parsed = JSON.parse(chatBodyText) as { message?: string; sessionId?: string };
         parsedMsg = String(parsed.message ?? "");
         sessionId = parsed.sessionId ? String(parsed.sessionId) : null;
       } catch {
         parsedMsg = "";
       }
-      const accepted = acceptPillowChatRequest({ message: parsedMsg, sessionId });
+      const deployId = process.env.RAILWAY_DEPLOYMENT_ID || null;
+      const durable = await acceptDurableChatRequest({
+        sessionId,
+        message: parsedMsg,
+        deploymentId: deployId,
+      });
+      const accepted = acceptPillowChatRequest({
+        message: parsedMsg,
+        sessionId,
+        requestId: durable.requestId,
+      });
       headers["x-empire-pillow-request-id"] = accepted.requestId;
       headers["x-empire-pillow-request-kind"] = accepted.kind;
+      headers["content-type"] = headers["content-type"] ?? "application/json";
 
       const forensicTraceId = newDeliveryTraceId();
       let brainStarted = false;
@@ -487,6 +541,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         attempt: async (timeoutMs, attemptIndex) => {
           brainStarted = true;
           attemptCount = attemptIndex;
+          await markChatRequestRunning(accepted.requestId, attemptIndex);
           logger.info(
             {
               requestId: accepted.requestId,
@@ -494,10 +549,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
               timeoutMs,
               sessionId: accepted.sessionId,
               forensicTraceId,
+              contextAdmitted: admitted.mutated,
             },
             "pillow_chat_accepted_attempt",
           );
-          const once = await proxyOnce(timeoutMs);
+          const once = await proxyOnce(timeoutMs, chatBodyText);
           if (!once.ok && once.status != null) lastUpstreamStatus = once.status;
           if (!once.ok) lastFailureReason = once.reason;
           if (once.ok) lastUpstreamStatus = once.status;
@@ -514,7 +570,6 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       });
 
       const elapsed = Date.now() - tAccept;
-      const deployId = process.env.RAILWAY_DEPLOYMENT_ID || null;
 
       if (result.ok) {
         const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
@@ -524,7 +579,13 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         reply.header("x-empire-pillow-request-id", accepted.requestId);
         reply.header("x-empire-pillow-recovery", "completed");
         reply.header("x-empire-delivery-trace-id", forensicTraceId);
+        reply.header("x-empire-chat-request-status", "COMPLETED");
         const preview = result.messagePreview;
+        await completeChatRequest(accepted.requestId, {
+          message: preview,
+          kind: "llm",
+        });
+        await markChatRequestDelivered(accepted.requestId, "DELIVERED");
         recordDeliveryForensic({
           traceId: forensicTraceId,
           requestId: accepted.requestId,
@@ -550,6 +611,24 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         });
         return reply.code(result.status).send(result.body);
       }
+
+      const taxonomyFailure =
+        lastUpstreamStatus === 400
+          ? ("REQUEST_NOT_ACCEPTED" as const)
+          : lastFailureReason === "worker_unavailable"
+            ? ("WORKER_UNAVAILABLE" as const)
+            : lastFailureReason === "timeout"
+              ? ("TIMEOUT" as const)
+              : lastFailureReason === "upstream_error"
+                ? ("BRAIN_RETRYABLE_FAILURE" as const)
+                : ("BUDGET_EXHAUSTED" as const);
+
+      await failChatRequest(accepted.requestId, {
+        failureClass: taxonomyFailure,
+        errorClass: lastFailureReason,
+        upstreamStatus: lastUpstreamStatus,
+        attempt: attemptCount,
+      });
 
       const failureClass: DeliveryForensicEvent["failureClass"] =
         lastFailureReason === "worker_unavailable"
@@ -590,19 +669,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       reply.header("x-empire-pillow-request-id", accepted.requestId);
       reply.header("x-empire-pillow-recovery", "exhausted");
       reply.header("x-empire-delivery-trace-id", forensicTraceId);
+      reply.header("x-empire-chat-request-status", "FAILED");
+      reply.header("x-empire-failure-class", taxonomyFailure);
       return reply.code(200).send({
         result: {
-          message: buildTerminalInfrastructureMessage(accepted),
+          message: buildTerminalInfrastructureMessage(accepted, taxonomyFailure),
           kind: "terminal_infrastructure",
           tier0Isolation: true,
           requestId: accepted.requestId,
           recoveryExhausted: true,
-          userResubmissionRequired: true,
+          userResubmissionRequired: taxonomyFailure === "REQUEST_NOT_ACCEPTED" ? false : true,
           deliveryTraceId: forensicTraceId,
-          failureClass:
-            lastFailureReason === "upstream_error" ? "UPSTREAM_ERROR" : failureClass,
+          failureClass: taxonomyFailure,
           brainStarted,
           brainCompleted: false,
+          durableRequest: true,
+          contextAdmitted: admitted.mutated,
         },
       });
     }

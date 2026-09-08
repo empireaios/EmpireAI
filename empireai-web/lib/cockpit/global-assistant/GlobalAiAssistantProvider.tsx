@@ -464,7 +464,13 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         const base = buildWorkspaceContext(state.context, state.pageOverride);
         const turns = (loadPillowSession()?.turns ?? [])
           .slice(-12)
-          .map((t) => ({ role: t.role, content: t.content }));
+          .map((t) => ({
+            role: t.role,
+            content:
+              String(t.content ?? "").length > 8000
+                ? `${String(t.content).slice(0, 7970)}…`
+                : t.content,
+          }));
         return {
           ...base,
           recentConversationTurns: turns,

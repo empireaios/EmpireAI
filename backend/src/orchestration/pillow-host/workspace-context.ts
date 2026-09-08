@@ -41,12 +41,19 @@ export const pillowWorkspaceContextSchema = z.object({
   repositoryFingerprint: z.string().nullable().optional(),
   recommendations: z.array(z.string()).max(12).optional(),
   risks: z.array(z.string()).max(12).optional(),
-  /** Client-held turns for continuity when host session was recreated under lag. */
+  /** Client-held turns for continuity when host session was recreated under lag.
+   *  Long GK sessions routinely exceed 8k per turn — hard-reject caused Gen3 external
+   *  failure (Zod 400 → false response-window terminal). Admission truncates; does not
+   *  change Pillow reasoning. */
   recentConversationTurns: z
     .array(
       z.object({
         role: z.enum(["grand-king", "pillow", "user", "assistant"]),
-        content: z.string().max(8000),
+        content: z.string().transform((s) => {
+          const t = String(s ?? "");
+          if (t.length <= 8000) return t;
+          return `${t.slice(0, 7970)}…`;
+        }),
       }),
     )
     .max(16)
