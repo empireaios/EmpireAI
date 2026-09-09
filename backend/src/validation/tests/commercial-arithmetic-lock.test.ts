@@ -1,5 +1,5 @@
 /**
- * DEV lock: EC01/EC02 commercial arithmetic precision.
+ * DEV lock: EC01/EC02 commercial arithmetic precision + given-metric authority.
  */
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
@@ -9,6 +9,7 @@ import {
   computeCommercialContribution,
   formatMoneyVisible,
   isCommercialArithmeticAsk,
+  isGivenMetricDecisionAsk,
   parseCommercialOperands,
   resolveCommercialArithmetic,
   roundMoneyVisible,
@@ -16,6 +17,7 @@ import {
   detectArithmeticMismatch,
   repairAnswerWithCalculator,
 } from "../../orchestration/pillow-host/executive-commercial-arithmetic.js";
+import { buildDecisionCaseState } from "../../orchestration/pillow-host/executive-decision-case-state.js";
 import {
   parseExecutiveTaskContract,
   synthesizeTaskUnitAnswer,
@@ -29,6 +31,13 @@ function truth() {
     deploy: { serviceOnlineHint: "assume_online_if_answering" as const },
   };
 }
+
+const JUNIPER_GK =
+  "Architecture checkpoint — bounded decision Three suppliers are available: Juniper: contribution US$13/unit, stock 1,000, delivery 5 days, approval granted. Lotus: contribution US$17/unit, stock 1,500, delivery 4 days, approval granted. Maple: contribution US$15/unit, stock 1,200, delivery 7 days, approval granted. Eligibility: contribution >=10, stock >=900, delivery <=6, approval granted. Choose eligible supplier with highest contribution. Answer only: 1. Current eligible set. 2. Supplier to select now. 3. If Lotus approval becomes granted, whether selection changes and to whom.";
+
+// Note: forensic original has Lotus approval pending — use that for decision tests.
+const JUNIPER_FORENSIC =
+  "Architecture checkpoint — bounded decision Three suppliers are available: Juniper: contribution US$13/unit, stock 1,000, delivery 5 days, approval granted. Lotus: contribution US$17/unit, stock 1,500, delivery 4 days, approval pending. Maple: contribution US$15/unit, stock 1,200, delivery 7 days, approval granted. Eligibility: contribution >=10, stock >=900, delivery <=6, approval granted. Choose eligible supplier with highest contribution. Answer only: 1. Current eligible set. 2. Supplier to select now. 3. If Lotus approval becomes granted, whether selection changes and to whom.";
 
 describe("EC01/EC02 commercial arithmetic", () => {
   it("documents precision policies", () => {
@@ -58,7 +67,6 @@ describe("EC01/EC02 commercial arithmetic", () => {
     const msg =
       "Synthetic. Price 39.90, supplier 12.35, shipping 4.80, marketplace fee 14.5% of selling price, refund allowance 1.20. Contribution?";
     const r = resolveCommercialArithmetic(msg);
-    // 39.90 - 12.35 - 4.80 - (39.90*0.145) - 1.20 = 39.90 - 12.35 - 4.80 - 5.7855 - 1.20 = 15.7645 → 15.76
     assert.equal(r.ok, true);
     assert.equal(r.contribution, 15.76);
   });
@@ -69,6 +77,17 @@ describe("EC01/EC02 commercial arithmetic", () => {
     const r = resolveCommercialArithmetic(msg);
     assert.equal(r.ok, false);
     assert.match(r.unknownReason || "", /MIXED|FX/i);
+  });
+
+  it("US$ amounts alone are USD not MIXED (no S$ false positive inside US$)", () => {
+    const msg =
+      "Synthetic. Price US$40, supplier cost US$18, shipping US$4, fee 6% of price. Contribution?";
+    const ops = parseCommercialOperands(msg);
+    assert.equal(ops.currency, "USD");
+    assert.deepEqual(ops.currenciesSeen, ["USD"]);
+    const r = resolveCommercialArithmetic(msg);
+    assert.equal(r.ok, true);
+    assert.equal(r.currency, "USD");
   });
 
   it("fee mentioned without value → UNKNOWN", () => {
@@ -110,7 +129,6 @@ describe("EC01/EC02 commercial arithmetic", () => {
     );
     ops.askMargin = true;
     const r = computeCommercialContribution(ops);
-    // 100 - 40 - 10 - 10 = 40; margin 40%
     assert.equal(r.contribution, 40);
     assert.equal(r.marginPercent, 40);
   });
@@ -119,7 +137,6 @@ describe("EC01/EC02 commercial arithmetic", () => {
     const r = resolveCommercialArithmetic(
       "Price 20, cost 18, ship 4, fee 10% of price, refund 1. Contribution?",
     );
-    // 20 - 18 - 4 - 2 - 1 = -5
     assert.equal(r.contribution, -5);
   });
 
@@ -140,7 +157,7 @@ describe("EC01/EC02 commercial arithmetic", () => {
       "Synthetic. Price S$50, cost S$20, ship S$5, fee 10% of price. Contribution/order?",
     );
     assert.ok(a);
-    assert.match(a!, /20\.00/); // 50-20-5-5=20
+    assert.match(a!, /20\.00/);
   });
 
   it("repair overrides invented FX on MIXED currency", () => {
@@ -160,4 +177,41 @@ describe("EC01/EC02 commercial arithmetic", () => {
     const fixed = repairAnswerWithCalculator(bad, msg);
     assert.match(fixed, /UNKNOWN/i);
   });
+});
+
+describe("Given-metric arithmetic authority (Juniper class)", () => {
+  it("GK forensic: not arith ask, USD only, no unit-econ stub, DecisionCase SELECT Juniper", () => {
+    assert.equal(isGivenMetricDecisionAsk(JUNIPER_FORENSIC), true);
+    assert.equal(isCommercialArithmeticAsk(JUNIPER_FORENSIC), false);
+    assert.equal(parseCommercialOperands(JUNIPER_FORENSIC).currency, "USD");
+    assert.equal(synthesizeCommercialArithmeticAnswer(JUNIPER_FORENSIC), null);
+    const d = buildDecisionCaseState(JUNIPER_FORENSIC)!;
+    assert.deepEqual(d.eligibleSet, ["Juniper"]);
+    assert.equal(d.recommendation.status, "SELECT");
+    assert.equal(d.recommendation.selectedId, "Juniper");
+    assert.ok(d.candidates.every((c) => c.displayName !== "Only"));
+    assert.ok(
+      d.reversalConditions.some((r) =>
+        /Lotus.*selection changes to Lotus/i.test(r),
+      ),
+    );
+  });
+
+  it("given contribution decision does not hijack via subject Unit economics", () => {
+    const msg =
+      "Cedar: contribution US$12/unit, stock 1000, delivery 5 days, approval granted. Elm: contribution US$11/unit, stock 1000, delivery 5 days, approval granted. Eligibility: contribution >=10, stock >=900, delivery <=6, approval granted. Choose highest contribution eligible.";
+    assert.equal(isGivenMetricDecisionAsk(msg), true);
+    assert.equal(synthesizeCommercialArithmeticAnswer(msg, "Unit economics"), null);
+    const d = buildDecisionCaseState(msg)!;
+    assert.equal(d.recommendation.selectedId, "Cedar");
+  });
+
+  it("repair does not rewrite given-metric decisions", () => {
+    const good =
+      "Eligible: Juniper. Select Juniper. If Lotus approval granted, select Lotus.";
+    assert.equal(repairAnswerWithCalculator(good, JUNIPER_FORENSIC), good);
+  });
+
+  // Silence unused const if tree-shaken oddly
+  void JUNIPER_GK;
 });

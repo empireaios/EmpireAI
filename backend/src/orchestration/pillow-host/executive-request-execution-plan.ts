@@ -7,7 +7,10 @@ import {
   buildDecisionCaseState,
   type DecisionCaseState,
 } from "./executive-decision-case-state.js";
-import { resolveCommercialArithmetic } from "./executive-commercial-arithmetic.js";
+import {
+  isGivenMetricDecisionAsk,
+  resolveCommercialArithmetic,
+} from "./executive-commercial-arithmetic.js";
 
 export type RequestExecutionMode =
   | "BOUNDED_HYPOTHETICAL_ANALYSIS"
@@ -312,9 +315,14 @@ export function synthesizeBoundedDecisionObligation(
         c.supportedMetric != null ? `supportedMetric=${c.supportedMetric}` : "metric from pack lines";
       return `- **${c.displayName}**: ${metric}; eligible=${c.currentlyEligible ? "YES" : "NO"}`;
     });
-    const arith = userMessage ? resolveCommercialArithmetic(userMessage) : null;
-    const arithLines =
-      arith?.ok && arith.displayContribution
+    const givenMetric = userMessage ? isGivenMetricDecisionAsk(userMessage) : false;
+    const arith = !givenMetric && userMessage ? resolveCommercialArithmetic(userMessage) : null;
+    const arithLines = givenMetric
+      ? [
+          "",
+          "**Given metrics:** use each candidate's stated contribution/margin as scenario facts — do not recompute unit economics.",
+        ]
+      : arith?.ok && arith.displayContribution
         ? [
             "",
             `**Deterministic contribution/order:** ${arith.displayContribution}`,

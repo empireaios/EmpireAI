@@ -9,6 +9,7 @@ export type CommercialGateId =
   | "cost_ceiling"
   | "margin_floor"
   | "delivery_sla"
+  | "delivery_max_days"
   | "approval"
   | "stock"
   | "policy"
@@ -103,8 +104,14 @@ export type ParsedRule = {
   costOp: "<=" | "<";
   deliveryFloor: number | null;
   deliveryOp: ">=" | ">";
+  /** Max delivery days (e.g. delivery <= 6). */
+  deliveryMaxDays: number | null;
   approvalRequired: boolean;
   marginFloor: number | null;
+  /** Min contribution/score when supplied as a gate (e.g. contribution >= 10). */
+  contributionMin: number | null;
+  /** Min stock/inventory units (e.g. stock >= 900). */
+  stockMin: number | null;
   objective: DecisionObjective;
 };
 
@@ -115,8 +122,8 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   const costM =
     /(?:cost|procurement\s+cost|expenditure|budget)\s*(?:ceiling|cap|limit)?\s*(?:<=|≤|<|no\s+more\s+than|at\s+most)\s*(?:S\$|SGD|\$)?\s*([\d,]+(?:\.\d+)?)/i.exec(
       t,
-    ) ||
-    /(?:<=|≤|no\s+more\s+than|at\s+most)\s*(?:S\$|SGD|\$)?\s*([\d,]+(?:\.\d+)?)/i.exec(t);
+    );
+  // Do NOT treat delivery/stock/contribution inequalities as cost ceilings.
   if (costM) costCeiling = parseMoney(costM[1]!);
   if (/\bcost\b[^.\n]{0,40}<\s*(?:S\$|\$)?\s*\d/i.test(t) && !/<=|≤|at\s+most|no\s+more/i.test(t)) {
     costOp = "<";
@@ -131,8 +138,14 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   if (delM) deliveryFloor = Number(delM[1]);
   if (/\bdelivery\b[^.\n]{0,30}>\s*\d/i.test(t) && !/>=|≥|at\s+least/i.test(t)) deliveryOp = ">";
 
+  let deliveryMaxDays: number | null = null;
+  const delDays =
+    /delivery(?:\s*days?)?\s*(?:<=|≤|at\s+most|no\s+more\s+than)\s*(\d+(?:\.\d+)?)/i.exec(t) ||
+    /delivery(?:\s*days?)?\s*(?:<=|≤)\s*(\d+(?:\.\d+)?)/i.exec(t);
+  if (delDays) deliveryMaxDays = Number(delDays[1]);
+
   const approvalRequired =
-    /\b(?:NO\s+mandatory\s+(?:compliance\s+)?approval\s+pending|approval\s+(?:must\s+be\s+)?(?:granted|cleared)|no\s+pending\s+approval|mandatory\s+(?:compliance\s+)?approval|eligible\s+(?:only\s+)?if\s+approval\s+granted)\b/i.test(
+    /\b(?:NO\s+mandatory\s+(?:compliance\s+)?approval\s+pending|approval\s+(?:must\s+be\s+)?(?:granted|cleared)|no\s+pending\s+approval|mandatory\s+(?:compliance\s+)?approval|eligible\s+(?:only\s+)?if\s+approval\s+granted|approval\s+granted)\b/i.test(
       t,
     );
 
@@ -142,11 +155,26 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   );
   if (marM) marginFloor = Number(marM[1]);
 
+  let contributionMin: number | null = null;
+  const cMin =
+    /(?:contribution|margin|profit|score)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+      t,
+    );
+  // Absolute floors (margin US$ / score) — not percentage margin floor.
+  if (cMin && !/%/.test(cMin[0]!)) contributionMin = Number(cMin[1]);
+
+  let stockMin: number | null = null;
+  const sMin =
+    /(?:stock|inventory)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*([\d,]+(?:\.\d+)?)/i.exec(t);
+  if (sMin) stockMin = parseMoney(sMin[1]!);
+
   let objective: DecisionObjective = "select_sole_eligible";
   if (/\bcheapest\s+eligible\b|\blowest\s+(?:eligible\s+)?cost\b/i.test(t)) {
     objective = "select_cheapest_eligible";
   } else if (
-    /\bhighest\s+(?:supported\s+)?(?:contribution|margin|metric|score)\b|\bbest\s+eligible\b/i.test(t)
+    /\bhighest\s+(?:supported\s+)?(?:contribution|margin|profit|metric|score)\b|\bbest\s+eligible\b|\bhighest contribution\b/i.test(
+      t,
+    )
   ) {
     objective = "select_highest_metric_eligible";
   } else if (
@@ -159,7 +187,7 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
     /\bno\s+selection\s+unless|\bdo\s+not\s+select\s+any\s+unless|\bunless\s+two\s+independent\b/i.test(t)
   ) {
     objective = "select_none_unless_eligible";
-  } else if (!/\beligible\b|\bselect\b|\brecommend\b/i.test(t)) {
+  } else if (!/\beligible\b|\bselect\b|\brecommend\b|\bchoose\b/i.test(t)) {
     objective = "unresolved";
   }
 
@@ -168,35 +196,52 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
     costOp,
     deliveryFloor,
     deliveryOp,
+    deliveryMaxDays,
     approvalRequired,
     marginFloor,
+    contributionMin,
+    stockMin,
     objective,
   };
 }
 
 const SKIP_CANDIDATE_NAMES =
-  /^(?:ANSWER|AUDIT|RULE|NOTE|PACK|CLAIM|SECTION|SNAPSHOT|CLOSING|ALSO|THEN|GIVEN|ASSESS|SYNTHETIC|CONTINUE|NOW)$/i;
+  /^(?:ANSWER|AUDIT|RULE|NOTE|PACK|CLAIM|SECTION|SNAPSHOT|CLOSING|ALSO|THEN|GIVEN|ASSESS|SYNTHETIC|CONTINUE|NOW|ONLY|CURRENT|SUPPLIER|SUPPLIERS)$/i;
 
 const COMMERCIAL_BODY =
-  /\b(?:cost|delivery|approval|margin|stock|contribution|policy|PASS|FAIL|PENDING|eligible|gate|inventory)\b/i;
+  /\b(?:cost|delivery|approval|margin|stock|contribution|profit|score|policy|PASS|FAIL|PENDING|eligible|gate|inventory)\b/i;
 
-/** Split same-line peers: `ALPHA: … BETA: …` into separate blocks. */
+/** Split same-line peers: `ALPHA: … BETA: …` or `Juniper: … Lotus: …` into blocks. */
 function splitInlineNamedPeers(segment: string): Array<{ name: string; body: string }> {
   const line = String(segment || "");
-  const re = /\b([A-Z][A-Z0-9_-]{1,24})\s*:\s*/g;
+  // Title Case + ALL-CAPS + lowercase supplier tags (forensic GK packs).
+  const re = /\b([A-Za-z][A-Za-z0-9_-]{1,32})\s*:\s*/g;
   const hits: Array<{ name: string; bodyStart: number; index: number }> = [];
   let m: RegExpExecArray | null;
   while ((m = re.exec(line)) !== null) {
-    if (SKIP_CANDIDATE_NAMES.test(m[1]!)) continue;
-    hits.push({ name: m[1]!, index: m.index, bodyStart: m.index + m[0].length });
+    const name = m[1]!;
+    if (SKIP_CANDIDATE_NAMES.test(name)) continue;
+    if (
+      /^(?:Eligibility|Answer|Rules?|Gates?|Objective|Note|Pack|Claim|Section|Also|Then|Given|Assess|Architecture|Three|Choose|Available|Suppliers?|Bounded|Decision|Checkpoint|Only|Current)$/i.test(
+        name,
+      )
+    ) {
+      continue;
+    }
+    hits.push({ name, index: m.index, bodyStart: m.index + m[0].length });
   }
   if (hits.length === 0) return [];
   const parts: Array<{ name: string; body: string }> = [];
   for (let i = 0; i < hits.length; i++) {
     const end = i + 1 < hits.length ? hits[i + 1]!.index : line.length;
+    const body = line.slice(hits[i]!.bodyStart, end).trim();
+    if (!COMMERCIAL_BODY.test(body)) continue;
+    // Canonicalize display: Juniper / JUNIPER / juniper → Juniper with leading capital
+    const raw = hits[i]!.name;
+    const display = raw.charAt(0).toUpperCase() + raw.slice(1);
     parts.push({
-      name: hits[i]!.name,
-      body: line.slice(hits[i]!.bodyStart, end).trim(),
+      name: display,
+      body,
     });
   }
   return parts;
@@ -206,6 +251,7 @@ function splitInlineNamedPeers(segment: string): Array<{ name: string; body: str
  * Extract named candidate blocks:
  * FLINT: cost 360000 PASS; delivery 96% PASS; approval granted PASS.
  * ALPHA: approval granted PASS. BETA: approval PENDING FAIL.
+ * Juniper: / Lotus: multiline Title Case supplier packs.
  * Candidate A: ...
  */
 export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: string; body: string }> {
@@ -222,7 +268,40 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     out.push({ name, body: body.trim() });
   };
 
-  // Line-oriented NAME: blocks (also split inline peers on the same line)
+  // Multiline Title-Case / ALL-CAPS / lowercase headers: "Juniper:" or "juniper:" ...
+  const lines = text.split(/\n/);
+  const headerRe = /^(?:###\s*)?([A-Za-z][A-Za-z0-9_-]{1,32})\s*:\s*(.*)$/;
+  const skipHeaders =
+    /^(?:Eligibility|Answer|Rules?|Gates?|Objective|Note|Pack|Claim|Section|Also|Then|Given|Assess|Architecture|Three|Choose|Available|Suppliers?|Bounded|Decision|Checkpoint|Only|Current)$/i;
+  for (let i = 0; i < lines.length; i++) {
+    const hm = headerRe.exec(lines[i]!.trim());
+    if (!hm) continue;
+    const nameRaw = hm[1]!;
+    if (skipHeaders.test(nameRaw) || SKIP_CANDIDATE_NAMES.test(nameRaw)) continue;
+    if (nameRaw.length < 2) continue;
+    const name = nameRaw.charAt(0).toUpperCase() + nameRaw.slice(1);
+    const firstRest = (hm[2] || "").trim();
+    const bodyParts: string[] = [];
+    if (firstRest) bodyParts.push(firstRest);
+    let j = i + 1;
+    for (; j < lines.length; j++) {
+      const nxt = lines[j]!.trim();
+      if (!nxt) {
+        // blank line ends block only if we already have commercial body
+        if (bodyParts.length > 0 && COMMERCIAL_BODY.test(bodyParts.join(" "))) break;
+        continue;
+      }
+      if (headerRe.test(nxt) || /^(?:Eligibility|Answer|Rules?|Gates?)\b/i.test(nxt)) break;
+      bodyParts.push(nxt);
+    }
+    const body = bodyParts.join("; ");
+    if (COMMERCIAL_BODY.test(body)) {
+      push(name, body);
+      i = j - 1;
+    }
+  }
+
+  // Line-oriented ALL-CAPS NAME: blocks (also split inline peers on the same line)
   for (const rawLine of text.split(/\n/)) {
     const peers = splitInlineNamedPeers(rawLine);
     if (peers.length === 0) continue;
@@ -298,8 +377,11 @@ function evaluateCandidateGates(
     });
   }
 
-  // Delivery SLA
-  if (rules.deliveryFloor != null || /\b(?:delivery|on[- ]?time|OTD)\b/i.test(t)) {
+  // Delivery SLA (% OTD) — do not treat "delivery N days" as a % SLA gate.
+  const hasDeliveryPct =
+    /(?:on[- ]?time\s+)?delivery\s*[:=]?\s*\d+(?:\.\d+)?\s*%/i.test(t) ||
+    /\bOTD\b/.test(t);
+  if (rules.deliveryFloor != null || hasDeliveryPct) {
     const delTok =
       /(?:on[- ]?time\s+)?delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%(?:\s*(PASS|FAIL|PENDING|UNKNOWN))?/i.exec(
         t,
@@ -328,6 +410,24 @@ function evaluateCandidateGates(
     });
   }
 
+  // Delivery lead time in days (e.g. delivery 5 days vs delivery <= 6)
+  if (rules.deliveryMaxDays != null || /\bdelivery\s*[:=]?\s*\d+(?:\.\d+)?\s*days?\b/i.test(t)) {
+    const daysTok =
+      /delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/i.exec(t) ||
+      /(\d+(?:\.\d+)?)\s*days?\b/i.exec(t);
+    let status: DecisionGateStatus = "UNKNOWN";
+    const val = daysTok ? Number(daysTok[1]) : null;
+    if (val != null && rules.deliveryMaxDays != null) {
+      status = val <= rules.deliveryMaxDays ? "PASS" : "FAIL";
+    } else if (val != null) status = "PASS";
+    gates.push({
+      id: "delivery_max_days",
+      label: "delivery lead-time max days",
+      status,
+      raw: daysTok?.[0],
+    });
+  }
+
   // Approval (mandatory pending = FAIL)
   if (rules.approvalRequired || /\bapproval\b/i.test(t)) {
     const frag = /approval[^;\n]{0,60}/i.exec(t)?.[0] || t;
@@ -347,8 +447,8 @@ function evaluateCandidateGates(
     });
   }
 
-  // Margin floor (optional)
-  if (rules.marginFloor != null || /\bmargin\b|\bcontribution\b/i.test(t)) {
+  // Margin floor (% only — absolute contribution uses contribution_min)
+  if (rules.marginFloor != null || /\bmargin\s*[:=]?\s*\d+(?:\.\d+)?\s*%/i.test(t)) {
     const marTok =
       /(?:margin|contribution)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%(?:\s*(PASS|FAIL|UNKNOWN))?/i.exec(t);
     if (marTok || rules.marginFloor != null) {
@@ -368,17 +468,57 @@ function evaluateCandidateGates(
     }
   }
 
-  // Stock / capacity soft-or-hard if mentioned
-  if (/\bstock\b|\binventory\b/i.test(t)) {
+  // Absolute contribution/margin/profit/score floor (given metric vs >= N)
+  if (
+    rules.contributionMin != null ||
+    /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t)
+  ) {
+    const cTok =
+      /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+        t,
+      ) ||
+      /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+        t,
+      );
+    // Skip % margins — those belong to margin_floor
+    if (cTok && /%\s*$/.test(t.slice(cTok.index ?? 0, (cTok.index ?? 0) + cTok[0].length + 2))) {
+      /* percentage handled above */
+    } else {
+      let status: DecisionGateStatus = "UNKNOWN";
+      const val = cTok ? Number(cTok[1]) : null;
+      if (val != null && rules.contributionMin != null) {
+        status = val >= rules.contributionMin ? "PASS" : "FAIL";
+      } else if (val != null) status = "PASS";
+      gates.push({
+        id: "contribution_min",
+        label: "contribution minimum",
+        status,
+        raw: cTok?.[0],
+      });
+    }
+  }
+
+  // Stock / inventory — numeric floor when present; else availability language
+  if (rules.stockMin != null || /\bstock\b|\binventory\b/i.test(t)) {
+    const stockTok =
+      /(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)/i.exec(t);
     const frag = /(?:stock|inventory)[^;\n]{0,50}/i.exec(t)?.[0] || "";
-    let status =
-      explicitStatus(frag) ||
-      (/unavailable|zero|out\s+of\s+stock/i.test(frag)
-        ? "FAIL"
-        : /available|in\s+stock/i.test(frag)
-          ? "PASS"
-          : "UNKNOWN");
-    gates.push({ id: "stock", label: "stock availability", status });
+    let status: DecisionGateStatus = "UNKNOWN";
+    const val = stockTok ? parseMoney(stockTok[1]!) : null;
+    if (val != null && rules.stockMin != null) {
+      status = val >= rules.stockMin ? "PASS" : "FAIL";
+    } else if (val != null) {
+      status = "PASS";
+    } else {
+      status =
+        explicitStatus(frag) ||
+        (/unavailable|zero|out\s+of\s+stock/i.test(frag)
+          ? "FAIL"
+          : /available|in\s+stock/i.test(frag)
+            ? "PASS"
+            : "UNKNOWN");
+    }
+    gates.push({ id: "stock", label: "stock availability", status, raw: stockTok?.[0] });
   }
 
   // Policy
@@ -398,7 +538,13 @@ function evaluateCandidateGates(
 }
 
 function metricFromBody(body: string): number | null {
-  const contrib = /(?:contribution|margin|score|metric)\s*[:=]?\s*(-?\d+(?:\.\d+)?)/i.exec(body);
+  const contrib =
+    /(?:contribution|margin|score|metric)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+      body,
+    ) ||
+    /(?:contribution|margin|score|metric)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+      body,
+    );
   if (contrib) return Number(contrib[1]);
   const cost = /cost\s*[:=]?\s*(?:S\$|\$)?\s*([\d,]+(?:\.\d+)?)/i.exec(body);
   if (cost) return -parseMoney(cost[1]!)!; // lower cost → higher attractiveness when negated
@@ -414,8 +560,11 @@ export function buildDecisionCaseState(userMessage: string): DecisionCaseState |
   const mandatory: CommercialGateId[] = [];
   if (rules.costCeiling != null) mandatory.push("cost_ceiling");
   if (rules.deliveryFloor != null) mandatory.push("delivery_sla");
+  if (rules.deliveryMaxDays != null) mandatory.push("delivery_max_days");
   if (rules.approvalRequired) mandatory.push("approval");
   if (rules.marginFloor != null) mandatory.push("margin_floor");
+  if (rules.contributionMin != null) mandatory.push("contribution_min");
+  if (rules.stockMin != null) mandatory.push("stock");
 
   const candidates: CandidateDecisionState[] = blocks.map((b) => {
     const gates = evaluateCandidateGates(b.body, rules);
@@ -545,6 +694,39 @@ export function buildDecisionCaseState(userMessage: string): DecisionCaseState |
     reversalConditions.push(
       `${c.displayName} becomes eligible only if ALL remaining blockers clear: ${blockers.join("; ")}.`,
     );
+    // Counterfactual selection if blockers clear (given-metric multi-gate decisions).
+    if (
+      (objective === "select_highest_metric_eligible" ||
+        objective === "select_cheapest_eligible") &&
+      c.supportedMetric != null
+    ) {
+      const hypothetic = [
+        ...candidates.filter((x) => x.currentlyEligible),
+        { ...c, currentlyEligible: true },
+      ];
+      const ranked = [...hypothetic].sort((a, b) => {
+        if (objective === "select_cheapest_eligible") {
+          return (b.supportedMetric ?? -Infinity) - (a.supportedMetric ?? -Infinity);
+        }
+        return (b.supportedMetric ?? -Infinity) - (a.supportedMetric ?? -Infinity);
+      });
+      const winner = ranked[0]!;
+      const current =
+        recommendation.status === "SELECT" ? recommendation.selectedId : null;
+      if (current && winner.displayName !== current) {
+        reversalConditions.push(
+          `If ${c.displayName} clears all blockers, selection changes to ${winner.displayName}.`,
+        );
+      } else if (current) {
+        reversalConditions.push(
+          `If ${c.displayName} clears all blockers, selection remains ${current}.`,
+        );
+      } else {
+        reversalConditions.push(
+          `If ${c.displayName} clears all blockers, select ${winner.displayName}.`,
+        );
+      }
+    }
   }
 
   return {

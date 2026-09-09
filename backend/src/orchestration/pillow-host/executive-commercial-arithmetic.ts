@@ -61,12 +61,12 @@ export function formatMoneyVisible(n: number, currency: CurrencyCode): string {
 
 function detectCurrency(text: string): { code: CurrencyCode; seen: string[] } {
   const seen: string[] = [];
-  if (/S\$|SGD\b/i.test(text)) seen.push("SGD");
-  if (/\bUS\$\b|\bUSD\b|(?<![A-Za-z])\$(?!\s*$)/.test(text) && !/S\$/.test(text)) {
-    // Also count bare $ when not S$
-  }
+  // Do NOT treat the "S$" inside "US$13" as SGD (Juniper checkpoint false MIXED).
+  if (/(?<![A-Za-z])S\$|\bSGD\b/i.test(text)) seen.push("SGD");
   if (/\bUS\$\b|\bUSD\b/.test(text)) seen.push("USD");
-  else if (/(?<!S)\$\s*\d/.test(text) || /(?<!S)\$\d/.test(text)) seen.push("USD");
+  else if (/(?<![A-Za-zUuSs])\$\s*\d/.test(text) || /(?<![A-Za-zUuSs])\$\d/.test(text)) {
+    seen.push("USD");
+  }
   if (seen.length >= 2) return { code: "MIXED", seen: [...new Set(seen)] };
   if (seen.includes("SGD")) return { code: "SGD", seen };
   if (seen.includes("USD")) return { code: "USD", seen };
@@ -99,14 +99,47 @@ function pctNear(text: string, label: RegExp): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+/**
+ * Multi-gate decision with contribution/margin already supplied as scenario facts —
+ * not a request to compute unit economics from price/cost/fee.
+ */
+export function isGivenMetricDecisionAsk(message: string): boolean {
+  const t = String(message || "");
+  const givenMetric =
+    /(?:contribution|margin|profit|score)\s+(?:US\$|S\$|USD|SGD|\$)\s*-?\d/i.test(t) ||
+    /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t);
+  const decisionShape =
+    /\b(?:eligib|select|approval|supplier|delivery|stock)\b/i.test(t) &&
+    (/\b(?:eligib|select|recommend|highest|choose)\b/i.test(t) ||
+      /\bapproval\s+(?:granted|pending)\b/i.test(t));
+  const asksCompute =
+    /\b(?:unit economics|contribution\s*\/\s*order|contribution per order|compute|calculate|what is (?:the )?contribution)\b/i.test(
+      t,
+    ) ||
+    (/\b(?:selling\s+)?price\b/i.test(t) &&
+      /\b(?:cost|supplier)\b/i.test(t) &&
+      /\b(?:fee|shipping|refund)\b/i.test(t));
+  return givenMetric && decisionShape && !asksCompute;
+}
+
 /** True when message asks for unit economics / contribution arithmetic. */
 export function isCommercialArithmeticAsk(message: string): boolean {
   const t = String(message || "");
+  if (isGivenMetricDecisionAsk(t)) return false;
   if (
     /\b(?:contribution(?:\s*\/\s*order|\s+per\s+order)?|unit economics|contribution\s+margin)\b/i.test(
       t,
     )
   ) {
+    // Given "contribution US$13/unit" without price/fee compute cues is not a calc ask.
+    if (
+      /contribution\s+(?:US\$|S\$|USD|SGD|\$)\s*-?\d/i.test(t) &&
+      !/\b(?:price|fee|shipping|refund|compute|calculate|per order|\/\s*order|unit economics)\b/i.test(
+        t,
+      )
+    ) {
+      return false;
+    }
     return true;
   }
   return (
@@ -343,6 +376,31 @@ export function resolveCommercialArithmetic(message: string): CommercialArithmet
     };
   }
 
+  // Do not invent supplier/unit cost as zero when contribution is asked.
+  if (
+    operands.askContribution &&
+    operands.sellingPrice != null &&
+    operands.supplierCost == null
+  ) {
+    return {
+      ok: false,
+      contribution: null,
+      marginPercent: null,
+      marketplacePercentFeeAmount: null,
+      marketplaceFixedFeeAmount: null,
+      totalCosts: null,
+      currency: operands.currency,
+      currencySymbol:
+        operands.currency === "SGD" ? "S$" : operands.currency === "USD" ? "$" : "",
+      unknownReason: "Supplier cost not supplied — CONTRIBUTION=UNKNOWN.",
+      formula: "price - costs - fees",
+      displayContribution: null,
+      displayMargin: null,
+      operands,
+      breakdownLines: ["**Need:** supplier/unit cost."],
+    };
+  }
+
   return computeCommercialContribution(operands);
 }
 
@@ -350,9 +408,10 @@ export function synthesizeCommercialArithmeticAnswer(
   message: string,
   subject = "Unit economics",
 ): string | null {
-  if (!isCommercialArithmeticAsk(message) && !isCommercialArithmeticAsk(subject)) {
-    return null;
-  }
+  // Message must itself be a calculation ask. Default subject "Unit economics"
+  // must NOT force the calculator (Juniper given-metric decision hijack).
+  if (isGivenMetricDecisionAsk(message)) return null;
+  if (!isCommercialArithmeticAsk(message)) return null;
   const r = resolveCommercialArithmetic(message);
   // Forecast/realised ledger asks without a unit selling price are not unit-econ calculator cases.
   if (
