@@ -206,6 +206,15 @@ describe("Given-metric arithmetic authority (Juniper class)", () => {
     assert.equal(d.recommendation.selectedId, "Cedar");
   });
 
+  it("negation 'do not recompute unit economics' does not flip given-metric to calc ask", () => {
+    const msg =
+      "New bounded case only (USD). Cedar: contribution US$12/unit, stock 1000, delivery 5 days, approval granted. Elm: contribution US$11/unit, stock 1000, delivery 5 days, approval granted. Eligibility: contribution >=10, stock >=900, delivery <=6, approval granted. Choose highest contribution eligible. Do not recompute unit economics.";
+    assert.equal(isGivenMetricDecisionAsk(msg), true);
+    assert.equal(isCommercialArithmeticAsk(msg), false);
+    assert.equal(synthesizeCommercialArithmeticAnswer(msg), null);
+    assert.equal(buildDecisionCaseState(msg)?.recommendation.selectedId, "Cedar");
+  });
+
   it("repair does not rewrite given-metric decisions", () => {
     const good =
       "Eligible: Juniper. Select Juniper. If Lotus approval granted, select Lotus.";

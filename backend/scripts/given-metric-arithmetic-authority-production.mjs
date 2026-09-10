@@ -39,65 +39,87 @@ function extractCookie(res) {
   return null;
 }
 
+async function withRetry(label, fn, attempts = 4) {
+  let last;
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      last = e;
+      console.error(`${label} attempt ${i}/${attempts}:`, e?.cause?.code || e?.message || e);
+      if (i < attempts) await new Promise((r) => setTimeout(r, 2000 * i));
+    }
+  }
+  throw last;
+}
+
 async function health() {
-  const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(20_000) });
-  return r.json();
+  return withRetry("health", async () => {
+    const r = await fetch(`${BRAIN}/health/live`, { signal: AbortSignal.timeout(20_000) });
+    return r.json();
+  });
 }
 
 async function login() {
-  const r = await fetch(`${COCKPIT}/api/auth/login`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
-    signal: AbortSignal.timeout(60_000),
+  return withRetry("login", async () => {
+    const r = await fetch(`${COCKPIT}/api/auth/login`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const cookie = extractCookie(r);
+    if (!cookie) throw new Error(`login_failed ${r.status}`);
+    return cookie;
   });
-  const cookie = extractCookie(r);
-  if (!cookie) throw new Error(`login_failed ${r.status}`);
-  return cookie;
 }
 
 async function createSession(cookie) {
-  const r = await fetch(`${COCKPIT}/api/pillow/session`, {
-    method: "POST",
-    headers: { "content-type": "application/json", cookie },
-    body: JSON.stringify({ forceNew: true }),
-    signal: AbortSignal.timeout(60_000),
+  return withRetry("session", async () => {
+    const r = await fetch(`${COCKPIT}/api/pillow/session`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({ forceNew: true }),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const body = await r.json().catch(() => ({}));
+    return body.session?.sessionId || body.sessionId || `gma-${Date.now()}`;
   });
-  const body = await r.json().catch(() => ({}));
-  return body.session?.sessionId || body.sessionId || `gma-${Date.now()}`;
 }
 
 async function chat(cookie, sessionId, message) {
-  const t0 = Date.now();
-  const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
-    method: "POST",
-    headers: { "content-type": "application/json", cookie },
-    body: JSON.stringify({
-      sessionId,
-      message,
-      workspaceContext: {
-        screenPath: "/cockpit/development/pillow",
-        screenId: "SCR-800",
-        screenTitle: "Pillow Centre",
-        module: "executive",
-      },
-    }),
-    signal: AbortSignal.timeout(290_000),
+  return withRetry("chat", async () => {
+    const t0 = Date.now();
+    const r = await fetch(`${COCKPIT}/api/pillow/chat`, {
+      method: "POST",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        sessionId,
+        message,
+        workspaceContext: {
+          screenPath: "/cockpit/development/pillow",
+          screenId: "SCR-800",
+          screenTitle: "Pillow Centre",
+          module: "executive",
+        },
+      }),
+      signal: AbortSignal.timeout(290_000),
+    });
+    const body = await r.json().catch(() => ({}));
+    const text =
+      body?.assistantMessage?.content ||
+      body?.result?.message ||
+      body?.message ||
+      body?.reply ||
+      JSON.stringify(body);
+    return {
+      status: r.status,
+      text: String(text),
+      ms: Date.now() - t0,
+      requestId: body?.result?.requestId || body?.requestId || null,
+      infra: /infrastructure budget|Tier-0|worker unavailable/i.test(String(text)),
+    };
   });
-  const body = await r.json().catch(() => ({}));
-  const text =
-    body?.assistantMessage?.content ||
-    body?.result?.message ||
-    body?.message ||
-    body?.reply ||
-    JSON.stringify(body);
-  return {
-    status: r.status,
-    text: String(text),
-    ms: Date.now() - t0,
-    requestId: body?.result?.requestId || body?.requestId || null,
-    infra: /infrastructure budget|Tier-0|worker unavailable/i.test(String(text)),
-  };
 }
 
 function stubTakeover(text) {

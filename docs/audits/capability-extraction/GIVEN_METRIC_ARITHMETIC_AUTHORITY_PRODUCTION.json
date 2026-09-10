@@ -1,0 +1,76 @@
+{
+  "mission": "SEMANTIC_INTERFERENCE_FORENSIC",
+  "DEPLOYMENT_ID": "91347935-00e2-4fbc-87cd-8d90e7edf703",
+  "RUNNING_BRAIN_SHA": "5ed1709e5b1c81fb88f520ad74c6a418c9921c6d",
+  "pass": 6,
+  "fail": 1,
+  "results": [
+    {
+      "id": "given_contribution_decision",
+      "ok": true,
+      "ms": 17265,
+      "status": 200,
+      "requestId": "pcr_4bb7fe5675ea4045",
+      "preview": "1. Current eligible set: Juniper, Maple.\n2. Supplier to select now: Juniper.\n3. If Lotus approval becomes granted, the selection changes to Lotus.\n### Recommendation\n**Current action:** SELECT Juniper. Juniper is the sol"
+    },
+    {
+      "id": "given_metric_reversal",
+      "ok": true,
+      "ms": 16676,
+      "status": 200,
+      "requestId": "pcr_afa3adf55b8b435b",
+      "preview": "1. Current eligible set: Juniper, Maple.\n2. Supplier to select now: Juniper (highest contribution of US$13/unit).\n3. If Lotus approval becomes granted, selection changes to Lotus (US$17/unit) as it would then be eligible"
+    },
+    {
+      "id": "pct_fee_calculation",
+      "ok": true,
+      "ms": 16628,
+      "status": 200,
+      "requestId": "pcr_2a3f0e28f4634199",
+      "preview": "The contribution per order is S$15.76.\nThis is calculated as follows:\n1. Selling Price: S$39.90\n2. Supplier Cost: S$12.35\n3. Shipping: S$4.80\n4. Marketplace Fee (14.5% of S$39.90): S$5.79\n5. Refund Allowance: S$1.20\nCont"
+    },
+    {
+      "id": "true_mixed_currency",
+      "ok": true,
+      "ms": 18626,
+      "status": 200,
+      "requestId": "pcr_d27827a1075b49e6",
+      "preview": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nMixed currencies without an explicit FX conversion rate — keep ledgers separate.\n**Currency:** MIXED — no inve"
+    },
+    {
+      "id": "usd_after_sgd_warm",
+      "ok": false,
+      "parts": [
+        {
+          "preview": "The contribution per order is calculated as follows:\n- **Price:** S$40.00\n- **Cost:** S$18.00\n- **Shipping:** S$4.00\n- **Marketplace Fee (6% of Price):** S$2.40\n- **Refund/Return A",
+          "ok": true,
+          "ms": 16983,
+          "status": 200
+        },
+        {
+          "preview": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling",
+          "ok": false,
+          "ms": 15065,
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "open_strategy",
+      "ok": true,
+      "ms": 18709,
+      "status": 200,
+      "requestId": "pcr_01ce8fb8bebe489a",
+      "preview": "To design a synthetic supplier-selection process, the first step would be to establish clear criteria for evaluating potential suppliers. This involves:\n1. **Define Selection Criteria**: Identify key factors such as qual"
+    },
+    {
+      "id": "live_unknown_fact",
+      "ok": true,
+      "ms": 14722,
+      "status": 200,
+      "requestId": "pcr_902f93cba9214127",
+      "preview": "EmpireAI has completed zero realised marketplace orders this week."
+    }
+  ],
+  "timestamp": "2026-09-10T13:19:52.238Z"
+}

@@ -112,10 +112,15 @@ export function isGivenMetricDecisionAsk(message: string): boolean {
     /\b(?:eligib|select|approval|supplier|delivery|stock)\b/i.test(t) &&
     (/\b(?:eligib|select|recommend|highest|choose)\b/i.test(t) ||
       /\bapproval\s+(?:granted|pending)\b/i.test(t));
+  // Positive compute asks only — "do not recompute unit economics" must NOT flip this.
   const asksCompute =
-    /\b(?:unit economics|contribution\s*\/\s*order|contribution per order|compute|calculate|what is (?:the )?contribution)\b/i.test(
-      t,
-    ) ||
+    /\b(?:compute|calculate)\s+(?:the\s+)?(?:contribution|unit economics|margin)\b/i.test(t) ||
+    /\bwhat is (?:the )?contribution\b/i.test(t) ||
+    /\bcontribution\s*(?:\/\s*order|per order)\b/i.test(t) ||
+    (/\bunit economics\b/i.test(t) &&
+      !/\b(?:do\s+not|don't|dont|without|never)\b[^.\n]{0,64}\b(?:unit economics|recomput)/i.test(
+        t,
+      )) ||
     (/\b(?:selling\s+)?price\b/i.test(t) &&
       /\b(?:cost|supplier)\b/i.test(t) &&
       /\b(?:fee|shipping|refund)\b/i.test(t));
@@ -132,11 +137,14 @@ export function isCommercialArithmeticAsk(message: string): boolean {
     )
   ) {
     // Given "contribution US$13/unit" without price/fee compute cues is not a calc ask.
+    // Negations like "do not recompute unit economics" are not compute cues.
     if (
       /contribution\s+(?:US\$|S\$|USD|SGD|\$)\s*-?\d/i.test(t) &&
-      !/\b(?:price|fee|shipping|refund|compute|calculate|per order|\/\s*order|unit economics)\b/i.test(
-        t,
-      )
+      !/\b(?:price|fee|shipping|refund|compute|calculate|per order|\/\s*order)\b/i.test(t) &&
+      (!/\bunit economics\b/i.test(t) ||
+        /\b(?:do\s+not|don't|dont|without|never)\b[^.\n]{0,64}\b(?:unit economics|recomput)/i.test(
+          t,
+        ))
     ) {
       return false;
     }
