@@ -1,0 +1,74 @@
+{
+  "mission": "W1_T1_CROSS_SECTION_DECISION_CONSISTENCY",
+  "DEPLOYMENT_ID": "a6086d7e-a995-413e-94ed-da16b72dec26",
+  "RUNNING_BRAIN_SHA": "01b15a57269967f446bed4dc4765d2ebd0f7e26e",
+  "pass": 8,
+  "fail": 0,
+  "results": [
+    {
+      "id": "corrected_pass_to_fail",
+      "ok": true,
+      "ms": 4649,
+      "status": 200,
+      "requestId": "pcr_b54be7a23cb944cf",
+      "preview": "**Eligible set: Piston\n- **Piston:** Contribution 12.5, Stock 1200, Delivery 5 days, Approval Granted (Eligible)\n- **Rivet:** Contribution 16.0, Stock 1500, Delivery 4 days, Approval Pending (Not Eligible)\n- **Anvil:** Contribution 14.0, St"
+    },
+    {
+      "id": "corrected_fail_to_pass",
+      "ok": true,
+      "ms": 3180,
+      "status": 200,
+      "requestId": "pcr_da4876d5bcb94677",
+      "preview": "The highest eligible contribution is from Harbor, with a contribution of 11.0, stock of 1200, and a delivery time of 5 days. This meets all the eligibility criteria: contribution is greater than or equal to 10, stock is greater than or equa"
+    },
+    {
+      "id": "sole_eligible",
+      "ok": true,
+      "ms": 3080,
+      "status": 200,
+      "requestId": "pcr_46d1a9230a6d4d94",
+      "preview": "Currently, the eligible candidate is Falcon, which meets all the criteria:\n- Contribution: 12.0 (greater than or equal to 10)\n- Stock: 1200 (greater than or equal to 1000)\n- Delivery: 5 days (less than or equal to 6)\n- Approval: Granted\nOsp"
+    },
+    {
+      "id": "multiple_eligible",
+      "ok": true,
+      "ms": 2779,
+      "status": 200,
+      "requestId": "pcr_2c1c451d646e4b69",
+      "preview": "I recommend selecting the Echo option, which has a contribution of 13.5, stock of 1300, and a delivery time of 4 days. This option meets all eligibility criteria and provides the highest contribution among the eligible choices.\n### Recommen"
+    },
+    {
+      "id": "zero_eligible",
+      "ok": true,
+      "ms": 3341,
+      "status": 200,
+      "requestId": "pcr_7cfff09ac16446ce",
+      "preview": "Currently, neither Jetty nor Quay meets all the eligibility criteria for selection:\n- **Jetty**:\n- Contribution: 12.0 (meets criteria)\n- Stock: 1200 (meets criteria)\n- Delivery: 9 days (exceeds the maximum of 6 days, fails criteria)\n- Appro"
+    },
+    {
+      "id": "pending_future_reversal",
+      "ok": true,
+      "ms": 4150,
+      "status": 200,
+      "requestId": "pcr_0254b284dc3c40d6",
+      "preview": "Currently, Nova is the only eligible candidate based on the provided criteria. Here’s the breakdown:\n- **Nova**:\n- Contribution: 12.8 (eligible)\n- Stock: 1200 (eligible)\n- Delivery: 5 days (eligible)\n- Approval: Granted (eligible)\n- **Orion"
+    },
+    {
+      "id": "multiple_blockers",
+      "ok": true,
+      "ms": 2842,
+      "status": 200,
+      "requestId": "pcr_f982dd1b5f1f4e71",
+      "preview": "Kestrel would not become eligible even if its stock is restored to 1200. The eligibility criteria require not only stock availability but also that the approval is granted. Since Kestrel's approval is still pending, it does not meet the eli"
+    },
+    {
+      "id": "given_metric_no_arith",
+      "ok": true,
+      "ms": 2134,
+      "status": 200,
+      "requestId": "pcr_0fda4b8dd7f54cfd",
+      "preview": "The highest contribution eligible is from Cedar, with a contribution of US$12 per unit. Both Cedar and Elm meet the eligibility criteria, but Cedar offers the greater contribution.\n### Bounded. Cedar: contribution US$12/unit, stock 1000, de"
+    }
+  ],
+  "timestamp": "2026-09-12T01:18:17.813Z"
+}
