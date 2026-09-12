@@ -6,6 +6,11 @@ import {
   repairDecisionVisibility,
   assessDecisionVisibilityConsistency,
 } from "../../orchestration/pillow-host/executive-decision-case-state.js";
+import {
+  isCommercialArithmeticAsk,
+  isGivenMetricDecisionAsk,
+  synthesizeCommercialArithmeticAnswer,
+} from "../../orchestration/pillow-host/executive-commercial-arithmetic.js";
 
 const CORRECTED_CLASS = `Bounded decision — three corridors.
 
@@ -69,5 +74,16 @@ DO NOT SELECT ANY.`;
     assert.equal(assess.ok, true, assess.failures.join(","));
     assert.match(fixed, /SELECT\s+Nova/i);
     assert.doesNotMatch(fixed, /DO\s+NOT\s+SELECT\s+ANY/i);
+  });
+
+  it("bare contribution numbers in multi-gate packs are given-metric not calc asks", () => {
+    const msg =
+      "Bounded decision. Piston: contribution 12.5, stock 1200, delivery 5 days, approval granted. Rivet: contribution 16.0, stock 1500, delivery 4 days, approval pending. Anvil: contribution 14.0, stock 1100, approval granted, earlier delivery 5 days, later verified corrected delivery 8 days. Eligibility: contribution >=10, stock >=1000, delivery <=6, approval granted. Select highest contribution among currently eligible.";
+    assert.equal(isGivenMetricDecisionAsk(msg), true);
+    assert.equal(isCommercialArithmeticAsk(msg), false);
+    assert.equal(synthesizeCommercialArithmeticAnswer(msg), null);
+    const d = buildDecisionCaseState(msg)!;
+    assert.deepEqual(d.eligibleSet, ["Piston"]);
+    assert.equal(d.recommendation.selectedId, "Piston");
   });
 });

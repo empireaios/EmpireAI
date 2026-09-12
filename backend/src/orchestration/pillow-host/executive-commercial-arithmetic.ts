@@ -107,9 +107,11 @@ export function isGivenMetricDecisionAsk(message: string): boolean {
   const t = String(message || "");
   const givenMetric =
     /(?:contribution|margin|profit|score)\s+(?:US\$|S\$|USD|SGD|\$)\s*-?\d/i.test(t) ||
-    /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t);
+    /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t) ||
+    // Bare numeric metrics in multi-gate packs (W1-T1 Aurora class: "contribution 12.80")
+    /(?:contribution|margin|profit|score)\s+-?\d+(?:\.\d+)?\b/i.test(t);
   const decisionShape =
-    /\b(?:eligib|select|approval|supplier|delivery|stock)\b/i.test(t) &&
+    /\b(?:eligib|select|approval|supplier|delivery|stock|corridor)\b/i.test(t) &&
     (/\b(?:eligib|select|recommend|highest|choose)\b/i.test(t) ||
       /\bapproval\s+(?:granted|pending)\b/i.test(t));
   // Positive compute asks only — "do not recompute unit economics" must NOT flip this.
@@ -136,10 +138,10 @@ export function isCommercialArithmeticAsk(message: string): boolean {
       t,
     )
   ) {
-    // Given "contribution US$13/unit" without price/fee compute cues is not a calc ask.
+    // Given "contribution US$13/unit" or bare "contribution 12.80" without price/fee compute cues is not a calc ask.
     // Negations like "do not recompute unit economics" are not compute cues.
     if (
-      /contribution\s+(?:US\$|S\$|USD|SGD|\$)\s*-?\d/i.test(t) &&
+      /contribution\s+(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t) &&
       !/\b(?:price|fee|shipping|refund|compute|calculate|per order|\/\s*order)\b/i.test(t) &&
       (!/\bunit economics\b/i.test(t) ||
         /\b(?:do\s+not|don't|dont|without|never)\b[^.\n]{0,64}\b(?:unit economics|recomput)/i.test(
