@@ -15,11 +15,11 @@ import {
   type ShellDeliveryTrace,
 } from "./shell-delivery-observability";
 
-/** Truthful terminal for genuine empty/timeout/upstream failure — no durable-recovery claim. */
+/** Truthful terminal for genuine fatal exhaustion — durable pending is not this path. */
 export const DEGRADED_CHAT_MESSAGE = [
   "I accepted your request, but a completed executive answer was not produced in this response window.",
   "This is a temporary production-shell / transport limit — not a judgment on your ask.",
-  "Please retry the same ask; there is no durable background recovery after this reply.",
+  "If a durable request id was issued, status and completed result remain retrievable; otherwise please retry the same ask.",
 ].join(" ");
 
 /** @deprecated alias kept for tests expecting prior export name */
@@ -115,7 +115,7 @@ export function isTransportFailureMessage(message: string): boolean {
   return /\bworker proxy timed out\b/i.test(message);
 }
 
-/** Tier-0 recovery exhaustion is not a successful brain answer. */
+/** Tier-0 recovery exhaustion is not a successful brain answer. Durable pending is not terminal. */
 export function isUpstreamTier0Terminal(rawBody: string, extracted: string): boolean {
   try {
     const parsed = JSON.parse(rawBody) as {
@@ -123,12 +123,19 @@ export function isUpstreamTier0Terminal(rawBody: string, extracted: string): boo
         kind?: string;
         recoveryExhausted?: boolean;
         brainCompleted?: boolean;
+        requestRemainsRunning?: boolean;
+        resultRetrievable?: boolean;
       };
     };
     const kind = String(parsed?.result?.kind ?? "");
+    if (kind === "durable_pending") return false;
+    if (parsed?.result?.requestRemainsRunning === true) return false;
+    if (parsed?.result?.resultRetrievable === true && parsed?.result?.recoveryExhausted !== true) {
+      return false;
+    }
     if (kind === "terminal_infrastructure") return true;
     if (parsed?.result?.recoveryExhausted === true) return true;
-    if (parsed?.result?.brainCompleted === false) return true;
+    if (parsed?.result?.brainCompleted === false && kind !== "durable_pending") return true;
   } catch {
     /* fall through */
   }

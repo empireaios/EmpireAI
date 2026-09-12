@@ -73,8 +73,8 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
     assert.doesNotMatch(out, /Current product focus/i);
   });
 
-  it("terminal copy does not claim durable recovery ownership", () => {
-    assert.match(DEGRADED_CHAT_MESSAGE, /no durable background recovery/i);
+  it("terminal copy points to durable retrieval, not false ownership", () => {
+    assert.match(DEGRADED_CHAT_MESSAGE, /request id was issued|retrievable/i);
     assert.doesNotMatch(DEGRADED_CHAT_MESSAGE, /retains ownership/i);
   });
 
@@ -95,8 +95,7 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
   });
 
   it("Tier-0 terminal_infrastructure is NOT brain success", () => {
-    const terminal =
-      "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. Please retry the same ask; there is no durable background recovery after this reply.";
+    const terminal = DEGRADED_CHAT_MESSAGE;
     const d = decideBffChatSurface({
       upstreamOk: true,
       rawBody: JSON.stringify({
@@ -116,5 +115,24 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
       assert.equal(d.brainToUserEquivalent, false);
       assert.equal(d.brainExtracted, "");
     }
+  });
+
+  it("durable_pending is not a BFF degrade terminal", () => {
+    const d = decideBffChatSurface({
+      upstreamOk: true,
+      rawBody: JSON.stringify({
+        result: {
+          message: "Request remains recoverable",
+          kind: "durable_pending",
+          requestRemainsRunning: true,
+          resultRetrievable: true,
+          brainCompleted: false,
+          recoveryExhausted: false,
+          requestId: "pcr_test",
+        },
+      }),
+      userAsk: "Atlas eligibility",
+    });
+    assert.equal(d.degrade, false);
   });
 });

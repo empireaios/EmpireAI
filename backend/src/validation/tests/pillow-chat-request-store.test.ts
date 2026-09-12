@@ -68,9 +68,35 @@ describe("pillow chat request durability + admission", () => {
       attempt: 1,
     });
     const got = await getChatRequest(rec.requestId);
-    assert.equal(got?.status, "FAILED");
+    assert.equal(got?.status, "FAILED_FATAL");
     assert.equal(got?.failureClass, "REQUEST_NOT_ACCEPTED");
     assert.equal(got?.upstreamStatus, 400);
+  });
+
+  it("retryable failure stays RETRYABLE not fatal", async () => {
+    const rec = await acceptDurableChatRequest({
+      sessionId: "sess_retry",
+      message: "ask",
+    });
+    await failChatRequest(rec.requestId, {
+      failureClass: "UPSTREAM_5XX_RETRYABLE",
+      upstreamStatus: 500,
+      attempt: 1,
+    });
+    const got = await getChatRequest(rec.requestId);
+    assert.equal(got?.status, "RETRYABLE");
+  });
+
+  it("persist precedes delivery markers", async () => {
+    const rec = await acceptDurableChatRequest({
+      sessionId: "sess_persist",
+      message: "ask",
+    });
+    await completeChatRequest(rec.requestId, { message: "done", kind: "llm" });
+    const got = await getChatRequest(rec.requestId);
+    assert.equal(got?.status, "COMPLETED");
+    assert.ok(got?.observability?.resultPersistedAt);
+    assert.equal(got?.deliveryState, "NOT_STARTED");
   });
 
   it("admitChatRequestBody mutates oversized envelope", () => {

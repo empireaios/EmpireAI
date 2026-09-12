@@ -51,7 +51,11 @@ export type PillowChatResult = {
   requestId: string;
   sessionId: string;
   message: string;
-  kind: "llm" | "command_fallback" | "error";
+  kind: "llm" | "command_fallback" | "error" | "durable_pending" | "terminal_infrastructure";
+  requestRemainsRunning?: boolean;
+  resultRetrievable?: boolean;
+  durableRetrieved?: boolean;
+  durableRequest?: boolean;
   provider?: string;
   latencyMs: number;
   command?: {

@@ -141,9 +141,10 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
   };
   if (bodyText !== undefined) init.body = bodyText;
 
-  const maxAttempts = isChat ? 2 : 1;
+  const maxAttempts = 1; // Tier-0 owns chat retry — BFF must not compete
   let upstream = await proxyBrainRequest(backendPath, request, init);
   if (isChat) {
+    // Legacy path kept for non-durable edge only; default is single attempt.
     for (let attempt = 1; attempt < maxAttempts; attempt++) {
       const status = upstream.status;
       if (!(status === 502 || status === 503 || status === 504)) break;
@@ -154,9 +155,74 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
 
   if (isChat) {
     const t0 = Date.now();
-    const raw = await upstream.text();
+    let raw = await upstream.text();
+    let requestId = upstream.headers.get("x-empire-pillow-request-id");
+    try {
+      const peek = JSON.parse(raw) as {
+        result?: {
+          requestId?: string;
+          kind?: string;
+          requestRemainsRunning?: boolean;
+          resultRetrievable?: boolean;
+        };
+      };
+      if (!requestId && peek?.result?.requestId) requestId = String(peek.result.requestId);
+      const pending =
+        peek?.result?.kind === "durable_pending" ||
+        peek?.result?.requestRemainsRunning === true;
+      // Auto-retrieve persisted result so Grand King does not manually poll.
+      if (pending && requestId) {
+        const deadline = Date.now() + 90_000;
+        while (Date.now() < deadline) {
+          await new Promise((r) => setTimeout(r, 2_000));
+          const statusRes = await proxyBrainRequest(
+            `/api/pillow/chat-request/${requestId}`,
+            request,
+            {
+              method: "GET",
+              headers: { cookie: request.headers.get("cookie") ?? "" },
+              cache: "no-store",
+              upstreamTimeoutMs: PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS,
+            },
+          );
+          if (!statusRes.ok) continue;
+          const statusBody = (await statusRes.json().catch(() => null)) as {
+            request?: {
+              status?: string;
+              finalResult?: Record<string, unknown> | null;
+              brainResult?: Record<string, unknown> | null;
+              failureClass?: string;
+            };
+          } | null;
+          const rec = statusBody?.request;
+          if (rec?.status === "COMPLETED") {
+            const fr = rec.finalResult || rec.brainResult || {};
+            raw = JSON.stringify({
+              result: {
+                ...fr,
+                message: String((fr as { message?: string }).message ?? ""),
+                kind: (fr as { kind?: string }).kind ?? "llm",
+                requestId,
+                durableRequest: true,
+                durableRetrieved: true,
+                brainCompleted: true,
+                brainToUserEquivalent: true,
+              },
+            });
+            upstream = new Response(raw, {
+              status: 200,
+              headers: upstream.headers,
+            });
+            break;
+          }
+          if (rec?.status === "FAILED_FATAL" || rec?.status === "FAILED") break;
+        }
+      }
+    } catch {
+      /* keep raw */
+    }
+
     const ok = upstream.status >= 200 && upstream.status < 300;
-    const requestId = upstream.headers.get("x-empire-pillow-request-id");
     const decision = decideBffChatSurface({
       upstreamOk: ok,
       rawBody: raw,
@@ -182,6 +248,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
       "x-empire-brain-to-user-equivalent": trace.brainToUserEquivalent ? "1" : "0",
     });
     forwardPillowHeaders(upstream.headers, obsHeaders);
+    if (requestId) obsHeaders.set("x-empire-pillow-request-id", requestId);
 
     if (decision.degrade) {
       return Response.json(
@@ -200,8 +267,9 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
             shellTraceId: trace.traceId,
             brainOutputHash: trace.brainOutputHash,
             requestId: requestId ?? undefined,
-            userResubmissionRequired: decision.reason !== "upstream_tier0_terminal",
+            userResubmissionRequired: false,
             firstRequestCompleted: false,
+            resultRetrievable: Boolean(requestId),
           },
         },
         { status: 200, headers: obsHeaders },
@@ -221,6 +289,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
         result.shellOutputHash = trace.shellOutputHash;
         result.deliveryClass = decision.deliveryClass;
         result.brainToUserEquivalent = decision.brainToUserEquivalent;
+        if (requestId) result.requestId = requestId;
         parsed.result = result;
         if (typeof parsed.message === "string") parsed.message = decision.message;
         if (decision.stripped || decision.preservedOriginalBecauseStripEmpty) {

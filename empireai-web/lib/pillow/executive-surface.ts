@@ -58,7 +58,7 @@ export const EXECUTIVE_DELAYED_LABEL =
  * executive answer. Certification must treat this as semantic failure.
  */
 export const EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY =
-  "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. Please retry the same ask; there is no durable background recovery after this reply.";
+  "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. If a durable request id was issued, status and completed result remain retrievable; otherwise please retry the same ask.";
 
 /**
  * @deprecated Repair 2: never use soft success fallback. Alias kept so call sites

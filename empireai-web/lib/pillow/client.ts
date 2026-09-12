@@ -13,9 +13,11 @@ import { toExecutiveSurfaceMessage } from "./executive-surface";
 /** Outer of BFF (280s) — must exceed upstream so first request can finish. */
 const PILLOW_REQUEST_TIMEOUT_MS = 290_000;
 const PILLOW_SESSION_TIMEOUT_MS = 60_000;
-/** One automatic retry only — never hide first-request failure behind a warm streak. */
+/** Non-chat routes only. Chat retry ownership is Tier-0 durable recovery. */
 const MAX_RETRIES = 2;
 const BASE_DELAY_MS = 400;
+const CHAT_RESULT_POLL_MS = 2_000;
+const CHAT_RESULT_POLL_BUDGET_MS = 90_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -142,21 +144,89 @@ export async function createPillowHostSession(workspaceId?: string): Promise<Pil
   return inflightSessionCreate;
 }
 
+export async function fetchPillowChatRequest(requestId: string): Promise<{
+  ok: boolean;
+  request?: {
+    status?: string;
+    failureClass?: string;
+    finalResult?: Record<string, unknown> | null;
+    brainResult?: Record<string, unknown> | null;
+  };
+}> {
+  return pillowRequest(`/api/pillow/chat-request/${encodeURIComponent(requestId)}`, {
+    timeoutMs: 20_000,
+    retries: 0,
+  });
+}
+
+async function pollDurableChatResult(
+  requestId: string,
+): Promise<(PillowChatResult & { reboundSessionId?: string }) | null> {
+  const deadline = Date.now() + CHAT_RESULT_POLL_BUDGET_MS;
+  while (Date.now() < deadline) {
+    await sleep(CHAT_RESULT_POLL_MS);
+    try {
+      const got = await fetchPillowChatRequest(requestId);
+      const rec = got.request;
+      if (!rec) continue;
+      if (rec.status === "COMPLETED") {
+        const fr = (rec.finalResult || rec.brainResult || {}) as Record<string, unknown>;
+        return {
+          ...(fr as unknown as PillowChatResult),
+          message: String(fr.message ?? ""),
+          kind: (fr.kind as PillowChatResult["kind"]) ?? "llm",
+          requestId,
+          durableRetrieved: true,
+        } as PillowChatResult & { reboundSessionId?: string; durableRetrieved?: boolean };
+      }
+      if (rec.status === "FAILED_FATAL" || rec.status === "FAILED") {
+        return null;
+      }
+    } catch {
+      /* keep polling */
+    }
+  }
+  return null;
+}
+
 export async function sendPillowChat(input: {
   message: string;
   sessionId: string;
   workspaceId?: string;
   workspaceContext?: Record<string, unknown>;
 }): Promise<PillowChatResult & { reboundSessionId?: string }> {
+  // retries:0 — Tier-0 owns execution retry; FE must not duplicate brain starts.
   const result = await pillowRequest<{
-    result: PillowChatResult;
+    result: PillowChatResult & {
+      requestRemainsRunning?: boolean;
+      resultRetrievable?: boolean;
+      kind?: string;
+    };
     reboundSessionId?: string;
   }>("/api/pillow/chat", {
     method: "POST",
     body: JSON.stringify(input),
+    retries: 0,
   });
+
+  const chat = result.result;
+  const pending =
+    chat?.kind === "durable_pending" ||
+    chat?.requestRemainsRunning === true ||
+    (chat?.resultRetrievable === true && chat?.kind === "terminal_infrastructure");
+
+  if (pending && chat.requestId) {
+    const retrieved = await pollDurableChatResult(chat.requestId);
+    if (retrieved) {
+      return {
+        ...retrieved,
+        ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
+      };
+    }
+  }
+
   return {
-    ...result.result,
+    ...chat,
     ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
   };
 }

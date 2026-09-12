@@ -58,13 +58,17 @@ import {
   acceptDurableChatRequest,
   admitChatRequestBody,
   chatRequestDashboard,
+  classifyUpstreamFailure,
   completeChatRequest,
   configureChatRequestStore,
+  durabilityMeta,
   failChatRequest,
   getChatRequest,
   listRecentChatRequests,
   markChatRequestDelivered,
   markChatRequestRunning,
+  markDeliveryAttempted,
+  type ChatFailureClass,
 } from "./pillow-chat-request-store.js";
 
 const loginSchema = z.object({
@@ -298,10 +302,20 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     if (!rec) {
       return reply.code(404).send({ ok: false, error: "request_not_found", requestId });
     }
-    if (rec.status === "COMPLETED" && rec.deliveryState === "NOT_DELIVERED") {
+    if (
+      rec.status === "COMPLETED" &&
+      (rec.deliveryState === "NOT_DELIVERED" ||
+        rec.deliveryState === "NOT_STARTED" ||
+        rec.deliveryState === "PENDING_CLIENT")
+    ) {
       await markChatRequestDelivered(requestId, "RETRIEVED");
     }
-    return reply.send({ ok: true, request: rec, dashboard: chatRequestDashboard() });
+    return reply.send({
+      ok: true,
+      request: rec,
+      durability: durabilityMeta(),
+      dashboard: chatRequestDashboard(),
+    });
   });
 
   app.get("/api/pillow/chat-requests", async (request, reply) => {
@@ -309,6 +323,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     return reply.send({
       ok: true,
       dashboard: chatRequestDashboard(),
+      durability: durabilityMeta(),
       rows: listRecentChatRequests(limit),
     });
   });
@@ -518,6 +533,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         sessionId,
         message: parsedMsg,
         deploymentId: deployId,
+        contextAdmission: admitted.contextAdmission,
       });
       const accepted = acceptPillowChatRequest({
         message: parsedMsg,
@@ -534,6 +550,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       let lastUpstreamStatus: number | null = null;
       let lastFailureReason: string | null = null;
       const tAccept = Date.now();
+      const clientGone = () =>
+        Boolean(
+          reply.raw.destroyed ||
+            (request.raw as { aborted?: boolean }).aborted === true,
+        );
 
       const result = await runAcceptedPillowChatRecovery({
         accepted,
@@ -541,7 +562,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         attempt: async (timeoutMs, attemptIndex) => {
           brainStarted = true;
           attemptCount = attemptIndex;
-          await markChatRequestRunning(accepted.requestId, attemptIndex);
+          await markChatRequestRunning(
+            accepted.requestId,
+            attemptIndex,
+            process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0",
+          );
           logger.info(
             {
               requestId: accepted.requestId,
@@ -549,10 +574,12 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
               timeoutMs,
               sessionId: accepted.sessionId,
               forensicTraceId,
-              contextAdmitted: admitted.mutated,
+              contextAdmission: admitted.contextAdmission,
+              clientDisconnect: clientGone(),
             },
             "pillow_chat_accepted_attempt",
           );
+          // Continue execution even if browser disconnects — result must persist.
           const once = await proxyOnce(timeoutMs, chatBodyText);
           if (!once.ok && once.status != null) lastUpstreamStatus = once.status;
           if (!once.ok) lastFailureReason = once.reason;
@@ -572,6 +599,79 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       const elapsed = Date.now() - tAccept;
 
       if (result.ok) {
+        const preview = result.messagePreview;
+        let persistedResult: Record<string, unknown> = {
+          message: preview,
+          kind: "llm",
+          requestId: accepted.requestId,
+          durableRequestId: accepted.requestId,
+          durableRequest: true,
+        };
+        try {
+          const parsed = JSON.parse(result.body.toString("utf8")) as Record<string, unknown>;
+          if (parsed && typeof parsed === "object") {
+            const resObj =
+              parsed.result && typeof parsed.result === "object"
+                ? { ...(parsed.result as Record<string, unknown>) }
+                : {};
+            resObj.requestId = accepted.requestId;
+            resObj.durableRequestId = accepted.requestId;
+            resObj.durableRequest = true;
+            parsed.result = resObj;
+            persistedResult = resObj;
+            // INVARIANT: persist BEFORE delivery attempt.
+            await completeChatRequest(accepted.requestId, persistedResult);
+            await markDeliveryAttempted(accepted.requestId);
+
+            if (clientGone()) {
+              await markChatRequestDelivered(accepted.requestId, "PENDING_CLIENT");
+              logger.info(
+                { requestId: accepted.requestId, forensicTraceId },
+                "pillow_chat_client_disconnect_result_persisted",
+              );
+              // Still attempt send; if socket dead Fastify no-ops / errors harmlessly.
+            }
+
+            const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
+            result.headers.forEach((value, key) => {
+              if (!skip.has(key.toLowerCase())) reply.header(key, value);
+            });
+            reply.header("x-empire-pillow-request-id", accepted.requestId);
+            reply.header("x-empire-pillow-recovery", "completed");
+            reply.header("x-empire-delivery-trace-id", forensicTraceId);
+            reply.header("x-empire-chat-request-status", "COMPLETED");
+            await markChatRequestDelivered(accepted.requestId, "DELIVERED");
+            recordDeliveryForensic({
+              traceId: forensicTraceId,
+              requestId: accepted.requestId,
+              sessionId: accepted.sessionId,
+              ts: new Date().toISOString(),
+              acceptedAt: accepted.acceptedAt,
+              requestPreview: previewText(accepted.message),
+              requestHash: hashText(accepted.message),
+              sessionClass: "unknown",
+              brainStarted: true,
+              brainCompleted: true,
+              brainOutputNonempty: preview.length > 0,
+              brainOutputLength: preview.length,
+              brainOutputHash: hashText(preview),
+              brainDurationMs: elapsed,
+              shellDurationMs: elapsed,
+              deliveryClass: "BRAIN_ANSWER",
+              failureClass: "NONE",
+              upstreamStatus: result.status,
+              recoveryAttempts: attemptCount,
+              terminalReason: null,
+              deploymentId: deployId,
+            });
+            return reply.code(result.status).send(Buffer.from(JSON.stringify(parsed)));
+          }
+        } catch {
+          /* fall through to preview-only persist */
+        }
+        await completeChatRequest(accepted.requestId, persistedResult);
+        await markDeliveryAttempted(accepted.requestId);
+        await markChatRequestDelivered(accepted.requestId, "DELIVERED");
         const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
         result.headers.forEach((value, key) => {
           if (!skip.has(key.toLowerCase())) reply.header(key, value);
@@ -580,12 +680,6 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         reply.header("x-empire-pillow-recovery", "completed");
         reply.header("x-empire-delivery-trace-id", forensicTraceId);
         reply.header("x-empire-chat-request-status", "COMPLETED");
-        const preview = result.messagePreview;
-        await completeChatRequest(accepted.requestId, {
-          message: preview,
-          kind: "llm",
-        });
-        await markChatRequestDelivered(accepted.requestId, "DELIVERED");
         recordDeliveryForensic({
           traceId: forensicTraceId,
           requestId: accepted.requestId,
@@ -609,43 +703,39 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
           terminalReason: null,
           deploymentId: deployId,
         });
-        // Ensure durable Tier-0 requestId is visible in body (worker may emit its own uuid).
-        try {
-          const parsed = JSON.parse(result.body.toString("utf8")) as Record<string, unknown>;
-          if (parsed && typeof parsed === "object") {
-            const resObj =
-              parsed.result && typeof parsed.result === "object"
-                ? { ...(parsed.result as Record<string, unknown>) }
-                : {};
-            resObj.requestId = accepted.requestId;
-            resObj.durableRequestId = accepted.requestId;
-            resObj.durableRequest = true;
-            parsed.result = resObj;
-            return reply.code(result.status).send(Buffer.from(JSON.stringify(parsed)));
-          }
-        } catch {
-          /* fall through */
-        }
         return reply.code(result.status).send(result.body);
       }
 
-      const taxonomyFailure =
+      const classified = classifyUpstreamFailure({
+        status: lastUpstreamStatus ?? undefined,
+        message: lastFailureReason ?? undefined,
+        code: lastFailureReason ?? undefined,
+      });
+      const taxonomyFailure: ChatFailureClass =
         lastUpstreamStatus === 400
-          ? ("REQUEST_NOT_ACCEPTED" as const)
+          ? "REQUEST_NOT_ACCEPTED"
           : lastFailureReason === "worker_unavailable"
-            ? ("WORKER_UNAVAILABLE" as const)
+            ? "WORKER_UNAVAILABLE"
             : lastFailureReason === "timeout"
-              ? ("TIMEOUT" as const)
+              ? "BRAIN_TIMEOUT_RETRYABLE"
               : lastFailureReason === "upstream_error"
-                ? ("BRAIN_RETRYABLE_FAILURE" as const)
-                : ("BUDGET_EXHAUSTED" as const);
+                ? classified
+                : "BUDGET_EXHAUSTED";
 
+      // Sync window ended ≠ request destroyed. Retryable classes stay RETRYABLE.
       await failChatRequest(accepted.requestId, {
         failureClass: taxonomyFailure,
-        errorClass: lastFailureReason,
-        upstreamStatus: lastUpstreamStatus,
+        errorClass: lastFailureReason ?? undefined,
+        upstreamStatus: lastUpstreamStatus ?? undefined,
         attempt: attemptCount,
+        fatal: taxonomyFailure === "REQUEST_NOT_ACCEPTED" || taxonomyFailure === "UPSTREAM_4XX_FATAL",
       });
+
+      const durableAfter = await getChatRequest(accepted.requestId);
+      const stillAlive =
+        durableAfter?.status === "RETRYABLE" ||
+        durableAfter?.status === "RUNNING" ||
+        durableAfter?.status === "ACCEPTED";
 
       const failureClass: DeliveryForensicEvent["failureClass"] =
         lastFailureReason === "worker_unavailable"
@@ -674,7 +764,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         brainOutputHash: null,
         brainDurationMs: elapsed,
         shellDurationMs: elapsed,
-        deliveryClass: "DEGRADED_TERMINAL",
+        deliveryClass: stillAlive ? "TRANSPORT_ERROR" : "DEGRADED_TERMINAL",
         failureClass:
           lastFailureReason === "upstream_error" ? "UPSTREAM_ERROR" : failureClass,
         upstreamStatus: lastUpstreamStatus,
@@ -683,25 +773,105 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         deploymentId: deployId,
       });
 
+      const terminalMsgClass =
+        taxonomyFailure === "REQUEST_NOT_ACCEPTED"
+          ? ("REQUEST_NOT_ACCEPTED" as const)
+          : taxonomyFailure === "WORKER_UNAVAILABLE"
+            ? ("WORKER_UNAVAILABLE" as const)
+            : taxonomyFailure === "BRAIN_TIMEOUT_RETRYABLE" || taxonomyFailure === "TIMEOUT"
+              ? ("TIMEOUT" as const)
+              : taxonomyFailure === "UPSTREAM_4XX_FATAL"
+                ? ("UPSTREAM_ERROR" as const)
+                : ("BUDGET_EXHAUSTED" as const);
+
       reply.header("x-empire-pillow-request-id", accepted.requestId);
-      reply.header("x-empire-pillow-recovery", "exhausted");
+      reply.header("x-empire-pillow-recovery", stillAlive ? "pending" : "exhausted");
       reply.header("x-empire-delivery-trace-id", forensicTraceId);
-      reply.header("x-empire-chat-request-status", "FAILED");
+      reply.header(
+        "x-empire-chat-request-status",
+        stillAlive ? "RETRYABLE" : "FAILED_FATAL",
+      );
       reply.header("x-empire-failure-class", taxonomyFailure);
+
+      // Sync window closed; request lifetime continues under Tier-0 ownership.
+      if (stillAlive) {
+        void runAcceptedPillowChatRecovery({
+          accepted: {
+            ...accepted,
+            acceptedAt: Date.now(),
+          },
+          probeWorker: probeWorkerOk,
+          attempt: async (timeoutMs, attemptIndex) => {
+            await markChatRequestRunning(
+              accepted.requestId,
+              attemptCount + attemptIndex,
+              process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0-bg",
+            );
+            return proxyOnce(timeoutMs, chatBodyText);
+          },
+          totalBudgetMs: Math.min(180_000, PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs),
+          onEvent: (event, detail) => {
+            logger.info(
+              { event, ...detail, requestId: accepted.requestId, phase: "post_sync_bg" },
+              "pillow_chat_recovery_bg",
+            );
+          },
+        })
+          .then(async (bg) => {
+            if (!bg.ok) return;
+            const preview = bg.messagePreview;
+            let persisted: Record<string, unknown> = {
+              message: preview,
+              kind: "llm",
+              requestId: accepted.requestId,
+              durableRequest: true,
+            };
+            try {
+              const parsed = JSON.parse(bg.body.toString("utf8")) as Record<string, unknown>;
+              const resObj =
+                parsed.result && typeof parsed.result === "object"
+                  ? { ...(parsed.result as Record<string, unknown>) }
+                  : {};
+              resObj.requestId = accepted.requestId;
+              resObj.durableRequest = true;
+              persisted = resObj;
+            } catch {
+              /* preview only */
+            }
+            await completeChatRequest(accepted.requestId, persisted);
+            logger.info(
+              { requestId: accepted.requestId, preview: preview.slice(0, 80) },
+              "pillow_chat_bg_completed_persisted",
+            );
+          })
+          .catch((err) => {
+            logger.warn(
+              { err, requestId: accepted.requestId },
+              "pillow_chat_bg_recovery_failed",
+            );
+          });
+      }
+
       return reply.code(200).send({
         result: {
-          message: buildTerminalInfrastructureMessage(accepted, taxonomyFailure),
-          kind: "terminal_infrastructure",
+          message: stillAlive
+            ? `I accepted your request (${accepted.requestId}). Completion is still in progress or recoverable — the result will be available via request status without resubmitting the same ask.`
+            : buildTerminalInfrastructureMessage(accepted, terminalMsgClass),
+          kind: stillAlive ? "durable_pending" : "terminal_infrastructure",
           tier0Isolation: true,
           requestId: accepted.requestId,
-          recoveryExhausted: true,
-          userResubmissionRequired: taxonomyFailure === "REQUEST_NOT_ACCEPTED" ? false : true,
+          recoveryExhausted: !stillAlive,
+          requestRemainsRunning: stillAlive,
+          userResubmissionRequired: false,
           deliveryTraceId: forensicTraceId,
           failureClass: taxonomyFailure,
           brainStarted,
           brainCompleted: false,
           durableRequest: true,
+          resultRetrievable: true,
+          contextAdmission: admitted.contextAdmission,
           contextAdmitted: admitted.mutated,
+          status: durableAfter?.status ?? "RETRYABLE",
         },
       });
     }
