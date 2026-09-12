@@ -342,6 +342,58 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
   return out.slice(0, 50);
 }
 
+/**
+ * Current delivery days for gate evaluation.
+ * Later verified / corrected / updated values supersede earlier / historical figures.
+ * Historical wording may remain in the pack — it must not drive CURRENT eligibility.
+ */
+export function extractCurrentDeliveryDays(body: string): {
+  value: number | null;
+  raw: string | null;
+  superseded: boolean;
+} {
+  const t = String(body || "");
+  const corrected =
+    /(?:later|verified|corrected|updated|revised|current)\s+(?:verified\s+)?(?:corrected\s+)?delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/i.exec(
+      t,
+    ) ||
+    /(?:corrected|verified|updated|revised)\s+delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/i.exec(
+      t,
+    ) ||
+    /delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b[^.\n]{0,48}\b(?:corrected|verified|updated|revised|controls)\b/i.exec(
+      t,
+    );
+  if (corrected) {
+    return { value: Number(corrected[1]), raw: corrected[0], superseded: true };
+  }
+
+  const all = [...t.matchAll(/\bdelivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/gi)];
+  if (all.length === 0) {
+    const bare = /(\d+(?:\.\d+)?)\s*days?\b/i.exec(t);
+    return bare
+      ? { value: Number(bare[1]), raw: bare[0], superseded: false }
+      : { value: null, raw: null, superseded: false };
+  }
+  if (all.length === 1) {
+    return { value: Number(all[0]![1]), raw: all[0]![0], superseded: false };
+  }
+
+  // Multiple delivery mentions: skip earlier/historical; prefer last non-superseded wording.
+  const usable: Array<{ value: number; raw: string; earlier: boolean }> = [];
+  for (const m of all) {
+    const before = t.slice(Math.max(0, (m.index ?? 0) - 48), m.index ?? 0);
+    const earlier = /\b(?:earlier|historical|previous|initial|originally|was)\b/i.test(before);
+    usable.push({ value: Number(m[1]), raw: m[0]!, earlier });
+  }
+  const nonEarlier = usable.filter((u) => !u.earlier);
+  const pick = nonEarlier.length > 0 ? nonEarlier[nonEarlier.length - 1]! : usable[usable.length - 1]!;
+  return {
+    value: pick.value,
+    raw: pick.raw,
+    superseded: usable.some((u) => u.earlier) || usable.length > 1,
+  };
+}
+
 function evaluateCandidateGates(
   body: string,
   rules: ParsedRule,
@@ -410,13 +462,12 @@ function evaluateCandidateGates(
     });
   }
 
-  // Delivery lead time in days (e.g. delivery 5 days vs delivery <= 6)
+  // Delivery lead time in days (e.g. delivery 5 days vs delivery <= 6).
+  // Corrected/verified/later values supersede earlier/historical figures for CURRENT gates.
   if (rules.deliveryMaxDays != null || /\bdelivery\s*[:=]?\s*\d+(?:\.\d+)?\s*days?\b/i.test(t)) {
-    const daysTok =
-      /delivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/i.exec(t) ||
-      /(\d+(?:\.\d+)?)\s*days?\b/i.exec(t);
+    const extracted = extractCurrentDeliveryDays(t);
     let status: DecisionGateStatus = "UNKNOWN";
-    const val = daysTok ? Number(daysTok[1]) : null;
+    const val = extracted.value;
     if (val != null && rules.deliveryMaxDays != null) {
       status = val <= rules.deliveryMaxDays ? "PASS" : "FAIL";
     } else if (val != null) status = "PASS";
@@ -424,7 +475,7 @@ function evaluateCandidateGates(
       id: "delivery_max_days",
       label: "delivery lead-time max days",
       status,
-      raw: daysTok?.[0],
+      raw: extracted.raw ?? undefined,
     });
   }
 
@@ -901,11 +952,15 @@ export function repairDecisionVisibility(
   let out = String(answer || "");
   const assess = assessDecisionVisibilityConsistency(out, state);
 
-  // Fix eligible-suppliers summary lines whenever list includes ineligibles or assess failed
-  if (!assess.ok || /\bEligible\s+Suppliers?\s*:/i.test(out)) {
+  // Fix eligible-suppliers / eligible-set summary lines whenever list includes ineligibles or assess failed
+  if (!assess.ok || /\bEligible\s+(?:Suppliers?|set)\s*:/i.test(out)) {
     out = out.replace(
       /\bEligible\s+Suppliers?\s*:\s*[^\n]+/gi,
       `Eligible Suppliers: ${state.eligibleSet.length ? state.eligibleSet.join(" and ") : "none"}`,
+    );
+    out = out.replace(
+      /\bEligible\s+set\s*:\s*[^\n]+/gi,
+      `Eligible set: ${state.eligibleSet.length ? state.eligibleSet.join(" and ") : "none"}`,
     );
   }
 
@@ -917,6 +972,14 @@ export function repairDecisionVisibility(
       "gi",
     );
     out = out.replace(re, `$1not currently eligible$2`);
+    // Strip ineligible names from "Aurora + Cedar" style eligible lists when Cedar is ineligible
+    const plusRe = new RegExp(
+      `(\\bEligible\\b[^\\n]{0,40})\\b${c.displayName}\\b(?:\\s*[+,&]\\s*|\\s+and\\s+)?`,
+      "gi",
+    );
+    if (/\bEligible\b/i.test(out)) {
+      out = out.replace(plusRe, `$1`);
+    }
   }
 
   // False ineligible for currently eligible candidates
@@ -933,6 +996,19 @@ export function repairDecisionVisibility(
   if (state.recommendation.status === "SELECT" && state.recommendation.selectedId) {
     const sel = state.recommendation.selectedId;
     out = out.replace(/\bDO\s+NOT\s+SELECT\s+ANY(?:\s+YET)?\b/gi, `SELECT ${sel}`);
+    // Neutralize select/recommend/choose of currently ineligible candidates
+    for (const c of state.candidates) {
+      if (c.currentlyEligible) continue;
+      if (c.displayName === sel) continue;
+      const esc = c.displayName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      out = out.replace(
+        new RegExp(
+          `\\b(?:select|recommend(?:ing|s)?|choose|selecting)\\s+(?:selecting\\s+)?\\*?\\*?${esc}\\b`,
+          "gi",
+        ),
+        `${c.displayName} is currently ineligible`,
+      );
+    }
     const hasAction =
       new RegExp(`\\bSELECT\\s+${sel}\\b`, "i").test(out) ||
       new RegExp(
