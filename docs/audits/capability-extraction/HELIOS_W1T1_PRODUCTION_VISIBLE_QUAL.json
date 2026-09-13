@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-13T13:57:58.152Z",
+  "MISSION": "HELIOS_W1T1_VISIBLE_DECISION_AUTHORITY",
+  "DEPLOYMENT_ID": "194203f2-9c3f-404b-aecd-2d50ff425e36",
+  "RUNNING_SHA": "636f92ed09d647d051c9afc3df4c60a510acb31f",
+  "requestId": "pcr_4f6c53fa82bb4021",
+  "status": 200,
+  "kind": "llm",
+  "checks": {
+    "fail": [],
+    "ok": true
+  },
+  "textPreview": "###\n1. Complete Current Eligible Set\nThe current eligible supplier set consists of:\n- **Supplier Ember**:\n- Contribution: US$12.50/order\n- Stock: 1,250\n- Delivery: 5 days\n- Approval: granted\n###\n2. Supplier to Select Now\nThe supplier to select now is **Supplier Ember**. Ember is the only currently eligible supplier that meets all the criteria.\n###\n3. Why Flint Cannot Be Selected Despite Having Higher Contribution Than Ember\nSupplier Flint cannot be selected because, while it has a higher contribution of US$15.80/order, it fails to meet the delivery requirement, which is a maximum of 6 days. Flint's delivery time is 8 days, making it ineligible.\n###\n4. If Grove's Approval Becomes Granted While Every Other Fact Stays Unchanged, Whether the Selection Changes and to Whom\nIf Grove's approval becomes granted while all other facts remain unchanged, the selection would change to **Supplier Grove**. Grove would then be eligible with a contribution of US$17.20/order, stock of 1,450 units, and a delivery time of 4 days, surpassing Ember's contribution.\n###\n5. Use Only the Supplied Scenario Facts\nAll answers provided are based solely on the supplied scenario facts.\n### Recommendation\n**Current",
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "WAVE_1": "0/24",
+  "STATUS": "ENGINEERING PASS ONLY — AWAITING ONE UNSEEN GRAND KING W1-T1"
+}

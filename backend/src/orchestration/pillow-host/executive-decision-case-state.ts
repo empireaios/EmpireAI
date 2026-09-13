@@ -422,6 +422,54 @@ export function extractCurrentDeliveryDays(body: string): {
   };
 }
 
+/**
+ * Current stock/inventory units for gate evaluation.
+ * Later verified / corrected / updated values supersede earlier / historical figures
+ * (same discipline as delivery lead-time).
+ */
+export function extractCurrentStockUnits(body: string): {
+  value: number | null;
+  raw: string | null;
+  superseded: boolean;
+} {
+  const t = String(body || "");
+  const corrected =
+    /(?:later|verified|corrected|updated|revised|current)\s+(?:verified\s+)?(?:corrected\s+)?(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)/i.exec(
+      t,
+    ) ||
+    /(?:corrected|verified|updated|revised)\s+(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)/i.exec(
+      t,
+    ) ||
+    /(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)[^.\n]{0,48}\b(?:corrected|verified|updated|revised|controls)\b/i.exec(
+      t,
+    );
+  if (corrected) {
+    return { value: parseMoney(corrected[1]!), raw: corrected[0], superseded: true };
+  }
+
+  const all = [...t.matchAll(/\b(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)/gi)];
+  if (all.length === 0) {
+    return { value: null, raw: null, superseded: false };
+  }
+  if (all.length === 1) {
+    return { value: parseMoney(all[0]![1]!), raw: all[0]![0], superseded: false };
+  }
+
+  const usable: Array<{ value: number; raw: string; earlier: boolean }> = [];
+  for (const m of all) {
+    const before = t.slice(Math.max(0, (m.index ?? 0) - 48), m.index ?? 0);
+    const earlier = /\b(?:earlier|historical|previous|initial|originally|was)\b/i.test(before);
+    usable.push({ value: parseMoney(m[1]!), raw: m[0]!, earlier });
+  }
+  const nonEarlier = usable.filter((u) => !u.earlier);
+  const pick = nonEarlier.length > 0 ? nonEarlier[nonEarlier.length - 1]! : usable[usable.length - 1]!;
+  return {
+    value: pick.value,
+    raw: pick.raw,
+    superseded: usable.some((u) => u.earlier) || usable.length > 1,
+  };
+}
+
 function evaluateCandidateGates(
   body: string,
   rules: ParsedRule,
@@ -577,13 +625,13 @@ function evaluateCandidateGates(
     }
   }
 
-  // Stock / inventory — numeric floor when present; else availability language
+  // Stock / inventory — numeric floor when present; else availability language.
+  // Corrected/verified/later values supersede earlier/historical figures for CURRENT gates.
   if (rules.stockMin != null || /\bstock\b|\binventory\b/i.test(t)) {
-    const stockTok =
-      /(?:stock|inventory)\s*[:=]?\s*([\d,]+(?:\.\d+)?)/i.exec(t);
+    const extracted = extractCurrentStockUnits(t);
     const frag = /(?:stock|inventory)[^;\n]{0,50}/i.exec(t)?.[0] || "";
     let status: DecisionGateStatus = "UNKNOWN";
-    const val = stockTok ? parseMoney(stockTok[1]!) : null;
+    const val = extracted.value;
     if (val != null && rules.stockMin != null) {
       status = val >= rules.stockMin ? "PASS" : "FAIL";
     } else if (val != null) {
@@ -597,7 +645,12 @@ function evaluateCandidateGates(
             ? "PASS"
             : "UNKNOWN");
     }
-    gates.push({ id: "stock", label: "stock availability", status, raw: stockTok?.[0] });
+    gates.push({
+      id: "stock",
+      label: "stock availability",
+      status,
+      raw: extracted.raw ?? undefined,
+    });
   }
 
   // Policy

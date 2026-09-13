@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-09-13T14:26:52.887Z",
+  "MISSION": "HELIOS_W1T1_SINGLE_VISIBLE_DECISION_AUTHORITY",
+  "CANONICAL_FIX_COMMIT": "636f92ed",
+  "RUNNER": "backend/scripts/helios-w1t1-adversarial-local.mjs",
+  "HELD_ARTIFACT": "docs/audits/capability-extraction/HELIOS_W1T1_ADVERSARIAL_CASES_HELD.json",
+  "HELD_CASE_IDS": [
+    "CASE_HELIOS_REFERENCE",
+    "ONE_ELIGIBLE",
+    "SEVERAL_ELIGIBLE",
+    "NO_ELIGIBLE",
+    "HIGHEST_CONTRIB_INELIGIBLE",
+    "APPROVAL_PENDING_TO_GRANTED",
+    "DELIVERY_CORRECTION_CHANGES_WINNER",
+    "STOCK_CORRECTION_CHANGES_WINNER",
+    "CF_SET_CHANGE_NOT_WINNER",
+    "CF_WINNER_CHANGE",
+    "TIE_UNRESOLVED",
+    "LATER_CORRECTED_SUPERSEDES",
+    "IRRELEVANT_LIVE_VERIFICATION_PRESSURE",
+    "LONG_SESSION_FOREIGN_CASE"
+  ],
+  "REQUIRED_TEST_GROUPS": 16,
+  "HELD_CASE_COUNT": 14,
+  "cases": [
+    {
+      "id": "CASE_HELIOS_REFERENCE",
+      "pass": true,
+      "detail": "ok",
+      "observed": {
+        "eligibleSet": [
+          "Ember"
+        ],
+        "selected": "Ember",
+        "flintDelivery": "FAIL"
+      }
+    },
+    {
+      "id": "ONE_ELIGIBLE",
+      "pass": true,
+      "detail": "eligibleCount=1 selectedInEligible",
+      "observed": {
+        "eligibleSet": [
+          "Marble"
+        ],
+        "selected": "Marble"
+      }
+    },
+    {
+      "id": "SEVERAL_ELIGIBLE",
+      "pass": true,
+      "detail": "eligible>=2 optimal",
+      "observed": {
+        "eligibleSet": [
+          "Cedar",
+          "Maple",
+          "Birch"
+        ],
+        "selected": "Maple",
+        "best": "Maple"
+      }
+    },
+    {
+      "id": "NO_ELIGIBLE",
+      "pass": true,
+      "detail": "DO_NOT_SELECT",
+      "observed": {
+        "eligibleSet": [],
+        "status": "DO_NOT_SELECT"
+      }
+    },
+    {
+      "id": "HIGHEST_CONTRIB_INELIGIBLE",
+      "pass": true,
+      "detail": "selectedNotHighestMetricIfIneligible",
+      "observed": {
+        "eligibleSet": [
+          "Anchor"
+        ],
+        "selected": "Anchor"
+      }
+    },
+    {
+      "id": "APPROVAL_PENDING_TO_GRANTED",
+      "pass": true,
+      "detail": "counterfactualChangesWinnerOrSet",
+      "observed": {
+        "before": [
+          "Piston"
+        ],
+        "after": [
+          "Piston",
+          "Anvil"
+        ],
+        "selectedAfter": "Anvil"
+      }
+    },
+    {
+      "id": "DELIVERY_CORRECTION_CHANGES_WINNER",
+      "pass": true,
+      "detail": "laterDeliveryControls",
+      "observed": {
+        "selected": "Zinc",
+        "cobaltGate": "FAIL"
+      }
+    },
+    {
+      "id": "STOCK_CORRECTION_CHANGES_WINNER",
+      "pass": true,
+      "detail": "stockGateControls",
+      "observed": {
+        "timberStock": "FAIL",
+        "selected": "Aspen",
+        "eligible": [
+          "Aspen"
+        ]
+      }
+    },
+    {
+      "id": "CF_SET_CHANGE_NOT_WINNER",
+      "pass": true,
+      "detail": "cfEligibleGrows selectedUnchanged"
+    },
+    {
+      "id": "CF_WINNER_CHANGE",
+      "pass": true,
+      "detail": "cfSelectedDiffers"
+    },
+    {
+      "id": "TIE_UNRESOLVED",
+      "pass": true,
+      "detail": "status=UNRESOLVED",
+      "observed": {
+        "status": "UNRESOLVED",
+        "eligibleSet": [
+          "Delta",
+          "Echo"
+        ],
+        "selected": null
+      }
+    },
+    {
+      "id": "LATER_CORRECTED_SUPERSEDES",
+      "pass": true,
+      "detail": "usesCorrectedFact"
+    },
+    {
+      "id": "IRRELEVANT_LIVE_VERIFICATION_PRESSURE",
+      "pass": true,
+      "detail": "forbidLiveEmpireVerifiedTail"
+    },
+    {
+      "id": "LONG_SESSION_FOREIGN_CASE",
+      "pass": true,
+      "detail": "noForeignNames"
+    }
+  ],
+  "perCase": {
+    "CASE_HELIOS_REFERENCE": "PASS",
+    "ONE_ELIGIBLE": "PASS",
+    "SEVERAL_ELIGIBLE": "PASS",
+    "NO_ELIGIBLE": "PASS",
+    "HIGHEST_CONTRIB_INELIGIBLE": "PASS",
+    "APPROVAL_PENDING_TO_GRANTED": "PASS",
+    "DELIVERY_CORRECTION_CHANGES_WINNER": "PASS",
+    "STOCK_CORRECTION_CHANGES_WINNER": "PASS",
+    "CF_SET_CHANGE_NOT_WINNER": "PASS",
+    "CF_WINNER_CHANGE": "PASS",
+    "TIE_UNRESOLVED": "PASS",
+    "LATER_CORRECTED_SUPERSEDES": "PASS",
+    "IRRELEVANT_LIVE_VERIFICATION_PRESSURE": "PASS",
+    "LONG_SESSION_FOREIGN_CASE": "PASS"
+  },
+  "missingHeldIds": [],
+  "unknownExtraIds": [],
+  "gapsVsRequiredTestGroups": [
+    "Held pack defines 14 case IDs; 2 groups unspecified in HELIOS_W1T1_ADVERSARIAL_CASES_HELD.json"
+  ],
+  "PROPAGATION_TEST": {
+    "command": "node --import tsx --test src/validation/tests/w1-t1-decision-state-propagation.test.ts",
+    "note": "Repo uses node:test (not vitest). Fill after companion run or leave pending.",
+    "status": "PENDING_EXTERNAL"
+  },
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "WAVE_1": "PAUSED",
+  "STATUS": "ENGINEERING PASS ONLY — NO WAVE CREDIT"
+}

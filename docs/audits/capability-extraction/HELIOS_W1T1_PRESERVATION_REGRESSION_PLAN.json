@@ -1,0 +1,393 @@
+{
+  "generatedAt": "2026-09-13T13:50:30.000Z",
+  "MISSION": "HELIOS_W1T1_PRESERVATION_REGRESSION",
+  "WORKSTREAM": 4,
+  "WAVE_CREDIT": 0,
+  "WAVE_1": "PAUSED",
+  "BIRTH_AUTHORISED": "NO",
+  "TARGET_PROD_SHA": "636f92ed",
+  "SCOPE": "Identify + run LOCAL-safe preservation suite; defer live prod SHA parity to dedicated production scripts. Do not edit pillow-host decision writers.",
+  "LOCAL_SUITE_RUN": {
+    "ranAt": "2026-09-13T13:48:32.000Z",
+    "qualifyScripts": {
+      "total": 12,
+      "pass": 12,
+      "fail": 0
+    },
+    "lockUnitTests": {
+      "files": 14,
+      "tests": 89,
+      "pass": 89,
+      "fail": 0,
+      "runner": "node --import tsx --test"
+    },
+    "overallLocalPass": true
+  },
+  "FALSE_PARITY_FINDINGS": [
+    {
+      "id": "QUALIFY_BYPASS_VS_GRAND_KING_PATH",
+      "severityKnown": false,
+      "severityClaim": "Local qualify / capability harness PASS is NOT Grand King path parity",
+      "evidence": [
+        "docs/audits/complete-state/PATH_PARITY_MATRIX.md",
+        "docs/audits/capability-extraction/GK_CHAT_INFRASTRUCTURE_PATH_PARITY_CLOSURE.md",
+        "docs/audits/capability-extraction/GK_PATH_EQUIVALENCE_DOCTRINE.md"
+      ],
+      "materialGaps": [
+        "Qualify scripts call pillow-host modules in-process (no BFF decorate/sanitize, no FE SCR-800 session, no durable Tier-0 delivery)",
+        "Historical harness used Synthetic* packs + forceNew + non-SCR-800 screenId → false PRODUCTION PASS while GK UI hit infrastructure-budget terminal",
+        "FAST/DEPLOY gates historically polish-dominant (~15% path parity vs real chat per PATH_PARITY_MATRIX)",
+        "Production ladders closer (~70%) but still missing true GK session/workspaceContext unless SCR-800 + durable forensics path is used"
+      ],
+      "implication": "Local PASS below does not authorize WAVE_CREDIT and does not prove Helios W1-T1 visible on SHA 636f92ed"
+    },
+    {
+      "id": "HELIOS_VISIBLE_PROD_STILL_FAILING_ON_PRIOR_SHA",
+      "parityKnown": false,
+      "note": "Latest HELIOS_W1T1_PRODUCTION_VISIBLE_QUAL.json recorded ENGINEERING_PASS=false on RUNNING_SHA d945be34 (terminal_infrastructure). Prod parity for TARGET_PROD_SHA 636f92ed is NOT established by this workstream."
+    }
+  ],
+  "classes": [
+    {
+      "class": "durable_external_delivery",
+      "localScripts": [
+        "backend/src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/pillow-durable-delivery-fault-matrix-live.mjs",
+        "backend/scripts/pillow-durable-delivery-remediator.mjs",
+        "backend/scripts/shell-ready-v2-qualification.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/capability-extraction/PILLOW_DURABLE_DELIVERY_FAULT_MATRIX.json",
+        "docs/audits/capability-extraction/SHELL_READY_V2_LONG_SESSION_QUAL.json"
+      ],
+      "runMode": "LOCAL_SAFE_UNIT",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "Level A fault matrix: 8/8 suites PASS (OVERSIZED_CONTEXT, WORKER_RECYCLE, HTTP_500, BFF_RESTART, CLIENT_DISCONNECT, SLOW_BRAIN, LONG_SESSION, idempotency)"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "current_case_provenance",
+      "localScripts": [
+        "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+        "backend/src/validation/tests/case-provenance-causal-graph-lock.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/case-provenance-causal-graph-production.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_QUAL.json",
+        "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_PRODUCTION.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "qualify: CROSS_CASE_HISTORY_PAIRS=100, FOREIGN leaks=0, COMBINED_PASS_RATE=100%, pass=true; lock tests included in 89/89"
+      },
+      "prodPathParityKnown": false,
+      "priorProdEvidenceSha": "654fe053366f6ff425412f0b20eb5c355bd6f991"
+    },
+    {
+      "class": "case_isolation",
+      "localScripts": [
+        "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+        "backend/src/validation/tests/case-provenance-causal-graph-lock.test.ts",
+        "backend/src/validation/tests/path-parity-scope-isolation.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/case-provenance-causal-graph-production.mjs",
+        "backend/scripts/gk-path-qualification.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_QUAL.json",
+        "docs/audits/complete-state/PATH_PARITY_MATRIX.md"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "NEW_BOUNDED_CASE firewall + scope isolation negative controls PASS"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "arithmetic_authority",
+      "localScripts": [
+        "backend/scripts/given-metric-arithmetic-authority-qualify.mjs",
+        "backend/scripts/build-ec01-ec02-arith-qualify.mjs",
+        "backend/src/validation/tests/commercial-arithmetic-lock.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/given-metric-arithmetic-authority-production.mjs",
+        "backend/scripts/build-ec01-ec02-arith-production-validate.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/capability-extraction/GIVEN_METRIC_ARITHMETIC_AUTHORITY_QUAL.json",
+        "docs/audits/capability-extraction/BUILD_EC01_EC02_ARITH_DEV_FULL_QUAL.json",
+        "docs/audits/capability-extraction/BUILD_EC01_EC02_ARITH_PRODUCTION_VALIDATE.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "DEV_GIVEN_METRIC_ARITH_FULL_PASS=true; DEV_ARITH_FULL_PASS=true; PRESERVE_MATERIAL_REGRESSION=0; commercial-arithmetic-lock PASS"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "causal_graph",
+      "localScripts": [
+        "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+        "backend/scripts/causal-predicate-qualify.mjs",
+        "backend/scripts/causal-relevance-combined-qualify.mjs",
+        "backend/src/validation/tests/causal-predicate-envelope-lock.test.ts",
+        "backend/src/validation/tests/causal-state-atomic.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/case-provenance-causal-graph-production.mjs",
+        "backend/scripts/causal-predicate-visible-relevance-production.mjs",
+        "backend/scripts/pillow-indirect-causal-compound-ladder.mjs",
+        "backend/scripts/pillow-causal-state-extension-ladder.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_QUAL.json",
+        "docs/audits/complete-state/CAUSAL_PREDICATE_QUAL.json",
+        "docs/audits/complete-state/CAUSAL_RELEVANCE_COMBINED_QUAL.json",
+        "docs/audits/complete-state/CAUSAL_PREDICATE_VISIBLE_RELEVANCE_PRODUCTION.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "causal-graph 300 raw / 0 class errors; causal-predicate 820 cases pass; combined 100/100; TEMPORAL_AS_CAUSAL_ERROR=0"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "temporal_precedence",
+      "localScripts": [
+        "backend/src/validation/tests/executive-epistemic-grounding.test.ts",
+        "backend/scripts/w1-t1-decision-state-qualify.mjs",
+        "backend/scripts/decision-state-authority-qualify.mjs",
+        "backend/scripts/causal-predicate-qualify.mjs"
+      ],
+      "prodScripts": [
+        "backend/scripts/w1-t1-decision-state-production.mjs",
+        "backend/scripts/decision-state-authority-production.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/capability-extraction/W1_T1_DECISION_STATE_PROPAGATION_QUAL.json",
+        "docs/audits/complete-state/DECISION_STATE_AUTHORITY_QUAL.json",
+        "docs/audits/complete-state/CAUSAL_PREDICATE_QUAL.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "epistemic temporal-precedence unit PASS; W1-T1 SUPERSEDED_VALUE_USED_IN_CURRENT_GATE=0; decision-state pass; TEMPORAL_AS_CAUSAL_ERROR=0"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "identity_integrity",
+      "localScripts": [
+        "backend/src/validation/tests/ux-identity-doctrine.test.ts",
+        "backend/src/validation/tests/path-parity-scope-isolation.test.ts",
+        "backend/scripts/case-provenance-causal-graph-qualify.mjs"
+      ],
+      "prodScripts": [
+        "backend/scripts/case-provenance-causal-graph-production.mjs",
+        "backend/scripts/pillow-decision-quality-live-regression.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/capability-extraction/PILLOW_PRESERVE_UNBLOCK_BUILD.json"
+      ],
+      "runMode": "LOCAL_SAFE_UNIT",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "UID-001..020 catalog/compliance PASS; scope isolation prevents live Mini Fan identity bleed into synthetic packs; foreign entity leak=0 in provenance qualify"
+      },
+      "prodPathParityKnown": false,
+      "note": "EC-07 identity non-invention is PRESERVE in PILLOW_PRESERVE_UNBLOCK_BUILD; no dedicated offline EC-07 qualify script beyond locks + provenance firewall."
+    },
+    {
+      "class": "exact_requested_structure",
+      "localScripts": [
+        "backend/scripts/final-visible-contract-qualify.mjs",
+        "backend/scripts/sterling-multi-failure-qualify.mjs",
+        "backend/scripts/visible-relevance-qualify.mjs",
+        "backend/src/validation/tests/final-visible-contract-lock.test.ts",
+        "backend/src/validation/tests/sterling-multi-failure-lock.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/final-visible-contract-production.mjs",
+        "backend/scripts/sterling-production-first-visible.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/FINAL_VISIBLE_CONTRACT_QUAL.json",
+        "docs/audits/complete-state/STERLING_MULTI_FAILURE_QUAL.json",
+        "docs/audits/complete-state/VISIBLE_RELEVANCE_QUAL.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "final-visible pass; sterling TOP_LEVEL_SECTION_COUNT_MISMATCH=0 COMBINED 100%; visible-relevance unrequested pre/post=0"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "n_claim_n_verdict",
+      "localScripts": [
+        "backend/scripts/transport-boundary-contract-qualify.mjs",
+        "backend/scripts/sterling-multi-failure-qualify.mjs",
+        "backend/scripts/final-visible-contract-qualify.mjs",
+        "backend/scripts/resolved-verdict-adversarial-qualify.mjs",
+        "backend/src/validation/tests/transport-boundary-contract-lock.test.ts",
+        "backend/src/validation/tests/resolved-verdict-authority.test.ts"
+      ],
+      "prodScripts": [
+        "backend/scripts/transport-boundary-production.mjs",
+        "backend/scripts/deterministic-verdict-production-first-visible.mjs",
+        "backend/scripts/pillow-orchid-verdict-authority-ladder.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/TRANSPORT_BOUNDARY_CONTRACT_QUAL.json",
+        "docs/audits/complete-state/DETERMINISTIC_RESOLVED_VERDICT_ADVERSARIAL_QUAL.json",
+        "docs/audits/complete-state/STERLING_MULTI_FAILURE_QUAL.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "Valence 5-claim/1-verdict FAIL authorize reproduced; MALFORMED_RELEASE=0; resolved adversarial 370 corpus pass; EXPLICIT_VERDICT_OMISSION=0"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "no_foreign_case_contamination",
+      "localScripts": [
+        "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+        "backend/src/validation/tests/case-provenance-causal-graph-lock.test.ts",
+        "backend/scripts/given-metric-arithmetic-authority-qualify.mjs"
+      ],
+      "prodScripts": [
+        "backend/scripts/case-provenance-causal-graph-production.mjs",
+        "backend/scripts/decision-state-authority-production.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_QUAL.json"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "FOREIGN_CASE_FACT/ENTITY/EVENT_LEAK=0; DOMAIN_SUBSTITUTION=0; WARM_FOREIGN_CURRENCY_CONTAMINATION=0"
+      },
+      "prodPathParityKnown": false
+    },
+    {
+      "class": "transport_boundary_release_control",
+      "localScripts": [
+        "backend/scripts/transport-boundary-contract-qualify.mjs",
+        "backend/src/validation/tests/transport-boundary-contract-lock.test.ts",
+        "backend/scripts/decision-state-authority-qualify.mjs",
+        "backend/scripts/causal-relevance-combined-qualify.mjs"
+      ],
+      "prodScripts": [
+        "backend/scripts/transport-boundary-production.mjs"
+      ],
+      "evidenceArtifacts": [
+        "docs/audits/complete-state/TRANSPORT_BOUNDARY_CONTRACT_QUAL.json",
+        "docs/audits/complete-state/TRANSPORT_BOUNDARY_PRODUCTION_FIRST_VISIBLE.json",
+        "docs/audits/complete-state/TRANSPORT_BOUNDARY_CONTRACT_CLOSURE.md"
+      ],
+      "runMode": "LOCAL_SAFE_OFFLINE_QUAL",
+      "needsProdSha636f92ed": true,
+      "localResult": {
+        "ran": true,
+        "pass": true,
+        "detail": "OBJECTIVE_CONTRACT_RAW_CASES=320; EVERY_RELEASED_CANDIDATE_VALIDATED=true; POST_VALIDATION_MUTATION_ESCAPE=0; TRANSPORT_AUTHORIZED_SMOKE on decision-state+provenance"
+      },
+      "prodPathParityKnown": false
+    }
+  ],
+  "deferredProdOnlyScripts": [
+    {
+      "path": "backend/scripts/case-provenance-causal-graph-production.mjs",
+      "reason": "Live Cockpit/Brain chat; requires TARGET_PROD_SHA 636f92ed"
+    },
+    {
+      "path": "backend/scripts/transport-boundary-production.mjs",
+      "reason": "Live first-visible production ladder"
+    },
+    {
+      "path": "backend/scripts/given-metric-arithmetic-authority-production.mjs",
+      "reason": "Live production validate"
+    },
+    {
+      "path": "backend/scripts/build-ec01-ec02-arith-production-validate.mjs",
+      "reason": "Live production validate"
+    },
+    {
+      "path": "backend/scripts/causal-predicate-visible-relevance-production.mjs",
+      "reason": "Live production ladder"
+    },
+    {
+      "path": "backend/scripts/decision-state-authority-production.mjs",
+      "reason": "Live production ladder"
+    },
+    {
+      "path": "backend/scripts/w1-t1-decision-state-production.mjs",
+      "reason": "Live W1-T1 production path"
+    },
+    {
+      "path": "backend/scripts/final-visible-contract-production.mjs",
+      "reason": "Live first-visible"
+    },
+    {
+      "path": "backend/scripts/sterling-production-first-visible.mjs",
+      "reason": "Live first-visible"
+    },
+    {
+      "path": "backend/scripts/pillow-durable-delivery-fault-matrix-live.mjs",
+      "reason": "Live durable delivery faults"
+    },
+    {
+      "path": "backend/scripts/shell-ready-v2-qualification.mjs",
+      "reason": "Long-session production delivery forensic"
+    },
+    {
+      "path": "backend/scripts/gk-path-qualification.mjs",
+      "reason": "Grand King path equivalence — required for true parity"
+    },
+    {
+      "path": "backend/scripts/gk-path-parity-differential.mjs",
+      "reason": "Differential GK vs harness path"
+    }
+  ],
+  "summary": {
+    "classesCovered": 11,
+    "localClassesRunPass": 11,
+    "localClassesRunFail": 0,
+    "prodPathParityKnownAny": false,
+    "WAVE_CREDIT": 0,
+    "nextRequiredForParity": "Run deferred prod scripts against live SHA 636f92ed on Grand King / SCR-800 equivalent path; do not treat local qualify PASS as WAVE_CREDIT"
+  }
+}

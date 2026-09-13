@@ -74,20 +74,20 @@ function cookie(res) {
 function checks(text) {
   const t = String(text || "");
   const fail = [];
-  if (/\bCurrent\s+Eligible\s+set\s*:\s*none\b/i.test(t) && /\bEmber\b/i.test(t)) {
-    fail.push("ELIGIBLE_NONE_WITH_EMBER");
-  }
-  if (/\bDO\s+NOT\s+SELECT\s+ANY\b/i.test(t) && /\b(?:SELECT\s+Ember|only eligible supplier)\b/i.test(t)) {
-    fail.push("DNS_VS_SELECT_EMBER");
-  }
+  if (/\bCurrent\s+Eligible\s+set\s*:\s*none\b/i.test(t)) fail.push("ELIGIBLE_SET_NONE");
+  if (/\bEligible\s+Suppliers?\s*:\s*none\b/i.test(t)) fail.push("ELIGIBLE_SUPPLIERS_NONE");
+  if (/\bDO\s+NOT\s+SELECT\s+ANY\b/i.test(t)) fail.push("DO_NOT_SELECT_ANY");
   if (/\bunproven\b/i.test(t) && /contribution minimum=unproven|stock availability=unproven|lead-time max days=unproven/i.test(t)) {
     fail.push("SUPPLIED_FACTS_AS_UNPROVEN");
+  }
+  if (/not live EmpireAI verified fact/i.test(t) && /currentlyEligible\s*=\s*NO/i.test(t)) {
+    fail.push("LIVE_VERIFY_TAIL_OVERTURNS");
   }
   if (!/\bEmber\b/i.test(t)) fail.push("MISSING_EMBER");
   if (!/\bFlint\b/i.test(t) || !/\b8\b/.test(t)) fail.push("MISSING_FLINT_DELIVERY_REASON");
   if (!/\bGrove\b/i.test(t)) fail.push("MISSING_GROVE_CF");
-  const hasSelect = /\bSELECT\s+Ember\b|\bselect\s+Ember\b|\bonly eligible supplier\b/i.test(t);
-  const hasEligibleEmber = /\bEligible\s+(?:set|Suppliers?)\s*:\s*[^\n]*Ember/i.test(t) || /\beligible set[^\n]*Ember/i.test(t);
+  const hasSelect = /\bSELECT\s+Ember\b|\bselect(?:s|ed)?\s+(?:Supplier\s+)?Ember\b|\bonly (?:currently )?eligible supplier\b/i.test(t);
+  const hasEligibleEmber = /\bEligible\s+(?:set|Suppliers?)\s*:\s*[^\n]*Ember/i.test(t) || /\beligible (?:supplier )?set[^\n]*Ember/i.test(t);
   if (!hasSelect && !hasEligibleEmber) fail.push("NO_EMBER_SELECTION_SIGNAL");
   return { fail, ok: fail.length === 0 };
 }
@@ -136,6 +136,7 @@ const out = {
   kind: cj?.result?.kind || null,
   checks: result,
   textPreview: text.slice(0, 1200),
+  textFull: text,
   ENGINEERING_PASS: result.ok,
   WAVE_CREDIT: 0,
   WAVE_1: "0/24",
