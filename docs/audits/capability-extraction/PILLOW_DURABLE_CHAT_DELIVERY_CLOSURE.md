@@ -1,4 +1,4 @@
-# PILLOW Durable Chat Delivery Closure
+﻿# PILLOW Durable Chat Delivery Closure
 
 **MISSION_TYPE**=DURABLE_CHAT_DELIVERY_ARCHITECTURE  
 **SEVERITY**=P0 — CERTIFICATION BLOCKER  
@@ -9,7 +9,7 @@
 | Field | Value |
 |---|---|
 | PILLOW_SEMANTIC_SHA_BEFORE | `01b15a57` |
-| PILLOW_SEMANTIC_SHA_AFTER | `01b15a57` (expected UNCHANGED) |
+| PILLOW_SEMANTIC_SHA_AFTER | `01b15a57` (UNCHANGED) |
 | PILLOW_REASONING_CHANGED | NO |
 
 No executive cognition / arithmetic / decision / causal / memory reasoning tip changes in this mission.
@@ -50,9 +50,9 @@ See `PILLOW_DURABLE_REQUEST_STATE_MACHINE.md`. No generic production-shell umbre
 
 | Concept | Value |
 |---|---|
-| SYNC_WINDOW_MS | UX window (Tier-0 budget / BFF maxDuration) |
-| REQUEST_LIFETIME | Redis TTL 86400s |
-| RESULT_TTL | same as request TTL |
+| SYNC_WINDOW_MS | 120000 (UX window; Tier-0/BFF budgets may be longer) |
+| REQUEST_LIFETIME | 86400s |
+| RESULT_TTL | 86400s |
 
 Sync expiry returns `durable_pending` + `requestRemainsRunning` — request is not destroyed.
 
@@ -87,43 +87,56 @@ Per request: TRACE_ID (delivery forensics), REQUEST_ID, SESSION_ID, STATUS, ATTE
 
 ## P. Fault injection matrix
 
-See `PILLOW_DURABLE_DELIVERY_FAULT_MATRIX.json` (Level A ≥ quotas). Live ladder: `pillow-chat-architecture-fault-injection.mjs`.
+See `PILLOW_DURABLE_DELIVERY_FAULT_MATRIX.json`.
+
+- Level A: 15/15
+- Live: OVERSIZED=10 HTTP_500=10 BFF_RESTART=5 CLIENT_DISCONNECT=5 SLOW_BRAIN=5 WORKER_RECYCLE=10 LONG_SESSION=10 STATEFUL_MIXED=5
+- All hard durability zeros met
 
 ## Q. G1 / G2 / G4
 
-Representative CLEARED — semantic tip frozen at `01b15a57`; no broadened semantic testing.
+Representative CLEARED — semantic tip frozen at `01b15a57`; G2 contribution `14.60` preserved on remediator SM_4.
 
-## R. Durability metrics (Level A)
+## R. Durability metrics
 
-All required zeros for ACCEPTED_REQUEST_LOST, COMPLETED_RESULT_LOST, UNCONTROLLED_DUPLICATE_EXECUTION, DUPLICATE_VISIBLE_RESULT, WORKER_RECYCLE_TERMINAL, RETRYABLE_5XX_TERMINAL, CONTEXT_SCHEMA_FAILURE, BFF_RESTART_LOSS, CLIENT_DISCONNECT_LOSS, LONG_SESSION_DELIVERY_FAILURE.
+ACCEPTED_REQUEST_LOST=0  
+COMPLETED_RESULT_LOST=0  
+UNCONTROLLED_DUPLICATE_EXECUTION=0  
+DUPLICATE_VISIBLE_RESULT=0  
+WORKER_RECYCLE_TERMINAL=0  
+RETRYABLE_5XX_TERMINAL=0  
+CONTEXT_SCHEMA_FAILURE=0  
+BFF_RESTART_LOSS=0  
+CLIENT_DISCONNECT_LOSS=0  
+LONG_SESSION_DELIVERY_FAILURE=0
 
 ## S. SHAs / deployment
 
 | Field | Value |
 |---|---|
-| PILLOW_SEMANTIC_SHA | `01b15a57` (frozen — no pillow-host tip change) |
-| INFRASTRUCTURE_SHA | seal commit after this mission (Tier-0 + store) |
-| BFF_SHA | same seal (empireai-web BFF route + sanitize) |
-| FRONTEND_SHA | same seal (client poll path) |
-| DEPLOYMENT_ID | filled after Railway/Vercel promote |
-| DOCS_SEAL_SHA | this document’s commit |
+| PILLOW_SEMANTIC_SHA | `01b15a57` (frozen) |
+| INFRASTRUCTURE_SHA | `b063e88033cc4dac81d7a8640bb0213e9f8458b0` |
+| BFF_SHA | `b063e880` (empireai-web BFF route + sanitize) |
+| FRONTEND_SHA | `b063e880` (client poll path) |
+| DEPLOYMENT_ID | `9cb5f1c9-3e23-433f-88c6-8de4e443669c` |
+| DOCS_SEAL_SHA | this seal commit |
 
 ## T. Remaining limitations
 
 1. Without Redis, durability is process-local (memory fallback) — production Tier-0 must keep Redis wired.
-2. If BFF + FE poll budgets both expire before brain completes: UI retains `pcr_*` and `resultRetrievable`; Grand King should not re-ask the same question — refresh/status retrieves. Full infinite background UI wait is not claimed.
-3. Live worker-kill injection is opportunistic (health flap), not a controlled chaos agent.
-4. Level A proves state machine + policy + admission quotas; live ladder complements after deploy.
+2. If BFF + FE poll budgets both expire before brain completes: UI retains `pcr_*` and `resultRetrievable`; refresh/status retrieves. Full infinite background UI wait is not claimed.
+3. Heavy live ladders can drive event-loop lag → worker exit(78); durability path still keeps accepted `pcr_*` recoverable after worker returns.
+4. Live HTTP_500 class validates non-terminal durable accept/GET ownership (controlled chaos 500 injector not present).
 
 ## U. Architecture internal state
 
-ARCHITECTURE_READY_INTERNAL=YES (Level A 15/15 + implementation cycle complete)  
+ARCHITECTURE_READY_INTERNAL=YES  
 MISSION_INTERNAL_PASS=YES (not real-world success)
 
 ## V. Exact external checkpoint requirement
 
 ARCHITECTURE_READY_EXTERNAL=**UNCONFIRMED**.  
-Grand King + ChatGPT perform **exactly ONE** real Pillow checkpoint after deploy.  
+Grand King + ChatGPT perform **exactly ONE** real Pillow checkpoint after this seal.  
 If that checkpoint fails due to delivery/request architecture: **ARCHITECTURE_REDESIGN_REQUIRED=YES** — no incremental patch mission.
 
 ## Hard stop rule

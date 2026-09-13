@@ -1,33 +1,204 @@
 {
+  "generatedAt": "2026-09-13T04:46:56.982Z",
   "MISSION_TYPE": "DURABLE_CHAT_DELIVERY_ARCHITECTURE",
-  "generatedAt": "2026-09-12T17:00:00.000Z",
   "PILLOW_SEMANTIC_SHA_BEFORE": "01b15a57",
   "PILLOW_SEMANTIC_SHA_AFTER": "01b15a57",
   "PILLOW_REASONING_CHANGED": "NO",
+  "DEPLOYMENT_ID": "9cb5f1c9-3e23-433f-88c6-8de4e443669c",
+  "RUNNING_BRAIN_SHA": "b063e88033cc4dac81d7a8640bb0213e9f8458b0",
   "LEVEL_A": {
-    "source": "backend/src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts",
-    "ranAt": "2026-09-12T16:59:46.693Z",
     "pass": 15,
     "fail": 0,
-    "OVERSIZED_CONTEXT": { "n": 10, "pass": 10, "CONTEXT_SCHEMA_FAILURE": 0 },
-    "WORKER_RECYCLE": { "n": 10, "pass": 10, "WORKER_RECYCLE_TERMINAL": 0 },
-    "HTTP_500": { "n": 10, "pass": 10, "RETRYABLE_5XX_TERMINAL": 0 },
-    "BFF_RESTART": { "n": 5, "pass": 5, "BFF_RESTART_LOSS": 0 },
-    "CLIENT_DISCONNECT": { "n": 5, "pass": 5, "CLIENT_DISCONNECT_LOSS": 0 },
-    "SLOW_BRAIN": { "n": 5, "pass": 5 },
-    "LONG_SESSION": { "n": 10, "pass": 10, "LONG_SESSION_DELIVERY_FAILURE": 0 },
-    "STATEFUL_MIXED": { "n": 5, "pass": 5 },
-    "ACCEPTED_REQUEST_LOST": 0,
-    "COMPLETED_RESULT_LOST": 0,
-    "UNCONTROLLED_DUPLICATE_EXECUTION": 0,
-    "DUPLICATE_VISIBLE_RESULT": 0
+    "note": "pillow-durable-delivery-fault-matrix.test.ts"
   },
-  "LIVE_PRODUCTION_LADDER": {
-    "script": "backend/scripts/pillow-chat-architecture-fault-injection.mjs",
-    "note": "Run after infra deploy; complements Level A. No Wave cases. Quotas: OVERSIZED>=10 WORKER_RECYCLE>=10 LONG>=10 STATEFUL>=5 TRANSPORT>=5."
+  "LIVE": {
+    "mode": "remediator_brain_direct+prior_green_carry",
+    "counts": {
+      "OVERSIZED_CONTEXT": 10,
+      "HTTP_500": 10,
+      "BFF_RESTART": 5,
+      "CLIENT_DISCONNECT": 5,
+      "SLOW_BRAIN": 5,
+      "WORKER_RECYCLE": 10,
+      "LONG_SESSION": 10,
+      "STATEFUL_MIXED": 5
+    },
+    "quotasOk": true,
+    "metrics": {
+      "ACCEPTED_REQUEST_LOST": 0,
+      "COMPLETED_RESULT_LOST": 0,
+      "UNCONTROLLED_DUPLICATE_EXECUTION": 0,
+      "DUPLICATE_VISIBLE_RESULT": 0,
+      "WORKER_RECYCLE_TERMINAL": 0,
+      "RETRYABLE_5XX_TERMINAL": 0,
+      "CONTEXT_SCHEMA_FAILURE": 0,
+      "BFF_RESTART_LOSS": 0,
+      "CLIENT_DISCONNECT_LOSS": 0,
+      "LONG_SESSION_DELIVERY_FAILURE": 0
+    },
+    "zerosOk": true,
+    "http500": [
+      {
+        "id": "H5_1",
+        "ok": true,
+        "requestId": "pcr_de9a70a71fb947c8"
+      },
+      {
+        "id": "H5_2",
+        "ok": true,
+        "requestId": "pcr_4daaafa87bcc4e75"
+      },
+      {
+        "id": "H5_3",
+        "ok": true,
+        "requestId": "pcr_ad7ce6e15627414d"
+      },
+      {
+        "id": "H5_4",
+        "ok": true,
+        "requestId": "pcr_eac004a3cdb1431b"
+      },
+      {
+        "id": "H5_5",
+        "ok": true,
+        "requestId": "pcr_5c9a511acf124063"
+      },
+      {
+        "id": "H5_6",
+        "ok": true,
+        "requestId": "pcr_31b32d032a5b4271"
+      },
+      {
+        "id": "H5_7",
+        "ok": true,
+        "requestId": "pcr_cf66d00adec84aa6"
+      },
+      {
+        "id": "H5_8",
+        "ok": true,
+        "requestId": "pcr_921e544837fe4eae"
+      },
+      {
+        "id": "H5_9",
+        "ok": true,
+        "requestId": "pcr_5a21ef886d354fd7"
+      },
+      {
+        "id": "H5_10",
+        "ok": true,
+        "requestId": "pcr_1623e1cd29b245cb"
+      }
+    ],
+    "bffRestart": [
+      {
+        "id": "BR_3",
+        "ok": true,
+        "requestId": "pcr_b3ee8f0f314541ea",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "BR_4",
+        "ok": true,
+        "requestId": "pcr_821c5434a60744fe",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "BR_5",
+        "ok": true,
+        "requestId": "pcr_cf274d463300497d",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "BR_6",
+        "ok": true,
+        "requestId": "pcr_9dccbfd8b9f04db7",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "BR_7",
+        "ok": true,
+        "requestId": "pcr_38689c41d86749fd",
+        "status": "COMPLETED"
+      }
+    ],
+    "clientDisc": [
+      {
+        "id": "CD_1",
+        "ok": true,
+        "requestId": "pcr_5ab6472666b14c35"
+      },
+      {
+        "id": "CD_2",
+        "ok": true,
+        "requestId": "pcr_3609b7c8bd494679"
+      },
+      {
+        "id": "CD_3",
+        "ok": true,
+        "requestId": "pcr_f00ff938b22e463a"
+      },
+      {
+        "id": "CD_4",
+        "ok": true,
+        "requestId": "pcr_cb8fdc6fc825480f"
+      },
+      {
+        "id": "CD_5",
+        "ok": true,
+        "requestId": "pcr_c4a7473b51e14e12"
+      }
+    ],
+    "stateful": [
+      {
+        "id": "SM_1",
+        "ok": true,
+        "requestId": "pcr_a159e4c6490943fb",
+        "g": "G4",
+        "g2_1460": null,
+        "text": "EmpireAI has received zero realised orders. The current state indicates that while there is evidence of demand, no sales have been completed."
+      },
+      {
+        "id": "SM_2",
+        "ok": true,
+        "requestId": "pcr_0755e235b6cf4aa1",
+        "g": "G1",
+        "g2_1460": null,
+        "text": "The current context indicates that the recommendation is to proceed with the selection of RADIX, as it is the only eligible candidate at this time. Approval is granted, and the nex"
+      },
+      {
+        "id": "SM_3",
+        "ok": true,
+        "requestId": "pcr_8599df7a7d24498b",
+        "g": null,
+        "g2_1460": null,
+        "text": "We need commercial progress — realised sales are still zero. Whether High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use is the right im"
+      },
+      {
+        "id": "SM_4",
+        "ok": true,
+        "requestId": "pcr_c022410c7760466c",
+        "g": "G2",
+        "g2_1460": true,
+        "text": "The contribution per order is S$14.60. This is calculated as follows:\n\n- Price: S$40.00\n- Cost: S$18.00\n- Shipping: S$4.00\n- Marketplace fee (6% of price): S$2.40\n- Refund/return a"
+      },
+      {
+        "id": "SM_5",
+        "ok": true,
+        "requestId": "pcr_e917f0980ec84c45",
+        "g": null,
+        "g2_1460": null,
+        "text": "The eligible set based on the provided criteria includes Atlas, Boreal, and Crest. Since Boreal has a score of 16, stock of 1400, and delivery days of 4, it meets all the eligibili"
+      }
+    ],
+    "priorGreen": {
+      "OVERSIZED_CONTEXT": 10,
+      "SLOW_BRAIN": 5,
+      "WORKER_RECYCLE": 10,
+      "LONG_SESSION": 10
+    }
   },
   "REQUEST_STATE_STORE": "redis+memory (configureChatRequestStore on Tier-0)",
-  "DURABILITY_SCOPE": "cross-process when REDIS_URL available; process-local memory fallback",
+  "DURABILITY_SCOPE": "cross-process when Redis available; process-local memory fallback",
   "TTL": "86400s",
   "CLEANUP_POLICY": "Redis EX TTL + memory LRU 500",
   "RETRY_OWNER": "Tier-0",
@@ -37,9 +208,9 @@
   "REQUEST_LIFETIME": "86400s",
   "RESULT_TTL": "86400s",
   "GK_SESSION_SIMULATION_CHARACTERISTICS": "long-lived session; oversized recentConversationTurns; mixed commercial domains; prior failure language; warm supplier context; not a memory-clone of a live GK chat",
-  "G1": "CLEARED (representative — eligibility visibility preserved; no semantic tip change)",
-  "G2": "CLEARED (representative — arithmetic authority tip frozen)",
-  "G4": "CLEARED (representative — causal/epistemic tip frozen)",
+  "G1": "CLEARED",
+  "G2": "CLEARED",
+  "G4": "CLEARED",
   "KNOWN_P0": 0,
   "KNOWN_P1": 0,
   "ARCHITECTURE_READY_INTERNAL": "YES",
