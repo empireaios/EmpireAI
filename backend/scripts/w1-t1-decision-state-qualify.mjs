@@ -409,6 +409,47 @@ if (crossFail > 0) fail(`CROSS_SECTION remaining failures after repair=${crossFa
   if (!isCommercialArithmeticAsk(mixed)) fail("mixed ask lost");
 }
 
+// ---- HELIOS-shaped Grand King envelope (Supplier X: + US$ bullets) ----
+{
+  const helios = `Helios must choose one supplier now.
+A supplier is currently eligible only if:
+* contribution ≥ US$10/order
+* stock ≥ 1,000 units
+* delivery ≤ 6 days
+* approval = granted
+Among currently eligible suppliers, choose the supplier with the highest contribution.
+Supplier Ember:
+* contribution: US$12.50/order
+* stock: 1,250
+* delivery: 5 days
+* approval: granted
+Supplier Flint:
+* contribution: US$15.80/order
+* stock: 1,600
+* delivery: 8 days
+* approval: granted
+Supplier Grove:
+* contribution: US$17.20/order
+* stock: 1,450
+* delivery: 4 days
+* approval: pending`;
+  const d = buildDecisionCaseState(helios);
+  if (!d) fail("HELIOS_ENVELOPE no decision case");
+  if (!(d.eligibleSet.length === 1 && d.eligibleSet[0] === "Ember")) {
+    fail(`HELIOS_ENVELOPE eligible ${d.eligibleSet}`);
+  }
+  if (d.recommendation.selectedId !== "Ember" || d.recommendation.status !== "SELECT") {
+    fail("HELIOS_ENVELOPE select");
+  }
+  if (d.candidates.some((c) => c.displayName === "Approval")) fail("HELIOS_ENVELOPE false Approval candidate");
+  const toxic = `Current Eligible set: none\nSupplier Ember (the only eligible supplier).\nCurrent action: DO NOT SELECT ANY.`;
+  const fixed = repairDecisionVisibility(toxic, d);
+  const assess = assessDecisionVisibilityConsistency(fixed, d);
+  if (!assess.ok) fail(`HELIOS_ENVELOPE repair ${assess.failures.join(",")}`);
+  if (/\bDO\s+NOT\s+SELECT\s+ANY\b/i.test(fixed)) fail("HELIOS_ENVELOPE DNS remains");
+  if (/\bEligible\s+set\s*:\s*none\b/i.test(fixed)) fail("HELIOS_ENVELOPE eligible none remains");
+}
+
 const summary = {
   mission: "W1_T1_CROSS_SECTION_DECISION_CONSISTENCY",
   REPRO_CASES: reproHit,

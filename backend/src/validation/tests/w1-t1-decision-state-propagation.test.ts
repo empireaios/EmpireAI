@@ -86,4 +86,45 @@ DO NOT SELECT ANY.`;
     assert.deepEqual(d.eligibleSet, ["Piston"]);
     assert.equal(d.recommendation.selectedId, "Piston");
   });
+
+  it("Helios-shaped Supplier headers: Ember sole eligible; Grove CF changes selection", () => {
+    const msg = `Helios must choose one supplier now.
+A supplier is currently eligible only if:
+* contribution ≥ US$10/order
+* stock ≥ 1,000 units
+* delivery ≤ 6 days
+* approval = granted
+Among currently eligible suppliers, choose the supplier with the highest contribution.
+Supplier Ember:
+* contribution: US$12.50/order
+* stock: 1,250
+* delivery: 5 days
+* approval: granted
+Supplier Flint:
+* contribution: US$15.80/order
+* stock: 1,600
+* delivery: 8 days
+* approval: granted
+Supplier Grove:
+* contribution: US$17.20/order
+* stock: 1,450
+* delivery: 4 days
+* approval: pending`;
+    const d = buildDecisionCaseState(msg)!;
+    assert.deepEqual(d.eligibleSet, ["Ember"]);
+    assert.equal(d.recommendation.status, "SELECT");
+    assert.equal(d.recommendation.selectedId, "Ember");
+    assert.equal(d.candidates.find((c) => c.displayName === "Flint")!.currentlyEligible, false);
+    assert.equal(d.candidates.find((c) => c.displayName === "Grove")!.currentlyEligible, false);
+    assert.ok(d.candidates.every((c) => c.displayName !== "Approval"));
+    assert.ok(d.reversalConditions.some((r) => /Grove.*selection changes to Grove/i.test(r)));
+    const toxic = `Current Eligible set: none
+Supplier Ember (the only eligible supplier).
+Current action: DO NOT SELECT ANY.
+Approval: delivery lead-time max days=unproven; contribution minimum=unproven; stock availability=unproven → currentlyEligible=NO`;
+    const fixed = repairDecisionVisibility(toxic, d);
+    assert.ok(!/Eligible set:\s*none/i.test(fixed) || /Eligible set:\s*Ember/i.test(fixed));
+    assert.ok(!/\bDO NOT SELECT ANY\b/i.test(fixed));
+    assert.ok(/SELECT Ember/i.test(fixed) || /Eligible (?:set|Suppliers?):\s*Ember/i.test(fixed));
+  });
 });

@@ -145,9 +145,9 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   if (delDays) deliveryMaxDays = Number(delDays[1]);
 
   const approvalRequired =
-    /\b(?:NO\s+mandatory\s+(?:compliance\s+)?approval\s+pending|approval\s+(?:must\s+be\s+)?(?:granted|cleared)|no\s+pending\s+approval|mandatory\s+(?:compliance\s+)?approval|eligible\s+(?:only\s+)?if\s+approval\s+granted|approval\s+granted)\b/i.test(
+    /\b(?:NO\s+mandatory\s+(?:compliance\s+)?approval\s+pending|approval\s*(?:=|:)?\s*(?:must\s+be\s+)?(?:granted|cleared)|no\s+pending\s+approval|mandatory\s+(?:compliance\s+)?approval|eligible\s+(?:only\s+)?if\s+approval\s*(?:=|:)?\s*granted|approval\s+granted)\b/i.test(
       t,
-    );
+    ) || /\bapproval\s*=\s*granted\b/i.test(t);
 
   let marginFloor: number | null = null;
   const marM = /(?:margin|contribution)\s*(?:floor|min(?:imum)?)?\s*(?:>=|≥|at\s+least)\s*(\d+(?:\.\d+)?)\s*%/i.exec(
@@ -208,8 +208,22 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
 const SKIP_CANDIDATE_NAMES =
   /^(?:ANSWER|AUDIT|RULE|NOTE|PACK|CLAIM|SECTION|SNAPSHOT|CLOSING|ALSO|THEN|GIVEN|ASSESS|SYNTHETIC|CONTINUE|NOW|ONLY|CURRENT|SUPPLIER|SUPPLIERS)$/i;
 
+/** Gate / attribute field labels — never treat as option identities. */
+const GATE_FIELD_CANDIDATE_NAMES =
+  /^(?:Approval|Contribution|Stock|Inventory|Delivery|Margin|Cost|Policy|Quality|Capacity|Evidence|Score|Profit|Price|Fee|Refund|Ship(?:ping)?|OTD|Gate|Gates|Threshold|Rule|Rules|Eligibility)$/i;
+
 const COMMERCIAL_BODY =
   /\b(?:cost|delivery|approval|margin|stock|contribution|profit|score|policy|PASS|FAIL|PENDING|eligible|gate|inventory)\b/i;
+
+function isReservedCandidateName(name: string): boolean {
+  return (
+    SKIP_CANDIDATE_NAMES.test(name) ||
+    GATE_FIELD_CANDIDATE_NAMES.test(name) ||
+    /^(?:PASS|FAIL|PENDING|GRANTED|CLEARED|APPROVAL|ELIGIBLE|RULE|SELECT|UNKNOWN|UNPROVEN)$/i.test(
+      name,
+    )
+  );
+}
 
 /** Split same-line peers: `ALPHA: … BETA: …` or `Juniper: … Lotus: …` into blocks. */
 function splitInlineNamedPeers(segment: string): Array<{ name: string; body: string }> {
@@ -220,7 +234,7 @@ function splitInlineNamedPeers(segment: string): Array<{ name: string; body: str
   let m: RegExpExecArray | null;
   while ((m = re.exec(line)) !== null) {
     const name = m[1]!;
-    if (SKIP_CANDIDATE_NAMES.test(name)) continue;
+    if (isReservedCandidateName(name)) continue;
     if (
       /^(?:Eligibility|Answer|Rules?|Gates?|Objective|Note|Pack|Claim|Section|Also|Then|Given|Assess|Architecture|Three|Choose|Available|Suppliers?|Bounded|Decision|Checkpoint|Only|Current)$/i.test(
         name,
@@ -260,7 +274,7 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
   const seen = new Set<string>();
 
   const push = (name: string, body: string) => {
-    if (SKIP_CANDIDATE_NAMES.test(name)) return;
+    if (isReservedCandidateName(name)) return;
     if (!COMMERCIAL_BODY.test(body)) return;
     const k = key(name);
     if (seen.has(k)) return;
@@ -268,30 +282,47 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     out.push({ name, body: body.trim() });
   };
 
-  // Multiline Title-Case / ALL-CAPS / lowercase headers: "Juniper:" or "juniper:" ...
+  // Multiline headers including Grand King "Supplier Ember:" envelopes.
   const lines = text.split(/\n/);
+  const roleHeaderRe =
+    /^(?:###\s*)?(?:Supplier|Option|Vendor|Corridor|Partner)\s+([A-Za-z][A-Za-z0-9_-]{1,32})\s*:\s*(.*)$/i;
   const headerRe = /^(?:###\s*)?([A-Za-z][A-Za-z0-9_-]{1,32})\s*:\s*(.*)$/;
   const skipHeaders =
     /^(?:Eligibility|Answer|Rules?|Gates?|Objective|Note|Pack|Claim|Section|Also|Then|Given|Assess|Architecture|Three|Choose|Available|Suppliers?|Bounded|Decision|Checkpoint|Only|Current)$/i;
   for (let i = 0; i < lines.length; i++) {
-    const hm = headerRe.exec(lines[i]!.trim());
+    const trimmed = lines[i]!.trim();
+    const role = roleHeaderRe.exec(trimmed);
+    const hm = role ?? headerRe.exec(trimmed);
     if (!hm) continue;
     const nameRaw = hm[1]!;
-    if (skipHeaders.test(nameRaw) || SKIP_CANDIDATE_NAMES.test(nameRaw)) continue;
+    if (skipHeaders.test(nameRaw) || isReservedCandidateName(nameRaw)) continue;
     if (nameRaw.length < 2) continue;
     const name = nameRaw.charAt(0).toUpperCase() + nameRaw.slice(1);
     const firstRest = (hm[2] || "").trim();
+    // Same-line peers ("ALPHA: … BETA: …") must not be swallowed as one candidate body.
+    if (firstRest) {
+      const inlinePeers = splitInlineNamedPeers(`${name}: ${firstRest}`);
+      if (inlinePeers.length > 1) {
+        continue;
+      }
+    }
     const bodyParts: string[] = [];
     if (firstRest) bodyParts.push(firstRest);
     let j = i + 1;
     for (; j < lines.length; j++) {
       const nxt = lines[j]!.trim();
       if (!nxt) {
-        // blank line ends block only if we already have commercial body
         if (bodyParts.length > 0 && COMMERCIAL_BODY.test(bodyParts.join(" "))) break;
         continue;
       }
-      if (headerRe.test(nxt) || /^(?:Eligibility|Answer|Rules?|Gates?)\b/i.test(nxt)) break;
+      if (roleHeaderRe.test(nxt)) break;
+      if (/^(?:Eligibility|Answer|Rules?|Gates?|Required answer)\b/i.test(nxt)) break;
+      // End on next bare option header, but not gate-field lines like "approval: pending".
+      const peer = headerRe.exec(nxt);
+      if (peer && !roleHeaderRe.test(nxt)) {
+        const peerName = peer[1]!;
+        if (!isReservedCandidateName(peerName) && !skipHeaders.test(peerName)) break;
+      }
       bodyParts.push(nxt);
     }
     const body = bodyParts.join("; ");
@@ -321,10 +352,7 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     while ((lm = lightRe.exec(text)) !== null) {
       const name = lm[1]!;
       const status = lm[2]!;
-      if (SKIP_CANDIDATE_NAMES.test(name)) continue;
-      if (/^(?:PASS|FAIL|PENDING|GRANTED|CLEARED|APPROVAL|ELIGIBLE|RULE|SELECT)$/i.test(name)) {
-        continue;
-      }
+      if (isReservedCandidateName(name)) continue;
       push(name, `approval ${status}`);
     }
   }
@@ -870,7 +898,10 @@ export function assessDecisionVisibilityConsistency(
     }
   }
 
-  // Eligible set cardinality
+  // Eligible set cardinality / empty contradiction
+  if (/\b(?:Current\s+)?Eligible\s+(?:set|Suppliers?)\s*:\s*none\b/i.test(text) && state.eligibleSet.length > 0) {
+    failures.push("FALSE_ELIGIBLE_SET_NONE");
+  }
   if (state.eligibleSet.length === 1) {
     if (/\bat\s+least\s+two\b[^.\n]{0,40}(?:eligible|qualify)/i.test(text)) {
       failures.push("FALSE_ELIGIBLE_COUNT_GE2");
@@ -953,10 +984,15 @@ export function repairDecisionVisibility(
   const assess = assessDecisionVisibilityConsistency(out, state);
 
   // Fix eligible-suppliers / eligible-set summary lines whenever list includes ineligibles or assess failed
+  // Lock eligible-set summary lines to canonical state (including "Eligible set: none" contradictions).
   if (!assess.ok || /\bEligible\s+(?:Suppliers?|set)\s*:/i.test(out)) {
     out = out.replace(
-      /\bEligible\s+Suppliers?\s*:\s*[^\n]+/gi,
+      /\b(?:Current\s+)?Eligible\s+Suppliers?\s*:\s*[^\n]+/gi,
       `Eligible Suppliers: ${state.eligibleSet.length ? state.eligibleSet.join(" and ") : "none"}`,
+    );
+    out = out.replace(
+      /\b(?:Current\s+)?Eligible\s+set\s*:\s*[^\n]+/gi,
+      `Current Eligible set: ${state.eligibleSet.length ? state.eligibleSet.join(" and ") : "none"}`,
     );
     out = out.replace(
       /\bEligible\s+set\s*:\s*[^\n]+/gi,

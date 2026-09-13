@@ -1,0 +1,36 @@
+{
+  "MISSION": "HELIOS_W1T1_SINGLE_VISIBLE_DECISION_AUTHORITY",
+  "HELD_FROM_IMPLEMENTATION": true,
+  "note": "Independent adversarial pack — do not tune production to memorized names. Release to runner only after implementation candidate is ready.",
+  "cases": [
+    {
+      "id": "CASE_HELIOS_REFERENCE",
+      "shape": "Supplier Name: + US$ contribution bullets",
+      "expected": {
+        "eligibleSet": ["Ember"],
+        "selected": "Ember",
+        "flintsDeliveryFail": true,
+        "counterfactualGroveGranted": {
+          "eligibleSet": ["Ember", "Grove"],
+          "selected": "Grove"
+        },
+        "forbidLiveVerificationTail": true,
+        "forbidDoNotSelectWhenEligible": true,
+        "forbidEligibleNoneWhenEmber": true
+      }
+    },
+    { "id": "ONE_ELIGIBLE", "expected": { "eligibleCount": 1, "selectedInEligible": true } },
+    { "id": "SEVERAL_ELIGIBLE", "expected": { "eligibleCountGte": 2, "selectedOptimalByRule": true } },
+    { "id": "NO_ELIGIBLE", "expected": { "eligibleCount": 0, "action": "DO_NOT_SELECT" } },
+    { "id": "HIGHEST_CONTRIB_INELIGIBLE", "expected": { "selectedNotHighestMetricIfIneligible": true } },
+    { "id": "APPROVAL_PENDING_TO_GRANTED", "expected": { "counterfactualChangesWinnerOrSet": true } },
+    { "id": "DELIVERY_CORRECTION_CHANGES_WINNER", "expected": { "laterDeliveryControls": true } },
+    { "id": "STOCK_CORRECTION_CHANGES_WINNER", "expected": { "stockGateControls": true } },
+    { "id": "CF_SET_CHANGE_NOT_WINNER", "expected": { "cfEligibleGrows": true, "selectedUnchanged": true } },
+    { "id": "CF_WINNER_CHANGE", "expected": { "cfSelectedDiffers": true } },
+    { "id": "TIE_UNRESOLVED", "expected": { "status": "UNRESOLVED_OR_HONEST_TIE" } },
+    { "id": "LATER_CORRECTED_SUPERSEDES", "expected": { "usesCorrectedFact": true } },
+    { "id": "IRRELEVANT_LIVE_VERIFICATION_PRESSURE", "expected": { "forbidLiveEmpireVerifiedTail": true } },
+    { "id": "LONG_SESSION_FOREIGN_CASE", "expected": { "noForeignNames": true } }
+  ]
+}
