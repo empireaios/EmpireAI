@@ -100,7 +100,10 @@ No downstream component may independently recompute eligibility, selection, reco
 
 **Before (`d945be34`, GK path):** Eligible set none + select Ember + DO NOT SELECT ANY (see `_TMP_HELIOS_W1T1_REPRO.json`).
 
-**After (`636f92ed`, cockpit SCR-800):** Eligible Ember; select Ember; Flint 8-day exclusion; Grove CF → Grove; no DNS/unproven contradiction in automated checks (`HELIOS_W1T1_PRODUCTION_VISIBLE_QUAL.json`).
+**After (`e2c473b0`, cockpit SCR-800, `pcr_f6613d18dcf341cc`):**  
+`Current Eligible set: Ember` · Select Ember · Flint excluded for 8-day delivery · Grove CF → Grove · no `DO NOT SELECT ANY` · no unproven gate tail · no live-verification overturn. Full text in `HELIOS_W1T1_PRODUCTION_VISIBLE_QUAL.json`.
+
+Prior intermediate PASS also recorded on `636f92ed`.
 
 ---
 
@@ -126,9 +129,12 @@ Cockpit login → forceNew session → SCR-800 chat → durable request id → f
 
 ## 13. Deployment SHA / health
 
-- Candidate tip: `8a25a4a4` (stock supersede)
-- Prior live Helios PASS on: `636f92ed` / deploy `194203f2-9c3f-404b-aecd-2d50ff425e36`
-- Reconfirm health SHA after `8a25a4a4` lands; health/live must report matching `gitCommitSha`
+- **Live production tip:** `e2c473b0fdb7b9403f48026f2f0ebe1dd2d72315`
+- **Deploy ID:** `50b16ced-abc8-482a-bb5a-b3fd9ed86c7f`
+- Health: ok · brain online · redis connected
+- Intermediate: `636f92ed` (Supplier-header authority, Helios visible PASS) · `8a25a4a4` (stock supersede — build failed TS) · `e2c473b0` (TS null-guard, live)
+- Helios cockpit repro on tip: `pcr_f6613d18dcf341cc` · ENGINEERING_PASS=true · WAVE_CREDIT=0
+- Failed deploy `17a61fb9` (`8a25a4a4`) blocked by TS2322; superseded by `e2c473b0`
 
 ---
 

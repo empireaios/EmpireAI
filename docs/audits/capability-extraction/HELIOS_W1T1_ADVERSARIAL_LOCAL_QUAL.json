@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T14:26:52.887Z",
+  "generatedAt": "2026-09-13T15:20:26.183Z",
   "MISSION": "HELIOS_W1T1_SINGLE_VISIBLE_DECISION_AUTHORITY",
   "CANONICAL_FIX_COMMIT": "636f92ed",
   "RUNNER": "backend/scripts/helios-w1t1-adversarial-local.mjs",

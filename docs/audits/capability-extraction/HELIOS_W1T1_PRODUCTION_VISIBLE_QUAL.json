@@ -1,16 +1,17 @@
 {
-  "generatedAt": "2026-09-13T13:57:58.152Z",
+  "generatedAt": "2026-09-13T15:29:42.061Z",
   "MISSION": "HELIOS_W1T1_VISIBLE_DECISION_AUTHORITY",
-  "DEPLOYMENT_ID": "194203f2-9c3f-404b-aecd-2d50ff425e36",
-  "RUNNING_SHA": "636f92ed09d647d051c9afc3df4c60a510acb31f",
-  "requestId": "pcr_4f6c53fa82bb4021",
+  "DEPLOYMENT_ID": "50b16ced-abc8-482a-bb5a-b3fd9ed86c7f",
+  "RUNNING_SHA": "e2c473b0fdb7b9403f48026f2f0ebe1dd2d72315",
+  "requestId": "pcr_f6613d18dcf341cc",
   "status": 200,
   "kind": "llm",
   "checks": {
     "fail": [],
     "ok": true
   },
-  "textPreview": "###\n1. Complete Current Eligible Set\nThe current eligible supplier set consists of:\n- **Supplier Ember**:\n- Contribution: US$12.50/order\n- Stock: 1,250\n- Delivery: 5 days\n- Approval: granted\n###\n2. Supplier to Select Now\nThe supplier to select now is **Supplier Ember**. Ember is the only currently eligible supplier that meets all the criteria.\n###\n3. Why Flint Cannot Be Selected Despite Having Higher Contribution Than Ember\nSupplier Flint cannot be selected because, while it has a higher contribution of US$15.80/order, it fails to meet the delivery requirement, which is a maximum of 6 days. Flint's delivery time is 8 days, making it ineligible.\n###\n4. If Grove's Approval Becomes Granted While Every Other Fact Stays Unchanged, Whether the Selection Changes and to Whom\nIf Grove's approval becomes granted while all other facts remain unchanged, the selection would change to **Supplier Grove**. Grove would then be eligible with a contribution of US$17.20/order, stock of 1,450 units, and a delivery time of 4 days, surpassing Ember's contribution.\n###\n5. Use Only the Supplied Scenario Facts\nAll answers provided are based solely on the supplied scenario facts.\n### Recommendation\n**Current",
+  "textPreview": "1. **Current Eligible set: Ember\n- Supplier Ember:\n- Contribution: US$12.50/order\n- Stock: 1,250\n- Delivery: 5 days\n- Approval: granted\n- Supplier Flint:\n- Contribution: US$15.80/order\n- Stock: 1,600\n- Delivery: 8 days\n- Approval: granted\n- Supplier Grove:\n- Contribution: US$17.20/order\n- Stock: 1,450\n- Delivery: 4 days\n- Approval: pending\nCurrently eligible suppliers are Ember and as they meet all eligibility criteria.\n2. **Supplier to Select Now:**\n- Select **Ember**. Although Flint has a higher contribution, it does not meet the delivery requirement of 6 days.\n3. **Why Flint Cannot Be Selected Despite Higher Contribution:**\n- Flint cannot be selected because its delivery time of 8 days exceeds the maximum allowable delivery of 6 days, making it ineligible despite having a higher contribution.\n4. **If Grove's Approval Becomes Granted:**\n- If Grove's approval is granted while all other facts remain unchanged, the selection would change to **Grove**. Grove would then be eligible with a contribution of US$17.20/order, stock of 1,450 units, and a delivery time of 4 days, which is within the required limits.\n5. **Use Only the Supplied Scenario Facts:**\n- All responses are based solely",
+  "textFull": "1. **Current Eligible set: Ember\n- Supplier Ember:\n- Contribution: US$12.50/order\n- Stock: 1,250\n- Delivery: 5 days\n- Approval: granted\n- Supplier Flint:\n- Contribution: US$15.80/order\n- Stock: 1,600\n- Delivery: 8 days\n- Approval: granted\n- Supplier Grove:\n- Contribution: US$17.20/order\n- Stock: 1,450\n- Delivery: 4 days\n- Approval: pending\nCurrently eligible suppliers are Ember and as they meet all eligibility criteria.\n2. **Supplier to Select Now:**\n- Select **Ember**. Although Flint has a higher contribution, it does not meet the delivery requirement of 6 days.\n3. **Why Flint Cannot Be Selected Despite Higher Contribution:**\n- Flint cannot be selected because its delivery time of 8 days exceeds the maximum allowable delivery of 6 days, making it ineligible despite having a higher contribution.\n4. **If Grove's Approval Becomes Granted:**\n- If Grove's approval is granted while all other facts remain unchanged, the selection would change to **Grove**. Grove would then be eligible with a contribution of US$17.20/order, stock of 1,450 units, and a delivery time of 4 days, which is within the required limits.\n5. **Use Only the Supplied Scenario Facts:**\n- All responses are based solely on the provided scenario facts without any external assumptions or information.",
   "ENGINEERING_PASS": true,
   "WAVE_CREDIT": 0,
   "WAVE_1": "0/24",
