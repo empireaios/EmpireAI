@@ -457,9 +457,14 @@ export function extractCurrentStockUnits(body: string): {
 
   const usable: Array<{ value: number; raw: string; earlier: boolean }> = [];
   for (const m of all) {
+    const val = parseMoney(m[1]!);
+    if (val == null) continue;
     const before = t.slice(Math.max(0, (m.index ?? 0) - 48), m.index ?? 0);
     const earlier = /\b(?:earlier|historical|previous|initial|originally|was)\b/i.test(before);
-    usable.push({ value: parseMoney(m[1]!), raw: m[0]!, earlier });
+    usable.push({ value: val, raw: m[0]!, earlier });
+  }
+  if (usable.length === 0) {
+    return { value: null, raw: null, superseded: false };
   }
   const nonEarlier = usable.filter((u) => !u.earlier);
   const pick = nonEarlier.length > 0 ? nonEarlier[nonEarlier.length - 1]! : usable[usable.length - 1]!;
