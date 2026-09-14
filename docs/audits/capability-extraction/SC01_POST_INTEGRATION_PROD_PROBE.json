@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-09-14T07:37:09.282Z",
+  "MISSION": "SC01_POST_INTEGRATION_PRODUCTION_PROBE",
+  "NOTE": "Engineering path proof only — not SC-01 certification resume; not Birth/Wave credit",
+  "RUNNING_SHA": "0304541baa7d2fc5dd3b3fe32e5d4704503f3a2b",
+  "DEPLOYMENT_ID": "e67f8990-9a64-4efa-b623-72678f9c32a7",
+  "shadowCeoHealth": {
+    "status": "ok",
+    "module": "shadow-ceo",
+    "modeDefault": "SYNTHETIC",
+    "birthStatus": "NOT_BORN",
+    "realCommerceAuthorized": false
+  },
+  "sessionId": "97a6df82-9cff-4000-ab68-6ab9e8c5e7c7",
+  "requestId": "pcr_81a1ef01d80c401c",
+  "chatStatus": 200,
+  "kind": "shadow_ceo_episode",
+  "shadowCeoMeta": {
+    "objectiveId": "obj_7f0675e33f5de166",
+    "correlationId": "f4ab03cd-a968-4a67-969c-dbab4f431806",
+    "runKey": "chat_6b5fe52f1e33f2d2580b21df",
+    "eligibleProductCount": 2,
+    "ledgerRealisedSyntheticNetProfitUsd": 6.87
+  },
+  "objectiveId": "obj_7f0675e33f5de166",
+  "phrases": {
+    "sourceBackedBrief": true,
+    "doNotSelectAny": false,
+    "executionBlocked": false,
+    "objectiveIdPresent": true,
+    "syntheticMode": true
+  },
+  "textPreview": "### Shadow CEO Executive Brief (source-backed)\n- Operating episode / objective ID: `obj_7f0675e33f5de166`\n- Correlation ID: `f4ab03cd-a968-4a67-969c-dbab4f431806`\n- Run key: `chat_6b5fe52f1e33f2d2580b21df`\n- Operating mode: `SYNTHETIC` (SYNTHETIC isolation; real commerce locked)\n- Birth status: NOT_BORN · Wave 1: 0/24 · Real commerce authorized: false\n- Assessed state source: synthetic Amazon US catalog (3 products; 2 eligibility-pass)\n- Admitted objective excerpt: Integration verification — operate through the Shadow CEO environment under SYNTHETIC mode. Assess authoritative synthetic Amazon US commerce state, prioritize, delegate tasks, execute only authorized synthetic actions, and return a source-backed executive brief with objective ID\n#### Priorities established\n- [#1] Clarify fulfilment before any spend — Unknown SLA dominates downside in synthetic case (pri_8a08429b7aa0df32)\n- [#2] Hold supplier spend pending approval — Spend crosses Shadow CEO synthetic authority (pri_fd9e631b756540b9)\n#### Tasks created\n- Run synthetic fulfilment monitor [COMPLETED] owner=shadow-ceo-agent id=tsk_874cbd153b4ef765\n- Prepare supplier spend request [COMPLETED] owner=shadow-ceo-agent id=tsk_9642d07f9d580cf4\n#### Decisions\n- PROCEED_WITH_SYNTHETIC_MONITOR_AND_BLOCK_SPEND (dec_4aa1f47c6885ac0a) — Execute authorized synthetic monitor; block approval-required supplier spend.\n#### Synthetic / gated actions\n- Supplier spend (blocked — approval required) status=BLOCKED kind=APPROVAL_REQUIRED id=act_d16db941861d32b2\n- Synthetic fulfilment monitor (authorized) status=EXECUTED kind=AUTHORIZED_SYNTHETIC id=act_d79a8866c9a8429d\n#### Approvals / blockers\n- Authorize synthetic-labelled supplier spend (not live profit) status=BLOCKED id=apr_e8a94567e74d6117\n#### Outcomes observed\n- expected=Monitor runs; spend remains blocked; actual=Monitor executed; spend blocked awaiting approval; variance=none\n#### Financial effect (deterministic synthetic ledger)\n- Realised synthetic net profit (USD): **6.87**\n- liveSales: null · realisedLiveProfit: null (forbidden for synthetic rows)\n#### Lesson\n- Approval-required actions must stay BLOCKED in SYNTHETIC mode; authorized synthetic actions may complete with labelled evidence. (id=les_616067b3ff03461b, evidence=COMPLETED)\n#### Next operating action\n- Remain in SYNTHETIC until live authority is explicitly granted.\n#### Claim discipline\n- This brief is generated only from persisted Shadow CEO records + synthetic ledger totals.\n- No plan-as-executio",
+  "textFull": "### Shadow CEO Executive Brief (source-backed)\n- Operating episode / objective ID: `obj_7f0675e33f5de166`\n- Correlation ID: `f4ab03cd-a968-4a67-969c-dbab4f431806`\n- Run key: `chat_6b5fe52f1e33f2d2580b21df`\n- Operating mode: `SYNTHETIC` (SYNTHETIC isolation; real commerce locked)\n- Birth status: NOT_BORN · Wave 1: 0/24 · Real commerce authorized: false\n- Assessed state source: synthetic Amazon US catalog (3 products; 2 eligibility-pass)\n- Admitted objective excerpt: Integration verification — operate through the Shadow CEO environment under SYNTHETIC mode. Assess authoritative synthetic Amazon US commerce state, prioritize, delegate tasks, execute only authorized synthetic actions, and return a source-backed executive brief with objective ID\n#### Priorities established\n- [#1] Clarify fulfilment before any spend — Unknown SLA dominates downside in synthetic case (pri_8a08429b7aa0df32)\n- [#2] Hold supplier spend pending approval — Spend crosses Shadow CEO synthetic authority (pri_fd9e631b756540b9)\n#### Tasks created\n- Run synthetic fulfilment monitor [COMPLETED] owner=shadow-ceo-agent id=tsk_874cbd153b4ef765\n- Prepare supplier spend request [COMPLETED] owner=shadow-ceo-agent id=tsk_9642d07f9d580cf4\n#### Decisions\n- PROCEED_WITH_SYNTHETIC_MONITOR_AND_BLOCK_SPEND (dec_4aa1f47c6885ac0a) — Execute authorized synthetic monitor; block approval-required supplier spend.\n#### Synthetic / gated actions\n- Supplier spend (blocked — approval required) status=BLOCKED kind=APPROVAL_REQUIRED id=act_d16db941861d32b2\n- Synthetic fulfilment monitor (authorized) status=EXECUTED kind=AUTHORIZED_SYNTHETIC id=act_d79a8866c9a8429d\n#### Approvals / blockers\n- Authorize synthetic-labelled supplier spend (not live profit) status=BLOCKED id=apr_e8a94567e74d6117\n#### Outcomes observed\n- expected=Monitor runs; spend remains blocked; actual=Monitor executed; spend blocked awaiting approval; variance=none\n#### Financial effect (deterministic synthetic ledger)\n- Realised synthetic net profit (USD): **6.87**\n- liveSales: null · realisedLiveProfit: null (forbidden for synthetic rows)\n#### Lesson\n- Approval-required actions must stay BLOCKED in SYNTHETIC mode; authorized synthetic actions may complete with labelled evidence. (id=les_616067b3ff03461b, evidence=COMPLETED)\n#### Next operating action\n- Remain in SYNTHETIC until live authority is explicitly granted.\n#### Claim discipline\n- This brief is generated only from persisted Shadow CEO records + synthetic ledger totals.\n- No plan-as-execution: proposed vs accepted vs completed vs blocked are taken from record status fields.",
+  "cockpitList": {
+    "status": 200,
+    "body": {
+      "ok": true,
+      "message": "Pass ?objectiveId= to load a durable episode chain",
+      "recentObjectives": [
+        {
+          "id": "obj_7f0675e33f5de166",
+          "title": "Integration verification — operate through the Shadow CEO environment under SYNTHETIC mode.",
+          "mode": "SYNTHETIC",
+          "createdAt": "2026-09-14T07:37:06.792Z",
+          "completion": "COMPLETED"
+        }
+      ],
+      "BIRTH_STATUS": "NOT_BORN",
+      "WAVE_1": "0/24",
+      "EXTERNAL_ACTION_LOCK": "LOCKED",
+      "REAL_COMMERCE_AUTHORIZED": false
+    }
+  },
+  "cockpitById": {
+    "status": 200,
+    "objectiveId": "obj_7f0675e33f5de166",
+    "taskCount": 2,
+    "actionStatuses": [
+      "BLOCKED",
+      "EXECUTED"
+    ],
+    "hasBrief": true,
+    "hasLesson": true
+  },
+  "GATES": {
+    "G2_chatAdmission": true,
+    "G3_sourceBacked": true,
+    "G4_noPlanAsExecution": true,
+    "G6_cockpitParity": true
+  },
+  "ENGINEERING_PATH_PASS": true,
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN"
+}

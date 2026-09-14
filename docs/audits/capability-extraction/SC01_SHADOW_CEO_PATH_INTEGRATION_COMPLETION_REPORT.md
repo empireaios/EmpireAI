@@ -102,14 +102,21 @@ Same workspace + normalized objective text → same `runKey` / `obj_*` (idempote
 
 ## 16–17. Deployment
 
-To be filled after push: Brain SHA, Railway deployment ID, frontend SHA/status.
+- **Brain semantic SHA:** `0304541baa7d2fc5dd3b3fe32e5d4704503f3a2b`
+- **Railway deployment ID:** `e67f8990-9a64-4efa-b623-72678f9c32a7`
+- **Shadow CEO health:** ok · SYNTHETIC · NOT_BORN · realCommerceAuthorized=false
+- **Post-integration production probe:** `SC01_POST_INTEGRATION_PROD_PROBE.json`
+  - kind=`shadow_ceo_episode`
+  - objectiveId=`obj_7f0675e33f5de166`
+  - G2/G3/G4/G6 engineering path PASS (not SC-01 certification)
+- **Frontend:** BFF `/api/shadow-ceo/*` already deployed; no frontend code change required for this admission fix. Cockpit loads shared Brain DB episode by `objectiveId`.
 
 ## 18. Remaining P0/P1 risks
 
-- **P0:** Production Brain must deploy this SHA before Grand King path works externally.
-- **P1:** Cockpit “run vertical slice” still uses ephemeral integrated DB for demos; chat episodes use shared `shadow-ceo.db` — load via `objectiveId`.
+- **P1:** Cockpit demo `?run=1` still uses ephemeral integrated DB; chat episodes use shared `shadow-ceo.db` — load via `objectiveId` (parity proven for chat→cockpit).
 - **P1:** Intent detector is conservative; ultra-ambiguous commerce chat without synthetic/operate cues remains ordinary LLM (by design).
 - Multi-day profit chase still needs continued episodes — this mission wires admission, not CEO certification.
+- Original SC-01 Phase 1 remains a recorded external fail; do not treat probe as SC-01 resume certification.
 
 ## 19. Honest status
 
