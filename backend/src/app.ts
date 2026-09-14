@@ -74,6 +74,7 @@ import {
 } from "./orchestration/pillow-commerce-presale/index.js";
 import { registerPillowCommissioningRoutes } from "./orchestration/pillow-commissioning/index.js";
 import { getPillowExecutiveLoopAutomationServer } from "./orchestration/pillow-commissioning/executive-operating-loop/index.js";
+import { registerShadowCeoRoutes } from "./orchestration/shadow-ceo-integration/index.js";
 import {
   getPresaleApprovalGate,
   syncPresaleApprovalGateWithPillowHost,
@@ -634,6 +635,12 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
     auditLogger: brain.auditLogger,
   });
 
+  await breathe();
+  await registerShadowCeoRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
   getPillowCommercePresaleAutomationServer().start();
   getPillowExecutiveLoopAutomationServer().start();
@@ -651,7 +658,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
 
   commerceCriticalRoutesRegistered = true;
   logger.info(
-    "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale)",
+    "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)",
   );
 }
 

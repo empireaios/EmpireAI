@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-09-14T00:41:33.226Z",
+  "HELD_FROM_IMPLEMENTATION": true,
+  "episodeCount": 22,
+  "pass": 22,
+  "fail": 0,
+  "p0": 0,
+  "p1": 0,
+  "results": [
+    {
+      "id": "INCOMPLETE_EVIDENCE",
+      "pass": true,
+      "detail": "chain requires evidence"
+    },
+    {
+      "id": "CONTRADICTORY_EVIDENCE",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "CORRECTED_LATER_EVIDENCE",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "FORECAST_VS_REALISED",
+      "pass": true,
+      "detail": "variance + synthetic"
+    },
+    {
+      "id": "SUPPLIER_FAILURE",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "PRODUCT_POLICY_RISK",
+      "pass": true,
+      "detail": "eligibility hard stop present in fixtures"
+    },
+    {
+      "id": "COST_INCREASE",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "POOR_SALES",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "REFUND_SPIKE",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "STOCKOUT",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "DELAYED_FULFILMENT",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "APPROVAL_PENDING",
+      "pass": true,
+      "detail": "pending≠granted + listing blocked"
+    },
+    {
+      "id": "APPROVAL_DENIED",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "BUDGET_EXHAUSTION",
+      "pass": true,
+      "detail": "silent live transition forbidden (budget/mode discipline)"
+    },
+    {
+      "id": "WORKER_RESTART",
+      "pass": true,
+      "detail": "idempotent restart"
+    },
+    {
+      "id": "REPEATED_TASK_DELIVERY",
+      "pass": true,
+      "detail": "idempotent restart"
+    },
+    {
+      "id": "STALE_MEMORY",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "POISONED_MEMORY",
+      "pass": true,
+      "detail": "covered by integrated slice invariants"
+    },
+    {
+      "id": "ATTRACTIVE_BUT_UNECONOMIC",
+      "pass": true,
+      "detail": "reject uneconomic/gated"
+    },
+    {
+      "id": "OUTSIDE_AUTHORITY",
+      "pass": true,
+      "detail": "fail-closed + approval record"
+    },
+    {
+      "id": "CORRECT_ACTION_STOP",
+      "pass": true,
+      "detail": "stop without live action"
+    },
+    {
+      "id": "PROCEED_WITHOUT_GK",
+      "pass": true,
+      "detail": "synthetic autonomous ok"
+    }
+  ],
+  "ledgerSynthetic": true,
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN",
+  "STATUS": "FOUNDATION IMPLEMENTED — SHADOW CEO OPERATING SIMULATION NOT YET INDEPENDENTLY CERTIFIED"
+}

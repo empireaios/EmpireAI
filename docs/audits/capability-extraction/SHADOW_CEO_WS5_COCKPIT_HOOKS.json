@@ -1,0 +1,330 @@
+{
+  "document": "SHADOW_CEO_WS5_COCKPIT_HOOKS",
+  "workstream": 5,
+  "title": "Grand King Shadow CEO cockpit inspection — hook map (prep only)",
+  "generatedAt": "2026-09-14",
+  "status": "READ_ONLY_RECOMMENDATION",
+  "implement": false,
+  "intent": "Smallest additive place to expose a Shadow CEO inspection API + UI panel showing objective, mode, assessment, priorities, decisions, approvals, tasks, outcomes, costs, synthetic profit, interventions, lessons, Birth status (locked), external-action lock.",
+  "existingSurfaces": {
+    "empireaiWebRoutes": {
+      "primaryExecutiveHome": {
+        "route": "/cockpit",
+        "pageFile": "empireai-web/app/(cockpit)/cockpit/page.tsx",
+        "component": "empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx",
+        "screenId": "SCR-001",
+        "navId": "executive_home",
+        "dataHook": "empireai-web/lib/cockpit/hooks/useExecutiveHome.tsx",
+        "brainModule": "executive-home",
+        "brainAction": "load",
+        "notes": "Canonical Grand King daily surface. Already hosts PillowCommissioningStrip, CanonicalTruthStrip, GrandKingAttentionPanel, EmpireStatusBand, decision dossiers."
+      },
+      "relatedFounderPages": [
+        {
+          "route": "/cockpit/founder/grand-king",
+          "pageFile": "empireai-web/app/(cockpit)/cockpit/founder/grand-king/page.tsx",
+          "component": "empireai-web/components/cockpit/grand-king/GrandKingOperatingDashboard.tsx",
+          "notes": "P8-06 operating account (revenue/mission/ETA) — NOT Shadow CEO loop inspection."
+        },
+        {
+          "route": "/cockpit/development/pillow",
+          "pageFile": "empireai-web/app/(cockpit)/cockpit/development/pillow/page.tsx",
+          "notes": "Pillow Centre chat/workspace (SCR-800 class); conversation, not inspection cockpit."
+        },
+        {
+          "route": "/cockpit/development/inspection",
+          "pageFile": "empireai-web/app/(cockpit)/cockpit/development/inspection/page.tsx",
+          "component": "empireai-web/components/cockpit/widgets/DevelopmentPanels.tsx#DevelopmentInspectionPanel",
+          "brainModule": "cockpit-audit",
+          "notes": "ESIS / executive audit inspection — wrong domain for Shadow CEO operating loop."
+        },
+        {
+          "route": "/cockpit/missions",
+          "notes": "Mission Centre — blockers/approvals/OMS; complementary but not Shadow CEO state."
+        }
+      ],
+      "existingExecutiveHomePanelsClosestToShadowCeo": [
+        "empireai-web/components/cockpit/executive/PillowCommissioningStrip.tsx",
+        "empireai-web/components/cockpit/executive/CanonicalTruthStrip.tsx",
+        "empireai-web/components/cockpit/executive/PillowCompactPresence.tsx",
+        "empireai-web/components/cockpit/executive/EmpireStatusBand.tsx",
+        "empireai-web/components/cockpit/executive/GrandKingAttentionPanel.tsx",
+        "empireai-web/components/cockpit/executive/ExecutiveHomeBriefPanel.tsx",
+        "empireai-web/components/cockpit/executive/SinceLastVisitStrip.tsx"
+      ]
+    },
+    "frontendLegacy": {
+      "root": "frontend/",
+      "missionHome": "frontend/src/pages/dashboard/MissionHomePage.tsx",
+      "paths": "frontend/src/routes/paths.ts",
+      "redirectMap": "frontend/src/lib/cockpit-redirects.ts",
+      "redirectRule": "/dashboard → /cockpit",
+      "recommendation": "Do NOT add Shadow CEO UI here. Vite dashboard redirects to empireai-web Cockpit; keep additive work in empireai-web only."
+    },
+    "backendDomain": {
+      "cockpitPanelViews": {
+        "file": "backend/src/domain/services/cockpit-panel-views.ts",
+        "keyTypes": ["ExecutiveHomeView", "MissionCentreView", "PillowSupervisorView", "EnginePanelView"],
+        "executiveHomeLoader": "loadExecutiveHomeView / assemble via executive-home-sync + executive-home-loader",
+        "dispatchTool": "backend/src/agents/tools/module-load-tools.ts → executive_home.load_view",
+        "module": "executive-home"
+      },
+      "operationalCommandView": {
+        "file": "backend/src/domain/services/operational-command-view.ts",
+        "type": "OperationalCommandView",
+        "loader": "loadOperationalCommandView / loadOperationalCommandViewAsync / loadOperationalCommandViewForDispatchAsync",
+        "embeddedIn": "ExecutiveHomeView.command",
+        "provides": ["certificationBlockers", "pendingApprovals", "oms.activeObjective", "proof001", "success001", "implementation"]
+      },
+      "canonicalExecutiveTruth": {
+        "file": "backend/src/domain/services/canonical-executive-truth.ts",
+        "embeddedIn": "ExecutiveHomeView.canonicalTruth",
+        "alreadyExposes": [
+          "pillowOperatingState (mode/focus/birthStatus)",
+          "birth (status locked until authorise)",
+          "costGuard",
+          "sinceLastVisit",
+          "pendingApprovals",
+          "currentObjectiveHuman",
+          "pillowActivity / nextPillowAction",
+          "oneProductCommissioning.expectedProfit (estimated)",
+          "flightRecorderLatest"
+        ],
+        "gapVsShadowCeo": "Does not expose full executive-loop cycle (priorities queue, stage assessment, decisions, outcomes, lessons, interventions, synthetic profit ledger, explicit external-action lock)."
+      }
+    },
+    "backendShadowCeoDataSources": {
+      "executiveOperatingLoop": {
+        "dir": "backend/src/orchestration/pillow-commissioning/executive-operating-loop/",
+        "types": "types.ts → ExecutiveCycleRecord, PrioritisedWorkItem, OutcomeRecord, OwnerEscalationPackage",
+        "store": "store.ts → getLatestExecutiveCycle, listExecutiveCycles, listOutcomes, getCurrentObjective",
+        "tools": "tools.ts → pillow_executive.latest_cycle / run_operating_cycle / birth_readiness",
+        "brainModule": "pillow-executive-operating-loop",
+        "moduleRoutes": [
+          {
+            "module": "pillow-executive-operating-loop",
+            "action": "latest_cycle",
+            "tool": "pillow_executive.latest_cycle"
+          },
+          {
+            "module": "pillow-executive-operating-loop",
+            "action": "run_operating_cycle",
+            "tool": "pillow_executive.run_operating_cycle"
+          },
+          {
+            "module": "pillow-executive-operating-loop",
+            "action": "birth_readiness",
+            "tool": "pillow_executive.birth_readiness"
+          }
+        ]
+      },
+      "pillowCommissioningHttp": {
+        "routesFile": "backend/src/orchestration/pillow-commissioning/routes/pillow-commissioning-routes.ts",
+        "existingEndpoints": [
+          "GET /pillow-commissioning/status",
+          "GET /pillow-commissioning/birth",
+          "GET /pillow-commissioning/birth-readiness",
+          "GET /pillow-commissioning/executive-loop/latest",
+          "POST /pillow-commissioning/executive-loop/run",
+          "GET /pillow-commissioning/cost-guard",
+          "GET /pillow-commissioning/cost-control",
+          "GET /pillow-commissioning/flight-recorder",
+          "GET /pillow-commissioning/since-last-visit",
+          "GET /pillow-commissioning/one-product"
+        ]
+      },
+      "operatingState": "backend/src/orchestration/pillow-commissioning/operating-state.ts",
+      "birth": "backend/src/orchestration/pillow-commissioning/birth.ts",
+      "costGuard": "backend/src/orchestration/pillow-commissioning/cost-guard.js (via buildCostGuardStatus)"
+    },
+    "apiProxiesExecutiveHome": {
+      "brainDispatchBff": {
+        "route": "POST /api/brain/dispatch",
+        "file": "empireai-web/app/api/brain/dispatch/route.ts",
+        "upstream": "/brain/dispatch",
+        "executiveHomePayload": { "module": "executive-home", "action": "load" }
+      },
+      "pillowCommissioningBff": {
+        "route": "/api/pillow-commissioning/*",
+        "file": "empireai-web/app/api/pillow-commissioning/[...path]/route.ts",
+        "upstream": "/pillow-commissioning/{path}",
+        "notes": "Catch-all already proxies any new pillow-commissioning GET/POST — no new Next.js API route required for a new backend path."
+      },
+      "pillowCatchAll": {
+        "route": "/api/pillow/*",
+        "file": "empireai-web/app/api/pillow/[...path]/route.ts",
+        "notes": "Used by many founder engine dashboards; optional alternate if Shadow CEO is framed as a Pillow engine rather than commissioning inspection."
+      }
+    }
+  },
+  "fieldSourceMap": {
+    "objective": [
+      "executive-operating-loop/store.getCurrentObjective",
+      "OperationalCommandView.oms.activeObjective",
+      "canonicalTruth.currentObjectiveHuman"
+    ],
+    "mode": [
+      "ExecutiveCycleRecord.mode (live|sandbox)",
+      "PillowOperatingState.activityMode / state"
+    ],
+    "assessment": [
+      "ExecutiveCycleRecord.stages (OBSERVE…DIAGNOSE…CRITIQUE summaries)",
+      "OwnerEscalationPackage.whatIFound when escalated"
+    ],
+    "priorities": ["ExecutiveCycleRecord.workQueue / selectedWork"],
+    "decisions": ["ExecutiveCycleRecord.decision"],
+    "approvals": [
+      "OperationalCommandView.pendingApprovals",
+      "canonicalTruth.pendingApprovals",
+      "cycle.escalation (Grand King gate)"
+    ],
+    "tasks": ["workQueue + flight recorder events"],
+    "outcomes": ["listOutcomes / OutcomeRecord"],
+    "costs": ["buildCostGuardStatus / cost-control snapshot / cycle.llmCallsUsed"],
+    "syntheticProfit": [
+      "CommercialSituation.expectedProfitUsd + expectedProfitStatus",
+      "oneProductCommissioning.expectedProfit (label as ESTIMATED / synthetic — never realised)",
+      "canonicalTruth.realisedProfitUsd remains separate live truth (usually null)"
+    ],
+    "interventions": [
+      "OwnerEscalationPackage",
+      "decision.authority === requires_grand_king | blocked_governance",
+      "flight recorder events with authority grand_king"
+    ],
+    "lessons": ["OutcomeRecord.lesson / lessonConfidence / institutional memory counts"],
+    "birthStatusLocked": [
+      "getBirthRecord → status (not BORN until POST /pillow-commissioning/birth/authorise)",
+      "canonicalTruth.birth"
+    ],
+    "externalActionLock": [
+      "Derive inspection flag from: birth not BORN + costGuard.hardStopActive + decision.authority gates + commissioning doctrine (no publish/spend without Grand King)",
+      "No single existing field named externalActionLock — WS5 should surface a computed lock object, not invent publish capability"
+    ]
+  },
+  "recommendation": {
+    "verdict": "SMALLEST_ADDITIVE_HOOK",
+    "summary": "Add one pillow-commissioning inspection aggregator + compose GET endpoint (BFF already exists). Mount one collapsible Shadow CEO panel on Executive Home (/cockpit) beside PillowCommissioningStrip. Optionally mirror as Brain action on pillow-executive-operating-loop for useBrainModule parity. Do not extend Vite frontend/, do not create a new Next.js API route, do not overload ESIS inspection or P8-06 grand-king account.",
+    "api": {
+      "preferred": {
+        "newBackendAssembler": "backend/src/orchestration/pillow-commissioning/shadow-ceo-inspection.ts",
+        "newRoute": "GET /pillow-commissioning/shadow-ceo/inspection",
+        "registerIn": "backend/src/orchestration/pillow-commissioning/routes/pillow-commissioning-routes.ts",
+        "bffPath": "GET /api/pillow-commissioning/shadow-ceo/inspection",
+        "bffFileChange": "none (existing catch-all)",
+        "composeFrom": [
+          "buildPillowOperatingState",
+          "getBirthRecord",
+          "buildCostGuardStatus",
+          "getCurrentObjective",
+          "getLatestExecutiveCycle / listExecutiveCycles",
+          "listOutcomes",
+          "loadOperationalCommandView (approvals + OMS objective only — thin slice)",
+          "computed externalActionLock"
+        ],
+        "optionalBrainMirror": {
+          "module": "pillow-executive-operating-loop",
+          "action": "shadow_ceo_inspection",
+          "toolName": "pillow_executive.shadow_ceo_inspection",
+          "files": [
+            "backend/src/orchestration/pillow-commissioning/executive-operating-loop/tools.ts",
+            "backend/src/agents/routes/module-routes.ts"
+          ],
+          "dispatch": "POST /api/brain/dispatch { module: pillow-executive-operating-loop, action: shadow_ceo_inspection }"
+        }
+      },
+      "avoidForWs5": [
+        "Bloated extension of loadExecutiveHomeView / CanonicalExecutiveTruth (pollutes SCR-001 cache/timeout path)",
+        "New empireai-web/app/api/shadow-ceo route (redundant with commissioning catch-all)",
+        "frontend/ Vite pages"
+      ]
+    },
+    "ui": {
+      "preferred": {
+        "panelComponent": "empireai-web/components/cockpit/executive/ShadowCeoInspectionPanel.tsx",
+        "hook": "empireai-web/lib/cockpit/hooks/useShadowCeoInspection.ts (fetch /api/pillow-commissioning/shadow-ceo/inspection)",
+        "mountOn": "empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx",
+        "mountPosition": "Immediately after PillowCommissioningStrip (or inside the existing More operating detail details block if density is a concern)",
+        "pageRoute": "/cockpit",
+        "types": "empireai-web/lib/cockpit/panel-types.ts (ShadowCeoInspectionView)"
+      },
+      "optionalDedicatedPageIfPanelCrowdsHome": {
+        "route": "/cockpit/founder/shadow-ceo",
+        "pageFile": "empireai-web/app/(cockpit)/cockpit/founder/shadow-ceo/page.tsx",
+        "navTouch": "empireai-web/lib/cockpit-ux/navigation.ts (secondary/founder group only)",
+        "notes": "Only if full field grid exceeds Executive Home density budget; still reuse same API."
+      }
+    },
+    "additiveFileChecklist": [
+      {
+        "path": "backend/src/orchestration/pillow-commissioning/shadow-ceo-inspection.ts",
+        "action": "create",
+        "role": "Assembler — single inspection DTO"
+      },
+      {
+        "path": "backend/src/orchestration/pillow-commissioning/routes/pillow-commissioning-routes.ts",
+        "action": "edit",
+        "role": "Register GET /pillow-commissioning/shadow-ceo/inspection"
+      },
+      {
+        "path": "backend/src/orchestration/pillow-commissioning/executive-operating-loop/tools.ts",
+        "action": "optional_edit",
+        "role": "Brain tool mirror"
+      },
+      {
+        "path": "backend/src/agents/routes/module-routes.ts",
+        "action": "optional_edit",
+        "role": "Map action → tool"
+      },
+      {
+        "path": "empireai-web/components/cockpit/executive/ShadowCeoInspectionPanel.tsx",
+        "action": "create",
+        "role": "UI panel"
+      },
+      {
+        "path": "empireai-web/lib/cockpit/hooks/useShadowCeoInspection.ts",
+        "action": "create",
+        "role": "Client fetch hook"
+      },
+      {
+        "path": "empireai-web/components/cockpit/pages/ExecutiveHomePage.tsx",
+        "action": "edit",
+        "role": "Mount panel (smallest UI wiring)"
+      },
+      {
+        "path": "empireai-web/lib/cockpit/panel-types.ts",
+        "action": "edit",
+        "role": "Shared view type"
+      },
+      {
+        "path": "backend/src/validation/tests/shadow-ceo-inspection.test.ts",
+        "action": "create",
+        "role": "Unit test for assembler + lock invariants (Birth locked; external-action lock true when not BORN)"
+      }
+    ],
+    "routePaths": {
+      "uiPrimary": "/cockpit",
+      "uiOptionalDedicated": "/cockpit/founder/shadow-ceo",
+      "apiPreferred": "/api/pillow-commissioning/shadow-ceo/inspection",
+      "apiUpstream": "/pillow-commissioning/shadow-ceo/inspection",
+      "apiBrainOptional": "POST /api/brain/dispatch",
+      "existingRelated": [
+        "/api/pillow-commissioning/status",
+        "/api/pillow-commissioning/executive-loop/latest",
+        "/api/pillow-commissioning/birth",
+        "POST /api/brain/dispatch (module=executive-home)",
+        "POST /api/brain/dispatch (module=pillow-executive-operating-loop, action=latest_cycle)"
+      ],
+      "doNotUse": [
+        "/cockpit/development/inspection (ESIS)",
+        "/dashboard/* (legacy Vite — redirects away)",
+        "/cockpit/founder/grand-king (P8-06 account, different product)"
+      ]
+    }
+  },
+  "constraints": {
+    "birth": "Inspection must show Birth status as locked / not BORN unless authorised; WS5 must not add authorise UX.",
+    "externalActionLock": "Inspection-only computed lock; no publish/spend/side-effect unlock path.",
+    "syntheticProfit": "Label ESTIMATED/SYNTHETIC; never present as realised LIVE commerce.",
+    "executiveHomePerf": "Prefer separate inspection endpoint over stuffing full cycle into executive-home 12s dispatch cache path."
+  }
+}

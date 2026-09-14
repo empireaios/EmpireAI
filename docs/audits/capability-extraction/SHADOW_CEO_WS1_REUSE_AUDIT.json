@@ -1,0 +1,62 @@
+{
+  "MISSION": "SHADOW_CEO_WS1_REUSE_AUDIT",
+  "generatedAt": "2026-09-14T00:00:00.000Z",
+  "canonicalOwners": {
+    "Objective_Assessment_Priority_Decision_Task_Approval_Outcome_Lesson_Intervention_Brief": "backend/src/orchestration/shadow-ceo/",
+    "OperatingMode_ExternalActionGate_Budget": "backend/src/orchestration/shadow-ceo-authority/",
+    "SyntheticCatalog_CostCentre_ProfitLedger_UnitEconomics_Experiment_Portfolio": "backend/src/orchestration/synthetic-commerce/",
+    "VerticalSlice_CockpitProjection_CeoCounters_Routes": "backend/src/orchestration/shadow-ceo-integration/"
+  },
+  "reuse": [
+    {
+      "component": "executive-operating-loop store + types",
+      "path": "backend/src/orchestration/pillow-commissioning/executive-operating-loop/",
+      "class": "partial_reusable",
+      "note": "Pattern for SQLite durability and loop stages; Shadow CEO is additive plane, not a competing writer of live commerce"
+    },
+    {
+      "component": "commerce-actual-pnl",
+      "path": "backend/src/orchestration/pillow-commerce-presale/commerce-actual-pnl.ts",
+      "class": "partial_reusable",
+      "note": "Inspiration only — live PnL must not absorb synthetic rows"
+    },
+    {
+      "component": "pillow-approval",
+      "path": "backend/src/orchestration/pillow-approval/",
+      "class": "production_ready_reusable",
+      "note": "Live approval gate preserved; Shadow CEO keeps its own Approval records for simulation"
+    },
+    {
+      "component": "cockpit-critical registration",
+      "path": "backend/src/app.ts registerCommerceCriticalRoutes",
+      "class": "production_ready_reusable",
+      "note": "Shadow CEO routes registered here for production visibility"
+    },
+    {
+      "component": "EmpireDatabase sql.js",
+      "path": "backend/src/brain/sqlite-database.ts",
+      "class": "production_ready_reusable"
+    },
+    {
+      "component": "Amazon/CJ/Stripe live connectors",
+      "path": "backend/src/runtime/amazon-global-seller, live-cj-fulfillment, revenue/",
+      "class": "unsafe_for_this_mission",
+      "note": "Must remain locked; synthetic foundation must not call them"
+    }
+  ],
+  "duplicatedOrConflicting": [
+    "Multiple executive dashboards in empireai-web founder/* — Shadow CEO adds one additive page, does not replace OMS/mission-command",
+    "OutcomeRecord in executive-operating-loop vs Shadow Outcome — keep separate namespaces"
+  ],
+  "missingBeforeThisMission": [
+    "Unified Shadow CEO Objective→Brief durable chain",
+    "Synthetic Amazon US fixture catalog with mandatory synthetic flag",
+    "Fail-closed SYNTHETIC operating mode gate with budget envelope",
+    "Grand King Shadow CEO inspection surface"
+  ],
+  "dependencyMap": [
+    "shadow-ceo-integration → shadow-ceo + shadow-ceo-authority + synthetic-commerce",
+    "empireai-web /api/shadow-ceo → Brain /shadow-ceo/*",
+    "app.ts commerce-critical → registerShadowCeoRoutes"
+  ]
+}
