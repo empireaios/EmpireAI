@@ -711,16 +711,32 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         message: lastFailureReason ?? undefined,
         code: lastFailureReason ?? undefined,
       });
+      // Prefer transport/worker taxonomy over naive 400→fatal. Tier-0 already admitted
+      // the envelope; a worker 400 on early attempts is often a recycle race.
       const taxonomyFailure: ChatFailureClass =
-        lastUpstreamStatus === 400
-          ? "REQUEST_NOT_ACCEPTED"
-          : lastFailureReason === "worker_unavailable"
-            ? "WORKER_UNAVAILABLE"
-            : lastFailureReason === "timeout"
-              ? "BRAIN_TIMEOUT_RETRYABLE"
+        lastFailureReason === "worker_unavailable"
+          ? "WORKER_UNAVAILABLE"
+          : lastFailureReason === "timeout"
+            ? "BRAIN_TIMEOUT_RETRYABLE"
+            : lastFailureReason === "network"
+              ? "NETWORK"
               : lastFailureReason === "upstream_error"
-                ? classified
-                : "BUDGET_EXHAUSTED";
+                ? lastUpstreamStatus === 400 &&
+                    classified !== "CONTEXT_ADMISSION_FAILURE" &&
+                    attemptCount <= 2
+                  ? "UPSTREAM_4XX_RETRYABLE"
+                  : classified
+                : lastUpstreamStatus === 400 && attemptCount <= 2
+                  ? "UPSTREAM_4XX_RETRYABLE"
+                  : lastUpstreamStatus === 400
+                    ? "REQUEST_NOT_ACCEPTED"
+                    : "BUDGET_EXHAUSTED";
+
+      const fatalTaxonomy =
+        taxonomyFailure === "REQUEST_NOT_ACCEPTED" ||
+        taxonomyFailure === "UPSTREAM_4XX_FATAL" ||
+        taxonomyFailure === "CONTEXT_ADMISSION_FAILURE" ||
+        taxonomyFailure === "BRAIN_FATAL";
 
       // Sync window ended ≠ request destroyed. Retryable classes stay RETRYABLE.
       await failChatRequest(accepted.requestId, {
@@ -728,7 +744,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         errorClass: lastFailureReason ?? undefined,
         upstreamStatus: lastUpstreamStatus ?? undefined,
         attempt: attemptCount,
-        fatal: taxonomyFailure === "REQUEST_NOT_ACCEPTED" || taxonomyFailure === "UPSTREAM_4XX_FATAL",
+        fatal: fatalTaxonomy,
       });
 
       const durableAfter = await getChatRequest(accepted.requestId);

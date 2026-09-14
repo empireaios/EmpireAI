@@ -9,6 +9,8 @@ import {
   admitWorkspaceContextEnvelope,
   classifyUpstreamFailure,
   completeChatRequest,
+  configureChatRequestStore,
+  dropChatRequestMemoryCacheForTests,
   failChatRequest,
   FAILURE_POLICY,
   getChatRequest,
@@ -67,6 +69,25 @@ describe("durable delivery fault matrix (level A)", () => {
     }
   });
 
+  it("HTTP_400 early attempt is retryable (recycle race), not REQUEST_NOT_ACCEPTED fatal", async () => {
+    for (let i = 0; i < 10; i++) {
+      const fc = classifyUpstreamFailure({ status: 400, message: "bad request" });
+      // Without schema/context markers, early 400s are treated as retryable by Tier-0 policy.
+      assert.equal(policyForFailure("UPSTREAM_4XX_RETRYABLE"), "RETRY");
+      assert.notEqual(fc, "WORKER_UNAVAILABLE");
+      const rec = await acceptDurableChatRequest({ sessionId: `e4_${i}`, message: "m" });
+      await failChatRequest(rec.requestId, {
+        failureClass: "UPSTREAM_4XX_RETRYABLE",
+        upstreamStatus: 400,
+        attempt: 1,
+        fatal: false,
+      });
+      const got = await getChatRequest(rec.requestId);
+      assert.equal(got?.status, "RETRYABLE");
+      assert.equal(got?.failureClass, "UPSTREAM_4XX_RETRYABLE");
+    }
+  });
+
   it("HTTP_500 >= 10 classified retryable, not terminal on attempt 1", async () => {
     for (let i = 0; i < 10; i++) {
       const fc = classifyUpstreamFailure({ status: 500, message: "upstream" });
@@ -79,16 +100,27 @@ describe("durable delivery fault matrix (level A)", () => {
     }
   });
 
-  it("BFF_RESTART >= 5 — memory/store still holds accepted + completed", async () => {
-    for (let i = 0; i < 5; i++) {
-      const rec = await acceptDurableChatRequest({ sessionId: `bff_${i}`, message: "m" });
-      assert.ok(rec.requestId.startsWith("pcr_"));
-      await completeChatRequest(rec.requestId, { message: "persisted", kind: "llm" });
-      // Simulate process-local restart by re-get (memory still warm in test);
-      // Redis path is validated in production via configureChatRequestStore.
-      const got = await getChatRequest(rec.requestId);
-      assert.equal(got?.status, "COMPLETED");
-      assert.equal(got?.finalResult?.message, "persisted");
+  it("BFF_RESTART >= 5 — Redis recovers after process memory drop", async () => {
+    const fake = new Map<string, string>();
+    configureChatRequestStore({
+      get: async (k) => fake.get(k) ?? null,
+      setex: async (k, _sec, v) => {
+        fake.set(k, String(v));
+      },
+    });
+    try {
+      for (let i = 0; i < 5; i++) {
+        const rec = await acceptDurableChatRequest({ sessionId: `bff_${i}`, message: "m" });
+        assert.ok(rec.requestId.startsWith("pcr_"));
+        await completeChatRequest(rec.requestId, { message: "persisted", kind: "llm" });
+        dropChatRequestMemoryCacheForTests();
+        const got = await getChatRequest(rec.requestId);
+        assert.equal(got?.status, "COMPLETED");
+        assert.equal(got?.finalResult?.message, "persisted");
+      }
+    } finally {
+      configureChatRequestStore(null);
+      dropChatRequestMemoryCacheForTests();
     }
   });
 

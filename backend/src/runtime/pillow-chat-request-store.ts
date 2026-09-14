@@ -134,6 +134,12 @@ export function configureChatRequestStore(client: RedisLike | null): void {
   redis = client;
 }
 
+/** Test-only: clear process memory so Redis is the sole recovery path (BFF/process restart). */
+export function dropChatRequestMemoryCacheForTests(): void {
+  memory.clear();
+  memoryOrder.length = 0;
+}
+
 function ensureRedis(): RedisLike | null {
   return redis;
 }
