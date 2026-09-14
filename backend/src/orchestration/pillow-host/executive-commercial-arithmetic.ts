@@ -129,10 +129,16 @@ export function isGivenMetricDecisionAsk(message: string): boolean {
   return givenMetric && decisionShape && !asksCompute;
 }
 
+import {
+  isSuppliedContributionAggregationAsk,
+} from "./executive-fact-precedence.js";
+
 /** True when message asks for unit economics / contribution arithmetic. */
 export function isCommercialArithmeticAsk(message: string): boolean {
   const t = String(message || "");
   if (isGivenMetricDecisionAsk(t)) return false;
+  // Supplied contribution facts + total/contract ask — not a price/cost compute.
+  if (isSuppliedContributionAggregationAsk(t)) return false;
   if (
     /\b(?:contribution(?:\s*\/\s*order|\s+per\s+order)?|unit economics|contribution\s+margin)\b/i.test(
       t,

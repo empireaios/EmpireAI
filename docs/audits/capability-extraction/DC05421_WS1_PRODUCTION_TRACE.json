@@ -1,0 +1,57 @@
+{
+  "document": "DC05421_WS1_PRODUCTION_TRACE",
+  "mission": "PILLOW_PRODUCTION_AUTHORITY_SHADOW_CEO_REPAIR",
+  "generatedAt": "2026-09-14T17:00:00.000Z",
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN",
+  "path": [
+    "Grand King → BFF /api/pillow/chat",
+    "Tier-0 acceptDurableChatRequest (pcr_*)",
+    "Worker pillowHost.routePrompt",
+    "Digital Soul constitutional gate",
+    "LLM / task-contract / execution-plan / commercial arithmetic",
+    "executive-release-gate.repairAnswerWithCalculator",
+    "BFF sanitize → user-visible"
+  ],
+  "failureProducers": {
+    "Contribution/order unproven_or_UNKNOWN": {
+      "primary": "executive-commercial-arithmetic.ts → synthesizeCommercialArithmeticAnswer / resolveCommercialArithmetic",
+      "secondary": "executive-commercial-arithmetic.ts → repairAnswerWithCalculator (appends UNKNOWN block)",
+      "tertiary": "executive-request-execution-plan.ts economics section injects **Contribution/order:** UNKNOWN — ${unknownReason}",
+      "llm": "May restate UNKNOWN as unproven when calculator brief says SELLING_PRICE unknown"
+    },
+    "SELLING_PRICE unknown": {
+      "file": "backend/src/orchestration/pillow-host/executive-commercial-arithmetic.ts",
+      "function": "computeCommercialContribution",
+      "lineLogic": "if (operands.sellingPrice == null) unknownReason = 'SELLING_PRICE unknown — cannot compute contribution.'"
+    },
+    "Need: selling price": {
+      "file": "executive-commercial-arithmetic.ts",
+      "function": "computeCommercialContribution",
+      "breakdownLines": ["**Need:** selling price."]
+    },
+    "omission_of_token_total_mode_birth_authority": {
+      "cause": "No typed exact-line projector existed; LLM + calculator UNKNOWN path replaced the four-line contract",
+      "isCommercialArithmeticAsk": "true for contribution-bearing DC-05421 text (not given-metric decision shape)",
+      "isGivenMetricDecisionAsk": "false (no eligib/select/supplier decision shape)"
+    }
+  },
+  "rootCause": {
+    "summary": "Explicit Order A/B/C contribution facts were misclassified as unit-economics compute asks. Calculator demanded selling price, emitted UNKNOWN, and release-gate/task-contract paths let that overwrite the exact four-line response contract.",
+    "functions": [
+      "isCommercialArithmeticAsk",
+      "resolveCommercialArithmetic",
+      "computeCommercialContribution",
+      "synthesizeCommercialArithmeticAnswer",
+      "repairAnswerWithCalculator",
+      "formatCommercialArithmeticBrief",
+      "synthesizeUnitAnswer (task-contract) commercial arithmetic branch"
+    ]
+  },
+  "repair": {
+    "factPrecedence": "executive-fact-precedence.ts — Tier A supplied contributions; Tier B SYNTHETIC/NOT_BORN/unauthorized",
+    "typedContract": "executive-response-contract.ts — projectExactLineResponseContract",
+    "admissionHook": "pillow-host routePrompt short-circuit before LLM/Shadow CEO",
+    "calculatorGuard": "isCommercialArithmeticAsk returns false for isSuppliedContributionAggregationAsk"
+  }
+}

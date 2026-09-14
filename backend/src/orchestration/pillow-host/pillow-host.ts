@@ -78,6 +78,9 @@ import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js"
 import {
   admitAndExecuteShadowCeoFromChat,
 } from "../shadow-ceo-integration/chat-admission.js";
+import {
+  projectExactLineResponseContract,
+} from "./executive-response-contract.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29814,6 +29817,93 @@ export class PillowHost {
                         findings: constitutionalGate.compliance.findings,
                     },
                 };
+            }
+            // ── Typed exact-line response contract (deterministic; LLM not final) ──
+            {
+                markStage("responseContractMs");
+                const contractProjection = projectExactLineResponseContract(input.message);
+                if ("kind" in contractProjection) {
+                    const message = contractProjection.message;
+                    const resultKind = contractProjection.ok
+                        ? "response_contract"
+                        : "response_contract_blocked";
+                    const assistantTurn = {
+                        role: "assistant",
+                        content: message,
+                        timestamp: new Date().toISOString(),
+                        requestId,
+                    };
+                    session.conversationHistory.push(assistantTurn);
+                    const latencyMs = Math.round(performance.now() - started);
+                    this.requestLogger.log({
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        action: "pillow.chat",
+                        latencyMs,
+                        result: resultKind,
+                        actor: input.actor,
+                    });
+                    recordPillowResponseTerminal({
+                        requestId,
+                        kind: contractProjection.ok ? "complete" : "degraded_useful",
+                        useful: true,
+                        degradedUsed: !contractProjection.ok,
+                        primaryFailureReason: contractProjection.ok
+                            ? null
+                            : "PILLOW_RESPONSE_CONTRACT_BLOCKED",
+                        latencyMs,
+                        multipartUnits,
+                    });
+                    logger.info(
+                        {
+                            requestId,
+                            kind: resultKind,
+                            sellingPriceInvoked: contractProjection.ok
+                                ? contractProjection.sellingPriceInvoked
+                                : undefined,
+                            lineCount: contractProjection.ok
+                                ? contractProjection.lineCount
+                                : undefined,
+                            reason: !contractProjection.ok
+                                ? contractProjection.reason
+                                : undefined,
+                        },
+                        "Typed response contract path",
+                    );
+                    const now = new Date().toISOString();
+                    session.updatedAt = now;
+                    session.lastActivityAt = now;
+                    this.touchActivity();
+                    return {
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        message,
+                        kind: resultKind,
+                        latencyMs,
+                        trace: { ...trace, totalMs: latencyMs },
+                        constitutionalGate: {
+                            allowed: true,
+                            aligned: constitutionalGate.compliance.aligned,
+                            requiresGrandKingApproval:
+                                constitutionalGate.compliance.requiresGrandKingApproval,
+                            findings: constitutionalGate.compliance.findings,
+                        },
+                        responseContract: contractProjection.ok
+                            ? {
+                                  lineCount: contractProjection.lineCount,
+                                  totalSyntheticContributionUsd:
+                                      contractProjection.totalSyntheticContributionUsd,
+                                  checkpointToken: contractProjection.checkpointToken,
+                                  sellingPriceInvoked: false,
+                              }
+                            : {
+                                  code: "PILLOW_RESPONSE_CONTRACT_BLOCKED",
+                                  reason: contractProjection.reason,
+                              },
+                    };
+                }
             }
             // ── Shadow CEO operating admission (single Grand King chat entry) ──
             // Fail closed into SHADOW_CEO_EXECUTION_BLOCKED — never LLM plan-as-execution.

@@ -31,6 +31,7 @@ import {
   type ExecutiveTaskIntent,
 } from "./executive-conversation-surface.js";
 import { repairAnswerWithCalculator } from "./executive-commercial-arithmetic.js";
+import { projectExactLineResponseContract } from "./executive-response-contract.js";
 import {
   assessDecisionQuality,
   repairDecisionQualityAnswer,
@@ -828,6 +829,15 @@ export function releaseExecutiveAnswer(
         fin.message,
         options.userMessage ?? "",
       );
+      const contractProj = projectExactLineResponseContract(options.userMessage ?? "");
+      if ("kind" in contractProj) {
+        return {
+          message: contractProj.message,
+          released: contractProj.ok,
+          violations: priorViolations,
+          telemetry,
+        };
+      }
       return {
         message: arithRepaired,
         released: true,

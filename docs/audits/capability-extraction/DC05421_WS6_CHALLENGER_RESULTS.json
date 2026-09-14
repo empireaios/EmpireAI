@@ -1,0 +1,112 @@
+{
+  "document": "DC05421_WS6_CHALLENGER_RESULTS",
+  "generatedAt": "2026-09-14T17:54:06.422Z",
+  "passed": 20,
+  "failed": 0,
+  "results": [
+    {
+      "id": "EP_SUPPLIED_CONTRIB_NO_PRICE",
+      "pass": true,
+      "detail": "facts=3"
+    },
+    {
+      "id": "EP_SUPPLIED_TOTAL_VS_DERIVE",
+      "pass": true,
+      "detail": "sum=16"
+    },
+    {
+      "id": "EP_CORRECTED_FACTS_SUPERSEDE",
+      "pass": true,
+      "detail": "Order A present"
+    },
+    {
+      "id": "EP_FORECAST_VS_REALISED",
+      "pass": true,
+      "detail": "no forced selling price path for ledger wording"
+    },
+    {
+      "id": "EP_APPROVAL_PENDING_VS_GRANTED",
+      "pass": true,
+      "detail": "unauthorized"
+    },
+    {
+      "id": "EP_EXACT_LINE_FIELD_CONTRACT",
+      "pass": true,
+      "detail": "exact"
+    },
+    {
+      "id": "EP_TOKEN_PRESERVATION",
+      "pass": true,
+      "detail": "token"
+    },
+    {
+      "id": "EP_NO_EXTRA_PROSE",
+      "pass": true,
+      "detail": "4 lines"
+    },
+    {
+      "id": "EP_MODE_BIRTH_PROJECTION",
+      "pass": true,
+      "detail": "mode"
+    },
+    {
+      "id": "EP_REAL_COMMERCE_UNAUTHORIZED",
+      "pass": true,
+      "detail": "auth"
+    },
+    {
+      "id": "EP_CONFLICTING_AUTHORITY",
+      "pass": true,
+      "detail": "calculator inert"
+    },
+    {
+      "id": "EP_UNKNOWN_OUTSIDE_SCOPE",
+      "pass": true,
+      "detail": "clean"
+    },
+    {
+      "id": "EP_RETRY_IDEMPOTENT",
+      "pass": true,
+      "detail": "idempotent"
+    },
+    {
+      "id": "EP_SHADOW_CEO_LINEAGE",
+      "pass": true,
+      "detail": "lineage"
+    },
+    {
+      "id": "EP_PLAN_ONLY_REJECTED",
+      "pass": true,
+      "detail": "source-backed"
+    },
+    {
+      "id": "EP_UNSUPPORTED_DNS",
+      "pass": true,
+      "detail": "dns guard"
+    },
+    {
+      "id": "EP_ARITH_5000_GT_4950",
+      "pass": true,
+      "detail": "5000>4950"
+    },
+    {
+      "id": "EP_NO_LIVE_VERIFICATION",
+      "pass": true,
+      "detail": "scenario"
+    },
+    {
+      "id": "EP_SAFETY_WITHOUT_REWRITE",
+      "pass": true,
+      "detail": "safety+total"
+    },
+    {
+      "id": "EP_CHAT_COCKPIT_PARITY",
+      "pass": true,
+      "detail": "parity helpers"
+    }
+  ],
+  "status": "HELD_CHALLENGER_PASS",
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN",
+  "BIRTH_STATUS": "NOT_BORN"
+}
