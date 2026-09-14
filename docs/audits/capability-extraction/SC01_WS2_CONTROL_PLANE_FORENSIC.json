@@ -1,0 +1,148 @@
+{
+  "document": "SC01_WS2_CONTROL_PLANE_FORENSIC",
+  "generatedAt": "2026-09-14T06:59:07.708Z",
+  "productionSc01BeforeIntegration": {
+    "requestId": "pcr_196de6fd0e00452d",
+    "runningSha": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+    "deploymentId": "318bfc92-93ac-4719-afa1-3ab5f74a9dd5",
+    "chatKind": "llm",
+    "forensicHypothesis": "A_chatBypassedShadowCeo",
+    "recordsCreatedOnProduction": {
+      "Objective": {
+        "created": false,
+        "id": null
+      },
+      "ExecutiveAssessment": {
+        "created": false,
+        "id": null
+      },
+      "PriorityDecision": {
+        "created": false,
+        "id": null
+      },
+      "ExecutiveDecision": {
+        "created": false,
+        "id": null
+      },
+      "Approval": {
+        "created": false,
+        "id": null
+      },
+      "Task": {
+        "created": false,
+        "id": null
+      },
+      "Action": {
+        "created": false,
+        "id": null
+      },
+      "Outcome": {
+        "created": false,
+        "id": null
+      },
+      "Lesson": {
+        "created": false,
+        "id": null
+      },
+      "Intervention": {
+        "created": false,
+        "id": null
+      },
+      "ExecutiveReturnBrief": {
+        "created": false,
+        "id": null
+      },
+      "CostCentre": {
+        "created": false,
+        "note": "fixture exists; not bound to SC-01 episode"
+      },
+      "ProfitLedger": {
+        "created": false,
+        "note": "no chat-admitted ledger row for SC-01"
+      }
+    },
+    "evidence": "WS1 production chat returned kind=llm with prose Episode/Objective ID 'SC-01 — …' (not obj_*). Cockpit without objectiveId returned only run instructions. No Shadow CEO imports on pillow chat path at SHA 0f98cdd5."
+  },
+  "localAfterAdmission": {
+    "admitted": true,
+    "blocked": false,
+    "objectiveId": "obj_683aa5ca4388db98",
+    "beforeObjectiveCount": 0,
+    "afterObjectiveCount": 1,
+    "createdOperatingEpisode": true,
+    "records": {
+      "Objective": {
+        "created": true,
+        "id": "obj_683aa5ca4388db98",
+        "timestamp": "2026-09-14T06:59:07.626Z",
+        "status": "COMPLETED",
+        "mode": "SYNTHETIC"
+      },
+      "ExecutiveAssessment": {
+        "created": true,
+        "id": "asm_84d023f2d9163ecb",
+        "timestamp": "2026-09-14T06:59:07.624Z",
+        "status": "COMPLETED"
+      },
+      "PriorityDecision": {
+        "created": true,
+        "ids": [
+          "pri_2c43707bb4ca9503",
+          "pri_3249ccfbdcee7752"
+        ],
+        "count": 2
+      },
+      "ExecutiveDecision": {
+        "created": true,
+        "id": "dec_764bdcf973c1d938",
+        "disposition": "PROCEED_WITH_SYNTHETIC_MONITOR_AND_BLOCK_SPEND"
+      },
+      "Approval": {
+        "created": true,
+        "ids": [
+          "apr_4896a2fc5a9b7c54"
+        ],
+        "statuses": [
+          "BLOCKED"
+        ]
+      },
+      "Task": {
+        "created": true,
+        "ids": [
+          "tsk_1e52049a7f5cb0a1",
+          "tsk_81ee1a4692517fdd"
+        ],
+        "statuses": [
+          "COMPLETED",
+          "COMPLETED"
+        ]
+      },
+      "Action": {
+        "created": true,
+        "ids": [
+          "act_81d69c3539de55ed",
+          "act_ed985d957a65d5eb"
+        ],
+        "executionStatuses": [
+          "BLOCKED",
+          "EXECUTED"
+        ]
+      },
+      "Outcome": {
+        "created": true,
+        "id": "out_c864246a352d2647"
+      },
+      "Lesson": {
+        "created": true,
+        "id": "les_9dd5f1591511e982"
+      },
+      "ExecutiveReturnBrief": {
+        "created": true,
+        "id": "brf_b48a9a67ba75449e"
+      }
+    }
+  },
+  "verdict": "Production SC-01 created no operating episode (chat bypass). Post-integration chat admission creates a durable linked chain in the shared Shadow CEO DB.",
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN"
+}

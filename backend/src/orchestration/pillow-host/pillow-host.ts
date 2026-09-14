@@ -75,6 +75,9 @@ import {
   recordPillowResponseTerminal,
 } from "./executive-response-completion.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
+import {
+  admitAndExecuteShadowCeoFromChat,
+} from "../shadow-ceo-integration/chat-admission.js";
 const HEARTBEAT_INTERVAL_MS = 30_000;
 const IDLE_AFTER_MS = 120_000;
 function buildContinuousScreenObservationBrief(pillow) {
@@ -29811,6 +29814,95 @@ export class PillowHost {
                         findings: constitutionalGate.compliance.findings,
                     },
                 };
+            }
+            // ── Shadow CEO operating admission (single Grand King chat entry) ──
+            // Fail closed into SHADOW_CEO_EXECUTION_BLOCKED — never LLM plan-as-execution.
+            {
+                markStage("shadowCeoAdmissionMs");
+                const shadowAdmission = admitAndExecuteShadowCeoFromChat({
+                    message: input.message,
+                    workspaceId: input.workspaceId,
+                    correlationId: requestId,
+                });
+                if (shadowAdmission.admitted) {
+                    const message = shadowAdmission.message;
+                    const assistantTurn = {
+                        role: "assistant",
+                        content: message,
+                        timestamp: new Date().toISOString(),
+                        requestId,
+                    };
+                    session.conversationHistory.push(assistantTurn);
+                    const latencyMs = Math.round(performance.now() - started);
+                    const resultKind = shadowAdmission.blocked
+                        ? "shadow_ceo_blocked"
+                        : "shadow_ceo_episode";
+                    this.requestLogger.log({
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        action: "pillow.chat",
+                        latencyMs,
+                        result: resultKind,
+                        actor: input.actor,
+                    });
+                    recordPillowResponseTerminal({
+                        requestId,
+                        kind: shadowAdmission.blocked ? "degraded_useful" : "complete",
+                        useful: true,
+                        degradedUsed: shadowAdmission.blocked,
+                        primaryFailureReason: shadowAdmission.blocked
+                            ? "SHADOW_CEO_EXECUTION_BLOCKED"
+                            : null,
+                        latencyMs,
+                        multipartUnits,
+                    });
+                    logger.info(
+                        {
+                            requestId,
+                            kind: resultKind,
+                            objectiveId: shadowAdmission.objectiveId,
+                            blocked: shadowAdmission.blocked,
+                            stage: shadowAdmission.blocked ? shadowAdmission.stage : undefined,
+                        },
+                        "Shadow CEO chat admission path",
+                    );
+                    const now = new Date().toISOString();
+                    session.updatedAt = now;
+                    session.lastActivityAt = now;
+                    this.touchActivity();
+                    return {
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        message,
+                        kind: resultKind,
+                        latencyMs,
+                        trace: { ...trace, totalMs: latencyMs },
+                        constitutionalGate: {
+                            allowed: true,
+                            aligned: constitutionalGate.compliance.aligned,
+                            requiresGrandKingApproval:
+                                constitutionalGate.compliance.requiresGrandKingApproval,
+                            findings: constitutionalGate.compliance.findings,
+                        },
+                        shadowCeo: shadowAdmission.blocked
+                            ? {
+                                  code: "SHADOW_CEO_EXECUTION_BLOCKED",
+                                  stage: shadowAdmission.stage,
+                                  objectiveId: shadowAdmission.objectiveId,
+                                  correlationId: shadowAdmission.correlationId,
+                              }
+                            : {
+                                  objectiveId: shadowAdmission.objectiveId,
+                                  correlationId: shadowAdmission.correlationId,
+                                  runKey: shadowAdmission.runKey,
+                                  eligibleProductCount: shadowAdmission.eligibleProductCount,
+                                  ledgerRealisedSyntheticNetProfitUsd:
+                                      shadowAdmission.ledgerRealisedSyntheticNetProfitUsd,
+                              },
+                    };
+                }
             }
             let commandResponse;
             let operationalContext;

@@ -1,0 +1,200 @@
+﻿{
+  "document": "SC01_WS4_RESPONSE_PROVENANCE",
+  "workstream": 4,
+  "mission": "SC-01 — Response-provenance forensic for Pillow visible statements",
+  "generatedAt": "2026-09-14T06:20:00.000Z",
+  "repo": "C:/Users/erlan/OneDrive/Desktop/EmpireAI",
+  "readOnlyExceptThisFile": true,
+  "method": {
+    "literalSearch": "Repo-wide exact/phrase search for each target string in pillow-host, shadow-ceo*, synthetic-commerce, conversation-surface, memory, doctrine, scripts, and audits.",
+    "pathReproduction": "Local probe: buildDecisionCaseState(SC-01 prompt) + repairDecisionVisibility(LLM-style prose) reproduces the DNS/mandatory-gate tail.",
+    "crossWorkstream": "Consistent with SC01_WS3_TOOL_ADMISSION: ordinary Pillow chat does not invoke Shadow CEO or read synthetic commerce state."
+  },
+  "sc01PromptSource": "backend/scripts/sc01-production-path-forensic.mjs (SC01 constant)",
+  "responsePath": [
+    "POST /api/pillow/chat",
+    "pillow-host routePrompt / llmLayer.complete",
+    "executive-canonical-state (buildDecisionCaseState)",
+    "LLM completion",
+    "executive-response-polish → repairDecisionVisibility"
+  ],
+  "falseDecisionCaseOnSc01": {
+    "buildsDecisionCase": true,
+    "isBoundedDecisionScenario": true,
+    "parsedCandidate": {
+      "displayName": "Constraints",
+      "cause": "extractNamedCandidateBlocks treats heading 'Constraints:' as a commercial candidate; 'Constraints' is not in skipHeaders (Objective is skipped; Constraints is not).",
+      "file": "backend/src/orchestration/pillow-host/executive-decision-case-state.ts",
+      "functions": ["extractNamedCandidateBlocks", "buildDecisionCaseState"]
+    },
+    "gates": [
+      { "id": "cost_ceiling", "status": "UNKNOWN" },
+      { "id": "approval", "status": "UNKNOWN", "rawHint": "approval required before any real consequence" }
+    ],
+    "eligibleSet": [],
+    "recommendation": {
+      "status": "DO_NOT_SELECT",
+      "selectedId": null,
+      "rationale": "No candidate currently passes every mandatory gate."
+    },
+    "note": "This DecisionCase is not a Shadow CEO record and not synthetic-commerce eligibility. It is a mis-parse of the SC-01 operating prompt as a supplier/product gate pack."
+  },
+  "excludedSources": {
+    "authoritativeShadowCeoRecords": {
+      "hit": false,
+      "evidence": "shadow-ceo/control-plane writers emit Objective/Assessment/Task/Brief structures; zero literal matches for any of the five phrases. Chat path does not call Shadow CEO (SC01_WS3)."
+    },
+    "syntheticCommerce": {
+      "hit": false,
+      "evidence": "synthetic-commerce/eligibility.ts uses hard-stop vocabulary (policy/IP/approval/stock/quality/delivery/economic); no user-visible phrase producers for the five targets. Chat does not load catalog/eligibility during SC-01."
+    },
+    "conversationSurface": {
+      "hit": false,
+      "evidence": "executive-conversation-surface.ts buildNaturalExecutiveFallback uses product-focus / realised-sales copy; no DNS, mandatory-gate, or plan-will-be-executed strings."
+    },
+    "commercialDoctrineMemoryEkls": {
+      "hit": false,
+      "evidence": "No literal matches in memory-realization / doctrine surfaces for the five phrases."
+    }
+  },
+  "phraseMap": [
+    {
+      "phrase": "limited number of eligible products",
+      "classification": "LLM",
+      "supportedByAuthoritativeRecord": false,
+      "unsupported": true,
+      "producer": {
+        "kind": "ordinary_llm_prose",
+        "literalInRepo": false,
+        "nearestPatternEvidence": [
+          "docs/audits/capability-extraction/SHELL_READY_V2_LONG_SESSION_QUAL.json — 'proceed with the selection of NEXUS as the eligible supplier' (LLM)",
+          "docs/audits/capability-extraction/PILLOW_DURABLE_DELIVERY_FAULT_MATRIX.json — 'proceed with the selection of RADIX' (LLM)"
+        ],
+        "notFrom": [
+          "shadow-ceo records",
+          "synthetic-commerce eligibility",
+          "repairDecisionVisibility",
+          "formatDecisionCaseBrief",
+          "conversation-surface templates"
+        ]
+      },
+      "pathRole": "Model invents product-cohort bottleneck language without reading synthetic catalog or Shadow CEO assessment."
+    },
+    {
+      "phrase": "proceed with the selection of products",
+      "classification": "LLM",
+      "supportedByAuthoritativeRecord": false,
+      "unsupported": true,
+      "producer": {
+        "kind": "ordinary_llm_prose",
+        "literalInRepo": false,
+        "nearestPatternEvidence": [
+          "Repeated LLM idiom 'proceed with the selection of <CANDIDATE>' in capability-extraction audits (NEXUS/RADIX/QUAY/VISTA)."
+        ],
+        "notFrom": [
+          "shadow-ceo task writers",
+          "synthetic commerce",
+          "decision-case synthesizers (those emit SELECT <id> / DO NOT SELECT ANY, not 'proceed with the selection of products')"
+        ]
+      },
+      "pathRole": "Plan-as-action prose; no Task/Action record created on chat path."
+    },
+    {
+      "phrase": "this plan will be executed",
+      "classification": "LLM",
+      "supportedByAuthoritativeRecord": false,
+      "unsupported": true,
+      "producer": {
+        "kind": "ordinary_llm_prose",
+        "literalInRepo": false,
+        "missionBan": "Parent SC-01 brief forbids plan-as-execution claims without corresponding records ('the plan will be executed').",
+        "notFrom": [
+          "shadow-ceo action executionStatus",
+          "control-plane brief templates",
+          "repairDecisionVisibility"
+        ]
+      },
+      "pathRole": "Execution claim without Objective/Task/Action persistence."
+    },
+    {
+      "phrase": "DO NOT SELECT ANY",
+      "classification": "template/appender",
+      "supportedByAuthoritativeRecord": false,
+      "unsupported": true,
+      "producer": {
+        "kind": "decision_visibility_repair_appender",
+        "primaryFile": "backend/src/orchestration/pillow-host/executive-decision-case-state.ts",
+        "primaryFunction": "repairDecisionVisibility",
+        "emitSites": [
+          {
+            "site": "repairDecisionVisibility",
+            "lineShape": "**Current action:** DO NOT SELECT ANY. ${state.recommendation.rationale}",
+            "when": "recommendation.status === DO_NOT_SELECT and answer lacks DNS/select-none"
+          },
+          {
+            "site": "formatDecisionCaseBrief",
+            "lineShape": "CURRENT_RECOMMENDATION=DO NOT SELECT ANY",
+            "visibility": "canonical brief injected into model context — not necessarily user-visible alone"
+          },
+          {
+            "site": "synthesizeBoundedDecisionObligation (executive-request-execution-plan.ts)",
+            "lineShape": "action = 'DO NOT SELECT ANY' for DO_NOT_SELECT",
+            "visibility": "bounded section synthesizer when decisionCase obligations fire"
+          }
+        ],
+        "wiredBy": "executive-response-polish.ts — if (canonical.decisionCase) out = repairDecisionVisibility(out, canonical.decisionCase)",
+        "localReproduction": "SC-01 prompt → DecisionCase(Constraints, eligibleSet=[], DO_NOT_SELECT) → repair appends Recommendation DNS block onto LLM prose."
+      },
+      "pathRole": "Post-LLM appender locking a false empty-eligible recommendation onto the visible answer.",
+      "not": "authoritative Shadow CEO record | synthetic commerce | pure LLM (string is deterministic template)"
+    },
+    {
+      "phrase": "no candidate currently passes every mandatory gate",
+      "classification": "template/appender",
+      "supportedByAuthoritativeRecord": false,
+      "unsupported": true,
+      "producer": {
+        "kind": "decision_case_synthesizer_rationale",
+        "primaryFile": "backend/src/orchestration/pillow-host/executive-decision-case-state.ts",
+        "primaryFunction": "buildDecisionCaseState",
+        "literalAssignment": {
+          "when": "eligibleSet.length === 0",
+          "code": "rationale: \"No candidate currently passes every mandatory gate.\""
+        },
+        "userVisibleInjection": "Copied into visible text by repairDecisionVisibility / synthesizeBoundedDecisionObligation as part of Current action line.",
+        "alsoInTestsFixtures": [
+          "backend/scripts/_tmp-helios-phrase-sim.mts",
+          "docs/audits/capability-extraction/PILLOW_CAPABILITY_EXTRACTION_RAW.json (appended onto LLM bodies)"
+        ]
+      },
+      "pathRole": "Canonical rationale for empty eligibleSet; on SC-01 it describes the false 'Constraints' candidate, not Amazon product gates.",
+      "not": "authoritative Shadow CEO record | synthetic commerce eligibility copy | free LLM invention"
+    }
+  ],
+  "classificationSummary": {
+    "limited number of eligible products": "LLM",
+    "proceed with the selection of products": "LLM",
+    "this plan will be executed": "LLM",
+    "DO NOT SELECT ANY": "template/appender",
+    "no candidate currently passes every mandatory gate": "template/appender"
+  },
+  "compositeVisiblePattern": {
+    "observedShape": "<LLM plan/product prose> + ### Recommendation\\n**Current action:** DO NOT SELECT ANY. No candidate currently passes every mandatory gate.",
+    "mechanism": "LLM generates unsupported operating prose; polish repairDecisionVisibility appends DNS+rationale because SC-01 mis-parsed DecisionCase has DO_NOT_SELECT.",
+    "contradiction": "LLM may claim product selection will proceed while appender forces DO NOT SELECT ANY — both unsupported relative to Shadow CEO / synthetic commerce."
+  },
+  "rootCauseForDnsTail": {
+    "stage": "decision-case mis-parse of SC-01 operating prompt + polish appender",
+    "not": "Shadow CEO empty episode recommendation",
+    "fixVector": "Add 'Constraints' (and similar operating headings) to skipHeaders / refuse DecisionCase when message is Shadow CEO operating objective; do not repair DNS on non-candidate packs."
+  },
+  "verdict": {
+    "anyPhraseFromAuthoritativeShadowCeoRecord": false,
+    "anyPhraseFromSyntheticCommerceState": false,
+    "planAsExecutionPresentWithoutRecords": true,
+    "dnsMandatoryGateTailIsDeterministicAppender": true,
+    "productSelectionClaimsAreLlmUnsupported": true
+  },
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN"
+}

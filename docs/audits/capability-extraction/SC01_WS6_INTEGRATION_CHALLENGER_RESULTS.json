@@ -1,0 +1,110 @@
+{
+  "document": "SC01_WS6_INTEGRATION_CHALLENGER_RESULTS",
+  "generatedAt": "2026-09-14T06:59:08.976Z",
+  "heldSource": "SC01_WS6_INTEGRATION_CHALLENGER_HELD.json",
+  "episodeCount": 19,
+  "passed": 19,
+  "failed": 0,
+  "results": [
+    {
+      "id": "EP_ARB_NEW_OBJECTIVE_WORDING",
+      "pass": true,
+      "detail": "arbitrary wording → durable SYNTHETIC objective"
+    },
+    {
+      "id": "EP_OBJECTIVE_FROM_PILLOW_CHAT",
+      "pass": true,
+      "detail": "ordinary chat admission path"
+    },
+    {
+      "id": "EP_OBJECTIVE_FROM_COCKPIT",
+      "pass": true,
+      "detail": "cockpit vertical slice creates episode"
+    },
+    {
+      "id": "EP_EXISTING_OBJECTIVE_CONTINUATION",
+      "pass": true,
+      "detail": "continuation idempotent same objective"
+    },
+    {
+      "id": "EP_SYNTHETIC_STATE_ACCESS",
+      "pass": true,
+      "detail": "assessment from inspected catalog"
+    },
+    {
+      "id": "EP_MISSING_STATE_FAILURE",
+      "pass": true,
+      "detail": "no live_profit invention"
+    },
+    {
+      "id": "EP_TASK_CREATION",
+      "pass": true,
+      "detail": "tasks=2"
+    },
+    {
+      "id": "EP_PARALLEL_DELEGATION",
+      "pass": true,
+      "detail": "parallel task records"
+    },
+    {
+      "id": "EP_PERMITTED_SYNTHETIC_EXECUTION",
+      "pass": true,
+      "detail": "synthetic ALLOWED+EXECUTED"
+    },
+    {
+      "id": "EP_PROHIBITED_EXTERNAL_ACTION",
+      "pass": true,
+      "detail": "live listing BLOCKED"
+    },
+    {
+      "id": "EP_APPROVAL_CREATION",
+      "pass": true,
+      "detail": "approval record + pending not granted"
+    },
+    {
+      "id": "EP_OUTCOME_PERSISTENCE",
+      "pass": true,
+      "detail": "outcome persisted"
+    },
+    {
+      "id": "EP_LEDGER_RECONCILIATION",
+      "pass": true,
+      "detail": "profit=-33.12"
+    },
+    {
+      "id": "EP_LESSON_CREATION",
+      "pass": true,
+      "detail": "lesson linked to outcome"
+    },
+    {
+      "id": "EP_EXECUTIVE_BRIEF_PROVENANCE",
+      "pass": true,
+      "detail": "brief from records"
+    },
+    {
+      "id": "EP_RESTART_DURING_ACTIVE_EPISODE",
+      "pass": true,
+      "detail": "restart stable"
+    },
+    {
+      "id": "EP_DUPLICATE_REQUEST_DELIVERY",
+      "pass": true,
+      "detail": "duplicate → same objective"
+    },
+    {
+      "id": "EP_FRONTEND_LAG",
+      "pass": true,
+      "detail": "shared DB readable by cockpit path"
+    },
+    {
+      "id": "EP_NON_OPERATING_NO_OBJECTIVE",
+      "pass": true,
+      "detail": "ordinary chat not admitted"
+    }
+  ],
+  "BIRTH_STATUS": "NOT_BORN",
+  "WAVE_1": "0/24",
+  "WAVE_CREDIT": 0,
+  "REAL_COMMERCE_AUTHORIZED": false,
+  "status": "HELD_CHALLENGER_PASS"
+}

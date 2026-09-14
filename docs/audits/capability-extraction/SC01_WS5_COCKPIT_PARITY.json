@@ -1,0 +1,150 @@
+﻿{
+  "document": "SC01_WS5_COCKPIT_PARITY",
+  "workstream": 5,
+  "mission": "SC-01",
+  "title": "Shadow CEO cockpit + BFF parity vs Brain routes",
+  "generatedAt": "2026-09-14T06:24:00.000Z",
+  "status": "VERIFIED_READ_MOSTLY",
+  "verdict": "WIRING_PRESENT_AND_DEPLOYED — founder page + BFF catch-all + Brain registerShadowCeoRoutes align; Pillow chat does not call Shadow CEO APIs; Vercel and Railway are separate deploy surfaces but currently same SHA (not lagging).",
+
+  "brainRoutes": {
+    "registeredIn": "backend/src/app.ts",
+    "registerCall": "await registerShadowCeoRoutes(app, { authenticate, auditLogger: brain.auditLogger })",
+    "module": "backend/src/orchestration/shadow-ceo-integration/routes.ts",
+    "export": "backend/src/orchestration/shadow-ceo-integration/index.ts → registerShadowCeoRoutes",
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/shadow-ceo/run-vertical-slice",
+        "auth": "authenticate + founder|admin",
+        "notes": "Primary cockpit action; runs integrated synthetic vertical slice"
+      },
+      {
+        "method": "GET",
+        "path": "/shadow-ceo/cockpit",
+        "auth": "authenticate + founder|admin",
+        "notes": "Inspection; ?run=1 runs slice; ?objectiveId= loads chain"
+      },
+      {
+        "method": "POST",
+        "path": "/shadow-ceo/stop",
+        "auth": "authenticate + founder|admin",
+        "notes": "stopOperatingLoopAndPersist"
+      },
+      {
+        "method": "GET",
+        "path": "/health/shadow-ceo",
+        "auth": "none",
+        "notes": "Public health; Brain-only (not under /shadow-ceo/ BFF prefix)"
+      }
+    ],
+    "productionProbe": {
+      "url": "https://empireai-production.up.railway.app/health/shadow-ceo",
+      "httpStatus": 200,
+      "body": {
+        "status": "ok",
+        "module": "shadow-ceo",
+        "modeDefault": "SYNTHETIC",
+        "birthStatus": "NOT_BORN",
+        "realCommerceAuthorized": false
+      },
+      "brainDeploySha": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+      "deploymentId": "318bfc92-93ac-4719-afa1-3ab5f74a9dd5"
+    }
+  },
+
+  "bffRoutes": {
+    "file": "empireai-web/app/api/shadow-ceo/[...path]/route.ts",
+    "runtime": "nodejs",
+    "maxDuration": 60,
+    "proxy": {
+      "clientPrefix": "/api/shadow-ceo/*",
+      "upstreamPrefix": "/shadow-ceo/*",
+      "helper": "proxyBrainRequest from @/lib/brain/server-proxy",
+      "methods": ["GET", "POST"]
+    },
+    "mappedEndpoints": [
+      "GET  /api/shadow-ceo/cockpit → GET  /shadow-ceo/cockpit",
+      "POST /api/shadow-ceo/run-vertical-slice → POST /shadow-ceo/run-vertical-slice",
+      "POST /api/shadow-ceo/stop → POST /shadow-ceo/stop"
+    ],
+    "notProxiedViaThisBff": [
+      "GET /health/shadow-ceo (Brain host path; no /api/shadow-ceo equivalent required for panel)"
+    ],
+    "productionProbe": {
+      "url": "https://empire-ai.co/api/shadow-ceo/cockpit",
+      "httpStatus": 503,
+      "xMatchedPath": "/api/shadow-ceo/[...path]",
+      "bodyCode": "BRAIN_WORKER_PROXY_FAILED",
+      "interpretation": "Route is deployed on Vercel (matched catch-all). 503 is unauthenticated/worker-proxy failure, not 404 missing BFF."
+    }
+  },
+
+  "frontendPage": {
+    "route": "/cockpit/founder/shadow-ceo",
+    "pageFile": "empireai-web/app/(cockpit)/cockpit/founder/shadow-ceo/page.tsx",
+    "panel": "empireai-web/components/cockpit/shadow-ceo/ShadowCeoOperatingPanel.tsx",
+    "clientCall": {
+      "method": "POST",
+      "path": "/api/shadow-ceo/run-vertical-slice",
+      "body": {}
+    },
+    "navRegistered": false,
+    "navEvidence": "No shadow-ceo entry in empireai-web/lib/cockpit-ux/navigation.ts or cockpit shell; page reachable by direct URL.",
+    "executiveHomeMounted": false,
+    "executiveHomeEvidence": "No ShadowCeo* references under components/cockpit/pages or components/cockpit/executive.",
+    "productionProbe": {
+      "url": "https://empire-ai.co/cockpit/founder/shadow-ceo",
+      "httpStatus": 307,
+      "followsTo": "https://empire-ai.co/login?next=%2Fcockpit%2Ffounder%2Fshadow-ceo",
+      "interpretation": "Page route exists in production bundle; auth gate redirects unauthenticated callers."
+    }
+  },
+
+  "chatPathHasShadowCeo": false,
+  "chatPathEvidence": [
+    "empireai-web/lib/pillow/client.ts only targets /api/pillow/* (health, session, chat, chat-request, history, approval) — zero /api/shadow-ceo references",
+    "rg over empireai-web/components/cockpit/development + executive + lib/pillow: no ShadowCeo/shadow-ceo matches",
+    "Only consumers of /api/shadow-ceo are founder/shadow-ceo page + ShadowCeoOperatingPanel"
+  ],
+
+  "deploySurfaces": {
+    "frontendNeedsSeparateVercelDeploy": true,
+    "brainNeedsSeparateRailwayDeploy": true,
+    "evidence": [
+      "empireai-web/vercel.json → framework nextjs; BRAIN_API_URL=https://empireai-production.up.railway.app",
+      "repo-root railway.toml → startCommand node backend/dist/index.js; healthcheckPath /health/live",
+      "SHADOW_CEO_FOUNDATION_COMPLETION_REPORT.md §17: 'Cockpit UI depends on BFF + Brain deploy; Vercel frontend deploy may lag Brain.'"
+    ],
+    "implication": "Shipping Brain registerShadowCeoRoutes alone is insufficient for founder UI; empireai-web BFF + page must deploy on Vercel. Conversely, Vercel UI without Railway Brain SHA that includes shadow-ceo routes will 502/503."
+  },
+
+  "vercelLikelyLagging": false,
+  "vercelLagEvidence": {
+    "brainSha": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+    "vercelStampUrl": "https://empire-ai.co/api/eos-bundle-stamp",
+    "vercelStamp": {
+      "surface": "empireai-web",
+      "gitCommitSha": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+      "gitCommitRef": "main",
+      "deploymentId": "dpl_8XCwPDVWNqRS33vmQN3PYidJifhN",
+      "servedAt": "2026-09-14T06:22:20.067Z"
+    },
+    "localHead": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+    "originMain": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+    "shaParity": "Brain Railway == Vercel stamp == origin/main",
+    "bffRoutePresentOnVercel": true,
+    "caveat": "Architectural lag risk remains (separate pipelines). At check time they are not lagging."
+  },
+
+  "parityMatrix": {
+    "brainRegistered": true,
+    "bffCatchAllPresent": true,
+    "founderPagePresent": true,
+    "founderPageCallsBff": true,
+    "pillowChatCallsShadowCeo": false,
+    "navLinked": false,
+    "healthLiveOnRailway": true,
+    "vercelAndBrainSameSha": true
+  }
+}

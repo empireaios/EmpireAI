@@ -289,6 +289,17 @@ export type RunVerticalSliceDemoOptions = {
   /** Prefix for all idempotency keys — same prefix + keys → idempotent replay. */
   runKey?: string;
   mode?: ShadowCeoOperatingMode;
+  /** Grand King–admitted objective title (arbitrary wording; not fixture-keyed). */
+  objectiveTitle?: string;
+  /** Grand King–admitted objective statement (preserves user intent). */
+  objectiveStatement?: string;
+  /** When provided, assessment text is taken from inspected synthetic state. */
+  assessmentOverride?: {
+    situationSummary: string;
+    findings: string[];
+    risks: string[];
+    opportunities: string[];
+  };
 };
 
 /**
@@ -305,20 +316,35 @@ export function runVerticalSliceDemo(
   const workspaceId = options.workspaceId ?? "ws_shadow_ceo_demo";
   const mode = options.mode ?? DEFAULT_SHADOW_CEO_MODE;
   const ts = nowIso();
+  const objectiveTitle =
+    options.objectiveTitle?.trim() ||
+    "Shadow CEO synthetic control-plane slice";
+  const objectiveStatement =
+    options.objectiveStatement?.trim() ||
+    "Prove durable Objective→…→Brief chain with approval gating and synthetic-labelled actions.";
+  const assessmentBody = options.assessmentOverride ?? {
+    situationSummary:
+      "Synthetic corridor shows weak fulfilment confidence; no live capital at risk.",
+    findings: [
+      "Fulfilment SLA unknown in synthetic pack",
+      "Margin estimate present but unverified",
+    ],
+    risks: ["Approval-gated spend must remain blocked"],
+    opportunities: ["Authorized synthetic monitoring action is safe to execute"],
+  };
 
   const objective = repo.upsert(
     buildObjective({
       workspaceId,
-      title: "Shadow CEO synthetic control-plane slice",
-      statement:
-        "Prove durable Objective→…→Brief chain with approval gating and synthetic-labelled actions.",
+      title: objectiveTitle.slice(0, 240),
+      statement: objectiveStatement.slice(0, 8000),
       idempotencyKey: `${runKey}:objective`,
       mode,
       source: "synthetic",
       economicClaim: "none",
       completion: completedWithEvidence({
-        summary: "Objective accepted for SYNTHETIC control-plane demo",
-        artifacts: { runKey, workspaceId },
+        summary: "Objective admitted into Shadow CEO SYNTHETIC control plane",
+        artifacts: { runKey, workspaceId, admission: "control_plane" },
         capturedAt: ts,
       }),
     }),
@@ -331,17 +357,16 @@ export function runVerticalSliceDemo(
     objectiveId: objective.id,
     source: "synthetic",
     mode,
-    situationSummary:
-      "Synthetic corridor shows weak fulfilment confidence; no live capital at risk.",
-    findings: [
-      "Fulfilment SLA unknown in synthetic pack",
-      "Margin estimate present but unverified",
-    ],
-    risks: ["Approval-gated spend must remain blocked"],
-    opportunities: ["Authorized synthetic monitoring action is safe to execute"],
+    situationSummary: assessmentBody.situationSummary,
+    findings: assessmentBody.findings,
+    risks: assessmentBody.risks,
+    opportunities: assessmentBody.opportunities,
     completion: completedWithEvidence({
-      summary: "Assessment complete from synthetic signals only",
-      artifacts: { findingCount: 2 },
+      summary: "Assessment complete from inspected synthetic state signals",
+      artifacts: {
+        findingCount: assessmentBody.findings.length,
+        stateBacked: Boolean(options.assessmentOverride),
+      },
       capturedAt: ts,
     }),
     createdAt: ts,

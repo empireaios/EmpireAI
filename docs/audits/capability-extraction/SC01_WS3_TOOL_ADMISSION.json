@@ -1,0 +1,196 @@
+{
+  "document": "SC01_WS3_TOOL_ADMISSION",
+  "workstream": 3,
+  "mission": "SC-01 — Pillow capability and tool-admission forensic for Shadow CEO",
+  "generatedAt": "2026-09-14T06:08:00.000Z",
+  "repo": "C:/Users/erlan/OneDrive/Desktop/EmpireAI",
+  "readOnly": true,
+  "verdict": {
+    "ordinaryPillowChatCanInvokeShadowCeo": false,
+    "proofClass": "NEGATIVE_ABSENCE + POSITIVE_PATH_TRACE",
+    "summary": "Ordinary Pillow chat (POST /api/pillow/chat → pillowHost.routePrompt → llmLayer.complete) never imports, calls, or admits Shadow CEO. Chat has no tool-calling loop. Shadow CEO exists only as a separate founder HTTP/API + vertical-slice plane."
+  },
+  "answers": {
+    "q1_expectedPillowPosture": {
+      "answer": "merely_answer_in_chat",
+      "detail": "Production executive chat is a text-completion path. It does not call Shadow CEO runtime, does not emit structured Shadow CEO chain records for another layer, and does not trigger Shadow CEO workflows from Grand King chat. Shadow CEO vertical-slice demo is reachable only via founder-authenticated HTTP routes under /shadow-ceo/* (and BFF/cockpit), not via ordinary chat.",
+      "notObserved": [
+        "direct_shadow_ceo_runtime_invoke_from_chat",
+        "structured_objective_handoff_from_chat_to_shadow_ceo",
+        "chat_triggered_shadow_ceo_workflow"
+      ]
+    },
+    "q2_shadowCeoRelatedToolsOrCapabilities": {
+      "availableToOrdinaryPillowChat": "NONE",
+      "brainRegisteredShadowCeoTools": [],
+      "moduleRouteShadowCeoActions": [],
+      "pillowCapabilityRegistryShadowCeoEntries": [],
+      "adjacentButNotShadowCeo": [
+        {
+          "id": "pillow_executive.run_operating_cycle",
+          "module": "pillow-executive-operating-loop",
+          "relation": "SEPARATE_PLANE",
+          "note": "Brain RegisteredTool for executive-operating-loop; not Shadow CEO; not offered in pillow chat LLM args"
+        },
+        {
+          "id": "pillow_executive.latest_cycle",
+          "module": "pillow-executive-operating-loop",
+          "relation": "SEPARATE_PLANE"
+        },
+        {
+          "id": "pillow_executive.run_capability_tests",
+          "module": "pillow-executive-operating-loop",
+          "relation": "SEPARATE_PLANE"
+        },
+        {
+          "id": "pillow_executive.birth_readiness",
+          "module": "pillow-executive-operating-loop",
+          "relation": "SEPARATE_PLANE"
+        },
+        {
+          "id": "chat_tool_calling_loop",
+          "registry": "pillow-capability-registry.ts",
+          "availability": "unavailable",
+          "note": "Explicitly documents that production executive chat has no mid-chat tool loop"
+        }
+      ],
+      "shadowCeoHttpSurface_notChatTools": [
+        "POST /shadow-ceo/run-vertical-slice (founder/admin)",
+        "GET /shadow-ceo/cockpit (founder/admin)",
+        "POST /shadow-ceo/stop (founder/admin)",
+        "GET /health/shadow-ceo (public health)"
+      ]
+    },
+    "q3_whereAdmissionMustBeAddedForGrandKingChatToCreateObjective": {
+      "requiredAdmissionSites": [
+        {
+          "priority": 1,
+          "site": "backend/src/orchestration/pillow-host/pillow-host.ts → routePrompt",
+          "why": "Single ordinary chat execution path. After Digital Soul gate and intent recognition, before or instead of pure LLM prose, host must decide whether to create a Shadow CEO Objective and call control-plane writers (buildObjective + repo.upsert)."
+        },
+        {
+          "priority": 2,
+          "site": "backend/src/domain/services/executive-conversational-routing.ts → classifyExecutiveQuery / shouldRunConversationalPipeline",
+          "why": "Current ExecutiveQueryKind has no Shadow CEO / SYNTHETIC operating intents (only screen|cursor|blocker|alert|health|metric|recommend|general). Admission needs an explicit operating-intent class so ordinary chat does not invent Objectives from every message."
+        },
+        {
+          "priority": 3,
+          "site": "backend/src/orchestration/shadow-ceo-authority/ (gate before write)",
+          "why": "Architecture forbids LLM/chat from granting approval or unlocking LIVE_EXECUTION. Any chat-originated Objective create must pass fail-closed mode/budget/external-action gate (SYNTHETIC-only for mission)."
+        },
+        {
+          "priority": 4,
+          "site": "New brain RegisteredTool + module-routes mapping OR host-side deterministic writer (preferred over LLM tool loop)",
+          "candidates": [
+            "backend/src/brain/index.ts (register tools array — currently has zero shadow-ceo imports)",
+            "backend/src/agents/routes/module-routes.ts (no shadow-ceo actions)",
+            "backend/src/orchestration/shadow-ceo/control-plane.ts → buildObjective + repository.upsert"
+          ],
+          "why": "No Shadow CEO tools exist today. If using LLM tools, also flip chat tool-calling admission; if host-side, skip LLM tools and write Objective from classified intent."
+        },
+        {
+          "priority": 5,
+          "site": "backend/src/orchestration/pillow-host/pillow-capability-registry.ts + executive-truth-grounding.ts",
+          "why": "chat_tool_calling_loop is unavailable and chatHasToolCallingLoop is hard-coded false. Any claim that chat invoked Shadow CEO tools would be epistemically false until registry + truth authority are updated."
+        },
+        {
+          "priority": 6,
+          "site": "backend/src/orchestration/pillow-host/routes/pillow-routes.ts → POST /api/pillow/chat",
+          "why": "Entrypoint only admits expensive work via admitExpensiveWork('pillow chat') then routePrompt. No Shadow CEO create hook; optional request schema fields for operating mode / objective create would land here if explicit Grand King UX is preferred over free-text classification."
+        }
+      ],
+      "insufficientAlone": [
+        "POST /shadow-ceo/run-vertical-slice — demo/integration slice, not ordinary chat Objective create",
+        "executive-operating-loop tools — separate plane; must not become competing Objective writer",
+        "pillow.objective.getDashboardState() inside routePrompt — Pillowsession objective dashboard, not Shadow CEO Objective chain"
+      ]
+    }
+  },
+  "searchEvidence": {
+    "shadowCeoStringHitsInPillowChatPath": {
+      "pillow-host": 0,
+      "pillow-host/routes/pillow-routes.ts": 0,
+      "brain/index.ts": 0,
+      "agents/routes/module-routes.ts": 0,
+      "pillow package chat path": 0
+    },
+    "shadowCeoModulesPresent": [
+      "backend/src/orchestration/shadow-ceo/",
+      "backend/src/orchestration/shadow-ceo-authority/",
+      "backend/src/orchestration/shadow-ceo-integration/",
+      "backend/src/orchestration/synthetic-commerce/"
+    ],
+    "appRegistration": {
+      "file": "backend/src/app.ts",
+      "call": "registerShadowCeoRoutes(app, …)",
+      "context": "commerce-critical routes; adjacent to pillow commissioning; does NOT wire into pillow chat"
+    },
+    "executiveOperatingLoopVsShadowCeo": {
+      "relationship": "additive_separate_planes",
+      "canonicalDoc": "docs/audits/capability-extraction/SHADOW_CEO_CANONICAL_ARCHITECTURE.md",
+      "note": "executive-operating-loop continues for birth/presale; Shadow CEO is additive simulation plane. OutcomeRecord namespaces must remain separate."
+    },
+    "chatMessageClassifiers": {
+      "file": "backend/src/domain/services/executive-conversational-routing.ts",
+      "recognizesShadowCeoIntent": false,
+      "recognizesSyntheticOperatingIntent": false,
+      "ExecutiveQueryKind": [
+        "screen",
+        "cursor",
+        "blocker",
+        "alert",
+        "health",
+        "metric",
+        "recommend",
+        "general"
+      ]
+    },
+    "toolsOfferedToLlmDuringPillowChat": {
+      "offered": [],
+      "mechanism": "routePrompt builds llmArgs without tools; OpenAIIntegrationLayer.complete → BrainLLMAdapter.complete → llmRouter.complete without tools field; capability registry marks chat_tool_calling_loop unavailable; executive-truth-grounding sets chatHasToolCallingLoop=false",
+      "evidenceFiles": [
+        "backend/src/orchestration/pillow-host/pillow-host.ts (llmArgs ~29981)",
+        "pillow/src/openai/engine.ts (llmRequest without tools)",
+        "backend/src/orchestration/pillow-host/brain-llm-adapter.ts",
+        "backend/src/orchestration/pillow-host/pillow-capability-registry.ts",
+        "backend/src/orchestration/pillow-host/executive-truth-grounding.ts"
+      ]
+    }
+  },
+  "ordinaryChatPathTrace": [
+    "POST /api/pillow/chat (pillow-routes.ts)",
+    "admitExpensiveWork('pillow chat')",
+    "pillowHost.routePrompt",
+    "gateExecutiveConversation (Digital Soul)",
+    "optional executive council / truth / reasoning",
+    "llmLayer.complete(llmArgs) — text only",
+    "post-LLM gates / grounding / seal",
+    "return chat message to Grand King"
+  ],
+  "shadowCeoInvocationPathsThatExist": [
+    {
+      "path": "HTTP founder API",
+      "entry": "registerShadowCeoRoutes → POST /shadow-ceo/run-vertical-slice",
+      "createsObjective": true,
+      "viaOrdinaryChat": false
+    },
+    {
+      "path": "control-plane demo",
+      "entry": "runVerticalSliceDemo / runIntegratedVerticalSlice → buildObjective + repo.upsert",
+      "createsObjective": true,
+      "viaOrdinaryChat": false
+    },
+    {
+      "path": "cockpit BFF",
+      "entry": "empireai-web /api/shadow-ceo → Brain /shadow-ceo/*",
+      "createsObjective": "via vertical-slice/run only",
+      "viaOrdinaryChat": false
+    }
+  ],
+  "conclusion": {
+    "canOrdinaryPillowChatInvokeShadowCeo": false,
+    "shadowCeoRelatedToolsAvailableToChat": "NONE",
+    "pillowExpectedBehaviorToday": "merely_answer_in_chat",
+    "blockerForGrandKingChatObjectiveCreate": "No intent class, no chat→control-plane writer, no brain tool, no tool-calling admission, authority gate not on chat path"
+  }
+}

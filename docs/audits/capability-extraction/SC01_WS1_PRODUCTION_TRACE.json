@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-09-14T06:16:43.067Z",
+  "MISSION": "SC01_PRODUCTION_PATH_FORENSIC",
+  "RUNNING_SHA": "0f98cdd5dba6a850e36c756c5bb8290393216a08",
+  "DEPLOYMENT_ID": "318bfc92-93ac-4719-afa1-3ab5f74a9dd5",
+  "shadowCeoHealth": {
+    "status": "ok",
+    "module": "shadow-ceo",
+    "modeDefault": "SYNTHETIC",
+    "birthStatus": "NOT_BORN",
+    "realCommerceAuthorized": false
+  },
+  "sessionId": "5cb3a754-492a-4306-840e-469b3518550d",
+  "requestId": "pcr_196de6fd0e00452d",
+  "chatStatus": 200,
+  "kind": "llm",
+  "textPreview": "### Executive Operating Brief\n**Episode/Objective ID:** SC-01 — Shadow CEO Operating Simulation\n**Mode:** Synthetic\n#### Tasks\n1. **Define Bounded Synthetic Experiment Cost:** Establish a clear budget for the synthetic operating window.\n2. **Select Bounded Initial Product Cohort:** Identify a limited set of products for the simulation.\n3. **Monitor Realised Synthetic Net Profit:** Track and report on cumulative profits achieved within the synthetic environment.\n4. **Ensure Compliance with Constraints:** Adhere strictly to the outlined constraints, ensuring no real-world actions are taken.\n5. **Assess and Prioritize Actions:** Evaluate potential actions based on their alignment with the objective and constraints.\n6. **Delegate Responsibilities:** Assign tasks to relevant synthetic operational units as needed.\n7. **Prepare for Grand King Approval:** Document findings and prepare a report for Grand King review before any real-world implications.\n#### Outcomes\n- **Cumulative Realised Synthetic Net Profit:** To be tracked and reported based on the selected product cohort performance. - **Compliance Documentation:** Ensure all actions remain within the defined synthetic operating parameters. - **Decision-Making Framework:** Develop a framework for assessing future actions based on synthetic outcomes.\n#### Ledger Effect\n- **Initial Budget Allocation:** To be determined based on the bounded synthetic experiment cost. - **Profit Tracking:** Document all profits generated within the synthetic environment for future analysis.\n#### Next Action\n- **Define Bounded Synthetic Experiment Cost:** Establish and confirm the budget for the synthetic operation. This will require a detailed analysis of potential costs associated with the selected product cohort.\n#### Approval Required\n- **Grand King Approval:** Required before any real-world actions or commitments are made based on the outcomes of this simulation.\nThis brief outlines the necessary steps and considerations for operating wi",
+  "textFull": "### Executive Operating Brief\n**Episode/Objective ID:** SC-01 — Shadow CEO Operating Simulation\n**Mode:** Synthetic\n#### Tasks\n1. **Define Bounded Synthetic Experiment Cost:** Establish a clear budget for the synthetic operating window.\n2. **Select Bounded Initial Product Cohort:** Identify a limited set of products for the simulation.\n3. **Monitor Realised Synthetic Net Profit:** Track and report on cumulative profits achieved within the synthetic environment.\n4. **Ensure Compliance with Constraints:** Adhere strictly to the outlined constraints, ensuring no real-world actions are taken.\n5. **Assess and Prioritize Actions:** Evaluate potential actions based on their alignment with the objective and constraints.\n6. **Delegate Responsibilities:** Assign tasks to relevant synthetic operational units as needed.\n7. **Prepare for Grand King Approval:** Document findings and prepare a report for Grand King review before any real-world implications.\n#### Outcomes\n- **Cumulative Realised Synthetic Net Profit:** To be tracked and reported based on the selected product cohort performance. - **Compliance Documentation:** Ensure all actions remain within the defined synthetic operating parameters. - **Decision-Making Framework:** Develop a framework for assessing future actions based on synthetic outcomes.\n#### Ledger Effect\n- **Initial Budget Allocation:** To be determined based on the bounded synthetic experiment cost. - **Profit Tracking:** Document all profits generated within the synthetic environment for future analysis.\n#### Next Action\n- **Define Bounded Synthetic Experiment Cost:** Establish and confirm the budget for the synthetic operation. This will require a detailed analysis of potential costs associated with the selected product cohort.\n#### Approval Required\n- **Grand King Approval:** Required before any real-world actions or commitments are made based on the outcomes of this simulation.\nThis brief outlines the necessary steps and considerations for operating within the synthetic environment while ensuring compliance with all constraints and preparing for future actions.\n### Recommendation\n**Current action:** DO NOT SELECT ANY. No candidate currently passes every mandatory gate.",
+  "phrases": {
+    "doNotSelectAny": true,
+    "noCandidatePasses": true,
+    "limitedEligible": false,
+    "planWillBeExecuted": false,
+    "objectiveId": false,
+    "shadowCeoEpisode": true,
+    "executionBlocked": false,
+    "realisedSyntheticProfit": true
+  },
+  "cockpitProbe": {
+    "status": 200,
+    "body": {
+      "ok": true,
+      "message": "POST /shadow-ceo/run-vertical-slice or GET ?run=1",
+      "BIRTH_STATUS": "NOT_BORN",
+      "WAVE_1": "0/24",
+      "EXTERNAL_ACTION_LOCK": "LOCKED",
+      "REAL_COMMERCE_AUTHORIZED": false
+    }
+  },
+  "forensicHypothesis": {
+    "A_chatBypassedShadowCeo": true,
+    "note": "Absence of objectiveId/SHADOW_CEO_EXECUTION_BLOCKED in chat response while plan prose/DNS appears supports bypass or non-admission"
+  },
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN"
+}

@@ -17,7 +17,11 @@ export type ShadowCeoRepositoryOptions = {
 };
 
 function defaultDbPath(): string {
-  return path.resolve(process.cwd(), ".data", "shadow-ceo.db");
+  const dataRoot =
+    process.env.SHADOW_CEO_DATA_DIR ||
+    process.env.EMPIRE_DATA_DIR ||
+    path.resolve(process.cwd(), ".data");
+  return path.join(dataRoot, "shadow-ceo.db");
 }
 
 export function ensureShadowCeoTables(db: EmpireDatabase): void {
@@ -191,6 +195,23 @@ export class SqliteShadowCeoRepository {
       )
       .get({ objectiveId }) as { n: number } | undefined;
     return Number(row?.n ?? 0);
+  }
+
+  /** Most recent objective records for cockpit parity / episode listing. */
+  listRecentObjectives(limit = 20): Extract<ShadowCeoRecord, { kind: "objective" }>[] {
+    this.assertOpen();
+    const rows = this.db
+      .prepare(
+        `SELECT record_json FROM ${TABLE}
+         WHERE kind = 'objective'
+         ORDER BY created_at DESC, id DESC
+         LIMIT @limit`,
+      )
+      .all({ limit }) as Array<{ record_json: string }>;
+    return rows.map(
+      (r) =>
+        JSON.parse(r.record_json) as Extract<ShadowCeoRecord, { kind: "objective" }>,
+    );
   }
 
   private assertOpen(): void {

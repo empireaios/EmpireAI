@@ -13,6 +13,7 @@ import {
   stopOperatingLoopAndPersist,
 } from "../shadow-ceo-authority/index.js";
 import { runIntegratedVerticalSlice } from "./integrated-vertical-slice.js";
+import { resolveShadowCeoDbPath } from "./durable-paths.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
@@ -81,7 +82,7 @@ export async function registerShadowCeoRoutes(
         };
       }
       if (q.objectiveId) {
-        const repo = openShadowCeoRepository();
+        const repo = openShadowCeoRepository({ dbPath: resolveShadowCeoDbPath() });
         const chain = loadChain(repo, q.objectiveId);
         repo.close();
         return {
@@ -95,14 +96,29 @@ export async function registerShadowCeoRoutes(
           REAL_COMMERCE_AUTHORIZED: false,
         };
       }
-      return {
-        ok: true,
-        message: "POST /shadow-ceo/run-vertical-slice or GET ?run=1",
-        BIRTH_STATUS: "NOT_BORN",
-        WAVE_1: "0/24",
-        EXTERNAL_ACTION_LOCK: "LOCKED",
-        REAL_COMMERCE_AUTHORIZED: false,
-      };
+      {
+        const repo = openShadowCeoRepository({ dbPath: resolveShadowCeoDbPath() });
+        const recentObjectives = repo.listRecentObjectives(12).map((o) => ({
+          id: o.id,
+          title: o.title,
+          mode: o.mode,
+          createdAt: o.createdAt,
+          completion: o.completion.status,
+        }));
+        repo.close();
+        return {
+          ok: true,
+          message:
+            recentObjectives.length > 0
+              ? "Pass ?objectiveId= to load a durable episode chain"
+              : "POST /shadow-ceo/run-vertical-slice or GET ?run=1",
+          recentObjectives,
+          BIRTH_STATUS: "NOT_BORN",
+          WAVE_1: "0/24",
+          EXTERNAL_ACTION_LOCK: "LOCKED",
+          REAL_COMMERCE_AUTHORIZED: false,
+        };
+      }
     },
   );
 
