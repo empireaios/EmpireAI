@@ -5,14 +5,13 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 
-import type { createAuthMiddleware } from "../../../auth/middleware.js";
-import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
-import { openShadowCeoRepository, loadChain } from "../../shadow-ceo/index.js";
+import type { createAuthMiddleware } from "../../auth/middleware.js";
+import type { AuditLogger } from "../../brain/audit/audit-logger.js";
+import { openShadowCeoRepository, loadChain } from "../shadow-ceo/index.js";
 import {
-  getLoopControl,
   listBlockedActions,
   stopOperatingLoopAndPersist,
-} from "../../shadow-ceo-authority/index.js";
+} from "../shadow-ceo-authority/index.js";
 import { runIntegratedVerticalSlice } from "./integrated-vertical-slice.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
