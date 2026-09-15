@@ -269,10 +269,8 @@ export function validateExactLineResponse(
   userMessage: string,
 ): { ok: boolean; reason?: string } {
   const projected = projectExactLineResponseContract(userMessage);
-  if (!projected.ok && "detected" in projected && projected.detected === false) {
-    return { ok: true };
-  }
   if (!projected.ok) {
+    if ("detected" in projected) return { ok: true };
     return { ok: false, reason: projected.reason };
   }
   const normalized = String(answer || "")

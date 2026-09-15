@@ -1,0 +1,29 @@
+{
+  "document": "DC05421_WS5_CONTAMINATION_PRESERVATION",
+  "mission": "PILLOW_PRODUCTION_AUTHORITY_SHADOW_CEO_REPAIR",
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN",
+  "mutationLayersAudited": [
+    "executive-commercial-arithmetic.ts (isCommercialArithmeticAsk gated by supplied aggregation)",
+    "synthesizeCommercialArithmeticAnswer / repairAnswerWithCalculator / formatCommercialArithmeticBrief",
+    "executive-request-execution-plan.ts economics section",
+    "executive-task-contract.ts arithmetic synthesizeUnitAnswer branch",
+    "executive-release-gate.ts (re-projects exact-line contract after arith repair)",
+    "pillow-host routePrompt (typed contract short-circuit before LLM / Shadow CEO)",
+    "shadow-ceo chat-admission (source-backed brief; plan-as-execution guard)"
+  ],
+  "contaminationBlocked": {
+    "UNKNOWN_unproven_overwrite_of_supplied_contribution": "blocked when isSuppliedContributionAggregationAsk",
+    "SELLING_PRICE_dependency_on_supplied_facts": "blocked",
+    "extra_prose_on_exact_line_contract": "blocked by projector + validateExactLineResponse",
+    "DNS_on_shadow_ceo_brief": "shadowCeoPlanAsExecutionViolations"
+  },
+  "preserved": {
+    "SYNTHETIC_default": true,
+    "NOT_BORN": true,
+    "realCommerceAuthorized": false,
+    "durable_redis_recovery": true,
+    "shadow_ceo_external_action_lock": true,
+    "restart_idempotency_shadow_ceo": true
+  }
+}
