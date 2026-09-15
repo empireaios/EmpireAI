@@ -1,14 +1,34 @@
 /**
- * Production proof: Grand King-style candidate evaluation via normal Pillow chat path.
- * Requires live production URL (same route as ordinary Pillow chat).
+ * Request-control production proof via normal Pillow chat (cockpit BFF).
+ * SC-01 frozen. WAVE_CREDIT=0. Not a CEO/Wave/Birth certification.
  */
-import fs from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const BASE =
-  process.env.PILLOW_PROOF_BASE ||
-  process.env.EMPIRE_PROOF_BASE ||
-  "https://empireai-production.up.railway.app";
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const OUT = path.join(
+  ROOT,
+  "docs/audits/capability-extraction/REQUEST_CONTROL_PRODUCTION_PROOF.json",
+);
+const COCKPIT = process.env.EMPIRE_COCKPIT_URL || "https://empire-ai.co";
+const BRAIN = process.env.EMPIRE_BRAIN_URL || "https://empireai-production.up.railway.app";
+
+try {
+  for (const line of readFileSync(path.join(ROOT, "backend/.env"), "utf8").split(/\n/)) {
+    const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^"|"$/g, "").trim();
+  }
+} catch {
+  /* optional */
+}
+
+const EMAIL = process.env.EMPIRE_LOGIN_EMAIL || process.env.FOUNDER_EMAIL;
+const PASSWORD = process.env.EMPIRE_LOGIN_PASSWORD || process.env.FOUNDER_PASSWORD;
+if (!EMAIL || !PASSWORD) {
+  console.error("Missing credentials");
+  process.exit(2);
+}
 
 const PROMPT = `Shadow CEO SYNTHETIC mode. Do not touch live commerce. Birth remains NOT_BORN.
 
@@ -45,83 +65,102 @@ Eligible candidates: ...
 Candidate selected: ...
 `;
 
-const EXPECTED =
-  "Eligible candidates: Kestrel\nCandidate selected: Kestrel";
+const EXPECTED = "Eligible candidates: Kestrel\nCandidate selected: Kestrel";
 
-async function health() {
-  const r = await fetch(`${BASE}/health/live`, { signal: AbortSignal.timeout(30000) });
-  const j = await r.json();
-  return j;
-}
-
-async function chat(message) {
-  const r = await fetch(`${BASE}/api/pillow/chat`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      message,
-      workspaceId: `ws_req_ctrl_proof_${Date.now()}`,
-      actor: "grand_king_proof",
-    }),
-    signal: AbortSignal.timeout(180000),
-  });
-  const text = await r.text();
-  let json;
-  try {
-    json = JSON.parse(text);
-  } catch {
-    json = { raw: text };
+function cookie(res) {
+  const raw = typeof res.headers.getSetCookie === "function" ? res.headers.getSetCookie() : [];
+  for (const h of raw) {
+    const m = String(h).match(/^empireai_session=([^;]+)/);
+    if (m) return `empireai_session=${m[1]}`;
   }
-  return { status: r.status, json };
+  return null;
 }
 
-const h = await health();
-const sha = String(h?.deploy?.gitCommitSha || "");
-const dep = String(h?.deploy?.deploymentId || "");
-const workerOnline = !!h?.worker?.online;
+const health = await (await fetch(`${BRAIN}/health/live`)).json().catch(() => ({}));
 
-const chatRes = await chat(PROMPT);
-const message = String(chatRes.json?.message || chatRes.json?.text || "");
-const shadow = chatRes.json?.shadowCeo || {};
-const exactMatch = message.trim() === EXPECTED;
+const lr = await fetch(`${COCKPIT}/api/auth/login`, {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+});
+const c = cookie(lr);
+if (!c) throw new Error("login_failed");
+
+const sr = await fetch(`${COCKPIT}/api/pillow/session`, {
+  method: "POST",
+  headers: { "content-type": "application/json", cookie: c },
+  body: JSON.stringify({ forceNew: true }),
+  signal: AbortSignal.timeout(60_000),
+});
+const sj = await sr.json();
+const sid = sj.session?.sessionId || sj.sessionId;
+
+const cr = await fetch(`${COCKPIT}/api/pillow/chat`, {
+  method: "POST",
+  headers: { "content-type": "application/json", cookie: c },
+  body: JSON.stringify({
+    sessionId: sid,
+    message: PROMPT,
+    workspaceContext: {
+      screenPath: "/cockpit/development/pillow",
+      screenId: "SCR-800",
+      screenTitle: "Pillow Centre",
+    },
+  }),
+  signal: AbortSignal.timeout(180_000),
+});
+const cj = await cr.json().catch(() => ({}));
+const text = String(cj?.result?.message || cj?.message || "")
+  .replace(/\r\n/g, "\n")
+  .trim();
+const requestId = cj?.result?.requestId || cj?.requestId || null;
+const kind = cj?.result?.kind || cj?.kind || null;
+const shadow = cj?.result?.shadowCeo || cj?.shadowCeo || {};
+
+const exact = text === EXPECTED;
 const noDemo =
   !/desk fan|cable organiser|prod-synth|fulfilment monitor|supplier spend|6\.87|Executive Brief \(source-backed\)/i.test(
-    message,
+    text,
   );
+const twoLines = text.split("\n").length === 2;
 const zeroFinance =
   shadow.ledgerRealisedSyntheticNetProfitUsd === 0 ||
   shadow.financialEffect?.profitUsd === 0 ||
-  (exactMatch && noDemo);
+  (exact && noDemo);
 
 const out = {
   generatedAt: new Date().toISOString(),
   MISSION: "REQUEST_CONTROL_PRODUCTION_PROOF",
-  BASE,
-  RUNNING_SHA: sha,
-  DEPLOYMENT_ID: dep,
-  workerOnline,
-  brain: h?.brain,
-  chatHttp: chatRes.status,
-  requestId: chatRes.json?.requestId || null,
-  kind: chatRes.json?.kind || null,
-  message,
+  RUNNING_SHA: health?.deploy?.gitCommitSha || null,
+  DEPLOYMENT_ID: health?.deploy?.deploymentId || null,
+  workerOnline: !!health?.worker?.online,
+  brain: health?.brain || null,
+  requestId,
+  kind,
+  chatHttp: cr.status,
+  text,
   expected: EXPECTED,
-  exactMatch,
+  exactMatch: exact,
   noDemoCatalogOrBrief: noDemo,
+  exactlyTwoLines: twoLines,
   zeroFinanceEvidence: zeroFinance,
   shadowCeo: shadow,
-  ENGINEERING_PASS: exactMatch && noDemo && chatRes.status === 200 && workerOnline,
+  recordOwnership: {
+    requestId: shadow.requestId || null,
+    runKey: shadow.runKey || null,
+    objectiveId: shadow.objectiveId || null,
+    correlationId: shadow.correlationId || null,
+    suppliedProductNames: shadow.suppliedProductNames || null,
+  },
+  ENGINEERING_PASS:
+    exact && noDemo && twoLines && cr.status === 200 && !!health?.worker?.online,
   WAVE_CREDIT: 0,
   BIRTH_STATUS: "NOT_BORN",
   SC01: "FROZEN",
   REAL_COMMERCE: "locked",
 };
 
-const outPath = path.resolve(
-  process.cwd(),
-  "../docs/audits/capability-extraction/REQUEST_CONTROL_PRODUCTION_PROOF.json",
-);
-fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, JSON.stringify(out, null, 2));
+mkdirSync(path.dirname(OUT), { recursive: true });
+writeFileSync(OUT, JSON.stringify(out, null, 2));
 console.log(JSON.stringify(out, null, 2));
-if (!out.ENGINEERING_PASS) process.exit(1);
+process.exit(out.ENGINEERING_PASS ? 0 : 1);

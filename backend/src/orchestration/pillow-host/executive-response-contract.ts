@@ -187,6 +187,16 @@ function renderLine(field: ExactLineField, totalUsd: number | null): string | nu
 export function projectExactLineResponseContract(
   message: string,
 ): ResponseContractProjection {
+  const t = String(message || "");
+  // Candidate-evaluation exact answers are owned by Shadow CEO request-control path.
+  // Do not hijack them into checkpoint-token contracts.
+  if (
+    /\bEligible\s+candidates\s*:/i.test(t) &&
+    /\bCandidate\s+selected\s*:/i.test(t)
+  ) {
+    return { ok: false, detected: false };
+  }
+
   const contract = parseExactLineResponseContract(message);
   if (!contract) return { ok: false, detected: false };
 
