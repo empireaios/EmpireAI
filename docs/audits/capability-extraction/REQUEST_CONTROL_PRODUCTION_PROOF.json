@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-09-15T21:49:15.033Z",
+  "MISSION": "REQUEST_CONTROL_PRODUCTION_PROOF",
+  "RUNNING_SHA": "e45cb0517e551b913df372ce623e6a3963adaadd",
+  "DEPLOYMENT_ID": "fbba4c02-be53-4bf2-b042-da19ac4c0c91",
+  "workerOnline": true,
+  "brain": "online",
+  "requestId": "pcr_ae5eb6e67e494b59",
+  "kind": "shadow_ceo_episode",
+  "chatHttp": 200,
+  "text": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
+  "expected": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
+  "exactMatch": true,
+  "noDemoCatalogOrBrief": true,
+  "exactlyTwoLines": true,
+  "zeroFinanceEvidence": true,
+  "shadowCeo": {
+    "objectiveId": "obj_5cc6d2e9ac45548f",
+    "correlationId": "19df7d10-9a07-4307-bc99-77f4bef73c63",
+    "runKey": "run_330ad7d960310cd12db61abf",
+    "requestId": "req_efb7210b19ff4173",
+    "eligibleProductCount": 1,
+    "ledgerRealisedSyntheticNetProfitUsd": 0,
+    "suppliedProductNames": [
+      "Kestrel",
+      "Lumen",
+      "Morrow"
+    ],
+    "financialEffect": {
+      "spendingUsd": 0,
+      "revenueUsd": 0,
+      "profitUsd": 0,
+      "ledgerMoved": false
+    }
+  },
+  "recordOwnership": {
+    "requestId": "req_efb7210b19ff4173",
+    "runKey": "run_330ad7d960310cd12db61abf",
+    "objectiveId": "obj_5cc6d2e9ac45548f",
+    "correlationId": "19df7d10-9a07-4307-bc99-77f4bef73c63",
+    "suppliedProductNames": [
+      "Kestrel",
+      "Lumen",
+      "Morrow"
+    ]
+  },
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "BIRTH_STATUS": "NOT_BORN",
+  "SC01": "FROZEN",
+  "REAL_COMMERCE": "locked"
+}

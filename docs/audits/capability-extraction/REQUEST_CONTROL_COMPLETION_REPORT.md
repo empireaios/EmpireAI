@@ -40,10 +40,25 @@ See `REQUEST_CONTROL_WS1_FORENSIC_TRACE.md` (failed IDs preserved).
 | Diagnostic financial effect | spending/revenue/profit = 0; ledgerMoved=false |
 | Control-plane / foundation / DC05421 | still pass (demo route intact) |
 
-## 14–20. Production (filled after deploy)
+## 14–20. Production proof (deployed)
 
-See `REQUEST_CONTROL_PRODUCTION_PROOF.json` after deploy.
+| Field | Value |
+|-------|--------|
+| SHA | `e45cb0517e551b913df372ce623e6a3963adaadd` |
+| Deployment | `fbba4c02-be53-4bf2-b042-da19ac4c0c91` SUCCESS |
+| Health | worker online · brain online |
+| Request | `pcr_ae5eb6e67e494b59` |
+| Response | `Eligible candidates: Kestrel` / `Candidate selected: Kestrel` |
+| Ownership | requestId `req_efb7210b19ff4173` · runKey `run_330ad7d960310cd12db61abf` · objectiveId `obj_5cc6d2e9ac45548f` · products Kestrel,Lumen,Morrow |
+| Finance | spending/revenue/profit = 0 · ledgerMoved=false |
+| Demo | none |
 
-**Rollback:** `git revert <SHA>` and redeploy previous Railway deployment.
+**Rollback:** `git revert e45cb051` (and `50e50e7d` if needed) then redeploy.
 
-**Unresolved serious defects:** none known in request-control path after local proofs; production proof is authoritative for exit gate.
+**Unresolved serious defects:** none in request-control path after production proof.
+
+---
+
+## PRODUCTION REQUEST CONTROL PASSED — AWAITING ONE SHORT GRAND KING TEST
+
+WAVE_CREDIT=0 · Wave 1 remains 0/24 · Birth unauthorized · Real commerce locked · SC-01 frozen · Cursor cannot certify Pillow.
