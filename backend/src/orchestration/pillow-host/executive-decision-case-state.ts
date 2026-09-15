@@ -221,7 +221,9 @@ function isReservedCandidateName(name: string): boolean {
     GATE_FIELD_CANDIDATE_NAMES.test(name) ||
     /^(?:PASS|FAIL|PENDING|GRANTED|CLEARED|APPROVAL|ELIGIBLE|RULE|SELECT|UNKNOWN|UNPROVEN)$/i.test(
       name,
-    )
+    ) ||
+    /^Candidate\s+evaluation$/i.test(name) ||
+    /^evaluation$/i.test(name)
   );
 }
 
@@ -358,8 +360,9 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
   }
 
   // Candidate A / Candidate B blocks — only when commercial gate language is present
+  // Require a discrete candidate tag (letter/number), not prose like "candidate evaluation".
   const candRe =
-    /\bCandidate\s+([A-Z0-9_-]+)\b\s*:?\s*([\s\S]{0,500}?)(?=\bCandidate\s+[A-Z0-9_-]+\b|$)/gi;
+    /\bCandidate\s+([A-Z0-9][A-Z0-9_-]{0,24})\b\s*:\s*([\s\S]{0,500}?)(?=\bCandidate\s+[A-Z0-9][A-Z0-9_-]{0,24}\b\s*:|$)/gi;
   let m: RegExpExecArray | null;
   while ((m = candRe.exec(text)) !== null) {
     const name = `Candidate ${m[1]}`;

@@ -29982,14 +29982,18 @@ export class PillowHost {
                                   stage: shadowAdmission.stage,
                                   objectiveId: shadowAdmission.objectiveId,
                                   correlationId: shadowAdmission.correlationId,
+                                  requestId: shadowAdmission.requestId,
                               }
                             : {
                                   objectiveId: shadowAdmission.objectiveId,
                                   correlationId: shadowAdmission.correlationId,
                                   runKey: shadowAdmission.runKey,
+                                  requestId: shadowAdmission.requestId,
                                   eligibleProductCount: shadowAdmission.eligibleProductCount,
                                   ledgerRealisedSyntheticNetProfitUsd:
                                       shadowAdmission.ledgerRealisedSyntheticNetProfitUsd,
+                                  suppliedProductNames: shadowAdmission.suppliedProductNames,
+                                  financialEffect: shadowAdmission.financialEffect,
                               },
                     };
                 }

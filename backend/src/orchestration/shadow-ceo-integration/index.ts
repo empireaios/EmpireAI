@@ -12,3 +12,20 @@ export {
   resolveShadowCeoDbPath,
   resolveShadowCeoAuthorityDir,
 } from "./durable-paths.js";
+export {
+  persistRequestOwner,
+  getRequestOwner,
+  findOwnerByDigest,
+  ownershipBundle,
+} from "./request-owner.js";
+export type { RequestOwnerRecord } from "./request-owner.js";
+export {
+  assertActionPermitted,
+  parsePermittedActionsFromMessage,
+  isSuppliedCandidateEvaluationAsk,
+} from "./action-permit.js";
+export {
+  bindSuppliedProducts,
+  runCandidateEvaluationEpisode,
+  formatEligibleSelectedAnswer,
+} from "./candidate-evaluation-episode.js";

@@ -37,6 +37,7 @@ export async function registerShadowCeoRoutes(
     "/shadow-ceo/run-vertical-slice",
     { preHandler: _deps.authenticate },
     async (request, reply) => {
+      // EXPLICIT DEMO ROUTE ONLY — never invoked from ordinary Pillow chat admission.
       if (!founderOnly(request.user)) {
         return reply.code(403).send({ error: "Founder access required" });
       }

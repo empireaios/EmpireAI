@@ -1,31 +1,27 @@
 /**
- * Shadow CEO chat admission — single entry from Grand King Pillow chat.
- * Intent → durable episode → source-backed brief. No plan-as-execution.
+ * Shadow CEO chat admission — Grand King request owns the episode.
+ * Demo vertical slice is NEVER auto-run from chat (explicit /shadow-ceo route only).
  */
 
 import { createHash } from "node:crypto";
 
 import {
-  openShadowCeoRepository,
-  runVerticalSliceDemo,
-  verifyChainIntegrity,
-  type VerticalSliceDemoResult,
-} from "../shadow-ceo/index.js";
+  isSuppliedCandidateEvaluationAsk,
+  parsePermittedActionsFromMessage,
+} from "./action-permit.js";
 import {
-  attemptExternalActionAndPersist,
-  createApprovalRequestAndPersist,
-  MISSION_DEFAULT_MODE,
-} from "../shadow-ceo-authority/index.js";
+  bindSuppliedProducts,
+  formatEligibleSelectedAnswer,
+  parseEligibleSelectedContract,
+  runCandidateEvaluationEpisode,
+} from "./candidate-evaluation-episode.js";
 import {
-  computeProfitLedger,
-  eligibilityFromProduct,
-  seedSyntheticAmazonUsCatalog,
-  unitEconomicsFromProduct,
-} from "../synthetic-commerce/index.js";
-import {
-  resolveShadowCeoAuthorityDir,
-  resolveShadowCeoDbPath,
-} from "./durable-paths.js";
+  instructionDigest,
+  newRequestId,
+  newRunId,
+  persistRequestOwner,
+  type RequestOwnerRecord,
+} from "./request-owner.js";
 
 export type ShadowCeoChatAdmission =
   | {
@@ -34,12 +30,19 @@ export type ShadowCeoChatAdmission =
       objectiveId: string;
       correlationId: string;
       runKey: string;
+      requestId: string;
       message: string;
-      kind: "shadow_ceo_episode";
-      episode: VerticalSliceDemoResult;
+      kind: "shadow_ceo_episode" | "candidate_evaluation";
       ledgerRealisedSyntheticNetProfitUsd: number;
       syntheticCatalogProductCount: number;
       eligibleProductCount: number;
+      financialEffect: {
+        spendingUsd: 0;
+        revenueUsd: 0;
+        profitUsd: 0;
+        ledgerMoved: false;
+      };
+      suppliedProductNames: string[];
     }
   | {
       admitted: true;
@@ -49,6 +52,7 @@ export type ShadowCeoChatAdmission =
       reason: string;
       correlationId: string;
       objectiveId: string | null;
+      requestId: string | null;
       message: string;
       kind: "shadow_ceo_blocked";
     }
@@ -58,6 +62,9 @@ export type ShadowCeoChatAdmission =
 export function detectShadowCeoOperatingIntent(message: string): boolean {
   const t = String(message || "");
   if (!t.trim()) return false;
+
+  // Supplied candidate evaluation is always admitted into the request-owner path.
+  if (isSuppliedCandidateEvaluationAsk(t)) return true;
 
   const mentionsShadowCeo = /\bshadow[\s_-]*ceo\b/i.test(t);
   const mentionsSynthetic = /\bsynthetic\b/i.test(t);
@@ -79,7 +86,6 @@ export function detectShadowCeoOperatingIntent(message: string): boolean {
   if (mentionsShadowCeo && (operateIntent || mentionsSyntheticMode || mentionsSynthetic)) {
     return true;
   }
-  // Operating ask that names synthetic commerce + live lock without saying "Shadow CEO"
   if (mentionsSynthetic && commerceOps && operateIntent && noLive) {
     return true;
   }
@@ -102,161 +108,14 @@ function normalizeObjectiveText(message: string): string {
     .slice(0, 4000);
 }
 
-function deriveObjectiveTitle(message: string): string {
-  const compact = String(message || "").replace(/\s+/g, " ").trim();
-  if (!compact) return "Shadow CEO SYNTHETIC operating objective";
-  const firstSentence = compact.split(/(?<=[.!?])\s+/)[0] ?? compact;
-  return firstSentence.slice(0, 180);
-}
-
-function inspectSyntheticState(): {
-  catalogCount: number;
-  eligibleCount: number;
-  assessmentOverride: {
-    situationSummary: string;
-    findings: string[];
-    risks: string[];
-    opportunities: string[];
-  };
-  productForLedger: ReturnType<typeof seedSyntheticAmazonUsCatalog>["products"][number];
-} {
-  const catalog = seedSyntheticAmazonUsCatalog();
-  const eligible = catalog.products.filter((p) => {
-    const stockOk = catalog.stock
-      .filter((s) => s.productId === p.productId)
-      .some((s) => s.available > 0);
-    const ue = unitEconomicsFromProduct(p);
-    return eligibilityFromProduct(p, {
-      stockAvailable: stockOk,
-      economicsViable: ue.contributionAfterAds > 0,
-      deliveryAcceptable: p.deliveryDaysMax <= 12,
-    }).eligible;
-  });
-
-  const findings = [
-    `Synthetic Amazon US catalog inspected: ${catalog.products.length} products`,
-    `Eligibility-pass products: ${eligible.length}`,
-    `Suppliers in fixture: ${catalog.suppliers.length}; warehouses: ${catalog.warehouses.length}`,
-  ];
-  if (eligible.length === 0) {
-    findings.push("No product currently passes every eligibility hard-stop in the synthetic pack");
-  } else {
-    findings.push(
-      `Top eligible product sample: ${eligible[0]!.productId} (${eligible[0]!.title})`,
-    );
-  }
-
-  return {
-    catalogCount: catalog.products.length,
-    eligibleCount: eligible.length,
-    assessmentOverride: {
-      situationSummary: `Inspected synthetic Amazon US commerce state before prioritization (${catalog.products.length} SKUs; ${eligible.length} eligibility-pass). Real commerce remains locked.`,
-      findings,
-      risks: [
-        "Live listing/ads/supplier commitments are physically blocked under SYNTHETIC",
-        "Eligibility counts are fixture-derived, not live marketplace scrape",
-      ],
-      opportunities: [
-        eligible.length > 0
-          ? "Authorized synthetic experiment / monitor actions may proceed within Cost Centre caps"
-          : "Widen synthetic cohort eligibility only via fixture/state updates — do not invent live inventory",
-      ],
-    },
-    productForLedger: eligible[0] ?? catalog.products[0]!,
-  };
-}
-
-function formatSourceBackedBrief(input: {
-  objectiveId: string;
-  correlationId: string;
-  runKey: string;
-  episode: VerticalSliceDemoResult;
-  ledgerProfit: number;
-  catalogCount: number;
-  eligibleCount: number;
-  userObjectiveExcerpt: string;
-}): string {
-  const { episode } = input;
-  const c = episode.chain;
-  const tasks = c.tasks
-    .map(
-      (t) =>
-        `- ${t.title} [${t.completion.status}] owner=${t.assignee} id=${t.id}`,
-    )
-    .join("\n");
-  const decisions = c.decision
-    ? `- ${c.decision.disposition} (${c.decision.id}) — ${c.decision.rationale}`
-    : "- (none)";
-  const actions = c.actions
-    .map(
-      (a) =>
-        `- ${a.title} status=${a.executionStatus} kind=${a.actionKind} id=${a.id}`,
-    )
-    .join("\n");
-  const approvals = c.approvals
-    .map((a) => `- ${a.requestSummary} status=${a.approvalStatus} id=${a.id}`)
-    .join("\n");
-  const lesson = c.lesson
-    ? `${c.lesson.statement} (id=${c.lesson.id}, evidence=${c.lesson.completion.status})`
-    : "(none — no outcome lesson without evidence)";
-  const outcome = c.outcome
-    ? `expected=${c.outcome.expectedResult}; actual=${c.outcome.actualResult}; variance=${c.outcome.variance}`
-    : "(none)";
-
-  return [
-    "### Shadow CEO Executive Brief (source-backed)",
-    "",
-    `- Operating episode / objective ID: \`${input.objectiveId}\``,
-    `- Correlation ID: \`${input.correlationId}\``,
-    `- Run key: \`${input.runKey}\``,
-    `- Operating mode: \`${c.objective.mode}\` (SYNTHETIC isolation; real commerce locked)`,
-    `- Birth status: NOT_BORN · Wave 1: 0/24 · Real commerce authorized: false`,
-    `- Assessed state source: synthetic Amazon US catalog (${input.catalogCount} products; ${input.eligibleCount} eligibility-pass)`,
-    `- Admitted objective excerpt: ${input.userObjectiveExcerpt.slice(0, 280)}`,
-    "",
-    "#### Priorities established",
-    ...c.priorities.map((p) => `- [#${p.rank}] ${p.title} — ${p.rationale} (${p.id})`),
-    "",
-    "#### Tasks created",
-    tasks || "- (none)",
-    "",
-    "#### Decisions",
-    decisions,
-    "",
-    "#### Synthetic / gated actions",
-    actions || "- (none)",
-    "",
-    "#### Approvals / blockers",
-    approvals || "- (none)",
-    "",
-    "#### Outcomes observed",
-    `- ${outcome}`,
-    "",
-    "#### Financial effect (deterministic synthetic ledger)",
-    `- Realised synthetic net profit (USD): **${input.ledgerProfit}**`,
-    `- liveSales: null · realisedLiveProfit: null (forbidden for synthetic rows)`,
-    "",
-    "#### Lesson",
-    `- ${lesson}`,
-    "",
-    "#### Next operating action",
-    c.brief?.recommendedNext
-      ? `- ${c.brief.recommendedNext}`
-      : "- Continue SYNTHETIC evidence cycle; do not escalate live marketplace actions",
-    "",
-    "#### Claim discipline",
-    "- This brief is generated only from persisted Shadow CEO records + synthetic ledger totals.",
-    "- No plan-as-execution: proposed vs accepted vs completed vs blocked are taken from record status fields.",
-  ].join("\n");
-}
-
 function formatBlocked(input: {
   stage: string;
   reason: string;
   correlationId: string;
   objectiveId: string | null;
+  requestId?: string | null;
 }): string {
-  return [
+  const lines = [
     "### SHADOW_CEO_EXECUTION_BLOCKED",
     "",
     `- Code: \`SHADOW_CEO_EXECUTION_BLOCKED\``,
@@ -264,15 +123,60 @@ function formatBlocked(input: {
     `- Reason: ${input.reason}`,
     `- Correlation ID: \`${input.correlationId}\``,
     `- Objective ID: \`${input.objectiveId ?? "none"}\``,
+  ];
+  if (input.requestId) {
+    lines.push(`- Request ID: \`${input.requestId}\``);
+  }
+  lines.push(
     `- Mode: SYNTHETIC · Birth: NOT_BORN · Real commerce: locked`,
     "",
     "No ordinary planning prose is substituted for execution.",
-    "Retry is idempotent for the same admitted objective text.",
-  ].join("\n");
+    "Demo catalogs and vertical-slice routines are isolated from Grand King chat.",
+  );
+  return lines.join("\n");
+}
+
+function buildOwner(input: {
+  message: string;
+  workspaceId: string;
+  correlationId: string;
+  products: RequestOwnerRecord["suppliedProducts"];
+  rules: Record<string, unknown>;
+}): RequestOwnerRecord {
+  const digest = instructionDigest(input.workspaceId, input.message);
+  const actions = parsePermittedActionsFromMessage(input.message);
+  const contract = parseEligibleSelectedContract(input.message);
+  return {
+    requestId: newRequestId(),
+    runId: newRunId(digest),
+    correlationId: input.correlationId,
+    completeInstruction: String(input.message || "").trim().slice(0, 16000),
+    suppliedProducts: input.products,
+    eligibilityRules: input.rules,
+    requestedBusinessOperation: "synthetic_candidate_evaluation",
+    permittedActions: actions.permitted,
+    prohibitedActions: actions.prohibited,
+    requestedAnswerFormat: {
+      expectedLineCount: contract.detected ? contract.expectedLines : null,
+      fieldNames: contract.detected
+        ? ["Eligible candidates", "Candidate selected"]
+        : [],
+      requiredToken: null,
+      prohibitsExtraProse: contract.detected,
+      template: contract.detected ? "eligible_selected" : "unspecified",
+    },
+    operatingMode: "SYNTHETIC",
+    birthStatus: "NOT_BORN",
+    realCommerceAuthority: "unauthorized",
+    createdAt: new Date().toISOString(),
+    workspaceId: input.workspaceId,
+    instructionDigest: digest,
+  };
 }
 
 /**
- * Admit a Shadow CEO operating request from Pillow chat and execute one durable cycle.
+ * Admit a Shadow CEO / candidate-evaluation request from Pillow chat.
+ * Never substitutes demo catalog or vertical-slice fulfilment/spend work.
  */
 export function admitAndExecuteShadowCeoFromChat(input: {
   message: string;
@@ -284,204 +188,155 @@ export function admitAndExecuteShadowCeoFromChat(input: {
   }
 
   const runKey = stableRunKey(input.workspaceId, input.message);
-  const dbPath = resolveShadowCeoDbPath();
-  const authorityDir = resolveShadowCeoAuthorityDir();
-  let repo: ReturnType<typeof openShadowCeoRepository> | null = null;
 
-  try {
-    const inspected = inspectSyntheticState();
-    repo = openShadowCeoRepository({ dbPath });
-    const episode = runVerticalSliceDemo({
-      repo,
-      workspaceId: input.workspaceId,
-      runKey,
-      mode: MISSION_DEFAULT_MODE,
-      objectiveTitle: deriveObjectiveTitle(input.message),
-      objectiveStatement: input.message.replace(/\s+/g, " ").trim().slice(0, 8000),
-      assessmentOverride: inspected.assessmentOverride,
-    });
-    const issues = verifyChainIntegrity(episode.chain);
-    if (issues.length > 0) {
-      const blocked = formatBlocked({
-        stage: "chain_integrity",
-        reason: issues.map((i) => `${i.code}:${i.message}`).join("; "),
-        correlationId: input.correlationId,
-        objectiveId: episode.objectiveId,
-      });
+  // Candidate evaluation with supplied facts — request owner path.
+  if (
+    isSuppliedCandidateEvaluationAsk(input.message) ||
+    bindSuppliedProducts(input.message).products.length > 0
+  ) {
+    const bound = bindSuppliedProducts(input.message);
+    if (!bound.decision || bound.products.length < 1) {
+      const reason = bound.reason ?? "REQUEST_FACT_BINDING_FAILED";
       return {
         admitted: true,
         blocked: true,
         code: "SHADOW_CEO_EXECUTION_BLOCKED",
-        stage: "chain_integrity",
-        reason: issues[0]?.message ?? "chain integrity failed",
-        correlationId: input.correlationId,
-        objectiveId: episode.objectiveId,
-        message: blocked,
-        kind: "shadow_ceo_blocked",
-      };
-    }
-
-    const product = inspected.productForLedger;
-    const variant = product.variants[0]!;
-    const fees = product.amazonReferralFeeUsd + product.fbaOrSellerFeeUsd;
-    const ledger = computeProfitLedger(
-      [
-        {
-          entryId: `chat-led-${episode.objectiveId}`,
-          synthetic: true,
-          currency: "USD",
-          revenue: product.listPriceUsd,
-          productCost: variant.unitProductCostUsd,
-          shipping: product.shippingEstimateUsd,
-          fees,
-          ads: product.adsSpendPerUnitUsd,
-          refunds: 0,
-          returns: 0,
-          opex: 0,
-          productId: product.productId,
-          notes: "Chat-admitted SYNTHETIC experiment line — not live sales",
-        },
-      ],
-      { ledgerId: `chat-tpl-${episode.objectiveId}`, currency: "USD" },
-    );
-
-    const liveAttempt = attemptExternalActionAndPersist(
-      {
-        kind: "listing",
-        mode: MISSION_DEFAULT_MODE,
-        approvalStatus: "pending",
-        authorized: false,
-      },
-      authorityDir,
-    );
-    if (liveAttempt.decision !== "BLOCKED") {
-      return {
-        admitted: true,
-        blocked: true,
-        code: "SHADOW_CEO_EXECUTION_BLOCKED",
-        stage: "authority_gate",
-        reason: "Live listing was not physically blocked",
-        correlationId: input.correlationId,
-        objectiveId: episode.objectiveId,
-        message: formatBlocked({
-          stage: "authority_gate",
-          reason: "Live listing was not physically blocked",
-          correlationId: input.correlationId,
-          objectiveId: episode.objectiveId,
-        }),
-        kind: "shadow_ceo_blocked",
-      };
-    }
-    createApprovalRequestAndPersist(
-      {
-        kind: "listing",
-        mode: MISSION_DEFAULT_MODE,
-        reason: "Real marketplace listing outside SYNTHETIC authority",
-        requestedAction: "Publish live Amazon US listing",
-        whyRequired: "External marketplace side effect",
-        financialExternalConsequence: "Real fees / inventory / customer exposure",
-        optionsForGrandKing: ["deny", "defer_until_birth"],
-      },
-      authorityDir,
-    );
-
-    const synAttempt = attemptExternalActionAndPersist(
-      {
-        kind: "synthetic_experiment_run",
-        mode: MISSION_DEFAULT_MODE,
-        approvalStatus: "none",
-        authorized: true,
-      },
-      authorityDir,
-    );
-    if (synAttempt.decision !== "ALLOWED") {
-      return {
-        admitted: true,
-        blocked: true,
-        code: "SHADOW_CEO_EXECUTION_BLOCKED",
-        stage: "synthetic_action",
-        reason: synAttempt.reason ?? "synthetic experiment not allowed",
-        correlationId: input.correlationId,
-        objectiveId: episode.objectiveId,
-        message: formatBlocked({
-          stage: "synthetic_action",
-          reason: String(synAttempt.reason ?? "synthetic experiment not allowed"),
-          correlationId: input.correlationId,
-          objectiveId: episode.objectiveId,
-        }),
-        kind: "shadow_ceo_blocked",
-      };
-    }
-
-    const message = formatSourceBackedBrief({
-      objectiveId: episode.objectiveId,
-      correlationId: input.correlationId,
-      runKey,
-      episode,
-      ledgerProfit: ledger.totals.realisedNetProfit,
-      catalogCount: inspected.catalogCount,
-      eligibleCount: inspected.eligibleCount,
-      userObjectiveExcerpt: input.message.replace(/\s+/g, " ").trim(),
-    });
-
-    const planHits = shadowCeoPlanAsExecutionViolations(message);
-    if (planHits.length > 0) {
-      return {
-        admitted: true,
-        blocked: true,
-        code: "SHADOW_CEO_EXECUTION_BLOCKED",
-        stage: "plan_as_execution_guard",
-        reason: planHits.join("; "),
-        correlationId: input.correlationId,
-        objectiveId: episode.objectiveId,
-        message: formatBlocked({
-          stage: "plan_as_execution_guard",
-          reason: planHits.join("; "),
-          correlationId: input.correlationId,
-          objectiveId: episode.objectiveId,
-        }),
-        kind: "shadow_ceo_blocked",
-      };
-    }
-
-    return {
-      admitted: true,
-      blocked: false,
-      objectiveId: episode.objectiveId,
-      correlationId: input.correlationId,
-      runKey,
-      message,
-      kind: "shadow_ceo_episode",
-      episode,
-      ledgerRealisedSyntheticNetProfitUsd: ledger.totals.realisedNetProfit,
-      syntheticCatalogProductCount: inspected.catalogCount,
-      eligibleProductCount: inspected.eligibleCount,
-    };
-  } catch (err) {
-    const reason = err instanceof Error ? err.message : String(err);
-    return {
-      admitted: true,
-      blocked: true,
-      code: "SHADOW_CEO_EXECUTION_BLOCKED",
-      stage: "admission_or_execution",
-      reason,
-      correlationId: input.correlationId,
-      objectiveId: null,
-      message: formatBlocked({
-        stage: "admission_or_execution",
+        stage: "REQUEST_FACT_BINDING_FAILED",
         reason,
         correlationId: input.correlationId,
         objectiveId: null,
-      }),
-      kind: "shadow_ceo_blocked",
-    };
-  } finally {
+        requestId: null,
+        message: [
+          "SHADOW_CEO_EXECUTION_BLOCKED: REQUEST_FACT_BINDING_FAILED — " + reason,
+          "",
+          "No demo catalog was substituted.",
+          "No tasks or financial records were created.",
+        ].join("\n"),
+        kind: "shadow_ceo_blocked",
+      };
+    }
+
     try {
-      repo?.close();
-    } catch {
-      /* ignore */
+      const owner = persistRequestOwner(
+        buildOwner({
+          message: input.message,
+          workspaceId: input.workspaceId,
+          correlationId: input.correlationId,
+          products: bound.products,
+          rules: bound.rules,
+        }),
+      );
+
+      const episode = runCandidateEvaluationEpisode({
+        owner,
+        decision: bound.decision,
+      });
+
+      // Contract: exact eligible/selected lines when requested.
+      const contract = parseEligibleSelectedContract(input.message);
+      let message = episode.message;
+      if (contract.detected) {
+        message = formatEligibleSelectedAnswer(bound.decision);
+        const lines = message.split("\n").filter((l) => l.length > 0);
+        if (lines.length !== contract.expectedLines) {
+          return {
+            admitted: true,
+            blocked: true,
+            code: "SHADOW_CEO_EXECUTION_BLOCKED",
+            stage: "response_contract",
+            reason: `PILLOW_RESPONSE_CONTRACT_BLOCKED: expected ${contract.expectedLines} lines`,
+            correlationId: input.correlationId,
+            objectiveId: episode.objectiveId,
+            requestId: owner.requestId,
+            message: `PILLOW_RESPONSE_CONTRACT_BLOCKED: expected ${contract.expectedLines} lines, got ${lines.length}`,
+            kind: "shadow_ceo_blocked",
+          };
+        }
+      }
+
+      // Refuse generic brief substitution markers.
+      if (/Shadow CEO Executive Brief \(source-backed\)/i.test(message)) {
+        return {
+          admitted: true,
+          blocked: true,
+          code: "SHADOW_CEO_EXECUTION_BLOCKED",
+          stage: "response_contract",
+          reason: "PILLOW_RESPONSE_CONTRACT_BLOCKED: generic brief forbidden",
+          correlationId: input.correlationId,
+          objectiveId: episode.objectiveId,
+          requestId: owner.requestId,
+          message:
+            "PILLOW_RESPONSE_CONTRACT_BLOCKED: generic executive brief cannot replace requested format",
+          kind: "shadow_ceo_blocked",
+        };
+      }
+
+      return {
+        admitted: true,
+        blocked: false,
+        objectiveId: episode.objectiveId,
+        correlationId: input.correlationId,
+        runKey: owner.runId,
+        requestId: owner.requestId,
+        message,
+        kind: "candidate_evaluation",
+        ledgerRealisedSyntheticNetProfitUsd: 0,
+        syntheticCatalogProductCount: 0,
+        eligibleProductCount: bound.decision.eligibleSet.length,
+        financialEffect: episode.financialEffect,
+        suppliedProductNames: bound.products.map((p) => p.name),
+      };
+    } catch (err) {
+      const reason = err instanceof Error ? err.message : String(err);
+      const stage = /REQUEST_FACT_BINDING/i.test(reason)
+        ? "REQUEST_FACT_BINDING_FAILED"
+        : /PILLOW_RESPONSE_CONTRACT/i.test(reason)
+          ? "response_contract"
+          : /REQUEST_MIX/i.test(reason)
+            ? "request_mix"
+            : "admission_or_execution";
+      return {
+        admitted: true,
+        blocked: true,
+        code: "SHADOW_CEO_EXECUTION_BLOCKED",
+        stage,
+        reason,
+        correlationId: input.correlationId,
+        objectiveId: null,
+        requestId: null,
+        message: formatBlocked({
+          stage,
+          reason,
+          correlationId: input.correlationId,
+          objectiveId: null,
+        }),
+        kind: "shadow_ceo_blocked",
+      };
     }
   }
+
+  // Operating intent without supplied candidate facts: do NOT fall back to demo catalog.
+  return {
+    admitted: true,
+    blocked: true,
+    code: "SHADOW_CEO_EXECUTION_BLOCKED",
+    stage: "REQUEST_FACT_BINDING_FAILED",
+    reason:
+      "REQUEST_FACT_BINDING_FAILED — no Grand-King-supplied candidates/rules; demonstration vertical-slice is isolated to POST /shadow-ceo/run-vertical-slice",
+    correlationId: input.correlationId,
+    objectiveId: null,
+    requestId: null,
+    message: [
+      "SHADOW_CEO_EXECUTION_BLOCKED: REQUEST_FACT_BINDING_FAILED — no Grand-King-supplied candidates/rules",
+      "",
+      "Demonstration catalogs and fulfilment/supplier-spend vertical slices are isolated.",
+      "They are not available from ordinary Pillow chat and were not substituted.",
+      `Correlation ID: ${input.correlationId}`,
+      `Run key (deterministic): ${runKey}`,
+      "Mode: SYNTHETIC · Birth: NOT_BORN · Real commerce: locked",
+    ].join("\n"),
+    kind: "shadow_ceo_blocked",
+  };
 }
 
 /** Unsupported plan-as-execution claims for Shadow CEO visible surfaces. */

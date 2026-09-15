@@ -1,5 +1,6 @@
 /**
  * Integration-owner vertical slice: control plane + synthetic commerce + authority.
+ * EXPLICIT DEMO ROUTE ONLY — never call from Grand King Pillow chat admission.
  */
 
 import fs from "node:fs";

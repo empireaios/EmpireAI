@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-09-15T21:12:33.930Z",
+  "MISSION": "REQUEST_CONTROL_HELD_ADVERSARIAL",
+  "pass": 27,
+  "fail": 0,
+  "total": 27,
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN",
+  "checks": [
+    {
+      "id": "C05_demo_exists",
+      "ok": true,
+      "detail": "demo products=3"
+    },
+    {
+      "id": "C01_sole_eligible",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C02_ranking",
+      "ok": true,
+      "detail": "Eligible candidates: Nexus, Orbit\nCandidate selected: Orbit"
+    },
+    {
+      "id": "C03_none",
+      "ok": true,
+      "detail": "Eligible candidates: none\nCandidate selected: none"
+    },
+    {
+      "id": "C04_correction",
+      "ok": true,
+      "detail": "Eligible candidates: Reed\nCandidate selected: Reed"
+    },
+    {
+      "id": "C05_no_demo_leak",
+      "ok": true,
+      "detail": "demo leak check"
+    },
+    {
+      "id": "C06_no_selling_price",
+      "ok": true,
+      "detail": "no selling price"
+    },
+    {
+      "id": "C07_approval_pending_excluded",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C08_delivery_outside_excluded",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C09_exact_lines",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C10_token_owner",
+      "ok": true,
+      "detail": "req_9ea9c0d90ed44c0f"
+    },
+    {
+      "id": "C11_no_extra_prose",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C12_permit_only_eval",
+      "ok": true,
+      "detail": "synthetic_candidate_evaluation"
+    },
+    {
+      "id": "C13_unrelated_task_rejected",
+      "ok": true,
+      "detail": "ACTION_REJECTED_BEFORE_EPISODE at task_create: fulfilment_monitor is not permitted for this request"
+    },
+    {
+      "id": "C14_financial_rejected",
+      "ok": true,
+      "detail": "ACTION_REJECTED_BEFORE_EPISODE at financial: financial_ledger is not permitted for this request"
+    },
+    {
+      "id": "C12b_one_task",
+      "ok": true,
+      "detail": "Synthetic candidate evaluation"
+    },
+    {
+      "id": "C14b_zero_finance",
+      "ok": true,
+      "detail": {
+        "spendingUsd": 0,
+        "revenueUsd": 0,
+        "profitUsd": 0,
+        "ledgerMoved": false
+      }
+    },
+    {
+      "id": "C22_forged_id",
+      "ok": true,
+      "detail": "REQUEST_MIX_DETECTED: forged requestId=req_forged ≠ owner req_01a7c994e22c4670"
+    },
+    {
+      "id": "C15_old_outcome_mix",
+      "ok": true,
+      "detail": "REQUEST_MIX_DETECTED: old_outcome requestId=req_other_run ≠ owner req_01a7c994e22c4670"
+    },
+    {
+      "id": "C16_old_lesson_mix",
+      "ok": true,
+      "detail": "REQUEST_MIX_DETECTED: old_lesson requestId=req_lesson_other ≠ owner req_01a7c994e22c4670"
+    },
+    {
+      "id": "C17_retry_idempotent",
+      "ok": true,
+      "detail": "req_01a7c994e22c4670 vs req_01a7c994e22c4670"
+    },
+    {
+      "id": "C18_memory_recovery",
+      "ok": true,
+      "detail": "req_01a7c994e22c4670"
+    },
+    {
+      "id": "C19_durable_owner_file",
+      "ok": true,
+      "detail": "owners json"
+    },
+    {
+      "id": "C20_concurrent_isolation",
+      "ok": true,
+      "detail": "Eligible candidates: TwinA\nCandidate selected: TwinA || Eligible candidates: TwinB\nCandidate selected: TwinB"
+    },
+    {
+      "id": "C21_missing_facts_blocked",
+      "ok": true,
+      "detail": "REQUEST_FACT_BINDING_FAILED — no Grand-King-supplied candidates/rules; demonstration vertical-slice is isolated to POST /shadow-ceo/run-vertical-slice"
+    },
+    {
+      "id": "C23_no_generic_brief",
+      "ok": true,
+      "detail": "Eligible candidates: Kite\nCandidate selected: Kite"
+    },
+    {
+      "id": "C24_zero_financial",
+      "ok": true,
+      "detail": {
+        "spendingUsd": 0,
+        "revenueUsd": 0,
+        "profitUsd": 0,
+        "ledgerMoved": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-09-15T21:13:08.026Z",
+  "MISSION": "REQUEST_CONTROL_UNSEEN_PRODUCTION_PATH",
+  "scenarioCount": 20,
+  "pass": 21,
+  "fail": 0,
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN",
+  "results": [
+    {
+      "id": "U01_sole_eligible",
+      "ok": true,
+      "requestId": "req_33e5dc724a304b0e",
+      "objectiveId": "obj_6f57fe584460d07d",
+      "message": "Eligible candidates: Auklet\nCandidate selected: Auklet"
+    },
+    {
+      "id": "U02_multi_highest",
+      "ok": true,
+      "requestId": "req_7d51d9b0274c4b15",
+      "objectiveId": "obj_f28a62ab8c040682",
+      "message": "Eligible candidates: Dunlin, Egret, Fulmar\nCandidate selected: Egret"
+    },
+    {
+      "id": "U03_none_eligible",
+      "ok": true,
+      "requestId": "req_b41dd52ff59448db",
+      "objectiveId": "obj_b05828f9685bd9dd",
+      "message": "Eligible candidates: none\nCandidate selected: none"
+    },
+    {
+      "id": "U04_correction_delivery",
+      "ok": true,
+      "requestId": "req_73aa85e194c84393",
+      "objectiveId": "obj_5b7bc6294dca37b5",
+      "message": "Eligible candidates: Jacana, Knotty\nCandidate selected: none"
+    },
+    {
+      "id": "U05_demo_present",
+      "ok": true,
+      "requestId": "req_49f55c93d3a24553",
+      "objectiveId": "obj_4d7af1453843c359",
+      "message": "Eligible candidates: Merlin\nCandidate selected: Merlin"
+    },
+    {
+      "id": "U06_contrib_no_price",
+      "ok": true,
+      "requestId": "req_472beede0dd24f4e",
+      "objectiveId": "obj_c7ec48340a7ab3b3",
+      "message": "Eligible candidates: Petrel\nCandidate selected: Petrel"
+    },
+    {
+      "id": "U07_approval_pending",
+      "ok": true,
+      "requestId": "req_f433955024074694",
+      "objectiveId": "obj_88c54e3980025aa8",
+      "message": "Eligible candidates: Razorb\nCandidate selected: Razorb"
+    },
+    {
+      "id": "U08_delivery_outside",
+      "ok": true,
+      "requestId": "req_c97e16a8227c41a6",
+      "objectiveId": "obj_f985c2196306c0a5",
+      "message": "Eligible candidates: Ternox\nCandidate selected: Ternox"
+    },
+    {
+      "id": "U09_exact_two_lines",
+      "ok": true,
+      "requestId": "req_4725e3f5eece4729",
+      "objectiveId": "obj_3716d7a305c29bbb",
+      "message": "Eligible candidates: Velvet\nCandidate selected: Velvet"
+    },
+    {
+      "id": "U10_token_owner",
+      "ok": true,
+      "requestId": "req_1c3857107f034ae3",
+      "objectiveId": "obj_80789b22fa15a704",
+      "message": "Eligible candidates: Anhing\nCandidate selected: Anhing"
+    },
+    {
+      "id": "U11_permit_only_eval",
+      "ok": true,
+      "requestId": "req_385dcbe4208644eb",
+      "objectiveId": "obj_b6fd581e3153f4f7",
+      "message": "Eligible candidates: Canvas\nCandidate selected: Canvas"
+    },
+    {
+      "id": "U12_extra_Xeric",
+      "ok": true,
+      "requestId": "req_953b6dce17634cf2",
+      "objectiveId": "obj_5de4de269fcc5bab",
+      "message": "Eligible candidates: Xeric\nCandidate selected: Xeric"
+    },
+    {
+      "id": "U13_extra_Boreal",
+      "ok": true,
+      "requestId": "req_c310223c78564d06",
+      "objectiveId": "obj_63288e9410ae4037",
+      "message": "Eligible candidates: Boreal, Cypress, Drift\nCandidate selected: none"
+    },
+    {
+      "id": "U14_extra_Ember",
+      "ok": true,
+      "requestId": "req_2ff2c5948b2c4def",
+      "objectiveId": "obj_eb43c048d6c88bf6",
+      "message": "Eligible candidates: Flint\nCandidate selected: Flint"
+    },
+    {
+      "id": "U15_extra_Glade",
+      "ok": true,
+      "requestId": "req_38e10247f906476a",
+      "objectiveId": "obj_bbc5eae9d01d4054",
+      "message": "Eligible candidates: none\nCandidate selected: none"
+    },
+    {
+      "id": "U16_extra_Heather",
+      "ok": true,
+      "requestId": "req_5f50a5e4e3fd48d7",
+      "objectiveId": "obj_a36f4e697db6347d",
+      "message": "Eligible candidates: Heather\nCandidate selected: Heather"
+    },
+    {
+      "id": "U17_extra_Kelvin",
+      "ok": true,
+      "requestId": "req_ac7f65b93a20444d",
+      "objectiveId": "obj_bd61f2a060e8c1f1",
+      "message": "Eligible candidates: Kelvin, Lumenx\nCandidate selected: Lumenx"
+    },
+    {
+      "id": "U18_extra_Moss",
+      "ok": true,
+      "requestId": "req_d0ba97e39e324e35",
+      "objectiveId": "obj_74706bd03365a809",
+      "message": "Eligible candidates: Moss, Nimbus, Opal\nCandidate selected: Opal"
+    },
+    {
+      "id": "U19_extra_Prairie",
+      "ok": true,
+      "requestId": "req_ab2361e979574d23",
+      "objectiveId": "obj_70c0bfb5cdbb3c11",
+      "message": "Eligible candidates: Prairie\nCandidate selected: Prairie"
+    },
+    {
+      "id": "U20_extra_Quorra",
+      "ok": true,
+      "requestId": "req_56f1e04115954df4",
+      "objectiveId": "obj_e5e238f36fb4917a",
+      "message": "Eligible candidates: Quorra\nCandidate selected: Quorra"
+    },
+    {
+      "id": "RETRY_IDEMPOTENT",
+      "ok": true,
+      "a": "req_33e5dc724a304b0e",
+      "b": "req_33e5dc724a304b0e"
+    }
+  ]
+}
