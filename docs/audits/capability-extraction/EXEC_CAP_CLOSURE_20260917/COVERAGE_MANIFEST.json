@@ -1,0 +1,58 @@
+{
+  "missionId": "EXEC_CAP_CLOSURE_20260917",
+  "generatedAt": "2026-09-17T08:50:00Z",
+  "waveCredit": 0,
+  "birth": "NOT_BORN",
+  "sc01": "FROZEN",
+  "v53Workbook": "MISSING",
+  "sources": [
+    "docs/audits/capability-extraction/PILLOW_WAVE1_REDESIGN.md",
+    "docs/audits/capability-extraction/PILLOW_EXECUTIVE_DEVELOPMENT_BLUEPRINT_V1.md",
+    "docs/audits/capability-extraction/PILLOW_PRESERVE_UNBLOCK_BUILD.json"
+  ],
+  "note": "Executable engineering coverage from repo canonical sources. Does NOT invent official Overseer definitions. Official Wave 1 remains 24 items; WAVE_CREDIT stays 0 until independent certification.",
+  "wave1OfficialCount": 24,
+  "wave1EntryReady": false,
+  "ecStatusSummary": {
+    "PRESERVE": ["EC-03","EC-04","EC-05","EC-06","EC-07","EC-08","EC-09","EC-10","EC-11","EC-12","EC-13","EC-14","EC-16","EC-19","EC-20","EC-22","EC-23","EC-25","EC-26","EC-27"],
+    "UNBLOCK": ["EC-18","EC-21","EC-24"],
+    "BUILD": ["EC-01","EC-02"],
+    "MEASURE_MORE": ["EC-15","EC-17","EC-28","EC-29","EC-30"]
+  },
+  "wave1Tests": [
+    {"id":"W1-T01","ec":["EC-01"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T02","ec":["EC-02"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T03","ec":["EC-03"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T04","ec":["EC-04","EC-05"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T05","ec":["EC-06","EC-16"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T06","ec":["EC-07"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T07","ec":["EC-08","EC-09"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T08","ec":["EC-13","EC-14","EC-15"],"set":"A","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T09","ec":["EC-10","EC-11","EC-12"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T10","ec":["EC-25"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T11","ec":["EC-26"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T12","ec":["EC-27"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T13","ec":["EC-03","EC-01"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T14","ec":["EC-10","EC-17"],"set":"B","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T15","ec":["EC-18"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T16","ec":["EC-22"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T17","ec":["EC-23"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T18","ec":["EC-24"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T19","ec":["EC-25"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T20","ec":["EC-21"],"set":"C","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T21","ec":["EC-10","EC-11","EC-12"],"set":"D","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T22","ec":["EC-17"],"set":"D","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T23","ec":["EC-28","EC-29"],"set":"D","status":"NOT_RUN_THIS_MISSION"},
+    {"id":"W1-T24","ec":["EC-30"],"set":"D","status":"NOT_RUN_THIS_MISSION"}
+  ],
+  "engineeringRegressionsObserved": [
+    {"id":"D-002","result":"PASS_LOCAL","note":"comma contribution ranking"},
+    {"id":"D-003","result":"PASS_LOCAL","note":"delivery correction supersession"},
+    {"id":"D-005","result":"PRIOR_PASS_LEAD","note":"request-control e45cb051; re-verify after worker stable"}
+  ],
+  "gaps": [
+    "Full 62-capability Birth Master V53 not in workspace",
+    "12 CEO dimensions list not frozen from V53 — defer to blueprint EC matrix",
+    "Held eval set not yet authored (freeze candidate first)"
+  ]
+}

@@ -157,11 +157,11 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
 
   let contributionMin: number | null = null;
   const cMin =
-    /(?:contribution|margin|profit|score)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+    /(?:contribution|margin|profit|score)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       t,
     );
   // Absolute floors (margin US$ / score) — not percentage margin floor.
-  if (cMin && !/%/.test(cMin[0]!)) contributionMin = Number(cMin[1]);
+  if (cMin && !/%/.test(cMin[0]!)) contributionMin = parseMoney(cMin[1]!);
 
   let stockMin: number | null = null;
   const sMin =
@@ -606,13 +606,13 @@ function evaluateCandidateGates(
   // Absolute contribution/margin/profit/score floor (given metric vs >= N)
   if (
     rules.contributionMin != null ||
-    /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t)
+    /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?[\d,]/i.test(t)
   ) {
     const cTok =
-      /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+      /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
         t,
       ) ||
-      /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+      /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
         t,
       );
     // Skip % margins — those belong to margin_floor
@@ -620,7 +620,7 @@ function evaluateCandidateGates(
       /* percentage handled above */
     } else {
       let status: DecisionGateStatus = "UNKNOWN";
-      const val = cTok ? Number(cTok[1]) : null;
+      const val = cTok ? parseMoney(cTok[1]!) : null;
       if (val != null && rules.contributionMin != null) {
         status = val >= rules.contributionMin ? "PASS" : "FAIL";
       } else if (val != null) status = "PASS";
@@ -679,13 +679,13 @@ function evaluateCandidateGates(
 
 function metricFromBody(body: string): number | null {
   const contrib =
-    /(?:contribution|margin|score|metric)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+    /(?:contribution|margin|score|metric)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       body,
     ) ||
-    /(?:contribution|margin|score|metric)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+    /(?:contribution|margin|score|metric)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       body,
     );
-  if (contrib) return Number(contrib[1]);
+  if (contrib) return parseMoney(contrib[1]!);
   const cost = /cost\s*[:=]?\s*(?:S\$|\$)?\s*([\d,]+(?:\.\d+)?)/i.exec(body);
   if (cost) return -parseMoney(cost[1]!)!; // lower cost → higher attractiveness when negated
   return null;
@@ -790,14 +790,24 @@ export function buildDecisionCaseState(userMessage: string): DecisionCaseState |
           rationale: `Cheapest eligible among ${eligibleSet.join(", ")}.`,
         };
       } else if (objective === "select_highest_metric_eligible") {
-        const ranked = [...eligibleObjs].sort(
-          (a, b) => (b.supportedMetric ?? -Infinity) - (a.supportedMetric ?? -Infinity),
-        );
-        recommendation = {
-          status: "SELECT",
-          selectedId: ranked[0]!.displayName,
-          rationale: `Highest supported metric among eligible: ${eligibleSet.join(", ")}.`,
-        };
+        const eligibleObjs = candidates.filter((c) => c.currentlyEligible);
+        const withMetric = eligibleObjs.filter((c) => c.supportedMetric != null);
+        if (withMetric.length === 0) {
+          recommendation = {
+            status: "UNRESOLVED",
+            selectedId: null,
+            rationale: "Multiple eligible without comparable numeric metrics.",
+          };
+        } else {
+          const ranked = [...withMetric].sort(
+            (a, b) => (b.supportedMetric ?? -Infinity) - (a.supportedMetric ?? -Infinity),
+          );
+          recommendation = {
+            status: "SELECT",
+            selectedId: ranked[0]!.displayName,
+            rationale: `Highest supported metric among eligible: ${eligibleSet.join(", ")}.`,
+          };
+        }
       } else if (eligibleSet.length === 1) {
         recommendation = {
           status: "SELECT",

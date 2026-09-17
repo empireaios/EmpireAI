@@ -26,7 +26,7 @@ const HIGH_LAG_ALERT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_MS ??
  * CRASHED with no healthy successor when a recovery deploy also failed.
  */
 const HIGH_LAG_EXIT_THRESHOLD_MS = Number(
-  process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_THRESHOLD_MS ?? 2_000,
+  process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_THRESHOLD_MS ?? 4_000,
 );
 const HIGH_LAG_EXIT_MS = Number(process.env.EXECUTIVE_CONTINUITY_HIGH_LAG_EXIT_MS ?? 120_000);
 /** Ignore stall/high-lag exits during cold start (Pillow session init / large sql.js load). */
