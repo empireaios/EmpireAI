@@ -215,7 +215,7 @@ const SKIP_CANDIDATE_NAMES =
 
 /** Gate / attribute field labels — never treat as option identities. */
 const GATE_FIELD_CANDIDATE_NAMES =
-  /^(?:Approval|Contribution|Stock|Inventory|Delivery|Margin|Cost|Policy|Quality|Capacity|Evidence|Score|Profit|Price|Fee|Refund|Ship(?:ping)?|OTD|Gate|Gates|Threshold|Rule|Rules|Eligibility)$/i;
+  /^(?:Approval|Contribution|Contrib|Stock|Inventory|Delivery|Margin|Cost|Policy|Quality|Capacity|Evidence|Score|Profit|Price|Fee|Refund|Ship(?:ping)?|OTD|Gate|Gates|Threshold|Rule|Rules|Eligibility)$/i;
 
 const COMMERCIAL_BODY =
   /\b(?:cost|delivery|approval|margin|stock|contribution|profit|score|policy|PASS|FAIL|PENDING|eligible|gate|inventory)\b/i;
@@ -379,7 +379,7 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
   // "Kestrel contribution US$11 stock 1200 delivery 5d approval granted. Lumen US$13 stock …"
   {
     const compactRe =
-      /\b([A-Z][A-Za-z0-9_-]{1,32})(?:\s+contribution)?\s+(?:US\$|USD\s*|S\$|SGD\s*|\$)?\s*([\d,]+(?:\.\d+)?)\s+stock\s+([\d,]+)(?:\s+delivery\s+(\d+)\s*d(?:ays?)?)?\s+approval\s+(granted|pending|cleared|rejected|denied)\b/gi;
+      /\b([A-Z][A-Za-z0-9_-]{1,32})(?:\s+contrib(?:ution)?s?)?\s+(?:US\$|USD\s*|S\$|SGD\s*|\$)?\s*([\d,]+(?:\.\d+)?)\s+stock\s+([\d,]+)(?:\s+delivery\s+(\d+)\s*d(?:ays?)?)?\s+approval\s+(granted|pending|cleared|rejected|denied)\b/gi;
     let cm: RegExpExecArray | null;
     while ((cm = compactRe.exec(text)) !== null) {
       const name = cm[1]!;

@@ -1,46 +1,20 @@
 {
   "missionId": "EXEC_CAP_CLOSURE_20260917",
-  "startedAtUtc": "2026-09-17T08:34:52Z",
+  "updatedAt": "2026-09-17T10:55:00Z",
   "deadlineUtc": "2026-09-18T08:34:52Z",
-  "status": "PREFLIGHT",
-  "wave1": "0/24",
+  "status": "PARTIAL_WITH_BLOCKERS",
+  "tipSha": "370d2e8f14147c4a548366cd3a501622f9c055ff",
+  "awaitingDeploy": true,
   "waveCredit": 0,
-  "birth": "NOT_BORN",
-  "realCommerce": "locked",
   "sc01": "FROZEN",
-  "tipSha": "c757a5ea2c69f33ee36c729671c9790b55f1ddba",
-  "prodSha": "c757a5ea2c69f33ee36c729671c9790b55f1ddba",
-  "prodDeployId": "7ee4bc0b-711f-43a4-9f24-0bba942ac3c9",
-  "rollbackLead": {
-    "sha": "e45cb0517e551b913df372ce623e6a3963adaadd",
-    "note": "request-control proof SHA; prior deploy fbba4c02 was REMOVED — verify before rollback"
-  },
-  "missingArtifacts": ["EmpireAI_Pillow_Birth_Master_V53.xlsx"],
-  "costMeter": {
-    "currency": "SGD",
-    "programmeCeilingTotal": 10000,
-    "programmeCeilingMonthlyOop": 500,
-    "missionAllowanceBound": "finite_existing_subscriptions_only",
-    "spentThisMission": 0,
-    "paidLaneActive": false
-  },
-  "continuation": {
-    "mechanism": "local_monitored_shell_loop",
-    "intervalMinutes": 15,
-    "armed": false
-  },
-  "queue": [
-    "restore_verify_worker",
-    "path_audit_implement",
-    "wsA_completion",
-    "wsB_reasoning",
-    "wsC_executive_loop",
-    "wsD_memory",
-    "wsE_authority",
-    "wsF_commerce_rails",
-    "coverage_manifest_held_eval",
-    "normal_chat_driver",
-    "stateful_missions",
-    "freeze_release_soak_handoff"
+  "birth": "unauthorized",
+  "realCommerce": "locked",
+  "continuation": "After SHA 370d2e8f online: node docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/evidence/post-deploy-focus-proof.mjs then normal-chat-driver.mjs. Do not claim ENGINEERING_READY until driver + focus pass on frozen SHA.",
+  "openBlockers": [
+    "D-010 normal-chat varied retest",
+    "D-011 UI browser automation",
+    "D-012 soak",
+    "D-013 held eval",
+    "D-007 V53 missing"
   ]
 }

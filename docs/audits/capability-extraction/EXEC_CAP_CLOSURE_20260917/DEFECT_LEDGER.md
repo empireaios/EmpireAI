@@ -19,3 +19,6 @@ Severity: P0 = unauthorized/data-loss/cross-user; P1 = stuck work / wrong decisi
 | D-013 | P1 | OPEN | Held evaluation not generated (RC not frozen) | — | eval |
 
 Do not close defects without observed retest evidence.
+| D-006 | P1 | CLOSED_PROD | Pending labeled; FE poll 240s on path | deploy fabf9cfb / 370d2e8f |
+| D-008 | P1 | CLOSED_PROD | Live refusal + Birth NOT_BORN facts | POST_DEPLOY_FOCUS_PROOF.json |
+| D-009 | P1 | CLOSED_PROD | Compact Kestrel bind | POST_DEPLOY_FOCUS_PROOF.json |

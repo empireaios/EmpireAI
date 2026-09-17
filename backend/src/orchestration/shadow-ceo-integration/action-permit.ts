@@ -128,14 +128,20 @@ export function parsePermittedActionsFromMessage(message: string): {
 
 export function isSuppliedCandidateEvaluationAsk(message: string): boolean {
   const t = String(message || "");
+  const asksEligibleSelected =
+    /\bEligible\s+candidates\b/i.test(t) && /\bCandidate\s+selected\b/i.test(t);
   const hasCandidates =
+    asksEligibleSelected ||
     /\b(?:candidates?|suppliers?|options?)\b/i.test(t) ||
-    /:\s*\n\s*[-*]?\s*contribution\b/i.test(t);
+    /:\s*\n\s*[-*]?\s*contribution\b/i.test(t) ||
+    /\b[A-Z][A-Za-z0-9_-]{1,32}\s+contrib(?:ution)?\s+(?:US\$|\$)?\s*\d/i.test(t);
   const hasRules =
     /\beligib(?:le|ility)\b/i.test(t) ||
     /\b(?:at\s+least|no\s+more\s+than|>=|<=|≥|≤)\b/i.test(t) ||
-    /[≥≤]/.test(t);
+    /[≥≤]/.test(t) ||
+    /\bGates?\s*:/i.test(t);
   const hasSelect =
+    asksEligibleSelected ||
     /\b(?:select|eligible\s+candidates?|candidate\s+selected)\b/i.test(t);
   return hasCandidates && hasRules && (hasSelect || /\bapproval\b/i.test(t));
 }

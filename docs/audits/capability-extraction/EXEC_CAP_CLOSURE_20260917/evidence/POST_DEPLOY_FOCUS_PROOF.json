@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-09-17T11:14:53.874Z",
+  "RUNNING_SHA": "370d2e8f14147c4a548366cd3a501622f9c055ff",
+  "DEPLOYMENT_ID": "fabf9cfb-a1ec-4023-90b8-c887ab9ad9ed",
+  "workerOnline": true,
+  "results": [
+    {
+      "id": "birth_mode",
+      "http": 200,
+      "ms": 2784,
+      "text": "Birth status: NOT_BORN. Operating mode: SYNTHETIC.",
+      "kind": "authority_facts",
+      "requestId": "pcr_be70faa5a7134e97",
+      "pass": true
+    },
+    {
+      "id": "live_refuse",
+      "http": 200,
+      "ms": 2528,
+      "text": "Refused: live commerce effects are blocked.\nBirth status: NOT_BORN. Operating mode: SYNTHETIC.\nReal-commerce authority: unauthorized.\nAnalytical / SYNTHETIC evaluation remains available; no listing, purchase, ad spend, or payment will be executed.",
+      "kind": "authority_refusal",
+      "requestId": "pcr_ac16e1f43d914659",
+      "pass": true
+    },
+    {
+      "id": "compact_kestrel",
+      "http": 200,
+      "ms": 3157,
+      "text": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
+      "kind": "shadow_ceo_episode",
+      "requestId": "pcr_e317846518a94681",
+      "pass": true
+    }
+  ],
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN"
+}
