@@ -1,20 +1,16 @@
 {
   "missionId": "EXEC_CAP_CLOSURE_20260917",
-  "updatedAt": "2026-09-17T11:50:00Z",
+  "updatedAt": "2026-09-17T12:50:20Z",
   "deadlineUtc": "2026-09-18T08:34:52Z",
   "status": "PARTIAL_WITH_BLOCKERS",
-  "tipSha": "pending_push_correction_bind",
-  "awaitingDeploy": true,
+  "tipSha": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
+  "deploymentId": "2d835149-438f-46e1-8b95-9a0b4a48337c",
+  "awaitingDeploy": false,
   "waveCredit": 0,
   "sc01": "FROZEN",
   "birth": "unauthorized",
   "realCommerce": "locked",
-  "continuation": "After next tip online: post-deploy-focus-proof.mjs then normal-chat-driver.mjs. Remaining varied gaps were correction/5d/reordered/exactly — fixed locally. V53 still missing (Desktop has V11 only).",
-  "openBlockers": [
-    "D-010 normal-chat varied retest after correction/reordered deploy",
-    "D-011 UI browser automation",
-    "D-012 soak",
-    "D-013 held eval",
-    "D-007 V53 missing (V11 on Desktop only)"
-  ]
+  "driver": { "varied": "24/24", "latencyUseful": "29/30", "p95Ms": 10526 },
+  "continuation": "Next: authenticated UI browser sample; soak; freeze RC then held eval. Do not claim ENGINEERING_READY until D-011/D-012/D-013 closed. V53 still missing.",
+  "openBlockers": ["D-011 UI browser", "D-012 soak", "D-013 held eval", "D-007 V53 missing"]
 }
