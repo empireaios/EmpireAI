@@ -426,6 +426,36 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     }
   }
 
+  // Markdown / pipe tables: | Name | Contrib | Stock | Days | Approval |
+  {
+    const lines = text.split(/\n/).map((l) => l.trim()).filter(Boolean);
+    const headerIdx = lines.findIndex((l) =>
+      /^\|?\s*Name\s*\|\s*Contrib/i.test(l),
+    );
+    if (headerIdx >= 0) {
+      for (let i = headerIdx + 1; i < lines.length; i++) {
+        const row = lines[i]!;
+        if (/^\|?\s*-+/.test(row)) continue;
+        if (!row.includes("|")) break;
+        const cells = row
+          .split("|")
+          .map((c) => c.trim())
+          .filter((c) => c.length > 0);
+        if (cells.length < 5) continue;
+        const [name, contrib, stock, days, approval] = cells;
+        if (!name || isReservedCandidateName(name) || skipHeaders.test(name)) continue;
+        if (!/^\d/.test(String(contrib))) continue;
+        const body = [
+          `contribution US$${String(contrib).replace(/,/g, "")}`,
+          `stock ${String(stock).replace(/,/g, "")}`,
+          `delivery ${String(days)} days`,
+          `approval ${String(approval)}`,
+        ].join("; ");
+        push(name, body);
+      }
+    }
+  }
+
   return out.slice(0, 50);
 }
 

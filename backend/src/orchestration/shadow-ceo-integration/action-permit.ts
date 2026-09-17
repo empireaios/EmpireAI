@@ -135,8 +135,9 @@ export function isSuppliedCandidateEvaluationAsk(message: string): boolean {
     asksEligibleSelected ||
     /\b(?:candidates?|suppliers?|options?)\b/i.test(t) ||
     /:\s*\n\s*[-*]?\s*contribution\b/i.test(t) ||
-    /\b[A-Z][A-Za-z0-9_-]{1,32}\s+contrib(?:ution)?\s+(?:US\$|\$)?\s*\d/i.test(t) ||
-    /\bApproval\s+granted\s+for\s+[A-Z]/i.test(t);
+    /\b[A-Z][A-Za-z0-9_-]{1,32}\s+contrib(?:ution)?(?:\s+exactly)?\s+(?:US\$|\$)?\s*\d/i.test(t) ||
+    /\bApproval\s+granted\s+for\s+[A-Z]/i.test(t) ||
+    /\|\s*Name\s*\|\s*Contrib/i.test(t);
   const hasRules =
     /\beligib(?:le|ility)\b/i.test(t) ||
     /\b(?:at\s+least|no\s+more\s+than|>=|<=|≥|≤)\b/i.test(t) ||

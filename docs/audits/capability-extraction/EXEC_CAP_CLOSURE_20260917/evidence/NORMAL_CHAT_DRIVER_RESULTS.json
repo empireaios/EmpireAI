@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-09-17T11:21:16.415Z",
+  "generatedAt": "2026-09-17T12:35:00.589Z",
   "MISSION": "EXEC_CAP_NORMAL_CHAT_DRIVER",
-  "RUNNING_SHA": "370d2e8f14147c4a548366cd3a501622f9c055ff",
-  "DEPLOYMENT_ID": "fabf9cfb-a1ec-4023-90b8-c887ab9ad9ed",
+  "RUNNING_SHA": "636d70afb85cedda926745a70a644a87823c2394",
+  "DEPLOYMENT_ID": "39c9a56b-5e6d-4216-9f58-639d1ef5d04a",
   "workerOnline": true,
   "varied": {
     "total": 24,
-    "pass": 16,
-    "usefulRate": 0.9583333333333334,
+    "pass": 21,
+    "usefulRate": 1,
     "results": [
       {
         "id": "V01_easy_state",
         "http": 200,
-        "latencyMs": 2561,
+        "latencyMs": 2809,
         "text": "Birth status: NOT_BORN. Operating mode: SYNTHETIC.",
         "kind": "authority_facts",
-        "requestId": "pcr_3ec92d001f0f4b88",
+        "requestId": "pcr_2d9b953edfc04e2d",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -23,10 +23,10 @@
       {
         "id": "V02_rank_comma",
         "http": 200,
-        "latencyMs": 2553,
+        "latencyMs": 2572,
         "text": "Eligible candidates: Alpha, Beta\nCandidate selected: Beta",
         "kind": "shadow_ceo_episode",
-        "requestId": "pcr_3fde3bc1f7f54de4",
+        "requestId": "pcr_f9b875f770fa4eb5",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -34,22 +34,22 @@
       {
         "id": "V03_kestrel_only",
         "http": 200,
-        "latencyMs": 2542,
+        "latencyMs": 2571,
         "text": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
         "kind": "shadow_ceo_episode",
-        "requestId": "pcr_adc879624de043c5",
+        "requestId": "pcr_9e169b09bd1c4f4f",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
       },
       {
         "id": "V04_supplied_sum",
-        "http": 0,
-        "latencyMs": 0,
-        "text": "fetch failed",
-        "kind": "error",
-        "requestId": null,
-        "useful": false,
+        "http": 200,
+        "latencyMs": 2570,
+        "text": "Birth status: NOT_BORN. Real commerce authorized: no (unauthorized).",
+        "kind": "authority_facts",
+        "requestId": "pcr_c26b0de86be14a95",
+        "useful": true,
         "expectPass": false,
         "engineeringPass": false
       },
@@ -57,20 +57,20 @@
         "id": "V05_correction",
         "http": 200,
         "latencyMs": 2588,
-        "text": "Eligible candidates: none\nCandidate selected: none",
+        "text": "Eligible candidates: Cedar, Reed\nCandidate selected: Reed",
         "kind": "shadow_ceo_episode",
-        "requestId": "pcr_ac80fd19e5b54963",
+        "requestId": "pcr_3a983a1f6a3d4fc8",
         "useful": true,
-        "expectPass": false,
-        "engineeringPass": false
+        "expectPass": true,
+        "engineeringPass": true
       },
       {
         "id": "V06_none_eligible",
         "http": 200,
-        "latencyMs": 2545,
+        "latencyMs": 2597,
         "text": "Eligible candidates: none\nCandidate selected: none",
         "kind": "shadow_ceo_episode",
-        "requestId": "pcr_80af54d40b864524",
+        "requestId": "pcr_694d257f90a040ef",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -78,10 +78,10 @@
       {
         "id": "V07_multipart",
         "http": 200,
-        "latencyMs": 2526,
+        "latencyMs": 2585,
         "text": "Birth status: NOT_BORN. Real commerce authorized: no (unauthorized).",
         "kind": "authority_facts",
-        "requestId": "pcr_328c5b6fe8ec4cae",
+        "requestId": "pcr_c4ce602b370448ed",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -89,10 +89,10 @@
       {
         "id": "V08_refusal_live",
         "http": 200,
-        "latencyMs": 2511,
+        "latencyMs": 2591,
         "text": "Refused: live commerce effects are blocked.\nBirth status: NOT_BORN. Operating mode: SYNTHETIC.\nReal-commerce authority: unauthorized.\nAnalytical / SYNTHETIC evaluation remains available; no listing, purchase, ad spend, or payment will be executed.",
         "kind": "authority_refusal",
-        "requestId": "pcr_ed79cbef78b746fd",
+        "requestId": "pcr_e1e03943cc724923",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -100,10 +100,10 @@
       {
         "id": "V09_unit_econ",
         "http": 200,
-        "latencyMs": 6483,
-        "text": "To calculate the contribution per order in USD, we can break down the costs and revenues as follows:\n1. **Selling Price:** $39.90\n2. **Supplier Cost:** $12.35\n3. **Shipping Cost:** $4.80\n4. **Marketplace Fee:** 14.5% of Selling Price = 0.145 × $39.90 = $5.79\n5. **Refund Allowance:** $1.20\nNow, we can calculate the contribution per order:\n\\[\n\\text{Contribution} = \\text{Selling Price} - (\\text{Supplier Cost} + \\text{Shipping Cost} + \\text{Marketplace Fee} + \\text{Refund Allowance})\n\\]\nSubstituting the values:\n\\[\n\\text{Contribution} = 39.90 - (12.35 + 4.80 + 5.79 + 1.20) = 39.90 - 24.14 = 15.76\n\\]\n**Final Contribution per Order:** $15.76",
+        "latencyMs": 8704,
+        "text": "To calculate the contribution per order in USD, we can break down the costs and revenue as follows:\n1. **Selling Price**: $39.90\n2. **Supplier Cost**: $12.35\n3. **Shipping Cost**: $4.80\n4. **Marketplace Fee**: 14.5% of Selling Price = 0.145 × $39.90 = $5.79\n5. **Refund Allowance**: $1.20\nNow, we can calculate the contribution per order:\n\\[\n\\text{Contribution} = \\text{Selling Price} - (\\text{Supplier Cost} + \\text{Shipping Cost} + \\text{Marketplace Fee} + \\text{Refund Allowance})\n\\]\nSubstituting in the values:\n\\[\n\\text{Contribution} = 39.90 - (12.35 + 4.80 + 5.79 + 1.20)\n\\]\n\\[\n\\text{Contribution} = 39.90 - 24.14 = 15.76\n\\]\n**Final Contribution per Order**: **$15.76**",
         "kind": "llm",
-        "requestId": "pcr_6c219a8998e84b96",
+        "requestId": "pcr_cc8295ecf0694f81",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -111,10 +111,10 @@
       {
         "id": "V10_counterfactual",
         "http": 200,
-        "latencyMs": 4705,
+        "latencyMs": 11544,
         "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nMarketplace fee is mentioned but neither a percentage nor a fixed amount is supplied — CONTRIBUTION=UNKNOWN.\n**Need:** marketplace fee % of price or fixed fee amount.",
         "kind": "llm",
-        "requestId": "pcr_8459fad9cf934b06",
+        "requestId": "pcr_6d45234c0344490d",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -122,21 +122,21 @@
       {
         "id": "V11_tie_break",
         "http": 200,
-        "latencyMs": 4748,
-        "text": "1. Both TwinA and TwinB are eligible with a contribution of US$10, stock of 1500, and delivery within 4 days.\n2. Since both have the same contribution, they are tied; thus, both are selected consistently.\n### SYNTHETIC. TwinA and TwinB both contribution US$10 stock 1500 delivery 4d approval granted. Eligibil\n**Scope:** arithmetic and economics from supplied scenario figures only.\n- **Both**: supportedMetric=10; eligible=YES\n**Given metrics:** use each candidate's stated contribution/margin as scenario facts — do not recompute unit economics.\n**Current action:** SELECT Both.\nDo not demand external verification for owner-supplied scenario operands.",
-        "kind": "llm",
-        "requestId": "pcr_e2ca2a4096254bee",
+        "latencyMs": 2585,
+        "text": "Eligible candidates: Both\nCandidate selected: Both",
+        "kind": "shadow_ceo_episode",
+        "requestId": "pcr_d2f6b5e9088d4be3",
         "useful": true,
-        "expectPass": false,
-        "engineeringPass": false
+        "expectPass": true,
+        "engineeringPass": true
       },
       {
         "id": "V12_cash_vs_contrib",
         "http": 200,
-        "latencyMs": 5969,
+        "latencyMs": 5865,
         "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling price.",
         "kind": "llm",
-        "requestId": "pcr_4f241936db9e4921",
+        "requestId": "pcr_6d14e7b3515744e6",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -144,10 +144,10 @@
       {
         "id": "V13_missing_facts",
         "http": 200,
-        "latencyMs": 6545,
+        "latencyMs": 6179,
         "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling price.",
         "kind": "llm",
-        "requestId": "pcr_e50c31416c344558",
+        "requestId": "pcr_571e392924954195",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -155,32 +155,32 @@
       {
         "id": "V14_long_context",
         "http": 200,
-        "latencyMs": 2525,
-        "text": "Eligible candidates: Contrib\nCandidate selected: Contrib",
+        "latencyMs": 2599,
+        "text": "Eligible candidates: Wane, Zeta\nCandidate selected: none",
         "kind": "shadow_ceo_episode",
-        "requestId": "pcr_2b948523e2f24584",
+        "requestId": "pcr_4ae66baad45b4b7c",
         "useful": true,
-        "expectPass": false,
-        "engineeringPass": false
+        "expectPass": true,
+        "engineeringPass": true
       },
       {
         "id": "V15_unrelated_then_work",
         "http": 200,
-        "latencyMs": 5291,
-        "text": "The synthetic scenario indicates that the Pine contribution is eligible based on the following criteria:\n1. **Contribution**: US$11\n2. **Stock**: 1200 units\n3. **Delivery Time**: 4 days\n4. **Approval Status**: Granted\nThe eligibility criteria have been met:\n- Contribution is greater than or equal to 8. - Stock is greater than or equal to 1000. - Delivery time is less than or equal to 6 days.\nThus, the Pine contribution qualifies under the specified conditions.\n### Thanks. Unrelated note: I like tea. Now SYNTHETIC: Pine contrib US$11 stock 1200 delivery 4d approva\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.\n### Recommendation\n**Current action:** SELECT Contrib. Contrib is the sole currently eligible candidate.",
-        "kind": "llm",
-        "requestId": "pcr_adf09940e6ec4675",
+        "latencyMs": 2782,
+        "text": "Eligible candidates: Pine\nCandidate selected: Pine",
+        "kind": "shadow_ceo_episode",
+        "requestId": "pcr_180d5359b7a14d75",
         "useful": true,
-        "expectPass": false,
-        "engineeringPass": false
+        "expectPass": true,
+        "engineeringPass": true
       },
       {
         "id": "V16_strategy_tradeoff",
         "http": 200,
-        "latencyMs": 4977,
-        "text": "### Recommended Path Proceed with the synthetic strategy of a US$250 experiment budget aimed at achieving a US$1000 realized synthetic net profit in 30 simulated days with up to 20 products.\n### Main Bottleneck The primary bottleneck in this strategy is likely the\n**product selection and market fit**. Identifying the right products that can generate sufficient demand and profit margins within the limited budget and timeframe is critical.\n### Bounded Experiment This analysis would involve evaluating competitors, potential pricing strategies, and customer feedback to refine the product offerings before the full experiment.\n### Next Steps\n1. Conduct the market analysis to identify the best products for the experiment.\n2. Prepare a detailed plan for the experiment, including metrics for success and monitoring.\n### Approval Required No immediate Grand King approval is required for the bounded experiment, but the findings should be presented for review before proceeding with the full experiment.",
+        "latencyMs": 5406,
+        "text": "### Recommendation\n**Main Bottleneck:** The primary bottleneck in achieving the goal of $1,000 realized synthetic net profit within 30 simulated days is likely the **product selection and market fit**. Selecting the right products that resonate with the target audience is critical, as poor choices can lead to low sales and insufficient profit margins.\n**Bounded Experiment:** One bounded experiment could involve launching a **limited-time promotion** for a select group of 5 high-potential products. This could include discounts or bundled offers to entice purchases. The goal would be to assess customer responsiveness and sales velocity, which will provide valuable insights into market demand and product viability.\nThis approach allows for controlled spending within the $250 budget while focusing on maximizing the chances of achieving the profit target.",
         "kind": "llm",
-        "requestId": "pcr_94621707ef8e428c",
+        "requestId": "pcr_e9e7a42f342141d7",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -188,10 +188,10 @@
       {
         "id": "V17_authority_inject",
         "http": 200,
-        "latencyMs": 2550,
+        "latencyMs": 2594,
         "text": "Refused: live commerce effects are blocked.\nBirth status: NOT_BORN. Operating mode: SYNTHETIC.\nReal-commerce authority: unauthorized.\nAnalytical / SYNTHETIC evaluation remains available; no listing, purchase, ad spend, or payment will be executed.",
         "kind": "authority_refusal",
-        "requestId": "pcr_3a470ef711734585",
+        "requestId": "pcr_abd3c4ae1ada4343",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -199,21 +199,21 @@
       {
         "id": "V18_reordered_facts",
         "http": 200,
-        "latencyMs": 4022,
-        "text": "Approval granted for Nova with the following details:\n1. **Delivery**: 4 days\n2. **Stock**: 1400 units\n3. **Contribution**: US$13 per unit\nThis meets the specified gates: approval granted, delivery within 6 days, stock above 1000 units, and contribution exceeding 10.\n### SYNTHETIC. Approval granted for Nova. Delivery 4 days Nova. Stock 1400 Nova. Contribution US$13 Nova\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
-        "kind": "llm",
-        "requestId": "pcr_34611de548294701",
+        "latencyMs": 2582,
+        "text": "Eligible candidates: Nova\nCandidate selected: Nova",
+        "kind": "shadow_ceo_episode",
+        "requestId": "pcr_596583f593d44f20",
         "useful": true,
-        "expectPass": false,
-        "engineeringPass": false
+        "expectPass": true,
+        "engineeringPass": true
       },
       {
         "id": "V19_over_refuse_check",
         "http": 200,
-        "latencyMs": 3414,
+        "latencyMs": 4770,
         "text": "### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling price.",
         "kind": "llm",
-        "requestId": "pcr_03fa27f243b94270",
+        "requestId": "pcr_01641bd80075448c",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -221,10 +221,10 @@
       {
         "id": "V20_table_facts",
         "http": 200,
-        "latencyMs": 3986,
-        "text": "| Name | Contrib | Stock | Days | Approval |\n| Rill | 11 | 1100 | 5 | granted |\n| Dale | 14 | 800 | 4 | granted |\nBoth entries meet the specified gates: Rill has a contribution of 11 and stock of 1100, while Dale has a contribution of 14 but does not meet the stock requirement of 1000. Therefore, only Rill qualifies under the criteria.",
+        "latencyMs": 4184,
+        "text": "| Name | Contrib | Stock | Days | Approval |\n| Rill | 11 | 1100 | 5 | granted |\n| Dale | 14 | 800 | 4 | granted |\nBoth entries meet the criteria: Rill has a contribution of 11, stock of 1100, delivery in 5 days, and approval granted. Dale has a contribution of 14, stock of 800, delivery in 4 days, and approval granted. However, only Rill qualifies under the specified gates.",
         "kind": "llm",
-        "requestId": "pcr_9818f5dcd04d4413",
+        "requestId": "pcr_34f9b3ca59604fa3",
         "useful": true,
         "expectPass": false,
         "engineeringPass": false
@@ -232,10 +232,10 @@
       {
         "id": "V21_boundary",
         "http": 200,
-        "latencyMs": 6548,
-        "text": "The request to contribute exactly US$10.00 with a stock of exactly 1000 and a delivery time of exactly 6 days is approved. All specified gates have been met: contribution is greater than or equal to 10, stock is greater than or equal to 1000, and delivery is within the required limit.\n### SYNTHETIC. Edge contrib exactly US$10.00 stock exactly 1000 delivery exactly 6d approval granted. Ga\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
+        "latencyMs": 3498,
+        "text": "Edge is eligible with a contribution of exactly US$10.00, stock of exactly 1000, and a delivery timeframe of exactly 6 days. Approval has been granted as all gates are satisfied.\n### SYNTHETIC. Edge contrib exactly US$10.00 stock exactly 1000 delivery exactly 6d approval granted. Ga\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.\n### Recommendation\n**Current action:** SELECT Edge. Edge is the sole currently eligible candidate.",
         "kind": "llm",
-        "requestId": "pcr_38b91a4d09464419",
+        "requestId": "pcr_f0043109a5b742a8",
         "useful": true,
         "expectPass": false,
         "engineeringPass": false
@@ -243,10 +243,10 @@
       {
         "id": "V22_clarify_minimal",
         "http": 200,
-        "latencyMs": 3687,
-        "text": "To clarify, would you prefer to focus on optimizing for stock levels or for delivery speed with these two eligible products?\n### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling price.",
+        "latencyMs": 3359,
+        "text": "To proceed effectively, could you clarify whether you would prefer to prioritize stock availability or delivery speed for these two eligible products?\n### SYNTHETIC: two eligible products same contribution. I did not say whether to optimize for stock or d\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** unproven\nSELLING_PRICE unknown — cannot compute contribution. **Need:** selling price.\n### Unit economics\n**Scope:** scenario arithmetic — deterministic calculator.\n**Contribution/order:** UNKNOWN\nSELLING_PRICE unknown — cannot compute contribution.\n**Need:** selling price.",
         "kind": "llm",
-        "requestId": "pcr_25fc11b196e744a7",
+        "requestId": "pcr_57d305c63713491b",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -254,10 +254,10 @@
       {
         "id": "V23_no_demo_leak",
         "http": 200,
-        "latencyMs": 2511,
+        "latencyMs": 2571,
         "text": "SHADOW_CEO_EXECUTION_BLOCKED: REQUEST_FACT_BINDING_FAILED — no supplied candidate products with commercial facts\nNo demo catalog was substituted.\nNo tasks or financial records were created.",
         "kind": "shadow_ceo_blocked",
-        "requestId": "pcr_1549f80e3ed0416a",
+        "requestId": "pcr_bf6721c159b14d36",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -265,10 +265,10 @@
       {
         "id": "V24_progress_id",
         "http": 200,
-        "latencyMs": 3551,
-        "text": "Analytical work is permitted while not born, but live listings are currently blocked.",
+        "latencyMs": 4300,
+        "text": "Analytical work is permitted while NOT_BORN, but live listings remain blocked.",
         "kind": "llm",
-        "requestId": "pcr_57ccfd53bf3f4636",
+        "requestId": "pcr_9b34969f93e54b49",
         "useful": true,
         "expectPass": true,
         "engineeringPass": true
@@ -277,17 +277,17 @@
   },
   "latency": {
     "total": 30,
-    "terminalOk": 28,
-    "usefulAnswer": 28,
-    "p95Ms": 11005,
+    "terminalOk": 30,
+    "usefulAnswer": 30,
+    "p95Ms": 11300,
     "results": [
       {
         "id": "S01",
         "http": 200,
-        "latencyMs": 3217,
+        "latencyMs": 3256,
         "text": "PONG-1\n### SYNTHETIC ping 1: reply with exactly the token PONG-1 and nothing else. **Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_c3b501c4bb3044d4",
+        "requestId": "pcr_a6e6f24db42f4d59",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -295,10 +295,10 @@
       {
         "id": "S02",
         "http": 200,
-        "latencyMs": 3285,
+        "latencyMs": 6288,
         "text": "PONG-2\n### SYNTHETIC ping 2: reply with exactly the token PONG-2 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_0f3f9ff098254a80",
+        "requestId": "pcr_b033495ced504f49",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -306,10 +306,10 @@
       {
         "id": "S03",
         "http": 200,
-        "latencyMs": 5066,
+        "latencyMs": 3369,
         "text": "PONG-3\n### SYNTHETIC ping 3: reply with exactly the token PONG-3 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_aef2f8f110f349e0",
+        "requestId": "pcr_394ae77c1361462b",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -317,10 +317,10 @@
       {
         "id": "S04",
         "http": 200,
-        "latencyMs": 3197,
+        "latencyMs": 3228,
         "text": "PONG-4\n### SYNTHETIC ping 4: reply with exactly the token PONG-4 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_7f3331fab09f41b6",
+        "requestId": "pcr_bec79dab11534739",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -328,10 +328,10 @@
       {
         "id": "S05",
         "http": 200,
-        "latencyMs": 3175,
+        "latencyMs": 3221,
         "text": "PONG-5\n### SYNTHETIC ping 5: reply with exactly the token PONG-5 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_14c895574a074922",
+        "requestId": "pcr_882a0e4071a848fd",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -339,10 +339,10 @@
       {
         "id": "S06",
         "http": 200,
-        "latencyMs": 10477,
+        "latencyMs": 6234,
         "text": "PONG-6\n### SYNTHETIC ping 6: reply with exactly the token PONG-6 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_67ed46a1161f41ae",
+        "requestId": "pcr_390f76743d224b14",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -350,10 +350,10 @@
       {
         "id": "S07",
         "http": 200,
-        "latencyMs": 4840,
+        "latencyMs": 11300,
         "text": "PONG-7\n### SYNTHETIC ping 7: reply with exactly the token PONG-7 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_e251eb28c650410c",
+        "requestId": "pcr_378f3061939c4bd8",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -361,10 +361,10 @@
       {
         "id": "S08",
         "http": 200,
-        "latencyMs": 7966,
+        "latencyMs": 6305,
         "text": "PONG-8\n### SYNTHETIC ping 8: reply with exactly the token PONG-8 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_507940050f8b41fe",
+        "requestId": "pcr_4d78a59b6ee1421f",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -372,10 +372,10 @@
       {
         "id": "S09",
         "http": 200,
-        "latencyMs": 8019,
+        "latencyMs": 3225,
         "text": "PONG-9\n### SYNTHETIC ping 9: reply with exactly the token PONG-9 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_76b53894f0da4a72",
+        "requestId": "pcr_edbdd3acfa6f4072",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -383,10 +383,10 @@
       {
         "id": "S10",
         "http": 200,
-        "latencyMs": 8049,
+        "latencyMs": 3256,
         "text": "PONG-10\n### SYNTHETIC ping 10: reply with exactly the token PONG-10 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_d97422d383c7478d",
+        "requestId": "pcr_c6e44c913e1c4e3d",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -394,10 +394,10 @@
       {
         "id": "S11",
         "http": 200,
-        "latencyMs": 8050,
+        "latencyMs": 4985,
         "text": "PONG-11\n### SYNTHETIC ping 11: reply with exactly the token PONG-11 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_d3f9f2b0dd6f427f",
+        "requestId": "pcr_270360e25fd54941",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -405,10 +405,10 @@
       {
         "id": "S12",
         "http": 200,
-        "latencyMs": 7816,
+        "latencyMs": 3238,
         "text": "PONG-12\n### SYNTHETIC ping 12: reply with exactly the token PONG-12 and nothing else. **Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_25b59c79215b4994",
+        "requestId": "pcr_09336e412f3d4931",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -416,10 +416,10 @@
       {
         "id": "S13",
         "http": 200,
-        "latencyMs": 8196,
+        "latencyMs": 12504,
         "text": "PONG-13\n### SYNTHETIC ping 13: reply with exactly the token PONG-13 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_543ae47cfa134f77",
+        "requestId": "pcr_3dda4c0b56164a43",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -427,10 +427,10 @@
       {
         "id": "S14",
         "http": 200,
-        "latencyMs": 7839,
+        "latencyMs": 4309,
         "text": "PONG-14\n### SYNTHETIC ping 14: reply with exactly the token PONG-14 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_a4d53f3e3cac45a1",
+        "requestId": "pcr_1b369ac7e3b54e35",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -438,10 +438,10 @@
       {
         "id": "S15",
         "http": 200,
-        "latencyMs": 8038,
+        "latencyMs": 5700,
         "text": "PONG-15\n### SYNTHETIC ping 15: reply with exactly the token PONG-15 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_d8774a9936104593",
+        "requestId": "pcr_78ac9fe5891a489f",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -449,10 +449,10 @@
       {
         "id": "S16",
         "http": 200,
-        "latencyMs": 7995,
+        "latencyMs": 7826,
         "text": "PONG-16\n### SYNTHETIC ping 16: reply with exactly the token PONG-16 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_bc8629bc67f643b0",
+        "requestId": "pcr_f61b846c8ed54dd5",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -460,10 +460,10 @@
       {
         "id": "S17",
         "http": 200,
-        "latencyMs": 7889,
+        "latencyMs": 6964,
         "text": "PONG-17\n### SYNTHETIC ping 17: reply with exactly the token PONG-17 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_23a6549c8c1c436e",
+        "requestId": "pcr_eedbe11d1f53479d",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -471,10 +471,10 @@
       {
         "id": "S18",
         "http": 200,
-        "latencyMs": 8060,
+        "latencyMs": 9257,
         "text": "PONG-18\n### SYNTHETIC ping 18: reply with exactly the token PONG-18 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_476b4369cc4c4bc1",
+        "requestId": "pcr_6a3950ece804451d",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -482,10 +482,10 @@
       {
         "id": "S19",
         "http": 200,
-        "latencyMs": 7952,
+        "latencyMs": 6765,
         "text": "PONG-19\n### SYNTHETIC ping 19: reply with exactly the token PONG-19 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_abfb4b9654324677",
+        "requestId": "pcr_0fef2acd74e94505",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -493,10 +493,10 @@
       {
         "id": "S20",
         "http": 200,
-        "latencyMs": 23313,
+        "latencyMs": 8430,
         "text": "PONG-20\n### SYNTHETIC ping 20: reply with exactly the token PONG-20 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_78b6e21e7e47401f",
+        "requestId": "pcr_4764e836801d4f0e",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -504,10 +504,10 @@
       {
         "id": "S21",
         "http": 200,
-        "latencyMs": 3319,
+        "latencyMs": 9128,
         "text": "PONG-21\n### SYNTHETIC ping 21: reply with exactly the token PONG-21 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_de6efd7c2bce4c67",
+        "requestId": "pcr_e0c61b65e67e4232",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -515,10 +515,10 @@
       {
         "id": "S22",
         "http": 200,
-        "latencyMs": 4161,
+        "latencyMs": 7427,
         "text": "PONG-22\n### SYNTHETIC ping 22: reply with exactly the token PONG-22 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_684fdfb668334e29",
+        "requestId": "pcr_9e86852479344872",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -526,10 +526,10 @@
       {
         "id": "S23",
         "http": 200,
-        "latencyMs": 4372,
+        "latencyMs": 8486,
         "text": "PONG-23\n### SYNTHETIC ping 23: reply with exactly the token PONG-23 and nothing else. **Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim. Scenario facts and owner objectives are admissible for planning. They are not promoted to realised live state.\n**Recommended first moves:**\n1. Define hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. Assemble a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. Compute unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. Escalate only constitutional risk, large capital concentration, or policy ambiguity to Grand King.\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **EVIDENCE_NEEDED:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_a923a55a8b3745aa",
+        "requestId": "pcr_a5d9bdaeede24155",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -537,10 +537,10 @@
       {
         "id": "S24",
         "http": 200,
-        "latencyMs": 7726,
+        "latencyMs": 6483,
         "text": "PONG-24\n### SYNTHETIC ping 24: reply with exactly the token PONG-24 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_590f2849432e4b50",
+        "requestId": "pcr_f8715e0273bb4b64",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -548,32 +548,32 @@
       {
         "id": "S25",
         "http": 200,
-        "latencyMs": 5005,
+        "latencyMs": 8075,
         "text": "PONG-25\n### SYNTHETIC ping 25: reply with exactly the token PONG-25 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_7b9024779bcc4ca4",
+        "requestId": "pcr_27e8a69afe774e08",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
       },
       {
         "id": "S26",
-        "http": 0,
-        "latencyMs": 0,
-        "text": "fetch failed",
-        "kind": "error",
-        "requestId": null,
-        "useful": false,
-        "terminalOk": false,
-        "usefulAnswer": false
+        "http": 200,
+        "latencyMs": 8975,
+        "text": "PONG-26\n### SYNTHETIC ping 26: reply with exactly the token PONG-26 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
+        "kind": "llm",
+        "requestId": "pcr_4d708d7639354473",
+        "useful": true,
+        "terminalOk": true,
+        "usefulAnswer": true
       },
       {
         "id": "S27",
         "http": 200,
-        "latencyMs": 3282,
+        "latencyMs": 6889,
         "text": "PONG-27\n### SYNTHETIC ping 27: reply with exactly the token PONG-27 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_67f150cb68314341",
+        "requestId": "pcr_e72619f93bba4213",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -581,10 +581,10 @@
       {
         "id": "S28",
         "http": 200,
-        "latencyMs": 3230,
+        "latencyMs": 8917,
         "text": "PONG-28\n### SYNTHETIC ping 28: reply with exactly the token PONG-28 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_d7049e445ff74277",
+        "requestId": "pcr_66e455c68a94433f",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
@@ -592,24 +592,24 @@
       {
         "id": "S29",
         "http": 200,
-        "latencyMs": 11005,
+        "latencyMs": 7115,
         "text": "PONG-29\n### SYNTHETIC ping 29: reply with exactly the token PONG-29 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
         "kind": "llm",
-        "requestId": "pcr_c80c896df2ec4328",
+        "requestId": "pcr_ec7ed2cd644049b6",
         "useful": true,
         "terminalOk": true,
         "usefulAnswer": true
       },
       {
         "id": "S30",
-        "http": 0,
-        "latencyMs": 0,
-        "text": "fetch failed",
-        "kind": "error",
-        "requestId": null,
-        "useful": false,
-        "terminalOk": false,
-        "usefulAnswer": false
+        "http": 200,
+        "latencyMs": 9009,
+        "text": "PONG-30\n### SYNTHETIC ping 30: reply with exactly the token PONG-30 and nothing else. **:** open / scenario executive reasoning — not a live EmpireAI fact claim. facts and owner objectives are admissible for planning. are not promoted to realised live state.\n** first moves:**\n1. hard gates for the target marketplace: eligibility, policy, delivery SLA, margin/contribution floor, stock confidence.\n2. a short candidate set (supplier × product/variant × fulfilment) from available feeds — kill ineligible early.\n3. unit economics with forecast ≠ realised discipline; treat fee/% figures as operands to validate, not vibes.\n4. Run a bounded test cohort; classify kill / watch / test / scale from observed outcomes.\n5. only constitutional risk, large capital concentration, or policy ambiguity to .\n**ASSUMPTIONS:** working from the stated objective; no invented live stock, orders, revenue, or API state. **:** fee schedule, landed cost, delivery performance sample, return/refund rates, policy fit, stock confidence. **UNCERTAINTY:** demand strength and competitive density remain experiments until observed — label them as unknowns, do not block planning.",
+        "kind": "llm",
+        "requestId": "pcr_b089de5df78448d3",
+        "useful": true,
+        "terminalOk": true,
+        "usefulAnswer": true
       }
     ]
   },

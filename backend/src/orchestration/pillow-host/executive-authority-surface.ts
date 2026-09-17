@@ -41,6 +41,14 @@ export function projectLiveCommerceRefusal(message: string): {
 
 export function isOperatingAuthorityFactAsk(message: string): boolean {
   const t = String(message || "");
+  // Exact-line checkpoint / contribution contracts own Birth lines — do not short-circuit.
+  if (
+    /Checkpoint\s+token/i.test(t) ||
+    /Total\s+synthetic\s+contribution/i.test(t) ||
+    (/\bEligible\s+candidates\b/i.test(t) && /\bCandidate\s+selected\b/i.test(t))
+  ) {
+    return false;
+  }
   const asksBirth = /\bbirth\s+status\b/i.test(t) || /\bwhat is birth\b/i.test(t);
   const asksMode = /\boperating\s+mode\b/i.test(t);
   const asksAuth =
