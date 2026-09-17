@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-09-17T08:56:11.897Z",
+  "MISSION": "D002_COMMA_RANK_PROD",
+  "RUNNING_SHA": "aef83cbf08a48f214572641bfc15fc4e10b3d875",
+  "DEPLOYMENT_ID": "04ca659b-c26a-4e46-9e0d-d80b63d9c582",
+  "workerOnline": true,
+  "requestId": "pcr_e387d232bcb24f76",
+  "kind": "shadow_ceo_episode",
+  "chatHttp": 200,
+  "latencyMs": 2899,
+  "text": "Eligible candidates: Alpha, Beta\nCandidate selected: Beta",
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN"
+}

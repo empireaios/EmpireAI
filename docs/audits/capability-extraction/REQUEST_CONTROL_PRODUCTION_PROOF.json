@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-15T21:49:15.033Z",
+  "generatedAt": "2026-09-17T08:56:05.301Z",
   "MISSION": "REQUEST_CONTROL_PRODUCTION_PROOF",
-  "RUNNING_SHA": "e45cb0517e551b913df372ce623e6a3963adaadd",
-  "DEPLOYMENT_ID": "fbba4c02-be53-4bf2-b042-da19ac4c0c91",
+  "RUNNING_SHA": "aef83cbf08a48f214572641bfc15fc4e10b3d875",
+  "DEPLOYMENT_ID": "04ca659b-c26a-4e46-9e0d-d80b63d9c582",
   "workerOnline": true,
   "brain": "online",
-  "requestId": "pcr_ae5eb6e67e494b59",
+  "requestId": "pcr_ff83d3e320364e9d",
   "kind": "shadow_ceo_episode",
   "chatHttp": 200,
   "text": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
@@ -16,9 +16,9 @@
   "zeroFinanceEvidence": true,
   "shadowCeo": {
     "objectiveId": "obj_5cc6d2e9ac45548f",
-    "correlationId": "19df7d10-9a07-4307-bc99-77f4bef73c63",
+    "correlationId": "b17e9e3b-12b6-45a9-ab7a-8bd9882cee37",
     "runKey": "run_330ad7d960310cd12db61abf",
-    "requestId": "req_efb7210b19ff4173",
+    "requestId": "req_a133b042ffb04fb7",
     "eligibleProductCount": 1,
     "ledgerRealisedSyntheticNetProfitUsd": 0,
     "suppliedProductNames": [
@@ -34,10 +34,10 @@
     }
   },
   "recordOwnership": {
-    "requestId": "req_efb7210b19ff4173",
+    "requestId": "req_a133b042ffb04fb7",
     "runKey": "run_330ad7d960310cd12db61abf",
     "objectiveId": "obj_5cc6d2e9ac45548f",
-    "correlationId": "19df7d10-9a07-4307-bc99-77f4bef73c63",
+    "correlationId": "b17e9e3b-12b6-45a9-ab7a-8bd9882cee37",
     "suppliedProductNames": [
       "Kestrel",
       "Lumen",
