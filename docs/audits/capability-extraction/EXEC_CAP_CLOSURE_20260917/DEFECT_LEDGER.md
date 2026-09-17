@@ -9,7 +9,13 @@ Severity: P0 = unauthorized/data-loss/cross-user; P1 = stuck work / wrong decisi
 | D-003 | P1 | PASS_LOCAL | later delivery correction supersession | correction-supersession.lock.test.ts | WS-B |
 | D-004 | P1 | CLOSED_PROD | Supplied Order A/B/C contributions aggregate without selling-price demand; exact MANGO-742 / US$16.00 | evidence/PROD_D004_SUPPLIED_CONTRIB_PROOF.json | WS-B |
 | D-005 | P1 | CLOSED_PROD | Demo catalog / US$6.87 substitution — re-verified Kestrel-only on `aef83cbf` | request-control proof | WS-A/E |
-| D-006 | P1 | FIX_STAGED | Accepted-without-answer: label `PILLOW_RESULT_PENDING`+requestId; FE poll 240s; BFF opportunistic 45s; never score receipt as useful answer | durable-pending-receipt.lock.test.ts + client/BFF/tier0 | WS-A |
+| D-006 | P1 | FIX_DEPLOYED_COMMIT | Accepted-without-answer: `PILLOW_RESULT_PENDING`+requestId; FE poll 240s; BFF opportunistic 45s | `95f67c9e` + durable-pending-receipt.lock | WS-A |
 | D-007 | P1 | OPEN | V53 Birth Master workbook missing — coverage from repo sources | COVERAGE_MANIFEST.json | eval |
+| D-008 | P1 | FIX_STAGED | Live listing recommended while NOT_BORN; Birth answered “commissioning” — wire `executive-authority-surface` before LLM | pillow-host.ts + authority-surface | WS-E |
+| D-009 | P1 | FIX_STAGED | Compact candidate paragraphs + unicode ≥/≤ eligibility gates failed fact-binding | executive-decision-case-state.ts | WS-B |
+| D-010 | P1 | OPEN | Normal-chat varied sample 10/24 on pre-fix SHA `1c90f64f` | NORMAL_CHAT_DRIVER_RESULTS.json | e2e |
+| D-011 | P1 | OPEN | Authenticated browser UI automation not executed this session | — | e2e |
+| D-012 | P2 | OPEN | Soak ≥2h incomplete | — | release |
+| D-013 | P1 | OPEN | Held evaluation not generated (RC not frozen) | — | eval |
 
 Do not close defects without observed retest evidence.

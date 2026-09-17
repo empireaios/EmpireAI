@@ -76,6 +76,12 @@ import {
 } from "./executive-response-completion.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
 import {
+  isLiveCommerceEffectAsk,
+  isOperatingAuthorityFactAsk,
+  projectLiveCommerceRefusal,
+  projectOperatingAuthorityFacts,
+} from "./executive-authority-surface.js";
+import {
   admitAndExecuteShadowCeoFromChat,
 } from "../shadow-ceo-integration/chat-admission.js";
 import {
@@ -29817,6 +29823,107 @@ export class PillowHost {
                         findings: constitutionalGate.compliance.findings,
                     },
                 };
+            }
+            // ── Deterministic Birth / live-commerce authority (before LLM) ──
+            {
+                if (isLiveCommerceEffectAsk(input.message)) {
+                    const refusal = projectLiveCommerceRefusal(input.message);
+                    const assistantTurn = {
+                        role: "assistant",
+                        content: refusal.message,
+                        timestamp: new Date().toISOString(),
+                        requestId,
+                    };
+                    session.conversationHistory.push(assistantTurn);
+                    const latencyMs = Math.round(performance.now() - started);
+                    this.requestLogger.log({
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        action: "pillow.chat",
+                        latencyMs,
+                        result: "authority_refusal",
+                        actor: input.actor,
+                    });
+                    recordPillowResponseTerminal({
+                        requestId,
+                        kind: "complete",
+                        useful: true,
+                        degradedUsed: false,
+                        primaryFailureReason: null,
+                        latencyMs,
+                        multipartUnits,
+                    });
+                    const now = new Date().toISOString();
+                    session.updatedAt = now;
+                    session.lastActivityAt = now;
+                    this.touchActivity();
+                    return {
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        message: refusal.message,
+                        kind: "authority_refusal",
+                        latencyMs,
+                        trace: { ...trace, totalMs: latencyMs },
+                        constitutionalGate: {
+                            allowed: true,
+                            aligned: constitutionalGate.compliance.aligned,
+                            requiresGrandKingApproval:
+                                constitutionalGate.compliance.requiresGrandKingApproval,
+                            findings: constitutionalGate.compliance.findings,
+                        },
+                    };
+                }
+                if (isOperatingAuthorityFactAsk(input.message)) {
+                    const facts = projectOperatingAuthorityFacts(input.message);
+                    const assistantTurn = {
+                        role: "assistant",
+                        content: facts.message,
+                        timestamp: new Date().toISOString(),
+                        requestId,
+                    };
+                    session.conversationHistory.push(assistantTurn);
+                    const latencyMs = Math.round(performance.now() - started);
+                    this.requestLogger.log({
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        action: "pillow.chat",
+                        latencyMs,
+                        result: "authority_facts",
+                        actor: input.actor,
+                    });
+                    recordPillowResponseTerminal({
+                        requestId,
+                        kind: "complete",
+                        useful: true,
+                        degradedUsed: false,
+                        primaryFailureReason: null,
+                        latencyMs,
+                        multipartUnits,
+                    });
+                    const now = new Date().toISOString();
+                    session.updatedAt = now;
+                    session.lastActivityAt = now;
+                    this.touchActivity();
+                    return {
+                        requestId,
+                        sessionId: session.sessionId,
+                        workspaceId: input.workspaceId,
+                        message: facts.message,
+                        kind: "authority_facts",
+                        latencyMs,
+                        trace: { ...trace, totalMs: latencyMs },
+                        constitutionalGate: {
+                            allowed: true,
+                            aligned: constitutionalGate.compliance.aligned,
+                            requiresGrandKingApproval:
+                                constitutionalGate.compliance.requiresGrandKingApproval,
+                            findings: constitutionalGate.compliance.findings,
+                        },
+                    };
+                }
             }
             // ── Typed exact-line response contract (deterministic; LLM not final) ──
             {

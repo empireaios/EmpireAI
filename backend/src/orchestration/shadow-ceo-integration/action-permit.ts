@@ -133,7 +133,8 @@ export function isSuppliedCandidateEvaluationAsk(message: string): boolean {
     /:\s*\n\s*[-*]?\s*contribution\b/i.test(t);
   const hasRules =
     /\beligib(?:le|ility)\b/i.test(t) ||
-    /\b(?:at\s+least|no\s+more\s+than|>=|<=)\b/i.test(t);
+    /\b(?:at\s+least|no\s+more\s+than|>=|<=|≥|≤)\b/i.test(t) ||
+    /[≥≤]/.test(t);
   const hasSelect =
     /\b(?:select|eligible\s+candidates?|candidate\s+selected)\b/i.test(t);
   return hasCandidates && hasRules && (hasSelect || /\bapproval\b/i.test(t));

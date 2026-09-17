@@ -189,10 +189,18 @@ export function projectExactLineResponseContract(
 ): ResponseContractProjection {
   const t = String(message || "");
   // Candidate-evaluation exact answers are owned by Shadow CEO request-control path.
-  // Do not hijack them into checkpoint-token contracts.
+  // Do not hijack them into checkpoint-token contracts (colon optional in the ask).
   if (
-    /\bEligible\s+candidates\s*:/i.test(t) &&
-    /\bCandidate\s+selected\s*:/i.test(t)
+    /\bEligible\s+candidates\b/i.test(t) &&
+    /\bCandidate\s+selected\b/i.test(t)
+  ) {
+    return { ok: false, detected: false };
+  }
+  // "Exactly N lines" alone is not a checkpoint contract without token/total template.
+  if (
+    /\bexactly\s+\d+\s+lines?\b/i.test(t) &&
+    !/Checkpoint\s+token/i.test(t) &&
+    !/Total\s+synthetic\s+contribution/i.test(t)
   ) {
     return { ok: false, detected: false };
   }

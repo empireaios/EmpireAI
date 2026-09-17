@@ -141,6 +141,7 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   let deliveryMaxDays: number | null = null;
   const delDays =
     /delivery(?:\s*days?)?\s*(?:<=|≤|at\s+most|no\s+more\s+than)\s*(\d+(?:\.\d+)?)/i.exec(t) ||
+    /delivery(?:\s*days?)?\s*[≤⩽]\s*(\d+(?:\.\d+)?)/i.exec(t) ||
     /delivery(?:\s*days?)?\s*(?:<=|≤)\s*(\d+(?:\.\d+)?)/i.exec(t);
   if (delDays) deliveryMaxDays = Number(delDays[1]);
 
@@ -159,13 +160,17 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
   const cMin =
     /(?:contribution|margin|profit|score)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       t,
+    ) ||
+    /(?:contribution|margin|profit|score)\s*[≥⩾]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+      t,
     );
   // Absolute floors (margin US$ / score) — not percentage margin floor.
   if (cMin && !/%/.test(cMin[0]!)) contributionMin = parseMoney(cMin[1]!);
 
   let stockMin: number | null = null;
   const sMin =
-    /(?:stock|inventory)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*([\d,]+(?:\.\d+)?)/i.exec(t);
+    /(?:stock|inventory)\s*(?:>=|≥|at\s+least|min(?:imum)?)\s*([\d,]+(?:\.\d+)?)/i.exec(t) ||
+    /(?:stock|inventory)\s*[≥⩾]\s*([\d,]+(?:\.\d+)?)/i.exec(t);
   if (sMin) stockMin = parseMoney(sMin[1]!);
 
   let objective: DecisionObjective = "select_sole_eligible";
@@ -368,6 +373,31 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
     const name = `Candidate ${m[1]}`;
     const body = m[2]!.trim();
     push(name, body);
+  }
+
+  // Compact same-paragraph peers:
+  // "Kestrel contribution US$11 stock 1200 delivery 5d approval granted. Lumen US$13 stock …"
+  {
+    const compactRe =
+      /\b([A-Z][A-Za-z0-9_-]{1,32})(?:\s+contribution)?\s+(?:US\$|USD\s*|S\$|SGD\s*|\$)?\s*([\d,]+(?:\.\d+)?)\s+stock\s+([\d,]+)(?:\s+delivery\s+(\d+)\s*d(?:ays?)?)?\s+approval\s+(granted|pending|cleared|rejected|denied)\b/gi;
+    let cm: RegExpExecArray | null;
+    while ((cm = compactRe.exec(text)) !== null) {
+      const name = cm[1]!;
+      if (isReservedCandidateName(name) || skipHeaders.test(name)) continue;
+      const contrib = cm[2]!;
+      const stock = cm[3]!;
+      const days = cm[4];
+      const approval = cm[5]!;
+      const body = [
+        `contribution US$${contrib.replace(/,/g, "")}`,
+        `stock ${stock.replace(/,/g, "")}`,
+        days ? `delivery ${days} days` : null,
+        `approval ${approval}`,
+      ]
+        .filter(Boolean)
+        .join("; ");
+      push(name.charAt(0).toUpperCase() + name.slice(1), body);
+    }
   }
 
   return out.slice(0, 50);

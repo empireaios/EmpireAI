@@ -1,29 +1,25 @@
-# START_HERE (living — not final handoff)
+﻿# START_HERE (living — not final handoff)
 
 **Mission:** EXEC_CAP_CLOSURE_20260917  
 **Unattended:** LIMITED  
 **Certification locks:** Wave 1 0/24 · WAVE_CREDIT=0 · Birth unauthorized · Real commerce locked · SC-01 frozen
 
-## What works now (observed)
+## What works now (observed on prod)
 
-- Request-control: Grand King supplied candidates control Shadow CEO chat (Kestrel-only proven on prod `aef83cbf`)
-- Comma contribution ranking: US$5,000 selected over US$4,950 on prod
-- Diagnostic candidate eval: zero financial ledger movement
-- Demo vertical slice isolated from ordinary chat
+- Request-control Kestrel-only; comma ranking Beta over Alpha; DC-05421 four-line sum without selling-price demand
+- Latency sample: 30/30 useful short answers; p95 ~8.5s on prior SHA
+- Synthetic commerce episode rails + 3 stateful missions (decision quality OK; target attainment separate / unmet)
 
 ## What is still not proven
 
-- Full executive-capability closure / Wave 1 / Birth
-- Durable “accepted without answer” root cause (D-006) still open
-- Stateful 12-decision missions, soak, UI browser automation
-- V53 official 62-capability workbook (missing) — using repo coverage stub
+- ENGINEERING_READY gate (normal-chat varied was 10/24 on pre-authority SHA)
+- Authenticated browser UI automation; soak; held eval; V53 workbook
+- Post-deploy retest of live-refusal + Birth facts + compact bind
 
 ## Costs / actions
 
-- Real commerce: none
-- Deploy: Railway normal push of `aef83cbf` → `04ca659b`
-- Extra paid spend this mission: $0 tracked
+- Real commerce: none · Extra paid spend tracked: $0
 
 ## Status word
 
-**Still not proven** for ENGINEERING_READY gate — campaign in progress.
+**Still not proven** — PARTIAL_WITH_BLOCKERS. Next: deploy fixes, re-run normal-chat driver, then freeze RC.

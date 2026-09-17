@@ -65,3 +65,19 @@ export {
 } from "./unit-economics.js";
 
 export { seedSyntheticAmazonUsCatalog } from "./fixtures.js";
+
+export {
+  createEpisode,
+  applyDecision,
+  injectEvent,
+  advanceDay,
+  buildLedger,
+  scoreEpisode,
+  feasibilityBaseline,
+  eligiblePortfolio,
+  DEFAULT_EPISODE_LIMITS,
+  type EpisodeState,
+  type EpisodeDecision,
+  type EpisodeEvent,
+  type EpisodeLimits,
+} from "./operating-episode.js";

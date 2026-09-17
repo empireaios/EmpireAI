@@ -185,7 +185,7 @@ export function parseEligibleSelectedContract(message: string): {
 } {
   const t = String(message || "");
   const wants =
-    /\bEligible\s+candidates\s*:/i.test(t) && /\bCandidate\s+selected\s*:/i.test(t);
+    /\bEligible\s+candidates\b/i.test(t) && /\bCandidate\s+selected\b/i.test(t);
   if (!wants) return { detected: false, expectedLines: 0 };
   const exact = /\bexactly\s+(\d+)\s+lines?\b/i.exec(t);
   return { detected: true, expectedLines: exact ? Number(exact[1]) : 2 };
