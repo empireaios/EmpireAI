@@ -1,20 +1,20 @@
 {
   "missionId": "EXEC_CAP_CLOSURE_20260917",
-  "updatedAt": "2026-09-17T10:55:00Z",
+  "updatedAt": "2026-09-17T11:50:00Z",
   "deadlineUtc": "2026-09-18T08:34:52Z",
   "status": "PARTIAL_WITH_BLOCKERS",
-  "tipSha": "370d2e8f14147c4a548366cd3a501622f9c055ff",
+  "tipSha": "pending_push_correction_bind",
   "awaitingDeploy": true,
   "waveCredit": 0,
   "sc01": "FROZEN",
   "birth": "unauthorized",
   "realCommerce": "locked",
-  "continuation": "After SHA 370d2e8f online: node docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/evidence/post-deploy-focus-proof.mjs then normal-chat-driver.mjs. Do not claim ENGINEERING_READY until driver + focus pass on frozen SHA.",
+  "continuation": "After next tip online: post-deploy-focus-proof.mjs then normal-chat-driver.mjs. Remaining varied gaps were correction/5d/reordered/exactly — fixed locally. V53 still missing (Desktop has V11 only).",
   "openBlockers": [
-    "D-010 normal-chat varied retest",
+    "D-010 normal-chat varied retest after correction/reordered deploy",
     "D-011 UI browser automation",
     "D-012 soak",
     "D-013 held eval",
-    "D-007 V53 missing"
+    "D-007 V53 missing (V11 on Desktop only)"
   ]
 }

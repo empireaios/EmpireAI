@@ -211,7 +211,7 @@ export function parseDecisionRules(userMessage: string): ParsedRule {
 }
 
 const SKIP_CANDIDATE_NAMES =
-  /^(?:ANSWER|AUDIT|RULE|NOTE|PACK|CLAIM|SECTION|SNAPSHOT|CLOSING|ALSO|THEN|GIVEN|ASSESS|SYNTHETIC|CONTINUE|NOW|ONLY|CURRENT|SUPPLIER|SUPPLIERS)$/i;
+  /^(?:ANSWER|AUDIT|RULE|NOTE|PACK|CLAIM|SECTION|SNAPSHOT|CLOSING|ALSO|THEN|GIVEN|ASSESS|SYNTHETIC|CONTINUE|NOW|ONLY|CURRENT|SUPPLIER|SUPPLIERS|CORRECTION|CORRECTIONS)$/i;
 
 /** Gate / attribute field labels — never treat as option identities. */
 const GATE_FIELD_CANDIDATE_NAMES =
@@ -379,7 +379,7 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
   // "Kestrel contribution US$11 stock 1200 delivery 5d approval granted. Lumen US$13 stock …"
   {
     const compactRe =
-      /\b([A-Z][A-Za-z0-9_-]{1,32})(?:\s+contrib(?:ution)?s?)?\s+(?:US\$|USD\s*|S\$|SGD\s*|\$)?\s*([\d,]+(?:\.\d+)?)\s+stock\s+([\d,]+)(?:\s+delivery\s+(\d+)\s*d(?:ays?)?)?\s+approval\s+(granted|pending|cleared|rejected|denied)\b/gi;
+      /\b([A-Z][A-Za-z0-9_-]{1,32})(?:\s+contrib(?:ution)?s?)?\s+(?:exactly\s+)?(?:US\$|USD\s*|S\$|SGD\s*|\$)?\s*([\d,]+(?:\.\d+)?)\s+stock\s+(?:exactly\s+)?([\d,]+)(?:\s+delivery\s+(?:exactly\s+)?(\d+)\s*d(?:ays?)?)?\s+approval\s+(granted|pending|cleared|rejected|denied)\b/gi;
     let cm: RegExpExecArray | null;
     while ((cm = compactRe.exec(text)) !== null) {
       const name = cm[1]!;
@@ -397,6 +397,32 @@ export function extractNamedCandidateBlocks(userMessage: string): Array<{ name: 
         .filter(Boolean)
         .join("; ");
       push(name.charAt(0).toUpperCase() + name.slice(1), body);
+    }
+  }
+
+  // Reordered attribute fragments: "Approval granted for Nova. Delivery 4 days Nova. …"
+  if (out.length === 0 || /\bApproval\s+granted\s+for\b/i.test(text)) {
+    const names = new Set<string>();
+    const forName = /\bApproval\s+granted\s+for\s+([A-Z][A-Za-z0-9_-]{1,32})\b/gi;
+    let fm: RegExpExecArray | null;
+    while ((fm = forName.exec(text)) !== null) {
+      if (!isReservedCandidateName(fm[1]!)) names.add(fm[1]!);
+    }
+    const trailName =
+      /\b(?:Contribution|Stock|Delivery)\b[^.\n]{0,40}\b([A-Z][A-Za-z0-9_-]{1,32})\b/gi;
+    while ((fm = trailName.exec(text)) !== null) {
+      if (!isReservedCandidateName(fm[1]!) && !skipHeaders.test(fm[1]!)) names.add(fm[1]!);
+    }
+    for (const name of names) {
+      const bits: string[] = [];
+      const nameRe = new RegExp(
+        `[^.]{0,80}\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b[^.]*\\.`,
+        "gi",
+      );
+      let sm: RegExpExecArray | null;
+      while ((sm = nameRe.exec(text)) !== null) bits.push(sm[0]!);
+      const body = bits.join(" ").trim();
+      if (body && COMMERCIAL_BODY.test(body)) push(name, body);
     }
   }
 
@@ -428,9 +454,15 @@ export function extractCurrentDeliveryDays(body: string): {
     return { value: Number(corrected[1]), raw: corrected[0], superseded: true };
   }
 
-  const all = [...t.matchAll(/\bdelivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/gi)];
+  const all = [
+    ...t.matchAll(/\bdelivery\s*[:=]?\s*(\d+(?:\.\d+)?)\s*days?\b/gi),
+    ...t.matchAll(/\bdelivery\s+(?:exactly\s+)?(\d+(?:\.\d+)?)\s*d\b/gi),
+  ];
   if (all.length === 0) {
-    const bare = /(\d+(?:\.\d+)?)\s*days?\b/i.exec(t);
+    const bare =
+      /(\d+(?:\.\d+)?)\s*days?\b/i.exec(t) ||
+      /\bdelivery\s+(?:exactly\s+)?(\d+(?:\.\d+)?)\s*d\b/i.exec(t) ||
+      /(\d+(?:\.\d+)?)\s*d\b/i.exec(t);
     return bare
       ? { value: Number(bare[1]), raw: bare[0], superseded: false }
       : { value: null, raw: null, superseded: false };
@@ -636,13 +668,15 @@ function evaluateCandidateGates(
   // Absolute contribution/margin/profit/score floor (given metric vs >= N)
   if (
     rules.contributionMin != null ||
-    /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?[\d,]/i.test(t)
+    /(?:contribution|contrib|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*-?[\d,]/i.test(t)
   ) {
+    const preferred = metricFromBody(t);
     const cTok =
-      /(?:contribution|margin|profit|score)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+      /contribution\s+is\s+actually\s+(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(t) ||
+      /(?:contribution|contrib|margin|profit|score)\s*(?:exactly\s+)?(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
         t,
       ) ||
-      /(?:contribution|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+      /(?:contribution|contrib|margin|profit|score)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
         t,
       );
     // Skip % margins — those belong to margin_floor
@@ -650,7 +684,7 @@ function evaluateCandidateGates(
       /* percentage handled above */
     } else {
       let status: DecisionGateStatus = "UNKNOWN";
-      const val = cTok ? parseMoney(cTok[1]!) : null;
+      const val = preferred ?? (cTok ? parseMoney(cTok[1]!) : null);
       if (val != null && rules.contributionMin != null) {
         status = val >= rules.contributionMin ? "PASS" : "FAIL";
       } else if (val != null) status = "PASS";
@@ -708,11 +742,17 @@ function evaluateCandidateGates(
 }
 
 function metricFromBody(body: string): number | null {
+  const actually =
+    /contribution\s+is\s+actually\s+(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(body) ||
+    /(?:corrected|updated|revised)\s+contribution\s*[:=]?\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+      body,
+    );
+  if (actually) return parseMoney(actually[1]!);
   const contrib =
-    /(?:contribution|margin|score|metric)\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+    /(?:contribution|contrib|margin|score|metric)\s*(?:exactly\s+)?(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       body,
     ) ||
-    /(?:contribution|margin|score|metric)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
+    /(?:contribution|contrib|margin|score|metric)\s*[:=]\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/i.exec(
       body,
     );
   if (contrib) return parseMoney(contrib[1]!);
@@ -721,10 +761,38 @@ function metricFromBody(body: string): number | null {
   return null;
 }
 
+/** Apply message-level contribution corrections onto named candidate bodies. */
+function applyContributionCorrections(
+  message: string,
+  blocks: Array<{ name: string; body: string }>,
+): Array<{ name: string; body: string }> {
+  const t = String(message || "");
+  const corrections = new Map<string, number>();
+  const re =
+    /(?:CORRECTION[:\s]+)?([A-Za-z][A-Za-z0-9_-]{1,32})\s+contribution\s+is\s+actually\s+(?:US\$|S\$|USD|SGD|\$)?\s*(-?[\d,]+(?:\.\d+)?)/gi;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(t)) !== null) {
+    const name = m[1]!;
+    if (isReservedCandidateName(name) || /^CORRECTION$/i.test(name)) continue;
+    const amount = parseMoney(m[2]!);
+    if (amount == null) continue;
+    corrections.set(key(name), amount);
+  }
+  if (corrections.size === 0) return blocks;
+  return blocks.map((b) => {
+    const amt = corrections.get(key(b.name));
+    if (amt == null) return b;
+    return {
+      name: b.name,
+      body: `${b.body}; contribution is actually US$${amt.toFixed(2)} (correction)`,
+    };
+  });
+}
+
 export function buildDecisionCaseState(userMessage: string): DecisionCaseState | null {
   const text = String(userMessage || "");
   const rules = parseDecisionRules(text);
-  const blocks = extractNamedCandidateBlocks(text);
+  const blocks = applyContributionCorrections(text, extractNamedCandidateBlocks(text));
   if (blocks.length < 1) return null;
 
   const mandatory: CommercialGateId[] = [];

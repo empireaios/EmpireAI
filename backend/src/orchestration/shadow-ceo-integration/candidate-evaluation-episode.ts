@@ -47,8 +47,11 @@ function extractApproval(body: string): string | null {
 }
 
 function extractContribution(body: string): number | null {
+  const actually =
+    /contribution\s+is\s+actually\s+(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(body);
+  if (actually) return Number(actually[1]);
   const m =
-    /(?:contribution|margin|profit|score)\s*[:=]?\s*(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
+    /(?:contribution|contrib|margin|profit|score)\s*(?:exactly\s+)?(?:US\$|S\$|USD|SGD|\$)?\s*(-?\d+(?:\.\d+)?)/i.exec(
       body,
     );
   return m ? Number(m[1]) : null;

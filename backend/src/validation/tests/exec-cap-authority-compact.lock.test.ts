@@ -10,6 +10,7 @@ import {
 import { projectExactLineResponseContract } from "../../orchestration/pillow-host/executive-response-contract.js";
 import { bindSuppliedProducts } from "../../orchestration/shadow-ceo-integration/candidate-evaluation-episode.js";
 import { formatEligibleSelectedAnswer } from "../../orchestration/shadow-ceo-integration/candidate-evaluation-episode.js";
+import { isSuppliedCandidateEvaluationAsk } from "../../orchestration/shadow-ceo-integration/action-permit.js";
 
 describe("exec-cap authority + compact candidate binding", () => {
   it("refuses live listing/ad asks while NOT_BORN", () => {
@@ -50,5 +51,22 @@ describe("exec-cap authority + compact candidate binding", () => {
     assert.ok(bound.decision);
     const ans = formatEligibleSelectedAnswer(bound.decision!);
     assert.equal(ans, "Eligible candidates: Kestrel\nCandidate selected: Kestrel");
+  });
+
+  it("applies contribution correction and 5d delivery", () => {
+    const msg = `SYNTHETIC decision. Cedar: contribution US$12 stock 1100 delivery 5d approval granted. Reed: contribution US$9 stock 1100 delivery 5d approval granted. Eligibility: contribution>=10 stock>=1000 delivery<=6 approval granted. CORRECTION: Reed contribution is actually US$14 (supersedes prior). Highest contribution among eligible. Exactly 2 lines Eligible candidates / Candidate selected.`;
+    const bound = bindSuppliedProducts(msg);
+    assert.equal(bound.reason, null);
+    assert.equal(
+      formatEligibleSelectedAnswer(bound.decision!),
+      "Eligible candidates: Cedar, Reed\nCandidate selected: Reed",
+    );
+  });
+
+  it("binds reordered Nova facts", () => {
+    const msg = `SYNTHETIC. Approval granted for Nova. Delivery 4 days Nova. Stock 1400 Nova. Contribution US$13 Nova. Gates: approval granted; delivery<=6; stock>=1000; contrib>=10. Exactly 2 lines Eligible / Selected.`;
+    assert.equal(isSuppliedCandidateEvaluationAsk(msg), true);
+    const bound = bindSuppliedProducts(msg);
+    assert.equal(formatEligibleSelectedAnswer(bound.decision!), "Eligible candidates: Nova\nCandidate selected: Nova");
   });
 });
