@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-09-17T09:19:43.624Z",
+  "MISSION": "D004_SUPPLIED_CONTRIB_PROD",
+  "RUNNING_SHA": "1c90f64f7b626fb4abe1995f984dc56a501622ac",
+  "DEPLOYMENT_ID": "0c61bb3b-ea94-41f1-a0a7-54d2a9b38f53",
+  "workerOnline": true,
+  "requestId": "pcr_4b762ac16b11469c",
+  "kind": "response_contract",
+  "chatHttp": 200,
+  "latencyMs": 6371,
+  "text": "Checkpoint token: MANGO-742\nTotal synthetic contribution: US$16.00\nOperating state: SYNTHETIC; Birth status NOT_BORN\nReal-commerce authority: unauthorized",
+  "expected": "Checkpoint token: MANGO-742\nTotal synthetic contribution: US$16.00\nOperating state: SYNTHETIC; Birth status NOT_BORN\nReal-commerce authority: unauthorized",
+  "exactMatch": true,
+  "noSellingPriceDemand": true,
+  "hasCheckpointToken": true,
+  "hasTotal16": true,
+  "pendingWithoutAnswer": false,
+  "ENGINEERING_PASS": true,
+  "WAVE_CREDIT": 0,
+  "SC01": "FROZEN"
+}

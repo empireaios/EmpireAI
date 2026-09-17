@@ -171,8 +171,11 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
         peek?.result?.kind === "durable_pending" ||
         peek?.result?.requestRemainsRunning === true;
       // Auto-retrieve persisted result so Grand King does not manually poll.
+      // Opportunistic short poll only — residual budget after upstream.
+      // Long wait belongs to the browser client (pollDurableChatResult) so we
+      // do not exceed route maxDuration (300s) after a slow Tier-0 response.
       if (pending && requestId) {
-        const deadline = Date.now() + 90_000;
+        const deadline = Date.now() + 45_000;
         while (Date.now() < deadline) {
           await new Promise((r) => setTimeout(r, 2_000));
           const statusRes = await proxyBrainRequest(

@@ -17,7 +17,8 @@ const PILLOW_SESSION_TIMEOUT_MS = 60_000;
 const MAX_RETRIES = 2;
 const BASE_DELAY_MS = 400;
 const CHAT_RESULT_POLL_MS = 2_000;
-const CHAT_RESULT_POLL_BUDGET_MS = 90_000;
+/** Align with Tier-0 total budget (260s) so slow recoveries still surface in ordinary chat. */
+const CHAT_RESULT_POLL_BUDGET_MS = 240_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -223,6 +224,20 @@ export async function sendPillowChat(input: {
         ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
       };
     }
+    // Poll exhausted — never present the receipt as a successful executive answer.
+    return {
+      ...chat,
+      kind: "durable_pending",
+      message: [
+        `PILLOW_RESULT_PENDING: requestId=${chat.requestId}`,
+        "The request was accepted and remains retrievable, but the completed answer was not available within the client wait window.",
+        "Do not treat this receipt as the executive answer. Refresh or poll request status — do not resubmit the same ask.",
+      ].join("\n"),
+      requestId: chat.requestId,
+      resultRetrievable: true,
+      requestRemainsRunning: true,
+      ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
+    } as PillowChatResult & { reboundSessionId?: string };
   }
 
   return {

@@ -871,7 +871,11 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return reply.code(200).send({
         result: {
           message: stillAlive
-            ? `I accepted your request (${accepted.requestId}). Completion is still in progress or recoverable — the result will be available via request status without resubmitting the same ask.`
+            ? [
+                `PILLOW_RESULT_PENDING: requestId=${accepted.requestId}`,
+                "Request accepted; completion is still in progress or recoverable.",
+                "This receipt is not the executive answer. Result remains retrievable by request ID — do not resubmit the same ask.",
+              ].join("\n")
             : buildTerminalInfrastructureMessage(accepted, terminalMsgClass),
           kind: stillAlive ? "durable_pending" : "terminal_infrastructure",
           tier0Isolation: true,
