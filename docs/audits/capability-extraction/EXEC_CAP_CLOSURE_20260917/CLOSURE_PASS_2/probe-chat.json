@@ -1,0 +1,11 @@
+{
+  "login": 200,
+  "hasCookie": true,
+  "sessionHttp": 201,
+  "sessionId": "697d8dcd-2b9c-4b29-a260-edaf903b3ee0",
+  "chatHttp": 200,
+  "latencyMs": 2531,
+  "kind": "authority_facts",
+  "requestId": "pcr_ea642474d062431b",
+  "head": "Birth status: NOT_BORN."
+}

@@ -1,0 +1,72 @@
+{
+  "startedAt": "2026-09-17T16:39:52.092Z",
+  "cockpit": "https://empire-ai.co",
+  "emailPresent": true,
+  "passwordPresent": true,
+  "emailHashPrefix": "a91d007ebceb",
+  "authMethod": "api_login_cookie_inject_plus_login_boundary",
+  "requestIds": [
+    "pcr_b903873ddf344896",
+    "pcr_b903873ddf344896"
+  ],
+  "chatResponses": [
+    {
+      "requestId": "pcr_b903873ddf344896",
+      "useful": true
+    },
+    {
+      "requestId": "pcr_b903873ddf344896",
+      "useful": true,
+      "head": "Birth status: NOT_BORN. Real commerce authorized: no (unauthorized)."
+    }
+  ],
+  "screenshots": [
+    "01_login_boundary.png",
+    "02_pillow_ready.png",
+    "02b_executive_ready.png",
+    "03_answer_visible.png",
+    "04_after_refresh.png"
+  ],
+  "network": [
+    {
+      "at": "2026-09-17T16:40:13.944Z",
+      "path": "/api/pillow/chat",
+      "status": 200,
+      "bodyPreview": "{\"kind\":\"authority_facts\",\"requestId\":\"pcr_b903873ddf344896\",\"messageLen\":68,\"messageHead\":\"Birth status: NOT_BORN. Real commerce authorized: no (unauthorized).\"}"
+    }
+  ],
+  "loginBoundary": {
+    "unauthenticatedTarget": "/cockpit/development/pillow?tab=conversation",
+    "landedOn": "https://empire-ai.co/login?next=%2Fcockpit%2Fdevelopment%2Fpillow",
+    "loginEnforced": true
+  },
+  "pageUrls": [
+    "https://empire-ai.co/cockpit/development/pillow?tab=conversation"
+  ],
+  "notes": [
+    "API login succeeded; session cookie injected (value redacted)",
+    "seeded_host_session http=201 present=true",
+    "pre_send_badge=CONVERSATION\n\nPillow\nAvailable\nNew message",
+    "durable_retrieve_after_refresh requestId=pcr_b903873ddf344896 useful=true"
+  ],
+  "finishedAt": "2026-09-17T16:40:16.428Z",
+  "uniqueRequestIds": [
+    "pcr_b903873ddf344896"
+  ],
+  "answerBeforeRefreshHead": "PillowBirth status: NOT_BORN. Real commerce authorized: no (unauthorized).",
+  "answerAfterRefreshHead": "PillowBirth status: NOT_BORN. Real commerce authorized: no (unauthorized).",
+  "criteria": {
+    "c1_submit": true,
+    "c2_admission": true,
+    "c3_durable_request_id": true,
+    "c4_worker_complete": true,
+    "c5_answer_in_ui": true,
+    "c6_refresh_retrieves_same": true,
+    "c7_no_generic_shadow_demo": true,
+    "c8_no_contradictory_footer": true,
+    "c9_no_duplicate_effect": true,
+    "c10_locks_visible": true
+  },
+  "pass": true,
+  "failedCriteria": []
+}

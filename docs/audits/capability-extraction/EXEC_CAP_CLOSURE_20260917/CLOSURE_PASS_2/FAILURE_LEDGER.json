@@ -1,0 +1,55 @@
+{
+  "missionId": "EXEC_CAP_CLOSURE_PASS_2",
+  "generatedAt": "2026-09-18T10:50:00Z",
+  "waveCredit": 0,
+  "birth": "NOT_BORN",
+  "sc01": "FROZEN",
+  "realCommerce": "locked",
+  "entries": [
+    {
+      "id": "P0-SOAK-LOST-ADMITTED",
+      "severity": "P0",
+      "owner": "integ",
+      "title": "Soak lost 2 admitted requests after worker restart / transport errors",
+      "evidence": "SOAK_RESULTS.json lostAdmitted=2; workerRestart.retrieveAfter useful=false for pcr_3db1cf95396a46b2; SOAK_HEARTBEATS.jsonl transportErrors 1..20 fetch failed around restart window",
+      "attemptedResolution": "Hardened soak-runner with fetchRetry, bootstrap session retries, loop try/catch; controlled railway restart at midpoint",
+      "smallestNextAction": "After worker restart, block until durable chat-request retrieve returns COMPLETED for every admitted pcr_* before continuing soak traffic; fix empty finalResult parse if status COMPLETED"
+    },
+    {
+      "id": "P0-SOAK-LATENCY",
+      "severity": "P0",
+      "owner": "integ",
+      "title": "Soak latency gates failed (p95 41079ms; 85.7% ≤20s; 96.8% ≤90s)",
+      "evidence": "SOAK_RESULTS.json stats.p95=41079 pctCompletedWithin20s=0.857 pctCompletedWithin90s=0.968",
+      "attemptedResolution": "No production code change in Pass 2 after RC freeze; soak measured live deploy 0a1db28d",
+      "smallestNextAction": "Isolate slow cases (ranking/mission) vs transport lag; raise worker admission headroom / reduce session-create 503 storms before next soak"
+    },
+    {
+      "id": "P1-SOAK-DURABLE-RATE",
+      "severity": "P1",
+      "owner": "integ",
+      "title": "Durable retrievable rate 85.6% (<100%)",
+      "evidence": "SOAK_RESULTS.json durableRetrievableRate=0.856; failedCriteria includes durableRetrievable100",
+      "attemptedResolution": "Pending retrieve loop (12×5s) in soak-runner; chat-request path uses request.finalResult.message",
+      "smallestNextAction": "For every non-useful chat response with requestId, poll until COMPLETED or hard-fail the case; do not count fill expects against durability"
+    },
+    {
+      "id": "P1-V53-MISSING",
+      "severity": "P1",
+      "owner": "grand-king-input",
+      "title": "V53 Birth Master workbook not found",
+      "evidence": "V53_SEARCH_AND_V42_MAPPING.md V53 status NOT_FOUND; V42 used only as V42_COMPATIBILITY_MAP (43 UNMAPPED)",
+      "attemptedResolution": "Bounded search; V42 compatibility map with WAVE_CREDIT=0",
+      "smallestNextAction": "Provide EmpireAI_Pillow_Birth_Master_V53.xlsx or authorize official interim source"
+    },
+    {
+      "id": "P2-WORKER-EXIT-78",
+      "severity": "P2",
+      "owner": "integ",
+      "title": "Worker offline (lastExit=78) blocked regression rerun until recovery",
+      "evidence": "health/live worker.online=false lastExitCode=78; then recovered worker=true; REGRESSION_RESULTS.json at 2026-09-18T12:26:45Z pass=true",
+      "attemptedResolution": "Waited for auto-recovery; re-ran frozen held 6/6 + focus 3/3 + locks",
+      "smallestNextAction": "Investigate exit 78 HA/lag path if recurrence; keep restart soak gate"
+    }
+  ]
+}

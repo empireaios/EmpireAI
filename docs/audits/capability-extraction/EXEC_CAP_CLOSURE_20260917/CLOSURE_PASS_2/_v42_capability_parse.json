@@ -1,0 +1,32 @@
+{
+  "sheetNames": [
+    "Executive Dashboard",
+    "Master Roadmap",
+    "Track A - Birth",
+    "Track B - MS-A",
+    "Timeline",
+    "Product 1000 Logic",
+    "Probability at Scale",
+    "Birth Gates",
+    "Accountability",
+    "Exam Dashboard Legacy",
+    "Capability Master",
+    "Test Log",
+    "Attack Library",
+    "Repair & Regression",
+    "Doctrine & Gates",
+    "Foundation Reset",
+    "Memory & EKLS",
+    "Certification Constitution",
+    "Change History",
+    "Post-V1 Control Log",
+    "Overseer Self-Audit",
+    "Overseer KPI"
+  ],
+  "capabilityMasterSheet": "Capability Master",
+  "capabilityMasterFile": "sheet11.xml",
+  "sharedStringCount": 0,
+  "uniqueCapabilityIdHints": [],
+  "capabilityMasterPreviewRows": [],
+  "sampleStrings": []
+}

@@ -1,0 +1,30 @@
+{
+  "missionId": "EXEC_CAP_CLOSURE_PASS_2",
+  "updatedAt": "2026-09-18T12:30:00Z",
+  "status": "PARTIAL_WITH_BLOCKERS",
+  "codeRc": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
+  "tipSha": "95d7f1b94e82f2c61a66ba0b4718214221e4e5d5",
+  "deployId": "0a1db28d-b4bc-47ed-af27-b59707f5f87c",
+  "waveCredit": 0,
+  "sc01": "FROZEN",
+  "birth": "NOT_BORN",
+  "realCommerce": "locked",
+  "workstreams": {
+    "WS-V": { "state": "PASS" },
+    "WS-U": { "state": "PASS", "requestId": "pcr_b903873ddf344896" },
+    "WS-S": {
+      "state": "FAIL",
+      "elapsedMin": 121.83,
+      "failedCriteria": [
+        "zeroLostAdmitted",
+        "durableRetrievable100",
+        "pct95within20s",
+        "within90s100",
+        "restartPreserved"
+      ]
+    },
+    "WS-R": { "state": "PASS", "held": "6/6", "focus": "3/3" }
+  },
+  "terminalStatus": "PARTIAL_WITH_BLOCKERS",
+  "exactNextAction": "Re-soak after post-restart durable retrieve + latency fixes; do not claim ENGINEERING_CANDIDATE"
+}

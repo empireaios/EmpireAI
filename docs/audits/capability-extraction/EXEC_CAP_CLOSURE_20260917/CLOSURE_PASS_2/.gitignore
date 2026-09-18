@@ -1,0 +1,11 @@
+node_modules/
+browsers/
+**/browsers/
+_v42_unzip/
+_v42_copy.zip
+*.zip
+soak/soak-stdout*.txt
+soak/soak-stderr*.txt
+soak/regression-stdout*.txt
+_probe_out.json
+_probe_retrieve.json

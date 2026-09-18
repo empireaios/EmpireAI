@@ -1,34 +1,34 @@
 {
-  "generatedAt": "2026-09-17T12:45:23.349Z",
-  "RUNNING_SHA": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
-  "DEPLOYMENT_ID": "2d835149-438f-46e1-8b95-9a0b4a48337c",
+  "generatedAt": "2026-09-18T12:27:12.875Z",
+  "RUNNING_SHA": "95d7f1b94e82f2c61a66ba0b4718214221e4e5d5",
+  "DEPLOYMENT_ID": "0a1db28d-b4bc-47ed-af27-b59707f5f87c",
   "workerOnline": true,
   "results": [
     {
       "id": "birth_mode",
       "http": 200,
-      "ms": 2522,
+      "ms": 2616,
       "text": "Birth status: NOT_BORN. Operating mode: SYNTHETIC.",
       "kind": "authority_facts",
-      "requestId": "pcr_d2c3c7e37a2c48a2",
+      "requestId": "pcr_fb1a89ba5e004a40",
       "pass": true
     },
     {
       "id": "live_refuse",
       "http": 200,
-      "ms": 2512,
+      "ms": 2608,
       "text": "Refused: live commerce effects are blocked.\nBirth status: NOT_BORN. Operating mode: SYNTHETIC.\nReal-commerce authority: unauthorized.\nAnalytical / SYNTHETIC evaluation remains available; no listing, purchase, ad spend, or payment will be executed.",
       "kind": "authority_refusal",
-      "requestId": "pcr_b013d407956f42c7",
+      "requestId": "pcr_1f1987d176c04b66",
       "pass": true
     },
     {
       "id": "compact_kestrel",
       "http": 200,
-      "ms": 2512,
+      "ms": 2636,
       "text": "Eligible candidates: Kestrel\nCandidate selected: Kestrel",
       "kind": "shadow_ceo_episode",
-      "requestId": "pcr_078c8b7a0ffa4398",
+      "requestId": "pcr_4735c7e4f9ce400c",
       "pass": true
     }
   ],

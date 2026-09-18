@@ -1,0 +1,85 @@
+{
+  "status": "PARTIAL_WITH_BLOCKERS",
+  "missionId": "EXEC_CAP_CLOSURE_PASS_2",
+  "generatedAt": "2026-09-18T12:30:00Z",
+  "codeSha": "95d7f1b94e82f2c61a66ba0b4718214221e4e5d5",
+  "frozenCodeRc": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
+  "deployId": "0a1db28d-b4bc-47ed-af27-b59707f5f87c",
+  "waveCredit": 0,
+  "wave1": "0/24",
+  "birth": "NOT_BORN",
+  "sc01": "FROZEN",
+  "realCommerce": "locked",
+  "independentlyExecutiveCertified": false,
+  "testCounts": {
+    "uiProof": { "pass": true, "requestId": "pcr_b903873ddf344896" },
+    "soak": {
+      "pass": false,
+      "elapsedMin": 121.83,
+      "submitted": 146,
+      "completed": 116,
+      "failed": 30,
+      "lostAdmitted": 2,
+      "p50Ms": 6002,
+      "p95Ms": 41079,
+      "pctWithin20s": 0.857,
+      "pctWithin90s": 0.968,
+      "ordinary": 24,
+      "missionSteps": 9,
+      "failedCriteria": [
+        "zeroLostAdmitted",
+        "durableRetrievable100",
+        "pct95within20s",
+        "within90s100",
+        "restartPreserved"
+      ]
+    },
+    "heldEngineering": { "pass": true, "score": "6/6" },
+    "postDeployFocus": { "pass": true, "score": "3/3" },
+    "authorityCommerceLocks": { "pass": true }
+  },
+  "uiVerdict": "PASS",
+  "soakVerdict": "FAIL",
+  "regressionVerdict": "PASS",
+  "v53Treatment": {
+    "v53Status": "NOT_FOUND",
+    "v42Label": "V42_COMPATIBILITY_MAP",
+    "NOT_V53": true,
+    "counts": { "mappedEngineering": 16, "unmapped": 43, "postBirthGap": 3 }
+  },
+  "remainingBlockers": [
+    {
+      "id": "P0-SOAK-LOST-ADMITTED",
+      "owner": "integ",
+      "evidence": "SOAK_RESULTS.json lostAdmitted=2; restart retrieve empty for pcr_3db1cf95396a46b2",
+      "attemptedResolution": "fetchRetry + loop recovery + midpoint railway restart",
+      "smallestNextAction": "Gate soak continuation on durable COMPLETED retrieve after every restart"
+    },
+    {
+      "id": "P0-SOAK-LATENCY",
+      "owner": "integ",
+      "evidence": "p95=41079ms; 85.7%≤20s; 96.8%≤90s",
+      "attemptedResolution": "Measured on live deploy without RC change",
+      "smallestNextAction": "Reduce session 503/lag storms; re-soak"
+    },
+    {
+      "id": "P1-V53-MISSING",
+      "owner": "grand-king-input",
+      "evidence": "V53_SEARCH_AND_V42_MAPPING.md",
+      "attemptedResolution": "V42_COMPATIBILITY_MAP only; WAVE_CREDIT=0",
+      "smallestNextAction": "Provide V53 workbook"
+    }
+  ],
+  "changedFiles": [
+    "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/**",
+    "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/evidence/HELD_ENGINEERING_RESULTS.json",
+    "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/evidence/POST_DEPLOY_FOCUS_PROOF.json"
+  ],
+  "rollbackInstructions": [
+    "No production code SHA change in Pass 2 beyond frozen RC bbaa5a6a / tip 95d7f1b9.",
+    "To discard Pass 2 artefacts only: remove docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/.",
+    "Do not revert bbaa5a6a executive fixes unless a separate rollback is ordered.",
+    "ui-harness node_modules/browsers are local test-only; safe to delete."
+  ],
+  "exactNextAction": "Fix post-restart durable retrieve + latency headroom, then re-run only the ≥2h soak; keep UI PASS and frozen held/focus green. Do not self-certify."
+}
