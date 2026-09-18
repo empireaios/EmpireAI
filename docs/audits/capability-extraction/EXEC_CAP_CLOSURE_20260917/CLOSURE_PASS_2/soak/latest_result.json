@@ -1,10 +1,11 @@
 {
   "kind": "fill",
-  "id": "FILL_116",
+  "id": "FILL_168",
   "ok": true,
-  "requestId": "pcr_2d9675f5c7a34f3f",
-  "latencyMs": 6175,
+  "admitted": true,
+  "requestId": "pcr_88d0319212544a91",
+  "latencyMs": 2765,
   "useful": true,
   "retrieved": false,
-  "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn"
+  "textHead": "Birth status: NOT_BORN."
 }

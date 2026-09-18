@@ -31,6 +31,21 @@ const RERUN_META = path.join(PASS2, "SOAK_RERUN_META.json");
 
 mkdirSync(SOAK_DIR, { recursive: true });
 
+function writeLatest(row) {
+  try {
+    writeFileSync(path.join(SOAK_DIR, "latest_result.json"), JSON.stringify(row, null, 2));
+  } catch {
+    try {
+      writeFileSync(
+        path.join(SOAK_DIR, `latest_result_${process.pid}.json`),
+        JSON.stringify(row, null, 2),
+      );
+    } catch {
+      /* non-fatal OneDrive lock */
+    }
+  }
+}
+
 function loadEnvQuiet() {
   try {
     for (const line of readFileSync(path.join(ROOT, "backend/.env"), "utf8").split(/\n/)) {
@@ -554,7 +569,7 @@ async function runOne(cRef, sessionRef, item, kind) {
       error: scrub(e?.message || String(e)),
     };
     state.results.push(row);
-    writeFileSync(path.join(SOAK_DIR, "latest_result.json"), JSON.stringify(row, null, 2));
+    writeLatest(row);
     throw e;
   }
 
@@ -574,6 +589,7 @@ async function runOne(cRef, sessionRef, item, kind) {
       note: "no_request_id",
     };
     state.results.push(row);
+    writeLatest(row);
     return row;
   }
 
@@ -636,7 +652,7 @@ async function runOne(cRef, sessionRef, item, kind) {
     textHead: scrub(res.text).slice(0, 220),
   };
   state.results.push(row);
-  writeFileSync(path.join(SOAK_DIR, "latest_result.json"), JSON.stringify(row, null, 2));
+  writeLatest(row);
   cRef.c = c;
   cRef.sessionId = sessionId;
   return row;

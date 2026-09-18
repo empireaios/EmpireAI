@@ -1,30 +1,35 @@
 {
-  "missionId": "EXEC_CAP_CLOSURE_PASS_2",
-  "updatedAt": "2026-09-18T12:30:00Z",
-  "status": "PARTIAL_WITH_BLOCKERS",
+  "missionId": "EXEC_CAP_CLOSURE_PASS_2_SOAK_RERUN",
+  "updatedAt": "2026-09-18T15:45:00Z",
+  "status": "SOAK_PASS",
+  "terminalStatus": "ENGINEERING_CANDIDATE_READY_FOR_INDEPENDENT_TESTING",
   "codeRc": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
-  "tipSha": "95d7f1b94e82f2c61a66ba0b4718214221e4e5d5",
-  "deployId": "0a1db28d-b4bc-47ed-af27-b59707f5f87c",
+  "tipShaTested": "ab6ac3b771d97e694e45db4a7ddc4bcea713decc",
+  "deployId": "ad554877-9e1e-47f6-b5f7-addb64281eaf",
   "waveCredit": 0,
   "sc01": "FROZEN",
   "birth": "NOT_BORN",
   "realCommerce": "locked",
-  "workstreams": {
-    "WS-V": { "state": "PASS" },
-    "WS-U": { "state": "PASS", "requestId": "pcr_b903873ddf344896" },
-    "WS-S": {
-      "state": "FAIL",
-      "elapsedMin": 121.83,
-      "failedCriteria": [
-        "zeroLostAdmitted",
-        "durableRetrievable100",
-        "pct95within20s",
-        "within90s100",
-        "restartPreserved"
-      ]
-    },
-    "WS-R": { "state": "PASS", "held": "6/6", "focus": "3/3" }
+  "v53": "NOT_FOUND",
+  "v42Label": "V42_COMPATIBILITY_MAP",
+  "soak": {
+    "pass": true,
+    "elapsedMin": 120.16,
+    "admitted": 181,
+    "completed": 164,
+    "lostAdmitted": 0,
+    "p50Ms": 2602,
+    "p95Ms": 5586,
+    "pctWithin20s": 1,
+    "pctWithin90s": 1,
+    "durableRetrievableRate": 1,
+    "restartRetrieveUseful": true,
+    "restartRequestId": "pcr_c10ffc2329c44c83",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .../CLOSURE_PASS_2/soak/run-frozen-soak-120.ps1",
+    "artifactPath": "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/SOAK_RESULTS.json"
   },
-  "terminalStatus": "PARTIAL_WITH_BLOCKERS",
-  "exactNextAction": "Re-soak after post-restart durable retrieve + latency fixes; do not claim ENGINEERING_CANDIDATE"
+  "priorPass2": {
+    "uiProof": "PASS",
+    "heldFocusRegressions": "PASS"
+  }
 }
