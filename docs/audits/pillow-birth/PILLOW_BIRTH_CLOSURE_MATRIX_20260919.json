@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "1.0",
+  "auditDate": "2026-09-19",
+  "repository": "empireaios/EmpireAI",
+  "identities": {
+    "productCodeRc": "bbaa5a6aa34f7399d10f9bfa222a4664cfd843e4",
+    "soakCandidate": "ab6ac3b771d97e694e45db4a7ddc4bcea713decc",
+    "evidenceSeal": "21384342c401def948926904913840e63c18dff7",
+    "reportedDeploymentId": "ad554877-9e1e-47f6-b5f7-addb64281eaf",
+    "v53Sha256": "03517a0ab039604c9cf864d7411ec24ac7079baf9b90834c9a524c2da701c258"
+  },
+  "verdict": {
+    "transportSoak": "PASS",
+    "capability": "PARTIAL_WITH_BLOCKERS",
+    "birth": "NOT_BORN",
+    "wave1Credit": "0/24",
+    "commerce": "LOCKED",
+    "engineeringCandidateReadyForIndependentBirthTesting": false
+  },
+  "soak": {
+    "durationMinutes": 120.16,
+    "admitted": 181,
+    "ordinary": 26,
+    "missionSteps": 9,
+    "fill": 146,
+    "semanticChecks": 35,
+    "semanticPassed": 18,
+    "semanticFailed": 17,
+    "lostAdmitted": 0,
+    "p95LatencyMs": 5586,
+    "durableRetrievableRate": 1,
+    "failureClassification": {
+      "confirmedProduct": 13,
+      "harnessCaused": 2,
+      "downstreamOrInconclusive": 2
+    }
+  },
+  "gates": [
+    {
+      "id": "A-01",
+      "name": "exact candidate and deploy identity",
+      "status": "ACCEPTED_ENGINEERING_SCOPE"
+    },
+    {
+      "id": "A-02",
+      "name": "120-minute chat transport and durability",
+      "status": "ACCEPTED"
+    },
+    {
+      "id": "A-03",
+      "name": "capability correctness in soak",
+      "status": "FAILED"
+    },
+    {
+      "id": "A-04",
+      "name": "candidate local full-certification gate",
+      "status": "FAILED",
+      "failedSuites": [
+        "reasoning-core-l1-l4",
+        "post-foundation-repair4-levela",
+        "foundation-reset-learning"
+      ]
+    },
+    {
+      "id": "A-04R",
+      "name": "clean worker and scheduler test",
+      "status": "FAILED",
+      "passed": 1,
+      "failed": 3,
+      "failure": "missing executive_objectives table before Redis-backed worker proof"
+    },
+    {
+      "id": "A-05",
+      "name": "official V53 Wave 1",
+      "status": "UNTESTED"
+    },
+    {
+      "id": "A-06",
+      "name": "clean streak, 10x gauntlets, permanence",
+      "status": "UNTESTED"
+    },
+    {
+      "id": "A-07",
+      "name": "independent certification",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "A-08",
+      "name": "single authoritative Birth state",
+      "status": "FAILED"
+    },
+    {
+      "id": "A-09",
+      "name": "safe Birth authorization",
+      "status": "FAILED"
+    },
+    {
+      "id": "A-10",
+      "name": "commerce effects remain locked",
+      "status": "ACCEPTED_CURRENT_SCOPE"
+    }
+  ],
+  "trackB": [
+    { "id": "B0", "name": "supplier API universe", "status": "PARTIAL" },
+    { "id": "B1", "name": "Amazon US corridor", "status": "FAILED" },
+    { "id": "B2", "name": "actual cost centre", "status": "FAILED" },
+    { "id": "B3", "name": "true profit ledger", "status": "PARTIAL_UNWIRED" },
+    { "id": "B4", "name": "product ingestion and first 1000", "status": "PARTIAL_UNPROVEN" },
+    { "id": "B5", "name": "warehouse and shipping intelligence", "status": "UNTESTED" },
+    { "id": "B6", "name": "unit economics", "status": "ACCEPTED_SYNTHETIC_SCOPE" },
+    { "id": "B7", "name": "probability at scale", "status": "UNTESTED" },
+    { "id": "B8", "name": "experiment and ads engine", "status": "ACCEPTED_SYNTHETIC_SCOPE" },
+    { "id": "B9", "name": "allocator and outcome learning", "status": "PARTIAL_SYNTHETIC" },
+    { "id": "B10", "name": "MS-A cockpit", "status": "FAILED_UNVERIFIED" }
+  ],
+  "closureOrder": [
+    "GATE-001",
+    "BIRTH-001",
+    "CAP-001",
+    "RUNTIME-001",
+    "COMMERCE-SPINE-001",
+    "CERT-001",
+    "PILOT-001"
+  ],
+  "kingDecisionTriggers": [
+    "missing production account credential or permission",
+    "new spend outside an existing authorized limit",
+    "material legal, tax, account, scope, or risk change",
+    "signed Birth authorization packet",
+    "capped live-commerce pilot packet"
+  ]
+}
