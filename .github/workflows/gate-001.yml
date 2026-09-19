@@ -1,0 +1,64 @@
+name: GATE-001 offline harness regressions
+
+# This proves the harness only. It neither certifies Pillow nor deploys it.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'fix/gate-001-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gate-001-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate-001-offline-regressions:
+    name: GATE-001 offline harness regressions (not release certification)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SOAK_ALLOW_LIVE_RUN: '0'
+      CI: 'true'
+    steps:
+      - name: Checkout the exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Record tested revision and scope
+        env:
+          EVENT_SHA: ${{ github.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo '## GATE-001 offline harness regression scope'
+            echo "Tested checkout: $(git rev-parse HEAD)"
+            echo "Event revision: ${EVENT_SHA}"
+            echo "PR head (when applicable): ${PR_HEAD_SHA:-not a pull request}"
+            echo 'PR events test the GitHub merge revision; push events test the branch head.'
+            echo 'No production credentials, live Pillow calls, deployment, Birth, Wave credit, or commerce unlock.'
+            echo 'Passing this job does not certify product behavior or the complete release path.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Check runner syntax without executing it
+        run: node --check docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/soak/soak-runner.mjs
+      - name: Run offline gate, evidence, workload and submission regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          tests=(docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/soak/*.test.mjs)
+          if (( ${#tests[@]} == 0 )); then
+            echo 'No GATE-001 regression tests found; refusing an empty green check.' >&2
+            exit 1
+          fi
+          node --test "${tests[@]}"

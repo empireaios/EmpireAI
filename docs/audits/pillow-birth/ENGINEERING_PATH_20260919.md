@@ -137,17 +137,19 @@ Pillow remains **NOT_BORN**, **WAVE_CREDIT=0**, and **commerce LOCKED**.
 
 ## GATE-001 publication checkpoint
 
-Local GATE-001 implementation passed **167 offline tests**. The remote branch was
-created at baseline main, but the disclosure safeguard rejected publication of
-the appended operational evidence, request IDs and response excerpts. No GATE-001
-implementation commit/PR or remote CI result is claimed. Publishing code blobs
-alone does not prove a working CI link. Explicit owner approval of that evidence
-publication, or a decision for a code-only/sanitized publication, is the immediate
-blocking decision. This does not require reconnecting GitHub or relaying to Cursor.
+Local GATE-001 implementation passed **167 offline tests**. The earlier disclosure
+safeguard rejection of operational evidence, request IDs and response excerpts is
+retained as history. The owner subsequently explicitly approved its publication.
+Draft PR #2 at `e9456cbc7172cc01fedfb050927b46ed82e6fbac` contained only the two
+reports, not the implementation. This update adds the scoped implementation,
+fixtures, historical accounting and workflow to that PR. Publication must be read
+back and actual CI results inspected for the resulting revision; neither blobs
+nor workflow YAML alone prove the remote CI link. No repeat approval or Cursor
+relay is required for this already approved publication.
 
-The integration directory was checked rather than assuming a manual workaround:
-Railway and Vercel connections are available but **not installed/connected** in
-this session. Their connection controls were offered. Connecting them is a
-one-time owner account-consent step; it is not proof of production permission,
-configured release policy, or a verified deployment. After connection, inspect
-the exact service/project permissions and target before any production mutation.
+Railway and Vercel provider tools are now available in this session. Their presence
+is not proof of access to the correct project, production permission, configured
+release policy, or a verified deployment. Fresh project, deployment and runtime
+inspection must resolve those questions before any production mutation. The
+earlier statement that the provider connections were unavailable is historical,
+not the current blocker.

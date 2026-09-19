@@ -1,0 +1,567 @@
+{
+  "schemaVersion": "gate-001-historical-regrade/v1",
+  "regradeId": "GATE-001-PASS2-SEALED-HISTORICAL-REGRADE",
+  "source": {
+    "path": "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/SOAK_RESULTS.json",
+    "evidenceSeal": "21384342c401def948926904913840e63c18dff7",
+    "sha256": "6141a7b91ab5932f4e22c5613ef3a95c002d7c8db800c4f342c2c8236bfbd45f",
+    "mutated": false
+  },
+  "priorAudit": {
+    "url": "https://github.com/empireaios/EmpireAI/blob/644afc6685b1b7d5723cc14049e925f9fae78bdd/docs/audits/pillow-birth/PILLOW_BIRTH_REPOSITORY_AUDIT_20260919.md",
+    "sha256": "6c917814bbdfdae85122c382ba60a3b6658ab92089be3cb9f0cd818addf754d8",
+    "section": "All 17 failed rows",
+    "scope": "Prior repository-audit diagnosis, not independent full-response regrading in GATE-001"
+  },
+  "method": "Count retained rows, reconcile reported criteria, and apply current evidence sufficiency rules. No production calls, fresh soak, full-response reconstruction, or independent capability certification.",
+  "verdict": "NONQUALIFYING_LEGACY_EVIDENCE",
+  "pass": false,
+  "legacyReportedTransport": {
+    "verdict": "PASS_REPORTED_BY_LEGACY_GATE",
+    "independentlyRerun": false,
+    "durationMinutes": 120.16,
+    "lostAdmitted": 0,
+    "p95Milliseconds": 5586,
+    "durableRetrievableRate": 1,
+    "restartRetrievalStatus": "COMPLETED",
+    "candidateSha": "ab6ac3b771d97e694e45db4a7ddc4bcea713decc",
+    "deploymentId": "ad554877-9e1e-47f6-b5f7-addb64281eaf",
+    "originalCriteria": {
+      "minDuration120": true,
+      "zeroLostAdmitted": true,
+      "zeroContradictory": true,
+      "zeroDuplicateEffects": true,
+      "zeroUnauthorized": true,
+      "durableRetrievable100": true,
+      "pct95within20s": true,
+      "within90s100": true,
+      "restartPreserved": true,
+      "reconnectPreserved": true,
+      "ordinaryAtLeast24": true,
+      "missionsAtLeast3": true,
+      "boundariesIntact": true
+    }
+  },
+  "capability": {
+    "verdict": "FAIL_BY_REPORTED_CHECKS",
+    "admitted": 181,
+    "substantiveChecks": 35,
+    "substantiveReportedPassed": 18,
+    "substantiveReportedFailed": 17,
+    "ordinaryRows": 26,
+    "missionStepRows": 9,
+    "fillRows": 146,
+    "failedRows": 17,
+    "classificationCounts": {
+      "PRODUCT_FAILURE": 13,
+      "HARNESS_FAILURE": 2,
+      "DOWNSTREAM_INCONCLUSIVE": 2,
+      "REPORTED_NOT_DIAGNOSED": 0
+    },
+    "freshProductFixOrCertificationProven": false
+  },
+  "currentGateFailures": [
+    "SEVENTEEN_REPORTED_SUBSTANTIVE_CHECK_FAILURES",
+    "REQUIRED_MISSION_STEPS_DID_NOT_ALL_PASS",
+    "THREE_DUPLICATED_LOGICAL_CASE_IDS_WITH_DIFFERENT_REQUEST_IDS",
+    "COMPLETE_SCRUBBED_RESPONSES_AND_RESPONSE_HASHES_NOT_RETAINED",
+    "VERSIONED_CHECK_IDS_ORACLE_TRACES_RESULT_KINDS_AND_PER_CASE_EXECUTION_TUPLES_NOT_RETAINED"
+  ],
+  "duplicateLogicalCases": [
+    {
+      "logicalCaseId": "O08_reordered_r0_7",
+      "occurrences": [
+        {
+          "sourceRowIndex": 7,
+          "requestId": "pcr_99d1bd420fd44bbc",
+          "legacyReportedOk": false
+        },
+        {
+          "sourceRowIndex": 8,
+          "requestId": "pcr_dd9f952ef51740cc",
+          "legacyReportedOk": false
+        }
+      ]
+    },
+    {
+      "logicalCaseId": "O04_correction_r1_15",
+      "occurrences": [
+        {
+          "sourceRowIndex": 16,
+          "requestId": "pcr_355a2d049718438e",
+          "legacyReportedOk": true
+        },
+        {
+          "sourceRowIndex": 17,
+          "requestId": "pcr_8ac1bdd8a2a140f7",
+          "legacyReportedOk": true
+        }
+      ]
+    },
+    {
+      "logicalCaseId": "FILL_78",
+      "occurrences": [
+        {
+          "sourceRowIndex": 89,
+          "requestId": "pcr_72ce85549d674de9",
+          "legacyReportedOk": true
+        },
+        {
+          "sourceRowIndex": 90,
+          "requestId": "pcr_65efca55139540fd",
+          "legacyReportedOk": true
+        }
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "sourceRowIndex": 1,
+      "logicalCaseId": "O02_arith_r0_1",
+      "requestId": "pcr_66f12b4c89324cd3",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "### SOAK_PASS2 O02 SYNTHETIC. Compute exactly: 17 + 29. Reply with the number only on the first line. [s\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.\nScenario facts and owner objective",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 6,
+      "logicalCaseId": "O07_table_layout_r0_6",
+      "requestId": "pcr_e11c0845ae5c4fe9",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "SHADOW_CEO_EXECUTION_BLOCKED: REQUEST_FACT_BINDING_FAILED — no supplied candidate products with commercial facts\nNo demo catalog was substituted.\nNo tasks or financial records were created.",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 7,
+      "logicalCaseId": "O08_reordered_r0_7",
+      "requestId": "pcr_99d1bd420fd44bbc",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "Eligible candidates: US, least\nCandidate selected: US",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 8,
+      "logicalCaseId": "O08_reordered_r0_7",
+      "requestId": "pcr_dd9f952ef51740cc",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "Eligible candidates: US, least\nCandidate selected: US",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "HARNESS_FAILURE",
+        "detail": "Duplicate logical O08 submission after artifact-write failure",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 9,
+      "logicalCaseId": "O09_state_recovery_r0_8",
+      "requestId": "pcr_841d0f52a84a4390",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 11,
+      "logicalCaseId": "O11_arith_money_r0_10",
+      "requestId": "pcr_3f940d6ac9014970",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "### SOAK_PASS2 O11 SYNTHETIC. Given unit cost US$25 and quantity 500, what is total cost? Number only fi\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.\nScenario facts and owner objective",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 14,
+      "logicalCaseId": "O02_arith_r1_13",
+      "requestId": "pcr_e818e6bd4466431e",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "### SOAK_PASS2 O02 SYNTHETIC. Compute exactly: 17 + 29. Reply with the number only on the first line. [s\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.\nScenario facts and owner objective",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 20,
+      "logicalCaseId": "O07_table_layout_r1_18",
+      "requestId": "pcr_c579eaa3e6a54963",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "SHADOW_CEO_EXECUTION_BLOCKED: REQUEST_FACT_BINDING_FAILED — no supplied candidate products with commercial facts\nNo demo catalog was substituted.\nNo tasks or financial records were created.",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 21,
+      "logicalCaseId": "O08_reordered_r1_19",
+      "requestId": "pcr_e61e59f6877747a2",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "Eligible candidates: US, least\nCandidate selected: US",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 22,
+      "logicalCaseId": "O09_state_recovery_r1_20",
+      "requestId": "pcr_aec775c9e1fe470d",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 24,
+      "logicalCaseId": "O11_arith_money_r1_22",
+      "requestId": "pcr_7e80d296b2704fcf",
+      "kind": "ordinary",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "### SOAK_PASS2 O11 SYNTHETIC. Given unit cost US$25 and quantity 500, what is total cost? Number only fi\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.\nScenario facts and owner objective",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 27,
+      "logicalCaseId": "M1_nexus_rank_s2",
+      "requestId": "pcr_adedce4fd8b544b8",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 28,
+      "logicalCaseId": "M1_nexus_rank_s3",
+      "requestId": "pcr_c5b858308c534e9a",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 29,
+      "logicalCaseId": "M2_harbor_arith_s1",
+      "requestId": "pcr_377648d5ab724eb1",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "### SOAK_PASS2 M2 step1 SYNTHETIC HarborCalc. Margin = selling US$48 − cost US$31. What is margin? Numbe\n**Scope:** open / scenario executive reasoning — not a live EmpireAI fact claim.\nScenario facts and owner objective",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "PRODUCT_FAILURE",
+        "detail": "Classified as a confirmed product failure by the prior repository audit",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 30,
+      "logicalCaseId": "M2_harbor_arith_s2",
+      "requestId": "pcr_e2c89fac9a5142a1",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "DOWNSTREAM_INCONCLUSIVE",
+        "detail": "M2 step 1 failed before continuation",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 32,
+      "logicalCaseId": "M3_stateful_gate_s1",
+      "requestId": "pcr_00473d45437a4e1d",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "PILLOW_RESPONSE_CONTRACT_BLOCKED: line_count_mismatch expected=2 got=3",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "HARNESS_FAILURE",
+        "detail": "M3 step 1 has a contradictory two-line-plus-token contract",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    },
+    {
+      "sourceRowIndex": 33,
+      "logicalCaseId": "M3_stateful_gate_s2",
+      "requestId": "pcr_b00b10a8e38c40fd",
+      "kind": "mission",
+      "legacyReportedOk": false,
+      "legacyReportedAdmitted": true,
+      "legacyReportedUseful": true,
+      "textHead": "EmpireAI is live and answering you in production right now. We're focused on High-Speed Handheld Mini Fan With Digital Display Ice-Cooling Portable For Outdoor And Desk Use. We haven't made our first sale yet. Birth hasn",
+      "responseEvidence": "TEXT_HEAD_ONLY_TRUNCATED_OR_UNPROVEN",
+      "completeResponseRetained": false,
+      "textHeadPotentiallyTruncated": true,
+      "independentOracleRegrade": "NOT_POSSIBLE_WITH_RETAINED_EVIDENCE",
+      "gateQualifies": false,
+      "reasons": [
+        "LEGACY_REPORTED_CHECK_FAILED",
+        "COMPLETE_RESPONSE_NOT_RETAINED",
+        "VERSIONED_EXPECTED_CHECK_AND_ORACLE_TRACE_NOT_RETAINED",
+        "PER_CASE_RESPONSE_HASH_AND_EXECUTION_TUPLE_NOT_RETAINED"
+      ],
+      "priorAuditDiagnosis": {
+        "classification": "DOWNSTREAM_INCONCLUSIVE",
+        "detail": "M3 step 1 did not establish a valid checkpoint",
+        "basis": "PRIOR_REPOSITORY_AUDIT"
+      }
+    }
+  ],
+  "preservedLocks": {
+    "waveCredit": 0,
+    "birth": "NOT_BORN",
+    "realCommerce": "locked"
+  },
+  "nextAction": "Repair the identified capability families and harness cases; prove local semantic fixtures before a separately authorized live soak. Transport PASS alone is not engineering-candidate readiness or Birth certification."
+}

@@ -1,0 +1,3 @@
+# Runtime artifacts are private, run-scoped evidence. Review/redact explicitly
+# before publishing a selected immutable run; never commit cookies/credentials.
+runs/

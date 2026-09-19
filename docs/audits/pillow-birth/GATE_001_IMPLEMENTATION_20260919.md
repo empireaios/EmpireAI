@@ -3,9 +3,11 @@
 Date: 19 September 2026. Baseline main/evidence seal:
 `21384342c401def948926904913840e63c18dff7`.
 
-Status: implemented and locally regression-tested; publication of historical
-evidence is blocked pending owner approval. No remote CI receipt exists for this
-implementation. This is a harness correction, not a new passing
+Status: implemented and locally regression-tested. The owner explicitly approved
+publication of the historical audit evidence to `empireaios/EmpireAI`. This update
+adds the implementation and workflow to draft PR #2; the earlier PR head
+`e9456cbc7172cc01fedfb050927b46ed82e6fbac` contained only two reports. Remote CI
+must still be inspected for the resulting implementation revision. This is a harness correction, not a new passing
 Pillow soak, independent certification, Birth authorization, or commerce unlock.
 No production call, restart, deployment, merge or live commerce action was made
 by these tests.
@@ -41,21 +43,22 @@ The suite has no dependency install, production secret or external-service need.
 The PowerShell wrapper is source-inspected here; it has not been executed on
 Windows. A hosted CI result must name its tested SHA and actual run/job URL.
 
-### Publication blocker
+### Publication history and resolved decision
 
 The branch `fix/gate-001-semantic-soak-20260919` was created at the original main
 baseline. Uploads of the historical failure fixture, appended failure ledger and
 historical regrade were rejected by the publication safeguard because they include
-internal request identifiers, response excerpts and operational findings. They
-have not been attached to a remote commit or PR. No alternate upload route or
-permission bypass was attempted. Some code blobs were accepted, but isolated blobs
-are not a published implementation, a CI run or a release.
+internal request identifiers, response excerpts and operational findings. That
+rejection is retained as history. No alternate upload route or permission bypass
+was attempted. The owner subsequently explicitly approved publishing this audit
+evidence. Some earlier code blobs were accepted, but isolated blobs were not a
+published implementation, a CI run or a release.
 
-Required owner decision: explicitly approve publication of this GATE-001 audit
-evidence to `empireaios/EmpireAI`, or require a code-only/sanitized publication
-instead. GitHub does not need to be reconnected and Cursor is not required.
-After that decision, the next executable steps are one atomic branch commit,
-draft PR, read-back verification, then actual remote CI execution/log inspection.
+No repeat owner approval or Cursor relay is required for the approved publication.
+The current change publishes the scoped harness, fixtures, appended failure
+accounting and offline CI workflow to the existing draft PR. Read-back of the
+branch and inspection of actual remote CI execution/logs are required before
+claiming publication or CI verification. Production promotion is outside this change.
 
 ## Historical outcome remains nonqualifying
 
