@@ -51,5 +51,226 @@
       "attemptedResolution": "Waited for auto-recovery; re-ran frozen held 6/6 + focus 3/3 + locks",
       "smallestNextAction": "Investigate exit 78 HA/lag path if recurrence; keep restart soak gate"
     }
+  ],
+  "regrades": [
+    {
+      "regradeId": "GATE-001-PASS2-SEALED-HISTORICAL-REGRADE",
+      "artifact": "GATE_001_HISTORICAL_REGRADE.json",
+      "source": {
+        "path": "docs/audits/capability-extraction/EXEC_CAP_CLOSURE_20260917/CLOSURE_PASS_2/SOAK_RESULTS.json",
+        "evidenceSeal": "21384342c401def948926904913840e63c18dff7",
+        "sha256": "6141a7b91ab5932f4e22c5613ef3a95c002d7c8db800c4f342c2c8236bfbd45f",
+        "mutated": false
+      },
+      "currentVerdict": "NONQUALIFYING_LEGACY_EVIDENCE",
+      "historicalEntriesPreserved": true,
+      "noNewExecutionOrIndependentCertification": true,
+      "reportedTransportVerdict": "PASS_REPORTED_BY_LEGACY_GATE",
+      "reportedCapabilityVerdict": "FAIL_BY_REPORTED_CHECKS",
+      "reportedSubstantiveChecks": {
+        "total": 35,
+        "passed": 18,
+        "failed": 17
+      },
+      "priorFailureDispositions": [
+        {
+          "id": "P0-SOAK-LOST-ADMITTED",
+          "disposition": "SUBSEQUENT_REPORTED_TRANSPORT_PASS",
+          "evidence": "Final sealed artifact reports lostAdmitted=0 and restart retrieval COMPLETED. Earlier failure remains historical fact; no independent rerun in this regrade."
+        },
+        {
+          "id": "P0-SOAK-LATENCY",
+          "disposition": "SUBSEQUENT_REPORTED_TRANSPORT_PASS",
+          "evidence": "Final sealed artifact reports p95=5586ms, 100% within 20s and 90s. This does not resolve semantic failures."
+        },
+        {
+          "id": "P1-SOAK-DURABLE-RATE",
+          "disposition": "SUBSEQUENT_REPORTED_TRANSPORT_PASS",
+          "evidence": "Final sealed artifact reports durableRetrievableRate=1. Full per-case durable receipt evidence remains outside this historical artifact."
+        },
+        {
+          "id": "P1-V53-MISSING",
+          "disposition": "NOT_RESOLVED_BY_THIS_SOAK",
+          "evidence": "No V53 acceptance or new authority is established by this regrade."
+        },
+        {
+          "id": "P2-WORKER-EXIT-78",
+          "disposition": "HISTORICAL_FAILURE_PRESERVED",
+          "evidence": "Final chat restart retrieval is scoped evidence, not proof that the separate scheduled queue worker is healthy."
+        }
+      ],
+      "newFindings": [
+        {
+          "id": "GATE-001-SEMANTIC-FAILURES",
+          "severity": "P0",
+          "status": "OPEN",
+          "evidence": "17 of 35 substantive checks reported false; final legacy pass omitted semantic failure count.",
+          "smallestNextAction": "Make all required semantic checks release-blocking, then repair failing capability families and pass local regression fixtures."
+        },
+        {
+          "id": "GATE-001-LOGICAL-DUPLICATES",
+          "severity": "P1",
+          "status": "OPEN",
+          "logicalCaseIds": [
+            "O08_reordered_r0_7",
+            "O04_correction_r1_15",
+            "FILL_78"
+          ],
+          "evidence": "Three repeated logical case IDs each have two distinct request IDs, despite legacy duplicateEffects=0.",
+          "smallestNextAction": "Use a durable reservation before submission and fail closed on ambiguous transport or evidence-write failures; do not replay a logical case."
+        },
+        {
+          "id": "GATE-001-INCOMPLETE-EVIDENCE",
+          "severity": "P1",
+          "status": "OPEN",
+          "evidence": "Only textHead is retained; complete scrubbed responses, response hashes, versioned check IDs, oracle traces, result kinds and per-case execution tuples are missing.",
+          "smallestNextAction": "Retain the complete scrubbed evidence on future runs; do not reconstruct or certify historical answer tails."
+        }
+      ],
+      "reportedFailedCaseLinks": [
+        {
+          "sourceRowIndex": 1,
+          "logicalCaseId": "O02_arith_r0_1",
+          "requestId": "pcr_66f12b4c89324cd3",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=1]"
+        },
+        {
+          "sourceRowIndex": 6,
+          "logicalCaseId": "O07_table_layout_r0_6",
+          "requestId": "pcr_e11c0845ae5c4fe9",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=6]"
+        },
+        {
+          "sourceRowIndex": 7,
+          "logicalCaseId": "O08_reordered_r0_7",
+          "requestId": "pcr_99d1bd420fd44bbc",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=7]"
+        },
+        {
+          "sourceRowIndex": 8,
+          "logicalCaseId": "O08_reordered_r0_7",
+          "requestId": "pcr_dd9f952ef51740cc",
+          "classification": "HARNESS_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=8]"
+        },
+        {
+          "sourceRowIndex": 9,
+          "logicalCaseId": "O09_state_recovery_r0_8",
+          "requestId": "pcr_841d0f52a84a4390",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=9]"
+        },
+        {
+          "sourceRowIndex": 11,
+          "logicalCaseId": "O11_arith_money_r0_10",
+          "requestId": "pcr_3f940d6ac9014970",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=11]"
+        },
+        {
+          "sourceRowIndex": 14,
+          "logicalCaseId": "O02_arith_r1_13",
+          "requestId": "pcr_e818e6bd4466431e",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=14]"
+        },
+        {
+          "sourceRowIndex": 20,
+          "logicalCaseId": "O07_table_layout_r1_18",
+          "requestId": "pcr_c579eaa3e6a54963",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=20]"
+        },
+        {
+          "sourceRowIndex": 21,
+          "logicalCaseId": "O08_reordered_r1_19",
+          "requestId": "pcr_e61e59f6877747a2",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=21]"
+        },
+        {
+          "sourceRowIndex": 22,
+          "logicalCaseId": "O09_state_recovery_r1_20",
+          "requestId": "pcr_aec775c9e1fe470d",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=22]"
+        },
+        {
+          "sourceRowIndex": 24,
+          "logicalCaseId": "O11_arith_money_r1_22",
+          "requestId": "pcr_7e80d296b2704fcf",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=24]"
+        },
+        {
+          "sourceRowIndex": 27,
+          "logicalCaseId": "M1_nexus_rank_s2",
+          "requestId": "pcr_adedce4fd8b544b8",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=27]"
+        },
+        {
+          "sourceRowIndex": 28,
+          "logicalCaseId": "M1_nexus_rank_s3",
+          "requestId": "pcr_c5b858308c534e9a",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=28]"
+        },
+        {
+          "sourceRowIndex": 29,
+          "logicalCaseId": "M2_harbor_arith_s1",
+          "requestId": "pcr_377648d5ab724eb1",
+          "classification": "PRODUCT_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=29]"
+        },
+        {
+          "sourceRowIndex": 30,
+          "logicalCaseId": "M2_harbor_arith_s2",
+          "requestId": "pcr_e2c89fac9a5142a1",
+          "classification": "DOWNSTREAM_INCONCLUSIVE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=30]"
+        },
+        {
+          "sourceRowIndex": 32,
+          "logicalCaseId": "M3_stateful_gate_s1",
+          "requestId": "pcr_00473d45437a4e1d",
+          "classification": "HARNESS_FAILURE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=32]"
+        },
+        {
+          "sourceRowIndex": 33,
+          "logicalCaseId": "M3_stateful_gate_s2",
+          "requestId": "pcr_b00b10a8e38c40fd",
+          "classification": "DOWNSTREAM_INCONCLUSIVE",
+          "status": "HISTORICAL_REPORTED_FAILURE_NOT_REPAIRED_BY_REGRADE",
+          "artifactSelector": "failures[sourceRowIndex=33]"
+        }
+      ],
+      "nextAction": "Repair the identified capability families and harness cases; prove local semantic fixtures before a separately authorized live soak. Transport PASS alone is not engineering-candidate readiness or Birth certification.",
+      "locks": {
+        "waveCredit": 0,
+        "birth": "NOT_BORN",
+        "realCommerce": "locked"
+      }
+    }
   ]
 }
