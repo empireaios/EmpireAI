@@ -28,6 +28,7 @@ const suites = [
   "src/validation/tests/memory-relevance-contract.test.ts",
   "src/validation/tests/memory-relevance-raw-pipeline.test.ts",
   "src/validation/tests/causal-state-atomic.test.ts",
+  "src/validation/tests/chronology-evidence-contract.test.ts",
   "src/validation/tests/reasoning-core-l1-l4.test.ts",
   "src/validation/tests/post-foundation-repair4-levela.test.ts",
   "src/validation/tests/foundation-reset-learning.test.ts",
