@@ -5,6 +5,7 @@ import {
   type RedisClient,
 } from "../config/redis-client.js";
 import { createWorkerRedisBinding } from "../runtime/worker-redis-binding.js";
+import { persistDatabase } from "./database.js";
 import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
 import { agentDefinitions } from "../agents/definitions/agents.js";
@@ -615,7 +616,13 @@ export async function createBrain(options?: {
     await scheduler.close();
     await taskQueue.close();
     await eventBus.stop();
-    redis?.disconnect();
+    // Stop the managed writers, then await SQL.js persistence. Preserve the shared
+    // handle for repositories/repeated app fixtures, and propagate save failures.
+    try {
+      await persistDatabase();
+    } finally {
+      redis?.disconnect();
+    }
     logger.info("EmpireAI Brain shutdown complete");
   };
 
