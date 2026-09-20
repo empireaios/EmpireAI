@@ -17,6 +17,7 @@ import {
   acceptDurableChatRequestClaim, claimNextReasoningRequest, configureChatRequestStore,
   dropChatRequestMemoryCacheForTests, getChatRequest, settleReasoningRequest,
   PillowDurableStoreUnavailableError, PillowIdempotencyConflictError,
+  releaseInterruptedReasoningRequest,
 } from "../../runtime/pillow-chat-request-store.js";
 import { runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
 
@@ -92,6 +93,51 @@ describe("real Redis durable reasoning queue (required, no skipped certification
       claimNextReasoningRequest({ owner: `worker-${i}`, leaseMs: 10_000 })));
     assert.equal(claims.filter(Boolean).length, 1);
     assert.equal(claims.find(Boolean)?.request.attemptCount, 1);
+  });
+
+  it("planned shutdown on the final allowed attempt preserves input and refunds only that interrupted attempt", async () => {
+    const accepted = await acceptDurableChatRequestClaim(queueInput("survive final-attempt deployment"));
+    for (let i = 0; i < 2; i++) {
+      const claim = await claimNextReasoningRequest({ owner: "before-deploy", leaseMs: 10_000 });
+      assert.ok(claim);
+      await settleReasoningRequest({ requestId: accepted.request.requestId, leaseToken: claim.request.leaseToken!,
+        failureClass: "NETWORK", error: "prior actual failure", retryDelayMs: 0 });
+    }
+    const cancellation = new AbortController();
+    let thirdToken = 0;
+    await runOneDurableReasoningAttempt({ owner: "stopping-primary", signal: cancellation.signal,
+      execute: async (job) => {
+        assert.equal(job.request.attemptCount, 3);
+        thirdToken = job.request.leaseToken!;
+        cancellation.abort();
+        return { ok: false, failureClass: "NETWORK", error: "cancelled" };
+      } });
+    const interrupted = await getChatRequest(accepted.request.requestId);
+    assert.equal(interrupted?.status, "RETRYABLE");
+    assert.equal(interrupted?.attemptCount, 2);
+    assert.equal(interrupted?.shutdownInterruptions, 1);
+    assert.ok(await redis.get(`pillow:chatreq:job:${accepted.request.requestId}`));
+    assert.equal(await redis.zcard("pillow:chatreq:dead"), 0);
+    assert.equal(await releaseInterruptedReasoningRequest({ requestId: accepted.request.requestId, leaseToken: thirdToken }), false);
+    const replacement = await claimNextReasoningRequest({ owner: "replacement", leaseMs: 10_000 });
+    assert.equal(replacement?.request.attemptCount, 3);
+    assert.equal(replacement?.input.bodyText, queueInput("survive final-attempt deployment").input.bodyText);
+    assert.equal(await releaseInterruptedReasoningRequest({ requestId: accepted.request.requestId, leaseToken: thirdToken }), false);
+    await settleReasoningRequest({ requestId: accepted.request.requestId, leaseToken: replacement!.request.leaseToken!,
+      result: { kind: "llm", message: "finished after deployment" } });
+    assert.equal(await releaseInterruptedReasoningRequest({ requestId: accepted.request.requestId, leaseToken: replacement!.request.leaseToken! }), false);
+    assert.equal((await getChatRequest(accepted.request.requestId))?.finalResult?.message, "finished after deployment");
+  });
+
+  it("a completed answer wins over a simultaneous shutdown signal", async () => {
+    const accepted = await acceptDurableChatRequestClaim(queueInput("finish concurrently"));
+    const cancellation = new AbortController();
+    await runOneDurableReasoningAttempt({ owner: "finishing-primary", signal: cancellation.signal,
+      execute: async () => { cancellation.abort(); return { ok: true, result: { kind: "llm", message: "complete" } }; } });
+    const completed = await getChatRequest(accepted.request.requestId);
+    assert.equal(completed?.status, "COMPLETED");
+    assert.equal(completed?.finalResult?.message, "complete");
+    assert.equal(completed?.shutdownInterruptions, undefined);
   });
 
   it("returns completed disposition without execution; rejects reused key with changed input", async () => {

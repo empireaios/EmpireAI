@@ -1,3 +1,4 @@
+import { backgroundExecutionPolicy } from "../runtime/engineering-test-mode.js";
 import {
   createBullMQConnection,
   REDIS_START_HINT,
@@ -298,6 +299,7 @@ export async function createBrain(options?: {
   startWorkers?: boolean;
   startScheduler?: boolean;
 }): Promise<EmpireBrain> {
+  const backgroundPolicy = backgroundExecutionPolicy(options);
   const { redis, redisMode } = await createWorkerRedisBinding({
     url: env.REDIS_URL,
     production: env.NODE_ENV === "production" || Boolean(
@@ -583,7 +585,7 @@ export async function createBrain(options?: {
 
   await eventBus.start();
 
-  if (options?.startScheduler ?? false) {
+  if (backgroundPolicy.startScheduler) {
     for (const definition of getGrandKingSchedulerDefinitions()) {
       await scheduler.register(definition);
     }
@@ -596,7 +598,7 @@ export async function createBrain(options?: {
     await scheduler.start();
   }
 
-  if (options?.startWorkers ?? false) {
+  if (backgroundPolicy.startWorkers) {
     workerPool.start();
   }
 

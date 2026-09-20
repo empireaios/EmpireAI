@@ -4,6 +4,7 @@ import {
   classifyUpstreamFailure,
   policyForFailure,
   settleReasoningRequest,
+  releaseInterruptedReasoningRequest,
   type ClaimedReasoningRequest,
   type ChatFailureClass,
 } from "./pillow-chat-request-store.js";
@@ -18,6 +19,7 @@ export async function executeReasoningProxy(
   job: ClaimedReasoningRequest,
   workerPort: number,
   timeoutMs = 200_000,
+  shutdownSignal?: AbortSignal,
 ): Promise<ReasoningAttempt> {
   if (job.input.kind !== "reasoning") throw new Error("side_effect_retry_forbidden");
   try {
@@ -31,7 +33,9 @@ export async function executeReasoningProxy(
         "x-empire-pillow-fence": String(job.request.leaseToken),
       },
       body: job.input.bodyText,
-      signal: AbortSignal.timeout(timeoutMs),
+      signal: shutdownSignal
+        ? AbortSignal.any([AbortSignal.timeout(timeoutMs), shutdownSignal])
+        : AbortSignal.timeout(timeoutMs),
     });
     if (!response.ok) return {
       ok: false,
@@ -76,14 +80,23 @@ export async function runOneDurableReasoningAttempt(options: {
   maxAttempts?: number;
   /** Probe before claiming: startup/recycle is not a consumed reasoning attempt. */
   ready?: () => Promise<boolean>;
+  signal?: AbortSignal;
 }): Promise<boolean> {
+  if (options.signal?.aborted) return false;
   if (options.ready && !(await options.ready())) return false;
+  if (options.signal?.aborted) return false;
   const job = await claimNextReasoningRequest({
     owner: options.owner, leaseMs: options.leaseMs ?? 230_000, maxAttempts: options.maxAttempts ?? 3,
   });
   if (!job) return false;
   // If the process dies here, lease expiry makes this full input reclaimable.
-  const result = await options.execute(job);
+  const result: ReasoningAttempt = options.signal?.aborted
+    ? { ok: false, failureClass: "NETWORK", error: "worker_shutting_down" }
+    : await options.execute(job);
+  if (!result.ok && options.signal?.aborted) {
+    await releaseInterruptedReasoningRequest({ requestId: job.request.requestId, leaseToken: job.request.leaseToken! });
+    return true;
+  }
   await settleReasoningRequest({
     requestId: job.request.requestId,
     leaseToken: job.request.leaseToken!,
@@ -105,20 +118,35 @@ export function startDurableReasoningSweeper(options: {
   workerPort: number;
   onError: (error: unknown) => void;
   ready: () => Promise<boolean>;
-}): () => void {
+}): () => Promise<void> {
   let running = false;
   let stopped = false;
+  let shutdownFailed = false;
+  let shutdownError: unknown;
+  const cancellation = new AbortController();
+  let inFlight: Promise<void> = Promise.resolve();
   const tick = async () => {
     if (running || stopped) return;
     running = true;
     try {
       await runOneDurableReasoningAttempt({ owner: options.owner, ready: options.ready,
-        execute: (job) => executeReasoningProxy(job, options.workerPort) });
-    } catch (error) { options.onError(error); }
+        signal: cancellation.signal,
+        execute: (job) => executeReasoningProxy(job, options.workerPort, 200_000, cancellation.signal) });
+    } catch (error) {
+      if (stopped) { shutdownFailed = true; shutdownError = error; }
+      options.onError(error);
+    }
     finally { running = false; }
   };
-  const timer = setInterval(() => { void tick(); }, 1_000);
+  const runTick = () => { if (!running && !stopped) inFlight = tick(); };
+  const timer = setInterval(runTick, 1_000);
   timer.unref();
-  void tick();
-  return () => { stopped = true; clearInterval(timer); };
+  runTick();
+  return async () => {
+    stopped = true;
+    clearInterval(timer);
+    cancellation.abort();
+    await inFlight;
+    if (shutdownFailed) throw shutdownError;
+  };
 }

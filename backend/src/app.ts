@@ -1,3 +1,5 @@
+import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
+import { ManagedBackgroundTask } from "./runtime/managed-background-task.js";
 import type { FastifyInstance } from "fastify";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
@@ -236,17 +238,19 @@ export type EmpireApp = {
 };
 
 export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp> {
-  const startWorkers = options.startWorkers ?? false;
-  const startScheduler = options.startScheduler ?? false;
+  const { startWorkers, startScheduler, commerceAutomation } = backgroundExecutionPolicy(options);
   const pillowEnabled = options.pillowEnabled ?? true;
   const earlyListen = options.earlyListen ?? false;
 
   const brain = await createBrain({ startWorkers, startScheduler });
   await seedDefaultUsers();
 
+  let deferredBootstrap: ReturnType<typeof setImmediate> | undefined;
+  let stopping = false;
   const deferHeavyBootstrap = env.NODE_ENV === "production";
   if (deferHeavyBootstrap) {
-    setImmediate(() => {
+    deferredBootstrap = setImmediate(() => {
+      if (stopping) return;
       try {
         seedDomainData();
         seedGrandKingAccount();
@@ -266,24 +270,26 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   }
 
   const pillowHost = getPillowHost();
-  if (pillowEnabled) {
-    const bootDelayMs = env.NODE_ENV === "production" ? 15_000 : 5_000;
-    const bootPillowHost = () => {
-      void schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger)
-        ?.then(() => {
-          syncPresaleApprovalGateWithPillowHost(pillowHost);
-        })
-        .catch((error) => {
-          logger.error(
-            {
-              error: error instanceof Error ? error.message : String(error),
-            },
-            "Pillow host startup failed — backend continues in degraded mode",
-          );
-        });
-    };
-    setTimeout(bootPillowHost, bootDelayMs);
-  }
+  const pillowBootTask = new ManagedBackgroundTask({
+    run: async () => {
+      await schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger);
+      if (!stopping) syncPresaleApprovalGateWithPillowHost(pillowHost);
+    },
+    onError: (error) => logger.error(
+      { error: error instanceof Error ? error.message : String(error) },
+      "Pillow host startup failed — backend continues in degraded mode",
+    ),
+  });
+  if (pillowEnabled) pillowBootTask.start(env.NODE_ENV === "production" ? 15_000 : 5_000);
+  const stopBackgroundWork = async () => {
+    stopping = true;
+    clearImmediate(deferredBootstrap);
+    await Promise.all([
+      pillowBootTask.stop(),
+      getPillowCommercePresaleAutomationServer().stop(),
+      getPillowExecutiveLoopAutomationServer().stop(),
+    ]);
+  };
 
   const sessionStore = brain.sessionStore;
   const authenticate = createAuthMiddleware(sessionStore);
@@ -561,6 +567,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     pillowEnabled,
     pillowHost,
     eventStream,
+    commerceAutomation,
   };
 
   // Both full and early-listen apps need the authenticated cockpit surface.
@@ -575,7 +582,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     return {
       app,
       brain,
-      shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+      shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -586,7 +593,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   return {
     app,
     brain,
-    shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+    shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
   };
 }
 
@@ -598,6 +605,7 @@ type EmpireRouteDeps = {
   pillowEnabled: boolean;
   pillowHost: ReturnType<typeof getPillowHost>;
   eventStream: EventStreamHub;
+  commerceAutomation: boolean;
 };
 
 function createEmpireShutdown(deps: {
@@ -605,22 +613,25 @@ function createEmpireShutdown(deps: {
   brain: EmpireBrain;
   pillowEnabled: boolean;
   eventStream: EventStreamHub;
+  stopBackgroundWork: () => Promise<void>;
 }) {
-  return async () => {
+  let shutdown: Promise<void> | undefined;
+  return () => shutdown ??= (async () => {
     deps.eventStream.stop();
+    await deps.stopBackgroundWork();
+    await deps.app.close();
     if (deps.pillowEnabled) {
       await shutdownPillowHost();
     }
-    await deps.app.close();
     await deps.brain.shutdown();
-  };
+  })();
 }
 
-let commerceCriticalRoutesRegistered = false;
+const commerceCriticalRouteApps = new WeakSet<FastifyInstance>();
 
 /** Supplier → Amazon listing routes required for first-dollar commerce proof. */
 async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
-  if (commerceCriticalRoutesRegistered) return;
+  if (commerceCriticalRouteApps.has(deps.app)) return;
   const { app, authenticate, brain } = deps;
 
   await breathe();
@@ -661,7 +672,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
   });
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
-  if (deps.pillowEnabled) {
+  if (deps.pillowEnabled && deps.commerceAutomation) {
     getPillowCommercePresaleAutomationServer().start();
     getPillowExecutiveLoopAutomationServer().start();
   }
@@ -677,7 +688,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
     );
   }
 
-  commerceCriticalRoutesRegistered = true;
+  commerceCriticalRouteApps.add(app);
   logger.info(
     "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)",
   );

@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { assertCommerceAutomationAllowed } from "../../../runtime/engineering-test-mode.js";
 
 import { logger } from "../../../config/logger.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
@@ -195,6 +196,7 @@ function buildRecommendation(input: {
 export async function runPillowCommercePresaleCycle(
   input: RunPresaleCycleInput,
 ): Promise<PresaleCycleResult> {
+  assertCommerceAutomationAllowed();
   const workspaceId = input.workspaceId;
   if (discoveryInFlightByWorkspace.has(workspaceId)) {
     const repo = getPillowCommercePresaleRepository();

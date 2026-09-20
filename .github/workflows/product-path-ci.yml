@@ -38,6 +38,8 @@ jobs:
           node-version: '22'
       - name: Verify package scripts, lockfiles and the production web contract
         run: node scripts/verify-product-path-ci.mjs
+      - name: Verify bounded canary configuration and child-process cleanup
+        run: node --test deployment/canary-launcher.test.cjs
       - name: Record tested revision and limits
         env:
           EVENT_SHA: ${{ github.sha }}

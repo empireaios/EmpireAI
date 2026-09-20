@@ -117,6 +117,7 @@ export type DurableChatRequest = {
   leaseToken?: number;
   leaseExpiresAt?: number;
   nextAttemptAt?: number;
+  shutdownInterruptions?: number;
     observability: {
       brainStartedAt?: string;
       brainCompletedAt?: string;
@@ -528,6 +529,15 @@ if patch.result then
   rec.deliveryState = 'PENDING_CLIENT'
   rec.observability.brainCompletedAt = ARGV[3]
   rec.observability.resultPersistedAt = ARGV[3]
+elseif patch.interruptedByShutdown then
+  -- Planned deployment is not a failed reasoning attempt. The same active
+  -- lease may release only once, and cannot touch a completed/newer result.
+  rec.status = 'RETRYABLE'
+  rec.failureClass = 'WORKER_RECYCLED'
+  rec.lastError = 'worker_shutdown_interrupted'
+  rec.attemptCount = math.max(0, tonumber(rec.attemptCount) - 1)
+  rec.shutdownInterruptions = tonumber(rec.shutdownInterruptions or 0) + 1
+  rec.nextAttemptAt = now
 else
   rec.lastError = patch.error
   if patch.upstreamStatus then rec.upstreamStatus = patch.upstreamStatus end
@@ -550,6 +560,20 @@ else
 end
 return 1
 `;
+
+/** Release a reasoning lease on planned shutdown without consuming its retry budget. */
+export async function releaseInterruptedReasoningRequest(options: {
+  requestId: string;
+  leaseToken: number;
+}): Promise<boolean> {
+  const result = await evalStore(SETTLE_LEASE,
+    [key(options.requestId), `${JOB_PREFIX}${options.requestId}`, DUE_KEY, DLQ_KEY],
+    [options.leaseToken, JSON.stringify({ interruptedByShutdown: true, failureClass: "WORKER_RECYCLED" }),
+      new Date().toISOString(), TTL_SEC, 3, 0]);
+  if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
+  memory.delete(options.requestId);
+  return result === 1;
+}
 
 /** A stale/dead worker cannot overwrite a newer attempt's result. */
 export async function settleReasoningRequest(options: {

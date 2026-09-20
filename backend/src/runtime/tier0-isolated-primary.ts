@@ -58,6 +58,7 @@ import {
   type DurableChatRequest,
 } from "./pillow-chat-request-store.js";
 import { startDurableReasoningSweeper } from "./pillow-durable-reasoning-worker.js";
+import { installPrimaryShutdown } from "./primary-shutdown.js";
 import {
   buildTier0ApplicationReadiness,
   probeRedisSessionStore,
@@ -487,6 +488,18 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
+  let stopSweeper: () => Promise<void> = async () => {};
+  const lifecycle = installPrimaryShutdown({
+    getChild: () => workerState.child,
+    stopBackground: () => stopSweeper(),
+    closeServer: async () => { await app.close(); },
+    disconnect: () => redisClient.disconnect(),
+    report: (event, error) => {
+      if (error || event !== "primary_shutdown_complete") {
+        logger.error({ error: error instanceof Error ? error.message : error }, event);
+      } else logger.info(event);
+    },
+  });
   await app.register(cors, { origin: true, credentials: true });
   await app.register(cookie);
   registerTier0DurabilityErrorHandler(app);
@@ -789,7 +802,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   });
 
   function spawnWorker(): void {
-    if (workerState.starting || workerState.child) return;
+    if (lifecycle.isStopping() || workerState.starting || workerState.child) return;
     workerState.starting = true;
     const childEnv = {
       ...process.env,
@@ -816,20 +829,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         workerState.restarts += 1;
         workerState.lastExitAt = Date.now();
         workerState.lastExitCode = code;
+        if (lifecycle.isStopping()) return;
         logger.error(
           { code, signal, restarts: workerState.restarts },
           "Brain worker exited — Tier-0 primary remains up; respawning worker",
         );
         // Cap respawn delay — long backoff after exit(78) left chat hitting 404 races.
         const delay = Math.min(8_000, 1_000 * Math.max(1, Math.min(workerState.restarts, 6)));
-        setTimeout(() => spawnWorker(), delay);
+        lifecycle.schedule(() => spawnWorker(), delay);
       });
 
       child.on("error", (error) => {
         workerState.child = null;
         workerState.starting = false;
+        if (lifecycle.isStopping()) return;
         logger.error({ err: error }, "Brain worker spawn error");
-        setTimeout(() => spawnWorker(), 5_000);
+        lifecycle.schedule(() => spawnWorker(), 5_000);
       });
 
       child.on("spawn", () => {
@@ -838,20 +853,18 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     } catch (error) {
       workerState.starting = false;
       logger.error({ err: error }, "Brain worker spawn threw");
-      setTimeout(() => spawnWorker(), 5_000);
+      lifecycle.schedule(() => spawnWorker(), 5_000);
     }
   }
 
   if (redisClient) {
-    const stopSweeper = startDurableReasoningSweeper({
+    stopSweeper = startDurableReasoningSweeper({
       owner: process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0",
       workerPort,
-      ready: async () => !workerState.starting && Boolean(workerState.child) && (await probeWorkerReady(2_000)).ok,
+      ready: async () => !lifecycle.isStopping() && !workerState.starting && Boolean(workerState.child) && (await probeWorkerReady(2_000)).ok,
       onError: (error) => logger.error({ error: error instanceof Error ? error.message : "queue_error" }, "pillow_durable_sweeper_error"),
     });
-    app.addHook("onClose", async () => { stopSweeper(); });
   }
-  app.addHook("onClose", async () => { redisClient.disconnect(); });
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info(
     { port: env.PORT, workerPort: workerState.port },
@@ -860,5 +873,5 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   // Spawn heavy sql.js worker AFTER public Tier-0 is accepting traffic so
   // Railway healthchecks and Grand King auth survive worker boot/OOM/flush.
-  setTimeout(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
+  lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }

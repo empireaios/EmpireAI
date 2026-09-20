@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { executeReasoningProxy } from "../../runtime/pillow-durable-reasoning-worker.js";
+import { executeReasoningProxy, startDurableReasoningSweeper } from "../../runtime/pillow-durable-reasoning-worker.js";
+import { createServer } from "node:http";
+import { once } from "node:events";
 import type { ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
 
 const job = {
@@ -68,5 +70,52 @@ describe("durable worker completion contract", { concurrency: false }, () => {
         /side_effect_retry_forbidden/);
       assert.equal(calls, 0);
     } finally { globalThis.fetch = original; }
+  });
+  it("shutdown cancels an in-flight real HTTP request without acknowledging completion", async () => {
+    const server = createServer();
+    server.listen(0, "127.0.0.1");
+    await once(server, "listening");
+    const cancellation = new AbortController();
+    try {
+      const requestArrived = once(server, "request");
+      const result = executeReasoningProxy(job, (server.address() as { port: number }).port, 200_000, cancellation.signal);
+      await requestArrived;
+      cancellation.abort();
+      const attempt = await result;
+      assert.equal(attempt.ok, false);
+      if (!attempt.ok) assert.equal(attempt.failureClass, "NETWORK");
+    } finally {
+      server.closeAllConnections();
+      await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    }
+  });
+  it("sweeper stop awaits its readiness probe and does not claim new work after shutdown", async () => {
+    let ready!: (value: boolean) => void;
+    const probe = new Promise<boolean>((resolve) => { ready = resolve; });
+    const errors: unknown[] = [];
+    const stop = startDurableReasoningSweeper({ owner: "shutdown-test", workerPort: 1,
+      ready: () => probe, onError: (error) => errors.push(error) });
+    let stopped = false;
+    const stopping = stop().then(() => { stopped = true; });
+    await Promise.resolve();
+    assert.equal(stopped, false);
+    ready(true);
+    await stopping;
+    assert.equal(stopped, true);
+    assert.deepEqual(errors, [], "no durable store exists, so any claim after the probe would fail");
+    await stop();
+  });
+  it("shutdown propagates an in-flight failure instead of reporting a confirmed queue drain", async () => {
+    let rejectProbe!: (error: Error) => void;
+    const probe = new Promise<boolean>((_resolve, reject) => { rejectProbe = reject; });
+    const errors: unknown[] = [];
+    const stop = startDurableReasoningSweeper({ owner: "shutdown-failure", workerPort: 1,
+      ready: () => probe, onError: (error) => errors.push(error) });
+    const stopping = stop();
+    const failure = new Error("shutdown queue operation unavailable");
+    rejectProbe(failure);
+    await assert.rejects(stopping, failure);
+    assert.deepEqual(errors, [failure]);
+    await assert.rejects(stop(), failure);
   });
 });

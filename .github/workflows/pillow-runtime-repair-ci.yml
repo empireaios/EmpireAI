@@ -104,7 +104,11 @@ jobs:
             src/validation/tests/session-store-unavailable.test.ts \
             src/validation/tests/sqlite-persistence-boundary.test.ts \
             src/validation/tests/sqlite-shutdown-boundary.test.ts \
+            src/validation/tests/primary-shutdown.test.ts \
+            src/validation/tests/independent-shutdown-last-attempt.test.ts \
             src/validation/tests/sqlite-corruption-recovery.test.ts \
+            src/validation/tests/engineering-test-mode.test.ts \
+            src/validation/tests/cost-guard-authorization.test.ts \
             src/validation/tests/auth-readiness.test.ts \
             src/validation/tests/auth-verification.test.ts \
             src/validation/tests/bootstrap-credential-policy.test.ts \

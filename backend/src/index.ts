@@ -27,6 +27,27 @@ async function main() {
     process.env.EMPIRE_BOOT_MODE = process.env.EMPIRE_ROLE === "brain-worker" ? "brain-worker" : "monolith";
   }
 
+  // Install before importing/bootstrapping the large Brain graph. A termination
+  // during startup must await the database-owning app before flushing it.
+  let finishStartup!: () => void;
+  const startupFinished = new Promise<void>((resolve) => { finishStartup = resolve; });
+  let shutdownAction: (() => Promise<void>) | null = null;
+  let shuttingDown = false;
+  const handleShutdown = async () => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    try {
+      await startupFinished;
+      await shutdownAction?.();
+      process.exit(0);
+    } catch (error) {
+      logCaughtError(logger, error, "Brain shutdown failed — persistence not confirmed");
+      process.exit(1);
+    }
+  };
+  process.on("SIGINT", handleShutdown);
+  process.on("SIGTERM", handleShutdown);
+
   // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).
   const { reclaimEphemeralVolumeFiles } = await import("./runtime/volume-reclaim.js");
   reclaimEphemeralVolumeFiles();
@@ -46,13 +67,9 @@ async function main() {
     earlyListen: productionEarlyListen,
   });
 
-  const handleShutdown = async () => {
-    await shutdown();
-    process.exit(0);
-  };
-
-  process.on("SIGINT", handleShutdown);
-  process.on("SIGTERM", handleShutdown);
+  shutdownAction = shutdown;
+  finishStartup();
+  if (shuttingDown) return;
 
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info(
