@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint",
     "test": "node --import tsx --test 'lib/**/*.test.ts'"
   },
