@@ -66,6 +66,8 @@ export interface PillowHostStatus {
 import type { PillowWorkspaceContext } from "./workspace-context.js";
 
 export interface RoutePromptInput {
+  /** Internal transport restriction: no command, episode or learning mutations. */
+  reasoningOnly?: boolean;
   workspaceId: string;
   sessionId: string;
   message: string;

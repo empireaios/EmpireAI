@@ -1,6 +1,5 @@
 import type { Order } from "../../../orders/index.js";
 import type { CjApiClient } from "../cj-api-client.js";
-import { createCjApiClient } from "../cj-api-client.js";
 import type { CjConfig } from "../cj-config.js";
 import { isCjLiveApiEnabled, loadCjConfig } from "../cj-config.js";
 import { getCjSandboxProducts } from "../cj-sandbox-fixtures.js";
@@ -38,11 +37,9 @@ export type CjOrderClientOptions = {
 /** CJ Dropshipping order fulfillment client — submission is approval-gated. */
 export class CjOrderClient {
   readonly config: CjConfig;
-  private readonly apiClient: CjApiClient;
 
   constructor(options: CjOrderClientOptions = {}) {
     this.config = options.config ?? loadCjConfig();
-    this.apiClient = options.apiClient ?? createCjApiClient(this.config);
   }
 
   /** Validates order without requiring approval. */
@@ -98,7 +95,7 @@ export class CjOrderClient {
   /**
    * Submits an order to CJ — DISABLED unless APPROVED=true with full approval gate.
    * Default SANDBOX: simulates submission without live API charges.
-   * LIVE mode only when CJ_INTEGRATION_MODE=LIVE and approval exists.
+   * LIVE execution is blocked here; the controlled ledger must own admission.
    */
   async submitOrder(
     order: Order,
@@ -113,31 +110,17 @@ export class CjOrderClient {
 
     const mode = assertSubmissionAllowed(this.config, order);
 
-    if (mode === "LIVE" && !isCjLiveApiEnabled(this.config)) {
-      throw new CjOrderSubmissionDisabledError(
-        "Live submission requires CJ_INTEGRATION_MODE=LIVE with valid credentials and approval.",
-      );
+    // This legacy client lacks durable admission/reconciliation. Do not let it
+    // bypass the fulfillment ledger or manufacture successful provider receipts.
+    if (mode === "LIVE") {
+      throw new CjOrderSubmissionDisabledError("Legacy live submission is unavailable until provider receipt reconciliation is established. Use the controlled fulfillment ledger.");
     }
 
-    const payload = buildOrderPayload({ ...order, integrationMode: mode });
-
     try {
-      if (mode === "LIVE") {
-        await this.apiClient.request({
-          method: "POST",
-          path: CJ_ORDER_ENDPOINTS.ORDER_CREATE,
-          body: payload,
-          authenticated: true,
-        });
-      }
-
       recordSubmissionAttempt(true);
       recordFulfillmentOutcome(true);
 
-      const supplierOrderId =
-        mode === "SANDBOX"
-          ? `cj-sandbox-order-${order.orderId}`
-          : `cj-live-order-${order.orderId}`;
+      const supplierOrderId = `cj-sandbox-order-${order.orderId}`;
       const trackingNumber = `TRK-${order.orderId.slice(-8).toUpperCase()}`;
 
       syncSandboxTracking(order, supplierOrderId, trackingNumber);
@@ -145,13 +128,10 @@ export class CjOrderClient {
 
       return {
         supplierOrderId,
-        status: mode === "SANDBOX" ? "SANDBOX_SIMULATED" : "SUBMITTED",
+        status: "SANDBOX_SIMULATED",
         integrationMode: mode,
         submittedAt: new Date().toISOString(),
-        message:
-          mode === "SANDBOX"
-            ? "Sandbox order simulated — no live charges or payment execution."
-            : "Order submitted to CJ with approval gate satisfied.",
+        message: "Sandbox order simulated — no live charges or payment execution.",
       };
     } catch (error) {
       recordSubmissionAttempt(false);

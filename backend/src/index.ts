@@ -1,7 +1,6 @@
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
 import { logCaughtError } from "./config/log-caught-error.js";
-import { buildApp } from "./app.js";
 import {
   startTier0IsolatedPrimary,
   tier0IsolationEnabled,
@@ -16,13 +15,13 @@ async function main() {
       await startTier0IsolatedPrimary();
       return;
     } catch (error) {
-      process.env.EMPIRE_BOOT_MODE = "monolith-fallback";
+      process.env.EMPIRE_BOOT_MODE = "tier0-start-failed";
       logCaughtError(
         logger,
         error,
-        "Tier-0 isolation failed to start — falling back to monolith Brain (auth may block during sql.js flush)",
+        "Tier-0 isolation failed to start — refusing unsafe monolith fallback",
       );
-      // Fall through to monolith boot rather than leave Railway with no process.
+      throw error;
     }
   } else {
     process.env.EMPIRE_BOOT_MODE = process.env.EMPIRE_ROLE === "brain-worker" ? "brain-worker" : "monolith";
@@ -38,6 +37,9 @@ async function main() {
   enforceProductionPersistenceGate();
 
   const productionEarlyListen = env.NODE_ENV === "production";
+  // Only the Brain worker/monolith loads the full application graph. The
+  // isolated primary must keep authentication independent of that graph.
+  const { buildApp } = await import("./app.js");
   const { app, shutdown, finishRouteRegistration } = await buildApp({
     startWorkers: !productionEarlyListen,
     startScheduler: !productionEarlyListen,

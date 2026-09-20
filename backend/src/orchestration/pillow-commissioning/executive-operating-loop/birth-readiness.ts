@@ -65,6 +65,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
   );
 
   const rows: BirthReadinessRow[] = [
+    row("independent V53 certification", "NOT_PROVEN", birth.authority.reason),
     row(
       "continuous executive loop",
       liveCycles.length > 0 && hasFullStageLoop
@@ -171,7 +172,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
   // Only true when every mandatory executive capability is PROVEN.
   // Birth timestamp still requires explicit Grand King authorisation separately.
   const technicallyReadyForGrandKingAuthorisation =
-    mandatoryStillOpen.length === 0 && birth.birthTimestamp == null;
+    birth.technicallyReady && mandatoryStillOpen.length === 0 && birth.birthTimestamp == null;
 
   return {
     computedAt: new Date().toISOString(),
@@ -181,7 +182,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     rows,
     mandatoryStillOpen,
     notes: [
-      "Birth timestamp remains NULL until Grand King explicitly authorises.",
+      "Birth remains NOT_BORN until independent certification is accepted and owner authority is established; receipt ingestion is not implemented.",
       "This report does not declare Pillow born.",
       "Capability harness is primarily sandbox/runtime-structure proof; live soak and connector-backed logistics remain open.",
       `Legacy birth.technicallyReady=${birth.technicallyReady}; birthStatus=${birth.status}`,

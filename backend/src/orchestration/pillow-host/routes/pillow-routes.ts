@@ -4,6 +4,7 @@ import { z } from "zod";
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import type { LLMRouter } from "../../../brain/llm/llm-router.js";
 import { logger } from "../../../config/logger.js";
+import { isReasoningOnlyRequest } from "../../../runtime/reasoning-only-policy.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
 import {
   ensurePillowHostReadyOrReply,
@@ -39849,6 +39850,7 @@ export async function registerPillowRoutes(
           workspaceId,
           sessionId,
           message: body.message,
+          reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
           correlationId: request.id,
           provider: body.provider,
@@ -39875,6 +39877,7 @@ export async function registerPillowRoutes(
           workspaceId,
           sessionId,
           message: body.message,
+          reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
           correlationId: request.id,
           provider: body.provider,

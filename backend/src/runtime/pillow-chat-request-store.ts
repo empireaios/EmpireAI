@@ -13,6 +13,7 @@ import { createHash, randomUUID } from "node:crypto";
 type RedisLike = {
   get(key: string): Promise<string | null>;
   setex(key: string, seconds: number, value: string): Promise<unknown>;
+  eval?(script: string, numKeys: number, ...args: Array<string | number>): Promise<unknown>;
 };
 
 export type ChatRequestStatus =
@@ -109,6 +110,13 @@ export type DurableChatRequest = {
   lastError?: string;
   upstreamStatus?: number;
   messagePreview: string;
+  ownerId?: string;
+  workspaceId?: string;
+  /** Only reasoning requests use the durable replay queue. Never action tools. */
+  queued?: boolean;
+  leaseToken?: number;
+  leaseExpiresAt?: number;
+  nextAttemptAt?: number;
     observability: {
       brainStartedAt?: string;
       brainCompletedAt?: string;
@@ -124,14 +132,54 @@ const TTL_SEC = Math.max(300, Number(process.env.PILLOW_CHAT_REQUEST_TTL_SEC ?? 
 const MEMORY_CAP = 500;
 const KEY_PREFIX = "pillow:chatreq:v2:";
 const IDEM_PREFIX = "pillow:chatreq:idem:";
+const JOB_PREFIX = "pillow:chatreq:job:";
+const DUE_KEY = "pillow:chatreq:due";
+const DLQ_KEY = "pillow:chatreq:dead";
 
 const memory = new Map<string, DurableChatRequest>();
 const memoryOrder: string[] = [];
 let redis: RedisLike | null = null;
+let requireRedisDurability = false;
+
+export class PillowDurableStoreUnavailableError extends Error {
+  constructor(message = "pillow_durable_store_unavailable", options?: ErrorOptions) {
+    super(message, options);
+    this.name = "PillowDurableStoreUnavailableError";
+  }
+}
+
+export class PillowIdempotencyConflictError extends Error {
+  constructor() { super("pillow_idempotency_key_reused_for_different_input"); }
+}
+
+export type RecoverableReasoningInput = {
+  kind: "reasoning";
+  bodyText: string;
+  /** Kept only in the private job key, never returned in request/status APIs. */
+  sessionToken: string;
+};
+
+export type ChatAcceptance = {
+  request: DurableChatRequest;
+  disposition: "CREATED" | "EXISTING_PENDING" | "EXISTING_COMPLETED" | "EXISTING_FAILED";
+};
+
+async function evalStore(script: string, keys: string[], args: Array<string | number>): Promise<unknown> {
+  try {
+    if (!redis?.eval) throw new Error("redis_atomic_operations_unavailable");
+    return await redis.eval(script, keys.length, ...keys, ...args);
+  } catch (cause) {
+    throw new PillowDurableStoreUnavailableError(undefined, { cause });
+  }
+}
 
 /** Inject Redis client from Tier-0 primary (preferred over auto-create). */
-export function configureChatRequestStore(client: RedisLike | null): void {
+export function configureChatRequestStore(
+  client: RedisLike | null,
+  options: { requireRedisDurability?: boolean } = {},
+): void {
   redis = client;
+  requireRedisDurability = options.requireRedisDurability ?? false;
 }
 
 /** Test-only: clear process memory so Redis is the sole recovery path (BFF/process restart). */
@@ -164,19 +212,60 @@ function touchMemory(rec: DurableChatRequest): void {
 }
 
 async function persist(rec: DurableChatRequest): Promise<void> {
+  // Legacy mutators must never bypass the queue's lease/fence compare-and-set.
+  if (rec.queued) throw new Error("queued_transition_requires_lease");
   rec.updatedAt = new Date().toISOString();
   rec.ts = rec.updatedAt;
-  touchMemory(rec);
   const r = ensureRedis();
-  if (!r) return;
-  try {
-    await r.setex(key(rec.requestId), TTL_SEC, JSON.stringify(rec));
-    if (rec.idempotencyKey) {
-      await r.setex(idemKey(rec.idempotencyKey), TTL_SEC, rec.requestId);
+  if (!r) {
+    if (requireRedisDurability) {
+      throw new PillowDurableStoreUnavailableError();
     }
-  } catch {
-    /* memory remains authoritative for this process */
+    touchMemory(rec);
+    return;
   }
+  try {
+    const requestWrite = await r.setex(
+      key(rec.requestId),
+      TTL_SEC,
+      JSON.stringify(rec),
+    );
+    if (requireRedisDurability && requestWrite !== "OK") {
+      throw new Error("redis_setex_request_not_acknowledged");
+    }
+    if (rec.idempotencyKey) {
+      const idempotencyWrite = await r.setex(
+        idemKey(rec.idempotencyKey),
+        TTL_SEC,
+        rec.requestId,
+      );
+      if (requireRedisDurability && idempotencyWrite !== "OK") {
+        throw new Error("redis_setex_idempotency_not_acknowledged");
+      }
+    }
+  } catch (error) {
+    if (requireRedisDurability) {
+      throw new PillowDurableStoreUnavailableError(undefined, { cause: error });
+    }
+  }
+  // In strict Tier-0 mode, only expose a state transition in process memory
+  // after Redis has acknowledged it. This keeps memory from contradicting the
+  // durable source of truth when SETEX fails after a successful PING.
+  touchMemory(rec);
+}
+
+function cloneRecord(rec: DurableChatRequest): DurableChatRequest {
+  return structuredClone(rec);
+}
+
+function requireMutableRecord(
+  rec: DurableChatRequest | null,
+): DurableChatRequest | null {
+  if (rec) return cloneRecord(rec);
+  if (requireRedisDurability) {
+    throw new PillowDurableStoreUnavailableError("pillow_durable_record_unavailable");
+  }
+  return null;
 }
 
 export function hashChatInput(sessionId: string, message: string): string {
@@ -226,41 +315,68 @@ export function classifyUpstreamFailure(opts: {
  * DUPLICATE_EXECUTION_POLICY=REUSE_INFLIGHT_OR_COMPLETED
  * Same idempotency key within TTL returns existing request; no second brain start while RUNNING.
  */
-export async function acceptDurableChatRequest(opts: {
+type AcceptOptions = {
   sessionId: string | null;
   message: string;
   requestId?: string;
   idempotencyKey?: string;
   contextAdmission?: "PASS" | "COMPACTED" | "REJECT";
   deploymentId?: string | null;
-}): Promise<DurableChatRequest> {
-  const sessionId = opts.sessionId ?? "nosession";
-  const inputHash = hashChatInput(sessionId, opts.message);
-  const idempotencyKey =
-    opts.idempotencyKey?.trim() ||
-    `idem_${sessionId}_${inputHash}`;
+  ownerId?: string;
+  workspaceId?: string;
+  input?: RecoverableReasoningInput;
+};
 
-  const r = ensureRedis();
-  if (r) {
-    try {
-      const existingId = await r.get(idemKey(idempotencyKey));
-      if (existingId) {
-        const existing = await getChatRequest(existingId);
-        if (
-          existing &&
-          (existing.status === "RUNNING" ||
-            existing.status === "ACCEPTED" ||
-            existing.status === "RETRYABLE" ||
-            existing.status === "RECEIVED" ||
-            existing.status === "COMPLETED")
-        ) {
-          return existing;
-        }
-      }
-    } catch {
-      /* fall through */
-    }
-  }
+const ATOMIC_ACCEPT = `
+local function expectType(k, expected)
+  local t = redis.call('TYPE', k).ok
+  if t ~= 'none' and t ~= expected then error('pillow_queue_wrong_type') end
+end
+expectType(KEYS[1], 'string')
+expectType(KEYS[2], 'string')
+expectType(KEYS[3], 'string')
+expectType(KEYS[4], 'zset')
+local existingId = redis.call('GET', KEYS[1])
+if existingId then
+  local raw = redis.call('GET', ARGV[4] .. existingId)
+  if not raw then return {'BROKEN', ''} end
+  local rec = cjson.decode(raw)
+  if rec.inputHash ~= ARGV[5] then return {'CONFLICT', ''} end
+  if rec.queued and rec.status ~= 'COMPLETED' and rec.status ~= 'FAILED_FATAL' then
+    if not redis.call('GET', ARGV[8] .. existingId) or not redis.call('ZSCORE', KEYS[4], existingId) then
+      return {'BROKEN', ''}
+    end
+  end
+  return {'EXISTING', raw}
+end
+if redis.call('EXISTS', KEYS[2]) == 1 then return {'CONFLICT', ''} end
+local encoded = ARGV[1]
+local clock = redis.call('TIME')
+local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
+if ARGV[6] ~= '' then
+  local rec = cjson.decode(encoded)
+  rec.nextAttemptAt = now
+  encoded = cjson.encode(rec)
+end
+redis.call('SET', KEYS[2], encoded, 'EX', ARGV[2])
+redis.call('SET', KEYS[1], ARGV[3], 'EX', ARGV[2])
+if ARGV[6] ~= '' then
+  redis.call('SET', KEYS[3], ARGV[6], 'EX', ARGV[2])
+  redis.call('ZADD', KEYS[4], now, ARGV[3])
+end
+return {'CREATED', encoded}
+`;
+
+/** Record + deduplication + recovery index are one Redis transaction. */
+export async function acceptDurableChatRequestClaim(opts: AcceptOptions): Promise<ChatAcceptance> {
+  const sessionId = opts.sessionId ?? "nosession";
+  if (opts.input && opts.input.kind !== "reasoning") throw new Error("side_effect_retry_forbidden");
+  const scope = `${opts.workspaceId ?? ""}:${opts.ownerId ?? ""}:${sessionId}`;
+  const inputHash = hashChatInput(scope, opts.input?.bodyText ?? opts.message);
+  const idempotencyKey =
+    opts.idempotencyKey?.trim()
+      ? hashChatInput(scope, opts.idempotencyKey.trim())
+      : `idem_${inputHash}`;
 
   const now = new Date().toISOString();
   const rec: DurableChatRequest = {
@@ -279,13 +395,188 @@ export async function acceptDurableChatRequest(opts: {
     finalResult: null,
     deliveryState: "NOT_STARTED",
     messagePreview: String(opts.message ?? "").slice(0, 160),
+    ...(opts.ownerId ? { ownerId: opts.ownerId } : {}),
+    ...(opts.workspaceId ? { workspaceId: opts.workspaceId } : {}),
+    ...(opts.input ? { queued: true, leaseToken: 0, leaseExpiresAt: 0, nextAttemptAt: Date.now() } : {}),
     observability: {
       contextAdmission: opts.contextAdmission ?? "PASS",
       ...(opts.deploymentId ? { deploymentId: opts.deploymentId } : {}),
     },
   };
+  if (redis?.eval || requireRedisDurability || opts.input) {
+    const response = await evalStore(ATOMIC_ACCEPT,
+      [idemKey(idempotencyKey), key(rec.requestId), `${JOB_PREFIX}${rec.requestId}`, DUE_KEY],
+      [JSON.stringify(rec), TTL_SEC, rec.requestId, KEY_PREFIX, inputHash,
+        opts.input ? JSON.stringify(opts.input) : "", rec.nextAttemptAt ?? Date.now(), JOB_PREFIX]);
+    if (!Array.isArray(response) || response.length !== 2) throw new PillowDurableStoreUnavailableError();
+    if (response[0] === "CONFLICT") throw new PillowIdempotencyConflictError();
+    if (response[0] === "BROKEN") throw new PillowDurableStoreUnavailableError("pillow_durable_idempotency_record_unavailable");
+    const request = JSON.parse(String(response[1])) as DurableChatRequest;
+    touchMemory(request);
+    return { request, disposition: response[0] === "CREATED" ? "CREATED" :
+      request.status === "COMPLETED" ? "EXISTING_COMPLETED" :
+      request.status === "FAILED_FATAL" || request.status === "FAILED" ? "EXISTING_FAILED" : "EXISTING_PENDING" };
+  }
+  // Explicitly process-local test/development mode, never production acceptance.
+  const existing = [...memory.values()].find((item) => item.idempotencyKey === idempotencyKey);
+  if (existing) {
+    if (existing.inputHash !== inputHash) throw new PillowIdempotencyConflictError();
+    return { request: cloneRecord(existing), disposition: existing.status === "COMPLETED" ? "EXISTING_COMPLETED" :
+      existing.status === "FAILED_FATAL" ? "EXISTING_FAILED" : "EXISTING_PENDING" };
+  }
   await persist(rec);
-  return rec;
+  return { request: rec, disposition: "CREATED" };
+}
+
+/** Compatibility reader. Callers dispatching work must use the disposition API. */
+export async function acceptDurableChatRequest(opts: AcceptOptions): Promise<DurableChatRequest> {
+  return (await acceptDurableChatRequestClaim(opts)).request;
+}
+
+const CLAIM_DUE = `
+local clock = redis.call('TIME')
+local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
+redis.call('ZREMRANGEBYSCORE', KEYS[2], '-inf', now - tonumber(ARGV[5]) * 1000)
+local ids = redis.call('ZRANGEBYSCORE', KEYS[1], '-inf', now, 'LIMIT', 0, 100)
+for _, id in ipairs(ids) do
+  local rk = ARGV[1] .. id
+  local jk = ARGV[2] .. id
+  local raw = redis.call('GET', rk)
+  local body = redis.call('GET', jk)
+  if not raw then
+    redis.call('ZREM', KEYS[1], id)
+    redis.call('DEL', jk)
+  else
+    local rec = cjson.decode(raw)
+    if rec.status == 'COMPLETED' or rec.status == 'FAILED_FATAL' then
+      redis.call('ZREM', KEYS[1], id)
+      redis.call('DEL', jk)
+    elseif tonumber(rec.leaseExpiresAt or 0) <= now then
+      if not body or tonumber(rec.attemptCount) >= tonumber(ARGV[4]) then
+        rec.status = 'FAILED_FATAL'
+        rec.failureClass = 'BUDGET_EXHAUSTED'
+        rec.lastError = body and 'durable_retry_limit_exhausted' or 'durable_recovery_input_missing'
+        rec.activeWorker = cjson.null
+        rec.leaseExpiresAt = 0
+        rec.updatedAt = ARGV[7]
+        rec.ts = ARGV[7]
+        redis.call('SET', rk, cjson.encode(rec), 'EX', ARGV[5])
+        redis.call('ZREM', KEYS[1], id)
+        redis.call('ZADD', KEYS[2], now, id)
+        redis.call('DEL', jk)
+      else
+        rec.status = 'RUNNING'
+        rec.attemptCount = tonumber(rec.attemptCount) + 1
+        rec.leaseToken = tonumber(rec.leaseToken or 0) + 1
+        rec.leaseExpiresAt = now + tonumber(ARGV[3])
+        rec.activeWorker = ARGV[6]
+        rec.updatedAt = ARGV[7]
+        rec.ts = ARGV[7]
+        rec.observability.brainStartedAt = ARGV[7]
+        local encoded = cjson.encode(rec)
+        redis.call('SET', rk, encoded, 'EX', ARGV[5])
+        redis.call('EXPIRE', jk, ARGV[5])
+        redis.call('ZADD', KEYS[1], rec.leaseExpiresAt, id)
+        return {encoded, body}
+      end
+    end
+  end
+end
+return {}
+`;
+
+export type ClaimedReasoningRequest = { request: DurableChatRequest; input: RecoverableReasoningInput };
+
+export async function claimNextReasoningRequest(options: {
+  owner: string;
+  leaseMs: number;
+  maxAttempts?: number;
+}): Promise<ClaimedReasoningRequest | null> {
+  const result = await evalStore(CLAIM_DUE, [DUE_KEY, DLQ_KEY],
+    [KEY_PREFIX, JOB_PREFIX, Math.max(1, options.leaseMs), options.maxAttempts ?? 3,
+      TTL_SEC, options.owner, new Date().toISOString()]);
+  if (!Array.isArray(result)) throw new PillowDurableStoreUnavailableError();
+  if (result.length === 0) return null;
+  const request = JSON.parse(String(result[0])) as DurableChatRequest;
+  const input = JSON.parse(String(result[1])) as RecoverableReasoningInput;
+  if (input.kind !== "reasoning") throw new Error("side_effect_retry_forbidden");
+  touchMemory(request);
+  return { request, input };
+}
+
+const SETTLE_LEASE = `
+for _, k in ipairs({KEYS[3], KEYS[4]}) do
+  local t = redis.call('TYPE', k).ok
+  if t ~= 'none' and t ~= 'zset' then error('pillow_queue_wrong_type') end
+end
+local raw = redis.call('GET', KEYS[1])
+if not raw then return 0 end
+local rec = cjson.decode(raw)
+local clock = redis.call('TIME')
+local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
+if rec.status ~= 'RUNNING' or tonumber(rec.leaseToken) ~= tonumber(ARGV[1]) or tonumber(rec.leaseExpiresAt) <= now then return 0 end
+local patch = cjson.decode(ARGV[2])
+rec.updatedAt = ARGV[3]
+rec.ts = ARGV[3]
+rec.activeWorker = cjson.null
+rec.leaseExpiresAt = 0
+rec.failureClass = patch.failureClass
+if patch.result then
+  rec.status = 'COMPLETED'
+  rec.brainResult = patch.result
+  rec.finalResult = patch.result
+  rec.deliveryState = 'PENDING_CLIENT'
+  rec.observability.brainCompletedAt = ARGV[3]
+  rec.observability.resultPersistedAt = ARGV[3]
+else
+  rec.lastError = patch.error
+  if patch.upstreamStatus then rec.upstreamStatus = patch.upstreamStatus end
+  if patch.fatal or tonumber(rec.attemptCount) >= tonumber(ARGV[5]) then
+    rec.status = 'FAILED_FATAL'
+  else
+    rec.status = 'RETRYABLE'
+    rec.nextAttemptAt = now + tonumber(ARGV[6])
+  end
+end
+redis.call('SET', KEYS[1], cjson.encode(rec), 'EX', ARGV[4])
+-- Never remove recovery input/index before the final record has been persisted.
+-- A later command error may leave cleanup work, but cannot lose the answer/job.
+if rec.status == 'COMPLETED' or rec.status == 'FAILED_FATAL' then
+  redis.call('ZREM', KEYS[3], rec.requestId)
+  if rec.status == 'FAILED_FATAL' then redis.call('ZADD', KEYS[4], now, rec.requestId) end
+  redis.call('DEL', KEYS[2])
+else
+  redis.call('ZADD', KEYS[3], rec.nextAttemptAt, rec.requestId)
+end
+return 1
+`;
+
+/** A stale/dead worker cannot overwrite a newer attempt's result. */
+export async function settleReasoningRequest(options: {
+  requestId: string;
+  leaseToken: number;
+  result?: Record<string, unknown>;
+  failureClass?: ChatFailureClass;
+  error?: string;
+  upstreamStatus?: number;
+  fatal?: boolean;
+  maxAttempts?: number;
+  retryDelayMs?: number;
+}): Promise<boolean> {
+  const patch = {
+    result: options.result,
+    failureClass: options.result ? "BRAIN_SUCCESS" : options.failureClass ?? "UNKNOWN",
+    error: options.error?.slice(0, 500),
+    upstreamStatus: options.upstreamStatus,
+    fatal: options.fatal ?? false,
+  };
+  const result = await evalStore(SETTLE_LEASE,
+    [key(options.requestId), `${JOB_PREFIX}${options.requestId}`, DUE_KEY, DLQ_KEY],
+    [options.leaseToken, JSON.stringify(patch), new Date().toISOString(), TTL_SEC,
+      options.maxAttempts ?? 3, Math.max(0, options.retryDelayMs ?? 5_000)]);
+  if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
+  memory.delete(options.requestId);
+  return result === 1;
 }
 
 export async function markChatRequestRunning(
@@ -293,7 +584,7 @@ export async function markChatRequestRunning(
   attempt: number,
   activeWorker?: string | null,
 ): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   rec.status = "RUNNING";
   rec.attemptCount = attempt;
@@ -314,7 +605,7 @@ export async function markChatRequestRetryable(
     attempt?: number;
   },
 ): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   if (rec.status === "COMPLETED") return;
   rec.status = "RETRYABLE";
@@ -331,7 +622,7 @@ export async function completeChatRequest(
   requestId: string,
   result: Record<string, unknown>,
 ): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   const now = new Date().toISOString();
   rec.status = "COMPLETED";
@@ -347,7 +638,7 @@ export async function completeChatRequest(
 }
 
 export async function markDeliveryAttempted(requestId: string): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   rec.deliveryState = "ATTEMPTED";
   rec.observability = {
@@ -369,7 +660,7 @@ export async function failChatRequest(
     fatal?: boolean;
   },
 ): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   const errText = opts.error ?? opts.errorClass;
   const policy = policyForFailure(opts.failureClass);
@@ -395,7 +686,23 @@ export async function markChatRequestDelivered(
   requestId: string,
   state: ChatDeliveryState = "DELIVERED",
 ): Promise<void> {
-  const rec = await getChatRequest(requestId);
+  if (redis?.eval) {
+    await evalStore(`
+local raw = redis.call('GET', KEYS[1])
+if not raw then return 0 end
+local rec = cjson.decode(raw)
+if rec.status ~= 'COMPLETED' then return 0 end
+rec.deliveryState = ARGV[1]
+rec.updatedAt = ARGV[2]
+rec.ts = ARGV[2]
+if ARGV[1] == 'DELIVERED' or ARGV[1] == 'RETRIEVED' then rec.observability.deliveryCompletedAt = ARGV[2] end
+redis.call('SET', KEYS[1], cjson.encode(rec), 'EX', ARGV[3])
+return 1
+`, [key(requestId)], [state, new Date().toISOString(), TTL_SEC]);
+    memory.delete(requestId);
+    return;
+  }
+  const rec = requireMutableRecord(await getChatRequest(requestId));
   if (!rec) return;
   rec.deliveryState = state;
   if (state === "DELIVERED") {
@@ -408,9 +715,14 @@ export async function markChatRequestDelivered(
 }
 
 export async function getChatRequest(requestId: string): Promise<DurableChatRequest | null> {
-  if (memory.has(requestId)) return memory.get(requestId)!;
+  if (!requireRedisDurability && !redis && memory.has(requestId)) return cloneRecord(memory.get(requestId)!);
   const r = ensureRedis();
-  if (!r) return null;
+  if (!r) {
+    if (requireRedisDurability) {
+      throw new PillowDurableStoreUnavailableError();
+    }
+    return null;
+  }
   try {
     const raw = await r.get(key(requestId));
     if (!raw) return null;
@@ -418,7 +730,10 @@ export async function getChatRequest(requestId: string): Promise<DurableChatRequ
     if (rec.status === "FAILED") rec.status = "FAILED_FATAL";
     touchMemory(rec);
     return rec;
-  } catch {
+  } catch (error) {
+    if (requireRedisDurability) {
+      throw new PillowDurableStoreUnavailableError(undefined, { cause: error });
+    }
     return null;
   }
 }
@@ -458,6 +773,9 @@ export function durabilityMeta() {
     RETRY_OWNER: "Tier-0",
     IDEMPOTENCY_KEY: "idem_${sessionId}_${inputHash}",
     DUPLICATE_EXECUTION_POLICY: "REUSE_INFLIGHT_OR_COMPLETED",
+    RECOVERY_QUEUE: "Redis due index; boot/periodic sweeper; leased and fenced reasoning only",
+    MAX_ATTEMPTS: 3,
+    SIDE_EFFECT_REPLAY: "FORBIDDEN",
   };
 }
 

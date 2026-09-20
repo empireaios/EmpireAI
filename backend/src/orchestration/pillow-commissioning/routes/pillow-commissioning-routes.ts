@@ -469,6 +469,7 @@ export async function registerPillowCommissioningRoutes(
       birthStatus: birth.status,
       birthTimestamp: birth.birthTimestamp,
       technicallyReady: birth.technicallyReady,
+      authority: birth.authority,
       thousandRelease: "AWAITING_GRAND_KING_AND_CHATGPT",
     });
   });

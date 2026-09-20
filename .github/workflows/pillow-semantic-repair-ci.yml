@@ -1,0 +1,147 @@
+name: Pillow semantic repair CI
+
+# Offline engineering regressions only; never independent Birth/Wave certification.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'fix/pillow-semantic-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pillow-semantic-repair-${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  semantic-regressions:
+    name: Semantic evidence preservation — offline full engineering gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      SOAK_ALLOW_LIVE_RUN: '0'
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            pillow/package-lock.json
+            backend/package-lock.json
+      - name: Clean install, typecheck and build Pillow
+        run: |
+          npm ci --prefix pillow
+          npm run typecheck --prefix pillow
+          npm run build --prefix pillow
+      - name: Clean install, typecheck and build backend
+        run: |
+          npm ci --prefix backend
+          npm run verify:env --prefix backend
+          npm run typecheck --prefix backend
+          npm run build --prefix backend
+      - name: Create network-denial preload for offline child processes
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          writeFileSync(join(process.env.RUNNER_TEMP, 'pillow-offline-guard.cjs'), `
+          const http = require('node:http');
+          const https = require('node:https');
+          const net = require('node:net');
+          const tls = require('node:tls');
+          const { syncBuiltinESMExports } = require('node:module');
+          function blocked() { throw new Error('OFFLINE_VERIFICATION_NETWORK_BLOCKED'); }
+          globalThis.fetch = blocked;
+          http.request = http.get = https.request = https.get = blocked;
+          net.connect = net.createConnection = net.Socket.prototype.connect = blocked;
+          tls.connect = blocked;
+          syncBuiltinESMExports();
+          `);
+          NODE
+      - name: Run full semantic engineering regressions with no provider access
+        working-directory: backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          env -i \
+            PATH="$PATH" HOME="$RUNNER_TEMP" TMPDIR="$RUNNER_TEMP" \
+            CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \
+            NODE_OPTIONS="--require=$RUNNER_TEMP/pillow-offline-guard.cjs" \
+            REDIS_OPTIONAL=true REDIS_URL=redis://127.0.0.1:6399 \
+            DATABASE_PATH=:memory: LOG_LEVEL=fatal \
+            LIVE_CJ_FULFILLMENT_ENABLED=false LIVE_CJ_FULFILLMENT_MOCK=true \
+            CJ_INTEGRATION_MODE=SANDBOX \
+            node scripts/run-full-certification-gate.mjs \
+            | tee "$RUNNER_TEMP/pillow-semantic-gate.log"
+          node --input-type=module - "$RUNNER_TEMP/pillow-semantic-gate.log" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const values = (name) => Array.from(output.matchAll(new RegExp(`^(?:#|ℹ) ${name} (\\d+)$`, 'gm')), (m) => Number(m[1]));
+          const sum = (name) => values(name).reduce((total, value) => total + value, 0);
+          assert.ok(values('tests').length >= 23, 'All 23 mandatory test files must execute');
+          assert.ok(sum('tests') >= 150, 'The combined 150-test engineering regression baseline must execute');
+          assert.equal(sum('pass'), sum('tests'), 'Every engineering regression must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(values(kind).length, values('tests').length, `Missing summary: ${kind}`);
+            assert.equal(sum(kind), 0, `${kind} tests are not permitted`);
+          }
+          assert.ok(output.includes('▶ src/validation/tests/chronology-evidence-contract.test.ts'), 'Chronology regressions are mandatory');
+          assert.ok(output.includes('▶ src/validation/tests/pillow-birth-authority.test.ts'), 'Birth authority regressions are mandatory');
+          assert.ok(output.includes('▶ src/validation/tests/executive-truth-grounding.test.ts'), 'Truth grounding regressions are mandatory');
+          assert.equal((output.match(/^▶ scripts\/[^\n]+-qualify\.mjs$/gm) ?? []).length, 9, 'All nine qualification scripts must execute');
+          assert.ok(output.includes('OFFLINE_ENGINEERING_GATE: PASS'));
+          assert.doesNotMatch(output, /^FAIL:|OFFLINE_ENGINEERING_GATE: FAIL/m);
+          NODE
+      - name: Require CJ receipt truth and authorization regressions without provider access
+        working-directory: backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          env -i \
+            PATH="$PATH" HOME="$RUNNER_TEMP" TMPDIR="$RUNNER_TEMP" \
+            CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \
+            NODE_OPTIONS="--require=$RUNNER_TEMP/pillow-offline-guard.cjs" \
+            REDIS_OPTIONAL=true DATABASE_PATH=:memory: LOG_LEVEL=fatal \
+            LIVE_CJ_FULFILLMENT_ENABLED=false LIVE_CJ_FULFILLMENT_MOCK=true \
+            CJ_INTEGRATION_MODE=SANDBOX \
+            npm run test:cj-receipt-safety \
+            | tee "$RUNNER_TEMP/pillow-cj-receipt-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-cj-receipt-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^(?:#|ℹ) ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing test summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 88, 'All reviewed CJ regressions must execute');
+          assert.equal(count('pass'), count('tests'), 'Every CJ regression must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} tests are not permitted`);
+          }
+          NODE
+      - name: Record exact revision and verification limits
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          {
+            echo '## Offline semantic repair engineering gate'
+            echo "Exact tested checkout: $(git rev-parse HEAD)"
+            echo "PR head: ${PR_HEAD_SHA:-not a pull request}"
+            echo "Node: $(node --version)"
+            echo 'Clean installs/typechecks/builds and the full scoped semantic engineering gate passed.'
+            echo 'This gate uses supplied synthetic evidence and denies network access during tests.'
+            echo 'It does not certify a live model, V53/Wave mastery, production runtime, Birth, commerce or autonomous profitability.'
+          } >> "$GITHUB_STEP_SUMMARY"

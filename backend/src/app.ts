@@ -200,9 +200,14 @@ import { createAuthMiddleware } from "./auth/middleware.js";
 import { canAccessModule } from "./auth/permissions.js";
 import { EventStreamHub } from "./brain/events/event-stream.js";
 import { GuardianBlockedError } from "./guardian/guardian-engine.js";
+import { SessionStoreUnavailableError } from "./auth/session-store.js";
 import { seedDomainData } from "./domain/seed.js";
 import { bootstrapFoundation } from "./foundation/index.js";
 import { getObservabilitySnapshot, recordRequest } from "./observability/metrics.js";
+import {
+  probeRedisSessionStore,
+  registerWorkerApplicationReadinessRoute,
+} from "./runtime/application-readiness.js";
 
 const dispatchSchema = z.object({
   module: z.string().min(1),
@@ -330,6 +335,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       "Request failed",
     );
 
+    if (error instanceof SessionStoreUnavailableError) {
+      return reply.code(503).send({
+        error: "Shared session store temporarily unavailable",
+        code: "SHARED_SESSION_STORE_UNAVAILABLE",
+        retryable: true,
+      });
+    }
+
     if (error instanceof z.ZodError) {
       return reply.code(400).send({
         error: "Validation failed",
@@ -397,19 +410,23 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     return payload;
   });
 
-  // Process alive ≠ Grand King auth ready. Ops/probes use this; Railway stays on /health/live.
-  app.get("/health/ready", async (_request, reply) => {
-    const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
-    const report = assessAuthReadiness({ sessionStore });
-    const payload = {
-      ...report,
-      brain: "online" as const,
-      process: "running" as const,
-    };
-    if (!report.ready) {
-      return reply.code(503).send(payload);
-    }
-    return payload;
+  // Process alive ≠ Grand King auth/Pillow ready. Railway admits traffic on
+  // this endpoint; /health/live remains available for diagnostics.
+  const redisRequired =
+    env.NODE_ENV === "production" || process.env.EMPIRE_ROLE === "brain-worker";
+  const pillowRequired = pillowEnabled || redisRequired;
+  registerWorkerApplicationReadinessRoute(app, {
+    assessAuthReadiness: async () => {
+      const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
+      return assessAuthReadiness({ sessionStore });
+    },
+    probeRedisConnectivity: (timeoutMs) =>
+      probeRedisSessionStore(brain.redis, timeoutMs),
+    redisMode: brain.redisMode,
+    redisRequired,
+    pillowEnabled,
+    pillowRequired,
+    getPillowStatus: () => pillowHost.getStatus(),
   });
 
   app.get("/health/executive-continuity", async () => {
@@ -546,9 +563,11 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     eventStream,
   };
 
+  // Both full and early-listen apps need the authenticated cockpit surface.
+  await breathe();
+  await registerCockpitCriticalRoutes(routeDeps);
+
   if (earlyListen) {
-    await breathe();
-    await registerCockpitCriticalRoutes(routeDeps);
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
     await breathe();
@@ -642,8 +661,10 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
   });
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
-  getPillowCommercePresaleAutomationServer().start();
-  getPillowExecutiveLoopAutomationServer().start();
+  if (deps.pillowEnabled) {
+    getPillowCommercePresaleAutomationServer().start();
+    getPillowExecutiveLoopAutomationServer().start();
+  }
 
   // Institutional memory must accumulate from day one (cloud SQLite EKB).
   try {

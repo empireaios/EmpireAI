@@ -11,5 +11,7 @@ buildCommand = "NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_C
 startCommand = "node backend/dist/index.js"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
-healthcheckPath = "/health/live"
+# Admit traffic only after Redis sessions, Brain worker, and Pillow lifecycle
+# are all ready. /health/live remains available for diagnostics.
+healthcheckPath = "/health/ready"
 healthcheckTimeout = 300

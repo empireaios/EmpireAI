@@ -1,4 +1,10 @@
 import { wireEngineIntegrations } from "./common/integration-wiring.js";
+import {
+  PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION,
+  PILLOW_OBSERVER_AUTO_START_ENV,
+  pillowContinuousObserverOptions,
+  pillowObserverAutoStart,
+} from "./common/observer-runtime-policy.js";
 import { ExecutiveDirectionContext } from "./bootstrap/executive-reasoning-context.js";
 import { runBootstrap } from "./bootstrap/engine.js";
 import {
@@ -2860,23 +2866,23 @@ export async function startPillow(options?: {
   cursorProtocolEngine!.setBrowserTruth(browserTruthEngine);
   missionPlanner.setBrowserTruth(browserTruthEngine);
   visualCaptureEngine = createVisualCaptureEngine(result, {
-    autoStart: process.env.VISUAL_CAPTURE_AUTO_START !== "false",
+    autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.visualCapture),
   });
   await visualCaptureEngine.initialize();
   uiStateMapperEngine = createUiStateMapperEngine(result, visualCaptureEngine, {
-    autoStart: process.env.UI_STATE_MAPPER_AUTO_START !== "false",
+    autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.uiStateMapper),
   });
   await uiStateMapperEngine.initialize();
   componentRecognitionEngine = createComponentRecognitionEngine(result, uiStateMapperEngine, {
-    autoStart: process.env.COMPONENT_RECOGNITION_AUTO_START !== "false",
+    autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.componentRecognition),
   });
   await componentRecognitionEngine.initialize();
   layoutUnderstandingEngine = createLayoutUnderstandingEngine(result, componentRecognitionEngine, {
-    autoStart: process.env.LAYOUT_UNDERSTANDING_AUTO_START !== "false",
+    autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.layoutUnderstanding),
   });
   await layoutUnderstandingEngine.initialize();
   navigationMappingEngine = createNavigationMappingEngine(result, layoutUnderstandingEngine, {
-    autoStart: process.env.NAVIGATION_MAPPING_AUTO_START !== "false",
+    autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.navigationMapping),
   });
   await navigationMappingEngine.initialize();
   interactionTrackingEngine = createInteractionTrackingEngine(
@@ -2884,7 +2890,7 @@ export async function startPillow(options?: {
     navigationMappingEngine,
     layoutUnderstandingEngine,
     componentRecognitionEngine,
-    { autoStart: process.env.INTERACTION_TRACKING_AUTO_START !== "false" },
+    { autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.interactionTracking) },
   );
   await interactionTrackingEngine.initialize();
   contextAwarenessEngine = createContextAwarenessEngine(
@@ -2893,7 +2899,7 @@ export async function startPillow(options?: {
     navigationMappingEngine,
     layoutUnderstandingEngine,
     componentRecognitionEngine,
-    { autoStart: process.env.CONTEXT_AWARENESS_AUTO_START !== "false" },
+    { autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.contextAwareness) },
   );
   await contextAwarenessEngine.initialize();
   visualMemoryEngine = createVisualMemoryEngine(
@@ -2905,7 +2911,7 @@ export async function startPillow(options?: {
     navigationMappingEngine,
     interactionTrackingEngine,
     contextAwarenessEngine,
-    { autoStart: process.env.VISUAL_MEMORY_AUTO_START !== "false" },
+    { autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.visualMemory) },
   );
   await visualMemoryEngine.initialize();
   sessionContinuityEngine = createSessionContinuityEngine(
@@ -2916,7 +2922,7 @@ export async function startPillow(options?: {
     interactionTrackingEngine,
     contextAwarenessEngine,
     visualMemoryEngine,
-    { autoStart: process.env.SESSION_CONTINUITY_AUTO_START !== "false" },
+    { autoStart: pillowObserverAutoStart(PILLOW_OBSERVER_AUTO_START_ENV.sessionContinuity) },
   );
   await sessionContinuityEngine.initialize();
   visualFoundationCertificationEngine = createVisualFoundationCertificationEngine(
@@ -3268,6 +3274,9 @@ export async function startPillow(options?: {
     frontendBuilder,
     continuousCollaborationEngine,
     executiveCollaborationCertificationEngine,
+    pillowContinuousObserverOptions(
+      PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.continuousScreenObservation,
+    ),
   );
   await continuousScreenObservationEngine.initialize();
   autonomousUxAuditEngine = createAutonomousUxAuditEngine(
@@ -3279,6 +3288,7 @@ export async function startPillow(options?: {
     visualConsistencyEngine,
     layoutEvaluationEngine,
     workflowOptimizationEngine,
+    pillowContinuousObserverOptions(PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.autonomousUxAudit),
   );
   await autonomousUxAuditEngine.initialize();
   uxOpportunityDiscoveryEngine = createUxOpportunityDiscoveryEngine(
@@ -3292,6 +3302,9 @@ export async function startPillow(options?: {
     designSystemIntelligenceEngine,
     accessibilityIntelligenceEngine,
     visualConsistencyEngine,
+    pillowContinuousObserverOptions(
+      PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.uxOpportunityDiscovery,
+    ),
   );
   await uxOpportunityDiscoveryEngine.initialize();
   productivityIntelligenceEngine = createProductivityIntelligenceEngine(
@@ -3304,6 +3317,9 @@ export async function startPillow(options?: {
     workflowOptimizationEngine,
     uxScoringEngine,
     continuousCollaborationEngine,
+    pillowContinuousObserverOptions(
+      PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.productivityIntelligence,
+    ),
   );
   await productivityIntelligenceEngine.initialize();
   workflowEvolutionEngine = createWorkflowEvolutionEngine(
@@ -3312,6 +3328,7 @@ export async function startPillow(options?: {
     uxOpportunityDiscoveryEngine,
     autonomousUxAuditEngine,
     continuousScreenObservationEngine,
+    pillowContinuousObserverOptions(PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.workflowEvolution),
   );
   await workflowEvolutionEngine.initialize();
   adaptiveInterfaceEngine = createAdaptiveInterfaceEngine(
@@ -3323,6 +3340,7 @@ export async function startPillow(options?: {
     continuousScreenObservationEngine,
     contextAwarenessEngine!,
     interactionTrackingEngine!,
+    pillowContinuousObserverOptions(PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.adaptiveInterface),
   );
   await adaptiveInterfaceEngine.initialize();
   continuousUxEvolutionEngine = createContinuousUxEvolutionEngine(
@@ -3333,6 +3351,9 @@ export async function startPillow(options?: {
     uxOpportunityDiscoveryEngine,
     autonomousUxAuditEngine,
     continuousScreenObservationEngine,
+    pillowContinuousObserverOptions(
+      PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.continuousUxEvolution,
+    ),
   );
   await continuousUxEvolutionEngine.initialize();
   executiveWorkspaceIntelligenceEngine = createExecutiveWorkspaceIntelligenceEngine(
@@ -3344,6 +3365,9 @@ export async function startPillow(options?: {
     uxOpportunityDiscoveryEngine,
     autonomousUxAuditEngine,
     continuousScreenObservationEngine,
+    pillowContinuousObserverOptions(
+      PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.executiveWorkspaceIntelligence,
+    ),
   );
   await executiveWorkspaceIntelligenceEngine.initialize();
   selfImprovingUxEngine = createSelfImprovingUxEngine(
@@ -3358,6 +3382,7 @@ export async function startPillow(options?: {
     continuousScreenObservationEngine,
     approvalWorkflowEngine!,
     changeDocumentationEngine!,
+    pillowContinuousObserverOptions(PILLOW_CONTINUOUS_OBSERVER_CONFIGURATION.selfImprovingUx),
   );
   await selfImprovingUxEngine.initialize();
   visualIntelligenceCertificationEngine = createVisualIntelligenceCertificationEngine(

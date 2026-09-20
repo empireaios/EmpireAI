@@ -23,6 +23,7 @@ import { collectZeroHumanAutomationSnapshot } from "./zero-human-automation-brid
 import { collectFounderShellSnapshot } from "./founder-shell-bridge.js";
 import { collectRepositoryArchitectureSnapshot } from "./repository-architecture-bridge.js";
 import { logger } from "../../config/logger.js";
+import { runChatActionStage } from "../../runtime/reasoning-only-policy.js";
 import { ApprovalGateEngine } from "../pillow-approval/approval-gate-engine.js";
 import { CursorBridgeAdapter } from "../pillow-approval/cursor-bridge-adapter.js";
 import { CursorHeartbeatService } from "../pillow-approval/cursor-heartbeat-service.js";
@@ -29647,6 +29648,7 @@ export class PillowHost {
         this.approvalGate.attachCursorBridge(this.cursorBridge);
     }
     async routePrompt(input): any {
+        const reasoningOnly = input.reasoningOnly === true;
         this.ensureRunning();
         const session = this.sessionStore.get(input.workspaceId, input.sessionId);
         if (!session) {
@@ -30016,12 +30018,12 @@ export class PillowHost {
             // Fail closed into SHADOW_CEO_EXECUTION_BLOCKED — never LLM plan-as-execution.
             {
                 markStage("shadowCeoAdmissionMs");
-                const shadowAdmission = admitAndExecuteShadowCeoFromChat({
+                const shadowAdmission = runChatActionStage(reasoningOnly, () => admitAndExecuteShadowCeoFromChat({
                     message: input.message,
                     workspaceId: input.workspaceId,
                     correlationId: requestId,
-                });
-                if (shadowAdmission.admitted) {
+                }));
+                if (shadowAdmission?.admitted) {
                     const message = shadowAdmission.message;
                     const assistantTurn = {
                         role: "assistant",
@@ -30109,18 +30111,21 @@ export class PillowHost {
             let operationalContext;
             let executiveReasoning;
             const objectiveState = pillow.objective.getDashboardState();
-            if (useMinimalProductionPath) {
+            if (useMinimalProductionPath || reasoningOnly) {
                 commandResponse = buildProductionMinimalCommandResponse(requestId, input.message);
+                // ContextBuilder.build may dispatch operational resolvers from
+                // the message (Cursor/commander/evolution). Durable retries use
+                // only the non-dispatching bootstrap snapshot plus truth reads.
                 operationalContext = buildProductionMinimalContext(pillow);
                 // Production still runs Digital Soul executive reasoning — never skip.
                 executiveReasoning = pillow.executiveDirection.composeReasoningCycle(input.message);
                 markStage("executiveReasoningMs");
             }
             else {
-                commandResponse = await pillow.command.processCommand({
+                commandResponse = await runChatActionStage(reasoningOnly, () => pillow.command.processCommand({
                     command: input.message,
                     skipAutonomousPause: true,
-                });
+                }));
                 markStage("commandMs");
                 operationalContext = await pillow.contextBuilder.build({
                     userMessage: input.message,
@@ -30216,6 +30221,7 @@ export class PillowHost {
                 });
             const contextWithReasoning = {
                 ...operationalContext,
+                ...(reasoningOnly ? { executionBoundary: "Reasoning-only request. No commands, episodes, approvals, listings, orders or payments were executed. Do not claim execution." } : {}),
                 executiveReasoning,
                 constitutionalGate: {
                     allowed: true,
@@ -30240,7 +30246,7 @@ export class PillowHost {
             let executiveCouncilRecommendation;
             let executiveCouncilDebateId;
             let deliberationFidelityAdjusted = false;
-            if (!useMinimalProductionPath && shouldRunExecutiveCouncil(input.message)) {
+            if (!reasoningOnly && !useMinimalProductionPath && shouldRunExecutiveCouncil(input.message)) {
                 try {
                     const councilResult = runAndStoreExecutiveCouncil({
                         workspaceId: input.workspaceId,
@@ -30268,10 +30274,12 @@ export class PillowHost {
             const providers = this.llmLayer?.listAvailableProviders() ?? [];
             let retryUsed = false;
             let degradedUsed = false;
+            let transportContractPassed = false;
             if (this.llmLayer && providers.length > 0) {
                 try {
                     const caseProvenance = resolveCaseProvenanceContext(session.conversationHistory, llmUserMessage);
                     const llmArgs = {
+                        reasoningOnly,
                         operationalContext: contextWithReasoning,
                         executiveReasoning,
                         executiveLearningBundle,
@@ -30353,6 +30361,10 @@ export class PillowHost {
                                 },
                             );
                             message = grounded.message;
+                            if (grounded.telemetry?.releasePath === "fail_closed") {
+                                degradedUsed = true;
+                                kind = "degraded_useful";
+                            }
                             if (grounded.adjusted) {
                                 logResult =
                                     grounded.telemetry?.releasePath === "fail_closed"
@@ -30427,9 +30439,7 @@ export class PillowHost {
                 if (sealed.degradedUsed) {
                     message = sealed.message;
                     degradedUsed = true;
-                    if (kind === "constitutional_refusal" || kind === "command_fallback") {
-                        kind = "degraded_useful";
-                    }
+                    kind = "degraded_useful";
                 }
                 if (
                     executiveTruthSnapshot &&
@@ -30454,6 +30464,7 @@ export class PillowHost {
                     );
                     message = repaired.message;
                     degradedUsed = true;
+                    kind = "degraded_useful";
                     logResult = "degraded_synthetic_live_strip";
                 }
                 // Last semantic boundary before transport: re-authorize after any
@@ -30476,8 +30487,11 @@ export class PillowHost {
                     if (!transportAuth.authorized) {
                         message = transportAuth.message;
                         logResult = "transport_contract_blocked";
+                        degradedUsed = true;
+                        kind = "degraded_useful";
                     } else {
                         message = transportAuth.message;
+                        transportContractPassed = true;
                     }
                 }
             }
@@ -30491,7 +30505,7 @@ export class PillowHost {
             };
             session.conversationHistory.push(assistantTurn);
             try {
-                observeExecutiveConversation({
+                runChatActionStage(reasoningOnly, () => observeExecutiveConversation({
                     workspaceId: input.workspaceId,
                     sessionId: session.sessionId,
                     requestId,
@@ -30500,7 +30514,7 @@ export class PillowHost {
                     executiveReasoning: executiveReasoning,
                     conversationTurnCount: session.conversationHistory.length,
                     actor: input.actor,
-                }, this.auditLogger);
+                }, this.auditLogger));
             }
             catch (learningError) {
                 logger.warn({
@@ -30555,12 +30569,14 @@ export class PillowHost {
                 tokens,
                 latencyMs,
                 trace,
-                command: {
+                command: reasoningOnly ? undefined : {
                     intent: commandResponse.intent,
                     category: commandResponse.category,
                     plan: commandResponse.plan,
                     awareness: commandResponse.awareness,
                 },
+                transportContractPassed,
+                degradedUsed,
                 executiveRecommendation: executiveCouncilRecommendation
                     ? {
                         recommendationId: executiveCouncilRecommendation.recommendationId,

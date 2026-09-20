@@ -3,7 +3,8 @@
  * SYSTEM READY FOR GRAND KING ACCESS.
  *
  * Fail-closed on structural auth defects. Do not treat transient event-loop lag
- * as a hard structural failure (Railway /health/live remains the process probe).
+ * as a hard structural failure (/health/live remains the process probe while
+ * Railway traffic admission uses /health/ready).
  */
 import { env } from "../config/env.js";
 import { getDatabase } from "../brain/database.js";
@@ -11,6 +12,7 @@ import { getSqlitePersistStats } from "../brain/sqlite-database.js";
 import { UserStore, type SessionStoreBackend } from "./session-store.js";
 import { getRecentEventLoopLagMs } from "../runtime/event-loop-cooperative.js";
 import { resolvePlatformIdentity } from "./platform-identity.js";
+import { getBootstrapCredentialReadiness } from "./bootstrap-credential-policy.js";
 
 const DEV_SESSION_SECRET = "empireai-dev-session-secret-change-in-production";
 
@@ -92,6 +94,21 @@ export function assessAuthReadiness(options?: {
 }): AuthReadinessReport {
   const checks: AuthReadinessCheck[] = [];
   const blockers: string[] = [];
+
+  const bootstrapCredentials = getBootstrapCredentialReadiness({
+    production: env.NODE_ENV === "production" || Boolean(
+      process.env.RAILWAY_DEPLOYMENT_ID || process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME,
+    ),
+    founderPassword: env.FOUNDER_PASSWORD,
+    adminPassword: env.ADMIN_PASSWORD,
+  });
+  const credentialCheck = {
+    key: "bootstrap_credentials",
+    ok: bootstrapCredentials.ready,
+    detail: bootstrapCredentials.ready ? "CONFIGURED" : "Production bootstrap credentials missing or set to a public development default",
+  };
+  checks.push(credentialCheck);
+  if (!credentialCheck.ok) blockers.push(credentialCheck.detail);
 
   const secretCheck = sessionSecretOk();
   checks.push(secretCheck);

@@ -136,12 +136,10 @@ describe("Mission 105 LIVE CJ Fulfillment", () => {
 
     assert.equal(approved.status, "APPROVED");
 
-    const toolResult = (await invokeTool("live_cj_fulfillment.submit_live", {
+    // A fulfilled {blocked:true} object would be labeled completed by dispatch.
+    await assert.rejects(invokeTool("live_cj_fulfillment.submit_live", {
       fulfillmentId: approved.fulfillmentId,
-    })) as { blocked: boolean; protectTheEmpire: boolean };
-
-    assert.equal(toolResult.blocked, true);
-    assert.equal(toolResult.protectTheEmpire, true);
+    }), LiveCjFulfillmentBlockedError);
 
     await assert.rejects(
       () => executeLiveCjSubmit(approved.fulfillmentId),

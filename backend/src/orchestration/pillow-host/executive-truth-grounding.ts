@@ -88,7 +88,7 @@ export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruth
         "Surface escalations requiring Grand King approval",
       ],
       requiresGrandKing: [
-        "Authorise Pillow Birth (immutable birthTimestamp)",
+        "Birth requires independent certification acceptance before owner authorisation; receipt ingestion is not implemented",
         "Approve publish / listing go-live",
         "Approve supplier spend / BUY",
         "Production deploy / Railway release decisions",
@@ -98,6 +98,8 @@ export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruth
     },
     demandEvidence: situation.demandEvidence,
     notes: [
+      birth.authority.reason,
+      "Birth authority is a fail-closed policy projection, not a certification of readiness or the legacy commissioning record.",
       "CURRENT_VERIFIED outranks historical mission docs (P0-1/B5 etc.).",
       "ZERO realised sales means sales/demand/ratings/competitor history are UNKNOWN unless cited from this block.",
       "Product ASIN and title are bound; never rename an ASIN.",
