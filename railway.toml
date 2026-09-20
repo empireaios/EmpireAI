@@ -1,17 +1,13 @@
-# EmpireAI Brain — Railway managed deployment (preferred backend host)
-# Deploy from repository root so @empireai/pillow (file:../pillow) resolves.
-# See deployment/railway.md for worker service, volumes, and env vars.
-
+# Reference settings for a temporary separate service; never apply to production.
+# New Railway services may not support config-as-code. Apply these settings via
+# the provider API/UI and verify the effective service config before attaching source.
+# Configure disposable Redis/auth and absolute expiry before attaching source.
 [build]
 builder = "NIXPACKS"
-# Install pillow+backend first so scripts/sync-pillow-governance.mjs can resolve tsx from backend/node_modules.
-buildCommand = "NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_CONFIG_PRODUCTION=false npm install --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
+buildCommand = "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
-startCommand = "node backend/dist/index.js"
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10
-# Admit traffic only after Redis sessions, Brain worker, and Pillow lifecycle
-# are all ready. /health/live remains available for diagnostics.
+startCommand = "node deployment/canary-launcher.cjs"
+restartPolicyType = "NEVER"
 healthcheckPath = "/health/ready"
 healthcheckTimeout = 300
