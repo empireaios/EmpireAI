@@ -37,10 +37,8 @@ import { resolvePlatformIdentity } from "../auth/platform-identity.js";
 import { createAuthMiddleware } from "../auth/middleware.js";
 import { requireSafeBootstrapCredentials, UnsafeBootstrapCredentialsError } from "../auth/bootstrap-credential-policy.js";
 import { recordTier0Request } from "./tier0-control-plane.js";
-import {
-  extractChatMessagePreview,
-  type PillowProxyAttemptResult,
-} from "./pillow-accepted-request-recovery.js";
+import type { PillowProxyAttemptResult } from "./pillow-accepted-request-recovery.js";
+import { forwardWorkerHttpRequest, sendWorkerHttpResponse, workerRequestHeaders } from "./worker-http-proxy.js";
 import {
   listDeliveryForensics,
   searchDeliveryForensics,
@@ -703,12 +701,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return reply.code(503).send(TIER0_PILLOW_STREAM_DURABILITY_REQUIRED);
     }
 
-    const headers: Record<string, string> = {};
-    for (const [k, v] of Object.entries(request.headers)) {
-      if (v == null) continue;
-      if (k === "host" || k === "connection" || k === "content-length") continue;
-      headers[k] = Array.isArray(v) ? v.join(",") : String(v);
-    }
+    const headers = workerRequestHeaders(request.headers);
 
     const rawBody =
       request.method !== "GET" && request.method !== "HEAD" && request.body != null
@@ -728,74 +721,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return worker.ok;
     }
 
-    async function forwardOnce(
-      timeoutMs: number,
-      bodyOverride?: string | Buffer,
-      onForwardStart?: () => void | Promise<void>,
-    ): Promise<PillowProxyAttemptResult> {
-      const target = `http://127.0.0.1:${workerState.port}${request.url}`;
-      const bodyForProxy = bodyOverride !== undefined ? bodyOverride : rawBody;
-      try {
-        const init: RequestInit = {
-          method: request.method,
-          headers: { ...headers },
-          signal: AbortSignal.timeout(timeoutMs),
-        };
-        if (bodyForProxy !== undefined) init.body = bodyForProxy;
-        await onForwardStart?.();
-        const upstream = await fetch(target, init);
-        const buf = Buffer.from(await upstream.arrayBuffer());
-        const messagePreview = extractChatMessagePreview(buf);
-        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
-        if (!upstreamOk) {
-          return {
-            ok: false,
-            reason: "upstream_error",
-            status: upstream.status,
-          };
-        }
-        if (isPillowChat && messagePreview.length === 0) {
-          return { ok: false, reason: "empty_message", status: upstream.status };
-        }
-        return {
-          ok: true,
-          status: upstream.status,
-          body: buf,
-          headers: upstream.headers,
-          messagePreview,
-        };
-      } catch (error) {
-        if (error instanceof PillowDurableStoreUnavailableError) throw error;
-        const timedOut = error instanceof Error && error.name === "TimeoutError";
-        return {
-          ok: false,
-          reason: timedOut ? "timeout" : "network",
-          error,
-        };
-      }
-    }
-
-    async function proxyOnce(
-      timeoutMs: number,
-      bodyOverride?: string | Buffer,
-    ): Promise<PillowProxyAttemptResult> {
-      return runSingleWorkerProxyAttempt(
-        () => probeWorkerOk(Math.min(2_000, timeoutMs)),
-        () => forwardOnce(timeoutMs, bodyOverride),
-      );
-    }
-
     if (isPillowChat) {
       return handleDurablePillowChat(request, reply, { authenticate, probeSharedSessionStore });
     }
 
-    const once = await proxyOnce(120_000);
+    const once = await runSingleWorkerProxyAttempt(
+      () => probeWorkerOk(2_000),
+      () => forwardWorkerHttpRequest({
+        target: `http://127.0.0.1:${workerState.port}${request.url}`,
+        method: request.method,
+        headers,
+        body: rawBody,
+        timeoutMs: 120_000,
+      }),
+    );
     if (once.ok) {
-      const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
-      once.headers.forEach((value, key) => {
-        if (!skip.has(key.toLowerCase())) reply.header(key, value);
-      });
-      return reply.code(once.status).send(once.body);
+      return sendWorkerHttpResponse(reply, once);
     }
     logger.warn({ reason: once.reason, url: request.url }, "Tier-0 primary proxy to worker failed");
     return reply.code(503).send(buildTier0ProxyFailure(once.reason));

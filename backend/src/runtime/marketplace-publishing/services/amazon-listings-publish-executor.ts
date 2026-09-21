@@ -12,6 +12,7 @@ import {
 import { getAmazonSpApiConfig } from "../../../orchestration/reality-integration/live-commerce/config.js";
 import { isAmazonLiveCommerceActivated } from "../../../orchestration/version-1-activation/version-1-activation-config.js";
 import { httpTransport } from "../../../orchestration/reality-integration/live-commerce/http-transport.js";
+import { getPillowAuthority } from "../../../orchestration/pillow-commissioning/pillow-authority.js";
 import type { MarketplaceListingPackage, MarketplacePublishId } from "../models/marketplace-adapter.js";
 
 export type AmazonListingsPublishResult = {
@@ -304,6 +305,14 @@ export async function executeAmazonListingsPublish(
       liveApiCalled: false,
       responseBody: null,
     };
+  }
+
+  // Package booleans and credentials are not a certification receipt or a live
+  // commercial grant. Re-check canonical authority at this last effect boundary,
+  // including direct/internal callers, before LWA refresh or any provider call.
+  const authority = getPillowAuthority();
+  if (!authority.realCommerceAuthorized || authority.birthStatus === "NOT_BORN" || authority.commerceStatus === "LOCKED") {
+    blockers.push(`Canonical commerce authority is LOCKED; Pillow is NOT_BORN. ${authority.reason}`);
   }
 
   if (!isAmazonLiveCommerceActivated(env)) {

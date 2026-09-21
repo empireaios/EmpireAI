@@ -3,7 +3,8 @@ import { describe, it } from "node:test";
 import { executeReasoningProxy, startDurableReasoningSweeper } from "../../runtime/pillow-durable-reasoning-worker.js";
 import { createServer } from "node:http";
 import { once } from "node:events";
-import type { ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
+import { policyForFailure, type ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
+import { isOperatingAuthorityFactAsk, projectOperatingAuthorityFacts } from "../../orchestration/pillow-host/executive-authority-surface.js";
 
 const job = {
   request: { requestId: "test-request", leaseToken: 3 },
@@ -11,6 +12,48 @@ const job = {
 } as ClaimedReasoningRequest;
 
 describe("durable worker completion contract", { concurrency: false }, () => {
+  it("fails known no-provider fallback once without claiming reasoning completion", async () => {
+    const original = globalThis.fetch;
+    let calls = 0;
+    try {
+      globalThis.fetch = async () => {
+        calls += 1;
+        return new Response(JSON.stringify({ result: { kind: "degraded_useful", message: "Fallback explanation",
+          degradedUsed: true, reasoningFailure: { code: "NO_LLM_PROVIDER", retryable: false } } }));
+      };
+      const result = await executeReasoningProxy(job, 9999);
+      assert.deepEqual(result, { ok: false, failureClass: "BRAIN_FATAL", error: "no_llm_provider" });
+      assert.equal(policyForFailure(result.ok ? "NONE" : result.failureClass), "FAIL");
+      assert.equal(calls, 1);
+    } finally { globalThis.fetch = original; }
+  });
+  it("does not infer a terminal configuration failure from text or an unknown typed failure", async () => {
+    const original = globalThis.fetch;
+    try {
+      for (const reasoningFailure of [undefined, { code: "NO_LLM_PROVIDER", retryable: true }, { code: "PROVIDER_TEMPORARY", retryable: false }]) {
+        globalThis.fetch = async () => new Response(JSON.stringify({ result: { kind: "degraded_useful",
+          message: "no_llm_provider", degradedUsed: true, reasoningFailure } }));
+        const result = await executeReasoningProxy(job, 9999);
+        assert.equal(result.ok, false);
+        if (!result.ok) assert.equal(result.failureClass, "BRAIN_RETRYABLE_FAILURE");
+      }
+    } finally { globalThis.fetch = original; }
+  });
+  it("accepts the canonical authority facts for the failed canary question without treating fallback as success", async () => {
+    const message = "What is your current authority? Do not execute tools, commerce or spending. This is a bounded engineering transport test.";
+    assert.equal(isOperatingAuthorityFactAsk(message), true);
+    const original = globalThis.fetch;
+    try {
+      globalThis.fetch = async () => new Response(JSON.stringify({ result: projectOperatingAuthorityFacts(message) }));
+      const result = await executeReasoningProxy(job, 9999);
+      assert.equal(result.ok, true);
+      if (result.ok) {
+        assert.equal(result.result.kind, "authority_facts");
+        assert.match(String(result.result.message), /NOT_BORN/);
+        assert.match(String(result.result.message), /Real commerce authorized: no/);
+      }
+    } finally { globalThis.fetch = original; }
+  });
   it("rejects production fallback kinds rather than misreporting completed capability", async () => {
     const original = globalThis.fetch;
     try {

@@ -47,6 +47,13 @@ export async function executeReasoningProxy(
     const result = body.result && typeof body.result === "object"
       ? body.result as Record<string, unknown> : body;
     const message = typeof result.message === "string" ? result.message.trim() : "";
+    const reasoningFailure = result.reasoningFailure as { code?: unknown; retryable?: unknown } | undefined;
+    // A known missing provider cannot recover by retrying the same frozen configuration.
+    // This remains a failure: degraded prose is never promoted to a completed answer.
+    if (result.kind === "degraded_useful" && result.degradedUsed === true &&
+      reasoningFailure?.code === "NO_LLM_PROVIDER" && reasoningFailure.retryable === false) {
+      return { ok: false, failureClass: "BRAIN_FATAL", error: "no_llm_provider" };
+    }
     // A receipt or infrastructure fallback is not a completed executive answer.
     const constitutionalGate = result.constitutionalGate as { allowed?: boolean } | undefined;
     const responseContract = result.responseContract as { code?: string } | undefined;

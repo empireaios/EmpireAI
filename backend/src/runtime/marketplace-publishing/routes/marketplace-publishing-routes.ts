@@ -1,8 +1,11 @@
-import type { FastifyInstance } from "fastify";
+import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
+import { env } from "../../../config/env.js";
+import { GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
+import { getPillowAuthority } from "../../../orchestration/pillow-commissioning/pillow-authority.js";
 import { MARKETPLACE_PUBLISH_IDS } from "../models/marketplace-adapter.js";
 import { executeAmazonListingsPublish } from "../services/amazon-listings-publish-executor.js";
 import {
@@ -15,6 +18,28 @@ import {
 import { resolveMarketplaceAdapter } from "../models/marketplace-adapter.js";
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
+
+/** Preparing a draft is not a live action. Only the configured owner may request
+ * publishing, and even that identity cannot replace canonical Birth/commerce authority. */
+function requirePublishingOwner(request: FastifyRequest, reply: FastifyReply): boolean {
+  const user = request.user;
+  if (!user) {
+    reply.code(401).send({ error: "Authentication required" });
+    return false;
+  }
+  const ownerEmail = env.FOUNDER_EMAIL.trim().toLowerCase();
+  const body = request.body as Record<string, unknown> | null | undefined;
+  const bodyWorkspace = body && typeof body === "object" ? body.workspaceId : undefined;
+  const headerWorkspace = request.headers["x-workspace-id"];
+  if (!ownerEmail || user.role !== "founder" || user.email.trim().toLowerCase() !== ownerEmail ||
+      user.workspaceId !== GRAND_KING_WORKSPACE_ID ||
+      (headerWorkspace !== undefined && headerWorkspace !== user.workspaceId) ||
+      (bodyWorkspace !== undefined && bodyWorkspace !== user.workspaceId)) {
+    reply.code(403).send({ error: "Configured owner and organization required for marketplace publishing", code: "PUBLISH_OWNER_SCOPE_DENIED" });
+    return false;
+  }
+  return true;
+}
 
 export async function registerMarketplacePublishingRoutes(
   app: FastifyInstance,
@@ -53,8 +78,10 @@ export async function registerMarketplacePublishingRoutes(
       specifications: body.specifications,
       price: body.price,
       images: body.images,
-      executiveCouncilApproved: body.executiveCouncilApproved,
-      kingApproved: body.kingApproved,
+      // Accepted for compatibility with old clients, but a request boolean is
+      // not an authenticated, scoped approval receipt. No acceptance path exists.
+      executiveCouncilApproved: false,
+      kingApproved: false,
     });
     const queueItem = enqueueMarketplacePublish(pkg);
     return reply.code(201).send({ package: pkg, queueItem });
@@ -62,6 +89,7 @@ export async function registerMarketplacePublishingRoutes(
 
   app.post("/marketplace-publishing/execute", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
+    if (!requirePublishingOwner(request, reply)) return;
     const body = z
       .object({
         packageId: z.string().min(1),
@@ -85,7 +113,7 @@ export async function registerMarketplacePublishingRoutes(
     }
 
     auditLogger.write({
-      action: "product_publishing.catalog_published",
+      action: result.ok ? "product_publishing.catalog_published" : "commerce_runtime.dispatch.blocked",
       actor: user.email,
       workspaceId: user.workspaceId,
       correlationId: request.id,
@@ -106,12 +134,17 @@ export async function registerMarketplacePublishingRoutes(
     const adapters = listMarketplaceAdapters();
     const amazon = resolveMarketplaceAdapter("amazon");
     const amazonUs = resolveMarketplaceAdapter("amazon-us");
+    const authority = getPillowAuthority();
+    const publishingAuthorized = authority.realCommerceAuthorized;
     return reply.send({
       status: adapters.length >= 7 ? "HEALTHY" : "WARNING",
       adapterCount: adapters.length,
-      livePublishBlocked: !amazonUs.supportsPublish,
-      amazonSupportsPublish: amazon.supportsPublish,
-      amazonUsSupportsPublish: amazonUs.supportsPublish,
+      livePublishBlocked: !publishingAuthorized || !amazonUs.supportsPublish,
+      amazonSupportsPublish: publishingAuthorized && amazon.supportsPublish,
+      amazonUsSupportsPublish: publishingAuthorized && amazonUs.supportsPublish,
+      birthStatus: authority.birthStatus,
+      commerceStatus: authority.commerceStatus,
+      publishBlocker: publishingAuthorized ? null : authority.reason,
       amazonAdapterStatus: amazon.adapterStatus,
       amazonUsAdapterStatus: amazonUs.adapterStatus,
     });

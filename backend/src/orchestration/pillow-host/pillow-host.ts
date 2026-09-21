@@ -30241,6 +30241,7 @@ export class PillowHost {
             let mode;
             let tokens;
             let logResult = "fallback";
+            let reasoningFailure: { code: "NO_LLM_PROVIDER"; retryable: false } | undefined;
             let chatArtifacts;
             let intelligenceRouting;
             let executiveCouncilRecommendation;
@@ -30426,6 +30427,7 @@ export class PillowHost {
                 degradedUsed = true;
                 kind = "degraded_useful";
                 logResult = "degraded_no_provider";
+                reasoningFailure = { code: "NO_LLM_PROVIDER", retryable: false };
             }
             // Final safety: never emit ask-again / infra-leak as the visible answer.
             // Also never leave synthetic-scoped answers as live Mini Fan briefings.
@@ -30577,6 +30579,7 @@ export class PillowHost {
                 },
                 transportContractPassed,
                 degradedUsed,
+                reasoningFailure,
                 executiveRecommendation: executiveCouncilRecommendation
                     ? {
                         recommendationId: executiveCouncilRecommendation.recommendationId,

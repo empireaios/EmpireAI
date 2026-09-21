@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "packages": {
+    "node": "22.23.2"
+  },
+  "steps": {
+    "install": {
+      "commands": [
+        "npm ci --include=dev"
+      ]
+    }
+  }
+}

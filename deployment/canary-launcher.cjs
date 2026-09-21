@@ -5,6 +5,13 @@
 const { spawn } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
+
+const EXPECTED_NODE = '22.23.2';
+
+function assertRuntimeVersion(version) {
+  if (version !== EXPECTED_NODE) throw new Error('Canary requires the exact reviewed Node runtime');
+}
 
 const ACK = 'DISPOSABLE_NON_COMMERCE_TEST_ONLY';
 const MAX_DURATION_MS = 60 * 60 * 1000;
@@ -155,7 +162,12 @@ function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, st
       if (!stopping) stop('child_exit');
       // Keep the grace timer alive to guarantee final process-group cleanup.
     });
-    if (onSpawn) onSpawn(child);
+    if (onSpawn) {
+      try { onSpawn(child); }
+      catch (error) {
+        signalGroup('SIGKILL'); finished = true; cleanup(); reject(error);
+      }
+    }
   });
 }
 
@@ -165,19 +177,37 @@ function canaryExitCode(result) {
 }
 
 async function main() {
+  // This always reads the actual running binary, never an environment override or test argument.
+  assertRuntimeVersion(process.versions.node);
   const cwd = path.resolve(__dirname, '..');
   const { env, expiresAt } = validateCanaryEnvironment(process.env);
   prepareFilesystem(cwd, env.DATABASE_PATH);
-  console.log(JSON.stringify({ event: 'bounded_canary_start', expiresAt: new Date(expiresAt).toISOString(),
+  const identity = { schema: 'canary-launch-v1', launchId: crypto.randomUUID(),
+    nodeVersion: process.versions.node, execPath: fs.realpathSync(process.execPath), launcherPid: process.pid,
+    launcherSha256: crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),
+    serviceId: env.RAILWAY_SERVICE_ID, deploymentId: env.RAILWAY_DEPLOYMENT_ID,
+    gitCommitSha: env.RAILWAY_GIT_COMMIT_SHA, expiresAt: new Date(expiresAt).toISOString() };
+  console.log(JSON.stringify({ event: 'bounded_canary_start', ...identity,
     scope: 'engineering_test_only', commerce: 'LOCKED' }));
-  const result = await runBounded({ command: process.execPath, args: ['backend/dist/index.js'], env, cwd, expiresAt });
+  const result = await runBounded({ command: process.execPath, args: ['backend/dist/index.js'], env, cwd, expiresAt,
+    onSpawn: child => {
+      const target = `${env.DATABASE_PATH}.launch.json`;
+      const tmp = `${target}.${identity.launchId}.tmp`;
+      const fd = fs.openSync(tmp, 'wx', 0o600);
+      try { fs.writeFileSync(fd, JSON.stringify({ ...identity, childPid: child.pid })); fs.fsyncSync(fd); }
+      finally { fs.closeSync(fd); }
+      fs.renameSync(tmp, target);
+      const dir = fs.openSync(path.dirname(target), 'r');
+      try { fs.fsyncSync(dir); } finally { fs.closeSync(dir); }
+    },
+  });
   console.log(JSON.stringify({ event: 'bounded_canary_stopped', reason: result.reason,
     childExitCode: result.code, childSignal: result.signal,
     forcedTermination: result.forcedTermination, forcedSignal: result.forcedSignal }));
   process.exitCode = canaryExitCode(result);
 }
 
-module.exports = { ACK, MAX_DURATION_MS, validateCanaryEnvironment, prepareFilesystem, runBounded, canaryExitCode };
+module.exports = { EXPECTED_NODE, assertRuntimeVersion, ACK, MAX_DURATION_MS, validateCanaryEnvironment, prepareFilesystem, runBounded, canaryExitCode };
 if (require.main === module) main().catch(() => {
   // Configuration errors deliberately never print values, URLs or credentials.
   console.error('Bounded canary refused to start or supervision failed; inspect the non-secret configuration contract.');

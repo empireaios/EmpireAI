@@ -19,7 +19,7 @@ import {
   PillowDurableStoreUnavailableError, PillowIdempotencyConflictError,
   releaseInterruptedReasoningRequest,
 } from "../../runtime/pillow-chat-request-store.js";
-import { runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
+import { executeReasoningProxy, runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const queueInput = (message = "A complete reasoning request", ownerId = "owner-a") => ({
@@ -82,6 +82,27 @@ describe("real Redis durable reasoning queue (required, no skipped certification
     configureChatRequestStore(null); dropChatRequestMemoryCacheForTests();
     await stopRedis();
     if (dir) await rm(dir, { recursive: true, force: true });
+  });
+
+  it("persists typed missing-provider failure after one claim and never schedules another attempt", async () => {
+    const accepted = await acceptDurableChatRequestClaim(queueInput("Reasoning without a configured provider"));
+    const original = globalThis.fetch;
+    let calls = 0;
+    try {
+      globalThis.fetch = async () => {
+        calls += 1;
+        return new Response(JSON.stringify({ result: { kind: "degraded_useful", degradedUsed: true,
+          message: "A fallback is not a completed answer", reasoningFailure: { code: "NO_LLM_PROVIDER", retryable: false } } }));
+      };
+      assert.equal(await runOneDurableReasoningAttempt({ owner: "provider-config-test", execute: (job) => executeReasoningProxy(job, 1) }), true);
+      dropChatRequestMemoryCacheForTests();
+      const persisted = await getChatRequest(accepted.request.requestId);
+      assert.equal(persisted?.status, "FAILED_FATAL");
+      assert.equal(persisted?.failureClass, "BRAIN_FATAL");
+      assert.equal(persisted?.attemptCount, 1);
+      assert.equal(await runOneDurableReasoningAttempt({ owner: "provider-config-test", execute: (job) => executeReasoningProxy(job, 1) }), false);
+      assert.equal(calls, 1);
+    } finally { globalThis.fetch = original; }
   });
 
   it("40 simultaneous accepts create one indexed job and 20 workers claim only once", async () => {

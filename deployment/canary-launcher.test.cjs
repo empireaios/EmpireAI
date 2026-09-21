@@ -7,7 +7,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { ACK, MAX_DURATION_MS, validateCanaryEnvironment, prepareFilesystem, runBounded, canaryExitCode } = require('./canary-launcher.cjs');
+const { EXPECTED_NODE, assertRuntimeVersion, ACK, MAX_DURATION_MS, validateCanaryEnvironment, prepareFilesystem, runBounded, canaryExitCode } = require('./canary-launcher.cjs');
 
 function configuration(now = Date.now()) {
   return {
@@ -176,9 +176,13 @@ test('a child ignoring TERM is forcibly stopped within the original deadline', a
 });
 
 test('failed persistence during deadline shutdown remains a failure', async () => {
+  let ready = '';
   const result = await runBounded({ command: process.execPath,
-    args: ['-e', "process.on('SIGTERM',()=>process.exit(1));setInterval(()=>{},1000)"],
-    expiresAt: Date.now() + 600, graceMs: 150, stdio: 'ignore' });
+    args: ['-e', "process.on('SIGTERM',()=>process.exit(1));console.log('handler-ready');setInterval(()=>{},1000)"],
+    expiresAt: Date.now() + 3000, graceMs: 500, stdio: 'pipe',
+    onSpawn: child => { child.stdout.on('data', chunk => { ready += chunk; }); },
+  });
+  assert.match(ready, /handler-ready/, 'the save handler must be installed before testing deadline shutdown');
   assert.equal(result.reason, 'expired');
   assert.equal(result.code, 1);
   assert.equal(result.signal, null);
@@ -215,9 +219,34 @@ test('unlaunchable child is reported and supervision listeners are removed', asy
 
 test('Railway canary config requires readiness and disables all automatic restarts', () => {
   const config = fs.readFileSync(path.join(__dirname, 'railway.canary.toml'), 'utf8');
+  assert.match(config, /builder = "RAILPACK"/);
   assert.match(config, /npm ci --prefix pillow/);
   assert.match(config, /npm ci --prefix backend/);
   assert.match(config, /startCommand = "node deployment\/canary-launcher.cjs"/);
   assert.match(config, /restartPolicyType = "NEVER"/);
   assert.match(config, /healthcheckPath = "\/health\/ready"/);
+});
+
+
+test('runtime version injection cannot authorize a different actual executable', async () => {
+  assert.equal(EXPECTED_NODE, '22.23.2');
+  assert.doesNotThrow(() => assertRuntimeVersion('22.23.2'));
+  for (const version of ['24.10.0', '20.20.2', '22.23.1', undefined]) assert.throws(() => assertRuntimeVersion(version));
+  if (process.versions.node !== EXPECTED_NODE) {
+    const child = spawn(process.execPath, [path.join(__dirname, 'canary-launcher.cjs')], {
+      env: { ...configuration(), EXPECTED_NODE: '22.23.2', NODE_VERSION: '22.23.2', NODE_ENV: 'test' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let output = ''; child.stdout.on('data', c => { output += c; });
+    assert.equal(await new Promise(resolve => child.once('exit', resolve)), 1);
+    assert.equal(output.includes('bounded_canary_start'), false);
+  }
+});
+
+test('failure to persist launch identity kills the child instead of orphaning it', async () => {
+  let pid;
+  await assert.rejects(runBounded({ command: process.execPath, args: ['-e', 'setInterval(()=>{},1000)'],
+    expiresAt: Date.now() + 5000, stdio: 'ignore', onSpawn: child => { pid = child.pid; throw new Error('disk unavailable'); } }), /disk unavailable/);
+  for (let attempt = 0; attempt < 20 && running(pid); attempt++) await new Promise(resolve => setTimeout(resolve, 10));
+  assert.equal(running(pid), false);
 });

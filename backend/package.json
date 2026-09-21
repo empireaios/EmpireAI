@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.11.0",
-    "npm": ">=10.0.0"
+    "node": "22.23.2",
+    "npm": "10.9.8"
   },
   "scripts": {
     "setup": "npm install && node scripts/verify-dev-environment.mjs",
@@ -34,7 +34,8 @@
     "validate:full": "npm run typecheck && npm run validate",
     "reports:generate": "node --import tsx scripts/generate-reports.ts",
     "architect:report": "node --import tsx scripts/generate-reports.ts",
-    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts"
+    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts",
+    "preinstall": "node ../scripts/verify-build-runtime.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
@@ -62,5 +63,6 @@
   },
   "overrides": {
     "ioredis": "5.11.1"
-  }
+  },
+  "packageManager": "npm@10.9.8"
 }

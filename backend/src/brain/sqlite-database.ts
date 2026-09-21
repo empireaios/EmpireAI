@@ -70,20 +70,26 @@ let persistStats: PersistStats = {
 
 /** Optional SharedArrayBuffer slot: main sets 1 during sync export so HA worker ignores stalls. */
 let flushGuardView: Int32Array | null = null;
+let flushCompletionHeartbeat: (() => void) | null = null;
 
 export function getSqlitePersistStats(): Readonly<PersistStats> {
   return persistStats;
 }
 
 /** Wire HA watchdog SharedArrayBuffer index 1 as flush-in-flight guard. */
-export function bindSqliteFlushGuard(view: Int32Array): void {
+export function bindSqliteFlushGuard(view: Int32Array | null, onExportComplete?: () => void): void {
   flushGuardView = view;
-  Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
+  flushCompletionHeartbeat = view ? onExportComplete ?? null : null;
+  if (flushGuardView) Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
 }
 
 function setFlushInFlight(active: boolean): void {
   persistStats = { ...persistStats, flushInFlight: active };
   if (flushGuardView) {
+    // Publish main-thread liveness BEFORE clearing the export guard. Otherwise
+    // a long, successful export exposes an old heartbeat until the next timer
+    // tick and can be mistaken for a stall. This is not a durability receipt.
+    if (!active) flushCompletionHeartbeat?.();
     Atomics.store(flushGuardView, 1, active ? 1 : 0);
   }
 }

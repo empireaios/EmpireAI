@@ -1,3 +1,4 @@
+import type { MissionPersistenceScope } from "./mission-persistence.js";
 import type { EmpireBootstrapContext } from "../bootstrap/types.js";
 import { RepositoryReader } from "../bootstrap/repository-reader.js";
 import {
@@ -17,6 +18,9 @@ import type {
 } from "./types.js";
 
 export interface MissionRuntimeOptions {
+  /** Private durable file selected by the host, never from a mission request. */
+  persistenceFile?: string;
+  persistenceScope?: MissionPersistenceScope;
   configuration?: Partial<MissionRuntimeConfiguration>;
   dependencies?: MissionRuntimeDependencies;
 }
@@ -37,7 +41,7 @@ export class MissionRuntime {
     private readonly bootstrap: EmpireBootstrapContext,
     options: MissionRuntimeOptions = {},
   ) {
-    const manager = new MissionManager();
+    const manager = new MissionManager(options.persistenceFile, options.persistenceScope);
     if (options.dependencies) manager.bindIntegrations(options.dependencies);
     this.controller = new MissionRuntimeController(
       manager,

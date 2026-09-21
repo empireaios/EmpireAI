@@ -4,6 +4,15 @@
  */
 import { canonicalOperatingProjection } from "./executive-fact-precedence.js";
 
+function isDirectAuthorityStatusAsk(message: string): boolean {
+  const sentences = message.trim().split(/[?.!]+/).map((part) => part.trim()).filter(Boolean);
+  const first = (sentences.shift() ?? "").replace(/^pillow,?\s+/i, "").replace(/^please\s+/i, "");
+  const direct = /^(?:what (?:is|are) your (?:current )?(?:authority|permissions)|what permissions do you (?:currently )?have|what are you (?:currently )?authori[sz]ed to do|(?:tell me|explain|state) your (?:current )?(?:authority|permissions))(?: (?:right now|now|currently))?$/i.test(first);
+  // Extra tasks must keep their normal reasoning path; only non-action/probe qualifiers are allowed.
+  return direct && sentences.every((part) =>
+    /^(?:do not execute tools, commerce or spending|this is a bounded engineering transport test)$/i.test(part));
+}
+
 export function isLiveCommerceEffectAsk(message: string): boolean {
   const t = String(message || "");
   if (!/\b(?:live|real|amazon|marketplace|ads?|listing|purchase|order|payment|spend)\b/i.test(t)) {
@@ -56,7 +65,7 @@ export function isOperatingAuthorityFactAsk(message: string): boolean {
     /\bis real commerce authori/i.test(t);
   // Short factual asks only — do not hijack long strategy prompts.
   if (t.length > 280) return false;
-  return asksBirth || asksMode || asksAuth;
+  return asksBirth || asksMode || asksAuth || isDirectAuthorityStatusAsk(t);
 }
 
 export function projectOperatingAuthorityFacts(message: string): {
@@ -66,14 +75,15 @@ export function projectOperatingAuthorityFacts(message: string): {
 } {
   const ops = canonicalOperatingProjection();
   const t = String(message || "");
+  const directAuthorityAsk = isDirectAuthorityStatusAsk(t);
   const lines: string[] = [];
-  if (/\bbirth\b/i.test(t)) {
+  if (directAuthorityAsk || /\bbirth\b/i.test(t)) {
     lines.push(`Birth status: ${ops.birthStatus}.`);
   }
-  if (/\boperating\s+mode\b/i.test(t) || lines.length === 0) {
+  if (directAuthorityAsk || /\boperating\s+mode\b/i.test(t) || lines.length === 0) {
     lines.push(`Operating mode: ${ops.operatingMode}.`);
   }
-  if (/\breal[- ]?commerce|authori/i.test(t)) {
+  if (directAuthorityAsk || /\breal[- ]?commerce|authori/i.test(t)) {
     lines.push(
       `Real commerce authorized: ${ops.realCommerceAuthorized ? "yes" : "no"} (${ops.realCommerceAuthorityLabel}).`,
     );

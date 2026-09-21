@@ -1,3 +1,4 @@
+import type { MissionPersistenceScope } from "./mission-persistence.js";
 import type { MissionRuntimeConfiguration } from "./configuration.js";
 import { applyTransition, validateTransition } from "./lifecycle-engine.js";
 import { CheckpointManager } from "./checkpoint-manager.js";
@@ -26,13 +27,14 @@ import type {
   MsrEngineRecord,
   MsrInput,
   MsrRunReport,
+  MsrValidationReport,
   Q1004ConsumableContract,
 } from "./types.js";
 
 export class MissionManager {
   private engineRecord: MsrEngineRecord | null = null;
   private seeded = false;
-  private readonly store = new MissionStore();
+  private readonly store: MissionStore;
   private readonly validator = new MissionValidator();
   private readonly factory = new MissionFactory();
   private readonly executionCoordinator = new ExecutionCoordinator();
@@ -43,6 +45,26 @@ export class MissionManager {
   private readonly metricsCollector = new MetricsCollector();
   private readonly reportBuilder = new ReportBuilder();
   private readonly integrations = new MsrIntegrationCoordinator();
+
+  constructor(persistenceFile?: string, persistenceScope: MissionPersistenceScope | null = null) {
+    this.store = new MissionStore(persistenceFile, persistenceScope);
+  }
+
+  private validateCurrentExecution(input: MsrInput, mission: MissionInstance | null,
+    config: MissionRuntimeConfiguration, started: number): MsrValidationReport {
+    // Persisted risk cannot be downgraded by omission/false on a later request.
+    // Historical approval fields are evidence only, never a reusable grant.
+    const highRisk = mission?.highRisk === true || input.highRisk === true;
+    const validation = this.validator.validateExecute({ ...input, highRisk }, started);
+    const errors = [...validation.errors];
+    if ((highRisk || config.requireGrandKingApproval) && input.grandKingApproved !== true) {
+      errors.push("Current mission execution requires fresh grandKingApproved=true");
+    }
+    if (config.requirePillowCommandConfirmation && input.pillowConfirmed !== true) {
+      errors.push("Current mission execution requires fresh pillowConfirmed=true");
+    }
+    return { ...validation, errors, decision: errors.length ? "fail" : validation.decision };
+  }
 
   bindIntegrations(deps: MissionRuntimeDependencies = {}) {
     this.integrations.bind(deps);
@@ -105,13 +127,15 @@ export class MissionManager {
       return this.failReport("create_mission", started, validation, config);
     }
     const mission = this.factory.create(input);
-    this.store.saveMission(mission);
-    this.store.appendTimeline({
+    this.store.transaction(() => {
+      this.store.saveMission(mission);
+      this.store.appendTimeline({
       entryId: nextMsrId(`${mission.missionId}-created`),
       timestamp: mission.createdAt,
       label: "mission_created",
       state: "Created",
       notes: ["Mission instance created"],
+      });
     });
     this.ensureRecord("active", config);
     appendMsrLog({ event: "create_mission", details: mission.missionId });
@@ -144,12 +168,20 @@ export class MissionManager {
   execute(input: MsrInput, config: MissionRuntimeConfiguration): MsrRunReport {
     const started = Date.now();
     this.ensureSeeded(config);
-    const validation = this.validator.validateExecute(input, started);
+    let mission = input.missionId ? this.store.getMission(input.missionId) : null;
+    const validation = this.validateCurrentExecution(input, mission, config, started);
     if (validation.decision === "fail") {
       return this.failReport("execute", started, validation, config);
     }
 
-    let mission = input.missionId ? this.store.getMission(input.missionId) : null;
+    if (input.missionId && !mission) {
+      return this.failReport("execute", started, { ...validation, decision: "fail",
+        errors: ["Unknown missionId; no replacement mission was created"] }, config);
+    }
+    if (mission && !["Created", "Queued", "Ready"].includes(mission.currentStatus)) {
+      return this.failReport("execute", started, { ...validation, decision: "fail",
+        errors: [`Cannot redispatch mission from ${mission.currentStatus}; reconcile the existing outcome first`] }, config, mission);
+    }
     if (!mission) {
       const created = this.createMission(input, config);
       if (created.decision === "fail" || !created.mission) {
@@ -159,6 +191,10 @@ export class MissionManager {
       input = { ...input, missionId: mission.missionId };
     }
 
+    if (!this.dependencyResolver.isReady(this.store, mission)) {
+      return this.failReport("execute", started, { ...validation, decision: "fail",
+        errors: ["Dependencies not satisfied; no worker was invoked"] }, config, mission);
+    }
     const transitions: LifecycleTransition[] = [];
     const advance = (from: MissionInstance["currentStatus"], to: MissionInstance["currentStatus"], reason: string) => {
       const t = this.applyMissionTransition(mission!, from, to, reason);
@@ -189,26 +225,28 @@ export class MissionManager {
       this.checkpointManager.create(this.store, mission, input.checkpointLabel);
     }
 
-    const execResult = this.executionCoordinator.run(this.store, this.integrations, mission, input);
-
+    // Deliberate failure injection never invokes a worker.
+    const execResult = input.forceFail === true
+      ? { outcome: "failed" as const, notes: ["forceFail requested before dispatch"] }
+      : this.executionCoordinator.run(this.store, this.integrations, mission, input);
+    if (execResult.outcome === "failed") {
+      advance("Running", "Failed", execResult.notes.join("; "));
+      return this.failReport("execute", started, { ...validation, decision: "fail", errors: execResult.notes }, config, mission, transitions);
+    }
+    if (execResult.outcome === "unconfirmed") {
+      advance("Running", "Waiting", "Worker outcome requires reconciliation; no automatic replay");
+      const report = this.reportAction("execute", started, input, config, mission, transitions);
+      report.decision = "partial";
+      report.validation = { ...report.validation, decision: "partial" };
+      report.warnings.push(...execResult.notes);
+      return report;
+    }
     if (input.completeAfterRun === false) {
-      mission = this.updateMission(mission, { progress: this.metricsCollector.progressFor(mission) });
+      // Useful for explicit interruption tests; a later execute cannot redispatch.
       return this.reportAction("execute", started, input, config, mission, transitions);
     }
-
-    if (input.forceFail === true) {
-      advance("Running", "Failed", "forceFail requested");
-      mission = this.updateMission(mission, {
-        progress: this.metricsCollector.progressFor(mission),
-      });
-      return this.reportAction("execute", started, input, config, mission, transitions);
-    }
-
-    advance("Running", "Completed", execResult.succeeded ? "Execution completed" : "Execution failed");
-    if (execResult.succeeded) {
-      mission = this.updateMission(mission, { progress: 100 });
-    }
-
+    advance("Running", "Completed", "All assigned workers supplied completion receipts");
+    mission = this.updateMission(mission, { progress: 100 });
     appendMsrLog({ event: "execute", details: `${mission.missionId}:${mission.currentStatus}` });
     return this.reportAction("execute", started, input, config, mission, transitions);
   }
@@ -239,6 +277,8 @@ export class MissionManager {
     const started = Date.now();
     const mission = this.requireMission(input, started, config, "resume");
     if (!mission) return this.lastFail!;
+    const authorization = this.validateCurrentExecution(input, mission, config, started);
+    if (authorization.decision === "fail") return this.failReport("resume", started, authorization, config, mission);
     if (mission.currentStatus !== "Paused") {
       return this.failReport(
         "resume",
@@ -262,6 +302,8 @@ export class MissionManager {
     const started = Date.now();
     const mission = this.requireMission(input, started, config, "retry");
     if (!mission) return this.lastFail!;
+    const authorization = this.validateCurrentExecution(input, mission, config, started);
+    if (authorization.decision === "fail") return this.failReport("retry", started, authorization, config, mission);
     if (mission.currentStatus !== "Failed") {
       return this.failReport(
         "retry",
@@ -288,25 +330,10 @@ export class MissionManager {
         mission,
       );
     }
-    const transitions: LifecycleTransition[] = [];
-    let m = mission;
-    const t1 = this.applyMissionTransition(m, "Failed", "Retrying", "Retry initiated");
-    transitions.push(t1);
-    m = this.store.getMission(m.missionId)!;
-    m = this.updateMission(m, { retryCount: m.retryCount + 1 });
-    this.retryManager.recordRetry(this.store, m, "Failed", "Retrying", "Retry initiated");
-    const t2 = this.applyMissionTransition(m, "Retrying", "Running", "Retry running");
-    transitions.push(t2);
-    m = this.store.getMission(m.missionId)!;
-
-    if (input.forceFail !== true && input.completeAfterRun !== false) {
-      const t3 = this.applyMissionTransition(m, "Running", "Completed", "Retry succeeded");
-      transitions.push(t3);
-      m = this.store.getMission(m.missionId)!;
-      m = this.updateMission(m, { progress: 100 });
-    }
-
-    return this.reportAction("retry", started, input, config, this.store.getMission(m.missionId), transitions);
+    // The old implementation fabricated success without invoking or reconciling
+    // any worker. A failed dispatch can still have produced side effects.
+    return this.failReport("retry", started, { ...authorization, decision: "fail",
+      errors: ["Retry requires a reconciled worker outcome and idempotent continuation; nothing was redispatched"] }, config, mission);
   }
 
   cancel(input: MsrInput, config: MissionRuntimeConfiguration): MsrRunReport {
@@ -341,6 +368,8 @@ export class MissionManager {
     const started = Date.now();
     const mission = this.requireMission(input, started, config, "recover");
     if (!mission) return this.lastFail!;
+    const authorization = this.validateCurrentExecution(input, mission, config, started);
+    if (authorization.decision === "fail") return this.failReport("recover", started, authorization, config, mission);
     if (!this.recoveryManager.canRecover(mission)) {
       return this.failReport(
         "recover",
@@ -597,18 +626,20 @@ export class MissionManager {
       fabricated: false,
       metadataVersion: MSR_METADATA_VERSION,
     };
-    this.store.saveTransition(transition);
-    this.store.saveMission({
+    this.store.transaction(() => {
+      this.store.saveTransition(transition);
+      this.store.saveMission({
       ...mission,
       currentStatus: to,
       updatedAt: transition.timestamp,
-    });
-    this.store.appendTimeline({
+      });
+      this.store.appendTimeline({
       entryId: transition.transitionId,
       timestamp: transition.timestamp,
       label: `${from}→${to}`,
       state: to,
       notes: [reason],
+      });
     });
     return transition;
   }

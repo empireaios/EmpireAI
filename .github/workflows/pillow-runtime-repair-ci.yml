@@ -38,7 +38,7 @@ jobs:
       - name: Use Node.js 22 with npm cache
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           cache: npm
           cache-dependency-path: |
             pillow/package-lock.json
@@ -64,6 +64,9 @@ jobs:
           node --import tsx --test --test-concurrency=1 --test-reporter=tap \
             src/validation/tests/observer-runtime-policy.test.ts \
             src/validation/tests/reasoning-only-completion.test.ts \
+            src/validation/tests/mission-runtime-persistence.test.ts \
+            src/validation/tests/mission-execution-truth.test.ts \
+            src/validation/tests/mission-runtime-sqlite.test.ts \
             | tee "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap"
           node --input-type=module - "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap" <<'NODE'
           import assert from 'node:assert/strict';
@@ -100,11 +103,17 @@ jobs:
             src/validation/tests/pillow-durable-queue-redis.test.ts \
             src/validation/tests/pillow-durable-reasoning-worker.test.ts \
             src/validation/tests/pillow-durable-access.test.ts \
+            src/validation/tests/mission-runtime-access.test.ts \
+            src/validation/tests/amazon-publish-authority.test.ts \
+            src/validation/tests/mission-execution-binding.test.ts \
+            src/validation/tests/mission-execution-durability.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
             src/validation/tests/sqlite-persistence-boundary.test.ts \
             src/validation/tests/sqlite-shutdown-boundary.test.ts \
             src/validation/tests/primary-shutdown.test.ts \
+            src/validation/tests/continuity-heartbeat-clock.test.ts \
+            src/validation/tests/executive-continuity-watchdog.test.ts \
             src/validation/tests/independent-shutdown-last-attempt.test.ts \
             src/validation/tests/sqlite-corruption-recovery.test.ts \
             src/validation/tests/engineering-test-mode.test.ts \
@@ -115,6 +124,8 @@ jobs:
             src/validation/tests/bootstrap-password-sync.test.ts \
             src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \
             src/validation/tests/tier0-isolated-primary.test.ts \
+            src/validation/tests/worker-http-proxy.test.ts \
+            src/validation/tests/exec-cap-authority-compact.lock.test.ts \
             src/validation/tests/durable-pending-receipt.lock.test.ts \
             src/validation/tests/pillow-chat-request-store.test.ts \
             src/validation/tests/pillow-accepted-request-recovery.test.ts \
@@ -160,7 +171,7 @@ jobs:
       - name: Use Node.js 22 with npm cache
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           cache: npm
           cache-dependency-path: empireai-web/package-lock.json
       - name: Clean install and typecheck canonical Next.js web

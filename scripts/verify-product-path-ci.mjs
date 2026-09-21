@@ -4,8 +4,10 @@ import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { assertRepositoryBuildConfiguration } from "./verify-build-runtime.mjs";
 
 const repositoryRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
+assertRepositoryBuildConfiguration(repositoryRoot);
 
 const targets = [
   {

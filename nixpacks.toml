@@ -5,3 +5,9 @@
 EMPIREAI_REPO_ROOT = "/app"
 NODE_ENV = "production"
 DATABASE_PATH = "/data/empireai-brain.db"
+
+# Nixpacks selects a major only; preinstall rejects a different patch.
+NIXPACKS_NODE_VERSION = "22"
+
+[phases.install]
+cmds = ["NPM_CONFIG_PRODUCTION=false npm ci"]

@@ -1704,6 +1704,7 @@ import {
   MissionRuntime,
   createMissionRuntime,
 } from "./mission-runtime/engine.js";
+import { canonicalMissionScope, resolveMissionPersistenceFile } from "./mission-runtime/mission-persistence.js";
 import {
   QueueRuntime,
   createQueueRuntime,
@@ -6911,7 +6912,11 @@ export async function startPillow(options?: {
     approvalWorkflow: approvalWorkflowEngine ?? undefined,
   });
   await yieldEventLoop();
-  missionRuntime = createMissionRuntime(result);
+  missionRuntime = createMissionRuntime(result, {
+    persistenceScope: canonicalMissionScope(process.env.FOUNDER_EMAIL),
+    persistenceFile: resolveMissionPersistenceFile(process.env.DATABASE_PATH,
+      process.env.NODE_ENV === "production" || Boolean(process.env.RAILWAY_DEPLOYMENT_ID)),
+  });
   await missionRuntime.initialize();
   wireEngineIntegrations(missionRuntime, {
     sharedRuntimeCore,
