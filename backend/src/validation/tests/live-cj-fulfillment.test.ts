@@ -58,8 +58,8 @@ async function buildReadyPipeline() {
     productName: "LIVE CJ Product",
     productDescription: "Mission 105 test",
     priceCents: 7200,
-    cjSupplierSku: "CJ-SKU-M105",
-    cjSupplierProductId: "CJ-PID-M105",
+    cjSupplierSku: "CJ-BLENDER-001",
+    cjSupplierProductId: "cj-sandbox-blender-v1",
     unitCostCents: 2100,
   });
 
