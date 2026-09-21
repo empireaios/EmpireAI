@@ -5,5 +5,8 @@
   "installCommand": "npm install",
   "env": {
     "BRAIN_API_URL": "https://empireai-production.up.railway.app"
+  },
+  "git": {
+    "deploymentEnabled": false
   }
 }

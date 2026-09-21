@@ -1,0 +1,34 @@
+{
+  "created_utc": "2026-09-21T00:59:01.927021+00:00",
+  "kind": "RECOVERY_CHECKPOINT_NOT_RELEASE",
+  "published_pr5_base": "cffa6e17a620bebc58f1f18885f0eac1cfd64bae",
+  "base_tree": "e296be1f8f6b636b9e8504e45dd682ec69a855f1",
+  "local_integrated_head": "6a2493d3cd4b6ec3d43a0695c80d5770b62037ae",
+  "mission_base": "2eb0d84c9a2f863d4038384078b6df1fd18cd828",
+  "mission_files_untracked": [
+    "pillow/src/mission-runtime/PERSISTENCE.md",
+    "pillow/src/mission-runtime/mission-persistence.ts",
+    "pillow/src/validation/tests/fixtures/mission-persistence-child.ts",
+    "pillow/src/validation/tests/mission-runtime-persistence.test.ts"
+  ],
+  "patches": {
+    "integrated-reviewed-components.patch": {
+      "bytes": 147970,
+      "sha256": "feb49e45453d9ea8e55dd6c926f26986cfee80ddd63b975aa589cad592333b63"
+    },
+    "mission-persistence-UNREVIEWED-WIP.patch": {
+      "bytes": 45783,
+      "sha256": "27682b6a706503dd2d67907b9d41c5ab7e6692b78aa1b9a8995d6113061b3ab0"
+    }
+  },
+  "hosted_ci_for_patches": "NOT_RUN",
+  "mission_latest_author_corrections": "UNREVIEWED_UNVERIFIED",
+  "production_commit": "21384342c401def948926904913840e63c18dff7",
+  "locks": {
+    "birth": "NOT_BORN",
+    "original_wave_1": "0/24",
+    "commerce": "LOCKED"
+  },
+  "temporary_test_resources": "DELETED_AND_INDEPENDENTLY_VERIFIED",
+  "work_stopped_because": "Parallel workers returned Work usage-limit errors; preserve checkpoint, do not launch further engineering or billable tests."
+}

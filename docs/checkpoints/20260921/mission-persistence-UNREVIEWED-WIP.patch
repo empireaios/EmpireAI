@@ -1,0 +1,894 @@
+diff --git a/.github/workflows/pillow-runtime-repair-ci.yml b/.github/workflows/pillow-runtime-repair-ci.yml
+index e1002a46..abe441ed 100644
+--- a/.github/workflows/pillow-runtime-repair-ci.yml
++++ b/.github/workflows/pillow-runtime-repair-ci.yml
+@@ -64,6 +64,7 @@ jobs:
+           node --import tsx --test --test-concurrency=1 --test-reporter=tap \
+             src/validation/tests/observer-runtime-policy.test.ts \
+             src/validation/tests/reasoning-only-completion.test.ts \
++            src/validation/tests/mission-runtime-persistence.test.ts \
+             | tee "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap"
+           node --input-type=module - "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap" <<'NODE'
+           import assert from 'node:assert/strict';
+diff --git a/pillow/src/mission-runtime/engine.ts b/pillow/src/mission-runtime/engine.ts
+index 3777b866..8a00e297 100644
+--- a/pillow/src/mission-runtime/engine.ts
++++ b/pillow/src/mission-runtime/engine.ts
+@@ -1,3 +1,4 @@
++import type { MissionPersistenceScope } from "./mission-persistence.js";
+ import type { EmpireBootstrapContext } from "../bootstrap/types.js";
+ import { RepositoryReader } from "../bootstrap/repository-reader.js";
+ import {
+@@ -17,6 +18,9 @@ import type {
+ } from "./types.js";
+ 
+ export interface MissionRuntimeOptions {
++  /** Private durable file selected by the host, never from a mission request. */
++  persistenceFile?: string;
++  persistenceScope?: MissionPersistenceScope;
+   configuration?: Partial<MissionRuntimeConfiguration>;
+   dependencies?: MissionRuntimeDependencies;
+ }
+@@ -37,7 +41,7 @@ export class MissionRuntime {
+     private readonly bootstrap: EmpireBootstrapContext,
+     options: MissionRuntimeOptions = {},
+   ) {
+-    const manager = new MissionManager();
++    const manager = new MissionManager(options.persistenceFile, options.persistenceScope);
+     if (options.dependencies) manager.bindIntegrations(options.dependencies);
+     this.controller = new MissionRuntimeController(
+       manager,
+diff --git a/pillow/src/mission-runtime/mission-manager.ts b/pillow/src/mission-runtime/mission-manager.ts
+index a2ed8742..aa383855 100644
+--- a/pillow/src/mission-runtime/mission-manager.ts
++++ b/pillow/src/mission-runtime/mission-manager.ts
+@@ -1,3 +1,4 @@
++import type { MissionPersistenceScope } from "./mission-persistence.js";
+ import type { MissionRuntimeConfiguration } from "./configuration.js";
+ import { applyTransition, validateTransition } from "./lifecycle-engine.js";
+ import { CheckpointManager } from "./checkpoint-manager.js";
+@@ -26,13 +27,14 @@ import type {
+   MsrEngineRecord,
+   MsrInput,
+   MsrRunReport,
++  MsrValidationReport,
+   Q1004ConsumableContract,
+ } from "./types.js";
+ 
+ export class MissionManager {
+   private engineRecord: MsrEngineRecord | null = null;
+   private seeded = false;
+-  private readonly store = new MissionStore();
++  private readonly store: MissionStore;
+   private readonly validator = new MissionValidator();
+   private readonly factory = new MissionFactory();
+   private readonly executionCoordinator = new ExecutionCoordinator();
+@@ -44,6 +46,26 @@ export class MissionManager {
+   private readonly reportBuilder = new ReportBuilder();
+   private readonly integrations = new MsrIntegrationCoordinator();
+ 
++  constructor(persistenceFile?: string, persistenceScope: MissionPersistenceScope | null = null) {
++    this.store = new MissionStore(persistenceFile, persistenceScope);
++  }
++
++  private validateCurrentExecution(input: MsrInput, mission: MissionInstance | null,
++    config: MissionRuntimeConfiguration, started: number): MsrValidationReport {
++    // Persisted risk cannot be downgraded by omission/false on a later request.
++    // Historical approval fields are evidence only, never a reusable grant.
++    const highRisk = mission?.highRisk === true || input.highRisk === true;
++    const validation = this.validator.validateExecute({ ...input, highRisk }, started);
++    const errors = [...validation.errors];
++    if ((highRisk || config.requireGrandKingApproval) && input.grandKingApproved !== true) {
++      errors.push("Current mission execution requires fresh grandKingApproved=true");
++    }
++    if (config.requirePillowCommandConfirmation && input.pillowConfirmed !== true) {
++      errors.push("Current mission execution requires fresh pillowConfirmed=true");
++    }
++    return { ...validation, errors, decision: errors.length ? "fail" : validation.decision };
++  }
++
+   bindIntegrations(deps: MissionRuntimeDependencies = {}) {
+     this.integrations.bind(deps);
+   }
+@@ -105,13 +127,15 @@ export class MissionManager {
+       return this.failReport("create_mission", started, validation, config);
+     }
+     const mission = this.factory.create(input);
+-    this.store.saveMission(mission);
+-    this.store.appendTimeline({
++    this.store.transaction(() => {
++      this.store.saveMission(mission);
++      this.store.appendTimeline({
+       entryId: nextMsrId(`${mission.missionId}-created`),
+       timestamp: mission.createdAt,
+       label: "mission_created",
+       state: "Created",
+       notes: ["Mission instance created"],
++      });
+     });
+     this.ensureRecord("active", config);
+     appendMsrLog({ event: "create_mission", details: mission.missionId });
+@@ -144,12 +168,12 @@ export class MissionManager {
+   execute(input: MsrInput, config: MissionRuntimeConfiguration): MsrRunReport {
+     const started = Date.now();
+     this.ensureSeeded(config);
+-    const validation = this.validator.validateExecute(input, started);
++    let mission = input.missionId ? this.store.getMission(input.missionId) : null;
++    const validation = this.validateCurrentExecution(input, mission, config, started);
+     if (validation.decision === "fail") {
+       return this.failReport("execute", started, validation, config);
+     }
+ 
+-    let mission = input.missionId ? this.store.getMission(input.missionId) : null;
+     if (!mission) {
+       const created = this.createMission(input, config);
+       if (created.decision === "fail" || !created.mission) {
+@@ -239,6 +263,8 @@ export class MissionManager {
+     const started = Date.now();
+     const mission = this.requireMission(input, started, config, "resume");
+     if (!mission) return this.lastFail!;
++    const authorization = this.validateCurrentExecution(input, mission, config, started);
++    if (authorization.decision === "fail") return this.failReport("resume", started, authorization, config, mission);
+     if (mission.currentStatus !== "Paused") {
+       return this.failReport(
+         "resume",
+@@ -262,6 +288,8 @@ export class MissionManager {
+     const started = Date.now();
+     const mission = this.requireMission(input, started, config, "retry");
+     if (!mission) return this.lastFail!;
++    const authorization = this.validateCurrentExecution(input, mission, config, started);
++    if (authorization.decision === "fail") return this.failReport("retry", started, authorization, config, mission);
+     if (mission.currentStatus !== "Failed") {
+       return this.failReport(
+         "retry",
+@@ -341,6 +369,8 @@ export class MissionManager {
+     const started = Date.now();
+     const mission = this.requireMission(input, started, config, "recover");
+     if (!mission) return this.lastFail!;
++    const authorization = this.validateCurrentExecution(input, mission, config, started);
++    if (authorization.decision === "fail") return this.failReport("recover", started, authorization, config, mission);
+     if (!this.recoveryManager.canRecover(mission)) {
+       return this.failReport(
+         "recover",
+@@ -597,18 +627,20 @@ export class MissionManager {
+       fabricated: false,
+       metadataVersion: MSR_METADATA_VERSION,
+     };
+-    this.store.saveTransition(transition);
+-    this.store.saveMission({
++    this.store.transaction(() => {
++      this.store.saveTransition(transition);
++      this.store.saveMission({
+       ...mission,
+       currentStatus: to,
+       updatedAt: transition.timestamp,
+-    });
+-    this.store.appendTimeline({
++      });
++      this.store.appendTimeline({
+       entryId: transition.transitionId,
+       timestamp: transition.timestamp,
+       label: `${from}→${to}`,
+       state: to,
+       notes: [reason],
++      });
+     });
+     return transition;
+   }
+diff --git a/pillow/src/mission-runtime/mission-store.ts b/pillow/src/mission-runtime/mission-store.ts
+index 40af94a3..57c0e7b7 100644
+--- a/pillow/src/mission-runtime/mission-store.ts
++++ b/pillow/src/mission-runtime/mission-store.ts
+@@ -1,3 +1,5 @@
++import { randomUUID } from "node:crypto";
++import { MissionSnapshotFile, type MissionStoreSnapshot, type MissionPersistenceScope } from "./mission-persistence.js";
+ import type {
+   Checkpoint,
+   ExecutionTimelineEntry,
+@@ -16,7 +18,7 @@ export function resetMsrSequenceForTesting() {
+ 
+ export function nextMsrId(prefix: string) {
+   sequence += 1;
+-  return `${prefix}-${Date.now()}-${sequence}`;
++  return `${prefix}-${Date.now()}-${sequence}-${randomUUID()}`;
+ }
+ 
+ export class MissionStore {
+@@ -28,16 +30,61 @@ export class MissionStore {
+   private timeline: ExecutionTimelineEntry[] = [];
+   private reports: MissionRuntimeReport[] = [];
+   private auditTrail: string[] = [];
++  private readonly persistence: MissionSnapshotFile | null;
++  private transactionDepth = 0;
++
++  constructor(persistenceFile?: string, persistenceScope: MissionPersistenceScope | null = null) {
++    this.persistence = persistenceFile ? new MissionSnapshotFile(persistenceFile, persistenceScope) : null;
++    const recovered = this.persistence?.load();
++    if (recovered) this.restore(recovered);
++  }
++
++  private snapshot(): MissionStoreSnapshot {
++    return structuredClone({ ...this.getHistory(), auditTrail: this.auditTrail });
++  }
++
++  private restore(snapshot: MissionStoreSnapshot) {
++    this.missions = new Map(snapshot.missions.map(mission => [mission.missionId, mission]));
++    this.transitions = snapshot.transitions;
++    this.checkpoints = snapshot.checkpoints;
++    this.retries = snapshot.retries;
++    this.recoveries = snapshot.recoveries;
++    this.timeline = snapshot.timeline;
++    this.reports = snapshot.reports;
++    this.auditTrail = snapshot.auditTrail;
++  }
++
++  transaction<T>(operation: () => T): T {
++    if (!this.persistence || this.transactionDepth > 0) return operation();
++    const before = this.snapshot();
++    this.transactionDepth += 1;
++    try {
++      const result = operation();
++      this.persistence.save(this.snapshot());
++      return result;
++    } catch (error) {
++      this.restore(before);
++      throw error;
++    } finally {
++      this.transactionDepth -= 1;
++    }
++  }
++
++  private mutate<T>(operation: () => T): T {
++    return this.transaction(operation);
++  }
+ 
+   saveMission(mission: MissionInstance) {
+-    this.missions.set(mission.missionId, {
+-      ...mission,
+-      dependencyMissionIds: [...mission.dependencyMissionIds],
+-      workers: [...mission.workers],
+-      traceabilityRefs: [...mission.traceabilityRefs],
++    return this.mutate(() => {
++      this.missions.set(mission.missionId, {
++        ...mission,
++        dependencyMissionIds: [...mission.dependencyMissionIds],
++        workers: [...mission.workers],
++        traceabilityRefs: [...mission.traceabilityRefs],
+     });
+     this.auditTrail.push(`mission_saved:${mission.missionId}@${mission.updatedAt}`);
+     return mission;
++    });
+   }
+ 
+   getMission(missionId: string) {
+@@ -62,9 +109,11 @@ export class MissionStore {
+   }
+ 
+   saveTransition(transition: LifecycleTransition) {
+-    this.transitions.push({ ...transition });
+-    this.auditTrail.push(`transition:${transition.transitionId}@${transition.timestamp}`);
+-    return transition;
++    return this.mutate(() => {
++      this.transitions.push({ ...transition });
++      this.auditTrail.push(`transition:${transition.transitionId}@${transition.timestamp}`);
++      return transition;
++    });
+   }
+ 
+   listTransitions(missionId?: string) {
+@@ -75,9 +124,11 @@ export class MissionStore {
+   }
+ 
+   saveCheckpoint(checkpoint: Checkpoint) {
+-    this.checkpoints.push({ ...checkpoint, payload: { ...checkpoint.payload } });
+-    this.auditTrail.push(`checkpoint:${checkpoint.checkpointId}@${checkpoint.timestamp}`);
+-    return checkpoint;
++    return this.mutate(() => {
++      this.checkpoints.push({ ...checkpoint, payload: { ...checkpoint.payload } });
++      this.auditTrail.push(`checkpoint:${checkpoint.checkpointId}@${checkpoint.timestamp}`);
++      return checkpoint;
++    });
+   }
+ 
+   listCheckpoints(missionId?: string) {
+@@ -88,9 +139,11 @@ export class MissionStore {
+   }
+ 
+   saveRetry(retry: RetryRecord) {
+-    this.retries.push({ ...retry });
+-    this.auditTrail.push(`retry:${retry.retryId}@${retry.timestamp}`);
+-    return retry;
++    return this.mutate(() => {
++      this.retries.push({ ...retry });
++      this.auditTrail.push(`retry:${retry.retryId}@${retry.timestamp}`);
++      return retry;
++    });
+   }
+ 
+   listRetries(missionId?: string) {
+@@ -99,9 +152,11 @@ export class MissionStore {
+   }
+ 
+   saveRecovery(recovery: RecoveryRecord) {
+-    this.recoveries.push({ ...recovery });
+-    this.auditTrail.push(`recovery:${recovery.recoveryId}@${recovery.timestamp}`);
+-    return recovery;
++    return this.mutate(() => {
++      this.recoveries.push({ ...recovery });
++      this.auditTrail.push(`recovery:${recovery.recoveryId}@${recovery.timestamp}`);
++      return recovery;
++    });
+   }
+ 
+   listRecoveries(missionId?: string) {
+@@ -112,9 +167,11 @@ export class MissionStore {
+   }
+ 
+   appendTimeline(entry: ExecutionTimelineEntry) {
+-    this.timeline.push({ ...entry, notes: [...entry.notes] });
+-    this.auditTrail.push(`timeline:${entry.entryId}@${entry.timestamp}`);
+-    return entry;
++    return this.mutate(() => {
++      this.timeline.push({ ...entry, notes: [...entry.notes] });
++      this.auditTrail.push(`timeline:${entry.entryId}@${entry.timestamp}`);
++      return entry;
++    });
+   }
+ 
+   listTimeline(missionId?: string) {
+@@ -125,19 +182,21 @@ export class MissionStore {
+   }
+ 
+   saveReport(report: MissionRuntimeReport) {
+-    this.reports.push({
+-      ...report,
+-      executionTimeline: report.executionTimeline.map((e) => ({ ...e, notes: [...e.notes] })),
+-      activeWorkers: [...report.activeWorkers],
+-      dependencies: report.dependencies.map((d) => ({ ...d })),
+-      checkpoints: report.checkpoints.map((c) => ({ ...c, payload: { ...c.payload } })),
+-      retryHistory: report.retryHistory.map((r) => ({ ...r })),
+-      recoveryHistory: report.recoveryHistory.map((r) => ({ ...r })),
+-      supportingEvidence: [...report.supportingEvidence],
+-      outstandingIssues: [...report.outstandingIssues],
++    return this.mutate(() => {
++      this.reports.push({
++        ...report,
++        executionTimeline: report.executionTimeline.map((e) => ({ ...e, notes: [...e.notes] })),
++        activeWorkers: [...report.activeWorkers],
++        dependencies: report.dependencies.map((d) => ({ ...d })),
++        checkpoints: report.checkpoints.map((c) => ({ ...c, payload: { ...c.payload } })),
++        retryHistory: report.retryHistory.map((r) => ({ ...r })),
++        recoveryHistory: report.recoveryHistory.map((r) => ({ ...r })),
++        supportingEvidence: [...report.supportingEvidence],
++        outstandingIssues: [...report.outstandingIssues],
+     });
+     this.auditTrail.push(`report_saved:${report.reportId}@${report.timestamp}`);
+     return report;
++    });
+   }
+ 
+   listReports() {
+diff --git a/pillow/src/session.ts b/pillow/src/session.ts
+index 4762dab1..a583db46 100644
+--- a/pillow/src/session.ts
++++ b/pillow/src/session.ts
+@@ -1704,6 +1704,7 @@ import {
+   MissionRuntime,
+   createMissionRuntime,
+ } from "./mission-runtime/engine.js";
++import { canonicalMissionScope, resolveMissionPersistenceFile } from "./mission-runtime/mission-persistence.js";
+ import {
+   QueueRuntime,
+   createQueueRuntime,
+@@ -6911,7 +6912,11 @@ export async function startPillow(options?: {
+     approvalWorkflow: approvalWorkflowEngine ?? undefined,
+   });
+   await yieldEventLoop();
+-  missionRuntime = createMissionRuntime(result);
++  missionRuntime = createMissionRuntime(result, {
++    persistenceScope: canonicalMissionScope(process.env.FOUNDER_EMAIL),
++    persistenceFile: resolveMissionPersistenceFile(process.env.DATABASE_PATH,
++      process.env.NODE_ENV === "production" || Boolean(process.env.RAILWAY_DEPLOYMENT_ID)),
++  });
+   await missionRuntime.initialize();
+   wireEngineIntegrations(missionRuntime, {
+     sharedRuntimeCore,
+diff --git a/pillow/src/mission-runtime/PERSISTENCE.md b/pillow/src/mission-runtime/PERSISTENCE.md
+new file mode 100644
+index 00000000..58116497
+--- /dev/null
++++ b/pillow/src/mission-runtime/PERSISTENCE.md
+@@ -0,0 +1,30 @@
++# Mission state recovery
++
++The hosted Pillow session stores Mission Runtime state beside the configured
++Brain database, at `<DATABASE_PATH>.missions.json`. Standalone in-process tests
++may omit this file; production session startup refuses a missing or in-memory
++database path. This file must be included in private backups with the database.
++
++A successful mission mutation waits for file sync, atomic replacement and POSIX
++directory sync. Creation and lifecycle transitions include their history in the
++same snapshot. Mission records, transitions, checkpoints, retries, recovery,
++reports and audit history reload before the runtime initializes. Loading does
++not call workers or grant new approval: the recorded structural status and
++approval values remain unchanged. This is persistence of the structural mission
++runtime, not proof that an underlying real mission executed or that Birth or
++commerce is authorized.
++
++Snapshot corruption, an unsupported version, a conflicting writer, write failure
++or the 16 MiB capacity limit fails closed; history is never silently truncated or
++reset. Failed writes are not acknowledged as successful mutations. A failure
++after atomic replacement can leave an unacknowledged state on disk; reconciliation
++and reload are required rather than guessing whether that mutation succeeded.
++
++Writers use an exclusive short-lived `.lock` file and verify the last loaded
++snapshot fingerprint under that lock. A crashed write may leave a lock. Preserve
++the snapshot and reconcile the exclusive writer before removing a stale lock;
++the runtime does not guess that a lock belonging to another container is stale.
++Orphan `.tmp` files are not used for recovery. Windows does not receive the POSIX
++directory-sync guarantee. This change does not establish multi-service mission
++execution, automatic replay, transactionality with external effects or independent
++production restart certification.
+diff --git a/pillow/src/mission-runtime/mission-persistence.ts b/pillow/src/mission-runtime/mission-persistence.ts
+new file mode 100644
+index 00000000..913cab55
+--- /dev/null
++++ b/pillow/src/mission-runtime/mission-persistence.ts
+@@ -0,0 +1,165 @@
++import fs from "node:fs";
++import path from "node:path";
++import { createHash, randomUUID } from "node:crypto";
++import { AUDIT_STATUSES, MISSION_LIFECYCLE_STATES, MISSION_TYPES } from "./paths.js";
++import type { Checkpoint, ExecutionTimelineEntry, LifecycleTransition, MissionInstance, MissionRuntimeReport, RecoveryRecord, RetryRecord } from "./types.js";
++
++export type MissionStoreSnapshot = {
++  missions: MissionInstance[];
++  transitions: LifecycleTransition[];
++  checkpoints: Checkpoint[];
++  retries: RetryRecord[];
++  recoveries: RecoveryRecord[];
++  timeline: ExecutionTimelineEntry[];
++  reports: MissionRuntimeReport[];
++  auditTrail: string[];
++};
++
++const MAX_SNAPSHOT_BYTES = 16 * 1024 * 1024;
++const fingerprint = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
++
++export function resolveMissionPersistenceFile(databasePath: string | undefined, production: boolean): string | undefined {
++  if (!databasePath || databasePath.startsWith(":memory:")) {
++    if (production) throw new Error("Production mission runtime requires persistent DATABASE_PATH");
++    return undefined;
++  }
++  let resolved = path.resolve(databasePath);
++  if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) resolved = path.join(resolved, "empireai-brain.db");
++  return `${resolved}.missions.json`;
++}
++
++export type MissionPersistenceScope = { ownerEmail: string; workspaceId: "ws_empire_1" };
++
++/** Hosted mission runtime is one canonical organization, shared by its configured founder/admin. */
++export function canonicalMissionScope(founderEmail = "founder@empireai.com"): MissionPersistenceScope {
++  const ownerEmail = founderEmail.trim().toLowerCase();
++  if (!ownerEmail || !ownerEmail.includes("@")) throw new Error("Mission owner identity is invalid");
++  return { ownerEmail, workspaceId: "ws_empire_1" };
++}
++
++type RecordValue = Record<string, unknown>;
++type Check = (value: unknown) => boolean;
++const record = (value: unknown): value is RecordValue => value !== null && typeof value === "object" && !Array.isArray(value);
++const string: Check = value => typeof value === "string";
++const nullableString: Check = value => value === null || string(value);
++const boolean: Check = value => typeof value === "boolean";
++const finite: Check = value => typeof value === "number" && Number.isFinite(value);
++const counter: Check = value => finite(value) && Number.isInteger(value) && (value as number) >= 0;
++const percent: Check = value => finite(value) && (value as number) >= 0 && (value as number) <= 100;
++const member = (values: readonly string[]): Check => value => typeof value === "string" && values.includes(value);
++const array = (check: Check): Check => value => Array.isArray(value) && value.every(check);
++const fields = (schema: Record<string, Check>): Check => value => record(value) && Object.entries(schema).every(([key, check]) => check(value[key]));
++const jsonValue = (value: unknown, depth = 0): boolean => {
++  if (depth > 50) return false;
++  if (value === null || string(value) || boolean(value) || finite(value)) return true;
++  if (Array.isArray(value)) return value.every(item => jsonValue(item, depth + 1));
++  return record(value) && Object.values(value).every(item => jsonValue(item, depth + 1));
++};
++const lifecycle = member(MISSION_LIFECYCLE_STATES);
++const transition = fields({ transitionId: string, missionId: string, fromState: lifecycle, toState: lifecycle,
++  timestamp: string, reason: string, fabricated: value => value === false, metadataVersion: string });
++const checkpoint = fields({ checkpointId: string, missionId: string, label: string, state: lifecycle,
++  timestamp: string, payload: value => record(value) && jsonValue(value), metadataVersion: string });
++const retry = fields({ retryId: string, missionId: string, attempt: counter, timestamp: string,
++  fromState: lifecycle, toState: lifecycle, reason: string, metadataVersion: string });
++const recovery = fields({ recoveryId: string, missionId: string, timestamp: string, fromState: lifecycle,
++  toState: lifecycle, checkpointId: nullableString, reason: string, metadataVersion: string });
++const timeline = fields({ entryId: string, timestamp: string, label: string, state: string, notes: array(string) });
++const mission = fields({ missionId: value => string(value) && (value as string).length > 0,
++  missionType: member(MISSION_TYPES), missionName: string, parentMissionId: nullableString,
++  dependencyMissionIds: array(string), mode: member(["sequential", "parallel", "standalone"]), currentStatus: lifecycle,
++  createdAt: string, updatedAt: string, workers: array(string), highRisk: boolean, pillowConfirmed: boolean,
++  grandKingApproved: boolean, retryCount: counter, progress: percent, traceabilityRefs: array(string),
++  metadataVersion: string, structuralSignalOnly: value => value === true, fabricated: value => value === false });
++const reportFlags = ["neverReplaceWorkerLogic", "neverReplaceOrchestrationLogic", "neverExecuteUnauthorisedMissions",
++  "neverFabricateMissionState", "neverBypassPillowGovernance", "neverBypassGrandKingApproval", "neverOverrideApprovedArchitecture",
++  "neverOverridePillow", "neverOverrideGrandKing", "neverImplementQ1004OrLater", "preserveCompleteTraceability",
++  "preserveMissionHistory", "preserveAuditHistory", "neverExposeCredentials", "structuralSignalOnly", "maskSensitiveValues"];
++const report = fields({ reportId: string, timestamp: string, runtimeVersion: string, missionId: string,
++  missionType: member(MISSION_TYPES), currentStatus: lifecycle, executionTimeline: array(timeline), progress: percent,
++  activeWorkers: array(string), dependencies: array(fields({ missionId: string,
++    mode: member(["parent", "sequential", "parallel"]), satisfied: boolean })), checkpoints: array(checkpoint),
++  retryHistory: array(retry), recoveryHistory: array(recovery), failureSummary: nullableString,
++  supportingEvidence: array(string), auditStatus: member(AUDIT_STATUSES), outstandingIssues: array(string),
++  confidenceScore: percent, metadataVersion: string, reportVersion: string, workerId: string, consumableByQ1004: boolean,
++  ...Object.fromEntries(reportFlags.map(key => [key, (value: unknown) => value === true])) });
++
++function validateSnapshot(value: unknown): asserts value is MissionStoreSnapshot {
++  if (!fields({ missions: array(mission), transitions: array(transition), checkpoints: array(checkpoint),
++    retries: array(retry), recoveries: array(recovery), timeline: array(timeline), reports: array(report),
++    auditTrail: array(string) })(value)) throw new Error("Mission snapshot contains invalid state or history");
++  const state = value as MissionStoreSnapshot;
++  const ids = new Set(state.missions.map(item => item.missionId));
++  if (ids.size !== state.missions.length) throw new Error("Mission snapshot contains duplicate mission identifiers");
++  for (const item of [...state.transitions, ...state.checkpoints, ...state.retries, ...state.recoveries, ...state.reports]) {
++    if (!ids.has(item.missionId)) throw new Error("Mission history references an unknown mission");
++  }
++}
++
++/** Single snapshot file, atomic replacement, with fail-closed concurrent writers. */
++export class MissionSnapshotFile {
++  private expectedFingerprint: string | null = null;
++
++  constructor(private readonly filename: string, private readonly scope: MissionPersistenceScope | null = null) {
++    if (scope && (scope.workspaceId !== "ws_empire_1" || scope.ownerEmail !== canonicalMissionScope(scope.ownerEmail).ownerEmail)) {
++      throw new Error("Mission persistence scope is invalid");
++    }
++  }
++
++  private readBytes(): Buffer | null {
++    try {
++      const stat = fs.lstatSync(this.filename);
++      if (!stat.isFile() || stat.size > MAX_SNAPSHOT_BYTES) throw new Error("Mission snapshot is not a bounded regular file");
++      return fs.readFileSync(this.filename);
++    } catch (error) {
++      if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
++      throw error;
++    }
++  }
++
++  load(): MissionStoreSnapshot | null {
++    const bytes = this.readBytes();
++    if (!bytes) return null;
++    const envelope = JSON.parse(bytes.toString("utf8")) as { version?: unknown; scope?: unknown; state?: unknown };
++    if (envelope.version !== 2) throw new Error("Mission snapshot version is unsupported");
++    if (JSON.stringify(envelope.scope) !== JSON.stringify(this.scope)) {
++      throw new Error("Mission snapshot organization identity does not match this host");
++    }
++    validateSnapshot(envelope.state);
++    this.expectedFingerprint = fingerprint(bytes);
++    return structuredClone(envelope.state);
++  }
++
++  save(state: MissionStoreSnapshot): void {
++    validateSnapshot(state);
++    const bytes = Buffer.from(JSON.stringify({ version: 2, scope: this.scope, state }));
++    if (bytes.length > MAX_SNAPSHOT_BYTES) throw new Error("Mission snapshot capacity exceeded; history was not discarded");
++    const directory = path.dirname(this.filename);
++    fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
++    const lock = `${this.filename}.lock`;
++    // A crash during a write may leave this lock. Do not guess that another
++    // container is dead: fail closed pending reconciliation of the preserved file.
++    const lockFd = fs.openSync(lock, "wx", 0o600);
++    const temporary = `${this.filename}.${process.pid}.${randomUUID()}.tmp`;
++    try {
++      const current = this.readBytes();
++      if ((current ? fingerprint(current) : null) !== this.expectedFingerprint) {
++        throw new Error("Mission snapshot changed in another writer; reload before retrying");
++      }
++      const fd = fs.openSync(temporary, "wx", 0o600);
++      try { fs.writeFileSync(fd, bytes); fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
++      fs.renameSync(temporary, this.filename);
++      if (process.platform !== "win32") {
++        const dirFd = fs.openSync(directory, "r");
++        try { fs.fsyncSync(dirFd); } finally { fs.closeSync(dirFd); }
++      }
++      this.expectedFingerprint = fingerprint(bytes);
++    } finally {
++      try {
++        try { fs.unlinkSync(temporary); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
++      } finally {
++        try { fs.closeSync(lockFd); } finally { fs.unlinkSync(lock); }
++      }
++    }
++  }
++}
+diff --git a/pillow/src/validation/tests/fixtures/mission-persistence-child.ts b/pillow/src/validation/tests/fixtures/mission-persistence-child.ts
+new file mode 100644
+index 00000000..cf0b7028
+--- /dev/null
++++ b/pillow/src/validation/tests/fixtures/mission-persistence-child.ts
+@@ -0,0 +1,18 @@
++import { MissionManager } from "../../../mission-runtime/mission-manager.js";
++import { DEFAULT_MISSION_RUNTIME_CONFIGURATION } from "../../../mission-runtime/configuration.js";
++
++const [phase, filename] = process.argv.slice(2);
++if (!filename) throw new Error("Missing disposable test snapshot");
++const manager = new MissionManager(filename);
++manager.ensureSeeded(DEFAULT_MISSION_RUNTIME_CONFIGURATION);
++if (phase === "create") {
++  const report = manager.createMission({ missionName: "unapproved restart marker", validated: true,
++    pillowConfirmed: false, grandKingApproved: false }, DEFAULT_MISSION_RUNTIME_CONFIGURATION);
++  if (report.decision !== "pass") throw new Error("Test mission creation failed");
++  process.send?.({ mission: report.mission, history: manager.getHistory(), audit: manager.getAuditTrail() });
++  // Parent uses SIGKILL: no shutdown/save hook can help this acknowledged write.
++  setInterval(() => {}, 1000);
++} else if (phase === "read") {
++  process.send?.({ history: manager.getHistory(), audit: manager.getAuditTrail(), record: manager.getEngineRecord() });
++  process.disconnect?.();
++} else throw new Error("Unknown test phase");
+diff --git a/pillow/src/validation/tests/mission-runtime-persistence.test.ts b/pillow/src/validation/tests/mission-runtime-persistence.test.ts
+new file mode 100644
+index 00000000..89b61c2d
+--- /dev/null
++++ b/pillow/src/validation/tests/mission-runtime-persistence.test.ts
+@@ -0,0 +1,262 @@
++import assert from "node:assert/strict";
++import fs from "node:fs";
++import os from "node:os";
++import path from "node:path";
++import { fork, type ChildProcess } from "node:child_process";
++import { once } from "node:events";
++import { test } from "node:test";
++import { MissionManager } from "../../mission-runtime/mission-manager.js";
++import { MissionStore, resetMsrSequenceForTesting } from "../../mission-runtime/mission-store.js";
++import { MissionFactory } from "../../mission-runtime/mission-factory.js";
++import { canonicalMissionScope, MissionSnapshotFile, resolveMissionPersistenceFile } from "../../mission-runtime/mission-persistence.js";
++import { DEFAULT_MISSION_RUNTIME_CONFIGURATION as config } from "../../mission-runtime/configuration.js";
++
++function fixture() {
++  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "mission-persistence-"));
++  return { directory, filename: path.join(directory, "test.sqlite.missions.json"),
++    dispose: () => fs.rmSync(directory, { recursive: true, force: true }) };
++}
++
++async function childReceipt(phase: string, filename: string) {
++  const child = fork(new URL("./fixtures/mission-persistence-child.ts", import.meta.url), [phase, filename], {
++    execArgv: ["--import", "tsx"], stdio: ["ignore", "ignore", "pipe", "ipc"],
++    env: { ...process.env, NODE_ENV: "test" },
++  });
++  let stderr = "";
++  child.stderr!.on("data", chunk => { stderr += String(chunk); });
++  const receipt = await new Promise<Record<string, any>>((resolve, reject) => {
++    const timeout = setTimeout(() => { child.kill("SIGKILL"); reject(new Error(`Child timed out: ${stderr}`)); }, 10_000);
++    child.once("message", value => { clearTimeout(timeout); resolve(value as Record<string, any>); });
++    child.once("error", error => { clearTimeout(timeout); reject(error); });
++    child.once("exit", code => { clearTimeout(timeout); reject(new Error(`Child exited before receipt: ${code}: ${stderr}`)); });
++  });
++  return { child, receipt };
++}
++
++test("acknowledged mission and complete creation history survive actual SIGKILL and fresh-process reload", async () => {
++  const f = fixture();
++  let writer: ChildProcess | undefined;
++  let reader: ChildProcess | undefined;
++  try {
++    const first = await childReceipt("create", f.filename); writer = first.child;
++    const exited = once(writer, "exit"); writer.kill("SIGKILL"); await exited;
++    const second = await childReceipt("read", f.filename); reader = second.child;
++    assert.deepEqual(second.receipt.history, first.receipt.history);
++    assert.deepEqual(second.receipt.audit, first.receipt.audit);
++    assert.equal(second.receipt.record.totalMissions, 1);
++    const recovered = second.receipt.history.missions[0];
++    assert.equal(recovered.missionId, first.receipt.mission.missionId);
++    assert.equal(recovered.currentStatus, "Created");
++    assert.equal(recovered.grandKingApproved, false);
++    assert.equal(recovered.pillowConfirmed, false);
++    assert.equal(recovered.structuralSignalOnly, true);
++    assert.equal(recovered.fabricated, false);
++    assert.equal(fs.statSync(f.filename).mode & 0o777, 0o600);
++  } finally { writer?.kill("SIGKILL"); reader?.kill("SIGKILL"); f.dispose(); }
++});
++
++test("lifecycle history and reporting survive reload without re-executing integrations", () => {
++  const f = fixture();
++  try {
++    const first = new MissionManager(f.filename);
++    const created = first.createMission({ missionName: "queued structural mission", validated: true }, config);
++    assert.ok(created.mission);
++    const missionId = created.mission.missionId;
++    const queued = first.queue({ missionId, validated: true }, config);
++    assert.equal(queued.mission?.currentStatus, "Queued");
++    const history = first.getHistory();
++    assert.ok(history.transitions.length > 0);
++    const recovered = new MissionManager(f.filename);
++    let executions = 0;
++    recovered.bindIntegrations({ pillowOrchestrationRuntime: { invokeWorker: () => { executions++; return { decision: "pass" }; } } });
++    recovered.ensureSeeded(config);
++    assert.deepEqual(recovered.getHistory(), history);
++    assert.equal(executions, 0);
++    assert.equal(recovered.execute({ missionId, highRisk: true, grandKingApproved: false }, config).decision, "fail");
++    assert.equal(executions, 0);
++  } finally { f.dispose(); }
++});
++
++test("write failure propagates and does not expose an uncommitted mission as accepted state", () => {
++  const f = fixture();
++  try {
++    const store = new MissionStore(f.filename);
++    fs.writeFileSync(`${f.filename}.lock`, "another writer owns this file");
++    const mission = new MissionFactory().create({ missionName: "must not be acknowledged" });
++    assert.throws(() => store.saveMission(mission), { code: "EEXIST" });
++    assert.equal(store.getMission(mission.missionId), null);
++    assert.deepEqual(store.getHistory().missions, []);
++    assert.equal(fs.existsSync(f.filename), false);
++    assert.equal(fs.readFileSync(`${f.filename}.lock`, "utf8"), "another writer owns this file");
++  } finally { f.dispose(); }
++});
++
++test("stale concurrent instance cannot overwrite a newer persisted mission", () => {
++  const f = fixture();
++  try {
++    const first = new MissionStore(f.filename);
++    const stale = new MissionStore(f.filename);
++    const a = new MissionFactory().create({ missionName: "winner" });
++    first.saveMission(a);
++    const b = new MissionFactory().create({ missionName: "stale writer" });
++    assert.throws(() => stale.saveMission(b), /another writer/);
++    assert.equal(stale.getMission(b.missionId), null);
++    const recovered = new MissionStore(f.filename);
++    assert.deepEqual(recovered.listMissions(), [a]);
++    assert.equal(fs.existsSync(`${f.filename}.lock`), false);
++  } finally { f.dispose(); }
++});
++
++test("corrupt, unknown-version and invalid-authority files fail closed and are preserved", () => {
++  const f = fixture();
++  try {
++    for (const raw of ["{truncated", JSON.stringify({ version: 999, state: {} }),
++      JSON.stringify({ version: 1, state: { missions: [{ missionId: "wrong", grandKingApproved: "true" }],
++        transitions: [], checkpoints: [], retries: [], recoveries: [], timeline: [], reports: [], auditTrail: [] } })]) {
++      fs.writeFileSync(f.filename, raw);
++      assert.throws(() => new MissionStore(f.filename));
++      assert.equal(fs.readFileSync(f.filename, "utf8"), raw);
++    }
++  } finally { f.dispose(); }
++});
++
++test("mission identifiers remain unique after sequence reset at the same timestamp", context => {
++  context.mock.method(Date, "now", () => 42);
++  resetMsrSequenceForTesting();
++  const one = new MissionFactory().create({});
++  resetMsrSequenceForTesting();
++  const two = new MissionFactory().create({});
++  assert.notEqual(one.missionId, two.missionId);
++});
++
++test("disk sync failure aborts the complete creation state and preserves prior durable content", context => {
++  const f = fixture();
++  try {
++    const manager = new MissionManager(f.filename);
++    const accepted = manager.createMission({ missionName: "already accepted" }, config);
++    const before = fs.readFileSync(f.filename);
++    context.mock.method(fs, "fsyncSync", () => { throw new Error("fixture disk sync failure"); });
++    assert.throws(() => manager.createMission({ missionName: "must fail" }, config), /disk sync failure/);
++    context.mock.restoreAll();
++    assert.deepEqual(fs.readFileSync(f.filename), before);
++    assert.deepEqual(manager.getHistory().missions.map(m => m.missionId), [accepted.mission!.missionId]);
++    assert.equal(manager.getHistory().timeline.length, 1);
++    assert.equal(fs.existsSync(`${f.filename}.lock`), false);
++    assert.equal(fs.readdirSync(f.directory).some(name => name.endsWith(".tmp")), false);
++  } finally { f.dispose(); }
++});
++
++test("hosted mission storage follows the configured database volume and production rejects RAM-only mode", () => {
++  assert.equal(resolveMissionPersistenceFile("/data/canary/test.sqlite", true), "/data/canary/test.sqlite.missions.json");
++  assert.throws(() => resolveMissionPersistenceFile(undefined, true), /persistent DATABASE_PATH/);
++  assert.throws(() => resolveMissionPersistenceFile(":memory:", true), /persistent DATABASE_PATH/);
++  assert.equal(resolveMissionPersistenceFile(":memory:", false), undefined);
++});
++
++
++test("saved approval never authorizes a later execution or allows stored risk to be downgraded", () => {
++  const f = fixture();
++  try {
++    const first = new MissionManager(f.filename);
++    const { mission } = first.createMission({ missionName: "previously approved", highRisk: true,
++      grandKingApproved: true, pillowConfirmed: true, workers: ["offline-sentinel"] }, config);
++    assert.ok(mission);
++    const recovered = new MissionManager(f.filename);
++    let invocations = 0;
++    recovered.bindIntegrations({ workerRegistry: { invokeWorker: () => { invocations++; return {}; } } });
++    for (const request of [
++      { missionId: mission.missionId, grandKingApproved: false, pillowConfirmed: false },
++      { missionId: mission.missionId, highRisk: false, grandKingApproved: false, pillowConfirmed: false },
++      { missionId: mission.missionId },
++      { missionId: mission.missionId, grandKingApproved: true, pillowConfirmed: false },
++    ]) {
++      const result = recovered.execute(request, config);
++      assert.equal(result.decision, "fail");
++      assert.equal(recovered.getHistory().missions[0].currentStatus, "Created");
++      assert.equal(invocations, 0);
++    }
++    assert.equal(recovered.execute({ missionId: mission.missionId, highRisk: false, pillowConfirmed: true },
++      { ...config, requireGrandKingApproval: false }).decision, "fail");
++    const permitted = recovered.execute({ missionId: mission.missionId, grandKingApproved: true, pillowConfirmed: true }, config);
++    assert.equal(permitted.decision, "pass");
++    assert.equal(invocations, 1);
++  } finally { f.dispose(); }
++});
++
++test("restored paused, failed and interrupted missions require current permission before resume, retry or recovery", () => {
++  for (const action of ["resume", "retry", "recover"] as const) {
++    const f = fixture();
++    try {
++      const first = new MissionManager(f.filename);
++      const approvals = { grandKingApproved: true, pillowConfirmed: true };
++      const { mission } = first.createMission({ missionName: action, highRisk: true, ...approvals }, config);
++      const missionId = mission!.missionId;
++      first.execute({ missionId, ...approvals, forceFail: action === "retry", completeAfterRun: action === "retry" }, config);
++      if (action === "resume") first.pause({ missionId }, config);
++      const recovered = new MissionManager(f.filename);
++      const before = recovered.getHistory();
++      assert.equal(recovered[action]({ missionId, highRisk: false, grandKingApproved: false, pillowConfirmed: false }, config).decision, "fail");
++      assert.deepEqual(recovered.getHistory(), before);
++    } finally { f.dispose(); }
++  }
++});
++
++test("all nested history shapes are validated on reload and invalid bytes remain untouched", () => {
++  const f = fixture();
++  try {
++    const manager = new MissionManager(f.filename);
++    const approvals = { pillowConfirmed: true, grandKingApproved: true };
++    const { mission } = manager.createMission({ missionName: "full history", ...approvals }, config);
++    manager.execute({ missionId: mission!.missionId, ...approvals, checkpointLabel: "checkpoint", completeAfterRun: false }, config);
++    manager.produceReport({ missionId: mission!.missionId }, config);
++    const valid = JSON.parse(fs.readFileSync(f.filename, "utf8"));
++    const changes: Array<(state: any) => void> = [
++      state => { state.missions[0].progress = "corrupted-progress"; },
++      state => { state.missions[0].retryCount = -1; },
++      state => { state.missions[0].grandKingApproved = "true"; },
++      state => { state.transitions = [{}]; },
++      state => { state.checkpoints = [{}]; },
++      state => { state.retries = [{}]; },
++      state => { state.recoveries = [{}]; },
++      state => { state.timeline = [{}]; },
++      state => { state.reports = [{}]; },
++      state => { state.reports[0].executionTimeline[0].notes = "not-an-array"; },
++      state => { state.reports[0].dependencies = [{ missionId: "x", mode: "parent", satisfied: "true" }]; },
++      state => { state.reports[0].checkpoints[0].payload = []; },
++      state => { state.reports[0].neverBypassGrandKingApproval = false; },
++      state => { state.transitions[0].missionId = "unknown-mission"; },
++    ];
++    for (const change of changes) {
++      const envelope = structuredClone(valid); change(envelope.state);
++      const raw = JSON.stringify(envelope); fs.writeFileSync(f.filename, raw);
++      assert.throws(() => new MissionStore(f.filename), /snapshot|history/i);
++      assert.equal(fs.readFileSync(f.filename, "utf8"), raw);
++    }
++    fs.writeFileSync(f.filename, JSON.stringify(valid));
++    const file = new MissionSnapshotFile(f.filename); file.load();
++    const invalid = structuredClone(valid.state); invalid.missions[0].progress = Number.NaN;
++    assert.throws(() => file.save(invalid), /invalid/);
++    assert.deepEqual(JSON.parse(fs.readFileSync(f.filename, "utf8")), valid);
++  } finally { f.dispose(); }
++});
++
++test("snapshot is bound to the canonical organization and cannot be silently adopted after identity changes", () => {
++  const f = fixture();
++  try {
++    const scope = canonicalMissionScope(" Founder@Example.invalid ");
++    assert.deepEqual(scope, { ownerEmail: "founder@example.invalid", workspaceId: "ws_empire_1" });
++    const manager = new MissionManager(f.filename, scope);
++    manager.createMission({ missionName: "organization-owned history" }, config);
++    const raw = fs.readFileSync(f.filename, "utf8");
++    assert.equal(new MissionManager(f.filename, scope).getHistory().missions.length, 1);
++    assert.throws(() => new MissionManager(f.filename, canonicalMissionScope("different@example.invalid")), /identity/);
++    assert.throws(() => new MissionManager(f.filename), /identity/);
++    const foreign = JSON.parse(raw); foreign.scope.workspaceId = "another-workspace";
++    fs.writeFileSync(f.filename, JSON.stringify(foreign));
++    assert.throws(() => new MissionManager(f.filename, scope), /identity/);
++    const unbound = JSON.parse(raw); delete unbound.scope;
++    fs.writeFileSync(f.filename, JSON.stringify(unbound));
++    assert.throws(() => new MissionManager(f.filename, scope), /identity/);
++    assert.equal(fs.readFileSync(f.filename, "utf8"), JSON.stringify(unbound));
++  } finally { f.dispose(); }
++});

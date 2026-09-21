@@ -1,0 +1,2333 @@
+diff --git a/.github/workflows/pillow-runtime-repair-ci.yml b/.github/workflows/pillow-runtime-repair-ci.yml
+index e1002a46..644c5670 100644
+--- a/.github/workflows/pillow-runtime-repair-ci.yml
++++ b/.github/workflows/pillow-runtime-repair-ci.yml
+@@ -38,7 +38,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: |
+             pillow/package-lock.json
+@@ -100,11 +100,14 @@ jobs:
+             src/validation/tests/pillow-durable-queue-redis.test.ts \
+             src/validation/tests/pillow-durable-reasoning-worker.test.ts \
+             src/validation/tests/pillow-durable-access.test.ts \
++            src/validation/tests/mission-runtime-access.test.ts \
+             src/validation/tests/reasoning-only-policy.test.ts \
+             src/validation/tests/session-store-unavailable.test.ts \
+             src/validation/tests/sqlite-persistence-boundary.test.ts \
+             src/validation/tests/sqlite-shutdown-boundary.test.ts \
+             src/validation/tests/primary-shutdown.test.ts \
++            src/validation/tests/continuity-heartbeat-clock.test.ts \
++            src/validation/tests/executive-continuity-watchdog.test.ts \
+             src/validation/tests/independent-shutdown-last-attempt.test.ts \
+             src/validation/tests/sqlite-corruption-recovery.test.ts \
+             src/validation/tests/engineering-test-mode.test.ts \
+@@ -115,6 +118,8 @@ jobs:
+             src/validation/tests/bootstrap-password-sync.test.ts \
+             src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \
+             src/validation/tests/tier0-isolated-primary.test.ts \
++            src/validation/tests/worker-http-proxy.test.ts \
++            src/validation/tests/exec-cap-authority-compact.lock.test.ts \
+             src/validation/tests/durable-pending-receipt.lock.test.ts \
+             src/validation/tests/pillow-chat-request-store.test.ts \
+             src/validation/tests/pillow-accepted-request-recovery.test.ts \
+@@ -160,7 +165,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: empireai-web/package-lock.json
+       - name: Clean install and typecheck canonical Next.js web
+diff --git a/.github/workflows/pillow-semantic-repair-ci.yml b/.github/workflows/pillow-semantic-repair-ci.yml
+index 7ce58d63..c23a770a 100644
+--- a/.github/workflows/pillow-semantic-repair-ci.yml
++++ b/.github/workflows/pillow-semantic-repair-ci.yml
+@@ -32,7 +32,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: |
+             pillow/package-lock.json
+diff --git a/.github/workflows/product-path-ci.yml b/.github/workflows/product-path-ci.yml
+index e3365775..d07d8547 100644
+--- a/.github/workflows/product-path-ci.yml
++++ b/.github/workflows/product-path-ci.yml
+@@ -35,9 +35,11 @@ jobs:
+       - name: Use Node.js 22
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+       - name: Verify package scripts, lockfiles and the production web contract
+         run: node scripts/verify-product-path-ci.mjs
++      - name: Verify deterministic build configuration and reject runtime drift
++        run: node --test scripts/verify-build-runtime.test.mjs
+       - name: Verify bounded canary configuration and child-process cleanup
+         run: node --test deployment/canary-launcher.test.cjs
+       - name: Record tested revision and limits
+@@ -70,7 +72,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: pillow/package-lock.json
+       - name: Clean install Pillow dependencies
+@@ -104,7 +106,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: |
+             pillow/package-lock.json
+@@ -159,7 +161,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: frontend/package-lock.json
+       - name: Clean install legacy frontend dependencies
+@@ -186,7 +188,7 @@ jobs:
+       - name: Use Node.js 22 with npm cache
+         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+-          node-version: '22'
++          node-version-file: '.node-version'
+           cache: npm
+           cache-dependency-path: empireai-web/package-lock.json
+       - name: Clean install Next.js web dependencies
+diff --git a/.node-version b/.node-version
+new file mode 100644
+index 00000000..c9471194
+--- /dev/null
++++ b/.node-version
+@@ -0,0 +1 @@
++22.23.2
+diff --git a/backend/package-lock.json b/backend/package-lock.json
+index e87e99ea..b890be83 100644
+--- a/backend/package-lock.json
++++ b/backend/package-lock.json
+@@ -33,8 +33,8 @@
+         "zod": "^3.24.2"
+       },
+       "engines": {
+-        "node": ">=20.11.0",
+-        "npm": ">=10.0.0"
++        "node": "22.23.2",
++        "npm": "10.9.8"
+       }
+     },
+     "../pillow": {
+@@ -46,8 +46,10 @@
+         "typescript": "^5.8.2"
+       },
+       "engines": {
+-        "node": ">=20.11.0"
+-      }
++        "node": "22.23.2",
++        "npm": "10.9.8"
++      },
++      "hasInstallScript": true
+     },
+     "node_modules/@anthropic-ai/sdk": {
+       "version": "0.39.0",
+diff --git a/backend/package.json b/backend/package.json
+index e8ff3332..da74a5dd 100644
+--- a/backend/package.json
++++ b/backend/package.json
+@@ -4,8 +4,8 @@
+   "private": true,
+   "type": "module",
+   "engines": {
+-    "node": ">=20.11.0",
+-    "npm": ">=10.0.0"
++    "node": "22.23.2",
++    "npm": "10.9.8"
+   },
+   "scripts": {
+     "setup": "npm install && node scripts/verify-dev-environment.mjs",
+@@ -34,7 +34,8 @@
+     "validate:full": "npm run typecheck && npm run validate",
+     "reports:generate": "node --import tsx scripts/generate-reports.ts",
+     "architect:report": "node --import tsx scripts/generate-reports.ts",
+-    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts"
++    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts",
++    "preinstall": "node ../scripts/verify-build-runtime.mjs"
+   },
+   "dependencies": {
+     "@anthropic-ai/sdk": "^0.39.0",
+@@ -62,5 +63,6 @@
+   },
+   "overrides": {
+     "ioredis": "5.11.1"
+-  }
++  },
++  "packageManager": "npm@10.9.8"
+ }
+diff --git a/backend/src/brain/sqlite-database.ts b/backend/src/brain/sqlite-database.ts
+index 41981265..48a0aee0 100644
+--- a/backend/src/brain/sqlite-database.ts
++++ b/backend/src/brain/sqlite-database.ts
+@@ -70,20 +70,26 @@ let persistStats: PersistStats = {
+ 
+ /** Optional SharedArrayBuffer slot: main sets 1 during sync export so HA worker ignores stalls. */
+ let flushGuardView: Int32Array | null = null;
++let flushCompletionHeartbeat: (() => void) | null = null;
+ 
+ export function getSqlitePersistStats(): Readonly<PersistStats> {
+   return persistStats;
+ }
+ 
+ /** Wire HA watchdog SharedArrayBuffer index 1 as flush-in-flight guard. */
+-export function bindSqliteFlushGuard(view: Int32Array): void {
++export function bindSqliteFlushGuard(view: Int32Array | null, onExportComplete?: () => void): void {
+   flushGuardView = view;
+-  Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
++  flushCompletionHeartbeat = view ? onExportComplete ?? null : null;
++  if (flushGuardView) Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
+ }
+ 
+ function setFlushInFlight(active: boolean): void {
+   persistStats = { ...persistStats, flushInFlight: active };
+   if (flushGuardView) {
++    // Publish main-thread liveness BEFORE clearing the export guard. Otherwise
++    // a long, successful export exposes an old heartbeat until the next timer
++    // tick and can be mistaken for a stall. This is not a durability receipt.
++    if (!active) flushCompletionHeartbeat?.();
+     Atomics.store(flushGuardView, 1, active ? 1 : 0);
+   }
+ }
+diff --git a/backend/src/orchestration/pillow-host/executive-authority-surface.ts b/backend/src/orchestration/pillow-host/executive-authority-surface.ts
+index 8dfde38a..05f4895a 100644
+--- a/backend/src/orchestration/pillow-host/executive-authority-surface.ts
++++ b/backend/src/orchestration/pillow-host/executive-authority-surface.ts
+@@ -4,6 +4,15 @@
+  */
+ import { canonicalOperatingProjection } from "./executive-fact-precedence.js";
+ 
++function isDirectAuthorityStatusAsk(message: string): boolean {
++  const sentences = message.trim().split(/[?.!]+/).map((part) => part.trim()).filter(Boolean);
++  const first = (sentences.shift() ?? "").replace(/^pillow,?\s+/i, "").replace(/^please\s+/i, "");
++  const direct = /^(?:what (?:is|are) your (?:current )?(?:authority|permissions)|what permissions do you (?:currently )?have|what are you (?:currently )?authori[sz]ed to do|(?:tell me|explain|state) your (?:current )?(?:authority|permissions))(?: (?:right now|now|currently))?$/i.test(first);
++  // Extra tasks must keep their normal reasoning path; only non-action/probe qualifiers are allowed.
++  return direct && sentences.every((part) =>
++    /^(?:do not execute tools, commerce or spending|this is a bounded engineering transport test)$/i.test(part));
++}
++
+ export function isLiveCommerceEffectAsk(message: string): boolean {
+   const t = String(message || "");
+   if (!/\b(?:live|real|amazon|marketplace|ads?|listing|purchase|order|payment|spend)\b/i.test(t)) {
+@@ -56,7 +65,7 @@ export function isOperatingAuthorityFactAsk(message: string): boolean {
+     /\bis real commerce authori/i.test(t);
+   // Short factual asks only — do not hijack long strategy prompts.
+   if (t.length > 280) return false;
+-  return asksBirth || asksMode || asksAuth;
++  return asksBirth || asksMode || asksAuth || isDirectAuthorityStatusAsk(t);
+ }
+ 
+ export function projectOperatingAuthorityFacts(message: string): {
+@@ -66,14 +75,15 @@ export function projectOperatingAuthorityFacts(message: string): {
+ } {
+   const ops = canonicalOperatingProjection();
+   const t = String(message || "");
++  const directAuthorityAsk = isDirectAuthorityStatusAsk(t);
+   const lines: string[] = [];
+-  if (/\bbirth\b/i.test(t)) {
++  if (directAuthorityAsk || /\bbirth\b/i.test(t)) {
+     lines.push(`Birth status: ${ops.birthStatus}.`);
+   }
+-  if (/\boperating\s+mode\b/i.test(t) || lines.length === 0) {
++  if (directAuthorityAsk || /\boperating\s+mode\b/i.test(t) || lines.length === 0) {
+     lines.push(`Operating mode: ${ops.operatingMode}.`);
+   }
+-  if (/\breal[- ]?commerce|authori/i.test(t)) {
++  if (directAuthorityAsk || /\breal[- ]?commerce|authori/i.test(t)) {
+     lines.push(
+       `Real commerce authorized: ${ops.realCommerceAuthorized ? "yes" : "no"} (${ops.realCommerceAuthorityLabel}).`,
+     );
+diff --git a/backend/src/orchestration/pillow-host/pillow-host.ts b/backend/src/orchestration/pillow-host/pillow-host.ts
+index e786b931..2d60d38e 100644
+--- a/backend/src/orchestration/pillow-host/pillow-host.ts
++++ b/backend/src/orchestration/pillow-host/pillow-host.ts
+@@ -30241,6 +30241,7 @@ export class PillowHost {
+             let mode;
+             let tokens;
+             let logResult = "fallback";
++            let reasoningFailure: { code: "NO_LLM_PROVIDER"; retryable: false } | undefined;
+             let chatArtifacts;
+             let intelligenceRouting;
+             let executiveCouncilRecommendation;
+@@ -30426,6 +30427,7 @@ export class PillowHost {
+                 degradedUsed = true;
+                 kind = "degraded_useful";
+                 logResult = "degraded_no_provider";
++                reasoningFailure = { code: "NO_LLM_PROVIDER", retryable: false };
+             }
+             // Final safety: never emit ask-again / infra-leak as the visible answer.
+             // Also never leave synthetic-scoped answers as live Mini Fan briefings.
+@@ -30577,6 +30579,7 @@ export class PillowHost {
+                 },
+                 transportContractPassed,
+                 degradedUsed,
++                reasoningFailure,
+                 executiveRecommendation: executiveCouncilRecommendation
+                     ? {
+                         recommendationId: executiveCouncilRecommendation.recommendationId,
+diff --git a/backend/src/orchestration/pillow-host/routes/mission-runtime-routes.ts b/backend/src/orchestration/pillow-host/routes/mission-runtime-routes.ts
+new file mode 100644
+index 00000000..ebb028c5
+--- /dev/null
++++ b/backend/src/orchestration/pillow-host/routes/mission-runtime-routes.ts
+@@ -0,0 +1,113 @@
++import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
++import type { createAuthMiddleware } from "../../../auth/middleware.js";
++import { env } from "../../../config/env.js";
++import { GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
++import type { PillowHost } from "../pillow-host.js";
++import { collectMissionRuntimeSnapshot } from "../mission-runtime-bridge.js";
++
++type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
++
++/** One shared owner/admin organization; this is not per-user mission privacy. */
++export function createMissionRuntimeAuth(authenticate: AuthMiddleware) {
++  return async (request: FastifyRequest, reply: FastifyReply) => {
++    await authenticate(request, reply);
++    if (reply.sent) return;
++    const user = request.user;
++    if (!user) return reply.code(401).send({ error: "Authentication required" });
++    const email = user.email.trim().toLowerCase();
++    const expected = user.role === "founder" ? env.FOUNDER_EMAIL : user.role === "admin" ? env.ADMIN_EMAIL : "";
++    const configuredIdentity = expected.trim().toLowerCase();
++    const suppliedWorkspace = request.headers["x-workspace-id"];
++    const body = request.body as Record<string, unknown> | null | undefined;
++    const bodyWorkspace = body && typeof body === "object" ? body.workspaceId : undefined;
++    if (!configuredIdentity || email !== configuredIdentity || user.workspaceId !== GRAND_KING_WORKSPACE_ID ||
++      (suppliedWorkspace !== undefined && suppliedWorkspace !== user.workspaceId) ||
++      (bodyWorkspace !== undefined && bodyWorkspace !== user.workspaceId)) {
++      return reply.code(403).send({ error: "Mission runtime organization scope denied", code: "MISSION_SCOPE_DENIED" });
++    }
++  };
++}
++
++export async function registerMissionRuntimeRoutes(app: FastifyInstance, deps: {
++  authenticate: AuthMiddleware;
++  pillowHost: PillowHost;
++  onUnavailableRead?: () => void;
++}): Promise<void> {
++  const { pillowHost, onUnavailableRead } = deps;
++  const missionAuth = createMissionRuntimeAuth(deps.authenticate);
++  app.get("/api/pillow/mission-runtime", { preHandler: missionAuth }, async (_request, reply) => {
++    if (pillowHost.getStatus().lifecycle !== "running") {
++      onUnavailableRead?.();
++      return reply.send(collectMissionRuntimeSnapshot());
++    }
++    return reply.send({ missionRuntime: pillowHost.getMissionRuntime() });
++  });
++  const missionRuntimeAction = (
++    method:
++      | "connect"
++      | "create-mission"
++      | "queue"
++      | "ready"
++      | "execute"
++      | "pause"
++      | "resume"
++      | "retry"
++      | "cancel"
++      | "recover"
++      | "archive"
++      | "monitor"
++      | "produce-report"
++      | "submit-report"
++      | "list"
++      | "validate"
++      | "diagnostics"
++      | "history"
++      | "q1004-contract",
++  ) =>
++    async (request: FastifyRequest, reply: FastifyReply) => {
++      if (pillowHost.getStatus().lifecycle !== "running") {
++        return reply.code(503).send(collectMissionRuntimeSnapshot());
++      }
++      const body = (request.body ?? {}) as Record<string, unknown>;
++      const report =
++        method === "connect" ? pillowHost.connectMissionRuntime(body)
++          : method === "create-mission" ? pillowHost.createMissionRuntimeMission(body)
++            : method === "queue" ? pillowHost.queueMissionRuntime(body)
++              : method === "ready" ? pillowHost.readyMissionRuntime(body)
++                : method === "execute" ? pillowHost.executeMissionRuntime(body)
++                  : method === "pause" ? pillowHost.pauseMissionRuntime(body)
++                    : method === "resume" ? pillowHost.resumeMissionRuntime(body)
++                      : method === "retry" ? pillowHost.retryMissionRuntime(body)
++                        : method === "cancel" ? pillowHost.cancelMissionRuntime(body)
++                          : method === "recover" ? pillowHost.recoverMissionRuntime(body)
++                            : method === "archive" ? pillowHost.archiveMissionRuntime(body)
++                              : method === "monitor" ? pillowHost.monitorMissionRuntime(body)
++                                : method === "produce-report" ? pillowHost.produceMissionRuntimeReport(body)
++                                  : method === "submit-report" ? pillowHost.submitMissionRuntimeReport(body)
++                                    : method === "list" ? pillowHost.listMissionRuntime()
++                                      : method === "validate" ? pillowHost.validateMissionRuntime(body)
++                                        : method === "history" ? pillowHost.getMissionRuntimeHistory()
++                                          : method === "q1004-contract" ? pillowHost.getMissionRuntimeQ1004Contract()
++                                            : pillowHost.runMissionRuntimeDiagnostics();
++      return reply.send({ computedAt: new Date().toISOString(), report });
++    };
++  app.post("/api/pillow/mission-runtime/connect", { preHandler: missionAuth }, missionRuntimeAction("connect"));
++  app.post("/api/pillow/mission-runtime/create-mission", { preHandler: missionAuth }, missionRuntimeAction("create-mission"));
++  app.post("/api/pillow/mission-runtime/queue", { preHandler: missionAuth }, missionRuntimeAction("queue"));
++  app.post("/api/pillow/mission-runtime/ready", { preHandler: missionAuth }, missionRuntimeAction("ready"));
++  app.post("/api/pillow/mission-runtime/execute", { preHandler: missionAuth }, missionRuntimeAction("execute"));
++  app.post("/api/pillow/mission-runtime/pause", { preHandler: missionAuth }, missionRuntimeAction("pause"));
++  app.post("/api/pillow/mission-runtime/resume", { preHandler: missionAuth }, missionRuntimeAction("resume"));
++  app.post("/api/pillow/mission-runtime/retry", { preHandler: missionAuth }, missionRuntimeAction("retry"));
++  app.post("/api/pillow/mission-runtime/cancel", { preHandler: missionAuth }, missionRuntimeAction("cancel"));
++  app.post("/api/pillow/mission-runtime/recover", { preHandler: missionAuth }, missionRuntimeAction("recover"));
++  app.post("/api/pillow/mission-runtime/archive", { preHandler: missionAuth }, missionRuntimeAction("archive"));
++  app.post("/api/pillow/mission-runtime/monitor", { preHandler: missionAuth }, missionRuntimeAction("monitor"));
++  app.post("/api/pillow/mission-runtime/produce-report", { preHandler: missionAuth }, missionRuntimeAction("produce-report"));
++  app.post("/api/pillow/mission-runtime/submit-report", { preHandler: missionAuth }, missionRuntimeAction("submit-report"));
++  app.post("/api/pillow/mission-runtime/list", { preHandler: missionAuth }, missionRuntimeAction("list"));
++  app.post("/api/pillow/mission-runtime/validate", { preHandler: missionAuth }, missionRuntimeAction("validate"));
++  app.post("/api/pillow/mission-runtime/diagnostics", { preHandler: missionAuth }, missionRuntimeAction("diagnostics"));
++  app.post("/api/pillow/mission-runtime/history", { preHandler: missionAuth }, missionRuntimeAction("history"));
++  app.post("/api/pillow/mission-runtime/q1004-contract", { preHandler: missionAuth }, missionRuntimeAction("q1004-contract"));
++}
+diff --git a/backend/src/orchestration/pillow-host/routes/pillow-routes.ts b/backend/src/orchestration/pillow-host/routes/pillow-routes.ts
+index b0f847f2..3b5e42c3 100644
+--- a/backend/src/orchestration/pillow-host/routes/pillow-routes.ts
++++ b/backend/src/orchestration/pillow-host/routes/pillow-routes.ts
+@@ -543,7 +543,7 @@ import { collectAffiliateCertificationSnapshot } from "../affiliate-certificatio
+ import { collectCapitalFactoryCertificationSnapshot } from "../capital-factory-certification-bridge.js";
+ import { collectSharedRuntimeCoreSnapshot } from "../shared-runtime-core-bridge.js";
+ import { collectPillowOrchestrationRuntimeSnapshot } from "../pillow-orchestration-runtime-bridge.js";
+-import { collectMissionRuntimeSnapshot } from "../mission-runtime-bridge.js";
++import { registerMissionRuntimeRoutes } from "./mission-runtime-routes.js";
+ import { collectQueueRuntimeSnapshot } from "../queue-runtime-bridge.js";
+ import { collectMemoryRuntimeSnapshot } from "../memory-runtime-bridge.js";
+ import { collectApiRuntimeSnapshot } from "../api-runtime-bridge.js";
+@@ -34529,81 +34529,9 @@ export async function registerPillowRoutes(
+   app.post("/api/pillow/pillow-orchestration-runtime/history", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("history"));
+   app.post("/api/pillow/pillow-orchestration-runtime/q1003-contract", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("q1003-contract"));
+ 
+-  app.get("/api/pillow/mission-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+-    if (pillowHost.getStatus().lifecycle !== "running") {
+-      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
+-      return reply.send(collectMissionRuntimeSnapshot());
+-    }
+-    return reply.send({ missionRuntime: pillowHost.getMissionRuntime() });
++  await registerMissionRuntimeRoutes(app, { authenticate, pillowHost,
++    onUnavailableRead: () => { schedulePillowHostBoot(pillowHost, llmRouter, auditLogger); },
+   });
+-  const missionRuntimeAction = (
+-    method:
+-      | "connect"
+-      | "create-mission"
+-      | "queue"
+-      | "ready"
+-      | "execute"
+-      | "pause"
+-      | "resume"
+-      | "retry"
+-      | "cancel"
+-      | "recover"
+-      | "archive"
+-      | "monitor"
+-      | "produce-report"
+-      | "submit-report"
+-      | "list"
+-      | "validate"
+-      | "diagnostics"
+-      | "history"
+-      | "q1004-contract",
+-  ) =>
+-    async (request: FastifyRequest, reply: FastifyReply) => {
+-      if (pillowHost.getStatus().lifecycle !== "running") {
+-        return reply.code(503).send(collectMissionRuntimeSnapshot());
+-      }
+-      const body = (request.body ?? {}) as Record<string, unknown>;
+-      const report =
+-        method === "connect" ? pillowHost.connectMissionRuntime(body)
+-          : method === "create-mission" ? pillowHost.createMissionRuntimeMission(body)
+-            : method === "queue" ? pillowHost.queueMissionRuntime(body)
+-              : method === "ready" ? pillowHost.readyMissionRuntime(body)
+-                : method === "execute" ? pillowHost.executeMissionRuntime(body)
+-                  : method === "pause" ? pillowHost.pauseMissionRuntime(body)
+-                    : method === "resume" ? pillowHost.resumeMissionRuntime(body)
+-                      : method === "retry" ? pillowHost.retryMissionRuntime(body)
+-                        : method === "cancel" ? pillowHost.cancelMissionRuntime(body)
+-                          : method === "recover" ? pillowHost.recoverMissionRuntime(body)
+-                            : method === "archive" ? pillowHost.archiveMissionRuntime(body)
+-                              : method === "monitor" ? pillowHost.monitorMissionRuntime(body)
+-                                : method === "produce-report" ? pillowHost.produceMissionRuntimeReport(body)
+-                                  : method === "submit-report" ? pillowHost.submitMissionRuntimeReport(body)
+-                                    : method === "list" ? pillowHost.listMissionRuntime()
+-                                      : method === "validate" ? pillowHost.validateMissionRuntime(body)
+-                                        : method === "history" ? pillowHost.getMissionRuntimeHistory()
+-                                          : method === "q1004-contract" ? pillowHost.getMissionRuntimeQ1004Contract()
+-                                            : pillowHost.runMissionRuntimeDiagnostics();
+-      return reply.send({ computedAt: new Date().toISOString(), report });
+-    };
+-  app.post("/api/pillow/mission-runtime/connect", { preHandler: pillowAuth }, missionRuntimeAction("connect"));
+-  app.post("/api/pillow/mission-runtime/create-mission", { preHandler: pillowAuth }, missionRuntimeAction("create-mission"));
+-  app.post("/api/pillow/mission-runtime/queue", { preHandler: pillowAuth }, missionRuntimeAction("queue"));
+-  app.post("/api/pillow/mission-runtime/ready", { preHandler: pillowAuth }, missionRuntimeAction("ready"));
+-  app.post("/api/pillow/mission-runtime/execute", { preHandler: pillowAuth }, missionRuntimeAction("execute"));
+-  app.post("/api/pillow/mission-runtime/pause", { preHandler: pillowAuth }, missionRuntimeAction("pause"));
+-  app.post("/api/pillow/mission-runtime/resume", { preHandler: pillowAuth }, missionRuntimeAction("resume"));
+-  app.post("/api/pillow/mission-runtime/retry", { preHandler: pillowAuth }, missionRuntimeAction("retry"));
+-  app.post("/api/pillow/mission-runtime/cancel", { preHandler: pillowAuth }, missionRuntimeAction("cancel"));
+-  app.post("/api/pillow/mission-runtime/recover", { preHandler: pillowAuth }, missionRuntimeAction("recover"));
+-  app.post("/api/pillow/mission-runtime/archive", { preHandler: pillowAuth }, missionRuntimeAction("archive"));
+-  app.post("/api/pillow/mission-runtime/monitor", { preHandler: pillowAuth }, missionRuntimeAction("monitor"));
+-  app.post("/api/pillow/mission-runtime/produce-report", { preHandler: pillowAuth }, missionRuntimeAction("produce-report"));
+-  app.post("/api/pillow/mission-runtime/submit-report", { preHandler: pillowAuth }, missionRuntimeAction("submit-report"));
+-  app.post("/api/pillow/mission-runtime/list", { preHandler: pillowAuth }, missionRuntimeAction("list"));
+-  app.post("/api/pillow/mission-runtime/validate", { preHandler: pillowAuth }, missionRuntimeAction("validate"));
+-  app.post("/api/pillow/mission-runtime/diagnostics", { preHandler: pillowAuth }, missionRuntimeAction("diagnostics"));
+-  app.post("/api/pillow/mission-runtime/history", { preHandler: pillowAuth }, missionRuntimeAction("history"));
+-  app.post("/api/pillow/mission-runtime/q1004-contract", { preHandler: pillowAuth }, missionRuntimeAction("q1004-contract"));
+ 
+   app.get("/api/pillow/queue-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
+     if (pillowHost.getStatus().lifecycle !== "running") {
+diff --git a/backend/src/runtime/continuity-heartbeat.ts b/backend/src/runtime/continuity-heartbeat.ts
+new file mode 100644
+index 00000000..e5a41235
+--- /dev/null
++++ b/backend/src/runtime/continuity-heartbeat.ts
+@@ -0,0 +1,58 @@
++/** Atomic heartbeat shared between the main thread and its watchdog. */
++export const CONTINUITY_BUFFER_BYTES = 16;
++export type ContinuityHeartbeat = {
++  // Keep index 1 compatible with SQLite's existing in-flight export flag.
++  flags: Int32Array;
++  timestamp: BigInt64Array;
++};
++
++export function monotonicNowMs(): bigint {
++  return process.hrtime.bigint() / 1_000_000n;
++}
++
++export function attachContinuityHeartbeat(buffer: SharedArrayBuffer): ContinuityHeartbeat {
++  if (buffer.byteLength !== CONTINUITY_BUFFER_BYTES) throw new Error('Invalid continuity heartbeat buffer');
++  return { flags: new Int32Array(buffer, 0, 2), timestamp: new BigInt64Array(buffer, 8, 1) };
++}
++
++export function writeContinuityHeartbeat(view: ContinuityHeartbeat, now = monotonicNowMs()): void {
++  if (now < 0n || now > 0x7fffffffffffffffn) throw new Error('Invalid monotonic heartbeat');
++  Atomics.store(view.timestamp, 0, now);
++  Atomics.store(view.flags, 0, 1);
++}
++
++export type HeartbeatReading = { ageMs: number | null; error: string | null; nowMs: number };
++export function readContinuityHeartbeat(view: ContinuityHeartbeat, now?: bigint): HeartbeatReading {
++  const initialized = Atomics.load(view.flags, 0) === 1;
++  const heartbeat = Atomics.load(view.timestamp, 0);
++  // Sample AFTER loading: a concurrent fresh beat must not look like a future clock.
++  const observedNow = now ?? monotonicNowMs();
++  const nowMs = Number(observedNow);
++  if (!Number.isSafeInteger(nowMs) || observedNow < 0n) return { ageMs: null, error: 'invalid_monotonic_clock', nowMs };
++  if (!initialized) return { ageMs: null, error: 'heartbeat_missing', nowMs };
++  if (heartbeat < 0n || heartbeat > observedNow) return { ageMs: null, error: 'heartbeat_clock_invalid', nowMs };
++  return { ageMs: Number(observedNow - heartbeat), error: null, nowMs };
++}
++
++export function evaluateContinuityPoll(input: {
++  reading: HeartbeatReading; startedAtMs: number; bootGraceMs: number; stallExitMs: number;
++  flushInFlight: boolean; maxFlushGuardMs: number; invalidSinceMs: number | null;
++}): { terminate: boolean; reason: string; invalidSinceMs: number | null } {
++  const { reading } = input;
++  const invalidSinceMs = reading.error ? input.invalidSinceMs ?? reading.nowMs : null;
++  if (reading.nowMs - input.startedAtMs < input.bootGraceMs) {
++    return { terminate: false, reason: 'boot_grace', invalidSinceMs };
++  }
++  if (reading.error) {
++    // A corrupt/missing heartbeat must not bypass the existing SQLite export
++    // allowance. Its invalid-reading window is bounded by the same hard cap.
++    const invalidLimitMs = input.flushInFlight ? input.maxFlushGuardMs : input.stallExitMs;
++    return { terminate: reading.nowMs - (invalidSinceMs ?? reading.nowMs) >= invalidLimitMs,
++      reason: reading.error, invalidSinceMs };
++  }
++  if (input.flushInFlight && reading.ageMs! < input.maxFlushGuardMs) {
++    return { terminate: false, reason: 'sqlite_flush_guard', invalidSinceMs };
++  }
++  return { terminate: reading.ageMs! >= input.stallExitMs,
++    reason: reading.ageMs! >= input.stallExitMs ? 'heartbeat_stalled' : 'heartbeat_current', invalidSinceMs };
++}
+diff --git a/backend/src/runtime/executive-continuity-watchdog-worker.ts b/backend/src/runtime/executive-continuity-watchdog-worker.ts
+index cde2cc9e..be6137eb 100644
+--- a/backend/src/runtime/executive-continuity-watchdog-worker.ts
++++ b/backend/src/runtime/executive-continuity-watchdog-worker.ts
+@@ -1,11 +1,9 @@
+-/**
+- * Runs off the main thread. If the main-thread heartbeat stalls, exit the process
+- * so Railway ON_FAILURE restarts the Brain (hung event loops cannot self-heal).
+- *
+- * Boot grace: ignore stalls during Pillow cold-start so HA deploy healthchecks
+- * are not killed by legitimate long synchronous initialization.
+- */
+-import { workerData } from "node:worker_threads";
++/** Off-thread recovery of a genuinely blocked main event loop. */
++import { parentPort, workerData } from "node:worker_threads";
++import { writeSync } from "node:fs";
++import {
++  attachContinuityHeartbeat, evaluateContinuityPoll, monotonicNowMs, readContinuityHeartbeat,
++} from "./continuity-heartbeat.js";
+ 
+ type WatchdogWorkerData = {
+   sharedBuffer: SharedArrayBuffer;
+@@ -14,41 +12,36 @@ type WatchdogWorkerData = {
+   bootGraceMs?: number;
+   startedAtMs?: number;
+ };
+-
+ const data = workerData as WatchdogWorkerData;
+-const view = new Int32Array(data.sharedBuffer);
+-const stallExitMs = Math.max(5_000, Number(data.stallExitMs) || 20_000);
+-const pollMs = Math.max(500, Number(data.pollMs) || 2_000);
+-const bootGraceMs = Math.max(0, Number(data.bootGraceMs) || 0);
+-const startedAtMs = Number(data.startedAtMs) || Date.now();
++const view = attachContinuityHeartbeat(data.sharedBuffer);
++const duration = (value: unknown, fallback: number, min: number) =>
++  typeof value === "number" && Number.isFinite(value) ? Math.max(min, value) : fallback;
++const stallExitMs = duration(data.stallExitMs, 20_000, 5_000);
++const pollMs = duration(data.pollMs, 2_000, 500);
++const bootGraceMs = duration(data.bootGraceMs, 0, 0);
++const startedAtMs = duration(data.startedAtMs, Number(monotonicNowMs()), 0);
++const maxFlushGuardMs = Math.max(stallExitMs * 4, 600_000);
++let invalidSinceMs: number | null = null;
+ 
+ setInterval(() => {
+-  if (Date.now() - startedAtMs < bootGraceMs) {
+-    return;
+-  }
+-  // Index 1: sqlite flush-in-flight — sync db.export() cannot beat; do not stall-exit
+-  // unless the guard is stuck longer than a hard ceiling (export hang).
+-  const flushInFlight = Atomics.load(view, 1) === 1;
+-  const lastHeartbeatMs = Atomics.load(view, 0);
+-  if (lastHeartbeatMs <= 0) return;
+-  const stalledFor = Date.now() - lastHeartbeatMs;
+-  const maxFlushGuardMs = Math.max(stallExitMs * 4, 600_000);
+-  if (flushInFlight && stalledFor < maxFlushGuardMs) {
+-    return;
+-  }
+-  if (stalledFor >= stallExitMs) {
+-    // eslint-disable-next-line no-console
+-    console.error(
+-      JSON.stringify({
+-        level: "fatal",
+-        event: "executive_continuity_watchdog_exit",
+-        stalledForMs: stalledFor,
+-        stallExitMs,
+-        flushInFlight,
+-        message:
+-          "Main-thread heartbeat stalled — exiting for Railway restart (HA continuity)",
+-      }),
+-    );
+-    process.exit(78);
++  // Acquire the guard before the timestamp: a cleared guard must expose the
++  // completion heartbeat that SQLite published before clearing it.
++  const flushInFlight = Atomics.load(view.flags, 1) === 1;
++  const reading = readContinuityHeartbeat(view);
++  const decision = evaluateContinuityPoll({ reading, startedAtMs, bootGraceMs, stallExitMs,
++    flushInFlight, maxFlushGuardMs, invalidSinceMs });
++  invalidSinceMs = decision.invalidSinceMs;
++  if (!decision.terminate) return;
++  // Worker console output is forwarded through the main thread; write directly
++  // so a wedged main cannot hide the recovery receipt.
++  try {
++    writeSync(2, JSON.stringify({ level: "fatal", event: "executive_continuity_watchdog_exit",
++      stalledForMs: reading.ageMs, reason: decision.reason, stallExitMs, flushInFlight,
++      signal: "SIGKILL", message: "Unresponsive main process requires forced recovery; unflushed state may be lost" }) + "\n");
++  } finally {
++    // process.exit() here terminates only this worker. SIGKILL reaches the whole
++    // process even when its main-thread exit callback or signal handler cannot run.
++    process.kill(process.pid, "SIGKILL");
+   }
+ }, pollMs);
++parentPort?.postMessage({ type: "continuity_watchdog_ready" });
+diff --git a/backend/src/runtime/executive-continuity-watchdog.ts b/backend/src/runtime/executive-continuity-watchdog.ts
+index 8241044e..6597f842 100644
+--- a/backend/src/runtime/executive-continuity-watchdog.ts
++++ b/backend/src/runtime/executive-continuity-watchdog.ts
+@@ -3,10 +3,12 @@
+  *
+  * Main-thread lag monitors cannot fire while the event loop is wedged
+  * (e.g. long sql.js db.export). A Worker observes a SharedArrayBuffer heartbeat
+- * and process.exit(78) when the heartbeat stalls, triggering Railway ON_FAILURE restart.
++ * and forces process termination only after a bounded confirmed stall. Recovery
++ * uses a process-wide signal because a wedged main cannot run worker exit callbacks.
+  */
+ import { Worker } from "node:worker_threads";
+ import { fileURLToPath } from "node:url";
++import { CONTINUITY_BUFFER_BYTES, attachContinuityHeartbeat, monotonicNowMs, readContinuityHeartbeat, writeContinuityHeartbeat, type ContinuityHeartbeat } from "./continuity-heartbeat.js";
+ import { logger } from "../config/logger.js";
+ import { getRecentEventLoopLagMs } from "./event-loop-cooperative.js";
+ import { bindSqliteFlushGuard, getSqlitePersistStats } from "../brain/sqlite-database.js";
+@@ -57,14 +59,16 @@ type ContinuityHealth = {
+ 
+ let started = false;
+ let worker: Worker | null = null;
+-let heartbeatView: Int32Array | null = null;
++let heartbeatView: ContinuityHeartbeat | null = null;
++let workerReady = false;
++let workerFailure: string | null = null;
+ let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
+ let highLagSinceMs: number | null = null;
+ let lastAlertAtMs = 0;
+-let startedAtMs = 0;
++let startedAtMs: number | null = null;
+ 
+ function inBootGrace(): boolean {
+-  return startedAtMs > 0 && Date.now() - startedAtMs < BOOT_GRACE_MS;
++  return startedAtMs !== null && Number(monotonicNowMs()) - startedAtMs < BOOT_GRACE_MS;
+ }
+ 
+ function workerPath(): string {
+@@ -73,7 +77,7 @@ function workerPath(): string {
+ 
+ function beat(): void {
+   if (!heartbeatView) return;
+-  Atomics.store(heartbeatView, 0, Date.now());
++  writeContinuityHeartbeat(heartbeatView);
+ }
+ 
+ let flushGuardSinceMs: number | null = null;
+@@ -96,7 +100,7 @@ function evaluateHighLagExit(): void {
+     lastObservedFlushCount = sqlite.flushCount;
+     const flushDur = sqlite.lastFlushDurationMs ?? 0;
+     const cooldown = Math.max(POST_FLUSH_COOLDOWN_MS, flushDur * 3);
+-    postFlushCooldownUntilMs = Date.now() + cooldown;
++    postFlushCooldownUntilMs = Number(monotonicNowMs()) + cooldown;
+     highLagSinceMs = null;
+     logger.info(
+       { flushCount: sqlite.flushCount, flushDurMs: flushDur, cooldownMs: cooldown },
+@@ -107,8 +111,8 @@ function evaluateHighLagExit(): void {
+   // pending=true (dirty, waiting for first-flush delay) must NOT disable HA recovery.
+   // A stuck flushInFlight must not permanently disable HA (auth would stay dead).
+   if (sqlite.flushInFlight) {
+-    if (flushGuardSinceMs === null) flushGuardSinceMs = Date.now();
+-    const guardedFor = Date.now() - flushGuardSinceMs;
++    if (flushGuardSinceMs === null) flushGuardSinceMs = Number(monotonicNowMs());
++    const guardedFor = Number(monotonicNowMs()) - flushGuardSinceMs;
+     if (guardedFor < MAX_FLUSH_GUARD_MS) {
+       highLagSinceMs = null;
+       return;
+@@ -121,18 +125,18 @@ function evaluateHighLagExit(): void {
+   } else {
+     flushGuardSinceMs = null;
+   }
+-  if (Date.now() < postFlushCooldownUntilMs) {
++  if (Number(monotonicNowMs()) < postFlushCooldownUntilMs) {
+     highLagSinceMs = null;
+     return;
+   }
+   const lag = getRecentEventLoopLagMs();
+   if (lag >= HIGH_LAG_ALERT_MS) {
+-    if (Date.now() - lastAlertAtMs > 10_000) {
+-      lastAlertAtMs = Date.now();
++    if (Number(monotonicNowMs()) - lastAlertAtMs > 10_000) {
++      lastAlertAtMs = Number(monotonicNowMs());
+       logger.warn(
+         {
+           lagMs: Math.round(lag),
+-          sustainedMs: highLagSinceMs === null ? 0 : Date.now() - highLagSinceMs,
++          sustainedMs: highLagSinceMs === null ? 0 : Number(monotonicNowMs()) - highLagSinceMs,
+           exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
+           sqlite,
+         },
+@@ -142,8 +146,8 @@ function evaluateHighLagExit(): void {
+   }
+   // Exit path uses a higher threshold than alerts so mild residual lag cannot kill auth.
+   if (lag >= HIGH_LAG_EXIT_THRESHOLD_MS) {
+-    if (highLagSinceMs === null) highLagSinceMs = Date.now();
+-    const sustained = Date.now() - highLagSinceMs;
++    if (highLagSinceMs === null) highLagSinceMs = Number(monotonicNowMs());
++    const sustained = Number(monotonicNowMs()) - highLagSinceMs;
+     if (sustained >= HIGH_LAG_EXIT_MS) {
+       logger.error(
+         {
+@@ -160,20 +164,21 @@ function evaluateHighLagExit(): void {
+   }
+ }
+ 
+-export function startExecutiveContinuityWatchdog(): void {
++export function startExecutiveContinuityWatchdog(options: { workerFile?: string } = {}): void {
+   if (!ENABLED || started) return;
+   started = true;
+-  startedAtMs = Date.now();
++  startedAtMs = Number(monotonicNowMs());
+ 
+-  // [0]=heartbeat ms, [1]=sqlite flush-in-flight guard (1=ignore stall)
+-  const sharedBuffer = new SharedArrayBuffer(8);
+-  heartbeatView = new Int32Array(sharedBuffer);
+-  Atomics.store(heartbeatView, 1, 0);
+-  bindSqliteFlushGuard(heartbeatView);
++  // Header Int32[1] stays SQLite-compatible; timestamp is a disjoint atomic Int64.
++  const sharedBuffer = new SharedArrayBuffer(CONTINUITY_BUFFER_BYTES);
++  heartbeatView = attachContinuityHeartbeat(sharedBuffer);
++  workerReady = false;
++  workerFailure = null;
++  bindSqliteFlushGuard(heartbeatView.flags, beat);
+   beat();
+ 
+   try {
+-    worker = new Worker(workerPath(), {
++    const currentWorker = new Worker(options.workerFile ?? workerPath(), {
+       workerData: {
+         sharedBuffer,
+         stallExitMs: STALL_EXIT_MS,
+@@ -182,18 +187,27 @@ export function startExecutiveContinuityWatchdog(): void {
+         startedAtMs,
+       },
+     });
+-    worker.on("error", (error) => {
++    worker = currentWorker;
++    currentWorker.on("message", (message) => {
++      if (worker !== currentWorker) return;
++      if (message?.type === "continuity_watchdog_ready") workerReady = true;
++    });
++    currentWorker.on("error", (error) => {
++      if (worker !== currentWorker) return;
++      workerReady = false;
++      workerFailure = "watchdog_worker_error";
+       logger.error({ err: error }, "Executive continuity watchdog worker error");
+     });
+-    worker.on("exit", (code) => {
+-      if (code === 78) {
+-        // Worker already exited the process; this is belt-and-suspenders.
+-        process.exit(78);
+-      }
++    currentWorker.on("exit", (code) => {
++      if (worker !== currentWorker) return;
++      workerReady = false;
++      workerFailure = `watchdog_worker_exit_${code}`;
+       logger.warn({ code }, "Executive continuity watchdog worker exited");
+       worker = null;
+     });
+   } catch (error) {
++    workerReady = false;
++    workerFailure = "watchdog_worker_start_failed";
+     logger.error({ err: error }, "Failed to start executive continuity watchdog worker");
+   }
+ 
+@@ -221,25 +235,33 @@ export function stopExecutiveContinuityWatchdogForTesting(): void {
+     clearInterval(heartbeatTimer);
+     heartbeatTimer = null;
+   }
+-  if (worker) {
+-    void worker.terminate();
+-    worker = null;
+-  }
++  const stoppingWorker = worker;
++  worker = null;
++  workerReady = false;
++  workerFailure = null;
++  if (stoppingWorker) void stoppingWorker.terminate();
++  bindSqliteFlushGuard(null);
+   heartbeatView = null;
+   started = false;
+   highLagSinceMs = null;
+-  startedAtMs = 0;
++  startedAtMs = null;
++  lastAlertAtMs = 0;
+   flushGuardSinceMs = null;
+   lastObservedFlushCount = 0;
+   postFlushCooldownUntilMs = 0;
+ }
+ 
+ export function getExecutiveContinuityHealth(): ContinuityHealth {
+-  const last = heartbeatView ? Atomics.load(heartbeatView, 0) : 0;
+-  const age = last > 0 ? Date.now() - last : null;
++  const reading = heartbeatView ? readContinuityHeartbeat(heartbeatView) : null;
++  const age = reading?.ageMs ?? null;
++  const running = Boolean(worker) && workerReady && Boolean(heartbeatTimer);
+   const lag = getRecentEventLoopLagMs();
+   const sqlite = getSqlitePersistStats();
+   const alerts: string[] = [];
++  if (!ENABLED) alerts.push("watchdog_disabled");
++  else if (!running) alerts.push(workerFailure ?? "watchdog_not_running");
++  if (ENABLED && reading?.error) alerts.push(reading.error);
++  if (ENABLED && !reading) alerts.push("heartbeat_missing");
+   if (lag >= HIGH_LAG_ALERT_MS) {
+     alerts.push(`event_loop_lag_ms=${Math.round(lag)}`);
+   }
+@@ -253,7 +275,7 @@ export function getExecutiveContinuityHealth(): ContinuityHealth {
+ 
+   return {
+     watchdogEnabled: ENABLED,
+-    watchdogRunning: Boolean(worker) || Boolean(heartbeatTimer),
++    watchdogRunning: running,
+     lastHeartbeatAgeMs: age,
+     eventLoopLagMs: lag,
+     sqlite,
+diff --git a/backend/src/runtime/pillow-durable-reasoning-worker.ts b/backend/src/runtime/pillow-durable-reasoning-worker.ts
+index fd9e2f97..ef58cf96 100644
+--- a/backend/src/runtime/pillow-durable-reasoning-worker.ts
++++ b/backend/src/runtime/pillow-durable-reasoning-worker.ts
+@@ -47,6 +47,13 @@ export async function executeReasoningProxy(
+     const result = body.result && typeof body.result === "object"
+       ? body.result as Record<string, unknown> : body;
+     const message = typeof result.message === "string" ? result.message.trim() : "";
++    const reasoningFailure = result.reasoningFailure as { code?: unknown; retryable?: unknown } | undefined;
++    // A known missing provider cannot recover by retrying the same frozen configuration.
++    // This remains a failure: degraded prose is never promoted to a completed answer.
++    if (result.kind === "degraded_useful" && result.degradedUsed === true &&
++      reasoningFailure?.code === "NO_LLM_PROVIDER" && reasoningFailure.retryable === false) {
++      return { ok: false, failureClass: "BRAIN_FATAL", error: "no_llm_provider" };
++    }
+     // A receipt or infrastructure fallback is not a completed executive answer.
+     const constitutionalGate = result.constitutionalGate as { allowed?: boolean } | undefined;
+     const responseContract = result.responseContract as { code?: string } | undefined;
+diff --git a/backend/src/runtime/tier0-isolated-primary.ts b/backend/src/runtime/tier0-isolated-primary.ts
+index 2b12c9a9..38e44b56 100644
+--- a/backend/src/runtime/tier0-isolated-primary.ts
++++ b/backend/src/runtime/tier0-isolated-primary.ts
+@@ -37,10 +37,8 @@ import { resolvePlatformIdentity } from "../auth/platform-identity.js";
+ import { createAuthMiddleware } from "../auth/middleware.js";
+ import { requireSafeBootstrapCredentials, UnsafeBootstrapCredentialsError } from "../auth/bootstrap-credential-policy.js";
+ import { recordTier0Request } from "./tier0-control-plane.js";
+-import {
+-  extractChatMessagePreview,
+-  type PillowProxyAttemptResult,
+-} from "./pillow-accepted-request-recovery.js";
++import type { PillowProxyAttemptResult } from "./pillow-accepted-request-recovery.js";
++import { forwardWorkerHttpRequest, sendWorkerHttpResponse, workerRequestHeaders } from "./worker-http-proxy.js";
+ import {
+   listDeliveryForensics,
+   searchDeliveryForensics,
+@@ -703,12 +701,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
+       return reply.code(503).send(TIER0_PILLOW_STREAM_DURABILITY_REQUIRED);
+     }
+ 
+-    const headers: Record<string, string> = {};
+-    for (const [k, v] of Object.entries(request.headers)) {
+-      if (v == null) continue;
+-      if (k === "host" || k === "connection" || k === "content-length") continue;
+-      headers[k] = Array.isArray(v) ? v.join(",") : String(v);
+-    }
++    const headers = workerRequestHeaders(request.headers);
+ 
+     const rawBody =
+       request.method !== "GET" && request.method !== "HEAD" && request.body != null
+@@ -728,74 +721,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
+       return worker.ok;
+     }
+ 
+-    async function forwardOnce(
+-      timeoutMs: number,
+-      bodyOverride?: string | Buffer,
+-      onForwardStart?: () => void | Promise<void>,
+-    ): Promise<PillowProxyAttemptResult> {
+-      const target = `http://127.0.0.1:${workerState.port}${request.url}`;
+-      const bodyForProxy = bodyOverride !== undefined ? bodyOverride : rawBody;
+-      try {
+-        const init: RequestInit = {
+-          method: request.method,
+-          headers: { ...headers },
+-          signal: AbortSignal.timeout(timeoutMs),
+-        };
+-        if (bodyForProxy !== undefined) init.body = bodyForProxy;
+-        await onForwardStart?.();
+-        const upstream = await fetch(target, init);
+-        const buf = Buffer.from(await upstream.arrayBuffer());
+-        const messagePreview = extractChatMessagePreview(buf);
+-        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
+-        if (!upstreamOk) {
+-          return {
+-            ok: false,
+-            reason: "upstream_error",
+-            status: upstream.status,
+-          };
+-        }
+-        if (isPillowChat && messagePreview.length === 0) {
+-          return { ok: false, reason: "empty_message", status: upstream.status };
+-        }
+-        return {
+-          ok: true,
+-          status: upstream.status,
+-          body: buf,
+-          headers: upstream.headers,
+-          messagePreview,
+-        };
+-      } catch (error) {
+-        if (error instanceof PillowDurableStoreUnavailableError) throw error;
+-        const timedOut = error instanceof Error && error.name === "TimeoutError";
+-        return {
+-          ok: false,
+-          reason: timedOut ? "timeout" : "network",
+-          error,
+-        };
+-      }
+-    }
+-
+-    async function proxyOnce(
+-      timeoutMs: number,
+-      bodyOverride?: string | Buffer,
+-    ): Promise<PillowProxyAttemptResult> {
+-      return runSingleWorkerProxyAttempt(
+-        () => probeWorkerOk(Math.min(2_000, timeoutMs)),
+-        () => forwardOnce(timeoutMs, bodyOverride),
+-      );
+-    }
+-
+     if (isPillowChat) {
+       return handleDurablePillowChat(request, reply, { authenticate, probeSharedSessionStore });
+     }
+ 
+-    const once = await proxyOnce(120_000);
++    const once = await runSingleWorkerProxyAttempt(
++      () => probeWorkerOk(2_000),
++      () => forwardWorkerHttpRequest({
++        target: `http://127.0.0.1:${workerState.port}${request.url}`,
++        method: request.method,
++        headers,
++        body: rawBody,
++        timeoutMs: 120_000,
++      }),
++    );
+     if (once.ok) {
+-      const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
+-      once.headers.forEach((value, key) => {
+-        if (!skip.has(key.toLowerCase())) reply.header(key, value);
+-      });
+-      return reply.code(once.status).send(once.body);
++      return sendWorkerHttpResponse(reply, once);
+     }
+     logger.warn({ reason: once.reason, url: request.url }, "Tier-0 primary proxy to worker failed");
+     return reply.code(503).send(buildTier0ProxyFailure(once.reason));
+diff --git a/backend/src/runtime/worker-http-proxy.ts b/backend/src/runtime/worker-http-proxy.ts
+new file mode 100644
+index 00000000..8e201c21
+--- /dev/null
++++ b/backend/src/runtime/worker-http-proxy.ts
+@@ -0,0 +1,71 @@
++import type { FastifyReply } from "fastify";
++import {
++  extractChatMessagePreview,
++  type PillowProxyAttemptResult,
++} from "./pillow-accepted-request-recovery.js";
++
++const HOP_BY_HOP = [
++  "connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
++  "te", "trailer", "transfer-encoding", "upgrade",
++];
++
++function hopByHopHeaders(connection: string | null): Set<string> {
++  return new Set([...HOP_BY_HOP, ...(connection ?? "").split(",").map((name) => name.trim().toLowerCase())]);
++}
++
++export function workerRequestHeaders(incoming: Record<string, string | string[] | undefined>): Record<string, string> {
++  const connection = incoming.connection;
++  const skip = hopByHopHeaders(Array.isArray(connection) ? connection.join(",") : connection ?? null);
++  skip.add("host");
++  skip.add("content-length");
++  const headers: Record<string, string> = {};
++  for (const [key, value] of Object.entries(incoming)) {
++    if (value === undefined || skip.has(key.toLowerCase())) continue;
++    headers[key] = Array.isArray(value) ? value.join(key.toLowerCase() === "cookie" ? "; " : ",") : value;
++  }
++  return headers;
++}
++
++/** `ok` means an HTTP response was received, not that the application accepted the request. */
++export async function forwardWorkerHttpRequest(options: {
++  target: string;
++  method: string;
++  headers: Record<string, string>;
++  body?: string | Buffer;
++  timeoutMs: number;
++}): Promise<PillowProxyAttemptResult> {
++  try {
++    const upstream = await fetch(options.target, {
++      method: options.method,
++      headers: options.headers,
++      body: options.body,
++      signal: AbortSignal.timeout(options.timeoutMs),
++      // Relay redirects to the caller; never follow a worker redirect with owner credentials.
++      redirect: "manual",
++    });
++    const body = Buffer.from(await upstream.arrayBuffer());
++    return {
++      ok: true,
++      status: upstream.status,
++      body,
++      headers: upstream.headers,
++      messagePreview: extractChatMessagePreview(body),
++    };
++  } catch (error) {
++    return { ok: false, reason: error instanceof Error && error.name === "TimeoutError" ? "timeout" : "network", error };
++  }
++}
++
++export function sendWorkerHttpResponse(reply: FastifyReply, response: Extract<PillowProxyAttemptResult, { ok: true }>): FastifyReply {
++  const skip = hopByHopHeaders(response.headers.get("connection"));
++  // Fetch decompresses the body; Fastify must generate the new wire length.
++  skip.add("content-encoding");
++  skip.add("content-length");
++  skip.add("set-cookie");
++  response.headers.forEach((value, key) => {
++    if (!skip.has(key.toLowerCase())) reply.header(key, value);
++  });
++  const cookies = response.headers.getSetCookie();
++  if (cookies.length > 0) reply.header("set-cookie", cookies);
++  return reply.code(response.status).send(response.body);
++}
+diff --git a/backend/src/validation/tests/continuity-heartbeat-clock.test.ts b/backend/src/validation/tests/continuity-heartbeat-clock.test.ts
+new file mode 100644
+index 00000000..b32238ef
+--- /dev/null
++++ b/backend/src/validation/tests/continuity-heartbeat-clock.test.ts
+@@ -0,0 +1,260 @@
++import assert from "node:assert/strict";
++import { after, afterEach, before, describe, test } from "node:test";
++import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
++import { tmpdir } from "node:os";
++import path from "node:path";
++import { spawn } from "node:child_process";
++import { Worker } from "node:worker_threads";
++import ts from "typescript";
++import { bindSqliteFlushGuard, EmpireDatabase, sqlJsEngine } from "../../brain/sqlite-database.js";
++import {
++  CONTINUITY_BUFFER_BYTES, attachContinuityHeartbeat, evaluateContinuityPoll,
++  monotonicNowMs, readContinuityHeartbeat, writeContinuityHeartbeat,
++} from "../../runtime/continuity-heartbeat.js";
++import {
++  getExecutiveContinuityHealth, startExecutiveContinuityWatchdog,
++  stopExecutiveContinuityWatchdogForTesting,
++} from "../../runtime/executive-continuity-watchdog.js";
++
++let fixtureDir: string;
++let workerFile: string;
++const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
++const fresh = () => attachContinuityHeartbeat(new SharedArrayBuffer(CONTINUITY_BUFFER_BYTES));
++function poll(ageMs: number | null, extra: Partial<Parameters<typeof evaluateContinuityPoll>[0]> = {}) {
++  return evaluateContinuityPoll({
++    reading: { ageMs, error: ageMs === null ? "heartbeat_missing" : null, nowMs: 1_000_000 },
++    startedAtMs: 0, bootGraceMs: 180_000, stallExitMs: 45_000,
++    flushInFlight: false, maxFlushGuardMs: 600_000, invalidSinceMs: null, ...extra,
++  });
++}
++
++before(() => {
++  // Compile the real two-file worker, not a replacement that mirrors its behavior.
++  fixtureDir = mkdtempSync(path.join(tmpdir(), "empire-watchdog-held-"));
++  writeFileSync(path.join(fixtureDir, "package.json"), '{"type":"module"}');
++  for (const name of ["continuity-heartbeat", "executive-continuity-watchdog-worker"]) {
++    const source = readFileSync(new URL(`../../runtime/${name}.ts`, import.meta.url), "utf8");
++    const output = ts.transpileModule(source, {
++      compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
++    }).outputText;
++    writeFileSync(path.join(fixtureDir, `${name}.js`), output);
++  }
++  workerFile = path.join(fixtureDir, "executive-continuity-watchdog-worker.js");
++});
++afterEach(() => stopExecutiveContinuityWatchdogForTesting());
++after(() => rmSync(fixtureDir, { recursive: true, force: true }));
++
++describe("continuity heartbeat clock and real off-thread recovery", () => {
++  test("preserves the failed epoch and both signed 32-bit wrap boundaries", () => {
++    const failedEpoch = Date.parse("2026-09-20T23:57:31Z");
++    const legacy = new Int32Array(new SharedArrayBuffer(8));
++    Atomics.store(legacy, 0, failedEpoch);
++    assert.equal(Atomics.load(legacy, 0), -1052711432);
++    for (const tick of [0, 2147483647, 2147483648, 4294967295, 4294967296, failedEpoch]) {
++      const view = fresh();
++      writeContinuityHeartbeat(view, BigInt(tick));
++      assert.equal(Atomics.load(view.timestamp, 0), BigInt(tick));
++      assert.deepEqual(readContinuityHeartbeat(view, BigInt(tick) + 17n), {
++        ageMs: 17, error: null, nowMs: tick + 17,
++      });
++    }
++  });
++
++  test("keeps the SQLite in-flight flag separate from the atomic timestamp", () => {
++    const view = fresh();
++    Atomics.store(view.flags, 1, 1);
++    writeContinuityHeartbeat(view, 1789948651000n);
++    assert.equal(Atomics.load(view.flags, 1), 1);
++    Atomics.store(view.flags, 1, 0);
++    assert.equal(Atomics.load(view.timestamp, 0), 1789948651000n);
++    assert.equal(Atomics.load(view.flags, 0), 1);
++  });
++
++  test("does not turn missing, negative, future, or unsafe clocks into healthy ages", () => {
++    const view = fresh();
++    assert.equal(readContinuityHeartbeat(view, 10n).error, "heartbeat_missing");
++    writeContinuityHeartbeat(view, 0n);
++    assert.equal(readContinuityHeartbeat(view, 0n).ageMs, 0);
++    Atomics.store(view.timestamp, 0, -1n);
++    assert.equal(readContinuityHeartbeat(view, 10n).error, "heartbeat_clock_invalid");
++    Atomics.store(view.timestamp, 0, 11n);
++    assert.equal(readContinuityHeartbeat(view, 10n).error, "heartbeat_clock_invalid");
++    assert.equal(readContinuityHeartbeat(view, 9007199254740992n).error, "invalid_monotonic_clock");
++    assert.throws(() => writeContinuityHeartbeat(view, -1n), /Invalid monotonic heartbeat/);
++    assert.throws(() => attachContinuityHeartbeat(new SharedArrayBuffer(8)), /Invalid continuity/);
++  });
++
++  test("wall-clock rollback and forward jumps do not alter heartbeat age", (t) => {
++    let wallClock = 0;
++    t.mock.method(Date, "now", () => wallClock);
++    const view = fresh();
++    writeContinuityHeartbeat(view);
++    wallClock = 9_000_000_000_000;
++    const forward = readContinuityHeartbeat(view);
++    wallClock = -9_000_000_000_000;
++    const backward = readContinuityHeartbeat(view);
++    assert.equal(forward.error, null);
++    assert.equal(backward.error, null);
++    assert.ok(forward.ageMs! >= 0 && forward.ageMs! < 1_000);
++    assert.ok(backward.ageMs! >= forward.ageMs! && backward.ageMs! < 1_000);
++  });
++
++  test("preserves exact stall, cold-start, and SQLite flush hard-cap boundaries", () => {
++    assert.equal(poll(44_999).terminate, false);
++    assert.equal(poll(45_000).terminate, true);
++    assert.equal(poll(200_000, { startedAtMs: 820_001 }).reason, "boot_grace");
++    assert.equal(poll(200_000, { startedAtMs: 820_000 }).terminate, true);
++    assert.equal(poll(599_999, { flushInFlight: true }).reason, "sqlite_flush_guard");
++    assert.equal(poll(600_000, { flushInFlight: true }).terminate, true);
++  });
++
++  test("allows a bounded invalid-reading recovery window and resets it after a valid beat", () => {
++    const first = poll(null);
++    assert.equal(first.terminate, false);
++    assert.equal(first.invalidSinceMs, 1_000_000);
++    assert.equal(poll(null, { invalidSinceMs: 955_000 }).terminate, true);
++    assert.equal(poll(null, { invalidSinceMs: 955_000, flushInFlight: true }).terminate, false);
++    assert.equal(poll(null, { invalidSinceMs: 400_001, flushInFlight: true }).terminate, false);
++    assert.equal(poll(null, { invalidSinceMs: 400_000, flushInFlight: true }).terminate, true);
++    assert.equal(poll(5, { invalidSinceMs: 955_000 }).invalidSinceMs, null);
++  });
++
++  for (const shutdown of [false, true]) {
++    test(`${shutdown ? "shutdown" : "async"} SQLite export publishes liveness before releasing its guard`, async (t) => {
++      const view = fresh();
++      writeContinuityHeartbeat(view);
++      const db = new EmpireDatabase(path.join(fixtureDir, `flush-handoff-${shutdown}.db`));
++      db.exec("CREATE TABLE proof (id INTEGER PRIMARY KEY)");
++      db.exec("INSERT INTO proof VALUES (1)");
++      let completionCount = 0;
++      bindSqliteFlushGuard(view.flags, () => {
++        assert.equal(Atomics.load(view.flags, 1), 1, "guard must still be held at completion handoff");
++        writeContinuityHeartbeat(view);
++        completionCount++;
++      });
++      const originalExport = sqlJsEngine.Database.prototype.export;
++      const exportMock = t.mock.method(sqlJsEngine.Database.prototype, "export", function (this: InstanceType<typeof sqlJsEngine.Database>) {
++        assert.equal(Atomics.load(view.flags, 1), 1);
++        // Hold the exact post-export state of a long export without waiting 45s.
++        writeContinuityHeartbeat(view, monotonicNowMs() - 50_000n);
++        return originalExport.call(this);
++      });
++      try {
++        if (shutdown) db.close();
++        else await db.requestCriticalPersist();
++        assert.equal(completionCount, 1);
++        const flushInFlight = Atomics.load(view.flags, 1) === 1;
++        const reading = readContinuityHeartbeat(view);
++        assert.equal(flushInFlight, false);
++        assert.ok(reading.ageMs !== null && reading.ageMs < 5_000);
++        assert.equal(evaluateContinuityPoll({ reading, startedAtMs: 0, bootGraceMs: 0,
++          stallExitMs: 45_000, flushInFlight, maxFlushGuardMs: 600_000, invalidSinceMs: null }).terminate, false);
++        const disk = new sqlJsEngine.Database(readFileSync(path.join(fixtureDir, `flush-handoff-${shutdown}.db`)));
++        try { assert.deepEqual(disk.exec("SELECT id FROM proof")[0]?.values, [[1]]); }
++        finally { disk.close(); }
++      } finally {
++        exportMock.mock.restore();
++        bindSqliteFlushGuard(null);
++        db.close();
++      }
++    });
++  }
++
++  test("a failed worker remains unhealthy even while the main heartbeat timer still runs", async () => {
++    assert.equal(getExecutiveContinuityHealth().healthy, false);
++    const brokenWorker = path.join(fixtureDir, "broken-worker.js");
++    writeFileSync(brokenWorker, 'throw new Error("held fixture worker failure");');
++    startExecutiveContinuityWatchdog({ workerFile: brokenWorker });
++    for (let i = 0; i < 150; i++) {
++      if (getExecutiveContinuityHealth().alerts.some((v) => /watchdog_worker_(error|exit)/.test(v))) break;
++      await delay(20);
++    }
++    const health = getExecutiveContinuityHealth();
++    assert.equal(health.watchdogRunning, false);
++    assert.equal(health.healthy, false);
++    assert.ok(health.alerts.some((v) => /watchdog_worker_(error|exit)/.test(v)));
++    assert.ok(health.lastHeartbeatAgeMs !== null && health.lastHeartbeatAgeMs < 5_000);
++  });
++
++  test("requires a ready handshake and survives old-worker exit callbacks after reset", async () => {
++    startExecutiveContinuityWatchdog({ workerFile });
++    assert.equal(getExecutiveContinuityHealth().watchdogRunning, false);
++    stopExecutiveContinuityWatchdogForTesting();
++    startExecutiveContinuityWatchdog({ workerFile });
++    for (let i = 0; i < 150 && !getExecutiveContinuityHealth().watchdogRunning; i++) await delay(20);
++    await delay(50);
++    const health = getExecutiveContinuityHealth();
++    assert.equal(health.watchdogRunning, true);
++    assert.equal(health.healthy, true);
++    assert.ok(health.lastHeartbeatAgeMs !== null && health.lastHeartbeatAgeMs < 5_000);
++    stopExecutiveContinuityWatchdogForTesting();
++    assert.equal(getExecutiveContinuityHealth().watchdogRunning, false);
++    assert.equal(getExecutiveContinuityHealth().lastHeartbeatAgeMs, null);
++    assert.equal(getExecutiveContinuityHealth().healthy, false);
++  });
++
++  test("the actual worker leaves a current monotonic heartbeat alive", async () => {
++    const sharedBuffer = new SharedArrayBuffer(CONTINUITY_BUFFER_BYTES);
++    const view = attachContinuityHeartbeat(sharedBuffer);
++    writeContinuityHeartbeat(view);
++    const actualWorker = new Worker(workerFile, { workerData: {
++      sharedBuffer, stallExitMs: 60_000, pollMs: 500, bootGraceMs: 0, startedAtMs: Number(monotonicNowMs()),
++    } });
++    try {
++      await new Promise<void>((resolve, reject) => {
++        actualWorker.once("message", (message) => {
++          assert.equal(message.type, "continuity_watchdog_ready"); resolve();
++        });
++        actualWorker.once("error", reject);
++      });
++      await delay(550);
++      assert.ok(actualWorker.threadId > 0);
++      assert.equal(readContinuityHeartbeat(view).error, null);
++    } finally { await actualWorker.terminate(); }
++  });
++
++  test("the actual worker terminates an isolated process whose main thread cannot run callbacks", { timeout: 12_000 }, async () => {
++    const blockedMain = path.join(fixtureDir, "blocked-main.js");
++    writeFileSync(blockedMain, `
++      import { Worker } from 'node:worker_threads';
++      import { writeSync } from 'node:fs';
++      import { CONTINUITY_BUFFER_BYTES, attachContinuityHeartbeat, monotonicNowMs, writeContinuityHeartbeat } from './continuity-heartbeat.js';
++      const sharedBuffer = new SharedArrayBuffer(CONTINUITY_BUFFER_BYTES);
++      const view = attachContinuityHeartbeat(sharedBuffer);
++      writeContinuityHeartbeat(view);
++      const worker = new Worker(new URL('./executive-continuity-watchdog-worker.js', import.meta.url), {
++        workerData: { sharedBuffer, stallExitMs: 5000, pollMs: 500, bootGraceMs: 0, startedAtMs: Number(monotonicNowMs()) }
++      });
++      worker.once('message', () => {
++        writeContinuityHeartbeat(view);
++        writeSync(1, 'BLOCKING_MAIN\\n');
++        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 30000);
++      });
++      worker.on('exit', () => { writeSync(1, 'MAIN_CALLBACK_RAN\\n'); process.exit(99); });
++    `);
++    const startedAt = performance.now();
++    const child = spawn(process.execPath, [blockedMain], { stdio: ["ignore", "pipe", "pipe"] });
++    let stdout = "";
++    let stderr = "";
++    child.stdout.on("data", (chunk) => { stdout += String(chunk); });
++    child.stderr.on("data", (chunk) => { stderr += String(chunk); });
++    const safety = setTimeout(() => child.kill("SIGKILL"), 10_000);
++    try {
++      const result = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>((resolve, reject) => {
++        child.once("error", reject);
++        child.once("close", (code, signal) => resolve({ code, signal }));
++      });
++      assert.deepEqual(result, { code: null, signal: "SIGKILL" });
++      assert.match(stdout, /BLOCKING_MAIN/);
++      assert.doesNotMatch(stdout, /MAIN_CALLBACK_RAN/);
++      const receipt = stderr.split("\n").filter(Boolean).map((line) => JSON.parse(line))
++        .find((row) => row.event === "executive_continuity_watchdog_exit");
++      assert.equal(receipt.reason, "heartbeat_stalled");
++      assert.ok(receipt.stalledForMs >= 5_000 && receipt.stalledForMs < 8_000);
++      assert.ok(performance.now() - startedAt < 9_000, "must recover before the test safety timer");
++    } finally {
++      clearTimeout(safety);
++      if (child.exitCode === null && child.signalCode === null) child.kill("SIGKILL");
++    }
++  });
++});
+diff --git a/backend/src/validation/tests/exec-cap-authority-compact.lock.test.ts b/backend/src/validation/tests/exec-cap-authority-compact.lock.test.ts
+index 81dbed63..68ec2b2a 100644
+--- a/backend/src/validation/tests/exec-cap-authority-compact.lock.test.ts
++++ b/backend/src/validation/tests/exec-cap-authority-compact.lock.test.ts
+@@ -37,6 +37,36 @@ describe("exec-cap authority + compact candidate binding", () => {
+     assert.match(f.message, /SYNTHETIC/);
+   });
+ 
++  it("answers the failed canary authority ask and unfamiliar permission paraphrases from locked state", () => {
++    const prompts = [
++      "What is your current authority? Do not execute tools, commerce or spending. This is a bounded engineering transport test.",
++      "Pillow, what permissions do you currently have?",
++      "What are you authorized to do right now?",
++      "Please tell me your current permissions.",
++      "Explain your authority now.",
++    ];
++    for (const prompt of prompts) {
++      assert.equal(isOperatingAuthorityFactAsk(prompt), true, prompt);
++      const result = projectOperatingAuthorityFacts(prompt);
++      assert.equal(result.kind, "authority_facts");
++      assert.match(result.message, /Birth status: NOT_BORN/);
++      assert.match(result.message, /Operating mode: SYNTHETIC/);
++      assert.match(result.message, /Real commerce authorized: no \(unauthorized\)/);
++    }
++  });
++
++  it("does not replace strategy, third-party permissions or additional tasks with authority facts", () => {
++    for (const prompt of [
++      "Explain how delegated authority should work in my business.",
++      "What is Amazon's current authority over returns?",
++      "What permissions does the supplier have?",
++      "What is your current authority? Also rank these products by margin.",
++      "Tell me your current permissions and calculate landed cost.",
++      "What is your current authority? Checkpoint token 123.",
++      "What is your current authority? Total synthetic contribution: US$50.",
++    ]) assert.equal(isOperatingAuthorityFactAsk(prompt), false, prompt);
++  });
++
+   it("does not hijack Eligible/Selected into checkpoint contracts", () => {
+     const p = projectExactLineResponseContract(
+       "Exactly 2 lines Eligible candidates / Candidate selected. Cedar contribution US$12 stock 1100 delivery 5d approval granted.",
+diff --git a/backend/src/validation/tests/executive-continuity-watchdog.test.ts b/backend/src/validation/tests/executive-continuity-watchdog.test.ts
+index b5c360c3..0ddda2c3 100644
+--- a/backend/src/validation/tests/executive-continuity-watchdog.test.ts
++++ b/backend/src/validation/tests/executive-continuity-watchdog.test.ts
+@@ -1,5 +1,9 @@
+ import assert from "node:assert/strict";
+-import { describe, test, after } from "node:test";
++import { describe, test, before, after } from "node:test";
++import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
++import { tmpdir } from "node:os";
++import path from "node:path";
++import ts from "typescript";
+ import {
+   clearEventLoopLagAfterKnownBlock,
+   getRecentEventLoopLagMs,
+@@ -11,19 +15,34 @@ import {
+ } from "../../runtime/executive-continuity-watchdog.js";
+ 
+ describe("Executive Continuity Watchdog", () => {
++  let fixtureDir: string;
++  before(() => {
++    fixtureDir = mkdtempSync(path.join(tmpdir(), "empire-continuity-health-"));
++    writeFileSync(path.join(fixtureDir, "package.json"), '{"type":"module"}');
++    for (const name of ["continuity-heartbeat", "executive-continuity-watchdog-worker"]) {
++      const source = readFileSync(new URL(`../../runtime/${name}.ts`, import.meta.url), "utf8");
++      writeFileSync(path.join(fixtureDir, `${name}.js`), ts.transpileModule(source, {
++        compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
++      }).outputText);
++    }
++  });
+   after(() => {
+     stopExecutiveContinuityWatchdogForTesting();
++    rmSync(fixtureDir, { recursive: true, force: true });
+   });
+ 
+   test("starts and reports continuity health snapshot", async () => {
+-    startExecutiveContinuityWatchdog();
+-    await new Promise((r) => setTimeout(r, 50));
++    startExecutiveContinuityWatchdog({ workerFile: path.join(fixtureDir, "executive-continuity-watchdog-worker.js") });
++    for (let i = 0; i < 150 && !getExecutiveContinuityHealth().watchdogRunning; i++) {
++      await new Promise((resolve) => setTimeout(resolve, 20));
++    }
+     const health = getExecutiveContinuityHealth();
+     assert.equal(health.watchdogEnabled, true);
+     assert.equal(typeof health.eventLoopLagMs, "number");
+     assert.ok(health.watchdogRunning);
+     assert.ok(Array.isArray(health.alerts));
+-    assert.ok(health.lastHeartbeatAgeMs === null || health.lastHeartbeatAgeMs >= 0);
++    assert.ok(health.lastHeartbeatAgeMs !== null && health.lastHeartbeatAgeMs >= 0 && health.lastHeartbeatAgeMs < 5_000);
++    assert.equal(health.healthy, true);
+   });
+ 
+   test("clearEventLoopLagAfterKnownBlock drops ghost lag after sync export", () => {
+diff --git a/backend/src/validation/tests/mission-runtime-access.test.ts b/backend/src/validation/tests/mission-runtime-access.test.ts
+new file mode 100644
+index 00000000..6a6199fd
+--- /dev/null
++++ b/backend/src/validation/tests/mission-runtime-access.test.ts
+@@ -0,0 +1,84 @@
++import assert from "node:assert/strict";
++import { after, before, test } from "node:test";
++import Fastify from "fastify";
++import { InMemorySessionStore } from "../../auth/session-store.js";
++import { createAuthMiddleware } from "../../auth/middleware.js";
++import type { SessionUser } from "../../auth/permissions.js";
++import { env } from "../../config/env.js";
++import type { PillowHost } from "../../orchestration/pillow-host/pillow-host.js";
++import { registerMissionRuntimeRoutes } from "../../orchestration/pillow-host/routes/mission-runtime-routes.js";
++
++const actions = ["connect", "create-mission", "queue", "ready", "execute", "pause", "resume", "retry", "cancel",
++  "recover", "archive", "monitor", "produce-report", "submit-report", "list", "validate", "diagnostics", "history", "q1004-contract"];
++const endpoints = [{ method: "GET" as const, url: "/api/pillow/mission-runtime" },
++  ...actions.map((action) => ({ method: "POST" as const, url: `/api/pillow/mission-runtime/${action}` }))];
++const sessions = new InMemorySessionStore();
++const app = Fastify();
++let hostTouches = 0;
++const founder: SessionUser = { id: "configured-founder", name: "Owner", role: "founder", email: env.FOUNDER_EMAIL, workspaceId: "ws_empire_1" };
++const admin: SessionUser = { ...founder, id: "configured-admin", role: "admin", email: env.ADMIN_EMAIL };
++const host = new Proxy({}, { get(_target, key) {
++  return () => {
++    hostTouches++;
++    return key === "getStatus" ? { lifecycle: "running" } : { privateMission: "owner-organization-marker" };
++  };
++} }) as PillowHost;
++before(async () => {
++  await registerMissionRuntimeRoutes(app, { authenticate: createAuthMiddleware(sessions), pillowHost: host });
++  await app.ready();
++});
++after(async () => { await app.close(); });
++
++async function assertEveryEndpoint(status: number, user?: SessionUser, extraHeaders: Record<string, string> = {}, body: Record<string, unknown> = {}) {
++  const token = user ? (await sessions.create(user)).token : undefined;
++  const touchesBefore = hostTouches;
++  for (const endpoint of endpoints) {
++    const response = await app.inject({ ...endpoint,
++      headers: { ...(token ? { authorization: `Bearer ${token}` } : {}), ...extraHeaders },
++      ...(endpoint.method === "POST" ? { payload: body } : {}),
++    });
++    assert.equal(response.statusCode, status, `${endpoint.method} ${endpoint.url}`);
++    if (status !== 200) assert.ok(!response.body.includes("owner-organization-marker"));
++    else assert.match(response.body, /owner-organization-marker/);
++  }
++  if (status !== 200) assert.equal(hostTouches, touchesBefore, "denied calls must not touch or boot the mission host");
++}
++
++test("all actual mission read/action routes reject unauthenticated access before touching host", async () => {
++  await assertEveryEndpoint(401);
++});
++test("configured founder can access the shared organization through authenticated session scope", async () => {
++  await assertEveryEndpoint(200, founder);
++});
++test("configured admin has the intended shared organization access", async () => {
++  await assertEveryEndpoint(200, admin, { "x-workspace-id": "ws_empire_1" }, { workspaceId: "ws_empire_1" });
++});
++test("foreign founder/admin identities cannot read or operate the organization's missions", async () => {
++  await assertEveryEndpoint(403, { ...founder, email: "foreign-founder@invalid.test" });
++  await assertEveryEndpoint(403, { ...admin, email: "foreign-admin@invalid.test" });
++});
++test("configured email alone cannot replace the correct role or authenticated workspace", async () => {
++  for (const user of [{ ...founder, role: "admin" as const }, { ...admin, role: "founder" as const },
++    { ...founder, role: "operator" as const }, { ...founder, workspaceId: "foreign-workspace" },
++    { ...admin, workspaceId: "foreign-workspace" }]) await assertEveryEndpoint(403, user);
++});
++test("a caller-supplied workspace header cannot move or repair session authority", async () => {
++  await assertEveryEndpoint(403, founder, { "x-workspace-id": "foreign-workspace" });
++  await assertEveryEndpoint(403, founder, { "x-workspace-id": "ws_empire_1, foreign-workspace" });
++  await assertEveryEndpoint(403, { ...founder, workspaceId: "foreign-workspace" }, { "x-workspace-id": "ws_empire_1" });
++});
++test("foreign workspace body is rejected on every actual action route", async () => {
++  const token = (await sessions.create(founder)).token;
++  const before = hostTouches;
++  for (const action of actions) {
++    const response = await app.inject({ method: "POST", url: `/api/pillow/mission-runtime/${action}`,
++      headers: { authorization: `Bearer ${token}` }, payload: { workspaceId: "foreign-workspace" } });
++    assert.equal(response.statusCode, 403);
++  }
++  assert.equal(hostTouches, before);
++});
++test("missing configured owner identity fails closed even for an authenticated founder", async () => {
++  const original = env.FOUNDER_EMAIL;
++  try { env.FOUNDER_EMAIL = ""; await assertEveryEndpoint(403, founder); }
++  finally { env.FOUNDER_EMAIL = original; }
++});
+diff --git a/backend/src/validation/tests/pillow-durable-queue-redis.test.ts b/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
+index 721d2b5d..c860b810 100644
+--- a/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
++++ b/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
+@@ -19,7 +19,7 @@ import {
+   PillowDurableStoreUnavailableError, PillowIdempotencyConflictError,
+   releaseInterruptedReasoningRequest,
+ } from "../../runtime/pillow-chat-request-store.js";
+-import { runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
++import { executeReasoningProxy, runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
+ 
+ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+ const queueInput = (message = "A complete reasoning request", ownerId = "owner-a") => ({
+@@ -84,6 +84,27 @@ describe("real Redis durable reasoning queue (required, no skipped certification
+     if (dir) await rm(dir, { recursive: true, force: true });
+   });
+ 
++  it("persists typed missing-provider failure after one claim and never schedules another attempt", async () => {
++    const accepted = await acceptDurableChatRequestClaim(queueInput("Reasoning without a configured provider"));
++    const original = globalThis.fetch;
++    let calls = 0;
++    try {
++      globalThis.fetch = async () => {
++        calls += 1;
++        return new Response(JSON.stringify({ result: { kind: "degraded_useful", degradedUsed: true,
++          message: "A fallback is not a completed answer", reasoningFailure: { code: "NO_LLM_PROVIDER", retryable: false } } }));
++      };
++      assert.equal(await runOneDurableReasoningAttempt({ owner: "provider-config-test", execute: (job) => executeReasoningProxy(job, 1) }), true);
++      dropChatRequestMemoryCacheForTests();
++      const persisted = await getChatRequest(accepted.request.requestId);
++      assert.equal(persisted?.status, "FAILED_FATAL");
++      assert.equal(persisted?.failureClass, "BRAIN_FATAL");
++      assert.equal(persisted?.attemptCount, 1);
++      assert.equal(await runOneDurableReasoningAttempt({ owner: "provider-config-test", execute: (job) => executeReasoningProxy(job, 1) }), false);
++      assert.equal(calls, 1);
++    } finally { globalThis.fetch = original; }
++  });
++
+   it("40 simultaneous accepts create one indexed job and 20 workers claim only once", async () => {
+     const accepts = await Promise.all(Array.from({ length: 40 }, () => acceptDurableChatRequestClaim(queueInput())));
+     assert.equal(accepts.filter((item) => item.disposition === "CREATED").length, 1);
+diff --git a/backend/src/validation/tests/pillow-durable-reasoning-worker.test.ts b/backend/src/validation/tests/pillow-durable-reasoning-worker.test.ts
+index 9d0d5e0f..33115a52 100644
+--- a/backend/src/validation/tests/pillow-durable-reasoning-worker.test.ts
++++ b/backend/src/validation/tests/pillow-durable-reasoning-worker.test.ts
+@@ -3,7 +3,8 @@ import { describe, it } from "node:test";
+ import { executeReasoningProxy, startDurableReasoningSweeper } from "../../runtime/pillow-durable-reasoning-worker.js";
+ import { createServer } from "node:http";
+ import { once } from "node:events";
+-import type { ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
++import { policyForFailure, type ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
++import { isOperatingAuthorityFactAsk, projectOperatingAuthorityFacts } from "../../orchestration/pillow-host/executive-authority-surface.js";
+ 
+ const job = {
+   request: { requestId: "test-request", leaseToken: 3 },
+@@ -11,6 +12,48 @@ const job = {
+ } as ClaimedReasoningRequest;
+ 
+ describe("durable worker completion contract", { concurrency: false }, () => {
++  it("fails known no-provider fallback once without claiming reasoning completion", async () => {
++    const original = globalThis.fetch;
++    let calls = 0;
++    try {
++      globalThis.fetch = async () => {
++        calls += 1;
++        return new Response(JSON.stringify({ result: { kind: "degraded_useful", message: "Fallback explanation",
++          degradedUsed: true, reasoningFailure: { code: "NO_LLM_PROVIDER", retryable: false } } }));
++      };
++      const result = await executeReasoningProxy(job, 9999);
++      assert.deepEqual(result, { ok: false, failureClass: "BRAIN_FATAL", error: "no_llm_provider" });
++      assert.equal(policyForFailure(result.ok ? "NONE" : result.failureClass), "FAIL");
++      assert.equal(calls, 1);
++    } finally { globalThis.fetch = original; }
++  });
++  it("does not infer a terminal configuration failure from text or an unknown typed failure", async () => {
++    const original = globalThis.fetch;
++    try {
++      for (const reasoningFailure of [undefined, { code: "NO_LLM_PROVIDER", retryable: true }, { code: "PROVIDER_TEMPORARY", retryable: false }]) {
++        globalThis.fetch = async () => new Response(JSON.stringify({ result: { kind: "degraded_useful",
++          message: "no_llm_provider", degradedUsed: true, reasoningFailure } }));
++        const result = await executeReasoningProxy(job, 9999);
++        assert.equal(result.ok, false);
++        if (!result.ok) assert.equal(result.failureClass, "BRAIN_RETRYABLE_FAILURE");
++      }
++    } finally { globalThis.fetch = original; }
++  });
++  it("accepts the canonical authority facts for the failed canary question without treating fallback as success", async () => {
++    const message = "What is your current authority? Do not execute tools, commerce or spending. This is a bounded engineering transport test.";
++    assert.equal(isOperatingAuthorityFactAsk(message), true);
++    const original = globalThis.fetch;
++    try {
++      globalThis.fetch = async () => new Response(JSON.stringify({ result: projectOperatingAuthorityFacts(message) }));
++      const result = await executeReasoningProxy(job, 9999);
++      assert.equal(result.ok, true);
++      if (result.ok) {
++        assert.equal(result.result.kind, "authority_facts");
++        assert.match(String(result.result.message), /NOT_BORN/);
++        assert.match(String(result.result.message), /Real commerce authorized: no/);
++      }
++    } finally { globalThis.fetch = original; }
++  });
+   it("rejects production fallback kinds rather than misreporting completed capability", async () => {
+     const original = globalThis.fetch;
+     try {
+diff --git a/backend/src/validation/tests/worker-http-proxy.test.ts b/backend/src/validation/tests/worker-http-proxy.test.ts
+new file mode 100644
+index 00000000..227bb287
+--- /dev/null
++++ b/backend/src/validation/tests/worker-http-proxy.test.ts
+@@ -0,0 +1,188 @@
++import assert from "node:assert/strict";
++import { createServer, type Server, type RequestListener } from "node:http";
++import { gzipSync } from "node:zlib";
++import { test, type TestContext } from "node:test";
++import Fastify from "fastify";
++import { forwardWorkerHttpRequest, sendWorkerHttpResponse, workerRequestHeaders } from "../../runtime/worker-http-proxy.js";
++import { buildTier0ProxyFailure, runSingleWorkerProxyAttempt } from "../../runtime/tier0-isolated-primary.js";
++import { assertCommerceAutomationAllowed } from "../../runtime/engineering-test-mode.js";
++
++async function listen(server: Server): Promise<string> {
++  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
++  const address = server.address();
++  assert.ok(address && typeof address !== "string");
++  return `http://127.0.0.1:${address.port}`;
++}
++
++async function fixture(t: TestContext, handler: RequestListener, options: { ready?: boolean; timeoutMs?: number } = {}) {
++  const server = createServer(handler);
++  const origin = await listen(server);
++  const edge = Fastify();
++  let forwards = 0;
++  edge.setNotFoundHandler(async (request, reply) => {
++    const result = await runSingleWorkerProxyAttempt(
++      async () => options.ready !== false,
++      async () => {
++        forwards += 1;
++        return forwardWorkerHttpRequest({
++          target: `${origin}${request.url}`, method: request.method,
++          headers: workerRequestHeaders(request.headers),
++          body: request.body == null ? undefined : typeof request.body === "string" ? request.body : JSON.stringify(request.body),
++          timeoutMs: options.timeoutMs ?? 2_000,
++        });
++      },
++    );
++    return result.ok ? sendWorkerHttpResponse(reply, result) : reply.code(503).send(buildTier0ProxyFailure(result.reason));
++  });
++  t.after(async () => {
++    await edge.close();
++    server.closeAllConnections();
++    await new Promise<void>((resolve) => server.close(() => resolve()));
++  });
++  return { edge, server, origin, forwards: () => forwards };
++}
++
++test("unauthenticated Birth response keeps 401, exact body and authentication headers", async (t) => {
++  const body = JSON.stringify({ error: "Authentication required" });
++  const { edge, forwards } = await fixture(t, (request, response) => {
++    assert.equal(request.url, "/pillow-commissioning/birth");
++    assert.equal(request.headers.authorization, undefined);
++    response.writeHead(401, { "content-type": "application/json", "www-authenticate": 'Bearer realm="EmpireAI"', "cache-control": "no-store" });
++    response.end(body);
++  });
++  const result = await edge.inject({ method: "GET", url: "/pillow-commissioning/birth" });
++  assert.equal(result.statusCode, 401);
++  assert.equal(result.body, body);
++  assert.equal(result.headers["www-authenticate"], 'Bearer realm="EmpireAI"');
++  assert.equal(result.headers["cache-control"], "no-store");
++  assert.equal(forwards(), 1);
++});
++
++test("real engineering commerce guard keeps its blocked explanation through the proxy", async (t) => {
++  const previous = process.env.EMPIRE_ENGINEERING_TEST_MODE;
++  process.env.EMPIRE_ENGINEERING_TEST_MODE = "true";
++  t.after(() => { if (previous == null) delete process.env.EMPIRE_ENGINEERING_TEST_MODE; else process.env.EMPIRE_ENGINEERING_TEST_MODE = previous; });
++  let passedGuard = false;
++  const { edge } = await fixture(t, (_request, response) => {
++    try {
++      assertCommerceAutomationAllowed();
++      passedGuard = true;
++      response.end("unexpected");
++    } catch (error) {
++      response.writeHead(500, { "content-type": "application/json" });
++      response.end(JSON.stringify({ error: error instanceof Error ? error.message : "unknown" }));
++    }
++  });
++  const result = await edge.inject({ method: "POST", url: "/pillow-commerce-presale/run-cycle", payload: { async: false, maxCandidates: 1 } });
++  assert.equal(result.statusCode, 500);
++  assert.match(result.json().error, /Commerce automation is disabled/);
++  assert.equal(passedGuard, false);
++});
++
++test("owner authentication, request body, query and permission errors survive one forwarding attempt", async (t) => {
++  const payload = { workspaceId: "other-workspace", message: "do not execute" };
++  const { edge, forwards } = await fixture(t, (request, response) => {
++    assert.equal(request.url, "/protected/action?scope=held");
++    assert.equal(request.headers.authorization, "Bearer local-test-only");
++    assert.equal(request.headers.cookie, "empireai_session=local-test-cookie");
++    assert.equal(request.headers["x-remove-me"], undefined);
++    let body = "";
++    request.on("data", (part) => { body += part; });
++    request.on("end", () => {
++      assert.deepEqual(JSON.parse(body), payload);
++      response.writeHead(403, { "content-type": "application/json" });
++      response.end(JSON.stringify({ error: "workspace_forbidden" }));
++    });
++  });
++  const result = await edge.inject({ method: "POST", url: "/protected/action?scope=held", payload,
++    headers: { authorization: "Bearer local-test-only", cookie: "empireai_session=local-test-cookie", connection: "x-remove-me", "x-remove-me": "discard" } });
++  assert.equal(result.statusCode, 403);
++  assert.deepEqual(result.json(), { error: "workspace_forbidden" });
++  assert.equal(forwards(), 1);
++});
++
++for (const status of [404, 409, 429, 500, 503]) {
++  test(`worker ${status} remains an application response with its exact explanation`, async (t) => {
++    const body = `worker-response-${status}`;
++    const { edge, forwards } = await fixture(t, (_request, response) => {
++      response.writeHead(status, { "content-type": "text/plain", "retry-after": "17", "x-request-id": "held-request" });
++      response.end(body);
++    });
++    const result = await edge.inject({ method: "GET", url: "/held" });
++    assert.equal(result.statusCode, status);
++    assert.equal(result.body, body);
++    assert.equal(result.headers["retry-after"], "17");
++    assert.equal(result.headers["x-request-id"], "held-request");
++    assert.equal(forwards(), 1);
++  });
++}
++
++test("redirect is relayed without sending owner credentials to the redirect target", async (t) => {
++  let targetCalls = 0;
++  const { edge, origin } = await fixture(t, (request, response) => {
++    if (request.url === "/redirect-target") { targetCalls += 1; response.end("must not follow"); return; }
++    response.writeHead(302, { location: `${origin}/redirect-target`, "set-cookie": ["first=a; HttpOnly", "second=b; Secure"] });
++    response.end("redirect body");
++  });
++  const result = await edge.inject({ method: "GET", url: "/redirect", headers: { authorization: "Bearer local-only" } });
++  assert.equal(result.statusCode, 302);
++  assert.equal(result.headers.location, `${origin}/redirect-target`);
++  assert.deepEqual(result.headers["set-cookie"], ["first=a; HttpOnly", "second=b; Secure"]);
++  assert.equal(result.body, "redirect body");
++  assert.equal(targetCalls, 0);
++});
++
++test("decoded error body has correct length and excludes hop-by-hop response headers", async (t) => {
++  const body = JSON.stringify({ error: "an intentionally compressed denial" });
++  const compressed = gzipSync(body);
++  const { edge } = await fixture(t, (_request, response) => {
++    response.writeHead(401, { "content-type": "application/json", "content-encoding": "gzip", "content-length": compressed.length,
++      connection: "x-private-hop", "x-private-hop": "must-not-forward" });
++    response.end(compressed);
++  });
++  const result = await edge.inject({ method: "GET", url: "/compressed" });
++  assert.equal(result.statusCode, 401);
++  assert.equal(result.body, body);
++  assert.equal(result.headers["content-length"], String(Buffer.byteLength(body)));
++  assert.equal(result.headers["content-encoding"], undefined);
++  assert.equal(result.headers["x-private-hop"], undefined);
++});
++
++test("HEAD and no-content responses preserve empty bodies", async (t) => {
++  const { edge } = await fixture(t, (request, response) => {
++    response.writeHead(request.method === "HEAD" ? 401 : 204, { "x-result": "empty" });
++    response.end();
++  });
++  for (const method of ["HEAD", "GET"] as const) {
++    const result = await edge.inject({ method, url: "/empty" });
++    assert.equal(result.statusCode, method === "HEAD" ? 401 : 204);
++    assert.equal(result.body, "");
++    assert.equal(result.headers["x-result"], "empty");
++  }
++});
++
++test("failed readiness never sends the request and remains retryable 503", async (t) => {
++  const { edge, forwards } = await fixture(t, () => { assert.fail("must not forward"); }, { ready: false });
++  const result = await edge.inject({ method: "GET", url: "/held" });
++  assert.equal(result.statusCode, 503);
++  assert.equal(result.json().code, "BRAIN_WORKER_UNAVAILABLE");
++  assert.equal(result.json().retryable, true);
++  assert.equal(forwards(), 0);
++});
++
++test("network failure remains proxy 503 and is not an application success", async (t) => {
++  const { edge, server, forwards } = await fixture(t, () => { assert.fail("closed worker"); });
++  await new Promise<void>((resolve) => server.close(() => resolve()));
++  const result = await edge.inject({ method: "GET", url: "/held" });
++  assert.equal(result.statusCode, 503);
++  assert.equal(result.json().code, "BRAIN_WORKER_PROXY_FAILED");
++  assert.equal(forwards(), 1);
++});
++
++test("timed-out worker remains proxy 503 with only one forwarded attempt", async (t) => {
++  const { edge, forwards } = await fixture(t, () => { /* intentionally never responds */ }, { timeoutMs: 30 });
++  const result = await edge.inject({ method: "GET", url: "/held" });
++  assert.equal(result.statusCode, 503);
++  assert.equal(result.json().code, "BRAIN_WORKER_PROXY_FAILED");
++  assert.equal(forwards(), 1);
++});
+diff --git a/deployment/build-runtime.md b/deployment/build-runtime.md
+new file mode 100644
+index 00000000..f98764d6
+--- /dev/null
++++ b/deployment/build-runtime.md
+@@ -0,0 +1,54 @@
++# Reproducible build toolchain
++
++The bounded test on 21 September 2026 exposed real provider drift on the same
++source commit `91fc78eb6ef37ef1e5fdad82e465004baade65e0`: the first deployment used
++Nixpacks and Node 24, while redeployment used Railpack and Node 20.20.2. Hosted CI
++had tested Node 22.23.2 and npm 10.9.8. The provider's dashboard configuration did
++not reliably describe the effective build plan. Those historical results remain
++valid only for their recorded environments; they are not identical-binary proof.
++
++`.node-version` now pins the exact tested Node release. All three hosted workflows
++read it, and the root, backend and Pillow manifests agree on Node and npm versions.
++Their preinstall hook rejects other Node versions and, when invoked by npm, other
++npm versions. `packageManager` selects npm 10.9.8. A direct invocation of the guard
++without npm's user-agent proves only Node and explicitly reports npm as unverified.
++This is an install/build check. Production still starts with its existing direct
++Node command, so the hook is not a production startup assertion. Actual running
++versions require a separate runtime probe.
++
++`railpack.json` pins Node and replaces its automatic root install with
++`npm ci --include=dev`. `nixpacks.toml` selects Node major 22 and an explicit root
++`npm ci`. Application installs in root `railway.toml` also use `npm ci`. Dependency
++versions, production startup, restart policy, readiness path and authority are
++otherwise unchanged. The build-contract check also permits a temporary root that
++is byte-for-byte the reviewed canary reference; it does not authorize deployment.
++
++Railpack's Node provider disables its manifest-only install file filtering when
++the root package has a `preinstall` or `postinstall` hook. The root hook added here
++therefore retains `.node-version` and `scripts/verify-build-runtime.mjs` in the
++install input. No explicit layer-input override is needed.
++The Node provider's documented `packageManager` support selects the exact npm
++version via Corepack; no separate Mise npm package override is assumed.
++
++This repair covers the Railway backend/Pillow toolchain and hosted CI. It does not
++pin the separate `empireai-web` Vercel project runtime or establish Vercel runtime
++parity; that requires its own project configuration and deployment evidence.
++
++Nixpacks documents only major-version selection. Its package archive can therefore
++resolve a different Node 22 patch. The preinstall guard deliberately rejects that
++build rather than silently changing the tested runtime. If this happens, select a
++provider build path that can supply the pinned version and verify its actual plan;
++do not remove the guard or broaden the version range to obtain a green result.
++
++Local contract tests establish configuration consistency and rejection of the
++observed Node 20/24 drift. They do not establish a new hosted build, production
++promotion, persistent recovery, Pillow Birth or commerce readiness. The next
++authorized deployment must record actual `node --version`, `npm --version`, source
++commit and artifact identity before and after restart. Changing a pin requires
++new CI proof; rebuilding source is not equivalent to restarting the same image.
++
++Provider documentation checked on 21 September 2026:
++
++- [Railpack Node selection and package managers](https://railpack.com/languages/node/)
++- [Railpack configuration file](https://railpack.com/config/file/)
++- [Nixpacks Node provider and major-version limitation](https://nixpacks.com/docs/providers/node)
+diff --git a/docs/audits/2026-09-21-post-canary-proxy-review.md b/docs/audits/2026-09-21-post-canary-proxy-review.md
+new file mode 100644
+index 00000000..23be99c3
+--- /dev/null
++++ b/docs/audits/2026-09-21-post-canary-proxy-review.md
+@@ -0,0 +1,51 @@
++# Post-canary proxy and authority-response repair
++
++## Preserved observations
++
++The isolated canary at commit `91fc78eb6ef37ef1e5fdad82e465004baade65e0`
++returned primary HTTP 503 for unauthenticated `/pillow-commissioning/birth`
++and for a commerce-cycle call blocked in engineering test mode. The durable
++request `pcr_50cfefaf04f24116` was accepted and later retrieved across deployment,
++but ended `FAILED_FATAL`, `BRAIN_RETRYABLE_FAILURE`, attempt 3. Acceptance and
++durable retrieval did not prove a completed reasoning answer.
++
++## Source findings and repair
++
++The generic primary proxy discarded all upstream non-2xx bodies and converted
++them into generic proxy failures. It now distinguishes completed HTTP responses
++from network/time-out/unavailable-worker failures. Upstream authentication,
++permission, conflict, rate-limit and server errors keep their status, body and
++end-to-end headers. Redirects are returned without following them with owner
++credentials. Cookie headers remain separate; hop-by-hop and stale compression
++length headers are excluded. Canonical Pillow chat still uses durable admission,
++not the generic forwarding path.
++
++The canary's question, "What is your current authority?", did not match the
++existing narrow authority-fact classifier. With no configured model provider,
++source falls through to `degraded_no_provider`, which the durable worker rejects
++as incomplete and retries. This is a source-supported explanation, not proof of
++the exact historical host branch: no upstream response/trace was captured for
++that request. A narrow classifier now handles direct authority/permission
++questions and emits the existing canonical NOT_BORN/SYNTHETIC/unauthorized facts.
++Additional strategy tasks and third-party authority questions keep their normal
++reasoning path. No authority state has changed.
++
++The known no-provider branch now emits typed `NO_LLM_PROVIDER`, `retryable:false`.
++Only that explicit degraded result becomes `BRAIN_FATAL`; it is retained as
++failure after one attempt. Generic degraded/unknown results remain failures under
++the existing policy. No degraded message is counted as completed reasoning.
++
++## Local evidence and limits
++
++The proxy/primary/authority/durable-worker suites passed 54 tests, zero skipped.
++The real Redis queue suite passed 22 tests, including persisted one-attempt
++no-provider failure with no second claim. Backend typecheck passed. Independent
++static review found no new permission or false-completion bypass.
++
++The proxy tests use actual local HTTP requests and the actual engineering guard.
++Authority tests compose the canonical projection and durable-response validator;
++host responses in those tests are supplied fixtures. They are not a fresh
++production Pillow completion. No model/provider calls, deployment, spending,
++Birth certification or live-commerce action occurred in this repair. Hosted CI
++and a later specifically authorized deployment must independently verify the
++integrated changes before production completion is claimed.
+diff --git a/docs/audits/GATE_001_WATCHDOG_CLOCK_FIX_20260921.md b/docs/audits/GATE_001_WATCHDOG_CLOCK_FIX_20260921.md
+new file mode 100644
+index 00000000..5b310582
+--- /dev/null
++++ b/docs/audits/GATE_001_WATCHDOG_CLOCK_FIX_20260921.md
+@@ -0,0 +1,67 @@
++# GATE-001: executive continuity watchdog repair
++
++Scope: local engineering verification on application base
++`2eb0d84c9a2f863d4038384078b6df1fd18cd828`. No provider operation, deployment,
++commerce action, or paid-model call was performed by this repair.
++
++## Defects preserved
++
++- At `2026-09-20T23:57:31Z`, the epoch value `1789948651000` stored in the old
++  signed 32-bit slot became `-1052711432`. The worker ignored the resulting
++  nonpositive heartbeat, disabling stall detection. Other wrap phases could
++  instead cause an immediate false stall.
++- `process.exit(78)` inside a worker terminates that worker. A blocked main
++  event loop cannot execute its worker-exit callback to terminate the process.
++- A live main heartbeat timer was reported as a running watchdog even when the
++  watchdog worker had failed. Initial tests also accepted a null heartbeat age.
++- Independent review identified a further race: a completed long SQL.js export
++  cleared its guard before the main heartbeat timer refreshed. A process-wide
++  recovery signal could incorrectly kill that responsive process.
++
++## Repair
++
++- Use a monotonic atomic 64-bit timestamp, separate from the SQLite guard at
++  Int32 index 1. Wall-clock changes do not affect heartbeat or elapsed timers.
++- Treat missing, invalid, future, stopped, and failed watchdog states as
++  unhealthy. Require the actual worker-ready handshake, and ignore stale worker
++  callbacks after stop/restart.
++- Preserve cold-start grace and the existing SQLite export hard cap. Invalid
++  heartbeat recovery also preserves the bounded export allowance.
++- Refresh the heartbeat before releasing the export guard in both asynchronous
++  persistence and synchronous shutdown. The worker acquires the guard before
++  reading the timestamp. This liveness signal is not a durability receipt.
++- After a confirmed bounded stall, the off-thread worker sends process-wide
++  SIGKILL. This is forced recovery: unflushed memory can be lost. Actual provider
++  restart policy and post-restart durability still require separate verification.
++
++## Executed local verification
++
++Node `v24.19.0`; 24 tests passed, zero failed, skipped, cancelled, or TODO.
++
++```sh
++cd backend
++node --import tsx --test --test-concurrency=1 --test-reporter=tap \
++  src/validation/tests/continuity-heartbeat-clock.test.ts \
++  src/validation/tests/executive-continuity-watchdog.test.ts \
++  src/validation/tests/sqlite-persistence-boundary.test.ts
++npm run typecheck
++```
++
++Typecheck passed. Held cases cover signed-32-bit boundaries, the exact failed
++epoch, monotonic versus wall-clock changes, missing/future/negative clocks,
++stall/grace/export-cap boundaries, failed-worker health, and restart callback
++races. Real SQL.js export tests cover both handoff paths and read the saved row
++from a fresh database. Existing persistence fault and retry tests remain green.
++
++The hard-stall test blocks the main thread of a separate child process with
++`Atomics.wait`. The actual compiled watchdog kills that child with SIGKILL at
++the five-second test threshold, before the ten-second safety timeout, without
++executing the main-thread exit callback. The test runner itself is not the
++hard-stall target.
++
++Both watchdog test files are now mandatory in the existing runtime CI workflow.
++Hosted CI and production behavior have not been claimed by this local result.
++Independent static review found no remaining blocking defect in this patch
++after the export handoff and invalid-clock allowance corrections.
++
++Pillow Birth, Wave credit, commerce authority, and financial limits are unchanged.
+diff --git a/nixpacks.toml b/nixpacks.toml
+index 4fbe05af..e83720ed 100644
+--- a/nixpacks.toml
++++ b/nixpacks.toml
+@@ -5,3 +5,9 @@
+ EMPIREAI_REPO_ROOT = "/app"
+ NODE_ENV = "production"
+ DATABASE_PATH = "/data/empireai-brain.db"
++
++# Nixpacks selects a major only; preinstall rejects a different patch.
++NIXPACKS_NODE_VERSION = "22"
++
++[phases.install]
++cmds = ["NPM_CONFIG_PRODUCTION=false npm ci"]
+diff --git a/package-lock.json b/package-lock.json
+index 9b2ff3b2..fbd0c81a 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -13,9 +13,10 @@
+         "typescript": "^5.8.2"
+       },
+       "engines": {
+-        "node": ">=20.11.0",
+-        "npm": ">=10.0.0"
+-      }
++        "node": "22.23.2",
++        "npm": "10.9.8"
++      },
++      "hasInstallScript": true
+     },
+     "node_modules/@bytecodealliance/preview2-shim": {
+       "version": "0.17.6",
+diff --git a/package.json b/package.json
+index 23ae0de3..df28a62d 100644
+--- a/package.json
++++ b/package.json
+@@ -36,7 +36,8 @@
+     "pillow:synchronizer": "npm run synchronizer --prefix pillow",
+     "pillow:due-diligence": "npm run due-diligence --prefix pillow",
+     "pillow:test": "npm run test --prefix pillow",
+-    "pillow:typecheck": "npm run typecheck --prefix pillow"
++    "pillow:typecheck": "npm run typecheck --prefix pillow",
++    "preinstall": "node scripts/verify-build-runtime.mjs"
+   },
+   "devDependencies": {
+     "@types/node": "^22.13.4",
+@@ -44,7 +45,8 @@
+     "typescript": "^5.8.2"
+   },
+   "engines": {
+-    "node": ">=20.11.0",
+-    "npm": ">=10.0.0"
+-  }
++    "node": "22.23.2",
++    "npm": "10.9.8"
++  },
++  "packageManager": "npm@10.9.8"
+ }
+diff --git a/pillow/package-lock.json b/pillow/package-lock.json
+index 4988e541..32d40b53 100644
+--- a/pillow/package-lock.json
++++ b/pillow/package-lock.json
+@@ -13,8 +13,10 @@
+         "typescript": "^5.8.2"
+       },
+       "engines": {
+-        "node": ">=20.11.0"
+-      }
++        "node": "22.23.2",
++        "npm": "10.9.8"
++      },
++      "hasInstallScript": true
+     },
+     "node_modules/@esbuild/aix-ppc64": {
+       "version": "0.28.1",
+diff --git a/pillow/package.json b/pillow/package.json
+index 40d7e668..d4a79029 100644
+--- a/pillow/package.json
++++ b/pillow/package.json
+@@ -14,7 +14,8 @@
+   },
+   "description": "Pillow — primary executive operating interface for EmpireAI",
+   "engines": {
+-    "node": ">=20.11.0"
++    "node": "22.23.2",
++    "npm": "10.9.8"
+   },
+   "scripts": {
+     "typecheck": "tsc -p tsconfig.json --noEmit",
+@@ -42,11 +43,13 @@
+     "empire-operating-system": "node --import tsx src/cli/empire-operating-system-cli.ts",
+     "continuous-evolution": "node --import tsx src/cli/continuous-evolution-cli.ts",
+     "pretest": "node --import tsx --test src/validation/tests/observer-runtime-policy.test.ts",
+-    "test": "node --import tsx --test src/validation/tests/bootstrap.test.ts src/validation/tests/executive-direction.test.ts src/validation/tests/executive-deliberation.test.ts src/validation/tests/executive-learning.test.ts src/validation/tests/executive-council.test.ts src/validation/tests/intelligence.test.ts src/validation/tests/repository-intelligence.test.ts src/validation/tests/repository-intelligence-certification.test.ts src/validation/tests/technical-chief.test.ts src/validation/tests/ux-designer.test.ts src/validation/tests/cursor-bridge.test.ts src/validation/tests/vision-synchronization.test.ts src/validation/tests/context-synchronization.test.ts src/validation/tests/cursor-protocol.test.ts src/validation/tests/recovery-doctrine.test.ts src/validation/tests/browser-truth.test.ts src/validation/tests/visual-capture.test.ts src/validation/tests/ui-state-mapper.test.ts src/validation/tests/component-recognition.test.ts src/validation/tests/layout-understanding.test.ts src/validation/tests/navigation-mapping.test.ts src/validation/tests/interaction-tracking.test.ts src/validation/tests/context-awareness.test.ts src/validation/tests/visual-memory.test.ts src/validation/tests/session-continuity.test.ts src/validation/tests/visual-foundation-certification.test.ts src/validation/tests/ux-rule-engine.test.ts src/validation/tests/design-system-intelligence.test.ts src/validation/tests/executive-style-learning.test.ts src/validation/tests/layout-evaluation.test.ts src/validation/tests/workflow-optimization.test.ts src/validation/tests/accessibility-intelligence.test.ts src/validation/tests/visual-consistency.test.ts src/validation/tests/ux-scoring.test.ts src/validation/tests/recommendation-engine.test.ts src/validation/tests/ux-intelligence-certification.test.ts src/validation/tests/frontend-builder.test.ts src/validation/tests/component-generator.test.ts src/validation/tests/layout-refactoring.test.ts src/validation/tests/theme-builder.test.ts src/validation/tests/preview-generator.test.ts src/validation/tests/validation-engine.test.ts src/validation/tests/regression-protection.test.ts src/validation/tests/rollback-manager.test.ts src/validation/tests/change-documentation.test.ts src/validation/tests/autonomous-builder-certification.test.ts src/validation/tests/natural-ux-conversation.test.ts src/validation/tests/voice-ux-commands.test.ts src/validation/tests/screen-annotation.test.ts src/validation/tests/multi-proposal-generator.test.ts src/validation/tests/side-by-side-comparison.test.ts src/validation/tests/explain-decisions.test.ts src/validation/tests/approval-workflow.test.ts src/validation/tests/preference-learning.test.ts src/validation/tests/continuous-collaboration.test.ts src/validation/tests/executive-collaboration-certification.test.ts src/validation/tests/continuous-screen-observation.test.ts src/validation/tests/autonomous-ux-audit.test.ts src/validation/tests/ux-opportunity-discovery.test.ts src/validation/tests/productivity-intelligence.test.ts src/validation/tests/workflow-evolution.test.ts src/validation/tests/adaptive-interface.test.ts src/validation/tests/continuous-ux-evolution.test.ts src/validation/tests/executive-workspace-intelligence.test.ts src/validation/tests/self-improving-ux.test.ts src/validation/tests/visual-intelligence-certification.test.ts src/validation/tests/marketplace-connector-framework.test.ts src/validation/tests/amazon-marketplace-integration.test.ts src/validation/tests/amazon-product-intelligence.test.ts src/validation/tests/amazon-order-management.test.ts src/validation/tests/amazon-inventory-sync.test.ts src/validation/tests/walmart-marketplace-integration.test.ts src/validation/tests/etsy-marketplace-integration.test.ts src/validation/tests/ebay-marketplace-integration.test.ts src/validation/tests/tiktok-shop-marketplace-integration.test.ts src/validation/tests/shopify-store-marketplace-integration.test.ts src/validation/tests/woocommerce-marketplace-integration.test.ts src/validation/tests/marketplace-product-normalization.test.ts src/validation/tests/marketplace-order-normalization.test.ts src/validation/tests/marketplace-health-monitor.test.ts src/validation/tests/marketplace-certification.test.ts src/validation/tests/supplier-framework.test.ts src/validation/tests/cj-dropshipping-integration.test.ts src/validation/tests/aliexpress-integration.test.ts src/validation/tests/1688-integration.test.ts src/validation/tests/supplier-product-sync.test.ts src/validation/tests/supplier-inventory-sync.test.ts src/validation/tests/supplier-pricing-engine.test.ts src/validation/tests/supplier-ranking-engine.test.ts src/validation/tests/procurement-engine.test.ts src/validation/tests/fulfilment-orchestrator.test.ts src/validation/tests/shipping-carrier-integration.test.ts src/validation/tests/shipment-tracking-engine.test.ts src/validation/tests/return-management.test.ts src/validation/tests/warehouse-intelligence.test.ts src/validation/tests/multi-warehouse-support.test.ts src/validation/tests/supplier-risk-monitor.test.ts src/validation/tests/logistics-optimization.test.ts src/validation/tests/fulfilment-sla-monitor.test.ts src/validation/tests/procurement-intelligence.test.ts src/validation/tests/supplier-operations-certification.test.ts src/validation/tests/financial-framework.test.ts src/validation/tests/payment-gateway-integration.test.ts src/validation/tests/banking-integration.test.ts src/validation/tests/revenue-engine.test.ts src/validation/tests/expense-engine.test.ts src/validation/tests/profit-calculation-engine.test.ts src/validation/tests/cash-flow-monitor.test.ts src/validation/tests/reconciliation-engine.test.ts src/validation/tests/invoice-generator.test.ts src/validation/tests/refund-engine.test.ts src/validation/tests/tax-intelligence-engine.test.ts src/validation/tests/multi-currency-engine.test.ts src/validation/tests/financial-forecast-engine.test.ts src/validation/tests/budget-management-engine.test.ts src/validation/tests/financial-risk-monitor.test.ts src/validation/tests/executive-financial-dashboard.test.ts src/validation/tests/accounting-export-engine.test.ts src/validation/tests/financial-operations-certification.test.ts src/validation/tests/customer-identity-engine.test.ts src/validation/tests/crm-foundation.test.ts src/validation/tests/customer-timeline-engine.test.ts src/validation/tests/email-communication-engine.test.ts src/validation/tests/sms-communication-engine.test.ts src/validation/tests/whatsapp-integration.test.ts src/validation/tests/live-chat-integration.test.ts src/validation/tests/ai-customer-support.test.ts src/validation/tests/ticket-management-engine.test.ts src/validation/tests/customer-sentiment-engine.test.ts src/validation/tests/review-management-engine.test.ts src/validation/tests/loyalty-programme-engine.test.ts src/validation/tests/returns-intelligence-engine.test.ts src/validation/tests/customer-risk-engine.test.ts src/validation/tests/customer-lifetime-value-engine.test.ts src/validation/tests/customer-segmentation-engine.test.ts src/validation/tests/customer-journey-intelligence-engine.test.ts src/validation/tests/executive-customer-dashboard.test.ts src/validation/tests/customer-operations-certification.test.ts src/validation/tests/marketing-framework.test.ts src/validation/tests/meta-ads-integration.test.ts src/validation/tests/google-ads-integration.test.ts src/validation/tests/tiktok-ads-integration.test.ts src/validation/tests/youtube-ads-integration.test.ts src/validation/tests/seo-intelligence-engine.test.ts src/validation/tests/campaign-manager.test.ts src/validation/tests/audience-intelligence.test.ts src/validation/tests/attribution-engine.test.ts src/validation/tests/marketing-analytics-dashboard.test.ts src/validation/tests/creative-asset-manager.test.ts src/validation/tests/ai-campaign-generator.test.ts src/validation/tests/budget-optimization-engine.test.ts src/validation/tests/conversion-intelligence.test.ts src/validation/tests/competitor-marketing-monitor.test.ts src/validation/tests/viral-trend-intelligence.test.ts src/validation/tests/marketing-experiment-engine.test.ts src/validation/tests/cross-channel-orchestrator.test.ts src/validation/tests/autonomous-marketing-engine.test.ts src/validation/tests/real-world-operations-certification.test.ts src/validation/tests/company-factory-framework.test.ts src/validation/tests/business-opportunity-discovery.test.ts src/validation/tests/cross-channel-orchestrator.test.ts src/validation/tests/autonomous-marketing-engine.test.ts src/validation/tests/real-world-operations-certification.test.ts src/validation/tests/company-factory-framework.test.ts src/validation/tests/business-opportunity-discovery.test.ts src/validation/tests/market-validation-engine.test.ts src/validation/tests/business-model-generator.test.ts src/validation/tests/brand-creation-engine.test.ts src/validation/tests/domain-digital-asset-planner.test.ts src/validation/tests/store-generation-engine.test.ts src/validation/tests/product-portfolio-builder.test.ts src/validation/tests/pricing-strategy-engine.test.ts src/validation/tests/launch-readiness-validator.test.ts src/validation/tests/business-launch-orchestrator.test.ts src/validation/tests/growth-initialization-engine.test.ts src/validation/tests/launch-monitoring-engine.test.ts src/validation/tests/first-revenue-optimizer.test.ts src/validation/tests/company-factory-certified.test.ts src/validation/tests/enterprise-portfolio-framework.test.ts src/validation/tests/multi-company-registry.test.ts src/validation/tests/portfolio-performance-engine.test.ts src/validation/tests/cross-business-knowledge-engine.test.ts src/validation/tests/capital-distribution-engine.test.ts src/validation/tests/executive-portfolio-dashboard.test.ts src/validation/tests/portfolio-risk-engine.test.ts src/validation/tests/portfolio-balance-engine.test.ts src/validation/tests/business-health-ranking.test.ts src/validation/tests/portfolio-intelligence-certified.test.ts src/validation/tests/cross-company-resource-engine.test.ts src/validation/tests/shared-customer-intelligence.test.ts src/validation/tests/shared-supplier-intelligence.test.ts src/validation/tests/portfolio-forecast-engine.test.ts src/validation/tests/acquisition-evaluation-engine.test.ts src/validation/tests/portfolio-optimization-engine.test.ts src/validation/tests/company-lifecycle-manager.test.ts src/validation/tests/portfolio-expansion-planner.test.ts src/validation/tests/enterprise-value-engine.test.ts src/validation/tests/autonomous-portfolio-board.test.ts src/validation/tests/portfolio-certified.test.ts src/validation/tests/autonomous-scaling-framework.test.ts src/validation/tests/global-expansion-framework.test.ts src/validation/tests/country-intelligence-engine.test.ts src/validation/tests/localization-engine.test.ts src/validation/tests/language-intelligence.test.ts src/validation/tests/currency-intelligence.test.ts src/validation/tests/regional-compliance-engine.test.ts src/validation/tests/global-tax-intelligence.test.ts src/validation/tests/international-logistics-engine.test.ts src/validation/tests/global-market-intelligence.test.ts src/validation/tests/executive-global-dashboard.test.ts src/validation/tests/global-brand-management.test.ts src/validation/tests/international-partnership-engine.test.ts src/validation/tests/global-talent-intelligence.test.ts src/validation/tests/winning-product-detector.test.ts src/validation/tests/scaling-decision-engine.test.ts src/validation/tests/capacity-planning-engine.test.ts src/validation/tests/marketing-scale-engine.test.ts src/validation/tests/supplier-scale-engine.test.ts src/validation/tests/financial-scale-engine.test.ts src/validation/tests/workforce-intelligence.test.ts src/validation/tests/executive-scaling-dashboard.test.ts src/validation/tests/bottleneck-intelligence.test.ts src/validation/tests/operational-elasticity-engine.test.ts src/validation/tests/performance-preservation-engine.test.ts src/validation/tests/scaling-risk-monitor.test.ts src/validation/tests/global-scaling-planner.test.ts src/validation/tests/autonomous-growth-optimizer.test.ts src/validation/tests/revenue-acceleration-engine.test.ts src/validation/tests/profit-scaling-engine.test.ts src/validation/tests/scale-simulation-engine.test.ts src/validation/tests/self-balancing-enterprise.test.ts src/validation/tests/digital-soul.test.ts src/validation/tests/digital-soul-executive-gate.test.ts src/validation/tests/e2e-testing.test.ts src/validation/tests/journey-system.test.ts src/validation/tests/brain-runtime.test.ts src/validation/tests/production-mode.test.ts src/validation/tests/durable-sessions.test.ts src/validation/tests/guardian-monitoring.test.ts src/validation/tests/scaling-architecture.test.ts src/validation/tests/performance-governance.test.ts src/validation/tests/execution-control-center.test.ts src/validation/tests/vision-integrity-engine.test.ts src/validation/tests/supervisor-system.test.ts src/validation/tests/builder-monitor.test.ts src/validation/tests/eta-engine.test.ts src/validation/tests/autonomous-recovery-engine.test.ts src/validation/tests/zero-human-automation.test.ts src/validation/tests/founder-shell.test.ts src/validation/tests/infrastructure-commander.test.ts src/validation/tests/commerce-intelligence.test.ts src/validation/tests/empire-commander.test.ts src/validation/tests/empire-operating-system.test.ts src/validation/tests/continuous-evolution.test.ts src/validation/tests/context.test.ts src/validation/tests/memory.test.ts src/validation/tests/planner.test.ts src/validation/tests/supervisor.test.ts src/validation/tests/recovery.test.ts src/validation/tests/audit-reviewer.test.ts src/validation/tests/synchronizer.test.ts src/validation/tests/due-diligence.test.ts src/validation/tests/improvement.test.ts src/validation/tests/orchestrator.test.ts src/validation/tests/watcher.test.ts src/validation/tests/command.test.ts src/validation/tests/openai.test.ts src/validation/tests/objective.test.ts"
++    "test": "node --import tsx --test src/validation/tests/bootstrap.test.ts src/validation/tests/executive-direction.test.ts src/validation/tests/executive-deliberation.test.ts src/validation/tests/executive-learning.test.ts src/validation/tests/executive-council.test.ts src/validation/tests/intelligence.test.ts src/validation/tests/repository-intelligence.test.ts src/validation/tests/repository-intelligence-certification.test.ts src/validation/tests/technical-chief.test.ts src/validation/tests/ux-designer.test.ts src/validation/tests/cursor-bridge.test.ts src/validation/tests/vision-synchronization.test.ts src/validation/tests/context-synchronization.test.ts src/validation/tests/cursor-protocol.test.ts src/validation/tests/recovery-doctrine.test.ts src/validation/tests/browser-truth.test.ts src/validation/tests/visual-capture.test.ts src/validation/tests/ui-state-mapper.test.ts src/validation/tests/component-recognition.test.ts src/validation/tests/layout-understanding.test.ts src/validation/tests/navigation-mapping.test.ts src/validation/tests/interaction-tracking.test.ts src/validation/tests/context-awareness.test.ts src/validation/tests/visual-memory.test.ts src/validation/tests/session-continuity.test.ts src/validation/tests/visual-foundation-certification.test.ts src/validation/tests/ux-rule-engine.test.ts src/validation/tests/design-system-intelligence.test.ts src/validation/tests/executive-style-learning.test.ts src/validation/tests/layout-evaluation.test.ts src/validation/tests/workflow-optimization.test.ts src/validation/tests/accessibility-intelligence.test.ts src/validation/tests/visual-consistency.test.ts src/validation/tests/ux-scoring.test.ts src/validation/tests/recommendation-engine.test.ts src/validation/tests/ux-intelligence-certification.test.ts src/validation/tests/frontend-builder.test.ts src/validation/tests/component-generator.test.ts src/validation/tests/layout-refactoring.test.ts src/validation/tests/theme-builder.test.ts src/validation/tests/preview-generator.test.ts src/validation/tests/validation-engine.test.ts src/validation/tests/regression-protection.test.ts src/validation/tests/rollback-manager.test.ts src/validation/tests/change-documentation.test.ts src/validation/tests/autonomous-builder-certification.test.ts src/validation/tests/natural-ux-conversation.test.ts src/validation/tests/voice-ux-commands.test.ts src/validation/tests/screen-annotation.test.ts src/validation/tests/multi-proposal-generator.test.ts src/validation/tests/side-by-side-comparison.test.ts src/validation/tests/explain-decisions.test.ts src/validation/tests/approval-workflow.test.ts src/validation/tests/preference-learning.test.ts src/validation/tests/continuous-collaboration.test.ts src/validation/tests/executive-collaboration-certification.test.ts src/validation/tests/continuous-screen-observation.test.ts src/validation/tests/autonomous-ux-audit.test.ts src/validation/tests/ux-opportunity-discovery.test.ts src/validation/tests/productivity-intelligence.test.ts src/validation/tests/workflow-evolution.test.ts src/validation/tests/adaptive-interface.test.ts src/validation/tests/continuous-ux-evolution.test.ts src/validation/tests/executive-workspace-intelligence.test.ts src/validation/tests/self-improving-ux.test.ts src/validation/tests/visual-intelligence-certification.test.ts src/validation/tests/marketplace-connector-framework.test.ts src/validation/tests/amazon-marketplace-integration.test.ts src/validation/tests/amazon-product-intelligence.test.ts src/validation/tests/amazon-order-management.test.ts src/validation/tests/amazon-inventory-sync.test.ts src/validation/tests/walmart-marketplace-integration.test.ts src/validation/tests/etsy-marketplace-integration.test.ts src/validation/tests/ebay-marketplace-integration.test.ts src/validation/tests/tiktok-shop-marketplace-integration.test.ts src/validation/tests/shopify-store-marketplace-integration.test.ts src/validation/tests/woocommerce-marketplace-integration.test.ts src/validation/tests/marketplace-product-normalization.test.ts src/validation/tests/marketplace-order-normalization.test.ts src/validation/tests/marketplace-health-monitor.test.ts src/validation/tests/marketplace-certification.test.ts src/validation/tests/supplier-framework.test.ts src/validation/tests/cj-dropshipping-integration.test.ts src/validation/tests/aliexpress-integration.test.ts src/validation/tests/1688-integration.test.ts src/validation/tests/supplier-product-sync.test.ts src/validation/tests/supplier-inventory-sync.test.ts src/validation/tests/supplier-pricing-engine.test.ts src/validation/tests/supplier-ranking-engine.test.ts src/validation/tests/procurement-engine.test.ts src/validation/tests/fulfilment-orchestrator.test.ts src/validation/tests/shipping-carrier-integration.test.ts src/validation/tests/shipment-tracking-engine.test.ts src/validation/tests/return-management.test.ts src/validation/tests/warehouse-intelligence.test.ts src/validation/tests/multi-warehouse-support.test.ts src/validation/tests/supplier-risk-monitor.test.ts src/validation/tests/logistics-optimization.test.ts src/validation/tests/fulfilment-sla-monitor.test.ts src/validation/tests/procurement-intelligence.test.ts src/validation/tests/supplier-operations-certification.test.ts src/validation/tests/financial-framework.test.ts src/validation/tests/payment-gateway-integration.test.ts src/validation/tests/banking-integration.test.ts src/validation/tests/revenue-engine.test.ts src/validation/tests/expense-engine.test.ts src/validation/tests/profit-calculation-engine.test.ts src/validation/tests/cash-flow-monitor.test.ts src/validation/tests/reconciliation-engine.test.ts src/validation/tests/invoice-generator.test.ts src/validation/tests/refund-engine.test.ts src/validation/tests/tax-intelligence-engine.test.ts src/validation/tests/multi-currency-engine.test.ts src/validation/tests/financial-forecast-engine.test.ts src/validation/tests/budget-management-engine.test.ts src/validation/tests/financial-risk-monitor.test.ts src/validation/tests/executive-financial-dashboard.test.ts src/validation/tests/accounting-export-engine.test.ts src/validation/tests/financial-operations-certification.test.ts src/validation/tests/customer-identity-engine.test.ts src/validation/tests/crm-foundation.test.ts src/validation/tests/customer-timeline-engine.test.ts src/validation/tests/email-communication-engine.test.ts src/validation/tests/sms-communication-engine.test.ts src/validation/tests/whatsapp-integration.test.ts src/validation/tests/live-chat-integration.test.ts src/validation/tests/ai-customer-support.test.ts src/validation/tests/ticket-management-engine.test.ts src/validation/tests/customer-sentiment-engine.test.ts src/validation/tests/review-management-engine.test.ts src/validation/tests/loyalty-programme-engine.test.ts src/validation/tests/returns-intelligence-engine.test.ts src/validation/tests/customer-risk-engine.test.ts src/validation/tests/customer-lifetime-value-engine.test.ts src/validation/tests/customer-segmentation-engine.test.ts src/validation/tests/customer-journey-intelligence-engine.test.ts src/validation/tests/executive-customer-dashboard.test.ts src/validation/tests/customer-operations-certification.test.ts src/validation/tests/marketing-framework.test.ts src/validation/tests/meta-ads-integration.test.ts src/validation/tests/google-ads-integration.test.ts src/validation/tests/tiktok-ads-integration.test.ts src/validation/tests/youtube-ads-integration.test.ts src/validation/tests/seo-intelligence-engine.test.ts src/validation/tests/campaign-manager.test.ts src/validation/tests/audience-intelligence.test.ts src/validation/tests/attribution-engine.test.ts src/validation/tests/marketing-analytics-dashboard.test.ts src/validation/tests/creative-asset-manager.test.ts src/validation/tests/ai-campaign-generator.test.ts src/validation/tests/budget-optimization-engine.test.ts src/validation/tests/conversion-intelligence.test.ts src/validation/tests/competitor-marketing-monitor.test.ts src/validation/tests/viral-trend-intelligence.test.ts src/validation/tests/marketing-experiment-engine.test.ts src/validation/tests/cross-channel-orchestrator.test.ts src/validation/tests/autonomous-marketing-engine.test.ts src/validation/tests/real-world-operations-certification.test.ts src/validation/tests/company-factory-framework.test.ts src/validation/tests/business-opportunity-discovery.test.ts src/validation/tests/cross-channel-orchestrator.test.ts src/validation/tests/autonomous-marketing-engine.test.ts src/validation/tests/real-world-operations-certification.test.ts src/validation/tests/company-factory-framework.test.ts src/validation/tests/business-opportunity-discovery.test.ts src/validation/tests/market-validation-engine.test.ts src/validation/tests/business-model-generator.test.ts src/validation/tests/brand-creation-engine.test.ts src/validation/tests/domain-digital-asset-planner.test.ts src/validation/tests/store-generation-engine.test.ts src/validation/tests/product-portfolio-builder.test.ts src/validation/tests/pricing-strategy-engine.test.ts src/validation/tests/launch-readiness-validator.test.ts src/validation/tests/business-launch-orchestrator.test.ts src/validation/tests/growth-initialization-engine.test.ts src/validation/tests/launch-monitoring-engine.test.ts src/validation/tests/first-revenue-optimizer.test.ts src/validation/tests/company-factory-certified.test.ts src/validation/tests/enterprise-portfolio-framework.test.ts src/validation/tests/multi-company-registry.test.ts src/validation/tests/portfolio-performance-engine.test.ts src/validation/tests/cross-business-knowledge-engine.test.ts src/validation/tests/capital-distribution-engine.test.ts src/validation/tests/executive-portfolio-dashboard.test.ts src/validation/tests/portfolio-risk-engine.test.ts src/validation/tests/portfolio-balance-engine.test.ts src/validation/tests/business-health-ranking.test.ts src/validation/tests/portfolio-intelligence-certified.test.ts src/validation/tests/cross-company-resource-engine.test.ts src/validation/tests/shared-customer-intelligence.test.ts src/validation/tests/shared-supplier-intelligence.test.ts src/validation/tests/portfolio-forecast-engine.test.ts src/validation/tests/acquisition-evaluation-engine.test.ts src/validation/tests/portfolio-optimization-engine.test.ts src/validation/tests/company-lifecycle-manager.test.ts src/validation/tests/portfolio-expansion-planner.test.ts src/validation/tests/enterprise-value-engine.test.ts src/validation/tests/autonomous-portfolio-board.test.ts src/validation/tests/portfolio-certified.test.ts src/validation/tests/autonomous-scaling-framework.test.ts src/validation/tests/global-expansion-framework.test.ts src/validation/tests/country-intelligence-engine.test.ts src/validation/tests/localization-engine.test.ts src/validation/tests/language-intelligence.test.ts src/validation/tests/currency-intelligence.test.ts src/validation/tests/regional-compliance-engine.test.ts src/validation/tests/global-tax-intelligence.test.ts src/validation/tests/international-logistics-engine.test.ts src/validation/tests/global-market-intelligence.test.ts src/validation/tests/executive-global-dashboard.test.ts src/validation/tests/global-brand-management.test.ts src/validation/tests/international-partnership-engine.test.ts src/validation/tests/global-talent-intelligence.test.ts src/validation/tests/winning-product-detector.test.ts src/validation/tests/scaling-decision-engine.test.ts src/validation/tests/capacity-planning-engine.test.ts src/validation/tests/marketing-scale-engine.test.ts src/validation/tests/supplier-scale-engine.test.ts src/validation/tests/financial-scale-engine.test.ts src/validation/tests/workforce-intelligence.test.ts src/validation/tests/executive-scaling-dashboard.test.ts src/validation/tests/bottleneck-intelligence.test.ts src/validation/tests/operational-elasticity-engine.test.ts src/validation/tests/performance-preservation-engine.test.ts src/validation/tests/scaling-risk-monitor.test.ts src/validation/tests/global-scaling-planner.test.ts src/validation/tests/autonomous-growth-optimizer.test.ts src/validation/tests/revenue-acceleration-engine.test.ts src/validation/tests/profit-scaling-engine.test.ts src/validation/tests/scale-simulation-engine.test.ts src/validation/tests/self-balancing-enterprise.test.ts src/validation/tests/digital-soul.test.ts src/validation/tests/digital-soul-executive-gate.test.ts src/validation/tests/e2e-testing.test.ts src/validation/tests/journey-system.test.ts src/validation/tests/brain-runtime.test.ts src/validation/tests/production-mode.test.ts src/validation/tests/durable-sessions.test.ts src/validation/tests/guardian-monitoring.test.ts src/validation/tests/scaling-architecture.test.ts src/validation/tests/performance-governance.test.ts src/validation/tests/execution-control-center.test.ts src/validation/tests/vision-integrity-engine.test.ts src/validation/tests/supervisor-system.test.ts src/validation/tests/builder-monitor.test.ts src/validation/tests/eta-engine.test.ts src/validation/tests/autonomous-recovery-engine.test.ts src/validation/tests/zero-human-automation.test.ts src/validation/tests/founder-shell.test.ts src/validation/tests/infrastructure-commander.test.ts src/validation/tests/commerce-intelligence.test.ts src/validation/tests/empire-commander.test.ts src/validation/tests/empire-operating-system.test.ts src/validation/tests/continuous-evolution.test.ts src/validation/tests/context.test.ts src/validation/tests/memory.test.ts src/validation/tests/planner.test.ts src/validation/tests/supervisor.test.ts src/validation/tests/recovery.test.ts src/validation/tests/audit-reviewer.test.ts src/validation/tests/synchronizer.test.ts src/validation/tests/due-diligence.test.ts src/validation/tests/improvement.test.ts src/validation/tests/orchestrator.test.ts src/validation/tests/watcher.test.ts src/validation/tests/command.test.ts src/validation/tests/openai.test.ts src/validation/tests/objective.test.ts",
++    "preinstall": "node ../scripts/verify-build-runtime.mjs"
+   },
+   "devDependencies": {
+     "@types/node": "^22.13.4",
+     "tsx": "^4.19.3",
+     "typescript": "^5.8.2"
+-  }
++  },
++  "packageManager": "npm@10.9.8"
+ }
+diff --git a/railpack.json b/railpack.json
+new file mode 100644
+index 00000000..c4e6e477
+--- /dev/null
++++ b/railpack.json
+@@ -0,0 +1,13 @@
++{
++  "$schema": "https://schema.railpack.com",
++  "packages": {
++    "node": "22.23.2"
++  },
++  "steps": {
++    "install": {
++      "commands": [
++        "npm ci --include=dev"
++      ]
++    }
++  }
++}
+diff --git a/railway.toml b/railway.toml
+index 7af5fcb7..6efd24a4 100644
+--- a/railway.toml
++++ b/railway.toml
+@@ -5,7 +5,7 @@
+ [build]
+ builder = "NIXPACKS"
+ # Install pillow+backend first so scripts/sync-pillow-governance.mjs can resolve tsx from backend/node_modules.
+-buildCommand = "NPM_CONFIG_PRODUCTION=false npm install --prefix pillow && NPM_CONFIG_PRODUCTION=false npm install --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
++buildCommand = "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
+ 
+ [deploy]
+ startCommand = "node backend/dist/index.js"
+diff --git a/scripts/verify-build-runtime.mjs b/scripts/verify-build-runtime.mjs
+new file mode 100644
+index 00000000..f551b76e
+--- /dev/null
++++ b/scripts/verify-build-runtime.mjs
+@@ -0,0 +1,85 @@
++#!/usr/bin/env node
++import assert from "node:assert/strict";
++import { readFileSync, readdirSync } from "node:fs";
++import { dirname, resolve } from "node:path";
++import { fileURLToPath } from "node:url";
++
++const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
++const json = (root, name) => JSON.parse(readFileSync(resolve(root, name), "utf8"));
++
++export function assertBuildRuntime({ nodeVersion, npmUserAgent, expectedNode, expectedNpm }) {
++  assert.equal(nodeVersion.replace(/^v/, ""), expectedNode,
++    `Install/build runtime drift: require Node ${expectedNode}; observed ${nodeVersion}. This check does not prove the production startup runtime.`);
++  const npmVersion = npmUserAgent?.match(/^npm\/([^ ]+)/)?.[1];
++  // npm supplies this for real preinstall hooks. A direct node invocation proves
++  // only Node; it must not pretend to have verified npm.
++  if (npmUserAgent) {
++    assert.ok(npmVersion, "Installation must use the repository's pinned npm package manager");
++    assert.equal(npmVersion, expectedNpm, `Package-manager drift: require npm ${expectedNpm}; observed ${npmVersion}`);
++  }
++  return { nodeVersion: expectedNode, npmVersion: npmVersion ?? null };
++}
++
++export function assertRepositoryBuildConfiguration(root = repositoryRoot) {
++  const expectedNode = readFileSync(resolve(root, ".node-version"), "utf8").trim();
++  assert.match(expectedNode, /^22\.\d+\.\d+$/, "Use an exact Node 22 patch version, matching hosted CI");
++  const expectedNpm = json(root, "package.json").engines.npm;
++  assert.match(expectedNpm, /^\d+\.\d+\.\d+$/, "Pin an exact npm version");
++  for (const prefix of ["", "backend/", "pillow/"]) {
++    const manifest = json(root, `${prefix}package.json`);
++    const lockRoot = json(root, `${prefix}package-lock.json`).packages[""];
++    assert.equal(manifest.engines.node, expectedNode, `${prefix}Node version differs from CI`);
++    assert.equal(manifest.engines.npm, expectedNpm, `${prefix}npm version differs from root`);
++    assert.equal(manifest.packageManager, `npm@${expectedNpm}`);
++    assert.deepEqual(lockRoot.engines, manifest.engines, `${prefix}lockfile engine metadata differs`);
++    assert.equal(manifest.scripts.preinstall,
++      `node ${prefix ? "../" : ""}scripts/verify-build-runtime.mjs`, `${prefix}must reject runtime drift before install`);
++  }
++  const linkedPillow = json(root, "backend/package-lock.json").packages["../pillow"];
++  assert.deepEqual(linkedPillow.engines, json(root, "pillow/package.json").engines);
++  const railpack = json(root, "railpack.json");
++  assert.equal(railpack.packages.node, expectedNode);
++  // packageManager pins npm via the Node provider's documented Corepack path.
++  // Do not assume an additional Mise npm package override is supported.
++  assert.equal(railpack.packages.npm, undefined);
++  assert.deepEqual(railpack.steps.install.commands, ["npm ci --include=dev"]);
++  assert.equal(railpack.deploy, undefined, "Build configuration must not override deployment authority or startup");
++  const nixpacks = readFileSync(resolve(root, "nixpacks.toml"), "utf8");
++  assert.match(nixpacks, /^NIXPACKS_NODE_VERSION = "22"$/m);
++  assert.match(nixpacks, /\[phases\.install\]\s*cmds = \["NPM_CONFIG_PRODUCTION=false npm ci"\]/);
++  const railway = readFileSync(resolve(root, "railway.toml"), "utf8");
++  assert.match(railway, /npm ci --prefix pillow/);
++  assert.match(railway, /npm ci --prefix backend/);
++  assert.doesNotMatch(railway, /npm install/);
++  if (/startCommand = "node deployment\/canary-launcher\.cjs"/.test(railway)) {
++    assert.equal(railway, readFileSync(resolve(root, "deployment/railway.canary.toml"), "utf8"),
++      "A temporary canary root must be exactly the reviewed canary reference");
++    assert.match(railway, /^restartPolicyType = "NEVER"$/m);
++  } else {
++    assert.match(railway, /^startCommand = "node backend\/dist\/index\.js"$/m);
++    assert.match(railway, /^restartPolicyType = "ON_FAILURE"$/m);
++  }
++  assert.match(railway, /^healthcheckPath = "\/health\/ready"$/m);
++  for (const file of readdirSync(resolve(root, ".github/workflows")).filter(name => /\.ya?ml$/.test(name))) {
++    const workflow = readFileSync(resolve(root, ".github/workflows", file), "utf8");
++    const setups = [...workflow.matchAll(/uses: actions\/setup-node@[^\n]+([\s\S]*?)(?=\n\s*- name:|$)/g)];
++    assert.ok(setups.length > 0, `${file}must establish a Node runtime`);
++    for (const [, configuration] of setups) {
++      assert.match(configuration, /node-version-file: '\.node-version'/, `${file}must consume the exact repository pin`);
++      assert.doesNotMatch(configuration, /node-version:/, `${file}must not override the repository pin`);
++    }
++  }
++  return { expectedNode, expectedNpm };
++}
++
++if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
++  // Install-time verification needs only the pins, not CI or deployment files.
++  // Builders may intentionally omit those files from dependency-install layers.
++  const pins = { expectedNode: readFileSync(resolve(repositoryRoot, ".node-version"), "utf8").trim(),
++    expectedNpm: json(repositoryRoot, "package.json").engines.npm };
++  const observed = assertBuildRuntime({
++    ...pins, nodeVersion: process.versions.node, npmUserAgent: process.env.npm_config_user_agent,
++  });
++  console.log(JSON.stringify({ event: "build_runtime_verified", ...observed,
++    npmVersionVerified: observed.npmVersion !== null }));
++}
+diff --git a/scripts/verify-build-runtime.test.mjs b/scripts/verify-build-runtime.test.mjs
+new file mode 100644
+index 00000000..299a8353
+--- /dev/null
++++ b/scripts/verify-build-runtime.test.mjs
+@@ -0,0 +1,58 @@
++import assert from "node:assert/strict";
++import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, cpSync, rmSync } from "node:fs";
++import { tmpdir } from "node:os";
++import { resolve, dirname, join } from "node:path";
++import { fileURLToPath } from "node:url";
++import { spawnSync } from "node:child_process";
++import { test } from "node:test";
++import { assertBuildRuntime, assertRepositoryBuildConfiguration } from "./verify-build-runtime.mjs";
++
++const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
++const pins = { expectedNode: "22.23.2", expectedNpm: "10.9.8" };
++
++test("repository and both provider install paths agree with hosted CI pins", () => {
++  assert.deepEqual(assertRepositoryBuildConfiguration(root), pins);
++});
++
++test("the actual canary Node 24 and Node 20 drift, and untested patches, fail closed", () => {
++  for (const nodeVersion of ["24.10.0", "20.20.2", "22.23.1", "22.24.0"]) {
++    assert.throws(() => assertBuildRuntime({ ...pins, nodeVersion }), /Install\/build runtime drift/);
++  }
++  assert.deepEqual(assertBuildRuntime({ ...pins, nodeVersion: "22.23.2", npmUserAgent: "npm/10.9.8 node/v22.23.2 linux x64" }),
++    { nodeVersion: "22.23.2", npmVersion: "10.9.8" });
++});
++
++test("a different npm or package manager cannot install while claiming the pinned toolchain", () => {
++  for (const npmUserAgent of ["npm/11.6.1 node/v22.23.2", "pnpm/10.0.0 node/v22.23.2"]) {
++    assert.throws(() => assertBuildRuntime({ ...pins, nodeVersion: "22.23.2", npmUserAgent }));
++  }
++  assert.equal(assertBuildRuntime({ ...pins, nodeVersion: "22.23.2" }).npmVersion, null);
++});
++
++test("configuration regression to automatic npm install is detected", () => {
++  const temp = mkdtempSync(join(tmpdir(), "empire-build-contract-"));
++  try {
++    for (const file of [".node-version", "package.json", "package-lock.json", "railpack.json", "nixpacks.toml", "railway.toml",
++      "backend/package.json", "backend/package-lock.json", "pillow/package.json", "pillow/package-lock.json"]) {
++      mkdirSync(dirname(join(temp, file)), { recursive: true }); cpSync(join(root, file), join(temp, file));
++    }
++    cpSync(join(root, ".github/workflows"), join(temp, ".github/workflows"), { recursive: true });
++    const railpack = JSON.parse(readFileSync(join(temp, "railpack.json"), "utf8"));
++    railpack.steps.install.commands = ["npm install"];
++    writeFileSync(join(temp, "railpack.json"), JSON.stringify(railpack));
++    assert.throws(() => assertRepositoryBuildConfiguration(temp));
++  } finally { rmSync(temp, { recursive: true, force: true }); }
++});
++
++test("the real preinstall entrypoint accepts only the running pinned Node/npm", () => {
++  const result = spawnSync(process.execPath, [join(root, "scripts/verify-build-runtime.mjs")], {
++    cwd: root, encoding: "utf8", env: { ...process.env, npm_config_user_agent: "npm/10.9.8 node/v22.23.2" },
++  });
++  if (process.versions.node === pins.expectedNode) {
++    assert.equal(result.status, 0, result.stderr);
++    assert.match(result.stdout, /build_runtime_verified/);
++  } else {
++    assert.notEqual(result.status, 0);
++    assert.match(result.stderr, /Install\/build runtime drift/);
++  }
++});
+diff --git a/scripts/verify-product-path-ci.mjs b/scripts/verify-product-path-ci.mjs
+index 909f3f50..79ff680d 100644
+--- a/scripts/verify-product-path-ci.mjs
++++ b/scripts/verify-product-path-ci.mjs
+@@ -4,8 +4,10 @@ import assert from "node:assert/strict";
+ import { existsSync, readdirSync, readFileSync } from "node:fs";
+ import { extname, join, resolve } from "node:path";
+ import { fileURLToPath } from "node:url";
++import { assertRepositoryBuildConfiguration } from "./verify-build-runtime.mjs";
+ 
+ const repositoryRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
++assertRepositoryBuildConfiguration(repositoryRoot);
+ 
+ const targets = [
+   {
