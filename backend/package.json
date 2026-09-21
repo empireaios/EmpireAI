@@ -34,7 +34,7 @@
     "validate:full": "npm run typecheck && npm run validate",
     "reports:generate": "node --import tsx scripts/generate-reports.ts",
     "architect:report": "node --import tsx scripts/generate-reports.ts",
-    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts",
+    "test:cj-receipt-safety": "node --import tsx --test src/validation/tests/cj-live-receipt-truth.test.ts src/validation/tests/live-cj-route-authorization.test.ts src/validation/tests/live-cj-fulfillment.test.ts src/validation/tests/cj-order-fulfillment.test.ts src/validation/tests/order-execution-bridge.test.ts src/validation/tests/cj-dropshipping-live-connector.test.ts src/validation/tests/cj-estimate-truth.test.ts src/validation/tests/customer-order-pipeline.test.ts src/validation/tests/minimum-live-revenue-loop.test.ts",
     "preinstall": "node ../scripts/verify-build-runtime.mjs"
   },
   "dependencies": {

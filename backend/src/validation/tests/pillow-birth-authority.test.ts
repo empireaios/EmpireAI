@@ -11,6 +11,10 @@ import { canonicalOperatingProjection } from "../../orchestration/pillow-host/ex
 import { projectLiveCommerceRefusal, projectOperatingAuthorityFacts } from "../../orchestration/pillow-host/executive-authority-surface.js";
 import { buildExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-grounding.js";
 import { resetInstitutionalMemoryRepository } from "../../orchestration/executive-learning/institutional-memory-service.js";
+import { runPillowCapabilityTests } from "../../orchestration/pillow-commissioning/executive-operating-loop/capability-harness.js";
+import { runExecutiveOperatingCycle } from "../../orchestration/pillow-commissioning/executive-operating-loop/cycle-runner.js";
+import { ALL_CAPABILITY_SCENARIOS } from "../../orchestration/pillow-commissioning/executive-operating-loop/capability-scenarios.js";
+import { listOutcomes, persistCapabilityTestRun, persistExecutiveCycle, persistOutcome } from "../../orchestration/pillow-commissioning/executive-operating-loop/store.js";
 
 const workspaceId = "birth-authority-test-owner";
 const timestamp = "2025-01-01T00:00:00.000Z";
@@ -104,6 +108,82 @@ describe("Birth authority reconciliation — offline, no certification granted",
     assert.equal(record.birthTimestamp, null);
     assert.equal(record.authority.certificationReceiptIngestion, "NOT_IMPLEMENTED");
     assert.equal(storedRow(), undefined);
+  });
+
+  it("missing scoped UX, billing, budget-enforcement and approval evidence cannot report passed gates", () => {
+    const record = getBirthRecord(workspaceId);
+    for (const id of ["ux_baseline", "cost_providers_audited", "cost_guard_exists", "approval_boundary"]) {
+      const gate = record.gates.find(g => g.id === id)!;
+      assert.equal(gate.passed, false, `${id} must not be an unconditional pass`);
+      assert.match(gate.evidence, /UNVERIFIED/);
+    }
+    assert.equal(record.gatesPassedCount, record.gates.filter(g => g.passed).length);
+  });
+
+  it("a real passing sandbox harness remains engineering evidence and certifies no executive capability", () => {
+    const result = runPillowCapabilityTests(workspaceId);
+    assert.equal(result.summary.passed, 8);
+    const readiness = evaluateExecutiveBirthReadiness(workspaceId);
+    assert.equal(readiness.rows.filter(r => r.status === "PROVEN").length, 0);
+    for (const capability of ["self-critique", "strategic hypothesis generation", "proactive investigation", "economic prioritisation", "owner escalation", "outcome learning", "logistics strategy"]) {
+      const item = readiness.rows.find(r => r.capability === capability)!;
+      assert.equal(item.status, "PARTIAL", capability);
+      assert.match(item.evidence, /independent.*unverified/i);
+      assert.ok(readiness.mandatoryStillOpen.includes(`${capability}=PARTIAL`));
+    }
+    assert.equal(readiness.technicallyReadyForGrandKingAuthorisation, false);
+    assert.equal(getBirthRecord(workspaceId).status, "NOT_BORN");
+    assert.equal(getPillowAuthority().realCommerceAuthorized, false);
+  });
+
+  it("a stored live label, nonempty work queue and lesson cannot substitute for independently observed operation", () => {
+    const cycle = runExecutiveOperatingCycle({ workspaceId, situation: ALL_CAPABILITY_SCENARIOS.A,
+      mode: "sandbox", persist: true, recordFlight: false });
+    assert.ok(cycle.workQueue.length > 0);
+    // Test the legacy record's claim; do not execute the live mode or a provider.
+    persistExecutiveCycle({ ...cycle, mode: "live" });
+    const outcome = listOutcomes(workspaceId)[0]!;
+    persistOutcome({ ...outcome, status: "MONITORED", lesson: "A stored claim without an independent transfer test." });
+    const readiness = evaluateExecutiveBirthReadiness(workspaceId);
+    for (const capability of ["continuous executive loop", "economic prioritisation", "post-action monitoring", "outcome learning"]) {
+      const item = readiness.rows.find(r => r.capability === capability)!;
+      assert.equal(item.status, "PARTIAL", capability);
+      assert.match(item.evidence, /independent.*unverified/i);
+    }
+    assert.equal(readiness.rows.some(r => r.status === "PROVEN"), false);
+    assert.equal(readiness.technicallyReadyForGrandKingAuthorisation, false);
+    assert.equal(getPillowAuthority().waveCredit, 0);
+    assert.equal(getPillowAuthority().commerceStatus, "LOCKED");
+  });
+
+  it("an empty workspace cannot claim observed executive skills or inherit a foreign harness pass", () => {
+    runPillowCapabilityTests("different-owner");
+    const readiness = evaluateExecutiveBirthReadiness(workspaceId);
+    for (const capability of ["self-critique", "strategic hypothesis generation", "proactive investigation", "economic prioritisation", "owner escalation", "post-action monitoring", "outcome learning", "logistics strategy"]) {
+      assert.equal(readiness.rows.find(r => r.capability === capability)?.status, "NOT_PROVEN", capability);
+    }
+    assert.equal(readiness.rows.some(r => r.status === "PROVEN"), false);
+  });
+
+  it("malformed or contradictory stored harness summaries do not claim all A–H checks passed", () => {
+    const good = runPillowCapabilityTests(workspaceId);
+    const malformed = [
+      { ...good, results: [], summary: { total: 8, failed: 0, passed: 0 } },
+      { ...good, summary: { total: 8, failed: 0, passed: 7 } },
+      { ...good, results: good.results.slice(0, 7) },
+      { ...good, results: [...good.results.slice(0, 7), good.results[0]] },
+      { ...good, results: good.results.map((r, i) => i === 0 ? { ...r, status: "FAIL" } : r) },
+      { ...good, results: good.results.map((r, i) => i === 0 ? { ...r, checks: [{ name: "contradiction", pass: false }] } : r) },
+    ];
+    for (const [index, record] of malformed.entries()) {
+      const ws = `${workspaceId}-malformed-${index}`;
+      persistCapabilityTestRun({ workspaceId: ws, runId: `malformed-${index}`, completedAt: timestamp, record });
+      const readiness = evaluateExecutiveBirthReadiness(ws);
+      assert.ok(readiness.notes.some(note => /incomplete\/failing/.test(note)), `summary ${index}`);
+      assert.ok(!readiness.notes.some(note => /all PASS/.test(note)), `summary ${index}`);
+      assert.equal(getBirthRecord(ws).gates.find(g => g.id === "capability_harness_ah")?.passed, false, `summary ${index}`);
+      assert.equal(readiness.technicallyReadyForGrandKingAuthorisation, false);
+    }
   });
 
   it("legacy history remains workspace-scoped", () => {

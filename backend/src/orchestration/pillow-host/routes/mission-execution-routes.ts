@@ -34,7 +34,7 @@ export async function registerMissionExecutionRoutes(app: FastifyInstance, servi
       const job = service.get(request.params.jobId);
       if (!job) return reply.code(404).send({ error: "Execution not found" });
       return reply.send({ jobId: job.jobId, missionId: job.missionId, status: job.status, attempts: job.attempts,
-        missionReconciled: job.reconciled, testedBuildSha: job.buildSha, output: job.receipt?.output ?? null,
+        missionReconciled: job.reconciled, executionBuildSha: job.buildSha, output: job.receipt?.output ?? null,
         outputHash: job.receipt?.outputHash ?? null, lastError: job.lastError, runner: service.runner.status(),
         certificationCredit: false, commerceExecution: false });
     } catch { return reply.code(503).send({ error: "Execution history unavailable; no completion inferred" }); }

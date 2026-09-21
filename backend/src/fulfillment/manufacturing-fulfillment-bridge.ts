@@ -1,3 +1,4 @@
+import { requireCjSandboxEstimate } from "../suppliers/cj-dropshipping/orders/cj-fulfillment-estimate-gate.js";
 import type { CompanyManufacturingRunCreateInput } from "../execution/autonomous-company-manufacturing-loop/index.js";
 import type { Order, OrderApproval } from "../orders/index.js";
 import { createCjOrderClient } from "../suppliers/cj-dropshipping/orders/cj-order-client.js";
@@ -106,6 +107,8 @@ export async function prepareManufacturingFulfillment(
   let draftOrder = buildDraftOrderFromRun(input);
 
   const estimate = await client.estimateFulfillment(draftOrder);
+
+  requireCjSandboxEstimate(estimate);
   draftOrder = {
     ...draftOrder,
     estimatedCost: estimate.estimatedCost,

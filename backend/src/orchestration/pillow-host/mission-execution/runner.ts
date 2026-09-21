@@ -5,6 +5,7 @@ import { MissionExecutionStore } from "./store.js";
 export type ExecutionRunnerHooks = {
   canExecute(job: ExecutionJob): boolean;
   canPoll?(): boolean;
+  beforeClaim?(): void;
   reconcile?(receipt: ExecutionReceipt): boolean | Promise<boolean>;
 };
 export function inspectActualAuthority(): AuthorityOutput {
@@ -16,6 +17,7 @@ export class MissionExecutionRunner {
   private active: Promise<void> | null = null;
   private paused = true;
   private lastError: string | null = null;
+  private receiptOffset = 0;
   constructor(private readonly store: MissionExecutionStore, private readonly buildSha: string,
     private readonly hooks: ExecutionRunnerHooks, private readonly inspect: () => AuthorityOutput | Promise<AuthorityOutput> = inspectActualAuthority) {}
   start(): void {
@@ -26,6 +28,7 @@ export class MissionExecutionRunner {
     void this.tick();
   }
   pause(): void { this.paused = true; }
+  async pauseAndWait(): Promise<void> { this.paused = true; await this.active; }
   resume(): void { this.paused = false; }
   async stop(): Promise<void> {
     this.paused = true;
@@ -46,12 +49,17 @@ export class MissionExecutionRunner {
   private async processOne(): Promise<void> {
     this.lastError = null;
     if (this.hooks.canPoll && !this.hooks.canPoll()) return;
+    this.hooks.beforeClaim?.();
     // Completed output remains readable after a code upgrade: the receipt retains original build identity.
     if (this.hooks.reconcile) {
-      for (const receipt of this.store.pendingReceipts().slice(0, 20)) {
+      const pending = this.store.pendingReceipts();
+      const start = pending.length ? this.receiptOffset % pending.length : 0;
+      for (let n = 0; n < Math.min(20, pending.length); n++) {
+        const receipt = pending[(start + n) % pending.length]!;
         if (this.paused) return;
         if (await this.hooks.reconcile(receipt)) this.store.markReconciled(receipt);
       }
+      this.receiptOffset = pending.length ? (start + 20) % pending.length : 0;
     }
     if (this.paused) return;
     const claim = this.store.claim(this.buildSha);

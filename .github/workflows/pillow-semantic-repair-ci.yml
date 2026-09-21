@@ -126,7 +126,7 @@ jobs:
             assert.ok(match, `Missing test summary: ${name}`);
             return Number(match[1]);
           };
-          assert.ok(count('tests') >= 88, 'All reviewed CJ regressions must execute');
+          assert.ok(count('tests') >= 116, 'All reviewed CJ receipt, authorization and unknown-cost regressions must execute');
           assert.equal(count('pass'), count('tests'), 'Every CJ regression must pass');
           for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
             assert.equal(count(kind), 0, `${kind} tests are not permitted`);

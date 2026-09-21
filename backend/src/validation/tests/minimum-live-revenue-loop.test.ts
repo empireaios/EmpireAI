@@ -74,8 +74,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "Premium Kitchen Blender",
       productDescription: "Ship-ready bestseller for US customers.",
       priceCents: 4999,
-      cjSupplierSku: "CJ-SKU-001",
-      cjSupplierProductId: "CJ-PID-001",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1800,
     });
 
@@ -99,8 +99,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "Test Product",
       productDescription: "Test",
       priceCents: 2999,
-      cjSupplierSku: "SKU-1",
-      cjSupplierProductId: "PID-1",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 900,
     });
 
@@ -121,8 +121,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "Profit Product",
       productDescription: "High margin test",
       priceCents: 6000,
-      cjSupplierSku: "SKU-PROFIT",
-      cjSupplierProductId: "PID-PROFIT",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1500,
     });
 
@@ -162,8 +162,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "Gate Product",
       productDescription: "Approval gate test",
       priceCents: 4500,
-      cjSupplierSku: "SKU-GATE",
-      cjSupplierProductId: "PID-GATE",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1200,
     });
 
@@ -197,8 +197,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "Live Block Product",
       productDescription: "Live gate test",
       priceCents: 5500,
-      cjSupplierSku: "SKU-LIVE",
-      cjSupplierProductId: "PID-LIVE",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1400,
     });
 
@@ -242,8 +242,8 @@ describe("Mission 101 Minimum Live Revenue Loop", () => {
       productName: "List Product",
       productDescription: "List test",
       priceCents: 3500,
-      cjSupplierSku: "SKU-LIST",
-      cjSupplierProductId: "PID-LIST",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1000,
     });
 

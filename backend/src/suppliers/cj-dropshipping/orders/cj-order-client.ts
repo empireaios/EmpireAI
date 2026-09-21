@@ -1,7 +1,8 @@
+import { isCjLiveEstimateContext } from "./cj-fulfillment-estimate-gate.js";
 import type { Order } from "../../../orders/index.js";
 import type { CjApiClient } from "../cj-api-client.js";
 import type { CjConfig } from "../cj-config.js";
-import { isCjLiveApiEnabled, loadCjConfig } from "../cj-config.js";
+import { loadCjConfig } from "../cj-config.js";
 import { getCjSandboxProducts } from "../cj-sandbox-fixtures.js";
 import {
   recordDeliveryOutcome,
@@ -57,19 +58,27 @@ export class CjOrderClient {
     const validation = validateOrder(order);
     const issues = [...validation.issues];
 
-    const itemCost = order.items.reduce((sum, item) => sum + item.unitCost * item.quantity, 0);
-    const shippingEstimate = 5.99;
-    const currency = order.currency || "USD";
-
-    let estimatedDeliveryDaysMin = 7;
-    let estimatedDeliveryDaysMax = 14;
-    let shippingMethod = "CJ_STANDARD_SANDBOX";
-
-    if (isCjLiveApiEnabled(this.config)) {
-      shippingMethod = "CJ_STANDARD";
-      estimatedDeliveryDaysMin = 5;
-      estimatedDeliveryDaysMax = 12;
+    const currency = typeof order.currency === "string" && /^[A-Z]{3}$/.test(order.currency) ? order.currency : null;
+    const liveIntent = isCjLiveEstimateContext(order, this.config);
+    const itemCostsKnown = order.items.length > 0 && order.items.every(item =>
+      Number.isFinite(item.unitCost) && item.unitCost >= 0 && Number.isSafeInteger(item.quantity) && item.quantity > 0 && item.currency === currency);
+    const itemCost = itemCostsKnown ? order.items.reduce((sum, item) => sum + item.unitCost * item.quantity, 0) : NaN;
+    const estimatedCents = Math.round((itemCost + 5.99) * 100);
+    if (liveIntent || !currency || !Number.isFinite(itemCost) || !Number.isSafeInteger(estimatedCents)) {
+      return {
+        source: "UNAVAILABLE", liveQuoteVerified: false,
+        estimatedCost: null, currency, estimatedDeliveryDaysMin: null, estimatedDeliveryDaysMax: null, shippingMethod: null,
+        valid: false,
+        issues: [...issues, liveIntent
+          ? "Live CJ fulfillment cost, shipping service and delivery window are unknown: no provider quote was obtained; sandbox estimates cannot authorize live economics."
+          : "Item costs, quantities or currency are unknown, invalid, or exceed safe integer cents; no fulfillment estimate can be calculated."],
+      };
     }
+
+    // Deliberate offline fixture only. Credentials cannot upgrade it to a live quote.
+    const estimatedDeliveryDaysMin = 7;
+    const estimatedDeliveryDaysMax = 14;
+    const shippingMethod = "CJ_STANDARD_SANDBOX";
 
     const sandboxMatch = getCjSandboxProducts().find((product) =>
       order.items.some(
@@ -82,7 +91,8 @@ export class CjOrderClient {
     }
 
     return {
-      estimatedCost: Number((itemCost + shippingEstimate).toFixed(2)),
+      source: "SANDBOX_FIXTURE", liveQuoteVerified: false,
+      estimatedCost: estimatedCents / 100,
       currency,
       estimatedDeliveryDaysMin,
       estimatedDeliveryDaysMax,

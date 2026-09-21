@@ -171,6 +171,10 @@ export class MissionRuntime {
     return this.controller.getHistory();
   }
 
+  reconcileAuthorityExecution(jobId: string): boolean {
+    return this.controller.reconcileAuthorityExecution(jobId);
+  }
+
   getAuditTrail() {
     return this.controller.getManager().getAuditTrail();
   }

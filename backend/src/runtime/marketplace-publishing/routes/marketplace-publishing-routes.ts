@@ -107,13 +107,13 @@ export async function registerMarketplacePublishingRoutes(
       await updatePublishQueueAfterExecution(
         body.queueId,
         user.workspaceId,
-        result.ok ? "COMPLETE" : "BLOCKED",
+        result.submissionAccepted ? "EXECUTING" : "BLOCKED",
         result.blockers,
       );
     }
 
     auditLogger.write({
-      action: result.ok ? "product_publishing.catalog_published" : "commerce_runtime.dispatch.blocked",
+      action: result.submissionAccepted ? "commerce_runtime.event.processed" : "commerce_runtime.dispatch.blocked",
       actor: user.email,
       workspaceId: user.workspaceId,
       correlationId: request.id,
@@ -124,10 +124,14 @@ export async function registerMarketplacePublishingRoutes(
         amazonStatus: result.amazonStatus,
         liveApiCalled: result.liveApiCalled,
         ok: result.ok,
+        submissionAccepted: result.submissionAccepted,
+        submissionId: result.submissionId,
+        submissionBinding: result.submissionBinding,
+        listingVerified: result.listingVerified,
       },
     });
 
-    return reply.code(result.ok ? 200 : 409).send({ package: pkg, publish: result });
+    return reply.code(result.submissionAccepted ? 202 : 409).send({ package: pkg, publish: result });
   });
 
   app.get("/health/marketplace-publishing", async (_request, reply) => {

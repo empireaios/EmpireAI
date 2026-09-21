@@ -271,6 +271,9 @@ export class PillowHost {
     auditLogger;
     repoRootOverride;
     pillowSession = null;
+    missionAuthorityAdapter = null;
+    missionAuthorityLifecycle = null;
+    missionAuthorityDiagnostics = null;
     llmLayer = null;
     artifactRegistry = null;
     sessionStore = new PillowSessionStore();
@@ -315,6 +318,7 @@ export class PillowHost {
                 dryRunRecoveryValidation: !pillowProductionMode,
                 dryRunSyncExecution: !pillowProductionMode,
             });
+            if (this.missionAuthorityAdapter) this.pillowSession.missionRuntime.bindIntegrations({ authorityMissionExecutor: this.missionAuthorityAdapter });
             const adapter = createBrainLLMAdapter(this.llmRouter);
             const artifactRegistry = createArtifactRegistry(this.repositoryRoot);
             const intelligencePlatform = createOpenAIIntelligencePlatform(adapter);
@@ -327,6 +331,7 @@ export class PillowHost {
             this.startedAt = new Date().toISOString();
             this.stoppedAt = null;
             this.lifecycle = "running";
+            this.missionAuthorityLifecycle?.resume();
             this.health = "Running";
             this.lastActivityAt = Date.now();
             this.tickHeartbeat();
@@ -360,6 +365,7 @@ export class PillowHost {
         this.lifecycle = "stopping";
         this.health = "Recovering";
         this.stopHeartbeat();
+        await this.missionAuthorityLifecycle?.pauseAndWait();
         resetPillowSession();
         this.pillowSession = null;
         this.llmLayer = null;
@@ -21221,12 +21227,26 @@ export class PillowHost {
         this.ensureRunning();
         return this.pillowSession.pillowOrchestrationRuntime.getQ1003ConsumableContract();
     }
+    configureMissionAuthorityExecution(adapter, lifecycle, diagnostics) {
+        this.missionAuthorityAdapter = adapter;
+        this.missionAuthorityLifecycle = lifecycle;
+        this.missionAuthorityDiagnostics = diagnostics;
+        this.pillowSession?.missionRuntime.bindIntegrations({ authorityMissionExecutor: adapter });
+    }
+    reconcileMissionAuthorityExecution(jobId) {
+        if (this.lifecycle !== "running") return false;
+        return this.pillowSession.missionRuntime.reconcileAuthorityExecution(jobId);
+    }
+    getMissionAuthorityExecutionDiagnostics() {
+        return this.missionAuthorityDiagnostics?.() ?? { enabled: false, state: "disabled", operation: "authority.snapshot.v1", commerceExecution: false, certificationCredit: false };
+    }
     getMissionRuntime() {
         this.ensureRunning();
         const engine = this.pillowSession.missionRuntime;
         return {
             computedAt: new Date().toISOString(),
             missionId: "Q10-03",
+            authorityExecution: this.getMissionAuthorityExecutionDiagnostics(),
             engine: engine.getState(),
             cockpit: engine.getCockpitSnapshot(),
             history: engine.getHistory(),
@@ -21302,7 +21322,7 @@ export class PillowHost {
     }
     runMissionRuntimeDiagnostics() {
         this.ensureRunning();
-        return this.pillowSession.missionRuntime.runDiagnostics();
+        return { ...this.pillowSession.missionRuntime.runDiagnostics(), authorityExecution: this.getMissionAuthorityExecutionDiagnostics() };
     }
     getMissionRuntimeHistory() {
         this.ensureRunning();

@@ -41,21 +41,25 @@ export async function registerMissionRuntimeRoutes(app: FastifyInstance, deps: {
   const missionAuth = createMissionRuntimeAuth(deps.authenticate);
   // Explicit host enablement: read-only authority inspection only, never a commerce switch.
   let executor = deps.missionExecutionService ?? null;
+  let executorConfigurationError = false;
   if (!executor && process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED === "true") {
     try {
       executor = createMissionExecutionService({ databasePath: env.DATABASE_PATH,
         scope: { workspaceId: "ws_empire_1", ownerEmail: env.FOUNDER_EMAIL.trim().toLowerCase() },
         buildSha: process.env.RAILWAY_GIT_COMMIT_SHA ?? process.env.EMPIREAI_BUILD_SHA ?? "",
         host: pillowHost });
-    } catch { executor = null; }
+    } catch { executor = null; executorConfigurationError = true; }
   }
+  const executorDiagnostics = () => executor?.diagnostics() ?? { enabled: false,
+    state: executorConfigurationError ? "configuration_error" : "disabled", operation: "authority.snapshot.v1",
+    commerceExecution: false, certificationCredit: false };
   await registerMissionExecutionRoutes(app, executor, missionAuth);
   app.get("/api/pillow/mission-runtime", { preHandler: missionAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") {
       onUnavailableRead?.();
-      return reply.send(collectMissionRuntimeSnapshot());
+      return reply.send({ ...collectMissionRuntimeSnapshot(), authorityExecution: executorDiagnostics() });
     }
-    return reply.send({ missionRuntime: pillowHost.getMissionRuntime() });
+    return reply.send({ missionRuntime: pillowHost.getMissionRuntime(), authorityExecution: executorDiagnostics() });
   });
   const missionRuntimeAction = (
     method:
@@ -81,7 +85,7 @@ export async function registerMissionRuntimeRoutes(app: FastifyInstance, deps: {
   ) =>
     async (request: FastifyRequest, reply: FastifyReply) => {
       if (pillowHost.getStatus().lifecycle !== "running") {
-        return reply.code(503).send(collectMissionRuntimeSnapshot());
+        return reply.code(503).send({ ...collectMissionRuntimeSnapshot(), authorityExecution: executorDiagnostics() });
       }
       const body = (request.body ?? {}) as Record<string, unknown>;
       const report =
@@ -104,7 +108,10 @@ export async function registerMissionRuntimeRoutes(app: FastifyInstance, deps: {
                                         : method === "history" ? pillowHost.getMissionRuntimeHistory()
                                           : method === "q1004-contract" ? pillowHost.getMissionRuntimeQ1004Contract()
                                             : pillowHost.runMissionRuntimeDiagnostics();
-      return reply.send({ computedAt: new Date().toISOString(), report });
+      const admission = method === "execute" ? (report as { authorityExecution?: { acceptedDurably: boolean } }).authorityExecution : undefined;
+      if (admission) reply.code(admission.acceptedDurably ? 202 : 503);
+      return reply.send({ computedAt: new Date().toISOString(), report,
+        ...(method === "diagnostics" ? { authorityExecution: executorDiagnostics() } : {}) });
     };
   app.post("/api/pillow/mission-runtime/connect", { preHandler: missionAuth }, missionRuntimeAction("connect"));
   app.post("/api/pillow/mission-runtime/create-mission", { preHandler: missionAuth }, missionRuntimeAction("create-mission"));

@@ -1,9 +1,13 @@
+import { AUTHORITY_MISSION_WORKER, AUTHORITY_INTENT_LABEL, validAuthorityBinding, authorityJobId } from "./authority-execution.js";
+import { MSR_METADATA_VERSION } from "./paths.js";
+import type { MissionPersistenceScope } from "./mission-persistence.js";
 import { nextMsrId } from "./mission-store.js";
 import type { MissionStore } from "./mission-store.js";
 import type { MsrIntegrationCoordinator } from "./integrations.js";
 import type { MissionInstance, MsrInput } from "./types.js";
 
 export type ExecutionResult = {
+  authorityExecution?: { acceptedDurably: boolean; jobId: string | null; operation: "authority.snapshot.v1"; certificationCredit: false };
   handlerInvoked: boolean;
   orchestrationInvoked: boolean;
   outcome: "completed" | "failed" | "unconfirmed";
@@ -37,8 +41,39 @@ function inspectReceipt(value: unknown, mission: MissionInstance): ExecutionResu
 }
 
 export class ExecutionCoordinator {
-  run(store: MissionStore, integrations: MsrIntegrationCoordinator, mission: MissionInstance, input: MsrInput): ExecutionResult {
+  run(store: MissionStore, integrations: MsrIntegrationCoordinator, mission: MissionInstance, input: MsrInput, durableScope: MissionPersistenceScope | null = null): ExecutionResult {
     const deps = integrations.getDependencies();
+    if (mission.workers.includes(AUTHORITY_MISSION_WORKER)) {
+      const unavailable: ExecutionResult = { handlerInvoked: false, orchestrationInvoked: false, outcome: "failed",
+        notes: ["Readonly authority executor requires one worker, persistent owner scope and a configured native adapter"],
+        authorityExecution: { acceptedDurably: false, jobId: null, operation: "authority.snapshot.v1", certificationCredit: false } };
+      const adapter = deps.authorityMissionExecutor;
+      if (!adapter || !durableScope || mission.highRisk || mission.workers.length !== 1) return unavailable;
+      const dispatchId = nextMsrId(`${mission.missionId}-dispatch`);
+      const binding = adapter.binding(mission.missionId, dispatchId);
+      if (!validAuthorityBinding(binding) || binding.missionId !== mission.missionId || binding.dispatchId !== dispatchId ||
+        binding.scope.ownerEmail !== durableScope.ownerEmail || binding.scope.workspaceId !== durableScope.workspaceId) return unavailable;
+      const timestamp = new Date().toISOString();
+      // Intent and all immutable binding fields are one native mission-store commit.
+      // No read is admitted before this transaction succeeds.
+      store.transaction(() => {
+        store.appendTimeline({ entryId: dispatchId, timestamp, label: `dispatch:${mission.missionId}`, state: "Running",
+          notes: ["Readonly authority dispatch intent; no certification or commerce authority"] });
+        store.saveCheckpoint({ checkpointId: nextMsrId("msr-authority-intent"), missionId: mission.missionId,
+          label: AUTHORITY_INTENT_LABEL, state: "Running", timestamp, payload: { binding: structuredClone(binding) }, metadataVersion: MSR_METADATA_VERSION });
+      });
+      try {
+        const accepted = adapter.enqueue(structuredClone(binding));
+        if (accepted.acceptedDurably !== true || accepted.jobId !== authorityJobId(binding)) throw new Error("Invalid durable admission");
+        return { handlerInvoked: false, orchestrationInvoked: false, outcome: "unconfirmed",
+          authorityExecution: { acceptedDurably: true, jobId: accepted.jobId, operation: "authority.snapshot.v1", certificationCredit: false },
+          notes: ["Native outbox accepted the read; completion requires its durable output receipt"] };
+      } catch {
+        // The write may have committed before acknowledgement was lost. Startup
+        // recovery reuses this exact intent; no second dispatch is created.
+        return { ...unavailable, outcome: "unconfirmed", notes: ["Durable admission unconfirmed; persisted intent awaits bounded recovery"] };
+      }
+    }
     // The orchestrator owns worker dispatch when present. Calling both delegates
     // can duplicate the same real side effect.
     const por = deps.pillowOrchestrationRuntime;

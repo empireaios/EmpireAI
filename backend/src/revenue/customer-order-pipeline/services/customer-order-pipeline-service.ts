@@ -1,3 +1,4 @@
+import { requireCjSandboxEstimate, requireCjSandboxOrderContext } from "../../../suppliers/cj-dropshipping/orders/cj-fulfillment-estimate-gate.js";
 import { randomUUID } from "node:crypto";
 
 import { applyOrderApproval } from "../../../fulfillment/manufacturing-fulfillment-bridge.js";
@@ -201,6 +202,7 @@ export async function createPipelineOrder(
   if (!pipeline) throw new Error(`Pipeline ${pipelineId} not found`);
 
   if (pipeline.fulfillmentOrder && pipeline.status === "ORDER_CREATED") {
+    requireCjSandboxOrderContext(pipeline.fulfillmentOrder, loadCjConfig());
     return pipeline;
   }
 
@@ -245,6 +247,7 @@ export async function createPipelineOrder(
 
       const client = createCjOrderClient();
       const estimate = await client.estimateFulfillment(order);
+      requireCjSandboxEstimate(estimate);
       order = {
         ...order,
         estimatedCost: estimate.estimatedCost,
@@ -259,6 +262,7 @@ export async function createPipelineOrder(
     throw new Error("Cannot create order — no store or revenue order context");
   }
 
+  requireCjSandboxOrderContext(order, loadCjConfig());
   pipeline = savePipeline(pipeline, {
     status: "ORDER_CREATED",
     fulfillmentOrder: order,
@@ -278,6 +282,7 @@ export function reservePipelineInventory(
     throw new Error("Pipeline order must exist before inventory reservation");
   }
 
+  requireCjSandboxOrderContext(pipeline.fulfillmentOrder, loadCjConfig());
   const line = pipeline.fulfillmentOrder.items[0];
   if (!line) throw new Error("Order has no line items");
 
@@ -311,6 +316,7 @@ export function applyPipelineApproval(
     throw new Error(`Pipeline status ${pipeline.status} cannot be approved`);
   }
 
+  requireCjSandboxOrderContext(pipeline.fulfillmentOrder, loadCjConfig());
   const approvedOrder = applyOrderApproval(pipeline.fulfillmentOrder, {
     approvalToken: input.approvalToken,
     approvedBy: input.approvedBy,

@@ -1,9 +1,11 @@
 /**
- * Executive birth-readiness truth table.
- * Does NOT authorise Birth. birthTimestamp remains owner-gated.
+ * Executive birth-readiness diagnostics, not independent V53 certification.
+ * Stored cycles, outcomes and sandbox harness passes can show partial engineering
+ * evidence only. There is no independent certification receipt acceptance path.
  */
 
 import { getBirthRecord } from "../birth.js";
+import { hasCompleteSandboxCapabilityPass } from "./capability-run-evidence.js";
 import { getLatestCapabilityTestRun, getLatestExecutiveCycle, listExecutiveCycles, listOutcomes } from "./store.js";
 
 export type ReadinessStatus = "PROVEN" | "PARTIAL" | "NOT_PROVEN" | "FAILED";
@@ -25,7 +27,8 @@ export type BirthReadinessReport = {
 };
 
 function row(capability: string, status: ReadinessStatus, evidence: string): BirthReadinessRow {
-  return { capability, status, evidence };
+  return { capability, status,
+    evidence: `${evidence}. Independent capability certification remains unverified; local diagnostics carry no certification credit.` };
 }
 
 export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadinessReport {
@@ -40,11 +43,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
   } | null;
 
   const capMap = new Map((capRun?.results ?? []).map((r) => [r.id, r.status]));
-  const allCapPass = Boolean(
-    capRun?.summary &&
-      capRun.summary.total >= 8 &&
-      capRun.summary.failed === 0,
-  );
+  const allCapPass = hasCompleteSandboxCapabilityPass(capRun);
 
   const hasFullStageLoop = Boolean(
     latest &&
@@ -68,55 +67,51 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     row("independent V53 certification", "NOT_PROVEN", birth.authority.reason),
     row(
       "continuous executive loop",
-      liveCycles.length > 0 && hasFullStageLoop
-        ? "PROVEN"
-        : hasFullStageLoop
-          ? "PARTIAL"
-          : "NOT_PROVEN",
+      hasFullStageLoop ? "PARTIAL" : "NOT_PROVEN",
       liveCycles.length > 0
-        ? `${liveCycles.length} live cycles; latest=${latest?.cycleId}`
+        ? `${liveCycles.length} stored cycles labelled live; latest=${latest?.cycleId}; the label is not independent operating evidence`
         : hasFullStageLoop
           ? "Sandbox/cycle structure present; live continuous ticks not yet proven"
           : "No executive cycle stage evidence",
     ),
     row(
       "self-critique",
-      capMap.get("E") === "PASS" || capMap.get("B") === "PASS" ? "PROVEN" : "PARTIAL",
+      capMap.get("E") === "PASS" || capMap.get("B") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
       `capability B=${capMap.get("B") ?? "n/a"}; E=${capMap.get("E") ?? "n/a"}`,
     ),
     row(
       "strategic hypothesis generation",
       (latest?.hypotheses.length ?? 0) > 0 || capMap.get("H") === "PASS"
-        ? "PROVEN"
+        ? "PARTIAL"
         : "NOT_PROVEN",
       `latestHypotheses=${latest?.hypotheses.length ?? 0}`,
     ),
     row(
       "proactive investigation",
-      capMap.get("H") === "PASS" ? "PROVEN" : "NOT_PROVEN",
+      capMap.get("H") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
       `capability H=${capMap.get("H") ?? "n/a"}`,
     ),
     row(
       "economic prioritisation",
-      (latest?.workQueue.length ?? 0) > 0 ? "PROVEN" : "NOT_PROVEN",
+      (latest?.workQueue.length ?? 0) > 0 ? "PARTIAL" : "NOT_PROVEN",
       `workQueue=${latest?.workQueue.length ?? 0}`,
     ),
     row(
       "owner escalation",
-      capMap.get("F") === "PASS" ? "PROVEN" : "NOT_PROVEN",
+      capMap.get("F") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
       `capability F=${capMap.get("F") ?? "n/a"}`,
     ),
     row(
       "post-action monitoring",
       outcomes.some((o) => o.status === "MONITORED") || capMap.get("C") === "PASS"
-        ? "PROVEN"
-        : "PARTIAL",
+        ? "PARTIAL"
+        : "NOT_PROVEN",
       `monitoredOutcomes=${outcomes.filter((o) => o.status === "MONITORED").length}`,
     ),
     row(
       "outcome learning",
       outcomes.some((o) => Boolean(o.lesson)) || capMap.get("C") === "PASS"
-        ? "PROVEN"
+        ? "PARTIAL"
         : "NOT_PROVEN",
       `lessons=${outcomes.filter((o) => o.lesson).length}`,
     ),
@@ -131,12 +126,12 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     row(
       "cost control",
       "PARTIAL",
-      "Tier map + Cost Guard mechanism exist; owner limits still unconfigured; continuous cost-per-decision metering PARTIAL",
+      "Tier map + Cost Guard mechanisms exist; this diagnostic does not establish current owner-limit configuration, enforcement or reconciled cost-per-decision",
     ),
     row(
       "restart recovery",
       capMap.get("G") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
-      "SQLite objective/cycle persistence proven in sandbox; Railway redeploy durability still residual",
+      "Stored objective/cycle records and sandbox checks do not prove this release survives a provider restart or redeploy",
     ),
     row(
       "runtime independence",
@@ -145,7 +140,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     ),
     row(
       "proactive Grand King communication",
-      capMap.get("F") === "PASS" ? "PROVEN" : "NOT_PROVEN",
+      capMap.get("F") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
       "Escalation package format WHAT I FOUND… implemented; live owner delivery surface PARTIAL",
     ),
     row(
@@ -155,7 +150,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     ),
     row(
       "logistics strategy",
-      capMap.get("A") === "PASS" ? "PROVEN" : "NOT_PROVEN",
+      capMap.get("A") === "PASS" ? "PARTIAL" : "NOT_PROVEN",
       `capability A=${capMap.get("A") ?? "n/a"} (sandbox; live connector investigation still required)`,
     ),
     row(
@@ -169,8 +164,8 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     .filter((r) => r.status !== "PROVEN")
     .map((r) => `${r.capability}=${r.status}`);
 
-  // Only true when every mandatory executive capability is PROVEN.
-  // Birth timestamp still requires explicit Grand King authorisation separately.
+  // No local diagnostic can satisfy independent certification or owner authority.
+  // The immutable current authority remains the final fail-closed boundary.
   const technicallyReadyForGrandKingAuthorisation =
     birth.technicallyReady && mandatoryStillOpen.length === 0 && birth.birthTimestamp == null;
 

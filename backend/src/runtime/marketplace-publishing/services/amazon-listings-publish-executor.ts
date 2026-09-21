@@ -13,10 +13,16 @@ import { getAmazonSpApiConfig } from "../../../orchestration/reality-integration
 import { isAmazonLiveCommerceActivated } from "../../../orchestration/version-1-activation/version-1-activation-config.js";
 import { httpTransport } from "../../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { getPillowAuthority } from "../../../orchestration/pillow-commissioning/pillow-authority.js";
+import { validateAmazonOfferInput, validateAmazonCatalogIdentity, buildVerifiedAmazonOfferBody, validateAmazonSubmissionReceipt,
+  type AmazonSubmissionBinding } from "./amazon-listing-proof.js";
 import type { MarketplaceListingPackage, MarketplacePublishId } from "../models/marketplace-adapter.js";
 
 export type AmazonListingsPublishResult = {
+  /** True only for independently confirmed listing availability; not implemented here. */
   ok: boolean;
+  submissionAccepted: boolean;
+  listingVerified: false;
+  submissionBinding: AmazonSubmissionBinding | null;
   marketplaceId: MarketplacePublishId;
   registryId: AmazonMarketplaceRegistryId | null;
   sellerId: string | null;
@@ -40,14 +46,14 @@ function resolveRegistryId(marketplaceId: MarketplacePublishId): AmazonMarketpla
 async function refreshAccessToken(
   registryId: AmazonMarketplaceRegistryId,
   env: NodeJS.ProcessEnv,
-): Promise<{ accessToken: string | null; blocker: string | null }> {
+): Promise<{ accessToken: string | null; blocker: string | null; requestAttempted: boolean }> {
   const config = getAmazonSpApiConfig(registryId);
   const refreshToken = resolveAmazonMarketplaceRefreshToken(
     getAmazonMarketplaceProfile(registryId),
     env,
   );
   if (!config.clientId || !config.clientSecret || !refreshToken) {
-    return { accessToken: null, blocker: "Amazon LWA client/secret/refresh token incomplete" };
+    return { accessToken: null, blocker: "Amazon LWA client/secret/refresh token incomplete", requestAttempted: false };
   }
 
   const body = new URLSearchParams({
@@ -76,206 +82,16 @@ async function refreshAccessToken(
     return {
       accessToken: null,
       blocker: `Amazon LWA refresh failed HTTP ${response.status}`,
+      requestAttempted: true,
     };
   }
-  return { accessToken: json.access_token, blocker: null };
+  return { accessToken: json.access_token, blocker: null, requestAttempted: true };
 }
 
-async function resolveSellerId(
-  registryId: AmazonMarketplaceRegistryId,
-  accessToken: string,
-  env: NodeJS.ProcessEnv,
-): Promise<{ sellerId: string | null; blocker: string | null }> {
-  const fromEnv = env.AMAZON_SELLER_ID?.trim() || env.AMAZON_SP_API_SELLER_ID?.trim();
-  if (fromEnv) return { sellerId: fromEnv, blocker: null };
-
-  const profile = getAmazonMarketplaceProfile(registryId);
-
-  // marketplaceParticipations does not return sellerId — probe Product Fees with a
-  // known ASIN; Amazon echoes SellerId even on client error responses.
-  const feesProbe = await httpTransport({
-    url: `${profile.productionEndpoint}/products/fees/v0/items/B08N5WRWNW/feesEstimate`,
-    method: "POST",
-    headers: { "x-amz-access-token": accessToken },
-    body: {
-      FeesEstimateRequest: {
-        MarketplaceId: profile.marketplaceId,
-        IsAmazonFulfilled: false,
-        PriceToEstimateFees: {
-          ListingPrice: { CurrencyCode: "USD", Amount: 10 },
-        },
-        Identifier: "empireai-seller-id-probe",
-      },
-    },
-  });
-  const feesJson = feesProbe.json as {
-    payload?: {
-      FeesEstimateResult?: {
-        FeesEstimateIdentifier?: { SellerId?: string };
-      };
-    };
-  };
-  const probed =
-    feesJson.payload?.FeesEstimateResult?.FeesEstimateIdentifier?.SellerId?.trim() || null;
-  if (probed) return { sellerId: probed, blocker: null };
-
-  return {
-    sellerId: null,
-    blocker:
-      "Could not resolve Amazon SellerId — set AMAZON_SELLER_ID (Seller Central merchant token) on Railway",
-  };
-}
-
-async function resolveCatalogAsin(
-  registryId: AmazonMarketplaceRegistryId,
-  accessToken: string,
-  pkg: MarketplaceListingPackage,
-): Promise<{ asin: string | null; blocker: string | null }> {
-  const explicit =
-    pkg.specifications.asin?.trim() ||
-    pkg.specifications.ASIN?.trim() ||
-    pkg.specifications.merchant_suggested_asin?.trim();
-  if (explicit) return { asin: explicit, blocker: null };
-
-  const profile = getAmazonMarketplaceProfile(registryId);
-  const keywords = pkg.title.replace(/[^\w\s]/g, " ").trim().split(/\s+/).slice(0, 8).join(" ");
-  if (!keywords) {
-    return { asin: null, blocker: "No ASIN and empty title for catalog search" };
-  }
-  const url =
-    `${profile.productionEndpoint}/catalog/2022-04-01/items` +
-    `?marketplaceIds=${encodeURIComponent(profile.marketplaceId)}` +
-    `&keywords=${encodeURIComponent(keywords)}` +
-    `&includedData=summaries&pageSize=1`;
-  const response = await httpTransport({
-    url,
-    method: "GET",
-    headers: { "x-amz-access-token": accessToken },
-  });
-  if (!response.ok) {
-    return {
-      asin: null,
-      blocker: `Amazon catalog search failed HTTP ${response.status} — set specifications.asin`,
-    };
-  }
-  const items = (response.json as { items?: Array<{ asin?: string }> })?.items;
-  const asin = Array.isArray(items) ? items[0]?.asin?.trim() : null;
-  if (!asin) {
-    return {
-      asin: null,
-      blocker:
-        "No catalog ASIN matched title — set specifications.asin for LISTING_OFFER_ONLY publish",
-    };
-  }
-  return { asin, blocker: null };
-}
-
-/** Amazon rejects creating new catalog items with productType PRODUCT — use offer-only on an ASIN. */
-function buildOfferOnlyPutBody(
-  pkg: MarketplaceListingPackage,
-  marketplaceId: string,
-  asin: string,
-): Record<string, unknown> {
-  const currency = pkg.currency || "USD";
-  const quantity = Number(pkg.specifications.quantity || 10);
-  return {
-    productType: "PRODUCT",
-    requirements: "LISTING_OFFER_ONLY",
-    attributes: {
-      merchant_suggested_asin: [{ value: asin, marketplace_id: marketplaceId }],
-      condition_type: [{ value: "new_new", marketplace_id: marketplaceId }],
-      fulfillment_availability: [
-        {
-          fulfillment_channel_code: "DEFAULT",
-          quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 10,
-          marketplace_id: marketplaceId,
-        },
-      ],
-      purchasable_offer: [
-        {
-          currency,
-          our_price: [{ schedule: [{ value_with_tax: pkg.price }] }],
-          marketplace_id: marketplaceId,
-        },
-      ],
-    },
-  };
-}
-
-function buildListingsPutBody(
-  pkg: MarketplaceListingPackage,
-  marketplaceId: string,
-  options?: { asin?: string; forceOfferOnly?: boolean },
-): Record<string, unknown> {
-  const formatted = (pkg.formattedPayload ?? {}) as Record<string, unknown>;
-  const productType =
-    (typeof formatted.productType === "string" && formatted.productType) ||
-    pkg.specifications.productType ||
-    "PRODUCT";
-  const requirements =
-    pkg.specifications.requirements ||
-    (options?.forceOfferOnly || productType === "PRODUCT" ? "LISTING_OFFER_ONLY" : "LISTING");
-
-  if (requirements === "LISTING_OFFER_ONLY" && options?.asin) {
-    return buildOfferOnlyPutBody(pkg, marketplaceId, options.asin);
-  }
-
-  const baseAttrs =
-    formatted.attributes && typeof formatted.attributes === "object"
-      ? (formatted.attributes as Record<string, unknown>)
-      : {};
-
-  const withMarketplace = (entries: unknown): unknown => {
-    if (!Array.isArray(entries)) return entries;
-    return entries.map((entry) => {
-      if (!entry || typeof entry !== "object") return entry;
-      return {
-        marketplace_id: marketplaceId,
-        language_tag: "en_US",
-        ...(entry as Record<string, unknown>),
-      };
-    });
-  };
-
-  const attributes: Record<string, unknown> = {
-    ...baseAttrs,
-    item_name: withMarketplace(
-      baseAttrs.item_name ?? [{ value: pkg.title, marketplace_id: marketplaceId, language_tag: "en_US" }],
-    ),
-    product_description: withMarketplace(
-      baseAttrs.product_description ?? [
-        { value: pkg.description, marketplace_id: marketplaceId, language_tag: "en_US" },
-      ],
-    ),
-    condition_type: [{ value: "new_new", marketplace_id: marketplaceId }],
-    list_price: [
-      {
-        value: pkg.price,
-        currency: pkg.currency || "USD",
-        marketplace_id: marketplaceId,
-      },
-    ],
-  };
-
-  if (Array.isArray(pkg.bulletPoints) && pkg.bulletPoints.length > 0) {
-    attributes.bullet_point = pkg.bulletPoints.map((value) => ({
-      value,
-      marketplace_id: marketplaceId,
-      language_tag: "en_US",
-    }));
-  }
-
-  if (pkg.images[0]) {
-    attributes.main_product_image_locator = [
-      { media_location: pkg.images[0], marketplace_id: marketplaceId },
-    ];
-  }
-
-  return {
-    productType,
-    requirements,
-    attributes,
-  };
+function resolveSellerId(env: NodeJS.ProcessEnv): { sellerId: string | null; blocker: string | null } {
+  const sellerId = env.AMAZON_SELLER_ID?.trim() || env.AMAZON_SP_API_SELLER_ID?.trim();
+  return sellerId ? { sellerId, blocker: null } : { sellerId: null,
+    blocker: "Explicit Amazon seller account ID required; it will not be inferred from an unrelated ASIN or invented fee estimate" };
 }
 
 /** Execute live Amazon Listings Items put for an approved package. */
@@ -293,6 +109,9 @@ export async function executeAmazonListingsPublish(
   if (!registryId) {
     return {
       ok: false,
+      submissionAccepted: false,
+      listingVerified: false,
+      submissionBinding: null,
       marketplaceId: pkg.marketplaceId,
       registryId: null,
       sellerId: null,
@@ -324,6 +143,9 @@ export async function executeAmazonListingsPublish(
   if (blockers.length > 0) {
     return {
       ok: false,
+      submissionAccepted: false,
+      listingVerified: false,
+      submissionBinding: null,
       marketplaceId: pkg.marketplaceId,
       registryId,
       sellerId: null,
@@ -338,28 +160,22 @@ export async function executeAmazonListingsPublish(
     };
   }
 
-  const token = await refreshAccessToken(registryId, env);
-  if (!token.accessToken) {
-    return {
-      ok: false,
-      marketplaceId: pkg.marketplaceId,
-      registryId,
-      sellerId: null,
-      sku,
-      httpStatus: null,
-      amazonStatus: null,
-      submissionId: null,
-      issues: [],
-      blockers: [token.blocker ?? "LWA refresh failed"],
-      liveApiCalled: false,
-      responseBody: null,
-    };
+  const prepared = validateAmazonOfferInput(pkg);
+  if (!prepared.offer) {
+    return { ok: false, submissionAccepted: false, listingVerified: false, submissionBinding: null,
+      marketplaceId: pkg.marketplaceId, registryId, sellerId: null, sku,
+      httpStatus: null, amazonStatus: null, submissionId: null, issues: [], blockers: prepared.blockers,
+      liveApiCalled: false, responseBody: null };
   }
+  const offer = prepared.offer;
 
-  const seller = await resolveSellerId(registryId, token.accessToken, env);
+  const seller = resolveSellerId(env);
   if (!seller.sellerId) {
     return {
       ok: false,
+      submissionAccepted: false,
+      listingVerified: false,
+      submissionBinding: null,
       marketplaceId: pkg.marketplaceId,
       registryId,
       sellerId: null,
@@ -369,51 +185,50 @@ export async function executeAmazonListingsPublish(
       submissionId: null,
       issues: [],
       blockers: [seller.blocker ?? "sellerId unresolved"],
-      liveApiCalled: true,
+      liveApiCalled: false,
+      responseBody: null,
+    };
+  }
+
+  const token = await refreshAccessToken(registryId, env);
+  if (!token.accessToken) {
+    return {
+      ok: false,
+      submissionAccepted: false,
+      listingVerified: false,
+      submissionBinding: null,
+      marketplaceId: pkg.marketplaceId,
+      registryId,
+      sellerId: null,
+      sku,
+      httpStatus: null,
+      amazonStatus: null,
+      submissionId: null,
+      issues: [],
+      blockers: [token.blocker ?? "LWA refresh failed"],
+      liveApiCalled: token.requestAttempted,
       responseBody: null,
     };
   }
 
   const profile = getAmazonMarketplaceProfile(registryId);
-  const formatted = (pkg.formattedPayload ?? {}) as Record<string, unknown>;
-  const declaredType =
-    (typeof formatted.productType === "string" && formatted.productType) ||
-    pkg.specifications.productType ||
-    "PRODUCT";
-  const useOfferOnly =
-    pkg.specifications.requirements === "LISTING_OFFER_ONLY" ||
-    declaredType === "PRODUCT" ||
-    !pkg.specifications.productType;
-
-  let asin: string | undefined;
-  if (useOfferOnly) {
-    const resolved = await resolveCatalogAsin(registryId, token.accessToken, pkg);
-    if (!resolved.asin) {
-      return {
-        ok: false,
-        marketplaceId: pkg.marketplaceId,
-        registryId,
-        sellerId: seller.sellerId,
-        sku,
-        httpStatus: null,
-        amazonStatus: null,
-        submissionId: null,
-        issues: [],
-        blockers: [resolved.blocker ?? "ASIN required for LISTING_OFFER_ONLY"],
-        liveApiCalled: true,
-        responseBody: null,
-      };
-    }
-    asin = resolved.asin;
-  }
-
-  const putBody = buildListingsPutBody(pkg, profile.marketplaceId, {
-    asin,
-    forceOfferOnly: useOfferOnly,
+  const catalog = await httpTransport({
+    url: `${profile.productionEndpoint}/catalog/2022-04-01/items/${encodeURIComponent(offer.asin)}` +
+      `?marketplaceIds=${encodeURIComponent(profile.marketplaceId)}&includedData=identifiers`,
+    method: "GET", headers: { "x-amz-access-token": token.accessToken },
   });
+  const identityBlockers = catalog.ok ? validateAmazonCatalogIdentity(catalog.json, offer, profile.marketplaceId)
+    : [`Amazon catalog identity lookup failed HTTP ${catalog.status}`];
+  if (identityBlockers.length) {
+    return { ok: false, submissionAccepted: false, listingVerified: false, submissionBinding: null,
+      marketplaceId: pkg.marketplaceId, registryId, sellerId: seller.sellerId, sku: offer.sku,
+      httpStatus: catalog.status, amazonStatus: null, submissionId: null, issues: [], blockers: identityBlockers,
+      liveApiCalled: true, responseBody: catalog.json };
+  }
+  const putBody = buildVerifiedAmazonOfferBody(offer, profile.marketplaceId);
   const url =
     `${profile.productionEndpoint}/listings/2021-08-01/items/` +
-    `${encodeURIComponent(seller.sellerId)}/${encodeURIComponent(sku)}` +
+    `${encodeURIComponent(seller.sellerId)}/${encodeURIComponent(offer.sku)}` +
     `?marketplaceIds=${encodeURIComponent(profile.marketplaceId)}&issueLocale=en_US`;
 
   const response = await httpTransport({
@@ -426,37 +241,23 @@ export async function executeAmazonListingsPublish(
     body: putBody,
   });
 
-  const body = response.json as {
-    status?: string;
-    submissionId?: string;
-    issues?: unknown[];
-  };
-  const amazonStatus = typeof body.status === "string" ? body.status : null;
-  const issues = Array.isArray(body.issues) ? body.issues : [];
-  const accepted =
-    response.ok &&
-    (amazonStatus === "ACCEPTED" ||
-      amazonStatus === "VALID" ||
-      amazonStatus === undefined ||
-      (amazonStatus !== "INVALID" && issues.length === 0));
-
+  const proof = validateAmazonSubmissionReceipt(response, {
+    sellerId: seller.sellerId, sku: offer.sku, marketplaceId: profile.marketplaceId, asin: offer.asin,
+  });
   return {
-    ok: accepted,
+    ok: false,
+    submissionAccepted: proof.accepted,
+    listingVerified: false,
+    submissionBinding: proof.binding,
     marketplaceId: pkg.marketplaceId,
     registryId,
     sellerId: seller.sellerId,
-    sku,
+    sku: offer.sku,
     httpStatus: response.status,
-    amazonStatus,
-    submissionId: typeof body.submissionId === "string" ? body.submissionId : null,
-    issues,
-    blockers: accepted
-      ? []
-      : [
-          `Amazon putListingsItem HTTP ${response.status}` +
-            (amazonStatus ? ` status=${amazonStatus}` : "") +
-            (asin ? ` asin=${asin}` : ""),
-        ],
+    amazonStatus: proof.amazonStatus,
+    submissionId: proof.submissionId,
+    issues: proof.issues,
+    blockers: proof.accepted ? ["Submission accepted for processing; listing availability and exact marketplace readback remain unverified"] : proof.blockers,
     liveApiCalled: true,
     responseBody: response.json,
   };

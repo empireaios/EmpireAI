@@ -10,6 +10,7 @@ import { buildCostGuardStatus } from "./cost-guard.js";
 import { listFlightEvents } from "./flight-recorder.js";
 import { getOneProductCommissioningRecord } from "./one-product-commissioning.js";
 import { getPillowAuthority, type PillowAuthority } from "./pillow-authority.js";
+import { hasCompleteSandboxCapabilityPass } from "./executive-operating-loop/capability-run-evidence.js";
 import {
   getLatestCapabilityTestRun,
   getLatestExecutiveCycle,
@@ -103,11 +104,7 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     getLatestCapabilityTestRun(`${workspaceId}:capability-sandbox`)) as {
     summary?: { passed?: number; failed?: number; total?: number };
   } | null;
-  const capabilityHarnessPass = Boolean(
-    capRun?.summary &&
-      (capRun.summary.total ?? 0) >= 8 &&
-      (capRun.summary.failed ?? 1) === 0,
-  );
+  const capabilityHarnessPass = hasCompleteSandboxCapabilityPass(capRun);
 
   return [
     {
@@ -118,9 +115,9 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     },
     {
       id: "ux_baseline",
-      label: "Grand King production UX engineering baseline preserved (003)",
-      passed: true,
-      evidence: "69f5bdfe PRODUCTION ACCEPTANCE READY engineering baseline",
+      label: "Current production UX evidence",
+      passed: false,
+      evidence: "UNVERIFIED: historical engineering baseline 69f5bdfe is not current-release production UX evidence.",
     },
     {
       id: "flight_recorder",
@@ -136,15 +133,15 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     },
     {
       id: "cost_providers_audited",
-      label: "Cost providers / billing exposure surface available",
-      passed: true,
-      evidence: "Cost Control Centre + billing exposure register",
+      label: "Actual provider costs reconciled",
+      passed: false,
+      evidence: "UNVERIFIED: a Cost Control Centre or billing exposure register does not prove actual provider charges were reconciled.",
     },
     {
       id: "cost_guard_exists",
-      label: "Cost Guard limits/status exist",
-      passed: true,
-      evidence: `level=${cost.level}; unconfigured=${cost.unconfiguredLimitKeys.length}`,
+      label: "Current budget enforcement verified",
+      passed: false,
+      evidence: `UNVERIFIED: Cost Guard reports level=${cost.level}; unconfigured=${cost.unconfiguredLimitKeys.length}. Configuration/status alone is not scoped enforcement evidence.`,
     },
     {
       id: "hard_stop_tested",
@@ -176,9 +173,9 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     },
     {
       id: "approval_boundary",
-      label: "Publish/spend remain governed",
-      passed: true,
-      evidence: "publicationAutoDisabled + supplierSpendAutoDisabled preserved",
+      label: "Deployed publish/spend boundary verified",
+      passed: false,
+      evidence: "UNVERIFIED: canonical commerce is LOCKED; this policy projection does not prove every deployed side-effect boundary has been independently exercised.",
     },
     {
       id: "executive_operating_loop",

@@ -105,8 +105,11 @@ jobs:
             src/validation/tests/pillow-durable-access.test.ts \
             src/validation/tests/mission-runtime-access.test.ts \
             src/validation/tests/amazon-publish-authority.test.ts \
+            src/validation/tests/amazon-listing-proof.test.ts \
             src/validation/tests/mission-execution-binding.test.ts \
             src/validation/tests/mission-execution-durability.test.ts \
+            src/validation/tests/mission-authority-wiring.test.ts \
+            src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
             src/validation/tests/sqlite-persistence-boundary.test.ts \

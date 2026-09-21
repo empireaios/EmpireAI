@@ -1,3 +1,4 @@
+import { AUTHORITY_MISSION_WORKER, AUTHORITY_RECEIPT_LABEL, storedAuthorityBinding, authorityBindingIdentity, authorityHash, authorityJobId } from "./authority-execution.js";
 import type { MissionPersistenceScope } from "./mission-persistence.js";
 import type { MissionRuntimeConfiguration } from "./configuration.js";
 import { applyTransition, validateTransition } from "./lifecycle-engine.js";
@@ -34,6 +35,7 @@ import type {
 export class MissionManager {
   private engineRecord: MsrEngineRecord | null = null;
   private seeded = false;
+  private readonly durablyScoped: boolean;
   private readonly store: MissionStore;
   private readonly validator = new MissionValidator();
   private readonly factory = new MissionFactory();
@@ -46,8 +48,9 @@ export class MissionManager {
   private readonly reportBuilder = new ReportBuilder();
   private readonly integrations = new MsrIntegrationCoordinator();
 
-  constructor(persistenceFile?: string, persistenceScope: MissionPersistenceScope | null = null) {
+  constructor(persistenceFile?: string, private readonly persistenceScope: MissionPersistenceScope | null = null) {
     this.store = new MissionStore(persistenceFile, persistenceScope);
+    this.durablyScoped = Boolean(persistenceFile && persistenceScope);
   }
 
   private validateCurrentExecution(input: MsrInput, mission: MissionInstance | null,
@@ -95,7 +98,39 @@ export class MissionManager {
   }
 
   getHistory() {
-    return this.store.getHistory();
+    return structuredClone(this.store.getHistory());
+  }
+
+  /** Trusted host only. HTTP callers cannot provide a receipt or mutate proof fields. */
+  reconcileAuthorityExecution(jobId: string): boolean {
+    if (!this.durablyScoped || !/^mae_[a-f0-9]{64}$/.test(jobId)) return false;
+    const receipt = this.integrations.getDependencies().authorityMissionExecutor?.getReceipt(jobId);
+    if (!receipt || receipt.jobId !== jobId || receipt.status !== "completed" || receipt.certificationCredit !== false) return false;
+    const binding = storedAuthorityBinding(this.store, receipt.missionId);
+    if (!binding || authorityJobId(binding) !== jobId || authorityBindingIdentity(binding) !== authorityBindingIdentity(receipt) ||
+      binding.scope.ownerEmail !== this.persistenceScope?.ownerEmail || binding.scope.workspaceId !== this.persistenceScope?.workspaceId ||
+      !Number.isFinite(Date.parse(receipt.completedAt)) || receipt.outputHash !== authorityHash(JSON.stringify(receipt.output)) ||
+      receipt.receiptId !== `maer_${authorityHash(jobId + ":" + receipt.outputHash)}`) return false;
+    const mission = this.store.getMission(binding.missionId);
+    if (!mission || mission.highRisk || mission.workers.length !== 1 || mission.workers[0] !== AUTHORITY_MISSION_WORKER) return false;
+    const saved = this.store.listCheckpoints(mission.missionId).filter(c => c.label === AUTHORITY_RECEIPT_LABEL);
+    if (saved.length > 0) return saved.length === 1 && ["Completed", "Archived"].includes(mission.currentStatus) &&
+      saved[0]!.payload.receiptId === receipt.receiptId && saved[0]!.payload.outputHash === receipt.outputHash && saved[0]!.payload.jobId === jobId;
+    if (!["Running", "Waiting"].includes(mission.currentStatus)) return false;
+    this.store.transaction(() => {
+      let current = mission;
+      if (current.currentStatus === "Waiting") {
+        this.applyMissionTransition(current, "Waiting", "Running", "Stored readonly output ready for reconciliation");
+        current = this.store.getMission(mission.missionId)!;
+      }
+      this.applyMissionTransition(current, "Running", "Completed", "Actual readonly authority inspection receipt reconciled; no Birth or commerce credit");
+      this.updateMission(this.store.getMission(mission.missionId)!, { progress: 100 });
+      this.store.saveCheckpoint({ checkpointId: nextMsrId("msr-authority-receipt"), missionId: mission.missionId,
+        label: AUTHORITY_RECEIPT_LABEL, state: "Completed", timestamp: new Date().toISOString(), metadataVersion: MSR_METADATA_VERSION,
+        payload: { jobId, receiptId: receipt.receiptId, outputHash: receipt.outputHash, executionBuildSha: binding.buildSha,
+          operation: binding.action, certificationCredit: false } });
+    });
+    return true;
   }
 
   getAuditTrail() {
@@ -228,14 +263,16 @@ export class MissionManager {
     // Deliberate failure injection never invokes a worker.
     const execResult = input.forceFail === true
       ? { outcome: "failed" as const, notes: ["forceFail requested before dispatch"] }
-      : this.executionCoordinator.run(this.store, this.integrations, mission, input);
+      : this.executionCoordinator.run(this.store, this.integrations, mission, input, this.durablyScoped ? this.persistenceScope : null);
     if (execResult.outcome === "failed") {
       advance("Running", "Failed", execResult.notes.join("; "));
-      return this.failReport("execute", started, { ...validation, decision: "fail", errors: execResult.notes }, config, mission, transitions);
+      return { ...this.failReport("execute", started, { ...validation, decision: "fail", errors: execResult.notes }, config, mission, transitions),
+        authorityExecution: "authorityExecution" in execResult ? execResult.authorityExecution : undefined };
     }
     if (execResult.outcome === "unconfirmed") {
       advance("Running", "Waiting", "Worker outcome requires reconciliation; no automatic replay");
       const report = this.reportAction("execute", started, input, config, mission, transitions);
+      report.authorityExecution = "authorityExecution" in execResult ? execResult.authorityExecution : undefined;
       report.decision = "partial";
       report.validation = { ...report.validation, decision: "partial" };
       report.warnings.push(...execResult.notes);

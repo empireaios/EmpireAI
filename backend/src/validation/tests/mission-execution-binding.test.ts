@@ -11,7 +11,7 @@ import { env } from "../../config/env.js";
 import type { SessionUser } from "../../auth/permissions.js";
 import type { PillowHost } from "../../orchestration/pillow-host/pillow-host.js";
 import { registerMissionRuntimeRoutes } from "../../orchestration/pillow-host/routes/mission-runtime-routes.js";
-import { AUTHORITY_ACTION, AUTHORITY_WORKER } from "../../orchestration/pillow-host/mission-execution/contract.js";
+import { AUTHORITY_ACTION, AUTHORITY_WORKER, EMPTY_INPUT_HASH } from "../../orchestration/pillow-host/mission-execution/contract.js";
 import { createMissionExecutionService } from "../../orchestration/pillow-host/mission-execution/service.js";
 
 const founder: SessionUser = { id: "owner", name: "Owner", role: "founder", email: env.FOUNDER_EMAIL, workspaceId: "ws_empire_1" };
@@ -21,13 +21,16 @@ async function setup() {
  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "mission-route-")); const app = Fastify(); const sessions = new InMemorySessionStore();
  const mission = { missionId: payload.missionId, currentStatus: "Waiting", workers: [AUTHORITY_WORKER] as string[], highRisk: false };
  const timeline = [{ entryId: payload.dispatchId, label: `dispatch:${payload.missionId}`, state: "Running" }];
- let reconciles = 0;
- const host = { getStatus: () => ({ lifecycle: "running" }), getMissionRuntimeHistory: () => ({ missions: [mission], timeline }) };
+ const checkpoints = [{ missionId: payload.missionId, label: "authority.snapshot.v1:dispatch-intent", state: "Running", payload: {
+  binding: { ...payload, workerId: AUTHORITY_WORKER, inputHash: EMPTY_INPUT_HASH, buildSha: "a".repeat(40),
+   scope: { workspaceId: "ws_empire_1", ownerEmail: env.FOUNDER_EMAIL.trim().toLowerCase() } } } }];
+ let reconciles = 0; let lifecycle = "stopped";
+ const host = { getStatus: () => ({ lifecycle }), getMissionRuntimeHistory: () => ({ missions: [mission], timeline, checkpoints }) };
  const service = createMissionExecutionService({ databasePath: path.join(directory, "brain.db"),
   scope: { workspaceId: "ws_empire_1", ownerEmail: env.FOUNDER_EMAIL.trim().toLowerCase() }, buildSha: "a".repeat(40), host,
   reconcile: receipt => { assert.equal(receipt.missionId, payload.missionId); mission.currentStatus = "Completed"; reconciles++; return true; } });
  await registerMissionRuntimeRoutes(app, { authenticate: createAuthMiddleware(sessions), pillowHost: host as PillowHost, missionExecutionService: service });
- await app.ready(); await service.runner.stop(); // Stop automatic timer; exercise exact real tick deterministically below.
+ await app.ready(); await service.runner.stop(); service.store.pendingReceipts(); lifecycle = "running"; // Stop automatic timer; exercise exact real tick deterministically below.
  const token = (await sessions.create(founder)).token; const headers = { authorization: `Bearer ${token}` };
  return { app, sessions, service, mission, timeline, directory, headers, reconciles: () => reconciles,
   close: async () => { await app.close(); fs.rmSync(directory, { recursive: true, force: true }); } };
