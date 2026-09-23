@@ -109,6 +109,7 @@ jobs:
             src/validation/tests/mission-execution-binding.test.ts \
             src/validation/tests/mission-execution-durability.test.ts \
             src/validation/tests/mission-authority-wiring.test.ts \
+            src/validation/tests/certification-receipt-intake.test.ts \
             src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
