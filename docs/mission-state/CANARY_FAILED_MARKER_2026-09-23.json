@@ -1,0 +1,28 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 81fd99e8-7b16-42b7-9a7d-42830adc5319** [SUCCESS]\nservice: 3687e91f-2a12-477e-8fc1-79ad0e559d3c, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (1)\n2026-09-23T11:29:24.092248383Z info CANARY_FAILED_MARKER {\"schema\":\"canary-restart-marker-v2\",\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"beforeDeploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"beforeLaunchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"nonce\":\"2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"accountIds\":{\"founder\":\"usr_52dfb87c281146d3\",\"admin\":\"usr_ec9ae43b75aac2d4\"},\"databaseAccountIds\":{\"founder\":\"67bfe391-ad85-4d3a-b881-a2981ac3c6b7\",\"admin\":\"10dfe7ac-0c36-482f-a167-627da8f33bc0\"},\"missionName\":\"BOUNDED_CANARY_UNAPPROVED_2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"missionDigest\":\"74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\",\"beforePassed\":false}"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "81fd99e8-7b16-42b7-9a7d-42830adc5319",
+    "serviceId": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-23T11:29:24.092248383Z",
+        "severity": "info",
+        "message": "CANARY_FAILED_MARKER {\"schema\":\"canary-restart-marker-v2\",\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"beforeDeploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"beforeLaunchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"nonce\":\"2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"accountIds\":{\"founder\":\"usr_52dfb87c281146d3\",\"admin\":\"usr_ec9ae43b75aac2d4\"},\"databaseAccountIds\":{\"founder\":\"67bfe391-ad85-4d3a-b881-a2981ac3c6b7\",\"admin\":\"10dfe7ac-0c36-482f-a167-627da8f33bc0\"},\"missionName\":\"BOUNDED_CANARY_UNAPPROVED_2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"missionDigest\":\"74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\",\"beforePassed\":false}",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}
