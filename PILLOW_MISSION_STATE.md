@@ -1,5 +1,16 @@
 # EmpireAI / Pillow canonical mission state
 
+## Latest checkpoint — 2026-09-23 14:11 UTC
+
+Supersedes older current-state claims below; preserve chronology. NOT_BORN, Wave credit 0, commerce LOCKED. Production unchanged.
+
+- Integrated PR5 head 45e4435fffddb992ff0b33022efd4e981afe99b8 includes terminal JSON preservation and truthful replacement-certification status. Earlier repair e46b21b9 passed all ten CI jobs. Current canary source 55a8627c490e08cd62488ff3880be559d425d397 passed all ten jobs in 35870472240 / 35870472076 / 35870472120. Probe unchanged from failed recovery2; no weakened checks.
+- Recovery2 two services and two volumes are permanently deleted under explicit owner approval; failed 37/38 receipt retained. New recovery3 launched 14:10 UTC, before/after NOT EXECUTED. See docs/mission-state/RECOVERY3_LAUNCH_2026-09-23.json for exact resource IDs/config/CI.
+- Recovery3 fixed expiry 2026-09-23T14:51:02.318Z must never be extended. App 9b5d908f-0641-42fc-b65e-ccef302b4f1e, Redis 5dc3a8dd-edb2-4271-9c84-2e65c71446c8. App deployment 933b6cc6-9d31-4a0e-8cb9-51ca8f300f25; Redis bcc9c5b9-7420-40d6-8dfb-9fa1f285502d. App /data volume 4b9f6b7f-7a3d-4593-a228-f2cf272c5301; Redis /data d0980fad-1c51-4c7a-876d-9e72fad8e5eb. Stop BOTH compute services by expiry/end. Permanent cleanup needs confirmation for these fresh resources.
+- Private only, no provider/commerce credentials, Never restart, app 2CPU/6GB, Redis 1CPU/500MB (Redis maxmemory256MiB). Volumes default50GB capacity, not actual consumption. Latest displayed cumulative test cost $0.0037 provisional; existing additional $5 ceiling remains.
+- Six frozen economics cases still NOT_EXECUTED. New collector offline8/8 awaits independent review. Actual provider-budget enforcement is an engineering gap: fixed preflight estimates do not reserve spend, timeouts do not cancel provider, and engineering mode denies paidAI. Do not enable model calls based solely on collector metadata or budget projections.
+
+
 LATEST ENGINEERING CHECKPOINT: terminal-result preservation repair is published in PR5 commit bfa75d7130b7e380e36480c0eb8bf11f4f401137. Independent review found no blocking issue; 4/4 focused tests and strict typecheck passed locally. New mandatory real-Redis regression and full CI35869074116/35869074202/35869074102 are running. The unchanged hosted probe still records recovery2 as FAILED. New launcher message fields improve future lifecycle-log retrieval; missing old launcher shutdown evidence remains missing. Six frozen economics cases are NOT EXECUTED and grant zero credit. All four owner-approved recovery2 resources are now deleted; test project provider inventory and pending work are empty. Production unchanged.
 
 ## Latest checkpoint — 2026-09-23 13:37 UTC

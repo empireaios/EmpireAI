@@ -1,5 +1,15 @@
 # Remaining closure path
 
+## Current execution checkpoint — 2026-09-23 14:14 UTC
+
+Supersedes prior current instructions. See PILLOW_MISSION_STATE.md latest and RECOVERY3_LAUNCH_2026-09-23.json. PR5 45e4435f all three workflows now SUCCESS (35870379746/35870379642/35870379741); canary 55a8627c all ten jobs SUCCESS. Recovery3 is building in isolated project; never alter production under test approval.
+
+1. Verify test app 933b6cc6-9d31-4a0e-8cb9-51ca8f300f25 exact source ready. Run unchanged before probe, replace same-source app only if all35PASS, run after. Preserve failures and actual shutdown logs; independent strict pair harness only after complete evidence. No relaxed thresholds.
+2. Fixed expiry 2026-09-23T14:51:02.318Z. Stop app AND Redis by expiry/completion; no extension. Fresh resources require specific permanent deletion confirmation after stopped/evidence saved. Old recovery2 cleanup is COMPLETE, do not repeat.
+3. Independently review pending held-case collector and new atomic spending-reservation primitive; no model execution or certification credit. Correct existing spend enforcement before paid certification: estimates are not reservations, uncertain calls must retain charge exposure.
+4. Preserve old production RAM/disk uncertainty; no restart or promotion without validated preservation path or concrete owner decision. Complete outstanding architecture, model, phone UI, full commerce sandbox and replacement certification before live commerce authorization.
+
+
 ## Current execution checkpoint — 2026-09-23 13:37 UTC
 
 This supersedes earlier next actions; earlier run setup is historical.

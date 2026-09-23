@@ -43,7 +43,7 @@ jobs:
           cache-dependency-path: |
             pillow/package-lock.json
             backend/package-lock.json
-      - name: Require offline certification and redeploy evidence rejection tests
+      - name: Require offline certification, redeploy and collection evidence tests
         shell: bash
         run: |
           set -euo pipefail
@@ -53,6 +53,7 @@ jobs:
             node --test --test-concurrency=1 --test-reporter=tap \
             scripts/evaluate-certification-evidence.test.mjs \
             scripts/certification-harnesses/canary-redeploy.test.mjs \
+            scripts/collect-economics-held-cases.test.mjs \
             | tee "$RUNNER_TEMP/pillow-certification-evidence-tests.tap"
           node --input-type=module - "$RUNNER_TEMP/pillow-certification-evidence-tests.tap" <<'NODE'
           import assert from 'node:assert/strict';
@@ -63,7 +64,7 @@ jobs:
             assert.ok(match, `Missing evidence-test TAP summary: ${name}`);
             return Number(match[1]);
           };
-          assert.ok(count('tests') >= 26, 'Both evidence rejection suites must execute');
+          assert.ok(count('tests') >= 42, 'All three offline evidence suites must execute');
           assert.equal(count('pass'), count('tests'), 'Every evidence rejection test must pass');
           for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
             assert.equal(count(kind), 0, `${kind} evidence tests are not permitted`);
@@ -137,6 +138,7 @@ jobs:
             src/validation/tests/mission-execution-durability.test.ts \
             src/validation/tests/mission-authority-wiring.test.ts \
             src/validation/tests/certification-receipt-intake.test.ts \
+            src/validation/tests/held-case-budget-ledger.test.ts \
             src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
@@ -171,6 +173,18 @@ jobs:
             assert.ok(match, `Missing TAP summary: ${name}`);
             return Number(match[1]);
           };
+          // All six ledger cases must execute; aggregate counts cannot hide a removed suite.
+          for (const name of [
+            'campaign identity/cap/expiry are immutable and malformed money cannot authorize',
+            'foreign databases are refused without replacing their records',
+            'timeouts, retry IDs and restart retain reservations; duplicate IDs never redispatch',
+            'only final receipt releases unused reservation; conflicting settlement and overruns are visible',
+            'expired campaign cannot reserve even with remaining balance but final reconciliation remains possible',
+            'independent processes cannot reserve the same funds twice; committed reservation survives exit without close',
+          ]) {
+            assert.ok(output.split(/\r?\n/).some(line => /^ok \d+ - /.test(line) && line.endsWith(` - ${name}`)),
+              `Missing mandatory executed ledger test: ${name}`);
+          }
           assert.ok(count('tests') > 0, 'Runtime tests must actually execute');
           assert.equal(count('pass'), count('tests'), 'Every runtime test must pass');
           for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
