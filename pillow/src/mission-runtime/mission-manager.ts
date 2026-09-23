@@ -157,7 +157,7 @@ export class MissionManager {
   createMission(input: MsrInput, config: MissionRuntimeConfiguration): MsrRunReport {
     const started = Date.now();
     this.ensureSeeded(config);
-    const validation = this.validator.validateInput(input, started);
+    const validation = this.validator.validateDraft(input, started);
     if (validation.decision === "fail") {
       return this.failReport("create_mission", started, validation, config);
     }
@@ -716,7 +716,9 @@ export class MissionManager {
     transitions: LifecycleTransition[] = [],
     handshakes: IntegrationHandshake[] = [],
   ): MsrRunReport {
-    const validation = this.validator.validateInput(input, started);
+    const validation = action === "create_mission"
+      ? this.validator.validateDraft(input, started)
+      : this.validator.validateInput(input, started);
     this.ensureRecord(validation.decision === "fail" ? "failed" : "active", config);
     return {
       action,

@@ -5,22 +5,35 @@ const FORBIDDEN_MISSION_ID = /^(Q10-0[4-9]|Q10-\d{2,}|Q1[1-9]-\d+|Q[2-9]\d-\d+)/
 
 export class MissionValidator {
   decide(input: MsrInput): MsrValidationReport["decision"] {
-    if (this.hasBoundaryViolation(input)) return "fail";
+    return this.decideForPhase(input, true);
+  }
+
+  private decideForPhase(input: MsrInput, executionApproval: boolean): MsrValidationReport["decision"] {
+    if (this.hasBoundaryViolationForPhase(input, executionApproval)) return "fail";
     if (input.validated === false) return "fail";
     if (input.forceFail === true && input.fabricateState === true) return "fail";
-    if (input.highRisk === true && input.grandKingApproved !== true) return "fail";
+    if (executionApproval && input.highRisk === true && input.grandKingApproved !== true) return "fail";
     return "pass";
   }
 
   validateInput(input: MsrInput, started: number): MsrValidationReport {
-    const decision = this.decide(input);
+    return this.validateForPhase(input, started, true);
+  }
+
+  // Recording a draft grants no execution authority and must preserve its real risk.
+  validateDraft(input: MsrInput, started: number): MsrValidationReport {
+    return this.validateForPhase(input, started, false);
+  }
+
+  private validateForPhase(input: MsrInput, started: number, executionApproval: boolean): MsrValidationReport {
+    const decision = this.decideForPhase(input, executionApproval);
     const errors: string[] = [];
     const warnings: string[] = [];
 
     this.pushBoundaryErrors(input, errors);
     if (input.validated === false) errors.push("Mission Runtime requires validated=true");
     if (input.fabricateState === true) errors.push("fabricated mission state is rejected");
-    if (input.highRisk === true && input.grandKingApproved !== true) {
+    if (executionApproval && input.highRisk === true && input.grandKingApproved !== true) {
       errors.push("High-risk mission execution requires grandKingApproved=true");
     }
 
@@ -51,6 +64,10 @@ export class MissionValidator {
   }
 
   hasBoundaryViolation(input: MsrInput): boolean {
+    return this.hasBoundaryViolationForPhase(input, true);
+  }
+
+  private hasBoundaryViolationForPhase(input: MsrInput, executionApproval: boolean): boolean {
     return (
       input.replaceWorkerLogic === true ||
       input.replaceOrchestrationLogic === true ||
@@ -63,7 +80,7 @@ export class MissionValidator {
       input.overrideApprovedArchitecture === true ||
       input.implementQ1004OrLater === true ||
       (input.targetMissionId != null && FORBIDDEN_MISSION_ID.test(input.targetMissionId)) ||
-      (input.highRisk === true && input.grandKingApproved !== true && input.validated !== false)
+      (executionApproval && input.highRisk === true && input.grandKingApproved !== true && input.validated !== false)
     );
   }
 
