@@ -287,3 +287,61 @@ test("snapshot is bound to the canonical organization and cannot be silently ado
     assert.deepEqual(readEnvelope(f.filename), unbound);
   } finally { f.dispose(); }
 });
+
+test("unapproved high-risk draft is durably recorded without granting execution authority", () => {
+  const f = fixture();
+  try {
+    const first = new MissionManager(f.filename);
+    const created = first.createMission({ missionName: "BOUNDED_CANARY_UNAPPROVED_regression",
+      missionType: "enterprise", workers: [], highRisk: true, pillowConfirmed: false,
+      grandKingApproved: false }, config);
+    assert.equal(created.decision, "pass");
+    assert.equal(created.validation.decision, "pass");
+    assert.deepEqual(created.validation.errors, []);
+    const mission = created.mission;
+    assert.ok(mission);
+    assert.equal(mission.highRisk, true);
+    assert.equal(mission.pillowConfirmed, false);
+    assert.equal(mission.grandKingApproved, false);
+    assert.equal(mission.currentStatus, "Created");
+    assert.equal(mission.progress, 0);
+    assert.deepEqual(mission.workers, []);
+
+    const recovered = new MissionManager(f.filename);
+    assert.deepEqual(recovered.getHistory().missions, [mission]);
+    let invocations = 0;
+    recovered.bindIntegrations({ workerRegistry: { invokeWorker: input => { invocations++; return offlineReceipt(input); } } });
+    const before = recovered.getHistory();
+    for (const input of [
+      { missionId: mission.missionId },
+      { missionId: mission.missionId, highRisk: false, pillowConfirmed: false, grandKingApproved: false },
+      { missionId: mission.missionId, highRisk: false, pillowConfirmed: true },
+    ]) {
+      // Even disabling the general approval switch cannot downgrade persisted high risk.
+      const result = recovered.execute(input, { ...config, requireGrandKingApproval: false });
+      assert.equal(result.decision, "fail");
+      assert.deepEqual(recovered.getHistory(), before);
+      assert.equal(invocations, 0);
+    }
+  } finally { f.dispose(); }
+});
+
+test("draft creation retains validation and governance boundaries", () => {
+  const f = fixture();
+  try {
+    const manager = new MissionManager(f.filename);
+    for (const rejected of [
+      { validated: false }, { fabricateState: true }, { executeUnauthorisedMissions: true },
+      { replaceWorkerLogic: true }, { replaceOrchestrationLogic: true },
+      { bypassPillowGovernance: true }, { bypassGrandKingApproval: true },
+      { overridePillow: true }, { overrideGrandKing: true }, { overrideApprovedArchitecture: true },
+      { implementQ1004OrLater: true }, { targetMissionId: "Q10-04" },
+    ]) {
+      const result = manager.createMission({ missionName: "rejected draft", highRisk: true,
+        pillowConfirmed: false, grandKingApproved: false, ...rejected }, config);
+      assert.equal(result.decision, "fail");
+      assert.equal(result.mission, null);
+      assert.equal(manager.getHistory().missions.length, 0);
+    }
+  } finally { f.dispose(); }
+});
