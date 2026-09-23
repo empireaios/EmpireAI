@@ -157,6 +157,7 @@ jobs:
             src/validation/tests/worker-http-proxy.test.ts \
             src/validation/tests/exec-cap-authority-compact.lock.test.ts \
             src/validation/tests/durable-pending-receipt.lock.test.ts \
+            src/validation/tests/pillow-terminal-json.test.ts \
             src/validation/tests/pillow-chat-request-store.test.ts \
             src/validation/tests/pillow-accepted-request-recovery.test.ts \
             | tee "$RUNNER_TEMP/pillow-runtime-tests.tap"

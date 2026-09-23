@@ -17,7 +17,7 @@ import {
   acceptDurableChatRequestClaim, claimNextReasoningRequest, configureChatRequestStore,
   dropChatRequestMemoryCacheForTests, getChatRequest, settleReasoningRequest,
   PillowDurableStoreUnavailableError, PillowIdempotencyConflictError,
-  releaseInterruptedReasoningRequest,
+  releaseInterruptedReasoningRequest, markChatRequestDelivered,
 } from "../../runtime/pillow-chat-request-store.js";
 import { executeReasoningProxy, runOneDurableReasoningAttempt } from "../../runtime/pillow-durable-reasoning-worker.js";
 
@@ -84,6 +84,42 @@ describe("real Redis durable reasoning queue (required, no skipped certification
     if (dir) await rm(dir, { recursive: true, force: true });
   });
 
+  it("terminal JSON bytes survive repeated retrieval, legacy upgrade and Redis restart without re-execution", async () => {
+    const input = queueInput("preserve terminal answer bytes");
+    const accepted = await acceptDurableChatRequestClaim(input);
+    const claim = await claimNextReasoningRequest({ owner: "terminal-json-test", leaseMs: 10000 });
+    assert.ok(claim);
+    const result = { z: "keep insertion order", nested: { findings: [], emptyObject: {}, precise: 1.2345678901234567 },
+      a: [[], { decision: false }], kind: "authority_facts", message: "NOT_BORN; commerce remains locked" };
+    const serialized = JSON.stringify(result);
+    assert.equal(await settleReasoningRequest({ requestId: accepted.request.requestId, leaseToken: claim.request.leaseToken!, result }), true);
+    const key = `pillow:chatreq:v2:${accepted.request.requestId}`;
+    assert.equal(JSON.parse((await redis.get(key))!).resultJson, serialized);
+    for (const state of ["RETRIEVED", "DELIVERED", "RETRIEVED", "DELIVERED", "RETRIEVED"] as const) {
+      await markChatRequestDelivered(accepted.request.requestId, state);
+      dropChatRequestMemoryCacheForTests();
+      const read = await getChatRequest(accepted.request.requestId);
+      assert.equal(JSON.stringify(read!.finalResult), serialized);
+      assert.equal(JSON.stringify(read!.brainResult), serialized);
+      assert.equal(Object.hasOwn(read!, "resultJson"), false);
+    }
+    await stopRedis(); await startRedis(); dropChatRequestMemoryCacheForTests();
+    assert.equal(JSON.stringify((await getChatRequest(accepted.request.requestId))!.finalResult), serialized);
+    const duplicate = await acceptDurableChatRequestClaim(input);
+    assert.equal(duplicate.disposition, "EXISTING_COMPLETED");
+    assert.equal(JSON.stringify(duplicate.request.finalResult), serialized);
+    assert.equal(await settleReasoningRequest({ requestId: accepted.request.requestId, leaseToken: claim.request.leaseToken!, result: { message: "stale overwrite" } }), false);
+    assert.equal(JSON.stringify((await getChatRequest(accepted.request.requestId))!.finalResult), serialized);
+
+    // An old record has no envelope. Upgrade the currently stored answer before
+    // any new-code acknowledgment round-trips its compatibility fields via cjson.
+    const legacy = JSON.parse((await redis.get(key))!); delete legacy.resultJson;
+    legacy.finalResult = result; legacy.brainResult = result;
+    await redis.setex(key, 300, JSON.stringify(legacy));
+    await Promise.all(Array.from({ length: 6 }, () => markChatRequestDelivered(accepted.request.requestId, "RETRIEVED")));
+    assert.equal(JSON.parse((await redis.get(key))!).resultJson, serialized);
+    assert.equal(JSON.stringify((await getChatRequest(accepted.request.requestId))!.finalResult), serialized);
+  });
   it("persists typed missing-provider failure after one claim and never schedules another attempt", async () => {
     const accepted = await acceptDurableChatRequestClaim(queueInput("Reasoning without a configured provider"));
     const original = globalThis.fetch;
