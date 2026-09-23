@@ -1,4 +1,20 @@
 # EmpireAI / Pillow canonical mission state
+
+LATEST ENGINEERING CHECKPOINT: terminal-result preservation repair is published in PR5 commit bfa75d7130b7e380e36480c0eb8bf11f4f401137. Independent review found no blocking issue; 4/4 focused tests and strict typecheck passed locally. New mandatory real-Redis regression and full CI35869074116/35869074202/35869074102 are running. The unchanged hosted probe still records recovery2 as FAILED. New launcher message fields improve future lifecycle-log retrieval; missing old launcher shutdown evidence remains missing. Six frozen economics cases are NOT EXECUTED and grant zero credit. All four owner-approved recovery2 resources are now deleted; test project provider inventory and pending work are empty. Production unchanged.
+
+## Latest checkpoint — 2026-09-23 13:37 UTC
+
+This supersedes earlier current-state claims; retain them as chronology. Mission remains NOT_BORN / Wave credit 0 / commerce LOCKED.
+
+- PR5 integrated head 66ddc162209210136a856b1e61172cfd5c450927 passed all ten jobs across CI 35865122554 / 35865122463 / 35865122524, including 26 certification tests. See REPLACEMENT_CERTIFICATION_CI_2026-09-23.json. CI is engineering evidence, not Birth or provider recovery acceptance.
+- Recovery2 source bed51228ada3110373ae671ca72f9d781af3b0e0: before probe passed 35 checks at 13:12:36 UTC. Same-source application replacement 02302b9f-5899-4990-89bd-34b2a69b835b replaced 613e22c1-62db-4387-b5dc-d31571156084. After probe at 13:19:34 UTC passed 37/38 checks; authority_result_preserved FAILED. NO PAIR PASS. Raw failures remain in RECOVERY2* evidence.
+- Current Redis result digest changed again. Redis cjson reserialization repair is under engineering review in integration; no probe checks relaxed. Strict offline actual-pair harness rejects FAILED_OR_MALFORMED_CHECK with zero acceptance.
+- Primary shutdown completion was observed, but no bounded_canary_stopped launcher receipt was retrieved. Do not infer a complete orderly shutdown pair or same-binary proof.
+- Owner approved deletion of all new recovery2 services AND volumes. They are now deleted; provider readback has empty services/pending work. Final empty-canvas UI verification was pending at this checkpoint. Latest displayed test cost US$0.0024 is provisional, not final billing reconciliation. Prior fixed expiry remains historical and cannot be extended/reused.
+- Production is unchanged. An old-source fixture demonstrated a critical-save concurrent-write gap; this is evidence against assuming safe old-production quiescence, not permission to restart it.
+- Missing historical V53 is not an owner dependency. Replacement requirements/evaluator are engineering work; six new held arithmetic/ranking cases are frozen but NOT EXECUTED, credit 0.
+- Next: independently review and test Redis serialization repair without changing proof standards; preserve failed receipts, publish verified repair through required CI, resolve old-production preservation, and execute only remaining acceptance within actual authorization/budget. See RECOVERY2_RESULT_2026-09-23.md for limits.
+
 ## Latest checkpoint — 2026-09-23 13:01:35 UTC
 
 This checkpoint supersedes earlier status/next-action claims below; those remain chronology, not current instructions.

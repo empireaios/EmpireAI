@@ -1,4 +1,17 @@
 # Remaining closure path
+
+## Current execution checkpoint — 2026-09-23 13:37 UTC
+
+This supersedes earlier next actions; earlier run setup is historical.
+
+1. Preserve recovery2 failure: before 35/35 PASS at 13:12:36 UTC; after 37/38 at 13:19:34 UTC, sole failure authority_result_preserved after same-source deployment 02302b9f-5899-4990-89bd-34b2a69b835b. No pair PASS; offline actual-pair verifier rejects FAILED_OR_MALFORMED_CHECK. No bounded_canary_stopped receipt retrieved; primary shutdown observation alone is insufficient.
+2. All recovery2 services and volumes were explicitly approved for deletion and deleted. Provider services/pending work are empty; final UI empty-canvas verification was pending. Do not repeat deletion or touch production. Latest displayed cost US$0.0024 is provisional.
+3. Redis cjson result reserialization repair is under review in integration because current result digest changed again. Preserve exact failed source/probe evidence; do not weaken probe checks. Review/test/CI the repair before any further provider run.
+4. Integrated PR5 head 66ddc162209210136a856b1e61172cfd5c450927 passed all ten CI jobs, including 26 certification tests (35865122554/35865122463/35865122524). Reuse this evidence; it does not cover uncommitted serialization changes or grant certification.
+5. Old-production critical-save concurrent-write fixture exposes a preservation gap. Establish actual stopped admission/writers, settled work, final save and no respawn before cutover. Production remains unchanged; do not treat a new-source fixture as proof old production is safe.
+6. Continue replacement certification autonomously; missing historical V53 is not an owner dependency. Six frozen independent arithmetic/ranking cases have not been executed against Pillow and have zero credit. Complete the blinded runner and criterion verification without training on sealed cases.
+7. Keep NOT_BORN / commerce LOCKED and all owner financial/commercial boundaries. RECOVERY2_RESULT_2026-09-23.md and raw RECOVERY2* files retain actual scope and failures.
+
 ## Current execution checkpoint — 2026-09-23 13:01:35 UTC
 
 Earlier dated notes remain historical and are superseded by this checkpoint.
