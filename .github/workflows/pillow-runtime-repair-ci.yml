@@ -43,6 +43,32 @@ jobs:
           cache-dependency-path: |
             pillow/package-lock.json
             backend/package-lock.json
+      - name: Require offline certification and redeploy evidence rejection tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Synthetic rejection tests only; no hosted proof or certification credit.
+          env -i PATH="$PATH" HOME="$RUNNER_TEMP" TMPDIR="$RUNNER_TEMP" \
+            CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \
+            node --test --test-concurrency=1 --test-reporter=tap \
+            scripts/evaluate-certification-evidence.test.mjs \
+            scripts/certification-harnesses/canary-redeploy.test.mjs \
+            | tee "$RUNNER_TEMP/pillow-certification-evidence-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-certification-evidence-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing evidence-test TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 26, 'Both evidence rejection suites must execute');
+          assert.equal(count('pass'), count('tests'), 'Every evidence rejection test must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} evidence tests are not permitted`);
+          }
+          NODE
       - name: Install Redis binary for test-owned isolated AOF processes
         run: |
           sudo apt-get update
@@ -131,6 +157,7 @@ jobs:
             src/validation/tests/worker-http-proxy.test.ts \
             src/validation/tests/exec-cap-authority-compact.lock.test.ts \
             src/validation/tests/durable-pending-receipt.lock.test.ts \
+            src/validation/tests/pillow-terminal-json.test.ts \
             src/validation/tests/pillow-chat-request-store.test.ts \
             src/validation/tests/pillow-accepted-request-recovery.test.ts \
             | tee "$RUNNER_TEMP/pillow-runtime-tests.tap"

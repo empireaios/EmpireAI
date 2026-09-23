@@ -227,6 +227,25 @@ test('Railway canary config requires readiness and disables all automatic restar
   assert.match(config, /healthcheckPath = "\/health\/ready"/);
 });
 
+test('lifecycle records include searchable messages and retain truthful shutdown facts', () => {
+  // Execute only the actual logging expressions with synthetic local values.
+  // This tests emitted JSON without starting the launcher or a provider service.
+  const source = fs.readFileSync(path.join(__dirname, 'canary-launcher.cjs'), 'utf8');
+  const expressions = source.match(/console\.log\(JSON\.stringify\(\{ event: 'bounded_canary_(?:start|stopped)'[\s\S]*?\}\)\);/g);
+  assert.equal(expressions?.length, 2);
+  const records = [];
+  const identity = { launchId: 'synthetic-launch', deploymentId: 'synthetic-deployment', gitCommitSha: 'a'.repeat(40) };
+  const result = { reason: 'deadline', code: null, signal: 'SIGKILL', forcedTermination: true, forcedSignal: 'SIGKILL' };
+  for (const expression of expressions) require('node:vm').runInNewContext(expression, {
+    identity, result, console: { log: line => records.push(JSON.parse(line)) },
+  });
+  assert.deepEqual(records, [
+    { event: 'bounded_canary_start', message: 'bounded_canary_start', ...identity, scope: 'engineering_test_only', commerce: 'LOCKED' },
+    { event: 'bounded_canary_stopped', message: 'bounded_canary_stopped', reason: 'deadline', childExitCode: null, childSignal: 'SIGKILL', forcedTermination: true, forcedSignal: 'SIGKILL' },
+  ]);
+  // Provider indexing/retrieval still requires a fresh hosted observation.
+});
+
 
 test('runtime version injection cannot authorize a different actual executable', async () => {
   assert.equal(EXPECTED_NODE, '22.23.2');

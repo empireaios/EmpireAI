@@ -212,6 +212,25 @@ function touchMemory(rec: DurableChatRequest): void {
   }
 }
 
+/** Redis Lua cjson must never reinterpret or reorder a terminal answer. */
+function decodeStoredRequest(raw: string): DurableChatRequest {
+  const rec = JSON.parse(raw) as DurableChatRequest & { resultJson?: unknown };
+  if (Object.prototype.hasOwnProperty.call(rec, "resultJson")) {
+    if (typeof rec.resultJson !== "string") throw new Error("invalid_durable_result_json");
+    const answer = JSON.parse(rec.resultJson) as unknown;
+    if (!answer || typeof answer !== "object" || Array.isArray(answer)) throw new Error("invalid_durable_result_json");
+    rec.finalResult = answer as Record<string, unknown>;
+    rec.brainResult = JSON.parse(rec.resultJson) as Record<string, unknown>;
+    // Storage-only envelope is not part of the public request response.
+    delete rec.resultJson;
+  }
+  return rec;
+}
+
+function encodeStoredRequest(rec: DurableChatRequest): string {
+  return JSON.stringify(rec.status === "COMPLETED" && rec.finalResult
+    ? { ...rec, resultJson: JSON.stringify(rec.finalResult) } : rec);
+}
 async function persist(rec: DurableChatRequest): Promise<void> {
   // Legacy mutators must never bypass the queue's lease/fence compare-and-set.
   if (rec.queued) throw new Error("queued_transition_requires_lease");
@@ -229,7 +248,7 @@ async function persist(rec: DurableChatRequest): Promise<void> {
     const requestWrite = await r.setex(
       key(rec.requestId),
       TTL_SEC,
-      JSON.stringify(rec),
+      encodeStoredRequest(rec),
     );
     if (requireRedisDurability && requestWrite !== "OK") {
       throw new Error("redis_setex_request_not_acknowledged");
@@ -412,7 +431,7 @@ export async function acceptDurableChatRequestClaim(opts: AcceptOptions): Promis
     if (!Array.isArray(response) || response.length !== 2) throw new PillowDurableStoreUnavailableError();
     if (response[0] === "CONFLICT") throw new PillowIdempotencyConflictError();
     if (response[0] === "BROKEN") throw new PillowDurableStoreUnavailableError("pillow_durable_idempotency_record_unavailable");
-    const request = JSON.parse(String(response[1])) as DurableChatRequest;
+    const request = decodeStoredRequest(String(response[1]));
     touchMemory(request);
     return { request, disposition: response[0] === "CREATED" ? "CREATED" :
       request.status === "COMPLETED" ? "EXISTING_COMPLETED" :
@@ -498,7 +517,7 @@ export async function claimNextReasoningRequest(options: {
       TTL_SEC, options.owner, new Date().toISOString()]);
   if (!Array.isArray(result)) throw new PillowDurableStoreUnavailableError();
   if (result.length === 0) return null;
-  const request = JSON.parse(String(result[0])) as DurableChatRequest;
+  const request = decodeStoredRequest(String(result[0]));
   const input = JSON.parse(String(result[1])) as RecoverableReasoningInput;
   if (input.kind !== "reasoning") throw new Error("side_effect_retry_forbidden");
   touchMemory(request);
@@ -522,8 +541,10 @@ rec.ts = ARGV[3]
 rec.activeWorker = cjson.null
 rec.leaseExpiresAt = 0
 rec.failureClass = patch.failureClass
-if patch.result then
+if ARGV[7] and ARGV[7] ~= '' then
   rec.status = 'COMPLETED'
+  -- Exact JSON bytes are opaque to cjson, including nested arrays and numbers.
+  rec.resultJson = ARGV[7]
   rec.brainResult = patch.result
   rec.finalResult = patch.result
   rec.deliveryState = 'PENDING_CLIENT'
@@ -597,7 +618,8 @@ export async function settleReasoningRequest(options: {
   const result = await evalStore(SETTLE_LEASE,
     [key(options.requestId), `${JOB_PREFIX}${options.requestId}`, DUE_KEY, DLQ_KEY],
     [options.leaseToken, JSON.stringify(patch), new Date().toISOString(), TTL_SEC,
-      options.maxAttempts ?? 3, Math.max(0, options.retryDelayMs ?? 5_000)]);
+      options.maxAttempts ?? 3, Math.max(0, options.retryDelayMs ?? 5_000),
+      options.result ? JSON.stringify(options.result) : ""]);
   if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
   memory.delete(options.requestId);
   return result === 1;
@@ -711,18 +733,24 @@ export async function markChatRequestDelivered(
   state: ChatDeliveryState = "DELIVERED",
 ): Promise<void> {
   if (redis?.eval) {
+    // Upgrade a legacy completed record from the exact JS-parsed bytes before
+    // its first new-code acknowledgement; never replace an existing envelope.
+    const previous = await getChatRequest(requestId);
+    if (!previous || previous.status !== "COMPLETED") return;
+    const answerJson = JSON.stringify(previous.finalResult);
     await evalStore(`
 local raw = redis.call('GET', KEYS[1])
 if not raw then return 0 end
 local rec = cjson.decode(raw)
 if rec.status ~= 'COMPLETED' then return 0 end
+if rec.resultJson == nil then rec.resultJson = ARGV[4] end
 rec.deliveryState = ARGV[1]
 rec.updatedAt = ARGV[2]
 rec.ts = ARGV[2]
 if ARGV[1] == 'DELIVERED' or ARGV[1] == 'RETRIEVED' then rec.observability.deliveryCompletedAt = ARGV[2] end
 redis.call('SET', KEYS[1], cjson.encode(rec), 'EX', ARGV[3])
 return 1
-`, [key(requestId)], [state, new Date().toISOString(), TTL_SEC]);
+`, [key(requestId)], [state, new Date().toISOString(), TTL_SEC, answerJson]);
     memory.delete(requestId);
     return;
   }
@@ -750,7 +778,7 @@ export async function getChatRequest(requestId: string): Promise<DurableChatRequ
   try {
     const raw = await r.get(key(requestId));
     if (!raw) return null;
-    const rec = JSON.parse(raw) as DurableChatRequest;
+    const rec = decodeStoredRequest(raw);
     if (rec.status === "FAILED") rec.status = "FAILED_FATAL";
     touchMemory(rec);
     return rec;
