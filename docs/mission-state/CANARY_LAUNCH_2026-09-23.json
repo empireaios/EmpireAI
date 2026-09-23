@@ -1,0 +1,153 @@
+{
+  "expiry": "2026-09-23T11:58:10.303Z",
+  "expectedCommit": "ed663f193048e25375c86d941fbb9832c9013c37",
+  "prelaunch": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Config for **recovery-canary** in **production**:\n\n```json\n{\n  \"build\": {\n    \"builder\": \"RAILPACK\",\n    \"buildEnvironment\": \"V3\"\n  },\n  \"deploy\": {\n    \"startCommand\": \"node deployment/canary-launcher.cjs\",\n    \"healthcheckPath\": \"/health/ready\",\n    \"healthcheckTimeout\": 300,\n    \"restartPolicyType\": \"NEVER\",\n    \"useLegacyStacker\": false,\n    \"ipv6EgressEnabled\": false,\n    \"runtime\": \"V2\",\n    \"multiRegionConfig\": {\n      \"sfo\": {\n        \"numReplicas\": 1\n      }\n    }\n  }\n}\n```\n\nVariables defined (13): ADMIN_EMAIL, ADMIN_PASSWORD, CORS_ORIGIN, DATABASE_PATH, EMPIRE_CANARY_ACK, EMPIRE_CANARY_EXPIRES_AT, EMPIRE_CANARY_REDIS_HOST, EMPIRE_ENGINEERING_TEST_MODE, FOUNDER_EMAIL, FOUNDER_PASSWORD, PORT, REDIS_URL, SESSION_SECRET\nStaged but not deployed (7 changes, patch 71d2bd31-481c-4365-8561-a39d5a8079d3, STAGED):\n```json\n{\n  \"build\": {\n    \"buildCommand\": \"NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\"\n  },\n  \"deploy\": {\n    \"limitOverride\": {\n      \"containers\": {\n        \"cpu\": 2,\n        \"memoryBytes\": 6000000000\n      }\n    }\n  },\n  \"source\": {\n    \"repo\": \"empireaios/EmpireAI\",\n    \"branch\": \"codex/bounded-canary-20260923\",\n    \"checkSuites\": true\n  },\n  \"volumeMounts\": {\n    \"cf5765a8-9892-4899-8726-4bb36b44c585\": {\n      \"mountPath\": \"/data\"\n    }\n  }\n}\n```\nCommit with accept-deploy to apply."
+        }
+      ],
+      "structuredContent": {
+        "service": {
+          "id": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+          "name": "recovery-canary"
+        },
+        "environment": {
+          "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+          "name": "production"
+        },
+        "config": {
+          "build": {
+            "builder": "RAILPACK",
+            "buildEnvironment": "V3"
+          },
+          "deploy": {
+            "startCommand": "node deployment/canary-launcher.cjs",
+            "healthcheckPath": "/health/ready",
+            "healthcheckTimeout": 300,
+            "restartPolicyType": "NEVER",
+            "useLegacyStacker": false,
+            "ipv6EgressEnabled": false,
+            "runtime": "V2",
+            "multiRegionConfig": {
+              "sfo": {
+                "numReplicas": 1
+              }
+            }
+          }
+        },
+        "variableNames": [
+          "ADMIN_EMAIL",
+          "ADMIN_PASSWORD",
+          "CORS_ORIGIN",
+          "DATABASE_PATH",
+          "EMPIRE_CANARY_ACK",
+          "EMPIRE_CANARY_EXPIRES_AT",
+          "EMPIRE_CANARY_REDIS_HOST",
+          "EMPIRE_ENGINEERING_TEST_MODE",
+          "FOUNDER_EMAIL",
+          "FOUNDER_PASSWORD",
+          "PORT",
+          "REDIS_URL",
+          "SESSION_SECRET"
+        ],
+        "staged": {
+          "patchId": "71d2bd31-481c-4365-8561-a39d5a8079d3",
+          "patchStatus": "STAGED",
+          "changeCount": 7,
+          "config": {
+            "build": {
+              "buildCommand": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
+            },
+            "deploy": {
+              "limitOverride": {
+                "containers": {
+                  "cpu": 2,
+                  "memoryBytes": 6000000000
+                }
+              }
+            },
+            "source": {
+              "repo": "empireaios/EmpireAI",
+              "branch": "codex/bounded-canary-20260923",
+              "checkSuites": true
+            },
+            "volumeMounts": {
+              "cf5765a8-9892-4899-8726-4bb36b44c585": {
+                "mountPath": "/data"
+              }
+            }
+          },
+          "variableNames": []
+        }
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Config for **recovery-redis** in **production**:\n\n```json\n{\n  \"build\": {\n    \"builder\": \"RAILPACK\",\n    \"buildEnvironment\": \"V3\"\n  },\n  \"deploy\": {\n    \"startCommand\": \"sh -c 'exec redis-server --bind 0.0.0.0 :: --protected-mode yes --port 6379 --dir /data --requirepass \\\"$REDIS_PASSWORD\\\" --maxmemory 268435456 --maxmemory-policy noeviction --appendonly yes --appendfsync always'\",\n    \"restartPolicyType\": \"NEVER\",\n    \"useLegacyStacker\": false,\n    \"ipv6EgressEnabled\": false,\n    \"runtime\": \"V2\",\n    \"multiRegionConfig\": {\n      \"sfo\": {\n        \"numReplicas\": 1\n      }\n    }\n  }\n}\n```\n\nVariables defined (1): REDIS_PASSWORD\nStaged but not deployed (4 changes, patch 71d2bd31-481c-4365-8561-a39d5a8079d3, STAGED):\n```json\n{\n  \"deploy\": {\n    \"limitOverride\": {\n      \"containers\": {\n        \"cpu\": 1,\n        \"memoryBytes\": 500000000\n      }\n    }\n  },\n  \"source\": {\n    \"image\": \"redis:7.2.16-bookworm\"\n  },\n  \"volumeMounts\": {\n    \"ec5ca870-0e3e-484d-b7fa-29f0c3122f8e\": {\n      \"mountPath\": \"/data\"\n    }\n  }\n}\n```\nCommit with accept-deploy to apply."
+        }
+      ],
+      "structuredContent": {
+        "service": {
+          "id": "d76003c0-d65f-446c-90d1-7caa1de5164c",
+          "name": "recovery-redis"
+        },
+        "environment": {
+          "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+          "name": "production"
+        },
+        "config": {
+          "build": {
+            "builder": "RAILPACK",
+            "buildEnvironment": "V3"
+          },
+          "deploy": {
+            "startCommand": "sh -c 'exec redis-server --bind 0.0.0.0 :: --protected-mode yes --port 6379 --dir /data --requirepass \"$REDIS_PASSWORD\" --maxmemory 268435456 --maxmemory-policy noeviction --appendonly yes --appendfsync always'",
+            "restartPolicyType": "NEVER",
+            "useLegacyStacker": false,
+            "ipv6EgressEnabled": false,
+            "runtime": "V2",
+            "multiRegionConfig": {
+              "sfo": {
+                "numReplicas": 1
+              }
+            }
+          }
+        },
+        "variableNames": [
+          "REDIS_PASSWORD"
+        ],
+        "staged": {
+          "patchId": "71d2bd31-481c-4365-8561-a39d5a8079d3",
+          "patchStatus": "STAGED",
+          "changeCount": 4,
+          "config": {
+            "deploy": {
+              "limitOverride": {
+                "containers": {
+                  "cpu": 1,
+                  "memoryBytes": 500000000
+                }
+              }
+            },
+            "source": {
+              "image": "redis:7.2.16-bookworm"
+            },
+            "volumeMounts": {
+              "ec5ca870-0e3e-484d-b7fa-29f0c3122f8e": {
+                "mountPath": "/data"
+              }
+            }
+          },
+          "variableNames": []
+        }
+      },
+      "isError": false
+    }
+  ]
+}
