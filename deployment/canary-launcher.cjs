@@ -187,7 +187,7 @@ async function main() {
     launcherSha256: crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),
     serviceId: env.RAILWAY_SERVICE_ID, deploymentId: env.RAILWAY_DEPLOYMENT_ID,
     gitCommitSha: env.RAILWAY_GIT_COMMIT_SHA, expiresAt: new Date(expiresAt).toISOString() };
-  console.log(JSON.stringify({ event: 'bounded_canary_start', ...identity,
+  console.log(JSON.stringify({ event: 'bounded_canary_start', message: 'bounded_canary_start', ...identity,
     scope: 'engineering_test_only', commerce: 'LOCKED' }));
   const result = await runBounded({ command: process.execPath, args: ['backend/dist/index.js'], env, cwd, expiresAt,
     onSpawn: child => {
@@ -201,7 +201,7 @@ async function main() {
       try { fs.fsyncSync(dir); } finally { fs.closeSync(dir); }
     },
   });
-  console.log(JSON.stringify({ event: 'bounded_canary_stopped', reason: result.reason,
+  console.log(JSON.stringify({ event: 'bounded_canary_stopped', message: 'bounded_canary_stopped', reason: result.reason,
     childExitCode: result.code, childSignal: result.signal,
     forcedTermination: result.forcedTermination, forcedSignal: result.forcedSignal }));
   process.exitCode = canaryExitCode(result);
