@@ -139,6 +139,7 @@ jobs:
             src/validation/tests/mission-authority-wiring.test.ts \
             src/validation/tests/certification-receipt-intake.test.ts \
             src/validation/tests/held-case-budget-ledger.test.ts \
+            src/runtime/held-case-dispatch.test.ts \
             src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
@@ -188,6 +189,20 @@ jobs:
               `Missing mandatory executed ledger test: ${name}`);
           }
           assert.ok(count('tests') > 0, 'Runtime tests must actually execute');
+          for (const name of [
+            'unconfigured or denied trusted verifier cannot dispatch; client permission fields are forbidden',
+            'success retains full reservation; duplicate request and reopen never redispatch',
+            'timeout aborts one attempt and preserves uncertain full hold without retry',
+            'provider/model mismatch, tools, fallback and prompt mutation are rejected before dispatch',
+            'missing/expired pricing or unknown other costs cannot reserve or dispatch',
+            'independent ledger connections racing distinct steps cannot overspend campaign cap',
+            'provider response violation retains hold and a policy revision cannot reset prior spend',
+            'actual scope, output bound, expiry and pre-aborted calls fail before dispatch',
+            'retained verifier references and mutable originals cannot change the approved dispatch snapshot',
+          ]) {
+            assert.ok(output.split(/\r?\n/).some(line => /^ok \d+ - /.test(line) && line.endsWith(` - ${name}`)),
+              `Missing mandatory executed held dispatch test: ${name}`);
+          }
           for (const name of [
             'timeouts are finite integer bounded and reject malformed configuration',
             'deadline aborts the actual in-flight fake provider once',

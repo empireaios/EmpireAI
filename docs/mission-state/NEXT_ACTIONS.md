@@ -1,5 +1,12 @@
 # Remaining closure path
 
+## Latest checkpoint — 2026-09-23 15:33 UTC
+
+Supersedes older current instructions; preserve chronology. Mission NOT_BORN, commerce LOCKED, production unchanged. PR5 head da930baf8c32314579fb7ea0d1f5d2e01b3a2bf4 contains independently reviewed expiry/cancellation repairs plus preserved recovery3 failures. CI35881857421 / 35881857662 / 35881857695 running. Actual Linux Redis Docker image job107252038307 PASSED all four runtime cases: authenticated AOF, external signal shutdown, refused expiry renewal, same-scope AOF reopen and automatic shutdown before fixed expiry; temporary resources cleaned. Tested merge c55c11d8dc9a55d61742c29bf51e1a2d861b459f. See REDIS_IMAGE_CI_2026-09-23.json. This is CI Docker proof, not Railway recovery or power-loss certification.
+
+Recovery3 remains stopped and failed/incomplete, no after probe. Permanent cleanup confirmation for its four resources remains pending. Old expiry must never be extended/reused. Eleven offline provider cancellation tests pass; remote billing and application retries remain unresolved. Held-case paid campaign dispatch and truthful legacy saved-checkpoint capture are under development with no provider activation. No models, commercial actions or production changes authorized by these tests.
+
+
 ## Current execution checkpoint — 2026-09-23 15:03 UTC
 
 Supersedes older instructions. Recovery3STOPPED, replacementFAILEDbuild, afterNOT_EXECUTED; never rerun expired marker. Preserve RECOVERY3_RESULT/STOP/REDEPLOY_FAILED evidence. Finish reviewed test-only Redis enforced expiry (late manual stop was a failure), then remaining engineering. Four new testresources await permanent-deletion confirmation. PR5 0030e78c all10CIjobsPASS, offline collector16/budgetledger6; no provider activation. Actual enforcement/pricing/approval integration, full runtime certification, old-production preservation, phoneUI and full commerce lifecycle remain. No production restart or livecommerce.
