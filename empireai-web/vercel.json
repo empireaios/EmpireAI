@@ -9,7 +9,8 @@
   "git": {
     "deploymentEnabled": {
       "fix/pillow-integrated-closure-20260920": false,
-      "codex/bounded-canary-20260923": false
+      "codex/bounded-canary-20260923": false,
+      "codex/bounded-recovery4-20260923": false
     }
   }
 }
