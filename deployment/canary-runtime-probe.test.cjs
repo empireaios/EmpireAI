@@ -152,3 +152,41 @@ test('disk accounts bind worker SQL identities, not deterministic primary sessio
   assert.equal(accountRowsPass({ founder: [workerIds.founder], admin: ['reseeded_admin_uuid'] }, workerIds), false);
   assert.equal(accountRowsPass({ founder: [workerIds.founder, workerIds.founder], admin: [workerIds.admin] }, workerIds), false);
 });
+
+test('sanitized observer emits only selected generated evidence and strips response credentials', () => {
+  const { sanitizedObservations } = require('./canary-runtime-probe.cjs');
+  const account = { userId: 'test-user', cookie: 'SECRET_COOKIE', password: 'SECRET_PASSWORD' };
+  const request = requestRecord();
+  request.headers = { authorization: 'SECRET_AUTHORIZATION' };
+  request.data.request.secret = 'SECRET_REQUEST';
+  request.data.request.finalResult.token = 'SECRET_RESULT';
+  request.data.request.finalResult.message += ' SECRET_APPENDED';
+  const observed = sanitizedObservations({ deploymentId: 'test-deployment', serviceId: 'test-service', sourceCommit: 'a'.repeat(40), probeSha256: 'b'.repeat(64),
+    founder: account, admin: account, workerFounder: account, workerAdmin: account,
+    mission: { missionId: 'test-mission', password: 'SECRET_MISSION' }, native: null,
+    authority: request, failed: request, authorityDigest: 'c'.repeat(64), failureDigest: 'd'.repeat(64),
+    foreign: { status: 404 }, forbidden: { status: 403 }, birth: { status: 200, data: { status: 'NOT_BORN', authority: { birthStatus: 'NOT_BORN', token: 'SECRET_BIRTH' } } },
+    ready: { status: 200, data: { ready: true, secret: 'SECRET_READY', checks: { redis: { ok: true, password: 'SECRET_REDIS' } } } } });
+  assert.equal(JSON.stringify(observed).includes('SECRET_'), false);
+  assert.equal(observed.accounts.primary.founder.id, 'test-user');
+  assert.equal(observed.authority.data.request.status, 'COMPLETED');
+  assert.equal(observed.authority.data.request.finalResult.message, 'Birth status: NOT_BORN. Real commerce authorized: no (unauthorized).');
+  assert.equal(observed.native, null);
+});
+test('sanitized observer rejects object-valued allowed keys and absent final results', () => {
+  const { sanitizedObservations } = require('./canary-runtime-probe.cjs');
+  const secret = { nested: 'SECRET_NESTED' };
+  const account = { userId: secret };
+  const observed = sanitizedObservations({ founder: account, admin: account, workerFounder: account, workerAdmin: account,
+    mission: { metadataVersion: secret, workers: [secret], traceabilityRefs: [secret], currentStatus: secret },
+    native: { revision: secret, bytes: secret, integrity: secret, entries: { missions: [secret] }, mission: { metadataVersion: secret } },
+    authority: { status: secret, data: { request: { kind: secret, lastError: secret }, durability: { REQUEST_STATE_STORE: secret } } },
+    failed: { status: secret, data: { request: { finalResult: { kind: secret, message: secret } } } },
+    foreign: { status: secret }, forbidden: { status: secret }, birth: { status: secret, data: { status: secret, authority: { birthStatus: secret } } },
+    ready: { status: secret, data: { sessionStore: secret, checks: { redis: { ok: secret } } } } });
+  assert.equal(JSON.stringify(observed).includes('SECRET_NESTED'), false);
+  assert.equal(observed.authority.data.request.finalResult, null);
+  assert.equal(observed.failure.data.request.finalResult.kind, null);
+  assert.equal(observed.readiness.data.sessionStore, null);
+  assert.equal(observed.accounts.primary.founder.id, null);
+});

@@ -158,6 +158,66 @@ async function boundedHttp(origin, deadline, route, { method = 'GET', body, cook
   let data; try { data = JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { data = null; }
   return { status: r.status, data, headers: r.headers };
 }
+
+function sanitizedObservations(input) {
+  const id = v => typeof v === 'string' && /^[A-Za-z0-9_.:-]{1,160}$/.test(v) ? v : null;
+  const enums = { kind: ['authority_facts'], sessionStore: ['redis'], lifecycle: ['running'],
+    status: ['NOT_BORN','COMPLETED','FAILED_FATAL'], birthStatus: ['NOT_BORN'], commerceStatus: ['LOCKED'],
+    independentCertification: ['UNVERIFIED'], failureClass: ['BRAIN_SUCCESS','BRAIN_FATAL'],
+    missionType: ['enterprise'], mode: ['standalone'], currentStatus: ['Created'] };
+  const bools = new Set(['ready','workerOnline','workerReady','enabled','ok','ping','technicallyReady','realCommerceAuthorized','highRisk','pillowConfirmed','grandKingApproved','structuralSignalOnly','fabricated']);
+  const numbers = new Set(['waveCredit','attemptCount','retryCount','progress','revision','bytes']);
+  const primitive = (key, v) => {
+    if (enums[key]) return enums[key].includes(v) ? v : null;
+    if (bools.has(key)) return typeof v === 'boolean' ? v : null;
+    if (numbers.has(key)) return Number.isSafeInteger(v) && v >= 0 && v <= 67108864 ? v : null;
+    if (key === 'createdAt' || key === 'updatedAt') return typeof v === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(v) ? v : null;
+    if (key === 'metadataVersion') return typeof v === 'string' && /^[0-9][0-9a-z.-]{0,31}$/.test(v) ? v : null;
+    if (key === 'missionName') return typeof v === 'string' && /^BOUNDED_CANARY_UNAPPROVED_[0-9a-f-]{36}$/.test(v) ? v : null;
+    if (key === 'envelopeSha256') return typeof v === 'string' && /^[a-f0-9]{64}$/.test(v) ? v : null;
+    if (key === 'integrity') return v === 'ok' ? v : null;
+    return id(v);
+  };
+  const pick = (value, keys) => Object.fromEntries(keys.filter(k => value && Object.prototype.hasOwnProperty.call(value,k)).map(k => [k,primitive(k,value[k])]));
+  const missionKeys = ['missionId','missionType','missionName','parentMissionId','dependencyMissionIds','mode','currentStatus','createdAt','updatedAt','workers','highRisk','pillowConfirmed','grandKingApproved','retryCount','progress','traceabilityRefs','metadataVersion','structuralSignalOnly','fabricated'];
+  const cleanMission = m => { const result = pick(m, missionKeys);
+    for (const k of ['workers','dependencyMissionIds']) result[k] = Array.isArray(m?.[k]) && m[k].length === 0 ? [] : null;
+    result.traceabilityRefs = Array.isArray(m?.traceabilityRefs) ? m.traceabilityRefs.filter(v => v === 'q10-03' || v === 'mission-runtime') : null;
+    return result; };
+  const cleanTerminal = r => {
+    const q = r?.data?.request;
+    const request = pick(q, ['requestId','ownerId','workspaceId','status','failureClass','attemptCount']);
+    request.lastError = q?.lastError === 'no_llm_provider' ? 'no_llm_provider' : null;
+    request.finalResult = !q?.finalResult || typeof q.finalResult !== 'object' ? null : {
+      kind: primitive('kind', q?.finalResult?.kind),
+      message: typeof q?.finalResult?.message === 'string' && /Birth status: NOT_BORN\./.test(q.finalResult.message) && /Real commerce authorized: no \(unauthorized\)\./.test(q.finalResult.message)
+        ? 'Birth status: NOT_BORN. Real commerce authorized: no (unauthorized).' : null,
+      degradedUsed: q?.finalResult?.degradedUsed === true,
+      constitutionalGate: { allowed: q?.finalResult?.constitutionalGate?.allowed === true },
+    };
+    return { status: Number.isInteger(r?.status) && r.status >= 100 && r.status <= 599 ? r.status : null, data: { request, durability: { REQUEST_STATE_STORE: r?.data?.durability?.REQUEST_STATE_STORE === 'redis+memory' ? 'redis+memory' : null } } };
+  };
+  const role = (value, name) => ({ id: id(value), role: name });
+  return { schema: 'canary-sanitized-observations-v1', deploymentId: id(input.deploymentId),
+    serviceId: id(input.serviceId), sourceCommit: id(input.sourceCommit), probeSha256: id(input.probeSha256),
+    accounts: { primary: { founder: role(input.founder.userId, 'founder'), admin: role(input.admin.userId, 'admin') },
+      worker: { founder: role(input.workerFounder.userId, 'founder'), admin: role(input.workerAdmin.userId, 'admin') } },
+    mission: cleanMission(input.mission),
+    missionSha256: hash(JSON.stringify(input.mission)),
+    native: input.native ? { ...pick(input.native, ['revision','envelopeSha256','bytes','integrity']),
+      entries: Object.fromEntries(['missions','transitions','checkpoints','retries','recoveries','timeline','reports','auditTrail'].map(k => [k, Array.isArray(input.native.entries?.[k]) && input.native.entries[k].every(v => typeof v === 'string' && /^[a-f0-9]{64}$/.test(v)) ? input.native.entries[k] : null])),
+      mission: cleanMission(input.native.mission), missionSha256: hash(JSON.stringify(input.native.mission)) } : null,
+    authority: cleanTerminal(input.authority), failure: cleanTerminal(input.failed),
+    authorityResultSha256: primitive("envelopeSha256", input.authorityDigest), failureResultSha256: primitive("envelopeSha256", input.failureDigest),
+    requestOwnerIsolationStatus: Number.isInteger(input.foreign.status) ? input.foreign.status : null, crossWorkspaceStatus: Number.isInteger(input.forbidden.status) ? input.forbidden.status : null,
+    birth: { status: Number.isInteger(input.birth.status) ? input.birth.status : null, data: { status: primitive('status', input.birth.data?.status),
+      authority: pick(input.birth.data?.authority, ['birthStatus','technicallyReady','commerceStatus','realCommerceAuthorized','waveCredit','independentCertification']) } },
+    readiness: { status: Number.isInteger(input.ready.status) ? input.ready.status : null, data: { ...pick(input.ready.data, ['ready','workerOnline','workerReady','sessionStore']),
+      pillow: pick(input.ready.data?.pillow, ['enabled','ready','lifecycle']),
+      checks: Object.fromEntries(['tier0Primary','redis','brainWorker','brainWorkerReady','pillow'].map(k => [k,pick(input.ready.data?.checks?.[k],['ok','ping'])])) } },
+  };
+}
+
 async function main(args = process.argv.slice(2)) {
   const out = { schema: 'empireai-bounded-canary-probe-v2', phase: args[0], startedAt: new Date().toISOString(), checks: [],
     scope: 'private disposable canary, same-candidate application redeploy recovery only',
@@ -341,6 +401,7 @@ async function main(args = process.argv.slice(2)) {
     }
     const foreign = await http(`/api/pillow/chat-request/${encodeURIComponent(marker.requestId)}`, { cookie: admin.cookie });
     check('request_owner_isolation', foreign.status === 404);
+    out.observations = sanitizedObservations({ deploymentId: env.RAILWAY_DEPLOYMENT_ID, serviceId: service, sourceCommit: commit, probeSha256: probeSha, founder, admin, workerFounder, workerAdmin, mission, native, authority, failed, authorityDigest, failureDigest, foreign, forbidden, birth, ready });
     if (phase === 'after') await attempt('brain_snapshot_integrity', async () => {
       const bytes = readBounded(env.DATABASE_PATH);
       const SQL = await req('sql.js')(); const db = new SQL.Database(bytes);
@@ -374,6 +435,8 @@ async function main(args = process.argv.slice(2)) {
       catch { check('marker_saved', false, { failure: 'PARTIAL_MARKER_SAVE_FAILED' }); }
     }
   }
+  if (marker && out.observations) out.restartMarker = Object.fromEntries(['schema','service','commit','probeSha','expiresAt','beforeDeploymentId','beforeLaunchId','nonce','accountIds','databaseAccountIds','missionName','missionId','missionDigest','requestId','failedRequestId','authorityDigest','failureDigest','beforePassed'].filter(k => Object.prototype.hasOwnProperty.call(marker,k)).map(k => [k, k === 'accountIds' || k === 'databaseAccountIds' ? Object.fromEntries(['founder','admin'].map(role => [role, typeof marker[k]?.[role] === 'string' && /^[A-Za-z0-9_.:-]{1,160}$/.test(marker[k][role]) ? marker[k][role] : null])) : k === 'beforePassed' ? marker[k] === true : typeof marker[k] === 'string' && /^[A-Za-z0-9_.:-]{1,200}$/.test(marker[k]) ? marker[k] : null]));
+  if (out.restartMarker && out.phase === "before") out.restartMarker.nativeBefore = out.observations.native;
   Object.assign(out, summarize(out.phase, out.checks), { finishedAt: new Date().toISOString(),
     birthCertificationGranted: false, commerceAuthorized: false, productionReadiness: 'NOT_PROVEN',
     additionalRequiredProof: { abruptKillRecovery: 'NOT_PROVEN', redisRestartRecovery: 'NOT_PROVEN',
@@ -381,6 +444,6 @@ async function main(args = process.argv.slice(2)) {
       absentHandlerAndDependencyExecution: 'NOT_PROVEN' } });
   return out;
 }
-module.exports = { REQUIRED, summarize, validateArguments, readinessPass, birthPass, authorityPass, failurePass,
+module.exports = { sanitizedObservations, REQUIRED, summarize, validateArguments, readinessPass, birthPass, authorityPass, failurePass,
   accountRowsPass, unchangedMission, nativeHistory, preservesHistory, boundedHttp, readBounded, saveMarker };
 if (require.main === module) main().then(out => { console.log(JSON.stringify(out, null, 2)); process.exitCode = out.passed ? 0 : 1; });
