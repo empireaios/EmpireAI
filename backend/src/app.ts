@@ -74,6 +74,7 @@ import {
   getPillowCommercePresaleAutomationServer,
   registerPillowCommercePresaleRoutes,
 } from "./orchestration/pillow-commerce-presale/index.js";
+import { registerCertificationReceiptRoutes } from "./orchestration/pillow-commissioning/certification-receipt-routes.js";
 import { registerPillowCommissioningRoutes } from "./orchestration/pillow-commissioning/index.js";
 import { getPillowExecutiveLoopAutomationServer } from "./orchestration/pillow-commissioning/executive-operating-loop/index.js";
 import { registerShadowCeoRoutes } from "./orchestration/shadow-ceo-integration/index.js";
@@ -660,6 +661,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
   });
 
   await breathe();
+  await registerCertificationReceiptRoutes(app, { authenticate });
   await registerPillowCommissioningRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
