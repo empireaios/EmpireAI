@@ -20,6 +20,8 @@ Baseline: see ../../PILLOW_MISSION_STATE.md. This ledger supersedes stale local 
 
 ## Source inspection notes for old production
 
+2026-09-23 update: mission draft fix96e7e1f7 passed all ten jobs across three exact-source CI workflows35855972383/35855972387/35855972385. Fresh hosted recovery remains unverified; test app auto-deploy disabled and both services offline. Failure history and original fixed deadline preserved. Production provider Backups page explicitly shows no backups/no schedule; read-only database stat at11:44UTC shows57,049,072bytes,lastwrite05:11:54.651UTC. See PRODUCTION_BACKUP_INVENTORY_2026-09-23.md. Certification intake implementation is in progress; acceptance remains blocked.
+
 At main 21384342, backend/src/runtime/tier0-isolated-primary.ts registers child exit/error respawns without the new installPrimaryShutdown coordination. backend/src/app.ts createEmpireShutdown stops event stream and Pillow, closes app, then shuts down brain, but this alone does not establish all primary/worker/SQLite/Redis writers have settled. The existing POST /pillow-commissioning/one-product/flush-durability route is conditional commissioning persistence, includes artifact reclamation and audit writes, waits 1500 ms, and is not a universal final-save barrier.
 
 At candidate 972dbfc2, backend/src/runtime/primary-shutdown.ts and persistence changes improve coordination with tested failure handling. deployment/offline-state-bundle.md explicitly states that SQL.js replacement writes ignore native locks and its tool cannot independently establish all writers stopped. Preserve that limit.

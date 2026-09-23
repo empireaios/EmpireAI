@@ -48,5 +48,5 @@ Connector mutations while browser changes were pending cleared earlier resource 
 
 At each meaningful checkpoint update this index and the closure ledger, retaining dated evidence with exact source/deployment identity. Separate observed results, older claims, inference and missing evidence. Never put credentials or business database snapshots in Git. Read current remote PR/provider state before continuing; do not assume a prior turn's branch is still current.
 
-This recovery's new state files are local workspace artifacts, not yet committed. They survive task changes in this Project. The PR8 body now preserves the active test checkpoint and exact identities off-device; PR5 preserves the integrated candidate. Preserve local raw receipts when moving to an isolated checkout.
+This recovery's state files and dated receipts were committed in the isolated test checkout as a447cf86 (pending push at this checkpoint). PR8 body preserves the latest checkpoint off-device; PR5 preserves the integrated candidate. Root workspace copies remain intentionally untracked alongside the original dirty files. Publish later checkpoint updates with exact evidence, without bundling unrelated workspace files.
 
