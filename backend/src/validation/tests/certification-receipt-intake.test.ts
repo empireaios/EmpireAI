@@ -40,8 +40,8 @@ test("evidence intake is scoped, durable, bounded and cannot grant certification
       assert.equal(result.certificationAccepted, false);
       assert.equal(result.status, "INGESTED_UNVERIFIED");
       assert.equal(result.receipt.outcome, "FAIL");
-      assert.ok(result.blockers.includes("TRUSTED_V53_MANIFEST_UNAVAILABLE"));
-      assert.ok(result.blockers.includes("TRUSTED_INDEPENDENT_EVALUATOR_UNAVAILABLE"));
+      assert.ok(result.blockers.includes("INDEPENDENT_REQUIREMENT_COVERAGE_UNVERIFIED"));
+      assert.ok(result.blockers.includes("REVIEWED_RELEASE_EVIDENCE_UNVERIFIED"));
     });
     await t.test("delayed persistence cannot resolve ingestion early", async () => {
       const db = getDatabase(), persist = db.requestCriticalPersist;

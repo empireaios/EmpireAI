@@ -90,7 +90,7 @@ describe("Birth authority reconciliation — offline, no certification granted",
     const result = authorisePillowBirth(workspaceId, "grand-king-approved");
     assert.equal(result.ok, false);
     assert.equal(result.record.status, "NOT_BORN");
-    assert.match(result.error ?? "", /independently accepted V53.*not implemented/i);
+    assert.match(result.error ?? "", /replacement certification requirements.*remain unverified.*acceptance is not implemented/i);
     assert.deepEqual(storedRow(), original);
   });
 
@@ -106,7 +106,9 @@ describe("Birth authority reconciliation — offline, no certification granted",
     const record = getBirthRecord(workspaceId);
     assert.equal(record.legacyHistory, null);
     assert.equal(record.birthTimestamp, null);
-    assert.equal(record.authority.certificationReceiptIngestion, "NOT_IMPLEMENTED");
+    assert.equal(record.authority.certificationReceiptIngestion, "IMPLEMENTED_UNVERIFIED_ONLY");
+    assert.equal(record.authority.independentCertification, "UNVERIFIED");
+    assert.equal(record.authority.realCommerceAuthorized, false);
     assert.equal(storedRow(), undefined);
   });
 
@@ -224,7 +226,7 @@ describe("Birth authority reconciliation — offline, no certification granted",
     assert.equal(operating.needsGrandKing, false);
     const readiness = evaluateExecutiveBirthReadiness(workspaceId);
     assert.equal(readiness.technicallyReadyForGrandKingAuthorisation, false);
-    assert.ok(readiness.mandatoryStillOpen.includes("independent V53 certification=NOT_PROVEN"));
+    assert.ok(readiness.mandatoryStillOpen.includes("independent replacement certification=NOT_PROVEN"));
     const truth = buildExecutiveTruthSnapshot(workspaceId);
     assert.equal(truth.birth.status, canonicalOperatingProjection().birthStatus);
     assert.equal(truth.birth.technicallyReady, false);
@@ -254,7 +256,7 @@ describe("Birth authority reconciliation — offline, no certification granted",
       headers: { "x-test-owner": "owner" }, payload: { confirm: "AUTHORISE_PILLOW_BIRTH" } });
     assert.equal(response.statusCode, 409);
     assert.equal(response.json().ok, false);
-    assert.match(response.json().error, /receipt ingestion is not implemented/);
+    assert.match(response.json().error, /certification acceptance is not implemented/);
     assert.deepEqual(storedRow(), original);
     const denied = await app.inject({ method: "POST", url: "/pillow-commissioning/birth/authorise",
       headers: { "x-test-owner": "owner", "x-test-role": "member" }, payload: { confirm: "AUTHORISE_PILLOW_BIRTH" } });

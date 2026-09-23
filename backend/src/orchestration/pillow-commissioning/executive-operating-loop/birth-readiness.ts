@@ -1,5 +1,5 @@
 /**
- * Executive birth-readiness diagnostics, not independent V53 certification.
+ * Executive birth-readiness diagnostics, not independent replacement certification.
  * Stored cycles, outcomes and sandbox harness passes can show partial engineering
  * evidence only. There is no independent certification receipt acceptance path.
  */
@@ -64,7 +64,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
   );
 
   const rows: BirthReadinessRow[] = [
-    row("independent V53 certification", "NOT_PROVEN", birth.authority.reason),
+    row("independent replacement certification", "NOT_PROVEN", birth.authority.reason),
     row(
       "continuous executive loop",
       hasFullStageLoop ? "PARTIAL" : "NOT_PROVEN",
@@ -177,7 +177,7 @@ export function evaluateExecutiveBirthReadiness(workspaceId: string): BirthReadi
     rows,
     mandatoryStillOpen,
     notes: [
-      "Birth remains NOT_BORN until independent certification is accepted and owner authority is established; receipt ingestion is not implemented.",
+      birth.authority.reason,
       "This report does not declare Pillow born.",
       "Capability harness is primarily sandbox/runtime-structure proof; live soak and connector-backed logistics remain open.",
       `Legacy birth.technicallyReady=${birth.technicallyReady}; birthStatus=${birth.status}`,

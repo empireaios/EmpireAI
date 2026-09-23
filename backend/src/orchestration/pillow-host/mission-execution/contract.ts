@@ -36,13 +36,14 @@ export function jobIdFor(value: ExecutionRequest): string {
 export function requestIdentity(value: ExecutionRequest): string {
   return JSON.stringify([value.scope.workspaceId, value.scope.ownerEmail, value.missionId, value.dispatchId, value.workerId, value.action, value.buildSha, value.inputHash]);
 }
+// Historical immutable receipts retain their observed intake status; neither status grants authority.
 export function validateOutput(value: unknown): asserts value is AuthorityOutput {
   const output = value as AuthorityOutput | null;
   const a = output?.authority;
   if (!output || output.kind !== "actual_readonly_authority_inspection" || !Number.isFinite(Date.parse(output.observedAt)) ||
     !a || a.birthStatus !== "NOT_BORN" || a.technicallyReady !== false || a.commerceStatus !== "LOCKED" ||
     a.realCommerceAuthorized !== false || a.waveCredit !== 0 || a.independentCertification !== "UNVERIFIED" ||
-    a.certificationReceiptIngestion !== "NOT_IMPLEMENTED" || typeof a.reason !== "string" || a.reason.length > 4096 ||
+    !["NOT_IMPLEMENTED", "IMPLEMENTED_UNVERIFIED_ONLY"].includes(a.certificationReceiptIngestion) || typeof a.reason !== "string" || a.reason.length > 4096 ||
     Object.keys(output).sort().join() !== "authority,kind,observedAt" ||
     Object.keys(a).sort().join() !== "birthStatus,certificationReceiptIngestion,commerceStatus,independentCertification,realCommerceAuthorized,reason,technicallyReady,waveCredit") {
     throw new Error("Canonical authority output is invalid or changed; execution requires review");

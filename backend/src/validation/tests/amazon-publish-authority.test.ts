@@ -84,7 +84,7 @@ test("direct Amazon executor rejects forged stored approval and environment unlo
     assert.match(result.blockers.join("; "), /canonical commerce authority.*LOCKED.*NOT_BORN/i);
   }
   assert.equal(outboundCalls, 0);
-  assert.equal(getPillowAuthority().certificationReceiptIngestion, "NOT_IMPLEMENTED");
+  assert.equal(getPillowAuthority().certificationReceiptIngestion, "IMPLEMENTED_UNVERIFIED_ONLY");
 });
 
 test("unauthenticated requests cannot prepare or execute listings", async () => {

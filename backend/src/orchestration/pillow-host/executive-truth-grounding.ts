@@ -88,7 +88,7 @@ export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruth
         "Surface escalations requiring Grand King approval",
       ],
       requiresGrandKing: [
-        "Birth requires independent certification acceptance before owner authorisation; receipt ingestion is not implemented",
+        "Birth requires independent acceptance of the owner-authorized replacement certification before owner authorisation; receipt intake alone grants no authority",
         "Approve publish / listing go-live",
         "Approve supplier spend / BUY",
         "Production deploy / Railway release decisions",

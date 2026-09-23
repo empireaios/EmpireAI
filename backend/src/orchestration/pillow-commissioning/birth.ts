@@ -109,7 +109,7 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
   return [
     {
       id: "independent_v53_certification",
-      label: "Independently accepted V53 certification receipts",
+      label: "Independently accepted replacement certification evidence",
       passed: getPillowAuthority().technicallyReady,
       evidence: getPillowAuthority().reason,
     },
