@@ -1,6 +1,18 @@
 # Remaining closure path
+## Current execution checkpoint — 2026-09-23 13:01:35 UTC
+
+Earlier dated notes remain historical and are superseded by this checkpoint.
+
+1. Previous owner-approved isolated services/volumes were deleted and verified; see APPROVED_TEST_CLEANUP_2026-09-23.md. Do not repeat deletion or touch production.
+2. Fresh recovery2 app deployment 613e22c1-62db-4387-b5dc-d31571156084 was BUILDING at launch, source bed51228ada3110373ae671ca72f9d781af3b0e0 (all ten CI jobs passed: 35863001095/35863001122/35863001277). Refresh provider identity/readiness. Exact probe hash 8b2eb4245a28477f29baa49b1665c9d89af3a95bb5f40420e98acf38fa438181. No before/after result yet.
+3. Absolute expiry 2026-09-23T13:31:22.745Z cannot be extended. Require complete before PASS before one same-source/expiry redeploy, then after. Capture raw probe JSON/sanitized observations and actual old-deployment shutdown logs. Narrow harness can verify supporting recovery evidence only, not whole OPS/Birth acceptance.
+4. Active app service 78d7c0ad-523a-4b70-89eb-1815aa3bd577 / volume 20fbeefa-0311-4bf2-98e7-75a4e967c9f9; Redis service 4815f3ec-bff4-4c81-9faf-cde533d92af3 / deployment 2553f76d-a9c5-47db-8c73-9236ee0b6057 / volume de6f9bd8-6389-4456-9cca-6eba6b31e9d5. Both /data volumes have 50 GB capacity. Same isolated project/env as canonical state. Clean up within explicit scope and reconcile actual cost; US$0.0014 displayed so far is provisional against existing US$5 engineering allowance.
+5. Commit/review/execute the recovered 84-requirement replacement specification and offline evaluator/harness once ready. Missing original V53 is not an owner blocker; do not ask for it again. These artifacts have no acceptance credit yet. Continue engineering gaps independently while preserving NOT_BORN/LOCKED.
+6. Preserve old production and prove stopped writers/final save and coordinated restore before promotion. Live-commerce pilot remains separately owner-authorized after certification.
 
 Baseline: see ../../PILLOW_MISSION_STATE.md. This ledger supersedes stale local next-action summaries without rewriting historical results.
+
+Current checkpoint12:15UTC: PR5head209107c1 published; all10exact-sourceCIjobsPASS. Mission draft and evidence-intake engineering implemented/reviewed. Intake is not acceptance; NOT_BORN/commerceLOCKED preserved. Production unchanged. Fresh hosted recovery, safe old-state preservation, originalV53 acceptance and actual phone/commercial operation remain open. Permanent isolated resource deletion awaits owner confirmation; both test services stopped, auto-deploy disabled, usage$0.0012provisional. Canonical frozen state is inPR5; newestCIreceipts/status are also mirrored inPR5body.
 
 | Step | Status | Required evidence / next action |
 | --- | --- | --- |
@@ -13,7 +25,7 @@ Baseline: see ../../PILLOW_MISSION_STATE.md. This ledger supersedes stale local 
 | Coordinated restore | UNPROVEN | Include SQL.js, native mission/outbox when present, Redis state, secrets/config restoration and provider volume evidence. Current offline bundle only supports its documented three-store format; do not manufacture native stores in old production to make it pass. Validate application reopen, identities, history, completed receipt non-reexecution and queued continuation in isolation. |
 | Candidate promotion | BLOCKED_ACCEPTANCE | After recovery/provider proof and remaining review, keep all exact required checks satisfied, then promote within owner-authorized scope. Preserve rollback and data compatibility. Do not merge just because CI is green. |
 | Actual owner interface | UNPROVEN | Authenticated desktop and phone normal Pillow path: one submission, visible answer, pending receipt recovery, reload/reconnect, truthful error and no duplicate effects. Retest historical interface failures. |
-| Independent capability/Birth acceptance | BLOCKED_EVIDENCE | Obtain original V53 syllabus/authority from Project or owner; run actual independent acceptance without self-awarded Wave/Birth credit. No additional programme creation. |
+| Independent capability/Birth acceptance | ENGINEERING_OPEN | Owner authorized explicit replacement of unavailable historical requirements. Recovered 84-requirement specification, evaluator and narrow supporting harness are reviewed but not committed/credited. Complete executable independent evidence; no historical V53 owner dependency or self-awarded Birth credit. |
 | Certification receipt ingestion and acceptance | ENGINEERING_OPEN | Candidate docs/audits/pillow-birth-authority/REVIEW.md explicitly leaves ingestion/acceptance unimplemented; pillow-authority.ts freezes NOT_BORN/LOCKED/UNVERIFIED. Implement an authenticated independently evidenced acceptance path against recovered governing requirements. Do not bypass frozen authority or treat owner approval alone as certification. |
 | Controlled commerce | LOCKED | Revalidate seller/supplier credentials and exact approved product economics including unknown fees/shipping/timing. Record owner approval of concrete SKU and commercial spend; verify listing acceptance vs actual publication separately. Then order ingest, authorized supplier fulfilment/payment, tracking, failure/refund handling and ledger reconciliation through Pillow. No synthetic sale or submitted listing counts as revenue. |
 | Sustained operation | UNPROVEN | Demonstrate monitored repeatable operation, truthful costs/profit, recovery and actionable owner escalation under agreed scope. Mission closes only with complete operational evidence. |
