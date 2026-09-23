@@ -8,7 +8,8 @@
   },
   "git": {
     "deploymentEnabled": {
-      "fix/pillow-integrated-closure-20260920": false
+      "fix/pillow-integrated-closure-20260920": false,
+      "codex/bounded-canary-20260923": false
     }
   }
 }
