@@ -42,7 +42,10 @@ export function assertRepositoryBuildConfiguration(root = repositoryRoot) {
   // packageManager pins npm via the Node provider's documented Corepack path.
   // Do not assume an additional Mise npm package override is supported.
   assert.equal(railpack.packages.npm, undefined);
-  assert.deepEqual(railpack.steps.install.commands, ["npm ci --include=dev"]);
+  // Overriding install commands replaces Railpack's Corepack bootstrap too.
+  // Materialize its pinned package-manager cache before the runtime image copies it.
+  assert.deepEqual(railpack.steps.install.commands,
+    [`corepack prepare npm@${expectedNpm} --activate`, "npm ci --include=dev"]);
   assert.equal(railpack.deploy, undefined, "Build configuration must not override deployment authority or startup");
   const nixpacks = readFileSync(resolve(root, "nixpacks.toml"), "utf8");
   assert.match(nixpacks, /^NIXPACKS_NODE_VERSION = "22"$/m);

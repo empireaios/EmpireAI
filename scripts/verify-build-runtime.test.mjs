@@ -38,6 +38,10 @@ test("configuration regression to automatic npm install is detected", () => {
     }
     cpSync(join(root, ".github/workflows"), join(temp, ".github/workflows"), { recursive: true });
     const railpack = JSON.parse(readFileSync(join(temp, "railpack.json"), "utf8"));
+    // A clean provider image has no /opt/corepack until the bootstrap executes.
+    railpack.steps.install.commands = ["npm ci --include=dev"];
+    writeFileSync(join(temp, "railpack.json"), JSON.stringify(railpack));
+    assert.throws(() => assertRepositoryBuildConfiguration(temp));
     railpack.steps.install.commands = ["npm install"];
     writeFileSync(join(temp, "railpack.json"), JSON.stringify(railpack));
     assert.throws(() => assertRepositoryBuildConfiguration(temp));
