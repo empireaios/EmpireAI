@@ -151,6 +151,8 @@ jobs:
             src/validation/tests/sqlite-corruption-recovery.test.ts \
             src/validation/tests/engineering-test-mode.test.ts \
             src/validation/tests/cost-guard-authorization.test.ts \
+            src/validation/tests/llm-call-control.test.ts \
+            src/validation/tests/llm-provider-cancellation.test.ts \
             src/validation/tests/auth-readiness.test.ts \
             src/validation/tests/auth-verification.test.ts \
             src/validation/tests/bootstrap-credential-policy.test.ts \
@@ -186,6 +188,24 @@ jobs:
               `Missing mandatory executed ledger test: ${name}`);
           }
           assert.ok(count('tests') > 0, 'Runtime tests must actually execute');
+          for (const name of [
+            'timeouts are finite integer bounded and reject malformed configuration',
+            'deadline aborts the actual in-flight fake provider once',
+            'already cancelled caller cannot invoke provider; caller cancellation propagates',
+            'fast success clears timer and provider errors are never retried',
+            'a noncooperative provider remains bounded locally without claiming remote cancellation',
+            'openai real SDK receives per-request maxRetries zero and performs one fake fetch on 503',
+            'openai actual SDK fake fetch sees timeout abort',
+            'anthropic real SDK receives per-request maxRetries zero and performs one fake fetch on 503',
+            'anthropic actual SDK fake fetch sees timeout abort',
+            'Gemini adapter forwards cancellation and rejects already-aborted work before client acquisition',
+            'Gemini installed SDK propagates signal into its actual fetch transport',
+            'router aborts its actual provider invocation on timeout without retry',
+            'invalid router timeout fails before provider resolution',
+          ]) {
+            assert.ok(output.split(/\r?\n/).some(line => /^\s*ok \d+ - /.test(line) && line.endsWith(` - ${name}`)),
+              `Missing mandatory executed cancellation test: ${name}`);
+          }
           assert.equal(count('pass'), count('tests'), 'Every runtime test must pass');
           for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
             assert.equal(count(kind), 0, `${kind} tests are not permitted`);

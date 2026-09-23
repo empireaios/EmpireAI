@@ -269,3 +269,17 @@ test('failure to persist launch identity kills the child instead of orphaning it
   for (let attempt = 0; attempt < 20 && running(pid); attempt++) await new Promise(resolve => setTimeout(resolve, 10));
   assert.equal(running(pid), false);
 });
+
+test('an exited child with no remaining process group does not consume shutdown grace', async () => {
+  let exitedAt;
+  const result = await runBounded({ command: process.execPath, args: ['-e', 'process.exitCode=0'],
+    expiresAt: Date.now() + 10_000, graceMs: 3_000, stdio: 'ignore',
+    onSpawn: child => child.once('exit', () => { exitedAt = Date.now(); }),
+  });
+  assert.equal(result.reason, 'child_exit');
+  assert.equal(result.code, 0);
+  assert.equal(result.forcedTermination, false);
+  assert.equal(canaryExitCode(result), 0);
+  assert.equal(typeof exitedAt, 'number');
+  assert.ok(Date.now() - exitedAt < 1_000, 'stop receipt must not wait three seconds after the process group is absent');
+});

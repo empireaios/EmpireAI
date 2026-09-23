@@ -1,5 +1,10 @@
 # Remaining closure path
 
+## Current execution checkpoint — 2026-09-23 15:03 UTC
+
+Supersedes older instructions. Recovery3STOPPED, replacementFAILEDbuild, afterNOT_EXECUTED; never rerun expired marker. Preserve RECOVERY3_RESULT/STOP/REDEPLOY_FAILED evidence. Finish reviewed test-only Redis enforced expiry (late manual stop was a failure), then remaining engineering. Four new testresources await permanent-deletion confirmation. PR5 0030e78c all10CIjobsPASS, offline collector16/budgetledger6; no provider activation. Actual enforcement/pricing/approval integration, full runtime certification, old-production preservation, phoneUI and full commerce lifecycle remain. No production restart or livecommerce.
+
+
 ## Current execution checkpoint — 2026-09-23 14:14 UTC
 
 Supersedes prior current instructions. See PILLOW_MISSION_STATE.md latest and RECOVERY3_LAUNCH_2026-09-23.json. PR5 45e4435f all three workflows now SUCCESS (35870379746/35870379642/35870379741); canary 55a8627c all ten jobs SUCCESS. Recovery3 is building in isolated project; never alter production under test approval.

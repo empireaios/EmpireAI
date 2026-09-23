@@ -160,4 +160,34 @@ describe("paid autonomous cost authorization", () => {
     assert.equal(resolve.mock.callCount(), 0);
     assert.equal(getCostGuardLimits(WS).dailyAiBudgetUsd, 10);
   });
+
+  it("router aborts its actual provider invocation on timeout without retry", async () => {
+    authorizePaidWork();
+    const previous = process.env.LLM_REQUEST_TIMEOUT_MS;
+    process.env.LLM_REQUEST_TIMEOUT_MS = "15";
+    let calls = 0, aborted = false;
+    const router = new LLMRouter();
+    mock.method(router, "resolve", () => ({ name: "openai" as const, isAvailable: () => true,
+      complete: (request: import("../../brain/types.js").LLMCompletionRequest) => new Promise<never>((_resolve, reject) => {
+        calls++;
+        request.signal?.addEventListener("abort", () => { aborted = true; reject(request.signal?.reason); }, { once: true });
+      }),
+    }));
+    try {
+      await assert.rejects(router.complete({ workspaceId: WS, correlationId: "offline-timeout", messages: [] }), /timed out/);
+      assert.equal(calls, 1); assert.equal(aborted, true);
+    } finally { if (previous === undefined) delete process.env.LLM_REQUEST_TIMEOUT_MS; else process.env.LLM_REQUEST_TIMEOUT_MS = previous; }
+  });
+
+  it("invalid router timeout fails before provider resolution", async () => {
+    authorizePaidWork();
+    const previous = process.env.LLM_REQUEST_TIMEOUT_MS;
+    process.env.LLM_REQUEST_TIMEOUT_MS = "Infinity";
+    const router = new LLMRouter();
+    const resolve = mock.method(router, "resolve", () => { throw new Error("provider must not be reached"); });
+    try {
+      await assert.rejects(router.complete({ workspaceId: WS, correlationId: "offline-invalid-timeout", messages: [] }), /Invalid LLM_REQUEST_TIMEOUT_MS/);
+      assert.equal(resolve.mock.callCount(), 0);
+    } finally { if (previous === undefined) delete process.env.LLM_REQUEST_TIMEOUT_MS; else process.env.LLM_REQUEST_TIMEOUT_MS = previous; }
+  });
 });

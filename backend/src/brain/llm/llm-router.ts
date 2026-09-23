@@ -12,6 +12,7 @@ import { AnthropicProvider } from "./anthropic-provider.js";
 import { GeminiProvider } from "./gemini-provider.js";
 import { OpenAIProvider } from "./openai-provider.js";
 import type { LLMProvider } from "./provider.js";
+import { parseLLMTimeout, withLLMDeadline } from "./call-control.js";
 
 /** Rough USD estimate before the call — Cost Guard uses this for projection only. */
 const LLM_PREFLIGHT_ESTIMATE_USD = 0.02;
@@ -58,42 +59,31 @@ export class LLMRouter {
       throw new Error(`Cost Guard HARD STOP: ${gate.reason}`);
     }
 
+    const timeoutMs = parseLLMTimeout(process.env.LLM_REQUEST_TIMEOUT_MS);
+    request.signal?.throwIfAborted();
     const provider = this.resolve(request.provider);
-    const timeoutMs = Number(process.env.LLM_REQUEST_TIMEOUT_MS ?? 45_000);
-    const completion = provider.complete({ ...request, provider: provider.name });
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const timeout = new Promise<never>((_, reject) => {
-      timer = setTimeout(
-        () => reject(new Error(`LLM request timed out after ${timeoutMs}ms (${provider.name})`)),
-        timeoutMs,
-      );
-    });
-
+    const result = await withLLMDeadline(
+      signal => provider.complete({ ...request, provider: provider.name, signal }), timeoutMs, request.signal,
+    );
+    const tokens = result.usage?.totalTokens ?? 0;
+    // Conservative token→USD estimate when provider does not return invoice cents.
+    const attributableUsd =
+      tokens > 0 ? Math.max(0.0001, (tokens / 1000) * 0.01) : LLM_PREFLIGHT_ESTIMATE_USD;
     try {
-      const result = await Promise.race([completion, timeout]);
-      const tokens = result.usage?.totalTokens ?? 0;
-      // Conservative token→USD estimate when provider does not return invoice cents.
-      const attributableUsd =
-        tokens > 0 ? Math.max(0.0001, (tokens / 1000) * 0.01) : LLM_PREFLIGHT_ESTIMATE_USD;
-      try {
-        recordCostSpend({
-          workspaceId: request.workspaceId,
-          kind: "ai",
-          amountUsd: attributableUsd,
-          provider: result.provider,
-          attribution: {
-            model: result.model,
-            correlationId: request.correlationId,
-            tokens: String(tokens),
-          },
-        });
-      } catch {
-        /* cost ledger must not break completions */
-      }
-      return result;
-    } finally {
-      if (timer) clearTimeout(timer);
+      recordCostSpend({
+        workspaceId: request.workspaceId,
+        kind: "ai",
+        amountUsd: attributableUsd,
+        provider: result.provider,
+        attribution: {
+          model: result.model,
+          correlationId: request.correlationId,
+          tokens: String(tokens),
+        },
+      });
+    } catch {
+      /* cost ledger must not break completions */
     }
+    return result;
   }
 }

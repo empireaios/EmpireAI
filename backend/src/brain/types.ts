@@ -58,6 +58,8 @@ export type LLMMessage = {
 };
 
 export type LLMCompletionRequest = {
+  /** Client-side cancellation only; provider charges can remain uncertain. */
+  signal?: AbortSignal;
   provider?: LLMProviderName;
   model?: string;
   messages: LLMMessage[];

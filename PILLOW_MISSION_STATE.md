@@ -1,5 +1,12 @@
 # EmpireAI / Pillow canonical mission state
 
+## Latest checkpoint — 2026-09-23 15:03 UTC
+
+Supersedes earlier current instructions. Mission NOT_BORN, Wave0, commerceLOCKED. Production unchanged. PR5 head0030e78cf3be6b8288dfc85af8e966808b89f97e all10CIjobsPASS. Offline collector/journal16tests and budgetledger6tests independently passed, not wired to paid providers. No models or commerce executed.
+
+Recovery3 before35/35PASS; same-source replacement601b2fb2 failed build before deployment. NO AFTER / NO PAIR PASS. Both compute services stopped. Redis stop14:58:48 was7m46s beyond fixed14:51:02 expiry because Redis lacked automatic expiry; preserve this failed bounded-runtime requirement. Do not rerun until enforced Redis expiry is implemented/verified. Latest testproject charge$0.0082 provisional. Fresh4resource permanent deletion confirmation requested, pending. See docs/mission-state/RECOVERY3_RESULT_2026-09-23.md and raw receipts. Existing main/production preserved; no expiry extension or promotion.
+
+
 ## Latest checkpoint — 2026-09-23 14:11 UTC
 
 Supersedes older current-state claims below; preserve chronology. NOT_BORN, Wave credit 0, commerce LOCKED. Production unchanged.

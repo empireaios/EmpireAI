@@ -41,7 +41,37 @@ jobs:
       - name: Verify deterministic build configuration and reject runtime drift
         run: node --test scripts/verify-build-runtime.test.mjs
       - name: Verify bounded canary configuration and child-process cleanup
-        run: node --test deployment/canary-launcher.test.cjs deployment/canary-runtime-probe.test.cjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 --test-reporter=tap \
+            deployment/canary-launcher.test.cjs \
+            deployment/canary-runtime-probe.test.cjs \
+            deployment/redis-canary-launcher.test.cjs \
+            | tee "$RUNNER_TEMP/canary-supervision-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/canary-supervision-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing supervision TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          for (const name of [
+            'an exited child with no remaining process group does not consume shutdown grace',
+            'deadline terminates a real stubborn child and reports forced shutdown failure',
+            'external TERM is forwarded and successful child shutdown remains distinguishable',
+          ]) {
+            assert.ok(output.split(/\r?\n/).some(line => /^ok \d+ - /.test(line) && line.endsWith(` - ${name}`)),
+              `Missing mandatory POSIX supervision test: ${name}`);
+          }
+          assert.ok(count('tests') > 0, 'Supervision tests must execute');
+          assert.equal(count('pass'), count('tests'), 'All supervision tests must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} supervision tests are not permitted`);
+          }
+          NODE
       - name: Record tested revision and limits
         env:
           EVENT_SHA: ${{ github.sha }}
@@ -209,6 +239,49 @@ jobs:
         run: |
           echo 'Lint is diagnostic and non-gating in this first product-path slice. Baseline observed on origin/main: 164 errors and 11 warnings. This is unresolved debt, not a lint PASS.' >> "$GITHUB_STEP_SUMMARY"
 
+  bounded-redis-image:
+    name: Real Redis image expiry, AOF and signal proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact tested source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Use the pinned supervisor runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Build actual Redis image and execute runtime-library checks
+        run: docker build --pull --file deployment/redis-canary.Dockerfile --tag empireai-redis-expiry:ci .
+      - name: Require actual image authentication, AOF recovery, signal and expiry proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          node deployment/redis-canary-image.test.cjs empireai-redis-expiry:ci | tee "$RUNNER_TEMP/redis-expiry-image.json"
+          node - "$RUNNER_TEMP/redis-expiry-image.json" <<'NODE'
+          const assert = require('node:assert/strict');
+          const result = JSON.parse(require('node:fs').readFileSync(process.argv[2], 'utf8'));
+          assert.equal(result.passed, true);
+          assert.equal(result.cleanupComplete, true);
+          assert.equal(result.checks.length, 4);
+          assert.ok(result.checks.every(c => c.passed === true));
+          assert.equal(result.hostedProviderProof, false);
+          NODE
+      - name: Preserve image verification outcome in job summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          echo '## Isolated Redis image verification' >> "$GITHUB_STEP_SUMMARY"
+          echo "Tested checkout: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+          if test -f "$RUNNER_TEMP/redis-expiry-image.json"; then
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat "$RUNNER_TEMP/redis-expiry-image.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'No image runtime receipt: build or prior step failed. No hosted proof inferred.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   product-path-result:
     name: Product path result (no deployment)
     if: ${{ always() }}
@@ -218,6 +291,7 @@ jobs:
       - backend
       - legacy-frontend
       - empireai-web
+      - bounded-redis-image
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -228,6 +302,7 @@ jobs:
           BACKEND_RESULT: ${{ needs.backend.result }}
           LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
           NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
+          REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
         shell: bash
         run: |
           set -euo pipefail
@@ -236,13 +311,15 @@ jobs:
             "pillow=${PILLOW_RESULT}" \
             "backend=${BACKEND_RESULT}" \
             "legacy-frontend=${LEGACY_WEB_RESULT}" \
-            "empireai-web=${NEXT_WEB_RESULT}"
+            "empireai-web=${NEXT_WEB_RESULT}" \
+            "bounded-redis-image=${REDIS_IMAGE_RESULT}"
           for result in \
             "$CONTRACT_RESULT" \
             "$PILLOW_RESULT" \
             "$BACKEND_RESULT" \
             "$LEGACY_WEB_RESULT" \
-            "$NEXT_WEB_RESULT"; do
+            "$NEXT_WEB_RESULT" \
+            "$REDIS_IMAGE_RESULT"; do
             test "$result" = success
           done
           echo 'All configured offline product gates passed, including the 185-test reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"

@@ -13,12 +13,13 @@ export class AnthropicProvider implements LLMProvider {
 
   private getClient(): Anthropic {
     if (!this.client) {
-      this.client = new Anthropic({ apiKey: requireProviderKey("anthropic") });
+      this.client = new Anthropic({ apiKey: requireProviderKey("anthropic"), maxRetries: 0 });
     }
     return this.client;
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
+    request.signal?.throwIfAborted();
     const client = this.getClient();
     const model = request.model ?? "claude-sonnet-4-20250514";
 
@@ -39,7 +40,7 @@ export class AnthropicProvider implements LLMProvider {
         description: tool.description,
         input_schema: tool.parameters as Anthropic.Tool.InputSchema,
       })),
-    });
+    }, { signal: request.signal, maxRetries: 0 });
 
     const textBlock = response.content.find((block) => block.type === "text");
     const toolUseBlocks = response.content.filter(

@@ -158,9 +158,14 @@ function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, st
       childCode = code;
       childSignal = signal;
       // Primary has finished its orderly close; terminate any stray descendants.
-      signalGroup('SIGTERM');
+      // ESRCH proves the process group is already absent. Do not delay the stop
+      // receipt until grace expires when there is nothing left to supervise.
+      if (!signalGroup('SIGTERM')) {
+        finish();
+        return;
+      }
       if (!stopping) stop('child_exit');
-      // Keep the grace timer alive to guarantee final process-group cleanup.
+      // An extant group still needs the grace deadline and final SIGKILL cleanup.
     });
     if (onSpawn) {
       try { onSpawn(child); }
