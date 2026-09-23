@@ -6,6 +6,7 @@
   "steps": {
     "install": {
       "commands": [
+        "corepack prepare npm@10.9.8 --activate",
         "npm ci --include=dev"
       ]
     }
