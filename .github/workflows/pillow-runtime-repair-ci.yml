@@ -131,6 +131,7 @@ jobs:
             src/validation/tests/pillow-durable-access.test.ts \
             src/validation/tests/mission-runtime-access.test.ts \
             src/validation/tests/amazon-publish-authority.test.ts \
+            src/validation/tests/pillow-authority-contract.test.ts \
             src/validation/tests/amazon-listing-proof.test.ts \
             src/validation/tests/mission-execution-binding.test.ts \
             src/validation/tests/mission-execution-durability.test.ts \

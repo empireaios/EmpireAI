@@ -59,7 +59,7 @@ function project(row: Record<string, unknown>) {
   return { receipt, contentHash: row.content_hash, ingestedBy: row.actor_id, ingestedAt: row.ingested_at,
     status: "INGESTED_UNVERIFIED" as const,
     certificationAccepted: false as const,
-    blockers: ["TRUSTED_V53_MANIFEST_UNAVAILABLE", "TRUSTED_INDEPENDENT_EVALUATOR_UNAVAILABLE", "CERTIFICATION_ACCEPTANCE_NOT_IMPLEMENTED"],
+    blockers: ["INDEPENDENT_REQUIREMENT_COVERAGE_UNVERIFIED", "REVIEWED_RELEASE_EVIDENCE_UNVERIFIED", "CERTIFICATION_ACCEPTANCE_NOT_IMPLEMENTED"],
     evidenceVerified: false as const, certificationCredit: 0 as const };
 }
 export async function ingestCertificationReceipt(workspaceId: string, actorId: string, input: unknown) {
