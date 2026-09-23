@@ -10,6 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const backendRoot = path.resolve(__dirname, "..");
 
 const suites = [
+  "src/validation/tests/pillow-birth-authority.test.ts",
   "src/validation/tests/independent-closure-invariants-fast.test.ts",
   "src/validation/tests/independent-closure-invariants-deploy.test.ts",
   "src/validation/tests/path-parity-scope-isolation.test.ts",

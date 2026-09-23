@@ -3,6 +3,7 @@ import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
 import { getDatabase } from "../brain/database.js";
 import { UserStore } from "./session-store.js";
+import { requireSafeBootstrapCredentials } from "./bootstrap-credential-policy.js";
 
 /**
  * Ensure founder/admin bootstrap accounts exist and match env passwords.
@@ -11,6 +12,15 @@ import { UserStore } from "./session-store.js";
  * from FOUNDER_PASSWORD / ADMIN_PASSWORD so production login cannot soft-lock.
  */
 export async function seedDefaultUsers(): Promise<void> {
+  // Guard before reading/mutating persisted accounts. A missing production
+  // variable must not reset an existing secure password to the public default.
+  requireSafeBootstrapCredentials({
+    production: env.NODE_ENV === "production" || Boolean(
+      process.env.RAILWAY_DEPLOYMENT_ID || process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME,
+    ),
+    founderPassword: env.FOUNDER_PASSWORD,
+    adminPassword: env.ADMIN_PASSWORD,
+  });
   const db = getDatabase();
   const users = new UserStore(db);
 

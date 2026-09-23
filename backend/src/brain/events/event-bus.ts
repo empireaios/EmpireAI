@@ -4,6 +4,7 @@ import {
   type RedisClient,
 } from "../../config/redis-client.js";
 import { logger } from "../../config/logger.js";
+import { waitForRuntimeRedisReady } from "../../runtime/tier0-redis.js";
 import type { BrainEvent, BrainEventType } from "../types.js";
 
 export type EventHandler = (event: BrainEvent) => void | Promise<void>;
@@ -36,6 +37,7 @@ export class EventBus {
       return;
     }
 
+    await waitForRuntimeRedisReady(this.subscriber!);
     await this.subscriber!.subscribe(EMPIREAI_EVENT_CHANNEL);
     this.subscriber!.on("message", (_channel: string, message: string) => {
       try {
@@ -79,6 +81,7 @@ export class EventBus {
     };
 
     if (!this.localOnly) {
+      await waitForRuntimeRedisReady(this.publisher!);
       await this.publisher!.publish(
         EMPIREAI_EVENT_CHANNEL,
         JSON.stringify(fullEvent),

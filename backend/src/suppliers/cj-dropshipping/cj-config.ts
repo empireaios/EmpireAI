@@ -11,8 +11,8 @@ export type CjConfig = {
   rateLimitPerMinute: number;
 };
 
-function readIntegrationMode(): CjIntegrationMode {
-  const raw = process.env.CJ_INTEGRATION_MODE?.trim().toUpperCase();
+function readIntegrationMode(env: NodeJS.ProcessEnv): CjIntegrationMode {
+  const raw = env.CJ_INTEGRATION_MODE?.trim().toUpperCase();
   if (raw === "LIVE") {
     return "LIVE";
   }
@@ -38,7 +38,7 @@ export function loadCjConfig(
 ): CjConfig {
   const apiKey = resolveCjApiKeyFromEnv(env);
   const apiSecret = resolveCjApiSecretFromEnv(env);
-  const requestedMode = readIntegrationMode();
+  const requestedMode = readIntegrationMode(env);
 
   return {
     apiBaseUrl:
@@ -47,7 +47,7 @@ export function loadCjConfig(
       "https://developers.cjdropshipping.com/api2.0/v1",
     apiKey,
     apiSecret,
-    integrationMode: apiKey ? requestedMode : "SANDBOX",
+    integrationMode: requestedMode,
     requestTimeoutMs: Number(env.CJ_REQUEST_TIMEOUT_MS ?? 15_000),
     maxRetries: Number(env.CJ_MAX_RETRIES ?? 3),
     rateLimitPerMinute: Number(env.CJ_RATE_LIMIT_PER_MINUTE ?? 60),

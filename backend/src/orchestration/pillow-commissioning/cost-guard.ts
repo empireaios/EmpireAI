@@ -5,6 +5,7 @@
  */
 
 import { getDatabase } from "../../brain/database.js";
+import { isEngineeringTestMode } from "../../runtime/engineering-test-mode.js";
 import { recordFlightEvent } from "./flight-recorder.js";
 
 export type CostGuardLevel = "OK" | "WARNING" | "CRITICAL" | "HARD_STOP";
@@ -301,12 +302,19 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   };
 }
 
-/** Returns null when allowed; reason string when blocked. */
+/** Paid autonomy requires known authorization; this check does not reserve spend. */
 export function assertPaidAutonomousAllowed(
   workspaceId: string,
   estimatedCostUsd: number,
 ): { allowed: true } | { allowed: false; reason: string; status: CostGuardStatus } {
   const status = buildCostGuardStatus(workspaceId);
+  if (isEngineeringTestMode()) {
+    return {
+      allowed: false,
+      reason: "Paid autonomous work is disabled during engineering deployment/recovery testing",
+      status,
+    };
+  }
   if (status.hardStopActive) {
     return {
       allowed: false,
@@ -314,27 +322,47 @@ export function assertPaidAutonomousAllowed(
       status,
     };
   }
-  const dailyLimit = status.limits.dailyAiBudgetUsd;
-  if (dailyLimit != null) {
-    const projected = status.spend.dailyAi.actualUsd + status.spend.dailyAi.committedUsd + estimatedCostUsd;
-    if (projected > dailyLimit) {
+  if (!Number.isFinite(estimatedCostUsd) || estimatedCostUsd < 0) {
+    return {
+      allowed: false,
+      reason: "Paid autonomous cost estimate must be a finite nonnegative USD amount",
+      status,
+    };
+  }
+
+  // These are the scopes used by the LLM router and autonomous paid callers.
+  // A backup/deployment allowance is not an AI or commerce authorization, and
+  // unrelated unset commerce limits must not be silently filled in here.
+  const requiredScopes = [
+    { key: "dailyAiBudgetUsd", label: "daily AI", spend: status.spend.dailyAi },
+    { key: "autonomousPaidActionLimitUsd", label: "autonomous paid", spend: status.spend.autonomousPaid },
+    { key: "monthlyOperatingBudgetUsd", label: "monthly operating", spend: status.spend.monthlyOperating },
+  ] as const;
+  for (const { key, label, spend } of requiredScopes) {
+    const limit = status.limits[key];
+    if (typeof limit !== "number" || !Number.isFinite(limit) || limit < 0) {
       return {
         allowed: false,
-        reason: `Projected daily AI spend $${projected.toFixed(4)} exceeds limit $${dailyLimit}`,
+        reason: `Paid autonomous authorization is UNKNOWN or invalid: ${key}`,
         status,
       };
     }
-  }
-  const autoLimit = status.limits.autonomousPaidActionLimitUsd;
-  if (autoLimit != null) {
-    const projected =
-      status.spend.autonomousPaid.actualUsd +
-      status.spend.autonomousPaid.committedUsd +
-      estimatedCostUsd;
-    if (projected > autoLimit) {
+    const projected = spend.actualUsd + spend.committedUsd + estimatedCostUsd;
+    if (
+      !Number.isFinite(spend.actualUsd) || spend.actualUsd < 0 ||
+      !Number.isFinite(spend.committedUsd) || spend.committedUsd < 0 ||
+      !Number.isFinite(projected)
+    ) {
       return {
         allowed: false,
-        reason: `Projected autonomous paid spend $${projected.toFixed(4)} exceeds limit $${autoLimit}`,
+        reason: `Paid autonomous spend cannot be bounded: ${label} ledger is invalid`,
+        status,
+      };
+    }
+    if (projected > limit) {
+      return {
+        allowed: false,
+        reason: `Projected ${label} spend $${projected.toFixed(4)} exceeds limit $${limit}`,
         status,
       };
     }

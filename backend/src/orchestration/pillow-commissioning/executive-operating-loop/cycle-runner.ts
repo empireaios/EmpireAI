@@ -7,6 +7,7 @@
  */
 
 import { randomUUID } from "node:crypto";
+import { assertCommerceAutomationAllowed } from "../../../runtime/engineering-test-mode.js";
 
 import { recordFlightEvent } from "../flight-recorder.js";
 import { investigateLogisticsAlternatives } from "./logistics-investigation.js";
@@ -116,6 +117,7 @@ export function runExecutiveOperatingCycle(input: {
   recordFlight?: boolean;
 }): ExecutiveCycleRecord {
   const mode = input.mode ?? "live";
+  if (mode === "live") assertCommerceAutomationAllowed();
   const persist = input.persist ?? mode === "live";
   const recordFlight = input.recordFlight ?? mode === "live";
   const startedAt = new Date().toISOString();

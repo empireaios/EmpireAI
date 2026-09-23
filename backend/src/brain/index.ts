@@ -1,11 +1,12 @@
+import { backgroundExecutionPolicy } from "../runtime/engineering-test-mode.js";
 import {
   createBullMQConnection,
-  createRedisClient,
-  probeRedisAvailable,
   REDIS_START_HINT,
   shouldAllowRedisDegradedMode,
   type RedisClient,
 } from "../config/redis-client.js";
+import { createWorkerRedisBinding } from "../runtime/worker-redis-binding.js";
+import { persistDatabase } from "./database.js";
 import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
 import { agentDefinitions } from "../agents/definitions/agents.js";
@@ -298,18 +299,13 @@ export async function createBrain(options?: {
   startWorkers?: boolean;
   startScheduler?: boolean;
 }): Promise<EmpireBrain> {
-  const redisAvailable = await probeRedisAvailable(env.REDIS_URL);
-  const allowDegraded = shouldAllowRedisDegradedMode();
-
-  if (!redisAvailable && !allowDegraded) {
-    logger.error(
-      { redisUrl: env.REDIS_URL, nodeEnv: env.NODE_ENV },
-      "Redis unreachable in production — continuing in degraded mode so HTTP can start. Configure a reachable REDIS_URL (Upstash) for full queue and session persistence.",
-    );
-  }
-
-  const redisMode: RedisMode =
-    redisAvailable ? "connected" : "degraded";
+  const backgroundPolicy = backgroundExecutionPolicy(options);
+  const { redis, redisMode } = await createWorkerRedisBinding({
+    url: env.REDIS_URL,
+    production: env.NODE_ENV === "production" || Boolean(
+      process.env.RAILWAY_DEPLOYMENT_ID || process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME),
+    allowDegraded: shouldAllowRedisDegradedMode(),
+  });
 
   if (redisMode === "degraded") {
     logger.warn(
@@ -317,8 +313,6 @@ export async function createBrain(options?: {
     );
   }
 
-  const redis =
-    redisMode === "connected" ? createRedisClient(env.REDIS_URL) : null;
   const bullmqConnection =
     redisMode === "connected" ? createBullMQConnection(env.REDIS_URL) : null;
 
@@ -591,7 +585,7 @@ export async function createBrain(options?: {
 
   await eventBus.start();
 
-  if (options?.startScheduler ?? false) {
+  if (backgroundPolicy.startScheduler) {
     for (const definition of getGrandKingSchedulerDefinitions()) {
       await scheduler.register(definition);
     }
@@ -604,7 +598,7 @@ export async function createBrain(options?: {
     await scheduler.start();
   }
 
-  if (options?.startWorkers ?? false) {
+  if (backgroundPolicy.startWorkers) {
     workerPool.start();
   }
 
@@ -624,7 +618,13 @@ export async function createBrain(options?: {
     await scheduler.close();
     await taskQueue.close();
     await eventBus.stop();
-    redis?.disconnect();
+    // Stop the managed writers, then await SQL.js persistence. Preserve the shared
+    // handle for repositories/repeated app fixtures, and propagate save failures.
+    try {
+      await persistDatabase();
+    } finally {
+      redis?.disconnect();
+    }
     logger.info("EmpireAI Brain shutdown complete");
   };
 

@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint"
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint",
+    "test": "node --import tsx --test 'lib/**/*.test.ts'"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
@@ -23,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }

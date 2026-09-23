@@ -37,6 +37,36 @@ describe("exec-cap authority + compact candidate binding", () => {
     assert.match(f.message, /SYNTHETIC/);
   });
 
+  it("answers the failed canary authority ask and unfamiliar permission paraphrases from locked state", () => {
+    const prompts = [
+      "What is your current authority? Do not execute tools, commerce or spending. This is a bounded engineering transport test.",
+      "Pillow, what permissions do you currently have?",
+      "What are you authorized to do right now?",
+      "Please tell me your current permissions.",
+      "Explain your authority now.",
+    ];
+    for (const prompt of prompts) {
+      assert.equal(isOperatingAuthorityFactAsk(prompt), true, prompt);
+      const result = projectOperatingAuthorityFacts(prompt);
+      assert.equal(result.kind, "authority_facts");
+      assert.match(result.message, /Birth status: NOT_BORN/);
+      assert.match(result.message, /Operating mode: SYNTHETIC/);
+      assert.match(result.message, /Real commerce authorized: no \(unauthorized\)/);
+    }
+  });
+
+  it("does not replace strategy, third-party permissions or additional tasks with authority facts", () => {
+    for (const prompt of [
+      "Explain how delegated authority should work in my business.",
+      "What is Amazon's current authority over returns?",
+      "What permissions does the supplier have?",
+      "What is your current authority? Also rank these products by margin.",
+      "Tell me your current permissions and calculate landed cost.",
+      "What is your current authority? Checkpoint token 123.",
+      "What is your current authority? Total synthetic contribution: US$50.",
+    ]) assert.equal(isOperatingAuthorityFactAsk(prompt), false, prompt);
+  });
+
   it("does not hijack Eligible/Selected into checkpoint contracts", () => {
     const p = projectExactLineResponseContract(
       "Exactly 2 lines Eligible candidates / Candidate selected. Cedar contribution US$12 stock 1100 delivery 5d approval granted.",

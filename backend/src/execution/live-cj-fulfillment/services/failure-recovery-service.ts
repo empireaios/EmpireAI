@@ -1,6 +1,7 @@
 import { releaseInventoryReservation } from "../../../revenue/customer-order-pipeline/services/inventory-reservation-service.js";
 import { loadLiveCjFulfillmentEnv } from "../config/live-cj-fulfillment-env.js";
 import type { LiveCjFulfillmentRecord } from "../models/live-cj-fulfillment-record.js";
+import { LiveCjSubmissionUncertainError } from "./cj-submission-uncertain.js";
 import {
   createAttemptRecord,
   getLiveCjFulfillmentRepository,
@@ -50,6 +51,7 @@ export function recordSubmitFailure(
 ): LiveCjFulfillmentRecord {
   const config = loadLiveCjFulfillmentEnv();
   const nextAttempt = fulfillment.attemptCount + 1;
+  const uncertain = error instanceof LiveCjSubmissionUncertainError;
   const recoverable = nextAttempt < config.LIVE_CJ_FULFILLMENT_MAX_RETRY_ATTEMPTS;
 
   logAttempt(fulfillment, "submit", "failed", error.message, {
@@ -57,7 +59,7 @@ export function recordSubmitFailure(
   });
 
   const updated = saveFulfillment(fulfillment, {
-    status: recoverable ? "RECOVERABLE" : "FAILED",
+    status: uncertain ? "SUBMISSION_UNKNOWN" : recoverable ? "RECOVERABLE" : "FAILED",
     attemptCount: nextAttempt,
     lastErrorMessage: error.message,
     founderApprovalToken: null,
@@ -65,7 +67,7 @@ export function recordSubmitFailure(
     approvedAt: null,
   });
 
-  if (!recoverable) {
+  if (!recoverable && !uncertain) {
     releaseInventoryReservation(fulfillment.pipelineId);
   }
 

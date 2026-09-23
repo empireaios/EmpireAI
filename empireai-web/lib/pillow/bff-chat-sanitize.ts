@@ -26,6 +26,22 @@ export const DEGRADED_CHAT_MESSAGE = [
 export const LEGACY_INFRASTRUCTURE_BUDGET_PHRASE =
   "completed executive answer was not produced within the infrastructure budget";
 
+const FAIL_CLOSED_PILLOW_CODES = new Set([
+  "PILLOW_DURABILITY_UNAVAILABLE",
+  "PILLOW_STREAM_DURABILITY_REQUIRED",
+]);
+
+/** Preserve explicit Tier-0 fail-closed status instead of converting it to HTTP 200. */
+export function isFailClosedPillowResponse(status: number, rawBody: string): boolean {
+  if (status < 400) return false;
+  try {
+    const parsed = JSON.parse(rawBody) as { code?: string };
+    return typeof parsed.code === "string" && FAIL_CLOSED_PILLOW_CODES.has(parsed.code);
+  } catch {
+    return false;
+  }
+}
+
 export function extractPillowChatMessage(raw: string): string {
   try {
     const parsed = JSON.parse(raw) as {

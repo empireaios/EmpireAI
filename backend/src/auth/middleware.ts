@@ -34,7 +34,11 @@ export function createAuthMiddleware(sessionStore: SessionStoreBackend) {
         { err: error instanceof Error ? error : new Error(String(error)) },
         "Session lookup failed",
       );
-      return reply.code(503).send({ error: "Session store unavailable" });
+      return reply.code(503).send({
+        error: "Shared session store temporarily unavailable",
+        code: "SHARED_SESSION_STORE_UNAVAILABLE",
+        retryable: true,
+      });
     }
 
     if (!session) {

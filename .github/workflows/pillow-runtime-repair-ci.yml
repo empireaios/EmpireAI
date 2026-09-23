@@ -1,0 +1,265 @@
+name: Pillow runtime repair CI
+
+# Isolated tests only. No provider credentials, deployments, production requests,
+# commerce side effects, Birth certification or Wave-credit changes are permitted.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'fix/pillow-runtime-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pillow-runtime-repair-${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CI: 'true'
+  SOAK_ALLOW_LIVE_RUN: '0'
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  durable-runtime:
+    name: Durable runtime — real Redis, restart, ownership and authorization
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_ENV: test
+      PILLOW_TEST_REDIS_SERVER: /usr/bin/redis-server
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: |
+            pillow/package-lock.json
+            backend/package-lock.json
+      - name: Require offline certification and redeploy evidence rejection tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Synthetic rejection tests only; no hosted proof or certification credit.
+          env -i PATH="$PATH" HOME="$RUNNER_TEMP" TMPDIR="$RUNNER_TEMP" \
+            CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \
+            node --test --test-concurrency=1 --test-reporter=tap \
+            scripts/evaluate-certification-evidence.test.mjs \
+            scripts/certification-harnesses/canary-redeploy.test.mjs \
+            | tee "$RUNNER_TEMP/pillow-certification-evidence-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-certification-evidence-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing evidence-test TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 26, 'Both evidence rejection suites must execute');
+          assert.equal(count('pass'), count('tests'), 'Every evidence rejection test must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} evidence tests are not permitted`);
+          }
+          NODE
+      - name: Install Redis binary for test-owned isolated AOF processes
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes redis-server
+          test -x "$PILLOW_TEST_REDIS_SERVER"
+          "$PILLOW_TEST_REDIS_SERVER" --version
+          # The mandatory integration suite owns its loopback port, data directory,
+          # AOF persistence and process restarts. No hosted Redis credentials are used.
+      - name: Clean install, typecheck and build Pillow
+        run: |
+          npm ci --prefix pillow
+          npm run typecheck --prefix pillow
+          npm run build --prefix pillow
+      - name: Run mandatory Pillow observer and reasoning-only policy tests
+        working-directory: pillow
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --import tsx --test --test-concurrency=1 --test-reporter=tap \
+            src/validation/tests/observer-runtime-policy.test.ts \
+            src/validation/tests/reasoning-only-completion.test.ts \
+            src/validation/tests/mission-runtime-persistence.test.ts \
+            src/validation/tests/mission-execution-truth.test.ts \
+            src/validation/tests/mission-runtime-sqlite.test.ts \
+            | tee "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-reasoning-policy-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') > 0, 'Pillow policy tests must actually execute');
+          assert.equal(count('pass'), count('tests'), 'Every Pillow policy test must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} tests are not permitted`);
+          }
+          NODE
+      - name: Clean install, verify, typecheck and build backend
+        run: |
+          npm ci --prefix backend
+          npm run verify:env --prefix backend
+          npm run typecheck --prefix backend
+          npm run build --prefix backend
+      - name: Run mandatory isolated runtime and session tests
+        working-directory: backend
+        shell: bash
+        env:
+          # Legacy offline auth fixtures deliberately use a local memory session.
+          # The real-Redis suite explicitly requires production durability and
+          # proves that production still refuses this fallback permission.
+          REDIS_OPTIONAL: 'true'
+        run: |
+          set -euo pipefail
+          node --import tsx --test --test-concurrency=1 --test-reporter=tap \
+            src/validation/tests/pillow-durable-queue-redis.test.ts \
+            src/validation/tests/pillow-durable-reasoning-worker.test.ts \
+            src/validation/tests/pillow-durable-access.test.ts \
+            src/validation/tests/mission-runtime-access.test.ts \
+            src/validation/tests/amazon-publish-authority.test.ts \
+            src/validation/tests/pillow-authority-contract.test.ts \
+            src/validation/tests/amazon-listing-proof.test.ts \
+            src/validation/tests/mission-execution-binding.test.ts \
+            src/validation/tests/mission-execution-durability.test.ts \
+            src/validation/tests/mission-authority-wiring.test.ts \
+            src/validation/tests/certification-receipt-intake.test.ts \
+            src/validation/tests/offline-state-bundle.test.ts \
+            src/validation/tests/reasoning-only-policy.test.ts \
+            src/validation/tests/session-store-unavailable.test.ts \
+            src/validation/tests/sqlite-persistence-boundary.test.ts \
+            src/validation/tests/sqlite-shutdown-boundary.test.ts \
+            src/validation/tests/primary-shutdown.test.ts \
+            src/validation/tests/continuity-heartbeat-clock.test.ts \
+            src/validation/tests/executive-continuity-watchdog.test.ts \
+            src/validation/tests/independent-shutdown-last-attempt.test.ts \
+            src/validation/tests/sqlite-corruption-recovery.test.ts \
+            src/validation/tests/engineering-test-mode.test.ts \
+            src/validation/tests/cost-guard-authorization.test.ts \
+            src/validation/tests/auth-readiness.test.ts \
+            src/validation/tests/auth-verification.test.ts \
+            src/validation/tests/bootstrap-credential-policy.test.ts \
+            src/validation/tests/bootstrap-password-sync.test.ts \
+            src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \
+            src/validation/tests/tier0-isolated-primary.test.ts \
+            src/validation/tests/worker-http-proxy.test.ts \
+            src/validation/tests/exec-cap-authority-compact.lock.test.ts \
+            src/validation/tests/durable-pending-receipt.lock.test.ts \
+            src/validation/tests/pillow-terminal-json.test.ts \
+            src/validation/tests/pillow-chat-request-store.test.ts \
+            src/validation/tests/pillow-accepted-request-recovery.test.ts \
+            | tee "$RUNNER_TEMP/pillow-runtime-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-runtime-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') > 0, 'Runtime tests must actually execute');
+          assert.equal(count('pass'), count('tests'), 'Every runtime test must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} tests are not permitted`);
+          }
+          NODE
+      - name: Record exact tested revision and scope
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          {
+            echo '## Durable runtime repair gate'
+            echo "Exact tested checkout: $(git rev-parse HEAD)"
+            echo "PR head: ${PR_HEAD_SHA:-not a pull request}"
+            echo "Node: $(node --version)"
+            "$PILLOW_TEST_REDIS_SERVER" --version
+            echo 'Isolated real-Redis AOF/restart, duplicate delivery, authorization and recovery tests passed with zero skipped tests.'
+            echo 'No deployment, live commerce, independent Birth certification or production readiness is claimed.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  durable-web:
+    name: Durable web — receipt recovery, one submission, tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: empireai-web/package-lock.json
+      - name: Clean install and typecheck canonical Next.js web
+        run: |
+          npm ci --prefix empireai-web
+          npm run typecheck --prefix empireai-web
+      - name: Run web tests with mandatory durable-delivery coverage
+        working-directory: empireai-web
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f lib/pillow/durable-delivery.test.ts
+          test -f lib/pillow/bff-chat-sanitize.test.ts
+          node --import tsx --test --test-reporter=tap 'lib/**/*.test.ts' \
+            | tee "$RUNNER_TEMP/pillow-web-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/pillow-web-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') > 0, 'Web tests must actually execute');
+          assert.equal(count('pass'), count('tests'), 'Every web test must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} tests are not permitted`);
+          }
+          NODE
+      - name: Build canonical Next.js web
+        run: npm run build --prefix empireai-web
+      - name: Record exact tested revision and scope
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          {
+            echo '## Durable web repair gate'
+            echo "Exact tested checkout: $(git rev-parse HEAD)"
+            echo "PR head: ${PR_HEAD_SHA:-not a pull request}"
+            echo 'Existing web tests plus mandatory durable-delivery and BFF coverage passed with zero skipped tests.'
+            echo 'This is mocked-transport web coverage and a production build, not a live authenticated browser certification.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  runtime-repair-result:
+    name: Runtime repair result (no deployment)
+    if: ${{ always() }}
+    needs: [durable-runtime, durable-web]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require both mandatory repair gates to pass
+        env:
+          RUNTIME_RESULT: ${{ needs.durable-runtime.result }}
+          WEB_RESULT: ${{ needs.durable-web.result }}
+        run: |
+          test "$RUNTIME_RESULT" = success
+          test "$WEB_RESULT" = success
+          echo 'Runtime and web repair checks passed. No production promotion or commerce unlock is authorized by this result.' >> "$GITHUB_STEP_SUMMARY"
