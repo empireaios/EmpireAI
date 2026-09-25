@@ -52,7 +52,41 @@ function ensureTables(): void {
       completed_at TEXT,
       PRIMARY KEY (workspace_id, provider_id)
     );
+    CREATE TABLE IF NOT EXISTS amazon_order_request_gate (
+      workspace_id TEXT NOT NULL,
+      provider_id TEXT NOT NULL,
+      next_allowed_at TEXT NOT NULL,
+      PRIMARY KEY (workspace_id, provider_id)
+    );
   `);
+}
+
+// Amazon searchOrders default rate is 0.0056 requests/second. A durable
+// 180-second reservation survives worker restarts and concurrent owner calls.
+// Reserve before network I/O; a failed request still consumes its interval.
+async function reserveAmazonOrderRequest(ctx: LiveCommerceAdapterContext): Promise<void> {
+  ensureTables();
+  const db = getDatabase();
+  const existing = db.prepare(`
+    SELECT next_allowed_at FROM amazon_order_request_gate
+    WHERE workspace_id = @workspaceId AND provider_id = @providerId
+  `).get({ workspaceId: ctx.workspaceId, providerId: ctx.providerId }) as
+    { next_allowed_at: string } | undefined;
+  const now = Date.now();
+  if (existing && (!validTime(existing.next_allowed_at) ||
+      now < Date.parse(existing.next_allowed_at))) {
+    throw new Error("AMAZON_ORDERS_RATE_LIMIT_PENDING: durable provider request gate");
+  }
+  db.prepare(`
+    INSERT INTO amazon_order_request_gate (workspace_id, provider_id, next_allowed_at)
+    VALUES (@workspaceId, @providerId, @nextAllowedAt)
+    ON CONFLICT(workspace_id, provider_id) DO UPDATE
+      SET next_allowed_at = excluded.next_allowed_at
+  `).run({
+    workspaceId: ctx.workspaceId, providerId: ctx.providerId,
+    nextAllowedAt: new Date(now + 180_000).toISOString(),
+  });
+  await db.requestCriticalPersist();
 }
 
 function getCursor(workspaceId: string, providerId: string): Cursor | null {
@@ -243,6 +277,7 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
     includedData: "FULFILLMENT,PROCEEDS,CANCELLATION,PACKAGES",
   });
   if (active.nextToken) params.set("paginationToken", active.nextToken);
+  await reserveAmazonOrderRequest(ctx);
   const response = await httpTransport({
     url: `https://sellingpartnerapi-na.amazon.com/orders/2026-01-01/orders?${params}`,
     method: "GET",

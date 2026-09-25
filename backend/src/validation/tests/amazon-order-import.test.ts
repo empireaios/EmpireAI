@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, test } from "node:test";
-import { closeDatabase, resetDatabaseInstance } from "../../brain/database.js";
+import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
 import { httpTransport, resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
@@ -77,6 +77,14 @@ test("Amazon US imports a real-form page, preserves cursor across restart and on
   await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /PAGINATION_PENDING/);
   assert.equal(listImportedAmazonOrders(ctx.workspaceId).length, 1);
   closeDatabase(); // Reopen actual saved disk bytes, not the in-memory rows.
+  await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /RATE_LIMIT_PENDING/);
+  assert.equal(requests.length, 1); // Restart cannot evade a durable reservation.
+  getDatabase().prepare(`
+    UPDATE amazon_order_request_gate SET next_allowed_at = @past
+    WHERE workspace_id = @workspaceId AND provider_id = @providerId
+  `).run({ past: "2000-01-01T00:00:00Z", workspaceId: ctx.workspaceId, providerId: ctx.providerId });
+  await getDatabase().requestCriticalPersist();
+  closeDatabase();
   const receipt = await amazonUsSpApiAdapter.syncOrders(ctx);
   assert.equal(receipt.liveApiVerified, true);
   assert.equal(receipt.durableReadbackVerified, true);
