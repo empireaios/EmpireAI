@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { parseLLMTimeout, withLLMDeadline } from '../../brain/llm/call-control.js';
+import { LLMRouter } from '../../brain/llm/llm-router.js';
+import type { LLMProvider } from '../../brain/llm/provider.js';
+import type { LLMProviderName } from '../../brain/types.js';
 
 test('timeouts are finite integer bounded and reject malformed configuration', () => {
   assert.equal(parseLLMTimeout(undefined), 45000);
@@ -33,4 +36,15 @@ test('fast success clears timer and provider errors are never retried', async ()
 });
 test('a noncooperative provider remains bounded locally without claiming remote cancellation', async () => {
   await assert.rejects(withLLMDeadline(() => new Promise(() => {}), 10), /timed out/);
+});
+
+test('an unavailable selected provider never silently charges an available fallback', () => {
+  const router = new LLMRouter();
+  const providers = (router as unknown as { providers: Map<LLMProviderName, LLMProvider> }).providers;
+  providers.set('openai', { name: 'openai', isAvailable: () => false,
+    complete: async () => { throw new Error('must not dispatch'); } });
+  providers.set('anthropic', { name: 'anthropic', isAvailable: () => true,
+    complete: async () => { throw new Error('must not dispatch'); } });
+  assert.throws(() => router.resolve('openai'), /implicit fallback refused/);
+  assert.equal(router.resolve('anthropic').name, 'anthropic');
 });

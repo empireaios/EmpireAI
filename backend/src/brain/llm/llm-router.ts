@@ -38,19 +38,12 @@ export class LLMRouter {
     const preferred = providerName ?? env.DEFAULT_LLM_PROVIDER;
     const provider = this.providers.get(preferred);
 
-    if (provider?.isAvailable()) {
-      return provider;
+    // An unreviewed provider substitution changes pricing, data destination,
+    // and model behavior. Require an explicit selection/approval for each provider.
+    if (!provider?.isAvailable()) {
+      throw new Error(`Requested LLM provider ${preferred} is unavailable; implicit fallback refused`);
     }
-
-    const fallback = this.listAvailable()[0];
-    if (!fallback) {
-      throw new Error(
-        "No LLM providers configured. Set OPENAI_API_KEY, ANTHROPIC_API_KEY, or GOOGLE_AI_API_KEY.",
-      );
-    }
-
-    const resolved = this.providers.get(fallback)!;
-    return resolved;
+    return provider;
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
