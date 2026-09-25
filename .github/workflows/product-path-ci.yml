@@ -179,6 +179,9 @@ jobs:
             src/validation/tests/amazon-order-route.test.ts \
             src/validation/tests/amazon-oauth-evidence.test.ts \
             src/validation/tests/reality-002b.test.ts
+      - name: Verify exact-model paid LLM price and durable reservation without provider calls
+        working-directory: backend
+        run: node --import tsx --test src/validation/tests/llm-spend-reservation.test.ts
       - name: Run fast invariant gate
         working-directory: backend
         run: npm run gate:fast-invariant
@@ -202,7 +205,7 @@ jobs:
       - name: Record reviewed offline scope
         shell: bash
         run: |
-          echo 'This product slice runs 185 reviewed in-process tests across backend and Pillow. No provider credentials are supplied, and no live Amazon, CJ, payment, fulfilment, deployment, or commerce operation is claimed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This product slice runs reviewed in-process tests across backend and Pillow. No provider credentials are supplied, and no live Amazon, CJ, payment, fulfilment, deployment, or commerce operation is claimed.' >> "$GITHUB_STEP_SUMMARY"
 
   legacy-frontend:
     name: Legacy Vite compatibility — clean install, typecheck, build
@@ -348,4 +351,4 @@ jobs:
             "$REDIS_IMAGE_RESULT"; do
             test "$result" = success
           done
-          echo 'All configured offline product gates passed, including the 185-test reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"
