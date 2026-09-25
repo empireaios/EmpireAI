@@ -211,7 +211,10 @@ export class EmpireDatabase {
         // A production startup must not replace a damaged business database with
         // an empty one: the service could look healthy while durable state is missing.
         // Keep the original file in place for an explicit, reviewed restore.
-        if (process.env.NODE_ENV === "production") {
+        if (process.env.NODE_ENV === "production" || Boolean(
+          process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME ||
+          process.env.RAILWAY_SERVICE_NAME || process.env.RAILWAY_DEPLOYMENT_ID
+        )) {
           throw new Error(`Production SQLite open refused; original file retained: ${reason}`, { cause: error });
         }
         const quarantinedPath = quarantineSqliteFile(filePath, reason);

@@ -64,6 +64,30 @@ describe("SQLite corruption quarantine recovery", () => {
     }
   });
 
+  test("Railway always refuses corrupt state even with NODE_ENV missing or misconfigured", () => {
+    const priorNodeEnv = process.env.NODE_ENV;
+    const priorRailwayEnvironment = process.env.RAILWAY_ENVIRONMENT;
+    try {
+      process.env.RAILWAY_ENVIRONMENT = "production";
+      for (const nodeEnv of [undefined, "development"]) {
+        if (nodeEnv === undefined) delete process.env.NODE_ENV;
+        else process.env.NODE_ENV = nodeEnv;
+        const target = path.join(tmpRoot, `railway-corrupt-${nodeEnv ?? "unset"}.db`);
+        const original = Buffer.from(`business-data-${nodeEnv ?? "unset"}`);
+        fs.writeFileSync(target, original);
+        assert.throws(() => new EmpireDatabase(target), /Production SQLite open refused; original file retained/);
+        assert.equal(getLastSqliteOpenRecovery().recovered, false);
+        assert.deepEqual(fs.readFileSync(target), original);
+        assert.deepEqual(fs.readdirSync(tmpRoot).filter(name => name.startsWith(path.basename(target))), [path.basename(target)]);
+      }
+    } finally {
+      if (priorNodeEnv === undefined) delete process.env.NODE_ENV;
+      else process.env.NODE_ENV = priorNodeEnv;
+      if (priorRailwayEnvironment === undefined) delete process.env.RAILWAY_ENVIRONMENT;
+      else process.env.RAILWAY_ENVIRONMENT = priorRailwayEnvironment;
+    }
+  });
+
   test("EmpireDatabase opens valid empty-created file without quarantine", () => {
     const target = path.join(tmpRoot, "fresh-ok.db");
     const first = new EmpireDatabase(target);

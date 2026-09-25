@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-25T01:58:00Z",
+  "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
+  "ownerMandate": {
+    "routineEngineeringAuthorized": true,
+    "canaryCleanupAuthorizedAndVerified": true,
+    "stopFor": [
+      "real-money commerce beyond approved bound",
+      "material new expenditure",
+      "irreversible production-data change without proven recovery",
+      "owner credentials or 2FA",
+      "material unmandated business risk",
+      "bounded real commercial pilot authorization"
+    ],
+    "continueAutomatically": true
+  },
+  "repository": {
+    "name": "empireaios/EmpireAI",
+    "main": "21384342c401def948926904913840e63c18dff7",
+    "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
+    "lastVerifiedIntegrationHead": "b2e213338a92f2d33c367e6293df475a9a289681",
+    "branch": "fix/pillow-integrated-closure-20260920",
+    "status": "draft; unmerged"
+  },
+  "deployed": {
+    "railway": {
+      "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+      "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+      "source": "21384342c401def948926904913840e63c18dff7",
+      "dataVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+      "pendingRamPersistence": "UNPROVEN"
+    },
+    "vercel": {
+      "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
+      "source": "21384342c401def948926904913840e63c18dff7"
+    }
+  },
+  "authority": {
+    "birth": "NOT_BORN",
+    "waveCredit": 0,
+    "commerce": "LOCKED",
+    "realPilotAuthorized": false
+  },
+  "verified": {
+    "exactHeadCI": [
+      "https://github.com/empireaios/EmpireAI/actions/runs/36080476923",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36080476778",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36080476699"
+    ],
+    "canaryCleanup": {
+      "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+      "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "readback": "services=[]; pendingWork=[]; stagedChanges=null",
+      "at": "2026-09-25T01:58:00Z"
+    },
+    "providerCallsInThisRecovery": 0,
+    "realCommerceActionsInThisRecovery": 0
+  },
+  "failedAttempts": [
+    "Recovery2 before 35/35, after 37/38; authority_result_preserved failed; no accepted pair.",
+    "Recovery3 before 35/35, replacement build failed; after/pair not executed; Redis stop beyond expiry.",
+    "Recovery4 browser operation expired >24h; PR9 closed unmerged; no active deployment.",
+    "Railway Agent cleanup commit required dashboard destructive confirmation; direct accept-deploy returned INVALID_ARGUMENT. Owner completed dashboard Commit; provider readback empty."
+  ],
+  "certification": {
+    "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
+    "mandatoryRequirements": 84,
+    "accepted": false,
+    "hostedRecoveryAccepted": false,
+    "heldCasesAccepted": false,
+    "independentIntegratedAcceptance": false
+  },
+  "blockers": [
+    "Old production may have unsaved SQL.js RAM state; no validated stopped-writer and multi-store backup/cutover.",
+    "Candidate safety repairs and new Railway marker guard not deployed; exact new head CI pending.",
+    "Ordinary LLM router has rough $0.02 preflight, no durable reservation, estimated post-call spend and swallowed accounting errors; provider enforcement unproved.",
+    "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved."
+  ],
+  "nextExecutableActions": [
+    "Run exact-head CI for Railway SQLite guard and correct any failures.",
+    "Engineer fail-closed bounded paid-model reservation and verified pricing in ordinary LLM path, without remote spend.",
+    "Establish and verify safe preservation/cutover for old production before promotion.",
+    "Run fresh, independently evidenced bounded canary recovery only after actual budget/config review; certify Pillow and commerce before a real pilot authorization."
+  ]
+}
