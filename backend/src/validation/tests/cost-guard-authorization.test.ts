@@ -106,11 +106,35 @@ describe("paid autonomous cost authorization", () => {
     });
   }
 
-  it("rejects invalid recorded spend and retains the original ledger event", () => {
+  it("rejects invalid new spend and halts on a malformed persisted event", () => {
     authorizePaidWork();
-    recordCostSpend({ workspaceId: WS, kind: "operating", amountUsd: -1 });
+    for (const invalid of [-1, NaN, Infinity]) {
+      assert.throws(() => recordCostSpend({ workspaceId: WS, kind: "operating", amountUsd: invalid }), /finite nonnegative/);
+    }
+    const db = getDatabase();
+    db.prepare(`INSERT INTO pillow_cost_spend_events
+      (spend_id, workspace_id, recorded_at, kind, amount_usd, provider, attribution_json)
+      VALUES (@id, @workspaceId, @recordedAt, @kind, @amountUsd, @provider, @attribution)`).run({
+      id: "tampered", workspaceId: WS, recordedAt: new Date().toISOString(),
+      kind: "operating", amountUsd: "not-a-number", provider: null, attribution: "{}",
+    });
     assertBlocked(0.02, /monthly operating ledger is invalid/);
-    assert.equal(buildCostGuardStatus(WS).spend.monthlyOperating.actualUsd, -1);
+    assert.equal(Number.isNaN(buildCostGuardStatus(WS).spend.monthlyOperating.actualUsd), true);
+    assert.equal((db.prepare("SELECT COUNT(*) AS n FROM pillow_cost_spend_events").get() as { n: number }).n, 1);
+  });
+
+  it("counts AI charges toward the monthly operating cap without double-posting spend", () => {
+    setCostGuardLimits(WS, {
+      dailyAiBudgetUsd: 100,
+      autonomousPaidActionLimitUsd: 100,
+      monthlyOperatingBudgetUsd: 10,
+    }, "test-owner");
+    recordCostSpend({ workspaceId: WS, kind: "ai", amountUsd: 8 });
+    const status = buildCostGuardStatus(WS);
+    assert.equal(status.spend.monthlyAi.actualUsd, 8);
+    assert.equal(status.spend.monthlyOperating.actualUsd, 8);
+    assertBlocked(2.01, /Projected monthly operating spend/);
+    assert.deepEqual(assertPaidAutonomousAllowed(WS, 2), { allowed: true });
   });
 
   it("keeps a zero owner limit and existing hard stops effective", () => {

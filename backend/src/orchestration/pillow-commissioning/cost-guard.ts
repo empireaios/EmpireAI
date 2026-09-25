@@ -38,6 +38,7 @@ export type CostGuardStatus = {
   limits: CostGuardLimits;
   spend: {
     dailyAi: CostSpendBucket;
+    monthlyAi: CostSpendBucket;
     monthlyOperating: CostSpendBucket;
     autonomousPaid: CostSpendBucket;
     commerceOperational: CostSpendBucket;
@@ -150,6 +151,9 @@ export function recordCostSpend(input: {
   attribution?: Record<string, string>;
   committed?: boolean;
 }): void {
+  if (!Number.isFinite(input.amountUsd) || input.amountUsd < 0) {
+    throw new Error("Cost spend must be a finite nonnegative USD amount");
+  }
   ensureCostGuardTables();
   const db = getDatabase();
   const spendId = `spend_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -178,17 +182,17 @@ function sumSpend(
   const rows = db
     .prepare(
       `SELECT kind, amount_usd FROM pillow_cost_spend_events
-       WHERE workspace_id = @workspaceId AND recorded_at >= @since AND kind LIKE @kind`,
+       WHERE workspace_id = @workspaceId AND recorded_at >= @since AND kind IN (@kind, @committedKind)`,
     )
-    .all({ workspaceId, since: sinceIso, kind: `${kindPrefix}%` }) as Array<{
+    .all({ workspaceId, since: sinceIso, kind: kindPrefix, committedKind: `${kindPrefix}:committed` }) as Array<{
     kind: string;
     amount_usd: number;
   }>;
   let actualUsd = 0;
   let committedUsd = 0;
   for (const row of rows) {
-    if (row.kind.includes(":committed")) committedUsd += Number(row.amount_usd) || 0;
-    else actualUsd += Number(row.amount_usd) || 0;
+    if (row.kind === `${kindPrefix}:committed`) committedUsd += Number(row.amount_usd);
+    else actualUsd += Number(row.amount_usd);
   }
   return {
     actualUsd,
@@ -198,6 +202,7 @@ function sumSpend(
 }
 
 function levelFor(used: number, limit: number | null, warningPct: number, criticalPct: number): CostGuardLevel {
+  if (!Number.isFinite(used) || used < 0) return "HARD_STOP";
   if (limit == null || limit <= 0) return "OK";
   const pct = (used / limit) * 100;
   if (pct >= 100) return "HARD_STOP";
@@ -213,7 +218,14 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
 
   const dailyAi = sumSpend(workspaceId, "ai", dayStart);
-  const monthlyOperating = sumSpend(workspaceId, "operating", monthStart);
+  const monthlyAi = sumSpend(workspaceId, "ai", monthStart);
+  const monthlyOperatingOnly = sumSpend(workspaceId, "operating", monthStart);
+  // AI charges are operating expenses even if no separate operating event was posted.
+  const monthlyOperating = {
+    actualUsd: monthlyOperatingOnly.actualUsd + monthlyAi.actualUsd,
+    committedUsd: monthlyOperatingOnly.committedUsd + monthlyAi.committedUsd,
+    forecastUsd: monthlyOperatingOnly.forecastUsd + monthlyAi.forecastUsd,
+  };
   const autonomousPaid = sumSpend(workspaceId, "autonomous_paid", monthStart);
   const commerceOperational = sumSpend(workspaceId, "commerce_operational", monthStart);
 
@@ -264,6 +276,14 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   }
 
   const hardStopReasons: string[] = [];
+  for (const [label, bucket] of [
+    ["daily AI", dailyAi], ["monthly operating", monthlyOperating],
+    ["autonomous paid", autonomousPaid], ["commerce operational", commerceOperational],
+  ] as const) {
+    if (![bucket.actualUsd, bucket.committedUsd].every(value => Number.isFinite(value) && value >= 0)) {
+      hardStopReasons.push(`${label} ledger is invalid`);
+    }
+  }
   if (
     limits.dailyAiBudgetUsd != null &&
     dailyAi.actualUsd + dailyAi.committedUsd >= limits.dailyAiBudgetUsd
@@ -290,7 +310,7 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
     computedAt: now.toISOString(),
     level,
     limits,
-    spend: { dailyAi, monthlyOperating, autonomousPaid, commerceOperational },
+    spend: { dailyAi, monthlyAi, monthlyOperating, autonomousPaid, commerceOperational },
     unconfiguredLimitKeys,
     hardStopActive,
     hardStopReasons,
