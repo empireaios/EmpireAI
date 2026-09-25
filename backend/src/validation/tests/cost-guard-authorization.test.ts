@@ -142,9 +142,16 @@ describe("paid autonomous cost authorization", () => {
     setCostGuardLimits(WS, { dailyAiBudgetUsd: 0 }, "test-owner");
     assertBlocked(0, /Daily AI budget exhausted/);
     assertBlocked(0.02, /Daily AI budget exhausted/);
+    const db = getDatabase();
+    const before = db.prepare("SELECT COUNT(*) AS n FROM pillow_cost_spend_events WHERE workspace_id = @workspaceId")
+      .get({ workspaceId: WS }) as { n: number };
+    const prior = getCostGuardLimits(WS);
     const proof = runSafeHardStopProof(WS, "test-owner");
     assert.equal(proof.ok, true);
-    assert.equal(getCostGuardLimits(WS).dailyAiBudgetUsd, 0);
+    assert.deepEqual(getCostGuardLimits(WS), prior);
+    const after = db.prepare("SELECT COUNT(*) AS n FROM pillow_cost_spend_events WHERE workspace_id = @workspaceId")
+      .get({ workspaceId: WS }) as { n: number };
+    assert.equal(after.n, before.n, "synthetic proof spend must never affect owner budget");
   });
 
   it("allows bounded AI work without inventing unrelated commerce authority", () => {

@@ -394,12 +394,25 @@ export function assertPaidAutonomousAllowed(
  * Safe hard-stop proof: temporarily apply a tiny autonomous limit, verify block,
  * then restore prior limits. Does not cause uncontrolled spend.
  */
+/**
+ * Prove the configured hard stop inside a synchronous SQLite savepoint.
+ * All temporary limits and synthetic spend are rolled back before the result
+ * is recorded. A proof must not consume real owner budget or alter authority.
+ */
 export function runSafeHardStopProof(workspaceId: string, actor: string): {
   ok: boolean;
   detail: string;
   blockedReason: string | null;
 } {
+  ensureCostGuardTables();
+  const db = getDatabase();
   const prior = getCostGuardLimits(workspaceId);
+  let blockedReason: string | null = null;
+  let blocked = false;
+
+  // No await is allowed between SAVEPOINT and ROLLBACK: sql.js shares this
+  // connection, and the deferred file exporter cannot observe the proof.
+  db.exec("SAVEPOINT pillow_cost_guard_proof");
   try {
     setCostGuardLimits(
       workspaceId,
@@ -409,7 +422,6 @@ export function runSafeHardStopProof(workspaceId: string, actor: string): {
       },
       actor,
     );
-    // Simulate prior spend that exhausts the tiny limit
     recordCostSpend({
       workspaceId,
       kind: "autonomous_paid",
@@ -418,30 +430,32 @@ export function runSafeHardStopProof(workspaceId: string, actor: string): {
       attribution: { proof: "safe-hard-stop" },
     });
     const check = assertPaidAutonomousAllowed(workspaceId, 0.01);
-    const blocked = !check.allowed;
-    recordFlightEvent({
-      workspaceId,
-      eventType: "COST_GUARD",
-      businessArea: "cost",
-      subsystem: "cost-guard",
-      objective: "Safe hard-stop proof",
-      decision: blocked ? "HARD_STOP_VERIFIED" : "HARD_STOP_FAILED",
-      authority: "system",
-      result: blocked
-        ? `Blocked as expected: ${"reason" in check ? check.reason : ""}`
-        : "Hard-stop did not block — failure",
-      verification: blocked ? "PASS" : "FAIL",
-      evidenceConsidered: ["safe-hard-stop-proof"],
-    });
-    return {
-      ok: blocked,
-      detail: blocked
-        ? "HARD STOP safely blocked further paid autonomous activity under temporary micro-limit"
-        : "HARD STOP proof failed — paid activity was not blocked",
-      blockedReason: check.allowed ? null : check.reason,
-    };
+    blocked = !check.allowed;
+    blockedReason = check.allowed ? null : check.reason;
   } finally {
-    // Restore prior limits (remove proof spend effect on limits config)
-    setCostGuardLimits(workspaceId, prior, actor);
+    db.exec("ROLLBACK TO SAVEPOINT pillow_cost_guard_proof");
+    db.exec("RELEASE SAVEPOINT pillow_cost_guard_proof");
   }
+
+  recordFlightEvent({
+    workspaceId,
+    eventType: "COST_GUARD",
+    businessArea: "cost",
+    subsystem: "cost-guard",
+    objective: "Safe hard-stop proof",
+    decision: blocked ? "HARD_STOP_VERIFIED" : "HARD_STOP_FAILED",
+    authority: "system",
+    result: blocked
+      ? `Blocked as expected: ${blockedReason ?? ""}`
+      : "Hard-stop did not block — failure",
+    verification: blocked ? "PASS" : "FAIL",
+    evidenceConsidered: ["safe-hard-stop-proof", "temporary changes rolled back"],
+  });
+  return {
+    ok: blocked,
+    detail: blocked
+      ? "HARD STOP blocked synthetic spend; temporary limits and spend rolled back"
+      : "HARD STOP proof failed — paid activity was not blocked",
+    blockedReason,
+  };
 }
