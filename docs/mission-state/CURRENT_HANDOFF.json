@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-25T02:12:00Z",
+  "updatedAt": "2026-09-25T02:33:00Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -21,7 +21,8 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d6b15fbced2551b41f7456a512af07e1670cc9eb",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft; unmerged"
+    "status": "draft; unmerged",
+    "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e"
   },
   "deployed": {
     "railway": {
@@ -46,7 +47,12 @@
     "exactHeadCI": [
       "https://github.com/empireaios/EmpireAI/actions/runs/36084820226",
       "https://github.com/empireaios/EmpireAI/actions/runs/36084820228",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36084820274"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36084820274",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36085944794",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36086215979",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36086215981",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36086559146",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36086559149"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -58,7 +64,9 @@
     "realCommerceActionsInThisRecovery": 0,
     "engineeringRepairs": [
       "Railway corrupt SQLite open refuses even if NODE_ENV missing/misconfigured, tested by exact-head CI",
-      "AI charges now count in monthly operating budget; malformed stored spend halts paid dispatch, exact-head CI"
+      "AI charges now count in monthly operating budget; malformed stored spend halts paid dispatch, exact-head CI",
+      "Amazon production sync refuses fabricated counts and withholds go-live credit, Product CI on b7e01c36",
+      "Cost Guard synthetic proof spend and temporary limits rolled back, Product and Semantic CI on 9656529a"
     ]
   },
   "failedAttempts": [
@@ -77,16 +85,27 @@
   },
   "blockers": [
     "Old production may have unsaved SQL.js RAM state; no validated stopped-writer and multi-store backup/cutover.",
-    "Latest Amazon sync truthfulness repair needs exact-head CI; candidate not deployed.",
+    "Amazon sync guard passed Product CI but not deployed; real importer still unimplemented. Amazon OAuth repair at current candidate is CI pending; real application ID and seller authorization are absent.",
     "Ordinary LLM router has rough $0.02 preflight, no durable reservation, estimated post-call spend and swallowed accounting errors; provider enforcement unproved.",
     "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved.",
     "Amazon live commerce sync previously invented processed inventory/prices/orders from HTTP success without persistence. Candidate blocks unsupported production sync and requires verified durable read-back; actual importer still missing."
   ],
   "nextExecutableActions": [
-    "Run exact-head CI for Amazon sync evidence guard, fix any failures.",
+    "Validate Amazon OAuth consent/token exchange exact-head CI, and add founder/workspace scoped completion with expiration and single-use protection.",
     "Implement actual persisted Amazon US catalog/inventory/pricing/orders import with provider pagination/cursors, reconciliation and proof; replace explicit unsupported production sync errors.",
     "Engineer fail-closed bounded paid-model reservation and verified pricing in ordinary LLM path without remote spend.",
     "Prove old-production stopped-writer persistence and multi-store backup before promotion; run fresh bounded canary only after budget/config review.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
-  ]
+  ],
+  "oauthEngineering": {
+    "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
+    "status": "PRODUCT_AND_SEMANTIC_CI_PASSED_RUNTIME_PENDING",
+    "noRealAmazonCall": true,
+    "applicationIdConfig": "AMAZON_SP_API_APPLICATION_ID required for production seller consent",
+    "limitations": [
+      "no seller authorization obtained",
+      "tokens not automatically stored as a validated connected account",
+      "no provider catalog/inventory/orders imported"
+    ]
+  }
 }

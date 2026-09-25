@@ -15,7 +15,7 @@ export const liveCommerceOAuthStateSchema = z.object({
   providerId: z.string(),
   redirectUri: z.string(),
   scopes: z.array(z.string()),
-  status: z.enum(["pending", "completed", "expired", "failed"]),
+  status: z.enum(["pending", "exchanging", "completed", "expired", "failed"]),
   createdAt: z.string().datetime({ offset: true }),
   completedAt: z.string().datetime({ offset: true }).nullable(),
 });

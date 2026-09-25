@@ -7,7 +7,7 @@ import {
   amazonOAuthExchangeCode,
   amazonOAuthRefreshToken,
 } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
-import { startMarketplaceOAuth } from "../../orchestration/reality-integration/live-commerce/services/oauth-lifecycle-service.js";
+import { startMarketplaceOAuth, completeMarketplaceOAuth } from "../../orchestration/reality-integration/live-commerce/services/oauth-lifecycle-service.js";
 import { resetLiveCommerceRepository } from "../../orchestration/reality-integration/live-commerce/repositories/sqlite-live-commerce-repository.js";
 
 const keys = [
@@ -60,6 +60,39 @@ describe("Amazon seller authorization request contract", () => {
       "SELECT COUNT(*) AS n FROM live_commerce_oauth_states WHERE workspace_id = @workspaceId"
     ).get({ workspaceId: "ws_oauth_evidence" }) as { n: number };
     assert.equal(row.n, 0);
+  });
+
+  it("binds state to workspace, rejects expiry, and permits a single completion", async () => {
+    process.env.LIVE_COMMERCE_INTEGRATION_MODE = "sandbox";
+    process.env.DATABASE_PATH = ":memory:amazon-oauth-evidence";
+    resetDatabaseInstance();
+    resetLiveCommerceRepository();
+    const started = startMarketplaceOAuth({
+      workspaceId: "owner_workspace", providerId: "amazon-us",
+      redirectUri: "https://example.test/callback",
+    });
+    await assert.rejects(completeMarketplaceOAuth({
+      workspaceId: "foreign_workspace", stateId: started.stateId, code: "offline-code",
+    }), /OAuth state not found/);
+    const result = await completeMarketplaceOAuth({
+      workspaceId: "owner_workspace", stateId: started.stateId, code: "offline-code",
+    });
+    assert.equal(result.state.status, "completed");
+    await assert.rejects(completeMarketplaceOAuth({
+      workspaceId: "owner_workspace", stateId: started.stateId, code: "offline-code",
+    }), /not pending/);
+
+    const expired = startMarketplaceOAuth({
+      workspaceId: "owner_workspace", providerId: "amazon-us",
+      redirectUri: "https://example.test/callback",
+    });
+    getDatabase().prepare("UPDATE live_commerce_oauth_states SET record_json = @record WHERE state_id = @id")
+      .run({ id: expired.stateId, record: JSON.stringify({
+        ...expired.state, createdAt: new Date(Date.now() - 6 * 60_000).toISOString(),
+      }) });
+    await assert.rejects(completeMarketplaceOAuth({
+      workspaceId: "owner_workspace", stateId: expired.stateId, code: "offline-code",
+    }), /expired/);
   });
 
   it("posts the exact form grant and returns only validated tokens", async () => {

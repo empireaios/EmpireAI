@@ -78,6 +78,7 @@ describe("REAL-002B — Live Commerce Integration", () => {
     assert.equal(started.state.status, "pending");
 
     const completed = await completeMarketplaceOAuth({
+      workspaceId: WORKSPACE_ID,
       stateId: started.stateId,
       code: "auth-code-12345678",
     });
