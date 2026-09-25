@@ -170,6 +170,12 @@ jobs:
         run: npm run typecheck --prefix backend
       - name: Build backend
         run: npm run build --prefix backend
+      - name: Verify Amazon sync evidence and sandbox go-live isolation
+        working-directory: backend
+        run: |
+          node --import tsx --test --test-concurrency=1 \
+            src/validation/tests/amazon-sync-evidence.test.ts \
+            src/validation/tests/reality-002b.test.ts
       - name: Run fast invariant gate
         working-directory: backend
         run: npm run gate:fast-invariant
