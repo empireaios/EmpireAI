@@ -185,13 +185,18 @@ function getImportedOrder(workspaceId: string, providerId: string, orderId: stri
 }
 
 /** Read-only snapshots, never customer PII or a fulfilment authorization. */
-export function listImportedAmazonOrders(workspaceId: string, providerId = "amazon-us"): OrderSnapshot[] {
+export function listImportedAmazonOrders(
+  workspaceId: string, providerId = "amazon-us", limit = 100,
+): OrderSnapshot[] {
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 500) {
+    throw new Error("Amazon order read limit must be 1..500");
+  }
   ensureTables();
   const rows = getDatabase().prepare(`
     SELECT record_json FROM amazon_order_import_rows
     WHERE workspace_id = @workspaceId AND provider_id = @providerId
-    ORDER BY updated_at DESC
-  `).all({ workspaceId, providerId }) as Array<{ record_json: string }>;
+    ORDER BY updated_at DESC LIMIT @limit
+  `).all({ workspaceId, providerId, limit }) as Array<{ record_json: string }>;
   return rows.map(row => JSON.parse(row.record_json) as OrderSnapshot);
 }
 

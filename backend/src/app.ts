@@ -54,6 +54,7 @@ import { registerBusinessBuildRoutes } from "./orchestration/business-build-engi
 import { registerBusinessSimulationRoutes } from "./orchestration/business-simulation-engine/routes/business-simulation-routes.js";
 import { registerExecutionLayerRoutes } from "./orchestration/execution-layer/routes/execution-layer-routes.js";
 import { registerRealityIntegrationRoutes } from "./orchestration/reality-integration/routes/reality-integration-routes.js";
+import { registerAmazonOrderReadRoutes } from "./orchestration/reality-integration/live-commerce/routes/amazon-order-read-routes.js";
 import { registerEyeSeriesRoutes } from "./orchestration/eye-series/routes/eye-series-routes.js";
 import { registerOperationFirstDollarRoutes } from "./operation-first-dollar/routes/operation-first-dollar-routes.js";
 import { registerEsisRoutes } from "./orchestration/empire-self-inspection/routes/esis-routes.js";
@@ -637,6 +638,12 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
 
   await breathe();
   await registerAmazonGlobalSellerRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerAmazonOrderReadRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });

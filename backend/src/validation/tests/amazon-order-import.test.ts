@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, test } from "node:test";
-import { resetDatabaseInstance } from "../../brain/database.js";
+import { closeDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
 import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
@@ -76,13 +76,13 @@ test("Amazon US imports a real-form page, preserves cursor across restart and on
 
   await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /PAGINATION_PENDING/);
   assert.equal(listImportedAmazonOrders(ctx.workspaceId).length, 1);
-  resetDatabaseInstance(); // Reopen actual saved disk bytes, not the in-memory rows.
+  closeDatabase(); // Reopen actual saved disk bytes, not the in-memory rows.
   const receipt = await amazonUsSpApiAdapter.syncOrders(ctx);
   assert.equal(receipt.liveApiVerified, true);
   assert.equal(receipt.durableReadbackVerified, true);
   assert.equal(receipt.itemsProcessed, 2);
   assert.equal(requests.length, 2);
-  resetDatabaseInstance();
+  closeDatabase();
   const imported = listImportedAmazonOrders(ctx.workspaceId);
   assert.equal(imported.length, 1); // Idempotent upsert of the same provider ID.
   const importedOrder = imported[0];
