@@ -3,11 +3,16 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, test } from "node:test";
+import { ConnectorConnectionRepository } from "../../connectors/connection-repository.js";
 import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { getAmazonOrderImportStatus, listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
 import { httpTransport, resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { continueOneAmazonOrderImport } from "../../orchestration/reality-integration/live-commerce/services/amazon-order-continuation.js";
+import { getCredentialVaultRepository, resetCredentialVaultRepository } from "../../orchestration/reality-integration/repositories/sqlite-credential-vault-repository.js";
+import { resetConnectorRuntimeStates } from "../../orchestration/reality-integration/services/connector-runtime.js";
+import { getLiveCommerceRepository, resetLiveCommerceRepository } from "../../orchestration/reality-integration/live-commerce/repositories/sqlite-live-commerce-repository.js";
+import { runLiveCommerceSync } from "../../orchestration/reality-integration/live-commerce/services/live-commerce-integration-service.js";
 
 const oldPath = process.env.DATABASE_PATH;
 const oldMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
@@ -39,6 +44,9 @@ function useDiskDatabase() {
 
 afterEach(() => {
   resetHttpTransportOverride();
+  resetConnectorRuntimeStates();
+  resetCredentialVaultRepository();
+  resetLiveCommerceRepository();
   resetDatabaseInstance();
   if (directory) rmSync(directory, { recursive: true, force: true });
   directory = null;
@@ -162,4 +170,47 @@ test("saved partial Amazon cursor pauses unattended work on missing credential a
   assert.equal(state?.reason, "PROVIDER_FAILURE");
   assert.doesNotMatch(JSON.stringify(state), /private-page-token/);
   assert.equal(await continueOneAmazonOrderImport(), "idle");
+});
+
+test("worker restart resumes owner-started order cursor using only a durable scoped vault reference", async () => {
+  useDiskDatabase();
+  process.env.LIVE_COMMERCE_INTEGRATION_MODE = "production";
+  const vault = getCredentialVaultRepository().storeCredential({
+    workspaceId: ctx.workspaceId, providerId: "amazon-us",
+    credentialType: "oauth", secretPayload: { accessToken: "offline-restart-token" },
+  });
+  new ConnectorConnectionRepository().upsert({
+    workspaceId: ctx.workspaceId, connectorId: "amazon-us",
+    category: "commerce", status: "connected", credentialsRef: vault.credentialsRef,
+  });
+  await getDatabase().requestCriticalPersist();
+  closeDatabase();
+  resetConnectorRuntimeStates();
+  const requests: URL[] = [];
+  setHttpTransportOverride(async request => {
+    assert.equal(request.headers?.["x-amz-access-token"], "offline-restart-token");
+    requests.push(new URL(request.url));
+    return { status: 200, ok: true, json: requests.length === 1
+      ? { orders: [order("UNSHIPPED")], pagination: { nextToken: "restart-page" } }
+      : { orders: [order("SHIPPED")] }, latencyMs: 1 };
+  });
+  const first = await runLiveCommerceSync({
+    workspaceId: ctx.workspaceId, providerId: "amazon-us", syncType: "orders",
+  });
+  assert.equal(first.status, "queued"); // Partial is normal progress, not a failed import.
+  assert.equal(getLiveCommerceRepository().listPendingRecoveries(ctx.workspaceId).length, 0);
+  closeDatabase();
+  resetConnectorRuntimeStates();
+  assert.equal(await continueOneAmazonOrderImport(), "waiting");
+  getDatabase().prepare(`
+    UPDATE amazon_order_request_gate SET next_allowed_at = @past
+    WHERE workspace_id = @workspaceId AND provider_id = 'amazon-us'
+  `).run({ past: "2000-01-01T00:00:00Z", workspaceId: ctx.workspaceId });
+  await getDatabase().requestCriticalPersist();
+  closeDatabase();
+  assert.equal(await continueOneAmazonOrderImport(), "completed");
+  assert.equal(requests.length, 2);
+  closeDatabase();
+  assert.equal(getAmazonOrderImportStatus(ctx.workspaceId)?.status, "completed");
+  assert.equal(listImportedAmazonOrders(ctx.workspaceId)[0]?.fulfillmentStatus, "SHIPPED");
 });

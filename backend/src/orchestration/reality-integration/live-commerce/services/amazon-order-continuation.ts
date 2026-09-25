@@ -29,6 +29,7 @@ export async function continueOneAmazonOrderImport(): Promise<
     syncType: "orders", actor: "scheduled-order-import",
   });
   if (job.status === "completed") return "completed";
+  if (job.status === "queued") return "pending";
   if (job.errorMessage?.startsWith("AMAZON_ORDERS_PAGINATION_PENDING") ||
       job.errorMessage?.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING")) return "pending";
   await pauseAmazonOrderImport(

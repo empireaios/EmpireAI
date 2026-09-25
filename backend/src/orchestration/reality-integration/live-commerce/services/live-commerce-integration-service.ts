@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from "node:crypto";
+import { ConnectorConnectionRepository } from "../../../../connectors/connection-repository.js";
 
 import { getCredentialVaultRepository } from "../../repositories/sqlite-credential-vault-repository.js";
 import { getConnectorRuntimeState, connectorConnect } from "../../services/connector-runtime.js";
@@ -26,8 +27,20 @@ function resolveMode(): "sandbox" | "production" {
 
 function resolveCredentials(workspaceId: string, providerId: string): Record<string, unknown> {
   const state = getConnectorRuntimeState(workspaceId, providerId);
-  if (!state?.credentialsRef) return {};
-  return getCredentialVaultRepository().resolveSecret(state.credentialsRef) ?? {};
+  // Runtime connector states live in RAM. On a worker restart, recover only an
+  // explicitly connected, workspace-matched persisted reference. A revoked or
+  // expired vault record must never become a live provider credential.
+  if (state && !state.credentialsRef) return {};
+  const persisted = !state ? new ConnectorConnectionRepository()
+    .listByWorkspace(workspaceId).find((connection) =>
+      connection.connectorId === providerId && connection.status === "connected") : null;
+  const ref = state?.credentialsRef ?? persisted?.credentialsRef;
+  if (!ref) return {};
+  const vault = getCredentialVaultRepository();
+  const record = vault.getRecord(ref);
+  if (!record || record.workspaceId !== workspaceId ||
+      record.providerId !== providerId || vault.isExpired(ref)) return {};
+  return vault.resolveSecret(ref) ?? {};
 }
 
 function buildAdapterContext(workspaceId: string, providerId: string): LiveCommerceAdapterContext {
@@ -155,26 +168,42 @@ export async function runLiveCommerceSync(input: {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Sync failed";
-    job = {
-      ...job,
-      status: "failed",
-      errorMessage: message,
-      completedAt: new Date().toISOString(),
-    };
-    getLiveCommerceRepository().createRecoveryRecord({
-      workspaceId: input.workspaceId,
-      providerId: input.providerId,
-      operation: `sync.${input.syncType}`,
-      errorMessage: message,
-    });
-    recordLiveCommerceAudit({
-      workspaceId: input.workspaceId,
-      providerId: input.providerId,
-      action: `sync.${input.syncType}`,
-      actor: input.actor ?? "system",
-      outcome: "failure",
-      metadata: { jobId, error: message },
-    });
+    // A page was durably committed but more pages remain, or a prior request
+    // reservation is still active. Both are expected continuation states.
+    const waitingForOrders = ctx.mode === "production" &&
+      input.providerId === "amazon-us" && input.syncType === "orders" &&
+      (message.startsWith("AMAZON_ORDERS_PAGINATION_PENDING:") ||
+        message.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING:"));
+    if (waitingForOrders) {
+      job = { ...job, status: "queued", errorMessage: null, completedAt: null };
+      recordLiveCommerceAudit({
+        workspaceId: input.workspaceId, providerId: input.providerId,
+        action: "sync.orders", actor: input.actor ?? "system",
+        outcome: "blocked",
+        metadata: { jobId, continuationPending: true },
+      });
+    } else {
+      job = {
+        ...job,
+        status: "failed",
+        errorMessage: message,
+        completedAt: new Date().toISOString(),
+      };
+      getLiveCommerceRepository().createRecoveryRecord({
+        workspaceId: input.workspaceId,
+        providerId: input.providerId,
+        operation: `sync.${input.syncType}`,
+        errorMessage: message,
+      });
+      recordLiveCommerceAudit({
+        workspaceId: input.workspaceId,
+        providerId: input.providerId,
+        action: `sync.${input.syncType}`,
+        actor: input.actor ?? "system",
+        outcome: "failure",
+        metadata: { jobId, error: message },
+      });
+    }
   }
 
   getLiveCommerceRepository().saveSyncJob(job);
