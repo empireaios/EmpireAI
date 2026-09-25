@@ -247,6 +247,8 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
     url: `https://sellingpartnerapi-na.amazon.com/orders/2026-01-01/orders?${params}`,
     method: "GET",
     headers: { "x-amz-access-token": token },
+    timeoutMs: 15_000,
+    maxResponseBytes: 2 * 1024 * 1024,
   });
   if (!response.ok) throw new Error(`Amazon US order search failed: HTTP ${response.status}`);
   if (!response.json || typeof response.json !== "object") {

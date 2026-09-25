@@ -6,7 +6,7 @@ import { afterEach, test } from "node:test";
 import { closeDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
-import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
+import { httpTransport, resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 
 const oldPath = process.env.DATABASE_PATH;
 let directory: string | null = null;
@@ -106,4 +106,18 @@ test("malformed or foreign-marketplace pages cannot be counted or persisted", as
   await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /marketplace or timestamps invalid/);
   assert.equal(calls, 1);
   assert.equal(listImportedAmazonOrders(ctx.workspaceId).length, 0);
+});
+
+test("Amazon HTTP calls enforce bounded provider response size without storing response data", async () => {
+  resetHttpTransportOverride();
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async () => new Response("12345", { status: 200 })) as typeof fetch;
+  try {
+    await assert.rejects(httpTransport({
+      url: "https://sellingpartnerapi-na.amazon.com/orders/2026-01-01/orders",
+      method: "GET", timeoutMs: 1000, maxResponseBytes: 4,
+    }), /response exceeds byte limit/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
