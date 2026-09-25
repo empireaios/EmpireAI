@@ -1,0 +1,109 @@
+import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, test } from "node:test";
+import { resetDatabaseInstance } from "../../brain/database.js";
+import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
+import { listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
+import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
+
+const oldPath = process.env.DATABASE_PATH;
+let directory: string | null = null;
+const ctx = {
+  workspaceId: "ws_order_import_proof", providerId: "amazon-us",
+  mode: "production" as const, credentials: { accessToken: "offline-fake-access" },
+};
+function order(status: string, marketplaceId = "ATVPDKIKX0DER") {
+  return {
+    orderId: "111-2222222-3333333",
+    salesChannel: { marketplaceId },
+    createdTime: "2026-09-20T00:00:00Z",
+    lastUpdatedTime: status === "SHIPPED" ? "2026-09-22T00:00:00Z" : "2026-09-21T00:00:00Z",
+    fulfillment: { fulfillmentStatus: status, fulfilledBy: "MERCHANT" },
+    orderItems: [{
+      orderItemId: "item-1", quantityOrdered: 2,
+      product: { sellerSku: "SKU-1" },
+    }],
+    proceeds: { grandTotal: { amount: "32.15", currencyCode: "USD" } },
+    buyer: { buyerEmail: "must-never-be-persisted@example.test" },
+  };
+}
+function useDiskDatabase() {
+  directory = mkdtempSync(join(tmpdir(), "amazon-orders-proof-"));
+  process.env.DATABASE_PATH = join(directory, "brain.db");
+  resetDatabaseInstance();
+}
+
+afterEach(() => {
+  resetHttpTransportOverride();
+  resetDatabaseInstance();
+  if (directory) rmSync(directory, { recursive: true, force: true });
+  directory = null;
+  if (oldPath === undefined) delete process.env.DATABASE_PATH;
+  else process.env.DATABASE_PATH = oldPath;
+});
+
+test("Amazon US imports a real-form page, preserves cursor across restart and only finishes after final page", async () => {
+  useDiskDatabase();
+  const requests: URL[] = [];
+  setHttpTransportOverride(async request => {
+    const url = new URL(request.url);
+    requests.push(url);
+    assert.equal(request.method, "GET");
+    assert.equal(url.origin, "https://sellingpartnerapi-na.amazon.com");
+    assert.equal(url.pathname, "/orders/2026-01-01/orders");
+    assert.equal(url.searchParams.get("marketplaceIds"), "ATVPDKIKX0DER");
+    assert.equal(url.searchParams.get("maxResultsPerPage"), "100");
+    assert.equal(request.headers?.["x-amz-access-token"], "offline-fake-access");
+    if (requests.length === 1) {
+      assert.equal(url.searchParams.has("paginationToken"), false);
+      return { status: 200, ok: true, json: {
+        orders: [order("UNSHIPPED")], pagination: { nextToken: "next-page" },
+      }, latencyMs: 1 };
+    }
+    assert.equal(url.searchParams.get("paginationToken"), "next-page");
+    const firstRequest = requests[0];
+    assert.ok(firstRequest);
+    assert.equal(url.searchParams.get("lastUpdatedAfter"),
+      firstRequest.searchParams.get("lastUpdatedAfter"));
+    assert.equal(url.searchParams.get("lastUpdatedBefore"),
+      firstRequest.searchParams.get("lastUpdatedBefore"));
+    return { status: 200, ok: true, json: {
+      orders: [order("SHIPPED")],
+    }, latencyMs: 1 };
+  });
+
+  await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /PAGINATION_PENDING/);
+  assert.equal(listImportedAmazonOrders(ctx.workspaceId).length, 1);
+  resetDatabaseInstance(); // Reopen actual saved disk bytes, not the in-memory rows.
+  const receipt = await amazonUsSpApiAdapter.syncOrders(ctx);
+  assert.equal(receipt.liveApiVerified, true);
+  assert.equal(receipt.durableReadbackVerified, true);
+  assert.equal(receipt.itemsProcessed, 2);
+  assert.equal(requests.length, 2);
+  resetDatabaseInstance();
+  const imported = listImportedAmazonOrders(ctx.workspaceId);
+  assert.equal(imported.length, 1); // Idempotent upsert of the same provider ID.
+  const importedOrder = imported[0];
+  assert.ok(importedOrder);
+  assert.equal(importedOrder.fulfillmentStatus, "SHIPPED");
+  assert.equal(importedOrder.grandTotalCents, 3215);
+  assert.equal(importedOrder.orderItems[0]?.sellerSku, "SKU-1");
+  assert.doesNotMatch(JSON.stringify(imported), /must-never-be-persisted/);
+});
+
+test("malformed or foreign-marketplace pages cannot be counted or persisted", async () => {
+  process.env.DATABASE_PATH = ":memory:amazon-order-rejection";
+  resetDatabaseInstance();
+  let calls = 0;
+  setHttpTransportOverride(async () => {
+    calls++;
+    return { status: 200, ok: true, json: {
+      orders: [order("UNSHIPPED", "A19VAU5U5O7RUS")],
+    }, latencyMs: 1 };
+  });
+  await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /marketplace or timestamps invalid/);
+  assert.equal(calls, 1);
+  assert.equal(listImportedAmazonOrders(ctx.workspaceId).length, 0);
+});

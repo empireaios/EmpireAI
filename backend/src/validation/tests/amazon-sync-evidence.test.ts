@@ -9,7 +9,7 @@ import { resetDatabaseInstance } from "../../brain/database.js";
 
 afterEach(() => { resetHttpTransportOverride(); resetLiveCommerceRepository(); resetDatabaseInstance(); });
 
-test("Amazon production syncs never invent processed orders, inventory, prices or catalog records", async () => {
+test("unsupported production syncs and missing order credentials never invent processed records", async () => {
   let calls = 0;
   setHttpTransportOverride(async () => {
     calls++;
@@ -21,10 +21,12 @@ test("Amazon production syncs never invent processed orders, inventory, prices o
     ["catalog", amazonUsSpApiAdapter.syncCatalog],
     ["inventory", amazonUsSpApiAdapter.syncInventory],
     ["pricing", amazonUsSpApiAdapter.syncPricing],
-    ["orders", amazonUsSpApiAdapter.syncOrders],
   ] as const) {
     await assert.rejects(operation(ctx), new RegExp(`AMAZON_${name.toUpperCase()}_SYNC_UNIMPLEMENTED`));
   }
+  await assert.rejects(amazonUsSpApiAdapter.syncOrders({
+    ...ctx, credentials: {},
+  }), /access token required/);
   assert.equal(calls, 0);
   const sandbox = await amazonUsSpApiAdapter.syncOrders({ ...ctx, mode: "sandbox" });
   assert.equal(sandbox.liveApiVerified, false);

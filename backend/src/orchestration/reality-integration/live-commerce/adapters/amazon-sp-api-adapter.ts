@@ -7,6 +7,7 @@ import {
 } from "../amazon-marketplace-profiles.js";
 import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
+import { syncAmazonUsOrders } from "./amazon-order-import.js";
 import type {
   LiveCommerceAdapterContext,
   LiveCommerceProviderAdapter,
@@ -135,7 +136,8 @@ export function createAmazonSpApiAdapter(
 
     async syncOrders(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("orders", ctx, 4);
-      throw new Error("AMAZON_ORDERS_SYNC_UNIMPLEMENTED: no cursor, durable order import or reconciliation");
+      if (registryId === "amazon-us") return syncAmazonUsOrders(ctx);
+      throw new Error("AMAZON_ORDERS_SYNC_UNIMPLEMENTED: marketplace importer unavailable");
     },
 
     verifyWebhookSignature(payload, signature, secret) {
