@@ -27,8 +27,6 @@ export function startMarketplaceOAuth(input: {
     createdAt: new Date().toISOString(),
     completedAt: null,
   };
-  getLiveCommerceRepository().saveOAuthState(state);
-
   const registryId = resolveAmazonMarketplaceRegistryId(input.providerId);
   if (!registryId) {
     throw new Error(`Unsupported Amazon marketplace provider: ${input.providerId}`);
@@ -41,6 +39,7 @@ export function startMarketplaceOAuth(input: {
     scopes: state.scopes,
   });
 
+  getLiveCommerceRepository().saveOAuthState(state);
   return { stateId, authorizationUrl, state };
 }
 

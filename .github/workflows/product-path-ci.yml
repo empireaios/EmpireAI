@@ -175,6 +175,7 @@ jobs:
         run: |
           node --import tsx --test --test-concurrency=1 \
             src/validation/tests/amazon-sync-evidence.test.ts \
+            src/validation/tests/amazon-oauth-evidence.test.ts \
             src/validation/tests/reality-002b.test.ts
       - name: Run fast invariant gate
         working-directory: backend
