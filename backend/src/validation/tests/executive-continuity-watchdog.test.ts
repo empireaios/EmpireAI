@@ -12,6 +12,7 @@ import {
   getExecutiveContinuityHealth,
   startExecutiveContinuityWatchdog,
   stopExecutiveContinuityWatchdogForTesting,
+  requestGracefulContinuityRecovery,
 } from "../../runtime/executive-continuity-watchdog.js";
 
 describe("Executive Continuity Watchdog", () => {
@@ -43,6 +44,17 @@ describe("Executive Continuity Watchdog", () => {
     assert.ok(Array.isArray(health.alerts));
     assert.ok(health.lastHeartbeatAgeMs !== null && health.lastHeartbeatAgeMs >= 0 && health.lastHeartbeatAgeMs < 5_000);
     assert.equal(health.healthy, true);
+  });
+
+  test("high-lag recovery requests graceful shutdown only once and reports non-readiness", () => {
+    let signals = 0;
+    assert.equal(requestGracefulContinuityRecovery(() => { signals++; }), true);
+    assert.equal(requestGracefulContinuityRecovery(() => { signals++; }), false);
+    assert.equal(signals, 1);
+    assert.ok(getExecutiveContinuityHealth().alerts.includes("graceful_recovery_requested"));
+    assert.equal(getExecutiveContinuityHealth().healthy, false);
+    stopExecutiveContinuityWatchdogForTesting();
+    assert.equal(getExecutiveContinuityHealth().alerts.includes("graceful_recovery_requested"), false);
   });
 
   test("clearEventLoopLagAfterKnownBlock drops ghost lag after sync export", () => {

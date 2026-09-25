@@ -66,6 +66,33 @@ let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
 let highLagSinceMs: number | null = null;
 let lastAlertAtMs = 0;
 let startedAtMs: number | null = null;
+let gracefulRecoveryRequested = false;
+let gracefulRecoveryDeadline: ReturnType<typeof setTimeout> | null = null;
+
+/** High-lag polling runs on the Brain thread, so use its installed SIGTERM
+ * shutdown path to save SQL.js writes before the primary respawns the worker.
+ * The off-thread watchdog can still kill a genuinely wedged thread. */
+export function requestGracefulContinuityRecovery(
+  signal: () => void = () => { process.kill(process.pid, "SIGTERM"); },
+): boolean {
+  if (gracefulRecoveryRequested) return false;
+  gracefulRecoveryRequested = true;
+  // An active but non-terminating shutdown cannot suppress recovery forever.
+  gracefulRecoveryDeadline = setTimeout(() => {
+    logger.error("Executive continuity graceful shutdown timed out; durability unverified");
+    process.exit(78);
+  }, Math.max(MAX_FLUSH_GUARD_MS, 600_000) + 30_000);
+  gracefulRecoveryDeadline.unref?.();
+  try {
+    signal();
+    return true;
+  } catch (error) {
+    if (gracefulRecoveryDeadline) clearTimeout(gracefulRecoveryDeadline);
+    gracefulRecoveryDeadline = null;
+    gracefulRecoveryRequested = false;
+    throw error;
+  }
+}
 
 function inBootGrace(): boolean {
   return startedAtMs !== null && Number(monotonicNowMs()) - startedAtMs < BOOT_GRACE_MS;
@@ -155,9 +182,9 @@ function evaluateHighLagExit(): void {
           sustainedMs: sustained,
           exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
         },
-        "Executive continuity watchdog — sustained extreme lag; exiting for Railway restart",
+        "Executive continuity watchdog — sustained extreme lag; requesting graceful shutdown",
       );
-      process.exit(78);
+      requestGracefulContinuityRecovery();
     }
   } else {
     highLagSinceMs = null;
@@ -249,6 +276,9 @@ export function stopExecutiveContinuityWatchdogForTesting(): void {
   flushGuardSinceMs = null;
   lastObservedFlushCount = 0;
   postFlushCooldownUntilMs = 0;
+  if (gracefulRecoveryDeadline) clearTimeout(gracefulRecoveryDeadline);
+  gracefulRecoveryDeadline = null;
+  gracefulRecoveryRequested = false;
 }
 
 export function getExecutiveContinuityHealth(): ContinuityHealth {
@@ -269,6 +299,7 @@ export function getExecutiveContinuityHealth(): ContinuityHealth {
     alerts.push(`sqlite_flush_duration_ms=${sqlite.lastFlushDurationMs}`);
   }
   if (sqlite.pending) alerts.push("sqlite_persist_pending");
+  if (gracefulRecoveryRequested) alerts.push("graceful_recovery_requested");
   if (age !== null && age >= STALL_EXIT_MS / 2) {
     alerts.push(`heartbeat_age_ms=${age}`);
   }
