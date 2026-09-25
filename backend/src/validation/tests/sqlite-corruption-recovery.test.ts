@@ -48,6 +48,22 @@ describe("SQLite corruption quarantine recovery", () => {
     assert.equal(fs.existsSync(target), true);
   });
 
+  test("production refuses a corrupt database without moving or replacing its original bytes", () => {
+    const target = path.join(tmpRoot, "production-corrupt.db");
+    const original = Buffer.from("definitely-not-sqlite-business-state");
+    fs.writeFileSync(target, original);
+    const prior = process.env.NODE_ENV;
+    try {
+      process.env.NODE_ENV = "production";
+      assert.throws(() => new EmpireDatabase(target), /Production SQLite open refused; original file retained/);
+      assert.equal(getLastSqliteOpenRecovery().recovered, false);
+      assert.deepEqual(fs.readFileSync(target), original);
+      assert.deepEqual(fs.readdirSync(tmpRoot).filter(name => name.startsWith("production-corrupt.db")), ["production-corrupt.db"]);
+    } finally {
+      if (prior === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = prior;
+    }
+  });
+
   test("EmpireDatabase opens valid empty-created file without quarantine", () => {
     const target = path.join(tmpRoot, "fresh-ok.db");
     const first = new EmpireDatabase(target);

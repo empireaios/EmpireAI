@@ -208,6 +208,12 @@ export class EmpireDatabase {
         this.db = tryOpenExistingDatabase(filePath);
       } catch (error) {
         const reason = error instanceof Error ? error.message : String(error);
+        // A production startup must not replace a damaged business database with
+        // an empty one: the service could look healthy while durable state is missing.
+        // Keep the original file in place for an explicit, reviewed restore.
+        if (process.env.NODE_ENV === "production") {
+          throw new Error(`Production SQLite open refused; original file retained: ${reason}`, { cause: error });
+        }
         const quarantinedPath = quarantineSqliteFile(filePath, reason);
         lastOpenRecovery = {
           recovered: true,
