@@ -1,5 +1,6 @@
 import { env } from "../../config/env.js";
 import { quoteBoundedLLMCall, reserveBoundedLLMCall } from "./llm-spend-reservation.js";
+import { assertPaidAutonomousAllowed } from "../../orchestration/pillow-commissioning/cost-guard.js";
 import type {
   LLMCompletionRequest,
   LLMCompletionResponse,
@@ -43,6 +44,10 @@ export class LLMRouter {
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
     const timeoutMs = parseLLMTimeout(process.env.LLM_REQUEST_TIMEOUT_MS);
     request.signal?.throwIfAborted();
+    // Unknown owner limits and engineering mode stop before provider resolution.
+    // The priced upper-bound gate below performs the final atomic admission.
+    const preliminary = assertPaidAutonomousAllowed(request.workspaceId, 0);
+    if (!preliminary.allowed) throw new Error(`Cost Guard HARD STOP: ${preliminary.reason}`);
     const provider = this.resolve(request.provider);
     const quote = quoteBoundedLLMCall(request, provider.name);
     await reserveBoundedLLMCall({ request, provider: provider.name, quote });

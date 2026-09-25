@@ -192,9 +192,18 @@ describe("paid autonomous cost authorization", () => {
     assert.equal(getCostGuardLimits(WS).dailyAiBudgetUsd, 10);
   });
 
-  it("router aborts its actual provider invocation on timeout without retry", async () => {
+  it("router aborts its actual priced provider invocation on timeout and retains reservation", async () => {
     authorizePaidWork();
+    setCostGuardLimits(WS, { providerModelBudgetUsd: 10 }, "test-owner");
     const previous = process.env.LLM_REQUEST_TIMEOUT_MS;
+    const previousPrices = process.env.LLM_AUTHORIZED_PRICING_JSON;
+    const now = Date.now();
+    process.env.LLM_AUTHORIZED_PRICING_JSON = JSON.stringify([{
+      provider: "openai", model: "offline-timeout-model",
+      inputUsdPerMillion: 1, outputUsdPerMillion: 1, approvedBy: "founder",
+      approvedAt: new Date(now - 60_000).toISOString(),
+      expiresAt: new Date(now + 60 * 60_000).toISOString(),
+    }]);
     process.env.LLM_REQUEST_TIMEOUT_MS = "15";
     let calls = 0, aborted = false;
     const router = new LLMRouter();
@@ -205,9 +214,19 @@ describe("paid autonomous cost authorization", () => {
       }),
     }));
     try {
-      await assert.rejects(router.complete({ workspaceId: WS, correlationId: "offline-timeout", messages: [] }), /timed out/);
+      await assert.rejects(router.complete({
+        workspaceId: WS, correlationId: "offline-timeout",
+        model: "offline-timeout-model", maxTokens: 100,
+        messages: [{ role: "user", content: "offline timeout" }],
+      }), /timed out/);
       assert.equal(calls, 1); assert.equal(aborted, true);
-    } finally { if (previous === undefined) delete process.env.LLM_REQUEST_TIMEOUT_MS; else process.env.LLM_REQUEST_TIMEOUT_MS = previous; }
+      assert.ok(buildCostGuardStatus(WS).spend.dailyAi.committedUsd > 0);
+    } finally {
+      if (previous === undefined) delete process.env.LLM_REQUEST_TIMEOUT_MS;
+      else process.env.LLM_REQUEST_TIMEOUT_MS = previous;
+      if (previousPrices === undefined) delete process.env.LLM_AUTHORIZED_PRICING_JSON;
+      else process.env.LLM_AUTHORIZED_PRICING_JSON = previousPrices;
+    }
   });
 
   it("invalid router timeout fails before provider resolution", async () => {
