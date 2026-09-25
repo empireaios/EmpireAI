@@ -3,6 +3,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { getCredentialVaultRepository } from "../../repositories/sqlite-credential-vault-repository.js";
 import { getConnectorRuntimeState, connectorConnect } from "../../services/connector-runtime.js";
 import { getLiveCommerceAdapter, isLiveCommerceProvider } from "../adapters/registry.js";
+import { resolveAmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import {
   isLiveCommerceIntegrationEnabled,
   resolveLiveCommerceIntegrationMode,
@@ -215,7 +216,10 @@ export function processLiveCommerceWebhook(input: {
   secret: string;
 }): LiveCommerceWebhookEvent {
   const adapter = getLiveCommerceAdapter(input.providerId);
-  const signatureValid = adapter?.verifyWebhookSignature(input.payload, input.signature, input.secret) ?? false;
+  const unsupportedAmazonProduction =
+    resolveMode() === "production" && resolveAmazonMarketplaceRegistryId(input.providerId) !== null;
+  const signatureValid = !unsupportedAmazonProduction &&
+    (adapter?.verifyWebhookSignature(input.payload, input.signature, input.secret) ?? false);
   const event: LiveCommerceWebhookEvent = {
     eventId: randomUUID(),
     workspaceId: input.workspaceId,
@@ -234,7 +238,9 @@ export function processLiveCommerceWebhook(input: {
       workspaceId: input.workspaceId,
       providerId: input.providerId,
       operation: `webhook.${input.topic}`,
-      errorMessage: "Invalid webhook signature",
+      errorMessage: unsupportedAmazonProduction
+        ? "Amazon production notifications require verified SQS/EventBridge transport and durable order import"
+        : "Invalid webhook signature",
     });
   }
 

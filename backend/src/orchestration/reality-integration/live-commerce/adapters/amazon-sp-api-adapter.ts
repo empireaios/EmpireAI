@@ -139,7 +139,9 @@ export function createAmazonSpApiAdapter(
     },
 
     verifyWebhookSignature(payload, signature, secret) {
-      if (!secret || !signature) return false;
+      // Amazon notifications arrive through an authorized SQS/EventBridge
+      // subscription. A caller-supplied HMAC secret is not provider evidence.
+      if (isProductionLiveCommerce() || !secret || !signature) return false;
       const digest = createHmac("sha256", secret).update(payload).digest("hex");
       try {
         return timingSafeEqual(Buffer.from(digest), Buffer.from(signature));

@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
+import { createHmac } from "node:crypto";
 import { afterEach, test } from "node:test";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { setHttpTransportOverride, resetHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { getLiveCommerceRepository, resetLiveCommerceRepository } from "../../orchestration/reality-integration/live-commerce/repositories/sqlite-live-commerce-repository.js";
-import { assessLiveCommerceGoLive } from "../../orchestration/reality-integration/live-commerce/services/live-commerce-integration-service.js";
+import { assessLiveCommerceGoLive, processLiveCommerceWebhook } from "../../orchestration/reality-integration/live-commerce/services/live-commerce-integration-service.js";
 import { resetDatabaseInstance } from "../../brain/database.js";
 
 afterEach(() => { resetHttpTransportOverride(); resetLiveCommerceRepository(); resetDatabaseInstance(); });
@@ -50,5 +51,36 @@ test("historic completed fixture jobs cannot unlock production commerce readines
     resetDatabaseInstance();
     if (prior === undefined) delete process.env.DATABASE_PATH;
     else process.env.DATABASE_PATH = prior;
+  }
+});
+
+test("production Amazon notifications cannot be manufactured with caller-supplied HMAC secrets", () => {
+  const priorMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
+  const priorPath = process.env.DATABASE_PATH;
+  process.env.LIVE_COMMERCE_INTEGRATION_MODE = "production";
+  process.env.DATABASE_PATH = ":memory:amazon-notifications";
+  try {
+    resetDatabaseInstance();
+    const payload = JSON.stringify({ orderId: "invented" });
+    const secret = "synthetic-secret";
+    const signature = createHmac("sha256", secret).update(payload).digest("hex");
+    assert.equal(amazonUsSpApiAdapter.verifyWebhookSignature(payload, signature, secret), false);
+    const result = processLiveCommerceWebhook({
+      workspaceId: "ws-amazon-sync", providerId: "amazon-us", topic: "ORDER_CHANGE",
+      payload, secret, signature,
+    });
+    assert.equal(result.status, "dead_letter");
+    assert.equal(result.signatureValid, false);
+    assert.equal(result.processedAt, null);
+    const pending = getLiveCommerceRepository().listPendingRecoveries("ws-amazon-sync");
+    assert.equal(pending.length, 1);
+    assert.match(pending[0].errorMessage, /verified SQS\/EventBridge transport/);
+  } finally {
+    resetLiveCommerceRepository();
+    resetDatabaseInstance();
+    if (priorMode === undefined) delete process.env.LIVE_COMMERCE_INTEGRATION_MODE;
+    else process.env.LIVE_COMMERCE_INTEGRATION_MODE = priorMode;
+    if (priorPath === undefined) delete process.env.DATABASE_PATH;
+    else process.env.DATABASE_PATH = priorPath;
   }
 });
