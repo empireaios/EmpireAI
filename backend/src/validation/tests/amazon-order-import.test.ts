@@ -5,10 +5,12 @@ import { join } from "node:path";
 import { afterEach, test } from "node:test";
 import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
-import { listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
+import { getAmazonOrderImportStatus, listImportedAmazonOrders } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-order-import.js";
 import { httpTransport, resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
+import { continueOneAmazonOrderImport } from "../../orchestration/reality-integration/live-commerce/services/amazon-order-continuation.js";
 
 const oldPath = process.env.DATABASE_PATH;
+const oldMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
 let directory: string | null = null;
 const ctx = {
   workspaceId: "ws_order_import_proof", providerId: "amazon-us",
@@ -42,6 +44,8 @@ afterEach(() => {
   directory = null;
   if (oldPath === undefined) delete process.env.DATABASE_PATH;
   else process.env.DATABASE_PATH = oldPath;
+  if (oldMode === undefined) delete process.env.LIVE_COMMERCE_INTEGRATION_MODE;
+  else process.env.LIVE_COMMERCE_INTEGRATION_MODE = oldMode;
 });
 
 test("Amazon US imports a real-form page, preserves cursor across restart and only finishes after final page", async () => {
@@ -128,4 +132,34 @@ test("Amazon HTTP calls enforce bounded provider response size without storing r
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("saved partial Amazon cursor pauses unattended work on missing credential and exposes no token", async () => {
+  useDiskDatabase();
+  process.env.LIVE_COMMERCE_INTEGRATION_MODE = "production";
+  let providerRequests = 0;
+  setHttpTransportOverride(async () => {
+    providerRequests++;
+    return { status: 200, ok: true, json: {
+      orders: [order("UNSHIPPED")], pagination: { nextToken: "private-page-token" },
+    }, latencyMs: 1 };
+  });
+  await assert.rejects(amazonUsSpApiAdapter.syncOrders(ctx), /PAGINATION_PENDING/);
+  assert.equal(getAmazonOrderImportStatus(ctx.workspaceId)?.status, "pending");
+  closeDatabase();
+  assert.equal(await continueOneAmazonOrderImport(), "waiting");
+  getDatabase().prepare(`
+    UPDATE amazon_order_request_gate SET next_allowed_at = @past
+    WHERE workspace_id = @workspaceId AND provider_id = 'amazon-us'
+  `).run({ past: "2000-01-01T00:00:00Z", workspaceId: ctx.workspaceId });
+  await getDatabase().requestCriticalPersist();
+  closeDatabase();
+  assert.equal(await continueOneAmazonOrderImport(), "paused");
+  assert.equal(providerRequests, 1); // Missing vault credential; no second provider call.
+  closeDatabase();
+  const state = getAmazonOrderImportStatus(ctx.workspaceId);
+  assert.equal(state?.status, "paused");
+  assert.equal(state?.reason, "PROVIDER_FAILURE");
+  assert.doesNotMatch(JSON.stringify(state), /private-page-token/);
+  assert.equal(await continueOneAmazonOrderImport(), "idle");
 });

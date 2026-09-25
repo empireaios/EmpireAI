@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import type { AuditLogger } from "../../../../brain/audit/audit-logger.js";
 import type { createAuthMiddleware } from "../../../../auth/middleware.js";
-import { listImportedAmazonOrders } from "../adapters/amazon-order-import.js";
+import { getAmazonOrderImportStatus, listImportedAmazonOrders } from "../adapters/amazon-order-import.js";
 import { resolveLiveCommerceIntegrationMode } from "../config.js";
 import { runLiveCommerceSync } from "../services/live-commerce-integration-service.js";
 
@@ -21,6 +21,7 @@ export async function registerAmazonOrderReadRoutes(
     return reply.send({
       providerId: "amazon-us",
       orders: listImportedAmazonOrders(user.workspaceId, "amazon-us", 100),
+      importStatus: getAmazonOrderImportStatus(user.workspaceId, "amazon-us"),
       // These are sanitized provider snapshots, not a fulfilment or profit ledger.
       commerceEffect: "none",
     });

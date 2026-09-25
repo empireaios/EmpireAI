@@ -58,6 +58,14 @@ function ensureTables(): void {
       next_allowed_at TEXT NOT NULL,
       PRIMARY KEY (workspace_id, provider_id)
     );
+    CREATE TABLE IF NOT EXISTS amazon_order_import_continuations (
+      workspace_id TEXT NOT NULL,
+      provider_id TEXT NOT NULL,
+      status TEXT NOT NULL,
+      reason TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (workspace_id, provider_id)
+    );
   `);
 }
 
@@ -202,6 +210,18 @@ function persistPage(ctx: LiveCommerceAdapterContext, snapshots: OrderSnapshot[]
       since: cursor.since, until: cursor.until, nextToken: cursor.nextToken,
       seen: cursor.seen, startedAt: cursor.startedAt, completedAt: cursor.lastCompletedAt,
     });
+    db.prepare(`
+      INSERT INTO amazon_order_import_continuations
+        (workspace_id, provider_id, status, reason, updated_at)
+      VALUES (@workspaceId, @providerId, @status, '', @updatedAt)
+      ON CONFLICT(workspace_id, provider_id) DO UPDATE SET
+        status = excluded.status, reason = excluded.reason,
+        updated_at = excluded.updated_at
+    `).run({
+      workspaceId: ctx.workspaceId, providerId: ctx.providerId,
+      status: cursor.nextToken ? "pending" : "completed",
+      updatedAt: new Date().toISOString(),
+    });
     db.exec("RELEASE SAVEPOINT amazon_order_page");
   } catch (error) {
     db.exec("ROLLBACK TO SAVEPOINT amazon_order_page");
@@ -232,6 +252,74 @@ export function listImportedAmazonOrders(
     ORDER BY updated_at DESC LIMIT @limit
   `).all({ workspaceId, providerId, limit }) as Array<{ record_json: string }>;
   return rows.map(row => JSON.parse(row.record_json) as OrderSnapshot);
+}
+
+type ImportStatus = {
+  status: string;
+  reason: string;
+  updatedAt: string;
+  lastCompletedAt: string | null;
+  nextAllowedAt: string | null;
+  pagesPending: boolean;
+};
+
+/** Safe owner-visible state: no pagination token or customer data. */
+export function getAmazonOrderImportStatus(workspaceId: string, providerId = "amazon-us"): ImportStatus | null {
+  ensureTables();
+  const row = getDatabase().prepare(`
+    SELECT c.status, c.reason, c.updated_at, u.completed_at, u.next_token, g.next_allowed_at
+    FROM amazon_order_import_continuations c
+    LEFT JOIN amazon_order_import_cursors u
+      ON c.workspace_id = u.workspace_id AND c.provider_id = u.provider_id
+    LEFT JOIN amazon_order_request_gate g
+      ON c.workspace_id = g.workspace_id AND c.provider_id = g.provider_id
+    WHERE c.workspace_id = @workspaceId AND c.provider_id = @providerId
+  `).get({ workspaceId, providerId }) as {
+    status: string; reason: string; updated_at: string;
+    completed_at: string | null; next_token: string | null;
+    next_allowed_at: string | null;
+  } | undefined;
+  return row ? {
+    status: row.status, reason: row.reason, updatedAt: row.updated_at,
+    lastCompletedAt: row.completed_at, nextAllowedAt: row.next_allowed_at,
+    pagesPending: Boolean(row.next_token),
+  } : null;
+}
+
+export function nextPendingAmazonOrderImport(): {
+  workspaceId: string; providerId: string; nextAllowedAt: string | null; updatedAt: string;
+} | null {
+  ensureTables();
+  const row = getDatabase().prepare(`
+    SELECT c.workspace_id AS workspaceId, c.provider_id AS providerId,
+      g.next_allowed_at AS nextAllowedAt, c.updated_at AS updatedAt
+    FROM amazon_order_import_continuations c
+    JOIN amazon_order_import_cursors u
+      ON c.workspace_id = u.workspace_id AND c.provider_id = u.provider_id
+    LEFT JOIN amazon_order_request_gate g
+      ON c.workspace_id = g.workspace_id AND c.provider_id = g.provider_id
+    WHERE c.status = 'pending' AND u.next_token <> ''
+    ORDER BY c.updated_at ASC LIMIT 1
+  `).get() as {
+    workspaceId: string; providerId: string; nextAllowedAt: string | null; updatedAt: string;
+  } | undefined;
+  return row ?? null;
+}
+
+export async function pauseAmazonOrderImport(
+  workspaceId: string, providerId: string, reason: string, expectedUpdatedAt: string,
+): Promise<void> {
+  ensureTables();
+  if (!["PROVIDER_FAILURE", "RATE_GATE_CORRUPT"].includes(reason)) {
+    throw new Error("Amazon order pause reason invalid");
+  }
+  getDatabase().prepare(`
+    UPDATE amazon_order_import_continuations
+    SET status = 'paused', reason = @reason, updated_at = @updatedAt
+    WHERE workspace_id = @workspaceId AND provider_id = @providerId
+      AND status = 'pending' AND updated_at = @expectedUpdatedAt
+  `).run({ workspaceId, providerId, reason, expectedUpdatedAt, updatedAt: new Date().toISOString() });
+  await getDatabase().requestCriticalPersist();
 }
 
 export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {

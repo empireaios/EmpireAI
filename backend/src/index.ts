@@ -32,6 +32,7 @@ async function main() {
   let finishStartup!: () => void;
   const startupFinished = new Promise<void>((resolve) => { finishStartup = resolve; });
   let shutdownAction: (() => Promise<void>) | null = null;
+  let stopAmazonOrderImport: (() => Promise<void>) | null = null;
   let shuttingDown = false;
   const handleShutdown = async () => {
     if (shuttingDown) return;
@@ -67,7 +68,10 @@ async function main() {
     earlyListen: productionEarlyListen,
   });
 
-  shutdownAction = shutdown;
+  shutdownAction = async () => {
+    await stopAmazonOrderImport?.();
+    await shutdown();
+  };
   finishStartup();
   if (shuttingDown) return;
 
@@ -88,6 +92,15 @@ async function main() {
     "./runtime/executive-continuity-watchdog.js"
   );
   startExecutiveContinuityWatchdog();
+
+  // Production early-listen deliberately skips broad workers. This narrow
+  // read-only continuation resumes only an already owner-started cursor.
+  if (productionEarlyListen && !shuttingDown) {
+    const { startAmazonOrderImportContinuation } = await import(
+      "./orchestration/reality-integration/live-commerce/services/amazon-order-continuation.js"
+    );
+    if (!shuttingDown) stopAmazonOrderImport = startAmazonOrderImportContinuation();
+  }
 
   if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {
     const deferMs = Number(process.env.EMPIRE_EXTENSION_ROUTE_DEFER_MS ?? 10 * 60 * 1000);
