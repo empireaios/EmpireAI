@@ -116,6 +116,9 @@ const MAX_FLUSH_GUARD_MS = Number(
 );
 
 function evaluateHighLagExit(): void {
+  // The shutdown is already in progress; avoid emitting repeated errors while
+  // its SQL.js persistence runs. The off-thread stall watchdog remains active.
+  if (gracefulRecoveryRequested) return;
   if (inBootGrace()) {
     // Still beat so worker sees activity after grace ends.
     return;
