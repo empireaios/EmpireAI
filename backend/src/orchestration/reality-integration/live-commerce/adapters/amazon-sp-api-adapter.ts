@@ -14,15 +14,9 @@ import type {
   LiveCommerceValidationResult,
 } from "./types.js";
 
-const AMAZON_CAPABILITIES = [
-  "catalog_sync",
-  "inventory",
-  "pricing",
-  "orders",
-  "webhooks",
-  "account_validation",
-  "listing_readiness",
-];
+// A successful Sellers API ping establishes account connectivity only. It is
+// neither an order import nor evidence that inventory/pricing/listing flows work.
+const AMAZON_CAPABILITIES = ["account_validation"];
 
 function createAmazonAdapterHelpers(registryId: AmazonMarketplaceRegistryId) {
   const profile = getAmazonMarketplaceProfile(registryId);
@@ -70,14 +64,14 @@ function createAmazonAdapterHelpers(registryId: AmazonMarketplaceRegistryId) {
 
   function buildSyncResult(
     syncType: LiveCommerceSyncResult["syncType"],
-    ctx: LiveCommerceAdapterContext,
+    _ctx: LiveCommerceAdapterContext,
     itemsProcessed: number,
   ): LiveCommerceSyncResult {
     return {
       syncType,
       itemsProcessed,
       itemsFailed: 0,
-      liveApiVerified: ctx.mode === "production" || hasRequiredCredentials(ctx.credentials, ctx.mode),
+      liveApiVerified: false, // fixture counts are never a live API receipt
     };
   }
 
@@ -108,8 +102,9 @@ export function createAmazonSpApiAdapter(
 
       let liveApiVerified = false;
       if (blockers.length === 0) {
-        liveApiVerified = await helpers.pingMarketplace(ctx);
-        if (!liveApiVerified) {
+        const connected = await helpers.pingMarketplace(ctx);
+        liveApiVerified = ctx.mode === "production" && connected;
+        if (!connected) {
           blockers.push(`Amazon SP-API marketplace validation failed for ${registryId}`);
         }
       }
@@ -125,72 +120,22 @@ export function createAmazonSpApiAdapter(
 
     async syncCatalog(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("catalog", ctx, 12);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/catalog/2022-04-01/items`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      const items = Array.isArray((response.json as { items?: unknown[] })?.items)
-        ? (response.json as { items: unknown[] }).items.length
-        : response.ok
-          ? 1
-          : 0;
-      return {
-        syncType: "catalog",
-        itemsProcessed: items,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      throw new Error("AMAZON_CATALOG_SYNC_UNIMPLEMENTED: no persisted catalog receipt");
     },
 
     async syncInventory(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("inventory", ctx, 8);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/fba/inventory/v1/summaries`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      return {
-        syncType: "inventory",
-        itemsProcessed: response.ok ? 8 : 0,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      throw new Error("AMAZON_INVENTORY_SYNC_UNIMPLEMENTED: FBA summaries are not seller-fulfilled stock evidence");
     },
 
     async syncPricing(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("pricing", ctx, 6);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/products/pricing/v0/price`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      return {
-        syncType: "pricing",
-        itemsProcessed: response.ok ? 6 : 0,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      throw new Error("AMAZON_PRICING_SYNC_UNIMPLEMENTED: no seller SKU or persisted price receipt");
     },
 
     async syncOrders(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("orders", ctx, 4);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/orders/v0/orders`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      const count = Array.isArray((response.json as { orders?: unknown[] })?.orders)
-        ? (response.json as { orders: unknown[] }).orders.length
-        : response.ok
-          ? 1
-          : 0;
-      return {
-        syncType: "orders",
-        itemsProcessed: count,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      throw new Error("AMAZON_ORDERS_SYNC_UNIMPLEMENTED: no cursor, durable order import or reconciliation");
     },
 
     verifyWebhookSignature(payload, signature, secret) {

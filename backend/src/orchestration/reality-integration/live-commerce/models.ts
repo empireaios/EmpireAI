@@ -28,6 +28,8 @@ export const liveCommerceSyncJobSchema = z.object({
   status: z.enum(["queued", "running", "completed", "failed", "recovered"]),
   itemsProcessed: z.number().int(),
   itemsFailed: z.number().int(),
+  // Legacy jobs have no receipt field and must receive zero go-live credit.
+  durableReadbackVerified: z.boolean().optional(),
   errorMessage: z.string().nullable(),
   mode: z.enum(["sandbox", "production"]),
   startedAt: z.string().datetime({ offset: true }),

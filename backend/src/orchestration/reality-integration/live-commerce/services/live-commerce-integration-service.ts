@@ -111,6 +111,7 @@ export async function runLiveCommerceSync(input: {
     status: "running",
     itemsProcessed: 0,
     itemsFailed: 0,
+    durableReadbackVerified: false,
     errorMessage: null,
     mode: ctx.mode,
     startedAt,
@@ -127,11 +128,20 @@ export async function runLiveCommerceSync(input: {
     }[input.syncType];
 
     const result = await syncFn(ctx);
+    if (!Number.isSafeInteger(result.itemsProcessed) || result.itemsProcessed < 0 ||
+        !Number.isSafeInteger(result.itemsFailed) || result.itemsFailed < 0) {
+      throw new Error("Invalid live commerce sync counts");
+    }
+    if (ctx.mode === "production" &&
+        (!result.liveApiVerified || result.itemsFailed !== 0 || result.durableReadbackVerified !== true)) {
+      throw new Error("Production sync lacks verified provider receipt and durable read-back");
+    }
     job = {
       ...job,
       status: "completed",
       itemsProcessed: result.itemsProcessed,
       itemsFailed: result.itemsFailed,
+      durableReadbackVerified: result.durableReadbackVerified === true && ctx.mode === "production",
       completedAt: new Date().toISOString(),
     };
     recordLiveCommerceAudit({
@@ -321,9 +331,16 @@ export function assessLiveCommerceGoLive(workspaceId: string): {
   }
 
   const syncJobs = getLiveCommerceRepository().listSyncJobs(workspaceId);
-  const completedSyncs = syncJobs.filter((j) => j.status === "completed").length;
-  if (completedSyncs >= 4) score += 20;
-  else blockers.push("Full sync cycle incomplete (catalog, inventory, pricing, orders)");
+  // Historic fixture jobs and production HTTP 200s are not durable imports.
+  // Require four distinct, current verified Amazon US sync receipts.
+  const recent = Date.now() - 24 * 60 * 60 * 1000;
+  const acceptedTypes = new Set(syncJobs.filter((j) =>
+    j.providerId === "amazon-us" && j.mode === "production" &&
+    j.status === "completed" && j.durableReadbackVerified === true &&
+    j.itemsFailed === 0 && Boolean(j.completedAt) && Date.parse(j.completedAt!) >= recent,
+  ).map((j) => j.syncType));
+  if (["catalog", "inventory", "pricing", "orders"].every((type) => acceptedTypes.has(type as LiveCommerceSyncType))) score += 20;
+  else blockers.push("Full verified Amazon US sync cycle incomplete (catalog, inventory, pricing, orders)");
 
   score = Math.min(100, score);
   return {
@@ -362,7 +379,8 @@ export function buildLiveCommerceIntegrationDashboard(
   });
 
   const countByType = (type: LiveCommerceSyncType) =>
-    syncJobs.filter((j) => j.syncType === type && j.status === "completed").length;
+    syncJobs.filter((j) => j.syncType === type && j.mode === "production" &&
+      j.status === "completed" && j.durableReadbackVerified === true).length;
 
   let securityReviewsPassed = 0;
   for (const id of [...LIVE_COMMERCE_PROVIDER_IDS.marketplaces, ...LIVE_COMMERCE_PROVIDER_IDS.suppliers]) {

@@ -1,5 +1,7 @@
 # EmpireAI / Pillow canonical mission state
 
+> **Current mission handoff:** [docs/mission-state/CURRENT_HANDOFF.md](docs/mission-state/CURRENT_HANDOFF.md) and [machine-readable state](docs/mission-state/CURRENT_HANDOFF.json). This document retains earlier chronological checkpoints; read the active handoff first.
+
 ## Latest checkpoint — 2026-09-23 15:33 UTC
 
 Supersedes older current instructions; preserve chronology. Mission NOT_BORN, commerce LOCKED, production unchanged. PR5 head da930baf8c32314579fb7ea0d1f5d2e01b3a2bf4 contains independently reviewed expiry/cancellation repairs plus preserved recovery3 failures. CI35881857421 / 35881857662 / 35881857695 running. Actual Linux Redis Docker image job107252038307 PASSED all four runtime cases: authenticated AOF, external signal shutdown, refused expiry renewal, same-scope AOF reopen and automatic shutdown before fixed expiry; temporary resources cleaned. Tested merge c55c11d8dc9a55d61742c29bf51e1a2d861b459f. See REDIS_IMAGE_CI_2026-09-23.json. This is CI Docker proof, not Railway recovery or power-loss certification.

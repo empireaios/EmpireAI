@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-25T01:58:00Z",
+  "updatedAt": "2026-09-25T02:12:00Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,7 +19,7 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "b2e213338a92f2d33c367e6293df475a9a289681",
+    "lastVerifiedIntegrationHead": "d6b15fbced2551b41f7456a512af07e1670cc9eb",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft; unmerged"
   },
@@ -44,9 +44,9 @@
   },
   "verified": {
     "exactHeadCI": [
-      "https://github.com/empireaios/EmpireAI/actions/runs/36080476923",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36080476778",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36080476699"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36084820226",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36084820228",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36084820274"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -55,7 +55,11 @@
       "at": "2026-09-25T01:58:00Z"
     },
     "providerCallsInThisRecovery": 0,
-    "realCommerceActionsInThisRecovery": 0
+    "realCommerceActionsInThisRecovery": 0,
+    "engineeringRepairs": [
+      "Railway corrupt SQLite open refuses even if NODE_ENV missing/misconfigured, tested by exact-head CI",
+      "AI charges now count in monthly operating budget; malformed stored spend halts paid dispatch, exact-head CI"
+    ]
   },
   "failedAttempts": [
     "Recovery2 before 35/35, after 37/38; authority_result_preserved failed; no accepted pair.",
@@ -73,14 +77,16 @@
   },
   "blockers": [
     "Old production may have unsaved SQL.js RAM state; no validated stopped-writer and multi-store backup/cutover.",
-    "Candidate safety repairs and new Railway marker guard not deployed; exact new head CI pending.",
+    "Latest Amazon sync truthfulness repair needs exact-head CI; candidate not deployed.",
     "Ordinary LLM router has rough $0.02 preflight, no durable reservation, estimated post-call spend and swallowed accounting errors; provider enforcement unproved.",
-    "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved."
+    "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved.",
+    "Amazon live commerce sync previously invented processed inventory/prices/orders from HTTP success without persistence. Candidate blocks unsupported production sync and requires verified durable read-back; actual importer still missing."
   ],
   "nextExecutableActions": [
-    "Run exact-head CI for Railway SQLite guard and correct any failures.",
-    "Engineer fail-closed bounded paid-model reservation and verified pricing in ordinary LLM path, without remote spend.",
-    "Establish and verify safe preservation/cutover for old production before promotion.",
-    "Run fresh, independently evidenced bounded canary recovery only after actual budget/config review; certify Pillow and commerce before a real pilot authorization."
+    "Run exact-head CI for Amazon sync evidence guard, fix any failures.",
+    "Implement actual persisted Amazon US catalog/inventory/pricing/orders import with provider pagination/cursors, reconciliation and proof; replace explicit unsupported production sync errors.",
+    "Engineer fail-closed bounded paid-model reservation and verified pricing in ordinary LLM path without remote spend.",
+    "Prove old-production stopped-writer persistence and multi-store backup before promotion; run fresh bounded canary only after budget/config review.",
+    "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
   ]
 }
