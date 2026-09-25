@@ -74,7 +74,9 @@ test("production Amazon notifications cannot be manufactured with caller-supplie
     assert.equal(result.processedAt, null);
     const pending = getLiveCommerceRepository().listPendingRecoveries("ws-amazon-sync");
     assert.equal(pending.length, 1);
-    assert.match(pending[0].errorMessage, /verified SQS\/EventBridge transport/);
+    const recovery = pending[0];
+    assert.ok(recovery);
+    assert.match(recovery.errorMessage, /verified SQS\/EventBridge transport/);
   } finally {
     resetLiveCommerceRepository();
     resetDatabaseInstance();
