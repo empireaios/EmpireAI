@@ -34,7 +34,7 @@
       "dataVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
       "pendingRamPersistence": "UNPROVEN",
       "stagedProductionPatch": "EnvironmentPatch changes=[] remains staged; not accepted or altered",
-      "recentLogs": "2026-09-26 12:50:26 UTC ~4.1-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown. Old-main noncritical overdue exports require recent/smoothed lag below 200/100 ms respectively; sustained lag plausibly prevents progress (inference, not RAM proof). At 13:04 UTC old process completed SMART_VIABLE_BATCH (24 retrieved, 19 rejected, page 44) after this checkpoint; disk/RAM receipt and provider-point use unverified.",
+      "recentLogs": "2026-09-26 12:50:26 UTC ~4.1-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown. Old-main noncritical overdue exports require recent/smoothed lag below 200/100 ms respectively; sustained lag plausibly prevents progress (inference, not RAM proof). At 13:04 UTC old process completed SMART_VIABLE_BATCH (24 retrieved, 19 rejected, page 44) after this checkpoint; disk/RAM receipt and provider-point use unverified. Read-only 14:29:59 UTC logs later recorded an sql.js-db.export known synchronous block and cooldown with flushCount still 3, with high-lag warnings continuing to 14:32; this is not a completed flush or RAM capture receipt.",
       "readOnlyFileInventory": "2026-09-26 listContainerFilesTool: /data/empireai-brain.db 572035072 bytes mtime 05:32:57 UTC; /data/commissioning-mirror/ws_empire_1.json; /app/closure-backups historic snapshots. /app/backend/dist/orchestration/shadow-ceo-authority/repository listed JS/map only; source repository/data listed .gitignore only. Agent reported /app/.data and /app/backend/.data missing. Actual process cwd remains UNKNOWN; /proc/1/cwd symlink target inaccessible through file-list connector. Listing does not establish absence of other stores.",
       "historicBackupMetadata": "Read-only /app/closure-backups manifest declares 2026-09-21 8-part 92862657-byte compressed snapshot; 2026-09-20 receipt declares 569380864-byte persisted-only source, compressed 114437480 bytes at 14:59 UTC, explicitly excludes pending RAM and Redis, restore not tested. Not a current complete backup.",
       "metrics1h": {
@@ -44,7 +44,10 @@
         "memoryGbCurrent": 2.632218624,
         "memoryGbMax": 3.285624832,
         "diskGbCurrent": 0.724770816
-      }
+      },
+      "latestReadOnlyStatusAt": "2026-09-26T14:33:00Z",
+      "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
+      "completedFlushAfterPriorCheckpointVerified": false
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
