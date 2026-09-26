@@ -6,12 +6,13 @@ import { afterEach, test } from "node:test";
 import { ConnectorConnectionRepository } from "../../connectors/connection-repository.js";
 import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
-import { listImportedAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
+import { getAmazonUsListingsImportStatus, listImportedAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
 import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { getCredentialVaultRepository, resetCredentialVaultRepository } from "../../orchestration/reality-integration/repositories/sqlite-credential-vault-repository.js";
 import { resetConnectorRuntimeStates } from "../../orchestration/reality-integration/services/connector-runtime.js";
 import { getLiveCommerceRepository, resetLiveCommerceRepository } from "../../orchestration/reality-integration/live-commerce/repositories/sqlite-live-commerce-repository.js";
 import { runLiveCommerceSync } from "../../orchestration/reality-integration/live-commerce/services/live-commerce-integration-service.js";
+import { continueOneAmazonUsListingsImport } from "../../orchestration/reality-integration/live-commerce/services/amazon-listings-continuation.js";
 
 const priorPath = process.env.DATABASE_PATH;
 const priorMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
@@ -121,5 +122,43 @@ test("owner-started partial listing page queues normal continuation without a re
   assert.equal(job.durableReadbackVerified, false);
   assert.equal(getLiveCommerceRepository().listPendingRecoveries(ctx.workspaceId).length, 0);
   closeDatabase();
+  assert.equal(listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId).length, 1);
+  const status = getAmazonUsListingsImportStatus(ctx.workspaceId);
+  assert.equal(status?.pagesPending, true);
+  assert.doesNotMatch(JSON.stringify(status), /more|fake-token/);
+  assert.equal(await continueOneAmazonUsListingsImport(), "waiting");
+  getDatabase().prepare(`UPDATE amazon_listing_import_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  await getDatabase().requestCriticalPersist();
+  closeDatabase();
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0, json: { items: [] } }));
+  assert.equal(await continueOneAmazonUsListingsImport(), "completed");
+  closeDatabase();
+  assert.equal(getAmazonUsListingsImportStatus(ctx.workspaceId)?.status, "completed");
+  assert.equal(listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId).length, 1);
+});
+
+test("continuation pauses an owner-started cursor after provider rejection", async () => {
+  useDisk();
+  process.env.LIVE_COMMERCE_INTEGRATION_MODE = "production";
+  const vault = getCredentialVaultRepository().storeCredential({
+    workspaceId: ctx.workspaceId, providerId: ctx.providerId,
+    credentialType: "oauth", secretPayload: ctx.credentials,
+  });
+  new ConnectorConnectionRepository().upsert({
+    workspaceId: ctx.workspaceId, connectorId: ctx.providerId,
+    category: "commerce", status: "connected", credentialsRef: vault.credentialsRef,
+  });
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0,
+    json: { items: [row("SKU-1")], pagination: { nextToken: "more" } } }));
+  assert.equal((await runLiveCommerceSync({ workspaceId: ctx.workspaceId,
+    providerId: ctx.providerId, syncType: "catalog" })).status, "queued");
+  getDatabase().prepare(`UPDATE amazon_listing_import_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  await getDatabase().requestCriticalPersist();
+  closeDatabase(); resetConnectorRuntimeStates();
+  setHttpTransportOverride(async () => ({ ok: false, status: 403, latencyMs: 0, json: null }));
+  assert.equal(await continueOneAmazonUsListingsImport(), "paused");
+  closeDatabase();
+  assert.equal(getAmazonUsListingsImportStatus(ctx.workspaceId)?.status, "paused");
+  assert.equal(await continueOneAmazonUsListingsImport(), "idle");
   assert.equal(listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId).length, 1);
 });

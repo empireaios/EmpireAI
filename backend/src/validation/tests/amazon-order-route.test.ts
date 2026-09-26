@@ -35,9 +35,12 @@ test("production-critical Amazon import route enforces founder identity before r
     auditLogger: { write: (entry: unknown) => { audits.push(entry); } } as unknown as AuditLogger,
   });
   try {
-    for (const method of ["GET", "POST"] as const) {
-      const url = method === "GET"
-        ? "/commerce/amazon-us/orders/imported" : "/commerce/amazon-us/orders/sync";
+    for (const [method, url] of [
+      ["GET", "/commerce/amazon-us/orders/imported"],
+      ["POST", "/commerce/amazon-us/orders/sync"],
+      ["GET", "/commerce/amazon-us/listings/imported"],
+      ["POST", "/commerce/amazon-us/listings/sync"],
+    ] as const) {
       user = null;
       assert.equal((await app.inject({ method, url })).statusCode, 401);
       user = { ...founder, role: "operator" };
@@ -48,8 +51,13 @@ test("production-critical Amazon import route enforces founder identity before r
     assert.equal(response.statusCode, 200);
     assert.deepEqual(response.json().orders, []);
     assert.equal(response.json().commerceEffect, "none");
+    const catalog = await app.inject({ method: "GET", url: "/commerce/amazon-us/listings/imported" });
+    assert.equal(catalog.statusCode, 200);
+    assert.deepEqual(catalog.json().listings, []);
+    assert.equal(catalog.json().commerceEffect, "none");
     const blocked = await app.inject({ method: "POST", url: "/commerce/amazon-us/orders/sync" });
     assert.equal(blocked.statusCode, 409); // No sandbox fixture may be mistaken for seller data.
+    assert.equal((await app.inject({ method: "POST", url: "/commerce/amazon-us/listings/sync" })).statusCode, 409);
     assert.deepEqual(audits, []);
   } finally { await app.close(); }
 });

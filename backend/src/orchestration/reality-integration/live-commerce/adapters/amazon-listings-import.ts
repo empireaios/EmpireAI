@@ -14,7 +14,7 @@ type Listing = {
 };
 type Cursor = {
   sellerId: string; nextToken: string; seen: number;
-  startedAt: string; completedAt: string | null;
+  startedAt: string; completedAt: string | null; status: string; reason: string;
 };
 function tables(): void {
   getDatabase().exec(`
@@ -27,6 +27,7 @@ function tables(): void {
       workspace_id TEXT NOT NULL, provider_id TEXT NOT NULL, seller_id TEXT NOT NULL,
       next_token TEXT NOT NULL, seen INTEGER NOT NULL,
       started_at TEXT NOT NULL, completed_at TEXT,
+      status TEXT NOT NULL, reason TEXT NOT NULL,
       PRIMARY KEY(workspace_id, provider_id)
     );
     CREATE TABLE IF NOT EXISTS amazon_listing_import_gate (
@@ -39,7 +40,7 @@ function cursor(ctx: LiveCommerceAdapterContext): Cursor | null {
   tables();
   const row = getDatabase().prepare(`
     SELECT seller_id AS sellerId, next_token AS nextToken, seen,
-      started_at AS startedAt, completed_at AS completedAt
+      started_at AS startedAt, completed_at AS completedAt, status, reason
     FROM amazon_listing_import_cursor WHERE workspace_id=@workspaceId AND provider_id=@providerId
   `).get({ workspaceId: ctx.workspaceId, providerId: ctx.providerId }) as Cursor | undefined;
   return row ?? null;
@@ -100,11 +101,12 @@ function persistPage(ctx: LiveCommerceAdapterContext, rows: Listing[], next: Cur
       sku: row.sku, recordJson: JSON.stringify(row),
     });
     db.prepare(`INSERT INTO amazon_listing_import_cursor
-      (workspace_id,provider_id,seller_id,next_token,seen,started_at,completed_at)
-      VALUES (@workspaceId,@providerId,@sellerId,@nextToken,@seen,@startedAt,@completedAt)
+      (workspace_id,provider_id,seller_id,next_token,seen,started_at,completed_at,status,reason)
+      VALUES (@workspaceId,@providerId,@sellerId,@nextToken,@seen,@startedAt,@completedAt,@status,@reason)
       ON CONFLICT(workspace_id,provider_id) DO UPDATE SET
         seller_id=excluded.seller_id,next_token=excluded.next_token,seen=excluded.seen,
-        started_at=excluded.started_at,completed_at=excluded.completed_at`).run({
+        started_at=excluded.started_at,completed_at=excluded.completed_at,
+        status=excluded.status,reason=excluded.reason`).run({
       workspaceId: ctx.workspaceId, providerId: ctx.providerId, ...next,
     });
     db.exec("RELEASE SAVEPOINT amazon_listing_page");
@@ -122,6 +124,55 @@ export function listImportedAmazonUsListings(workspaceId: string, sellerId: stri
   return rows.map(row => JSON.parse(row.record_json) as Listing);
 }
 
+export function listCurrentAmazonUsListings(workspaceId: string): Listing[] {
+  const selected = cursor({ workspaceId, providerId: "amazon-us", mode: "production", credentials: {} });
+  return selected ? listImportedAmazonUsListings(workspaceId, selected.sellerId) : [];
+}
+
+/** No opaque provider token or access credential is exposed to the caller. */
+export function getAmazonUsListingsImportStatus(workspaceId: string): {
+  status: string; reason: string; itemsSeen: number; pagesPending: boolean;
+  nextAllowedAt: string | null; completedAt: string | null;
+} | null {
+  tables();
+  const row = getDatabase().prepare(`SELECT c.status, c.reason, c.seen, c.next_token,
+      c.completed_at, g.next_allowed_at
+    FROM amazon_listing_import_cursor c LEFT JOIN amazon_listing_import_gate g
+      ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
+    WHERE c.workspace_id=@workspaceId AND c.provider_id='amazon-us'`).get({ workspaceId }) as {
+    status: string; reason: string; seen: number; next_token: string;
+    completed_at: string | null; next_allowed_at: string | null;
+  } | undefined;
+  return row ? { status: row.status, reason: row.reason, itemsSeen: row.seen,
+    pagesPending: Boolean(row.next_token), nextAllowedAt: row.next_allowed_at,
+    completedAt: row.completed_at } : null;
+}
+
+export function nextPendingAmazonUsListingsImport(): {
+  workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+} | null {
+  tables();
+  return getDatabase().prepare(`SELECT c.workspace_id AS workspaceId,
+      g.next_allowed_at AS nextAllowedAt, c.started_at AS startedAt
+    FROM amazon_listing_import_cursor c LEFT JOIN amazon_listing_import_gate g
+      ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
+    WHERE c.provider_id='amazon-us' AND c.status='pending' AND c.next_token <> ''
+    ORDER BY c.started_at ASC LIMIT 1`).get() as {
+    workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+  } | undefined ?? null;
+}
+
+export async function pauseAmazonUsListingsImport(workspaceId: string, reason: string, startedAt: string): Promise<void> {
+  if (reason !== "PROVIDER_FAILURE" && reason !== "RATE_GATE_CORRUPT") {
+    throw new Error("Amazon listing pause reason invalid");
+  }
+  tables();
+  getDatabase().prepare(`UPDATE amazon_listing_import_cursor SET status='paused', reason=@reason
+    WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND status='pending'
+      AND started_at=@startedAt`).run({ workspaceId, reason, startedAt });
+  await getDatabase().requestCriticalPersist();
+}
+
 export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
   if (ctx.providerId !== "amazon-us" || ctx.mode !== "production") {
     throw new Error("Amazon US listing import requires production Amazon US context");
@@ -136,7 +187,8 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
   if (previous && (previous.nextToken.length > 4096 || !Number.isSafeInteger(previous.seen) ||
       previous.seen < 0 || previous.seen > 50_000)) throw new Error("Amazon listing cursor invalid");
   const active = previous?.nextToken ? previous : {
-    sellerId: seller, nextToken: "", seen: 0, startedAt: new Date().toISOString(), completedAt: null,
+    sellerId: seller, nextToken: "", seen: 0, startedAt: new Date().toISOString(),
+    completedAt: null, status: "pending", reason: "",
   };
   const marketplaceId = getAmazonMarketplaceProfile("amazon-us").marketplaceId;
   const query = new URLSearchParams({ marketplaceIds: marketplaceId, includedData: "summaries", pageSize: "20" });
@@ -167,6 +219,7 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
     sellerId: seller, nextToken: tokenAfter,
     seen: active.seen + rows.length, startedAt: active.startedAt,
     completedAt: tokenAfter ? null : new Date().toISOString(),
+    status: tokenAfter ? "pending" : "completed", reason: "",
   };
   persistPage(ctx, rows, next);
   await getDatabase().requestCriticalPersist();

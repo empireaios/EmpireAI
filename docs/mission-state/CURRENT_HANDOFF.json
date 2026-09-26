@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T11:43:44Z",
+  "updatedAt": "2026-09-26T11:49:40Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "23fba652635a0d27aa86e44fa0a0f9a89ed5034a",
+    "lastVerifiedIntegrationHead": "7f5493ae8337d6bfbf9ff800f22afe8bcc7c352d",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft; unmerged; 23fba652 passed all three exact-head CI; subsequent Amazon US listings importer pending hosted CI",
-    "candidateCodeHead": "23fba652635a0d27aa86e44fa0a0f9a89ed5034a",
-    "branchTipNote": "Inspect live PR #5 head; follow-on seller listings import pending exact-head CI.",
+    "status": "draft; unmerged; 7f5493ae passed all three exact-head CI; subsequent listing continuation and founder routes pending hosted CI",
+    "candidateCodeHead": "7f5493ae8337d6bfbf9ff800f22afe8bcc7c352d",
+    "branchTipNote": "Inspect live PR #5 head; follow-on listing continuation pending exact-head CI.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -100,7 +100,7 @@
       "Amazon request timeout, size cap, durable 180-second gate and owner-started continuation with pause are offline verified across three workflows on 8a04682b",
       "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721",
       "Shadow CEO database/request-owner volume-root defaults and atomic records e752bf97, plus separate authority JSON volume default and atomic fail-closed records 23fba652: each passed three hosted workflows. Existing old-main state still uninspected and unmigrated.",
-      "Amazon US seller listings importer: one page per call, durable seller-bound cursor, request gate, sanitized summaries and critical save/readback; 6 focused local tests and typecheck passed with fake transport; hosted CI pending, no seller API call."
+      "Amazon US seller listings importer: bounded page, durable seller-bound cursor and request gate, sanitized summaries and critical save/readback; 7f5493ae passed all three hosted workflows with fake transport. Follow-on owner-started continuation, founder routes and failure pause passed 8 focused local tests and typecheck; CI pending."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -172,18 +172,25 @@
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36239345855"
     },
     "amazonListingsImport": {
-      "candidate": "local unpublished until next commit",
+      "candidate": "7f5493ae8337d6bfbf9ff800f22afe8bcc7c352d",
       "apiVersion": "2021-08-01",
       "source": "Amazon official Listings Items API searchListingsItems",
       "maxPageSize": 20,
       "maxPagesPerCall": 1,
       "durableCursor": true,
       "durableRequestGateSeconds": 1,
-      "localTestsPassed": 6,
-      "hostedCI": "PENDING",
+      "localTestsPassed": 8,
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
       "realProviderCalls": 0,
-      "unattendedContinuation": false,
+      "unattendedContinuation": "LOCAL_VERIFIED_FOLLOW_ON_PENDING_CI",
       "sellerStockPricingProof": false
+    },
+    "amazonListingsCI": {
+      "head": "7f5493ae8337d6bfbf9ff800f22afe8bcc7c352d",
+      "scope": "offline fake transport only",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36239776674",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36239776656",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36239776724"
     }
   },
   "failedAttempts": [
@@ -211,13 +218,13 @@
     "Ordinary LLM router has exact-model time-limited price gate and durable conservative reservation on candidate; provider billing reconciliation and hosted paid-call enforcement remain unproved.",
     "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved.",
     "Amazon US importer, rate gate, narrow scheduler and scoped credential disk restart passed offline CI at a721; no hosted worker/process restart or real seller provider proof.",
-    "Amazon US order importer passed offline CI; seller listings importer passed local fake-transport tests, hosted CI pending. Seller inventory/pricing, authentic notification transport, supplier compliance, fulfilment and settlement not implemented or independently verified.",
+    "Amazon US order importer and seller listing page importer passed offline CI; follow-on unattended listing continuation and founder routes passed local tests only, hosted CI pending. Seller inventory/pricing, authentic notification transport, supplier compliance, fulfilment and settlement not implemented or independently verified.",
     "Vercel connector returned no accessible teams in 2026-09-26 readback; current Vercel deployment revision not independently verified.",
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; contents unknown. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back."
   ],
   "nextExecutableActions": [
-    "Verify Amazon US seller listings importer at exact PR #5 head on all three hosted Node 22 workflows, then record SHA and receipts. Do not deploy until legacy cwd/.data and module-local authority state are backed up and reconciled to mounted volume.",
-    "Build unattended listing pagination and actual seller inventory/pricing imports with readback and supplier compliance guards.",
+    "Verify Amazon US listing continuation and founder read/sync routes at exact PR #5 head on all three hosted Node 22 workflows, then record SHA and receipts. Do not deploy until legacy cwd/.data and module-local authority state are backed up and reconciled to mounted volume.",
+    "Build seller inventory/pricing imports with durable readback and supplier compliance guards.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
