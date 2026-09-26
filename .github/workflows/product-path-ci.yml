@@ -189,7 +189,7 @@ jobs:
         run: npm run build --prefix backend
       - name: Verify isolated live SQL.js write fence, critical save and disk readback
         working-directory: backend
-        run: node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts
+        run: node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/coordinated-sqlite-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts
       - name: Verify Amazon sync evidence and sandbox go-live isolation
         working-directory: backend
         run: |
