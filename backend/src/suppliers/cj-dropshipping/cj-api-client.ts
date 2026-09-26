@@ -27,6 +27,7 @@ export class CjApiClient {
   constructor(
     private readonly config: CjConfig,
     private readonly fetchImpl: typeof fetch = fetch,
+    private readonly beforePointRequest?: (path: string) => Promise<void>,
   ) {
     this.rateLimiter = new CjRateLimiter(config.rateLimitPerMinute);
   }
@@ -56,7 +57,9 @@ export class CjApiClient {
     const authenticated = options.authenticated ?? true;
     let attempt = 0;
 
-    const retryLimit = options.retryLimit ?? this.config.maxRetries;
+    // A point reservation covers one outbound request, including uncertain timeouts.
+    // No implicit retry may spend an unreserved second request.
+    const retryLimit = this.beforePointRequest ? 0 : options.retryLimit ?? this.config.maxRetries;
     while (attempt <= retryLimit) {
       attempt += 1;
 
@@ -69,6 +72,15 @@ export class CjApiClient {
 
         if (authenticated) {
           Object.assign(headers, await buildCjAuthHeaders(this.config, this.fetchImpl));
+        }
+
+        if (this.beforePointRequest) {
+          try { await this.beforePointRequest(options.path); }
+          catch (error) {
+            throw new CjApiError("VALIDATION_ERROR",
+              error instanceof Error ? error.message : "CJ point reservation failed",
+              { retryable: false, cause: error });
+          }
         }
 
         const controller = new AbortController();
@@ -201,6 +213,7 @@ export class CjApiClient {
 export function createCjApiClient(
   config: CjConfig,
   fetchImpl: typeof fetch = fetch,
+  beforePointRequest?: (path: string) => Promise<void>,
 ): CjApiClient {
-  return new CjApiClient(config, fetchImpl);
+  return new CjApiClient(config, fetchImpl, beforePointRequest);
 }

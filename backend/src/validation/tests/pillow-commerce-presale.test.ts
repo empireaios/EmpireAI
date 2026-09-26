@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, it, beforeEach, afterEach } from "node:test";
 
 import { ApprovalGateEngine } from "../../orchestration/pillow-approval/approval-gate-engine.js";
@@ -11,11 +14,17 @@ import { pillowCommercePresaleTools } from "../../orchestration/pillow-commerce-
 import { setHttpTransportOverride, resetHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { runPillowCommercePresaleCycle } from "../../orchestration/pillow-commerce-presale/services/presale-cycle-service.js";
 import { clearCjAuthCache } from "../../suppliers/cj-dropshipping/cj-auth.js";
+import { closeDatabase } from "../../brain/database.js";
+
+let presaleTestDir = "";
 import { coerceUsdNumber, pickLiveCjVariant } from "../../orchestration/pillow-commerce-presale/cj-live-normalize.js";
 
 describe("pillow-commerce-presale", () => {
   beforeEach(() => {
-    process.env.DATABASE_PATH = ":memory:";
+    presaleTestDir = mkdtempSync(join(tmpdir(), "pillow-cj-presale-"));
+    process.env.DATABASE_PATH = join(presaleTestDir, "brain.sqlite");
+    process.env.CJ_PRESALE_CYCLE_POINT_LIMIT = "100";
+    process.env.CJ_PRESALE_DAILY_POINT_LIMIT = "200";
     process.env.CJ_INTEGRATION_MODE = "LIVE";
     process.env.CJ_API_KEY = "test-cj-key";
     process.env.AMAZON_SELLER_ID = "A1TESTSELLER";
@@ -28,6 +37,10 @@ describe("pillow-commerce-presale", () => {
 
   afterEach(() => {
     resetHttpTransportOverride();
+    closeDatabase();
+    rmSync(presaleTestDir, { recursive: true, force: true });
+    delete process.env.CJ_PRESALE_CYCLE_POINT_LIMIT;
+    delete process.env.CJ_PRESALE_DAILY_POINT_LIMIT;
   });
 
   it("registers Pillow commerce tools", () => {

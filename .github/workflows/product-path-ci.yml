@@ -213,6 +213,7 @@ jobs:
             src/validation/tests/cj-live-auth-proof.test.ts \
             src/validation/tests/cj-production-adapter-truth.test.ts \
             src/validation/tests/cj-variant-stock-boundary.test.ts \
+            src/validation/tests/cj-point-reservation.test.ts \
             src/validation/tests/pillow-commerce-presale.test.ts
       - name: Run fast invariant gate
         working-directory: backend

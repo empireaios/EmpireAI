@@ -5,6 +5,7 @@ import { logger } from "../../../config/logger.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import type { CjProduct } from "../../../suppliers/cj-dropshipping/cj-types.js";
 import {
@@ -288,9 +289,11 @@ async function runPillowCommercePresaleCycleImpl(
     return cycle;
   }
 
-  const cj = createCjApiClient(cjConfig, input.fetchImpl ?? fetch);
+  let cj: ReturnType<typeof createCjApiClient>;
   let products: CjProduct[] = [];
   try {
+    cj = createCjApiClient(cjConfig, input.fetchImpl ?? fetch,
+      createCjPresalePointReservation({ config: cjConfig, env, cycleId }));
     const list = await cj.listProducts({ pageNum: discoveryPageNum, pageSize: maxCandidates });
     products = list.data?.list ?? [];
   } catch (error) {

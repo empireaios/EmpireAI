@@ -7,6 +7,7 @@ import { randomUUID } from "node:crypto";
 import { logger } from "../../../config/logger.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import {
   estimateAmazonFees,
@@ -152,7 +153,17 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  const cj = createCjApiClient(cjConfig);
+  let cj: ReturnType<typeof createCjApiClient>;
+  try {
+    cj = createCjApiClient(cjConfig, fetch,
+      createCjPresalePointReservation({ config: cjConfig, env, cycleId: randomUUID() }));
+  } catch (error) {
+    return {
+      ...base, target, outcome: "BLOCKED_INTEGRATION", opportunity: targetOpp,
+      dossierSummary: null, rejectReason: error instanceof Error ? error.message : String(error),
+      rejectCode: "SUPPLIER_UNAVAILABLE", nextPillowAction: "Resolve CJ point budget or durable ledger before retrying.",
+    };
+  }
   const commerceMemory = getCommerceInstitutionalContext(input.workspaceId);
 
   let detail;
