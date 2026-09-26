@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T12:12:20Z",
+  "updatedAt": "2026-09-26T12:19:32Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "005e9dbb90f89005e155b496c674ae0bf6d918bc",
+    "lastVerifiedIntegrationHead": "2600ed046052ffd5ad1628bfae78d519742d892b",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft; unmerged; 005e9dbb all three exact-head CI passed; inventory founder routes/worker continuation pending hosted CI",
-    "candidateCodeHead": "005e9dbb90f89005e155b496c674ae0bf6d918bc",
-    "branchTipNote": "Inspect live PR #5 head; inventory current-cycle readback and owner-started continuation follow last all-three pass.",
+    "status": "draft; unmerged; 2600ed04 inventory current-cycle readback and owner-started continuation passed all three exact-head CI; legacy Shadow CEO capture candidate pending hosted CI",
+    "candidateCodeHead": "2600ed046052ffd5ad1628bfae78d519742d892b",
+    "branchTipNote": "Inspect live PR #5 head; the next legacy disk capture candidate follows this last all-three pass.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -100,7 +100,8 @@
       "Amazon request timeout, size cap, durable 180-second gate and owner-started continuation with pause are offline verified across three workflows on 8a04682b",
       "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721",
       "Shadow CEO database/request-owner volume-root defaults and atomic records e752bf97, plus separate authority JSON volume default and atomic fail-closed records 23fba652: each passed three hosted workflows. Existing old-main state still uninspected and unmigrated.",
-      "Seller-managed inventory importer 970bd26a Product/Semantic passed, Runtime failed existing zero-wait SQLite concurrent claim test (326/327). Child fixture bounded retry at 005e9dbb passed all three hosted workflows. Follow-on founder routes, owner-started inventory continuation and current-cycle SKU filters passed 9 focused local tests plus typecheck; hosted CI pending."
+      "Seller-managed inventory importer 970bd26a Product/Semantic passed, Runtime failed existing zero-wait SQLite concurrent claim test (326/327). Child fixture bounded retry at 005e9dbb passed all three hosted workflows. Founder routes, owner-started inventory continuation and current-cycle SKU filters passed 9 focused local tests, typecheck and all three 2600ed04 hosted workflows.",
+      "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests prepared; hosted CI pending. No old production files inspected/copied, no RAM quiescence or live restart."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -200,7 +201,7 @@
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36240082179"
     },
     "amazonSellerInventoryImport": {
-      "candidate": "005e9dbb90f89005e155b496c674ae0bf6d918bc",
+      "candidate": "2600ed046052ffd5ad1628bfae78d519742d892b",
       "apiVersion": "2021-08-01",
       "source": "Amazon official Listings Items API fulfillmentAvailability",
       "merchantFulfillmentChannel": "DEFAULT",
@@ -208,11 +209,11 @@
       "maxPagesPerCall": 1,
       "durableCursor": true,
       "localFocusedTestsPassed": 9,
-      "hostedCI": "005e9dbb_ALL_THREE_PASS_WITH_SQLITE_CLAIM_FIX",
+      "hostedCI": "2600ed04_ALL_THREE_PASS_INCLUDING_FOUNDER_ROUTES_CURRENT_CYCLE_FILTER",
       "realProviderCalls": 0,
       "supplierStockProof": false,
       "pricingProof": false,
-      "unattendedContinuation": "LOCAL_VERIFIED_FOLLOW_ON_PENDING_CI"
+      "unattendedContinuation": "OFFLINE_CI_PASSED_NOT_HOSTED_OR_PROVIDER_VERIFIED"
     },
     "inventoryCI": {
       "head": "970bd26af832cc1977bfd8c91902c647bbeb0851",
@@ -236,6 +237,13 @@
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36240869882",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36240869857",
       "priorRedRun": "https://github.com/empireaios/EmpireAI/actions/runs/36240478075"
+    },
+    "inventoryContinuationCI": {
+      "head": "2600ed046052ffd5ad1628bfae78d519742d892b",
+      "scope": "offline fake transport, founder inventory endpoints and current-cycle filtering",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36241233584",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36241233599",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36241233577"
     }
   },
   "failedAttempts": [
@@ -264,12 +272,12 @@
     "Ordinary LLM router has exact-model time-limited price gate and durable conservative reservation on candidate; provider billing reconciliation and hosted paid-call enforcement remain unproved.",
     "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved.",
     "Amazon US importer, rate gate, narrow scheduler and scoped credential disk restart passed offline CI at a721; no hosted worker/process restart or real seller provider proof.",
-    "Amazon US order importer and seller listings importer/continuation passed offline CI. Seller-managed inventory importer passed local fake-transport tests only; hosted CI pending. Seller pricing, authentic notification transport, upstream supplier stock/compliance, fulfilment and settlement not implemented or independently verified.",
+    "Amazon US order importer and seller listings/inventory importer/continuation passed offline CI. Seller pricing, authentic notification transport, upstream supplier stock/compliance, fulfilment and settlement not implemented or independently verified.",
     "Vercel connector returned no accessible teams in 2026-09-26 readback; current Vercel deployment revision not independently verified.",
-    "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; contents unknown. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back."
+    "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; contents unknown. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. A disk-only capture utility is in progress; its receipts never claim complete live state."
   ],
   "nextExecutableActions": [
-    "Verify inventory founder routes, current-cycle readback and owner-started continuation at exact PR #5 head on all three hosted Node 22 workflows, then record receipts. Do not deploy until old RAM and legacy cwd/.data/module-local authority state are backed up and reconciled.",
+    "Verify legacy three-store disk capture utility on hosted CI and obtain access to running old container for actual file discovery and capture without a restart. Separately prove quiesced SQL.js RAM save and multi-store reconciliation before any cutover.",
     "Build read-only seller price import and upstream supplier stock/fulfilment compliance evidence.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",

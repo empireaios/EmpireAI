@@ -57,6 +57,23 @@ jobs:
           assert.equal(count('pass'), count('tests'));
           for (const name of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(count(name), 0);
           NODE
+      - name: Verify disk-only legacy Shadow CEO multi-store capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-reporter=tap deployment/legacy-shadow-state-capture.test.cjs | tee "$RUNNER_TEMP/legacy-shadow-tests.tap"
+          node - "$RUNNER_TEMP/legacy-shadow-tests.tap" <<'NODE'
+          const assert = require('node:assert/strict');
+          const output = require('node:fs').readFileSync(process.argv[2], 'utf8');
+          const count = name => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing Shadow capture test summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 7);
+          assert.equal(count('pass'), count('tests'));
+          for (const name of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(count(name), 0);
+          NODE
       - name: Verify bounded canary configuration and child-process cleanup
         shell: bash
         run: |
