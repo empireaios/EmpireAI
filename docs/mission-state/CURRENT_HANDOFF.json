@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T12:19:32Z",
+  "updatedAt": "2026-09-26T12:27:13Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "2600ed046052ffd5ad1628bfae78d519742d892b",
+    "lastVerifiedIntegrationHead": "d8b38d12fb6414b00ec99220d066e16d19adc828",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft; unmerged; 2600ed04 inventory current-cycle readback and owner-started continuation passed all three exact-head CI; legacy Shadow CEO capture candidate pending hosted CI",
-    "candidateCodeHead": "2600ed046052ffd5ad1628bfae78d519742d892b",
-    "branchTipNote": "Inspect live PR #5 head; the next legacy disk capture candidate follows this last all-three pass.",
+    "status": "draft; unmerged; d8b38d12 disk-only legacy Shadow CEO capture and earlier inventory continuation passed all three exact-head CI; no production cutover",
+    "candidateCodeHead": "d8b38d12fb6414b00ec99220d066e16d19adc828",
+    "branchTipNote": "Inspect live PR #5 head; docs-only receipt commits may follow the last all-three-passed code head.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -35,6 +35,8 @@
       "pendingRamPersistence": "UNPROVEN",
       "stagedProductionPatch": "EnvironmentPatch changes=[] remains staged; not accepted or altered",
       "recentLogs": "2026-09-26 12:09 UTC ~3.7-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown.",
+      "readOnlyFileInventory": "2026-09-26 listContainerFilesTool: /data/empireai-brain.db 572035072 bytes mtime 05:32:57 UTC; /data/commissioning-mirror/ws_empire_1.json; /app/closure-backups historic snapshots. /app/backend/dist/orchestration/shadow-ceo-authority/repository listed JS/map only; source repository/data listed .gitignore only. Agent reported /app/.data and /app/backend/.data missing. Actual process cwd remains UNKNOWN; /proc/1/cwd symlink target inaccessible through file-list connector. Listing does not establish absence of other stores.",
+      "historicBackupMetadata": "Read-only /app/closure-backups manifest declares 2026-09-21 8-part 92862657-byte compressed snapshot; 2026-09-20 receipt declares 569380864-byte persisted-only source, compressed 114437480 bytes at 14:59 UTC, explicitly excludes pending RAM and Redis, restore not tested. Not a current complete backup.",
       "metrics1h": {
         "at": "2026-09-25T03:28:00Z",
         "cpuCurrent": 1.10033155,
@@ -101,7 +103,7 @@
       "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721",
       "Shadow CEO database/request-owner volume-root defaults and atomic records e752bf97, plus separate authority JSON volume default and atomic fail-closed records 23fba652: each passed three hosted workflows. Existing old-main state still uninspected and unmigrated.",
       "Seller-managed inventory importer 970bd26a Product/Semantic passed, Runtime failed existing zero-wait SQLite concurrent claim test (326/327). Child fixture bounded retry at 005e9dbb passed all three hosted workflows. Founder routes, owner-started inventory continuation and current-cycle SKU filters passed 9 focused local tests, typecheck and all three 2600ed04 hosted workflows.",
-      "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests prepared; hosted CI pending. No old production files inspected/copied, no RAM quiescence or live restart."
+      "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests at d8b38d12 passed all three exact-head hosted workflows. Read-only container directory and historic backup metadata inspected; no old production files copied, no RAM quiescence or live restart."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -244,6 +246,13 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36241233584",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36241233599",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36241233577"
+    },
+    "legacyShadowDiskCaptureCI": {
+      "head": "d8b38d12fb6414b00ec99220d066e16d19adc828",
+      "scope": "offline multi-file copy/refusal only; actual production capture not run",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36241617561",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36241617599",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36241617521"
     }
   },
   "failedAttempts": [
@@ -252,12 +261,12 @@
     "Recovery4 browser operation expired >24h; PR9 closed unmerged; no active deployment.",
     "Railway Agent cleanup commit required dashboard destructive confirmation; direct accept-deploy returned INVALID_ARGUMENT. Owner completed dashboard Commit; provider readback empty.",
     "a040 exact-head Product, Semantic and Runtime failed at backend typecheck: optional recovery test row not narrowed; fixed b908.",
-    "a80 importer intermediate Product failed: restart test used resetDatabaseInstance, which deletes disk; Semantic/Runtime passed. fca uses closeDatabase to preserve file; CI pending.",
+    "a80 importer intermediate Product failed: restart test used resetDatabaseInstance, which deletes disk; Semantic/Runtime passed. fca uses closeDatabase to preserve file and subsequently passed exact-head CI.",
     "Vercel connector deployment read returned INVALID_ARGUMENT at 03:15 UTC; last authenticated browser observation remains 2026-09-23.",
     "d2 HTTP transport exact-head workflows cancelled automatically on newer PR pushes; not a test failure.",
     "519 Semantic workflow cancelled automatically by newer PR push; Product and Runtime passed.",
-    "9046a3d4 Product failed unpriced-model test owing to unknown owner budgets; Runtime failed mandatory name search despite priced timeout test passing. Both test defects repaired locally; Node 22 CI pending.",
-    "970bd26a Runtime failed existing two-process SQLite claim test: 0 claims observed under zero-wait contention, expected 1; 326/327 runtime tests passed. Product and Semantic passed; repair pending exact-head CI."
+    "9046a3d4 Product failed unpriced-model test owing to unknown owner budgets; Runtime failed mandatory name search despite priced timeout test passing. Both test defects repaired and verified by 53e370ed all-three Node 22 CI.",
+    "970bd26a Runtime failed existing two-process SQLite claim test: 0 claims observed under zero-wait contention, expected 1; 326/327 runtime tests passed. Product and Semantic passed; 005e9dbb repaired fixture and passed all-three exact-head CI."
   ],
   "certification": {
     "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
@@ -274,10 +283,10 @@
     "Amazon US importer, rate gate, narrow scheduler and scoped credential disk restart passed offline CI at a721; no hosted worker/process restart or real seller provider proof.",
     "Amazon US order importer and seller listings/inventory importer/continuation passed offline CI. Seller pricing, authentic notification transport, upstream supplier stock/compliance, fulfilment and settlement not implemented or independently verified.",
     "Vercel connector returned no accessible teams in 2026-09-26 readback; current Vercel deployment revision not independently verified.",
-    "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; contents unknown. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. A disk-only capture utility is in progress; its receipts never claim complete live state."
+    "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state."
   ],
   "nextExecutableActions": [
-    "Verify legacy three-store disk capture utility on hosted CI and obtain access to running old container for actual file discovery and capture without a restart. Separately prove quiesced SQL.js RAM save and multi-store reconciliation before any cutover.",
+    "Locate actual process cwd and legacy stores via safe running-container access. Obtain authorized in-container execution for reviewed capture without restarting; file-list connector cannot copy large binaries. Separately prove quiesced SQL.js RAM save and multi-store reconciliation before any cutover.",
     "Build read-only seller price import and upstream supplier stock/fulfilment compliance evidence.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
