@@ -6,6 +6,11 @@ import { test } from "node:test";
 
 import { openShadowCeoRepository } from "../../orchestration/shadow-ceo/repository.js";
 import {
+  attemptExternalActionAndPersist,
+  listBlockedActions,
+  resolveStorePath,
+} from "../../orchestration/shadow-ceo-authority/index.js";
+import {
   resolveShadowCeoAuthorityDir,
   resolveShadowCeoDataRoot,
   resolveShadowCeoDbPath,
@@ -69,6 +74,12 @@ test("Railway Shadow CEO records and authority use its volume, never the applica
   persistRequestOwner(owner("one"));
   assert.equal(getRequestOwner("one")?.requestId, "one");
   assert.ok(fs.existsSync(path.join(expected, "shadow-ceo-request-owners.json")));
+  const blocked = attemptExternalActionAndPersist({
+    kind: "money_move", mode: "SYNTHETIC", approvalStatus: "none",
+  });
+  assert.equal(blocked.decision, "BLOCKED");
+  assert.equal(resolveStorePath(), path.join(expected, "shadow-ceo-authority", "authority-store.json"));
+  assert.equal(listBlockedActions()[0]?.recordId, blocked.recordId);
 
   process.env.SHADOW_CEO_DATA_DIR = path.join(root, "ephemeral");
   assert.throws(() => resolveShadowCeoDataRoot(), /within the attached Railway volume/);
@@ -84,6 +95,25 @@ test("Railway Shadow CEO records and authority use its volume, never the applica
   assert.throws(() => resolveShadowCeoDataRoot(), /volume mount is missing/);
   delete process.env.RAILWAY_VOLUME_MOUNT_PATH;
   assert.throws(() => resolveShadowCeoDataRoot(), /requires an attached Railway volume/);
+});
+
+test("authority JSON preserves the last durable record on interrupted write and refuses corrupt state", (t) => {
+  const root = isolatedEnvironment(t);
+  process.env.SHADOW_CEO_DATA_DIR = root;
+  const attempt = () => attemptExternalActionAndPersist({
+    kind: "money_move", mode: "SYNTHETIC", approvalStatus: "none",
+  });
+  attempt();
+  const file = resolveStorePath();
+  const original = fs.readFileSync(file, "utf8");
+  const rename = t.mock.method(fs, "renameSync", () => { throw new Error("simulated rename failure"); });
+  assert.throws(attempt, /simulated rename failure/);
+  rename.mock.restore();
+  assert.equal(fs.readFileSync(file, "utf8"), original);
+  assert.equal(listBlockedActions().length, 1);
+  fs.writeFileSync(file, "{truncated", "utf8");
+  assert.throws(attempt, /SHADOW_CEO_AUTHORITY_UNREADABLE/);
+  assert.equal(fs.readFileSync(file, "utf8"), "{truncated");
 });
 
 test("corrupt request-owner state refuses retry and an interrupted atomic write preserves old authority", (t) => {
