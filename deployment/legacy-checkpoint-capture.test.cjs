@@ -24,6 +24,17 @@ test('captures and verifies real saved SQLite while explicitly retaining unknown
   assert.equal(copied.prepare('SELECT value FROM evidence WHERE id=1').get().value, 'retained'); copied.close();
   assert.throws(() => captureCheckpoint(f), /EEXIST/); assert.equal(digest(f.source), original);
 });
+test('streams a valid SQLite checkpoint larger than 512 MiB and verifies the full copy', t => {
+  const f = fixture(t);
+  const size = 512 * 1024 * 1024 + 4096;
+  // Sparse trailing pages avoid manufacturing 513 MiB of private test data.
+  // The capture still reads, writes, hashes and integrity-checks the full size.
+  fs.truncateSync(f.source, size);
+  const result = captureCheckpoint(f);
+  assert.equal(fs.statSync(path.join(f.destination, 'checkpoint.db')).size, size);
+  assert.deepEqual(verifyCheckpoint({ directory: f.destination, manifestSha256: result.manifestSha256 }),
+    { verified: true, pendingRam: 'UNKNOWN', quiescenceProven: false, completeLiveState: false, importAuthorized: false });
+});
 test('interrupted output preserves original and incomplete capture cannot verify or be overwritten', t => {
   const f = fixture(t), original = digest(f.source), write = fs.writeSync;
   t.mock.method(fs, 'writeSync', (...args) => { write(...args); throw Error('INJECTED_INTERRUPTION'); });

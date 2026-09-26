@@ -5,7 +5,9 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 const { DatabaseSync } = require('node:sqlite');
-const MAX = 512 * 1024 * 1024;
+// Observed old-production persisted checkpoint is 572,035,072 bytes; stream it
+// without ever allocating the entire database in this separate process.
+const MAX = 1024 * 1024 * 1024;
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const identity = s => Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(k => [k, s[k]]));
 function regular(filename) {
