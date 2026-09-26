@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T13:18:40Z",
+  "updatedAt": "2026-09-26T13:29:18Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "24e6807827e5c45c55ec8d06e235b972b0e32719",
+    "lastVerifiedIntegrationHead": "ac9477554cd324769d6791022513f81949650b7d",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 24e68078 exact VID CJ stock claim repair passed all three exact-head hosted workflows; no production cutover",
-    "candidateCodeHead": "24e6807827e5c45c55ec8d06e235b972b0e32719",
-    "branchTipNote": "Code head 24e68078 fully verified; docs-only handoff receipt may follow. Inspect live PR #5 branch ref.",
+    "status": "draft unmerged; ac947755 oversized disk-only checkpoint capture and earlier exact-VID CJ stock repair passed all three exact-head hosted workflows; no production cutover",
+    "candidateCodeHead": "ac9477554cd324769d6791022513f81949650b7d",
+    "branchTipNote": "Code head ac947755 fully verified; docs-only handoff receipt may follow. Inspect live PR #5 branch ref.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -106,7 +106,8 @@
       "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests at d8b38d12 passed all three exact-head hosted workflows. Read-only container directory and historic backup metadata inspected; no old production files copied, no RAM quiescence or live restart.",
       "Seller listing search current-cycle B2C USD offer extraction uses exact marketplace and integer cents, rejects ambiguity, leaves missing or legacy unpriced. Six local fake-transport tests, backend typecheck and all three exact-head hosted CI passed at 94ee670a. No supplier cost or margin proof.",
       "CJ authentication cache account-binding, concurrent same-account request coalescing and missing/near-expired expiry refusal at 663f9876: 10 local tests, backend typecheck and all three exact-head hosted workflows passed. Separate supplier-cj-adapter correction 7c0fca18: correct POST key-body auth, checked token response and no fabricated production counts; 13 focused tests, typecheck and all three exact-head hosted workflows passed.",
-      "24e68078 / fb4aa70c: Pillow presale and re-evaluation supplier stock rejects factory totals, unbound SKU fallback, invalid VID and variant summary inventory; direct CJ-managed stock only; focused offline tests and backend typecheck pass; all three exact-head hosted workflows passed."
+      "24e68078 / fb4aa70c: Pillow presale and re-evaluation supplier stock rejects factory totals, unbound SKU fallback, invalid VID and variant summary inventory; direct CJ-managed stock only; focused offline tests and backend typecheck pass; all three exact-head hosted workflows passed.",
+      "ac947755: raised disk-only streaming SQLite checkpoint capture to 1 GiB and copied/verified a valid sparse 512 MiB-plus source in 8 local tests; all three exact-head hosted workflows passed; no production file/RAM touched."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -296,6 +297,19 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36244374844",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36244374924",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36244374780"
+    },
+    "oversizedLegacyCheckpointCapture": {
+      "head": "ac9477554cd324769d6791022513f81949650b7d",
+      "streamingMaxBytes": 1073741824,
+      "observedCheckpointBytes": 572035072,
+      "localTestsPassed": 8,
+      "oversizedSparseSqliteCopiedAndVerified": true,
+      "pendingRamCaptured": false,
+      "productionFilesCopied": false,
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36244923445",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36244923442",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36244923419"
     }
   },
   "failedAttempts": [
@@ -331,7 +345,7 @@
     "Vercel connector returned no accessible teams in 2026-09-26 readback; current Vercel deployment revision not independently verified.",
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state.",
     "Read-only Vercel connector teams=[] and known deployment GET returned 403 at 2026-09-26; fresh deployment revision unverified.",
-    "Existing legacy-checkpoint-capture.cjs caps SQLite source at 512 MiB (536870912 bytes), below observed live persisted checkpoint 572035072 bytes; streaming capture bound must be raised and tested outside production before use. Disk copy alone omits RAM."
+    "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and offline-state-bundle.cjs separately caps primary source at 512 MiB. Neither standalone disk tool proves complete state or has been run on production."
   ],
   "nextExecutableActions": [
     "Develop and validate in-process quiesce/save and complete multi-store capture outside production; old-main SIGTERM persists only while exiting, so do not signal protected process. Railway SSH supports existing deployment shell, but no authenticated session is available here; SSH read-only metadata alone cannot capture SQL.js RAM. Only after proven safe method locate process cwd and capture old stores.",
