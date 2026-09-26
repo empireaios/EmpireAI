@@ -9,7 +9,7 @@ import { resetDatabaseInstance } from "../../brain/database.js";
 
 afterEach(() => { resetHttpTransportOverride(); resetLiveCommerceRepository(); resetDatabaseInstance(); });
 
-test("unsupported production syncs and missing order credentials never invent processed records", async () => {
+test("unsupported inventory/pricing and missing listing/order credentials never invent processed records", async () => {
   let calls = 0;
   setHttpTransportOverride(async () => {
     calls++;
@@ -17,8 +17,8 @@ test("unsupported production syncs and missing order credentials never invent pr
   });
   const ctx = { workspaceId: "ws-amazon-sync", providerId: "amazon-us",
     credentials: { accessToken: "synthetic" }, mode: "production" as const };
+  await assert.rejects(amazonUsSpApiAdapter.syncCatalog(ctx), /seller ID and access token required/);
   for (const [name, operation] of [
-    ["catalog", amazonUsSpApiAdapter.syncCatalog],
     ["inventory", amazonUsSpApiAdapter.syncInventory],
     ["pricing", amazonUsSpApiAdapter.syncPricing],
   ] as const) {

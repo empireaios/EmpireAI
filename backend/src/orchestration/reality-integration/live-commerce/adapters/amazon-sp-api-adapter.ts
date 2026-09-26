@@ -8,6 +8,7 @@ import {
 import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
 import { syncAmazonUsOrders } from "./amazon-order-import.js";
+import { syncAmazonUsListings } from "./amazon-listings-import.js";
 import type {
   LiveCommerceAdapterContext,
   LiveCommerceProviderAdapter,
@@ -121,6 +122,7 @@ export function createAmazonSpApiAdapter(
 
     async syncCatalog(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("catalog", ctx, 12);
+      if (registryId === "amazon-us") return syncAmazonUsListings(ctx);
       throw new Error("AMAZON_CATALOG_SYNC_UNIMPLEMENTED: no persisted catalog receipt");
     },
 

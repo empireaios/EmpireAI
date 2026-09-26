@@ -170,15 +170,18 @@ export async function runLiveCommerceSync(input: {
     const message = error instanceof Error ? error.message : "Sync failed";
     // A page was durably committed but more pages remain, or a prior request
     // reservation is still active. Both are expected continuation states.
-    const waitingForOrders = ctx.mode === "production" &&
-      input.providerId === "amazon-us" && input.syncType === "orders" &&
-      (message.startsWith("AMAZON_ORDERS_PAGINATION_PENDING:") ||
-        message.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING:"));
-    if (waitingForOrders) {
+    const waitingForProvider = ctx.mode === "production" && input.providerId === "amazon-us" &&
+      (input.syncType === "orders" &&
+        (message.startsWith("AMAZON_ORDERS_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING:")) ||
+        input.syncType === "catalog" &&
+        (message.startsWith("AMAZON_LISTINGS_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_LISTINGS_RATE_LIMIT_PENDING:")));
+    if (waitingForProvider) {
       job = { ...job, status: "queued", errorMessage: null, completedAt: null };
       recordLiveCommerceAudit({
         workspaceId: input.workspaceId, providerId: input.providerId,
-        action: "sync.orders", actor: input.actor ?? "system",
+        action: `sync.${input.syncType}`, actor: input.actor ?? "system",
         outcome: "blocked",
         metadata: { jobId, continuationPending: true },
       });
