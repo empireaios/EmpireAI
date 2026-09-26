@@ -6,6 +6,7 @@ import { randomUUID } from "node:crypto";
 
 import { logger } from "../../../config/logger.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
+import { cjManagedStockByVid } from "../cj-variant-stock.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import {
   estimateAmazonFees,
@@ -74,24 +75,6 @@ export type ReevaluateOpportunityResult = {
   operatingLoop: ReturnType<typeof buildCommerceOperatingLoopReadiness>;
   nextPillowAction: string;
 };
-
-function sumStock(stockPayload: unknown): number {
-  const rows = Array.isArray(stockPayload)
-    ? stockPayload
-    : stockPayload && typeof stockPayload === "object"
-      ? [stockPayload]
-      : [];
-  let total = 0;
-  for (const row of rows) {
-    if (!row || typeof row !== "object") continue;
-    const r = row as Record<string, unknown>;
-    for (const key of ["inventory", "totalInventoryNum", "cjInventoryNum", "storageNum"]) {
-      const n = r[key];
-      if (typeof n === "number" && Number.isFinite(n) && n > total) total = n;
-    }
-  }
-  return total;
-}
 
 export async function reevaluateCommerceOpportunity(
   input: ReevaluateOpportunityInput,
@@ -258,9 +241,9 @@ export async function reevaluateCommerceOpportunity(
   let stockUnits = 0;
   try {
     const byVid = await cj.queryStockByVid(picked.variant.vid);
-    stockUnits = sumStock(byVid.data);
+    stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid);
   } catch {
-    stockUnits = typeof picked.variant.inventory === "number" ? picked.variant.inventory : 0;
+    stockUnits = 0;
   }
   if (stockUnits <= 0) {
     return finalizeReject({

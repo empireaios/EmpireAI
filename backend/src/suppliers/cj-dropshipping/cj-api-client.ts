@@ -17,6 +17,8 @@ export type CjRequestOptions = {
   query?: Record<string, string | number | undefined>;
   body?: unknown;
   authenticated?: boolean;
+  /** Point-charging stock lookups must never silently spend retry points. */
+  retryLimit?: number;
 };
 
 export class CjApiClient {
@@ -54,7 +56,8 @@ export class CjApiClient {
     const authenticated = options.authenticated ?? true;
     let attempt = 0;
 
-    while (attempt <= this.config.maxRetries) {
+    const retryLimit = options.retryLimit ?? this.config.maxRetries;
+    while (attempt <= retryLimit) {
       attempt += 1;
 
       try {
@@ -86,7 +89,7 @@ export class CjApiClient {
 
         const apiError = classifyCjApiResponse(payload, response.status);
         if (apiError) {
-          if (apiError.retryable && attempt <= this.config.maxRetries) {
+          if (apiError.retryable && attempt <= retryLimit) {
             await this.sleep(250 * attempt);
             continue;
           }
@@ -96,7 +99,7 @@ export class CjApiClient {
         return payload;
       } catch (error) {
         const classified = classifyCjTransportError(error);
-        if (classified.retryable && attempt <= this.config.maxRetries) {
+        if (classified.retryable && attempt <= retryLimit) {
           await this.sleep(250 * attempt);
           continue;
         }
@@ -174,6 +177,7 @@ export class CjApiClient {
     return this.request<CjStockResponse>({
       path: "/product/stock/queryByVid",
       query: { vid },
+      retryLimit: 0,
     });
   }
 

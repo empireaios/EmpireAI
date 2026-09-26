@@ -201,7 +201,7 @@ describe("pillow-commerce-presale", () => {
             JSON.stringify({
               code: 200,
               result: true,
-              data: [{ sku: "SPA-1", vid: "VGOOD", totalInventoryNum: 120, cjInventoryNum: 120 }],
+              data: [{ sku: "SPA-1", vid: "VGOOD", areaId: 1, countryCode: "CN", totalInventoryNum: 120, cjInventoryNum: 120 }],
             }),
             { status: 200 },
           );
