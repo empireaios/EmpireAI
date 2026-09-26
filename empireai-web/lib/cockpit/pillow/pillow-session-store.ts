@@ -11,6 +11,7 @@ export type PillowConversationTurn = {
   content: string;
   screenPath: string;
   recordedAt: string;
+  requestId?: string;
   artifacts?: import("@/lib/pillow/types").PillowChatArtifact[];
 };
 
@@ -126,10 +127,16 @@ export function defaultPillowFloatGeometry(
   );
 }
 
-export function loadPillowSession(): PillowSessionSnapshot | null {
-  if (typeof window === "undefined") return null;
+function ownerSessionKey(ownerId: string): string {
+  return `${PILLOW_SESSION_STORAGE_KEY}:${encodeURIComponent(ownerId)}`;
+}
+
+export function loadPillowSession(ownerId?: string): PillowSessionSnapshot | null {
+  // The old unscoped key cannot be attributed safely. Never import it into a
+  // signed-in owner's conversation or send its transcript back as context.
+  if (typeof window === "undefined" || !ownerId) return null;
   try {
-    const raw = window.localStorage.getItem(PILLOW_SESSION_STORAGE_KEY);
+    const raw = window.localStorage.getItem(ownerSessionKey(ownerId));
     if (!raw) return null;
     return JSON.parse(raw) as PillowSessionSnapshot;
   } catch {
@@ -137,15 +144,19 @@ export function loadPillowSession(): PillowSessionSnapshot | null {
   }
 }
 
-export function savePillowSession(snapshot: PillowSessionSnapshot): void {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(PILLOW_SESSION_STORAGE_KEY, JSON.stringify(snapshot));
+export function savePillowSession(snapshot: PillowSessionSnapshot, ownerId?: string): void {
+  if (typeof window === "undefined" || !ownerId) return;
+  try {
+    window.localStorage.setItem(ownerSessionKey(ownerId), JSON.stringify(snapshot));
+  } catch {
+    // Storage failure must not turn a delivered answer into another execution.
+  }
 }
 
-export function clearPillowHostSession(): void {
-  const session = loadPillowSession();
+export function clearPillowHostSession(ownerId?: string): void {
+  const session = loadPillowSession(ownerId);
   if (!session) return;
-  savePillowSession({ ...session, hostSessionId: undefined });
+  savePillowSession({ ...session, hostSessionId: undefined }, ownerId);
 }
 
 export function loadPillowPanelPreferences(): PillowPanelPreferences {
@@ -191,25 +202,30 @@ export function savePillowPanelPreferences(prefs: PillowPanelPreferences): void 
 export function appendPillowTurn(
   session: PillowSessionSnapshot | null,
   turn: Omit<PillowConversationTurn, "id" | "recordedAt">,
+  ownerId?: string,
 ): PillowSessionSnapshot {
   const base: PillowSessionSnapshot = session ?? {
     turns: [],
     lastScreenPath: turn.screenPath,
     updatedAt: new Date().toISOString(),
   };
+  // Replace a status receipt with the answer to that same request, never duplicate it.
+  const previousTurn = turn.role === "pillow" && turn.requestId
+    ? base.turns.find((row) => row.role === "pillow" && row.requestId === turn.requestId)
+    : undefined;
+  const nextTurn: PillowConversationTurn = {
+    ...turn,
+    id: previousTurn?.id ?? `turn-${base.turns.length + 1}-${Date.now()}`,
+    recordedAt: previousTurn?.recordedAt ?? new Date().toISOString(),
+  };
   const next: PillowSessionSnapshot = {
     ...base,
     lastScreenPath: turn.screenPath,
     updatedAt: new Date().toISOString(),
-    turns: [
-      ...base.turns,
-      {
-        ...turn,
-        id: `turn-${base.turns.length + 1}-${Date.now()}`,
-        recordedAt: new Date().toISOString(),
-      },
-    ].slice(-200),
+    turns: (previousTurn
+      ? base.turns.map((row) => row.id === previousTurn.id ? nextTurn : row)
+      : [...base.turns, nextTurn]).slice(-200),
   };
-  savePillowSession(next);
+  savePillowSession(next, ownerId);
   return next;
 }

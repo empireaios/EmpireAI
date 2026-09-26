@@ -8,6 +8,7 @@ import {
   buildShellTraceFromDecision,
   decideBffChatSurface,
   DEGRADED_CHAT_MESSAGE,
+  isFailClosedPillowResponse,
 } from "@/lib/pillow/bff-chat-sanitize";
 import { shellDeliveryDashboard } from "@/lib/pillow/shell-delivery-observability";
 
@@ -155,8 +156,15 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
 
   if (isChat) {
     const t0 = Date.now();
-    let raw = await upstream.text();
+    const raw = await upstream.text();
     let requestId = upstream.headers.get("x-empire-pillow-request-id");
+    if (isFailClosedPillowResponse(upstream.status, raw)) {
+      const headers = new Headers(upstream.headers);
+      headers.set("content-type", "application/json");
+      headers.set("cache-control", "no-store");
+      forwardPillowHeaders(upstream.headers, headers);
+      return new Response(raw, { status: upstream.status, headers });
+    }
     try {
       const peek = JSON.parse(raw) as {
         result?: {
@@ -170,56 +178,15 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
       const pending =
         peek?.result?.kind === "durable_pending" ||
         peek?.result?.requestRemainsRunning === true;
-      // Auto-retrieve persisted result so Grand King does not manually poll.
-      // Opportunistic short poll only — residual budget after upstream.
-      // Long wait belongs to the browser client (pollDurableChatResult) so we
-      // do not exceed route maxDuration (300s) after a slow Tier-0 response.
-      if (pending && requestId) {
-        const deadline = Date.now() + 45_000;
-        while (Date.now() < deadline) {
-          await new Promise((r) => setTimeout(r, 2_000));
-          const statusRes = await proxyBrainRequest(
-            `/api/pillow/chat-request/${requestId}`,
-            request,
-            {
-              method: "GET",
-              headers: { cookie: request.headers.get("cookie") ?? "" },
-              cache: "no-store",
-              upstreamTimeoutMs: PILLOW_HEALTH_UPSTREAM_TIMEOUT_MS,
-            },
-          );
-          if (!statusRes.ok) continue;
-          const statusBody = (await statusRes.json().catch(() => null)) as {
-            request?: {
-              status?: string;
-              finalResult?: Record<string, unknown> | null;
-              brainResult?: Record<string, unknown> | null;
-              failureClass?: string;
-            };
-          } | null;
-          const rec = statusBody?.request;
-          if (rec?.status === "COMPLETED") {
-            const fr = rec.finalResult || rec.brainResult || {};
-            raw = JSON.stringify({
-              result: {
-                ...fr,
-                message: String((fr as { message?: string }).message ?? ""),
-                kind: (fr as { kind?: string }).kind ?? "llm",
-                requestId,
-                durableRequest: true,
-                durableRetrieved: true,
-                brainCompleted: true,
-                brainToUserEquivalent: true,
-              },
-            });
-            upstream = new Response(raw, {
-              status: 200,
-              headers: upstream.headers,
-            });
-            break;
-          }
-          if (rec?.status === "FAILED_FATAL" || rec?.status === "FAILED") break;
-        }
+      // Deliver the durable ID immediately, before any long-running work. The
+      // authenticated browser persists it and polls GET, including after refresh.
+      // Holding this receipt for a BFF poll loses recovery on a browser timeout.
+      if ((upstream.status === 202 || pending) && requestId) {
+        const headers = new Headers(upstream.headers);
+        headers.set("content-type", "application/json");
+        headers.set("cache-control", "no-store");
+        headers.set("x-empire-pillow-request-id", requestId);
+        return new Response(raw, { status: 202, headers });
       }
     } catch {
       /* keep raw */

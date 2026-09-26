@@ -1,8 +1,10 @@
 import { createHash, randomUUID } from "node:crypto";
+import { ConnectorConnectionRepository } from "../../../../connectors/connection-repository.js";
 
 import { getCredentialVaultRepository } from "../../repositories/sqlite-credential-vault-repository.js";
 import { getConnectorRuntimeState, connectorConnect } from "../../services/connector-runtime.js";
 import { getLiveCommerceAdapter, isLiveCommerceProvider } from "../adapters/registry.js";
+import { resolveAmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import {
   isLiveCommerceIntegrationEnabled,
   resolveLiveCommerceIntegrationMode,
@@ -25,8 +27,20 @@ function resolveMode(): "sandbox" | "production" {
 
 function resolveCredentials(workspaceId: string, providerId: string): Record<string, unknown> {
   const state = getConnectorRuntimeState(workspaceId, providerId);
-  if (!state?.credentialsRef) return {};
-  return getCredentialVaultRepository().resolveSecret(state.credentialsRef) ?? {};
+  // Runtime connector states live in RAM. On a worker restart, recover only an
+  // explicitly connected, workspace-matched persisted reference. A revoked or
+  // expired vault record must never become a live provider credential.
+  if (state && !state.credentialsRef) return {};
+  const persisted = !state ? new ConnectorConnectionRepository()
+    .listByWorkspace(workspaceId).find((connection) =>
+      connection.connectorId === providerId && connection.status === "connected") : null;
+  const ref = state?.credentialsRef ?? persisted?.credentialsRef;
+  if (!ref) return {};
+  const vault = getCredentialVaultRepository();
+  const record = vault.getRecord(ref);
+  if (!record || record.workspaceId !== workspaceId ||
+      record.providerId !== providerId || vault.isExpired(ref)) return {};
+  return vault.resolveSecret(ref) ?? {};
 }
 
 function buildAdapterContext(workspaceId: string, providerId: string): LiveCommerceAdapterContext {
@@ -111,6 +125,7 @@ export async function runLiveCommerceSync(input: {
     status: "running",
     itemsProcessed: 0,
     itemsFailed: 0,
+    durableReadbackVerified: false,
     errorMessage: null,
     mode: ctx.mode,
     startedAt,
@@ -127,11 +142,20 @@ export async function runLiveCommerceSync(input: {
     }[input.syncType];
 
     const result = await syncFn(ctx);
+    if (!Number.isSafeInteger(result.itemsProcessed) || result.itemsProcessed < 0 ||
+        !Number.isSafeInteger(result.itemsFailed) || result.itemsFailed < 0) {
+      throw new Error("Invalid live commerce sync counts");
+    }
+    if (ctx.mode === "production" &&
+        (!result.liveApiVerified || result.itemsFailed !== 0 || result.durableReadbackVerified !== true)) {
+      throw new Error("Production sync lacks verified provider receipt and durable read-back");
+    }
     job = {
       ...job,
       status: "completed",
       itemsProcessed: result.itemsProcessed,
       itemsFailed: result.itemsFailed,
+      durableReadbackVerified: result.durableReadbackVerified === true && ctx.mode === "production",
       completedAt: new Date().toISOString(),
     };
     recordLiveCommerceAudit({
@@ -144,26 +168,48 @@ export async function runLiveCommerceSync(input: {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Sync failed";
-    job = {
-      ...job,
-      status: "failed",
-      errorMessage: message,
-      completedAt: new Date().toISOString(),
-    };
-    getLiveCommerceRepository().createRecoveryRecord({
-      workspaceId: input.workspaceId,
-      providerId: input.providerId,
-      operation: `sync.${input.syncType}`,
-      errorMessage: message,
-    });
-    recordLiveCommerceAudit({
-      workspaceId: input.workspaceId,
-      providerId: input.providerId,
-      action: `sync.${input.syncType}`,
-      actor: input.actor ?? "system",
-      outcome: "failure",
-      metadata: { jobId, error: message },
-    });
+    // A page was durably committed but more pages remain, or a prior request
+    // reservation is still active. Both are expected continuation states.
+    const waitingForProvider = ctx.mode === "production" && input.providerId === "amazon-us" &&
+      (input.syncType === "orders" &&
+        (message.startsWith("AMAZON_ORDERS_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING:")) ||
+        input.syncType === "catalog" &&
+        (message.startsWith("AMAZON_LISTINGS_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_LISTINGS_RATE_LIMIT_PENDING:")) ||
+        input.syncType === "inventory" &&
+        (message.startsWith("AMAZON_INVENTORY_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_INVENTORY_RATE_LIMIT_PENDING:")));
+    if (waitingForProvider) {
+      job = { ...job, status: "queued", errorMessage: null, completedAt: null };
+      recordLiveCommerceAudit({
+        workspaceId: input.workspaceId, providerId: input.providerId,
+        action: `sync.${input.syncType}`, actor: input.actor ?? "system",
+        outcome: "blocked",
+        metadata: { jobId, continuationPending: true },
+      });
+    } else {
+      job = {
+        ...job,
+        status: "failed",
+        errorMessage: message,
+        completedAt: new Date().toISOString(),
+      };
+      getLiveCommerceRepository().createRecoveryRecord({
+        workspaceId: input.workspaceId,
+        providerId: input.providerId,
+        operation: `sync.${input.syncType}`,
+        errorMessage: message,
+      });
+      recordLiveCommerceAudit({
+        workspaceId: input.workspaceId,
+        providerId: input.providerId,
+        action: `sync.${input.syncType}`,
+        actor: input.actor ?? "system",
+        outcome: "failure",
+        metadata: { jobId, error: message },
+      });
+    }
   }
 
   getLiveCommerceRepository().saveSyncJob(job);
@@ -205,7 +251,10 @@ export function processLiveCommerceWebhook(input: {
   secret: string;
 }): LiveCommerceWebhookEvent {
   const adapter = getLiveCommerceAdapter(input.providerId);
-  const signatureValid = adapter?.verifyWebhookSignature(input.payload, input.signature, input.secret) ?? false;
+  const unsupportedAmazonProduction =
+    resolveMode() === "production" && resolveAmazonMarketplaceRegistryId(input.providerId) !== null;
+  const signatureValid = !unsupportedAmazonProduction &&
+    (adapter?.verifyWebhookSignature(input.payload, input.signature, input.secret) ?? false);
   const event: LiveCommerceWebhookEvent = {
     eventId: randomUUID(),
     workspaceId: input.workspaceId,
@@ -224,7 +273,9 @@ export function processLiveCommerceWebhook(input: {
       workspaceId: input.workspaceId,
       providerId: input.providerId,
       operation: `webhook.${input.topic}`,
-      errorMessage: "Invalid webhook signature",
+      errorMessage: unsupportedAmazonProduction
+        ? "Amazon production notifications require verified SQS/EventBridge transport and durable order import"
+        : "Invalid webhook signature",
     });
   }
 
@@ -321,9 +372,17 @@ export function assessLiveCommerceGoLive(workspaceId: string): {
   }
 
   const syncJobs = getLiveCommerceRepository().listSyncJobs(workspaceId);
-  const completedSyncs = syncJobs.filter((j) => j.status === "completed").length;
-  if (completedSyncs >= 4) score += 20;
-  else blockers.push("Full sync cycle incomplete (catalog, inventory, pricing, orders)");
+  // Historic fixture jobs and production HTTP 200s are not durable imports.
+  // Require four distinct, current verified Amazon US sync receipts.
+  const recent = Date.now() - 24 * 60 * 60 * 1000;
+  const acceptedTypes = new Set(syncJobs.filter((j) =>
+    j.providerId === "amazon-us" && j.mode === "production" &&
+    j.status === "completed" && j.durableReadbackVerified === true &&
+    (j.syncType === "orders" || j.itemsProcessed > 0) &&
+    j.itemsFailed === 0 && Boolean(j.completedAt) && Date.parse(j.completedAt!) >= recent,
+  ).map((j) => j.syncType));
+  if (["catalog", "inventory", "pricing", "orders"].every((type) => acceptedTypes.has(type as LiveCommerceSyncType))) score += 20;
+  else blockers.push("Full verified Amazon US sync cycle incomplete (catalog, inventory, pricing, orders)");
 
   score = Math.min(100, score);
   return {
@@ -362,7 +421,8 @@ export function buildLiveCommerceIntegrationDashboard(
   });
 
   const countByType = (type: LiveCommerceSyncType) =>
-    syncJobs.filter((j) => j.syncType === type && j.status === "completed").length;
+    syncJobs.filter((j) => j.syncType === type && j.mode === "production" &&
+      j.status === "completed" && j.durableReadbackVerified === true).length;
 
   let securityReviewsPassed = 0;
   for (const id of [...LIVE_COMMERCE_PROVIDER_IDS.marketplaces, ...LIVE_COMMERCE_PROVIDER_IDS.suppliers]) {

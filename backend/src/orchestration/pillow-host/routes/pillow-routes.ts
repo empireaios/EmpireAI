@@ -4,6 +4,7 @@ import { z } from "zod";
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import type { LLMRouter } from "../../../brain/llm/llm-router.js";
 import { logger } from "../../../config/logger.js";
+import { isReasoningOnlyRequest } from "../../../runtime/reasoning-only-policy.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
 import {
   ensurePillowHostReadyOrReply,
@@ -542,7 +543,7 @@ import { collectAffiliateCertificationSnapshot } from "../affiliate-certificatio
 import { collectCapitalFactoryCertificationSnapshot } from "../capital-factory-certification-bridge.js";
 import { collectSharedRuntimeCoreSnapshot } from "../shared-runtime-core-bridge.js";
 import { collectPillowOrchestrationRuntimeSnapshot } from "../pillow-orchestration-runtime-bridge.js";
-import { collectMissionRuntimeSnapshot } from "../mission-runtime-bridge.js";
+import { registerMissionRuntimeRoutes } from "./mission-runtime-routes.js";
 import { collectQueueRuntimeSnapshot } from "../queue-runtime-bridge.js";
 import { collectMemoryRuntimeSnapshot } from "../memory-runtime-bridge.js";
 import { collectApiRuntimeSnapshot } from "../api-runtime-bridge.js";
@@ -34528,81 +34529,9 @@ export async function registerPillowRoutes(
   app.post("/api/pillow/pillow-orchestration-runtime/history", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("history"));
   app.post("/api/pillow/pillow-orchestration-runtime/q1003-contract", { preHandler: pillowAuth }, pillowOrchestrationRuntimeAction("q1003-contract"));
 
-  app.get("/api/pillow/mission-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
-    if (pillowHost.getStatus().lifecycle !== "running") {
-      schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
-      return reply.send(collectMissionRuntimeSnapshot());
-    }
-    return reply.send({ missionRuntime: pillowHost.getMissionRuntime() });
+  await registerMissionRuntimeRoutes(app, { authenticate, pillowHost,
+    onUnavailableRead: () => { schedulePillowHostBoot(pillowHost, llmRouter, auditLogger); },
   });
-  const missionRuntimeAction = (
-    method:
-      | "connect"
-      | "create-mission"
-      | "queue"
-      | "ready"
-      | "execute"
-      | "pause"
-      | "resume"
-      | "retry"
-      | "cancel"
-      | "recover"
-      | "archive"
-      | "monitor"
-      | "produce-report"
-      | "submit-report"
-      | "list"
-      | "validate"
-      | "diagnostics"
-      | "history"
-      | "q1004-contract",
-  ) =>
-    async (request: FastifyRequest, reply: FastifyReply) => {
-      if (pillowHost.getStatus().lifecycle !== "running") {
-        return reply.code(503).send(collectMissionRuntimeSnapshot());
-      }
-      const body = (request.body ?? {}) as Record<string, unknown>;
-      const report =
-        method === "connect" ? pillowHost.connectMissionRuntime(body)
-          : method === "create-mission" ? pillowHost.createMissionRuntimeMission(body)
-            : method === "queue" ? pillowHost.queueMissionRuntime(body)
-              : method === "ready" ? pillowHost.readyMissionRuntime(body)
-                : method === "execute" ? pillowHost.executeMissionRuntime(body)
-                  : method === "pause" ? pillowHost.pauseMissionRuntime(body)
-                    : method === "resume" ? pillowHost.resumeMissionRuntime(body)
-                      : method === "retry" ? pillowHost.retryMissionRuntime(body)
-                        : method === "cancel" ? pillowHost.cancelMissionRuntime(body)
-                          : method === "recover" ? pillowHost.recoverMissionRuntime(body)
-                            : method === "archive" ? pillowHost.archiveMissionRuntime(body)
-                              : method === "monitor" ? pillowHost.monitorMissionRuntime(body)
-                                : method === "produce-report" ? pillowHost.produceMissionRuntimeReport(body)
-                                  : method === "submit-report" ? pillowHost.submitMissionRuntimeReport(body)
-                                    : method === "list" ? pillowHost.listMissionRuntime()
-                                      : method === "validate" ? pillowHost.validateMissionRuntime(body)
-                                        : method === "history" ? pillowHost.getMissionRuntimeHistory()
-                                          : method === "q1004-contract" ? pillowHost.getMissionRuntimeQ1004Contract()
-                                            : pillowHost.runMissionRuntimeDiagnostics();
-      return reply.send({ computedAt: new Date().toISOString(), report });
-    };
-  app.post("/api/pillow/mission-runtime/connect", { preHandler: pillowAuth }, missionRuntimeAction("connect"));
-  app.post("/api/pillow/mission-runtime/create-mission", { preHandler: pillowAuth }, missionRuntimeAction("create-mission"));
-  app.post("/api/pillow/mission-runtime/queue", { preHandler: pillowAuth }, missionRuntimeAction("queue"));
-  app.post("/api/pillow/mission-runtime/ready", { preHandler: pillowAuth }, missionRuntimeAction("ready"));
-  app.post("/api/pillow/mission-runtime/execute", { preHandler: pillowAuth }, missionRuntimeAction("execute"));
-  app.post("/api/pillow/mission-runtime/pause", { preHandler: pillowAuth }, missionRuntimeAction("pause"));
-  app.post("/api/pillow/mission-runtime/resume", { preHandler: pillowAuth }, missionRuntimeAction("resume"));
-  app.post("/api/pillow/mission-runtime/retry", { preHandler: pillowAuth }, missionRuntimeAction("retry"));
-  app.post("/api/pillow/mission-runtime/cancel", { preHandler: pillowAuth }, missionRuntimeAction("cancel"));
-  app.post("/api/pillow/mission-runtime/recover", { preHandler: pillowAuth }, missionRuntimeAction("recover"));
-  app.post("/api/pillow/mission-runtime/archive", { preHandler: pillowAuth }, missionRuntimeAction("archive"));
-  app.post("/api/pillow/mission-runtime/monitor", { preHandler: pillowAuth }, missionRuntimeAction("monitor"));
-  app.post("/api/pillow/mission-runtime/produce-report", { preHandler: pillowAuth }, missionRuntimeAction("produce-report"));
-  app.post("/api/pillow/mission-runtime/submit-report", { preHandler: pillowAuth }, missionRuntimeAction("submit-report"));
-  app.post("/api/pillow/mission-runtime/list", { preHandler: pillowAuth }, missionRuntimeAction("list"));
-  app.post("/api/pillow/mission-runtime/validate", { preHandler: pillowAuth }, missionRuntimeAction("validate"));
-  app.post("/api/pillow/mission-runtime/diagnostics", { preHandler: pillowAuth }, missionRuntimeAction("diagnostics"));
-  app.post("/api/pillow/mission-runtime/history", { preHandler: pillowAuth }, missionRuntimeAction("history"));
-  app.post("/api/pillow/mission-runtime/q1004-contract", { preHandler: pillowAuth }, missionRuntimeAction("q1004-contract"));
 
   app.get("/api/pillow/queue-runtime", { preHandler: pillowAuth }, async (_request, reply) => {
     if (pillowHost.getStatus().lifecycle !== "running") {
@@ -39849,6 +39778,7 @@ export async function registerPillowRoutes(
           workspaceId,
           sessionId,
           message: body.message,
+          reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
           correlationId: request.id,
           provider: body.provider,
@@ -39875,6 +39805,7 @@ export async function registerPillowRoutes(
           workspaceId,
           sessionId,
           message: body.message,
+          reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
           correlationId: request.id,
           provider: body.provider,

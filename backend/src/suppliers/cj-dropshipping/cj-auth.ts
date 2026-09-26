@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import type { CjConfig } from "./cj-config.js";
 import { hasCjCredentials } from "./cj-config.js";
 import { CjApiError } from "./cj-error.js";
@@ -10,9 +11,26 @@ type TokenCache = {
   refreshExpiresAt: number | null;
 };
 
-let cachedToken: TokenCache | null = null;
+// Bind each access/refresh token to the exact account, secret and endpoint that
+// minted it. Concurrent workspaces must never borrow another CJ account token.
+const tokenCache = new Map<string, TokenCache>();
+const tokenFlights = new Map<string, Promise<string>>();
+let lastBinding: string | null = null;
+function binding(config: CjConfig): string {
+  return createHash("sha256").update(JSON.stringify([
+    config.apiBaseUrl, config.apiKey, config.apiSecret,
+  ])).digest("hex");
+}
+function cacheFor(key: string): TokenCache | null { return tokenCache.get(key) ?? null; }
+function putCache(key: string, value: TokenCache): void {
+  if (!tokenCache.has(key) && tokenCache.size >= 16) {
+    const evict = [...tokenCache.keys()].find(candidate => !tokenFlights.has(candidate));
+    if (evict) tokenCache.delete(evict);
+  }
+  tokenCache.set(key, value);
+}
 
-function parseExpiry(value: string | number | undefined, fallbackMs: number): number {
+function parseExpiry(value: string | number | undefined): number {
   if (typeof value === "number" && Number.isFinite(value)) {
     return value;
   }
@@ -22,7 +40,7 @@ function parseExpiry(value: string | number | undefined, fallbackMs: number): nu
       return parsed;
     }
   }
-  return Date.now() + fallbackMs;
+  throw new CjApiError("AUTH_FAILED", "CJ token expiry missing or invalid", { retryable: false });
 }
 
 function isAccessTokenValid(cache: TokenCache | null): cache is TokenCache {
@@ -42,20 +60,24 @@ function isRefreshTokenValid(cache: TokenCache | null): boolean {
   return Date.now() < cache.refreshExpiresAt - 60_000;
 }
 
-function storeTokenFromResponse(data: NonNullable<CjAccessTokenResponse["data"]>): void {
-  cachedToken = {
+function storeTokenFromResponse(key: string, data: NonNullable<CjAccessTokenResponse["data"]>): void {
+  const previous = cacheFor(key);
+  const accessExpiresAt = parseExpiry(data.accessTokenExpiryDate);
+  putCache(key, {
     accessToken: data.accessToken!,
-    refreshToken: data.refreshToken ?? cachedToken?.refreshToken ?? null,
-    accessExpiresAt: parseExpiry(data.accessTokenExpiryDate, 15 * 24 * 60 * 60_000),
+    refreshToken: data.refreshToken ?? previous?.refreshToken ?? null,
+    accessExpiresAt,
     refreshExpiresAt: data.refreshTokenExpiryDate
-      ? parseExpiry(data.refreshTokenExpiryDate, 180 * 24 * 60 * 60_000)
+      ? parseExpiry(data.refreshTokenExpiryDate)
       : null,
-  };
+  });
 }
 
 /** Clears cached CJ access tokens (for tests). */
 export function clearCjAuthCache(): void {
-  cachedToken = null;
+  tokenCache.clear();
+  tokenFlights.clear();
+  lastBinding = null;
 }
 
 /** Redacted in-process token cache snapshot (proof / diagnostics — no secrets). */
@@ -67,6 +89,7 @@ export function getCjAuthCacheStatus(): {
   accessValid: boolean;
   refreshValid: boolean;
 } {
+  const cachedToken = lastBinding ? cacheFor(lastBinding) : null;
   if (!cachedToken) {
     return {
       populated: false,
@@ -104,6 +127,7 @@ function buildGetAccessTokenBody(config: CjConfig): Record<string, string> {
 async function requestAccessToken(
   config: CjConfig,
   fetchImpl: typeof fetch,
+  key: string,
 ): Promise<string> {
   const response = await fetchImpl(`${config.apiBaseUrl}/authentication/getAccessToken`, {
     method: "POST",
@@ -127,16 +151,18 @@ async function requestAccessToken(
     );
   }
 
-  storeTokenFromResponse(payload.data);
-  return cachedToken!.accessToken;
+  storeTokenFromResponse(key, payload.data);
+  return cacheFor(key)!.accessToken;
 }
 
 async function refreshAccessToken(
   config: CjConfig,
   fetchImpl: typeof fetch,
+  key: string,
 ): Promise<string> {
+  const cachedToken = cacheFor(key);
   if (!cachedToken?.refreshToken) {
-    return requestAccessToken(config, fetchImpl);
+    return requestAccessToken(config, fetchImpl, key);
   }
 
   const response = await fetchImpl(`${config.apiBaseUrl}/authentication/refreshAccessToken`, {
@@ -152,15 +178,11 @@ async function refreshAccessToken(
   const payload = (await response.json()) as CjAccessTokenResponse;
 
   if (!response.ok || payload.result === false || !payload.data?.accessToken) {
-    cachedToken = {
-      ...cachedToken,
-      accessToken: cachedToken.accessToken,
-    };
-    return requestAccessToken(config, fetchImpl);
+    return requestAccessToken(config, fetchImpl, key);
   }
 
-  storeTokenFromResponse(payload.data);
-  return cachedToken!.accessToken;
+  storeTokenFromResponse(key, payload.data);
+  return cacheFor(key)!.accessToken;
 }
 
 /** Obtains a CJ access token using CJ API 2.0 (apiKey; optional legacy apiSecret). */
@@ -173,21 +195,37 @@ export async function getCjAccessToken(
       retryable: false,
     });
   }
-
+  const key = binding(config);
+  lastBinding = key;
+  const cachedToken = cacheFor(key);
   if (isAccessTokenValid(cachedToken)) {
     return cachedToken.accessToken;
   }
-
-  if (isRefreshTokenValid(cachedToken)) {
-    return refreshAccessToken(config, fetchImpl);
+  const inFlight = tokenFlights.get(key);
+  if (inFlight) {
+    const token = await inFlight;
+    if (!isAccessTokenValid(cacheFor(key))) {
+      throw new CjApiError("AUTH_FAILED", "CJ access token expired", { retryable: false });
+    }
+    return token;
   }
-
-  await requestAccessToken(config, fetchImpl);
-  if (!isAccessTokenValid(cachedToken) && isRefreshTokenValid(cachedToken)) {
-    return refreshAccessToken(config, fetchImpl);
+  const flight = (async () => {
+    if (isRefreshTokenValid(cacheFor(key))) return refreshAccessToken(config, fetchImpl, key);
+    await requestAccessToken(config, fetchImpl, key);
+    if (!isAccessTokenValid(cacheFor(key)) && isRefreshTokenValid(cacheFor(key))) {
+      return refreshAccessToken(config, fetchImpl, key);
+    }
+    return cacheFor(key)!.accessToken;
+  })();
+  tokenFlights.set(key, flight);
+  try {
+    const token = await flight;
+    if (!isAccessTokenValid(cacheFor(key))) {
+      throw new CjApiError("AUTH_FAILED", "CJ access token expired", { retryable: false });
+    }
+    return token;
   }
-
-  return cachedToken!.accessToken;
+  finally { if (tokenFlights.get(key) === flight) tokenFlights.delete(key); }
 }
 
 /** Builds authenticated headers for CJ API requests. */

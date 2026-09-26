@@ -44,3 +44,5 @@ export {
   getAllowedTransitions,
   ALLOWED_TRANSITIONS,
 } from "./lifecycle-engine.js";
+
+export type { AuthorityDispatchBinding, AuthorityStoredReceipt, AuthorityMissionAdapter } from "./authority-execution.js";

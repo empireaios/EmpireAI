@@ -2087,6 +2087,11 @@ function migrate(db: EmpireDatabase): void {
   `);
 }
 
+/** Save the existing instance without replacing repository-held handles. */
+export async function persistDatabase(): Promise<void> {
+  await dbInstance?.requestCriticalPersist();
+}
+
 export function closeDatabase(): void {
   if (dbInstance) {
     dbInstance.close();

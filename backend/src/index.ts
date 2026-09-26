@@ -1,7 +1,6 @@
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
 import { logCaughtError } from "./config/log-caught-error.js";
-import { buildApp } from "./app.js";
 import {
   startTier0IsolatedPrimary,
   tier0IsolationEnabled,
@@ -16,17 +15,41 @@ async function main() {
       await startTier0IsolatedPrimary();
       return;
     } catch (error) {
-      process.env.EMPIRE_BOOT_MODE = "monolith-fallback";
+      process.env.EMPIRE_BOOT_MODE = "tier0-start-failed";
       logCaughtError(
         logger,
         error,
-        "Tier-0 isolation failed to start — falling back to monolith Brain (auth may block during sql.js flush)",
+        "Tier-0 isolation failed to start — refusing unsafe monolith fallback",
       );
-      // Fall through to monolith boot rather than leave Railway with no process.
+      throw error;
     }
   } else {
     process.env.EMPIRE_BOOT_MODE = process.env.EMPIRE_ROLE === "brain-worker" ? "brain-worker" : "monolith";
   }
+
+  // Install before importing/bootstrapping the large Brain graph. A termination
+  // during startup must await the database-owning app before flushing it.
+  let finishStartup!: () => void;
+  const startupFinished = new Promise<void>((resolve) => { finishStartup = resolve; });
+  let shutdownAction: (() => Promise<void>) | null = null;
+  let stopAmazonOrderImport: (() => Promise<void>) | null = null;
+  let stopAmazonListingsImport: (() => Promise<void>) | null = null;
+  let stopAmazonSellerInventory: (() => Promise<void>) | null = null;
+  let shuttingDown = false;
+  const handleShutdown = async () => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    try {
+      await startupFinished;
+      await shutdownAction?.();
+      process.exit(0);
+    } catch (error) {
+      logCaughtError(logger, error, "Brain shutdown failed — persistence not confirmed");
+      process.exit(1);
+    }
+  };
+  process.on("SIGINT", handleShutdown);
+  process.on("SIGTERM", handleShutdown);
 
   // Free ENOSPC headroom before sql.js can export (temps / old quarantines only).
   const { reclaimEphemeralVolumeFiles } = await import("./runtime/volume-reclaim.js");
@@ -38,19 +61,23 @@ async function main() {
   enforceProductionPersistenceGate();
 
   const productionEarlyListen = env.NODE_ENV === "production";
+  // Only the Brain worker/monolith loads the full application graph. The
+  // isolated primary must keep authentication independent of that graph.
+  const { buildApp } = await import("./app.js");
   const { app, shutdown, finishRouteRegistration } = await buildApp({
     startWorkers: !productionEarlyListen,
     startScheduler: !productionEarlyListen,
     earlyListen: productionEarlyListen,
   });
 
-  const handleShutdown = async () => {
+  shutdownAction = async () => {
+    await stopAmazonOrderImport?.();
+    await stopAmazonListingsImport?.();
+    await stopAmazonSellerInventory?.();
     await shutdown();
-    process.exit(0);
   };
-
-  process.on("SIGINT", handleShutdown);
-  process.on("SIGTERM", handleShutdown);
+  finishStartup();
+  if (shuttingDown) return;
 
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info(
@@ -69,6 +96,23 @@ async function main() {
     "./runtime/executive-continuity-watchdog.js"
   );
   startExecutiveContinuityWatchdog();
+
+  // Production early-listen deliberately skips broad workers. This narrow
+  // read-only continuation resumes only an already owner-started cursor.
+  if (productionEarlyListen && !shuttingDown) {
+    const { startAmazonOrderImportContinuation } = await import(
+      "./orchestration/reality-integration/live-commerce/services/amazon-order-continuation.js"
+    );
+    if (!shuttingDown) stopAmazonOrderImport = startAmazonOrderImportContinuation();
+    const { startAmazonUsListingsImportContinuation } = await import(
+      "./orchestration/reality-integration/live-commerce/services/amazon-listings-continuation.js"
+    );
+    if (!shuttingDown) stopAmazonListingsImport = startAmazonUsListingsImportContinuation();
+    const { startAmazonSellerInventoryContinuation } = await import(
+      "./orchestration/reality-integration/live-commerce/services/amazon-seller-inventory-continuation.js"
+    );
+    if (!shuttingDown) stopAmazonSellerInventory = startAmazonSellerInventoryContinuation();
+  }
 
   if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {
     const deferMs = Number(process.env.EMPIRE_EXTENSION_ROUTE_DEFER_MS ?? 10 * 60 * 1000);

@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, it, beforeEach, afterEach } from "node:test";
 
 import { ApprovalGateEngine } from "../../orchestration/pillow-approval/approval-gate-engine.js";
@@ -11,11 +14,17 @@ import { pillowCommercePresaleTools } from "../../orchestration/pillow-commerce-
 import { setHttpTransportOverride, resetHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { runPillowCommercePresaleCycle } from "../../orchestration/pillow-commerce-presale/services/presale-cycle-service.js";
 import { clearCjAuthCache } from "../../suppliers/cj-dropshipping/cj-auth.js";
-import { pickLiveCjVariant } from "../../orchestration/pillow-commerce-presale/cj-live-normalize.js";
+import { closeDatabase } from "../../brain/database.js";
+
+let presaleTestDir = "";
+import { coerceUsdNumber, pickLiveCjVariant } from "../../orchestration/pillow-commerce-presale/cj-live-normalize.js";
 
 describe("pillow-commerce-presale", () => {
   beforeEach(() => {
-    process.env.DATABASE_PATH = ":memory:";
+    presaleTestDir = mkdtempSync(join(tmpdir(), "pillow-cj-presale-"));
+    process.env.DATABASE_PATH = join(presaleTestDir, "brain.sqlite");
+    process.env.CJ_PRESALE_CYCLE_POINT_LIMIT = "100";
+    process.env.CJ_PRESALE_DAILY_POINT_LIMIT = "200";
     process.env.CJ_INTEGRATION_MODE = "LIVE";
     process.env.CJ_API_KEY = "test-cj-key";
     process.env.AMAZON_SELLER_ID = "A1TESTSELLER";
@@ -28,6 +37,10 @@ describe("pillow-commerce-presale", () => {
 
   afterEach(() => {
     resetHttpTransportOverride();
+    closeDatabase();
+    rmSync(presaleTestDir, { recursive: true, force: true });
+    delete process.env.CJ_PRESALE_CYCLE_POINT_LIMIT;
+    delete process.env.CJ_PRESALE_DAILY_POINT_LIMIT;
   });
 
   it("registers Pillow commerce tools", () => {
@@ -62,7 +75,7 @@ describe("pillow-commerce-presale", () => {
     assert.equal(isProof001FailureClass({ productName: "Generic desk organizer", asin: "B0TEST1234" }), false);
   });
 
-  it("normalizes live CJ variantSellPrice / variantList.price into cost", () => {
+  it("normalizes a VID-bound CJ variantSellPrice into cost", () => {
     const picked = pickLiveCjVariant({
       pid: "P1",
       productName: "Test",
@@ -76,6 +89,30 @@ describe("pillow-commerce-presale", () => {
     });
     assert.equal(picked.costUsd, 3.45);
     assert.equal(picked.variant?.vid, "V9");
+  });
+
+  it("rejects CJ price ranges, product-level cost fallback, fake VIDs and conflicting variant quotes", () => {
+    assert.equal(coerceUsdNumber("3.20-5.00"), null);
+    assert.equal(coerceUsdNumber("$3.20"), null);
+    assert.equal(coerceUsdNumber("3.20 USD"), null);
+    assert.equal(coerceUsdNumber("3.20"), 3.2);
+    assert.equal(pickLiveCjVariant({ pid: "P1", productName: "Range", productPrice: 3.2,
+      variants: [{ vid: "V1", sku: "SKU-1", sellPrice: 3.2 }],
+    }).costUsd, null);
+    assert.equal(pickLiveCjVariant({ pid: "P1", productName: "No VID", productPrice: 3.2,
+      variantList: [{ vid: "", sku: "SKU-1", variantSellPrice: 3.2 }],
+    }).variant, null);
+    const conflicting = { pid: "P1", productName: "Conflict", variants: [
+      { vid: "V1", sku: "SKU-1", variantSellPrice: 3.2 },
+      { vid: "V1", sku: "SKU-1", variantSellPrice: 4.2 },
+    ] };
+    assert.equal(pickLiveCjVariant(conflicting).costUsd, null);
+    const product = { pid: "P2", productName: "Mapped", variants: [
+      { vid: "V1", sku: "SKU-1", variantSellPrice: 3.2 },
+      { vid: "V2", sku: "SKU-2", variantSellPrice: 4.2 },
+    ] };
+    assert.equal(pickLiveCjVariant(product, "V2").costUsd, 4.2);
+    assert.equal(pickLiveCjVariant(product, "OTHER").costUsd, null);
   });
 
   it("rejects loss-making economics and unavailable live inputs", () => {
@@ -145,14 +182,14 @@ describe("pillow-commerce-presale", () => {
                     pid: "P_ANKER",
                     productNameEn: "Anker USB-C Cable",
                     sellPrice: 4,
-                    variants: [{ vid: "V1", sku: "ANK-1", sellPrice: 4 }],
+                    variants: [{ vid: "V1", sku: "ANK-1", variantSellPrice: 4 }],
                   },
                   {
                     pid: "P_GOOD",
                     productNameEn: "Silicone Kitchen Spatula Set",
                     sellPrice: 3.2,
                     suggestSellPrice: 14.99,
-                    variants: [{ vid: "VGOOD", sku: "SPA-1", sellPrice: 3.2, suggestSellPrice: 14.99 }],
+                    variants: [{ vid: "VGOOD", sku: "SPA-1", variantSellPrice: 3.2, suggestSellPrice: 14.99 }],
                   },
                 ],
               },
@@ -171,7 +208,7 @@ describe("pillow-commerce-presale", () => {
                   pid: "P_ANKER",
                   productNameEn: "Anker USB-C Cable",
                   sellPrice: 4,
-                  variants: [{ vid: "V1", sku: "ANK-1", sellPrice: 4 }],
+                  variants: [{ vid: "V1", sku: "ANK-1", variantSellPrice: 4 }],
                 },
               }),
               { status: 200 },
@@ -186,7 +223,7 @@ describe("pillow-commerce-presale", () => {
                 productNameEn: "Silicone Kitchen Spatula Set",
                 sellPrice: 3.2,
                 suggestSellPrice: 14.99,
-                variants: [{ vid: "VGOOD", sku: "SPA-1", sellPrice: 3.2, suggestSellPrice: 14.99 }],
+                variants: [{ vid: "VGOOD", sku: "SPA-1", variantSellPrice: 3.2, suggestSellPrice: 14.99 }],
               },
             }),
             { status: 200 },
@@ -201,7 +238,7 @@ describe("pillow-commerce-presale", () => {
             JSON.stringify({
               code: 200,
               result: true,
-              data: [{ sku: "SPA-1", vid: "VGOOD", totalInventoryNum: 120, cjInventoryNum: 120 }],
+              data: [{ sku: "SPA-1", vid: "VGOOD", areaId: 1, countryCode: "CN", totalInventoryNum: 120, cjInventoryNum: 120 }],
             }),
             { status: 200 },
           );

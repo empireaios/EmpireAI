@@ -9,6 +9,12 @@ import type {
   PillowWorkspaceSession,
 } from "./types";
 import { toExecutiveSurfaceMessage } from "./executive-surface";
+import {
+  pendingDurableResult,
+  resultFromDurableRecord,
+  type DurableChatRecord,
+  type DurableReceipt,
+} from "./durable-delivery";
 
 /** Outer of BFF (280s) — must exceed upstream so first request can finish. */
 const PILLOW_REQUEST_TIMEOUT_MS = 290_000;
@@ -20,17 +26,30 @@ const CHAT_RESULT_POLL_MS = 2_000;
 /** Align with Tier-0 total budget (260s) so slow recoveries still surface in ordinary chat. */
 const CHAT_RESULT_POLL_BUDGET_MS = 240_000;
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function sleep(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) return reject(new DOMException("Aborted", "AbortError"));
+    const done = () => {
+      signal?.removeEventListener("abort", abort);
+      resolve();
+    };
+    const timer = setTimeout(done, ms);
+    const abort = () => {
+      clearTimeout(timer);
+      signal?.removeEventListener("abort", abort);
+      reject(new DOMException("Aborted", "AbortError"));
+    };
+    signal?.addEventListener("abort", abort, { once: true });
+  });
 }
 
 function normalizePillowNetworkError(error: unknown): Error {
   if (error instanceof Error) {
     if (error.name === "AbortError") {
-      return new Error("Executive Intelligence is taking longer than usual. Retrying automatically…");
+      return new Error("The connection timed out. Completion has not been confirmed.");
     }
     if (error.message === "Failed to fetch") {
-      return new Error("Starting Executive Systems…");
+      return new Error("The connection was interrupted. Completion has not been confirmed.");
     }
     return error;
   }
@@ -48,15 +67,18 @@ async function pillowFetchWithRetry(
   for (let attempt = 0; attempt <= retries; attempt += 1) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    const abort = () => controller.abort();
+    if (init.signal?.aborted) controller.abort();
+    init.signal?.addEventListener("abort", abort, { once: true });
 
     try {
       const response = await fetch(input, {
         ...init,
         credentials: "include",
-        signal: init.signal ?? controller.signal,
+        signal: controller.signal,
       });
 
-      if (response.ok || response.status < 500) {
+      if (response.ok || response.status < 500 || attempt === retries) {
         return response;
       }
 
@@ -65,12 +87,14 @@ async function pillowFetchWithRetry(
         await sleep(BASE_DELAY_MS * 2 ** attempt);
       }
     } catch (error) {
+      if (init.signal?.aborted) throw error;
       lastError = normalizePillowNetworkError(error);
       if (attempt < retries) {
         await sleep(BASE_DELAY_MS * 2 ** attempt);
       }
     } finally {
       clearTimeout(timeout);
+      init.signal?.removeEventListener("abort", abort);
     }
   }
 
@@ -125,12 +149,15 @@ export async function fetchPillowStatus(): Promise<{ status: PillowHostStatus }>
   return pillowRequest("/api/pillow/status");
 }
 
-let inflightSessionCreate: Promise<PillowWorkspaceSession> | null = null;
+const inflightSessionCreates = new Map<string, Promise<PillowWorkspaceSession>>();
 
-export async function createPillowHostSession(workspaceId?: string): Promise<PillowWorkspaceSession> {
+export async function createPillowHostSession(workspaceId?: string, ownerId?: string): Promise<PillowWorkspaceSession> {
   // Coalesce concurrent creates — cockpit bootstrap + recovery must not stampede Brain.
-  if (!inflightSessionCreate) {
-    inflightSessionCreate = pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
+  // A new signed-in owner must never inherit another owner's in-flight session.
+  const key = JSON.stringify([ownerId ?? null, workspaceId ?? null]);
+  const existing = inflightSessionCreates.get(key);
+  if (existing) return existing;
+  const pending = pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
       method: "POST",
       body: JSON.stringify(workspaceId ? { workspaceId } : {}),
       timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
@@ -139,55 +166,59 @@ export async function createPillowHostSession(workspaceId?: string): Promise<Pil
     })
       .then((result) => result.session)
       .finally(() => {
-        inflightSessionCreate = null;
+        inflightSessionCreates.delete(key);
       });
-  }
-  return inflightSessionCreate;
+  inflightSessionCreates.set(key, pending);
+  return pending;
 }
 
-export async function fetchPillowChatRequest(requestId: string): Promise<{
+export async function fetchPillowChatRequest(requestId: string, signal?: AbortSignal, timeoutMs = 20_000): Promise<{
   ok: boolean;
-  request?: {
-    status?: string;
-    failureClass?: string;
-    finalResult?: Record<string, unknown> | null;
-    brainResult?: Record<string, unknown> | null;
-  };
+  request?: DurableChatRecord;
 }> {
   return pillowRequest(`/api/pillow/chat-request/${encodeURIComponent(requestId)}`, {
-    timeoutMs: 20_000,
+    method: "GET",
+    cache: "no-store",
+    signal,
+    timeoutMs,
     retries: 0,
   });
 }
 
-async function pollDurableChatResult(
-  requestId: string,
-): Promise<(PillowChatResult & { reboundSessionId?: string }) | null> {
-  const deadline = Date.now() + CHAT_RESULT_POLL_BUDGET_MS;
+export type DurablePollOptions = {
+  signal?: AbortSignal;
+  /** Injectable clock/wait for deterministic network-fault tests. */
+  budgetMs?: number;
+  pollMs?: number;
+  wait?: (ms: number, signal?: AbortSignal) => Promise<void>;
+};
+
+export async function retrievePillowChat(
+  receipt: DurableReceipt,
+  options: DurablePollOptions = {},
+): Promise<PillowChatResult> {
+  const deadline = Date.now() + (options.budgetMs ?? CHAT_RESULT_POLL_BUDGET_MS);
+  let status: string | undefined;
   while (Date.now() < deadline) {
-    await sleep(CHAT_RESULT_POLL_MS);
+    if (options.signal?.aborted) throw new DOMException("Aborted", "AbortError");
     try {
-      const got = await fetchPillowChatRequest(requestId);
-      const rec = got.request;
-      if (!rec) continue;
-      if (rec.status === "COMPLETED") {
-        const fr = (rec.finalResult || rec.brainResult || {}) as Record<string, unknown>;
-        return {
-          ...(fr as unknown as PillowChatResult),
-          message: String(fr.message ?? ""),
-          kind: (fr.kind as PillowChatResult["kind"]) ?? "llm",
-          requestId,
-          durableRetrieved: true,
-        } as PillowChatResult & { reboundSessionId?: string; durableRetrieved?: boolean };
-      }
-      if (rec.status === "FAILED_FATAL" || rec.status === "FAILED") {
-        return null;
+      const got = await fetchPillowChatRequest(receipt.requestId, options.signal, Math.min(20_000, deadline - Date.now()));
+      const rec = got.ok ? got.request : undefined;
+      status = rec?.status;
+      if (rec) {
+        const resolved = resultFromDurableRecord(receipt, rec);
+        if (resolved) return resolved;
       }
     } catch {
-      /* keep polling */
+      if (options.signal?.aborted) throw new DOMException("Aborted", "AbortError");
+      // Network/not-found/auth failures do not prove continued execution or success.
+      status = undefined;
     }
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) break;
+    await (options.wait ?? sleep)(Math.min(options.pollMs ?? CHAT_RESULT_POLL_MS, remaining), options.signal);
   }
-  return null;
+  return pendingDurableResult(receipt, status);
 }
 
 export async function sendPillowChat(input: {
@@ -195,49 +226,44 @@ export async function sendPillowChat(input: {
   sessionId: string;
   workspaceId?: string;
   workspaceContext?: Record<string, unknown>;
-}): Promise<PillowChatResult & { reboundSessionId?: string }> {
-  // retries:0 — Tier-0 owns execution retry; FE must not duplicate brain starts.
-  const result = await pillowRequest<{
-    result: PillowChatResult & {
-      requestRemainsRunning?: boolean;
-      resultRetrievable?: boolean;
-      kind?: string;
-    };
-    reboundSessionId?: string;
-  }>("/api/pillow/chat", {
+}, options: DurablePollOptions & { onAccepted?: (receipt: DurableReceipt) => void } = {}): Promise<PillowChatResult & { reboundSessionId?: string }> {
+  // Exactly one POST. Unknown admission is not permission to start another job.
+  let response: Response;
+  try {
+    response = await pillowFetchWithRetry("/api/pillow/chat", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
-    retries: 0,
-  });
+    signal: options.signal,
+    }, 0);
+  } catch {
+    throw new Error("The connection ended before acceptance was confirmed. Pillow may have received this instruction. It has not been sent again automatically.");
+  }
+  const result = await response.json().catch(() => ({})) as {
+    result?: PillowChatResult;
+    reboundSessionId?: string;
+  };
 
   const chat = result.result;
+  const requestId = chat?.requestId || response.headers.get("x-empire-pillow-request-id");
   const pending =
+    response.status === 202 ||
     chat?.kind === "durable_pending" ||
     chat?.requestRemainsRunning === true ||
-    (chat?.resultRetrievable === true && chat?.kind === "terminal_infrastructure");
+    (chat?.resultRetrievable === true && chat?.kind === "terminal_infrastructure") ||
+    (!response.ok && Boolean(requestId));
 
-  if (pending && chat.requestId) {
-    const retrieved = await pollDurableChatResult(chat.requestId);
-    if (retrieved) {
-      return {
-        ...retrieved,
-        ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
-      };
-    }
-    // Poll exhausted — never present the receipt as a successful executive answer.
+  if (pending && requestId) {
+    const receipt = { requestId, sessionId: result.reboundSessionId ?? input.sessionId };
+    options.onAccepted?.(receipt);
+    const retrieved = await retrievePillowChat(receipt, options);
     return {
-      ...chat,
-      kind: "durable_pending",
-      message: [
-        `PILLOW_RESULT_PENDING: requestId=${chat.requestId}`,
-        "The request was accepted and remains retrievable, but the completed answer was not available within the client wait window.",
-        "Do not treat this receipt as the executive answer. Refresh or poll request status — do not resubmit the same ask.",
-      ].join("\n"),
-      requestId: chat.requestId,
-      resultRetrievable: true,
-      requestRemainsRunning: true,
-      ...(result.reboundSessionId ? { reboundSessionId: result.reboundSessionId } : {}),
-    } as PillowChatResult & { reboundSessionId?: string };
+      ...retrieved,
+      reboundSessionId: retrieved.reboundSessionId ?? result.reboundSessionId,
+    };
+  }
+  if (pending || !response.ok || !chat) {
+    throw new Error(`Pillow did not return a usable acceptance receipt (HTTP ${response.status}). The instruction has not been sent again automatically; completion is unconfirmed.`);
   }
 
   return {

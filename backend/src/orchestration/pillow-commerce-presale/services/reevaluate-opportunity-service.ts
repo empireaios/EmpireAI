@@ -6,6 +6,8 @@ import { randomUUID } from "node:crypto";
 
 import { logger } from "../../../config/logger.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
+import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import {
   estimateAmazonFees,
@@ -74,24 +76,6 @@ export type ReevaluateOpportunityResult = {
   operatingLoop: ReturnType<typeof buildCommerceOperatingLoopReadiness>;
   nextPillowAction: string;
 };
-
-function sumStock(stockPayload: unknown): number {
-  const rows = Array.isArray(stockPayload)
-    ? stockPayload
-    : stockPayload && typeof stockPayload === "object"
-      ? [stockPayload]
-      : [];
-  let total = 0;
-  for (const row of rows) {
-    if (!row || typeof row !== "object") continue;
-    const r = row as Record<string, unknown>;
-    for (const key of ["inventory", "totalInventoryNum", "cjInventoryNum", "storageNum"]) {
-      const n = r[key];
-      if (typeof n === "number" && Number.isFinite(n) && n > total) total = n;
-    }
-  }
-  return total;
-}
 
 export async function reevaluateCommerceOpportunity(
   input: ReevaluateOpportunityInput,
@@ -169,7 +153,17 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  const cj = createCjApiClient(cjConfig);
+  let cj: ReturnType<typeof createCjApiClient>;
+  try {
+    cj = createCjApiClient(cjConfig, fetch,
+      createCjPresalePointReservation({ config: cjConfig, env, cycleId: randomUUID() }));
+  } catch (error) {
+    return {
+      ...base, target, outcome: "BLOCKED_INTEGRATION", opportunity: targetOpp,
+      dossierSummary: null, rejectReason: error instanceof Error ? error.message : String(error),
+      rejectCode: "SUPPLIER_UNAVAILABLE", nextPillowAction: "Resolve CJ point budget or durable ledger before retrying.",
+    };
+  }
   const commerceMemory = getCommerceInstitutionalContext(input.workspaceId);
 
   let detail;
@@ -201,32 +195,17 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  let picked = pickLiveCjVariant(detail);
+  const preferredVid = targetOpp?.mapping.cjVid;
+  let picked = pickLiveCjVariant(detail, preferredVid);
   if (picked.costUsd === null) {
     try {
       const variantQuery = await cj.queryProductVariants(cjPid);
       detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
-      picked = pickLiveCjVariant(detail);
+      picked = pickLiveCjVariant(detail, preferredVid);
     } catch {
       /* keep */
     }
   }
-  const variant = picked.variant;
-  const preferredVid = targetOpp?.mapping.cjVid;
-  if (preferredVid && detail.variantList?.length) {
-    const match = detail.variantList.find((v) => v.vid === preferredVid);
-    if (match) {
-      const matchRec = match as Record<string, unknown>;
-      const cost =
-        coerceUsdNumber(matchRec.variantSellPrice) ??
-        coerceUsdNumber(matchRec.sellPrice) ??
-        coerceUsdNumber(matchRec.price);
-      if (cost !== null) {
-        picked = { variant: match, costUsd: cost };
-      }
-    }
-  }
-
   if (!picked.variant?.vid || picked.costUsd === null) {
     return finalizeReject({
       input,
@@ -258,9 +237,9 @@ export async function reevaluateCommerceOpportunity(
   let stockUnits = 0;
   try {
     const byVid = await cj.queryStockByVid(picked.variant.vid);
-    stockUnits = sumStock(byVid.data);
+    stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid);
   } catch {
-    stockUnits = typeof picked.variant.inventory === "number" ? picked.variant.inventory : 0;
+    stockUnits = 0;
   }
   if (stockUnits <= 0) {
     return finalizeReject({

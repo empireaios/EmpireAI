@@ -3,10 +3,12 @@
  *
  * Main-thread lag monitors cannot fire while the event loop is wedged
  * (e.g. long sql.js db.export). A Worker observes a SharedArrayBuffer heartbeat
- * and process.exit(78) when the heartbeat stalls, triggering Railway ON_FAILURE restart.
+ * and forces process termination only after a bounded confirmed stall. Recovery
+ * uses a process-wide signal because a wedged main cannot run worker exit callbacks.
  */
 import { Worker } from "node:worker_threads";
 import { fileURLToPath } from "node:url";
+import { CONTINUITY_BUFFER_BYTES, attachContinuityHeartbeat, monotonicNowMs, readContinuityHeartbeat, writeContinuityHeartbeat, type ContinuityHeartbeat } from "./continuity-heartbeat.js";
 import { logger } from "../config/logger.js";
 import { getRecentEventLoopLagMs } from "./event-loop-cooperative.js";
 import { bindSqliteFlushGuard, getSqlitePersistStats } from "../brain/sqlite-database.js";
@@ -57,14 +59,43 @@ type ContinuityHealth = {
 
 let started = false;
 let worker: Worker | null = null;
-let heartbeatView: Int32Array | null = null;
+let heartbeatView: ContinuityHeartbeat | null = null;
+let workerReady = false;
+let workerFailure: string | null = null;
 let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
 let highLagSinceMs: number | null = null;
 let lastAlertAtMs = 0;
-let startedAtMs = 0;
+let startedAtMs: number | null = null;
+let gracefulRecoveryRequested = false;
+let gracefulRecoveryDeadline: ReturnType<typeof setTimeout> | null = null;
+
+/** High-lag polling runs on the Brain thread, so use its installed SIGTERM
+ * shutdown path to save SQL.js writes before the primary respawns the worker.
+ * The off-thread watchdog can still kill a genuinely wedged thread. */
+export function requestGracefulContinuityRecovery(
+  signal: () => void = () => { process.kill(process.pid, "SIGTERM"); },
+): boolean {
+  if (gracefulRecoveryRequested) return false;
+  gracefulRecoveryRequested = true;
+  // An active but non-terminating shutdown cannot suppress recovery forever.
+  gracefulRecoveryDeadline = setTimeout(() => {
+    logger.error("Executive continuity graceful shutdown timed out; durability unverified");
+    process.exit(78);
+  }, Math.max(MAX_FLUSH_GUARD_MS, 600_000) + 30_000);
+  gracefulRecoveryDeadline.unref?.();
+  try {
+    signal();
+    return true;
+  } catch (error) {
+    if (gracefulRecoveryDeadline) clearTimeout(gracefulRecoveryDeadline);
+    gracefulRecoveryDeadline = null;
+    gracefulRecoveryRequested = false;
+    throw error;
+  }
+}
 
 function inBootGrace(): boolean {
-  return startedAtMs > 0 && Date.now() - startedAtMs < BOOT_GRACE_MS;
+  return startedAtMs !== null && Number(monotonicNowMs()) - startedAtMs < BOOT_GRACE_MS;
 }
 
 function workerPath(): string {
@@ -73,7 +104,7 @@ function workerPath(): string {
 
 function beat(): void {
   if (!heartbeatView) return;
-  Atomics.store(heartbeatView, 0, Date.now());
+  writeContinuityHeartbeat(heartbeatView);
 }
 
 let flushGuardSinceMs: number | null = null;
@@ -85,6 +116,9 @@ const MAX_FLUSH_GUARD_MS = Number(
 );
 
 function evaluateHighLagExit(): void {
+  // The shutdown is already in progress; avoid emitting repeated errors while
+  // its SQL.js persistence runs. The off-thread stall watchdog remains active.
+  if (gracefulRecoveryRequested) return;
   if (inBootGrace()) {
     // Still beat so worker sees activity after grace ends.
     return;
@@ -96,7 +130,7 @@ function evaluateHighLagExit(): void {
     lastObservedFlushCount = sqlite.flushCount;
     const flushDur = sqlite.lastFlushDurationMs ?? 0;
     const cooldown = Math.max(POST_FLUSH_COOLDOWN_MS, flushDur * 3);
-    postFlushCooldownUntilMs = Date.now() + cooldown;
+    postFlushCooldownUntilMs = Number(monotonicNowMs()) + cooldown;
     highLagSinceMs = null;
     logger.info(
       { flushCount: sqlite.flushCount, flushDurMs: flushDur, cooldownMs: cooldown },
@@ -107,8 +141,8 @@ function evaluateHighLagExit(): void {
   // pending=true (dirty, waiting for first-flush delay) must NOT disable HA recovery.
   // A stuck flushInFlight must not permanently disable HA (auth would stay dead).
   if (sqlite.flushInFlight) {
-    if (flushGuardSinceMs === null) flushGuardSinceMs = Date.now();
-    const guardedFor = Date.now() - flushGuardSinceMs;
+    if (flushGuardSinceMs === null) flushGuardSinceMs = Number(monotonicNowMs());
+    const guardedFor = Number(monotonicNowMs()) - flushGuardSinceMs;
     if (guardedFor < MAX_FLUSH_GUARD_MS) {
       highLagSinceMs = null;
       return;
@@ -121,18 +155,18 @@ function evaluateHighLagExit(): void {
   } else {
     flushGuardSinceMs = null;
   }
-  if (Date.now() < postFlushCooldownUntilMs) {
+  if (Number(monotonicNowMs()) < postFlushCooldownUntilMs) {
     highLagSinceMs = null;
     return;
   }
   const lag = getRecentEventLoopLagMs();
   if (lag >= HIGH_LAG_ALERT_MS) {
-    if (Date.now() - lastAlertAtMs > 10_000) {
-      lastAlertAtMs = Date.now();
+    if (Number(monotonicNowMs()) - lastAlertAtMs > 10_000) {
+      lastAlertAtMs = Number(monotonicNowMs());
       logger.warn(
         {
           lagMs: Math.round(lag),
-          sustainedMs: highLagSinceMs === null ? 0 : Date.now() - highLagSinceMs,
+          sustainedMs: highLagSinceMs === null ? 0 : Number(monotonicNowMs()) - highLagSinceMs,
           exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
           sqlite,
         },
@@ -142,8 +176,8 @@ function evaluateHighLagExit(): void {
   }
   // Exit path uses a higher threshold than alerts so mild residual lag cannot kill auth.
   if (lag >= HIGH_LAG_EXIT_THRESHOLD_MS) {
-    if (highLagSinceMs === null) highLagSinceMs = Date.now();
-    const sustained = Date.now() - highLagSinceMs;
+    if (highLagSinceMs === null) highLagSinceMs = Number(monotonicNowMs());
+    const sustained = Number(monotonicNowMs()) - highLagSinceMs;
     if (sustained >= HIGH_LAG_EXIT_MS) {
       logger.error(
         {
@@ -151,29 +185,30 @@ function evaluateHighLagExit(): void {
           sustainedMs: sustained,
           exitThresholdMs: HIGH_LAG_EXIT_THRESHOLD_MS,
         },
-        "Executive continuity watchdog — sustained extreme lag; exiting for Railway restart",
+        "Executive continuity watchdog — sustained extreme lag; requesting graceful shutdown",
       );
-      process.exit(78);
+      requestGracefulContinuityRecovery();
     }
   } else {
     highLagSinceMs = null;
   }
 }
 
-export function startExecutiveContinuityWatchdog(): void {
+export function startExecutiveContinuityWatchdog(options: { workerFile?: string } = {}): void {
   if (!ENABLED || started) return;
   started = true;
-  startedAtMs = Date.now();
+  startedAtMs = Number(monotonicNowMs());
 
-  // [0]=heartbeat ms, [1]=sqlite flush-in-flight guard (1=ignore stall)
-  const sharedBuffer = new SharedArrayBuffer(8);
-  heartbeatView = new Int32Array(sharedBuffer);
-  Atomics.store(heartbeatView, 1, 0);
-  bindSqliteFlushGuard(heartbeatView);
+  // Header Int32[1] stays SQLite-compatible; timestamp is a disjoint atomic Int64.
+  const sharedBuffer = new SharedArrayBuffer(CONTINUITY_BUFFER_BYTES);
+  heartbeatView = attachContinuityHeartbeat(sharedBuffer);
+  workerReady = false;
+  workerFailure = null;
+  bindSqliteFlushGuard(heartbeatView.flags, beat);
   beat();
 
   try {
-    worker = new Worker(workerPath(), {
+    const currentWorker = new Worker(options.workerFile ?? workerPath(), {
       workerData: {
         sharedBuffer,
         stallExitMs: STALL_EXIT_MS,
@@ -182,18 +217,27 @@ export function startExecutiveContinuityWatchdog(): void {
         startedAtMs,
       },
     });
-    worker.on("error", (error) => {
+    worker = currentWorker;
+    currentWorker.on("message", (message) => {
+      if (worker !== currentWorker) return;
+      if (message?.type === "continuity_watchdog_ready") workerReady = true;
+    });
+    currentWorker.on("error", (error) => {
+      if (worker !== currentWorker) return;
+      workerReady = false;
+      workerFailure = "watchdog_worker_error";
       logger.error({ err: error }, "Executive continuity watchdog worker error");
     });
-    worker.on("exit", (code) => {
-      if (code === 78) {
-        // Worker already exited the process; this is belt-and-suspenders.
-        process.exit(78);
-      }
+    currentWorker.on("exit", (code) => {
+      if (worker !== currentWorker) return;
+      workerReady = false;
+      workerFailure = `watchdog_worker_exit_${code}`;
       logger.warn({ code }, "Executive continuity watchdog worker exited");
       worker = null;
     });
   } catch (error) {
+    workerReady = false;
+    workerFailure = "watchdog_worker_start_failed";
     logger.error({ err: error }, "Failed to start executive continuity watchdog worker");
   }
 
@@ -221,25 +265,36 @@ export function stopExecutiveContinuityWatchdogForTesting(): void {
     clearInterval(heartbeatTimer);
     heartbeatTimer = null;
   }
-  if (worker) {
-    void worker.terminate();
-    worker = null;
-  }
+  const stoppingWorker = worker;
+  worker = null;
+  workerReady = false;
+  workerFailure = null;
+  if (stoppingWorker) void stoppingWorker.terminate();
+  bindSqliteFlushGuard(null);
   heartbeatView = null;
   started = false;
   highLagSinceMs = null;
-  startedAtMs = 0;
+  startedAtMs = null;
+  lastAlertAtMs = 0;
   flushGuardSinceMs = null;
   lastObservedFlushCount = 0;
   postFlushCooldownUntilMs = 0;
+  if (gracefulRecoveryDeadline) clearTimeout(gracefulRecoveryDeadline);
+  gracefulRecoveryDeadline = null;
+  gracefulRecoveryRequested = false;
 }
 
 export function getExecutiveContinuityHealth(): ContinuityHealth {
-  const last = heartbeatView ? Atomics.load(heartbeatView, 0) : 0;
-  const age = last > 0 ? Date.now() - last : null;
+  const reading = heartbeatView ? readContinuityHeartbeat(heartbeatView) : null;
+  const age = reading?.ageMs ?? null;
+  const running = Boolean(worker) && workerReady && Boolean(heartbeatTimer);
   const lag = getRecentEventLoopLagMs();
   const sqlite = getSqlitePersistStats();
   const alerts: string[] = [];
+  if (!ENABLED) alerts.push("watchdog_disabled");
+  else if (!running) alerts.push(workerFailure ?? "watchdog_not_running");
+  if (ENABLED && reading?.error) alerts.push(reading.error);
+  if (ENABLED && !reading) alerts.push("heartbeat_missing");
   if (lag >= HIGH_LAG_ALERT_MS) {
     alerts.push(`event_loop_lag_ms=${Math.round(lag)}`);
   }
@@ -247,13 +302,14 @@ export function getExecutiveContinuityHealth(): ContinuityHealth {
     alerts.push(`sqlite_flush_duration_ms=${sqlite.lastFlushDurationMs}`);
   }
   if (sqlite.pending) alerts.push("sqlite_persist_pending");
+  if (gracefulRecoveryRequested) alerts.push("graceful_recovery_requested");
   if (age !== null && age >= STALL_EXIT_MS / 2) {
     alerts.push(`heartbeat_age_ms=${age}`);
   }
 
   return {
     watchdogEnabled: ENABLED,
-    watchdogRunning: Boolean(worker) || Boolean(heartbeatTimer),
+    watchdogRunning: running,
     lastHeartbeatAgeMs: age,
     eventLoopLagMs: lag,
     sqlite,

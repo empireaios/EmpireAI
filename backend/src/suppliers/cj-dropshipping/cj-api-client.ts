@@ -17,6 +17,8 @@ export type CjRequestOptions = {
   query?: Record<string, string | number | undefined>;
   body?: unknown;
   authenticated?: boolean;
+  /** Point-charging stock lookups must never silently spend retry points. */
+  retryLimit?: number;
 };
 
 export class CjApiClient {
@@ -25,6 +27,7 @@ export class CjApiClient {
   constructor(
     private readonly config: CjConfig,
     private readonly fetchImpl: typeof fetch = fetch,
+    private readonly beforePointRequest?: (path: string) => Promise<void>,
   ) {
     this.rateLimiter = new CjRateLimiter(config.rateLimitPerMinute);
   }
@@ -54,7 +57,10 @@ export class CjApiClient {
     const authenticated = options.authenticated ?? true;
     let attempt = 0;
 
-    while (attempt <= this.config.maxRetries) {
+    // A point reservation covers one outbound request, including uncertain timeouts.
+    // No implicit retry may spend an unreserved second request.
+    const retryLimit = this.beforePointRequest ? 0 : options.retryLimit ?? this.config.maxRetries;
+    while (attempt <= retryLimit) {
       attempt += 1;
 
       try {
@@ -66,6 +72,15 @@ export class CjApiClient {
 
         if (authenticated) {
           Object.assign(headers, await buildCjAuthHeaders(this.config, this.fetchImpl));
+        }
+
+        if (this.beforePointRequest) {
+          try { await this.beforePointRequest(options.path); }
+          catch (error) {
+            throw new CjApiError("VALIDATION_ERROR",
+              error instanceof Error ? error.message : "CJ point reservation failed",
+              { retryable: false, cause: error });
+          }
         }
 
         const controller = new AbortController();
@@ -86,7 +101,7 @@ export class CjApiClient {
 
         const apiError = classifyCjApiResponse(payload, response.status);
         if (apiError) {
-          if (apiError.retryable && attempt <= this.config.maxRetries) {
+          if (apiError.retryable && attempt <= retryLimit) {
             await this.sleep(250 * attempt);
             continue;
           }
@@ -96,7 +111,7 @@ export class CjApiClient {
         return payload;
       } catch (error) {
         const classified = classifyCjTransportError(error);
-        if (classified.retryable && attempt <= this.config.maxRetries) {
+        if (classified.retryable && attempt <= retryLimit) {
           await this.sleep(250 * attempt);
           continue;
         }
@@ -174,6 +189,7 @@ export class CjApiClient {
     return this.request<CjStockResponse>({
       path: "/product/stock/queryByVid",
       query: { vid },
+      retryLimit: 0,
     });
   }
 
@@ -197,6 +213,7 @@ export class CjApiClient {
 export function createCjApiClient(
   config: CjConfig,
   fetchImpl: typeof fetch = fetch,
+  beforePointRequest?: (path: string) => Promise<void>,
 ): CjApiClient {
-  return new CjApiClient(config, fetchImpl);
+  return new CjApiClient(config, fetchImpl, beforePointRequest);
 }

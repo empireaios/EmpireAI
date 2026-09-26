@@ -23,15 +23,24 @@ function resolveApiKey(credentials: Record<string, unknown>, providerId: string)
 
 async function pingSupplier(ctx: LiveCommerceAdapterContext): Promise<boolean> {
   if (ctx.mode === "sandbox") return hasSupplierCredentials(ctx.credentials, ctx.providerId);
-
+  const apiKey = resolveApiKey(ctx.credentials, ctx.providerId);
+  if (!apiKey) return false;
   const config = getSupplierApiConfig(ctx.providerId);
   const response = await httpTransport({
     url: `${config.baseUrl}/authentication/getAccessToken`,
     method: "POST",
-    headers: { "CJ-Access-Token": resolveApiKey(ctx.credentials, ctx.providerId) },
-    body: {},
+    body: { apiKey }, timeoutMs: 15_000, maxResponseBytes: 64 * 1024,
   });
-  return response.ok;
+  const body = response.json;
+  if (!response.ok || !body || typeof body !== "object" || Array.isArray(body)) return false;
+  const proof = body as Record<string, unknown>;
+  const data = proof.data && typeof proof.data === "object" && !Array.isArray(proof.data)
+    ? proof.data as Record<string, unknown> : null;
+  return proof.code === 200 && proof.result === true &&
+    typeof data?.accessToken === "string" && data.accessToken.length > 0 &&
+    typeof data.accessTokenExpiryDate === "string" &&
+    Number.isFinite(Date.parse(data.accessTokenExpiryDate)) &&
+    Date.parse(data.accessTokenExpiryDate) > Date.now() + 60_000;
 }
 
 function syncStub(
@@ -61,10 +70,13 @@ export const cjDropshippingAdapter: LiveCommerceProviderAdapter = {
       liveApiVerified = await pingSupplier(ctx);
       if (!liveApiVerified) blockers.push("Supplier authentication validation failed");
     }
+    if (ctx.mode === "production" && liveApiVerified) {
+      blockers.push("CJ production sync requires durable item, stock, price and order receipts");
+    }
     return {
       valid: blockers.length === 0,
       providerId: ctx.providerId,
-      capabilities: SUPPLIER_CAPABILITIES,
+      capabilities: ctx.mode === "production" ? [] : SUPPLIER_CAPABILITIES,
       blockers,
       liveApiVerified,
     };
@@ -72,56 +84,22 @@ export const cjDropshippingAdapter: LiveCommerceProviderAdapter = {
 
   async syncCatalog(ctx) {
     if (ctx.mode === "sandbox") return syncStub("catalog", ctx, 20);
-    const config = getSupplierApiConfig(ctx.providerId);
-    const response = await httpTransport({
-      url: `${config.baseUrl}/product/list`,
-      method: "GET",
-      headers: { "CJ-Access-Token": resolveApiKey(ctx.credentials, ctx.providerId) },
-    });
-    return {
-      syncType: "catalog",
-      itemsProcessed: response.ok ? 20 : 0,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
+    throw new Error("CJ production catalog import requires authenticated item receipts and durable readback");
   },
 
   async syncInventory(ctx) {
     if (ctx.mode === "sandbox") return syncStub("inventory", ctx, 15);
-    const config = getSupplierApiConfig(ctx.providerId);
-    const response = await httpTransport({
-      url: `${config.baseUrl}/product/stock/queryBySku`,
-      method: "POST",
-      headers: { "CJ-Access-Token": resolveApiKey(ctx.credentials, ctx.providerId) },
-      body: { sku: "sample" },
-    });
-    return {
-      syncType: "inventory",
-      itemsProcessed: response.ok ? 15 : 0,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
+    throw new Error("CJ production stock requires an explicit variant ID and durable warehouse receipt");
   },
 
   async syncPricing(ctx) {
     if (ctx.mode === "sandbox") return syncStub("pricing", ctx, 15);
-    return syncStub("pricing", ctx, 15);
+    throw new Error("CJ production pricing requires a verified variant cost and durable readback");
   },
 
   async syncOrders(ctx) {
     if (ctx.mode === "sandbox") return syncStub("orders", ctx, 5);
-    const config = getSupplierApiConfig(ctx.providerId);
-    const response = await httpTransport({
-      url: `${config.baseUrl}/shopping/order/list`,
-      method: "GET",
-      headers: { "CJ-Access-Token": resolveApiKey(ctx.credentials, ctx.providerId) },
-    });
-    return {
-      syncType: "orders",
-      itemsProcessed: response.ok ? 5 : 0,
-      itemsFailed: response.ok ? 0 : 1,
-      liveApiVerified: response.ok,
-    };
+    throw new Error("CJ production order import requires durable supplier order receipts");
   },
 
   verifyWebhookSignature(payload, signature, secret) {

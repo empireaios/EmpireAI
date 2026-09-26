@@ -7,6 +7,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { EmpireDatabase } from "../../brain/sqlite-database.js";
+import { withQuiescedSqliteSave } from "../../brain/quiesced-sqlite-save.js";
+import { resolveShadowCeoDbPath } from "../shadow-ceo-integration/durable-paths.js";
 import type { ShadowCeoRecord, ShadowCeoRecordKind } from "./types.js";
 
 const TABLE = "shadow_ceo_records";
@@ -15,14 +17,6 @@ export type ShadowCeoRepositoryOptions = {
   /** File path or :memory:… — when omitted, uses a default under cwd/.data */
   dbPath?: string;
 };
-
-function defaultDbPath(): string {
-  const dataRoot =
-    process.env.SHADOW_CEO_DATA_DIR ||
-    process.env.EMPIRE_DATA_DIR ||
-    path.resolve(process.cwd(), ".data");
-  return path.join(dataRoot, "shadow-ceo.db");
-}
 
 export function ensureShadowCeoTables(db: EmpireDatabase): void {
   db.exec(`
@@ -48,7 +42,7 @@ export class SqliteShadowCeoRepository {
   private closed = false;
 
   constructor(options: ShadowCeoRepositoryOptions = {}) {
-    this.dbPath = options.dbPath ?? defaultDbPath();
+    this.dbPath = options.dbPath ?? resolveShadowCeoDbPath();
     if (!this.dbPath.startsWith(":memory:")) {
       fs.mkdirSync(path.dirname(this.dbPath), { recursive: true });
     }
@@ -60,6 +54,17 @@ export class SqliteShadowCeoRepository {
   persist(): void {
     this.assertOpen();
     this.db.requestCriticalPersist();
+  }
+
+  /** Capture this open Shadow CEO SQLite handle after awaiting its RAM save.
+   * The write fence stays held until the caller verifies its disk copy. Other
+   * handles, JSON files, background workers and HTTP admission need separate
+   * quiescence before anyone can claim a complete application snapshot.
+   */
+  async withQuiescedCapture<T>(captureAndVerify: () => T | Promise<T>): Promise<T> {
+    this.assertOpen();
+    if (this.dbPath.startsWith(":memory:")) throw new Error("Shadow CEO capture requires a disk-backed database");
+    return withQuiescedSqliteSave(this.db, captureAndVerify);
   }
 
   close(): void {

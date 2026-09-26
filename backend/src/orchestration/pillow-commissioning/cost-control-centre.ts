@@ -228,15 +228,15 @@ export function buildCostControlCentreSnapshot(workspaceId: string): CostControl
       row.provider === "OpenAI" ? costGuard.spend.dailyAi.actualUsd : ("UNKNOWN" as const);
     const month =
       row.provider === "OpenAI"
-        ? costGuard.spend.autonomousPaid.actualUsd + costGuard.spend.dailyAi.actualUsd
+        ? costGuard.spend.monthlyAi.actualUsd
         : ("UNKNOWN" as const);
     const forecast =
       typeof today === "number" && typeof month === "number"
-        ? costGuard.spend.dailyAi.forecastUsd
+        ? costGuard.spend.monthlyAi.forecastUsd
         : ("UNKNOWN" as const);
     const pct =
       typeof budget === "number" && budget > 0 && typeof month === "number"
-        ? Math.round((month / budget) * 100)
+        ? Math.round(((row.provider === "OpenAI" && typeof today === "number" ? today : month) / budget) * 100)
         : null;
 
     return {
@@ -280,15 +280,12 @@ export function buildCostControlCentreSnapshot(workspaceId: string): CostControl
     billingExposure: exposure,
     actualVsCommittedVsForecast: {
       actualUsd:
-        costGuard.spend.dailyAi.actualUsd +
         costGuard.spend.monthlyOperating.actualUsd +
         costGuard.spend.autonomousPaid.actualUsd,
       committedUsd:
-        costGuard.spend.dailyAi.committedUsd +
         costGuard.spend.monthlyOperating.committedUsd +
         costGuard.spend.autonomousPaid.committedUsd,
       forecastUsd:
-        costGuard.spend.dailyAi.forecastUsd +
         costGuard.spend.monthlyOperating.forecastUsd +
         costGuard.spend.autonomousPaid.forecastUsd,
       note: "ACTUAL, COMMITTED, and FORECAST are reported separately and never merged.",

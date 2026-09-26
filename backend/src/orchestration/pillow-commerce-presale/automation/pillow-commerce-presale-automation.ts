@@ -2,8 +2,9 @@
  * Proactive Pillow commerce initiation — does not wait for Grand King chat prompts.
  * Reuses Grand King automation pattern (interval + startup tick + Brain scheduler tool.execute).
  */
-import { randomUUID } from "node:crypto";
 
+import { isEngineeringTestMode } from "../../../runtime/engineering-test-mode.js";
+import { ManagedBackgroundTask } from "../../../runtime/managed-background-task.js";
 import type { ScheduledJobDefinition } from "../../../brain/scheduler.js";
 import { logger } from "../../../config/logger.js";
 import { GRAND_KING_COMPANY_ID, GRAND_KING_WORKSPACE_ID } from "../../../grand-king/constants.js";
@@ -17,6 +18,7 @@ export const PILLOW_COMMERCE_PRESALE_JOB_NAME = "pillow-commerce-presale-cycle";
 
 /** Brain scheduler definition — tool.execute path (Pillow/orchestration, not Cursor). */
 export function getPillowCommercePresaleSchedulerDefinitions(): ScheduledJobDefinition[] {
+  if (isEngineeringTestMode()) return [];
   return [
     {
       name: PILLOW_COMMERCE_PRESALE_JOB_NAME,
@@ -46,6 +48,7 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
   outcome?: string;
 }> {
   try {
+    if (isEngineeringTestMode()) return { ok: false, detail: "Engineering test mode: commerce automation disabled" };
     const admission = admitExpensiveWork("pillow-commerce-presale");
     if (!admission.admit) {
       return {
@@ -116,35 +119,25 @@ export async function runPillowCommercePresaleAutomationTick(): Promise<{
 }
 
 export class PillowCommercePresaleAutomationServer {
-  private timers: NodeJS.Timeout[] = [];
-  private running = false;
+  private readonly task: ManagedBackgroundTask;
 
-  start(): void {
-    if (this.running) return;
-    this.running = true;
-    logger.info(
-      { job: PILLOW_COMMERCE_PRESALE_JOB_NAME },
-      "Pillow commerce pre-sale automation started (proactive; no chat prompt required)",
-    );
-
-    // Every 4 hours
-    this.timers.push(
-      setInterval(() => void runPillowCommercePresaleAutomationTick(), 4 * 60 * 60 * 1000),
-    );
-
-    // Defer boot tick past auth/health warm-up (was 45s — collided with restart storms).
-    const bootDelayMs = Number(process.env.PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS ?? 240_000);
-    setTimeout(() => {
-      void runPillowCommercePresaleAutomationTick().then((result) => {
-        logger.info({ ...result, correlationId: randomUUID() }, "Pillow commerce pre-sale boot tick");
-      });
-    }, bootDelayMs);
+  constructor(tick: typeof runPillowCommercePresaleAutomationTick = runPillowCommercePresaleAutomationTick) {
+    this.task = new ManagedBackgroundTask({
+      allowed: () => !isEngineeringTestMode(),
+      run: async () => {
+        const result = await tick();
+        logger.info(result, "Pillow commerce pre-sale tick");
+      },
+      onError: (error) => logger.error({ error }, "Pillow commerce pre-sale failed"),
+    });
   }
 
-  stop(): void {
-    for (const timer of this.timers) clearInterval(timer);
-    this.timers = [];
-    this.running = false;
+  start(): void {
+    this.task.start(Number(process.env.PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS ?? 240_000), 4 * 60 * 60 * 1000);
+  }
+
+  stop(): Promise<void> {
+    return this.task.stop();
   }
 }
 

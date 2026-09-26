@@ -1,0 +1,388 @@
+name: Product path CI
+
+# This workflow verifies repository product code with bounded offline tests only. It does not deploy, promote,
+# certify Birth/Wave status or unlock commerce. The deployed Vercel project uses
+# empireai-web as its Root Directory; the root Vite config remains compatibility residue.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'ci/product-path-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: product-path-${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CI: 'true'
+  SOAK_ALLOW_LIVE_RUN: '0'
+
+jobs:
+  repository-contract:
+    name: Repository and deployment-root contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+      - name: Verify package scripts, lockfiles and the production web contract
+        run: node scripts/verify-product-path-ci.mjs
+      - name: Verify deterministic build configuration and reject runtime drift
+        run: node --test scripts/verify-build-runtime.test.mjs
+      - name: Verify disk-only legacy checkpoint capture and refusal cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-reporter=tap deployment/legacy-checkpoint-capture.test.cjs | tee "$RUNNER_TEMP/legacy-checkpoint-tests.tap"
+          node - "$RUNNER_TEMP/legacy-checkpoint-tests.tap" <<'NODE'
+          const assert = require('node:assert/strict');
+          const output = require('node:fs').readFileSync(process.argv[2], 'utf8');
+          const count = name => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing checkpoint test summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 7);
+          assert.equal(count('pass'), count('tests'));
+          for (const name of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(count(name), 0);
+          NODE
+      - name: Verify disk-only legacy Shadow CEO multi-store capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-reporter=tap deployment/legacy-shadow-state-capture.test.cjs | tee "$RUNNER_TEMP/legacy-shadow-tests.tap"
+          node - "$RUNNER_TEMP/legacy-shadow-tests.tap" <<'NODE'
+          const assert = require('node:assert/strict');
+          const output = require('node:fs').readFileSync(process.argv[2], 'utf8');
+          const count = name => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing Shadow capture test summary: ${name}`);
+            return Number(match[1]);
+          };
+          assert.ok(count('tests') >= 7);
+          assert.equal(count('pass'), count('tests'));
+          for (const name of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(count(name), 0);
+          NODE
+      - name: Verify bounded canary configuration and child-process cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 --test-reporter=tap \
+            deployment/canary-launcher.test.cjs \
+            deployment/canary-runtime-probe.test.cjs \
+            deployment/redis-canary-launcher.test.cjs \
+            | tee "$RUNNER_TEMP/canary-supervision-tests.tap"
+          node --input-type=module - "$RUNNER_TEMP/canary-supervision-tests.tap" <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const output = readFileSync(process.argv[2], 'utf8');
+          const count = (name) => {
+            const match = output.match(new RegExp(`^# ${name} (\\d+)$`, 'm'));
+            assert.ok(match, `Missing supervision TAP summary: ${name}`);
+            return Number(match[1]);
+          };
+          for (const name of [
+            'an exited child with no remaining process group does not consume shutdown grace',
+            'deadline terminates a real stubborn child and reports forced shutdown failure',
+            'external TERM is forwarded and successful child shutdown remains distinguishable',
+          ]) {
+            assert.ok(output.split(/\r?\n/).some(line => /^ok \d+ - /.test(line) && line.endsWith(` - ${name}`)),
+              `Missing mandatory POSIX supervision test: ${name}`);
+          }
+          assert.ok(count('tests') > 0, 'Supervision tests must execute');
+          assert.equal(count('pass'), count('tests'), 'All supervision tests must pass');
+          for (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {
+            assert.equal(count(kind), 0, `${kind} supervision tests are not permitted`);
+          }
+          NODE
+      - name: Record tested revision and limits
+        env:
+          EVENT_SHA: ${{ github.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo '## Product path CI scope'
+            echo "Tested checkout: $(git rev-parse HEAD)"
+            echo "Event revision: ${EVENT_SHA}"
+            echo "PR head (when applicable): ${PR_HEAD_SHA:-not a pull request}"
+            echo 'Canonical Vercel production root: empireai-web (Next.js).'
+            echo 'Root vercel.json still describes the legacy Vite compatibility target.'
+            echo 'Both targets are checked; this workflow does not deploy or promote either target.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  pillow:
+    name: Pillow — clean install, typecheck, build, offline test
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: pillow/package-lock.json
+      - name: Clean install Pillow dependencies
+        run: npm ci --prefix pillow
+      - name: Typecheck Pillow
+        run: npm run typecheck --prefix pillow
+      - name: Build Pillow
+        run: npm run build --prefix pillow
+      - name: Run reviewed in-process Pillow commerce and operations suites
+        working-directory: pillow
+        run: |
+          node --import tsx --test \
+            src/validation/tests/amazon-marketplace-integration.test.ts \
+            src/validation/tests/cj-dropshipping-integration.test.ts \
+            src/validation/tests/fulfilment-orchestrator.test.ts \
+            src/validation/tests/financial-operations-certification.test.ts \
+            src/validation/tests/real-world-operations-certification.test.ts
+
+  backend:
+    name: Backend — clean install, typecheck, build, offline tests
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_ENV: test
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: |
+            pillow/package-lock.json
+            backend/package-lock.json
+      - name: Clean install and build linked Pillow package
+        run: |
+          npm ci --prefix pillow
+          npm run build --prefix pillow
+      - name: Clean install backend dependencies
+        run: npm ci --prefix backend
+      - name: Verify backend development environment
+        run: npm run verify:env --prefix backend
+      - name: Typecheck backend
+        run: npm run typecheck --prefix backend
+      - name: Build backend
+        run: npm run build --prefix backend
+      - name: Verify isolated live SQL.js write fence, critical save and disk readback
+        working-directory: backend
+        run: node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/coordinated-sqlite-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts
+      - name: Verify Amazon sync evidence and sandbox go-live isolation
+        working-directory: backend
+        run: |
+          node --import tsx --test --test-concurrency=1 \
+            src/validation/tests/amazon-sync-evidence.test.ts \
+            src/validation/tests/amazon-listings-import.test.ts \
+            src/validation/tests/amazon-seller-inventory-import.test.ts \
+            src/validation/tests/amazon-order-import.test.ts \
+            src/validation/tests/amazon-order-process-restart.test.ts \
+            src/validation/tests/amazon-order-route.test.ts \
+            src/validation/tests/amazon-oauth-evidence.test.ts \
+            src/validation/tests/reality-002b.test.ts
+      - name: Verify exact-model paid LLM price and durable reservation without provider calls
+        working-directory: backend
+        run: node --import tsx --test src/validation/tests/llm-spend-reservation.test.ts
+      - name: Verify CJ account-bound authentication and exact VID stock without provider calls
+        working-directory: backend
+        run: |
+          node --import tsx --test \
+            src/validation/tests/cj-auth.test.ts \
+            src/validation/tests/cj-live-auth-proof.test.ts \
+            src/validation/tests/cj-production-adapter-truth.test.ts \
+            src/validation/tests/cj-variant-stock-boundary.test.ts \
+            src/validation/tests/cj-point-reservation.test.ts \
+            src/validation/tests/pillow-commerce-presale.test.ts
+      - name: Run fast invariant gate
+        working-directory: backend
+        run: npm run gate:fast-invariant
+      - name: Run ranking, correction and authority lock tests
+        working-directory: backend
+        run: |
+          node --import tsx --test \
+            src/validation/tests/comma-contribution-ranking.lock.test.ts \
+            src/validation/tests/correction-supersession.lock.test.ts \
+            src/validation/tests/authority-synthetic-isolation.lock.test.ts \
+            src/validation/tests/exec-cap-authority-compact.lock.test.ts \
+            src/validation/tests/w1-t1-decision-state-propagation.test.ts
+      - name: Run chat, recovery and canonical-truth tests
+        working-directory: backend
+        run: |
+          node --import tsx --test \
+            src/validation/tests/shadow-ceo-chat-admission.test.ts \
+            src/validation/tests/shadow-ceo-durability.test.ts \
+            src/validation/tests/pillow-accepted-request-recovery.test.ts \
+            src/validation/tests/canonical-executive-truth.test.ts \
+            src/validation/tests/dc05421-response-contract.test.ts
+      - name: Record reviewed offline scope
+        shell: bash
+        run: |
+          echo 'This product slice runs reviewed in-process tests across backend and Pillow. No provider credentials are supplied, and no live Amazon, CJ, payment, fulfilment, deployment, or commerce operation is claimed.' >> "$GITHUB_STEP_SUMMARY"
+
+  legacy-frontend:
+    name: Legacy Vite compatibility — clean install, typecheck, build
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Clean install legacy frontend dependencies
+        run: npm ci --prefix frontend
+      - name: Typecheck legacy frontend
+        run: npm run typecheck --prefix frontend
+      - name: Build legacy frontend
+        run: npm run build --prefix frontend
+      - name: Record current test coverage gap
+        shell: bash
+        run: |
+          echo 'Legacy frontend has no test files or npm test script on this revision; CI currently proves typecheck and production build only.' >> "$GITHUB_STEP_SUMMARY"
+
+  empireai-web:
+    name: Canonical Next.js web — clean install, typecheck, test, build
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: empireai-web/package-lock.json
+      - name: Clean install Next.js web dependencies
+        run: npm ci --prefix empireai-web
+      - name: Typecheck Next.js web
+        run: npm run typecheck --prefix empireai-web
+      - name: Test Next.js web
+        run: npm test --prefix empireai-web
+      - name: Build Next.js web
+        run: npm run build --prefix empireai-web
+      - name: Diagnose known lint debt without masking product checks
+        id: lint_diagnostic
+        continue-on-error: true
+        run: npm run lint --prefix empireai-web
+      - name: Record lint baseline debt
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          echo 'Lint is diagnostic and non-gating in this first product-path slice. Baseline observed on origin/main: 164 errors and 11 warnings. This is unresolved debt, not a lint PASS.' >> "$GITHUB_STEP_SUMMARY"
+
+  bounded-redis-image:
+    name: Real Redis image expiry, AOF and signal proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact tested source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Use the pinned supervisor runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Build actual Redis image and execute runtime-library checks
+        run: docker build --pull --file deployment/redis-canary.Dockerfile --tag empireai-redis-expiry:ci .
+      - name: Require actual image authentication, AOF recovery, signal and expiry proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          node deployment/redis-canary-image.test.cjs empireai-redis-expiry:ci | tee "$RUNNER_TEMP/redis-expiry-image.json"
+          node - "$RUNNER_TEMP/redis-expiry-image.json" <<'NODE'
+          const assert = require('node:assert/strict');
+          const result = JSON.parse(require('node:fs').readFileSync(process.argv[2], 'utf8'));
+          assert.equal(result.passed, true);
+          assert.equal(result.cleanupComplete, true);
+          assert.equal(result.checks.length, 4);
+          assert.ok(result.checks.every(c => c.passed === true));
+          assert.equal(result.hostedProviderProof, false);
+          NODE
+      - name: Preserve image verification outcome in job summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          echo '## Isolated Redis image verification' >> "$GITHUB_STEP_SUMMARY"
+          echo "Tested checkout: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+          if test -f "$RUNNER_TEMP/redis-expiry-image.json"; then
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat "$RUNNER_TEMP/redis-expiry-image.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'No image runtime receipt: build or prior step failed. No hosted proof inferred.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  product-path-result:
+    name: Product path result (no deployment)
+    if: ${{ always() }}
+    needs:
+      - repository-contract
+      - pillow
+      - backend
+      - legacy-frontend
+      - empireai-web
+      - bounded-redis-image
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every product check to pass
+        env:
+          CONTRACT_RESULT: ${{ needs.repository-contract.result }}
+          PILLOW_RESULT: ${{ needs.pillow.result }}
+          BACKEND_RESULT: ${{ needs.backend.result }}
+          LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
+          NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
+          REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' \
+            "repository-contract=${CONTRACT_RESULT}" \
+            "pillow=${PILLOW_RESULT}" \
+            "backend=${BACKEND_RESULT}" \
+            "legacy-frontend=${LEGACY_WEB_RESULT}" \
+            "empireai-web=${NEXT_WEB_RESULT}" \
+            "bounded-redis-image=${REDIS_IMAGE_RESULT}"
+          for result in \
+            "$CONTRACT_RESULT" \
+            "$PILLOW_RESULT" \
+            "$BACKEND_RESULT" \
+            "$LEGACY_WEB_RESULT" \
+            "$NEXT_WEB_RESULT" \
+            "$REDIS_IMAGE_RESULT"; do
+            test "$result" = success
+          done
+          echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"

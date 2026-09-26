@@ -1,8 +1,11 @@
 import { randomUUID } from "node:crypto";
+import { assertCommerceAutomationAllowed } from "../../../runtime/engineering-test-mode.js";
 
 import { logger } from "../../../config/logger.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
+import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import type { CjProduct } from "../../../suppliers/cj-dropshipping/cj-types.js";
 import {
@@ -69,60 +72,17 @@ export type RunPresaleCycleInput = {
 /** Prevent overlapping long SMART batches from stacking on Railway. */
 const discoveryInFlightByWorkspace = new Set<string>();
 
-function sumStock(stockPayload: unknown): number {
-  const rows = Array.isArray(stockPayload)
-    ? stockPayload
-    : stockPayload && typeof stockPayload === "object"
-      ? [stockPayload]
-      : [];
-  let total = 0;
-  for (const row of rows) {
-    if (!row || typeof row !== "object") continue;
-    const r = row as Record<string, unknown>;
-    for (const key of [
-      "inventory",
-      "totalInventoryNum",
-      "cjInventoryNum",
-      "storageNum",
-      "factoryInventoryNum",
-    ]) {
-      const n = r[key];
-      if (typeof n === "number" && Number.isFinite(n) && n > total) total = n;
-    }
-    const warehouses = r.warehouseInventory;
-    if (Array.isArray(warehouses)) {
-      for (const w of warehouses) {
-        if (!w || typeof w !== "object") continue;
-        const inv = (w as { inventory?: number }).inventory;
-        if (typeof inv === "number" && Number.isFinite(inv)) total += inv;
-      }
-    }
-  }
-  return total;
-}
-
 async function fetchLiveStockUnits(
   cj: ReturnType<typeof createCjApiClient>,
-  variant: { vid: string; sku: string; inventory?: number },
+  variant: { vid: string },
 ): Promise<{ units: number; source: string }> {
-  if (typeof variant.inventory === "number" && variant.inventory > 0) {
-    return { units: variant.inventory, source: "cj.variant.inventory" };
-  }
   try {
     const byVid = await cj.queryStockByVid(variant.vid);
-    const units = sumStock(byVid.data);
-    if (units > 0) return { units, source: "cj.stock.queryByVid" };
+    const units = cjManagedStockByVid(byVid.data, variant.vid);
+    return { units, source: units > 0 ? "cj.stock.queryByVid.cjInventoryNum" : "unavailable" };
   } catch {
-    /* try sku */
+    return { units: 0, source: "unavailable" };
   }
-  try {
-    const bySku = await cj.queryStockBySku(variant.sku);
-    const units = sumStock(bySku.data);
-    if (units > 0) return { units, source: "cj.stock.queryBySku" };
-  } catch {
-    /* try legacy pid path only as last resort */
-  }
-  return { units: 0, source: "unavailable" };
 }
 
 function buildRecommendation(input: {
@@ -195,6 +155,7 @@ function buildRecommendation(input: {
 export async function runPillowCommercePresaleCycle(
   input: RunPresaleCycleInput,
 ): Promise<PresaleCycleResult> {
+  assertCommerceAutomationAllowed();
   const workspaceId = input.workspaceId;
   if (discoveryInFlightByWorkspace.has(workspaceId)) {
     const repo = getPillowCommercePresaleRepository();
@@ -328,9 +289,11 @@ async function runPillowCommercePresaleCycleImpl(
     return cycle;
   }
 
-  const cj = createCjApiClient(cjConfig, input.fetchImpl ?? fetch);
+  let cj: ReturnType<typeof createCjApiClient>;
   let products: CjProduct[] = [];
   try {
+    cj = createCjApiClient(cjConfig, input.fetchImpl ?? fetch,
+      createCjPresalePointReservation({ config: cjConfig, env, cycleId }));
     const list = await cj.listProducts({ pageNum: discoveryPageNum, pageSize: maxCandidates });
     products = list.data?.list ?? [];
   } catch (error) {
@@ -447,8 +410,6 @@ async function runPillowCommercePresaleCycleImpl(
 
     const stockResult = await fetchLiveStockUnits(cj, {
       vid: variant.vid,
-      sku: variant.sku,
-      inventory: variant.inventory,
     });
     const stockUnits = stockResult.units;
     if (stockUnits <= 0) {

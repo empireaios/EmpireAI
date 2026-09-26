@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { GuardianBlockedError } from "../../guardian/guardian-engine.js";
+import { setCostGuardLimits } from "../../orchestration/pillow-commissioning/cost-guard.js";
 import {
   configureValidationEnvironment,
   createValidationBrain,
@@ -92,6 +93,14 @@ describe("Guardian integration validation", () => {
         console.warn("[skip] LLM provider configured — skipping no-provider failure test");
         return;
       }
+
+      // Test-only authorization reaches the missing-provider branch after the
+      // separate UNKNOWN-budget safety boundary has been satisfied.
+      setCostGuardLimits("ws_validation", {
+        dailyAiBudgetUsd: 1,
+        autonomousPaidActionLimitUsd: 1,
+        monthlyOperatingBudgetUsd: 1,
+      }, "test-owner");
 
       await assert.rejects(
         () =>

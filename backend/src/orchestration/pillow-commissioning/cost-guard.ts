@@ -5,6 +5,7 @@
  */
 
 import { getDatabase } from "../../brain/database.js";
+import { isEngineeringTestMode } from "../../runtime/engineering-test-mode.js";
 import { recordFlightEvent } from "./flight-recorder.js";
 
 export type CostGuardLevel = "OK" | "WARNING" | "CRITICAL" | "HARD_STOP";
@@ -37,6 +38,7 @@ export type CostGuardStatus = {
   limits: CostGuardLimits;
   spend: {
     dailyAi: CostSpendBucket;
+    monthlyAi: CostSpendBucket;
     monthlyOperating: CostSpendBucket;
     autonomousPaid: CostSpendBucket;
     commerceOperational: CostSpendBucket;
@@ -149,6 +151,9 @@ export function recordCostSpend(input: {
   attribution?: Record<string, string>;
   committed?: boolean;
 }): void {
+  if (!Number.isFinite(input.amountUsd) || input.amountUsd < 0) {
+    throw new Error("Cost spend must be a finite nonnegative USD amount");
+  }
   ensureCostGuardTables();
   const db = getDatabase();
   const spendId = `spend_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -177,17 +182,17 @@ function sumSpend(
   const rows = db
     .prepare(
       `SELECT kind, amount_usd FROM pillow_cost_spend_events
-       WHERE workspace_id = @workspaceId AND recorded_at >= @since AND kind LIKE @kind`,
+       WHERE workspace_id = @workspaceId AND recorded_at >= @since AND kind IN (@kind, @committedKind)`,
     )
-    .all({ workspaceId, since: sinceIso, kind: `${kindPrefix}%` }) as Array<{
+    .all({ workspaceId, since: sinceIso, kind: kindPrefix, committedKind: `${kindPrefix}:committed` }) as Array<{
     kind: string;
     amount_usd: number;
   }>;
   let actualUsd = 0;
   let committedUsd = 0;
   for (const row of rows) {
-    if (row.kind.includes(":committed")) committedUsd += Number(row.amount_usd) || 0;
-    else actualUsd += Number(row.amount_usd) || 0;
+    if (row.kind === `${kindPrefix}:committed`) committedUsd += Number(row.amount_usd);
+    else actualUsd += Number(row.amount_usd);
   }
   return {
     actualUsd,
@@ -197,6 +202,7 @@ function sumSpend(
 }
 
 function levelFor(used: number, limit: number | null, warningPct: number, criticalPct: number): CostGuardLevel {
+  if (!Number.isFinite(used) || used < 0) return "HARD_STOP";
   if (limit == null || limit <= 0) return "OK";
   const pct = (used / limit) * 100;
   if (pct >= 100) return "HARD_STOP";
@@ -212,7 +218,14 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
 
   const dailyAi = sumSpend(workspaceId, "ai", dayStart);
-  const monthlyOperating = sumSpend(workspaceId, "operating", monthStart);
+  const monthlyAi = sumSpend(workspaceId, "ai", monthStart);
+  const monthlyOperatingOnly = sumSpend(workspaceId, "operating", monthStart);
+  // AI charges are operating expenses even if no separate operating event was posted.
+  const monthlyOperating = {
+    actualUsd: monthlyOperatingOnly.actualUsd + monthlyAi.actualUsd,
+    committedUsd: monthlyOperatingOnly.committedUsd + monthlyAi.committedUsd,
+    forecastUsd: monthlyOperatingOnly.forecastUsd + monthlyAi.forecastUsd,
+  };
   const autonomousPaid = sumSpend(workspaceId, "autonomous_paid", monthStart);
   const commerceOperational = sumSpend(workspaceId, "commerce_operational", monthStart);
 
@@ -263,6 +276,14 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   }
 
   const hardStopReasons: string[] = [];
+  for (const [label, bucket] of [
+    ["daily AI", dailyAi], ["monthly operating", monthlyOperating],
+    ["autonomous paid", autonomousPaid], ["commerce operational", commerceOperational],
+  ] as const) {
+    if (![bucket.actualUsd, bucket.committedUsd].every(value => Number.isFinite(value) && value >= 0)) {
+      hardStopReasons.push(`${label} ledger is invalid`);
+    }
+  }
   if (
     limits.dailyAiBudgetUsd != null &&
     dailyAi.actualUsd + dailyAi.committedUsd >= limits.dailyAiBudgetUsd
@@ -289,7 +310,7 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
     computedAt: now.toISOString(),
     level,
     limits,
-    spend: { dailyAi, monthlyOperating, autonomousPaid, commerceOperational },
+    spend: { dailyAi, monthlyAi, monthlyOperating, autonomousPaid, commerceOperational },
     unconfiguredLimitKeys,
     hardStopActive,
     hardStopReasons,
@@ -301,12 +322,19 @@ export function buildCostGuardStatus(workspaceId: string): CostGuardStatus {
   };
 }
 
-/** Returns null when allowed; reason string when blocked. */
+/** Paid autonomy requires known authorization; this check does not reserve spend. */
 export function assertPaidAutonomousAllowed(
   workspaceId: string,
   estimatedCostUsd: number,
 ): { allowed: true } | { allowed: false; reason: string; status: CostGuardStatus } {
   const status = buildCostGuardStatus(workspaceId);
+  if (isEngineeringTestMode()) {
+    return {
+      allowed: false,
+      reason: "Paid autonomous work is disabled during engineering deployment/recovery testing",
+      status,
+    };
+  }
   if (status.hardStopActive) {
     return {
       allowed: false,
@@ -314,27 +342,47 @@ export function assertPaidAutonomousAllowed(
       status,
     };
   }
-  const dailyLimit = status.limits.dailyAiBudgetUsd;
-  if (dailyLimit != null) {
-    const projected = status.spend.dailyAi.actualUsd + status.spend.dailyAi.committedUsd + estimatedCostUsd;
-    if (projected > dailyLimit) {
+  if (!Number.isFinite(estimatedCostUsd) || estimatedCostUsd < 0) {
+    return {
+      allowed: false,
+      reason: "Paid autonomous cost estimate must be a finite nonnegative USD amount",
+      status,
+    };
+  }
+
+  // These are the scopes used by the LLM router and autonomous paid callers.
+  // A backup/deployment allowance is not an AI or commerce authorization, and
+  // unrelated unset commerce limits must not be silently filled in here.
+  const requiredScopes = [
+    { key: "dailyAiBudgetUsd", label: "daily AI", spend: status.spend.dailyAi },
+    { key: "autonomousPaidActionLimitUsd", label: "autonomous paid", spend: status.spend.autonomousPaid },
+    { key: "monthlyOperatingBudgetUsd", label: "monthly operating", spend: status.spend.monthlyOperating },
+  ] as const;
+  for (const { key, label, spend } of requiredScopes) {
+    const limit = status.limits[key];
+    if (typeof limit !== "number" || !Number.isFinite(limit) || limit < 0) {
       return {
         allowed: false,
-        reason: `Projected daily AI spend $${projected.toFixed(4)} exceeds limit $${dailyLimit}`,
+        reason: `Paid autonomous authorization is UNKNOWN or invalid: ${key}`,
         status,
       };
     }
-  }
-  const autoLimit = status.limits.autonomousPaidActionLimitUsd;
-  if (autoLimit != null) {
-    const projected =
-      status.spend.autonomousPaid.actualUsd +
-      status.spend.autonomousPaid.committedUsd +
-      estimatedCostUsd;
-    if (projected > autoLimit) {
+    const projected = spend.actualUsd + spend.committedUsd + estimatedCostUsd;
+    if (
+      !Number.isFinite(spend.actualUsd) || spend.actualUsd < 0 ||
+      !Number.isFinite(spend.committedUsd) || spend.committedUsd < 0 ||
+      !Number.isFinite(projected)
+    ) {
       return {
         allowed: false,
-        reason: `Projected autonomous paid spend $${projected.toFixed(4)} exceeds limit $${autoLimit}`,
+        reason: `Paid autonomous spend cannot be bounded: ${label} ledger is invalid`,
+        status,
+      };
+    }
+    if (projected > limit) {
+      return {
+        allowed: false,
+        reason: `Projected ${label} spend $${projected.toFixed(4)} exceeds limit $${limit}`,
         status,
       };
     }
@@ -346,12 +394,25 @@ export function assertPaidAutonomousAllowed(
  * Safe hard-stop proof: temporarily apply a tiny autonomous limit, verify block,
  * then restore prior limits. Does not cause uncontrolled spend.
  */
+/**
+ * Prove the configured hard stop inside a synchronous SQLite savepoint.
+ * All temporary limits and synthetic spend are rolled back before the result
+ * is recorded. A proof must not consume real owner budget or alter authority.
+ */
 export function runSafeHardStopProof(workspaceId: string, actor: string): {
   ok: boolean;
   detail: string;
   blockedReason: string | null;
 } {
+  ensureCostGuardTables();
+  const db = getDatabase();
   const prior = getCostGuardLimits(workspaceId);
+  let blockedReason: string | null = null;
+  let blocked = false;
+
+  // No await is allowed between SAVEPOINT and ROLLBACK: sql.js shares this
+  // connection, and the deferred file exporter cannot observe the proof.
+  db.exec("SAVEPOINT pillow_cost_guard_proof");
   try {
     setCostGuardLimits(
       workspaceId,
@@ -361,7 +422,6 @@ export function runSafeHardStopProof(workspaceId: string, actor: string): {
       },
       actor,
     );
-    // Simulate prior spend that exhausts the tiny limit
     recordCostSpend({
       workspaceId,
       kind: "autonomous_paid",
@@ -370,30 +430,32 @@ export function runSafeHardStopProof(workspaceId: string, actor: string): {
       attribution: { proof: "safe-hard-stop" },
     });
     const check = assertPaidAutonomousAllowed(workspaceId, 0.01);
-    const blocked = !check.allowed;
-    recordFlightEvent({
-      workspaceId,
-      eventType: "COST_GUARD",
-      businessArea: "cost",
-      subsystem: "cost-guard",
-      objective: "Safe hard-stop proof",
-      decision: blocked ? "HARD_STOP_VERIFIED" : "HARD_STOP_FAILED",
-      authority: "system",
-      result: blocked
-        ? `Blocked as expected: ${"reason" in check ? check.reason : ""}`
-        : "Hard-stop did not block — failure",
-      verification: blocked ? "PASS" : "FAIL",
-      evidenceConsidered: ["safe-hard-stop-proof"],
-    });
-    return {
-      ok: blocked,
-      detail: blocked
-        ? "HARD STOP safely blocked further paid autonomous activity under temporary micro-limit"
-        : "HARD STOP proof failed — paid activity was not blocked",
-      blockedReason: check.allowed ? null : check.reason,
-    };
+    blocked = !check.allowed;
+    blockedReason = check.allowed ? null : check.reason;
   } finally {
-    // Restore prior limits (remove proof spend effect on limits config)
-    setCostGuardLimits(workspaceId, prior, actor);
+    db.exec("ROLLBACK TO SAVEPOINT pillow_cost_guard_proof");
+    db.exec("RELEASE SAVEPOINT pillow_cost_guard_proof");
   }
+
+  recordFlightEvent({
+    workspaceId,
+    eventType: "COST_GUARD",
+    businessArea: "cost",
+    subsystem: "cost-guard",
+    objective: "Safe hard-stop proof",
+    decision: blocked ? "HARD_STOP_VERIFIED" : "HARD_STOP_FAILED",
+    authority: "system",
+    result: blocked
+      ? `Blocked as expected: ${blockedReason ?? ""}`
+      : "Hard-stop did not block — failure",
+    verification: blocked ? "PASS" : "FAIL",
+    evidenceConsidered: ["safe-hard-stop-proof", "temporary changes rolled back"],
+  });
+  return {
+    ok: blocked,
+    detail: blocked
+      ? "HARD STOP blocked synthetic spend; temporary limits and spend rolled back"
+      : "HARD STOP proof failed — paid activity was not blocked",
+    blockedReason,
+  };
 }

@@ -1,3 +1,5 @@
+import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
+import { ManagedBackgroundTask } from "./runtime/managed-background-task.js";
 import type { FastifyInstance } from "fastify";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
@@ -52,6 +54,7 @@ import { registerBusinessBuildRoutes } from "./orchestration/business-build-engi
 import { registerBusinessSimulationRoutes } from "./orchestration/business-simulation-engine/routes/business-simulation-routes.js";
 import { registerExecutionLayerRoutes } from "./orchestration/execution-layer/routes/execution-layer-routes.js";
 import { registerRealityIntegrationRoutes } from "./orchestration/reality-integration/routes/reality-integration-routes.js";
+import { registerAmazonOrderReadRoutes } from "./orchestration/reality-integration/live-commerce/routes/amazon-order-read-routes.js";
 import { registerEyeSeriesRoutes } from "./orchestration/eye-series/routes/eye-series-routes.js";
 import { registerOperationFirstDollarRoutes } from "./operation-first-dollar/routes/operation-first-dollar-routes.js";
 import { registerEsisRoutes } from "./orchestration/empire-self-inspection/routes/esis-routes.js";
@@ -72,6 +75,7 @@ import {
   getPillowCommercePresaleAutomationServer,
   registerPillowCommercePresaleRoutes,
 } from "./orchestration/pillow-commerce-presale/index.js";
+import { registerCertificationReceiptRoutes } from "./orchestration/pillow-commissioning/certification-receipt-routes.js";
 import { registerPillowCommissioningRoutes } from "./orchestration/pillow-commissioning/index.js";
 import { getPillowExecutiveLoopAutomationServer } from "./orchestration/pillow-commissioning/executive-operating-loop/index.js";
 import { registerShadowCeoRoutes } from "./orchestration/shadow-ceo-integration/index.js";
@@ -200,9 +204,14 @@ import { createAuthMiddleware } from "./auth/middleware.js";
 import { canAccessModule } from "./auth/permissions.js";
 import { EventStreamHub } from "./brain/events/event-stream.js";
 import { GuardianBlockedError } from "./guardian/guardian-engine.js";
+import { SessionStoreUnavailableError } from "./auth/session-store.js";
 import { seedDomainData } from "./domain/seed.js";
 import { bootstrapFoundation } from "./foundation/index.js";
 import { getObservabilitySnapshot, recordRequest } from "./observability/metrics.js";
+import {
+  probeRedisSessionStore,
+  registerWorkerApplicationReadinessRoute,
+} from "./runtime/application-readiness.js";
 
 const dispatchSchema = z.object({
   module: z.string().min(1),
@@ -231,17 +240,19 @@ export type EmpireApp = {
 };
 
 export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp> {
-  const startWorkers = options.startWorkers ?? false;
-  const startScheduler = options.startScheduler ?? false;
+  const { startWorkers, startScheduler, commerceAutomation } = backgroundExecutionPolicy(options);
   const pillowEnabled = options.pillowEnabled ?? true;
   const earlyListen = options.earlyListen ?? false;
 
   const brain = await createBrain({ startWorkers, startScheduler });
   await seedDefaultUsers();
 
+  let deferredBootstrap: ReturnType<typeof setImmediate> | undefined;
+  let stopping = false;
   const deferHeavyBootstrap = env.NODE_ENV === "production";
   if (deferHeavyBootstrap) {
-    setImmediate(() => {
+    deferredBootstrap = setImmediate(() => {
+      if (stopping) return;
       try {
         seedDomainData();
         seedGrandKingAccount();
@@ -261,24 +272,26 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   }
 
   const pillowHost = getPillowHost();
-  if (pillowEnabled) {
-    const bootDelayMs = env.NODE_ENV === "production" ? 15_000 : 5_000;
-    const bootPillowHost = () => {
-      void schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger)
-        ?.then(() => {
-          syncPresaleApprovalGateWithPillowHost(pillowHost);
-        })
-        .catch((error) => {
-          logger.error(
-            {
-              error: error instanceof Error ? error.message : String(error),
-            },
-            "Pillow host startup failed — backend continues in degraded mode",
-          );
-        });
-    };
-    setTimeout(bootPillowHost, bootDelayMs);
-  }
+  const pillowBootTask = new ManagedBackgroundTask({
+    run: async () => {
+      await schedulePillowHostBoot(pillowHost, brain.llmRouter, brain.auditLogger);
+      if (!stopping) syncPresaleApprovalGateWithPillowHost(pillowHost);
+    },
+    onError: (error) => logger.error(
+      { error: error instanceof Error ? error.message : String(error) },
+      "Pillow host startup failed — backend continues in degraded mode",
+    ),
+  });
+  if (pillowEnabled) pillowBootTask.start(env.NODE_ENV === "production" ? 15_000 : 5_000);
+  const stopBackgroundWork = async () => {
+    stopping = true;
+    clearImmediate(deferredBootstrap);
+    await Promise.all([
+      pillowBootTask.stop(),
+      getPillowCommercePresaleAutomationServer().stop(),
+      getPillowExecutiveLoopAutomationServer().stop(),
+    ]);
+  };
 
   const sessionStore = brain.sessionStore;
   const authenticate = createAuthMiddleware(sessionStore);
@@ -329,6 +342,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       },
       "Request failed",
     );
+
+    if (error instanceof SessionStoreUnavailableError) {
+      return reply.code(503).send({
+        error: "Shared session store temporarily unavailable",
+        code: "SHARED_SESSION_STORE_UNAVAILABLE",
+        retryable: true,
+      });
+    }
 
     if (error instanceof z.ZodError) {
       return reply.code(400).send({
@@ -397,19 +418,23 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     return payload;
   });
 
-  // Process alive ≠ Grand King auth ready. Ops/probes use this; Railway stays on /health/live.
-  app.get("/health/ready", async (_request, reply) => {
-    const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
-    const report = assessAuthReadiness({ sessionStore });
-    const payload = {
-      ...report,
-      brain: "online" as const,
-      process: "running" as const,
-    };
-    if (!report.ready) {
-      return reply.code(503).send(payload);
-    }
-    return payload;
+  // Process alive ≠ Grand King auth/Pillow ready. Railway admits traffic on
+  // this endpoint; /health/live remains available for diagnostics.
+  const redisRequired =
+    env.NODE_ENV === "production" || process.env.EMPIRE_ROLE === "brain-worker";
+  const pillowRequired = pillowEnabled || redisRequired;
+  registerWorkerApplicationReadinessRoute(app, {
+    assessAuthReadiness: async () => {
+      const { assessAuthReadiness } = await import("./auth/auth-readiness.js");
+      return assessAuthReadiness({ sessionStore });
+    },
+    probeRedisConnectivity: (timeoutMs) =>
+      probeRedisSessionStore(brain.redis, timeoutMs),
+    redisMode: brain.redisMode,
+    redisRequired,
+    pillowEnabled,
+    pillowRequired,
+    getPillowStatus: () => pillowHost.getStatus(),
   });
 
   app.get("/health/executive-continuity", async () => {
@@ -544,11 +569,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     pillowEnabled,
     pillowHost,
     eventStream,
+    commerceAutomation,
   };
 
+  // Both full and early-listen apps need the authenticated cockpit surface.
+  await breathe();
+  await registerCockpitCriticalRoutes(routeDeps);
+
   if (earlyListen) {
-    await breathe();
-    await registerCockpitCriticalRoutes(routeDeps);
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
     await breathe();
@@ -556,7 +584,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     return {
       app,
       brain,
-      shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+      shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -567,7 +595,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   return {
     app,
     brain,
-    shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream }),
+    shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
   };
 }
 
@@ -579,6 +607,7 @@ type EmpireRouteDeps = {
   pillowEnabled: boolean;
   pillowHost: ReturnType<typeof getPillowHost>;
   eventStream: EventStreamHub;
+  commerceAutomation: boolean;
 };
 
 function createEmpireShutdown(deps: {
@@ -586,26 +615,35 @@ function createEmpireShutdown(deps: {
   brain: EmpireBrain;
   pillowEnabled: boolean;
   eventStream: EventStreamHub;
+  stopBackgroundWork: () => Promise<void>;
 }) {
-  return async () => {
+  let shutdown: Promise<void> | undefined;
+  return () => shutdown ??= (async () => {
     deps.eventStream.stop();
+    await deps.stopBackgroundWork();
+    await deps.app.close();
     if (deps.pillowEnabled) {
       await shutdownPillowHost();
     }
-    await deps.app.close();
     await deps.brain.shutdown();
-  };
+  })();
 }
 
-let commerceCriticalRoutesRegistered = false;
+const commerceCriticalRouteApps = new WeakSet<FastifyInstance>();
 
 /** Supplier → Amazon listing routes required for first-dollar commerce proof. */
 async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
-  if (commerceCriticalRoutesRegistered) return;
+  if (commerceCriticalRouteApps.has(deps.app)) return;
   const { app, authenticate, brain } = deps;
 
   await breathe();
   await registerAmazonGlobalSellerRoutes(app, {
+    authenticate,
+    auditLogger: brain.auditLogger,
+  });
+
+  await breathe();
+  await registerAmazonOrderReadRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
   });
@@ -630,6 +668,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
   });
 
   await breathe();
+  await registerCertificationReceiptRoutes(app, { authenticate });
   await registerPillowCommissioningRoutes(app, {
     authenticate,
     auditLogger: brain.auditLogger,
@@ -642,8 +681,10 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
   });
 
   // Proactive Pillow initiation — standing commerce objective, no chat prompt required.
-  getPillowCommercePresaleAutomationServer().start();
-  getPillowExecutiveLoopAutomationServer().start();
+  if (deps.pillowEnabled && deps.commerceAutomation) {
+    getPillowCommercePresaleAutomationServer().start();
+    getPillowExecutiveLoopAutomationServer().start();
+  }
 
   // Institutional memory must accumulate from day one (cloud SQLite EKB).
   try {
@@ -656,7 +697,7 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
     );
   }
 
-  commerceCriticalRoutesRegistered = true;
+  commerceCriticalRouteApps.add(app);
   logger.info(
     "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)",
   );

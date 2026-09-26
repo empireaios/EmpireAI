@@ -1,0 +1,9 @@
+# Explicitly select this configuration only for a new disposable Redis service.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "deployment/redis-canary.Dockerfile"
+
+[deploy]
+# Use the image ENTRYPOINT; do not append a separate start command.
+restartPolicyType = "NEVER"
+numReplicas = 1

@@ -78,6 +78,7 @@ describe("REAL-002B — Live Commerce Integration", () => {
     assert.equal(started.state.status, "pending");
 
     const completed = await completeMarketplaceOAuth({
+      workspaceId: WORKSPACE_ID,
       stateId: started.stateId,
       code: "auth-code-12345678",
     });
@@ -99,7 +100,7 @@ describe("REAL-002B — Live Commerce Integration", () => {
 
     const validated = await validateLiveMarketplaceConnection(WORKSPACE_ID, "amazon-seller");
     assert.equal(validated.valid, true);
-    assert.equal(validated.liveApiVerified, true);
+    assert.equal(validated.liveApiVerified, false); // sandbox credential check, no remote Seller API call
 
     const connectorResult = await connectorValidate(WORKSPACE_ID, "amazon-seller");
     assert.equal(connectorResult.valid, true);
@@ -177,7 +178,7 @@ describe("REAL-002B — Live Commerce Integration", () => {
     assert.equal(recovered.recovered, true);
   });
 
-  it("REAL-002B — security review and go-live assessment", async () => {
+  it("REAL-002B — sandbox connections and simulated syncs cannot authorize go-live", async () => {
     for (const providerId of ["amazon-us", "amazon-sg"] as const) {
       await connectLiveCommerceProvider({
         workspaceId: WORKSPACE_ID,
@@ -209,8 +210,8 @@ describe("REAL-002B — Live Commerce Integration", () => {
     }
 
     const goLive = assessLiveCommerceGoLive(WORKSPACE_ID);
-    assert.ok(goLive.score >= 70);
-    assert.equal(goLive.goLiveEligible, true);
-    assert.equal(goLive.blockers.length, 0);
+    assert.ok(goLive.score >= 70); // connectivity and security checks only
+    assert.equal(goLive.goLiveEligible, false);
+    assert.ok(goLive.blockers.some(b => b.includes("Full verified Amazon US sync cycle incomplete")));
   });
 });

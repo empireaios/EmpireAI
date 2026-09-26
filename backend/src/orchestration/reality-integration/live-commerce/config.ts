@@ -51,6 +51,7 @@ export function getAmazonSpApiConfig(registryId: AmazonMarketplaceRegistryId = "
     registryId,
     clientId: credentialProfile.shared.clientId,
     clientSecret: credentialProfile.shared.clientSecret,
+    applicationId: process.env.AMAZON_SP_API_APPLICATION_ID ?? "",
     refreshToken: credentialProfile.refreshToken,
     region: profile.spApiRegion.toLowerCase(),
     marketplaceId: profile.marketplaceId,

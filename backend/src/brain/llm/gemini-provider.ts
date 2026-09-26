@@ -19,6 +19,7 @@ export class GeminiProvider implements LLMProvider {
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
+    request.signal?.throwIfAborted();
     const client = this.getClient();
     const modelName = request.model ?? "gemini-2.0-flash";
     const model = client.getGenerativeModel({ model: modelName });
@@ -39,7 +40,7 @@ export class GeminiProvider implements LLMProvider {
         temperature: request.temperature ?? 0.2,
         maxOutputTokens: request.maxTokens ?? 4096,
       },
-    });
+    }, { signal: request.signal });
 
     const text = result.response.text();
 

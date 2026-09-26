@@ -26,12 +26,13 @@ export class OpenAIProvider implements LLMProvider {
 
   private getClient(): OpenAI {
     if (!this.client) {
-      this.client = new OpenAI({ apiKey: requireProviderKey("openai") });
+      this.client = new OpenAI({ apiKey: requireProviderKey("openai"), maxRetries: 0 });
     }
     return this.client;
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
+    request.signal?.throwIfAborted();
     const client = this.getClient();
     const model = request.model ?? env.DEFAULT_LLM_MODEL;
 
@@ -48,7 +49,7 @@ export class OpenAIProvider implements LLMProvider {
           parameters: tool.parameters,
         },
       })),
-    });
+    }, { signal: request.signal, maxRetries: 0 });
 
     const choice = response.choices[0];
     const toolCalls = choice?.message.tool_calls?.map((call) => ({

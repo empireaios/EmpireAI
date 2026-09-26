@@ -17,59 +17,50 @@ import { createHash } from "node:crypto";
 import { spawn, type ChildProcess } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import Fastify from "fastify";
+import Fastify, {
+  type FastifyInstance,
+  type FastifyReply,
+  type FastifyRequest,
+} from "fastify";
 import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
 import { z } from "zod";
 import { env } from "../config/env.js";
 import { logger } from "../config/logger.js";
-import {
-  createRedisClient,
-  probeRedisAvailable,
-  shouldAllowRedisDegradedMode,
-} from "../config/redis-client.js";
+import { createTier0RedisClient } from "./tier0-redis.js";
 import {
   SessionStore,
-  InMemorySessionStore,
+  SessionStoreUnavailableError,
   type SessionStoreBackend,
 } from "../auth/session-store.js";
 import { resolvePlatformIdentity } from "../auth/platform-identity.js";
 import { createAuthMiddleware } from "../auth/middleware.js";
+import { requireSafeBootstrapCredentials, UnsafeBootstrapCredentialsError } from "../auth/bootstrap-credential-policy.js";
 import { recordTier0Request } from "./tier0-control-plane.js";
+import type { PillowProxyAttemptResult } from "./pillow-accepted-request-recovery.js";
+import { forwardWorkerHttpRequest, sendWorkerHttpResponse, workerRequestHeaders } from "./worker-http-proxy.js";
 import {
-  acceptPillowChatRequest,
-  buildTerminalInfrastructureMessage,
-  extractChatMessagePreview,
-  PILLOW_CHAT_TIMEOUTS,
-  runAcceptedPillowChatRecovery,
-  type PillowProxyAttemptResult,
-} from "./pillow-accepted-request-recovery.js";
-import {
-  deliveryForensicsDashboard,
-  hashText,
   listDeliveryForensics,
-  newDeliveryTraceId,
-  previewText,
-  recordDeliveryForensic,
   searchDeliveryForensics,
-  type DeliveryForensicEvent,
 } from "./pillow-delivery-forensics.js";
 import {
-  acceptDurableChatRequest,
+  acceptDurableChatRequestClaim,
   admitChatRequestBody,
-  chatRequestDashboard,
-  classifyUpstreamFailure,
-  completeChatRequest,
   configureChatRequestStore,
   durabilityMeta,
-  failChatRequest,
   getChatRequest,
   listRecentChatRequests,
   markChatRequestDelivered,
-  markChatRequestRunning,
-  markDeliveryAttempted,
-  type ChatFailureClass,
+  PillowDurableStoreUnavailableError,
+  PillowIdempotencyConflictError,
+  type DurableChatRequest,
 } from "./pillow-chat-request-store.js";
+import { startDurableReasoningSweeper } from "./pillow-durable-reasoning-worker.js";
+import { installPrimaryShutdown } from "./primary-shutdown.js";
+import {
+  buildTier0ApplicationReadiness,
+  probeRedisSessionStore,
+} from "./application-readiness.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -122,6 +113,12 @@ function seedAccounts(): SeedAccount[] {
 }
 
 function authenticateSeedUser(email: string, password: string): SeedAccount | null {
+  requireSafeBootstrapCredentials({
+    production: env.NODE_ENV === "production" || Boolean(
+      process.env.RAILWAY_DEPLOYMENT_ID || process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME),
+    founderPassword: env.FOUNDER_PASSWORD,
+    adminPassword: env.ADMIN_PASSWORD,
+  });
   const account = seedAccounts().find((a) => a.email === email.toLowerCase());
   if (!account) return null;
   // Env plaintext is canonical for bootstrap accounts (same contract as seedDefaultUsers).
@@ -142,6 +139,330 @@ type WorkerState = {
   starting: boolean;
 };
 
+export type Tier0WorkerProbeResult = {
+  ok: boolean;
+  reachable: boolean;
+  ms: number;
+  body: Record<string, unknown> | null;
+};
+
+export type Tier0ReadinessRouteDependencies = {
+  probeWorkerReady: (timeoutMs?: number) => Promise<Tier0WorkerProbeResult>;
+  probePrimarySessionStore: (timeoutMs?: number) => Promise<boolean>;
+  sessionStoreMode: "redis" | "memory";
+};
+
+export const TIER0_SHARED_SESSION_UNAVAILABLE = {
+  error: "Shared session store temporarily unavailable",
+  code: "SHARED_SESSION_STORE_UNAVAILABLE",
+  tier0Isolation: true,
+  retryable: true,
+} as const;
+
+export const TIER0_PILLOW_DURABILITY_UNAVAILABLE = {
+  error: "Pillow durable request store temporarily unavailable",
+  code: "PILLOW_DURABILITY_UNAVAILABLE",
+  tier0Isolation: true,
+  retryable: true,
+} as const;
+
+export const TIER0_PILLOW_STREAM_DURABILITY_REQUIRED = {
+  error: "Streaming chat is disabled on the durable Tier-0 path; use /api/pillow/chat",
+  code: "PILLOW_STREAM_DURABILITY_REQUIRED",
+  tier0Isolation: true,
+  retryable: false,
+} as const;
+
+export function classifyTier0PillowPath(url: string): "chat" | "stream" | "reject" | "other" {
+  const raw = url.split("?")[0] ?? "";
+  if (raw === "/api/pillow/chat") return "chat";
+  if (raw === "/api/pillow/chat/stream") return "stream";
+  let decoded = raw;
+  try {
+    for (let i = 0; i < 4 && decoded.includes("%"); i++) {
+      const next = decodeURIComponent(decoded);
+      if (next === decoded) break;
+      decoded = next;
+    }
+  } catch { return "reject"; }
+  // Fastify decodes static paths. Encoded/alternate chat routes must never fall
+  // through to the ordinary action-capable Brain proxy.
+  const normalized = path.posix.normalize(decoded).replace(/\/+$/, "");
+  return /(?:^|\/)pillow\/chat(?:\/stream)?$/i.test(normalized) ? "reject" : "other";
+}
+
+export function createSharedSessionStoreGuard(
+  probeSharedSessionStore: () => Promise<boolean>,
+) {
+  return async (_request: FastifyRequest, reply: FastifyReply) => {
+    if (!(await probeSharedSessionStore())) {
+      return reply.code(503).send(TIER0_SHARED_SESSION_UNAVAILABLE);
+    }
+  };
+}
+
+export function registerTier0DurabilityErrorHandler(app: FastifyInstance): void {
+  app.setErrorHandler((error, _request, reply) => {
+    if (error instanceof UnsafeBootstrapCredentialsError) {
+      return reply.code(503).send({ error: "Authentication configuration unavailable", code: "BOOTSTRAP_CREDENTIALS_UNSAFE", retryable: false });
+    }
+    if (error instanceof SessionStoreUnavailableError) {
+      return reply.code(503).send(TIER0_SHARED_SESSION_UNAVAILABLE);
+    }
+    if (error instanceof PillowIdempotencyConflictError) {
+      return reply.code(409).send({ code: "PILLOW_IDEMPOTENCY_CONFLICT", retryable: false });
+    }
+    if (error instanceof PillowDurableStoreUnavailableError) {
+      return reply.code(503).send({
+        ...TIER0_PILLOW_DURABILITY_UNAVAILABLE,
+        resultRetrievable: false,
+      });
+    }
+    return reply.send(error);
+  });
+}
+
+/** Status and diagnostics are private, and must never cross owner/workspace boundaries. */
+export function registerTier0DurableReadRoutes(
+  app: FastifyInstance,
+  authenticate: ReturnType<typeof createAuthMiddleware>,
+): void {
+  const authorized = async (request: FastifyRequest, reply: FastifyReply) => {
+    await authenticate(request, reply);
+    if (reply.sent) return;
+    if (!request.user || !["founder", "admin"].includes(request.user.role)) {
+      return reply.code(403).send({ error: "Founder access required for Pillow" });
+    }
+  };
+  const owns = (request: FastifyRequest, rec: DurableChatRequest | null) => Boolean(
+    request.user && rec?.ownerId === request.user.id && rec.workspaceId === request.user.workspaceId,
+  );
+  app.get("/api/pillow/chat-request/:requestId", { preHandler: authorized }, async (request, reply) => {
+    const requestId = String((request.params as { requestId?: string }).requestId ?? "");
+    const rec = await getChatRequest(requestId);
+    if (!rec || !owns(request, rec)) return reply.code(404).send({ ok: false, error: "request_not_found", requestId });
+    if (rec.status === "COMPLETED") await markChatRequestDelivered(requestId, "RETRIEVED");
+    return reply.send({ ok: true, request: rec, durability: durabilityMeta() });
+  });
+  app.get("/api/pillow/chat-requests", { preHandler: authorized }, async (request, reply) => {
+    const limit = Math.max(1, Math.min(100, Number((request.query as { limit?: string })?.limit) || 40));
+    const rows = listRecentChatRequests(500).filter((rec) => owns(request, rec)).slice(0, limit);
+    return reply.send({ ok: true, rows, durability: durabilityMeta(), scope: "process_local_recent_cache" });
+  });
+  app.get("/api/pillow/delivery-forensics", { preHandler: authorized }, async (request, reply) => {
+    const q = String((request.query as { q?: string })?.q ?? "").trim();
+    const candidates = q ? searchDeliveryForensics(q) : listDeliveryForensics(100);
+    const visible = await Promise.all(candidates.map(async (row) =>
+      row.requestId && owns(request, await getChatRequest(row.requestId)) ? row : null));
+    return reply.send({ ok: true, rows: visible.filter(Boolean) });
+  });
+}
+
+export function buildTier0ReadinessResult(input: {
+  workerReady: boolean;
+  primarySessionStoreReady: boolean;
+}) {
+  const readiness = buildTier0ApplicationReadiness(input);
+  return {
+    ...readiness,
+    redisReady: input.primarySessionStoreReady,
+  } as const;
+}
+
+export function registerTier0ReadinessRoute(
+  app: FastifyInstance,
+  dependencies: Tier0ReadinessRouteDependencies,
+): void {
+  app.get("/health/ready", async (_req, reply) => {
+    const [worker, redisPingReady] = await Promise.all([
+      dependencies.probeWorkerReady(5_000),
+      dependencies.probePrimarySessionStore(1_500),
+    ]);
+    const workerPillow =
+      worker.body?.pillow && typeof worker.body.pillow === "object"
+        ? (worker.body.pillow as Record<string, unknown>)
+        : null;
+    const workerPillowReady =
+      workerPillow?.enabled === true &&
+      workerPillow.ready === true &&
+      workerPillow.lifecycle === "running";
+    const workerReady = worker.ok && workerPillowReady;
+    const primarySessionStoreReady =
+      dependencies.sessionStoreMode === "redis" && redisPingReady;
+    const readiness = buildTier0ReadinessResult({
+      workerReady,
+      primarySessionStoreReady,
+    });
+    const payload = {
+      ready: readiness.ready,
+      brain: workerReady ? "online" : "tier0_only",
+      process: "running",
+      tier0Isolation: true,
+      workerOnline: worker.reachable,
+      workerReady,
+      sessionStore: dependencies.sessionStoreMode,
+      pillow: workerPillow,
+      checks: {
+        tier0Primary: { ok: true },
+        redis: { ok: readiness.redisReady, ping: redisPingReady },
+        brainWorker: { ok: worker.reachable },
+        brainWorkerReady: { ok: workerReady },
+        pillow: { ok: workerPillowReady },
+      },
+    };
+    return reply.code(readiness.statusCode).send(payload);
+  });
+}
+
+/** One availability probe followed by, at most, one upstream request. */
+export async function runSingleWorkerProxyAttempt(
+  probeWorker: () => Promise<boolean>,
+  forwardRequest: () => Promise<PillowProxyAttemptResult>,
+): Promise<PillowProxyAttemptResult> {
+  if (!(await probeWorker())) {
+    return { ok: false, reason: "worker_unavailable" };
+  }
+  return forwardRequest();
+}
+
+export function buildTier0ProxyFailure(reason: string) {
+  if (reason === "worker_unavailable") {
+    return {
+      error: "Brain worker temporarily unavailable",
+      code: "BRAIN_WORKER_UNAVAILABLE",
+      tier0Isolation: true,
+      retryable: true,
+    } as const;
+  }
+  return {
+    error: "Brain worker proxy failed",
+    code: "BRAIN_WORKER_PROXY_FAILED",
+    tier0Isolation: true,
+    retryable: true,
+  } as const;
+}
+
+export async function handleDurablePillowChat(
+  request: FastifyRequest,
+  reply: FastifyReply,
+  dependencies: { authenticate: ReturnType<typeof createAuthMiddleware>; probeSharedSessionStore: () => Promise<boolean> },
+) {
+  await dependencies.authenticate(request, reply);
+  if (reply.sent) return;
+  if (!request.user || !["founder", "admin"].includes(request.user.role)) {
+    return reply.code(403).send({ error: "Founder access required for Pillow" });
+  }
+  if (!(await dependencies.probeSharedSessionStore())) {
+    return reply.code(503).send(TIER0_PILLOW_DURABILITY_UNAVAILABLE);
+  }
+  const admitted = admitChatRequestBody(typeof request.body === "string" || Buffer.isBuffer(request.body) ? request.body : JSON.stringify(request.body ?? {}));
+  let input: Record<string, unknown>;
+  try {
+    const validated = z.object({
+      message: z.string().trim().min(1).max(100_000),
+      sessionId: z.string().min(1).max(200),
+      workspaceId: z.string().min(1).max(200).optional(),
+      provider: z.enum(["openai", "anthropic", "gemini"]).optional(),
+      workspaceContext: z.record(z.unknown()).optional(),
+    }).safeParse(JSON.parse(admitted.bodyText || "{}"));
+    if (!validated.success) return reply.code(400).send({ code: "PILLOW_INVALID_CHAT_INPUT" });
+    input = validated.data;
+  } catch {
+    return reply.code(400).send({ code: "PILLOW_INVALID_CHAT_INPUT" });
+  }
+  // Queue authority is deliberately narrower than the worker's optional admin override.
+  if (input.workspaceId && input.workspaceId !== request.user.workspaceId) {
+    return reply.code(403).send({ error: "Workspace access denied" });
+  }
+  input.workspaceId = request.user.workspaceId;
+  const claim = await acceptDurableChatRequestClaim({
+    sessionId: String(input.sessionId),
+    message: String(input.message),
+    idempotencyKey: typeof request.headers["idempotency-key"] === "string"
+      ? request.headers["idempotency-key"] : undefined,
+    deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
+    contextAdmission: admitted.contextAdmission,
+    ownerId: request.user.id,
+    workspaceId: request.user.workspaceId,
+    input: { kind: "reasoning", bodyText: JSON.stringify(input), sessionToken: request.sessionToken! },
+  });
+  const durable = claim.request;
+  reply.header("x-empire-pillow-request-id", durable.requestId);
+  reply.header("x-empire-chat-request-status", durable.status);
+  if (claim.disposition === "EXISTING_COMPLETED") {
+    return reply.code(200).send({ result: durable.finalResult ?? durable.brainResult });
+  }
+  if (claim.disposition === "EXISTING_FAILED") {
+    return reply.code(200).send({ result: {
+      message: "This request could not be completed after bounded recovery. Its failure is retained for review.",
+      kind: "terminal_infrastructure", requestId: durable.requestId, durableRequestId: durable.requestId,
+      status: "FAILED_FATAL", failureClass: durable.failureClass, recoveryExhausted: true,
+      requestRemainsRunning: false, userResubmissionRequired: false, durableRequest: true,
+      resultRetrievable: false,
+    } });
+  }
+  // Redis contains both full recovery input and an indexed job before this receipt.
+  // The independent sweeper, not this HTTP request or its socket, owns execution.
+  reply.header("retry-after", "2");
+  return reply.code(202).send({ result: {
+    message: "PILLOW_RESULT_PENDING: requestId=" + durable.requestId +
+      "\nYour request is queued. This receipt is not the completed answer.",
+    kind: "durable_pending", requestId: durable.requestId, durableRequestId: durable.requestId,
+    status: durable.status, requestRemainsRunning: true, userResubmissionRequired: false,
+    durableRequest: true, resultRetrievable: true, brainCompleted: false,
+    contextAdmission: admitted.contextAdmission,
+  } });
+}
+
+export function registerTier0LoginRoute(
+  app: FastifyInstance,
+  sessionStore: SessionStoreBackend,
+  requireSharedSessionStore: ReturnType<typeof createSharedSessionStoreGuard>,
+): void {
+  app.post("/auth/login", { preHandler: requireSharedSessionStore }, async (request, reply) => {
+    const t0 = performance.now();
+    const parsed = loginSchema.parse(request.body);
+    const email = parsed.email.trim().toLowerCase();
+    const account = authenticateSeedUser(email, parsed.password);
+    if (!account) {
+      recordTier0Request({ route: "auth_login", durationMs: performance.now() - t0, ok: true });
+      return reply.code(401).send({ error: "Invalid email or password" });
+    }
+
+    const userId = stableUserId(account.email);
+    const session = await sessionStore.create({
+      id: userId,
+      email: account.email,
+      name: account.name,
+      role: account.role,
+      workspaceId: account.workspaceId,
+    });
+
+    reply.setCookie("empireai_session", session.token, {
+      httpOnly: true,
+      secure: env.CORS_ORIGIN.startsWith("https"),
+      sameSite: "lax",
+      path: "/",
+      maxAge: env.SESSION_TTL_SECONDS,
+    });
+
+    recordTier0Request({ route: "auth_login", durationMs: performance.now() - t0, ok: true });
+    return reply.send({
+      user: {
+        id: userId,
+        email: account.email,
+        name: account.name,
+        role: account.role,
+        workspaceId: account.workspaceId,
+        platformIdentity: resolvePlatformIdentity(account.email, account.role),
+      },
+      expiresAt: session.expiresAt,
+      tier0Isolation: true,
+    });
+  });
+
+}
+
 export async function startTier0IsolatedPrimary(): Promise<void> {
   const workerPort = Number(process.env.EMPIRE_BRAIN_WORKER_PORT ?? env.PORT + 1);
   const workerState: WorkerState = {
@@ -153,25 +474,10 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     starting: false,
   };
 
-  const redisOk = await probeRedisAvailable(env.REDIS_URL);
-  let sessionStore: SessionStoreBackend;
-  let redisClient: ReturnType<typeof createRedisClient> | null = null;
-  if (redisOk) {
-    redisClient = createRedisClient(env.REDIS_URL);
-    sessionStore = new SessionStore(redisClient);
-    configureChatRequestStore({
-      get: (k) => redisClient!.get(k),
-      setex: (k, sec, v) => redisClient!.setex(k, sec, v),
-    });
-    logger.info("Tier-0 primary session store: Redis (chat request durability enabled)");
-  } else {
-    // Prefer available Grand King auth over hard crash if Redis flaps during incident.
-    sessionStore = new InMemorySessionStore();
-    configureChatRequestStore(null);
-    logger.error(
-      "Tier-0 primary Redis probe failed — using in-memory sessions so login remains possible",
-    );
-  }
+  const redisClient = createTier0RedisClient(env.REDIS_URL);
+  const sessionStore: SessionStoreBackend = new SessionStore(redisClient);
+  configureChatRequestStore(redisClient, { requireRedisDurability: true });
+  logger.info("Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers");
 
   const app = Fastify({
     logger: false,
@@ -180,28 +486,60 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
+  let stopSweeper: () => Promise<void> = async () => {};
+  const lifecycle = installPrimaryShutdown({
+    getChild: () => workerState.child,
+    stopBackground: () => stopSweeper(),
+    closeServer: async () => { await app.close(); },
+    disconnect: () => redisClient.disconnect(),
+    report: (event, error) => {
+      if (error || event !== "primary_shutdown_complete") {
+        logger.error({ error: error instanceof Error ? error.message : error }, event);
+      } else logger.info(event);
+    },
+  });
   await app.register(cors, { origin: true, credentials: true });
   await app.register(cookie);
+  registerTier0DurabilityErrorHandler(app);
 
   const authenticate = createAuthMiddleware(sessionStore);
   const startedAt = Date.now();
 
-  async function probeWorkerLive(timeoutMs = 2_500): Promise<{
-    ok: boolean;
-    ms: number;
-    body: Record<string, unknown> | null;
-  }> {
+  async function probeWorkerEndpoint(
+    endpoint: "/health/live" | "/health/ready",
+    timeoutMs: number,
+  ): Promise<Tier0WorkerProbeResult> {
     const t0 = Date.now();
     try {
-      const res = await fetch(`http://127.0.0.1:${workerState.port}/health/live`, {
+      const res = await fetch(`http://127.0.0.1:${workerState.port}${endpoint}`, {
         signal: AbortSignal.timeout(timeoutMs),
       });
       const body = (await res.json().catch(() => null)) as Record<string, unknown> | null;
-      return { ok: res.ok, ms: Date.now() - t0, body };
+      const pillow =
+        body?.pillow && typeof body.pillow === "object"
+          ? (body.pillow as Record<string, unknown>)
+          : null;
+      const responseReady =
+        endpoint === "/health/live" ||
+        (body?.ready === true &&
+          pillow?.enabled === true &&
+          pillow.ready === true &&
+          pillow.lifecycle === "running");
+      return {
+        ok: res.ok && responseReady,
+        reachable: true,
+        ms: Date.now() - t0,
+        body,
+      };
     } catch {
-      return { ok: false, ms: Date.now() - t0, body: null };
+      return { ok: false, reachable: false, ms: Date.now() - t0, body: null };
     }
   }
+
+  const probeWorkerLive = (timeoutMs = 2_500) =>
+    probeWorkerEndpoint("/health/live", timeoutMs);
+  const probeWorkerReady = (timeoutMs = 5_000) =>
+    probeWorkerEndpoint("/health/ready", timeoutMs);
 
   app.get("/health/live", async () => {
     const started = performance.now();
@@ -257,118 +595,24 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     return payload;
   });
 
-  app.get("/health/ready", async (_req, reply) => {
-    const worker = await probeWorkerLive(3_000);
-    const payload = {
-      ready: true,
-      brain: worker.ok ? "online" : "tier0_only",
-      process: "running",
-      tier0Isolation: true,
-      workerOnline: worker.ok,
-      sessionStore: redisOk ? "redis" : "memory",
-      checks: {
-        tier0Primary: { ok: true },
-        redis: { ok: redisOk || shouldAllowRedisDegradedMode() },
-        brainWorker: { ok: worker.ok },
-      },
-    };
-    // Auth succeeds on primary even if worker is down.
-    return reply.send(payload);
+  const sessionStoreMode = "redis" as const;
+  const probeSharedSessionStore = async (timeoutMs = 1_500): Promise<boolean> =>
+    sessionStoreMode === "redis" &&
+    (await probeRedisSessionStore(redisClient, timeoutMs));
+
+  registerTier0ReadinessRoute(app, {
+    probeWorkerReady,
+    probePrimarySessionStore: probeSharedSessionStore,
+    sessionStoreMode,
   });
 
-  /** Durable delivery forensics — lives on Tier-0 primary (survives worker recycle). */
-  app.get("/api/pillow/delivery-forensics", async (request, reply) => {
-    const q = String((request.query as { q?: string })?.q ?? "").trim();
-    const limit = Number((request.query as { limit?: string })?.limit ?? 40);
-    const rows = q ? searchDeliveryForensics(q) : listDeliveryForensics(limit);
-    return reply.send({
-      ok: true,
-      dashboard: deliveryForensicsDashboard(),
-      rows,
-      deploy: {
-        gitCommitSha:
-          process.env.RAILWAY_GIT_COMMIT_SHA ||
-          process.env.RAILWAY_GIT_COMMIT ||
-          null,
-        deploymentId: process.env.RAILWAY_DEPLOYMENT_ID || null,
-      },
-    });
-  });
+  const requireSharedSessionStore = createSharedSessionStoreGuard(() =>
+    probeSharedSessionStore(),
+  );
 
-  /** Durable chat request/result — Option E MVA. */
-  app.get("/api/pillow/chat-request/:requestId", async (request, reply) => {
-    const requestId = String((request.params as { requestId?: string }).requestId ?? "");
-    const rec = await getChatRequest(requestId);
-    if (!rec) {
-      return reply.code(404).send({ ok: false, error: "request_not_found", requestId });
-    }
-    if (
-      rec.status === "COMPLETED" &&
-      (rec.deliveryState === "NOT_DELIVERED" ||
-        rec.deliveryState === "NOT_STARTED" ||
-        rec.deliveryState === "PENDING_CLIENT")
-    ) {
-      await markChatRequestDelivered(requestId, "RETRIEVED");
-    }
-    return reply.send({
-      ok: true,
-      request: rec,
-      durability: durabilityMeta(),
-      dashboard: chatRequestDashboard(),
-    });
-  });
+  registerTier0DurableReadRoutes(app, authenticate);
 
-  app.get("/api/pillow/chat-requests", async (request, reply) => {
-    const limit = Number((request.query as { limit?: string })?.limit ?? 40);
-    return reply.send({
-      ok: true,
-      dashboard: chatRequestDashboard(),
-      durability: durabilityMeta(),
-      rows: listRecentChatRequests(limit),
-    });
-  });
-
-  app.post("/auth/login", async (request, reply) => {
-    const t0 = performance.now();
-    const parsed = loginSchema.parse(request.body);
-    const email = parsed.email.trim().toLowerCase();
-    const account = authenticateSeedUser(email, parsed.password);
-    if (!account) {
-      recordTier0Request({ route: "auth_login", durationMs: performance.now() - t0, ok: true });
-      return reply.code(401).send({ error: "Invalid email or password" });
-    }
-
-    const userId = stableUserId(account.email);
-    const session = await sessionStore.create({
-      id: userId,
-      email: account.email,
-      name: account.name,
-      role: account.role,
-      workspaceId: account.workspaceId,
-    });
-
-    reply.setCookie("empireai_session", session.token, {
-      httpOnly: true,
-      secure: env.CORS_ORIGIN.startsWith("https"),
-      sameSite: "lax",
-      path: "/",
-      maxAge: env.SESSION_TTL_SECONDS,
-    });
-
-    recordTier0Request({ route: "auth_login", durationMs: performance.now() - t0, ok: true });
-    return reply.send({
-      user: {
-        id: userId,
-        email: account.email,
-        name: account.name,
-        role: account.role,
-        workspaceId: account.workspaceId,
-        platformIdentity: resolvePlatformIdentity(account.email, account.role),
-      },
-      expiresAt: session.expiresAt,
-      tier0Isolation: true,
-    });
-  });
+  registerTier0LoginRoute(app, sessionStore, requireSharedSessionStore);
 
   app.post("/auth/logout", async (request, reply) => {
     const t0 = performance.now();
@@ -386,7 +630,10 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     return reply.send({ ok: true, tier0Isolation: true });
   });
 
-  app.get("/auth/me", { preHandler: authenticate }, async (request, reply) => {
+  app.get(
+    "/auth/me",
+    { preHandler: [requireSharedSessionStore, authenticate] },
+    async (request, reply) => {
     const t0 = performance.now();
     if (!request.user) {
       recordTier0Request({ route: "auth_me", durationMs: performance.now() - t0, ok: true });
@@ -400,9 +647,12 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       },
       tier0Isolation: true,
     };
-  });
+    },
+  );
 
-  app.post("/auth/refresh", { preHandler: authenticate }, async (request, reply) => {
+  app.post("/auth/refresh", {
+    preHandler: [requireSharedSessionStore, authenticate],
+  }, async (request, reply) => {
     const t0 = performance.now();
     if (!request.sessionToken || !request.user) {
       recordTier0Request({ route: "auth_refresh", durationMs: performance.now() - t0, ok: true });
@@ -438,16 +688,20 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       return reply.code(204).send();
     }
 
-    const isPillowChat =
-      request.method === "POST" &&
-      (urlPath === "/api/pillow/chat" || urlPath.endsWith("/pillow/chat"));
-
-    const headers: Record<string, string> = {};
-    for (const [k, v] of Object.entries(request.headers)) {
-      if (v == null) continue;
-      if (k === "host" || k === "connection" || k === "content-length") continue;
-      headers[k] = Array.isArray(v) ? v.join(",") : String(v);
+    const pillowPath = classifyTier0PillowPath(request.url);
+    if (pillowPath === "reject") {
+      return reply.code(400).send({ code: "PILLOW_NONCANONICAL_PATH", retryable: false });
     }
+    const isPillowChatStream = request.method === "POST" && pillowPath === "stream";
+    const isPillowChat = request.method === "POST" && pillowPath === "chat";
+
+    // The SSE route has no durable acceptance/result-retrieval protocol. Fail
+    // closed instead of bypassing the canonical Tier-0-owned chat lifecycle.
+    if (isPillowChatStream) {
+      return reply.code(503).send(TIER0_PILLOW_STREAM_DURABILITY_REQUIRED);
+    }
+
+    const headers = workerRequestHeaders(request.headers);
 
     const rawBody =
       request.method !== "GET" && request.method !== "HEAD" && request.body != null
@@ -460,470 +714,36 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     }
 
     async function probeWorkerOk(timeoutMs: number): Promise<boolean> {
-      let worker = await probeWorkerLive(timeoutMs);
+      const worker = await probeWorkerReady(timeoutMs);
       if (worker.ok && (workerState.starting || !workerState.child)) {
         return false;
       }
       return worker.ok;
     }
 
-    async function proxyOnce(
-      timeoutMs: number,
-      bodyOverride?: string | Buffer,
-    ): Promise<PillowProxyAttemptResult> {
-      if (!(await probeWorkerOk(Math.min(2_000, timeoutMs)))) {
-        return { ok: false, reason: "worker_unavailable" };
-      }
-      const target = `http://127.0.0.1:${workerState.port}${request.url}`;
-      const bodyForProxy = bodyOverride !== undefined ? bodyOverride : rawBody;
-      try {
-        const init: RequestInit = {
-          method: request.method,
-          headers: { ...headers },
-          signal: AbortSignal.timeout(timeoutMs),
-        };
-        if (bodyForProxy !== undefined) init.body = bodyForProxy;
-        const upstream = await fetch(target, init);
-        const buf = Buffer.from(await upstream.arrayBuffer());
-        const messagePreview = extractChatMessagePreview(buf);
-        const upstreamOk = upstream.status >= 200 && upstream.status < 300;
-        if (!upstreamOk) {
-          return {
-            ok: false,
-            reason: "upstream_error",
-            status: upstream.status,
-          };
-        }
-        if (isPillowChat && messagePreview.length === 0) {
-          return { ok: false, reason: "empty_message", status: upstream.status };
-        }
-        return {
-          ok: true,
-          status: upstream.status,
-          body: buf,
-          headers: upstream.headers,
-          messagePreview,
-        };
-      } catch (error) {
-        const timedOut = error instanceof Error && error.name === "TimeoutError";
-        return {
-          ok: false,
-          reason: timedOut ? "timeout" : "network",
-          error,
-        };
-      }
-    }
-
     if (isPillowChat) {
-      const admitted = admitChatRequestBody(
-        typeof rawBody === "string" || Buffer.isBuffer(rawBody) ? rawBody : rawBody,
-      );
-      const chatBodyText = admitted.bodyText || "{}";
-      let parsedMsg = "";
-      let sessionId: string | null = null;
-      try {
-        const parsed = JSON.parse(chatBodyText) as { message?: string; sessionId?: string };
-        parsedMsg = String(parsed.message ?? "");
-        sessionId = parsed.sessionId ? String(parsed.sessionId) : null;
-      } catch {
-        parsedMsg = "";
-      }
-      const deployId = process.env.RAILWAY_DEPLOYMENT_ID || null;
-      const durable = await acceptDurableChatRequest({
-        sessionId,
-        message: parsedMsg,
-        deploymentId: deployId,
-        contextAdmission: admitted.contextAdmission,
-      });
-      const accepted = acceptPillowChatRequest({
-        message: parsedMsg,
-        sessionId,
-        requestId: durable.requestId,
-      });
-      headers["x-empire-pillow-request-id"] = accepted.requestId;
-      headers["x-empire-pillow-request-kind"] = accepted.kind;
-      headers["content-type"] = headers["content-type"] ?? "application/json";
-
-      const forensicTraceId = newDeliveryTraceId();
-      let brainStarted = false;
-      let attemptCount = 0;
-      let lastUpstreamStatus: number | null = null;
-      let lastFailureReason: string | null = null;
-      const tAccept = Date.now();
-      const clientGone = () =>
-        Boolean(
-          reply.raw.destroyed ||
-            (request.raw as { aborted?: boolean }).aborted === true,
-        );
-
-      const result = await runAcceptedPillowChatRecovery({
-        accepted,
-        probeWorker: probeWorkerOk,
-        attempt: async (timeoutMs, attemptIndex) => {
-          brainStarted = true;
-          attemptCount = attemptIndex;
-          await markChatRequestRunning(
-            accepted.requestId,
-            attemptIndex,
-            process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0",
-          );
-          logger.info(
-            {
-              requestId: accepted.requestId,
-              attemptIndex,
-              timeoutMs,
-              sessionId: accepted.sessionId,
-              forensicTraceId,
-              contextAdmission: admitted.contextAdmission,
-              clientDisconnect: clientGone(),
-            },
-            "pillow_chat_accepted_attempt",
-          );
-          // Continue execution even if browser disconnects — result must persist.
-          const once = await proxyOnce(timeoutMs, chatBodyText);
-          if (!once.ok && once.status != null) lastUpstreamStatus = once.status;
-          if (!once.ok) lastFailureReason = once.reason;
-          if (once.ok) lastUpstreamStatus = once.status;
-          return once;
-        },
-        onEvent: (event, detail) => {
-          logger.info(
-            { event, ...detail, requestId: accepted.requestId, forensicTraceId },
-            "pillow_chat_recovery",
-          );
-          if (event === "worker_unavailable") lastFailureReason = "worker_unavailable";
-        },
-        totalBudgetMs: PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs,
-      });
-
-      const elapsed = Date.now() - tAccept;
-
-      if (result.ok) {
-        const preview = result.messagePreview;
-        let persistedResult: Record<string, unknown> = {
-          message: preview,
-          kind: "llm",
-          requestId: accepted.requestId,
-          durableRequestId: accepted.requestId,
-          durableRequest: true,
-        };
-        try {
-          const parsed = JSON.parse(result.body.toString("utf8")) as Record<string, unknown>;
-          if (parsed && typeof parsed === "object") {
-            const resObj =
-              parsed.result && typeof parsed.result === "object"
-                ? { ...(parsed.result as Record<string, unknown>) }
-                : {};
-            resObj.requestId = accepted.requestId;
-            resObj.durableRequestId = accepted.requestId;
-            resObj.durableRequest = true;
-            parsed.result = resObj;
-            persistedResult = resObj;
-            // INVARIANT: persist BEFORE delivery attempt.
-            await completeChatRequest(accepted.requestId, persistedResult);
-            await markDeliveryAttempted(accepted.requestId);
-
-            if (clientGone()) {
-              await markChatRequestDelivered(accepted.requestId, "PENDING_CLIENT");
-              logger.info(
-                { requestId: accepted.requestId, forensicTraceId },
-                "pillow_chat_client_disconnect_result_persisted",
-              );
-              // Still attempt send; if socket dead Fastify no-ops / errors harmlessly.
-            }
-
-            const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
-            result.headers.forEach((value, key) => {
-              if (!skip.has(key.toLowerCase())) reply.header(key, value);
-            });
-            reply.header("x-empire-pillow-request-id", accepted.requestId);
-            reply.header("x-empire-pillow-recovery", "completed");
-            reply.header("x-empire-delivery-trace-id", forensicTraceId);
-            reply.header("x-empire-chat-request-status", "COMPLETED");
-            await markChatRequestDelivered(accepted.requestId, "DELIVERED");
-            recordDeliveryForensic({
-              traceId: forensicTraceId,
-              requestId: accepted.requestId,
-              sessionId: accepted.sessionId,
-              ts: new Date().toISOString(),
-              acceptedAt: accepted.acceptedAt,
-              requestPreview: previewText(accepted.message),
-              requestHash: hashText(accepted.message),
-              sessionClass: "unknown",
-              brainStarted: true,
-              brainCompleted: true,
-              brainOutputNonempty: preview.length > 0,
-              brainOutputLength: preview.length,
-              brainOutputHash: hashText(preview),
-              brainDurationMs: elapsed,
-              shellDurationMs: elapsed,
-              deliveryClass: "BRAIN_ANSWER",
-              failureClass: "NONE",
-              upstreamStatus: result.status,
-              recoveryAttempts: attemptCount,
-              terminalReason: null,
-              deploymentId: deployId,
-            });
-            return reply.code(result.status).send(Buffer.from(JSON.stringify(parsed)));
-          }
-        } catch {
-          /* fall through to preview-only persist */
-        }
-        await completeChatRequest(accepted.requestId, persistedResult);
-        await markDeliveryAttempted(accepted.requestId);
-        await markChatRequestDelivered(accepted.requestId, "DELIVERED");
-        const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
-        result.headers.forEach((value, key) => {
-          if (!skip.has(key.toLowerCase())) reply.header(key, value);
-        });
-        reply.header("x-empire-pillow-request-id", accepted.requestId);
-        reply.header("x-empire-pillow-recovery", "completed");
-        reply.header("x-empire-delivery-trace-id", forensicTraceId);
-        reply.header("x-empire-chat-request-status", "COMPLETED");
-        recordDeliveryForensic({
-          traceId: forensicTraceId,
-          requestId: accepted.requestId,
-          sessionId: accepted.sessionId,
-          ts: new Date().toISOString(),
-          acceptedAt: accepted.acceptedAt,
-          requestPreview: previewText(accepted.message),
-          requestHash: hashText(accepted.message),
-          sessionClass: "unknown",
-          brainStarted: true,
-          brainCompleted: true,
-          brainOutputNonempty: preview.length > 0,
-          brainOutputLength: preview.length,
-          brainOutputHash: hashText(preview),
-          brainDurationMs: elapsed,
-          shellDurationMs: elapsed,
-          deliveryClass: "BRAIN_ANSWER",
-          failureClass: "NONE",
-          upstreamStatus: result.status,
-          recoveryAttempts: attemptCount,
-          terminalReason: null,
-          deploymentId: deployId,
-        });
-        return reply.code(result.status).send(result.body);
-      }
-
-      const classified = classifyUpstreamFailure({
-        status: lastUpstreamStatus ?? undefined,
-        message: lastFailureReason ?? undefined,
-        code: lastFailureReason ?? undefined,
-      });
-      // Prefer transport/worker taxonomy over naive 400→fatal. Tier-0 already admitted
-      // the envelope; a worker 400 on early attempts is often a recycle race.
-      const taxonomyFailure: ChatFailureClass =
-        lastFailureReason === "worker_unavailable"
-          ? "WORKER_UNAVAILABLE"
-          : lastFailureReason === "timeout"
-            ? "BRAIN_TIMEOUT_RETRYABLE"
-            : lastFailureReason === "network"
-              ? "NETWORK"
-              : lastFailureReason === "upstream_error"
-                ? lastUpstreamStatus === 400 &&
-                    classified !== "CONTEXT_ADMISSION_FAILURE" &&
-                    attemptCount <= 2
-                  ? "UPSTREAM_4XX_RETRYABLE"
-                  : classified
-                : lastUpstreamStatus === 400 && attemptCount <= 2
-                  ? "UPSTREAM_4XX_RETRYABLE"
-                  : lastUpstreamStatus === 400
-                    ? "REQUEST_NOT_ACCEPTED"
-                    : "BUDGET_EXHAUSTED";
-
-      const fatalTaxonomy =
-        taxonomyFailure === "REQUEST_NOT_ACCEPTED" ||
-        taxonomyFailure === "UPSTREAM_4XX_FATAL" ||
-        taxonomyFailure === "CONTEXT_ADMISSION_FAILURE" ||
-        taxonomyFailure === "BRAIN_FATAL";
-
-      // Sync window ended ≠ request destroyed. Retryable classes stay RETRYABLE.
-      await failChatRequest(accepted.requestId, {
-        failureClass: taxonomyFailure,
-        errorClass: lastFailureReason ?? undefined,
-        upstreamStatus: lastUpstreamStatus ?? undefined,
-        attempt: attemptCount,
-        fatal: fatalTaxonomy,
-      });
-
-      const durableAfter = await getChatRequest(accepted.requestId);
-      const stillAlive =
-        durableAfter?.status === "RETRYABLE" ||
-        durableAfter?.status === "RUNNING" ||
-        durableAfter?.status === "ACCEPTED";
-
-      const failureClass: DeliveryForensicEvent["failureClass"] =
-        lastFailureReason === "worker_unavailable"
-          ? "WORKER_UNAVAILABLE"
-          : lastFailureReason === "timeout"
-            ? "TIMEOUT"
-            : lastFailureReason === "empty_message"
-              ? "BRAIN_COMPLETED_EMPTY"
-              : brainStarted
-                ? "BRAIN_STARTED_NOT_COMPLETED"
-                : "BRAIN_NEVER_STARTED";
-
-      recordDeliveryForensic({
-        traceId: forensicTraceId,
-        requestId: accepted.requestId,
-        sessionId: accepted.sessionId,
-        ts: new Date().toISOString(),
-        acceptedAt: accepted.acceptedAt,
-        requestPreview: previewText(accepted.message),
-        requestHash: hashText(accepted.message),
-        sessionClass: "unknown",
-        brainStarted,
-        brainCompleted: false,
-        brainOutputNonempty: false,
-        brainOutputLength: 0,
-        brainOutputHash: null,
-        brainDurationMs: elapsed,
-        shellDurationMs: elapsed,
-        deliveryClass: stillAlive ? "TRANSPORT_ERROR" : "DEGRADED_TERMINAL",
-        failureClass:
-          lastFailureReason === "upstream_error" ? "UPSTREAM_ERROR" : failureClass,
-        upstreamStatus: lastUpstreamStatus,
-        recoveryAttempts: attemptCount,
-        terminalReason: lastFailureReason,
-        deploymentId: deployId,
-      });
-
-      const terminalMsgClass =
-        taxonomyFailure === "REQUEST_NOT_ACCEPTED"
-          ? ("REQUEST_NOT_ACCEPTED" as const)
-          : taxonomyFailure === "WORKER_UNAVAILABLE"
-            ? ("WORKER_UNAVAILABLE" as const)
-            : taxonomyFailure === "BRAIN_TIMEOUT_RETRYABLE" || taxonomyFailure === "TIMEOUT"
-              ? ("TIMEOUT" as const)
-              : taxonomyFailure === "UPSTREAM_4XX_FATAL"
-                ? ("UPSTREAM_ERROR" as const)
-                : ("BUDGET_EXHAUSTED" as const);
-
-      reply.header("x-empire-pillow-request-id", accepted.requestId);
-      reply.header("x-empire-pillow-recovery", stillAlive ? "pending" : "exhausted");
-      reply.header("x-empire-delivery-trace-id", forensicTraceId);
-      reply.header(
-        "x-empire-chat-request-status",
-        stillAlive ? "RETRYABLE" : "FAILED_FATAL",
-      );
-      reply.header("x-empire-failure-class", taxonomyFailure);
-
-      // Sync window closed; request lifetime continues under Tier-0 ownership.
-      if (stillAlive) {
-        void runAcceptedPillowChatRecovery({
-          accepted: {
-            ...accepted,
-            acceptedAt: Date.now(),
-          },
-          probeWorker: probeWorkerOk,
-          attempt: async (timeoutMs, attemptIndex) => {
-            await markChatRequestRunning(
-              accepted.requestId,
-              attemptCount + attemptIndex,
-              process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0-bg",
-            );
-            return proxyOnce(timeoutMs, chatBodyText);
-          },
-          totalBudgetMs: Math.min(180_000, PILLOW_CHAT_TIMEOUTS.tier0TotalBudgetMs),
-          onEvent: (event, detail) => {
-            logger.info(
-              { event, ...detail, requestId: accepted.requestId, phase: "post_sync_bg" },
-              "pillow_chat_recovery_bg",
-            );
-          },
-        })
-          .then(async (bg) => {
-            if (!bg.ok) return;
-            const preview = bg.messagePreview;
-            let persisted: Record<string, unknown> = {
-              message: preview,
-              kind: "llm",
-              requestId: accepted.requestId,
-              durableRequest: true,
-            };
-            try {
-              const parsed = JSON.parse(bg.body.toString("utf8")) as Record<string, unknown>;
-              const resObj =
-                parsed.result && typeof parsed.result === "object"
-                  ? { ...(parsed.result as Record<string, unknown>) }
-                  : {};
-              resObj.requestId = accepted.requestId;
-              resObj.durableRequest = true;
-              persisted = resObj;
-            } catch {
-              /* preview only */
-            }
-            await completeChatRequest(accepted.requestId, persisted);
-            logger.info(
-              { requestId: accepted.requestId, preview: preview.slice(0, 80) },
-              "pillow_chat_bg_completed_persisted",
-            );
-          })
-          .catch((err) => {
-            logger.warn(
-              { err, requestId: accepted.requestId },
-              "pillow_chat_bg_recovery_failed",
-            );
-          });
-      }
-
-      return reply.code(200).send({
-        result: {
-          message: stillAlive
-            ? [
-                `PILLOW_RESULT_PENDING: requestId=${accepted.requestId}`,
-                "Request accepted; completion is still in progress or recoverable.",
-                "This receipt is not the executive answer. Result remains retrievable by request ID — do not resubmit the same ask.",
-              ].join("\n")
-            : buildTerminalInfrastructureMessage(accepted, terminalMsgClass),
-          kind: stillAlive ? "durable_pending" : "terminal_infrastructure",
-          tier0Isolation: true,
-          requestId: accepted.requestId,
-          recoveryExhausted: !stillAlive,
-          requestRemainsRunning: stillAlive,
-          userResubmissionRequired: false,
-          deliveryTraceId: forensicTraceId,
-          failureClass: taxonomyFailure,
-          brainStarted,
-          brainCompleted: false,
-          durableRequest: true,
-          resultRetrievable: true,
-          contextAdmission: admitted.contextAdmission,
-          contextAdmitted: admitted.mutated,
-          status: durableAfter?.status ?? "RETRYABLE",
-        },
-      });
+      return handleDurablePillowChat(request, reply, { authenticate, probeSharedSessionStore });
     }
 
-    if (!(await probeWorkerOk(1_500))) {
-      return reply.code(503).send({
-        error: "Brain worker temporarily unavailable",
-        code: "BRAIN_WORKER_UNAVAILABLE",
-        tier0Isolation: true,
-        retryable: true,
-      });
-    }
-
-    const once = await proxyOnce(120_000);
+    const once = await runSingleWorkerProxyAttempt(
+      () => probeWorkerOk(2_000),
+      () => forwardWorkerHttpRequest({
+        target: `http://127.0.0.1:${workerState.port}${request.url}`,
+        method: request.method,
+        headers,
+        body: rawBody,
+        timeoutMs: 120_000,
+      }),
+    );
     if (once.ok) {
-      const skip = new Set(["transfer-encoding", "connection", "content-encoding"]);
-      once.headers.forEach((value, key) => {
-        if (!skip.has(key.toLowerCase())) reply.header(key, value);
-      });
-      return reply.code(once.status).send(once.body);
+      return sendWorkerHttpResponse(reply, once);
     }
     logger.warn({ reason: once.reason, url: request.url }, "Tier-0 primary proxy to worker failed");
-    return reply.code(503).send({
-      error: "Brain worker proxy failed",
-      code: "BRAIN_WORKER_PROXY_FAILED",
-      tier0Isolation: true,
-      retryable: true,
-    });
+    return reply.code(503).send(buildTier0ProxyFailure(once.reason));
   });
 
   function spawnWorker(): void {
-    if (workerState.starting || workerState.child) return;
+    if (lifecycle.isStopping() || workerState.starting || workerState.child) return;
     workerState.starting = true;
     const childEnv = {
       ...process.env,
@@ -950,20 +770,22 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
         workerState.restarts += 1;
         workerState.lastExitAt = Date.now();
         workerState.lastExitCode = code;
+        if (lifecycle.isStopping()) return;
         logger.error(
           { code, signal, restarts: workerState.restarts },
           "Brain worker exited — Tier-0 primary remains up; respawning worker",
         );
         // Cap respawn delay — long backoff after exit(78) left chat hitting 404 races.
         const delay = Math.min(8_000, 1_000 * Math.max(1, Math.min(workerState.restarts, 6)));
-        setTimeout(() => spawnWorker(), delay);
+        lifecycle.schedule(() => spawnWorker(), delay);
       });
 
       child.on("error", (error) => {
         workerState.child = null;
         workerState.starting = false;
+        if (lifecycle.isStopping()) return;
         logger.error({ err: error }, "Brain worker spawn error");
-        setTimeout(() => spawnWorker(), 5_000);
+        lifecycle.schedule(() => spawnWorker(), 5_000);
       });
 
       child.on("spawn", () => {
@@ -972,10 +794,18 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     } catch (error) {
       workerState.starting = false;
       logger.error({ err: error }, "Brain worker spawn threw");
-      setTimeout(() => spawnWorker(), 5_000);
+      lifecycle.schedule(() => spawnWorker(), 5_000);
     }
   }
 
+  if (redisClient) {
+    stopSweeper = startDurableReasoningSweeper({
+      owner: process.env.RAILWAY_REPLICA_ID || process.env.HOSTNAME || "tier0",
+      workerPort,
+      ready: async () => !lifecycle.isStopping() && !workerState.starting && Boolean(workerState.child) && (await probeWorkerReady(2_000)).ok,
+      onError: (error) => logger.error({ error: error instanceof Error ? error.message : "queue_error" }, "pillow_durable_sweeper_error"),
+    });
+  }
   await app.listen({ port: env.PORT, host: env.HOST });
   logger.info(
     { port: env.PORT, workerPort: workerState.port },
@@ -984,5 +814,5 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   // Spawn heavy sql.js worker AFTER public Tier-0 is accepting traffic so
   // Railway healthchecks and Grand King auth survive worker boot/OOM/flush.
-  setTimeout(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
+  lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }

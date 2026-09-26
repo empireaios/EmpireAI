@@ -1,0 +1,300 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "current_time": "2026-09-23 15:00:16 UTC"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447)\nWorkspace: empireaios's Projects\nEnvironment: **production** (3b0664a3-8655-4fc1-b9cf-113034a81e0a)\nServices (2):\n- **recovery3-canary** (9b5d908f-0641-42fc-b65e-ccef302b4f1e) [FAILED]\n  volume: recovery3-canary-volume (4b9f6b7f-7a3d-4593-a228-f2cf272c5301) at /data · 50000MB · sfo\n  deployment: 601b2fb2-afe5-4d59-9ac2-de431a8059bc · 2026-09-23T14:38:43.543Z\n- **recovery3-redis** (5dc3a8dd-edb2-4271-9c84-2e65c71446c8) [—]\n  volume: recovery3-redis-volume (d0980fad-1c51-4c7a-876d-9e72fad8e5eb) at /data · 50000MB · sfo\n\nNo pending (staged/applying) work."
+        }
+      ],
+      "structuredContent": {
+        "project": {
+          "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+          "name": "empireai-canary-20260923",
+          "workspaceName": "empireaios's Projects"
+        },
+        "environment": {
+          "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+          "name": "production",
+          "unmergedChangesCount": null,
+          "stagedChanges": null
+        },
+        "services": [
+          {
+            "id": "9b5d908f-0641-42fc-b65e-ccef302b4f1e",
+            "name": "recovery3-canary",
+            "numReplicas": null,
+            "cronSchedule": null,
+            "volumes": [
+              {
+                "id": "4b9f6b7f-7a3d-4593-a228-f2cf272c5301",
+                "name": "recovery3-canary-volume",
+                "mountPath": "/data",
+                "sizeMB": 50000,
+                "region": "sfo"
+              }
+            ],
+            "latestDeployment": {
+              "id": "601b2fb2-afe5-4d59-9ac2-de431a8059bc",
+              "status": "FAILED",
+              "createdAt": "2026-09-23T14:38:43.543Z",
+              "url": null
+            }
+          },
+          {
+            "id": "5dc3a8dd-edb2-4271-9c84-2e65c71446c8",
+            "name": "recovery3-redis",
+            "numReplicas": null,
+            "cronSchedule": null,
+            "volumes": [
+              {
+                "id": "d0980fad-1c51-4c7a-876d-9e72fad8e5eb",
+                "name": "recovery3-redis-volume",
+                "mountPath": "/data",
+                "sizeMB": 50000,
+                "region": "sfo"
+              }
+            ],
+            "latestDeployment": null
+          }
+        ],
+        "buckets": [],
+        "pendingWork": []
+      },
+      "isError": false
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**Deployment 933b6cc6-9d31-4a0e-8cb9-51ca8f300f25** [REMOVED]\nservice: 9b5d908f-0641-42fc-b65e-ccef302b4f1e, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (5)\n2026-09-23T14:46:49.972242977Z info Pillow host stopped\n2026-09-23T14:46:49.972248660Z info Event-loop lag cleared after known synchronous block\n2026-09-23T14:46:49.972252037Z info EmpireAI Brain shutdown complete\n2026-09-23T14:46:49.972255747Z info primary_shutdown_complete\n2026-09-23T14:46:55.629756040Z info Stopping Container"
+        }
+      ],
+      "structuredContent": {
+        "scope": "deployment",
+        "deploymentId": "933b6cc6-9d31-4a0e-8cb9-51ca8f300f25",
+        "serviceId": "9b5d908f-0641-42fc-b65e-ccef302b4f1e",
+        "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "status": "REMOVED",
+        "deploy": [
+          {
+            "timestamp": "2026-09-23T14:46:49.972242977Z",
+            "severity": "info",
+            "message": "Pillow host stopped",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790174800623"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"671dac3029de\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:46:49.972248660Z",
+            "severity": "info",
+            "message": "Event-loop lag cleared after known synchronous block",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790174800644"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"671dac3029de\""
+              },
+              {
+                "key": "reason",
+                "value": "\"sql.js-db.export\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:46:49.972252037Z",
+            "severity": "info",
+            "message": "EmpireAI Brain shutdown complete",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790174800681"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"671dac3029de\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:46:49.972255747Z",
+            "severity": "info",
+            "message": "primary_shutdown_complete",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790174800738"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"671dac3029de\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:46:55.629756040Z",
+            "severity": "info",
+            "message": "Stopping Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          }
+        ]
+      },
+      "isError": false
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**Deployment bcc9c5b9-7420-40d6-8dfb-9fa1f285502d** [REMOVED]\nservice: 5dc3a8dd-edb2-4271-9c84-2e65c71446c8, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (7)\n2026-09-23T14:58:49.223089265Z info Stopping Container\n2026-09-23T14:58:50.161716569Z info 1:signal-handler (1790175528) Received SIGTERM scheduling shutdown...\n2026-09-23T14:58:50.161719209Z info 1:M 23 Sep 2026 14:58:48.386 * User requested shutdown...\n2026-09-23T14:58:50.161721679Z info 1:M 23 Sep 2026 14:58:48.386 * Calling fsync() on the AOF file.\n2026-09-23T14:58:50.161724259Z info 1:M 23 Sep 2026 14:58:48.386 * Saving the final RDB snapshot before exiting.\n2026-09-23T14:58:50.161727159Z info 1:M 23 Sep 2026 14:58:48.393 * DB saved on disk\n2026-09-23T14:58:50.161730588Z info 1:M 23 Sep 2026 14:58:48.393 # Redis is now ready to exit, bye bye..."
+        }
+      ],
+      "structuredContent": {
+        "scope": "deployment",
+        "deploymentId": "bcc9c5b9-7420-40d6-8dfb-9fa1f285502d",
+        "serviceId": "5dc3a8dd-edb2-4271-9c84-2e65c71446c8",
+        "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "status": "REMOVED",
+        "deploy": [
+          {
+            "timestamp": "2026-09-23T14:58:49.223089265Z",
+            "severity": "info",
+            "message": "Stopping Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161716569Z",
+            "severity": "info",
+            "message": "1:signal-handler (1790175528) Received SIGTERM scheduling shutdown...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161719209Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 14:58:48.386 * User requested shutdown...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161721679Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 14:58:48.386 * Calling fsync() on the AOF file.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161724259Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 14:58:48.386 * Saving the final RDB snapshot before exiting.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161727159Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 14:58:48.393 * DB saved on disk",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T14:58:50.161730588Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 14:58:48.393 # Redis is now ready to exit, bye bye...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          }
+        ]
+      },
+      "isError": false
+    }
+  }
+]
