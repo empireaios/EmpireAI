@@ -10,6 +10,11 @@ disaster-recovery procedure. Redis, external secrets/configuration, remote stora
 and provider volumes are outside this bundle. A passing offline test is not a
 production restore or Birth/commerce certificate.
 
+The streaming primary SQLite copy and restore each permit up to 1 GiB, including
+the observed 572,035,072-byte old persisted checkpoint. An isolated valid SQLite
+fixture above 512 MiB exercises the full backup and restore. This size support
+does not establish that unsaved SQL.js RAM or old Shadow CEO stores were captured.
+
 ## Mandatory prerequisite
 
 Stop every process that can write any of the three databases, disable automatic

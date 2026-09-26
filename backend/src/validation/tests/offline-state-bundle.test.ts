@@ -66,6 +66,25 @@ test("quiesced real primary/native stores restore and reopen with identical comp
  } finally { f.cleanup(); }
 });
 
+test("offline multi-store backup and restore accept a valid primary above 512 MiB", async () => {
+ const f = await fixture(); try {
+  const size = 512 * 1024 * 1024 + 4096;
+  // Trailing sparse pages give a valid SQLite file without allocating a giant
+  // SQL.js heap. The backup/restore still stream every byte and verify hashes.
+  fs.truncateSync(f.primary, size);
+  const result = backupState(f.options);
+  assert.equal(fs.statSync(path.join(f.options.destination, "empireai-brain.db")).size, size);
+  const restored = restoreState(restoreOptions(f, result));
+  assert.equal(fs.statSync(restored.databasePath).size, size);
+  const db = new DatabaseSync(restored.databasePath, { readOnly: true });
+  try {
+   assert.equal(db.prepare("SELECT payload FROM offline_probe WHERE id='proof'").get()?.payload, "preserved-business-record-bytes");
+   assert.equal(db.prepare("PRAGMA integrity_check").get()?.integrity_check, "ok");
+  } finally { db.close(); }
+  assert.equal(result.scopeOfProof.productionSnapshot, false);
+ } finally { f.cleanup(); }
+});
+
 test("restored queued readonly mission continues its original dispatch and completes once", async () => {
  const f = await fixture(false); try {
   const result = backupState(f.options); const restored = restoreState(restoreOptions(f, result));

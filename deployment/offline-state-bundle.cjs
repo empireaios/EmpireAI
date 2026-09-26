@@ -7,7 +7,9 @@ const crypto = require('node:crypto');
 const { DatabaseSync } = require('node:sqlite');
 const ACK = 'ALL_WRITERS_STOPPED_AND_FINAL_SQLJS_FLUSH_VERIFIED';
 const FILES = [
-  { role: 'primary', filename: 'empireai-brain.db', suffix: '', max: 512 * 1024 * 1024 },
+  // Old production's persisted primary is 572,035,072 bytes; copying/hashing
+  // is streamed, and a 1 GiB ceiling also applies on restore.
+  { role: 'primary', filename: 'empireai-brain.db', suffix: '', max: 1024 * 1024 * 1024 },
   { role: 'missions', filename: 'empireai-brain.db.missions.sqlite', suffix: '.missions.sqlite', max: 64 * 1024 * 1024 },
   { role: 'executions', filename: 'empireai-brain.db.mission-execution.sqlite', suffix: '.mission-execution.sqlite', max: 16 * 1024 * 1024 },
 ];
