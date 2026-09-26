@@ -184,32 +184,17 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  let picked = pickLiveCjVariant(detail);
+  const preferredVid = targetOpp?.mapping.cjVid;
+  let picked = pickLiveCjVariant(detail, preferredVid);
   if (picked.costUsd === null) {
     try {
       const variantQuery = await cj.queryProductVariants(cjPid);
       detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
-      picked = pickLiveCjVariant(detail);
+      picked = pickLiveCjVariant(detail, preferredVid);
     } catch {
       /* keep */
     }
   }
-  const variant = picked.variant;
-  const preferredVid = targetOpp?.mapping.cjVid;
-  if (preferredVid && detail.variantList?.length) {
-    const match = detail.variantList.find((v) => v.vid === preferredVid);
-    if (match) {
-      const matchRec = match as Record<string, unknown>;
-      const cost =
-        coerceUsdNumber(matchRec.variantSellPrice) ??
-        coerceUsdNumber(matchRec.sellPrice) ??
-        coerceUsdNumber(matchRec.price);
-      if (cost !== null) {
-        picked = { variant: match, costUsd: cost };
-      }
-    }
-  }
-
   if (!picked.variant?.vid || picked.costUsd === null) {
     return finalizeReject({
       input,

@@ -1,14 +1,13 @@
 import type { CjProduct, CjProductVariant } from "../../suppliers/cj-dropshipping/cj-types.js";
 
 export function coerceUsdNumber(value: unknown): number | null {
-  if (typeof value === "number" && Number.isFinite(value) && value > 0) return value;
-  if (typeof value === "string") {
-    const cleaned = value.replace(/[^0-9.]/g, "").trim();
-    if (!cleaned) return null;
-    const n = Number(cleaned);
-    if (Number.isFinite(n) && n > 0) return n;
-  }
-  return null;
+  // CJ product summaries may contain ranges. Stripping punctuation could turn
+  // "3.20-5.00" into a plausible but fabricated price; accept exact USD cents.
+  if (typeof value !== "string" && typeof value !== "number") return null;
+  const raw = String(value).trim();
+  if (!/^(?:0|[1-9]\d{0,6})(?:\.\d{1,2})?$/.test(raw)) return null;
+  const amount = Number(raw);
+  return Number.isSafeInteger(Math.round(amount * 100)) && amount > 0 ? amount : null;
 }
 
 export function asCjVariantArray(value: unknown): CjProductVariant[] {
@@ -17,20 +16,14 @@ export function asCjVariantArray(value: unknown): CjProductVariant[] {
   for (const entry of value) {
     if (!entry || typeof entry !== "object") continue;
     const row = entry as Record<string, unknown>;
-    const vid = String(row.vid ?? row.variantId ?? "").trim();
+    const vid = typeof row.vid === "string" ? row.vid.trim() : "";
     const sku = String(row.sku ?? row.variantSku ?? vid).trim();
-    if (!vid && !sku) continue;
-    const sellPrice =
-      coerceUsdNumber(row.sellPrice) ??
-      coerceUsdNumber(row.variantSellPrice) ??
-      coerceUsdNumber(row.price) ??
-      undefined;
+    if (!vid) continue; // SKU and PID must never masquerade as CJ's variant ID.
+    const variantSellPrice = coerceUsdNumber(row.variantSellPrice) ?? undefined;
     out.push({
-      vid: vid || sku,
+      vid,
       sku: sku || vid,
-      sellPrice,
-      variantSellPrice: coerceUsdNumber(row.variantSellPrice) ?? undefined,
-      price: coerceUsdNumber(row.price) ?? undefined,
+      variantSellPrice,
       suggestSellPrice:
         coerceUsdNumber(row.suggestSellPrice) ??
         coerceUsdNumber(row.variantSugSellPrice) ??
@@ -67,12 +60,7 @@ export function mergeCjVariantQueryIntoProduct(product: CjProduct, variantPayloa
 }
 
 export function extractCjVariantCostUsd(variant: CjProductVariant): number | null {
-  return (
-    coerceUsdNumber(variant.sellPrice) ??
-    coerceUsdNumber(variant.variantSellPrice) ??
-    coerceUsdNumber(variant.price) ??
-    null
-  );
+  return coerceUsdNumber(variant.variantSellPrice);
 }
 
 export function extractCjProductCostUsd(product: CjProduct): number | null {
@@ -86,19 +74,20 @@ export function extractCjProductCostUsd(product: CjProduct): number | null {
   );
 }
 
-export function pickLiveCjVariant(product: CjProduct): {
+export function pickLiveCjVariant(product: CjProduct, requiredVid?: string): {
   variant: CjProductVariant | null;
   costUsd: number | null;
 } {
-  const variants = listCjVariants(product);
+  const variants = listCjVariants(product).filter(v => !requiredVid || v.vid === requiredVid);
   for (const variant of variants) {
     const cost = extractCjVariantCostUsd(variant);
-    if (cost !== null && variant.vid) {
+    const sameVidCosts = variants.filter(v => v.vid === variant.vid).map(extractCjVariantCostUsd).filter(v => v !== null);
+    if (cost !== null && variant.vid && sameVidCosts.every(other => other === cost)) {
       return {
         variant: {
           ...variant,
           sku: variant.sku || variant.vid,
-          sellPrice: cost,
+          variantSellPrice: cost,
           suggestSellPrice:
             coerceUsdNumber(variant.suggestSellPrice) ??
             coerceUsdNumber(variant.variantSugSellPrice) ??
@@ -107,31 +96,6 @@ export function pickLiveCjVariant(product: CjProduct): {
         costUsd: cost,
       };
     }
-  }
-
-  const productCost = extractCjProductCostUsd(product);
-  if (productCost !== null && variants[0]?.vid) {
-    const v = variants[0];
-    return {
-      variant: {
-        ...v,
-        sku: v.sku || v.vid,
-        sellPrice: productCost,
-      },
-      costUsd: productCost,
-    };
-  }
-
-  if (productCost !== null) {
-    return {
-      variant: {
-        vid: product.pid,
-        sku: product.productSku || product.pid,
-        sellPrice: productCost,
-        suggestSellPrice: coerceUsdNumber(product.suggestSellPrice) ?? undefined,
-      },
-      costUsd: productCost,
-    };
   }
 
   return { variant: null, costUsd: null };
