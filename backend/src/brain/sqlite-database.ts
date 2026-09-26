@@ -198,6 +198,7 @@ export class EmpireDatabase {
   private persistedRevision = 0;
   private persistGeneration = 0;
   private closed = false;
+  private captureWriteFence = false;
 
   constructor(private readonly filePath: string) {
     this.inMemory = isInMemoryDatabasePath(filePath);
@@ -241,12 +242,14 @@ export class EmpireDatabase {
   }
 
   exec(sql: string): void {
+    this.assertCaptureWritesAllowed();
     this.db.exec(sql);
     this.schedulePersist();
   }
 
   pragma(name: string, options?: { simple?: boolean }): unknown {
     if (name.includes("=")) {
+      this.assertCaptureWritesAllowed();
       this.db.run(`PRAGMA ${name}`);
       this.schedulePersist();
       return undefined;
@@ -264,6 +267,7 @@ export class EmpireDatabase {
   prepare(sql: string) {
     return {
       run: (params?: Record<string, unknown>): RunResult => {
+        this.assertCaptureWritesAllowed();
         const stmt = this.db.prepare(sql);
         if (params) stmt.bind(normalizeParams(params));
         stmt.step();
@@ -299,6 +303,7 @@ export class EmpireDatabase {
 
   close(): void {
     if (this.closed) return;
+    this.assertCaptureWritesAllowed();
     // Invalidate an older async export before writing the final snapshot. Its
     // pending file I/O may complete, but it must never replace this snapshot.
     this.persistGeneration += 1;
@@ -320,6 +325,25 @@ export class EmpireDatabase {
     }
     this.db.close();
     this.closed = true;
+  }
+
+  /** Fence synchronous writes on this SQL.js handle while an in-process
+   * critical save and external disk capture complete. Other database handles,
+   * native SQLite, JSON, Redis and request admission need separate fences.
+   */
+  holdWritesForCapture(): () => void {
+    if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
+    this.captureWriteFence = true;
+    let released = false;
+    return () => {
+      if (released) throw new Error("SQLite capture fence already released");
+      released = true;
+      this.captureWriteFence = false;
+    };
+  }
+
+  private assertCaptureWritesAllowed(): void {
+    if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
   }
 
   /**
