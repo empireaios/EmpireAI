@@ -50,6 +50,12 @@ function fakeRouter(onCall: () => Promise<void>): LLMRouter {
 test("unpriced exact model never reaches a provider", async () => {
   useDisk();
   delete process.env.LLM_AUTHORIZED_PRICING_JSON;
+  setCostGuardLimits(request.workspaceId, {
+    dailyAiBudgetUsd: 1,
+    monthlyOperatingBudgetUsd: 1,
+    autonomousPaidActionLimitUsd: 1,
+    providerModelBudgetUsd: 1,
+  }, "offline-founder");
   let calls = 0;
   const router = fakeRouter(async () => { calls++; });
   await assert.rejects(router.complete(request), /pricing authorization unavailable/);

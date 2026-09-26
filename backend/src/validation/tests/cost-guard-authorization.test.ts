@@ -192,7 +192,7 @@ describe("paid autonomous cost authorization", () => {
     assert.equal(getCostGuardLimits(WS).dailyAiBudgetUsd, 10);
   });
 
-  it("router aborts its actual priced provider invocation on timeout and retains reservation", async () => {
+  it("router aborts its actual provider invocation on timeout without retry", async () => {
     authorizePaidWork();
     setCostGuardLimits(WS, { providerModelBudgetUsd: 10 }, "test-owner");
     const previous = process.env.LLM_REQUEST_TIMEOUT_MS;
