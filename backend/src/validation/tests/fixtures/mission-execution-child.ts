@@ -1,12 +1,22 @@
 import { DatabaseSync } from "node:sqlite";
+import { setTimeout as wait } from "node:timers/promises";
 import { MissionExecutionStore } from "../../../orchestration/pillow-host/mission-execution/store.js";
 import { inspectActualAuthority } from "../../../orchestration/pillow-host/mission-execution/runner.js";
 const file = process.argv[2]!; const mode = process.argv[3];
 if (mode === "claim-once") {
- try {
-  const store = new MissionExecutionStore(file, { workspaceId: "ws_empire_1", ownerEmail: "owner@invalid.test" });
-  process.stdout.write(store.claim("a".repeat(40)) ? "claimed\n" : "empty\n");
- } catch { process.stdout.write("busy\n"); }
+ // busy_timeout=0 intentionally fails closed when SQLite is held by another
+ // process. A real worker retries the next tick; model that bounded polling
+ // instead of treating transient lock contention as a terminal claim result.
+ const deadline = Date.now() + 2_000;
+ let result = "busy";
+ while (Date.now() < deadline) {
+  try {
+   const store = new MissionExecutionStore(file, { workspaceId: "ws_empire_1", ownerEmail: "owner@invalid.test" });
+   result = store.claim("a".repeat(40)) ? "claimed" : "empty";
+   break;
+  } catch { await wait(20); }
+ }
+ process.stdout.write(`${result}\n`);
 } else {
  if (mode === "transaction") {
   const db = new DatabaseSync(file); db.exec("BEGIN IMMEDIATE"); db.prepare("UPDATE execution_jobs SET document='uncommitted-corrupt-state'").run();
