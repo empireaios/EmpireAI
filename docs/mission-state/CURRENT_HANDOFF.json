@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "0cb86061bf654e417d6e3e0096b7170768452306",
+    "lastVerifiedIntegrationHead": "8279e7db7507844cd35791e4aa24b1b205ae6330",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 0cb86061 oversized offline multi-store backup/restore and earlier per-handle SQL.js save passed all three exact-head hosted workflows; production untouched",
-    "candidateCodeHead": "0cb86061bf654e417d6e3e0096b7170768452306",
-    "branchTipNote": "Code head 0cb86061 fully verified; docs-only handoff receipt may follow. Inspect live PR #5 ref.",
+    "status": "draft unmerged; 8279e7db strict CJ variant price and prior offline state engineering passed all three exact-head hosted workflows; production untouched",
+    "candidateCodeHead": "8279e7db7507844cd35791e4aa24b1b205ae6330",
+    "branchTipNote": "Strict CJ variantSellPrice and exact previously-mapped VID 8279e7db local presale, typecheck and exact-head hosted Product, Semantic, Runtime pass.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -109,7 +109,8 @@
       "24e68078 / fb4aa70c: Pillow presale and re-evaluation supplier stock rejects factory totals, unbound SKU fallback, invalid VID and variant summary inventory; direct CJ-managed stock only; focused offline tests and backend typecheck pass; all three exact-head hosted workflows passed.",
       "ac947755: raised disk-only streaming SQLite checkpoint capture to 1 GiB and copied/verified a valid sparse 512 MiB-plus source in 8 local tests; all three exact-head hosted workflows passed; no production file/RAM touched.",
       "e7bbc7d: per-handle SQL.js write fence and critical-save callback with local RAM-only record readback after disk capture; 12/12 local tests and typecheck, all three exact-head hosted workflows passed. Not full application quiescence and not installed on old protected production.",
-      "0cb86061: offline multi-store primary backup/restore cap raised to 1 GiB, >512 MiB valid SQLite and native stores backed up/restored/read back locally, typecheck passed; all three exact-head hosted workflows passed. No production operation."
+      "0cb86061: offline multi-store primary backup/restore cap raised to 1 GiB, >512 MiB valid SQLite and native stores backed up/restored/read back locally, typecheck passed; all three exact-head hosted workflows passed. No production operation.",
+      "8279e7db: Pillow margin candidate requires exact VID and variantSellPrice; rejects product ranges, malformed money, fake VIDs and conflicting quotes; mapped re-evaluation cannot select another variant. Local tests and typecheck pass; hosted CI pending."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -337,6 +338,17 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36246048158",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36246048180",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36246048156"
+    },
+    "cjExactVariantCost": {
+      "head": "8279e7db7507844cd35791e4aa24b1b205ae6330",
+      "scope": "Pillow presale/re-evaluation strict VID-bound variantSellPrice, no product-range or missing-VID fallbacks; no real provider call",
+      "localTests": "PASS",
+      "backendTypecheck": "PASS",
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36246617938",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36246617927",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36246617942",
+      "durableProviderReceipt": false
     }
   },
   "failedAttempts": [
@@ -376,7 +388,7 @@
   ],
   "nextExecutableActions": [
     "Finish and test whole-app admission/drain/quiescence across SQL.js, JSON, native state and Redis outside production; then establish safe in-process old-deployment RAM save without restart. e7bbc7d fences one candidate handle and 0cb86061 repairs only offline backup size. No authenticated Railway SSH session available.",
-    "Finish bounded CJ variant-level cost, warehouse/fulfilment compliance and durable readback. Exact-VID direct CJ-managed stock parsing now repaired offline; provider request/API point budget and real supplier evidence remain absent. No real CJ call without authorization.",
+    "Build durable account-scoped CJ variant stock/cost/freight receipts with per-cycle API point ceiling, readback and fulfillment compliance; current Pillow presale now has stricter stock/price parsing but broader legacy loop can consume many point-charging calls. Do not make live CJ calls without authorization.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
