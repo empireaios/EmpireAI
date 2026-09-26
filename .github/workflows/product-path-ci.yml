@@ -200,6 +200,7 @@ jobs:
         run: |
           node --import tsx --test \
             src/validation/tests/shadow-ceo-chat-admission.test.ts \
+            src/validation/tests/shadow-ceo-durability.test.ts \
             src/validation/tests/pillow-accepted-request-recovery.test.ts \
             src/validation/tests/canonical-executive-truth.test.ts \
             src/validation/tests/dc05421-response-contract.test.ts

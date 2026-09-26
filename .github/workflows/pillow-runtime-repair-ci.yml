@@ -150,6 +150,7 @@ jobs:
             src/validation/tests/executive-continuity-watchdog.test.ts \
             src/validation/tests/independent-shutdown-last-attempt.test.ts \
             src/validation/tests/sqlite-corruption-recovery.test.ts \
+            src/validation/tests/shadow-ceo-durability.test.ts \
             src/validation/tests/engineering-test-mode.test.ts \
             src/validation/tests/cost-guard-authorization.test.ts \
             src/validation/tests/llm-call-control.test.ts \

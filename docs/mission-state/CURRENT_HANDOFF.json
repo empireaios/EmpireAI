@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T11:21:45Z",
+  "updatedAt": "2026-09-26T11:27:22Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -21,9 +21,9 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "53e370ed7f793e845ad4e65b4b7cf8ec843c859a",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft; unmerged; latest code head passed three exact-head hosted CI workflows",
+    "status": "draft; unmerged; last verified code 53e370ed; newer Shadow CEO storage repair pending exact-head CI",
     "candidateCodeHead": "53e370ed7f793e845ad4e65b4b7cf8ec843c859a",
-    "branchTipNote": "Inspect live branch ref for documentation and subsequent engineering commits beyond this verified code SHA.",
+    "branchTipNote": "Inspect live PR #5 branch tip; the storage repair may follow the last verified code SHA.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -98,7 +98,8 @@
       "Production Amazon generic HMAC notification denied and dead-lettered, exact-head CI b908",
       "Orders API v2026-01-01 one-page importer and founder read/sync routes, three exact-head CI passes fca",
       "Amazon request timeout, size cap, durable 180-second gate and owner-started continuation with pause are offline verified across three workflows on 8a04682b",
-      "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721"
+      "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721",
+      "Pending Shadow CEO storage repair: Railway volume-root default, off-volume and missing-mount refusal, atomic request-owner JSON, unreadable owner-state refusal; focused local tests passed, hosted CI pending."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -146,6 +147,14 @@
         "status": "PASS",
         "url": "https://github.com/empireaios/EmpireAI/actions/runs/36238300753"
       }
+    },
+    "shadowCeoStorageLocal": {
+      "node": "24.19.0",
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "hostedNode22CI": "PENDING",
+      "productionMigration": "NOT_DONE"
     }
   },
   "failedAttempts": [
@@ -178,7 +187,7 @@
     "Railway has a /data volume and no SHADOW_CEO_DATA_DIR or EMPIRE_DATA_DIR variable; Shadow CEO default cwd/.data may be ephemeral. Preserve unknown old state and require quiesced migration/backup before changing production path."
   ],
   "nextExecutableActions": [
-    "Repair Shadow CEO volume-root selection, atomic request-owner JSON and fail-closed corrupt reads; verify local and all three hosted CI workflows without deploying or losing old cwd/.data state.",
+    "Verify Shadow CEO storage repair at exact PR #5 head on all three hosted Node 22.23.2 workflows, then record SHA and receipts. Do not deploy until legacy cwd/.data state is backed up and reconciled to the mounted volume.",
     "Implement actual Amazon US catalog, seller inventory/pricing import and supplier compliance guards.",
     "Engineer fail-closed bounded ordinary paid-model reservation and verified pricing without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
