@@ -176,7 +176,10 @@ export async function runLiveCommerceSync(input: {
           message.startsWith("AMAZON_ORDERS_RATE_LIMIT_PENDING:")) ||
         input.syncType === "catalog" &&
         (message.startsWith("AMAZON_LISTINGS_PAGINATION_PENDING:") ||
-          message.startsWith("AMAZON_LISTINGS_RATE_LIMIT_PENDING:")));
+          message.startsWith("AMAZON_LISTINGS_RATE_LIMIT_PENDING:")) ||
+        input.syncType === "inventory" &&
+        (message.startsWith("AMAZON_INVENTORY_PAGINATION_PENDING:") ||
+          message.startsWith("AMAZON_INVENTORY_RATE_LIMIT_PENDING:")));
     if (waitingForProvider) {
       job = { ...job, status: "queued", errorMessage: null, completedAt: null };
       recordLiveCommerceAudit({
@@ -375,6 +378,7 @@ export function assessLiveCommerceGoLive(workspaceId: string): {
   const acceptedTypes = new Set(syncJobs.filter((j) =>
     j.providerId === "amazon-us" && j.mode === "production" &&
     j.status === "completed" && j.durableReadbackVerified === true &&
+    (j.syncType === "orders" || j.itemsProcessed > 0) &&
     j.itemsFailed === 0 && Boolean(j.completedAt) && Date.parse(j.completedAt!) >= recent,
   ).map((j) => j.syncType));
   if (["catalog", "inventory", "pricing", "orders"].every((type) => acceptedTypes.has(type as LiveCommerceSyncType))) score += 20;

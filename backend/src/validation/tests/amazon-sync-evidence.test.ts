@@ -9,7 +9,7 @@ import { resetDatabaseInstance } from "../../brain/database.js";
 
 afterEach(() => { resetHttpTransportOverride(); resetLiveCommerceRepository(); resetDatabaseInstance(); });
 
-test("unsupported inventory/pricing and missing listing/order credentials never invent processed records", async () => {
+test("unsupported pricing and missing inventory/listing/order credentials never invent processed records", async () => {
   let calls = 0;
   setHttpTransportOverride(async () => {
     calls++;
@@ -18,8 +18,8 @@ test("unsupported inventory/pricing and missing listing/order credentials never 
   const ctx = { workspaceId: "ws-amazon-sync", providerId: "amazon-us",
     credentials: { accessToken: "synthetic" }, mode: "production" as const };
   await assert.rejects(amazonUsSpApiAdapter.syncCatalog(ctx), /seller ID and access token required/);
+  await assert.rejects(amazonUsSpApiAdapter.syncInventory(ctx), /seller ID and access token required/);
   for (const [name, operation] of [
-    ["inventory", amazonUsSpApiAdapter.syncInventory],
     ["pricing", amazonUsSpApiAdapter.syncPricing],
   ] as const) {
     await assert.rejects(operation(ctx), new RegExp(`AMAZON_${name.toUpperCase()}_SYNC_UNIMPLEMENTED`));

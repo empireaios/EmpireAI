@@ -9,6 +9,7 @@ import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
 import { syncAmazonUsOrders } from "./amazon-order-import.js";
 import { syncAmazonUsListings } from "./amazon-listings-import.js";
+import { syncAmazonUsSellerInventory } from "./amazon-seller-inventory-import.js";
 import type {
   LiveCommerceAdapterContext,
   LiveCommerceProviderAdapter,
@@ -128,6 +129,7 @@ export function createAmazonSpApiAdapter(
 
     async syncInventory(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("inventory", ctx, 8);
+      if (registryId === "amazon-us") return syncAmazonUsSellerInventory(ctx);
       throw new Error("AMAZON_INVENTORY_SYNC_UNIMPLEMENTED: FBA summaries are not seller-fulfilled stock evidence");
     },
 
