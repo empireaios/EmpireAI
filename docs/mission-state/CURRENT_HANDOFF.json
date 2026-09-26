@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T13:29:18Z",
+  "updatedAt": "2026-09-26T13:39:05Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "ac9477554cd324769d6791022513f81949650b7d",
+    "lastVerifiedIntegrationHead": "e7bbc7d29a3c28a978948f50ddb6985192c644a1",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; ac947755 oversized disk-only checkpoint capture and earlier exact-VID CJ stock repair passed all three exact-head hosted workflows; no production cutover",
-    "candidateCodeHead": "ac9477554cd324769d6791022513f81949650b7d",
-    "branchTipNote": "Code head ac947755 fully verified; docs-only handoff receipt may follow. Inspect live PR #5 branch ref.",
+    "status": "draft unmerged; e7bbc7d per-handle SQL.js write fence and critical save passed all three hosted workflows; not installed on old production or full-app quiescence",
+    "candidateCodeHead": "e7bbc7d29a3c28a978948f50ddb6985192c644a1",
+    "branchTipNote": "Code head e7bbc7d fully verified; docs-only handoff receipt may follow. Inspect live PR #5 ref.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -107,7 +107,8 @@
       "Seller listing search current-cycle B2C USD offer extraction uses exact marketplace and integer cents, rejects ambiguity, leaves missing or legacy unpriced. Six local fake-transport tests, backend typecheck and all three exact-head hosted CI passed at 94ee670a. No supplier cost or margin proof.",
       "CJ authentication cache account-binding, concurrent same-account request coalescing and missing/near-expired expiry refusal at 663f9876: 10 local tests, backend typecheck and all three exact-head hosted workflows passed. Separate supplier-cj-adapter correction 7c0fca18: correct POST key-body auth, checked token response and no fabricated production counts; 13 focused tests, typecheck and all three exact-head hosted workflows passed.",
       "24e68078 / fb4aa70c: Pillow presale and re-evaluation supplier stock rejects factory totals, unbound SKU fallback, invalid VID and variant summary inventory; direct CJ-managed stock only; focused offline tests and backend typecheck pass; all three exact-head hosted workflows passed.",
-      "ac947755: raised disk-only streaming SQLite checkpoint capture to 1 GiB and copied/verified a valid sparse 512 MiB-plus source in 8 local tests; all three exact-head hosted workflows passed; no production file/RAM touched."
+      "ac947755: raised disk-only streaming SQLite checkpoint capture to 1 GiB and copied/verified a valid sparse 512 MiB-plus source in 8 local tests; all three exact-head hosted workflows passed; no production file/RAM touched.",
+      "e7bbc7d: per-handle SQL.js write fence and critical-save callback with local RAM-only record readback after disk capture; 12/12 local tests and typecheck, all three exact-head hosted workflows passed. Not full application quiescence and not installed on old protected production."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -310,6 +311,18 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36244923445",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36244923442",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36244923419"
+    },
+    "perHandleQuiescedSave": {
+      "head": "e7bbc7d29a3c28a978948f50ddb6985192c644a1",
+      "localTestsPassed": 12,
+      "backendTypecheck": "PASS",
+      "scope": "single already-open SQL.js handle, one RAM-to-disk critical save plus external disk readback while write fence held",
+      "fullAppQuiescence": false,
+      "oldProductionInstalled": false,
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36245547576",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36245547534",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36245547539"
     }
   },
   "failedAttempts": [
@@ -348,7 +361,7 @@
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and offline-state-bundle.cjs separately caps primary source at 512 MiB. Neither standalone disk tool proves complete state or has been run on production."
   ],
   "nextExecutableActions": [
-    "Develop and validate in-process quiesce/save and complete multi-store capture outside production; old-main SIGTERM persists only while exiting, so do not signal protected process. Railway SSH supports existing deployment shell, but no authenticated session is available here; SSH read-only metadata alone cannot capture SQL.js RAM. Only after proven safe method locate process cwd and capture old stores.",
+    "Complete non-production whole-app quiescence, multi-store final save/capture, native state/Redis reconciliation and independent restart/readback, then establish a safe in-process access path to old protected production without restart. e7bbc7d covers only one candidate SQL.js handle; no Railway SSH in workspace.",
     "Finish bounded CJ variant-level cost, warehouse/fulfilment compliance and durable readback. Exact-VID direct CJ-managed stock parsing now repaired offline; provider request/API point budget and real supplier evidence remain absent. No real CJ call without authorization.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
