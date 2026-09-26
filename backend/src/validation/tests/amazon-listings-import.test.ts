@@ -38,7 +38,8 @@ afterEach(() => {
 const row = (sku: string) => ({ sku, summaries: [{ marketplaceId: "ATVPDKIKX0DER",
   asin: "B123456789", itemName: `Listing ${sku}`, status: ["BUYABLE"],
   lastUpdatedDate: "2026-09-25T00:00:00Z" }],
-  offers: [{ price: { amount: "9.99", currency: "USD" } }],
+  offers: [{ marketplaceId: "ATVPDKIKX0DER", offerType: "B2C",
+    price: { amount: "9.99", currency: "USD" } }],
   fulfillmentAvailability: [{ quantity: 1234 }] });
 
 test("Amazon US listing pages use seller binding, persist across process restart and complete only after final page", async () => {
@@ -50,7 +51,7 @@ test("Amazon US listing pages use seller binding, persist across process restart
     assert.equal(url.origin, "https://sellingpartnerapi-na.amazon.com");
     assert.equal(url.pathname, "/listings/2021-08-01/items/SELLER123");
     assert.equal(url.searchParams.get("marketplaceIds"), "ATVPDKIKX0DER");
-    assert.equal(url.searchParams.get("includedData"), "summaries");
+    assert.equal(url.searchParams.get("includedData"), "summaries,offers");
     assert.equal(url.searchParams.get("pageSize"), "20");
     assert.equal(request.headers?.["x-amz-access-token"], "fake-token");
     if (requests.length === 1) {
@@ -77,10 +78,59 @@ test("Amazon US listing pages use seller binding, persist across process restart
   closeDatabase();
   const saved = listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId);
   assert.deepEqual(saved.map(item => item.sku), ["SKU-1", "SKU-2"]);
+  assert.deepEqual(saved.map(item => [item.sellerOfferPriceCents, item.sellerOfferCurrency]),
+    [[999, "USD"], [999, "USD"]]);
   assert.doesNotMatch(JSON.stringify(saved), /quantity|9\.99|offers/);
   assert.equal(requests.length, 2);
   await assert.rejects(amazonUsSpApiAdapter.syncCatalog({ ...ctx,
     credentials: { ...ctx.credentials, sellerId: "OTHERSELLER" } }), /seller binding changed/);
+});
+
+test("seller B2C USD offer is current-cycle read-only price evidence, never supplier cost", async () => {
+  useDisk();
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0, json: { items: [
+    { ...row("PRICE"), offers: [
+      { marketplaceId: "OTHER", offerType: "B2C", price: { currency: "USD", amount: "1.00" } },
+      { marketplaceId: "ATVPDKIKX0DER", offerType: "B2B", price: { currency: "USD", amount: "2.00" } },
+      { marketplaceId: "ATVPDKIKX0DER", offerType: "B2C", price: { currency: "USD", amount: "30.0" } },
+    ] },
+    { ...row("NO-PRICE"), offers: [{ marketplaceId: "ATVPDKIKX0DER", offerType: "B2B",
+      price: { currency: "USD", amount: "3.00" } }] },
+  ] } }));
+  assert.equal((await amazonUsSpApiAdapter.syncCatalog(ctx)).itemsProcessed, 2);
+  closeDatabase();
+  const current = listCurrentAmazonUsListings(ctx.workspaceId);
+  assert.deepEqual(current.map(item => [item.sku, item.sellerOfferPriceCents, item.sellerOfferCurrency]),
+    [["NO-PRICE", null, null], ["PRICE", 3000, "USD"]]);
+  assert.doesNotMatch(JSON.stringify(current), /supplierCost|margin|30\.0/);
+  const old = { ...current[1] } as Record<string, unknown>;
+  delete old.sellerOfferPriceCents; delete old.sellerOfferCurrency;
+  getDatabase().prepare(`UPDATE amazon_listing_import_rows SET record_json=@record
+    WHERE sku='PRICE'`).run({ record: JSON.stringify(old) });
+  assert.deepEqual(listCurrentAmazonUsListings(ctx.workspaceId).find(item => item.sku === "PRICE")
+    ?.sellerOfferPriceCents, null);
+});
+
+test("ambiguous, unsupported, zero and malformed seller offers cannot create a price receipt", async () => {
+  useDisk();
+  let variant: unknown = null;
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0,
+    json: { items: [{ ...row("BAD"), offers: variant }] } }));
+  const offer = (currency: string, amount: string) => ({ marketplaceId: "ATVPDKIKX0DER",
+    offerType: "B2C", price: { currency, amount } });
+  for (const [offers, error] of [
+    [[offer("USD", "9.99"), offer("USD", "8.99")], /ambiguous/],
+    [[offer("EUR", "9.99")], /USD price invalid/],
+    [[offer("USD", "0.00")], /USD price invalid/],
+    [[offer("USD", "9.999")], /USD price invalid/],
+    [{ amount: "9.99" }, /offers malformed/],
+  ] as Array<[unknown, RegExp]>) {
+    variant = offers;
+    await assert.rejects(amazonUsSpApiAdapter.syncCatalog(ctx), error);
+    assert.deepEqual(listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId), []);
+    assert.equal(getDatabase().prepare("SELECT COUNT(*) AS n FROM amazon_listing_import_cursor").get()?.n, 0);
+    getDatabase().prepare(`UPDATE amazon_listing_import_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  }
 });
 
 test("malformed listing response, missing seller binding and HTTP failure never claim catalog proof", async () => {

@@ -1,6 +1,6 @@
 /** Read-only Amazon US seller listing summaries, one durable page per invocation.
  * Amazon Listings Items v2021-08-01: https://developer-docs.amazon.com/sp-api/reference/searchlistingsitems
- * Listings are seller records, not supplier stock, sourcing approval or pricing evidence.
+ * Seller offers are current listing prices, not supplier cost, margin or pricing approval.
  */
 import { createHash } from "node:crypto";
 import { getDatabase } from "../../../../brain/database.js";
@@ -11,12 +11,36 @@ import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types
 type Listing = {
   sku: string; asin: string | null; marketplaceId: string;
   name: string | null; status: string[]; updatedAt: string | null;
+  sellerOfferPriceCents: number | null; sellerOfferCurrency: "USD" | null;
   cycleStartedAt: string; sourceSha256: string;
 };
 type Cursor = {
   sellerId: string; nextToken: string; seen: number;
   startedAt: string; completedAt: string | null; status: string; reason: string;
 };
+function sellerOfferCents(raw: unknown, marketplaceId: string): number | null {
+  if (raw == null) return null;
+  if (!Array.isArray(raw)) throw new Error("Amazon seller offers malformed");
+  const matching = raw.filter((offer): offer is Record<string, unknown> =>
+    Boolean(offer && typeof offer === "object" && !Array.isArray(offer) &&
+      (offer as Record<string, unknown>).marketplaceId === marketplaceId &&
+      (offer as Record<string, unknown>).offerType === "B2C"));
+  if (matching.length === 0) return null;
+  if (matching.length !== 1) throw new Error("Amazon seller B2C offer ambiguous");
+  const price = matching[0]!.price;
+  if (!price || typeof price !== "object" || Array.isArray(price)) {
+    throw new Error("Amazon seller B2C price missing");
+  }
+  const { currency, amount } = price as Record<string, unknown>;
+  if (currency !== "USD" || typeof amount !== "string" ||
+      !/^(?:0|[1-9]\d{0,10})(?:\.\d{1,2})?$/.test(amount)) {
+    throw new Error("Amazon seller B2C USD price invalid");
+  }
+  const [units, decimals = ""] = amount.split(".");
+  const cents = Number(units) * 100 + Number(decimals.padEnd(2, "0"));
+  if (!Number.isSafeInteger(cents) || cents <= 0) throw new Error("Amazon seller B2C USD price invalid");
+  return cents;
+}
 function tables(): void {
   getDatabase().exec(`
     CREATE TABLE IF NOT EXISTS amazon_listing_import_rows (
@@ -64,11 +88,13 @@ function listing(raw: unknown, marketplaceId: string, cycleStartedAt: string): L
         !Number.isFinite(Date.parse(summary.lastUpdatedDate)))) {
     throw new Error("Amazon listing summary fields invalid");
   }
+  const priceCents = sellerOfferCents(item.offers, marketplaceId);
   return {
     sku: item.sku, asin: summary.asin as string | undefined ?? null,
     marketplaceId, name: typeof summary.itemName === "string" ? summary.itemName.slice(0, 512) : null,
     status: summary.status as string[] | undefined ?? [],
     updatedAt: summary.lastUpdatedDate as string | undefined ?? null,
+    sellerOfferPriceCents: priceCents, sellerOfferCurrency: priceCents === null ? null : "USD",
     cycleStartedAt,
     sourceSha256: createHash("sha256").update(JSON.stringify(raw)).digest("hex"),
   };
@@ -123,7 +149,17 @@ export function listImportedAmazonUsListings(workspaceId: string, sellerId: stri
   const rows = getDatabase().prepare(`SELECT record_json FROM amazon_listing_import_rows
     WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND seller_id=@sellerId
     ORDER BY sku LIMIT 500`).all({ workspaceId, sellerId }) as Array<{ record_json: string }>;
-  return rows.map(row => JSON.parse(row.record_json) as Listing);
+  return rows.map(row => {
+    const record = JSON.parse(row.record_json) as Listing;
+    // Pre-price snapshots must remain explicitly unpriced on a code upgrade.
+    if (record.sellerOfferCurrency !== "USD" ||
+        typeof record.sellerOfferPriceCents !== "number" ||
+        !Number.isSafeInteger(record.sellerOfferPriceCents) ||
+        record.sellerOfferPriceCents <= 0) {
+      return { ...record, sellerOfferPriceCents: null, sellerOfferCurrency: null };
+    }
+    return record;
+  });
 }
 
 export function listCurrentAmazonUsListings(workspaceId: string): Listing[] {
@@ -194,7 +230,7 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
     completedAt: null, status: "pending", reason: "",
   };
   const marketplaceId = getAmazonMarketplaceProfile("amazon-us").marketplaceId;
-  const query = new URLSearchParams({ marketplaceIds: marketplaceId, includedData: "summaries", pageSize: "20" });
+  const query = new URLSearchParams({ marketplaceIds: marketplaceId, includedData: "summaries,offers", pageSize: "20" });
   if (active.nextToken) query.set("pageToken", active.nextToken);
   await reserveRequest(ctx);
   const response = await httpTransport({

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T12:27:13Z",
+  "updatedAt": "2026-09-26T12:32:33Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -23,7 +23,7 @@
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft; unmerged; d8b38d12 disk-only legacy Shadow CEO capture and earlier inventory continuation passed all three exact-head CI; no production cutover",
     "candidateCodeHead": "d8b38d12fb6414b00ec99220d066e16d19adc828",
-    "branchTipNote": "Inspect live PR #5 head; docs-only receipt commits may follow the last all-three-passed code head.",
+    "branchTipNote": "Inspect live PR #5 head; next seller B2C offer price extraction checkpoint follows last all-three-passed d8b38d12 code head, hosted CI pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -103,7 +103,8 @@
       "Amazon scoped vault credential recovered from disk after connector runtime map reset; normal partial page queued, all three offline CI passed a721",
       "Shadow CEO database/request-owner volume-root defaults and atomic records e752bf97, plus separate authority JSON volume default and atomic fail-closed records 23fba652: each passed three hosted workflows. Existing old-main state still uninspected and unmigrated.",
       "Seller-managed inventory importer 970bd26a Product/Semantic passed, Runtime failed existing zero-wait SQLite concurrent claim test (326/327). Child fixture bounded retry at 005e9dbb passed all three hosted workflows. Founder routes, owner-started inventory continuation and current-cycle SKU filters passed 9 focused local tests, typecheck and all three 2600ed04 hosted workflows.",
-      "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests at d8b38d12 passed all three exact-head hosted workflows. Read-only container directory and historic backup metadata inspected; no old production files copied, no RAM quiescence or live restart."
+      "Legacy Shadow CEO three-store disk capture utility, CLI and seven focused local tests at d8b38d12 passed all three exact-head hosted workflows. Read-only container directory and historic backup metadata inspected; no old production files copied, no RAM quiescence or live restart.",
+      "Seller listing search current-cycle B2C USD offer extraction uses exact marketplace and integer cents, rejects ambiguity, leaves missing or legacy unpriced. Six local fake-transport tests and backend typecheck passed; hosted CI pending. No supplier cost or margin proof."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -187,6 +188,15 @@
       "realProviderCalls": 0,
       "unattendedContinuation": "OFFLINE_CI_PASSED_NOT_HOSTED_OR_PROVIDER_VERIFIED",
       "sellerStockPricingProof": false
+    },
+    "amazonSellerOfferPrice": {
+      "status": "LOCAL_TEST_AND_TYPECHECK_PASS_HOSTED_CI_PENDING",
+      "apiVersion": "Listings Items 2021-08-01 includedData=summaries,offers",
+      "onlyB2CUsdCurrentMarketplace": true,
+      "integerCents": true,
+      "missingOfferUnpriced": true,
+      "supplierCostOrMarginProof": false,
+      "realProviderCalls": 0
     },
     "amazonListingsCI": {
       "head": "7f5493ae8337d6bfbf9ff800f22afe8bcc7c352d",
@@ -281,13 +291,13 @@
     "Ordinary LLM router has exact-model time-limited price gate and durable conservative reservation on candidate; provider billing reconciliation and hosted paid-call enforcement remain unproved.",
     "Authenticated phone workflow, full Amazon seller/supplier/fulfilment/returns/settlement spine, unattended certification and commercial pilot unproved.",
     "Amazon US importer, rate gate, narrow scheduler and scoped credential disk restart passed offline CI at a721; no hosted worker/process restart or real seller provider proof.",
-    "Amazon US order importer and seller listings/inventory importer/continuation passed offline CI. Seller pricing, authentic notification transport, upstream supplier stock/compliance, fulfilment and settlement not implemented or independently verified.",
+    "Amazon US order importer and seller listings/inventory importer/continuation passed offline CI. Current seller B2C USD offer extraction passed local tests and typecheck but hosted CI pending; supplier cost/margin, authentic notification transport, upstream stock/compliance, fulfilment and settlement not implemented or independently verified.",
     "Vercel connector returned no accessible teams in 2026-09-26 readback; current Vercel deployment revision not independently verified.",
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state."
   ],
   "nextExecutableActions": [
     "Locate actual process cwd and legacy stores via safe running-container access. Obtain authorized in-container execution for reviewed capture without restarting; file-list connector cannot copy large binaries. Separately prove quiesced SQL.js RAM save and multi-store reconciliation before any cutover.",
-    "Build read-only seller price import and upstream supplier stock/fulfilment compliance evidence.",
+    "Verify seller B2C USD offer extraction on three hosted CI workflows, then build upstream supplier stock/cost and fulfilment compliance evidence.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
