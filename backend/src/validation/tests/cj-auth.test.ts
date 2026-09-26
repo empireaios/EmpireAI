@@ -5,6 +5,7 @@ import {
   buildCjAuthHeaders,
   clearCjAuthCache,
   getCjAccessToken,
+  getCjAuthCacheStatus,
 } from "../../suppliers/cj-dropshipping/cj-auth.js";
 import { loadCjConfig } from "../../suppliers/cj-dropshipping/cj-config.js";
 
@@ -142,6 +143,58 @@ describe("CJ API 2.0 authentication", () => {
     assert.equal(first, "cached-access");
     assert.equal(second, "cached-access");
     assert.equal(callCount, 1);
+  });
+
+  it("isolates concurrent CJ account tokens and coalesces same-account auth", async () => {
+    const base = loadCjConfig();
+    const accountA = { ...base, apiKey: "account-A" };
+    const accountB = { ...base, apiKey: "account-B" };
+    const calls: string[] = [];
+    const fetchImpl = async (_input: string | URL | Request, init?: RequestInit) => {
+      const key = JSON.parse(String(init?.body)).apiKey as string;
+      calls.push(key);
+      await new Promise(resolve => setTimeout(resolve, 10));
+      return jsonResponse({ code: 200, result: true, data: {
+        accessToken: `token-for-${key}`,
+        accessTokenExpiryDate: new Date(Date.now() + 3_600_000).toISOString(),
+      } });
+    };
+    const tokens = await Promise.all([
+      getCjAccessToken(accountA, fetchImpl),
+      getCjAccessToken(accountB, fetchImpl),
+      getCjAccessToken(accountA, fetchImpl),
+    ]);
+    assert.deepEqual(tokens, ["token-for-account-A", "token-for-account-B", "token-for-account-A"]);
+    assert.deepEqual(calls.sort(), ["account-A", "account-B"]);
+    assert.equal(await getCjAccessToken(accountA, fetchImpl), "token-for-account-A");
+    assert.equal(await getCjAccessToken(accountB, fetchImpl), "token-for-account-B");
+    assert.equal(calls.length, 2);
+  });
+
+  it("does not reuse an access token after API secret or endpoint changes", async () => {
+    const base = { ...loadCjConfig(), apiKey: "same-key" };
+    let calls = 0;
+    const fetchImpl = async () => jsonResponse({ code: 200, result: true, data: {
+      accessToken: `token-${++calls}`,
+      accessTokenExpiryDate: new Date(Date.now() + 3_600_000).toISOString(),
+    } });
+    assert.equal(await getCjAccessToken(base, fetchImpl), "token-1");
+    assert.equal(await getCjAccessToken({ ...base, apiSecret: "rotated" }, fetchImpl), "token-2");
+    assert.equal(await getCjAccessToken({ ...base, apiBaseUrl: "https://other.example/api2.0/v1" }, fetchImpl), "token-3");
+    assert.equal(await getCjAccessToken(base, fetchImpl), "token-1");
+  });
+
+  it("refuses token responses without an independently valid expiry", async () => {
+    const config = { ...loadCjConfig(), apiKey: "expiry-key" };
+    let expiry: string | undefined;
+    const fetchImpl = async () => jsonResponse({ code: 200, result: true, data: {
+      accessToken: "unsafe-token", accessTokenExpiryDate: expiry,
+    } });
+    await assert.rejects(getCjAccessToken(config, fetchImpl), /expiry missing or invalid/);
+    assert.equal(getCjAuthCacheStatus().populated, false);
+    expiry = new Date(Date.now() + 15_000).toISOString();
+    await assert.rejects(getCjAccessToken(config, fetchImpl), /access token expired/);
+    assert.equal(getCjAuthCacheStatus().accessValid, false);
   });
 
   it("buildCjAuthHeaders sets CJ-Access-Token header", async () => {

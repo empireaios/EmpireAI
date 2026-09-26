@@ -202,6 +202,9 @@ jobs:
       - name: Verify exact-model paid LLM price and durable reservation without provider calls
         working-directory: backend
         run: node --import tsx --test src/validation/tests/llm-spend-reservation.test.ts
+      - name: Verify CJ account-bound authentication without provider calls
+        working-directory: backend
+        run: node --import tsx --test src/validation/tests/cj-auth.test.ts src/validation/tests/cj-live-auth-proof.test.ts
       - name: Run fast invariant gate
         working-directory: backend
         run: npm run gate:fast-invariant
