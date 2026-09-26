@@ -6,12 +6,13 @@ import { afterEach, test } from "node:test";
 import { ConnectorConnectionRepository } from "../../connectors/connection-repository.js";
 import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
-import { listImportedAmazonSellerInventory } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-seller-inventory-import.js";
+import { getAmazonSellerInventoryImportStatus, listCurrentAmazonSellerInventory, listImportedAmazonSellerInventory } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-seller-inventory-import.js";
 import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { getCredentialVaultRepository, resetCredentialVaultRepository } from "../../orchestration/reality-integration/repositories/sqlite-credential-vault-repository.js";
 import { resetConnectorRuntimeStates } from "../../orchestration/reality-integration/services/connector-runtime.js";
 import { getLiveCommerceRepository, resetLiveCommerceRepository } from "../../orchestration/reality-integration/live-commerce/repositories/sqlite-live-commerce-repository.js";
 import { runLiveCommerceSync } from "../../orchestration/reality-integration/live-commerce/services/live-commerce-integration-service.js";
+import { continueOneAmazonSellerInventoryImport } from "../../orchestration/reality-integration/live-commerce/services/amazon-seller-inventory-continuation.js";
 
 const priorPath = process.env.DATABASE_PATH;
 const priorMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
@@ -108,5 +109,44 @@ test("a partial seller inventory sync is queued without granting full-cycle inve
   assert.equal(job.durableReadbackVerified, false);
   assert.equal(getLiveCommerceRepository().listPendingRecoveries(ctx.workspaceId).length, 0);
   closeDatabase();
+  assert.equal(listImportedAmazonSellerInventory(ctx.workspaceId, ctx.credentials.sellerId)[0]?.sellerFulfilledQuantity, 5);
+  const status = getAmazonSellerInventoryImportStatus(ctx.workspaceId);
+  assert.equal(status?.pagesPending, true);
+  assert.doesNotMatch(JSON.stringify(status), /more|fake-token/);
+  assert.equal(await continueOneAmazonSellerInventoryImport(), "waiting");
+  getDatabase().prepare(`UPDATE amazon_seller_inventory_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  await getDatabase().requestCriticalPersist(); closeDatabase();
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0, json: { items: [] } }));
+  assert.equal(await continueOneAmazonSellerInventoryImport(), "completed");
+  closeDatabase();
+  assert.equal(getAmazonSellerInventoryImportStatus(ctx.workspaceId)?.status, "completed");
+  getDatabase().prepare(`UPDATE amazon_seller_inventory_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0,
+    json: { items: [row("SKU-NEW", 2)] } }));
+  assert.equal((await amazonUsSpApiAdapter.syncInventory(ctx)).itemsProcessed, 1);
+  closeDatabase();
+  assert.deepEqual(listCurrentAmazonSellerInventory(ctx.workspaceId).map(item => item.sku), ["SKU-NEW"]);
+});
+
+test("inventory continuation pauses after a provider failure and retains prior saved stock", async () => {
+  useDisk(); process.env.LIVE_COMMERCE_INTEGRATION_MODE = "production";
+  const vault = getCredentialVaultRepository().storeCredential({
+    workspaceId: ctx.workspaceId, providerId: ctx.providerId,
+    credentialType: "oauth", secretPayload: ctx.credentials,
+  });
+  new ConnectorConnectionRepository().upsert({ workspaceId: ctx.workspaceId,
+    connectorId: ctx.providerId, category: "commerce", status: "connected",
+    credentialsRef: vault.credentialsRef });
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0,
+    json: { items: [row("SKU-A", 5)], pagination: { nextToken: "more" } } }));
+  assert.equal((await runLiveCommerceSync({ workspaceId: ctx.workspaceId,
+    providerId: ctx.providerId, syncType: "inventory" })).status, "queued");
+  getDatabase().prepare(`UPDATE amazon_seller_inventory_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  await getDatabase().requestCriticalPersist(); closeDatabase(); resetConnectorRuntimeStates();
+  setHttpTransportOverride(async () => ({ ok: false, status: 403, latencyMs: 0, json: null }));
+  assert.equal(await continueOneAmazonSellerInventoryImport(), "paused");
+  closeDatabase();
+  assert.equal(getAmazonSellerInventoryImportStatus(ctx.workspaceId)?.status, "paused");
+  assert.equal(await continueOneAmazonSellerInventoryImport(), "idle");
   assert.equal(listImportedAmazonSellerInventory(ctx.workspaceId, ctx.credentials.sellerId)[0]?.sellerFulfilledQuantity, 5);
 });

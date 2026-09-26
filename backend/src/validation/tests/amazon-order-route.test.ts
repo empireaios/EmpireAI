@@ -40,6 +40,8 @@ test("production-critical Amazon import route enforces founder identity before r
       ["POST", "/commerce/amazon-us/orders/sync"],
       ["GET", "/commerce/amazon-us/listings/imported"],
       ["POST", "/commerce/amazon-us/listings/sync"],
+      ["GET", "/commerce/amazon-us/inventory/imported"],
+      ["POST", "/commerce/amazon-us/inventory/sync"],
     ] as const) {
       user = null;
       assert.equal((await app.inject({ method, url })).statusCode, 401);
@@ -55,9 +57,14 @@ test("production-critical Amazon import route enforces founder identity before r
     assert.equal(catalog.statusCode, 200);
     assert.deepEqual(catalog.json().listings, []);
     assert.equal(catalog.json().commerceEffect, "none");
+    const inventory = await app.inject({ method: "GET", url: "/commerce/amazon-us/inventory/imported" });
+    assert.equal(inventory.statusCode, 200);
+    assert.deepEqual(inventory.json().sellerManagedInventory, []);
+    assert.equal(inventory.json().supplierStockVerified, false);
     const blocked = await app.inject({ method: "POST", url: "/commerce/amazon-us/orders/sync" });
     assert.equal(blocked.statusCode, 409); // No sandbox fixture may be mistaken for seller data.
     assert.equal((await app.inject({ method: "POST", url: "/commerce/amazon-us/listings/sync" })).statusCode, 409);
+    assert.equal((await app.inject({ method: "POST", url: "/commerce/amazon-us/inventory/sync" })).statusCode, 409);
     assert.deepEqual(audits, []);
   } finally { await app.close(); }
 });

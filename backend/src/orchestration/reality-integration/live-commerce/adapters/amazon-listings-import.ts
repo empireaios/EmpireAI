@@ -10,7 +10,8 @@ import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types
 
 type Listing = {
   sku: string; asin: string | null; marketplaceId: string;
-  name: string | null; status: string[]; updatedAt: string | null; sourceSha256: string;
+  name: string | null; status: string[]; updatedAt: string | null;
+  cycleStartedAt: string; sourceSha256: string;
 };
 type Cursor = {
   sellerId: string; nextToken: string; seen: number;
@@ -45,7 +46,7 @@ function cursor(ctx: LiveCommerceAdapterContext): Cursor | null {
   `).get({ workspaceId: ctx.workspaceId, providerId: ctx.providerId }) as Cursor | undefined;
   return row ?? null;
 }
-function listing(raw: unknown, marketplaceId: string): Listing {
+function listing(raw: unknown, marketplaceId: string, cycleStartedAt: string): Listing {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("Amazon listing malformed");
   const item = raw as Record<string, unknown>;
   if (typeof item.sku !== "string" || !item.sku.trim() || item.sku.length > 256 ||
@@ -68,6 +69,7 @@ function listing(raw: unknown, marketplaceId: string): Listing {
     marketplaceId, name: typeof summary.itemName === "string" ? summary.itemName.slice(0, 512) : null,
     status: summary.status as string[] | undefined ?? [],
     updatedAt: summary.lastUpdatedDate as string | undefined ?? null,
+    cycleStartedAt,
     sourceSha256: createHash("sha256").update(JSON.stringify(raw)).digest("hex"),
   };
 }
@@ -126,7 +128,8 @@ export function listImportedAmazonUsListings(workspaceId: string, sellerId: stri
 
 export function listCurrentAmazonUsListings(workspaceId: string): Listing[] {
   const selected = cursor({ workspaceId, providerId: "amazon-us", mode: "production", credentials: {} });
-  return selected ? listImportedAmazonUsListings(workspaceId, selected.sellerId) : [];
+  return selected ? listImportedAmazonUsListings(workspaceId, selected.sellerId)
+    .filter(row => row.cycleStartedAt === selected.startedAt) : [];
 }
 
 /** No opaque provider token or access credential is exposed to the caller. */
@@ -213,7 +216,7 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
       tokenAfter && tokenAfter === active.nextToken || active.seen + body.items.length > 50_000) {
     throw new Error("Amazon US listing pagination invalid");
   }
-  const rows = body.items.map(raw => listing(raw, marketplaceId));
+  const rows = body.items.map(raw => listing(raw, marketplaceId, active.startedAt));
   if (new Set(rows.map(row => row.sku)).size !== rows.length) throw new Error("Amazon listing duplicate SKU page");
   const next: Cursor = {
     sellerId: seller, nextToken: tokenAfter,

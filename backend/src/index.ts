@@ -34,6 +34,7 @@ async function main() {
   let shutdownAction: (() => Promise<void>) | null = null;
   let stopAmazonOrderImport: (() => Promise<void>) | null = null;
   let stopAmazonListingsImport: (() => Promise<void>) | null = null;
+  let stopAmazonSellerInventory: (() => Promise<void>) | null = null;
   let shuttingDown = false;
   const handleShutdown = async () => {
     if (shuttingDown) return;
@@ -72,6 +73,7 @@ async function main() {
   shutdownAction = async () => {
     await stopAmazonOrderImport?.();
     await stopAmazonListingsImport?.();
+    await stopAmazonSellerInventory?.();
     await shutdown();
   };
   finishStartup();
@@ -106,6 +108,10 @@ async function main() {
       "./orchestration/reality-integration/live-commerce/services/amazon-listings-continuation.js"
     );
     if (!shuttingDown) stopAmazonListingsImport = startAmazonUsListingsImportContinuation();
+    const { startAmazonSellerInventoryContinuation } = await import(
+      "./orchestration/reality-integration/live-commerce/services/amazon-seller-inventory-continuation.js"
+    );
+    if (!shuttingDown) stopAmazonSellerInventory = startAmazonSellerInventoryContinuation();
   }
 
   if (finishRouteRegistration && process.env.EMPIRE_ENABLE_EXTENSION_ROUTES === "true") {

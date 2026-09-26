@@ -6,7 +6,7 @@ import { afterEach, test } from "node:test";
 import { ConnectorConnectionRepository } from "../../connectors/connection-repository.js";
 import { closeDatabase, getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
-import { getAmazonUsListingsImportStatus, listImportedAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
+import { getAmazonUsListingsImportStatus, listCurrentAmazonUsListings, listImportedAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
 import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { getCredentialVaultRepository, resetCredentialVaultRepository } from "../../orchestration/reality-integration/repositories/sqlite-credential-vault-repository.js";
 import { resetConnectorRuntimeStates } from "../../orchestration/reality-integration/services/connector-runtime.js";
@@ -135,6 +135,12 @@ test("owner-started partial listing page queues normal continuation without a re
   closeDatabase();
   assert.equal(getAmazonUsListingsImportStatus(ctx.workspaceId)?.status, "completed");
   assert.equal(listImportedAmazonUsListings(ctx.workspaceId, ctx.credentials.sellerId).length, 1);
+  getDatabase().prepare(`UPDATE amazon_listing_import_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
+  setHttpTransportOverride(async () => ({ ok: true, status: 200, latencyMs: 0,
+    json: { items: [row("SKU-NEW")] } }));
+  assert.equal((await amazonUsSpApiAdapter.syncCatalog(ctx)).itemsProcessed, 1);
+  closeDatabase();
+  assert.deepEqual(listCurrentAmazonUsListings(ctx.workspaceId).map(item => item.sku), ["SKU-NEW"]);
 });
 
 test("continuation pauses an owner-started cursor after provider rejection", async () => {

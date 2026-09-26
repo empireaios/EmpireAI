@@ -56,6 +56,29 @@ test("historic completed fixture jobs cannot unlock production commerce readines
   }
 });
 
+test("empty seller catalog or inventory imports never count as a verified full cycle", () => {
+  const prior = process.env.DATABASE_PATH;
+  process.env.DATABASE_PATH = ":memory:amazon-empty-stock-evidence";
+  try {
+    resetDatabaseInstance();
+    const repo = getLiveCommerceRepository();
+    for (const type of ["catalog", "inventory", "pricing", "orders"] as const) {
+      repo.saveSyncJob({ jobId: `empty-${type}`, workspaceId: "ws-amazon-empty",
+        providerId: "amazon-us", syncType: type, status: "completed",
+        itemsProcessed: type === "catalog" || type === "inventory" ? 0 : 1,
+        itemsFailed: 0, durableReadbackVerified: true, errorMessage: null,
+        mode: "production", startedAt: new Date().toISOString(),
+        completedAt: new Date().toISOString() });
+    }
+    const assessment = assessLiveCommerceGoLive("ws-amazon-empty");
+    assert.ok(assessment.blockers.some(b => b.includes("Full verified Amazon US sync cycle incomplete")));
+  } finally {
+    resetLiveCommerceRepository(); resetDatabaseInstance();
+    if (prior === undefined) delete process.env.DATABASE_PATH;
+    else process.env.DATABASE_PATH = prior;
+  }
+});
+
 test("production Amazon notifications cannot be manufactured with caller-supplied HMAC secrets", () => {
   const priorMode = process.env.LIVE_COMMERCE_INTEGRATION_MODE;
   const priorPath = process.env.DATABASE_PATH;
