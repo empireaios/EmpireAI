@@ -10,6 +10,7 @@ import { logger } from "./config/logger.js";
 import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
 import { getAdmissionStats } from "./runtime/production-admission-control.js";
 import { installCaptureHttpAdmission } from "./runtime/capture-http-admission.js";
+import { withLocalJsonAuthorityCapture } from "./orchestration/shadow-ceo-integration/local-json-capture.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { registerAuthRoutes } from "./auth/routes.js";
@@ -241,7 +242,7 @@ export type EmpireApp = {
    * workers, all stores, Redis and other processes before any capture claim.
    */
   withDrainedHttpAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
-  /** Candidate local HTTP + Brain worker + Pillow boot boundary; external workers,
+  /** Candidate local HTTP + Brain worker + Pillow boot + authority JSON boundary; external workers,
    * schedulers, stores and Redis remain independent.
    */
   withDrainedLocalAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
@@ -600,7 +601,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedLocalAdmission: (capture, timeoutMs) =>
         captureHttpAdmission.withDrainedAdmission(
           () => brain.workerPool.withPausedProcessing(
-            () => pillowBootTask.withPausedExecution(capture, timeoutMs), timeoutMs), timeoutMs),
+            () => pillowBootTask.withPausedExecution(
+              () => withLocalJsonAuthorityCapture(capture), timeoutMs), timeoutMs), timeoutMs),
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -617,7 +619,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedLocalAdmission: (capture, timeoutMs) =>
       captureHttpAdmission.withDrainedAdmission(
         () => brain.workerPool.withPausedProcessing(
-          () => pillowBootTask.withPausedExecution(capture, timeoutMs), timeoutMs), timeoutMs),
+          () => pillowBootTask.withPausedExecution(
+            () => withLocalJsonAuthorityCapture(capture), timeoutMs), timeoutMs), timeoutMs),
   };
 }
 

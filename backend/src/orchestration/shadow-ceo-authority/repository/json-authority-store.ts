@@ -24,6 +24,22 @@ export type AuthorityStoreFile = {
   budget: BudgetEnvelope;
 };
 
+let captureFenceHeld = false;
+
+/** Synchronous, local-process write fence. Other processes need a separate
+ * shared admission protocol before this can support a complete snapshot.
+ */
+export function acquireAuthorityJsonCaptureFence(): () => void {
+  if (captureFenceHeld) throw new Error("AUTHORITY_JSON_CAPTURE_BUSY");
+  captureFenceHeld = true;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    captureFenceHeld = false;
+  };
+}
+
 export function resolveStorePath(baseDir?: string): string {
   const dir = baseDir ?? resolveShadowCeoAuthorityDir();
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -63,6 +79,7 @@ export function saveAuthorityStore(
   store: AuthorityStoreFile,
   baseDir?: string,
 ): void {
+  if (captureFenceHeld) throw new Error("AUTHORITY_JSON_CAPTURE_FENCED");
   const p = resolveStorePath(baseDir);
   const temp = `${p}.tmp-${process.pid}-${randomUUID()}`;
   try {

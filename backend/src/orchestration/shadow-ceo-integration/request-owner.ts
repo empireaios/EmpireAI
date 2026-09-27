@@ -45,6 +45,20 @@ export type RequestOwnerRecord = {
   instructionDigest: string;
 };
 
+let captureFenceHeld = false;
+
+/** Synchronous, local-process write fence for owner records. */
+export function acquireRequestOwnerCaptureFence(): () => void {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_BUSY");
+  captureFenceHeld = true;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    captureFenceHeld = false;
+  };
+}
+
 function ownersPath(): string {
   return path.join(resolveShadowCeoDataRoot(), "shadow-ceo-request-owners.json");
 }
@@ -71,6 +85,7 @@ function loadOwners(): Record<string, RequestOwnerRecord> {
 }
 
 function saveOwners(map: Record<string, RequestOwnerRecord>): void {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_FENCED");
   const p = ownersPath();
   fs.mkdirSync(path.dirname(p), { recursive: true });
   const temp = `${p}.tmp-${process.pid}-${randomUUID()}`;
@@ -130,6 +145,7 @@ export function getRequestOwner(requestId: string): RequestOwnerRecord | null {
 }
 
 export function persistRequestOwner(record: RequestOwnerRecord): RequestOwnerRecord {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_FENCED");
   const existing = findOwnerByDigest(record.instructionDigest);
   if (existing) {
     // Recover same request on retry — never mix with a different instruction.
