@@ -587,6 +587,22 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   await breathe();
   await registerCockpitCriticalRoutes(routeDeps);
 
+  const withDrainedLocalAdmission = <T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> => {
+    if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 30_000) {
+      throw new Error("Local capture drain timeout invalid");
+    }
+    const deadline = performance.now() + timeoutMs;
+    const remaining = () => {
+      const value = Math.floor(deadline - performance.now());
+      if (value < 1) throw new Error("Local capture drain deadline elapsed; no snapshot taken");
+      return value;
+    };
+    return captureHttpAdmission.withDrainedAdmission(
+      () => brain.workerPool.withPausedProcessing(
+        () => pillowBootTask.withPausedExecution(
+          () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), timeoutMs);
+  };
+
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
@@ -598,11 +614,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
       withDrainedHttpAdmission: (capture, timeoutMs) =>
         captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
-      withDrainedLocalAdmission: (capture, timeoutMs) =>
-        captureHttpAdmission.withDrainedAdmission(
-          () => brain.workerPool.withPausedProcessing(
-            () => pillowBootTask.withPausedExecution(
-              () => withLocalJsonAuthorityCapture(capture), timeoutMs), timeoutMs), timeoutMs),
+      withDrainedLocalAdmission,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -616,11 +628,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
     withDrainedHttpAdmission: (capture, timeoutMs) =>
       captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
-    withDrainedLocalAdmission: (capture, timeoutMs) =>
-      captureHttpAdmission.withDrainedAdmission(
-        () => brain.workerPool.withPausedProcessing(
-          () => pillowBootTask.withPausedExecution(
-            () => withLocalJsonAuthorityCapture(capture), timeoutMs), timeoutMs), timeoutMs),
+    withDrainedLocalAdmission,
   };
 }
 
