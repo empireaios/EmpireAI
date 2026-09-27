@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T13:16:33Z",
+  "updatedAt": "2026-09-27T13:28:17Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "0f3d596c278f963416d711b5d5fee9cb0f835684",
+    "lastVerifiedIntegrationHead": "532c6d7e2dbef90dab489db5780a0b3e01e7ba4a",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 0f3d596c CJ discovery readiness truth, native account ledger/backup and ordered SQL.js capture passed exact-head Product/Semantic/Runtime; protected old production untouched",
-    "candidateCodeHead": "0f3d596c278f963416d711b5d5fee9cb0f835684",
-    "branchTipNote": "0f3d596c code and earlier b395b9c1 CJ offline backup passed exact-head Product/Semantic/Runtime; handoff-only commit follows. No real provider calls or production changes.",
+    "status": "draft unmerged; 532c6d7e candidate HTTP admission/drain, ordered two-handle save, native CJ point ledger/backup and readiness truth passed exact-head Product/Semantic/Runtime; protected old production untouched",
+    "candidateCodeHead": "532c6d7e2dbef90dab489db5780a0b3e01e7ba4a",
+    "branchTipNote": "532c6d7e code passed exact-head Product/Semantic/Runtime; handoff-only commit follows; no production mutation or real provider calls.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -124,7 +124,8 @@
       "89382f6f: exact persisted seller inventory field assertion replaces regex that mistook ISO timestamp 01.000Z for offer price 1.00; focused local tests 6/6 pass; exact-head hosted CI running.",
       "080c51d0: candidate CJ presale reserves in native transactional account ledger with stable account identity and credential fingerprint, committed readback before dispatch, independent worker contention and restart proof; old SQL.js point history blocks migration. Three exact-head hosted workflows passed. No provider calls.",
       "b395b9c1: optional dedicated CJ point ledger included in quiesced offline backup/restore with schema/lock/digest checks when present; 12 local offline tests and backend typecheck passed; all three exact-head hosted workflows passed. Not an old-production live RAM capture.",
-      "0f3d596c: candidate commerce operating-loop discovery status BLOCKED when CJ stable account, point limits or absolute disk path missing; local tests 12/12 and backend typecheck pass; all three exact-head hosted workflows passed. Configuration alone still not provider proof."
+      "0f3d596c: candidate commerce operating-loop discovery status BLOCKED when CJ stable account, point limits or absolute disk path missing; local tests 12/12 and backend typecheck pass; all three exact-head hosted workflows passed. Configuration alone still not provider proof.",
+      "532c6d7e: candidate app exposes bounded HTTP request admission/drain callback, rejecting all new business requests while in-flight requests settle; /health/live remains responsive, timeout/error restores admission. Product CI explicit isolated test added; local tests and backend typecheck pass, all three exact-head hosted workflows passed. This does not stop workers, Redis, other processes or old production."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -446,6 +447,17 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36321584278",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36321584376",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36321584368"
+    },
+    "candidateHttpCaptureAdmission": {
+      "head": "532c6d7e2dbef90dab489db5780a0b3e01e7ba4a",
+      "localTests": "2/2 PASS",
+      "backendTypecheck": "PASS",
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36322092074",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36322092156",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36322092105",
+      "oldProductionInstalled": false,
+      "wholeAppQuiescence": false
     }
   },
   "failedAttempts": [
@@ -486,7 +498,7 @@
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production."
   ],
   "nextExecutableActions": [
-    "After both candidate SQL.js fences are acquired before either save, finish ingress admission and worker drain, request-owner/authority JSON, native mission/execution, Redis and cross-process quiescence on an isolated canary. Old process still has no validated safe in-process entrypoint; do not restart, redeploy or mutate it.",
+    "Candidate now has both SQL.js handles fenced before first save and an isolated HTTP admission/drain primitive. Next coordinate admission, scheduler/worker pause, JSON/native stores, Redis and other processes in one tested capture callback with rollback/reopen on failure. Old process still has no validated safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
     "Continue exact-VID CJ stock/cost/freight receipt persistence, fulfilment compliance and seller fee reconciliation. Candidate native point ledger is cross-process safe with stable account ID; existing SQL.js point history blocks dispatch pending verified migration. New ledger offline backup inclusion passed Product/Semantic/Runtime; no real provider call authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
