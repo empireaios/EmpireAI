@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T13:28:17Z",
+  "updatedAt": "2026-09-27T13:31:04Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -47,7 +47,8 @@
       },
       "latestReadOnlyStatusAt": "2026-09-26T14:33:00Z",
       "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
-      "completedFlushAfterPriorCheckpointVerified": false
+      "completedFlushAfterPriorCheckpointVerified": false,
+      "readOnlyLatest": "2026-09-27 13:30 UTC list_deployments project 75374474: latest production deployment 86302878-25b5-4990-87d9-86580cd4e976 SUCCESS from old-main 21384342c401def948926904913840e63c18dff7; no newer deployment observed. Listing alone cannot prove RAM persistence, quiescence or runtime health. No production operation invoked."
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
