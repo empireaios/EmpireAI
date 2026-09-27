@@ -241,7 +241,7 @@ export type EmpireApp = {
    * workers, all stores, Redis and other processes before any capture claim.
    */
   withDrainedHttpAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
-  /** Candidate local HTTP + Brain worker boundary; external workers,
+  /** Candidate local HTTP + Brain worker + Pillow boot boundary; external workers,
    * schedulers, stores and Redis remain independent.
    */
   withDrainedLocalAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
@@ -599,7 +599,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
       withDrainedLocalAdmission: (capture, timeoutMs) =>
         captureHttpAdmission.withDrainedAdmission(
-          () => brain.workerPool.withPausedProcessing(capture, timeoutMs), timeoutMs),
+          () => brain.workerPool.withPausedProcessing(
+            () => pillowBootTask.withPausedExecution(capture, timeoutMs), timeoutMs), timeoutMs),
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -615,7 +616,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
     withDrainedLocalAdmission: (capture, timeoutMs) =>
       captureHttpAdmission.withDrainedAdmission(
-        () => brain.workerPool.withPausedProcessing(capture, timeoutMs), timeoutMs),
+        () => brain.workerPool.withPausedProcessing(
+          () => pillowBootTask.withPausedExecution(capture, timeoutMs), timeoutMs), timeoutMs),
   };
 }
 
