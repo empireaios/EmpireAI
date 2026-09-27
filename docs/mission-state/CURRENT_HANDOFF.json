@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T13:31:04Z",
+  "updatedAt": "2026-09-27T13:41:47Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "532c6d7e2dbef90dab489db5780a0b3e01e7ba4a",
+    "lastVerifiedIntegrationHead": "fa8d908e9183cf5ebbd2ec8356ce7d759e944339",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 532c6d7e candidate HTTP admission/drain, ordered two-handle save, native CJ point ledger/backup and readiness truth passed exact-head Product/Semantic/Runtime; protected old production untouched",
-    "candidateCodeHead": "532c6d7e2dbef90dab489db5780a0b3e01e7ba4a",
-    "branchTipNote": "532c6d7e code passed exact-head Product/Semantic/Runtime; handoff-only commit follows; no production mutation or real provider calls.",
+    "status": "draft unmerged; fa8d908e candidate local Brain worker and HTTP admission/drain, ordered two-handle save, native CJ ledger/backup and readiness truth passed exact-head Product/Semantic/Runtime; protected production untouched",
+    "candidateCodeHead": "fa8d908e9183cf5ebbd2ec8356ce7d759e944339",
+    "branchTipNote": "fa8d908e code passed exact-head Product/Semantic/Runtime, handoff-only update follows. Old production remains on main with unknown RAM; no real provider calls.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -126,7 +126,8 @@
       "080c51d0: candidate CJ presale reserves in native transactional account ledger with stable account identity and credential fingerprint, committed readback before dispatch, independent worker contention and restart proof; old SQL.js point history blocks migration. Three exact-head hosted workflows passed. No provider calls.",
       "b395b9c1: optional dedicated CJ point ledger included in quiesced offline backup/restore with schema/lock/digest checks when present; 12 local offline tests and backend typecheck passed; all three exact-head hosted workflows passed. Not an old-production live RAM capture.",
       "0f3d596c: candidate commerce operating-loop discovery status BLOCKED when CJ stable account, point limits or absolute disk path missing; local tests 12/12 and backend typecheck pass; all three exact-head hosted workflows passed. Configuration alone still not provider proof.",
-      "532c6d7e: candidate app exposes bounded HTTP request admission/drain callback, rejecting all new business requests while in-flight requests settle; /health/live remains responsive, timeout/error restores admission. Product CI explicit isolated test added; local tests and backend typecheck pass, all three exact-head hosted workflows passed. This does not stop workers, Redis, other processes or old production."
+      "532c6d7e: candidate app exposes bounded HTTP request admission/drain callback, rejecting all new business requests while in-flight requests settle; /health/live remains responsive, timeout/error restores admission. Product CI explicit isolated test added; local tests and backend typecheck pass, all three exact-head hosted workflows passed. This does not stop workers, Redis, other processes or old production.",
+      "fa8d908e: candidate Brain local BullMQ worker pause waits for active jobs and resumes after capture/error, refuses overlapping capture and keeps refusal until a timed-out drain settles; composed under HTTP admission. Four focused local tests and backend typecheck pass; all three exact-head hosted workflows passed. Redis producers, other worker instances, JSON/native/Shadow stores remain outside boundary."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -459,6 +460,17 @@
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36322092105",
       "oldProductionInstalled": false,
       "wholeAppQuiescence": false
+    },
+    "candidateLocalWorkerCapture": {
+      "head": "fa8d908e9183cf5ebbd2ec8356ce7d759e944339",
+      "localTests": "4/4 PASS",
+      "backendTypecheck": "PASS",
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36322954264",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36322954261",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36322954258",
+      "oldProductionInstalled": false,
+      "wholeAppQuiescence": false
     }
   },
   "failedAttempts": [
@@ -499,7 +511,7 @@
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production."
   ],
   "nextExecutableActions": [
-    "Candidate now has both SQL.js handles fenced before first save and an isolated HTTP admission/drain primitive. Next coordinate admission, scheduler/worker pause, JSON/native stores, Redis and other processes in one tested capture callback with rollback/reopen on failure. Old process still has no validated safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
+    "Candidate HTTP admission and local Brain worker drain now compose with independently verified two-SQL.js-handle fence. Next coordinate other scheduled producers/worker processes, request-owner/authority JSON, native mission/execution, Redis and Shadow stores in one tested all-writer capture with independent reopen evidence. Old process has no validated safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
     "Continue exact-VID CJ stock/cost/freight receipt persistence, fulfilment compliance and seller fee reconciliation. Candidate native point ledger is cross-process safe with stable account ID; existing SQL.js point history blocks dispatch pending verified migration. New ledger offline backup inclusion passed Product/Semantic/Runtime; no real provider call authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
