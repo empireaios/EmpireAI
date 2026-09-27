@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T14:19:31Z",
+  "updatedAt": "2026-09-27T23:48:59Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "d2beb2ec359dc115d9093f252951069e6fe8bb3d",
+    "lastVerifiedIntegrationHead": "f9e400efa2105cfe47f39d7cf0b14f1526f224bd",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; d2beb2ec local Pillow boot drain composed with HTTP and Brain worker admission, exact-head Product/Semantic/Runtime passed; protected production untouched",
-    "candidateCodeHead": "d2beb2ec359dc115d9093f252951069e6fe8bb3d",
-    "branchTipNote": "d2beb2ec code passed exact-head Product/Semantic/Runtime; handoff-only update follows. Old production remains on main with unknown RAM; no real provider calls.",
+    "status": "draft unmerged; local JSON authority fence plus prior HTTP, Brain worker and Pillow boot drains passed exact-head Product/Semantic/Runtime; protected production untouched",
+    "candidateCodeHead": "f9e400efa2105cfe47f39d7cf0b14f1526f224bd",
+    "branchTipNote": "f9e400ef passed all three hosted checks; external writers and whole-app quiescence still pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -53,7 +53,9 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "Owner reported reconnecting Vercel with EmpireAI team access. 2026-09-27 connected app still lists teams=[] and returns HTTP 403 for exact team_gdcskAnaJteKW7BYtw8zlSWy and known deployment: must re-authenticate to this scope. Current revision unverified. No authenticated local Vercel CLI; no deployment mutation."
+      "lastRefreshedVia": "2026-09-27 connected app project lookup succeeds for empireai prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr. Deployment ID lookup succeeds for READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN, source recovery branch commit 1ff5d85a, target null. Team-scoped listing still returns 403 reauthenticate to empireai-os scope; current production revision unverified. No deployment mutation.",
+      "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
+      "teamScopedListing": "403 Forbidden"
     }
   },
   "authority": {
@@ -91,7 +93,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36248467329",
       "https://github.com/empireaios/EmpireAI/actions/runs/36325100779",
       "https://github.com/empireaios/EmpireAI/actions/runs/36325100778",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36325100777"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36325100777",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36325948044",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36325948158",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36325948090"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
