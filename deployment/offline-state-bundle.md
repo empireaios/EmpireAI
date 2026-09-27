@@ -2,7 +2,7 @@
 
 `offline-state-bundle.cjs` creates a private, integrity-bound file bundle for the
 existing primary SQL.js database, native mission snapshot and native execution
-outbox. It restores only into a new directory. It never replaces live files,
+outbox, plus the dedicated CJ point ledger when present. It restores only into a new directory. It never replaces live files,
 stops services, calls a provider, uploads data or spends money.
 
 This is **offline support**, not a coordinated production snapshot or a complete
@@ -17,14 +17,16 @@ does not establish that unsaved SQL.js RAM or old Shadow CEO stores were capture
 
 ## Mandatory prerequisite
 
-Stop every process that can write any of the three databases, disable automatic
+Stop every process that can write any of these databases, including the CJ point
+ledger if present, disable automatic
 restart, wait for all admitted work to settle, and verify the final SQL.js flush
 and process exits. Retain the actual shutdown/flush evidence separately and use
 its SHA-256 in the request. Do not assert success after a forced or failed save.
 Keep writers stopped through completion and do not point a running process at a
 restore destination. No production shutdown or cutover is performed by this tool.
 
-The tool obtains simultaneous native `BEGIN EXCLUSIVE` locks and verifies unchanged
+The tool obtains simultaneous native `BEGIN EXCLUSIVE` locks, including on the
+present CJ ledger, and verifies unchanged
 source identity/hashes. **SQL.js exports replace files and do not respect these
 locks.** The checks can detect changes but cannot prove that all such writers
 stopped. The manifest therefore records `allWriterShutdownVerifiedByTool:false`.
@@ -55,8 +57,13 @@ Create a private JSON request outside the repository. Example field structure:
 
 Run `node deployment/offline-state-bundle.cjs backup /private/backup-request.json`.
 Both paths must be absolute and canonical; the destination must not exist and
-its parent must already exist. The three source names are `DATABASE_PATH`,
+its parent must already exist. The three mandatory source names are `DATABASE_PATH`,
 `DATABASE_PATH.missions.sqlite`, and `DATABASE_PATH.mission-execution.sqlite`.
+If `DATABASE_PATH.cj-points.sqlite` exists, it is schema-checked, locked and included
+with exact bytes. A broken link, unsupported schema, journal sidecar or corrupt
+ledger refuses publication; it is never silently omitted. Existing legacy SQL.js
+CJ point reservations still require a separately verified migration before new
+native-ledger commerce may dispatch.
 When native migration history binds `DATABASE_PATH.missions.json`, that original
 file is also mandatory and included without modification.
 

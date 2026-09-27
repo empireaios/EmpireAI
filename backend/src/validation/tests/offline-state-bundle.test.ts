@@ -11,6 +11,7 @@ import { EmpireDatabase } from "../../brain/sqlite-database.js";
 import { PillowHost } from "../../orchestration/pillow-host/pillow-host.js";
 import { createMissionExecutionService } from "../../orchestration/pillow-host/mission-execution/service.js";
 import { AUTHORITY_WORKER } from "../../orchestration/pillow-host/mission-execution/contract.js";
+import { cjPointLedgerPath, reserveCjPoints } from "../../orchestration/pillow-commerce-presale/cj-native-point-ledger.js";
 const require = createRequire(import.meta.url);
 const { ACK, FILES, backupState, restoreState } = require("../../../../deployment/offline-state-bundle.cjs");
 const buildSha = "a".repeat(40);
@@ -63,6 +64,30 @@ test("quiesced real primary/native stores restore and reopen with identical comp
   assert.equal(manifest.prerequisite.allWriterShutdownVerifiedByTool, false);
   assert.equal(manifest.buildIdentityEvidence, "DECLARED_SOURCE_BUILD_NOT_OBSERVED_RUNTIME");
   for (const file of manifest.files) assert.equal(fs.statSync(path.join(f.options.destination, file.filename)).mode & 0o777, 0o600);
+ } finally { f.cleanup(); }
+});
+
+test("offline backup and restore preserve native CJ point history; corrupt ledger refuses publication", async () => {
+ const f = await fixture(); try {
+  const ledgerPath = cjPointLedgerPath(f.primary);
+  reserveCjPoints({ filename: ledgerPath, accountId: "test-account", credentialSha256: hash("offline-credential"),
+   cycleId: "test-cycle", day: "2026-09-27", requestPath: "/product/list", points: 50, cycleLimit: 60, dailyLimit: 100 });
+  const original = hash(fs.readFileSync(ledgerPath));
+  const result = backupState(f.options);
+  const manifest = JSON.parse(fs.readFileSync(path.join(f.options.destination, "manifest.json"), "utf8"));
+  assert.equal(manifest.files.find((entry: { role: string }) => entry.role === "cj_points")?.sha256, original);
+  const restored = restoreState(restoreOptions(f, result));
+  const db = new DatabaseSync(cjPointLedgerPath(restored.databasePath), { readOnly: true });
+  try {
+   assert.deepEqual(db.prepare("SELECT account_id,points FROM cj_point_reservations").all().map(row =>
+    ({ account_id: row.account_id, points: row.points })),
+    [{ account_id: "test-account", points: 50 }]);
+  } finally { db.close(); }
+  assert.equal(hash(fs.readFileSync(cjPointLedgerPath(restored.databasePath))), original);
+  fs.unlinkSync(ledgerPath);
+  fs.writeFileSync(ledgerPath, "not-a-database");
+  assert.throws(() => backupState({ ...f.options, destination: path.join(f.directory, "corrupt-bundle") }));
+  assert.equal(fs.existsSync(path.join(f.directory, "corrupt-bundle")), false);
  } finally { f.cleanup(); }
 });
 

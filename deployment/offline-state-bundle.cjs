@@ -13,6 +13,7 @@ const FILES = [
   { role: 'missions', filename: 'empireai-brain.db.missions.sqlite', suffix: '.missions.sqlite', max: 64 * 1024 * 1024 },
   { role: 'executions', filename: 'empireai-brain.db.mission-execution.sqlite', suffix: '.mission-execution.sqlite', max: 16 * 1024 * 1024 },
 ];
+const CJ = { role: 'cj_points', filename: 'empireai-brain.db.cj-points.sqlite', suffix: '.cj-points.sqlite', max: 16 * 1024 * 1024 };
 const LEGACY = { role: 'legacy_missions', filename: 'empireai-brain.db.missions.json', suffix: '.missions.json', max: 16 * 1024 * 1024 };
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const exactKeys = (object, keys) => object && typeof object === 'object' && !Array.isArray(object) &&
@@ -121,6 +122,22 @@ function withLockedDatabases(paths, scope, operation) {
     for (const { db } of handles.reverse()) { try { if (db.isTransaction) db.exec('ROLLBACK'); } finally { db.close(); } }
   }
 }
+function withLockedCjLedger(filename, operation) {
+  const before = regular(filename, CJ.max); absentSidecars(filename);
+  const db = new DatabaseSync(filename, { timeout: 0, allowExtension: false });
+  try {
+    db.exec('PRAGMA trusted_schema=OFF; PRAGMA busy_timeout=0;');
+    check(db.prepare('PRAGMA application_id').get().application_id === 0x454d4350 &&
+      db.prepare('PRAGMA user_version').get().user_version === 1 &&
+      tables(db) === 'table:cj_accounts,table:cj_point_reservations' &&
+      db.prepare('PRAGMA journal_mode').get().journal_mode === 'delete', 'Unsupported CJ point ledger schema or durability mode');
+    db.exec('BEGIN EXCLUSIVE');
+    const rows = db.prepare('PRAGMA quick_check').all();
+    check(rows.length === 1 && rows[0].quick_check === 'ok' && sameFile(before, regular(filename, CJ.max)),
+      'CJ point ledger integrity or identity changed');
+    return operation({ db, before, filename });
+  } finally { if (db.isTransaction) db.exec('ROLLBACK'); db.close(); }
+}
 function withNewStaging(destination, operation) {
   check(path.isAbsolute(destination) && path.resolve(destination) === destination && fs.realpathSync(path.dirname(destination)) === path.dirname(destination), 'Canonical absolute destination with existing parent required');
   // Exclusive empty reservation prevents another invocation from owning this name.
@@ -153,7 +170,7 @@ function withNewStaging(destination, operation) {
       // Remove only the exact names created by this operation; unknown contents
       // cause rmdir to fail and remain for investigation.
       if (ownStage()) {
-        for (const filename of [...FILES.map(f => f.filename), LEGACY.filename, 'manifest.json', 'restore-receipt.json']) {
+        for (const filename of [...FILES.map(f => f.filename), CJ.filename, LEGACY.filename, 'manifest.json', 'restore-receipt.json']) {
           try { fs.unlinkSync(path.join(stage, filename)); } catch (error) { if (error.code !== 'ENOENT') throw error; }
         }
         try { fs.rmdirSync(stage); } catch (error) { if (!['ENOENT','ENOTEMPTY'].includes(error.code)) throw error; }
@@ -171,7 +188,7 @@ function validateCopiedSet(directory, files, proofFilename, proofBytes) {
   const proof = digestFile(path.join(directory, proofFilename), 64 * 1024);
   check(proof.size === Buffer.byteLength(proofBytes) && proof.sha256 === hash(proofBytes), 'Staged proof bytes changed; refusing publication');
   for (const file of files) {
-    const spec = [...FILES, LEGACY].find(item => item.filename === file.filename);
+    const spec = [...FILES, CJ, LEGACY].find(item => item.filename === file.filename);
     const actual = digestFile(path.join(directory, file.filename), spec.max);
     check(actual.size === file.size && actual.sha256 === file.sha256, 'Staged file changed before publication');
     if (spec !== LEGACY) absentSidecars(path.join(directory, file.filename));
@@ -186,7 +203,14 @@ function backupState(options) {
   const primary = path.resolve(options.databasePath);
   check(primary === options.databasePath, 'Canonical absolute primary path required');
   return withLockedDatabases(FILES.map(file => primary + file.suffix), options.scope, (handles, observed) => {
+    const ledgerPath = primary + CJ.suffix;
+    let hasLedger;
+    try { fs.lstatSync(ledgerPath); hasLedger = true; }
+    catch (error) { if (error.code !== 'ENOENT') throw error; hasLedger = false; }
+    const lockCj = operation => hasLedger ? withLockedCjLedger(ledgerPath, operation) : operation(null);
+    return lockCj(cjHandle => {
     const sources = FILES.map((file, index) => ({ ...file, sourcePath: handles[index].filename }));
+    if (cjHandle) sources.push({ ...CJ, sourcePath: cjHandle.filename });
     const legacyPath = primary + LEGACY.suffix;
     check(!fs.existsSync(legacyPath + '.lock'), 'Legacy mission writer lock present; reconciliation required');
     if (observed.legacySha256) {
@@ -205,6 +229,13 @@ function backupState(options) {
       check(sameFile(handles[i].before, regular(handles[i].filename, FILES[i].max)) &&
         digestFile(handles[i].filename, FILES[i].max).sha256 === files[i].sha256, 'Writer activity detected; backup not committed');
     }
+    if (cjHandle) {
+      const receipt = files.find(file => file.role === CJ.role);
+      absentSidecars(cjHandle.filename);
+      check(sameFile(cjHandle.before, regular(cjHandle.filename, CJ.max)) &&
+        digestFile(cjHandle.filename, CJ.max).sha256 === receipt.sha256,
+        'CJ point writer activity detected; backup not committed');
+    }
     const manifest = { format: 'empireai-offline-state-bundle-v1', createdAt: new Date().toISOString(), sourceBuildSha: options.buildSha,
       toolSha256: hash(fs.readFileSync(__filename)), buildIdentityEvidence: "DECLARED_SOURCE_BUILD_NOT_OBSERVED_RUNTIME", scope: options.scope, observed,
       prerequisite: { acknowledgement: ACK, quiescenceEvidenceSha256: options.quiescenceEvidenceSha256,
@@ -214,6 +245,7 @@ function backupState(options) {
     writePrivate(path.join(stage, 'manifest.json'), bytes);
     return { validate: () => validateCopiedSet(stage, files, 'manifest.json', bytes),
       result: { manifestSha256: hash(bytes), bundle: options.destination, sourceBuildSha: options.buildSha, scopeOfProof: manifest.scopeOfProof } };
+    });
     });
   });
 }
@@ -233,7 +265,8 @@ function restoreState(options) {
   check(exactKeys(m.prerequisite, ['acknowledgement','quiescenceEvidenceSha256','nativeExclusiveLocksVerified','allWriterShutdownVerifiedByTool']) && m.prerequisite.acknowledgement === ACK && m.prerequisite.nativeExclusiveLocksVerified === true &&
     m.prerequisite.allWriterShutdownVerifiedByTool === false && /^[a-f0-9]{64}$/.test(m.prerequisite.quiescenceEvidenceSha256), 'Manifest quiescence evidence mismatch');
   check(JSON.stringify(m.scopeOfProof) === JSON.stringify({ offlineFileBundle: true, productionSnapshot: false, redisIncluded: false, remoteBackup: false }), 'Unsupported proof claims');
-  const expected = m.observed?.legacySha256 ? [...FILES, LEGACY] : FILES;
+  const expected = [...FILES, ...(m.files?.some(file => file.role === CJ.role) ? [CJ] : []),
+    ...(m.observed?.legacySha256 ? [LEGACY] : [])];
   check(Array.isArray(m.files) && m.files.length === expected.length, 'Required database set is incomplete');
   check(fs.readdirSync(bundle).sort().join() === ['manifest.json', ...expected.map(file => file.filename)].sort().join(), 'Bundle contains unexpected or missing files');
   for (let i = 0; i < expected.length; i++) {
@@ -245,6 +278,9 @@ function restoreState(options) {
     check(digest.size === file.size && digest.sha256 === file.sha256, 'Backup file digest mismatch');
   }
   return withLockedDatabases(FILES.map(file => path.join(bundle, file.filename)), options.scope, (_handles, observed) => {
+    const lockCj = operation => expected.includes(CJ) ?
+      withLockedCjLedger(path.join(bundle, CJ.filename), operation) : operation(null);
+    return lockCj(() => {
     check(JSON.stringify(observed) === JSON.stringify(m.observed), 'Stored identities or lineage differ from manifest');
     if (observed.legacySha256) check(m.files.at(-1).sha256 === observed.legacySha256, 'Legacy lineage digest mismatch');
     return withNewStaging(options.destination, stage => {
@@ -259,9 +295,10 @@ function restoreState(options) {
     writePrivate(path.join(stage, 'restore-receipt.json'), receiptBytes);
     return { validate: () => validateCopiedSet(stage, m.files, 'restore-receipt.json', receiptBytes), result: receipt };
     });
+    });
   });
 }
-module.exports = { ACK, FILES, backupState, restoreState };
+module.exports = { ACK, FILES, CJ, backupState, restoreState };
 if (require.main === module) {
   try {
     const [mode, requestFile] = process.argv.slice(2);
