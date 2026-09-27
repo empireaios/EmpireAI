@@ -69,7 +69,12 @@ test("seller-managed quantities survive disk restart with seller-bound cursor an
   closeDatabase();
   const saved = listImportedAmazonSellerInventory(ctx.workspaceId, ctx.credentials.sellerId);
   assert.deepEqual(saved.map(s => s.sellerFulfilledQuantity), [4, 0]);
-  assert.doesNotMatch(JSON.stringify(saved), /offers|1\.00|fake-token|next/);
+  for (const item of saved) {
+    assert.deepEqual(Object.keys(item).sort(), [
+      "sellerId", "sku", "marketplaceId", "sellerFulfilledQuantity",
+      "cycleStartedAt", "sourceSha256",
+    ].sort(), "stored inventory has no offer, provider token or pagination fields");
+  }
   await assert.rejects(amazonUsSpApiAdapter.syncInventory({ ...ctx,
     credentials: { ...ctx.credentials, sellerId: "OTHER" } }), /seller binding changed/);
 });
