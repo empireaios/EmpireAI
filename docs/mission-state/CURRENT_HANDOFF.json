@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T01:29:10Z",
+  "updatedAt": "2026-09-27T12:51:13Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "22e5f8ca4652900efbaf19bf2f90711fb9086393",
+    "lastVerifiedIntegrationHead": "85eb3cd7c0f79303595bbc66016f25841603783b",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 22e5f8ca coordinated candidate Brain and Shadow CEO SQL.js save and earlier nonproduction commerce work passed all three exact-head hosted workflows; protected production untouched",
+    "status": "draft unmerged; 85eb3cd7 passed Product, Semantic and Runtime exact-head hosted CI for ordered two-handle candidate SQL.js capture and inventory test repair; protected production untouched",
     "candidateCodeHead": "89382f6fb69a3f9a71212ced6b698c342eaa995a",
-    "branchTipNote": "89382f6f repairs inventory receipt assertion false positive from an ISO timestamp; both-handle fence 15786f43 remains on this branch; exact-head hosted CI running; production untouched.",
+    "branchTipNote": "85eb3cd7 handoff commit, code changes 15786f43 and 89382f6f, all three exact-head hosted workflows passed; protected production untouched.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -52,7 +52,7 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; repeated read-only connector 2026-09-27 teams=[] and known deployment GET 403 Not authorized; fresh revision unverified."
+      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; 2026-09-27 connected read-only list_teams=[]; known deployment readback returned INVALID_ARGUMENT for unavailable team slug; no CLI auth or .vercel link in scratch; fresh revision unverified."
     }
   },
   "authority": {
@@ -407,18 +407,20 @@
       "backendTypecheck": "PASS",
       "oldProductionInstalled": false,
       "wholeAppQuiescence": false,
-      "hostedCI": "Product failed due to preexisting inventory test regex false positive; capture step passed. New repair head 89382f6f CI running.",
-      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285310209",
-      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285310234",
-      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285310251"
+      "hostedCI": "PASS at integrated handoff 85eb3cd7: Product 36285759550, Semantic 36285759554, Runtime 36285759546",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285759550",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285759554",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285759546",
+      "integrationHead": "85eb3cd7c0f79303595bbc66016f25841603783b"
     },
     "inventoryReceiptAssertion": {
       "head": "89382f6fb69a3f9a71212ced6b698c342eaa995a",
       "localTests": "6/6 PASS",
-      "hostedCI": "RUNNING",
-      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285616686",
-      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285616699",
-      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285616678"
+      "hostedCI": "PASS at integrated handoff 85eb3cd7; 89382f6f code-only runs superseded by handoff push concurrency",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285759550",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285759554",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285759546",
+      "integrationHead": "85eb3cd7c0f79303595bbc66016f25841603783b"
     }
   },
   "failedAttempts": [
@@ -435,7 +437,8 @@
     "970bd26a Runtime failed existing two-process SQLite claim test: 0 claims observed under zero-wait contention, expected 1; 326/327 runtime tests passed. Product and Semantic passed; 005e9dbb repaired fixture and passed all-three exact-head CI.",
     "2026-09-26 12:52 UTC repository-wide historical git grep exceeded 30 seconds and was interrupted; narrow exact-main git show and rg source inspection succeeded. No conclusion depends on the stalled search.",
     "2026-09-26 ~13:05 UTC read-only Railway Agent capability query stalled beyond 40 seconds and was terminated without result; no production mutation.",
-    "15786f43 Product path CI 36285310209 failed inventory seller receipt test: broad /1\\.00/ regex matched legitimate ISO timestamp 01.000Z. Both-handle capture step passed; repaired exact persisted row-shape assertion in 89382f6f; its hosted CI running."
+    "15786f43 Product path CI 36285310209 failed inventory seller receipt test: broad /1\\.00/ regex matched legitimate ISO timestamp 01.000Z. Both-handle capture step passed; repaired exact persisted row-shape assertion in 89382f6f; its hosted CI running.",
+    "89382f6f code-only Product/Semantic workflows canceled by docs-only branch push concurrency before completion. Exact integrated 85eb3cd7 Product, Semantic, Runtime reruns succeeded."
   ],
   "certification": {
     "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
