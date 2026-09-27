@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T14:35:34Z",
+  "updatedAt": "2026-09-27T01:29:10Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -22,8 +22,8 @@
     "lastVerifiedIntegrationHead": "22e5f8ca4652900efbaf19bf2f90711fb9086393",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft unmerged; 22e5f8ca coordinated candidate Brain and Shadow CEO SQL.js save and earlier nonproduction commerce work passed all three exact-head hosted workflows; protected production untouched",
-    "candidateCodeHead": "22e5f8ca4652900efbaf19bf2f90711fb9086393",
-    "branchTipNote": "22e5f8ca candidate two-handle capture passed exact-head Product, Semantic and Runtime; production untouched.",
+    "candidateCodeHead": "89382f6fb69a3f9a71212ced6b698c342eaa995a",
+    "branchTipNote": "89382f6f repairs inventory receipt assertion false positive from an ISO timestamp; both-handle fence 15786f43 remains on this branch; exact-head hosted CI running; production untouched.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -52,7 +52,7 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; repeated read-only connector 2026-09-26 14:17 UTC teams=[] and known deployment GET 403 Not authorized; fresh revision unverified."
+      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; repeated read-only connector 2026-09-27 teams=[] and known deployment GET 403 Not authorized; fresh revision unverified."
     }
   },
   "authority": {
@@ -119,7 +119,9 @@
       "8279e7db: Pillow margin candidate requires exact VID and variantSellPrice; rejects product ranges, malformed money, fake VIDs and conflicting quotes; mapped re-evaluation cannot select another variant. Local tests and typecheck pass; all three exact-head hosted workflows passed.",
       "28959d64: candidate Pillow presale and re-evaluation reserve bounded CJ API points to disk before dispatch, require explicit cycle/day budgets and refuse implicit retries; offline restart and disk-failure tests and backend typecheck pass; all three exact-head hosted workflows passed. No real provider calls or production mutation; multi-process budget coordination unproved.",
       "608f07ab: open candidate Shadow CEO SQL.js handle gains awaited write-fenced disk capture callback; local RAM-only record copy/reopen/readback and success/failure fence release plus typecheck pass; all three exact-head hosted workflows passed. This cannot capture old production or coordinate other stores.",
-      "22e5f8ca: compose candidate primary and Shadow CEO SQL.js handle fences around one disk capture; both RAM-only records copied and read back while both handles refuse writes; local test and backend typecheck pass, all three exact-head hosted workflows passed. Requires ingress/worker/JSON/native/Redis quiescence and is unavailable on old protected production."
+      "22e5f8ca: compose candidate primary and Shadow CEO SQL.js handle fences around one disk capture; both RAM-only records copied and read back while both handles refuse writes; local test and backend typecheck pass, all three exact-head hosted workflows passed. Requires ingress/worker/JSON/native/Redis quiescence and is unavailable on old protected production.",
+      "15786f43: both candidate SQL.js handles are now fenced synchronously before either save yields; delayed first-save test rejects Shadow writes, copy/readback and release tests pass locally, backend typecheck passes after linked Pillow build; hosted CI pending. Old protected production untouched.",
+      "89382f6f: exact persisted seller inventory field assertion replaces regex that mistook ISO timestamp 01.000Z for offer price 1.00; focused local tests 6/6 pass; exact-head hosted CI running."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -397,6 +399,26 @@
       "product": "https://github.com/empireaios/EmpireAI/actions/runs/36248467281",
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36248467269",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36248467329"
+    },
+    "twoHandleFenceOrdering": {
+      "head": "15786f43bad40d528876366b31a3caaf69a69c82",
+      "scope": "both candidate SQL.js handles fenced before first awaited save; delayed-save write refusal",
+      "localTests": "PASS",
+      "backendTypecheck": "PASS",
+      "oldProductionInstalled": false,
+      "wholeAppQuiescence": false,
+      "hostedCI": "Product failed due to preexisting inventory test regex false positive; capture step passed. New repair head 89382f6f CI running.",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285310209",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285310234",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285310251"
+    },
+    "inventoryReceiptAssertion": {
+      "head": "89382f6fb69a3f9a71212ced6b698c342eaa995a",
+      "localTests": "6/6 PASS",
+      "hostedCI": "RUNNING",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36285616686",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285616699",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285616678"
     }
   },
   "failedAttempts": [
@@ -412,7 +434,8 @@
     "9046a3d4 Product failed unpriced-model test owing to unknown owner budgets; Runtime failed mandatory name search despite priced timeout test passing. Both test defects repaired and verified by 53e370ed all-three Node 22 CI.",
     "970bd26a Runtime failed existing two-process SQLite claim test: 0 claims observed under zero-wait contention, expected 1; 326/327 runtime tests passed. Product and Semantic passed; 005e9dbb repaired fixture and passed all-three exact-head CI.",
     "2026-09-26 12:52 UTC repository-wide historical git grep exceeded 30 seconds and was interrupted; narrow exact-main git show and rg source inspection succeeded. No conclusion depends on the stalled search.",
-    "2026-09-26 ~13:05 UTC read-only Railway Agent capability query stalled beyond 40 seconds and was terminated without result; no production mutation."
+    "2026-09-26 ~13:05 UTC read-only Railway Agent capability query stalled beyond 40 seconds and was terminated without result; no production mutation.",
+    "15786f43 Product path CI 36285310209 failed inventory seller receipt test: broad /1\\.00/ regex matched legitimate ISO timestamp 01.000Z. Both-handle capture step passed; repaired exact persisted row-shape assertion in 89382f6f; its hosted CI running."
   ],
   "certification": {
     "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
@@ -435,7 +458,7 @@
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production."
   ],
   "nextExecutableActions": [
-    "Finish ingress admission and worker drain, request-owner/authority JSON, native mission/execution, Redis and cross-process quiescence on an isolated canary. 22e5f8ca proves only two candidate SQL.js handles. The protected old process has no validated safe in-process entrypoint; do not restart, redeploy or mutate it.",
+    "After both candidate SQL.js fences are acquired before either save, finish ingress admission and worker drain, request-owner/authority JSON, native mission/execution, Redis and cross-process quiescence on an isolated canary. Old process still has no validated safe in-process entrypoint; do not restart, redeploy or mutate it.",
     "Extend CJ point admission to a multi-process safe account ledger before horizontal scaling; build durable exact-VID stock/cost/freight receipts and verify fulfilment compliance and seller fee reconciliation. Candidate Pillow path now has single-process disk-backed cycle/day point reservations, no real CJ call authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
