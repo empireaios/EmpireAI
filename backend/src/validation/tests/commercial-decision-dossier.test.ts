@@ -152,4 +152,18 @@ describe("commercial decision dossier FD-CDD-001", () => {
       ),
     );
   });
+
+  it("withholds discovery readiness when durable CJ point admission is not configured", () => {
+    const missing = buildCommerceOperatingLoopReadiness({});
+    assert.equal(missing.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.status, "BLOCKED");
+    assert.match(missing.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.detail ?? "", /budgets/);
+    const configured = buildCommerceOperatingLoopReadiness({
+      DATABASE_PATH: "/tmp/offline-brain.sqlite",
+      CJ_PRESALE_ACCOUNT_ID: "seller-account",
+      CJ_PRESALE_CYCLE_POINT_LIMIT: "50",
+      CJ_PRESALE_DAILY_POINT_LIMIT: "100",
+    });
+    assert.equal(configured.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.status, "IMPLEMENTED_READY");
+    assert.match(configured.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.detail ?? "", /not proof of live provider access/);
+  });
 });

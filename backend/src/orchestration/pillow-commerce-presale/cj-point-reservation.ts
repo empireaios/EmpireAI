@@ -21,6 +21,20 @@ function limit(raw: string | undefined): number {
   return value <= 100_000 ? value : 0;
 }
 
+/** Pure configuration check for status reporting; this does not prove provider
+ * access, existing ledger integrity or that old point history was migrated. */
+export function cjPointAdmissionConfigurationBlocker(env: NodeJS.ProcessEnv): string | null {
+  const cycle = limit(env.CJ_PRESALE_CYCLE_POINT_LIMIT);
+  const day = limit(env.CJ_PRESALE_DAILY_POINT_LIMIT);
+  if (!cycle || !day || cycle > day) return "CJ presale cycle/day point budgets absent or invalid";
+  if (!env.CJ_PRESALE_ACCOUNT_ID || !/^[A-Za-z0-9_-]{3,64}$/.test(env.CJ_PRESALE_ACCOUNT_ID)) {
+    return "CJ presale stable account identifier absent or invalid";
+  }
+  try { cjPointLedgerPath(env.DATABASE_PATH ?? ":memory:"); }
+  catch { return "CJ presale absolute disk-backed ledger path absent or invalid"; }
+  return null;
+}
+
 export function createCjPresalePointReservation(input: {
   config: CjConfig;
   env: NodeJS.ProcessEnv;

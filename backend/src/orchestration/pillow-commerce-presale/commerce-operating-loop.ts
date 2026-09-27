@@ -7,6 +7,7 @@ import { openAmazonUsSession, getListingItemCommercialState } from "./amazon-com
 import type { CommercialDecisionDossier } from "./commercial-decision-dossier.js";
 import type { QualifiedOpportunity } from "./models.js";
 import { getPillowCommercePresaleRepository } from "./repository/sqlite-pillow-commerce-presale-repository.js";
+import { cjPointAdmissionConfigurationBlocker } from "./cj-point-reservation.js";
 
 export type OperatingLoopStageStatus =
   | "LIVE_PROVEN"
@@ -40,7 +41,8 @@ export type CommerceOperatingLoopReadiness = {
   performanceLadderLabel: string;
 };
 
-export function buildCommerceOperatingLoopReadiness(): CommerceOperatingLoopReadiness {
+export function buildCommerceOperatingLoopReadiness(env: NodeJS.ProcessEnv = process.env): CommerceOperatingLoopReadiness {
+  const cjBlocker = cjPointAdmissionConfigurationBlocker(env);
   return {
     computedAt: new Date().toISOString(),
     canonicalAmazonToCjRoute: "EMPIREAI_AUTOMATED_BRIDGE",
@@ -49,8 +51,9 @@ export function buildCommerceOperatingLoopReadiness(): CommerceOperatingLoopRead
     stages: [
       {
         stage: "DISCOVERY_DOSSIER",
-        status: "IMPLEMENTED_READY",
-        detail: "Pillow presale cycle builds Commercial Decision Dossier with LIVE economics where APIs allow.",
+        status: cjBlocker ? "BLOCKED" : "IMPLEMENTED_READY",
+        detail: cjBlocker ? `CJ point admission blocked: ${cjBlocker}; no supplier dispatch permitted.` :
+          "Pillow presale can build a Commercial Decision Dossier; configured point admission is not proof of live provider access, ledger migration or valid supplier receipts.",
       },
       {
         stage: "GRAND_KING_APPROVAL",
