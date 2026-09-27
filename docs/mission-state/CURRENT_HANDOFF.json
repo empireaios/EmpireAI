@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T13:10:46Z",
+  "updatedAt": "2026-09-27T13:16:33Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "b395b9c1022c3bc6f8b0e445601510e6d82bfbdc",
+    "lastVerifiedIntegrationHead": "0f3d596c278f963416d711b5d5fee9cb0f835684",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; b395b9c1 CJ native-ledger backup/restore and earlier ledger/fence repair passed exact-head Product/Semantic/Runtime; protected production untouched",
-    "candidateCodeHead": "b395b9c1022c3bc6f8b0e445601510e6d82bfbdc",
-    "branchTipNote": "b395b9c1 code passed all three exact-head hosted workflows; handoff-only update follows; production untouched.",
+    "status": "draft unmerged; 0f3d596c CJ discovery readiness truth, native account ledger/backup and ordered SQL.js capture passed exact-head Product/Semantic/Runtime; protected old production untouched",
+    "candidateCodeHead": "0f3d596c278f963416d711b5d5fee9cb0f835684",
+    "branchTipNote": "0f3d596c code and earlier b395b9c1 CJ offline backup passed exact-head Product/Semantic/Runtime; handoff-only commit follows. No real provider calls or production changes.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -123,7 +123,8 @@
       "15786f43: both candidate SQL.js handles are now fenced synchronously before either save yields; delayed first-save test rejects Shadow writes, copy/readback and release tests pass locally, backend typecheck passes after linked Pillow build; hosted CI pending. Old protected production untouched.",
       "89382f6f: exact persisted seller inventory field assertion replaces regex that mistook ISO timestamp 01.000Z for offer price 1.00; focused local tests 6/6 pass; exact-head hosted CI running.",
       "080c51d0: candidate CJ presale reserves in native transactional account ledger with stable account identity and credential fingerprint, committed readback before dispatch, independent worker contention and restart proof; old SQL.js point history blocks migration. Three exact-head hosted workflows passed. No provider calls.",
-      "b395b9c1: optional dedicated CJ point ledger included in quiesced offline backup/restore with schema/lock/digest checks when present; 12 local offline tests and backend typecheck passed; all three exact-head hosted workflows passed. Not an old-production live RAM capture."
+      "b395b9c1: optional dedicated CJ point ledger included in quiesced offline backup/restore with schema/lock/digest checks when present; 12 local offline tests and backend typecheck passed; all three exact-head hosted workflows passed. Not an old-production live RAM capture.",
+      "0f3d596c: candidate commerce operating-loop discovery status BLOCKED when CJ stable account, point limits or absolute disk path missing; local tests 12/12 and backend typecheck pass; all three exact-head hosted workflows passed. Configuration alone still not provider proof."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -436,6 +437,15 @@
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36321186510",
       "oldProductionRun": false,
       "wholeAppQuiescence": false
+    },
+    "cjReadinessTruth": {
+      "head": "0f3d596c278f963416d711b5d5fee9cb0f835684",
+      "localTests": "12/12 PASS",
+      "backendTypecheck": "PASS",
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36321584278",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36321584376",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36321584368"
     }
   },
   "failedAttempts": [
