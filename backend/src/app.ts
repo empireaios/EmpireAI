@@ -9,6 +9,7 @@ import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
 import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
 import { getAdmissionStats } from "./runtime/production-admission-control.js";
+import { installCaptureHttpAdmission } from "./runtime/capture-http-admission.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { registerAuthRoutes } from "./auth/routes.js";
@@ -236,6 +237,10 @@ export type EmpireApp = {
   app: FastifyInstance;
   brain: EmpireBrain;
   shutdown: () => Promise<void>;
+  /** Candidate in-process HTTP boundary only. The caller must also fence
+   * workers, all stores, Redis and other processes before any capture claim.
+   */
+  withDrainedHttpAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -308,6 +313,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   await app.register(cookie, {
     secret: env.SESSION_SECRET,
   });
+  const captureHttpAdmission = installCaptureHttpAdmission(app);
 
   app.addHook("onRequest", async (request) => {
     (request as typeof request & { startTime: number }).startTime = Date.now();
@@ -585,6 +591,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       app,
       brain,
       shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
+      withDrainedHttpAdmission: (capture, timeoutMs) =>
+        captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -596,6 +604,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     app,
     brain,
     shutdown: createEmpireShutdown({ app, brain, pillowEnabled, eventStream, stopBackgroundWork }),
+    withDrainedHttpAdmission: (capture, timeoutMs) =>
+      captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
   };
 }
 
