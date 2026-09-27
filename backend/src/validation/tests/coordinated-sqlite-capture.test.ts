@@ -43,3 +43,33 @@ test("both open SQL.js handles save RAM and refuse writes through one verified c
   const later = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_two_handle", runKey: "resumed" });
   assert.ok(shadow.countByObjective(later.objectiveId) >= 12);
 });
+
+test("Shadow CEO writes are fenced before the first Brain save yields", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-before-yield-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const primary = new EmpireDatabase(path.join(dir, "brain.db"));
+  const shadow = openShadowCeoRepository({ dbPath: path.join(dir, "shadow.db") });
+  t.after(() => { shadow.close(); primary.close(); });
+  primary.exec("CREATE TABLE evidence (id INTEGER)");
+  let entered!: () => void;
+  let resume!: () => void;
+  const saveEntered = new Promise<void>(resolve => { entered = resolve; });
+  const saveCanFinish = new Promise<void>(resolve => { resume = resolve; });
+  t.after(() => resume());
+  const actualSave = primary.requestCriticalPersist.bind(primary);
+  t.mock.method(primary, "requestCriticalPersist", async () => {
+    entered();
+    await saveCanFinish;
+    return actualSave();
+  });
+  const capture = withQuiescedBrainAndShadowCapture(primary, shadow, () => "saved");
+  await saveEntered;
+  assert.throws(() => primary.exec("INSERT INTO evidence VALUES (1)"), /quiesced/);
+  assert.throws(() => runVerticalSliceDemo({
+    repo: shadow, workspaceId: "ws_before_yield", runKey: "blocked",
+  }), /quiesced/, "second handle must already be fenced during the first save");
+  resume();
+  assert.equal(await capture, "saved");
+  const result = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_before_yield", runKey: "resumed" });
+  assert.ok(shadow.countByObjective(result.objectiveId) >= 12);
+});

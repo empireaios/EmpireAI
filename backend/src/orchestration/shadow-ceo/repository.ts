@@ -67,6 +67,17 @@ export class SqliteShadowCeoRepository {
     return withQuiescedSqliteSave(this.db, captureAndVerify);
   }
 
+  /** Acquire this handle's fence before a coordinated multi-handle save starts.
+   * The caller must release it in finally, even when persistence or verification
+   * fails. This does not fence the adjacent JSON stores or other processes.
+   */
+  acquireCaptureFence(): { persist: () => Promise<void>; release: () => void } {
+    this.assertOpen();
+    if (this.dbPath.startsWith(":memory:")) throw new Error("Shadow CEO capture requires a disk-backed database");
+    const release = this.db.holdWritesForCapture();
+    return { persist: () => this.db.requestCriticalPersist(), release };
+  }
+
   close(): void {
     if (this.closed) return;
     this.db.close();

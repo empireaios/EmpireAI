@@ -1,5 +1,4 @@
 import type { EmpireDatabase } from "../../brain/sqlite-database.js";
-import { withQuiescedSqliteSave } from "../../brain/quiesced-sqlite-save.js";
 import type { SqliteShadowCeoRepository } from "../shadow-ceo/repository.js";
 
 /** Hold both candidate SQL.js handles through the caller's disk verification.
@@ -11,5 +10,16 @@ export async function withQuiescedBrainAndShadowCapture<T>(
   shadow: SqliteShadowCeoRepository,
   captureAndVerify: () => T | Promise<T>,
 ): Promise<T> {
-  return withQuiescedSqliteSave(brain, () => shadow.withQuiescedCapture(captureAndVerify));
+  const releaseBrain = brain.holdWritesForCapture();
+  let shadowFence: ReturnType<SqliteShadowCeoRepository["acquireCaptureFence"]> | undefined;
+  try {
+    // Fence both synchronously before the first save yields to another writer.
+    shadowFence = shadow.acquireCaptureFence();
+    await brain.requestCriticalPersist();
+    await shadowFence.persist();
+    return await captureAndVerify();
+  } finally {
+    try { shadowFence?.release(); }
+    finally { releaseBrain(); }
+  }
 }
