@@ -1,10 +1,11 @@
 /** Conservative, account-scoped CJ API point admission for Pillow presale.
  * Reservations are never released after a transport failure: CJ may have charged.
  */
-import { createHash, randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import { getDatabase } from "../../brain/database.js";
 import { isInMemoryDatabasePath } from "../../brain/sqlite-database.js";
 import type { CjConfig } from "../../suppliers/cj-dropshipping/cj-config.js";
+import { cjPointLedgerPath, reserveCjPoints } from "./cj-native-point-ledger.js";
 
 const POINTS_BY_PATH: Readonly<Record<string, number>> = {
   "/product/list": 50,
@@ -30,47 +31,30 @@ export function createCjPresalePointReservation(input: {
   if (!cycleLimit || !dailyLimit || cycleLimit > dailyLimit) {
     throw new Error("CJ presale point budgets absent or invalid; owner-authorized cycle and UTC-day limits required");
   }
-  if (!input.config.apiKey || !input.cycleId ||
+  const accountId = input.env.CJ_PRESALE_ACCOUNT_ID;
+  if (!input.config.apiKey || !accountId || !/^[A-Za-z0-9_-]{3,64}$/.test(accountId) ||
+      !input.cycleId || input.cycleId.length > 128 ||
       isInMemoryDatabasePath(input.env.DATABASE_PATH ?? process.env.DATABASE_PATH ?? ":memory:")) {
-    throw new Error("CJ presale requires an account and disk-backed point ledger");
+    throw new Error("CJ presale requires a stable account identifier and disk-backed point ledger");
   }
-  const accountId = createHash("sha256").update(JSON.stringify([
+  const filename = cjPointLedgerPath(input.env.DATABASE_PATH ?? process.env.DATABASE_PATH ?? ":memory:");
+  const credentialSha256 = createHash("sha256").update(JSON.stringify([
     input.config.apiBaseUrl, input.config.apiKey, input.config.apiSecret,
   ])).digest("hex");
-  const db = getDatabase();
-  db.exec(`CREATE TABLE IF NOT EXISTS pillow_cj_point_reservations (
-    id TEXT PRIMARY KEY, account_id TEXT NOT NULL, cycle_id TEXT NOT NULL,
-    day_utc TEXT NOT NULL, path TEXT NOT NULL, points INTEGER NOT NULL,
-    reserved_at TEXT NOT NULL
-  );
-  CREATE INDEX IF NOT EXISTS idx_pillow_cj_points_day
-    ON pillow_cj_point_reservations(account_id, day_utc);
-  CREATE INDEX IF NOT EXISTS idx_pillow_cj_points_cycle
-    ON pillow_cj_point_reservations(account_id, cycle_id);`);
+  const legacyReservationsPresent = (): boolean => {
+    const brain = getDatabase();
+    const table = brain.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='pillow_cj_point_reservations'").get();
+    return Boolean(table && brain.prepare("SELECT 1 FROM pillow_cj_point_reservations LIMIT 1").get());
+  };
+  // Never reset a preexisting day's reservations by silently changing ledgers.
+  if (legacyReservationsPresent()) throw new Error("Legacy CJ point history requires verified migration before dispatch");
 
   return async (path: string): Promise<void> => {
     const points = POINTS_BY_PATH[path];
     if (!points) throw new Error(`CJ presale point cost unknown for ${path}`);
     const day = new Date().toISOString().slice(0, 10);
-    // Synchronous read and insert give this process one admission order; a
-    // second request sees the pending reservation before either disk export.
-    const cycleUsed = (db.prepare(`SELECT COALESCE(SUM(points), 0) AS n
-      FROM pillow_cj_point_reservations WHERE account_id = @accountId AND cycle_id = @cycleId`)
-      .get({ accountId, cycleId: input.cycleId }) as { n: number }).n;
-    const dayUsed = (db.prepare(`SELECT COALESCE(SUM(points), 0) AS n
-      FROM pillow_cj_point_reservations WHERE account_id = @accountId AND day_utc = @day`)
-      .get({ accountId, day }) as { n: number }).n;
-    if (cycleUsed + points > cycleLimit || dayUsed + points > dailyLimit) {
-      throw new Error("CJ presale point budget exhausted; request withheld");
-    }
-    const id = randomUUID();
-    db.prepare(`INSERT INTO pillow_cj_point_reservations
-      (id, account_id, cycle_id, day_utc, path, points, reserved_at)
-      VALUES (@id, @accountId, @cycleId, @day, @path, @points, @at)`)
-      .run({ id, accountId, cycleId: input.cycleId, day, path, points, at: new Date().toISOString() });
-    await db.requestCriticalPersist();
-    const receipt = db.prepare(`SELECT points FROM pillow_cj_point_reservations WHERE id = @id`)
-      .get({ id }) as { points: number } | undefined;
-    if (receipt?.points !== points) throw new Error("CJ point reservation readback failed");
+    if (legacyReservationsPresent()) throw new Error("Legacy CJ point history requires verified migration before dispatch");
+    reserveCjPoints({ filename, accountId, credentialSha256, cycleId: input.cycleId,
+      day, requestPath: path, points, cycleLimit, dailyLimit });
   };
 }

@@ -25,6 +25,7 @@ describe("pillow-commerce-presale", () => {
     process.env.DATABASE_PATH = join(presaleTestDir, "brain.sqlite");
     process.env.CJ_PRESALE_CYCLE_POINT_LIMIT = "100";
     process.env.CJ_PRESALE_DAILY_POINT_LIMIT = "200";
+    process.env.CJ_PRESALE_ACCOUNT_ID = "offline-pillow-account";
     process.env.CJ_INTEGRATION_MODE = "LIVE";
     process.env.CJ_API_KEY = "test-cj-key";
     process.env.AMAZON_SELLER_ID = "A1TESTSELLER";
@@ -41,6 +42,7 @@ describe("pillow-commerce-presale", () => {
     rmSync(presaleTestDir, { recursive: true, force: true });
     delete process.env.CJ_PRESALE_CYCLE_POINT_LIMIT;
     delete process.env.CJ_PRESALE_DAILY_POINT_LIMIT;
+    delete process.env.CJ_PRESALE_ACCOUNT_ID;
   });
 
   it("registers Pillow commerce tools", () => {
