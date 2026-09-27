@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T12:51:13Z",
+  "updatedAt": "2026-09-27T13:10:46Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "85eb3cd7c0f79303595bbc66016f25841603783b",
+    "lastVerifiedIntegrationHead": "b395b9c1022c3bc6f8b0e445601510e6d82bfbdc",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; 85eb3cd7 passed Product, Semantic and Runtime exact-head hosted CI for ordered two-handle candidate SQL.js capture and inventory test repair; protected production untouched",
-    "candidateCodeHead": "89382f6fb69a3f9a71212ced6b698c342eaa995a",
-    "branchTipNote": "85eb3cd7 handoff commit, code changes 15786f43 and 89382f6f, all three exact-head hosted workflows passed; protected production untouched.",
+    "status": "draft unmerged; b395b9c1 CJ native-ledger backup/restore and earlier ledger/fence repair passed exact-head Product/Semantic/Runtime; protected production untouched",
+    "candidateCodeHead": "b395b9c1022c3bc6f8b0e445601510e6d82bfbdc",
+    "branchTipNote": "b395b9c1 code passed all three exact-head hosted workflows; handoff-only update follows; production untouched.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -52,7 +52,7 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; 2026-09-27 connected read-only list_teams=[]; known deployment readback returned INVALID_ARGUMENT for unavailable team slug; no CLI auth or .vercel link in scratch; fresh revision unverified."
+      "lastRefreshedVia": "Prior authenticated browser 2026-09-23; 2026-09-27 read-only connector teams=[] and deployment lookup INVALID_ARGUMENT; fresh browser dashboard redirected to login; no local authenticated Vercel CLI or .vercel link. Fresh deployment revision unverified. Owner should reconnect Vercel app with EmpireAI team access."
     }
   },
   "authority": {
@@ -121,7 +121,9 @@
       "608f07ab: open candidate Shadow CEO SQL.js handle gains awaited write-fenced disk capture callback; local RAM-only record copy/reopen/readback and success/failure fence release plus typecheck pass; all three exact-head hosted workflows passed. This cannot capture old production or coordinate other stores.",
       "22e5f8ca: compose candidate primary and Shadow CEO SQL.js handle fences around one disk capture; both RAM-only records copied and read back while both handles refuse writes; local test and backend typecheck pass, all three exact-head hosted workflows passed. Requires ingress/worker/JSON/native/Redis quiescence and is unavailable on old protected production.",
       "15786f43: both candidate SQL.js handles are now fenced synchronously before either save yields; delayed first-save test rejects Shadow writes, copy/readback and release tests pass locally, backend typecheck passes after linked Pillow build; hosted CI pending. Old protected production untouched.",
-      "89382f6f: exact persisted seller inventory field assertion replaces regex that mistook ISO timestamp 01.000Z for offer price 1.00; focused local tests 6/6 pass; exact-head hosted CI running."
+      "89382f6f: exact persisted seller inventory field assertion replaces regex that mistook ISO timestamp 01.000Z for offer price 1.00; focused local tests 6/6 pass; exact-head hosted CI running.",
+      "080c51d0: candidate CJ presale reserves in native transactional account ledger with stable account identity and credential fingerprint, committed readback before dispatch, independent worker contention and restart proof; old SQL.js point history blocks migration. Three exact-head hosted workflows passed. No provider calls.",
+      "b395b9c1: optional dedicated CJ point ledger included in quiesced offline backup/restore with schema/lock/digest checks when present; 12 local offline tests and backend typecheck passed; all three exact-head hosted workflows passed. Not an old-production live RAM capture."
     ],
     "newestPreRecoveryCI": {
       "head": "9046a3d43b6e085d44c6856a8ede6aab6e12692e",
@@ -362,19 +364,20 @@
       "durableProviderReceipt": false
     },
     "cjPresalePointAdmission": {
-      "head": "28959d64c3bc9362e37bac4d1c1b2f23cd19ede5",
-      "scope": "candidate Pillow presale/re-evaluation list, product, variant, VID stock and freight; strict point limits and pre-dispatch critical SQL.js save",
+      "head": "080c51d07f381d2e8d191f1f4cb1af7702f94f72",
+      "scope": "candidate Pillow presale/re-evaluation exact-route point costs; explicit cycle/day limits and stable account ID; native cross-process BEGIN IMMEDIATE/EXTRA ledger with readback",
       "defaultWithoutLimits": "BLOCKED",
       "uncertainRequestsRetainReservation": true,
       "noImplicitRetry": true,
-      "diskRestartAndDiskFailureLocalTests": "PASS",
+      "diskRestartAndDiskFailureLocalTests": "PASS; independent two-worker race, restart, legacy history refusal and account alias/rotation refusal passed",
       "backendTypecheck": "PASS",
-      "multiProcessBudgetCoordination": false,
+      "multiProcessBudgetCoordination": true,
       "realProviderCalls": 0,
       "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
-      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36247417292",
-      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36247417294",
-      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36247417241"
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36320809240",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36320809184",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36320809177",
+      "migration": "Existing SQL.js reservations block dispatch until independently verified migration; new stable CJ_PRESALE_ACCOUNT_ID required; no real provider activity."
     },
     "shadowCeoQuiescedCapture": {
       "head": "608f07ab8fdb056d3ef6eba3d496c91215b44f68",
@@ -421,6 +424,18 @@
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36285759554",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36285759546",
       "integrationHead": "85eb3cd7c0f79303595bbc66016f25841603783b"
+    },
+    "cjNativeLedgerOfflineBackup": {
+      "head": "b395b9c1022c3bc6f8b0e445601510e6d82bfbdc",
+      "scope": "include present native CJ point file in offline multi-store bundle/restore with native exclusive lock, schema, hash and integrity readback",
+      "localOfflineTests": "12/12 PASS",
+      "backendTypecheck": "PASS",
+      "hostedCI": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36321186502",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36321186501",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36321186510",
+      "oldProductionRun": false,
+      "wholeAppQuiescence": false
     }
   },
   "failedAttempts": [
@@ -462,7 +477,7 @@
   ],
   "nextExecutableActions": [
     "After both candidate SQL.js fences are acquired before either save, finish ingress admission and worker drain, request-owner/authority JSON, native mission/execution, Redis and cross-process quiescence on an isolated canary. Old process still has no validated safe in-process entrypoint; do not restart, redeploy or mutate it.",
-    "Extend CJ point admission to a multi-process safe account ledger before horizontal scaling; build durable exact-VID stock/cost/freight receipts and verify fulfilment compliance and seller fee reconciliation. Candidate Pillow path now has single-process disk-backed cycle/day point reservations, no real CJ call authorized or made.",
+    "Continue exact-VID CJ stock/cost/freight receipt persistence, fulfilment compliance and seller fee reconciliation. Candidate native point ledger is cross-process safe with stable account ID; existing SQL.js point history blocks dispatch pending verified migration. New ledger offline backup inclusion passed Product/Semantic/Runtime; no real provider call authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
