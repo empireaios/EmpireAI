@@ -1,6 +1,6 @@
 # EmpireAI / Pillow active mission handoff
 
-Updated 2026-09-28 UTC after candidate shared Brain queue and CJ warehouse work; exact-head CI passed. Machine-readable companion: [CURRENT_HANDOFF.json](CURRENT_HANDOFF.json). Dated project history remains in [PILLOW_MISSION_STATE.md](../../PILLOW_MISSION_STATE.md), [NEXT_ACTIONS.md](NEXT_ACTIONS.md), draft [PR #5](https://github.com/empireaios/EmpireAI/pull/5) and the closed recovery [PR #9](https://github.com/empireaios/EmpireAI/pull/9). The abandoned desktop Work execution is not a source of current state.
+Updated 2026-09-28 UTC after bounded CJ response, Pillow fee evidence, web build and local capture guards passed exact-head CI. Machine-readable companion: [CURRENT_HANDOFF.json](CURRENT_HANDOFF.json). Dated project history remains in [PILLOW_MISSION_STATE.md](../../PILLOW_MISSION_STATE.md), [NEXT_ACTIONS.md](NEXT_ACTIONS.md), draft [PR #5](https://github.com/empireaios/EmpireAI/pull/5) and the closed recovery [PR #9](https://github.com/empireaios/EmpireAI/pull/9). The abandoned desktop Work execution is not a source of current state.
 
 ## Owner mandate and truth state
 
