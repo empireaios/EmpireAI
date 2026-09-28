@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { getDatabase } from "../../../brain/database.js";
 import { assertCommerceAutomationAllowed } from "../../../runtime/engineering-test-mode.js";
 
 import { logger } from "../../../config/logger.js";
@@ -723,6 +724,30 @@ async function runPillowCommercePresaleCycleImpl(
     };
 
     const approvalSurface = dossierVerdictAllowsApprovalSurface(assembled.verdict);
+    const opportunity: QualifiedOpportunity = {
+      opportunityId: randomUUID(),
+      workspaceId: input.workspaceId,
+      companyId: input.companyId,
+      disposition: approvalSurface ? "APPROVAL_READY" : "QUALIFIED",
+      preflightOfferState: "NOT_PUBLISHED",
+      mapping,
+      stockUnits,
+      stockFreshness: "LIVE",
+      risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
+      recommendation,
+      dossier: assembled.dossier,
+      approvalId: null,
+      approvalStatus: "none",
+      publicationAllowed: false,
+      supplierSpendAllowed: false,
+      createdAt: now,
+      updatedAt: now,
+    };
+    // No external approval surface until the candidate identity and economics
+    // have reached disk. A failed save aborts the cycle without registration.
+    repo.saveMapping(mapping, input.workspaceId);
+    repo.saveOpportunity(opportunity);
+    await getDatabase().requestCriticalPersist();
     // At most one Grand King approval surface — only when Pillow verdict is APPROVE.
     const shouldRegisterApproval =
       approvalSurface && !qualified && !pending && Boolean(input.approvalGate);
@@ -771,32 +796,13 @@ async function runPillowCommercePresaleCycleImpl(
       blockers.push("ApprovalGate unavailable at cycle time — opportunity stored; gate will be required before publish");
     }
 
-    const opportunity: QualifiedOpportunity = {
-      opportunityId: randomUUID(),
-      workspaceId: input.workspaceId,
-      companyId: input.companyId,
-      disposition: approvalId
-        ? "AWAITING_APPROVAL"
-        : approvalSurface
-          ? "APPROVAL_READY"
-          : "QUALIFIED",
-      preflightOfferState: "NOT_PUBLISHED",
-      mapping,
-      stockUnits,
-      stockFreshness: "LIVE",
-      risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
-      recommendation,
-      dossier: assembled.dossier,
-      approvalId,
-      approvalStatus: approvalId ? "Pending" : "none",
-      publicationAllowed: false,
-      supplierSpendAllowed: false,
-      createdAt: now,
-      updatedAt: now,
-    };
-
-    repo.saveMapping(mapping, input.workspaceId);
-    repo.saveOpportunity(opportunity);
+    if (approvalId) {
+      opportunity.disposition = "AWAITING_APPROVAL";
+      opportunity.approvalId = approvalId;
+      opportunity.approvalStatus = "Pending";
+      repo.saveOpportunity(opportunity);
+      await getDatabase().requestCriticalPersist();
+    }
     smartViableAsins.push(mapping.asin);
     if (!qualified) {
       qualified = opportunity;
