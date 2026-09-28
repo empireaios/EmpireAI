@@ -12,7 +12,10 @@ export function cjManagedStockByVid(payload: unknown, vid: string, originCountry
     const row = entry as Record<string, unknown>;
     if (row.vid !== vid || typeof row.countryCode !== "string" ||
         !/^[A-Z]{2}$/.test(row.countryCode)) return 0;
-    const key = `${row.countryCode}:${String(row.areaId ?? "")}`;
+    // Warehouse identity must be explicit; missing IDs cannot establish that
+    // two rows are distinct physical stock locations.
+    if (!Number.isSafeInteger(row.areaId) || (row.areaId as number) < 1) return 0;
+    const key = `${row.countryCode}:${row.areaId}`;
     if (warehouses.has(key)) return 0;
     warehouses.add(key);
     const quantity = row.cjInventoryNum;
