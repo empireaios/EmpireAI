@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /** Stable marker present only in the repaired EOS UX source line. */
-export const EOS_UX_BUNDLE_MARKER = "type now; Send when ready";
+const EOS_UX_BUNDLE_MARKER = "type now; Send when ready";
 
 export async function GET() {
   const gitCommitSha =
