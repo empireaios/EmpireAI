@@ -40,6 +40,58 @@ export interface BrainTaskQueue {
 export class TaskQueue implements BrainTaskQueue {
   readonly queue: Queue<BrainTaskPayload, unknown, BrainTaskType>;
 
+  /** A persistent owner key prevents two replicas from restoring each other's
+   * queue. An uncertain restoration deliberately requires operator recovery. */
+  async withPausedSharedProcessing<T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> {
+    if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 30_000) {
+      throw new Error("Shared Brain drain timeout invalid");
+    }
+    // This installation creates BullMQ with ioredis (see redis-client.ts).
+    const client = await this.queue.client as unknown as {
+      set(key: string, value: string, mode: "NX"): Promise<string | null>;
+      get(key: string): Promise<string | null>;
+      eval(script: string, keyCount: number, key: string, owner: string): Promise<number>;
+    };
+    const key = `${this.queue.toKey("capture-owner")}`;
+    const owner = randomUUID();
+    if (await client.set(key, owner, "NX") !== "OK") {
+      throw new Error("Shared Brain capture already owned; inspect before recovery");
+    }
+    let pausedByUs = false;
+    let restored = false;
+    let preexistingPause = false;
+    try {
+      if (await this.queue.isPaused()) {
+        preexistingPause = true;
+        throw new Error("Shared Brain queue already paused; ownership unknown");
+      }
+      await this.queue.pause();
+      pausedByUs = true;
+      const deadline = Date.now() + timeoutMs;
+      while (await this.queue.getActiveCount() !== 0) {
+        if (Date.now() >= deadline) throw new Error("Shared Brain jobs did not drain; no snapshot taken");
+        await new Promise<void>(resolve => setTimeout(resolve, Math.min(100, Math.max(1, deadline - Date.now()))));
+      }
+      if (await client.get(key) !== owner || !await this.queue.isPaused()) {
+        throw new Error("Shared Brain capture ownership or pause changed");
+      }
+      return await capture();
+    } finally {
+      if (pausedByUs && await client.get(key) === owner && await this.queue.isPaused()) {
+        await this.queue.resume();
+        restored = !await this.queue.isPaused();
+      } else if (preexistingPause && await client.get(key) === owner) {
+        restored = true;
+      } else if (!pausedByUs && await client.get(key) === owner && !await this.queue.isPaused()) {
+        restored = true;
+      }
+      if (restored) {
+        await client.eval("if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end", 1, key, owner);
+      }
+      if (!restored) throw new Error("Shared Brain queue restoration uncertain; capture owner retained for recovery");
+    }
+  }
+
   constructor(
     connection: ConnectionOptions,
     private readonly auditLogger: AuditLogger,
