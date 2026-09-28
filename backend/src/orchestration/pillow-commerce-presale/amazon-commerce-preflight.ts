@@ -229,6 +229,13 @@ export async function estimateAmazonFees(
   asin: string,
   listingPriceUsd: number,
 ): Promise<FeesEstimateResult> {
+  const priceCents = Math.round(listingPriceUsd * 100);
+  if (!Number.isFinite(listingPriceUsd) || listingPriceUsd <= 0 ||
+      !Number.isSafeInteger(priceCents) ||
+      Math.abs(listingPriceUsd * 100 - priceCents) >= 1e-8) {
+    return { totalFeesUsd: null, freshness: "UNAVAILABLE", raw: null,
+      blocker: "Invalid selling price; no Amazon fee request made" };
+  }
   const response = await httpTransport({
     url: `${session.endpoint}/products/fees/v0/items/${encodeURIComponent(asin)}/feesEstimate`,
     method: "POST",
