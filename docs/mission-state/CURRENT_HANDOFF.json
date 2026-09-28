@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T10:51:09Z",
+  "updatedAt": "2026-09-28T11:00:50Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "a0c7ba0ef10c340186f492d30b95f28d3490b233",
+    "lastVerifiedIntegrationHead": "f82e377bda2568606c98abb20c242a7ca9983d82",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; shared Brain queue real Redis and CJ warehouse checkpoints pass Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "a0c7ba0ef10c340186f492d30b95f28d3490b233",
-    "branchTipNote": "a0c7ba0 real Redis BullMQ capture test passed three workflows; handoff-only receipt follows. Producers, repeat scheduling, independent handles and Redis snapshot remain outside proof.",
+    "status": "draft unmerged; shared Brain repeat-scheduler refusal, real Redis drain and CJ warehouse evidence pass Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "f82e377bda2568606c98abb20c242a7ca9983d82",
+    "branchTipNote": "f82e377b exact-head three-workflow pass; handoff-only receipt follows. Registered repeat schedulers now refuse capture; external producers/Redis snapshot remain outside proof.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -118,7 +118,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36410533224",
       "https://github.com/empireaios/EmpireAI/actions/runs/36411521575",
       "https://github.com/empireaios/EmpireAI/actions/runs/36411521749",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36411521681"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36411521681",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36412537579",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36412537490",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36412537496"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -541,7 +544,7 @@
     "Fresh Vercel known-ID connector lookup on 2026-09-28 returned INVALID_ARGUMENT. Direct 2026-09-27 production deployment readback remains verified as READY on main 21384342; no deployment mutation."
   ],
   "nextExecutableActions": [
-    "Shared BullMQ consumer pause/drain passed a real test-owned Redis integration with separate Queue and Worker connections. Next coordinate Redis producers and repeat schedulers, new jobs, other application replicas and independently opened store handles, and independently read back Redis and copied files. An uncertain queue restoration retains the owner key for inspected recovery. The old process has no safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
+    "Shared BullMQ consumer pause/drain passed real test-owned Redis. Registered repeat/job schedulers now refuse capture rather than allowing a changing Redis snapshot. Next coordinate repeat/new-job producers, independently opened handles, other replicas and Redis snapshot/readback before claiming all-writer quiescence. An uncertain queue restoration retains owner key. Old process has no safe in-process entrypoint; do not touch it.",
     "Continue VID-bound CJ stock/cost/freight durable receipt persistence, fulfilment compliance and seller fee reconciliation. Warehouse identity now must be a positive integer; candidate native point ledger remains blocked on verified preexisting SQL.js history migration. No provider calls authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
