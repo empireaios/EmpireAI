@@ -412,7 +412,7 @@ describe("pillow-commerce-presale", () => {
         assert.match(receipts?.decisionSha256 ?? "", /^[a-f0-9]{64}$/);
         assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.providerReceipts?.decisionSha256,
           receipts?.decisionSha256);
-        assert.ok(request.proposal.evidence.includes(`providerDecisionSha256:${receipts.decisionSha256}`));
+        assert.ok(request.proposal.evidence?.includes(`providerDecisionSha256:${receipts.decisionSha256}`));
         approvalSawDiskReceipt = true;
       } finally { disk.close(); }
       return register(request);
