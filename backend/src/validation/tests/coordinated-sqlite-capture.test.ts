@@ -163,3 +163,23 @@ test("capture refuses a second SQL.js handle and blocks a new alias until releas
   const reopened = new EmpireDatabase(file);
   reopened.close();
 });
+
+test("a hard-link alias of a persisted Brain file cannot evade capture admission", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-hardlink-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, "brain.db");
+  const alias = path.join(dir, "brain-alias.db");
+  const primary = new EmpireDatabase(file);
+  t.after(() => primary.close());
+  primary.exec("CREATE TABLE evidence (id INTEGER)");
+  await primary.requestCriticalPersist();
+  fs.linkSync(file, alias);
+  const competitor = new EmpireDatabase(alias);
+  assert.throws(() => primary.holdWritesForCapture(), /independently opened SQL.js handle/);
+  competitor.close();
+  fs.unlinkSync(alias);
+  fs.linkSync(file, alias);
+  const release = primary.holdWritesForCapture();
+  try { assert.throws(() => new EmpireDatabase(alias), /capture active/); }
+  finally { release(); }
+});
