@@ -52,6 +52,21 @@ export function calculateExpectedContribution(input: EconomicsInput): EconomicsR
     };
   }
 
+  const cents = (value: number, positive = false): boolean =>
+    Number.isFinite(value) && (positive ? value > 0 : value >= 0) &&
+    Number.isSafeInteger(Math.round(value * 100)) &&
+    Math.abs(value * 100 - Math.round(value * 100)) < 1e-8;
+  if (!cents(input.proposedSellingPriceUsd, true) || !cents(fee) ||
+      !cents(cost) || !cents(ship) || !cents(other) || !cents(minProfit)) {
+    return {
+      expectedProfitUsd: null,
+      expectedMarginPct: null,
+      passesGate: false,
+      blocker: "Invalid or unbounded monetary evidence — exact nonnegative USD cents required",
+      formula: "price - fees - cost - shipping - other",
+    };
+  }
+
   const profit = input.proposedSellingPriceUsd - fee - cost - ship - other;
   const margin =
     input.proposedSellingPriceUsd > 0 ? (profit / input.proposedSellingPriceUsd) * 100 : null;
