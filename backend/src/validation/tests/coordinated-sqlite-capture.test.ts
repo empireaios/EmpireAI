@@ -20,6 +20,11 @@ test("application local drain saves both RAM-backed SQL handles before caller re
   process.env.DATABASE_PATH = primaryFile;
   const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: false, earlyListen: true });
   const shadow = openShadowCeoRepository({ dbPath: shadowFile });
+  let degradedCaptureCalled = false;
+  await assert.rejects(async () => empire.withDrainedSharedBrainNativeCapture(shadow, () => {
+    degradedCaptureCalled = true;
+  }), /connected Redis/);
+  assert.equal(degradedCaptureCalled, false);
   t.after(async () => {
     shadow.close();
     await empire.shutdown();
