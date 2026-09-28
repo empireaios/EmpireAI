@@ -40,6 +40,16 @@ export interface BrainTaskQueue {
 export class TaskQueue implements BrainTaskQueue {
   readonly queue: Queue<BrainTaskPayload, unknown, BrainTaskType>;
 
+  /** Cooperating producers refuse while the shared capture owner exists.
+   * A race with an already-started add is detected by the capture fingerprint.
+   */
+  private async assertProducerAdmission(): Promise<void> {
+    const client = await this.queue.client;
+    if (await client.get(this.queue.toKey("capture-owner"))) {
+      throw new Error("Shared Brain capture active; task production withheld");
+    }
+  }
+
   /** A persistent owner key prevents two replicas from restoring each other's
    * queue. An uncertain restoration deliberately requires operator recovery. */
   async withPausedSharedProcessing<T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> {
@@ -133,6 +143,7 @@ export class TaskQueue implements BrainTaskQueue {
     },
     options?: JobsOptions,
   ): Promise<{ jobId: string; correlationId: string }> {
+    await this.assertProducerAdmission();
     const correlationId = payload.correlationId ?? randomUUID();
     const jobPayload: BrainTaskPayload = { ...payload, correlationId };
 
@@ -165,6 +176,7 @@ export class TaskQueue implements BrainTaskQueue {
   }
 
   async registerScheduledJob(definition: ScheduledJobDefinition): Promise<void> {
+    await this.assertProducerAdmission();
     await this.queue.add(definition.payload.type, definition.payload, {
       repeat: { pattern: definition.cron },
       jobId: `schedule:${definition.name}`,
