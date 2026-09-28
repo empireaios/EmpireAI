@@ -1,3 +1,4 @@
+import type { CommerceProviderReceipts } from "./commerce-provider-receipts.js";
 /**
  * First-dollar Pillow commerce pre-sale models.
  * ACCEPTED ≠ BUYABLE — commercial states are explicit and evidence-backed.
@@ -74,6 +75,8 @@ export type AmazonCjProductMap = {
   cjPid: string;
   cjVid: string;
   cjVariantSku: string;
+  /** Local hashed response provenance; legacy maps without this remain unproven. */
+  providerReceipts?: CommerceProviderReceipts;
   supplierCostUsd: MoneyEvidence;
   shippingUsd: MoneyEvidence;
   amazonFeesUsd: MoneyEvidence;
