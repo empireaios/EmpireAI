@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T12:57:12Z",
+  "updatedAt": "2026-09-28T13:01:45Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "ad8d5aafe3e76498530ae44a19fbd43768e43e47",
+    "lastVerifiedIntegrationHead": "51591b9bfd3979600f65ef06a5f588879d712981",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; Next.js Webpack build and prior Pillow/capture guards pass exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "ad8d5aafe3e76498530ae44a19fbd43768e43e47",
-    "branchTipNote": "ad8d5aa all-three pass; canonical web Webpack build succeeds, EOS route marker kept private. Handoff-only receipt follows.",
+    "status": "draft unmerged; unbound fee fails without speculative retry; prior Pillow/capture/web guards pass exact-head Product/Semantic/Runtime; production protected",
+    "candidateCodeHead": "51591b9bfd3979600f65ef06a5f588879d712981",
+    "branchTipNote": "51591b9 all-three pass; presale and re-evaluation make one fee request on unbound response, then refuse. Handoff receipt follows.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -157,7 +157,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36422780525",
       "https://github.com/empireaios/EmpireAI/actions/runs/36424438611",
       "https://github.com/empireaios/EmpireAI/actions/runs/36424438579",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36424438590"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36424438590",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36425634097",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36425634050",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36425634058"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -585,7 +588,7 @@
   "nextExecutableActions": [
     "Candidate SQL.js capture now refuses an independently opened same-file handle in its process and blocks a new alias during a hold. Coordinate independent processes and other SQL.js instances, all direct Brain producers and a Redis snapshot/readback; verify the multi-store copy under whole-app quiescence. Old production remains protected with unproven RAM and no live in-process capture mechanism.",
     "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Next bind provider-response provenance and durable freshness to supplier stock/cost/freight and Amazon fee receipts before any approval surface; no real provider calls or commerce authority.",
-    "Amazon fee estimates require matching request identifier and a parseable TimeOfFeesEstimation no older than ten minutes, allowing one-minute future skew; still no settled fee. Build durable supplier stock/cost/freight provenance, freshness and independent reconciliation before approval surfaces; no real provider calls.",
+    "Pillow presale and re-evaluation now refuse unbound/unavailable fee responses after one request; a distinct successful price refinement still obtains a new estimate for the changed amount. Build durable supplier stock/cost/freight provenance and independent reconciliation before approval surfaces. No real provider calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
