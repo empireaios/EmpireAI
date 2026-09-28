@@ -22,6 +22,9 @@ test("one VID sums only direct CJ-managed warehouse units and never factory inve
   assert.equal(cjManagedStockByVid([data[0], data[0]], "V1"), 0);
   assert.equal(cjManagedStockByVid([{ ...data[0], cjInventoryNum: 1.5 }], "V1"), 0);
   assert.equal(cjManagedStockByVid([{ ...data[0], countryCode: undefined }], "V1"), 0);
+  assert.equal(cjManagedStockByVid([{ ...data[0], areaId: undefined }], "V1", "CN"), 0);
+  assert.equal(cjManagedStockByVid([{ ...data[0], areaId: -1 }], "V1", "CN"), 0);
+  assert.equal(cjManagedStockByVid([{ ...data[0], areaId: 1.2 }], "V1", "CN"), 0);
 });
 
 test("a stock lookup never retries and spends at most one queryByVid call on provider failure", async () => {
