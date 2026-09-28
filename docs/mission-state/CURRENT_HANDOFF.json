@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T12:07:50Z",
+  "updatedAt": "2026-09-28T12:13:23Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "369ff6ad82f0cfbad0f9273300d5cdfe9ad30cfd",
+    "lastVerifiedIntegrationHead": "c6bbeea147cb41d06e6430f674ac9b0e8f0a99b9",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; presale proposal disk receipt before approval passed exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "369ff6ad82f0cfbad0f9273300d5cdfe9ad30cfd",
-    "branchTipNote": "369ff6ad all-three pass, Product web build transient next/font failure succeeded on same-head job retry; handoff receipt follows. Re-evaluation ordering repair is local pending its own checkpoint.",
+    "status": "draft unmerged; presale and re-evaluation proposal disk receipts before approval pass exact-head Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "c6bbeea147cb41d06e6430f674ac9b0e8f0a99b9",
+    "branchTipNote": "c6bbeea all-three exact-head CI passed; re-evaluation proposal and mapping persisted before replacement approval, rejected prior approval cleared. Handoff-only receipt follows.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -142,7 +142,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36418119770",
       "https://github.com/empireaios/EmpireAI/actions/runs/36418996811",
       "https://github.com/empireaios/EmpireAI/actions/runs/36418996851",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36418997011"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36418997011",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36419967238",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36419967235",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36419967436"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -567,7 +570,7 @@
   ],
   "nextExecutableActions": [
     "TaskQueue task and repeat producers now refuse while a shared Redis capture owner exists, and a real second-connection test passed. Direct BullMQ access and races can still mutate the queue; event/count comparison refuses such a capture. Next coordinate all other producers, application replicas, independently opened handles and Redis snapshot/readback. Old production remains protected with unproven RAM.",
-    "Presale now critically saves the SKU-CJ mapping and APPROVAL_READY opportunity before Grand King approval registration; independent disk read passed. Re-evaluation had the same ordering gap and is under isolated local validation, pending its own exact-head CI. Neither path has provider-signed supplier receipts or real commerce authority.",
+    "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Next bind provider-response provenance and durable freshness to supplier stock/cost/freight and Amazon fee receipts before any approval surface; no real provider calls or commerce authority.",
     "Build durable identity-bound CJ stock/cost/freight and Amazon seller-fee receipts with provider response provenance, price/stock freshness, fulfilment compliance and independent reconciliation before approval surfaces. Pillow arithmetic now requires LIVE freshness and bounded cents, but a LIVE label alone is not a signed receipt. Preexisting SQL.js CJ point history still needs verified migration before activation; no real provider calls.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
