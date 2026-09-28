@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T13:13:50Z",
+  "updatedAt": "2026-09-28T13:23:56Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "1ec3a0e119462e61e48e479f0c307a93b08e8832",
+    "lastVerifiedIntegrationHead": "7373721505fbfa0bac124b4db0cd0837655f289e",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; same-inode SQL.js alias capture guard and Pillow fee/web checks pass exact-head Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "1ec3a0e119462e61e48e479f0c307a93b08e8832",
-    "branchTipNote": "1ec3a0e all-three pass; capture refuses open same-file SQL.js aliases by canonical path or inode and blocks a hard-link alias during hold. Handoff-only receipt follows.",
+    "status": "draft unmerged; bounded CJ response body/deadline, same-inode capture and Pillow fee/web checks pass exact-head Product/Semantic/Runtime; production protected",
+    "candidateCodeHead": "7373721505fbfa0bac124b4db0cd0837655f289e",
+    "branchTipNote": "7373721 all-three pass; CJ response limited to 4 MiB and timeout covers body; point-charged attempts remain single. Handoff-only receipt follows.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -163,7 +163,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36425634058",
       "https://github.com/empireaios/EmpireAI/actions/runs/36427044670",
       "https://github.com/empireaios/EmpireAI/actions/runs/36427044688",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36427044686"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36427044686",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36428242791",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36428242764",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36428242784"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -591,7 +594,7 @@
   "nextExecutableActions": [
     "Candidate SQL.js capture refuses independently opened same-file handles in its process by canonical path and inode, including hard-link aliases during a hold. Coordinate separate processes, direct Brain producers and native handles, and independently verify Redis/multi-store snapshot. Old production remains protected with pending RAM and no validated in-process capture mechanism.",
     "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Next bind provider-response provenance and durable freshness to supplier stock/cost/freight and Amazon fee receipts before any approval surface; no real provider calls or commerce authority.",
-    "Pillow presale and re-evaluation now refuse unbound/unavailable fee responses after one request; a distinct successful price refinement still obtains a new estimate for the changed amount. Build durable supplier stock/cost/freight provenance and independent reconciliation before approval surfaces. No real provider calls.",
+    "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
