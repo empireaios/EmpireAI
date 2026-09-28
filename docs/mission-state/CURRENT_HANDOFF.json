@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T13:23:56Z",
+  "updatedAt": "2026-09-28T13:29:06Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -23,7 +23,7 @@
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft unmerged; bounded CJ response body/deadline, same-inode capture and Pillow fee/web checks pass exact-head Product/Semantic/Runtime; production protected",
     "candidateCodeHead": "7373721505fbfa0bac124b4db0cd0837655f289e",
-    "branchTipNote": "7373721 all-three pass; CJ response limited to 4 MiB and timeout covers body; point-charged attempts remain single. Handoff-only receipt follows.",
+    "branchTipNote": "7373721 Product/Semantic/Runtime exact-head pass. Handoff receipt f5da7f8; later docs-only consistency update follows. Production protected; Vercel fresh verification pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
