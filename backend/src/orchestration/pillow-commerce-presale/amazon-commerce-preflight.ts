@@ -268,6 +268,7 @@ export async function estimateAmazonFees(
           PriceToEstimateFees?: { ListingPrice?: { CurrencyCode?: string; Amount?: number } };
         };
         FeesEstimate?: {
+          TimeOfFeesEstimation?: string;
           TotalFeesEstimate?: { Amount?: number; CurrencyCode?: string };
         };
         Error?: { Message?: string; Code?: string };
@@ -280,6 +281,12 @@ export async function estimateAmazonFees(
     json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.Amount;
   const currency = json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.CurrencyCode;
   const status = json.payload?.FeesEstimateResult?.Status;
+  const estimatedAt = json.payload?.FeesEstimateResult?.FeesEstimate?.TimeOfFeesEstimation;
+  const estimatedAtMs = typeof estimatedAt === "string" && estimatedAt.trim()
+    ? Date.parse(estimatedAt) : NaN;
+  const estimateAgeMs = Date.now() - estimatedAtMs;
+  const freshEstimate = Number.isFinite(estimateAgeMs) &&
+    estimateAgeMs >= -60_000 && estimateAgeMs <= 10 * 60_000;
   const identifier = json.payload?.FeesEstimateResult?.FeesEstimateIdentifier;
   const echoedPrice = identifier?.PriceToEstimateFees?.ListingPrice;
   const matchingIdentifier = identifier?.MarketplaceId === session.marketplaceId &&
@@ -289,7 +296,7 @@ export async function estimateAmazonFees(
     identifier.IsAmazonFulfilled === false && echoedPrice?.CurrencyCode === "USD" &&
     typeof echoedPrice.Amount === "number" && Number.isSafeInteger(Math.round(echoedPrice.Amount * 100)) &&
     Math.abs(echoedPrice.Amount * 100 - priceCents) < 1e-8;
-  if (response.ok && status === "Success" && currency === "USD" &&
+  if (response.ok && status === "Success" && currency === "USD" && freshEstimate &&
       matchingIdentifier &&
       typeof total === "number" && Number.isFinite(total) && total >= 0 &&
       Number.isSafeInteger(Math.round(total * 100)) &&
@@ -301,6 +308,7 @@ export async function estimateAmazonFees(
   const err =
     json.payload?.FeesEstimateResult?.Error?.Message ||
     json.errors?.map((e) => e.message).filter(Boolean).join("; ") ||
+    (!freshEstimate ? "Fee estimate timestamp missing or outside ten-minute freshness window" : null) ||
     `Fees estimate unavailable, unbound or invalid (status ${status ?? "unknown"}, currency ${currency ?? "unknown"}, HTTP ${response.status})`;
   return { totalFeesUsd: null, freshness: "UNAVAILABLE", raw: json, blocker: err };
 }
