@@ -11,6 +11,33 @@ import type {
   CjStockResponse,
 } from "./cj-types.js";
 
+const MAX_CJ_RESPONSE_BYTES = 4 * 1024 * 1024;
+
+async function readBoundedCjJson(response: Response): Promise<unknown> {
+  const declared = response.headers.get("content-length");
+  if (declared !== null && /^\d+$/.test(declared) && Number(declared) > MAX_CJ_RESPONSE_BYTES) {
+    void response.body?.cancel().catch(() => {});
+    throw new CjApiError("VALIDATION_ERROR", "CJ response exceeds bounded size", { retryable: false });
+  }
+  if (!response.body) throw new CjApiError("VALIDATION_ERROR", "CJ response body absent", { retryable: false });
+  const reader = response.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let bytes = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > MAX_CJ_RESPONSE_BYTES) {
+        void reader.cancel().catch(() => {});
+        throw new CjApiError("VALIDATION_ERROR", "CJ response exceeds bounded size", { retryable: false });
+      }
+      chunks.push(value);
+    }
+  } finally { reader.releaseLock(); }
+  return JSON.parse(Buffer.concat(chunks.map(chunk => Buffer.from(chunk)), bytes).toString("utf8"));
+}
+
 export type CjRequestOptions = {
   method?: "GET" | "POST";
   path: string;
@@ -86,18 +113,17 @@ export class CjApiClient {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), this.config.requestTimeoutMs);
 
-        const response = await this.fetchImpl(this.buildUrl(options.path, options.query), {
-          method,
-          headers,
-          body: options.body ? JSON.stringify(options.body) : undefined,
-          signal: controller.signal,
-        }).finally(() => clearTimeout(timeout));
-
-        const payload = (await response.json()) as T & {
-          code?: number;
-          result?: boolean;
-          message?: string;
-        };
+        let response: Response;
+        let payload: T & { code?: number; result?: boolean; message?: string };
+        try {
+          response = await this.fetchImpl(this.buildUrl(options.path, options.query), {
+            method,
+            headers,
+            body: options.body ? JSON.stringify(options.body) : undefined,
+            signal: controller.signal,
+          });
+          payload = await readBoundedCjJson(response) as typeof payload;
+        } finally { clearTimeout(timeout); }
 
         const apiError = classifyCjApiResponse(payload, response.status);
         if (apiError) {
