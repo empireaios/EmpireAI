@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import { describe, it, beforeEach, afterEach } from "node:test";
 
 import { ApprovalGateEngine } from "../../orchestration/pillow-approval/approval-gate-engine.js";
@@ -345,6 +346,21 @@ describe("pillow-commerce-presale", () => {
     });
 
     const gate = new ApprovalGateEngine();
+    const register = gate.register.bind(gate);
+    let approvalSawDiskReceipt = false;
+    gate.register = ((request) => {
+      const disk = new DatabaseSync(process.env.DATABASE_PATH!, { readOnly: true });
+      try {
+        const mapping = disk.prepare("SELECT record_json FROM pillow_commerce_amazon_cj_maps WHERE asin=?")
+          .get("B0TESTSPATULA") as { record_json: string } | undefined;
+        const opportunity = disk.prepare("SELECT record_json FROM pillow_commerce_presale_opportunities WHERE disposition='APPROVAL_READY'")
+          .get() as { record_json: string } | undefined;
+        assert.equal(JSON.parse(mapping?.record_json ?? "null")?.cjVid, "VGOOD");
+        assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.asin, "B0TESTSPATULA");
+        approvalSawDiskReceipt = true;
+      } finally { disk.close(); }
+      return register(request);
+    }) as typeof gate.register;
     const cycle = await runPillowCommercePresaleCycle({
       workspaceId: "ws_empire_1",
       companyId: "co-grand-king",
@@ -358,6 +374,7 @@ describe("pillow-commerce-presale", () => {
     assert.equal(cycle.supplierSpendAttempted, false);
     assert.ok(cycle.rejections.some((r) => r.reasonCode === "PROOF_001_BRAND_FAILURE_CLASS"));
     assert.equal(cycle.outcome, "APPROVAL_SURFACED");
+    assert.equal(approvalSawDiskReceipt, true);
     assert.ok(cycle.qualifiedOpportunity);
     assert.equal(cycle.qualifiedOpportunity!.mapping.asin, "B0TESTSPATULA");
     assert.equal(cycle.qualifiedOpportunity!.mapping.cjPid, "P_GOOD");
