@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, mkdirSync } from "node:fs";
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -63,6 +63,28 @@ test("preexisting SQL.js point history blocks native-ledger reset", async () => 
     else process.env.DATABASE_PATH = previous;
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("unreconciled native ledger sidecars withhold CJ point dispatch", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "cj-point-sidecar-"));
+  const primary = join(dir, "brain.sqlite");
+  const config: CjConfig = { apiBaseUrl: "https://cj.invalid/api2.0/v1", apiKey: "sidecar-key",
+    apiSecret: null, integrationMode: "LIVE", requestTimeoutMs: 500, maxRetries: 0, rateLimitPerMinute: 10 };
+  const env = { DATABASE_PATH: primary, CJ_PRESALE_ACCOUNT_ID: "sidecar-account",
+    CJ_PRESALE_CYCLE_POINT_LIMIT: "50", CJ_PRESALE_DAILY_POINT_LIMIT: "50" };
+  try {
+    await createCjPresalePointReservation({ config, env, cycleId: "cycle" })("/product/query");
+    for (const suffix of ["-journal", "-wal", "-shm"]) {
+      const sidecar = cjPointLedgerPath(primary) + suffix;
+      writeFileSync(sidecar, "unreconciled");
+      await assert.rejects(createCjPresalePointReservation({ config, env, cycleId: "cycle" })("/product/list"),
+        /sidecar requires offline reconciliation/);
+      rmSync(sidecar);
+    }
+    const db = new DatabaseSync(cjPointLedgerPath(primary), { readOnly: true });
+    try { assert.equal(db.prepare("SELECT COUNT(*) AS n FROM cj_point_reservations").get()?.n, 1); }
+    finally { db.close(); }
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
 test("CJ requests need disk-backed owner budgets, reserve before dispatch, and retain uncertain charges across restart", async () => {
