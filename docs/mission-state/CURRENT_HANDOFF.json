@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T14:41:52.676Z",
+  "updatedAt": "2026-09-28T14:51:43.878Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "7f9a67c2a31090ce735c25f5b71d8980ad18a95f",
+    "lastVerifiedIntegrationHead": "5997df81785e02acb60d5858882c7cec854610d0",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; local supplier/fee receipt bundle passed exact-head Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "7f9a67c2a31090ce735c25f5b71d8980ad18a95f",
-    "branchTipNote": "7f9a67c local response-hash receipt bundle passed exact-head Product/Semantic/Runtime. Handoff receipt is docs only. Production protected; Vercel fresh verification pending.",
+    "status": "draft unmerged; local response receipts and offline Pillow-to-Amazon offer handoff passed Product/Semantic/Runtime; production protected",
+    "candidateCodeHead": "5997df81785e02acb60d5858882c7cec854610d0",
+    "branchTipNote": "5997df8 offline Pillow decision-to-Amazon offer integration passed exact-head Product/Semantic/Runtime; handoff receipt docs only. Production protected; Vercel fresh verification pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -581,6 +581,16 @@
         "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36437037250"
       },
       "scope": "Offline selected cost/stock/freight/fee responses and identities hashed into mapping before approval; independent disk readback in presale test; re-evaluation uses same builder. Local hashes are not provider signatures, settled fees, live calls or commerce authority."
+    },
+    "offlineAmazonOfferHandoff": {
+      "codeHead": "5997df81785e02acb60d5858882c7cec854610d0",
+      "status": "EXACT_HEAD_CI_PASSED",
+      "workflows": {
+        "product": "https://github.com/empireaios/EmpireAI/actions/runs/36438395873",
+        "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36438396106",
+        "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36438396456"
+      },
+      "scope": "Persisted Pillow opportunity plus receipt bundle enters existing Amazon catalog/offer validator; pending approval and absent CJ-bound product identifier block; valid test-approved copy yields offline body, never publishes. Actual CJ identifier, real owner decision, live listing and order absent."
     }
   },
   "failedAttempts": [
@@ -624,7 +634,7 @@
   ],
   "nextExecutableActions": [
     "Candidate SQL.js capture refuses independently opened same-file handles in its process by canonical path and inode, including hard-link aliases during a hold. Coordinate separate processes, direct Brain producers and native handles, and independently verify Redis/multi-store snapshot. Old production remains protected with pending RAM and no validated in-process capture mechanism.",
-    "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Local response hashes and captured fields now persist before approval; next integrate product → qualification → listing → order → fulfillment → accounting in a larger offline proof and independently reconcile provider authenticity and settled fees. No real provider calls or commerce authority.",
+    "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Local response hashes persist and the offline approval-to-offer segment passes. Next persist CJ VID-bound UPC/EAN/GTIN and Amazon catalog identity, then integrate listing → order → fulfillment → accounting offline with independent provider and settled-fee reconciliation. No real provider calls or commerce authority.",
     "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
