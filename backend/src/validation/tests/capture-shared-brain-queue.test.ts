@@ -62,6 +62,16 @@ test("a producer event during callback invalidates capture even when queue is st
   assert.equal(f.keys.size, 0);
 });
 
+test("cooperating task and repeat producers refuse while capture owns queue", async () => {
+  const f = fixture();
+  f.setActive(0);
+  await f.task.withPausedSharedProcessing(async () => {
+    await assert.rejects(f.task.enqueue({ type: "noop" } as never), /production withheld/);
+    await assert.rejects(f.task.registerScheduledJob({ name: "repeat", cron: "* * * * *", payload: {} as never }), /production withheld/);
+  });
+  assert.equal(f.keys.size, 0);
+});
+
 test("shared queue releases its pause on timeout and callback failure; preexisting pause stays untouched", async () => {
   const f = fixture();
   await assert.rejects(f.task.withPausedSharedProcessing(() => 1, 5), /did not drain/);
