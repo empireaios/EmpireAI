@@ -305,10 +305,6 @@ export async function reevaluateCommerceOpportunity(
   });
   let fees = await estimateAmazonFees(amazon.session, asin, price);
   if (fees.totalFeesUsd === null) {
-    price = Number((price * 1.2).toFixed(2));
-    fees = await estimateAmazonFees(amazon.session, asin, price);
-  }
-  if (fees.totalFeesUsd === null) {
     return finalizeReject({
       input,
       targetOpp,
