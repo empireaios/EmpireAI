@@ -338,6 +338,13 @@ describe("pillow-commerce-presale", () => {
             payload: {
               FeesEstimateResult: {
                 Status: "Success",
+                FeesEstimateIdentifier: {
+                  MarketplaceId: "ATVPDKIKX0DER", IdType: "ASIN", IdValue: "B0TESTSPATULA",
+                  SellerId: "A1TESTSELLER",
+                  SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
+                  IsAmazonFulfilled: false,
+                  PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: (request.body as { FeesEstimateRequest: { PriceToEstimateFees: { ListingPrice: { Amount: number } } } }).FeesEstimateRequest.PriceToEstimateFees.ListingPrice.Amount } },
+                },
                 FeesEstimate: { TotalFeesEstimate: { Amount: 2.5, CurrencyCode: "USD" } },
               },
             },
