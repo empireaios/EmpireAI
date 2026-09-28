@@ -5,6 +5,7 @@
 import { randomUUID } from "node:crypto";
 
 import { logger } from "../../../config/logger.js";
+import { getDatabase } from "../../../brain/database.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { cjManagedStockByVid } from "../cj-variant-stock.js";
 import { createCjPresalePointReservation } from "../cj-point-reservation.js";
@@ -437,13 +438,42 @@ export async function reevaluateCommerceOpportunity(
     fullNarrative: `${assembled.dossier.grandKingSummary}\n\n${commerceMemory.formatted}`,
   };
 
-  let approvalId = targetOpp?.approvalId ?? null;
-  let approvalStatus = targetOpp?.approvalStatus ?? ("none" as const);
+  const existingApprovalId = approvalSurface &&
+    targetOpp?.approvalStatus !== "Rejected" &&
+    targetOpp?.approvalStatus !== "Cancelled"
+      ? targetOpp?.approvalId ?? null
+      : null;
+  const opportunity: QualifiedOpportunity = {
+    opportunityId: targetOpp?.opportunityId ?? randomUUID(),
+    workspaceId: input.workspaceId,
+    companyId: input.companyId,
+    disposition: existingApprovalId ? "AWAITING_APPROVAL" : approvalSurface ? "APPROVAL_READY" : "QUALIFIED",
+    preflightOfferState: "NOT_PUBLISHED",
+    mapping,
+    stockUnits,
+    stockFreshness: "LIVE",
+    risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
+    recommendation,
+    dossier: assembled.dossier,
+    approvalId: existingApprovalId,
+    approvalStatus: existingApprovalId ? "Pending" : "none",
+    publicationAllowed: false,
+    supplierSpendAllowed: false,
+    createdAt: targetOpp?.createdAt ?? now,
+    updatedAt: now,
+  };
+
+  // A Grand King approval must never reference a proposal that exists only in SQL.js RAM.
+  repo.saveMapping(mapping, input.workspaceId);
+  repo.saveOpportunity(opportunity);
+  await getDatabase().requestCriticalPersist();
+
   if (
     approvalSurface &&
-    (!approvalId || approvalStatus === "Rejected" || approvalStatus === "Cancelled") &&
+    !existingApprovalId &&
     input.approvalGate
   ) {
+    let newApprovalId: string | null = null;
     try {
       const approval = input.approvalGate.register({
         workspaceId: input.workspaceId,
@@ -473,39 +503,18 @@ export async function reevaluateCommerceOpportunity(
           },
         },
       });
-      approvalId = approval.approvalId;
-      approvalStatus = "Pending";
+      newApprovalId = approval.approvalId;
     } catch (error) {
       logger.warn({ err: error }, "Re-eval approval registration failed");
     }
+    if (newApprovalId) {
+      opportunity.approvalId = newApprovalId;
+      opportunity.approvalStatus = "Pending";
+      opportunity.disposition = "AWAITING_APPROVAL";
+      repo.saveOpportunity(opportunity);
+      await getDatabase().requestCriticalPersist();
+    }
   }
-
-  const opportunity: QualifiedOpportunity = {
-    opportunityId: targetOpp?.opportunityId ?? randomUUID(),
-    workspaceId: input.workspaceId,
-    companyId: input.companyId,
-    disposition: approvalId
-      ? "AWAITING_APPROVAL"
-      : approvalSurface
-        ? "APPROVAL_READY"
-        : "QUALIFIED",
-    preflightOfferState: "NOT_PUBLISHED",
-    mapping,
-    stockUnits,
-    stockFreshness: "LIVE",
-    risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
-    recommendation,
-    dossier: assembled.dossier,
-    approvalId: approvalSurface ? approvalId : null,
-    approvalStatus: approvalSurface && approvalId ? "Pending" : "none",
-    publicationAllowed: false,
-    supplierSpendAllowed: false,
-    createdAt: targetOpp?.createdAt ?? now,
-    updatedAt: now,
-  };
-
-  repo.saveMapping(mapping, input.workspaceId);
-  repo.saveOpportunity(opportunity);
 
   captureInstitutionalMemory({
     workspaceId: input.workspaceId,
