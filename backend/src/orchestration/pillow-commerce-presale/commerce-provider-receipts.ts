@@ -29,6 +29,14 @@ function digest(value: unknown): string {
   return createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
 
+export function verifyCommerceProviderReceiptDigest(bundle: CommerceProviderReceipts): boolean {
+  if (bundle.schemaVersion !== 1 || !/^[a-f0-9]{64}$/.test(bundle.decisionSha256)) return false;
+  const { supplierCost, supplierStock, usFreight, amazonFees } = bundle;
+  return [supplierCost, supplierStock, usFreight, amazonFees].every(receipt =>
+    Boolean(receipt && /^[a-f0-9]{64}$/.test(receipt.responseSha256))) &&
+    bundle.decisionSha256 === digest({ supplierCost, supplierStock, usFreight, amazonFees });
+}
+
 function fresh(at: string, now: number): void {
   const age = now - Date.parse(at);
   if (!Number.isFinite(age) || age < -60_000 || age > 10 * 60_000) {
