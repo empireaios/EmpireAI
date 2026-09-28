@@ -4,9 +4,49 @@ import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { test } from "node:test";
+import { buildApp } from "../../app.js";
+import { getDatabase, resetDatabaseInstance } from "../../brain/database.js";
 import { EmpireDatabase } from "../../brain/sqlite-database.js";
 import { withQuiescedBrainAndShadowCapture } from "../../orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
 import { openShadowCeoRepository, runVerticalSliceDemo } from "../../orchestration/shadow-ceo/index.js";
+import { configureValidationEnvironment } from "../harness.js";
+
+test("application local drain saves both RAM-backed SQL handles before caller readback", async t => {
+  configureValidationEnvironment();
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "app-local-capture-"));
+  const primaryFile = path.join(dir, "brain.db");
+  const shadowFile = path.join(dir, "shadow.db");
+  process.env.DATABASE_PATH = primaryFile;
+  const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: false, earlyListen: true });
+  const shadow = openShadowCeoRepository({ dbPath: shadowFile });
+  t.after(async () => {
+    shadow.close();
+    await empire.shutdown();
+    resetDatabaseInstance();
+    delete process.env.DATABASE_PATH;
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
+  const primary = getDatabase();
+  primary.exec("CREATE TABLE capture_local_evidence (value TEXT)");
+  primary.prepare("INSERT INTO capture_local_evidence VALUES ('pending RAM')").run();
+  const slice = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_local_capture", runKey: "pending" });
+
+  await empire.withDrainedLocalSqliteCapture(shadow, () => {
+    assert.throws(() => primary.exec("DELETE FROM capture_local_evidence"), /quiesced/);
+    assert.throws(() => runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_local_capture", runKey: "blocked" }), /quiesced/);
+    const brainCopy = path.join(dir, "brain.copy.db");
+    const shadowCopy = path.join(dir, "shadow.copy.db");
+    fs.copyFileSync(primaryFile, brainCopy);
+    fs.copyFileSync(shadowFile, shadowCopy);
+    const b = new DatabaseSync(brainCopy, { readOnly: true });
+    const s = new DatabaseSync(shadowCopy, { readOnly: true });
+    try {
+      assert.equal(b.prepare("SELECT value FROM capture_local_evidence").get()?.value, "pending RAM");
+      assert.ok(Number(s.prepare("SELECT COUNT(*) AS n FROM shadow_ceo_records WHERE objective_id = ?")
+        .get(slice.objectiveId)?.n) >= 12);
+    } finally { b.close(); s.close(); }
+  });
+});
 
 test("both open SQL.js handles save RAM and refuse writes through one verified capture", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "two-handle-capture-"));
