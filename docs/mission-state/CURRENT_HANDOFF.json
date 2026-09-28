@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T10:23:47Z",
+  "updatedAt": "2026-09-28T10:40:41Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "77410bc87e4244f9aa10d4bf9fdcd0b513b47d84",
+    "lastVerifiedIntegrationHead": "5f2a82b817f8f54c7e798c0419ac07af6c44f3bb",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; separate-process native capture, CJ freight price guard and CN-origin stock binding passed exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "77410bc87e4244f9aa10d4bf9fdcd0b513b47d84",
-    "branchTipNote": "77410bc8 three-workflow pass; handoff-only receipt follows. Redis, replicas, pending old-production RAM and real commerce remain outside proof.",
+    "status": "draft unmerged; shared BullMQ consumer pause/drain and stricter CJ warehouse identity published, exact-head Product/Semantic/Runtime passed; production untouched",
+    "candidateCodeHead": "5f2a82b817f8f54c7e798c0419ac07af6c44f3bb",
+    "branchTipNote": "5f2a82b8 three-workflow pass; handoff-only receipt follows. Redis producers/schedulers, independently opened store handles, old-production pending RAM and real commerce remain outside proof.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -53,7 +53,7 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation.",
+      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision.",
       "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
       "teamScopedListing": "403 Forbidden",
       "productionReadbackVerified": true
@@ -112,7 +112,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36407997930",
       "https://github.com/empireaios/EmpireAI/actions/runs/36408883563",
       "https://github.com/empireaios/EmpireAI/actions/runs/36408883603",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36408883617"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36408883617",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36410533200",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36410533192",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36410533224"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -530,14 +533,13 @@
     "Amazon US importer, rate gate, narrow scheduler and scoped credential disk restart passed offline CI at a721; no hosted worker/process restart or real seller provider proof.",
     "Amazon US order importer and seller listings/inventory importer/continuation and seller B2C USD offer extraction passed offline CI. Supplier cost/margin, authentic notification transport, upstream stock/compliance, fulfilment and settlement not implemented or independently verified.",
     "Existing separate live-commerce supplier-cj-adapter used API key as CJ-Access-Token, wrong getAccessToken request shape and hard-coded production counts; 7c0fca18 corrected auth request/response and fails closed until real durable supplier receipts, all three hosted workflows passed. Account-bound cache repair in separate CJ module passed all three hosted workflows. No supplier durable stock, cost or order receipt exists. Real CJ API uses access-token JSON response and API points; no live calls in recovery.",
-    "Despite owner-reported Vercel reconnection, 2026-09-27 connector lists no teams and exact EmpireAI team lookup returns 403 re-authenticate to scope; current deployment revision remains unverified.",
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state.",
-    "Read-only Vercel connector teams=[] and known deployment/team GET returned 403 on 2026-09-27; fresh deployment revision unverified.",
-    "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production."
+    "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production.",
+    "Fresh Vercel known-ID connector lookup on 2026-09-28 returned INVALID_ARGUMENT. Direct 2026-09-27 production deployment readback remains verified as READY on main 21384342; no deployment mutation."
   ],
   "nextExecutableActions": [
-    "Candidate HTTP admission and local Brain worker plus Pillow boot drain now compose with independently verified two-SQL.js-handle fence. Next coordinate other scheduled producers/worker processes, request-owner/authority JSON, native mission/execution, Redis and Shadow stores in one tested all-writer capture with independent reopen evidence. Old process has no validated safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
-    "Continue exact-VID CJ stock/cost/freight receipt persistence, fulfilment compliance and seller fee reconciliation. Candidate native point ledger is cross-process safe with stable account ID; existing SQL.js point history blocks dispatch pending verified migration. New ledger offline backup inclusion passed Product/Semantic/Runtime; no real provider call authorized or made.",
+    "Candidate adds globally paused/drained BullMQ Brain consumers with a persistent capture owner key around local HTTP/Pillow/JSON/SQL.js/native capture; verify with real Redis across processes, then coordinate repeat producers, new Redis jobs, other store handles and Redis snapshot/readback. A crash or uncertain queue restoration retains the capture owner for inspected manual recovery. Old process has no safe in-process entrypoint; do not restart, redeploy, mutate or copy it.",
+    "Continue VID-bound CJ stock/cost/freight durable receipt persistence, fulfilment compliance and seller fee reconciliation. Warehouse identity now must be a positive integer; candidate native point ledger remains blocked on verified preexisting SQL.js history migration. No provider calls authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
