@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T00:11:54Z",
+  "updatedAt": "2026-09-28T10:08:28Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "d21b2681286125d5462238bb08e032880ebe65b4",
+    "lastVerifiedIntegrationHead": "e3e9c4f8d6b57fe06ed45518a77d59920d02e017",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; candidate application local SQL.js and JSON capture composition passed exact-head Product/Semantic/Runtime; external processes/native/Redis and old production RAM remain uncaptured",
-    "candidateCodeHead": "d21b2681286125d5462238bb08e032880ebe65b4",
-    "branchTipNote": "d21b2681 exact-head three-workflow pass after scoped offline test Redis setting; handoff-only receipt follows. No production operation or real commerce.",
+    "status": "draft unmerged; separate process native mission/execution lock capture passed exact-head Product/Semantic/Runtime; Redis, replicas and old production RAM remain uncaptured",
+    "candidateCodeHead": "e3e9c4f8d6b57fe06ed45518a77d59920d02e017",
+    "branchTipNote": "e3e9c4f8 exact-head three-workflow pass; handoff receipt follows. No production operation or real commerce.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -103,7 +103,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36360049119",
       "https://github.com/empireaios/EmpireAI/actions/runs/36360912598",
       "https://github.com/empireaios/EmpireAI/actions/runs/36360912621",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36360912590"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36360912590",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36407291323",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36407291348",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36407291358"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
