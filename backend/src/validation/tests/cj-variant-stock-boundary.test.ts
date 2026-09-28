@@ -11,6 +11,10 @@ test("one VID sums only direct CJ-managed warehouse units and never factory inve
     { vid: "V1", areaId: 2, countryCode: "US", cjInventoryNum: 3, factoryInventoryNum: 500, totalInventoryNum: 503 },
   ];
   assert.equal(cjManagedStockByVid(data, "V1"), 5);
+  assert.equal(cjManagedStockByVid(data, "V1", "CN"), 2);
+  assert.equal(cjManagedStockByVid([data[1]], "V1", "CN"), 0);
+  assert.equal(cjManagedStockByVid(data, "V1", "US"), 3);
+  assert.equal(cjManagedStockByVid(data, "V1", "cn"), 0);
   assert.equal(cjManagedStockByVid([{ ...data[0], cjInventoryNum: 0 }], "V1"), 0);
   assert.equal(cjManagedStockByVid([{ ...data[0], cjInventoryNum: undefined }], "V1"), 0);
   assert.equal(cjManagedStockByVid(data, "V2"), 0);
