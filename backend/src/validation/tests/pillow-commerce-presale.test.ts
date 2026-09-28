@@ -371,6 +371,19 @@ describe("pillow-commerce-presale", () => {
           .get() as { record_json: string } | undefined;
         assert.equal(JSON.parse(mapping?.record_json ?? "null")?.cjVid, "VGOOD");
         assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.asin, "B0TESTSPATULA");
+        const receiptMap = JSON.parse(mapping?.record_json ?? "null");
+        const receipts = receiptMap?.providerReceipts;
+        assert.equal(receipts?.schemaVersion, 1);
+        assert.equal(receipts?.supplierCost?.request?.vid, "VGOOD");
+        assert.equal(receipts?.supplierStock?.selected?.units, 120);
+        assert.equal(receipts?.usFreight?.selected?.logisticName, "CJPacket");
+        assert.equal(receipts?.amazonFees?.request?.asin, "B0TESTSPATULA");
+        assert.equal(receipts?.amazonFees?.request?.listingPriceUsd, receiptMap?.proposedSellingPriceUsd);
+        assert.equal(receipts?.amazonFees?.selected?.amountUsd, receiptMap?.amazonFeesUsd?.amountUsd);
+        assert.match(receipts?.decisionSha256 ?? "", /^[a-f0-9]{64}$/);
+        assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.providerReceipts?.decisionSha256,
+          receipts?.decisionSha256);
+        assert.ok(request.proposal.evidence.includes(`providerDecisionSha256:${receipts.decisionSha256}`));
         approvalSawDiskReceipt = true;
       } finally { disk.close(); }
       return register(request);
