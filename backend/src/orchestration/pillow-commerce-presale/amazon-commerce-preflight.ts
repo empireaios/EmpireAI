@@ -260,14 +260,20 @@ export async function estimateAmazonFees(
 
   const total =
     json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.Amount;
-  if (typeof total === "number" && Number.isFinite(total)) {
+  const currency = json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.CurrencyCode;
+  const status = json.payload?.FeesEstimateResult?.Status;
+  if (response.ok && status === "Success" && currency === "USD" &&
+      typeof total === "number" && Number.isFinite(total) && total >= 0 &&
+      Number.isSafeInteger(Math.round(total * 100)) &&
+      Math.abs(total * 100 - Math.round(total * 100)) < 1e-8 &&
+      !json.payload?.FeesEstimateResult?.Error && !json.errors?.length) {
     return { totalFeesUsd: total, freshness: "LIVE", raw: json, blocker: null };
   }
 
   const err =
     json.payload?.FeesEstimateResult?.Error?.Message ||
     json.errors?.map((e) => e.message).filter(Boolean).join("; ") ||
-    `Fees estimate unavailable HTTP ${response.status}`;
+    `Fees estimate unavailable or invalid (status ${status ?? "unknown"}, currency ${currency ?? "unknown"}, HTTP ${response.status})`;
   return { totalFeesUsd: null, freshness: "UNAVAILABLE", raw: json, blocker: err };
 }
 
