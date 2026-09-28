@@ -100,7 +100,7 @@ describe("commercial decision dossier FD-CDD-001", () => {
         freshness: "LIVE",
         source: "test",
       },
-      freightOption: { logisticPrice: 8.3, logisticAging: "7-12", countryCode: "CN" },
+      freightOption: { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12", countryCode: "CN" },
       salesRank: 120000,
       risks: ["test"],
     });
@@ -113,9 +113,9 @@ describe("commercial decision dossier FD-CDD-001", () => {
 
   it("picks cheapest freight and keeps transit aging", () => {
     const picked = pickCheapestFreight([
-      { logisticPrice: 12, logisticAging: "10-15" },
-      { logisticPrice: 8.3, logisticAging: "7-12" },
-      { logisticPrice: 9.1, logisticAging: "8-14" },
+      { logisticName: "CJ Standard", logisticPrice: 12, logisticAging: "10-15" },
+      { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12" },
+      { logisticName: "CJ Express", logisticPrice: 9.1, logisticAging: "8-14" },
     ]);
     assert.equal(picked.priceUsd, 8.3);
     assert.equal(picked.option?.logisticAging, "7-12");
@@ -126,8 +126,19 @@ describe("commercial decision dossier FD-CDD-001", () => {
       { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticPrice: Number.NaN },
     ]), { priceUsd: null, option: null });
     assert.equal(pickCheapestFreight([
-      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticPrice: 8.3 },
+      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticName: "CJPacket", logisticPrice: 8.3 },
     ]).priceUsd, 8.3);
+  });
+
+  it("refuses unnamed CJ freight even when it is the cheapest quote", () => {
+    const picked = pickCheapestFreight([
+      { logisticPrice: 1.25, logisticAging: "3-5" },
+      { logisticName: "  ", logisticPrice: 2.5, logisticAging: "3-5" },
+      { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12" },
+    ]);
+    assert.equal(picked.priceUsd, 8.3);
+    assert.equal(picked.option?.logisticName, "CJPacket");
+    assert.deepEqual(pickCheapestFreight([{ logisticPrice: 1.25 }]), { priceUsd: null, option: null });
   });
 
   it("keeps expected vs actual P&L distinct", () => {
