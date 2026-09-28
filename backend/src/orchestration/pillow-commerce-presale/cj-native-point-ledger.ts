@@ -25,6 +25,16 @@ function withLedger<T>(filename: string, fn: (db: DatabaseSync) => T): T {
   if (!stat.isFile() || stat.nlink !== 1 || stat.size > MAX_BYTES || fs.realpathSync(filename) !== filename) {
     throw new Error("CJ point ledger is not a bounded canonical regular file");
   }
+  // A journal or WAL may contain reservations absent from the primary file.
+  // Require offline reconciliation rather than silently recovering during admission.
+  for (const suffix of ["-journal", "-wal", "-shm"]) {
+    try {
+      fs.lstatSync(filename + suffix);
+      throw new Error("CJ point ledger sidecar requires offline reconciliation");
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
+  }
   if (created) syncDirectory(directory);
   const db = new DatabaseSync(filename, { timeout: 0, allowExtension: false });
   let transaction = false;
