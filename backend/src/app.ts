@@ -14,6 +14,8 @@ import { withLocalJsonAuthorityCapture } from "./orchestration/shadow-ceo-integr
 import { withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
 import type { SqliteShadowCeoRepository } from "./orchestration/shadow-ceo/repository.js";
 import { getDatabase } from "./brain/database.js";
+import { getActiveDatabasePath } from "./brain/database.js";
+import { withExclusiveNativeMissionCapture } from "./runtime/native-store-capture.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { registerAuthRoutes } from "./auth/routes.js";
@@ -254,6 +256,11 @@ export type EmpireApp = {
    * processes, native stores and Redis still require independent quiescence.
    */
   withDrainedLocalSqliteCapture: <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  /** Additionally fence the existing native mission and execution sidecars.
+   * Redis, other replicas and separately opened Shadow handles remain outside.
+   */
+  withDrainedLocalNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   finishRouteRegistration?: () => Promise<void>;
 };
@@ -615,6 +622,10 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>
     withDrainedLocalAdmission(() => withQuiescedBrainAndShadowCapture(
       getDatabase(), shadow, captureAndVerify), timeoutMs);
+  const withDrainedLocalNativeCapture = <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>
+    withDrainedLocalSqliteCapture(shadow, () => withExclusiveNativeMissionCapture(
+      getActiveDatabasePath(), captureAndVerify), timeoutMs);
 
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
@@ -629,6 +640,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
       withDrainedLocalAdmission,
       withDrainedLocalSqliteCapture,
+      withDrainedLocalNativeCapture,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -644,6 +656,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
     withDrainedLocalAdmission,
     withDrainedLocalSqliteCapture,
+    withDrainedLocalNativeCapture,
   };
 }
 
