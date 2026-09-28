@@ -535,11 +535,6 @@ async function runPillowCommercePresaleCycleImpl(
 
     let fees = await estimateAmazonFees(amazon.session, asinResult.asin, price);
     if (fees.totalFeesUsd === null) {
-      // One price bump retry in case fee API needs a higher listing amount
-      price = Number((price * 1.2).toFixed(2));
-      fees = await estimateAmazonFees(amazon.session, asinResult.asin, price);
-    }
-    if (fees.totalFeesUsd === null) {
       rejections.push({
         cjPid: product.pid,
         productName,
