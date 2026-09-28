@@ -79,6 +79,8 @@ test("real Redis shared Brain pause drains independent BullMQ worker and refuses
   await until(() => queue.isPaused(), "queue did not globally pause");
   assert.equal(captured, false);
   await assert.rejects(competitor.withPausedSharedProcessing(() => { throw new Error("overlap ran"); }), /already owned/);
+  await assert.rejects(competitor.registerScheduledJob({ name: "capture-repeat", cron: "* * * * *", payload: {} as never }), /production withheld/);
+  await assert.rejects(competitor.enqueue({ type: "noop" } as never), /production withheld/);
   release!();
   await capture;
   assert.equal(captured, true);
