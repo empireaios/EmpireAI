@@ -18,6 +18,8 @@ function fixture() {
     pause: async () => { paused = true; },
     resume: async () => { paused = false; },
     getActiveCount: async () => active,
+    getRepeatableJobs: async (): Promise<Array<{ key: string }>> => [],
+    getJobSchedulersCount: async () => 0,
   };
   const task = Object.create(TaskQueue.prototype) as TaskQueue;
   Object.assign(task, { queue });
@@ -34,6 +36,17 @@ test("shared Brain queue refuses overlapping capture and drains other consumers 
   await assert.rejects(f.task.withPausedSharedProcessing(() => 8), /already owned/);
   f.setActive(0);
   assert.equal(await first, 7);
+  assert.equal(await f.queue.isPaused(), false);
+  assert.equal(f.keys.size, 0);
+});
+
+test("registered repeat producers refuse shared capture and restore queue", async () => {
+  const f = fixture();
+  f.setActive(0);
+  f.queue.getRepeatableJobs = async () => [{ key: "scheduled-job" }];
+  let invoked = false;
+  await assert.rejects(f.task.withPausedSharedProcessing(() => { invoked = true; }), /repeat schedulers/);
+  assert.equal(invoked, false);
   assert.equal(await f.queue.isPaused(), false);
   assert.equal(f.keys.size, 0);
 });
