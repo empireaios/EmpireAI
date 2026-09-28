@@ -11,6 +11,9 @@ import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
 import { getAdmissionStats } from "./runtime/production-admission-control.js";
 import { installCaptureHttpAdmission } from "./runtime/capture-http-admission.js";
 import { withLocalJsonAuthorityCapture } from "./orchestration/shadow-ceo-integration/local-json-capture.js";
+import { withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
+import type { SqliteShadowCeoRepository } from "./orchestration/shadow-ceo/repository.js";
+import { getDatabase } from "./brain/database.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { registerAuthRoutes } from "./auth/routes.js";
@@ -246,6 +249,12 @@ export type EmpireApp = {
    * schedulers, stores and Redis remain independent.
    */
   withDrainedLocalAdmission: <T>(capture: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  /** Candidate local SQL.js RAM save inside the local admission and JSON fence.
+   * The supplied Shadow handle must be the one used by writers; other handles,
+   * processes, native stores and Redis still require independent quiescence.
+   */
+  withDrainedLocalSqliteCapture: <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -602,6 +611,10 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
         () => pillowBootTask.withPausedExecution(
           () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), timeoutMs);
   };
+  const withDrainedLocalSqliteCapture = <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>
+    withDrainedLocalAdmission(() => withQuiescedBrainAndShadowCapture(
+      getDatabase(), shadow, captureAndVerify), timeoutMs);
 
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
@@ -615,6 +628,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedHttpAdmission: (capture, timeoutMs) =>
         captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
       withDrainedLocalAdmission,
+      withDrainedLocalSqliteCapture,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -629,6 +643,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedHttpAdmission: (capture, timeoutMs) =>
       captureHttpAdmission.withDrainedAdmission(capture, timeoutMs),
     withDrainedLocalAdmission,
+    withDrainedLocalSqliteCapture,
   };
 }
 
