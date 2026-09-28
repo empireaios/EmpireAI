@@ -67,6 +67,8 @@ export function pickCheapestFreight(options: CjFreightOption[]): {
   let bestPrice: number | null = null;
   for (const o of options) {
     const p = o.logisticPrice;
+    // A price without a named shipping method cannot be selected for fulfilment.
+    if (typeof o.logisticName !== "string" || !o.logisticName.trim()) continue;
     // A malformed negative or sub-cent freight quote cannot become margin.
     if (typeof p !== "number" || !Number.isFinite(p) || p < 0 ||
         p > 100_000 || !Number.isSafeInteger(Math.round(p * 100)) ||
