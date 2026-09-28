@@ -52,6 +52,12 @@ function captureFileIdentity(filePath: string): string {
   }
   return path.join(fs.realpathSync.native(ancestor), path.relative(ancestor, absolute));
 }
+function sameExistingSqliteFile(left: string, right: string): boolean {
+  if (!fs.existsSync(left) || !fs.existsSync(right)) return false;
+  const a = fs.statSync(left);
+  const b = fs.statSync(right);
+  return a.dev === b.dev && a.ino === b.ino;
+}
 
 type RunResult = { changes: number; lastInsertRowid: number | bigint };
 
@@ -217,8 +223,9 @@ export class EmpireDatabase {
   constructor(private readonly filePath: string) {
     this.inMemory = isInMemoryDatabasePath(filePath);
     this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
-    if (this.captureIdentity && [...openSqlJsHandles.get(this.captureIdentity) ?? []]
-      .some(handle => handle.captureWriteFence)) {
+    if (this.captureIdentity && [...openSqlJsHandles.values()].flatMap(handles => [...handles])
+      .some(handle => handle.captureWriteFence &&
+        (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, filePath)))) {
       throw new Error("SQLite capture active; another SQL.js handle cannot open this file");
     }
     lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
@@ -363,7 +370,9 @@ export class EmpireDatabase {
    */
   holdWritesForCapture(): () => void {
     if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
-    if (this.captureIdentity && (openSqlJsHandles.get(this.captureIdentity)?.size ?? 0) !== 1) {
+    if (this.captureIdentity && [...openSqlJsHandles.values()].some(handles => [...handles].some(handle =>
+      handle !== this && !handle.closed &&
+      (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, this.filePath))))) {
       throw new Error("SQLite capture refused; independently opened SQL.js handle shares the file");
     }
     this.captureWriteFence = true;
