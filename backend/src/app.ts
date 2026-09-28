@@ -18,6 +18,7 @@ import { getActiveDatabasePath } from "./brain/database.js";
 import { withExclusiveNativeMissionCapture } from "./runtime/native-store-capture.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
+import { TaskQueue } from "./brain/task-queue.js";
 import { registerAuthRoutes } from "./auth/routes.js";
 import { registerProductIntelligenceRoutes } from "./intelligence/product-intelligence-engine/routes.js";
 import { registerCommerceIntelligenceCoreRoutes } from "./intelligence/commerce-intelligence-core/routes/commerce-intelligence-core-routes.js";
@@ -261,6 +262,12 @@ export type EmpireApp = {
    * Redis, other replicas and separately opened Shadow handles remain outside.
    */
   withDrainedLocalNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  /** Global BullMQ consumer pause and drain plus local native/SQL.js capture.
+   * Repeat producers, new Redis jobs and other store handles still need fences.
+   * Refuses degraded Redis; never use on the protected old deployment.
+   */
+  withDrainedSharedBrainNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   finishRouteRegistration?: () => Promise<void>;
 };
@@ -626,6 +633,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>
     withDrainedLocalSqliteCapture(shadow, () => withExclusiveNativeMissionCapture(
       getActiveDatabasePath(), captureAndVerify), timeoutMs);
+  const withDrainedSharedBrainNativeCapture = <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> => {
+    if (!(brain.taskQueue instanceof TaskQueue)) {
+      throw new Error("Shared Brain capture requires connected Redis; degraded queue cannot prove drain");
+    }
+    return brain.taskQueue.withPausedSharedProcessing(
+      () => withDrainedLocalNativeCapture(shadow, captureAndVerify, timeoutMs), timeoutMs);
+  };
 
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
@@ -641,6 +656,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedLocalAdmission,
       withDrainedLocalSqliteCapture,
       withDrainedLocalNativeCapture,
+      withDrainedSharedBrainNativeCapture,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -657,6 +673,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedLocalAdmission,
     withDrainedLocalSqliteCapture,
     withDrainedLocalNativeCapture,
+    withDrainedSharedBrainNativeCapture,
   };
 }
 
