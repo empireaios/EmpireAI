@@ -6,11 +6,13 @@ function fixture() {
   const keys = new Map<string, string>();
   let paused = false;
   let active = 1;
+  let lastEvent = "1-0";
   const client = {
     set: async (key: string, value: string) => keys.has(key) ? null : (keys.set(key, value), "OK"),
     get: async (key: string) => keys.get(key) ?? null,
     eval: async (_script: string, _count: number, key: string, owner: string) =>
       keys.get(key) === owner ? (keys.delete(key), 1) : 0,
+    xrevrange: async () => [[lastEvent, []]],
   };
   const queue = {
     client: Promise.resolve(client), toKey: (suffix: string) => `bull:brain:${suffix}`,
@@ -18,12 +20,13 @@ function fixture() {
     pause: async () => { paused = true; },
     resume: async () => { paused = false; },
     getActiveCount: async () => active,
+    getJobCounts: async () => ({ waiting: 0, paused: 0, delayed: 0, prioritized: 0, active }),
     getRepeatableJobs: async (): Promise<Array<{ key: string }>> => [],
     getJobSchedulersCount: async () => 0,
   };
   const task = Object.create(TaskQueue.prototype) as TaskQueue;
   Object.assign(task, { queue });
-  return { task, queue, keys, setActive: (n: number) => { active = n; }, setPaused: (v: boolean) => { paused = v; } };
+  return { task, queue, keys, setActive: (n: number) => { active = n; }, setPaused: (v: boolean) => { paused = v; }, changeEvent: () => { lastEvent = "2-0"; } };
 }
 
 test("shared Brain queue refuses overlapping capture and drains other consumers before callback", async () => {
@@ -47,6 +50,14 @@ test("registered repeat producers refuse shared capture and restore queue", asyn
   let invoked = false;
   await assert.rejects(f.task.withPausedSharedProcessing(() => { invoked = true; }), /repeat schedulers/);
   assert.equal(invoked, false);
+  assert.equal(await f.queue.isPaused(), false);
+  assert.equal(f.keys.size, 0);
+});
+
+test("a producer event during callback invalidates capture even when queue is still paused", async () => {
+  const f = fixture();
+  f.setActive(0);
+  await assert.rejects(f.task.withPausedSharedProcessing(() => { f.changeEvent(); }), /queue changed/);
   assert.equal(await f.queue.isPaused(), false);
   assert.equal(f.keys.size, 0);
 });
