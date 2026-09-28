@@ -27,6 +27,9 @@ test("only bounded exact-cent monetary evidence can pass Pillow contribution gat
     { ...baseline, minProfitUsd: NaN },
     { ...baseline, minProfitUsd: -1 },
     { ...baseline, proposedSellingPriceUsd: Number.MAX_VALUE },
+    { ...baseline, amazonFees: { ...baseline.amazonFees, freshness: "ESTIMATED" } },
+    { ...baseline, supplierCost: { ...baseline.supplierCost, freshness: "CACHED" } },
+    { ...baseline, shipping: { ...baseline.shipping, freshness: "UNKNOWN" } },
   ];
   for (const item of cases) {
     const result = calculateExpectedContribution(item);
