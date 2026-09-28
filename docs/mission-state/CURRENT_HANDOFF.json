@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T12:13:23Z",
+  "updatedAt": "2026-09-28T12:21:38Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "c6bbeea147cb41d06e6430f674ac9b0e8f0a99b9",
+    "lastVerifiedIntegrationHead": "8a6a37d0460c57129acedfff5c740838d0c5f8d5",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; presale and re-evaluation proposal disk receipts before approval pass exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "c6bbeea147cb41d06e6430f674ac9b0e8f0a99b9",
-    "branchTipNote": "c6bbeea all-three exact-head CI passed; re-evaluation proposal and mapping persisted before replacement approval, rejected prior approval cleared. Handoff-only receipt follows.",
+    "status": "draft unmerged; same-process SQL.js alias capture refusal and Pillow approval disk ordering passed exact-head Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "8a6a37d0460c57129acedfff5c740838d0c5f8d5",
+    "branchTipNote": "8a6a37d all-three pass; same-process SQL.js aliases refuse capture or opening during a hold, cross-process writers remain unproven. Handoff-only receipt follows.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -145,7 +145,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36418997011",
       "https://github.com/empireaios/EmpireAI/actions/runs/36419967238",
       "https://github.com/empireaios/EmpireAI/actions/runs/36419967235",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36419967436"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36419967436",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36420927783",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36420927761",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36420927765"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -569,7 +572,7 @@
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues."
   ],
   "nextExecutableActions": [
-    "TaskQueue task and repeat producers now refuse while a shared Redis capture owner exists, and a real second-connection test passed. Direct BullMQ access and races can still mutate the queue; event/count comparison refuses such a capture. Next coordinate all other producers, application replicas, independently opened handles and Redis snapshot/readback. Old production remains protected with unproven RAM.",
+    "Candidate SQL.js capture now refuses an independently opened same-file handle in its process and blocks a new alias during a hold. Coordinate independent processes and other SQL.js instances, all direct Brain producers and a Redis snapshot/readback; verify the multi-store copy under whole-app quiescence. Old production remains protected with unproven RAM and no live in-process capture mechanism.",
     "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Next bind provider-response provenance and durable freshness to supplier stock/cost/freight and Amazon fee receipts before any approval surface; no real provider calls or commerce authority.",
     "Build durable identity-bound CJ stock/cost/freight and Amazon seller-fee receipts with provider response provenance, price/stock freshness, fulfilment compliance and independent reconciliation before approval surfaces. Pillow arithmetic now requires LIVE freshness and bounded cents, but a LIVE label alone is not a signed receipt. Preexisting SQL.js CJ point history still needs verified migration before activation; no real provider calls.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
