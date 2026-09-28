@@ -51,6 +51,7 @@ export class TaskQueue implements BrainTaskQueue {
       set(key: string, value: string, mode: "NX"): Promise<string | null>;
       get(key: string): Promise<string | null>;
       eval(script: string, keyCount: number, key: string, owner: string): Promise<number>;
+      xrevrange(key: string, end: string, start: string, count: string, limit: number): Promise<Array<[string, unknown]>>;
     };
     const key = `${this.queue.toKey("capture-owner")}`;
     const owner = randomUUID();
@@ -81,7 +82,17 @@ export class TaskQueue implements BrainTaskQueue {
       if (await client.get(key) !== owner || !await this.queue.isPaused() || !await noSchedulers()) {
         throw new Error("Shared Brain capture ownership or pause changed");
       }
-      return await capture();
+      const fingerprint = async () => JSON.stringify({
+        counts: await this.queue.getJobCounts("waiting", "paused", "delayed", "prioritized", "active"),
+        lastEvent: (await client.xrevrange(this.queue.toKey("events"), "+", "-", "COUNT", 1))[0]?.[0] ?? null,
+      });
+      const before = await fingerprint();
+      const result = await capture();
+      if (await client.get(key) !== owner || !await this.queue.isPaused() ||
+          !await noSchedulers() || await fingerprint() !== before) {
+        throw new Error("Shared Brain queue changed during capture; discard snapshot");
+      }
+      return result;
     } finally {
       if (pausedByUs && await client.get(key) === owner && await this.queue.isPaused()) {
         await this.queue.resume();
