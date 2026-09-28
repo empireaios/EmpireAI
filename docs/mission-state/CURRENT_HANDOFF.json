@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T11:32:10Z",
+  "updatedAt": "2026-09-28T11:40:00Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "a0978f909a120f45f231a71495374434773b32a7",
+    "lastVerifiedIntegrationHead": "0108bd5527dc38d24184bbb15304350c73e1ffee",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; Pillow monetary gate and queue capture mutation refusal pass exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "a0978f909a120f45f231a71495374434773b32a7",
-    "branchTipNote": "a0978f90 all-three pass; handoff-only receipt follows. Pillow economics rejects nonfinite, negative, sub-cent and unbounded evidence before approving profit.",
+    "status": "draft unmerged; invalid Amazon fee request prices refused before transport; exact-head Product/Semantic/Runtime passed; production untouched",
+    "candidateCodeHead": "0108bd5527dc38d24184bbb15304350c73e1ffee",
+    "branchTipNote": "0108bd55 three-workflow pass; handoff-only receipt follows. No provider request for invalid price, no real commerce.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -130,7 +130,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36414994299",
       "https://github.com/empireaios/EmpireAI/actions/runs/36415674634",
       "https://github.com/empireaios/EmpireAI/actions/runs/36415674588",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36415674597"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36415674597",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36416339893",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36416340008",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36416340067"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -554,7 +557,7 @@
   ],
   "nextExecutableActions": [
     "Candidate shared BullMQ consumer pause/drain now refuses registered repeat schedulers and a queue event/count mutation during the callback; real Redis test with another queue connection passed. Next fence producers and other replicas, coordinate separate handles and Redis snapshot/readback; a rejected callback is not a complete snapshot. Old production remains protected with pending RAM unproven.",
-    "Continue durable VID-bound CJ stock/cost/freight and seller-fee receipt persistence and independent reconciliation. Pillow contribution gate now refuses nonfinite, negative, sub-cent and unbounded money; Amazon fee receipt parser validates USD/status. Preexisting SQL.js CJ point history still requires verified migration; no provider call authorized or made.",
+    "Continue durable VID-bound stock/cost/freight and seller-fee receipts, fulfilment compliance and reconciliation. Invalid Amazon listing prices now refuse before a fee endpoint call; fee responses and Pillow monetary gate reject invalid economics. Legacy SQL.js CJ point history still requires verified migration; no real provider call.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
