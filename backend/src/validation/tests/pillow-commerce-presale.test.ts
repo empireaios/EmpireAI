@@ -153,6 +153,7 @@ describe("pillow-commerce-presale", () => {
   });
 
   it("runs autonomous cycle via Pillow path: reject bad, qualify good, surface approval, no publish/spend", async () => {
+    process.env.CJ_PRESALE_DAILY_POINT_LIMIT = "1000";
     const originalFetch = globalThis.fetch;
     globalThis.fetch = (async (input: string | URL | Request, init?: RequestInit) => {
       const url = String(input);
@@ -280,6 +281,8 @@ describe("pillow-commerce-presale", () => {
       return originalFetch(input, init);
     }) as typeof fetch;
 
+    let corruptFeeIdentity = false;
+    let feeRequests = 0;
     setHttpTransportOverride(async (request) => {
       // Catalog item detail: /items/{asin}
       if (/\/catalog\/2022-04-01\/items\/[A-Z0-9]+/i.test(request.url)) {
@@ -330,6 +333,7 @@ describe("pillow-commerce-presale", () => {
         };
       }
       if (request.url.includes("/feesEstimate") || request.url.includes("fees")) {
+        feeRequests++;
         return {
           status: 200,
           ok: true,
@@ -340,7 +344,7 @@ describe("pillow-commerce-presale", () => {
                 Status: "Success",
                 FeesEstimateIdentifier: {
                   MarketplaceId: "ATVPDKIKX0DER", IdType: "ASIN", IdValue: "B0TESTSPATULA",
-                  SellerId: "A1TESTSELLER",
+                  SellerId: corruptFeeIdentity ? "OTHER" : "A1TESTSELLER",
                   SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
                   IsAmazonFulfilled: false,
                   PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: (request.body as { FeesEstimateRequest: { PriceToEstimateFees: { ListingPrice: { Amount: number } } } }).FeesEstimateRequest.PriceToEstimateFees.ListingPrice.Amount } },
@@ -429,6 +433,23 @@ describe("pillow-commerce-presale", () => {
     assert.equal(reevaluationSawDiskReceipt, true);
     assert.ok(reevaluated.opportunity?.approvalId);
     assert.notEqual(reevaluated.opportunity?.approvalId, cycle.qualifiedOpportunity!.approvalId);
+
+    corruptFeeIdentity = true;
+    feeRequests = 0;
+    const refused = await runPillowCommercePresaleCycle({
+      workspaceId: "ws_fee_rejection", companyId: "co-grand-king",
+      initiatedBy: "pillow-autonomous", approvalGate: new ApprovalGateEngine(),
+      fetchImpl: globalThis.fetch,
+    });
+    assert.ok(refused.rejections.some(r => r.reasonCode === "FEE_UNAVAILABLE"));
+    assert.equal(feeRequests, 1, "unbound fee must not trigger a speculative price-bump retry");
+    feeRequests = 0;
+    const reevaluationRefused = await reevaluateCommerceOpportunity({
+      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TESTSPATULA",
+      cjPid: "P_GOOD", approvalGate: new ApprovalGateEngine(),
+    });
+    assert.equal(reevaluationRefused.rejectCode, "FEE_UNAVAILABLE");
+    assert.equal(feeRequests, 1, "re-evaluation must not retry an unbound fee");
 
     globalThis.fetch = originalFetch;
   });
