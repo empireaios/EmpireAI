@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T13:29:06Z",
+  "updatedAt": "2026-09-28T13:54:36.469Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -22,8 +22,8 @@
     "lastVerifiedIntegrationHead": "7373721505fbfa0bac124b4db0cd0837655f289e",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft unmerged; bounded CJ response body/deadline, same-inode capture and Pillow fee/web checks pass exact-head Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "7373721505fbfa0bac124b4db0cd0837655f289e",
-    "branchTipNote": "7373721 Product/Semantic/Runtime exact-head pass. Handoff receipt f5da7f8; later docs-only consistency update follows. Production protected; Vercel fresh verification pending.",
+    "candidateCodeHead": "c8d44ba4a3b5fdad3e7b06a278a21fd5d87e21cd",
+    "branchTipNote": "c8d44ba CJ native ledger sidecar admission published, Product/Semantic/Runtime exact-head CI pending; 7373721 remains latest verified code. Production protected; Vercel fresh verification pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -550,6 +550,16 @@
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36322954258",
       "oldProductionInstalled": false,
       "wholeAppQuiescence": false
+    },
+    "cjLedgerSidecarAdmission": {
+      "codeHead": "c8d44ba4a3b5fdad3e7b06a278a21fd5d87e21cd",
+      "status": "PUBLISHED_CI_PENDING",
+      "workflows": {
+        "product": "https://github.com/empireaios/EmpireAI/actions/runs/36431759354",
+        "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36431759389",
+        "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36431759210"
+      },
+      "scope": "Offline code refuses unresolved native CJ ledger sidecars before point admission; no migration, production operation or real provider call. Local dependency installation unavailable in this workspace."
     }
   },
   "failedAttempts": [
