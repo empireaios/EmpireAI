@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T11:08:21Z",
+  "updatedAt": "2026-09-28T11:10:50Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -53,9 +53,9 @@
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
       "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision.",
+      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision. 2026-09-28 additional list_teams returned zero teams; known project/deployment with recorded team_gdcskAnaJteKW7BYtw8zlSWy returned INVALID_ARGUMENT. Fresh cloud browser opened the exact EmpireAI team deployments URL but was redirected to Vercel login. No fresh authenticated readback, no deployment change.",
       "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
-      "teamScopedListing": "403 Forbidden",
+      "teamScopedListing": "2026-09-28 teams=[] and known-ID GET INVALID_ARGUMENT; cloud browser unauthenticated",
       "productionReadbackVerified": true
     }
   },
@@ -544,7 +544,7 @@
     "Existing separate live-commerce supplier-cj-adapter used API key as CJ-Access-Token, wrong getAccessToken request shape and hard-coded production counts; 7c0fca18 corrected auth request/response and fails closed until real durable supplier receipts, all three hosted workflows passed. Account-bound cache repair in separate CJ module passed all three hosted workflows. No supplier durable stock, cost or order receipt exists. Real CJ API uses access-token JSON response and API points; no live calls in recovery.",
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state.",
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production.",
-    "Fresh Vercel known-ID connector lookup on 2026-09-28 returned INVALID_ARGUMENT. Direct 2026-09-27 production deployment readback remains verified as READY on main 21384342; no deployment mutation."
+    "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues."
   ],
   "nextExecutableActions": [
     "Shared BullMQ consumer pause/drain passed real test-owned Redis. Registered repeat/job schedulers now refuse capture rather than allowing a changing Redis snapshot. Next coordinate repeat/new-job producers, independently opened handles, other replicas and Redis snapshot/readback before claiming all-writer quiescence. An uncertain queue restoration retains owner key. Old process has no safe in-process entrypoint; do not touch it.",
