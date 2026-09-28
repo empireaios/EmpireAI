@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T14:01:05.117Z",
+  "updatedAt": "2026-09-28T14:17:58.281Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "aa5bbcf1cf7fcecdc1b0764fdd40647b16f81206",
+    "lastVerifiedIntegrationHead": "f2f7a563df71a1cd3b6706c3820a8ccad7bbbf72",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; CJ native ledger sidecar admission passed hosted integrated Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "c8d44ba4a3b5fdad3e7b06a278a21fd5d87e21cd",
-    "branchTipNote": "c8d44ba CJ native ledger sidecar admission; integrated head aa5bbcf passed Product/Semantic/Runtime. This receipt is docs only. Production protected; Vercel fresh verification pending.",
+    "status": "draft unmerged; named CJ freight selection and native ledger sidecar admission CI passed; production protected",
+    "candidateCodeHead": "f2f7a563df71a1cd3b6706c3820a8ccad7bbbf72",
+    "branchTipNote": "f2f7a56 named CJ freight for landed-cost selection passed exact-head Product/Semantic/Runtime; handoff receipt is docs only. Production protected; Vercel fresh verification pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -561,6 +561,16 @@
       },
       "scope": "Offline code refuses unresolved native CJ ledger sidecars before point admission; no migration, production operation or real provider call. Local dependency installation unavailable in this workspace.",
       "verifiedIntegrationHead": "aa5bbcf1cf7fcecdc1b0764fdd40647b16f81206"
+    },
+    "namedCjFreightRoute": {
+      "codeHead": "f2f7a563df71a1cd3b6706c3820a8ccad7bbbf72",
+      "status": "EXACT_HEAD_CI_PASSED",
+      "workflows": {
+        "product": "https://github.com/empireaios/EmpireAI/actions/runs/36434129120",
+        "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36434129164",
+        "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36434129124"
+      },
+      "scope": "Shared presale and re-evaluation freight selector refuses price without nonblank logisticName; offline identity guard only, no provider call or fulfillment receipt."
     }
   },
   "failedAttempts": [
