@@ -78,7 +78,7 @@ async function fetchLiveStockUnits(
 ): Promise<{ units: number; source: string }> {
   try {
     const byVid = await cj.queryStockByVid(variant.vid);
-    const units = cjManagedStockByVid(byVid.data, variant.vid);
+    const units = cjManagedStockByVid(byVid.data, variant.vid, "CN");
     return { units, source: units > 0 ? "cj.stock.queryByVid.cjInventoryNum" : "unavailable" };
   } catch {
     return { units: 0, source: "unavailable" };
