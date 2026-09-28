@@ -29,6 +29,11 @@ function resolveDatabasePath(): string {
   return resolved;
 }
 
+/** The canonical path shared by Brain and its dedicated native sidecars. */
+export function getActiveDatabasePath(): string {
+  return resolveDatabasePath();
+}
+
 export function getDatabase(): EmpireDatabase {
   const dbPath = resolveDatabasePath();
   if (dbInstance && activeDbPath !== dbPath) {
