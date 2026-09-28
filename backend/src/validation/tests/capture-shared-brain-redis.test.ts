@@ -84,4 +84,10 @@ test("real Redis shared Brain pause drains independent BullMQ worker and refuses
   assert.equal(captured, true);
   assert.equal(await queue.isPaused(), false);
   assert.equal(await reader.get(queue.toKey("capture-owner")), null);
+  await queue.add("scheduled", { value: 2 }, { repeat: { every: 60_000 }, jobId: "schedule-fixture" });
+  await until(async () => (await queue.getRepeatableJobs(0, 0)).length > 0, "repeat scheduler absent");
+  let copiedWithScheduler = false;
+  await assert.rejects(owner.withPausedSharedProcessing(() => { copiedWithScheduler = true; }), /repeat schedulers/);
+  assert.equal(copiedWithScheduler, false);
+  assert.equal(await queue.isPaused(), false);
 });
