@@ -51,6 +51,17 @@ export function calculateExpectedContribution(input: EconomicsInput): EconomicsR
       formula: "price - fees - cost - shipping - other",
     };
   }
+  if (input.amazonFees.freshness !== "LIVE" ||
+      input.supplierCost.freshness !== "LIVE" ||
+      input.shipping.freshness !== "LIVE") {
+    return {
+      expectedProfitUsd: null,
+      expectedMarginPct: null,
+      passesGate: false,
+      blocker: "Live fee, supplier cost and freight receipts required before approval",
+      formula: "price - fees - cost - shipping - other",
+    };
+  }
 
   const cents = (value: number, positive = false): boolean =>
     Number.isFinite(value) && (positive ? value > 0 : value >= 0) &&
