@@ -28,4 +28,12 @@ test("only successful exact-cent USD Amazon fee estimates become live economics"
     assert.equal(result.totalFeesUsd, row.expected ?? null, JSON.stringify(row));
     assert.equal(result.freshness, row.expected === undefined ? "UNAVAILABLE" : "LIVE");
   }
+  let calls = 0;
+  setHttpTransportOverride(async () => { calls++; throw new Error("provider request should not occur"); });
+  for (const price of [0, -1, NaN, Infinity, 20.001, Number.MAX_VALUE]) {
+    const result = await estimateAmazonFees(session, "B00TEST", price);
+    assert.equal(result.totalFeesUsd, null);
+    assert.match(result.blocker ?? "", /Invalid selling price/);
+  }
+  assert.equal(calls, 0);
 });
