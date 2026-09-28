@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T12:21:38Z",
+  "updatedAt": "2026-09-28T12:28:05Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "8a6a37d0460c57129acedfff5c740838d0c5f8d5",
+    "lastVerifiedIntegrationHead": "89a7c73fc8ae40f9d2d0be04f159e63692bcea83",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; same-process SQL.js alias capture refusal and Pillow approval disk ordering passed exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "8a6a37d0460c57129acedfff5c740838d0c5f8d5",
-    "branchTipNote": "8a6a37d all-three pass; same-process SQL.js aliases refuse capture or opening during a hold, cross-process writers remain unproven. Handoff-only receipt follows.",
+    "status": "draft unmerged; Amazon fee estimate request-identity binding and prior capture/approval guards pass exact-head Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "89a7c73fc8ae40f9d2d0be04f159e63692bcea83",
+    "branchTipNote": "89a7c73 all-three pass; Amazon returned estimate identifier must match seller, marketplace, ASIN, unique request, merchant fulfillment and proposed USD price. Handoff-only receipt follows.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -148,7 +148,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36419967436",
       "https://github.com/empireaios/EmpireAI/actions/runs/36420927783",
       "https://github.com/empireaios/EmpireAI/actions/runs/36420927761",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36420927765"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36420927765",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36421941237",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36421941340",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36421941944"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -574,7 +577,7 @@
   "nextExecutableActions": [
     "Candidate SQL.js capture now refuses an independently opened same-file handle in its process and blocks a new alias during a hold. Coordinate independent processes and other SQL.js instances, all direct Brain producers and a Redis snapshot/readback; verify the multi-store copy under whole-app quiescence. Old production remains protected with unproven RAM and no live in-process capture mechanism.",
     "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Next bind provider-response provenance and durable freshness to supplier stock/cost/freight and Amazon fee receipts before any approval surface; no real provider calls or commerce authority.",
-    "Build durable identity-bound CJ stock/cost/freight and Amazon seller-fee receipts with provider response provenance, price/stock freshness, fulfilment compliance and independent reconciliation before approval surfaces. Pillow arithmetic now requires LIVE freshness and bounded cents, but a LIVE label alone is not a signed receipt. Preexisting SQL.js CJ point history still needs verified migration before activation; no real provider calls.",
+    "Amazon fee estimates require matching returned seller/ASIN/marketplace/request identifier/fulfillment/price and exact USD cents; they remain estimates, not settlement. Build durable supplier stock/cost/freight response provenance, freshness and independent reconciliation before approval surfaces; no real provider calls.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
     "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
