@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T10:15:20Z",
+  "updatedAt": "2026-09-28T10:23:47Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "16aa6252dad32d7ac4a91e20838c855428dbb9fc",
+    "lastVerifiedIntegrationHead": "77410bc87e4244f9aa10d4bf9fdcd0b513b47d84",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; native mission/execution capture and CJ freight arithmetic guard passed exact-head Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "16aa6252dad32d7ac4a91e20838c855428dbb9fc",
-    "branchTipNote": "16aa6252 three-workflow pass; handoff receipt follows. Redis, replicas, old production RAM and real commerce remain outside proof.",
+    "status": "draft unmerged; separate-process native capture, CJ freight price guard and CN-origin stock binding passed exact-head Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "77410bc87e4244f9aa10d4bf9fdcd0b513b47d84",
+    "branchTipNote": "77410bc8 three-workflow pass; handoff-only receipt follows. Redis, replicas, pending old-production RAM and real commerce remain outside proof.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -45,10 +45,10 @@
         "memoryGbMax": 3.285624832,
         "diskGbCurrent": 0.724770816
       },
-      "latestReadOnlyStatusAt": "2026-09-26T14:33:00Z",
+      "latestReadOnlyStatusAt": "2026-09-28T10:19:05Z",
       "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
-      "completedFlushAfterPriorCheckpointVerified": false,
-      "readOnlyLatest": "2026-09-27 13:30 UTC list_deployments project 75374474: latest production deployment 86302878-25b5-4990-87d9-86580cd4e976 SUCCESS from old-main 21384342c401def948926904913840e63c18dff7; no newer deployment observed. Listing alone cannot prove RAM persistence, quiescence or runtime health. No production operation invoked."
+      "completedFlushAfterPriorCheckpointVerified": true,
+      "readOnlyLatest": "2026-09-28 10:19 UTC get_status confirms old deployment 86302878-25b5-4990-87d9-86580cd4e976 SUCCESS with /data volume; read-only deploy logs show event-loop lag ~4.2 seconds, sqlite.pending=true, flushCount=3, flushInFlight=false, no critical flush, lastFlushMs 2026-09-28 03:02:04 UTC. Pending RAM content and survival unverified. No production operation invoked."
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
@@ -109,7 +109,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36407291358",
       "https://github.com/empireaios/EmpireAI/actions/runs/36407997931",
       "https://github.com/empireaios/EmpireAI/actions/runs/36407997960",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36407997930"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36407997930",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36408883563",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36408883603",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36408883617"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
