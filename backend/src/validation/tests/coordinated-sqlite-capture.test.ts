@@ -143,3 +143,23 @@ test("Shadow CEO writes are fenced before the first Brain save yields", async t 
   const result = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_before_yield", runKey: "resumed" });
   assert.ok(shadow.countByObjective(result.objectiveId) >= 12);
 });
+
+test("capture refuses a second SQL.js handle and blocks a new alias until release", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-alias-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, "brain.db");
+  const first = new EmpireDatabase(file);
+  first.exec("CREATE TABLE capture_identity (id INTEGER)");
+  await first.requestCriticalPersist();
+  const second = new EmpireDatabase(file);
+  t.after(() => { second.close(); first.close(); });
+  assert.throws(() => first.holdWritesForCapture(), /independently opened SQL.js handle/);
+  second.close();
+  const release = first.holdWritesForCapture();
+  try {
+    assert.throws(() => new EmpireDatabase(file), /capture active/);
+    assert.throws(() => new EmpireDatabase(path.join(dir, ".", "brain.db")), /capture active/);
+  } finally { release(); }
+  const reopened = new EmpireDatabase(file);
+  reopened.close();
+});
