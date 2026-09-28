@@ -237,7 +237,7 @@ export async function reevaluateCommerceOpportunity(
   let stockUnits = 0;
   try {
     const byVid = await cj.queryStockByVid(picked.variant.vid);
-    stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid);
+    stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid, "CN");
   } catch {
     stockUnits = 0;
   }
