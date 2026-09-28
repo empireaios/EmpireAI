@@ -14,6 +14,8 @@ import { calculateExpectedContribution, proposeSellingPrice } from "../../orches
 import { pillowCommercePresaleTools } from "../../orchestration/pillow-commerce-presale/tools/pillow-commerce-presale-tools.js";
 import { setHttpTransportOverride, resetHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
 import { runPillowCommercePresaleCycle } from "../../orchestration/pillow-commerce-presale/services/presale-cycle-service.js";
+import { reevaluateCommerceOpportunity } from "../../orchestration/pillow-commerce-presale/services/reevaluate-opportunity-service.js";
+import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { clearCjAuthCache } from "../../suppliers/cj-dropshipping/cj-auth.js";
 import { closeDatabase } from "../../brain/database.js";
 
@@ -390,6 +392,35 @@ describe("pillow-commerce-presale", () => {
 
     const pending = gate.listPending("ws_empire_1");
     assert.ok(pending.some((a) => a.approvalId === cycle.qualifiedOpportunity!.approvalId));
+
+    // A rejected approval requires a new decision. The updated proposal must be on disk
+    // before re-evaluation can create that decision, even with the same opportunity ID.
+    const repo = getPillowCommercePresaleRepository();
+    repo.saveOpportunity({ ...cycle.qualifiedOpportunity!, approvalStatus: "Rejected" });
+    const reevaluationGate = new ApprovalGateEngine();
+    const reevaluationRegister = reevaluationGate.register.bind(reevaluationGate);
+    let reevaluationSawDiskReceipt = false;
+    reevaluationGate.register = ((request) => {
+      const disk = new DatabaseSync(process.env.DATABASE_PATH!, { readOnly: true });
+      try {
+        const row = disk.prepare("SELECT record_json FROM pillow_commerce_presale_opportunities WHERE opportunity_id=?")
+          .get(cycle.qualifiedOpportunity!.opportunityId) as { record_json: string } | undefined;
+        const opportunity = JSON.parse(row?.record_json ?? "null");
+        assert.equal(opportunity?.disposition, "APPROVAL_READY");
+        assert.equal(opportunity?.approvalId, null);
+        assert.equal(opportunity?.mapping?.cjVid, "VGOOD");
+        reevaluationSawDiskReceipt = true;
+      } finally { disk.close(); }
+      return reevaluationRegister(request);
+    }) as typeof reevaluationGate.register;
+    const reevaluated = await reevaluateCommerceOpportunity({
+      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TESTSPATULA",
+      cjPid: "P_GOOD", approvalGate: reevaluationGate,
+    });
+    assert.equal(reevaluated.outcome, "DOSSIER_APPROVE_SURFACED");
+    assert.equal(reevaluationSawDiskReceipt, true);
+    assert.ok(reevaluated.opportunity?.approvalId);
+    assert.notEqual(reevaluated.opportunity?.approvalId, cycle.qualifiedOpportunity!.approvalId);
 
     globalThis.fetch = originalFetch;
   });
