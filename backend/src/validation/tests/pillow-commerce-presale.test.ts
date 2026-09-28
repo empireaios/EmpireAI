@@ -1,3 +1,4 @@
+import { prepareOfflineAmazonOfferFromOpportunity } from "../../orchestration/pillow-commerce-presale/offline-amazon-offer-handoff.js";
 import { buildCommerceProviderReceipts } from "../../orchestration/pillow-commerce-presale/commerce-provider-receipts.js";
 import assert from "node:assert/strict";
 import { mkdtempSync, rmSync } from "node:fs";
@@ -333,7 +334,7 @@ describe("pillow-commerce-presale", () => {
           json: {
             items: [
               {
-                asin: "B0TESTSPATULA",
+                asin: "B0TEST1234",
                 summaries: [{ brandName: "Generic", itemName: "Silicone Kitchen Spatula Set" }],
               },
             ],
@@ -372,7 +373,7 @@ describe("pillow-commerce-presale", () => {
               FeesEstimateResult: {
                 Status: "Success",
                 FeesEstimateIdentifier: {
-                  MarketplaceId: "ATVPDKIKX0DER", IdType: "ASIN", IdValue: "B0TESTSPATULA",
+                  MarketplaceId: "ATVPDKIKX0DER", IdType: "ASIN", IdValue: "B0TEST1234",
                   SellerId: corruptFeeIdentity ? "OTHER" : "A1TESTSELLER",
                   SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
                   IsAmazonFulfilled: false,
@@ -395,18 +396,18 @@ describe("pillow-commerce-presale", () => {
       const disk = new DatabaseSync(process.env.DATABASE_PATH!, { readOnly: true });
       try {
         const mapping = disk.prepare("SELECT record_json FROM pillow_commerce_amazon_cj_maps WHERE asin=?")
-          .get("B0TESTSPATULA") as { record_json: string } | undefined;
+          .get("B0TEST1234") as { record_json: string } | undefined;
         const opportunity = disk.prepare("SELECT record_json FROM pillow_commerce_presale_opportunities WHERE disposition='APPROVAL_READY'")
           .get() as { record_json: string } | undefined;
         assert.equal(JSON.parse(mapping?.record_json ?? "null")?.cjVid, "VGOOD");
-        assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.asin, "B0TESTSPATULA");
+        assert.equal(JSON.parse(opportunity?.record_json ?? "null")?.mapping?.asin, "B0TEST1234");
         const receiptMap = JSON.parse(mapping?.record_json ?? "null");
         const receipts = receiptMap?.providerReceipts;
         assert.equal(receipts?.schemaVersion, 1);
         assert.equal(receipts?.supplierCost?.request?.vid, "VGOOD");
         assert.equal(receipts?.supplierStock?.selected?.units, 120);
         assert.equal(receipts?.usFreight?.selected?.logisticName, "CJPacket");
-        assert.equal(receipts?.amazonFees?.request?.asin, "B0TESTSPATULA");
+        assert.equal(receipts?.amazonFees?.request?.asin, "B0TEST1234");
         assert.equal(receipts?.amazonFees?.request?.listingPriceUsd, receiptMap?.proposedSellingPriceUsd);
         assert.equal(receipts?.amazonFees?.selected?.amountUsd, receiptMap?.amazonFeesUsd?.amountUsd);
         assert.match(receipts?.decisionSha256 ?? "", /^[a-f0-9]{64}$/);
@@ -432,7 +433,7 @@ describe("pillow-commerce-presale", () => {
     assert.equal(cycle.outcome, "APPROVAL_SURFACED");
     assert.equal(approvalSawDiskReceipt, true);
     assert.ok(cycle.qualifiedOpportunity);
-    assert.equal(cycle.qualifiedOpportunity!.mapping.asin, "B0TESTSPATULA");
+    assert.equal(cycle.qualifiedOpportunity!.mapping.asin, "B0TEST1234");
     assert.equal(cycle.qualifiedOpportunity!.mapping.cjPid, "P_GOOD");
     assert.equal(cycle.qualifiedOpportunity!.mapping.supplierCostUsd.freshness, "LIVE");
     assert.equal(cycle.qualifiedOpportunity!.mapping.shippingUsd.freshness, "LIVE");
@@ -443,6 +444,30 @@ describe("pillow-commerce-presale", () => {
     assert.match(cycle.qualifiedOpportunity!.recommendation.fullNarrative, /GRAND KING DECISION/);
     assert.equal(cycle.qualifiedOpportunity!.dossier?.dossierVersion, "FD-CDD-001");
     assert.equal(cycle.qualifiedOpportunity!.dossier?.exposureAndAction.pillowRecommendation, "APPROVE");
+
+    const persisted = getPillowCommercePresaleRepository().getLatestOpportunity("ws_empire_1");
+    assert.ok(persisted?.mapping.providerReceipts, "Pillow decision receipt survived repository readback");
+    const approved = { ...persisted!, disposition: "APPROVED_PENDING_PUBLISH" as const,
+      approvalStatus: "Approved" as const };
+    const identifier = { type: "UPC" as const, value: "123456789012", cjPid: "P_GOOD", cjVid: "VGOOD" };
+    const catalogResponse = { asin: "B0TEST1234", identifiers: [{ marketplaceId: "ATVPDKIKX0DER",
+      identifiers: [{ identifierType: "UPC", identifier: "123456789012" }] }] };
+    const awaiting = prepareOfflineAmazonOfferFromOpportunity({ opportunity: persisted!, identifier, catalogResponse });
+    assert.equal(awaiting.offer, null);
+    assert.match(awaiting.blockers.join(" "), /approval/i);
+    const missingSupplierIdentifier = prepareOfflineAmazonOfferFromOpportunity({
+      opportunity: approved, identifier: null, catalogResponse });
+    assert.match(missingSupplierIdentifier.blockers.join(" "), /UPC\/EAN\/GTIN/);
+    const prepared = prepareOfflineAmazonOfferFromOpportunity({ opportunity: approved, identifier, catalogResponse });
+    assert.equal(prepared.publishAttempted, false);
+    assert.deepEqual(prepared.blockers, []);
+    assert.equal(prepared.offer?.asin, "B0TEST1234");
+    assert.equal(prepared.decisionSha256, approved.mapping.providerReceipts?.decisionSha256);
+    assert.equal((prepared.body?.attributes as { fulfillment_availability: Array<{ quantity: number }> })
+      .fulfillment_availability[0]?.quantity, approved.mapping.startQuantity);
+    const altered = prepareOfflineAmazonOfferFromOpportunity({ opportunity: {
+      ...approved, mapping: { ...approved.mapping, proposedSellingPriceUsd: 1 } }, identifier, catalogResponse });
+    assert.match(altered.blockers.join(" "), /differ from the approval mapping/);
 
     const pending = gate.listPending("ws_empire_1");
     assert.ok(pending.some((a) => a.approvalId === cycle.qualifiedOpportunity!.approvalId));
@@ -468,7 +493,7 @@ describe("pillow-commerce-presale", () => {
       return reevaluationRegister(request);
     }) as typeof reevaluationGate.register;
     const reevaluated = await reevaluateCommerceOpportunity({
-      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TESTSPATULA",
+      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TEST1234",
       cjPid: "P_GOOD", approvalGate: reevaluationGate,
     });
     assert.equal(reevaluated.outcome, "DOSSIER_APPROVE_SURFACED");
@@ -487,7 +512,7 @@ describe("pillow-commerce-presale", () => {
     assert.equal(feeRequests, 1, "unbound fee must not trigger a speculative price-bump retry");
     feeRequests = 0;
     const reevaluationRefused = await reevaluateCommerceOpportunity({
-      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TESTSPATULA",
+      workspaceId: "ws_empire_1", companyId: "co-grand-king", asin: "B0TEST1234",
       cjPid: "P_GOOD", approvalGate: new ApprovalGateEngine(),
     });
     assert.equal(reevaluationRefused.rejectCode, "FEE_UNAVAILABLE");
