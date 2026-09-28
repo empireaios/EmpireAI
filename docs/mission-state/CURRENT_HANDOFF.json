@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T11:10:50Z",
+  "updatedAt": "2026-09-28T11:25:13Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "a2b58876b7218c5ac1da51c71ccfa6933e1e7b5a",
+    "lastVerifiedIntegrationHead": "04f33e2a9ce45c02b05a7df17d46341eebd719eb",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; Amazon fee guard, shared Brain Redis/scheduler capture and CJ warehouse evidence pass Product/Semantic/Runtime; production untouched",
-    "candidateCodeHead": "a2b58876b7218c5ac1da51c71ccfa6933e1e7b5a",
-    "branchTipNote": "a2b58876 three-workflow pass; handoff-only receipt follows. Fee amount requires successful USD cent-accurate estimate; no provider calls or real commerce.",
+    "status": "draft unmerged; shared Brain queue mutation refusal passes exact-head Product/Semantic/Runtime; production untouched",
+    "candidateCodeHead": "04f33e2a9ce45c02b05a7df17d46341eebd719eb",
+    "branchTipNote": "04f33e2a real Redis queue mutation refusal passed three workflows; handoff-only receipt follows. Producers are not fenced, and Redis state remains uncaptured.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -124,7 +124,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36412537496",
       "https://github.com/empireaios/EmpireAI/actions/runs/36413238797",
       "https://github.com/empireaios/EmpireAI/actions/runs/36413238740",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36413238912"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36413238912",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36414994303",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36414994374",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36414994299"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -547,7 +550,7 @@
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues."
   ],
   "nextExecutableActions": [
-    "Shared BullMQ consumer pause/drain passed real test-owned Redis. Registered repeat/job schedulers now refuse capture rather than allowing a changing Redis snapshot. Next coordinate repeat/new-job producers, independently opened handles, other replicas and Redis snapshot/readback before claiming all-writer quiescence. An uncertain queue restoration retains owner key. Old process has no safe in-process entrypoint; do not touch it.",
+    "Candidate shared BullMQ consumer pause/drain now refuses registered repeat schedulers and a queue event/count mutation during the callback; real Redis test with another queue connection passed. Next fence producers and other replicas, coordinate separate handles and Redis snapshot/readback; a rejected callback is not a complete snapshot. Old production remains protected with pending RAM unproven.",
     "Continue durable VID-bound CJ stock/cost/freight and seller-fee receipt persistence and independent reconciliation before approval surfaces. Candidate Amazon fee parser now rejects unsuccessful, non-USD, negative, sub-cent and nonfinite estimates. Preexisting SQL.js point history requires separately verified migration before activation; no real provider calls authorized or made.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
     "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
