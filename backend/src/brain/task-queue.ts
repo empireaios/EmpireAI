@@ -67,12 +67,18 @@ export class TaskQueue implements BrainTaskQueue {
       }
       await this.queue.pause();
       pausedByUs = true;
+      // Pausing consumers does not stop a repeat scheduler from mutating Redis.
+      // Refuse rather than treating a changing scheduler as a static snapshot.
+      const noSchedulers = async () =>
+        (await this.queue.getRepeatableJobs(0, 0)).length === 0 &&
+        await this.queue.getJobSchedulersCount() === 0;
+      if (!await noSchedulers()) throw new Error("Shared Brain repeat schedulers require a separate producer fence; no snapshot taken");
       const deadline = Date.now() + timeoutMs;
       while (await this.queue.getActiveCount() !== 0) {
         if (Date.now() >= deadline) throw new Error("Shared Brain jobs did not drain; no snapshot taken");
         await new Promise<void>(resolve => setTimeout(resolve, Math.min(100, Math.max(1, deadline - Date.now()))));
       }
-      if (await client.get(key) !== owner || !await this.queue.isPaused()) {
+      if (await client.get(key) !== owner || !await this.queue.isPaused() || !await noSchedulers()) {
         throw new Error("Shared Brain capture ownership or pause changed");
       }
       return await capture();
