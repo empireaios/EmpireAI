@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -45,6 +46,30 @@ test("application local drain saves both RAM-backed SQL handles before caller re
       assert.ok(Number(s.prepare("SELECT COUNT(*) AS n FROM shadow_ceo_records WHERE objective_id = ?")
         .get(slice.objectiveId)?.n) >= 12);
     } finally { b.close(); s.close(); }
+  });
+
+  for (const [filename, id, version, ddl] of [
+    [primaryFile + ".missions.sqlite", 0x454d5352, 3, "CREATE TABLE mission_snapshot(value INTEGER); INSERT INTO mission_snapshot VALUES (1)"],
+    [primaryFile + ".mission-execution.sqlite", 0x454d4558, 1,
+      "CREATE TABLE execution_events(value INTEGER); CREATE TABLE execution_jobs(value INTEGER); CREATE TABLE execution_meta(value INTEGER)"],
+  ] as const) {
+    const db = new DatabaseSync(filename);
+    db.exec(`${ddl}; PRAGMA application_id=${id}; PRAGMA user_version=${version};`);
+    db.close();
+  }
+  await empire.withDrainedLocalNativeCapture(shadow, () => {
+    const copy = path.join(dir, "native-mission.copy.db");
+    fs.copyFileSync(primaryFile + ".missions.sqlite", copy);
+    const independent = spawnSync(process.execPath, ["-e", `
+      const {DatabaseSync}=require('node:sqlite');
+      const db=new DatabaseSync(process.argv[1],{timeout:0});
+      try { db.exec('BEGIN IMMEDIATE; UPDATE mission_snapshot SET value=2; COMMIT'); }
+      catch { process.exitCode=7; } finally { db.close(); }
+    `, primaryFile + ".missions.sqlite"], { timeout: 5000 });
+    assert.equal(independent.status, 7, "native writer stays blocked after parent disk copy");
+    const restored = new DatabaseSync(copy, { readOnly: true });
+    assert.equal(restored.prepare("SELECT value FROM mission_snapshot").get()?.value, 1);
+    restored.close();
   });
 });
 
