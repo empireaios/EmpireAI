@@ -40,6 +40,19 @@ const MAX_FLUSH_INTERVAL_MS = Number(process.env.SQLITE_MAX_FLUSH_INTERVAL_MS ??
 const FIRST_FLUSH_DELAY_MS = Number(process.env.SQLITE_FIRST_FLUSH_DELAY_MS ?? 3_600_000);
 const processStartedAtMs = Date.now();
 
+/** Same-process SQL.js aliases must not escape an in-process capture fence. */
+const openSqlJsHandles = new Map<string, Set<EmpireDatabase>>();
+function captureFileIdentity(filePath: string): string {
+  const absolute = path.resolve(filePath);
+  let ancestor = absolute;
+  while (!fs.existsSync(ancestor)) {
+    const parent = path.dirname(ancestor);
+    if (parent === ancestor) throw new Error("SQLite path has no existing ancestor");
+    ancestor = parent;
+  }
+  return path.join(fs.realpathSync.native(ancestor), path.relative(ancestor, absolute));
+}
+
 type RunResult = { changes: number; lastInsertRowid: number | bigint };
 
 type PersistStats = {
@@ -199,9 +212,15 @@ export class EmpireDatabase {
   private persistGeneration = 0;
   private closed = false;
   private captureWriteFence = false;
+  private readonly captureIdentity: string | null;
 
   constructor(private readonly filePath: string) {
     this.inMemory = isInMemoryDatabasePath(filePath);
+    this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
+    if (this.captureIdentity && [...openSqlJsHandles.get(this.captureIdentity) ?? []]
+      .some(handle => handle.captureWriteFence)) {
+      throw new Error("SQLite capture active; another SQL.js handle cannot open this file");
+    }
     lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
 
     if (!this.inMemory && fs.existsSync(filePath)) {
@@ -238,6 +257,11 @@ export class EmpireDatabase {
       }
     } else {
       this.db = new SQL.Database();
+    }
+    if (this.captureIdentity) {
+      const handles = openSqlJsHandles.get(this.captureIdentity) ?? new Set<EmpireDatabase>();
+      handles.add(this);
+      openSqlJsHandles.set(this.captureIdentity, handles);
     }
   }
 
@@ -325,14 +349,23 @@ export class EmpireDatabase {
     }
     this.db.close();
     this.closed = true;
+    if (this.captureIdentity) {
+      const handles = openSqlJsHandles.get(this.captureIdentity);
+      handles?.delete(this);
+      if (handles?.size === 0) openSqlJsHandles.delete(this.captureIdentity);
+    }
   }
 
   /** Fence synchronous writes on this SQL.js handle while an in-process
-   * critical save and external disk capture complete. Other database handles,
-   * native SQLite, JSON, Redis and request admission need separate fences.
+   * critical save and external disk capture complete. Another open SQL.js
+   * handle for this file refuses capture; other processes, native SQLite,
+   * JSON, Redis and request admission need separate fences.
    */
   holdWritesForCapture(): () => void {
     if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
+    if (this.captureIdentity && (openSqlJsHandles.get(this.captureIdentity)?.size ?? 0) !== 1) {
+      throw new Error("SQLite capture refused; independently opened SQL.js handle shares the file");
+    }
     this.captureWriteFence = true;
     let released = false;
     return () => {
