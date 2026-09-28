@@ -67,9 +67,9 @@ export function buildCommerceProviderReceipts(input: {
   if (identifier?.MarketplaceId !== input.marketplaceId || identifier?.SellerId !== input.sellerId ||
       identifier?.IdValue !== input.asin ||
       identifier?.PriceToEstimateFees?.ListingPrice?.CurrencyCode !== "USD" ||
-      identifier.PriceToEstimateFees.ListingPrice.Amount !== input.sellingPriceUsd ||
+      identifier?.PriceToEstimateFees?.ListingPrice?.Amount !== input.sellingPriceUsd ||
       result?.FeesEstimate?.TotalFeesEstimate?.CurrencyCode !== "USD" ||
-      result.FeesEstimate.TotalFeesEstimate.Amount !== input.feeUsd) {
+      result?.FeesEstimate?.TotalFeesEstimate?.Amount !== input.feeUsd) {
     throw new Error("Amazon fee response differs from commerce decision");
   }
   const supplierCost: ProviderEvidenceReceipt = {
