@@ -2,8 +2,9 @@
  * Only a matched VID and direct CJ-managed units can back an approval claim.
  * https://developers.cjdropshipping.com/en/api/api2/api/product.html#3-inventory
  */
-export function cjManagedStockByVid(payload: unknown, vid: string): number {
-  if (!vid || !Array.isArray(payload) || payload.length === 0 || payload.length > 32) return 0;
+export function cjManagedStockByVid(payload: unknown, vid: string, originCountry?: string): number {
+  if (!vid || (originCountry && !/^[A-Z]{2}$/.test(originCountry)) ||
+      !Array.isArray(payload) || payload.length === 0 || payload.length > 32) return 0;
   let units = 0;
   const warehouses = new Set<string>();
   for (const entry of payload) {
@@ -16,7 +17,8 @@ export function cjManagedStockByVid(payload: unknown, vid: string): number {
     warehouses.add(key);
     const quantity = row.cjInventoryNum;
     if (!Number.isSafeInteger(quantity) || (quantity as number) < 0) return 0;
-    units += quantity as number;
+    // Freight from CN cannot be backed by stock held only in another country.
+    if (!originCountry || row.countryCode === originCountry) units += quantity as number;
     if (!Number.isSafeInteger(units)) return 0;
   }
   return units;
