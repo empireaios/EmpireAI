@@ -6,6 +6,7 @@ import { logger } from "../../../config/logger.js";
 import type { ApprovalGateEngine } from "../../pillow-approval/approval-gate-engine.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { buildCommerceProviderReceipts } from "../commerce-provider-receipts.js";
 import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import type { CjProduct } from "../../../suppliers/cj-dropshipping/cj-types.js";
@@ -76,13 +77,14 @@ const discoveryInFlightByWorkspace = new Set<string>();
 async function fetchLiveStockUnits(
   cj: ReturnType<typeof createCjApiClient>,
   variant: { vid: string },
-): Promise<{ units: number; source: string }> {
+): Promise<{ units: number; source: string; payload: unknown; capturedAt: string }> {
   try {
     const byVid = await cj.queryStockByVid(variant.vid);
     const units = cjManagedStockByVid(byVid.data, variant.vid, "CN");
-    return { units, source: units > 0 ? "cj.stock.queryByVid.cjInventoryNum" : "unavailable" };
+    return { units, source: units > 0 ? "cj.stock.queryByVid.cjInventoryNum" : "unavailable",
+      payload: byVid.data, capturedAt: new Date().toISOString() };
   } catch {
-    return { units: 0, source: "unavailable" };
+    return { units: 0, source: "unavailable", payload: null, capturedAt: new Date().toISOString() };
   }
 }
 
@@ -368,9 +370,10 @@ async function runPillowCommercePresaleCycleImpl(
     }
 
     let detail = product;
+    let costCapturedAt = new Date().toISOString();
     try {
       const queried = await cj.queryProduct(product.pid);
-      if (queried.data) detail = queried.data;
+      if (queried.data) { detail = queried.data; costCapturedAt = new Date().toISOString(); }
     } catch {
       /* list payload may still be usable */
     }
@@ -380,6 +383,7 @@ async function runPillowCommercePresaleCycleImpl(
       try {
         const variantQuery = await cj.queryProductVariants(product.pid);
         detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
+        costCapturedAt = new Date().toISOString();
         picked = pickLiveCjVariant(detail);
       } catch {
         /* keep prior pick */
@@ -431,13 +435,17 @@ async function runPillowCommercePresaleCycleImpl(
 
     let shippingAmount: number | null = null;
     let freightOption: CjFreightOption | null = null;
+    let freightPayload: CjFreightOption[] = [];
+    let freightCapturedAt = "";
     try {
       const freight = await cj.calculateFreight({
         startCountryCode: "CN",
         endCountryCode: "US",
         products: [{ quantity: 1, vid: variant.vid }],
       });
-      const pickedFreight = pickCheapestFreight(freight.data ?? []);
+      freightPayload = freight.data ?? [];
+      freightCapturedAt = new Date().toISOString();
+      const pickedFreight = pickCheapestFreight(freightPayload);
       shippingAmount = pickedFreight.priceUsd;
       freightOption = pickedFreight.option;
     } catch (error) {
@@ -534,6 +542,7 @@ async function runPillowCommercePresaleCycleImpl(
     });
 
     let fees = await estimateAmazonFees(amazon.session, asinResult.asin, price);
+    let feeCapturedAt = new Date().toISOString();
     if (fees.totalFeesUsd === null) {
       rejections.push({
         cjPid: product.pid,
@@ -556,6 +565,7 @@ async function runPillowCommercePresaleCycleImpl(
     if (refined > price) {
       price = refined;
       fees = await estimateAmazonFees(amazon.session, asinResult.asin, price);
+      feeCapturedAt = new Date().toISOString();
       if (fees.totalFeesUsd === null) {
         rejections.push({
           cjPid: product.pid,
@@ -701,6 +711,16 @@ async function runPillowCommercePresaleCycleImpl(
     recommendation.riskSummary =
       assembled.dossier.demandFulfilmentRisk.riskReasons.join("; ") || recommendation.riskSummary;
 
+    const providerReceipts = buildCommerceProviderReceipts({
+      marketplaceId: amazon.session.marketplaceId, sellerId: amazon.session.sellerId,
+      asin: asinResult.asin, cjPid: product.pid, cjVid: variant.vid,
+      sellingPriceUsd: price, costUsd: costAmount, stockUnits, shippingUsd: shippingAmount,
+      freightOption, feeUsd: fees.totalFeesUsd,
+      cost: { payload: detail, capturedAt: costCapturedAt },
+      stock: { payload: stockResult.payload, capturedAt: stockResult.capturedAt },
+      freight: { payload: freightPayload, capturedAt: freightCapturedAt },
+      fee: { payload: fees.raw, capturedAt: feeCapturedAt },
+    });
     const mapping = {
       marketplaceId: amazon.session.marketplaceId,
       asin: asinResult.asin,
@@ -708,6 +728,7 @@ async function runPillowCommercePresaleCycleImpl(
       cjPid: product.pid,
       cjVid: variant.vid,
       cjVariantSku: variant.sku || variant.vid,
+      providerReceipts,
       supplierCostUsd: costEv,
       shippingUsd: shipEv,
       amazonFeesUsd: feeEv,
@@ -762,6 +783,7 @@ async function runPillowCommercePresaleCycleImpl(
             evidence: [
               `asin:${mapping.asin}`,
               `cjPid:${mapping.cjPid}`,
+              `providerDecisionSha256:${providerReceipts.decisionSha256}`,
               `expectedProfitUsd:${mapping.expectedProfitUsd}`,
               `brandRoute:${assembled.dossier.eligibilityAndBrand.brandRoute}`,
               "dossier:FD-CDD-001",
