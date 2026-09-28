@@ -8,6 +8,7 @@ import { logger } from "../../../config/logger.js";
 import { getDatabase } from "../../../brain/database.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
 import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { buildCommerceProviderReceipts } from "../commerce-provider-receipts.js";
 import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import {
@@ -196,12 +197,14 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
+  let costCapturedAt = new Date().toISOString();
   const preferredVid = targetOpp?.mapping.cjVid;
   let picked = pickLiveCjVariant(detail, preferredVid);
   if (picked.costUsd === null) {
     try {
       const variantQuery = await cj.queryProductVariants(cjPid);
       detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
+      costCapturedAt = new Date().toISOString();
       picked = pickLiveCjVariant(detail, preferredVid);
     } catch {
       /* keep */
@@ -236,8 +239,12 @@ export async function reevaluateCommerceOpportunity(
   }
 
   let stockUnits = 0;
+  let stockPayload: unknown = null;
+  let stockCapturedAt = "";
   try {
     const byVid = await cj.queryStockByVid(picked.variant.vid);
+    stockPayload = byVid.data;
+    stockCapturedAt = new Date().toISOString();
     stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid, "CN");
   } catch {
     stockUnits = 0;
@@ -255,13 +262,17 @@ export async function reevaluateCommerceOpportunity(
 
   let freightOption = null;
   let shippingAmount: number | null = null;
+  let freightPayload: NonNullable<Awaited<ReturnType<typeof cj.calculateFreight>>["data"]> = [];
+  let freightCapturedAt = "";
   try {
     const freight = await cj.calculateFreight({
       startCountryCode: "CN",
       endCountryCode: "US",
       products: [{ quantity: 1, vid: picked.variant.vid }],
     });
-    const pickedFreight = pickCheapestFreight(freight.data ?? []);
+    freightPayload = freight.data ?? [];
+    freightCapturedAt = new Date().toISOString();
+    const pickedFreight = pickCheapestFreight(freightPayload);
     shippingAmount = pickedFreight.priceUsd;
     freightOption = pickedFreight.option;
   } catch (error) {
@@ -304,6 +315,7 @@ export async function reevaluateCommerceOpportunity(
       coerceUsdNumber(picked.variant.suggestSellPrice) ?? coerceUsdNumber(detail.suggestSellPrice),
   });
   let fees = await estimateAmazonFees(amazon.session, asin, price);
+  const feeCapturedAt = new Date().toISOString();
   if (fees.totalFeesUsd === null) {
     return finalizeReject({
       input,
@@ -395,6 +407,16 @@ export async function reevaluateCommerceOpportunity(
   }
 
   const approvalSurface = dossierVerdictAllowsApprovalSurface(assembled.verdict);
+  const providerReceipts = buildCommerceProviderReceipts({
+    marketplaceId: amazon.session.marketplaceId, sellerId: amazon.session.sellerId,
+    asin, cjPid, cjVid: picked.variant.vid, sellingPriceUsd: price,
+    costUsd: picked.costUsd, stockUnits, shippingUsd: shippingAmount,
+    freightOption, feeUsd: fees.totalFeesUsd,
+    cost: { payload: detail, capturedAt: costCapturedAt },
+    stock: { payload: stockPayload, capturedAt: stockCapturedAt },
+    freight: { payload: freightPayload, capturedAt: freightCapturedAt },
+    fee: { payload: fees.raw, capturedAt: feeCapturedAt },
+  });
   const mapping = {
     marketplaceId: amazon.session.marketplaceId,
     asin,
@@ -402,6 +424,7 @@ export async function reevaluateCommerceOpportunity(
     cjPid,
     cjVid: picked.variant.vid,
     cjVariantSku: picked.variant.sku || picked.variant.vid,
+    providerReceipts,
     supplierCostUsd: costEv,
     shippingUsd: shipEv,
     amazonFeesUsd: feeEv,
@@ -483,6 +506,7 @@ export async function reevaluateCommerceOpportunity(
           evidence: [
             `asin:${asin}`,
             `cjPid:${cjPid}`,
+            `providerDecisionSha256:${providerReceipts.decisionSha256}`,
             "dossier:FD-CDD-001",
             "reevaluated:true",
             "publicationAttempted:false",
