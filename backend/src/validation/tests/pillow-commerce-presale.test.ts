@@ -1,3 +1,4 @@
+import { buildCommerceProviderReceipts } from "../../orchestration/pillow-commerce-presale/commerce-provider-receipts.js";
 import assert from "node:assert/strict";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -150,6 +151,34 @@ describe("pillow-commerce-presale", () => {
     });
     assert.equal(ok.passesGate, true);
     assert.ok((ok.expectedProfitUsd ?? 0) >= 1);
+  });
+
+  it("refuses stale, mismatched or absent provider response receipts", () => {
+    const now = Date.now();
+    const fee = { payload: { FeesEstimateResult: {
+      FeesEstimateIdentifier: { MarketplaceId: "US", SellerId: "seller", IdValue: "ASIN",
+        PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: 20 } } },
+      FeesEstimate: { TotalFeesEstimate: { CurrencyCode: "USD", Amount: 2 } },
+    } } };
+    const source = { payload: { pid: "PID", productName: "Desk",
+      variants: [{ vid: "VID", sku: "SKU", variantSellPrice: 4 }] }, capturedAt: new Date(now).toISOString() };
+    const input = { marketplaceId: "US", sellerId: "seller", asin: "ASIN", cjPid: "PID", cjVid: "VID",
+      sellingPriceUsd: 20, costUsd: 4, stockUnits: 12, shippingUsd: 3, feeUsd: 2,
+      freightOption: { logisticName: "CJPacket", logisticPrice: 3 },
+      cost: source,
+      stock: { payload: [{ vid: "VID", countryCode: "CN", areaId: 1, cjInventoryNum: 12 }],
+        capturedAt: source.capturedAt },
+      freight: { payload: [{ logisticName: "CJPacket", logisticPrice: 3 }], capturedAt: source.capturedAt },
+      fee: { payload: fee, capturedAt: source.capturedAt }, now,
+    };
+    const receipt = buildCommerceProviderReceipts(input);
+    assert.match(receipt.decisionSha256, /^[a-f0-9]{64}$/);
+    assert.throws(() => buildCommerceProviderReceipts({ ...input, stockUnits: 13 }), /CJ response identity/);
+    assert.throws(() => buildCommerceProviderReceipts({ ...input, sellingPriceUsd: 21 }), /Amazon fee response/);
+    assert.throws(() => buildCommerceProviderReceipts({ ...input,
+      freight: { ...input.freight, capturedAt: new Date(now - 11 * 60_000).toISOString() } }), /freshness/);
+    assert.throws(() => buildCommerceProviderReceipts({ ...input, fee: { payload: null, capturedAt: source.capturedAt } }),
+      /Amazon fee response/);
   });
 
   it("runs autonomous cycle via Pillow path: reject bad, qualify good, surface approval, no publish/spend", async () => {
