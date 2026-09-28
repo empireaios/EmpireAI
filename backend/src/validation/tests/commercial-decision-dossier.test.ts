@@ -121,6 +121,15 @@ describe("commercial decision dossier FD-CDD-001", () => {
     assert.equal(picked.option?.logisticAging, "7-12");
   });
 
+  it("refuses negative and sub-cent CJ freight quotes before margin calculation", () => {
+    assert.deepEqual(pickCheapestFreight([
+      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticPrice: Number.NaN },
+    ]), { priceUsd: null, option: null });
+    assert.equal(pickCheapestFreight([
+      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticPrice: 8.3 },
+    ]).priceUsd, 8.3);
+  });
+
   it("keeps expected vs actual P&L distinct", () => {
     const actual = computeActualContribution({
       customerRevenueUsd: 24.21,
