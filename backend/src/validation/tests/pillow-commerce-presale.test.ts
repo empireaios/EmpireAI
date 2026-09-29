@@ -1,3 +1,6 @@
+import { prepareOfflineOrderFromMarketplaceReadback } from "../../orchestration/pillow-commerce-presale/offline-marketplace-order-handoff.js";
+import { syncAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
+import { syncAmazonUsSellerInventory } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-seller-inventory-import.js";
 import { appendOfflineCommerceReceipt, readOfflineCommerceLifecycle, type OfflineCommerceReceipt } from "../../orchestration/pillow-commerce-presale/offline-commerce-lifecycle.js";
 import { prepareOfflineImportedOrderFulfillment } from "../../orchestration/pillow-commerce-presale/offline-imported-order-fulfillment.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
@@ -529,6 +532,15 @@ describe("pillow-commerce-presale", () => {
       const sku = approved.mapping.amazonSellerSku;
       const observedAt = new Date().toISOString();
       setHttpTransportOverride(async request => {
+        if (request.url.includes("/listings/2021-08-01/items/")) {
+          return {status:200,ok:true,latencyMs:1,json:{items:[{
+            sku,summaries:[{marketplaceId:"ATVPDKIKX0DER",asin:approved.mapping.asin,
+              status:["BUYABLE"],lastUpdatedDate:observedAt}],
+            offers:[{marketplaceId:"ATVPDKIKX0DER",offerType:"B2C",
+              price:{currency:"USD",amount:approved.mapping.proposedSellingPriceUsd.toFixed(2)}}],
+            fulfillmentAvailability:[{fulfillmentChannelCode:"DEFAULT",quantity:3}],
+          }]}};
+        }
         assert.ok(request.url.includes("/orders/2026-01-01/orders"));
         return { status: 200, ok: true, latencyMs: 1, json: { orders: [{
           orderId: "111-2222222-3333333",
@@ -551,7 +563,26 @@ describe("pillow-commerce-presale", () => {
       await assert.rejects(prepareOfflineImportedOrderFulfillment({
         ...args, listingProof: { ...args.listingProof, sellerSku: "wrong" },
       }), /BUYABLE/);
-      const draft = await prepareOfflineImportedOrderFulfillment(args);
+      const marketplaceInput = {workspaceId:args.workspaceId,opportunityId:args.opportunityId,
+        amazonOrderId:args.amazonOrderId,orderItemId:args.orderItemId};
+      await assert.rejects(prepareOfflineOrderFromMarketplaceReadback(marketplaceInput),/Completed listing and inventory/);
+      const sellerCtx = {workspaceId:args.workspaceId,providerId:"amazon-us",mode:"production" as const,
+        credentials:{accessToken:"offline-test-token",sellerId:"A1TESTSELLER"}};
+      await syncAmazonUsListings(sellerCtx);
+      await assert.rejects(prepareOfflineOrderFromMarketplaceReadback(marketplaceInput),/Completed listing and inventory/);
+      await syncAmazonUsSellerInventory(sellerCtx);
+      await assert.rejects(prepareOfflineOrderFromMarketplaceReadback({
+        ...marketplaceInput,now:Date.now()+11*60_000,
+      }),/expired/);
+      const connected = await prepareOfflineOrderFromMarketplaceReadback(marketplaceInput);
+      const draft = connected.draft;
+      args.listingProof.observedAt = connected.marketplaceEvidence.observedAt;
+      assert.equal(connected.marketplaceEvidence.sellerId,"A1TESTSELLER");
+      assert.equal(connected.marketplaceEvidence.sellerFulfilledQuantity,3);
+      assert.equal(connected.marketplaceEvidence.supplierStockVerified,false);
+      assert.match(connected.marketplaceEvidence.listingSourceSha256,/^[a-f0-9]{64}$/);
+      assert.match(connected.marketplaceEvidence.inventorySourceSha256,/^[a-f0-9]{64}$/);
+
       assert.equal(draft.cjVid, approved.mapping.cjVid);
       assert.equal(draft.quantity, 2);
       assert.equal(draft.supplierSpendAllowed, false);
@@ -568,6 +599,7 @@ describe("pillow-commerce-presale", () => {
         assert.doesNotMatch(row.record_json, /must-never-be-persisted/);
       } finally { disk.close(); }
       assert.deepEqual(await prepareOfflineImportedOrderFulfillment(args), draft);
+      assert.deepEqual(await prepareOfflineOrderFromMarketplaceReadback(marketplaceInput),connected);
       await assert.rejects(prepareOfflineImportedOrderFulfillment({
         ...args, listingProof: { ...args.listingProof,
           observedAt: new Date(Date.parse(observedAt) + 1000).toISOString() },
@@ -623,6 +655,8 @@ describe("pillow-commerce-presale", () => {
       try {
         const count = receiptDisk.prepare("SELECT COUNT(*) AS n FROM pillow_offline_commerce_receipts").get() as {n:number};
         assert.equal(count.n,5);
+        const proof = receiptDisk.prepare("SELECT record_json FROM pillow_order_marketplace_evidence").get() as {record_json:string};
+        assert.deepEqual(JSON.parse(proof.record_json),connected.marketplaceEvidence);
       } finally { receiptDisk.close(); }
     }
 
