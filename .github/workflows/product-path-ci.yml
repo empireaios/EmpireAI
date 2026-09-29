@@ -42,6 +42,14 @@ jobs:
         run: node --test scripts/verify-build-runtime.test.mjs
       - name: Verify isolated provider read-only observation without credentials
         run: node --test deployment/provider-readback.test.mjs deployment/cj-supplier-readback.test.mjs deployment/cj-stock-discovery.test.mjs
+      - name: Rehearse combined disk capture and fresh-process restore without production access
+        run: node deployment/rehearse-cutover-recovery.cjs > "$RUNNER_TEMP/cutover-rehearsal.json"
+      - name: Preserve restore rehearsal receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cutover-rehearsal
+          path: ${{ runner.temp }}/cutover-rehearsal.json
+          retention-days: 14
       - name: Verify disk-only legacy checkpoint capture and refusal cases
         shell: bash
         run: |

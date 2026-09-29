@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Current checkpoint — terminal product rejection and cutover closure (CI pending)
+
+Mirror CJFU225443901AZ is rejected under CJ-controlled fulfilment requirements. Official CJ product type documentation establishes supplier management/shipping; reported12,273 inventory units do not prove CJ control. No exact Amazon identity or defensible complete economics; no further authenticated CJ/Amazon calls or points spent. The same policy rejects the storage tower. Reusable ordinary-product screening and rejection exclusions, owner product-stage filtering, and combined disk-capture/fresh-process restore rehearsal are implemented. Required CI/browser evidence pending for this code checkpoint. See [cutover closure](PRODUCTION_CUTOVER_CLOSURE.md) and [terminal rejection](evidence/2026-09-29-launch-closure/rejection.json). Production read-only13:07UTC still pending=true, pid539; no intervention. NOT_BORN / LOCKED. Supersedes the prior instruction to keep investigating this mirror.
+
 ## Latest verified checkpoint — real supplier evidence in the phone owner journey
 
 Code `300fd0e72600bfe9df947ea17e001c4cd472447a` passed [Product36570792247](https://github.com/empireaios/EmpireAI/actions/runs/36570792247), [Semantic36570792271](https://github.com/empireaios/EmpireAI/actions/runs/36570792271), and [Runtime36570792283](https://github.com/empireaios/EmpireAI/actions/runs/36570792283). Runtime's first web build failed in the external Google-font loader; one failed offline job retry succeeded. Failure and retry retained in [verification](evidence/2026-09-29-owner-phone/verification.json). No provider retry occurred.

@@ -1,12 +1,15 @@
 /** Bounded, read-only US-stock discovery. No application startup or commercial writes. */
-import {mkdirSync} from 'node:fs';
+import {mkdirSync,readFileSync} from 'node:fs';
+import {screenFulfilment} from './cj-eligibility-screen.mjs';
+const rejected=JSON.parse(readFileSync(new URL('./cj-screening-rejections.json',import.meta.url),'utf8'));
+const excluded=new Set(rejected.products.map(p=>p.pid));
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {configuration,save,request} from './provider-readback.mjs';
 import {productSummary,inventorySummary,choose,freightSummary} from './cj-supplier-readback.mjs';
 const BASE='https://developers.cjdropshipping.com/api2.0/v1';
-export const SEARCH='/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc';
+export const SEARCH='/product/listV2?page=1&size=2&productType=ORDINARY_PRODUCT&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc';
 const digest=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 export function searchSummary(data){
  if(!Array.isArray(data?.content)||data.content.length>2)throw Error('DISCOVERY_SCHEMA');
@@ -39,7 +42,10 @@ export async function runDiscovery(env,dir,{testTransport}={}){
  try{
   const discovered=await observe(SEARCH,50,searchSummary);
   for(const p of discovered.products){
+   if(excluded.has(p.pid)){e.candidates.push({...p,eligible:null,decision:'REJECT_PREVIOUSLY_SCREENED',reason:rejected.products.find(r=>r.pid===p.pid).reason});continue;}
    const product=await observe('/product/query?pid='+p.pid,10,d=>productSummary(d,p.pid));
+   const screening=screenFulfilment(product);
+   if(!screening.eligible){e.candidates.push({...p,product,eligible:null,decision:'REJECT_'+screening.code,reason:screening.reason});continue;}
    const stock=await observe('/product/stock/getInventoryByPid?pid='+p.pid,10,inventorySummary);
    const usStock={variantInventories:stock.variantInventories.map(v=>({...v,inventory:v.inventory.filter(w=>w.countryCode==='US')}))};
    const eligible=choose(product,usStock);

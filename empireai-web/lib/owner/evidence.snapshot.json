@@ -13,12 +13,12 @@
       "name": "Tall Dressing Table Cloth Storage Tower",
       "selected": false,
       "observedAt": "2026-09-29T12:36:42.890Z",
-      "decision": "INVESTIGATE",
-      "recommendation": "Projected economics are unknown. Verify the exact Amazon product, fees, selling price and delivery costs before asking King to approve.",
-      "recommendationSource": "Saved Pillow commercial rule assessment, not a live autonomous decision",
-      "kingDecision": "Not requested — approval locked",
+      "decision": "REJECT",
+      "recommendation": "Supplier manages and ships this product. Reported CJ inventory does not establish CJ-controlled fulfilment.",
+      "recommendationSource": "Saved launch screening and Pillow commercial rules, not a live autonomous decision",
+      "kingDecision": "Not requested — rejected by launch screening",
       "qualified": false,
-      "warning": "CJ labels this supplier shipped despite reporting CJ inventory. Physical warehouse operation and shipping terms still need confirmation.",
+      "warning": "Closed: does not meet the CJ-controlled fulfilment requirement. Do not investigate or buy again without materially new evidence.",
       "fields": [
         {
           "label": "Exact variant",
@@ -53,7 +53,7 @@
           "value": "SUPPLIER_SHIPPED_PRODUCT",
           "kind": "provider-observed",
           "source": "CJ product detail",
-          "note": "Supplier shipped; warehouse ownership unresolved"
+          "note": "Supplier manages and ships; not qualified as CJ-controlled fulfilment"
         },
         {
           "label": "US freight quote",
@@ -102,7 +102,7 @@
           "value": "Unknown",
           "kind": "unknown",
           "source": "Supplier quote + one freight quote",
-          "note": "Not all-in landed cost; excludes unverified charges, Amazon fees and returns"
+          "note": "Zero or country-only freight is not validated applicable delivery cost; no favorable subtotal inferred"
         },
         {
           "label": "All-in landed cost",
@@ -153,12 +153,12 @@
       "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
       "selected": true,
       "observedAt": "2026-09-29T12:36:42.890Z",
-      "decision": "INVESTIGATE",
-      "recommendation": "Projected economics are unknown. Verify the exact Amazon product, fees, selling price and delivery costs before asking King to approve.",
-      "recommendationSource": "Saved Pillow commercial rule assessment, not a live autonomous decision",
-      "kingDecision": "Not requested — approval locked",
+      "decision": "REJECT",
+      "recommendation": "Supplier manages and ships this product. Reported CJ inventory does not establish CJ-controlled fulfilment.",
+      "recommendationSource": "Saved launch screening and Pillow commercial rules, not a live autonomous decision",
+      "kingDecision": "Not requested — rejected by launch screening",
       "qualified": false,
-      "warning": "CJ labels this supplier shipped despite reporting CJ inventory. Physical warehouse operation and shipping terms still need confirmation.",
+      "warning": "Closed: does not meet the CJ-controlled fulfilment requirement. Do not investigate or buy again without materially new evidence.",
       "fields": [
         {
           "label": "Exact variant",
@@ -193,7 +193,7 @@
           "value": "SUPPLIER_SHIPPED_PRODUCT",
           "kind": "provider-observed",
           "source": "CJ product detail",
-          "note": "Supplier shipped; warehouse ownership unresolved"
+          "note": "Supplier manages and ships; not qualified as CJ-controlled fulfilment"
         },
         {
           "label": "US freight quote",
@@ -239,10 +239,10 @@
         },
         {
           "label": "Supplier + quoted freight subtotal",
-          "value": "US$52.25",
-          "kind": "derived",
+          "value": "Unknown",
+          "kind": "unknown",
           "source": "Supplier quote + one freight quote",
-          "note": "Not all-in landed cost; excludes unverified charges, Amazon fees and returns"
+          "note": "Zero or country-only freight is not validated applicable delivery cost; no favorable subtotal inferred"
         },
         {
           "label": "All-in landed cost",
@@ -357,9 +357,11 @@
     "status": "Earlier listing read succeeded; that product was not buyable. No match to these candidates."
   },
   "production": {
-    "observedAt": "2026-09-29T11:25:04.883Z",
+    "observedAt": "2026-09-29T13:07:27.345Z",
     "status": "Saved state not yet secured. Production updates remain paused."
   },
+  "decisionsAt": "2026-09-29T13:12:00Z",
+  "screeningStatus": "Ready for the next bounded ordinary-CJ-product search; not currently running",
   "liveActivity": "Not verified from this saved view",
   "realisedProfit": null,
   "liveOrdersVerified": false

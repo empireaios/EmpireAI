@@ -53,8 +53,11 @@ try {
   const nav=page.getByRole('navigation',{name:'Owner navigation'});
   await nav.getByRole('link',{name:'Products',exact:true}).click();
   await page.getByRole('heading',{name:'Products',exact:true}).waitFor();
+  await page.getByLabel('Show stage',{exact:true}).selectOption('qualified');
+  await page.getByText('No products in this stage.',{exact:true}).waitFor();
+  await page.getByLabel('Show stage',{exact:true}).selectOption('REJECT');
   await page.getByRole('link',{name:'Review mirror',exact:true}).click();
-  await page.getByRole('heading',{name:'Pillow: do not approve yet',exact:true}).waitFor();
+  await page.getByRole('heading',{name:'Pillow: reject',exact:true}).waitFor();
   assert.match(await page.locator('body').innerText(),/US\$52\.25/);
   assert.match(await page.locator('body').innerText(),/12273/);
   assert.match(await page.locator('body').innerText(),/SUPPLIER_SHIPPED_PRODUCT/);
@@ -96,7 +99,7 @@ try {
   await page.waitForURL('**/login?next=*');
   assert.deepEqual(errors,[],'browser runtime errors');
   writeFileSync(resolve(output,'receipt.json'),JSON.stringify({evidenceMode:'OFFLINE_FIXTURE',
-    sourceHead:process.env.GITHUB_SHA??'local',ownerHomeProductsEvidenceJourney:true,ownerHistoricalProviderSnapshot:true,approvalLocked:true,ownerApiWriteDenied:true,browserLogin:true,phoneViewport:[390,844],
+    sourceHead:process.env.GITHUB_SHA??'local',terminalRejectionVisible:true,productStageFilterVerified:true,ownerHomeProductsEvidenceJourney:true,ownerHistoricalProviderSnapshot:true,approvalLocked:true,ownerApiWriteDenied:true,browserLogin:true,phoneViewport:[390,844],
     bffBackendDiskReadback:true,realAuthMiddleware:true,sessionBackend:'isolated in-memory',
     logoutRevokesSession:true,foreignWorkspaceQueryRefused:true,providerAuthenticity:false,
     transactionKey:payload.transactions[0].transactionKey,realisedFixtureContributionUsd:15.95,
