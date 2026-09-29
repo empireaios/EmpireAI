@@ -523,6 +523,7 @@ describe("pillow-commerce-presale", () => {
     // Offline integration: real-form imported order → saved variant → draft → unknown actual P&L.
     repoForOrder: {
       const fulfillmentRepo = getPillowCommercePresaleRepository();
+      fulfillmentRepo.saveMapping(approved.mapping, "ws_empire_1");
       fulfillmentRepo.saveOpportunity(approved);
       const sku = approved.mapping.amazonSellerSku;
       const observedAt = new Date().toISOString();
