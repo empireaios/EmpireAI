@@ -1,5 +1,15 @@
 # EmpireAI / Pillow active mission handoff
 
+## Current checkpoint — browser inspection found no safe read-only export
+
+Owner-approved Railway browser inspection completed on30September2026 Singapore time (29SeptemberUTC). Authenticated project/volume/service pages loaded. Volume exposed Metrics/Settings (mount /data,5GB) with no file/download control. Service Backups definitively displayed **No backup schedule** and **No Backups — This service's volume does not have any backups.** Available actions were New backup/Create Backup, which were not invoked. Console was not opened: no application or shell command authorized. No configuration controls changed.
+
+**Exported0 production files; restored0 new records; no new material business-state findings.** Earlier one-record private recovery remains valid only at its historical timestamp. Railway-managed backup-list absence does not negate historical `/app/closure-backups` files. No safe read-only binary transfer path was exposed by the inspected UI; do not claim Railway has no possible export method globally. Stop; do not experiment with creation, console, SSH, volume duplication or redeployment under this approval.
+
+Previous worker PID539 autonomously exited29September14:00:42UTC; a present file export cannot reconstruct its prior RAM. Current DB/Redis/other store contents, outstanding obligations and missing unique memories remain unverified. **No cutover or loss-acceptance decision is supported.** Before requesting either, a separate concrete safe private acquisition mechanism and full isolated restore/reconciliation must be established. Browser inspection authorization is used; no new production intervention authorized. NOT_BORN/LOCKED unchanged. This is evidence/documentation only; prior verified code2855b4e9 and CI remain unchanged.
+
+[Browser inspection receipt](evidence/2026-09-30-readonly-browser/inspection.json). Browser screenshot was captured but did not synchronize into the execution workspace; no screenshot artifact or checksum claim is made. Canonical text evidence retained instead.
+
 ## Current checkpoint — recovery impact PARTIAL; no loss/cutover approval recommended
 
 [Owner decision package](RECOVERY_IMPACT_ASSESSMENT.md). **Fresh evidence overturns the continuous-old-worker assumption:** logs prove PID539 autonomously exited on29September14:00:42UTC (22:00:42SGT), supervisor respawn29, replacementPID553 listened14:01:04UTC. This predates this assessment and the preceding isolated proof; Work did not trigger it. Pre-exit pending=true; reported last flush06:16:50.861UTC, potential7h43m52s exposure, not certified loss volume. Current worker has separate pending state and protection continues.

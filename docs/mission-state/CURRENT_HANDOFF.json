@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T15:28:15.712474+00:00",
+  "updatedAt": "2026-09-29T21:20:22.135Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -24,7 +24,7 @@
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged; recovery impact assessment partial, full production restore blocked by binary access; no deployment",
     "candidateCodeHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
-    "branchTipNote": "Evidence/handoff-only follow-up after code2855b4e9 Product/Semantic/Runtime green. Canonical recovery assessment stops for owner decision; full production restore remains blocked.",
+    "branchTipNote": "Evidence-only browser inspection follows verified code2855b4e9. No application code/configuration changes. Current canonical MD/JSON record no safe browser export found.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -1388,6 +1388,67 @@
         "Semantic": 36589825324,
         "Runtime": 36589825429
       }
+    },
+    "readOnlyBrowserExportInspection": {
+      "schemaVersion": 1,
+      "observedAt": "2026-09-29T21:19:06Z",
+      "ownerLocalDate": "2026-09-30",
+      "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+      "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+      "volumeId": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+      "environment": "production",
+      "authenticatedBrowser": true,
+      "inspected": [
+        "project architecture",
+        "volume metrics",
+        "volume settings",
+        "service settings/navigation",
+        "service backups"
+      ],
+      "verifiedUrl": "https://railway.com/project/75374474-2b3a-4b0f-a9bc-203cdc1314d8/service/c3c89cbb-3e10-414a-98a2-f9ec4f1f840e/backups?environmentId=da94aed2-956b-4903-a886-68a5e9a557c8",
+      "visibleBackupText": [
+        "No backup schedule",
+        "No Backups",
+        "This service's volume does not have any backups.",
+        "New backup",
+        "Create Backup"
+      ],
+      "volume": {
+        "mountPath": "/data",
+        "sizeLabel": "5.00 GB",
+        "tabs": [
+          "Metrics",
+          "Settings"
+        ],
+        "fileDownloadControlObserved": false
+      },
+      "serviceTabs": [
+        "Deployments",
+        "Backups",
+        "Variables",
+        "Metrics",
+        "Console",
+        "Settings"
+      ],
+      "consoleOpened": false,
+      "variablesOpened": false,
+      "backupCreated": false,
+      "productionMutations": 0,
+      "commandsExecuted": 0,
+      "providerCalls": 0,
+      "exportedProductionFiles": 0,
+      "newRecordsRestored": 0,
+      "newBusinessStateFindings": 0,
+      "conclusion": "NO_SAFE_READ_ONLY_EXPORT_EXPOSED_IN_INSPECTED_UI",
+      "limits": [
+        "No claim that all Railway transfer mechanisms are impossible",
+        "Platform backup list differs from historical files inside /app/closure-backups",
+        "Prior worker RAM may already have been lost or changed by autonomous exit; current files cannot reconstruct it",
+        "Screenshot capture did not synchronize to local workspace; no durable screenshot claim"
+      ],
+      "cutoverAuthorized": false,
+      "lossAcceptanceAuthorized": false,
+      "nextDecision": "No cutover/loss acceptance recommended. Separately establish a concrete private acquisition mechanism and its safety before any broader access or production intervention."
     }
   },
   "failedAttempts": [
@@ -1424,18 +1485,18 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Old worker already exited autonomously; original worker-only RAM may already be lost. Live632MB Brain/Redis backup bytes inaccessible via metadata-only binary reader; full restore/account reconciliation not proved. No cutover/loss approval recommended.",
+    "Read-only Railway browser inspection exposed no binary export/download; platform backup list empty. Historical container archives remain distinct/unrestored. Full production recovery, obligations and unknown prior-worker RAM loss remain unquantified; no safe cutover decision.",
     "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
     "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "STOP for owner decision. Request approval for read-only Railway browser inspection of private binary export options; connector cannot transfer binary and browser-use rule requires fallback approval. Do not promise export support or probe session before approval. No snapshot/file mutation/restart/deployment/loss acceptance/cutover authorized. Full real restore and account reconciliation remain necessary.",
+    "STOP after approved read-only browser inspection: no safe binary export exposed; Railway-managed backup list empty. No creation/console/application commands authorized. Before loss/cutover decision, establish a concrete separately reviewed private acquisition method and complete real restore/reconciliation. Do not repeat capture method or mistake current files for prior RAM.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
-    "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
+    "Once preservation permits promotion, verify code→CI→Railway/Vercel→runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
     "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
   ],
   "oauthEngineering": {
