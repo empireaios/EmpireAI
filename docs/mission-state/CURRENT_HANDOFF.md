@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Amazon provisioning hold — 2026-09-29
+
+Owner requested branch creation only. `ci/provider-readback-amazon-v1` now exists at `d29117f69d6e9c57434e67ad826dbf70111de74e`; its provider workflow job has unconditional `if: ${{ false }}` verified by branch readback. The exact environment rule should now match one branch. Owner may enter secrets securely; no provider calls or production changes occurred. Do not replace this branch with the integration head or enable the job until owner readiness and a reviewed read-only checkpoint. CJ branch remains uncreated. [Branch hold record](https://github.com/empireaios/EmpireAI/blob/ci/provider-readback-amazon-v1/docs/mission-state/AMAZON_PROVISIONING_HOLD.md). This section supersedes the earlier statement that neither branch exists.
+
 ## Current checkpoint — isolated provider-readback preparation
 
 Verified code `c69d809d3aa50d0eea30d7f00d50dbddfad00d45`: [Product](https://github.com/empireaios/EmpireAI/actions/runs/36549205557), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36549205572), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36549205564) all required jobs passed, including six new offline readback tests and the actual phone-browser gate. Preserves the integrated simulated commerce transaction and supplier reversals.

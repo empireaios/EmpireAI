@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T09:31:19.422489+00:00",
+  "updatedAt": "2026-09-29T09:59:57.492Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -682,13 +682,23 @@
       "offlineTests": 6,
       "ownerProcedure": "docs/mission-state/PROVIDER_READBACK_OWNER_SETUP.md",
       "providerCalls": 0,
-      "providerBranchesCreated": false,
+      "providerBranchesCreated": [
+        "ci/provider-readback-amazon-v1"
+      ],
       "amazonRole": "Inventory and Order Tracking; provider role also permits writes, isolated runner allows token exchange and one searchListingsItems GET only",
       "cjScope": "ordinary API key; documented UI has no read-only scope; isolated runner allows auth and one product/list GET only",
       "cjPointCeiling": 50,
       "evidence": "fsynced admission and sanitized terminal receipt; request identity and business response hash; no authentication response or secrets persisted",
       "failClosed": "missing isolation/credentials, repeated run or existing evidence directory refuse; timeout/body limits, no retries/redirects, no qualification or authority upgrade",
-      "reconciliation": "account identity remains owner-unconfirmed; transaction UNMATCHED; actual economics null; fixture projections unchanged"
+      "reconciliation": "account identity remains owner-unconfirmed; transaction UNMATCHED; actual economics null; fixture projections unchanged",
+      "amazonProvisioningHold": {
+        "branch": "ci/provider-readback-amazon-v1",
+        "head": "d29117f69d6e9c57434e67ad826dbf70111de74e",
+        "providerJob": "unconditionally disabled; read back",
+        "ownerReportedEnvironmentRule": "ci/provider-readback-amazon-v1",
+        "providerCalls": 0,
+        "productionChanges": 0
+      }
     }
   },
   "failedAttempts": [
@@ -735,12 +745,12 @@
     "Provider-backed convergence now requires usable authenticated Amazon/CJ access in an isolated nonproduction execution path. Railway OAuth exposes only variable names; no provider credentials exist in this execution environment; cleaned canary has no services. No real provider read or write was attempted."
   ],
   "nextExecutableActions": [
-    "Owner-only: complete the exact Amazon and CJ secure environment procedures in PROVIDER_READBACK_OWNER_SETUP.md. No secrets in chat. Dedicated private Amazon app with Inventory and Order Tracking only; dedicated CJ API key and approval for one 50-point catalog check. No broader roles or repository-wide secrets.",
+    "Owner securely enters Amazon environment secrets; branch now exists and provider job is unconditionally disabled. Do not overwrite its hold by pointing it at integration head. After owner readiness, review and explicitly re-enable bounded read-only verification. CJ provisioning procedure unchanged; CJ branch not created.",
     "After owner readiness, verify secure environment branch restrictions, create only the matching dedicated provider branch from verified code, run the fixed auth plus GET observation, download and inspect sanitized admission/receipt, reconcile account/product identity and schema discrepancies, commit evidence and handoff. No retries, commerce or fixture-to-real identity inference. Expand exact VID/stock/freight/fee reads only in a subsequent reviewed bounded checkpoint.",
     "Actual hosted phone browser gate is now required and passed; preserve it. Complete surrounding command/health/exception/approval/pause views and durable deployed session verification. Narrow harness deliberately leaves shell command data/event endpoints unavailable; this is not whole-console acceptance.",
     "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
-    "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
+    "Once preservation permits promotion, verify code→CI→Railway/Vercel→runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
     "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
   ],
   "oauthEngineering": {
