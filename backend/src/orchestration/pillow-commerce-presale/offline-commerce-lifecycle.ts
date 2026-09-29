@@ -178,3 +178,30 @@ export async function appendOfflineCommerceReceipt(workspaceId:string,key:string
   if (JSON.stringify(readback) !== JSON.stringify(result)) throw new Error("Lifecycle receipt readback failed");
   return readback;
 }
+
+/** Bounded owner projection. No customer address, credentials or authority mutation. */
+export function listOfflineCommerceTransactions(workspaceId:string,limit=20) {
+  if (!workspaceId || !Number.isSafeInteger(limit) || limit<1 || limit>50) throw new Error("Transaction read scope invalid");
+  const db = getDatabase();
+  const exists = (name:string) => Boolean(db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=@name").get({name}));
+  if (!exists("pillow_commerce_fulfillment_drafts")) return [];
+  const rows = db.prepare(`SELECT record_json FROM pillow_commerce_fulfillment_drafts
+    WHERE workspace_id=@workspaceId ORDER BY created_at DESC,idempotency_key LIMIT @limit`)
+    .all({workspaceId,limit}) as Array<{record_json:string}>;
+  const hasMarketplace = exists("pillow_order_marketplace_evidence");
+  return rows.map(row=>{
+    const draft = JSON.parse(row.record_json) as OfflineFulfillmentDraft;
+    const marketplace = hasMarketplace ? db.prepare(`SELECT record_json FROM pillow_order_marketplace_evidence
+      WHERE workspace_id=@workspaceId AND transaction_key=@key`)
+      .get({workspaceId,key:draft.idempotencyKey}) as {record_json:string}|undefined : undefined;
+    const lifecycle = readOfflineCommerceLifecycle(workspaceId,draft.idempotencyKey);
+    return {transactionKey:draft.idempotencyKey,evidenceMode:"OFFLINE_FIXTURE" as const,
+      amazonOrderId:draft.amazonOrderId,orderItemId:draft.orderItemId,sku:draft.amazonSellerSku,
+      asin:draft.asin,cjPid:draft.cjPid,cjVid:draft.cjVid,quantity:draft.quantity,
+      orderSourceSha256:draft.orderSourceSha256,decisionSha256:draft.decisionSha256,
+      marketplaceEvidence:marketplace ? JSON.parse(marketplace.record_json) : null,
+      expected:draft.economics.expected,
+      simulated:lifecycle,
+      realCommerceVerified:false as const};
+  });
+}
