@@ -393,6 +393,42 @@ jobs:
           path: commerce-browser-evidence
           retention-days: 14
 
+  legacy-capture-proof:
+    name: Exact old revision pending-RAM capture decision (isolated)
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout reviewed proof without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Checkout exact protected source into separate isolated directory
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 21384342c401def948926904913840e63c18dff7
+          path: isolated-old-revision
+          persist-credentials: false
+      - name: Use pinned proof runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Install exact old locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --prefix isolated-old-revision/backend
+      - name: One bounded proof using unmodified old storage source
+        shell: bash
+        run: |
+          env -i PATH="$PATH" NODE_ENV=test LOG_LEVEL=fatal EMPIREAI_ISOLATED_CAPTURE_PROOF=1 \
+            node --import "$GITHUB_WORKSPACE/isolated-old-revision/backend/node_modules/tsx/dist/loader.mjs" \
+            deployment/legacy-critical-save-proof.mjs "$GITHUB_WORKSPACE/isolated-old-revision" "$RUNNER_TEMP/legacy-capture-proof"
+      - name: Preserve synthetic capture artifacts and decision
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: legacy-capture-proof
+          path: ${{ runner.temp }}/legacy-capture-proof
+          retention-days: 14
+
   product-path-result:
     name: Product path result (no deployment)
     if: ${{ always() }}
@@ -404,6 +440,7 @@ jobs:
       - empireai-web
       - bounded-redis-image
       - commerce-browser
+      - legacy-capture-proof
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -415,6 +452,7 @@ jobs:
           LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
           NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
           REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
+          LEGACY_CAPTURE_RESULT: ${{ needs.legacy-capture-proof.result }}
           COMMERCE_BROWSER_RESULT: ${{ needs.commerce-browser.result }}
         shell: bash
         run: |
@@ -433,7 +471,8 @@ jobs:
             "$LEGACY_WEB_RESULT" \
             "$NEXT_WEB_RESULT" \
             "$REDIS_IMAGE_RESULT" \
-            "$COMMERCE_BROWSER_RESULT"; do
+            "$COMMERCE_BROWSER_RESULT" \
+            "$LEGACY_CAPTURE_RESULT"; do
             test "$result" = success
           done
           echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"
