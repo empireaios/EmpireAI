@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   observe:
-    if: ${{ false }}
+    if: github.run_attempt == 1 && github.ref == 'refs/heads/ci/provider-readback-cj-v1'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment:
