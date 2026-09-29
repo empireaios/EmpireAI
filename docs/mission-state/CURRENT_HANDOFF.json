@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T07:52:40.384Z",
+  "updatedAt": "2026-09-29T08:01:32.600Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "501b2ff7064bbbd47e8110b0b87cda33c65dd313",
+    "lastVerifiedIntegrationHead": "059e74885cdc2a99bac203cfd71dd65315957300",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft unmerged; offline imported-order fulfillment draft passed Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "501b2ff7064bbbd47e8110b0b87cda33c65dd313",
-    "branchTipNote": "Completed durable Amazon listing-price and seller-inventory imports now feed the same approved Pillow/order draft through supplier acknowledgement, delivery, settlement and refund. Seller/SKU/ASIN/price and freshness bound; source hashes persisted and disk reopened. Seller availability is not supplier stock. Offline transport only; no live provider authentication, commerce or deployment.",
+    "candidateCodeHead": "059e74885cdc2a99bac203cfd71dd65315957300",
+    "branchTipNote": "Founder/admin GET /pillow-commerce-presale/transactions exposes bounded transaction lineage, persisted marketplace proof, projected economics and separately labelled simulated receipt/accounting state. HTTP integration verifies authentication, role refusal, strict query bounds, no workspace override and cross-workspace isolation after disk reopen. Not deployed; no real commerce evidence.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -617,6 +617,14 @@
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36538631311",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36538631216",
       "scope": "Completed durable Amazon listing-price and seller-inventory imports now feed the same approved Pillow/order draft through supplier acknowledgement, delivery, settlement and refund. Seller/SKU/ASIN/price and freshness bound; source hashes persisted and disk reopened. Seller availability is not supplier stock. Offline transport only; no live provider authentication, commerce or deployment."
+    },
+    "ownerCommerceTransactionApi": {
+      "codeHead": "059e74885cdc2a99bac203cfd71dd65315957300",
+      "status": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36539506291",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36539506264",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36539506249",
+      "scope": "Founder/admin GET /pillow-commerce-presale/transactions exposes bounded transaction lineage, persisted marketplace proof, projected economics and separately labelled simulated receipt/accounting state. HTTP integration verifies authentication, role refusal, strict query bounds, no workspace override and cross-workspace isolation after disk reopen. Not deployed; no real commerce evidence."
     }
   },
   "failedAttempts": [
@@ -661,7 +669,7 @@
   ],
   "nextExecutableActions": [
     "Protected old Railway process still has unknown pending SQL.js RAM. Candidate capture coordinates same-process SQL.js handles, local HTTP/worker/queue and Redis owner fencing offline; next coordinate other processes/direct producers/native handles and independently verify Redis plus copied multi-store snapshot. Obtain and validate an authorized in-process quiesce/save mechanism for old deployment before any restart/redeploy/promotion. No production operation in this checkpoint.",
-    "Expose connected transaction readback through authenticated workspace-scoped owner API, then phone console. Continue actual provider receipt ingestion, supplier cancellation/returns and settlement reconciliation. Integrated listing/inventory/order/tracking/settlement/refund fixtures passed 501b2ff all-three CI; actual provider credentials and real commerce authorization remain separate.",
+    "Add phone transaction view and session-forwarding web route over verified owner API. Continue authenticated provider receipt ingestion, supplier cancellation/return paths and independent certification. Three integrated checkpoints now passed: receipt lifecycle, persisted marketplace readbacks, scoped owner HTTP readback.",
     "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
