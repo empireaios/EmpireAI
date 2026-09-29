@@ -9,7 +9,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   observe:
-    if: github.run_attempt == 1
+    # Provisioning hold: owner requested branch creation only; no provider access.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment:
