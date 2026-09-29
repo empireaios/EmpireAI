@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T07:25:21.038Z",
+  "updatedAt": "2026-09-29T07:44:24.525Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "a2154e4812ecc9a57079098ab8d00b3e88b51396",
+    "lastVerifiedIntegrationHead": "f8b4fea03b27dc2e8c475c9cdafe21d3a6ff4f00",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "draft unmerged; offline imported-order fulfillment draft passed Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "a2154e4812ecc9a57079098ab8d00b3e88b51396",
-    "branchTipNote": "a2154e4 offline completed-order to explicit approved Pillow variant draft and unknown actual accounting passed exact-head CI; handoff docs only. Production RAM capture unresolved; Vercel fresh verification pending.",
+    "candidateCodeHead": "f8b4fea03b27dc2e8c475c9cdafe21d3a6ff4f00",
+    "branchTipNote": "2026-09-29 integrated offline lifecycle f8b4fea: existing presale/order draft now feeds an immutable receipt journal, existing CJ tracking mapper and economics calculator through supplier acknowledgement, delivered outcome, supplier payment, item-attributed Amazon settlement and refund. Duplicate receipts, conflicts, failed critical save/retry and disk restart verified; fixture contribution $21.75 then $12.75 after refund; expected profit unchanged and accounting journal balanced. Explicit OFFLINE_FIXTURE only, no live provider or authority claim.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -45,10 +45,10 @@
         "memoryGbMax": 3.285624832,
         "diskGbCurrent": 0.724770816
       },
-      "latestReadOnlyStatusAt": "2026-09-28T12:56:31Z",
+      "latestReadOnlyStatusAt": "2026-09-29T07:38:22Z",
       "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
       "completedFlushAfterPriorCheckpointVerified": true,
-      "readOnlyLatest": "2026-09-28 12:56 UTC get_status still old deployment 86302878-25b5-4990-87d9-86580cd4e976 SUCCESS with /data volume and empty staged patch. Read-only logs show 11:51:10 UTC sql.js-db.export completed with flushCount=3, but at 12:56 sqlite.pending=true again, flushInFlight=false, lastFlushMs=11:51:10 UTC, criticalFlushRequested=0 and criticalFlushSucceeded=0, lag ~0.7-0.8 seconds. Current pending RAM contents and survival remain unverified; no operation invoked."
+      "readOnlyLatest": "Same protected deployment SUCCESS and empty staged patch. 07:38 UTC logs sqlite.pending=true, flushCount=3, criticalFlushRequested=0, criticalFlushSucceeded=0, about 1.1-second lag; no mutation or capture."
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
@@ -601,6 +601,14 @@
         "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36535995173"
       },
       "scope": "Synthetic approved Pillow opportunity plus saved SKU/ASIN/CJ PID/VID and hashed response bundle, completed fake Amazon US order import, caller-supplied fresh BUYABLE observation, idempotent critical-persisted fulfillment draft and disk readback; actual P&L and payout unknown. No real approval, listing, supplier order, provider call or production operation."
+    },
+    "offlineCommerceLifecycle": {
+      "codeHead": "f8b4fea03b27dc2e8c475c9cdafe21d3a6ff4f00",
+      "status": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36537779820",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36537779411",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36537779406",
+      "scope": "2026-09-29 integrated offline lifecycle f8b4fea: existing presale/order draft now feeds an immutable receipt journal, existing CJ tracking mapper and economics calculator through supplier acknowledgement, delivered outcome, supplier payment, item-attributed Amazon settlement and refund. Duplicate receipts, conflicts, failed critical save/retry and disk restart verified; fixture contribution $21.75 then $12.75 after refund; expected profit unchanged and accounting journal balanced. Explicit OFFLINE_FIXTURE only, no live provider or authority claim."
     }
   },
   "failedAttempts": [
@@ -645,7 +653,7 @@
   ],
   "nextExecutableActions": [
     "Protected old Railway process still has unknown pending SQL.js RAM. Candidate capture coordinates same-process SQL.js handles, local HTTP/worker/queue and Redis owner fencing offline; next coordinate other processes/direct producers/native handles and independently verify Redis plus copied multi-store snapshot. Obtain and validate an authorized in-process quiesce/save mechanism for old deployment before any restart/redeploy/promotion. No production operation in this checkpoint.",
-    "Offline presale → approved offer → completed imported order → explicit opportunity/SKU/variant fulfillment draft with unknown actual accounting passed a2154e4. Next integrate authenticated seller BUYABLE/inventory/price readback and CJ order/fulfilment receipt reconciliation, then payout/fee settlement without converting synthetic proof into real commerce authority. Persist CJ PID/VID-bound identifier and independent catalog proof; no real provider calls or commerce authorization.",
+    "Connect existing durable Amazon listing-price and seller-inventory importers to the same offline transaction; then authenticated provider ingestion, CJ order reconciliation and cancellation/return paths, owner console and independent certification. f8b4fea receipt-driven tracking/settlement/refund journal passed all three CI workflows. No real provider calls or commerce authority.",
     "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
