@@ -1,0 +1,9 @@
+{
+  "sha256": "a5609618450cb6be5fe1e2f6a9442be3eb8f1bac0d99c33580b2e9f6f5f49a9f",
+  "bytes": 14169,
+  "contains": "One actual commissioning mirror, isolated single-row restore, receipts and infrastructure observations; no full DB or Redis contents",
+  "sourceProductionDbPreserved": false,
+  "libraryFileId": "libfile_e2dd5e58ecf481919cd5e5c305608652",
+  "libraryPath": "/EmpireAI Project/EmpireAI-Recovery-Private-20260929.zip",
+  "version": 0
+}

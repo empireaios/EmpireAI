@@ -1,5 +1,15 @@
 # EmpireAI / Pillow active mission handoff
 
+## Current checkpoint — recovery impact PARTIAL; no loss/cutover approval recommended
+
+[Owner decision package](RECOVERY_IMPACT_ASSESSMENT.md). **Fresh evidence overturns the continuous-old-worker assumption:** logs prove PID539 autonomously exited on29September14:00:42UTC (22:00:42SGT), supervisor respawn29, replacementPID553 listened14:01:04UTC. This predates this assessment and the preceding isolated proof; Work did not trigger it. Pre-exit pending=true; reported last flush06:16:50.861UTC, potential7h43m52s exposure, not certified loss volume. Current worker has separate pending state and protection continues.
+
+Live DB metadata now632,389,632bytes/mtime15:12:04UTC; flush counts rose to6. Full bytes/record integrity remain unverified. The actual2,717-byte September14 commissioning mirror was privately preserved, accepted by the exact-old reader and restored into a one-row isolated SQLite with independent-process equality/integrity readback. It records awaiting owner decision, no approval, no publication/spend attempted; this proves only that stale record. Raw mirror/restored row remain private; [private package locator/hash](evidence/2026-09-29-recovery-impact/private-package.json), [restore](evidence/2026-09-29-recovery-impact/mirror-restore.json).
+
+**Full preservation/restore remains blocked:** available file tool returns metadata placeholders for binary SQLite/gzip, demonstrated on the23,270-byte Redis archive. Brain and Redis payloads not obtained; other Shadow/store locations not exhaustively verified. No active-runtime GET was used because some old read paths write on miss. Do not treat absent log matches, NOT_BORN/LOCKED mandate, one non-buyable Amazon offer or CJ catalog receipts as proof of zero live orders/payments. Amount/count of liabilities and missing unique memory remain unknown.
+
+Recommended next decision: enable a verified private read-only binary transfer route to existing stores, with no restart/deployment/provider writes; then complete actual restore and account reconciliation. **Do not ask King to accept generic unknown RAM loss.** No such loss or intervention authorized. Current capture method remains rejected; no engineering on it. This one requested assessment stops for owner decision. All prior commerce/phone work preserved; website unchanged; NOT_BORN / LOCKED. Required existing CI for this checkpoint is pending at this initial persistence; CI results will be appended after completion.
+
 ## Current bounded checkpoint — CURRENT METHOD REJECTED
 
 Code `65f94a8cd06e5a59e2742b82eeb617d09a5156d3` passed [Product](https://github.com/empireaios/EmpireAI/actions/runs/36586631210), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36586631558), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36586631134). The exact old revision `21384342c401def948926904913840e63c18dff7` was checked out separately and its unmodified storage module executed with source hashes and locked dependency versions verified. This is a faithful storage/dependency reproduction, not a full production-topology/resource-pressure reproduction.

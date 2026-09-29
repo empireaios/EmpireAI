@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T15:04:09.487833+00:00",
+  "updatedAt": "2026-09-29T15:22:33.890288+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -22,7 +22,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged; bounded legacy capture method rejected in clean hosted proof; Product/Semantic/Runtime passed; no deployment",
+    "status": "Draft unmerged; recovery impact assessment partial, full production restore blocked by binary access; no deployment",
     "candidateCodeHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
     "branchTipNote": "Evidence/handoff-only commit follows verified code65f94a8c. Canonical Markdown and JSON synchronized. Stop after this requested bounded checkpoint.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -33,7 +33,7 @@
       "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
       "source": "21384342c401def948926904913840e63c18dff7",
       "dataVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
-      "pendingRamPersistence": "UNPROVEN",
+      "pendingRamPersistence": "OLD_WORKER_EXITED_AUTONOMOUSLY_WITH_PENDING_STATUS; current worker pending, full restore UNPROVEN",
       "stagedProductionPatch": "EnvironmentPatch changes=[] remains staged; not accepted or altered",
       "recentLogs": "2026-09-26 12:50:26 UTC ~4.1-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown. Old-main noncritical overdue exports require recent/smoothed lag below 200/100 ms respectively; sustained lag plausibly prevents progress (inference, not RAM proof). At 13:04 UTC old process completed SMART_VIABLE_BATCH (24 retrieved, 19 rejected, page 44) after this checkpoint; disk/RAM receipt and provider-point use unverified. Read-only 14:29:59 UTC logs later recorded an sql.js-db.export known synchronous block and cooldown with flushCount still 3, with high-lag warnings continuing to 14:32; this is not a completed flush or RAM capture receipt.",
       "readOnlyFileInventory": "2026-09-26 listContainerFilesTool: /data/empireai-brain.db 572035072 bytes mtime 05:32:57 UTC; /data/commissioning-mirror/ws_empire_1.json; /app/closure-backups historic snapshots. /app/backend/dist/orchestration/shadow-ceo-authority/repository listed JS/map only; source repository/data listed .gitignore only. Agent reported /app/.data and /app/backend/.data missing. Actual process cwd remains UNKNOWN; /proc/1/cwd symlink target inaccessible through file-list connector. Listing does not establish absence of other stores.",
@@ -49,7 +49,7 @@
       "latestReadOnlyStatusAt": "2026-09-29T13:07:27.345Z",
       "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
       "completedFlushAfterPriorCheckpointVerified": true,
-      "readOnlyLatest": "Same deployment and pid539, pending=true, flushCount3, critical requests/saves0, lag3725ms. No intervention."
+      "readOnlyLatest": "29September assessment: same deployment, oldPID539 exited autonomously14:00:42UTC, supervisor code78/respawn29; PID553 started14:01:04, flushes1-6 observed15:01-15:12, pending=true still observed. Work did not intervene. Prior stable-old-PID claim superseded."
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
@@ -1351,6 +1351,34 @@
       "safeToPromote": false,
       "evidenceDirectory": "docs/mission-state/evidence/2026-09-29-legacy-method",
       "methodIterationStopped": true
+    },
+    "recoveryImpactAssessment": {
+      "status": "PARTIAL_FULL_RESTORE_BLOCKED",
+      "ownerPackage": "docs/mission-state/RECOVERY_IMPACT_ASSESSMENT.md",
+      "evidenceDirectory": "docs/mission-state/evidence/2026-09-29-recovery-impact",
+      "oldWorkerExitedAt": "2026-09-29T14:00:42.850791919Z",
+      "cause": "Old continuity watchdog exit78; supervisor respawn29",
+      "oldPid": 539,
+      "newPid": 553,
+      "reportedPreExitLastFlushAt": "2026-09-29T06:16:50.861Z",
+      "potentialExposureSeconds": 27831.99,
+      "lossQuantified": false,
+      "realRecordsRestored": 1,
+      "fullProductionRestoreProven": false,
+      "liveDbBytes": 632389632,
+      "liveDbModifiedAt": "2026-09-29T15:12:04Z",
+      "privatePackage": {
+        "sha256": "a5609618450cb6be5fe1e2f6a9442be3eb8f1bac0d99c33580b2e9f6f5f49a9f",
+        "bytes": 14169,
+        "contains": "One actual commissioning mirror, isolated single-row restore, receipts and infrastructure observations; no full DB or Redis contents",
+        "sourceProductionDbPreserved": false,
+        "libraryFileId": "libfile_e2dd5e58ecf481919cd5e5c305608652",
+        "libraryPath": "/EmpireAI Project/EmpireAI-Recovery-Private-20260929.zip",
+        "version": 0
+      },
+      "productionIntervention": false,
+      "providerCalls": 0,
+      "lossAcceptanceRequested": false
     }
   },
   "failedAttempts": [
@@ -1387,14 +1415,14 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Old critical-persist/status/copy capture method REJECTED in isolated exact-source proof. Pending production RAM remains unpreserved; full real persisted-checkpoint recovery also unverified. Production protected; no restart/redeploy/promotion. No production call this checkpoint.",
+    "Old worker already exited autonomously; original worker-only RAM may already be lost. Live632MB Brain/Redis backup bytes inaccessible via metadata-only binary reader; full restore/account reconciliation not proved. No cutover/loss approval recommended.",
     "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
     "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Recommended alternative: privately capture persisted production checkpoint/stores without modifying old process; independently restore with providers disabled and reconcile durable receipts. Then present unknown pending-RAM gap for explicit owner data-loss/recovery decision. No restart/deployment/intervention or loss acceptance authorized. Do not repeat rejected critical-persist/status/copy method.",
+    "STOP for owner decision after bounded recovery-impact assessment. Recommended boundary: verified private read-only binary transfer access for current persisted stores; no production intervention, data-loss acceptance or cutover authorized. Complete real restoration and account reconciliation before proposing risk acceptance.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
