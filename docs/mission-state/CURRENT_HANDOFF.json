@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T13:01:45.663227+00:00",
+  "updatedAt": "2026-09-29T13:24:36.032833+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -20,11 +20,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "300fd0e72600bfe9df947ea17e001c4cd472447a",
+    "lastVerifiedIntegrationHead": "587f0786e779227a847e35c7885495e458e464f3",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged; real supplier evidence and owner phone journey verified by Product/Semantic/Runtime CI; not deployed; production protected",
-    "candidateCodeHead": "300fd0e72600bfe9df947ea17e001c4cd472447a",
-    "branchTipNote": "Evidence/handoff301c2ae follows verified code300fd0e7; JSON companion sync follows. CJ provider branch held5bb46c66. Documentation-only successors do not change tested code.",
+    "status": "Draft unmerged; terminal rejection, reusable screening, owner stages and joint restore rehearsal passed Product/Semantic/Runtime and phone browser; not deployed",
+    "candidateCodeHead": "587f0786e779227a847e35c7885495e458e464f3",
+    "branchTipNote": "Documentation/evidence checkpoint follows verified code587f0786. Both provider branches remain disabled. Current Markdown and JSON handoffs synchronized.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -46,10 +46,10 @@
         "memoryGbMax": 3.285624832,
         "diskGbCurrent": 0.724770816
       },
-      "latestReadOnlyStatusAt": "2026-09-29T11:25:04.883Z",
+      "latestReadOnlyStatusAt": "2026-09-29T13:07:27.345Z",
       "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
       "completedFlushAfterPriorCheckpointVerified": true,
-      "readOnlyLatest": "Same protected deployment; pid539 pending=true, flushCount3, critical saves0, lag about3s. No mutation."
+      "readOnlyLatest": "Same deployment and pid539, pending=true, flushCount3, critical requests/saves0, lag3725ms. No intervention."
     },
     "vercel": {
       "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
@@ -179,7 +179,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36567225610",
       "https://github.com/empireaios/EmpireAI/actions/runs/36570792247",
       "https://github.com/empireaios/EmpireAI/actions/runs/36570792271",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36570792283"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36570792283",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36573744333",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36573744273",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36573744247"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -1225,15 +1228,106 @@
       }
     },
     "providerCallsInThisCheckpoint": {
-      "cjCatalogGets": 1,
-      "cjProductDetailGets": 2,
-      "cjInventoryGets": 2,
-      "cjReadOnlyFreightCalculations": 1,
-      "amazonCalls": 0,
-      "providerRetries": 0,
-      "businessWrites": 0,
-      "pointsReserved": 100,
-      "actualDebit": null
+      "cj": 0,
+      "amazon": 0,
+      "additionalCJPoints": 0,
+      "businessWrites": 0
+    },
+    "mirrorTerminalRejection": {
+      "at": "2026-09-29T13:12:00Z",
+      "pid": "1872203651945525250",
+      "vid": "1872203652109103106",
+      "sku": "CJFU225443901AZ",
+      "decision": "REJECT",
+      "terminalForCurrentEvidence": true,
+      "reason": "Supplier-managed and supplier-shipped classification fails CJ-controlled fulfilment mandate; Amazon identity and applicable economics also unverified.",
+      "quantityMeaning": "Historical provider-reported inventory in US stock bucket1988118945147310081, not owned/reserved units or proof of CJ execution. Factory stock excluded.",
+      "providerObservedQuantity": 12273,
+      "observedAt": "2026-09-29T12:36:41.488Z",
+      "publicDocumentation": "https://developers.cjdropshipping.com/en/api/api2/api/product.html#producttype-reference",
+      "documentationCheckedAt": "2026-09-29T13:09:00Z",
+      "documentationInterpretation": "SUPPLIER_SHIPPED_PRODUCT means supplier-managed and supplier-dispatched; ORDINARY_PRODUCT is the conservative CJ-managed screening category.",
+      "identitySearch": {
+        "queries": [
+          "CJFU225443901AZ site:amazon.com",
+          "ZHUMI-MI-GZ-2164 Amazon",
+          "ZHUMI Black 64 mirror Amazon"
+        ],
+        "result": "No exact Amazon ASIN bound to the CJ VID established. Public manufacturer-style codes and similar retail listings are leads, not matching evidence. Absence in search does not prove absence on Amazon."
+      },
+      "amazonFees": null,
+      "sellingPrice": null,
+      "applicableFreight": null,
+      "landedCost": null,
+      "profit": null,
+      "additionalAuthenticatedCalls": 0,
+      "additionalCJPoints": 0,
+      "priorProviderReceiptsUnmodified": true,
+      "reopen": "Requires materially new evidence and explicit superseding review; no automatic rediscovery of this PID."
+    },
+    "productionCutoverAssessment": {
+      "at": "2026-09-29T13:07:27.345Z",
+      "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+      "source": "21384342c401def948926904913840e63c18dff7",
+      "pid": 539,
+      "pending": true,
+      "flushCount": 3,
+      "criticalFlushRequested": 0,
+      "criticalFlushSucceeded": 0,
+      "lagMs": 3725,
+      "sourceFileSha256": {
+        "backend/src/index.ts": "8e836f630e3328ac0313bc315af88d61448378193c1514abf322d72455a0d724",
+        "backend/src/brain/sqlite-database.ts": "d40eaae9765d782da3c66f05a51ed351da1da9719e70551c82f270ec196571d6"
+      },
+      "oldCriticalPersistReturns": "void; starts asynchronous export, not an awaitable durable capture receipt",
+      "oldShutdown": "SIGINT/SIGTERM invoke shutdown then process.exit; must not be used as a capture request",
+      "candidateCaptureHooksAvailableInOldProcess": false,
+      "productionChanged": false,
+      "safeToPromote": false
+    },
+    "ownerLaunchClosure": {
+      "codeHead": "587f0786e779227a847e35c7885495e458e464f3",
+      "testedPullRequestMergeHead": "107a5394ce4a117f8860e62e3f88e7a982c669fa",
+      "requiredCi": {
+        "Product": 36573744333,
+        "Semantic": 36573744273,
+        "Runtime": 36573744247
+      },
+      "allRequiredCi": "success",
+      "browserJob": 109424064272,
+      "browserArtifact": 11034844094,
+      "browserArtifactSha256": "6abae20008cb83f413fea57587ac391141816bd47918b2cd752ad28da09c458c",
+      "browserArtifactDigestMatched": true,
+      "screenshotsVisuallyInspected": [
+        "phone-home.png",
+        "phone-product.png"
+      ],
+      "imageBlobHashesMatched": true,
+      "rehearsalArtifact": 11034918485,
+      "rehearsalArtifactSha256": "5124121412d60607423d5260e3ef1954cb4dd3b9f92e1690f0462ee016266083",
+      "rehearsalArtifactDigestMatched": true,
+      "providerCalls": 0,
+      "additionalCJPoints": 0,
+      "productionMutation": false,
+      "deployed": false,
+      "browserLimits": "Actual390x844 Chromium isolated login/BFF/backend; historical provider facts and simulated transaction; Next development badge visible. Not deployed owner acceptance.",
+      "remainingCutoverGate": "Isolated exact-old-revision in-process export bridge feasibility before protected-process intervention"
+    },
+    "cutoverRecoveryRehearsal": {
+      "schemaVersion": 1,
+      "evidenceMode": "SYNTHETIC_RESTORE_REHEARSAL",
+      "brainAndShadowCaptured": true,
+      "jsonOwnershipAndAuthorityRestored": true,
+      "freshProcessReadback": true,
+      "tamperedCaptureRefused": true,
+      "originalSourceUnchanged": true,
+      "pendingRamCaptured": false,
+      "redisRestored": false,
+      "nativeStoresRestored": false,
+      "oldProcessCaptureBridgeVerified": false,
+      "safeToPromote": false,
+      "productionTouched": false,
+      "businessWrites": 0
     }
   },
   "failedAttempts": [
@@ -1270,15 +1364,15 @@
   },
   "blockers": [
     "Protected production pending RAM/multistore preservation remains unresolved; no restart/redeploy/promotion. No new production observation or mutation this checkpoint.",
-    "Mirror has CJ-reported US inventory but SUPPLIER_SHIPPED_PRODUCT classification; physical warehouse operation and fulfilment responsibility unresolved. Country-only zero freight is not verified free all-in delivery.",
-    "Exact Amazon product identity, marketplace evidence, fees, intended price, landed cost and profit remain unknown. No qualified candidate; King approval locked.",
+    "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
+    "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Resolve exact mirror supplier fulfilment/CJ-operated warehouse responsibility and Amazon identity; reject if evidence fails. No broad discovery or guessed identity/economics. Only then bounded market/fee verification.",
+    "Boundedly establish and rehearse feasibility of a legacy in-process export bridge against the exact old revision in isolation. No production debugger/signal/injection or commissioning side-effect. If not feasible, present concrete recovery/loss alternatives rather than more disk-only tests.",
+    "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
-    "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
     "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
     "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
