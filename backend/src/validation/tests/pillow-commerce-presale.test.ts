@@ -1,3 +1,5 @@
+import Fastify from "fastify";
+import { registerPillowCommercePresaleRoutes } from "../../orchestration/pillow-commerce-presale/routes/pillow-commerce-presale-routes.js";
 import { prepareOfflineOrderFromMarketplaceReadback } from "../../orchestration/pillow-commerce-presale/offline-marketplace-order-handoff.js";
 import { syncAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
 import { syncAmazonUsSellerInventory } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-seller-inventory-import.js";
@@ -658,6 +660,39 @@ describe("pillow-commerce-presale", () => {
         const proof = receiptDisk.prepare("SELECT record_json FROM pillow_order_marketplace_evidence").get() as {record_json:string};
         assert.deepEqual(JSON.parse(proof.record_json),connected.marketplaceEvidence);
       } finally { receiptDisk.close(); }
+      const ownerApp = Fastify();
+      await registerPillowCommercePresaleRoutes(ownerApp,{
+        authenticate: async (request,reply) => {
+          if (request.headers["x-offline-auth"] !== "test-owner") {
+            reply.code(401).send({error:"Authentication required"}); return;
+          }
+          request.user = {role:request.headers["x-offline-role"] ?? "founder",
+            workspaceId:request.headers["x-offline-workspace"] ?? args.workspaceId,
+            email:"offline-owner@example.test"} as never;
+        },
+        auditLogger:{write:()=>{}} as never,
+      });
+      try {
+        const url = "/pillow-commerce-presale/transactions";
+        assert.equal((await ownerApp.inject({method:"GET",url})).statusCode,401);
+        const headers = {"x-offline-auth":"test-owner"};
+        assert.equal((await ownerApp.inject({method:"GET",url,headers:{...headers,"x-offline-role":"viewer"}})).statusCode,403);
+        assert.equal((await ownerApp.inject({method:"GET",url:url+"?limit=51",headers})).statusCode,400);
+        assert.equal((await ownerApp.inject({method:"GET",url:url+"?workspaceId=other",headers})).statusCode,400);
+        assert.deepEqual((await ownerApp.inject({method:"GET",url,
+          headers:{...headers,"x-offline-workspace":"other"}})).json().transactions,[]);
+        const response = await ownerApp.inject({method:"GET",url,headers});
+        assert.equal(response.statusCode,200);
+        const payload = response.json();
+        assert.equal(payload.evidenceMode,"OFFLINE_FIXTURE");
+        assert.equal(payload.realCommerceVerified,false);
+        assert.equal(payload.transactions.length,1);
+        assert.equal(payload.transactions[0].transactionKey,draft.idempotencyKey);
+        assert.equal(payload.transactions[0].simulated.economics.actual.realisedContributionUsd,12.75);
+        assert.deepEqual(payload.transactions[0].marketplaceEvidence,connected.marketplaceEvidence);
+        assert.doesNotMatch(response.body,/must-never-be-persisted|offline-test-token/);
+      } finally { await ownerApp.close(); }
+
     }
 
     globalThis.fetch = originalFetch;
