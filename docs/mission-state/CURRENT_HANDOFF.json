@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T15:22:33.890288+00:00",
+  "updatedAt": "2026-09-29T15:28:15.712474+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -20,11 +20,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
+    "lastVerifiedIntegrationHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged; recovery impact assessment partial, full production restore blocked by binary access; no deployment",
-    "candidateCodeHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
-    "branchTipNote": "Evidence/handoff-only commit follows verified code65f94a8c. Canonical Markdown and JSON synchronized. Stop after this requested bounded checkpoint.",
+    "candidateCodeHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
+    "branchTipNote": "Evidence/handoff-only follow-up after code2855b4e9 Product/Semantic/Runtime green. Canonical recovery assessment stops for owner decision; full production restore remains blocked.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -185,7 +185,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36573744247",
       "https://github.com/empireaios/EmpireAI/actions/runs/36586631210",
       "https://github.com/empireaios/EmpireAI/actions/runs/36586631558",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36586631134"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36586631134",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36589825330",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36589825324",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36589825429"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -1378,7 +1381,13 @@
       },
       "productionIntervention": false,
       "providerCalls": 0,
-      "lossAcceptanceRequested": false
+      "lossAcceptanceRequested": false,
+      "codeHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
+      "ci": {
+        "Product": 36589825330,
+        "Semantic": 36589825324,
+        "Runtime": 36589825429
+      }
     }
   },
   "failedAttempts": [
@@ -1422,7 +1431,7 @@
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "STOP for owner decision after bounded recovery-impact assessment. Recommended boundary: verified private read-only binary transfer access for current persisted stores; no production intervention, data-loss acceptance or cutover authorized. Complete real restoration and account reconciliation before proposing risk acceptance.",
+    "STOP for owner decision. Request approval for read-only Railway browser inspection of private binary export options; connector cannot transfer binary and browser-use rule requires fallback approval. Do not promise export support or probe session before approval. No snapshot/file mutation/restart/deployment/loss acceptance/cutover authorized. Full real restore and account reconciliation remain necessary.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
