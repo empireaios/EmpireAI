@@ -1,10 +1,21 @@
 # EmpireAI / Pillow active mission handoff
 
-## Amazon provisioning hold — 2026-09-29
+## Current checkpoint — authenticated Amazon readback, 2026-09-29
+
+The owner-authorized isolated [run 36554704403](https://github.com/empireaios/EmpireAI/actions/runs/36554704403) on `ff223ca2fd4ae086276c8d536775194f08182889` passed its six offline tests and actual provider observation. Exactly one LWA exchange and one seller-scoped US listing GET; no retry or business write. GitHub environment inspection confirmed four secret names and the exact one-branch/zero-tag restriction; secret values were not read by Work.
+
+**Observed, not qualified:** SKU `EMP-PROOF-1786072434049`, ASIN `B088NRLMPV`, USD 14.99 as a string, DEFAULT seller quantity 5, BUYABLE false, no next-page cursor. Price parser assumption matches. Seller quantity is not supplier stock. Seller/SKU/ASIN match historical Proof001, which the existing institutional memory and `isProof001FailureClass` guard reject. Historical publication ACCEPTED must not be treated as an operational offer. The current reason for non-BUYABLE was not requested; historical issue18304 is not a fresh issue observation.
+
+Durable [admission](evidence/2026-09-29-amazon-admission.json), [provider receipt](evidence/2026-09-29-amazon-receipt.json) and [reconciliation](evidence/2026-09-29-amazon-reconciliation.json) retain source/request identity and hashes. Downloaded artifact11026441566 SHA256 `2ed22b89f48bd0397a1600bfe4f19e0840e9a3fcd3dabf6b12445dcd6bc59c8b` matched GitHub; sanitized summary hash independently recomputed. Raw provider body was not retained; hash is traceability, not a signature. Owner identity remains unconfirmed, transaction UNMATCHED, actual economics null; no synthetic economics upgraded.
+
+Provider branch is held again at `88e1647a1f4f417f10378b13a37b8aabccd5279e` with unconditional job disablement verified by readback. Do not rerun or overwrite that hold. No listing/inventory/order/purchase/production mutation. NOT_BORN / LOCKED unchanged. CJ environment was absent during GitHub environment inspection; CJ remains owner provisioning boundary. Next: authenticated CJ catalog observation, real candidate identity and supplier evidence, then separately reviewed Amazon read-only endpoints within existing roles. Preserve integrated simulated lifecycle and phone browser; do not revisit completed synthetic boundaries.
+
+
+## Historical Amazon provisioning hold — 2026-09-29
 
 Owner requested branch creation only. `ci/provider-readback-amazon-v1` now exists at `d29117f69d6e9c57434e67ad826dbf70111de74e`; its provider workflow job has unconditional `if: ${{ false }}` verified by branch readback. The exact environment rule should now match one branch. Owner may enter secrets securely; no provider calls or production changes occurred. Do not replace this branch with the integration head or enable the job until owner readiness and a reviewed read-only checkpoint. CJ branch remains uncreated. [Branch hold record](https://github.com/empireaios/EmpireAI/blob/ci/provider-readback-amazon-v1/docs/mission-state/AMAZON_PROVISIONING_HOLD.md). This section supersedes the earlier statement that neither branch exists.
 
-## Current checkpoint — isolated provider-readback preparation
+## Prior checkpoint — isolated provider-readback preparation
 
 Verified code `c69d809d3aa50d0eea30d7f00d50dbddfad00d45`: [Product](https://github.com/empireaios/EmpireAI/actions/runs/36549205557), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36549205572), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36549205564) all required jobs passed, including six new offline readback tests and the actual phone-browser gate. Preserves the integrated simulated commerce transaction and supplier reversals.
 
@@ -39,7 +50,7 @@ Historical checkpoint summary (superseded by the current checkpoint above): `d68
 
 King authorizes ordinary reversible engineering, CI, isolated canary work and previously approved cleanup. Continue autonomously. Owner-only stops are credentials/2FA, material new expenditure, irreversible production data without recovery, material business risk without mandate, and final authorization for the bounded real commercial pilot. No further historical V53 artifact exists; the 84-requirement [replacement specification](../governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json) governs engineering but grants no credit itself.
 
-**Pillow NOT_BORN; Wave credit 0; commerce LOCKED; real pilot not authorized.** No real Amazon seller API call, paid LLM call, real order, sale or production promotion occurred during this recovery.
+**Pillow NOT_BORN; Wave credit 0; commerce LOCKED; real pilot not authorized.** One authorized Amazon read-only observation is now verified above. No paid LLM call, new real order, sale or production promotion occurred during this recovery.
 
 ## Source, deployment and test evidence
 

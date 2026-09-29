@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "provider": "amazon",
+  "evidenceMode": "AUTHENTICATED_HTTP_OBSERVATION",
+  "sourceHead": "ff223ca2fd4ae086276c8d536775194f08182889",
+  "startedAt": "2026-09-29T10:18:16.732Z",
+  "status": "OBSERVED_NOT_QUALIFIED",
+  "plannedRequests": [
+    {
+      "method": "POST",
+      "url": "https://api.amazon.com/auth/o2/token",
+      "authentication": true
+    },
+    {
+      "method": "GET",
+      "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/A3M2CX25RTMI6M?marketplaceIds=ATVPDKIKX0DER&includedData=summaries%2Coffers%2CfulfillmentAvailability&pageSize=1",
+      "authentication": false
+    }
+  ],
+  "maximumBusinessReads": 1,
+  "cjPointsReserved": 0,
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "liveCommerceAllowed": false,
+  "receipts": [
+    {
+      "observedAt": "2026-09-29T10:18:17.427Z",
+      "requestId": "1c66e505-9961-417d-b758-3d0f7f04fa23",
+      "rawBodySha256": "fa9116ccbe2442b13bb729156fe3554061a99f554c06319d0c467c5a4e3d2da6",
+      "sanitizedSummarySha256": "2905292f8e110ca68958b980bcbcd1b72ff62d4bbcf2d180ca836fbce097ec00",
+      "summary": {
+        "marketplaceId": "ATVPDKIKX0DER",
+        "completeInventory": false,
+        "morePages": false,
+        "items": [
+          {
+            "sku": "EMP-PROOF-1786072434049",
+            "asin": "B088NRLMPV",
+            "buyable": false,
+            "priceWireType": "string",
+            "priceUsd": "14.99",
+            "priceParserCompatible": true,
+            "sellerQuantity": 5
+          }
+        ],
+        "supplierStockVerified": false,
+        "feesVerified": false,
+        "qualificationAllowed": false
+      }
+    }
+  ],
+  "account": {
+    "requestedSellerId": "A3M2CX25RTMI6M",
+    "cjOpenId": null,
+    "ownerIdentityConfirmed": false
+  },
+  "reconciliation": {
+    "projectedEconomicsUnchanged": true,
+    "actualEconomics": null,
+    "transactionLink": "UNMATCHED",
+    "next": "Compare observed SKU/ASIN, price wire type and DEFAULT quantity with existing importer assumptions. Empty page is not a sale or full-inventory proof."
+  },
+  "finishedAt": "2026-09-29T10:18:17.427Z"
+}
