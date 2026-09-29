@@ -474,7 +474,7 @@ describe("pillow-commerce-presale", () => {
       const sku = approved.mapping.amazonSellerSku;
       const observedAt = new Date().toISOString();
       setHttpTransportOverride(async request => {
-        assert.match(request.url, /\\/orders\\/2026-01-01\\/orders/);
+        assert.ok(request.url.includes("/orders/2026-01-01/orders"));
         return { status: 200, ok: true, latencyMs: 1, json: { orders: [{
           orderId: "111-2222222-3333333",
           salesChannel: { marketplaceId: "ATVPDKIKX0DER" },
