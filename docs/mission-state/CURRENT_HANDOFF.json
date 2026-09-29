@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T11:46:17.241Z",
+  "updatedAt": "2026-09-29T11:56:56.617Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -20,11 +20,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "f3ff9208165e3f69e727c093bfe1a403d541552f",
+    "lastVerifiedIntegrationHead": "34d66546e5df0be2e6b98a0e30082adf1f208906",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; opt-in CJ direct-token single-GET adapter passed all three CI gates; dedicated CJ branch disabled; no CJ calls; production protected",
-    "candidateCodeHead": "f3ff9208165e3f69e727c093bfe1a403d541552f",
-    "branchTipNote": "Documentation checkpoint follows verified code; dedicated provider branches are not created. Existing simulated lifecycle and phone browser remain verified.",
+    "status": "Draft unmerged; actual CJ single GET persisted; provider workflow disabled; historical provider phone panel passed all three CI gates; not deployed",
+    "candidateCodeHead": "34d66546e5df0be2e6b98a0e30082adf1f208906",
+    "branchTipNote": "Documentation/evidence checkpoint follows verified code34d66546; both isolated provider branches exist and are disabled.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -170,7 +170,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36428242784",
       "https://github.com/empireaios/EmpireAI/actions/runs/36549205557",
       "https://github.com/empireaios/EmpireAI/actions/runs/36549205572",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36549205564"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36549205564",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36564085521",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36564085579",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36564085528"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -911,6 +914,63 @@
         "secretValueRead": false
       },
       "next": "No further provider calls under this one-GET authorization. Continue offline integration and owner-console historical provider evidence. A subsequent separately bounded read is required for exact VID/cost/stock/freight."
+    },
+    "providerHistoryOwnerConsole": {
+      "codeHead": "34d66546e5df0be2e6b98a0e30082adf1f208906",
+      "purpose": "Owner phone transaction page displays dated sanitized actual Amazon/CJ observations separately from OFFLINE_FIXTURE transactions",
+      "displayMode": "STATIC_HISTORICAL_PROVIDER_OBSERVATIONS",
+      "liveProviderFetches": 0,
+      "transactionsLinked": false,
+      "accountIdentifiersIncluded": false,
+      "projectedOrActualEconomicsChanged": false,
+      "authentication": "Panel renders after existing owner-scoped transaction request succeeds; no new route or credential handling",
+      "localTypecheck": "passed",
+      "browserGate": "Requires historical heading, actual CJ SKU, not-BUYABLE Amazon state and not-linked label in existing390x844 login/session/BFF/backend path",
+      "limits": [
+        "Not deployed",
+        "Not current provider state",
+        "Not a qualified product or real commerce transaction",
+        "No independent account identity verification"
+      ],
+      "ci": [
+        {
+          "id": 36564085521,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 291,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085521/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085521/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 36564085579,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 289,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085579/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085579/logs",
+          "workflow_id": 362688325
+        },
+        {
+          "id": 36564085528,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 291,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085528/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36564085528/logs",
+          "workflow_id": 362309382
+        }
+      ],
+      "artifactId": 11030794213,
+      "artifactSha256": "f6f7b87a9a2df623acc5219cba0b557507f3a01934c752947cf4e47bed222755",
+      "browserJob": 109391918424,
+      "browserTestMergeHead": "784575252fd5493998d73efc88c138ec42733efd",
+      "browserHarnessMode": "OFFLINE_FIXTURE; displays previously authenticated historical receipts; no new provider calls",
+      "visualReview": "Phone panel readable; existing command-data unavailable banner and fixed-shell overlap remain; not whole-console acceptance",
+      "deployed": false
     }
   },
   "failedAttempts": [
@@ -954,10 +1014,10 @@
     "Old Railway main uses ephemeral cwd/.data for Shadow CEO database/request owners and module-local authority JSON; actual cwd and contents unknown. Read-only listing found no /app/.data, /app/backend/.data or compiled module data directory; this does not prove no state exists elsewhere. Candidate storage repair must not deploy before both legacy locations and unsaved SQL.js RAM are quiesced, backed up and migrated/read back. The disk-only capture utility passes offline CI but has not been run against production and never claims complete live state.",
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production.",
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues.",
-    "Provider-backed convergence now requires usable authenticated Amazon/CJ access in an isolated nonproduction execution path. Railway OAuth exposes only variable names; no provider credentials exist in this execution environment; cleaned canary has no services. No real provider read or write was attempted."
+    "Amazon listing and CJ catalog authenticated readbacks succeeded in isolated workflows; both now disabled. Exact CJ VID/cost/stock/freight, independently verified account identity, orders and settled economics remain unproved. Additional reads require a separately bounded authorization."
   ],
   "nextExecutableActions": [
-    "CJ readback completed successfully; both provider branches held. No additional provider calls under completed one-GET authorization. Preserve actual receipts and strict historical/qualification/economics separation; integrate provider observation into owner-console nonproduction evidence view.",
+    "Historical authenticated Amazon/CJ evidence is now visible in isolated owner phone transactions page, verified code34d66546 and three CI gates. Both provider workflows disabled; no more provider calls authorized. Next safe work: provider-backed variant-evidence integration preparation and console command/health failure handling; keep actual observations distinct from synthetic transactions.",
     "For the next separately bounded provider checkpoint, use observed CJ PID to request exact VID evidence before supplier cost/stock/freight. No fixture substitutions or current cost inferred from catalog string type. Account label and actual point debit remain unreconciled. Do not change production key or expand roles.",
     "Actual hosted phone browser gate is now required and passed; preserve it. Complete surrounding command/health/exception/approval/pause views and durable deployed session verification. Narrow harness deliberately leaves shell command data/event endpoints unavailable; this is not whole-console acceptance.",
     "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",

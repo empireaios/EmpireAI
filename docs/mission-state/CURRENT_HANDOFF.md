@@ -1,5 +1,12 @@
 # EmpireAI / Pillow active mission handoff
 
+## Latest verified checkpoint — historical provider evidence in the owner phone path
+
+Code `34d66546e5df0be2e6b98a0e30082adf1f208906` passed Product36564085528, Semantic36564085521 and Runtime36564085579. The existing owner-scoped transaction screen now shows sanitized historical Amazon/CJ observations with source receipts/hashes and explicit qualification/economics limits. No provider fetch is added. Actual 390×844 Chromium login/BFF/backend/disk/logout verification passed in job109391918424; the harness uses a simulated transaction and does not claim new provider authenticity. [Browser image](evidence/2026-09-29-provider-history-browser.png) and [verification report](evidence/2026-09-29-provider-history-browser.json). Artifact11030794213 digest independently matched. Existing command-data unavailable banner and fixed-shell overlap remain; not whole-console or deployed acceptance.
+
+Actual CJ receipt below remains the latest provider evidence. Both provider branches are disabled. NOT_BORN / LOCKED; production and existing CJ production credential untouched. No further provider read is authorized by the completed one-GET checkpoint. Next: prepare exact variant evidence integration and improve surrounding console failure handling without live provider calls; production preservation remains a parallel unresolved boundary.
+
+
 ## Current checkpoint — actual CJ direct-token catalog observation
 
 Owner-approved [run36563526539](https://github.com/empireaios/EmpireAI/actions/runs/36563526539) at `90cd1630af96711b40770358cf5cd0d8048584f2` passed nine offline tests and the actual single fixed catalog GET. Environment metadata confirms one exact branch/zero tags and VERIFY_CJ_DIRECT_TOKEN. No auth exchange, retry, business write, credential modification or production change. Provider branch held again at `99a4beb5b1e8a69b59384d0fa867c4054f92f622`; unconditional disablement read back.
@@ -8,7 +15,7 @@ Returned PID2609291119211612600 / SKU CJYD3209759, catalog price wire type strin
 
 Durable [admission](evidence/2026-09-29-cj-admission.json), [receipt](evidence/2026-09-29-cj-receipt.json) and [reconciliation](evidence/2026-09-29-cj-reconciliation.json). Artifact11031290017 SHA2563645ff9a858ec2cbe039b8a2fa3b7f2edb7d4fa12d6a47d5dc4c9fdd5c46c76d matched; summary hash independently recomputed. No raw secret persisted. No further provider calls authorized by this checkpoint; continue unrelated offline integration/owner-console work. NOT_BORN / LOCKED and protected-production hold unchanged.
 
-## Current CJ route — independent source investigation; support is not a dependency
+## Historical pre-read CJ route — superseded by successful observation above
 
 [Investigation and design](CJ_CREDENTIAL_ROUTE_INVESTIGATION.md) records authenticated metadata checks and pinned CJ source evidence. Railway has CJ secret names but OAuth exposes no values or cross-platform secret broker; GitHub has no CJ secret. No production-key value was retrieved, copied or changed.
 

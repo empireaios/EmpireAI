@@ -1,6 +1,9 @@
 # Secure provider readback owner setup
 
-## Current CJ procedure — replaces earlier API-key/support instructions
+**Completed 2026-09-29:** Amazon and CJ isolated observations succeeded. CJ run36563526539 used exactly one catalog GET; workflow is disabled again at99a4beb5. Do not repeat provisioning or execution below. Existing production key remains untouched. Any further provider read needs a newly bounded authorization. See CURRENT_HANDOFF.md and evidence/2026-09-29-cj-reconciliation.json.
+
+
+## Historical CJ provisioning procedure — replaces earlier API-key/support instructions
 
 The isolated direct-token adapter is verified in code f3ff9208; all Product/Semantic/Runtime CI passed. [Investigation](CJ_CREDENTIAL_ROUTE_INVESTIGATION.md) explains the official source and unverified live limits. Do not use or copy EmpireAI Production API Key.
 
