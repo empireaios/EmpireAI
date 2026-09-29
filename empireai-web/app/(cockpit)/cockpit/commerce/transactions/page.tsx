@@ -1,0 +1,116 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+type Transaction = {
+  transactionKey:string;amazonOrderId:string;orderItemId:string;sku:string;asin:string;
+  cjPid:string;cjVid:string;quantity:number;orderSourceSha256:string;decisionSha256:string;
+  expected:{sellingPriceUsd:number|null;profitUsd:number|null};
+  marketplaceEvidence:{sellerOfferPriceCents:number;sellerFulfilledQuantity:number;observedAt:string;
+    listingSourceSha256:string;inventorySourceSha256:string}|null;
+  simulated:{supplierOrderId:string|null;receiptCount:number;reconciliation:string;
+    tracking:{deliveryStatus:string;carrier:string;trackingNumber:string}|null;
+    economics:{actual:{customerRevenueUsd:number|null;amazonFeesUsd:number|null;cjProductCostUsd:number|null;
+      cjShippingUsd:number|null;otherDirectCostsUsd:number|null;realisedContributionUsd:number|null};
+      marketplacePayoutReceived:string;orderRevenueRecognized:string};
+    journal:Array<{receiptId:string;account:string;debitCents:number;creditCents:number}>};
+};
+function money(value:number|null|undefined) {
+  return typeof value==="number" && Number.isFinite(value) ? "US$"+value.toFixed(2) : "Unknown";
+}
+export default function CommerceTransactionsPage() {
+  const [transactions,setTransactions] = useState<Transaction[]|null>(null);
+  const [error,setError] = useState<string|null>(null);
+  const [loading,setLoading] = useState(true);
+  const [refresh,setRefresh] = useState(0);
+  useEffect(()=>{
+    let active = true;
+    const controller = new AbortController();
+    const timer = setTimeout(()=>controller.abort(),12_000);
+    setLoading(true);setError(null);setTransactions(null);
+    void (async()=>{
+      try {
+        const response = await fetch("/api/commerce/transactions?limit=20",{
+          credentials:"include",cache:"no-store",signal:controller.signal,
+        });
+        if (!response.ok) throw new Error(response.status===401 ? "Sign in to view transactions." :
+          response.status===403 ? "Owner access is required." : "Transaction service unavailable (HTTP "+response.status+").");
+        const payload = await response.json();
+        if (payload?.evidenceMode!=="OFFLINE_FIXTURE" || payload.realCommerceVerified!==false ||
+            !Array.isArray(payload.transactions) || payload.transactions.length>20 ||
+            payload.transactions.some((row:Transaction)=>!row?.transactionKey || !row.expected ||
+              !row.simulated?.economics?.actual || !Array.isArray(row.simulated.journal))) {
+          throw new Error("Transaction evidence could not be verified.");
+        }
+        if (active) setTransactions(payload.transactions);
+      } catch (cause) {
+        if (active) setError(controller.signal.aborted ? "Request timed out. Refresh to try again." :
+          cause instanceof Error ? cause.message : "Transaction service unavailable.");
+      } finally {
+        clearTimeout(timer);
+        if (active) setLoading(false);
+      }
+    })();
+    return ()=>{active=false;clearTimeout(timer);controller.abort();};
+  },[refresh]);
+  return <main className="mx-auto w-full max-w-5xl space-y-5 p-4 sm:p-6">
+    <header className="flex flex-wrap items-center justify-between gap-3">
+      <div><Link href="/cockpit/commerce/store" className="text-sm text-amber-200 underline">Commerce Centre</Link>
+        <h1 className="mt-2 text-2xl font-semibold text-stone-100">Transaction lifecycle</h1></div>
+      <button type="button" disabled={loading} onClick={()=>setRefresh(n=>n+1)}
+        className="min-h-11 rounded-lg border border-amber-300/40 px-4 py-2 text-amber-100 disabled:opacity-50">
+        {loading ? "Loading…" : "Refresh"}
+      </button>
+    </header>
+    <section className="rounded-xl border border-amber-400/40 bg-amber-950/20 p-4 text-sm text-amber-100">
+      <strong>Nonproduction evidence</strong>
+      <p className="mt-1">These transactions exercise the connected commerce flow. Receipt amounts below are simulated and do not establish real sales, payments or profit.</p>
+    </section>
+    <div aria-live="polite">
+      {loading && <p className="text-stone-300">Reading saved transaction evidence…</p>}
+      {error && <p role="alert" className="rounded-lg border border-red-400/40 p-4 text-red-200">{error}</p>}
+      {transactions?.length===0 && <p className="rounded-lg border border-white/15 p-4 text-stone-300">No saved transactions in this workspace.</p>}
+    </div>
+    {transactions?.map(transaction=>{
+      const lifecycle = transaction.simulated, actual = lifecycle.economics.actual;
+      return <article key={transaction.transactionKey} className="min-w-0 space-y-4 rounded-xl border border-white/15 bg-white/[0.03] p-4">
+        <header><h2 className="break-all text-lg font-semibold text-stone-100">Order {transaction.amazonOrderId}</h2>
+          <p className="break-all text-sm text-stone-300">{transaction.sku} · {transaction.asin} · Quantity {transaction.quantity}</p>
+          <p className="mt-1 text-xs text-amber-200">Simulated · {lifecycle.receiptCount} receipts · {lifecycle.reconciliation.replaceAll("_"," ")}</p>
+        </header>
+        <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
+          <div><dt className="text-stone-400">CJ product / variant</dt><dd className="break-all text-stone-100">{transaction.cjPid} / {transaction.cjVid}</dd></div>
+          <div><dt className="text-stone-400">Supplier order</dt><dd className="break-all text-stone-100">{lifecycle.supplierOrderId ?? "Awaiting acknowledgement"}</dd></div>
+          <div><dt className="text-stone-400">Delivery</dt><dd className="text-stone-100">{lifecycle.tracking?.deliveryStatus ?? "Unknown"}</dd></div>
+          <div><dt className="text-stone-400">Tracking</dt><dd className="break-all text-stone-100">{lifecycle.tracking ? lifecycle.tracking.carrier+" · "+lifecycle.tracking.trackingNumber : "Not received"}</dd></div>
+          <div><dt className="text-stone-400">Seller listing price</dt><dd className="text-stone-100">{money(transaction.marketplaceEvidence ? transaction.marketplaceEvidence.sellerOfferPriceCents/100 : null)}</dd></div>
+          <div><dt className="text-stone-400">Seller availability</dt><dd className="text-stone-100">{transaction.marketplaceEvidence?.sellerFulfilledQuantity ?? "Unknown"} · supplier stock separate</dd></div>
+        </dl>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <section className="rounded-lg bg-black/20 p-3"><h3 className="font-medium text-stone-100">Projected economics</h3>
+            <p className="mt-1 text-sm text-stone-300">Revenue {money(transaction.expected.sellingPriceUsd)}</p>
+            <p className="text-sm text-stone-300">Contribution {money(transaction.expected.profitUsd)}</p></section>
+          <section className="rounded-lg bg-black/20 p-3"><h3 className="font-medium text-amber-100">Simulated reconciled economics</h3>
+            <dl className="mt-1 space-y-1 text-sm text-stone-300">
+              {([["Revenue after refunds",actual.customerRevenueUsd],["Amazon fees after credits",actual.amazonFeesUsd],
+                ["Supplier",actual.cjProductCostUsd],["Freight",actual.cjShippingUsd],["Other costs",actual.otherDirectCostsUsd],
+                ["Contribution",actual.realisedContributionUsd]] as const).map(([label,value])=>
+                <div key={label} className="flex justify-between gap-3"><dt>{label}</dt><dd>{money(value)}</dd></div>)}
+            </dl>
+            <p className="mt-2 text-xs text-stone-400">Fixture payout: {lifecycle.economics.marketplacePayoutReceived}</p>
+          </section>
+        </div>
+        <details className="text-sm text-stone-300"><summary className="cursor-pointer py-2 text-amber-100">Accounting and source evidence</summary>
+          <div className="mt-2 overflow-x-auto"><table className="w-full text-left text-xs"><thead><tr><th className="p-2">Account</th><th className="p-2">Debit USD</th><th className="p-2">Credit USD</th></tr></thead>
+            <tbody>{lifecycle.journal.map((row,index)=><tr key={row.receiptId+"-"+index}><td className="p-2">{row.account}</td><td className="p-2">{money(row.debitCents/100)}</td><td className="p-2">{money(row.creditCents/100)}</td></tr>)}</tbody>
+          </table></div>
+          <dl className="mt-3 space-y-2 break-all text-xs"><div><dt>Order source</dt><dd>{transaction.orderSourceSha256}</dd></div>
+            <div><dt>Pillow decision</dt><dd>{transaction.decisionSha256}</dd></div>
+            <div><dt>Listing source</dt><dd>{transaction.marketplaceEvidence?.listingSourceSha256 ?? "Unknown"}</dd></div>
+            <div><dt>Inventory source</dt><dd>{transaction.marketplaceEvidence?.inventorySourceSha256 ?? "Unknown"}</dd></div></dl>
+        </details>
+      </article>;
+    })}
+  </main>;
+}
