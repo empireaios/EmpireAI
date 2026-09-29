@@ -660,6 +660,46 @@ describe("pillow-commerce-presale", () => {
         const proof = receiptDisk.prepare("SELECT record_json FROM pillow_order_marketplace_evidence").get() as {record_json:string};
         assert.deepEqual(JSON.parse(proof.record_json),connected.marketplaceEvidence);
       } finally { receiptDisk.close(); }
+      // Continue the SAME delivered transaction: cancellation cannot pretend to undo shipment.
+      const pendingCancel = await append({...base,receiptId:"cancel-request",kind:"SUPPLIER_CANCELLATION_REQUESTED",
+        supplierOrderId:"CJ-OFFLINE-1"});
+      assert.equal(pendingCancel.cancellation?.outcome,"PENDING");
+      closeDatabase();
+      assert.equal(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey).cancellation?.outcome,"PENDING");
+      await assert.rejects(append({...base,receiptId:"cancel-wrong",kind:"SUPPLIER_CANCELLATION_RESOLVED",
+        supplierOrderId:"CJ-OFFLINE-1",requestReceiptId:"cancel-request",outcome:"CANCELLED"}),/outcome conflicts/);
+      await append({...base,receiptId:"cancel-declined",kind:"SUPPLIER_CANCELLATION_RESOLVED",
+        supplierOrderId:"CJ-OFFLINE-1",requestReceiptId:"cancel-request",outcome:"DECLINED"});
+      await append({...base,receiptId:"return-authorized",kind:"SUPPLIER_RETURN_AUTHORIZED",
+        supplierOrderId:"CJ-OFFLINE-1",rmaId:"RMA-1",quantity:1});
+      const credit: OfflineCommerceReceipt = {...base,receiptId:"credit-issued",kind:"SUPPLIER_CREDIT_ISSUED",
+        supplierOrderId:"CJ-OFFLINE-1",creditId:"CREDIT-1",basisReceiptId:"return-received",
+        productCents:320,freightCents:0,otherCents:0};
+      await assert.rejects(append(credit),/credit does not reconcile/);
+      await append({...base,receiptId:"return-received",kind:"SUPPLIER_RETURN_RECEIVED",
+        supplierOrderId:"CJ-OFFLINE-1",rmaId:"RMA-1"});
+      const credited = await append(credit);
+      assert.equal(credited.economics.actual.realisedContributionUsd,15.95);
+      assert.deepEqual(credited.supplierCredits,{issuedCents:320,cashReceivedCents:0,outstandingCents:320});
+      closeDatabase();
+      assert.deepEqual(await append(credit),credited);
+      await assert.rejects(append({...credit,receiptId:"duplicate-credit"}),/credit does not reconcile/);
+      const supplierRefund: OfflineCommerceReceipt = {...base,receiptId:"supplier-refund",kind:"SUPPLIER_REFUND_RECEIVED",
+        supplierOrderId:"CJ-OFFLINE-1",creditId:"CREDIT-1",amountCents:200};
+      const partiallyPaid = await append(supplierRefund);
+      assert.deepEqual(partiallyPaid.supplierCredits,{issuedCents:320,cashReceivedCents:200,outstandingCents:120});
+      assert.equal(partiallyPaid.economics.actual.realisedContributionUsd,15.95,"cash collection is not a second profit");
+      await assert.rejects(append({...supplierRefund,receiptId:"over-refund",amountCents:121}),/outstanding credit/);
+      const reversed = await append({...supplierRefund,receiptId:"supplier-refund-rest",amountCents:120});
+      assert.equal(reversed.supplierCredits.outstandingCents,0);
+      assert.equal(reversed.journal.reduce((n,row)=>n+row.debitCents-row.creditCents,0),0);
+      assert.equal(reversed.economics.expected.profitUsd,draft.economics.expected.profitUsd);
+      closeDatabase();
+      assert.deepEqual(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey),reversed);
+      const reversalDisk = new DatabaseSync(process.env.DATABASE_PATH!,{readOnly:true});
+      try {
+        assert.equal((reversalDisk.prepare("SELECT COUNT(*) AS n FROM pillow_offline_commerce_receipts").get() as {n:number}).n,12);
+      } finally { reversalDisk.close(); }
       const ownerApp = Fastify();
       await registerPillowCommercePresaleRoutes(ownerApp,{
         authenticate: async (request,reply) => {
@@ -688,7 +728,7 @@ describe("pillow-commerce-presale", () => {
         assert.equal(payload.realCommerceVerified,false);
         assert.equal(payload.transactions.length,1);
         assert.equal(payload.transactions[0].transactionKey,draft.idempotencyKey);
-        assert.equal(payload.transactions[0].simulated.economics.actual.realisedContributionUsd,12.75);
+        assert.equal(payload.transactions[0].simulated.economics.actual.realisedContributionUsd,15.95);
         assert.deepEqual(payload.transactions[0].marketplaceEvidence,connected.marketplaceEvidence);
         assert.doesNotMatch(response.body,/must-never-be-persisted|offline-test-token/);
       } finally { await ownerApp.close(); }
