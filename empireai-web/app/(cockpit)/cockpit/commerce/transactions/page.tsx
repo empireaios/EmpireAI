@@ -10,6 +10,9 @@ type Transaction = {
   marketplaceEvidence:{sellerOfferPriceCents:number;sellerFulfilledQuantity:number;observedAt:string;
     listingSourceSha256:string;inventorySourceSha256:string}|null;
   simulated:{supplierOrderId:string|null;receiptCount:number;reconciliation:string;
+    cancellation?:{outcome:string}|null;
+    supplierReturn?:{rmaId:string;quantity:number;receivedReceiptId:string|null}|null;
+    supplierCredits?:{issuedCents:number;cashReceivedCents:number;outstandingCents:number};
     tracking:{deliveryStatus:string;carrier:string;trackingNumber:string}|null;
     economics:{actual:{customerRevenueUsd:number|null;amazonFeesUsd:number|null;cjProductCostUsd:number|null;
       cjShippingUsd:number|null;otherDirectCostsUsd:number|null;realisedContributionUsd:number|null};
@@ -87,6 +90,15 @@ export default function CommerceTransactionsPage() {
           <div><dt className="text-stone-400">Seller listing price</dt><dd className="text-stone-100">{money(transaction.marketplaceEvidence ? transaction.marketplaceEvidence.sellerOfferPriceCents/100 : null)}</dd></div>
           <div><dt className="text-stone-400">Seller availability</dt><dd className="text-stone-100">{transaction.marketplaceEvidence?.sellerFulfilledQuantity ?? "Unknown"} · supplier stock separate</dd></div>
         </dl>
+        <section className="rounded-lg border border-white/10 p-3 text-sm text-stone-300">
+          <h3 className="font-medium text-stone-100">Supplier reversals · simulated</h3>
+          <p>Cancellation: {lifecycle.cancellation?.outcome ?? "Not requested"}</p>
+          <p>Return: {lifecycle.supplierReturn ? lifecycle.supplierReturn.rmaId+" · "+lifecycle.supplierReturn.quantity+" units · "+
+            (lifecycle.supplierReturn.receivedReceiptId ? "Received by supplier" : "Awaiting supplier receipt") : "Not authorized"}</p>
+          <p>Credit issued: {money(lifecycle.supplierCredits ? lifecycle.supplierCredits.issuedCents/100 : null)}</p>
+          <p>Cash refund received: {money(lifecycle.supplierCredits ? lifecycle.supplierCredits.cashReceivedCents/100 : null)}</p>
+          <p>Outstanding supplier credit: {money(lifecycle.supplierCredits ? lifecycle.supplierCredits.outstandingCents/100 : null)}</p>
+        </section>
         <div className="grid gap-3 sm:grid-cols-2">
           <section className="rounded-lg bg-black/20 p-3"><h3 className="font-medium text-stone-100">Projected economics</h3>
             <p className="mt-1 text-sm text-stone-300">Revenue {money(transaction.expected.sellingPriceUsd)}</p>

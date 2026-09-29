@@ -351,6 +351,38 @@ jobs:
             echo 'No image runtime receipt: build or prior step failed. No hosted proof inferred.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
+  commerce-browser:
+    name: Phone browser to authenticated persisted commerce fixture
+    needs: repository-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Use pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Install isolated application and browser dependencies
+        run: |
+          npm ci --prefix pillow
+          npm run build --prefix pillow
+          npm ci --prefix backend
+          npm ci --prefix empireai-web
+          cd empireai-web
+          npx playwright install --with-deps chromium
+      - name: Verify real phone browser login BFF backend and disk transaction
+        run: node empireai-web/scripts/verify-commerce-browser.mjs
+      - name: Preserve browser receipt screenshot and bounded server logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: commerce-browser-evidence
+          path: commerce-browser-evidence
+          retention-days: 14
+
   product-path-result:
     name: Product path result (no deployment)
     if: ${{ always() }}
@@ -361,6 +393,7 @@ jobs:
       - legacy-frontend
       - empireai-web
       - bounded-redis-image
+      - commerce-browser
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -372,6 +405,7 @@ jobs:
           LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
           NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
           REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
+          COMMERCE_BROWSER_RESULT: ${{ needs.commerce-browser.result }}
         shell: bash
         run: |
           set -euo pipefail
@@ -388,7 +422,8 @@ jobs:
             "$BACKEND_RESULT" \
             "$LEGACY_WEB_RESULT" \
             "$NEXT_WEB_RESULT" \
-            "$REDIS_IMAGE_RESULT"; do
+            "$REDIS_IMAGE_RESULT" \
+            "$COMMERCE_BROWSER_RESULT"; do
             test "$result" = success
           done
           echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"

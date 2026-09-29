@@ -1,4 +1,9 @@
 import Fastify from "fastify";
+import cookie from "@fastify/cookie";
+import { createAuthMiddleware } from "../../auth/middleware.js";
+import { registerAuthRoutes } from "../../auth/routes.js";
+import { InMemorySessionStore, UserStore } from "../../auth/session-store.js";
+import { hashPassword } from "../../auth/seed-users.js";
 import { registerPillowCommercePresaleRoutes } from "../../orchestration/pillow-commerce-presale/routes/pillow-commerce-presale-routes.js";
 import { prepareOfflineOrderFromMarketplaceReadback } from "../../orchestration/pillow-commerce-presale/offline-marketplace-order-handoff.js";
 import { syncAmazonUsListings } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-listings-import.js";
@@ -9,7 +14,7 @@ import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/li
 import { prepareOfflineAmazonOfferFromOpportunity } from "../../orchestration/pillow-commerce-presale/offline-amazon-offer-handoff.js";
 import { buildCommerceProviderReceipts } from "../../orchestration/pillow-commerce-presale/commerce-provider-receipts.js";
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync } from "node:fs";
+import { mkdtempSync, rmSync, copyFileSync, constants } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -701,26 +706,35 @@ describe("pillow-commerce-presale", () => {
         assert.equal((reversalDisk.prepare("SELECT COUNT(*) AS n FROM pillow_offline_commerce_receipts").get() as {n:number}).n,12);
       } finally { reversalDisk.close(); }
       const ownerApp = Fastify();
-      await registerPillowCommercePresaleRoutes(ownerApp,{
-        authenticate: async (request,reply) => {
-          if (request.headers["x-offline-auth"] !== "test-owner") {
-            reply.code(401).send({error:"Authentication required"}); return;
-          }
-          request.user = {role:request.headers["x-offline-role"] ?? "founder",
-            workspaceId:request.headers["x-offline-workspace"] ?? args.workspaceId,
-            email:"offline-owner@example.test"} as never;
-        },
-        auditLogger:{write:()=>{}} as never,
-      });
+      await ownerApp.register(cookie);
+      const sessions = new InMemorySessionStore();
+      const authenticate = createAuthMiddleware(sessions);
+      const auditLogger = {write:()=>{}} as never;
+      new UserStore(getDatabase()).create({email:"offline-owner@example.test",name:"Offline owner",
+        role:"founder",workspaceId:args.workspaceId,passwordHash:await hashPassword("offline-browser-only")});
+      await registerAuthRoutes(ownerApp,{sessionStore:sessions,auditLogger});
+      await registerPillowCommercePresaleRoutes(ownerApp,{authenticate,auditLogger});
+      await getDatabase().requestCriticalPersist();
       try {
         const url = "/pillow-commerce-presale/transactions";
         assert.equal((await ownerApp.inject({method:"GET",url})).statusCode,401);
-        const headers = {"x-offline-auth":"test-owner"};
-        assert.equal((await ownerApp.inject({method:"GET",url,headers:{...headers,"x-offline-role":"viewer"}})).statusCode,403);
+        const deniedLogin = await ownerApp.inject({method:"POST",url:"/auth/login",
+          payload:{email:"offline-owner@example.test",password:"wrong"}});
+        assert.equal(deniedLogin.statusCode,401);
+        const login = await ownerApp.inject({method:"POST",url:"/auth/login",
+          payload:{email:"offline-owner@example.test",password:"offline-browser-only"}});
+        assert.equal(login.statusCode,200);
+        const headers = {cookie:String(login.headers["set-cookie"]).split(";")[0]!};
+        assert.equal((await ownerApp.inject({method:"GET",url:"/auth/me",headers})).statusCode,200);
+        const operator = await sessions.create({id:"operator",name:"Operator",email:"operator@example.test",
+          role:"operator",workspaceId:args.workspaceId});
+        const other = await sessions.create({id:"other",name:"Other",email:"other@example.test",
+          role:"founder",workspaceId:"other"});
+        assert.equal((await ownerApp.inject({method:"GET",url,headers:{cookie:"empireai_session="+operator.token}})).statusCode,403);
         assert.equal((await ownerApp.inject({method:"GET",url:url+"?limit=51",headers})).statusCode,400);
         assert.equal((await ownerApp.inject({method:"GET",url:url+"?workspaceId=other",headers})).statusCode,400);
         assert.deepEqual((await ownerApp.inject({method:"GET",url,
-          headers:{...headers,"x-offline-workspace":"other"}})).json().transactions,[]);
+          headers:{cookie:"empireai_session="+other.token}})).json().transactions,[]);
         const response = await ownerApp.inject({method:"GET",url,headers});
         assert.equal(response.statusCode,200);
         const payload = response.json();
@@ -731,7 +745,14 @@ describe("pillow-commerce-presale", () => {
         assert.equal(payload.transactions[0].simulated.economics.actual.realisedContributionUsd,15.95);
         assert.deepEqual(payload.transactions[0].marketplaceEvidence,connected.marketplaceEvidence);
         assert.doesNotMatch(response.body,/must-never-be-persisted|offline-test-token/);
+        await ownerApp.inject({method:"POST",url:"/auth/logout",headers});
+        assert.equal((await ownerApp.inject({method:"GET",url,headers})).statusCode,401);
       } finally { await ownerApp.close(); }
+      // Optional isolated browser harness consumes the exact integrated disk fixture.
+      if (process.env.PILLOW_COMMERCE_FIXTURE_EXPORT) {
+        closeDatabase();
+        copyFileSync(process.env.DATABASE_PATH!,process.env.PILLOW_COMMERCE_FIXTURE_EXPORT,constants.COPYFILE_EXCL);
+      }
 
     }
 
