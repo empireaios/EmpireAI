@@ -55,6 +55,7 @@ export function CommerceOperatingStrip() {
         <Link href="/cockpit/commerce/store" className="text-xs text-[#d4af37] hover:underline">
           Commerce Centre →
         </Link>
+        <Link href="/cockpit/commerce/transactions" className="text-xs text-[#d4af37] hover:underline">Transaction lifecycle →</Link>
       </div>
       <div className="mt-3 grid gap-3 sm:grid-cols-4">
         <div>
@@ -191,6 +192,8 @@ export function CommerceOperatingDashboard() {
           )}
         </Panel>
       </div>
+
+      <Link href="/cockpit/commerce/transactions" className="inline-block rounded-lg border border-gold/20 px-4 py-3 text-sm text-[#d4af37]">Inspect transaction lifecycle →</Link>
 
       <Panel title="Commerce Pipeline">
         <div className="flex flex-wrap gap-2">
