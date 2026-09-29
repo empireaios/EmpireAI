@@ -11,6 +11,12 @@ import { buildTransactionEconomicsRecord } from "./commerce-actual-pnl.js";
 type ReceiptBase = { receiptId: string; occurredAt: string; source: "OFFLINE_FIXTURE" };
 export type OfflineCommerceReceipt = ReceiptBase & (
   | { kind: "SUPPLIER_ACCEPTED"; supplierOrderId: string; cjVid: string; quantity: number }
+  | { kind: "SUPPLIER_CANCELLATION_REQUESTED"; supplierOrderId: string }
+  | { kind: "SUPPLIER_CANCELLATION_RESOLVED"; supplierOrderId: string; requestReceiptId: string; outcome: "CANCELLED" | "DECLINED" }
+  | { kind: "SUPPLIER_RETURN_AUTHORIZED"; supplierOrderId: string; rmaId: string; quantity: number }
+  | { kind: "SUPPLIER_RETURN_RECEIVED"; supplierOrderId: string; rmaId: string }
+  | { kind: "SUPPLIER_CREDIT_ISSUED"; supplierOrderId: string; creditId: string; basisReceiptId: string; productCents: number; freightCents: number; otherCents: number }
+  | { kind: "SUPPLIER_REFUND_RECEIVED"; supplierOrderId: string; creditId: string; amountCents: number }
   | { kind: "TRACKING"; snapshot: CjTrackingSnapshot }
   | { kind: "SUPPLIER_PAID"; supplierOrderId: string; productCents: number; freightCents: number; otherCents: number }
   | { kind: "AMAZON_SETTLED"; amazonOrderId: string; orderItemId: string; grossCents: number; feeCents: number; otherCents: number; payoutCents: number }
@@ -52,6 +58,10 @@ function project(draft: OfflineFulfillmentDraft, receipts: OfflineCommerceReceip
   let supplier: Extract<OfflineCommerceReceipt,{kind:"SUPPLIER_PAID"}> | null = null;
   let settlement: Extract<OfflineCommerceReceipt,{kind:"AMAZON_SETTLED"}> | null = null;
   let refunds = 0, feeCredits = 0;
+  let cancellation: {requestReceiptId:string; outcome:"PENDING"|"CANCELLED"|"DECLINED"} | null = null;
+  let supplierReturn: {rmaId:string; quantity:number; receivedReceiptId:string|null} | null = null;
+  const credits = new Map<string,{productCents:number;freightCents:number;otherCents:number;refundedCents:number}>();
+  let productCredits=0, freightCredits=0, otherCredits=0, supplierCashRefunds=0;
   const journal: JournalEntry[] = [];
   const entry = (receiptId:string, account:string, debitCents:number, creditCents:number) =>
     journal.push({receiptId,account,debitCents,creditCents});
@@ -68,7 +78,63 @@ function project(draft: OfflineFulfillmentDraft, receipts: OfflineCommerceReceip
         }
         supplierOrderId = receipt.supplierOrderId;
         break;
+      case "SUPPLIER_CANCELLATION_REQUESTED":
+        if (!supplierOrderId || receipt.supplierOrderId !== supplierOrderId || cancellation) throw new Error("Cancellation request conflicts");
+        cancellation = {requestReceiptId:receipt.receiptId,outcome:"PENDING"};
+        break;
+      case "SUPPLIER_CANCELLATION_RESOLVED":
+        if (!cancellation || cancellation.outcome !== "PENDING" || receipt.requestReceiptId !== cancellation.requestReceiptId ||
+            receipt.supplierOrderId !== supplierOrderId || !["CANCELLED","DECLINED"].includes(receipt.outcome) ||
+            (receipt.outcome === "CANCELLED" && tracking && tracking.deliveryStatus !== "PENDING")) {
+          throw new Error("Cancellation outcome conflicts with supplier or shipment");
+        }
+        cancellation.outcome = receipt.outcome;
+        break;
+      case "SUPPLIER_RETURN_AUTHORIZED":
+        requireText(receipt.rmaId);
+        if (!supplierOrderId || receipt.supplierOrderId !== supplierOrderId || supplierReturn ||
+            tracking?.deliveryStatus !== "DELIVERED" || !Number.isSafeInteger(receipt.quantity) ||
+            receipt.quantity < 1 || receipt.quantity > draft.quantity) throw new Error("Return authorization conflicts");
+        supplierReturn = {rmaId:receipt.rmaId,quantity:receipt.quantity,receivedReceiptId:null};
+        break;
+      case "SUPPLIER_RETURN_RECEIVED":
+        if (!supplierReturn || supplierReturn.receivedReceiptId || receipt.rmaId !== supplierReturn.rmaId ||
+            receipt.supplierOrderId !== supplierOrderId) throw new Error("Return receipt conflicts");
+        supplierReturn.receivedReceiptId = receipt.receiptId;
+        break;
+      case "SUPPLIER_CREDIT_ISSUED": {
+        requireText(receipt.creditId);
+        const basis = receipts.find(row => row.receiptId === receipt.basisReceiptId);
+        const cancelled = basis?.kind === "SUPPLIER_CANCELLATION_RESOLVED" && basis.outcome === "CANCELLED" && cancellation?.outcome === "CANCELLED";
+        const returned = supplierReturn?.receivedReceiptId === receipt.basisReceiptId;
+        if (!supplier || receipt.supplierOrderId !== supplierOrderId || credits.has(receipt.creditId) || (!cancelled && !returned) ||
+            productCredits+cents(receipt.productCents)>supplier.productCents ||
+            freightCredits+cents(receipt.freightCents)>supplier.freightCents ||
+            otherCredits+cents(receipt.otherCents)>supplier.otherCents) throw new Error("Supplier credit does not reconcile");
+        const total=receipt.productCents+receipt.freightCents+receipt.otherCents;
+        if (total === 0) throw new Error("Supplier credit must be positive");
+        credits.set(receipt.creditId,{productCents:receipt.productCents,freightCents:receipt.freightCents,
+          otherCents:receipt.otherCents,refundedCents:0});
+        productCredits+=receipt.productCents; freightCredits+=receipt.freightCents; otherCredits+=receipt.otherCents;
+        entry(receipt.receiptId,"supplier_credit_receivable",total,0);
+        entry(receipt.receiptId,"supplier_cost",0,receipt.productCents);
+        entry(receipt.receiptId,"freight_cost",0,receipt.freightCents);
+        entry(receipt.receiptId,"other_cost",0,receipt.otherCents);
+        break;
+      }
+      case "SUPPLIER_REFUND_RECEIVED": {
+        const credit=credits.get(receipt.creditId);
+        if (!credit || receipt.supplierOrderId !== supplierOrderId || cents(receipt.amountCents) === 0 ||
+            credit.refundedCents+receipt.amountCents>credit.productCents+credit.freightCents+credit.otherCents) {
+          throw new Error("Supplier refund exceeds outstanding credit");
+        }
+        credit.refundedCents+=receipt.amountCents; supplierCashRefunds+=receipt.amountCents;
+        entry(receipt.receiptId,"cash",receipt.amountCents,0);
+        entry(receipt.receiptId,"supplier_credit_receivable",0,receipt.amountCents);
+        break;
+      }
       case "TRACKING": {
+        if (cancellation?.outcome === "CANCELLED") throw new Error("Cancelled supplier order cannot ship");
         const snapshot = receipt.snapshot;
         if (!supplierOrderId || snapshot.supplierOrderId !== supplierOrderId) throw new Error("Tracking supplier mismatch");
         requireText(snapshot.trackingNumber); requireText(snapshot.carrier);
@@ -133,10 +199,10 @@ function project(draft: OfflineFulfillmentDraft, receipts: OfflineCommerceReceip
     expectedProfitUsd:draft.economics.expected.profitUsd,expectedMarginPct:draft.economics.expected.marginPct,
     customerRevenueUsd:settlement ? (settlement.grossCents-refunds)/100 : null,
     amazonFeesUsd:settlement ? (settlement.feeCents-feeCredits)/100 : null,
-    cjProductCostUsd:supplier ? supplier.productCents/100 : null,
-    cjShippingUsd:supplier ? supplier.freightCents/100 : null,
+    cjProductCostUsd:supplier ? (supplier.productCents-productCredits)/100 : null,
+    cjShippingUsd:supplier ? (supplier.freightCents-freightCredits)/100 : null,
     brandPackagingCostUsd:null,
-    otherDirectCostsUsd:reconciled ? (supplier!.otherCents+settlement!.otherCents)/100 : null,
+    otherDirectCostsUsd:reconciled ? (supplier!.otherCents-otherCredits+settlement!.otherCents)/100 : null,
     marketplacePayoutReceived:settlement ? "YES" : "UNKNOWN",
     orderRevenueRecognized:tracking?.deliveryStatus === "DELIVERED" && settlement ? "YES" : "UNKNOWN",
   });
@@ -145,7 +211,10 @@ function project(draft: OfflineFulfillmentDraft, receipts: OfflineCommerceReceip
   economics.computedAt = receipts.at(-1)?.occurredAt ?? draft.economics.computedAt;
   economics.note = "OFFLINE FIXTURE RECONCILIATION ONLY. No real payment, provider authenticity or commerce authority.";
   return {evidenceMode:"OFFLINE_FIXTURE" as const,transactionKey:draft.idempotencyKey,
-    supplierOrderId,tracking,receiptCount:receipts.length,
+    supplierOrderId,tracking,cancellation,supplierReturn,
+    supplierCredits:{issuedCents:productCredits+freightCredits+otherCredits,cashReceivedCents:supplierCashRefunds,
+      outstandingCents:productCredits+freightCredits+otherCredits-supplierCashRefunds},
+    receiptCount:receipts.length,
     reconciliation:reconciled ? "RECONCILED_FIXTURE" as const : "INCOMPLETE" as const,
     economics,journal,supplierSpendAllowed:false as const,submissionAttempted:false as const};
 }
