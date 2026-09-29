@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T10:21:02.410Z",
+  "updatedAt": "2026-09-29T11:18:12.447Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -755,6 +755,24 @@
         "No new live commerce, provider writes, production mutation or authority change"
       ],
       "next": "Preserve rejection of historical Proof001; obtain owner-provisioned CJ readback before selecting a real supplier candidate. Further Amazon endpoints need a reviewed read-only checkpoint, not broader permissions."
+    },
+    "cjCredentialIssuanceDiscrepancy": {
+      "ownerReport": "Existing production API Key untouched/Activated; Add API offers MCP Token only; creation not confirmed",
+      "runner": "REST API Key only; MCP substitution unsupported by reviewed documentation",
+      "verifiedInterchangeability": false,
+      "authenticatedCjCalls": 0,
+      "nextOwnerAction": "Ask signed-in CJ support for separate REST credential issuance without changing existing production key; if MCP-only, request documented REST compatibility.",
+      "sources": [
+        "https://developers.cjdropshipping.com/en/api/api2/api/auth.html",
+        "https://developers.cjdropshipping.com/en/api/api2/mcp.html"
+      ]
+    },
+    "amazonEvidenceCheckpointCI": {
+      "head": "5001be30bfa0b707d9a4440a685224a24587dcd3",
+      "product": 36555068331,
+      "semantic": 36555068310,
+      "runtime": 36555068368,
+      "conclusion": "success"
     }
   },
   "failedAttempts": [
@@ -801,7 +819,7 @@
     "Provider-backed convergence now requires usable authenticated Amazon/CJ access in an isolated nonproduction execution path. Railway OAuth exposes only variable names; no provider credentials exist in this execution environment; cleaned canary has no services. No real provider read or write was attempted."
   ],
   "nextExecutableActions": [
-    "Amazon readback complete: preserve receipt and historical Proof001 rejection. Do not rerun or replace held branch. CJ requires owner secure environment setup and approval for the previously prepared 50-point catalog read; no secrets in chat.",
+    "CJ credential issuance blocked by documented API Key versus owner UI MCP-only discrepancy. Follow current handoff support question; do not create MCP token, reuse/modify production key or substitute it into REST apiKey. No CJ provider calls until supported route is established.",
     "After CJ readiness, perform isolated catalog auth/GET only, persist real identifiers and schema before selecting exact VID for subsequent stock/cost/freight reads. Future Amazon diagnostics/fees need reviewed bounded endpoints within existing roles; no listing or inventory writes, no broader permissions. Current known SKU is rejected, not a qualified commerce transaction.",
     "Actual hosted phone browser gate is now required and passed; preserve it. Complete surrounding command/health/exception/approval/pause views and durable deployed session verification. Narrow harness deliberately leaves shell command data/event endpoints unavailable; this is not whole-console acceptance.",
     "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",

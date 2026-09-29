@@ -29,7 +29,22 @@ Provider request IDs and hashes are traceability evidence, not provider signatur
 
 If GitHub does not offer Environment secrets/branch restrictions for this private repository, stop at that screen and report the limitation without any values. Do not substitute repository-wide secrets or upgrade a plan without review. Work's connector has no environment/secret-administration operation; entering these credentials in GitHub's secure UI is the owner-only step. No code or CLI operation is required from the owner.
 
-## CJ — one owner procedure
+## CJ — issuance paused; owner UI differs from documentation
+
+## CJ credential issuance discrepancy — 2026-09-29
+
+Owner reports existing EmpireAI Production credential Type API Key remains Activated/untouched; Add API currently offers only MCP Token, with creation not confirmed. Treat this account UI report as authoritative for available choices; earlier instruction to select a new API Key cannot currently be followed.
+
+Current official REST documentation still specifies an API Key in the apiKey field of POST /api2.0/v1/authentication/getAccessToken. MCP documentation specifies a different transport: token embedded in https://developers.cjdropshipping.com/mcp/YOUR_MCP_TOKEN. No reviewed documentation establishes MCP Token interchangeability with REST apiKey or CJ-Access-Token. The standalone runner implements REST only; do not paste an MCP Token into VERIFY_CJ_API_KEY or try it experimentally. No CJ API calls, token creation, production-key changes or production actions occurred.
+
+A remote MCP adapter would require separate implementation/review for exact read-tool schema, account identity, bounded points, secret-safe URL handling and sanitized evidence; the existing two-request REST/50-point contract does not automatically transfer. MCP docs list mutation tools, so installing the broad MCP app is not the prepared isolated check. Do not assume why API Key is absent (single-key limit, account policy and UI migration are unverified).
+
+**Single next owner action:** cancel the unconfirmed dialog and ask CJ's signed-in support/assigned agent: “My existing EmpireAI Production API Key must remain unchanged. Add API only offers MCP Token. How can I issue a separate credential for REST API v2 getAccessToken (apiKey) and product/list without replacing, resetting or revoking the existing key? If only MCP Tokens can now be issued, are they supported as REST apiKey, and where is that documented?” Send no key/token values. Wait for the supported issuance answer before creating anything.
+
+References checked: https://developers.cjdropshipping.com/en/api/api2/api/auth.html ; https://developers.cjdropshipping.com/en/api/api2/mcp.html . Public documentation review only, not authenticated behavior verification. Amazon checkpoint5001be30 now passes Product36555068331, Semantic36555068310, Runtime36555068368. NOT_BORN / LOCKED and protected-production hold unchanged.
+
+
+### Earlier REST API Key procedure — resume only after supported issuance is confirmed
 
 1. Open [CJ API authorization](https://www.cjdropshipping.com/my.html) while signed in to your CJ account. If the API app is absent, use **Apps → Install App → Others → API** to install it. Do not connect an Amazon store, enable order synchronization, add products to a store/cart, or alter the existing production key.
 2. On the **API** tab choose **Add API**. Name it **EmpireAI Readback**, choose **API Key** as the Type, and confirm. Copy the new key using the copy control in its **API Key & MCP Token** column, directly into the destination below. This is an ordinary CJ API credential: the documented dialog has no read-only scope selector. It is not truthful to describe it as a scoped read-only key. No MCP token or broader order-management integration is requested; the isolated runner permits only authentication plus the catalog GET. If your actual CJ dialog offers product-read-only permissions, use only those; otherwise the ordinary API credential is the minimum documented credential for this endpoint.

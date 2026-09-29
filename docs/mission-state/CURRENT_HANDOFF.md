@@ -1,5 +1,18 @@
 # EmpireAI / Pillow active mission handoff
 
+## CJ credential issuance discrepancy — 2026-09-29
+
+Owner reports existing EmpireAI Production credential Type API Key remains Activated/untouched; Add API currently offers only MCP Token, with creation not confirmed. Treat this account UI report as authoritative for available choices; earlier instruction to select a new API Key cannot currently be followed.
+
+Current official REST documentation still specifies an API Key in the apiKey field of POST /api2.0/v1/authentication/getAccessToken. MCP documentation specifies a different transport: token embedded in https://developers.cjdropshipping.com/mcp/YOUR_MCP_TOKEN. No reviewed documentation establishes MCP Token interchangeability with REST apiKey or CJ-Access-Token. The standalone runner implements REST only; do not paste an MCP Token into VERIFY_CJ_API_KEY or try it experimentally. No CJ API calls, token creation, production-key changes or production actions occurred.
+
+A remote MCP adapter would require separate implementation/review for exact read-tool schema, account identity, bounded points, secret-safe URL handling and sanitized evidence; the existing two-request REST/50-point contract does not automatically transfer. MCP docs list mutation tools, so installing the broad MCP app is not the prepared isolated check. Do not assume why API Key is absent (single-key limit, account policy and UI migration are unverified).
+
+**Single next owner action:** cancel the unconfirmed dialog and ask CJ's signed-in support/assigned agent: “My existing EmpireAI Production API Key must remain unchanged. Add API only offers MCP Token. How can I issue a separate credential for REST API v2 getAccessToken (apiKey) and product/list without replacing, resetting or revoking the existing key? If only MCP Tokens can now be issued, are they supported as REST apiKey, and where is that documented?” Send no key/token values. Wait for the supported issuance answer before creating anything.
+
+References checked: https://developers.cjdropshipping.com/en/api/api2/api/auth.html ; https://developers.cjdropshipping.com/en/api/api2/mcp.html . Public documentation review only, not authenticated behavior verification. Amazon checkpoint5001be30 now passes Product36555068331, Semantic36555068310, Runtime36555068368. NOT_BORN / LOCKED and protected-production hold unchanged.
+
+
 ## Current checkpoint — authenticated Amazon readback, 2026-09-29
 
 The owner-authorized isolated [run 36554704403](https://github.com/empireaios/EmpireAI/actions/runs/36554704403) on `ff223ca2fd4ae086276c8d536775194f08182889` passed its six offline tests and actual provider observation. Exactly one LWA exchange and one seller-scoped US listing GET; no retry or business write. GitHub environment inspection confirmed four secret names and the exact one-branch/zero-tag restriction; secret values were not read by Work.
