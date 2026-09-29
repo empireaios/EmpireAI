@@ -10,7 +10,7 @@ import { getAmazonMarketplaceProfile } from "../amazon-marketplace-profiles.js";
 import { httpTransport } from "../http-transport.js";
 import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types.js";
 
-type OrderSnapshot = {
+export type OrderSnapshot = {
   orderId: string;
   marketplaceId: string;
   createdTime: string;
@@ -230,7 +230,7 @@ function persistPage(ctx: LiveCommerceAdapterContext, snapshots: OrderSnapshot[]
   }
 }
 
-function getImportedOrder(workspaceId: string, providerId: string, orderId: string): OrderSnapshot | null {
+export function getImportedOrder(workspaceId: string, providerId: string, orderId: string): OrderSnapshot | null {
   const row = getDatabase().prepare(`
     SELECT record_json FROM amazon_order_import_rows
     WHERE workspace_id = @workspaceId AND provider_id = @providerId AND order_id = @orderId
