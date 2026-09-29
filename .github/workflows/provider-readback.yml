@@ -1,7 +1,7 @@
 name: Isolated read-only provider observation
 on:
   push:
-    branches: ['ci/provider-readback-amazon-v1', 'ci/provider-readback-cj-v1']
+    branches: ['ci/provider-readback-cj-v1']
 permissions:
   contents: read
 concurrency:
@@ -9,11 +9,11 @@ concurrency:
   cancel-in-progress: false
 jobs:
   observe:
-    if: github.run_attempt == 1
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment:
-      name: ${{ contains(github.ref_name, 'amazon') && 'empireai-readonly-amazon' || 'empireai-readonly-cj' }}
+      name: empireai-readonly-cj
     steps:
       - name: Checkout exact reviewed source without stored GitHub credentials
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -28,13 +28,10 @@ jobs:
       - name: One bounded authenticated observation without application startup
         env:
           ISOLATED_PROVIDER_READBACK: '1'
-          READBACK_PROVIDER: ${{ contains(github.ref_name, 'amazon') && 'amazon' || 'cj' }}
+          READBACK_PROVIDER: cj
+          CJ_CREDENTIAL_MODE: MCP_DIRECT
           CJ_READBACK_POINT_LIMIT: '50'
-          VERIFY_AMAZON_CLIENT_ID: ${{ secrets.VERIFY_AMAZON_CLIENT_ID }}
-          VERIFY_AMAZON_CLIENT_SECRET: ${{ secrets.VERIFY_AMAZON_CLIENT_SECRET }}
-          VERIFY_AMAZON_REFRESH_TOKEN: ${{ secrets.VERIFY_AMAZON_REFRESH_TOKEN }}
-          VERIFY_AMAZON_SELLER_ID: ${{ secrets.VERIFY_AMAZON_SELLER_ID }}
-          VERIFY_CJ_API_KEY: ${{ secrets.VERIFY_CJ_API_KEY }}
+          VERIFY_CJ_DIRECT_TOKEN: ${{ secrets.VERIFY_CJ_DIRECT_TOKEN }}
         run: node deployment/provider-readback.mjs
       - name: Preserve sanitized provider receipt and pre-request admission
         if: ${{ always() }}
