@@ -59,3 +59,29 @@ test('secret echo and excessive response size fail closed without persisting res
     assert.doesNotMatch(readFileSync(join(dir,'receipt.json'),'utf8'),/SECRET-/);
   });
 });
+const direct={ISOLATED_PROVIDER_READBACK:'1',READBACK_PROVIDER:'cj',CJ_READBACK_POINT_LIMIT:'50',CJ_CREDENTIAL_MODE:'MCP_DIRECT',VERIFY_CJ_DIRECT_TOKEN:'MCP@CJ12345@CJ:fixture_access_token_123'};
+test('CJ direct token uses exactly one catalog GET, no exchange, and preserves unverified identity',()=>fixture(async dir=>{
+  let count=0;
+  const receipt=await runReadback(direct,dir,{testTransport:async(url,options)=>{
+    count++;assert.equal(options.method,'GET');assert.equal(options.body,undefined);
+    assert.equal(url,'https://developers.cjdropshipping.com/api2.0/v1/product/list?pageNum=1&pageSize=1');
+    assert.equal(options.headers['CJ-Access-Token'],'fixture_access_token_123');
+    assert.equal(options.redirect,'error');
+    return json({code:200,result:true,requestId:'direct-request',data:{list:[{pid:'real-shape-fixture'}]}});
+  }});
+  assert.equal(count,1);assert.equal(receipt.status,'OBSERVED_NOT_QUALIFIED');
+  assert.equal(receipt.account.ownerIdentityConfirmed,false);assert.equal(receipt.account.accountSource,'UNVERIFIED_CREDENTIAL_LABEL');
+  assert.equal(receipt.cjPointsReserved,50);assert.equal(receipt.liveCommerceAllowed,false);
+  assert.equal(receipt.reconciliation.actualEconomics,null);
+  for(const name of ['admission.json','receipt.json'])assert.equal(readFileSync(join(dir,name),'utf8').includes('fixture_access_token_123'),false);
+}));
+test('CJ direct token rejects ambiguous unsupported and injected credentials before transport',()=>{
+  for(const patch of [{VERIFY_CJ_API_KEY:'existing-production-key'},{VERIFY_CJ_DIRECT_TOKEN:'API@CJ12345@CJ:fixture_access_token_123'},
+    {VERIFY_CJ_DIRECT_TOKEN:'https://developers.cjdropshipping.com/mcp/'+direct.VERIFY_CJ_DIRECT_TOKEN},
+    {VERIFY_CJ_DIRECT_TOKEN:direct.VERIFY_CJ_DIRECT_TOKEN+'\r\nheader:value'},{CJ_CREDENTIAL_MODE:'OTHER'}])assert.throws(()=>configuration({...direct,...patch}));
+});
+test('CJ direct auth rejection stops after one GET with no refresh fallback',()=>fixture(async dir=>{
+ let calls=0;const receipt=await runReadback(direct,dir,{testTransport:async()=>{calls++;return new Response('secret provider error',{status:401});}});
+ assert.equal(calls,1);assert.equal(receipt.status,'FAILED_CLOSED');assert.equal(receipt.failure,'PROVIDER_HTTP_401');
+ assert.equal(receipt.receipts.length,0);
+}));

@@ -28,9 +28,20 @@ export function configuration(env) {
       refreshToken:requireValue(env.VERIFY_AMAZON_REFRESH_TOKEN,'VERIFY_AMAZON_REFRESH_TOKEN')};
   }
   if(env.CJ_READBACK_POINT_LIMIT!=='50')throw new Error('CJ_FIXED_50_POINT_BOUND_REQUIRED');
+  if(env.CJ_CREDENTIAL_MODE==='MCP_DIRECT') {
+    if(env.VERIFY_CJ_API_KEY)throw new Error('AMBIGUOUS_CJ_CREDENTIALS');
+    const credential=requireValue(env.VERIFY_CJ_DIRECT_TOKEN,'VERIFY_CJ_DIRECT_TOKEN');
+    // CJ official source e8375d8 url-parser/session/http-client: direct token, NOT apiKey exchange.
+    // Strict subset only; never accept a URL, percent encoding, whitespace or header controls.
+    const match=credential.match(/^MCP@(CJ[0-9]{1,24})@CJ:([A-Za-z0-9._~-]{16,2048})$/);
+    if(!match)throw new Error('CJ_DIRECT_TOKEN_FORMAT_UNSUPPORTED');
+    return {provider,directToken:match[2],claimedAccount:match[1],credential};
+  }
+  if(env.CJ_CREDENTIAL_MODE && env.CJ_CREDENTIAL_MODE!=='API_KEY')throw new Error('CJ_CREDENTIAL_MODE_UNSUPPORTED');
   return {provider,apiKey:requireValue(env.VERIFY_CJ_API_KEY,'VERIFY_CJ_API_KEY')};
 }
 export function plan(config) {
+  if(config.directToken)return [{method:'GET',url:CJ+'/product/list?pageNum=1&pageSize=1',authentication:false}];
   return config.provider==='amazon' ? [
     {method:'POST',url:'https://api.amazon.com/auth/o2/token',authentication:true},
     {method:'GET',url:`https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/${config.seller}?marketplaceIds=${US}&includedData=summaries%2Coffers%2CfulfillmentAvailability&pageSize=1`,authentication:false},
@@ -86,9 +97,14 @@ export async function runReadback(env,dir,{testTransport}={}) {
   save(dir,'admission.json',evidence);
   try {
     const amazon=config.provider==='amazon';
+    let token=config.directToken;
+    if(config.directToken) {
+      evidence.account={claimedCjAccount:config.claimedAccount,accountSource:'UNVERIFIED_CREDENTIAL_LABEL',ownerIdentityConfirmed:false};
+      evidence.credentialMode='MCP_DIRECT_SOURCE_BACKED_UNVERIFIED_DEPLOYMENT';
+    } else {
     const authBody=amazon?new URLSearchParams({grant_type:'refresh_token',client_id:config.clientId,client_secret:config.clientSecret,refresh_token:config.refreshToken}).toString():JSON.stringify({apiKey:config.apiKey});
     const auth=await request(requests[0],{'content-type':amazon?'application/x-www-form-urlencoded':'application/json'},authBody,testTransport??fetch);
-    const token=amazon?auth.json.access_token:auth.json.data?.accessToken;
+    token=amazon?auth.json.access_token:auth.json.data?.accessToken;
     if(typeof token!=='string'||!token||amazon&&(!Number.isFinite(auth.json.expires_in)||auth.json.expires_in<60)||
       !amazon&&(auth.json.code!==200||auth.json.result!==true||!(Date.parse(auth.json.data?.accessTokenExpiryDate)>Date.now()+60_000)))throw new Error('AUTHENTICATION_RESPONSE_INVALID');
     evidence.account={requestedSellerId:amazon?config.seller:null,cjOpenId:!amazon&&/^[0-9]{1,24}$/.test(String(auth.json.data?.openId))?String(auth.json.data.openId):null,
@@ -96,11 +112,12 @@ export async function runReadback(env,dir,{testTransport}={}) {
     // Authentication material is neither saved nor hashed into evidence.
     if(!amazon&&!evidence.account.cjOpenId)throw new Error('CJ_ACCOUNT_ID_MISSING');
     if(!amazon)await new Promise(resolve=>setTimeout(resolve,1100));
-    const result=await request(requests[1],amazon?{'x-amz-access-token':token}:{'CJ-Access-Token':token},undefined,testTransport??fetch);
+    }
+    const result=await request(requests[config.directToken?0:1],amazon?{'x-amz-access-token':token}:{'CJ-Access-Token':token},undefined,testTransport??fetch);
     const requestId=amazon?result.requestId:result.json.requestId;
     if(typeof requestId!=='string'||!requestId||requestId.length>256)throw new Error('PROVIDER_REQUEST_ID_MISSING');
     const summary=amazon?summarizeAmazon(result.json):summarizeCj(result.json);
-    if([token,config.clientSecret,config.refreshToken,config.apiKey].filter(Boolean).some(secret=>JSON.stringify({summary,requestId}).includes(secret)))throw new Error('SECRET_ECHO_REFUSED');
+    if([token,config.credential,config.clientSecret,config.refreshToken,config.apiKey].filter(Boolean).some(secret=>JSON.stringify({summary,requestId}).includes(secret)))throw new Error('SECRET_ECHO_REFUSED');
     evidence.receipts.push({observedAt:new Date().toISOString(),requestId,rawBodySha256:result.rawSha256,
       sanitizedSummarySha256:hash(JSON.stringify(summary)),summary});
     evidence.status='OBSERVED_NOT_QUALIFIED';
