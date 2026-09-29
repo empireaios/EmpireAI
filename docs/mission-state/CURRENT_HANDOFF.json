@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T08:01:32.600Z",
+  "updatedAt": "2026-09-29T08:11:35.747Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -13,17 +13,18 @@
       "material unmandated business risk",
       "bounded real commercial pilot authorization"
     ],
-    "continueAutomatically": true
+    "continueAutomatically": true,
+    "consolidatedExecutionDirective": "2026-09-29: prioritize full integrated commerce lifecycle, Pillow/runtime in parallel, practical protected-production capture, owner phone console, independent certification then owner-authorized bounded real pilot. Continue checkpoints autonomously; no routine owner prompts."
   },
   "repository": {
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "059e74885cdc2a99bac203cfd71dd65315957300",
+    "lastVerifiedIntegrationHead": "d683111eff231c1ece45cd13cdbc6e36a0767d93",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; offline imported-order fulfillment draft passed Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "059e74885cdc2a99bac203cfd71dd65315957300",
-    "branchTipNote": "Founder/admin GET /pillow-commerce-presale/transactions exposes bounded transaction lineage, persisted marketplace proof, projected economics and separately labelled simulated receipt/accounting state. HTTP integration verifies authentication, role refusal, strict query bounds, no workspace override and cross-workspace isolation after disk reopen. Not deployed; no real commerce evidence.",
+    "status": "draft unmerged; integrated nonproduction commerce receipt lifecycle, marketplace readbacks, owner API and phone UI candidate passed Product/Semantic/Runtime; not deployed; protected production unchanged",
+    "candidateCodeHead": "d683111eff231c1ece45cd13cdbc6e36a0767d93",
+    "branchTipNote": "Phone-oriented /cockpit/commerce/transactions page and commerce navigation links use GET /api/commerce/transactions session proxy to the scoped backend owner endpoint. Displays persisted identity, listing/inventory proof, supplier order, tracking, projected versus simulated reconciled economics, accounting and hashes. Empty/unavailable states have no demo fallback; bounded fetch and no caching. BFF tests verify cookie forwarding, unauthorized/foreign-query refusal and upstream denial. Next typecheck/tests/production build passed. Not browser-verified or deployed; all receipt money remains OFFLINE_FIXTURE, not real realised profit.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -625,6 +626,14 @@
       "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36539506264",
       "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36539506249",
       "scope": "Founder/admin GET /pillow-commerce-presale/transactions exposes bounded transaction lineage, persisted marketplace proof, projected economics and separately labelled simulated receipt/accounting state. HTTP integration verifies authentication, role refusal, strict query bounds, no workspace override and cross-workspace isolation after disk reopen. Not deployed; no real commerce evidence."
+    },
+    "phoneCommerceTransactionView": {
+      "codeHead": "d683111eff231c1ece45cd13cdbc6e36a0767d93",
+      "status": "PRODUCT_SEMANTIC_RUNTIME_PASSED_OFFLINE",
+      "product": "https://github.com/empireaios/EmpireAI/actions/runs/36540477915",
+      "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36540477805",
+      "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36540477696",
+      "scope": "Phone-oriented /cockpit/commerce/transactions page and commerce navigation links use GET /api/commerce/transactions session proxy to the scoped backend owner endpoint. Displays persisted identity, listing/inventory proof, supplier order, tracking, projected versus simulated reconciled economics, accounting and hashes. Empty/unavailable states have no demo fallback; bounded fetch and no caching. BFF tests verify cookie forwarding, unauthorized/foreign-query refusal and upstream denial. Next typecheck/tests/production build passed. Not browser-verified or deployed; all receipt money remains OFFLINE_FIXTURE, not real realised profit."
     }
   },
   "failedAttempts": [
@@ -668,13 +677,12 @@
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues."
   ],
   "nextExecutableActions": [
-    "Protected old Railway process still has unknown pending SQL.js RAM. Candidate capture coordinates same-process SQL.js handles, local HTTP/worker/queue and Redis owner fencing offline; next coordinate other processes/direct producers/native handles and independently verify Redis plus copied multi-store snapshot. Obtain and validate an authorized in-process quiesce/save mechanism for old deployment before any restart/redeploy/promotion. No production operation in this checkpoint.",
-    "Add phone transaction view and session-forwarding web route over verified owner API. Continue authenticated provider receipt ingestion, supplier cancellation/return paths and independent certification. Three integrated checkpoints now passed: receipt lifecycle, persisted marketplace readbacks, scoped owner HTTP readback.",
-    "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
-    "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
-    "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
-    "Prove old-production quiesced persistence and multi-store backup before a fresh cost-bounded canary or promotion.",
-    "Certify integrated Pillow/commerce and phone owner flow before real pilot authorization."
+    "Extend the SAME integrated transaction through supplier cancellation, return/RMA and supplier refund/credit reconciliation, including uncertain provider outcomes, duplicate receipts and restart. Then connect independently authenticated provider ingestion to its durable receipts. Preserve OFFLINE_FIXTURE evidence until real provider evidence exists; do not fabricate settlement or grant real commerce authority.",
+    "Verify the phone transaction page with an authenticated nonproduction browser and exercise complete browser→BFF→backend→persisted lifecycle readback. Add remaining owner exception/pause/approval controls, cash exposure, health and Pillow outcome-learning integration. Current page is built/tested only, not deployed or browser-accepted.",
+    "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",
+    "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
+    "Once preservation permits promotion, verify code→CI→Railway/Vercel→runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
+    "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
