@@ -1,0 +1,33 @@
+{
+  "evidenceMode": "OFFLINE_FIXTURE",
+  "sourceHead": "61fe30e261b2f9f13d8ad33f47ae74e2226abcc6",
+  "browserLogin": true,
+  "phoneViewport": [
+    390,
+    844
+  ],
+  "bffBackendDiskReadback": true,
+  "realAuthMiddleware": true,
+  "sessionBackend": "isolated in-memory",
+  "logoutRevokesSession": true,
+  "foreignWorkspaceQueryRefused": true,
+  "providerAuthenticity": false,
+  "transactionKey": "amz:111-2222222-3333333|item:item-1|sku:EMP-FD-MUMFW0HS",
+  "realisedFixtureContributionUsd": 15.95,
+  "authorityChanged": false,
+  "productionTouched": false,
+  "verifiedCodeHead": "1a7cc718f427b3164efeefffffc6f9724f4acaab",
+  "workflowRun": 36545398983,
+  "jobId": 109330569108,
+  "artifactId": 11021648551,
+  "artifactSha256": "5aaef172839a7e1ae77bc6eb40d18b266488eb83e4fcf3a5f16f3bf4640cce1d",
+  "screenshotSha256": "6c394b9dbbf54f94ece066887579e6770144b1cd62c999074bc3d4fad76b974a",
+  "screenshot": "2026-09-29-commerce-phone.png",
+  "reviewedLimitations": [
+    "Application path uses real auth middleware and password verification but isolated in-memory sessions, not Redis or deployed owner credentials.",
+    "Commerce data and all monetary values are OFFLINE_FIXTURE; no provider authentication or live money proved.",
+    "Surrounding shell command data and event stream are unavailable in the narrow harness; whole owner console not accepted.",
+    "Captured screenshot has an internally scrollable accounting table; phone page has no horizontal document overflow.",
+    "PR workflow sourceHead is the GitHub merge checkout; verifiedCodeHead identifies PR source code."
+  ]
+}
