@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T13:24:36.032833+00:00",
+  "updatedAt": "2026-09-29T15:04:09.487833+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -20,11 +20,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "587f0786e779227a847e35c7885495e458e464f3",
+    "lastVerifiedIntegrationHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged; terminal rejection, reusable screening, owner stages and joint restore rehearsal passed Product/Semantic/Runtime and phone browser; not deployed",
-    "candidateCodeHead": "587f0786e779227a847e35c7885495e458e464f3",
-    "branchTipNote": "Documentation/evidence checkpoint follows verified code587f0786. Both provider branches remain disabled. Current Markdown and JSON handoffs synchronized.",
+    "status": "Draft unmerged; bounded legacy capture method rejected in clean hosted proof; Product/Semantic/Runtime passed; no deployment",
+    "candidateCodeHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
+    "branchTipNote": "Evidence/handoff-only commit follows verified code65f94a8c. Canonical Markdown and JSON synchronized. Stop after this requested bounded checkpoint.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -182,7 +182,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36570792283",
       "https://github.com/empireaios/EmpireAI/actions/runs/36573744333",
       "https://github.com/empireaios/EmpireAI/actions/runs/36573744273",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36573744247"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36573744247",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36586631210",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36586631558",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36586631134"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -1328,6 +1331,26 @@
       "safeToPromote": false,
       "productionTouched": false,
       "businessWrites": 0
+    },
+    "legacyCaptureMethodDecision": {
+      "verdict": "CURRENT METHOD REJECTED",
+      "codeHead": "65f94a8cd06e5a59e2742b82eeb617d09a5156d3",
+      "oldRevision": "21384342c401def948926904913840e63c18dff7",
+      "scope": "Unmodified old storage and locked dependency reproduction; not full production topology/runtime pressure",
+      "positiveControl": "Pending RAM row exported and independently restored",
+      "failures": [
+        "Late writes remain admitted",
+        "Shared completion status clean despite another handle pending",
+        "Stale same-file handle overwrites newer persisted rows"
+      ],
+      "artifactId": 11041658000,
+      "artifactSha256": "14dd93ebebd4e8edc4580822efacbbe87ecf79d87fd9fb1789f3caebaa7dfade",
+      "independentDownloadedArtifactReadback": true,
+      "productionTouched": false,
+      "providerCalls": 0,
+      "safeToPromote": false,
+      "evidenceDirectory": "docs/mission-state/evidence/2026-09-29-legacy-method",
+      "methodIterationStopped": true
     }
   },
   "failedAttempts": [
@@ -1352,7 +1375,8 @@
     "2026-09-29 96ff05e Semantic failed malformed test assertion; 6249275 Product failed leaked fake Orders transport into subsequent presale reevaluation; db7a0a4 and 338f68d Product failed test mapping drift after reevaluation. a2154e4 corrected fixture and passed exact-head Product/Semantic/Runtime.",
     "2026-09-29 local browser install first failed certificate validation; bundled Playwright download was invalid; older Chromium downloaded but local socket creation was denied. Replaced with actual hosted Chromium verification, passed in Product job 109330569108. No local browser acceptance claimed.",
     "2026-09-29 CLI push of local a503eb95 failed missing GitHub credentials. Identical source tree published atomically via authenticated connector as 1a7cc718, all three workflows passed.",
-    "300fd0e7 Runtime run36570792283 job109413987704 failed at next/font Google loader during web build. Same-source Product build passed. One failed offline job retry109416154217 succeeded; no provider retry. Failure preserved in owner-phone/verification.json."
+    "300fd0e7 Runtime run36570792283 job109413987704 failed at next/font Google loader during web build. Same-source Product build passed. One failed offline job retry109416154217 succeeded; no provider retry. Failure preserved in owner-phone/verification.json.",
+    "2026-09-29 exact-old critical persist/status/copy method rejected: export control works, but no writer fence, shared false-clean status and stale-handle overwrite. Hosted diagnostic and independent artifact readback confirm rejection. Do not iterate this method indefinitely."
   ],
   "certification": {
     "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
@@ -1363,14 +1387,14 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Protected production pending RAM/multistore preservation remains unresolved; no restart/redeploy/promotion. No new production observation or mutation this checkpoint.",
+    "Old critical-persist/status/copy capture method REJECTED in isolated exact-source proof. Pending production RAM remains unpreserved; full real persisted-checkpoint recovery also unverified. Production protected; no restart/redeploy/promotion. No production call this checkpoint.",
     "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
     "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Boundedly establish and rehearse feasibility of a legacy in-process export bridge against the exact old revision in isolation. No production debugger/signal/injection or commissioning side-effect. If not feasible, present concrete recovery/loss alternatives rather than more disk-only tests.",
+    "Recommended alternative: privately capture persisted production checkpoint/stores without modifying old process; independently restore with providers disabled and reconcile durable receipts. Then present unknown pending-RAM gap for explicit owner data-loss/recovery decision. No restart/deployment/intervention or loss acceptance authorized. Do not repeat rejected critical-persist/status/copy method.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
