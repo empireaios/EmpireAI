@@ -1,6 +1,17 @@
 # EmpireAI / Pillow active mission handoff
 
-## Current checkpoint — 2026-09-29 authenticated application path
+## Current checkpoint — isolated provider-readback preparation
+
+Verified code `c69d809d3aa50d0eea30d7f00d50dbddfad00d45`: [Product](https://github.com/empireaios/EmpireAI/actions/runs/36549205557), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36549205572), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36549205564) all required jobs passed, including six new offline readback tests and the actual phone-browser gate. Preserves the integrated simulated commerce transaction and supplier reversals.
+
+The standalone isolated runner permits only authentication plus one Amazon US listing GET or one CJ catalog GET. It imports no application runtime, uses no production volume, allows no retries/redirects, bounds response size/time, durably records admission before requests, and persists sanitized success/failure evidence. A fresh exclusive evidence directory and first-attempt workflow guard prevent accidental replay. CJ reserves a one-run 50-point ceiling, not a shared account quota. Provider request IDs/hashes provide traceability, not signatures. Numeric Amazon price wire drift is reported; CJ summary price is not exact variant cost. Account ownership remains unconfirmed and transaction identity UNMATCHED until actual evidence is reconciled. Actual economics remain null; projections are unchanged.
+
+**Next action requires owner secure provisioning:** follow the [one Amazon and one CJ procedure](PROVIDER_READBACK_OWNER_SETUP.md). Amazon's minimum Inventory and Order Tracking role includes some writes; CJ documents an ordinary API key without a read-only scope selector. The runner enforces the narrower GET-only business boundary. Environment secrets are restricted to exact dedicated branches. Neither provider branch has been created; no credentials requested in chat, no provider authentication or readback performed. After owner readiness, run only the bounded observation, persist actual receipts/discrepancies, then review subsequent endpoints. Never use fixture identities as provider identities.
+
+Read-only Railway observation at **2026-09-29 09:26:54 UTC** still reports pending RAM on the same protected deployment (pid539, flushCount3, criticalFlushRequested/succeeded0). No production action. Vercel September 27 remains latest verified evidence. **Pillow NOT_BORN; Wave 0; commerce LOCKED; real pilot unauthorized.**
+
+
+## Prior verified checkpoint — 2026-09-29 authenticated application path
 
 Verified code `1a7cc718f427b3164efeefffffc6f9724f4acaab`: [Product](https://github.com/empireaios/EmpireAI/actions/runs/36545398983), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36545399025), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36545399009) all passed. The same integrated saved commerce transaction is read through actual login/password verification, session-cookie middleware, Next BFF and founder-scoped backend API. Phone UI exposes cancellation, supplier RMA/receipt, issued credits, actual fixture cash collection and outstanding receivable separately. Hosted 390x844 Chromium gate requires login redirect, disk-derived 15.95 fixture contribution, balanced supplier credit readback, foreign-workspace-query refusal, logout and invalidated-session refusal. No real provider calls, Redis/hosted-session proof, deployment or Birth claim.
 
