@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T14:51:43.878Z",
+  "updatedAt": "2026-09-29T07:25:21.038Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,11 +19,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "5997df81785e02acb60d5858882c7cec854610d0",
+    "lastVerifiedIntegrationHead": "a2154e4812ecc9a57079098ab8d00b3e88b51396",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "draft unmerged; local response receipts and offline Pillow-to-Amazon offer handoff passed Product/Semantic/Runtime; production protected",
-    "candidateCodeHead": "5997df81785e02acb60d5858882c7cec854610d0",
-    "branchTipNote": "5997df8 offline Pillow decision-to-Amazon offer integration passed exact-head Product/Semantic/Runtime; handoff receipt docs only. Production protected; Vercel fresh verification pending.",
+    "status": "draft unmerged; offline imported-order fulfillment draft passed Product/Semantic/Runtime; production protected",
+    "candidateCodeHead": "a2154e4812ecc9a57079098ab8d00b3e88b51396",
+    "branchTipNote": "a2154e4 offline completed-order to explicit approved Pillow variant draft and unknown actual accounting passed exact-head CI; handoff docs only. Production RAM capture unresolved; Vercel fresh verification pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -591,6 +591,16 @@
         "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36438396456"
       },
       "scope": "Persisted Pillow opportunity plus receipt bundle enters existing Amazon catalog/offer validator; pending approval and absent CJ-bound product identifier block; valid test-approved copy yields offline body, never publishes. Actual CJ identifier, real owner decision, live listing and order absent."
+    },
+    "offlineImportedOrderFulfillment": {
+      "codeHead": "a2154e4812ecc9a57079098ab8d00b3e88b51396",
+      "status": "EXACT_HEAD_CI_PASSED_OFFLINE",
+      "workflows": {
+        "product": "https://github.com/empireaios/EmpireAI/actions/runs/36535995285",
+        "semantic": "https://github.com/empireaios/EmpireAI/actions/runs/36535995222",
+        "runtime": "https://github.com/empireaios/EmpireAI/actions/runs/36535995173"
+      },
+      "scope": "Synthetic approved Pillow opportunity plus saved SKU/ASIN/CJ PID/VID and hashed response bundle, completed fake Amazon US order import, caller-supplied fresh BUYABLE observation, idempotent critical-persisted fulfillment draft and disk readback; actual P&L and payout unknown. No real approval, listing, supplier order, provider call or production operation."
     }
   },
   "failedAttempts": [
@@ -611,7 +621,8 @@
     "89382f6f code-only Product/Semantic workflows canceled by docs-only branch push concurrency before completion. Exact integrated 85eb3cd7 Product, Semantic, Runtime reruns succeeded.",
     "369ff6ad Product web job initially failed Next.js next/font/google Turbopack resolution; same-head job retry passed, as did Semantic and Runtime. No production change.",
     "048779f Product web build initially failed the recurring next/font/google Turbopack resolution error; same-head retry passed. Backend/Pillow and Semantic passed. Treat web build reliability as separate repair, not as Pillow fee failure.",
-    "a9ab0ad switched canonical web to supported Webpack and compiled; Product 36423997683 failed Next.js route type validation because eos-bundle-stamp exported EOS_UX_BUNDLE_MARKER. ad8d5aa made marker module-private and verified all-three CI."
+    "a9ab0ad switched canonical web to supported Webpack and compiled; Product 36423997683 failed Next.js route type validation because eos-bundle-stamp exported EOS_UX_BUNDLE_MARKER. ad8d5aa made marker module-private and verified all-three CI.",
+    "2026-09-29 96ff05e Semantic failed malformed test assertion; 6249275 Product failed leaked fake Orders transport into subsequent presale reevaluation; db7a0a4 and 338f68d Product failed test mapping drift after reevaluation. a2154e4 corrected fixture and passed exact-head Product/Semantic/Runtime."
   ],
   "certification": {
     "spec": "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
@@ -633,8 +644,8 @@
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues."
   ],
   "nextExecutableActions": [
-    "Candidate SQL.js capture refuses independently opened same-file handles in its process by canonical path and inode, including hard-link aliases during a hold. Coordinate separate processes, direct Brain producers and native handles, and independently verify Redis/multi-store snapshot. Old production remains protected with pending RAM and no validated in-process capture mechanism.",
-    "Both presale and re-evaluation now critically save mapping and APPROVAL_READY proposal before Grand King approval registration; independent SQLite readback verified inside both registration paths. Local response hashes persist and the offline approval-to-offer segment passes. Next persist CJ VID-bound UPC/EAN/GTIN and Amazon catalog identity, then integrate listing → order → fulfillment → accounting offline with independent provider and settled-fee reconciliation. No real provider calls or commerce authority.",
+    "Protected old Railway process still has unknown pending SQL.js RAM. Candidate capture coordinates same-process SQL.js handles, local HTTP/worker/queue and Redis owner fencing offline; next coordinate other processes/direct producers/native handles and independently verify Redis plus copied multi-store snapshot. Obtain and validate an authorized in-process quiesce/save mechanism for old deployment before any restart/redeploy/promotion. No production operation in this checkpoint.",
+    "Offline presale → approved offer → completed imported order → explicit opportunity/SKU/variant fulfillment draft with unknown actual accounting passed a2154e4. Next integrate authenticated seller BUYABLE/inventory/price readback and CJ order/fulfilment receipt reconciliation, then payout/fee settlement without converting synthetic proof into real commerce authority. Persist CJ PID/VID-bound identifier and independent catalog proof; no real provider calls or commerce authorization.",
     "CJ point-charged response parsing is bounded to 4 MiB with deadline through body read and no retry; still no provider receipt. Engineer durable supplier stock/cost/freight response provenance and independently reconciled money/fulfilment before approval surfaces; no live calls.",
     "The draft canonical web build now uses Next.js supported Webpack mode and a valid EOS stamp route after recurring Turbopack font-resolution failures. Keep Vercel fresh verification pending until an actual deployment boundary; September 27 READY/main remains the last authenticated production readback.",
     "Engineer provider invoice reconciliation for conservative paid-model reservations without remote spend.",
