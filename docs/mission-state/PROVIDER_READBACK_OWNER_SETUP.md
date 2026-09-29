@@ -1,4 +1,23 @@
-# Secure owner authorization for the first provider readback
+# Secure provider readback owner setup
+
+**Completed 2026-09-29:** Amazon and CJ isolated observations succeeded. CJ run36563526539 used exactly one catalog GET; workflow is disabled again at99a4beb5. Do not repeat provisioning or execution below. Existing production key remains untouched. Any further provider read needs a newly bounded authorization. See CURRENT_HANDOFF.md and evidence/2026-09-29-cj-reconciliation.json.
+
+
+## Historical CJ provisioning procedure — replaces earlier API-key/support instructions
+
+The isolated direct-token adapter is verified in code f3ff9208; all Product/Semantic/Runtime CI passed. [Investigation](CJ_CREDENTIAL_ROUTE_INVESTIGATION.md) explains the official source and unverified live limits. Do not use or copy EmpireAI Production API Key.
+
+1. In CJ Add API, create a NEW credential named EmpireAI Readback, Type MCP Token. Leave existing production row untouched. If creation asks to reset/replace an existing credential, cancel. No store connection or order synchronization is needed.
+2. In https://github.com/empireaios/EmpireAI/settings/environments create empireai-readonly-cj. Select deployment branches/tags and allow only existing branch ci/provider-readback-cj-v1 (one branch, zero tags). Add Environment secret VERIFY_CJ_DIRECT_TOKEN using the full newly issued MCP token, not a URL. Do not use VERIFY_CJ_API_KEY or repository-wide secrets. Never paste any value in chat.
+3. Tell Work only: CJ direct-token environment ready; one 50-point catalog GET approved.
+
+Work will verify metadata and reviewed code before enabling the currently disabled workflow. One GET only; no API-key exchange, refresh, logout, retry, account/order/listing mutation or production change. A token format outside the strict supported subset or auth failure stops; no production-key fallback. Source establishes a candidate token-header path, not actual account authenticity until checked. New token issuance side effects are not independently proven; do not proceed through any replacement/reset warning.
+
+Amazon readback completed and remains held. No Amazon credential action is currently needed. Historical procedures below are retained for reference only and must not override this section.
+
+---
+
+## Historical provider setup
 
 Prepared 2026-09-29. No authentication has been performed. Production stays protected; Pillow NOT_BORN and commerce LOCKED. This procedure authorizes observation only, never live commerce.
 
@@ -39,7 +58,7 @@ Current official REST documentation still specifies an API Key in the apiKey fie
 
 A remote MCP adapter would require separate implementation/review for exact read-tool schema, account identity, bounded points, secret-safe URL handling and sanitized evidence; the existing two-request REST/50-point contract does not automatically transfer. MCP docs list mutation tools, so installing the broad MCP app is not the prepared isolated check. Do not assume why API Key is absent (single-key limit, account policy and UI migration are unverified).
 
-**Single next owner action:** cancel the unconfirmed dialog and ask CJ's signed-in support/assigned agent: “My existing EmpireAI Production API Key must remain unchanged. Add API only offers MCP Token. How can I issue a separate credential for REST API v2 getAccessToken (apiKey) and product/list without replacing, resetting or revoking the existing key? If only MCP Tokens can now be issued, are they supported as REST apiKey, and where is that documented?” Send no key/token values. Wait for the supported issuance answer before creating anything.
+**Superseded owner action — do not follow:** cancel the unconfirmed dialog and ask CJ's signed-in support/assigned agent: “My existing EmpireAI Production API Key must remain unchanged. Add API only offers MCP Token. How can I issue a separate credential for REST API v2 getAccessToken (apiKey) and product/list without replacing, resetting or revoking the existing key? If only MCP Tokens can now be issued, are they supported as REST apiKey, and where is that documented?” Send no key/token values. Wait for the supported issuance answer before creating anything.
 
 References checked: https://developers.cjdropshipping.com/en/api/api2/api/auth.html ; https://developers.cjdropshipping.com/en/api/api2/mcp.html . Public documentation review only, not authenticated behavior verification. Amazon checkpoint5001be30 now passes Product36555068331, Semantic36555068310, Runtime36555068368. NOT_BORN / LOCKED and protected-production hold unchanged.
 

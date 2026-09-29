@@ -8,7 +8,7 @@ const US='ATVPDKIKX0DER';
 const CJ='https://developers.cjdropshipping.com/api2.0/v1';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const requireValue=(value,name)=>{if(typeof value!=='string'||!value.trim())throw new Error('MISSING_'+name);return value;};
-function save(dir,name,value) {
+export function save(dir,name,value) {
   const text=JSON.stringify(value,null,2)+'\n',path=resolve(dir,name);
   const fd=openSync(path,'wx',0o600);
   try{writeFileSync(fd,text);fsyncSync(fd);}finally{closeSync(fd);}
@@ -74,7 +74,7 @@ export function summarizeCj(body) {
       summaryPriceIsNotVariantCost:true};
   }),variantCostVerified:false,cjManagedStockVerified:false,freightVerified:false,qualificationAllowed:false};
 }
-async function request(spec,headers,body,fetchImpl) {
+export async function request(spec,headers,body,fetchImpl) {
   let response;
   try{response=await fetchImpl(spec.url,{method:spec.method,headers,body,redirect:'error',signal:AbortSignal.timeout(15_000)});}
   catch{throw new Error('NETWORK_OR_REDIRECT_FAILURE');}

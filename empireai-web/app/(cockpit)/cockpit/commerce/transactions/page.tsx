@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { providerObservationHistory } from "@/lib/commerce-transactions/provider-observation-history";
 import { useEffect, useState } from "react";
 
 type Transaction = {
@@ -75,6 +76,23 @@ export default function CommerceTransactionsPage() {
       {error && <p role="alert" className="rounded-lg border border-red-400/40 p-4 text-red-200">{error}</p>}
       {transactions?.length===0 && <p className="rounded-lg border border-white/15 p-4 text-stone-300">No saved transactions in this workspace.</p>}
     </div>
+    {transactions !== null && <section aria-label="Historical provider observations" className="space-y-3 rounded-xl border border-sky-400/30 p-4">
+      <h2 className="text-lg font-semibold text-stone-100">Historical provider observations</h2>
+      <p className="text-sm text-stone-300">These dated authenticated reads are separate from the simulated orders below. They are not current stock, qualified products, order receipts or realised profit. Refresh reloads this page; it does not call either provider.</p>
+      {providerObservationHistory.map(observation=><article key={observation.provider} className="min-w-0 rounded-lg border border-white/10 p-3 text-sm">
+        <h3 className="font-medium text-sky-200">{observation.provider} · Observed, not qualified</h3>
+        <time className="text-xs text-stone-400" dateTime={observation.observedAt}>{observation.observedAt}</time>
+        <p className="mt-2 break-all text-stone-100">{observation.identity}</p>
+        <p className="text-stone-300">{observation.detail}</p>
+        <p className="text-amber-200">{observation.limit} Account ownership is not independently verified. Not linked to a transaction.</p>
+        <details className="mt-2 text-xs text-stone-400"><summary className="min-h-8 cursor-pointer">Provider observation source</summary>
+          <p className="break-all">Receipt: {observation.receiptPath}</p>
+          <p className="break-all">Source: {observation.sourceHead}</p>
+          <p className="break-all">Response SHA256: {observation.responseHash}</p>
+          <a className="underline text-sky-200" href={"https://github.com/empireaios/EmpireAI/actions/runs/"+observation.runId} target="_blank" rel="noreferrer">View verification run</a>
+        </details>
+      </article>)}
+    </section>}
     {transactions?.map(transaction=>{
       const lifecycle = transaction.simulated, actual = lifecycle.economics.actual;
       return <article key={transaction.transactionKey} className="min-w-0 space-y-4 rounded-xl border border-white/15 bg-white/[0.03] p-4">

@@ -24,15 +24,15 @@ jobs:
         with:
           node-version-file: '.node-version'
       - name: Verify read-only allowlist and failure behavior without provider calls
-        run: node --test deployment/provider-readback.test.mjs
+        run: node --test deployment/provider-readback.test.mjs deployment/cj-supplier-readback.test.mjs
       - name: One bounded authenticated observation without application startup
         env:
           ISOLATED_PROVIDER_READBACK: '1'
           READBACK_PROVIDER: cj
           CJ_CREDENTIAL_MODE: MCP_DIRECT
-          CJ_READBACK_POINT_LIMIT: '50'
+          CJ_SUPPLIER_POINT_LIMIT: '30'
           VERIFY_CJ_DIRECT_TOKEN: ${{ secrets.VERIFY_CJ_DIRECT_TOKEN }}
-        run: node deployment/provider-readback.mjs
+        run: node deployment/cj-supplier-readback.mjs
       - name: Preserve sanitized provider receipt and pre-request admission
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

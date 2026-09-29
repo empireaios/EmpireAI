@@ -53,6 +53,10 @@ try {
   await page.getByText('Cancellation: DECLINED',{exact:true}).waitFor();
   await page.getByText('Outstanding supplier credit: US$0.00',{exact:true}).waitFor();
   assert.match(await page.locator('body').innerText(),/Nonproduction evidence/);
+  await page.getByRole('heading',{name:'Historical provider observations'}).waitFor();
+  assert.match(await page.locator('body').innerText(),/CJYD3209759/);
+  assert.match(await page.locator('body').innerText(),/not BUYABLE/);
+  assert.match(await page.locator('body').innerText(),/Not linked to a transaction/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'phone page overflows');
   await page.getByText('Accounting and source evidence',{exact:true}).click();
   await page.screenshot({path:resolve(output,'phone-transaction.png'),fullPage:true});
