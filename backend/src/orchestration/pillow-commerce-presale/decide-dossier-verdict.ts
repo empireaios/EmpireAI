@@ -9,7 +9,7 @@ export type DecideDossierVerdictInput = {
   brandRoute: BrandRoute | string;
   deliveryCanMeet: "YES" | "NO" | "UNKNOWN";
   amazonEligibility: "PASS" | "FAIL" | "UNKNOWN";
-  profitOk: boolean;
+  profitOk: boolean | null;
   /** Proposed offer vs lowest competing offer; null if competitor unknown. */
   pricePremiumPct: number | null;
   /** True when sales-rank or equivalent demand signal exists. */
@@ -75,6 +75,10 @@ export function decideDossierVerdict(
       confidence: "high",
     };
   }
+  if (input.profitOk === null) {
+    return { verdict: "INVESTIGATE", why: "Projected economics are unknown. Verify the exact Amazon product, fees, selling price and delivery costs before asking King to approve.", confidence: "low" };
+  }
+
   if (!input.profitOk) {
     return {
       verdict: "REJECT",

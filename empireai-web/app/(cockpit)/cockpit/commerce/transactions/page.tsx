@@ -60,7 +60,7 @@ export default function CommerceTransactionsPage() {
   },[refresh]);
   return <main className="mx-auto w-full max-w-5xl space-y-5 p-4 sm:p-6">
     <header className="flex flex-wrap items-center justify-between gap-3">
-      <div><Link href="/cockpit/commerce/store" className="text-sm text-amber-200 underline">Commerce Centre</Link>
+      <div><Link href="/cockpit" className="text-sm text-amber-200 underline">Executive Home</Link>
         <h1 className="mt-2 text-2xl font-semibold text-stone-100">Transaction lifecycle</h1></div>
       <button type="button" disabled={loading} onClick={()=>setRefresh(n=>n+1)}
         className="min-h-11 rounded-lg border border-amber-300/40 px-4 py-2 text-amber-100 disabled:opacity-50">
@@ -79,7 +79,7 @@ export default function CommerceTransactionsPage() {
     {transactions !== null && <section aria-label="Historical provider observations" className="space-y-3 rounded-xl border border-sky-400/30 p-4">
       <h2 className="text-lg font-semibold text-stone-100">Historical provider observations</h2>
       <p className="text-sm text-stone-300">These dated authenticated reads are separate from the simulated orders below. They are not current stock, qualified products, order receipts or realised profit. Refresh reloads this page; it does not call either provider.</p>
-      {providerObservationHistory.map(observation=><article key={observation.provider} className="min-w-0 rounded-lg border border-white/10 p-3 text-sm">
+      {providerObservationHistory.map(observation=><article key={observation.provider + observation.observedAt} className="min-w-0 rounded-lg border border-white/10 p-3 text-sm">
         <h3 className="font-medium text-sky-200">{observation.provider} · Observed, not qualified</h3>
         <time className="text-xs text-stone-400" dateTime={observation.observedAt}>{observation.observedAt}</time>
         <p className="mt-2 break-all text-stone-100">{observation.identity}</p>

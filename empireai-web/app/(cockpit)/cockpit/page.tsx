@@ -1,5 +1,2 @@
-import { ExecutiveHomePage } from "@/components/cockpit/pages/ExecutiveHomePage";
-
-export default function CockpitIndexPage() {
-  return <ExecutiveHomePage />;
-}
+import {OwnerHome} from '@/components/owner/OwnerWorkspace';
+export default function Page(){return <OwnerHome/>;}

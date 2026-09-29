@@ -1,0 +1,19 @@
+{
+  "url": "https://developers.cjdropshipping.com/api2.0/v1/logistic/freightCalculate",
+  "method": "POST",
+  "body": {
+    "startCountryCode": "US",
+    "endCountryCode": "US",
+    "storageIdList": [
+      "1988118945147310081"
+    ],
+    "shippingMode": 2,
+    "products": [
+      {
+        "quantity": 1,
+        "vid": "1872203652109103106"
+      }
+    ]
+  },
+  "pointsReserved": 10
+}

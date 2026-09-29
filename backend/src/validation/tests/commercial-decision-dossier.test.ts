@@ -15,6 +15,11 @@ import { buildCommerceOperatingLoopReadiness } from "../../orchestration/pillow-
 import { computeActualContribution } from "../../orchestration/pillow-commerce-presale/commerce-actual-pnl.js";
 
 describe("commercial decision dossier FD-CDD-001", () => {
+  it("keeps missing economics unknown instead of claiming a loss or approval", () => {
+    const result = decideDossierVerdict({ brandRoute: "UNKNOWN", deliveryCanMeet: "UNKNOWN", amazonEligibility: "UNKNOWN", profitOk: null, pricePremiumPct: null, demandEvidencePresent: false, competingOfferCount: null });
+    assert.equal(result.verdict, "INVESTIGATE");
+    assert.equal(result.rejectCode, undefined);
+  });
   it("rejects branded catalog without authenticity verification", () => {
     const brand = classifyBrandRoute({ brandName: "Sony", productName: "Headphones" });
     assert.equal(brand.route, "EXISTING_BRANDED_CATALOG");

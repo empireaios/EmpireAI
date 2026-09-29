@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Current bounded checkpoint — real supplier candidate and owner home (verification pending)
+
+See [owner checkpoint](OWNER_PRODUCT_CHECKPOINT.md) and [actual six-request receipt](evidence/2026-09-29-cj-discovery/receipt.json). Provider run36569224172 succeeded; disabled head5bb46c66a7edaeb33c9d66030e2076bdeb957ebc. Mirror USD52.25 / CJ-reported US12,273 units, supplier-shipped classification unresolved. Zero country-only freight quote is not confirmed free delivery. Exact Amazon identity/fees/price/profit unknown; INVESTIGATE, no qualified candidate. New phone owner home/products/evidence and preserved transactions are implemented, not deployed. Product/Semantic/Runtime and actual mobile browser acceptance pending at this code checkpoint. Production untouched; NOT_BORN / LOCKED. Older next-action statements below are historical and superseded by this checkpoint.
+
 ## Latest verified checkpoint — authentic CJ variant and warehouse evidence
 
 Run36566773325 at `32d72bddff82cee80d9972d6a4b32705dd3871a2` succeeded with two GETs, no retries/writes and20points reserved within30maximum. The observed jumpsuit PID2609291119211612600 has18 exact variants at US$11.28 each. All18 show zero CJ-managed stock in CN subwarehouse `{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}`; positive factory inventory is not eligible CJ stock. Decision: REJECT_INSUFFICIENT_CJ_MANAGED_STOCK. Freight skipped by design; no landed-cost/profit claim. Both provider workflows remain held; CJ disabled head03ac3dec96bd341d05e972fdcbcaced8092bd50d read back.

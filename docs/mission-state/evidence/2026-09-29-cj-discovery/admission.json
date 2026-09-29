@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "sourceHead": "6e8815d9de3d060111c25f4a3b76e3216db8434e",
+  "evidenceMode": "AUTHENTICATED_HTTP_OBSERVATION",
+  "startedAt": "2026-09-29T12:36:35.399Z",
+  "status": "STARTED",
+  "maximumRequests": 6,
+  "maximumPoints": 100,
+  "pointsReserved": 0,
+  "requestsAttempted": 0,
+  "retries": 0,
+  "businessWrites": 0,
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "receipts": [],
+  "candidates": [],
+  "selected": null,
+  "freight": null,
+  "qualificationAllowed": false,
+  "actualEconomics": null
+}

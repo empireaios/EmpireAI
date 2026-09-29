@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { CockpitPageHeader } from "@/components/cockpit/layout/CockpitPageHeader";
 import { CockpitDepartmentTabs } from "@/components/cockpit/layout/CockpitDepartmentTabs";
 import type { CockpitDataMode } from "@/lib/cockpit/kpis/registry";
@@ -20,8 +21,11 @@ export function CockpitDepartmentLayout({
   dataMode,
   children,
 }: CockpitDepartmentLayoutProps) {
+  const pathname = usePathname();
   const department = getCockpitNavItemById(departmentNavId);
   const tabs = getCockpitNavTabs(departmentNavId);
+
+  if (pathname === "/cockpit/commerce/transactions") return <>{children}</>;
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6">

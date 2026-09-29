@@ -37,12 +37,38 @@ try {
   const errors=[];
   page.on('pageerror',error=>errors.push(error.message));
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1' ? route.continue() : route.abort());
-  await page.goto('http://127.0.0.1:3100/cockpit/commerce/transactions');
+  assert.equal((await page.request.get('http://127.0.0.1:3100/api/owner/overview')).status(),401);
+  await page.goto('http://127.0.0.1:3100/cockpit');
   await page.waitForURL('**/login?next=*');
   await page.getByLabel('Email',{exact:true}).fill('offline-owner@example.test');
   await page.getByLabel('Password',{exact:true}).fill('offline-browser-only');
-  const response=page.waitForResponse(r=>r.url().includes('/api/commerce/transactions?') && r.status()===200,{timeout:60_000});
+  const overview=page.waitForResponse(r=>r.url().includes('/api/owner/overview') && r.status()===200,{timeout:60_000});
   await page.getByRole('button',{name:'Enter EmpireAI'}).click();
+  const saved=await (await overview).json();
+  assert.equal(saved.mode,'HISTORICAL_PROVIDER_EVIDENCE');
+  assert.equal(saved.authority.approvalAllowed,false);
+  await page.getByRole('heading',{name:'Executive Home',exact:true}).waitFor();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await page.screenshot({path:resolve(output,'phone-home.png'),fullPage:true});
+  const nav=page.getByRole('navigation',{name:'Owner navigation'});
+  await nav.getByRole('link',{name:'Products',exact:true}).click();
+  await page.getByRole('heading',{name:'Products',exact:true}).waitFor();
+  await page.getByRole('link',{name:'Review mirror',exact:true}).click();
+  await page.getByRole('heading',{name:'Pillow: do not approve yet',exact:true}).waitFor();
+  assert.match(await page.locator('body').innerText(),/US\$52\.25/);
+  assert.match(await page.locator('body').innerText(),/12273/);
+  assert.match(await page.locator('body').innerText(),/SUPPLIER_SHIPPED_PRODUCT/);
+  assert.match(await page.locator('body').innerText(),/Projected profit \/ margin\s+Unknown/);
+  assert.equal(await page.getByRole('button',{name:'Approve — locked',exact:true}).isDisabled(),true);
+  await page.getByText('Inspect evidence',{exact:true}).click();
+  assert.match(await page.locator('body').innerText(),/SHA-256/);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  assert.notEqual(await nav.evaluate(el=>getComputedStyle(el).position),'fixed');
+  await page.screenshot({path:resolve(output,'phone-product.png'),fullPage:true});
+  assert.equal((await page.request.post('http://127.0.0.1:3100/api/owner/overview')).status(),405);
+  assert.equal((await page.request.get('http://127.0.0.1:3100/api/owner/overview?workspaceId=other')).status(),400);
+  const response=page.waitForResponse(r=>r.url().includes('/api/commerce/transactions?') && r.status()===200,{timeout:60_000});
+  await nav.getByRole('link',{name:'Orders',exact:true}).click();
   const payload=await (await response).json();
   assert.equal(payload.evidenceMode,'OFFLINE_FIXTURE');
   assert.equal(payload.realCommerceVerified,false);
@@ -65,11 +91,12 @@ try {
   assert.equal((await page.request.get('http://127.0.0.1:3100/api/commerce/transactions?workspaceId=other')).status(),400);
   assert.equal((await page.request.post('http://127.0.0.1:3100/api/auth/logout')).status(),200);
   assert.equal((await page.request.get('http://127.0.0.1:3100/api/commerce/transactions')).status(),401);
+  assert.equal((await page.request.get('http://127.0.0.1:3100/api/owner/overview')).status(),401);
   await page.reload();
   await page.waitForURL('**/login?next=*');
   assert.deepEqual(errors,[],'browser runtime errors');
   writeFileSync(resolve(output,'receipt.json'),JSON.stringify({evidenceMode:'OFFLINE_FIXTURE',
-    sourceHead:process.env.GITHUB_SHA??'local',browserLogin:true,phoneViewport:[390,844],
+    sourceHead:process.env.GITHUB_SHA??'local',ownerHomeProductsEvidenceJourney:true,ownerHistoricalProviderSnapshot:true,approvalLocked:true,ownerApiWriteDenied:true,browserLogin:true,phoneViewport:[390,844],
     bffBackendDiskReadback:true,realAuthMiddleware:true,sessionBackend:'isolated in-memory',
     logoutRevokesSession:true,foreignWorkspaceQueryRefused:true,providerAuthenticity:false,
     transactionKey:payload.transactions[0].transactionKey,realisedFixtureContributionUsd:15.95,
