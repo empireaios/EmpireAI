@@ -539,7 +539,8 @@ describe("pillow-commerce-presale", () => {
         }] } };
       });
       const args = { workspaceId: "ws_empire_1", amazonOrderId: "111-2222222-3333333",
-        orderItemId: "item-1", listingProof: { state: "BUYABLE" as const,
+        orderItemId: "item-1", opportunityId: approved.opportunityId,
+        listingProof: { state: "BUYABLE" as const,
           sellerSku: sku, asin: approved.mapping.asin,
           marketplaceId: "ATVPDKIKX0DER", observedAt } };
       await assert.rejects(prepareOfflineImportedOrderFulfillment(args), /import window/);
