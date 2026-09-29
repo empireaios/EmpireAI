@@ -9,8 +9,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   observe:
-    # Owner authorized one bounded Amazon observation on 2026-09-29.
-    if: github.run_attempt == 1 && github.ref_name == 'ci/provider-readback-amazon-v1'
+    # Authorized observation completed; review a new checkpoint before another read.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment:
