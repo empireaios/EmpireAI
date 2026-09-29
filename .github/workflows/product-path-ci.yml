@@ -40,6 +40,8 @@ jobs:
         run: node scripts/verify-product-path-ci.mjs
       - name: Verify deterministic build configuration and reject runtime drift
         run: node --test scripts/verify-build-runtime.test.mjs
+      - name: Verify isolated provider read-only observation without credentials
+        run: node --test deployment/provider-readback.test.mjs
       - name: Verify disk-only legacy checkpoint capture and refusal cases
         shell: bash
         run: |
