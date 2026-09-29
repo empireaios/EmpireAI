@@ -1,6 +1,18 @@
 # EmpireAI / Pillow active mission handoff
 
-## CJ credential issuance discrepancy — 2026-09-29
+## Current CJ route — independent source investigation; support is not a dependency
+
+[Investigation and design](CJ_CREDENTIAL_ROUTE_INVESTIGATION.md) records authenticated metadata checks and pinned CJ source evidence. Railway has CJ secret names but OAuth exposes no values or cross-platform secret broker; GitHub has no CJ secret. No production-key value was retrieved, copied or changed.
+
+Official CJ source `e8375d86550ae834dbab0934eb226ec2819d55ae` distinguishes MCP direct tokens from apiKey exchange, extracts the access-token suffix and sends it as CJ-Access-Token. Source-backed candidate `f3ff9208165e3f69e727c093bfe1a403d541552f` adds explicit MCP_DIRECT mode for a single fixed catalog GET, no auth exchange/refresh/retry, 50-point ceiling and secret-free durable receipts. Nine local offline tests passed. Credential label is not independently verified account identity. Live compatibility is not yet claimed.
+
+The dedicated CJ branch `ci/provider-readback-cj-v1` at `fe904448ec9b00eff9f2791ddae30e1217c4bb4a` is unconditionally disabled; readback confirms it references only VERIFY_CJ_DIRECT_TOKEN. Never substitute an MCP Token into VERIFY_CJ_API_KEY. Prefer a NEW credential after verified CI and secure owner provisioning; stop if CJ asks to reset/replace an existing credential. No CJ call or token creation occurred. No need to contact CJ support.
+
+Production read-only 11:25 UTC still pending RAM with critical saves0. NOT_BORN / LOCKED unchanged. Existing Amazon actual evidence, integrated commerce lifecycle and phone-browser proof remain preserved.
+
+Verified code f3ff9208165e3f69e727c093bfe1a403d541552f passed [Product](https://github.com/empireaios/EmpireAI/actions/runs/36561587724), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36561587714) and [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36561587745), including phone browser, Pillow and offline direct-token tests. No live CJ acceptance.
+
+## Superseded documentation-only CJ assessment — 2026-09-29
 
 Owner reports existing EmpireAI Production credential Type API Key remains Activated/untouched; Add API currently offers only MCP Token, with creation not confirmed. Treat this account UI report as authoritative for available choices; earlier instruction to select a new API Key cannot currently be followed.
 
