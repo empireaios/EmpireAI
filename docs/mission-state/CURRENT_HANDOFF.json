@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29T12:17:46.750Z",
+  "updatedAt": "2026-09-29T12:24:42.490Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -20,11 +20,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "34d66546e5df0be2e6b98a0e30082adf1f208906",
+    "lastVerifiedIntegrationHead": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged; authenticated CJ variant/warehouse readbacks completed, rejected zero CJ stock; follow-on evidence phone display CI pending; production protected",
-    "candidateCodeHead": "ace3133adb184555ef39d00802613483949a2d1a",
-    "branchTipNote": "Documentation/evidence checkpoint follows verified code34d66546; both isolated provider branches exist and are disabled.",
+    "status": "Draft unmerged; authenticated CJ variant/warehouse rejection and phone evidence verified by Product/Semantic/Runtime CI; not deployed; production protected",
+    "candidateCodeHead": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
+    "branchTipNote": "Documentation checkpoint follows verified code e38aed18. Both isolated provider branches disabled; latest CJ held head03ac3dec.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -173,7 +173,10 @@
       "https://github.com/empireaios/EmpireAI/actions/runs/36549205564",
       "https://github.com/empireaios/EmpireAI/actions/runs/36564085521",
       "https://github.com/empireaios/EmpireAI/actions/runs/36564085579",
-      "https://github.com/empireaios/EmpireAI/actions/runs/36564085528"
+      "https://github.com/empireaios/EmpireAI/actions/runs/36564085528",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36567225628",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36567225594",
+      "https://github.com/empireaios/EmpireAI/actions/runs/36567225610"
     ],
     "canaryCleanup": {
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -1030,7 +1033,78 @@
         "birth": "NOT_BORN",
         "commerce": "LOCKED"
       },
-      "productionTouched": false
+      "productionTouched": false,
+      "browser": {
+        "artifact": {
+          "id": 11032516655,
+          "name": "commerce-browser-evidence",
+          "size_in_bytes": 200565,
+          "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11032516655",
+          "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11032516655/zip",
+          "expired": false,
+          "created_at": "2026-09-29T12:20:48Z",
+          "expires_at": "2026-10-13T12:20:47Z",
+          "updated_at": "2026-09-29T12:20:48Z",
+          "digest": "sha256:7e288b824b8e474e549e13c9bd634e3a7817626dd386f23ed3f17c4d8ca010ca",
+          "workflow_run": {
+            "id": 36567225594,
+            "repository_id": 1275922460,
+            "head_repository_id": 1275922460,
+            "head_branch": "fix/pillow-integrated-closure-20260920",
+            "head_sha": "e38aed183869eb21f4e3ba72f84ca97436b618e2"
+          }
+        },
+        "jobId": 109402184047,
+        "testMergeHead": "2a4ee13c9ac45e86384f781438c75eff9df7b635",
+        "candidateHead": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
+        "artifactDigestMatched": true,
+        "evidenceMode": "OFFLINE_FIXTURE_WITH_HISTORICAL_PROVIDER_OBSERVATIONS",
+        "newProviderCalls": 0,
+        "assertions": [
+          "18 variants at US$11.28 each",
+          "freight skipped, landed cost and profit unknown"
+        ],
+        "visualLimitations": [
+          "Existing command data unavailable banner",
+          "Existing fixed console navigation overlaps parts of full-page screenshot",
+          "Not deployed; not complete owner-console acceptance"
+        ]
+      },
+      "ci": {
+        "head": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
+        "runs": [
+          {
+            "id": 36567225628,
+            "name": "Pillow semantic repair CI",
+            "status": "completed",
+            "conclusion": "success",
+            "run_number": 295,
+            "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225628/jobs",
+            "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225628/logs",
+            "workflow_id": 362674549
+          },
+          {
+            "id": 36567225594,
+            "name": "Product path CI",
+            "status": "completed",
+            "conclusion": "success",
+            "run_number": 295,
+            "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225594/jobs",
+            "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225594/logs",
+            "workflow_id": 362309382
+          },
+          {
+            "id": 36567225610,
+            "name": "Pillow runtime repair CI",
+            "status": "completed",
+            "conclusion": "success",
+            "run_number": 293,
+            "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225610/jobs",
+            "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225610/logs",
+            "workflow_id": 362688325
+          }
+        ]
+      }
     }
   },
   "failedAttempts": [
@@ -1077,8 +1151,8 @@
     "Amazon listing and CJ catalog authenticated readbacks succeeded in isolated workflows; both now disabled. Exact CJ VID/cost/stock/freight, independently verified account identity, orders and settled economics remain unproved. Additional reads require a separately bounded authorization."
   ],
   "nextExecutableActions": [
-    "Finish required CI for supplier-evidence/phone checkpoint, then record exact verified code and stop per owner bounded-checkpoint directive.",
     "Bounded stock-filtered supplier discovery to select a genuinely CJ-stocked exact variant; then warehouse-bound US freight and matching Amazon identity/fees. Do not repeat this rejected PID or count factory stock as CJ-managed stock. Country US is established; a ZIP or destination policy is needed for address-specific freight.",
+    "Keep historical provider observations separate from fresh qualified products and realised economics. Preserve actual receipts and zero-stock rejection; complete getInventoryByPid adapter integration before any positive approval flow.",
     "Actual hosted phone browser gate is now required and passed; preserve it. Complete surrounding command/health/exception/approval/pause views and durable deployed session verification. Narrow harness deliberately leaves shell command data/event endpoints unavailable; this is not whole-console acceptance.",
     "Continue protected-production preservation in parallel: coordinate external processes/replicas/direct producers/native stores/Redis with SQL.js and Shadow state, then prove multi-store copy/readback. Old Railway remains pending=true and has no validated in-process quiesce/save mechanism; no restart/redeploy/promotion. Do not let this block independent commerce/Pillow work.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
