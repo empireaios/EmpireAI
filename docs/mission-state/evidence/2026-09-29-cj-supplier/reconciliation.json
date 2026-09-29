@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "runId": 36566773325,
+  "jobId": 109400515207,
+  "runHead": "32d72bddff82cee80d9972d6a4b32705dd3871a2",
+  "artifactId": 11032490608,
+  "artifactSha256": "234e9b55a89fa771f25966271e9dd33fac50a70cb039127dcb37711f74b20481",
+  "artifactDigestMatched": true,
+  "summaryHashesVerified": 2,
+  "workflowDisabledHead": "03ac3dec96bd341d05e972fdcbcaced8092bd50d",
+  "workflowDisabledReadBack": true,
+  "observed": {
+    "product": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit",
+    "variantCount": 18,
+    "allVariantSellPricesUsd": 11.28,
+    "priceWireType": "number",
+    "stockCountry": "CN",
+    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+    "allCjManagedUnits": 0,
+    "positiveFactoryInventory": true
+  },
+  "derived": {
+    "variantCostCents": 1128,
+    "existingPillowPriceAdapterMatches": 18,
+    "eligibleVariants": 0,
+    "decision": "REJECT_INSUFFICIENT_CJ_MANAGED_STOCK"
+  },
+  "requests": {
+    "gets": 2,
+    "freightCalculations": 0,
+    "retries": 0,
+    "businessWrites": 0,
+    "maximumPoints": 30,
+    "reservedPoints": 20,
+    "actualPointDebit": null
+  },
+  "unknown": [
+    "Freight not requested because no eligible stock",
+    "ZIP/address-specific delivery",
+    "Amazon matching ASIN offer and fees",
+    "Compliance",
+    "Actual paid supplier costs and realised profit",
+    "Independent account identity"
+  ],
+  "integration": {
+    "stockPayload": "getInventoryByPid nested variantInventories, not queryByVid rows",
+    "automaticQualification": false,
+    "mappingToPriorAmazonProof001": false,
+    "phoneView": "Historical observation only; no application/provider fetch added"
+  },
+  "nextBoundary": "Bounded stock-filtered supplier discovery to select a genuinely CJ-stocked exact variant; then warehouse-bound US freight and matching Amazon identity/fees. Do not repeat this rejected PID or count factory stock as CJ-managed stock. Country US is established; a ZIP or destination policy is needed for address-specific freight.",
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "productionTouched": false
+}

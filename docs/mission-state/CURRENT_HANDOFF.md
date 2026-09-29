@@ -1,5 +1,14 @@
 # EmpireAI / Pillow active mission handoff
 
+## Latest checkpoint — authentic CJ variant and warehouse evidence; CI pending
+
+Run36566773325 at `32d72bddff82cee80d9972d6a4b32705dd3871a2` succeeded with two GETs, no retries/writes and20points reserved within30maximum. The observed jumpsuit PID2609291119211612600 has18 exact variants at US$11.28 each. All18 show zero CJ-managed stock in CN subwarehouse `{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}`; positive factory inventory is not eligible CJ stock. Decision: REJECT_INSUFFICIENT_CJ_MANAGED_STOCK. Freight skipped by design; no landed-cost/profit claim. Both provider workflows remain held; CJ disabled head03ac3dec96bd341d05e972fdcbcaced8092bd50d read back.
+
+[Immutable run receipts and admissions](evidence/2026-09-29-cj-supplier/receipt.json), [reconciliation](evidence/2026-09-29-cj-supplier/reconciliation.json), [reviewed boundary](CJ_SUPPLIER_EVIDENCE_CHECKPOINT.md). Artifact11032490608 digest234e9b55a89fa771f25966271e9dd33fac50a70cb039127dcb37711f74b20481 matched; two summary hashes recomputed. Existing Pillow price adapter independently matches all18 prices offline. New stock payload must not be masqueraded as the old queryByVid contract. No mapping to unrelated Amazon Proof001, automatic qualification or actual accounting. Phone historical observation row added; required CI pending.
+
+Next boundary after verification: bounded stock-filtered discovery of a genuinely CJ-stocked variant, then warehouse-bound US freight and matching Amazon identity/fees. Do not repeat this rejected PID just to force positive proof. US destination is country-level; ZIP/address delivery remains unknown. Production untouched; NOT_BORN / LOCKED unchanged.
+
+
 ## Latest verified checkpoint — historical provider evidence in the owner phone path
 
 Code `34d66546e5df0be2e6b98a0e30082adf1f208906` passed Product36564085528, Semantic36564085521 and Runtime36564085579. The existing owner-scoped transaction screen now shows sanitized historical Amazon/CJ observations with source receipts/hashes and explicit qualification/economics limits. No provider fetch is added. Actual 390×844 Chromium login/BFF/backend/disk/logout verification passed in job109391918424; the harness uses a simulated transaction and does not claim new provider authenticity. [Browser image](evidence/2026-09-29-provider-history-browser.png) and [verification report](evidence/2026-09-29-provider-history-browser.json). Artifact11030794213 digest independently matched. Existing command-data unavailable banner and fixed-shell overlap remain; not whole-console or deployed acceptance.
