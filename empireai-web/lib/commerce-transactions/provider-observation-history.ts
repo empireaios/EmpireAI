@@ -21,5 +21,16 @@ export const providerObservationHistory = [
     "sourceHead": "90cd1630af96711b40770358cf5cd0d8048584f2",
     "responseHash": "002a53573ab59847d4c116ad7ff3ee70e3b189d1744c2e854301fc6f6665f96e",
     "runId": 36563526539
+  },
+  {
+    "provider": "CJ",
+    "observedAt": "2026-09-29T12:14:25.303Z",
+    "identity": "CJYD3209759 / 18 exact variants",
+    "detail": "18 variants at US$11.28 each; zero CJ-managed stock in the returned CN subwarehouse.",
+    "limit": "Factory inventory is not eligible CJ stock. Rejected for qualification; freight skipped, landed cost and profit unknown.",
+    "receiptPath": "docs/mission-state/evidence/2026-09-29-cj-supplier/receipt.json",
+    "sourceHead": "32d72bddff82cee80d9972d6a4b32705dd3871a2",
+    "responseHash": "798f74bce359ff78af8eaf1b8014ab2070957da3f74ca266c9fd10fac23d11f3",
+    "runId": 36566773325
   }
 ] as const;

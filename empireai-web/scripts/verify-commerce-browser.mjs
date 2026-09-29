@@ -55,6 +55,8 @@ try {
   assert.match(await page.locator('body').innerText(),/Nonproduction evidence/);
   await page.getByRole('heading',{name:'Historical provider observations'}).waitFor();
   assert.match(await page.locator('body').innerText(),/CJYD3209759/);
+  assert.match(await page.locator('body').innerText(),/18 variants at US\$11\.28 each/);
+  assert.match(await page.locator('body').innerText(),/freight skipped, landed cost and profit unknown/);
   assert.match(await page.locator('body').innerText(),/not BUYABLE/);
   assert.match(await page.locator('body').innerText(),/Not linked to a transaction/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'phone page overflows');

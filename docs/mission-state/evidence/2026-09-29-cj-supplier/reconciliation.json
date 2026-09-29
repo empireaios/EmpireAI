@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "runId": 36566773325,
+  "jobId": 109400515207,
+  "runHead": "32d72bddff82cee80d9972d6a4b32705dd3871a2",
+  "artifactId": 11032490608,
+  "artifactSha256": "234e9b55a89fa771f25966271e9dd33fac50a70cb039127dcb37711f74b20481",
+  "artifactDigestMatched": true,
+  "summaryHashesVerified": 2,
+  "workflowDisabledHead": "03ac3dec96bd341d05e972fdcbcaced8092bd50d",
+  "workflowDisabledReadBack": true,
+  "observed": {
+    "product": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit",
+    "variantCount": 18,
+    "allVariantSellPricesUsd": 11.28,
+    "priceWireType": "number",
+    "stockCountry": "CN",
+    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+    "allCjManagedUnits": 0,
+    "positiveFactoryInventory": true
+  },
+  "derived": {
+    "variantCostCents": 1128,
+    "existingPillowPriceAdapterMatches": 18,
+    "eligibleVariants": 0,
+    "decision": "REJECT_INSUFFICIENT_CJ_MANAGED_STOCK"
+  },
+  "requests": {
+    "gets": 2,
+    "freightCalculations": 0,
+    "retries": 0,
+    "businessWrites": 0,
+    "maximumPoints": 30,
+    "reservedPoints": 20,
+    "actualPointDebit": null
+  },
+  "unknown": [
+    "Freight not requested because no eligible stock",
+    "ZIP/address-specific delivery",
+    "Amazon matching ASIN offer and fees",
+    "Compliance",
+    "Actual paid supplier costs and realised profit",
+    "Independent account identity"
+  ],
+  "integration": {
+    "stockPayload": "getInventoryByPid nested variantInventories, not queryByVid rows",
+    "automaticQualification": false,
+    "mappingToPriorAmazonProof001": false,
+    "phoneView": "Historical observation only; no application/provider fetch added"
+  },
+  "nextBoundary": "Bounded stock-filtered supplier discovery to select a genuinely CJ-stocked exact variant; then warehouse-bound US freight and matching Amazon identity/fees. Do not repeat this rejected PID or count factory stock as CJ-managed stock. Country US is established; a ZIP or destination policy is needed for address-specific freight.",
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "productionTouched": false,
+  "ci": {
+    "head": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
+    "runs": [
+      {
+        "id": 36567225628,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 295,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225628/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225628/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 36567225594,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 295,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225594/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225594/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 36567225610,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 293,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225610/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36567225610/logs",
+        "workflow_id": 362688325
+      }
+    ]
+  },
+  "browser": {
+    "artifact": {
+      "id": 11032516655,
+      "name": "commerce-browser-evidence",
+      "size_in_bytes": 200565,
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11032516655",
+      "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11032516655/zip",
+      "expired": false,
+      "created_at": "2026-09-29T12:20:48Z",
+      "expires_at": "2026-10-13T12:20:47Z",
+      "updated_at": "2026-09-29T12:20:48Z",
+      "digest": "sha256:7e288b824b8e474e549e13c9bd634e3a7817626dd386f23ed3f17c4d8ca010ca",
+      "workflow_run": {
+        "id": 36567225594,
+        "repository_id": 1275922460,
+        "head_repository_id": 1275922460,
+        "head_branch": "fix/pillow-integrated-closure-20260920",
+        "head_sha": "e38aed183869eb21f4e3ba72f84ca97436b618e2"
+      }
+    },
+    "jobId": 109402184047,
+    "testMergeHead": "2a4ee13c9ac45e86384f781438c75eff9df7b635",
+    "candidateHead": "e38aed183869eb21f4e3ba72f84ca97436b618e2",
+    "artifactDigestMatched": true,
+    "evidenceMode": "OFFLINE_FIXTURE_WITH_HISTORICAL_PROVIDER_OBSERVATIONS",
+    "newProviderCalls": 0,
+    "assertions": [
+      "18 variants at US$11.28 each",
+      "freight skipped, landed cost and profit unknown"
+    ],
+    "visualLimitations": [
+      "Existing command data unavailable banner",
+      "Existing fixed console navigation overlaps parts of full-page screenshot",
+      "Not deployed; not complete owner-console acceptance"
+    ]
+  }
+}

@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 1,
+  "sourceHead": "32d72bddff82cee80d9972d6a4b32705dd3871a2",
+  "provider": "cj",
+  "pid": "2609291119211612600",
+  "evidenceMode": "AUTHENTICATED_HTTP_OBSERVATION",
+  "status": "OBSERVED_NOT_QUALIFIABLE",
+  "startedAt": "2026-09-29T12:14:23.467Z",
+  "maxRequests": 3,
+  "maximumPoints": 30,
+  "requestsAttempted": 2,
+  "pointsReserved": 20,
+  "retries": 0,
+  "businessWrites": 0,
+  "destination": {
+    "country": "US",
+    "zip": null,
+    "scope": "COUNTRY_ONLY_NOT_CUSTOMER_ADDRESS"
+  },
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "receipts": [
+    {
+      "observedAt": "2026-09-29T12:14:24.117Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=2609291119211612600",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "25ff9af8c6bc40948c69d380f36de1f9",
+      "rawBodySha256": "3f3b5eedece19ee2e52dd769adc22895107f16b856a76f3f372f4a56e4d9144e",
+      "providerCode": 200,
+      "pointsInfo": null,
+      "summary": {
+        "pid": "2609291119211612600",
+        "sku": "CJYD3209759",
+        "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit",
+        "productType": "ORDINARY_PRODUCT",
+        "variants": [
+          {
+            "vid": "2609291119211613600",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975901AZ",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit S Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613601",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975902BY",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit S White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613602",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975903CX",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit S Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613603",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975904DW",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit M Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613604",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975905EV",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit M White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613605",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975906FU",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit M Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613606",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975907GT",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit L Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613607",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975908HS",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit L White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613608",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975909IR",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit L Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613609",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975910JQ",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit XL Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613610",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975911KP",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit XL White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613611",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975912LO",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit XL Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613612",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975913MN",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 2XL Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613613",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975914NM",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 2XL White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613614",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975915OL",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 2XL Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613615",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975916PK",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 3XL Red",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613616",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975917QJ",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 3XL White",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          },
+          {
+            "vid": "2609291119211613617",
+            "pid": "2609291119211612600",
+            "sku": "CJYD320975918RI",
+            "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit 3XL Black",
+            "variantSellPrice": 11.28,
+            "priceWireType": "number",
+            "costCents": 1128
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "21abc8ddd604839bb1a8e4b2564a3e9cdfb65e180866b4550738ddf9418b7b10"
+    },
+    {
+      "observedAt": "2026-09-29T12:14:25.301Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=2609291119211612600",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "331e145f73bb40a5ae33b7f473ed34af",
+      "rawBodySha256": "798f74bce359ff78af8eaf1b8014ab2070957da3f74ca266c9fd10fac23d11f3",
+      "providerCode": 200,
+      "pointsInfo": null,
+      "summary": {
+        "variantInventories": [
+          {
+            "vid": "2609291119211613607",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 9755,
+                "totalInventory": 9755,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 9755
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613606",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 7796,
+                "totalInventory": 7796,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 7796
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613617",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 8519,
+                "totalInventory": 8519,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 8519
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613616",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 7732,
+                "totalInventory": 7732,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 7732
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613605",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 7155,
+                "totalInventory": 7155,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 7155
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613604",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 6392,
+                "totalInventory": 6392,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 6392
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613615",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 5153,
+                "totalInventory": 5153,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 5153
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613609",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 8824,
+                "totalInventory": 8824,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 8824
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613608",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 9908,
+                "totalInventory": 9908,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 9908
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613610",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 9941,
+                "totalInventory": 9941,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 9941
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613603",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 6823,
+                "totalInventory": 6823,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 6823
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613614",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 6601,
+                "totalInventory": 6601,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 6601
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613613",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 5970,
+                "totalInventory": 5970,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 5970
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613602",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 8650,
+                "totalInventory": 8650,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 8650
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613612",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 5094,
+                "totalInventory": 5094,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 5094
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613601",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 8679,
+                "totalInventory": 8679,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 8679
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613611",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 5849,
+                "totalInventory": 5849,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 5849
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "2609291119211613600",
+            "inventory": [
+              {
+                "countryCode": "CN",
+                "cjInventory": 0,
+                "factoryInventory": 8340,
+                "totalInventory": 8340,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 8340
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "0b06efcf24ca4e30d5122edbbf1cc735be4796a01ce14a27c231a8cbf702a6b2"
+    }
+  ],
+  "actualEconomics": null,
+  "qualificationAllowed": false,
+  "accountIdentityConfirmed": false,
+  "selected": null,
+  "reason": "NO_EXACT_VARIANT_WITH_RECONCILED_POSITIVE_CJ_SUBWAREHOUSE_STOCK",
+  "unknowns": [
+    "Independent account identity",
+    "Customer ZIP/address-specific delivery",
+    "Amazon matching offer and fees",
+    "Compliance and Pillow approval",
+    "Settled supplier invoice and realised economics",
+    "Actual point debit"
+  ],
+  "finishedAt": "2026-09-29T12:14:25.303Z"
+}

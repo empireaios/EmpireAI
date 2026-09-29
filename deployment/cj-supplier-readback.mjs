@@ -15,16 +15,16 @@ export function cents(x) {
   const [whole,fraction='']=String(x).split('.');return Number(whole)*100+Number(fraction.padEnd(2,'0'));
 }
 function rows(x,max=1000){if(!Array.isArray(x)||x.length>max)throw Error('CJ_ARRAY_SCHEMA');return x;}
-export function productSummary(data){
-  if(data?.pid!==PID)throw Error('CJ_PID_MISMATCH');
+export function productSummary(data,expectedPid=PID){
+  if(data?.pid!==expectedPid)throw Error('CJ_PID_MISMATCH');
   const variants=rows(data.variants).map(v=>{
-    if(v.pid!==PID||!id(v.vid))throw Error('CJ_VARIANT_IDENTITY_MISMATCH');
+    if(v.pid!==expectedPid||!id(v.vid))throw Error('CJ_VARIANT_IDENTITY_MISMATCH');
     return {vid:v.vid,pid:v.pid,sku:text(v.variantSku),name:text(v.variantNameEn),
       variantSellPrice:v.variantSellPrice===null?null:['number','string'].includes(typeof v.variantSellPrice)?v.variantSellPrice:null,
       priceWireType:typeof v.variantSellPrice,costCents:cents(v.variantSellPrice)};
   });
   if(new Set(variants.map(v=>v.vid)).size!==variants.length)throw Error('CJ_DUPLICATE_VARIANT');
-  return {pid:PID,sku:text(data.productSku),name:text(data.productNameEn),productType:text(data.productType),variants};
+  return {pid:expectedPid,sku:text(data.productSku),name:text(data.productNameEn),productType:text(data.productType),variants};
 }
 export function inventorySummary(data){return {variantInventories:rows(data?.variantInventories).map(v=>{
   if(!id(v.vid))throw Error('CJ_STOCK_IDENTITY_MISMATCH');
@@ -45,7 +45,7 @@ export function choose(product,inventory){
   }
   return candidates.sort((a,b)=>a.vid.localeCompare(b.vid)||a.countryCode.localeCompare(b.countryCode)||a.stockId.localeCompare(b.stockId))[0]??null;
 }
-function freightSummary(data){return {options:rows(data,100).map(o=>({logisticName:text(o.logisticName),logisticAging:text(o.logisticAging),
+export function freightSummary(data){return {options:rows(data,100).map(o=>({logisticName:text(o.logisticName),logisticAging:text(o.logisticAging),
   logisticPriceCents:cents(o.logisticPrice),taxesFeeCents:cents(o.taxesFee),clearanceOperationFeeCents:cents(o.clearanceOperationFee),totalPostageFeeCents:cents(o.totalPostageFee)}))};}
 export async function runSupplierReadback(env,dir,{testTransport}={}){
   if(env.CJ_SUPPLIER_POINT_LIMIT!=='30'||env.CJ_CREDENTIAL_MODE!=='MCP_DIRECT')throw Error('CJ_FIXED_30_POINT_DIRECT_BOUND_REQUIRED');
