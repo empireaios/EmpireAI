@@ -32,6 +32,7 @@ export async function prepareOfflineImportedOrderFulfillment(input: {
   workspaceId: string;
   amazonOrderId: string;
   orderItemId: string;
+  opportunityId: string;
   listingProof: {
     state: "BUYABLE";
     sellerSku: string;
@@ -58,7 +59,7 @@ export async function prepareOfflineImportedOrderFulfillment(input: {
   }
   const repo = getPillowCommercePresaleRepository();
   const map = repo.getMappingByAmazonSku(item.sellerSku);
-  const opportunity = repo.getLatestOpportunity(input.workspaceId);
+  const opportunity = repo.getOpportunityById(input.workspaceId, input.opportunityId);
   const receipts = map?.providerReceipts;
   if (!map || !opportunity || opportunity.workspaceId !== input.workspaceId ||
       opportunity.disposition !== "APPROVED_PENDING_PUBLISH" ||
