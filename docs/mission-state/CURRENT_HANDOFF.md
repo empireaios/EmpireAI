@@ -1,5 +1,12 @@
 # EmpireAI / Pillow active mission handoff
 
+## 2026-09-29 supplier reversal checkpoint
+
+Verified code `009b1c360132a0e3783a7bf57d02916fb4611e27`: [Product](https://github.com/empireaios/EmpireAI/actions/runs/36543906199), [Semantic](https://github.com/empireaios/EmpireAI/actions/runs/36543906125), [Runtime](https://github.com/empireaios/EmpireAI/actions/runs/36543906149) all passed. Same integrated offline transaction now continues through cancellation request/pending/decline, delivered-order return authorization and supplier receipt, issued component-attributed credit, partial and completed cash refund. Issued credits debit supplier-credit receivable; cash collection clears receivable without a second profit. Duplicate/conflict/over-refund and disk restart pass; projection remains unchanged. Fixtures only; no real provider receipt or authority change.
+
+Read-only Railway 08:37 UTC still reports pending RAM on the same deployment; production remains protected. Amazon/CJ credential names exist, but connector values are redacted and no local provider credentials are available. No authenticated provider readback claimed. Next: real application session and isolated browser verification, then securely provisioned nonproduction provider ingestion. NOT_BORN / LOCKED unchanged.
+
+
 Updated 2026-09-29 UTC. Current verified code head `d683111eff231c1ece45cd13cdbc6e36a0767d93` passes Product, Semantic and Runtime. Four linked checkpoints connect nonproduction marketplace/order evidence through supplier/tracking/settlement/refund accounting to a scoped owner API and phone UI candidate. No deployed/browser/live-commerce acceptance. Machine companion: [CURRENT_HANDOFF.json](CURRENT_HANDOFF.json). Prior evidence below remains historical; the abandoned Work execution is not a source of truth.
 
 ## Owner mandate and truth state
