@@ -1,3 +1,5 @@
+import { prepareOfflineImportedOrderFulfillment } from "../../orchestration/pillow-commerce-presale/offline-imported-order-fulfillment.js";
+import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { prepareOfflineAmazonOfferFromOpportunity } from "../../orchestration/pillow-commerce-presale/offline-amazon-offer-handoff.js";
 import { buildCommerceProviderReceipts } from "../../orchestration/pillow-commerce-presale/commerce-provider-receipts.js";
 import assert from "node:assert/strict";
@@ -19,7 +21,7 @@ import { runPillowCommercePresaleCycle } from "../../orchestration/pillow-commer
 import { reevaluateCommerceOpportunity } from "../../orchestration/pillow-commerce-presale/services/reevaluate-opportunity-service.js";
 import { getPillowCommercePresaleRepository } from "../../orchestration/pillow-commerce-presale/repository/sqlite-pillow-commerce-presale-repository.js";
 import { clearCjAuthCache } from "../../suppliers/cj-dropshipping/cj-auth.js";
-import { closeDatabase } from "../../brain/database.js";
+import { closeDatabase, getDatabase } from "../../brain/database.js";
 
 let presaleTestDir = "";
 import { coerceUsdNumber, pickLiveCjVariant } from "../../orchestration/pillow-commerce-presale/cj-live-normalize.js";
@@ -465,6 +467,56 @@ describe("pillow-commerce-presale", () => {
     assert.equal(prepared.decisionSha256, approved.mapping.providerReceipts?.decisionSha256);
     assert.equal((prepared.body?.attributes as { fulfillment_availability: Array<{ quantity: number }> })
       .fulfillment_availability[0]?.quantity, approved.mapping.startQuantity);
+    // Offline integration: real-form imported order → saved variant → draft → unknown actual P&L.
+    repoForOrder: {
+      const fulfillmentRepo = getPillowCommercePresaleRepository();
+      fulfillmentRepo.saveOpportunity(approved);
+      const sku = approved.mapping.amazonSellerSku;
+      const observedAt = new Date().toISOString();
+      setHttpTransportOverride(async request => {
+        assert.match(request.url, /\\/orders\\/2026-01-01\\/orders/);
+        return { status: 200, ok: true, latencyMs: 1, json: { orders: [{
+          orderId: "111-2222222-3333333",
+          salesChannel: { marketplaceId: "ATVPDKIKX0DER" },
+          createdTime: "2026-09-20T00:00:00Z", lastUpdatedTime: observedAt,
+          fulfillment: { fulfillmentStatus: "UNSHIPPED", fulfilledBy: "MERCHANT" },
+          orderItems: [{ orderItemId: "item-1", quantityOrdered: 2, product: { sellerSku: sku } }],
+          proceeds: { grandTotal: { amount: "43.10", currencyCode: "USD" } },
+          buyer: { buyerEmail: "must-never-be-persisted@example.test" },
+        }] } };
+      });
+      const args = { workspaceId: "ws_empire_1", amazonOrderId: "111-2222222-3333333",
+        orderItemId: "item-1", listingProof: { state: "BUYABLE" as const,
+          sellerSku: sku, asin: approved.mapping.asin,
+          marketplaceId: "ATVPDKIKX0DER", observedAt } };
+      await assert.rejects(prepareOfflineImportedOrderFulfillment(args), /import window/);
+      await amazonUsSpApiAdapter.syncOrders({ workspaceId: "ws_empire_1", providerId: "amazon-us",
+        mode: "production", credentials: { accessToken: "offline-test-token" } });
+      await assert.rejects(prepareOfflineImportedOrderFulfillment({
+        ...args, listingProof: { ...args.listingProof, sellerSku: "wrong" },
+      }), /BUYABLE/);
+      const draft = await prepareOfflineImportedOrderFulfillment(args);
+      assert.equal(draft.cjVid, approved.mapping.cjVid);
+      assert.equal(draft.quantity, 2);
+      assert.equal(draft.supplierSpendAllowed, false);
+      assert.equal(draft.submissionAttempted, false);
+      assert.equal(draft.economics.actual.realisedContributionUsd, null);
+      assert.equal(draft.economics.actual.freshness, "UNAVAILABLE");
+      assert.equal(draft.economics.marketplacePayoutReceived, "UNKNOWN");
+      closeDatabase();
+      const disk = new DatabaseSync(process.env.DATABASE_PATH!, { readOnly: true });
+      try {
+        const row = disk.prepare("SELECT record_json FROM pillow_commerce_fulfillment_drafts WHERE idempotency_key=?")
+          .get(draft.idempotencyKey) as { record_json: string };
+        assert.deepEqual(JSON.parse(row.record_json), draft);
+        assert.doesNotMatch(row.record_json, /must-never-be-persisted/);
+      } finally { disk.close(); }
+      assert.deepEqual(await prepareOfflineImportedOrderFulfillment(args), draft);
+      await assert.rejects(prepareOfflineImportedOrderFulfillment({
+        ...args, listingProof: { ...args.listingProof,
+          observedAt: new Date(Date.parse(observedAt) + 1000).toISOString() },
+      }), /reconcile/);
+    }
     const altered = prepareOfflineAmazonOfferFromOpportunity({ opportunity: {
       ...approved, mapping: { ...approved.mapping, proposedSellingPriceUsd: 1 } }, identifier, catalogResponse });
     assert.match(altered.blockers.join(" "), /differ from the approval mapping/);
