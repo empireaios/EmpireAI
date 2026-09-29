@@ -1,3 +1,4 @@
+import { appendOfflineCommerceReceipt, readOfflineCommerceLifecycle, type OfflineCommerceReceipt } from "../../orchestration/pillow-commerce-presale/offline-commerce-lifecycle.js";
 import { prepareOfflineImportedOrderFulfillment } from "../../orchestration/pillow-commerce-presale/offline-imported-order-fulfillment.js";
 import { amazonUsSpApiAdapter } from "../../orchestration/reality-integration/live-commerce/adapters/amazon-sp-api-adapter.js";
 import { prepareOfflineAmazonOfferFromOpportunity } from "../../orchestration/pillow-commerce-presale/offline-amazon-offer-handoff.js";
@@ -571,6 +572,58 @@ describe("pillow-commerce-presale", () => {
         ...args, listingProof: { ...args.listingProof,
           observedAt: new Date(Date.parse(observedAt) + 1000).toISOString() },
       }), /reconcile/);
+
+      const base = { source: "OFFLINE_FIXTURE" as const, occurredAt: observedAt };
+      const append = (receipt: OfflineCommerceReceipt) =>
+        appendOfflineCommerceReceipt(args.workspaceId,draft.idempotencyKey,receipt);
+      assert.equal(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey).reconciliation,"INCOMPLETE");
+      const acceptance: OfflineCommerceReceipt = { ...base,receiptId:"cj-accept-1",
+        kind:"SUPPLIER_ACCEPTED",supplierOrderId:"CJ-OFFLINE-1",cjVid:draft.cjVid,quantity:draft.quantity };
+      await append(acceptance);
+      closeDatabase();
+      assert.equal((await append(acceptance)).receiptCount,1);
+      await assert.rejects(append({...acceptance,supplierOrderId:"OTHER"}),/Receipt ID conflict/);
+      await assert.rejects(append({...base,receiptId:"bad-payment",kind:"SUPPLIER_PAID",
+        supplierOrderId:"OTHER",productCents:640,freightCents:960,otherCents:0}),/matching acknowledgement/);
+      await append({...base,receiptId:"cj-track-1",kind:"TRACKING",snapshot:{
+        supplierOrderId:"CJ-OFFLINE-1",trackingNumber:"TRACK-OFFLINE",carrier:"FIXTURE",
+        deliveryStatus:"DELIVERED",events:[{status:"DELIVERED",description:"Offline delivery",
+          location:null,occurredAt:observedAt}],
+      }});
+      const payment: OfflineCommerceReceipt = {...base,receiptId:"cj-paid-1",kind:"SUPPLIER_PAID",
+        supplierOrderId:"CJ-OFFLINE-1",productCents:640,freightCents:960,otherCents:25};
+      const db = getDatabase();
+      const persist = db.requestCriticalPersist.bind(db);
+      db.requestCriticalPersist = async () => { throw new Error("injected persistence failure"); };
+      await assert.rejects(append(payment),/injected persistence failure/);
+      db.requestCriticalPersist = persist;
+      await append(payment); // Retry must flush the existing receipt, never add a second payment.
+      closeDatabase();
+      assert.equal(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey).receiptCount,3);
+      assert.equal(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey).economics.actual.realisedContributionUsd,null);
+      const settlement: OfflineCommerceReceipt = {...base,receiptId:"amz-settle-1",kind:"AMAZON_SETTLED",
+        amazonOrderId:draft.amazonOrderId,orderItemId:draft.orderItemId,
+        grossCents:4310,feeCents:500,otherCents:10,payoutCents:3800};
+      await assert.rejects(append({...settlement,payoutCents:3801}),/does not reconcile/);
+      const reconciled = await append(settlement);
+      assert.equal(reconciled.evidenceMode,"OFFLINE_FIXTURE");
+      assert.equal(reconciled.economics.actual.realisedContributionUsd,21.75);
+      assert.equal(reconciled.tracking?.deliveryStatus,"DELIVERED");
+      assert.equal(reconciled.reconciliation,"RECONCILED_FIXTURE");
+      assert.equal(reconciled.journal.reduce((n,row)=>n+row.debitCents-row.creditCents,0),0);
+      const refunded = await append({...base,receiptId:"refund-1",kind:"REFUND_SETTLED",
+        amazonOrderId:draft.amazonOrderId,orderItemId:draft.orderItemId,refundCents:1000,feeCreditCents:100});
+      assert.equal(refunded.economics.actual.realisedContributionUsd,12.75);
+      assert.equal(refunded.economics.expected.profitUsd,draft.economics.expected.profitUsd);
+      assert.equal(refunded.journal.reduce((n,row)=>n+row.debitCents-row.creditCents,0),0);
+      assert.equal(refunded.supplierSpendAllowed,false);
+      closeDatabase();
+      assert.deepEqual(readOfflineCommerceLifecycle(args.workspaceId,draft.idempotencyKey),refunded);
+      const receiptDisk = new DatabaseSync(process.env.DATABASE_PATH!,{readOnly:true});
+      try {
+        const count = receiptDisk.prepare("SELECT COUNT(*) AS n FROM pillow_offline_commerce_receipts").get() as {n:number};
+        assert.equal(count.n,5);
+      } finally { receiptDisk.close(); }
     }
 
     globalThis.fetch = originalFetch;
