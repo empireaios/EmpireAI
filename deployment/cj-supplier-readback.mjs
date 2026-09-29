@@ -61,6 +61,8 @@ export async function runSupplierReadback(env,dir,{testTransport}={}){
     if(evidence.requestsAttempted>=3)throw Error('REQUEST_BOUND_EXCEEDED');
     const spec={url:BASE+path,method};const n=++evidence.requestsAttempted;evidence.pointsReserved+=10;
     save(dir,`request-${n}.json`,{...spec,body:body??null,pointsReserved:10,attempt:n});
+    // CJ free-tier limit is one request/second; this is pacing, never a retry.
+    if(n>1&&!testTransport)await new Promise(resolve=>setTimeout(resolve,1100));
     const result=await request(spec,{'CJ-Access-Token':config.directToken,'content-type':'application/json'},body?JSON.stringify(body):undefined,testTransport??fetch);
     const b=result.json;
     const requestId=id(b.requestId);if(!requestId)throw Error('CJ_REQUEST_ID_MISSING');
