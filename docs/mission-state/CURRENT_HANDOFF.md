@@ -1,5 +1,13 @@
 # EmpireAI / Pillow active mission handoff
 
+## Current checkpoint — actual CJ direct-token catalog observation
+
+Owner-approved [run36563526539](https://github.com/empireaios/EmpireAI/actions/runs/36563526539) at `90cd1630af96711b40770358cf5cd0d8048584f2` passed nine offline tests and the actual single fixed catalog GET. Environment metadata confirms one exact branch/zero tags and VERIFY_CJ_DIRECT_TOKEN. No auth exchange, retry, business write, credential modification or production change. Provider branch held again at `99a4beb5b1e8a69b59384d0fa867c4054f92f622`; unconditional disablement read back.
+
+Returned PID2609291119211612600 / SKU CJYD3209759, catalog price wire type string, no variants in summary. Direct-token compatibility is now verified for this narrow endpoint and observation. Exact variant cost, stock, freight, independently verified account identity and qualification remain false/unproved. Account CJ5570373 is only a credential label. No link to the simulated transaction and no actual economics. The immutable receipt retains the implementation's old UNVERIFIED_DEPLOYMENT label; reconciliation records the narrower new evidence without rewriting it. Fifty points reserved; actual debit/pointsInfo not retained, so do not claim observed account debit.
+
+Durable [admission](evidence/2026-09-29-cj-admission.json), [receipt](evidence/2026-09-29-cj-receipt.json) and [reconciliation](evidence/2026-09-29-cj-reconciliation.json). Artifact11031290017 SHA2563645ff9a858ec2cbe039b8a2fa3b7f2edb7d4fa12d6a47d5dc4c9fdd5c46c76d matched; summary hash independently recomputed. No raw secret persisted. No further provider calls authorized by this checkpoint; continue unrelated offline integration/owner-console work. NOT_BORN / LOCKED and protected-production hold unchanged.
+
 ## Current CJ route — independent source investigation; support is not a dependency
 
 [Investigation and design](CJ_CREDENTIAL_ROUTE_INVESTIGATION.md) records authenticated metadata checks and pinned CJ source evidence. Railway has CJ secret names but OAuth exposes no values or cross-platform secret broker; GitHub has no CJ secret. No production-key value was retrieved, copied or changed.

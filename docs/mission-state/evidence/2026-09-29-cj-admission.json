@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "provider": "cj",
+  "evidenceMode": "PROVIDER_READBACK_ATTEMPT",
+  "sourceHead": "90cd1630af96711b40770358cf5cd0d8048584f2",
+  "startedAt": "2026-09-29T11:43:52.758Z",
+  "status": "STARTED",
+  "plannedRequests": [
+    {
+      "method": "GET",
+      "url": "https://developers.cjdropshipping.com/api2.0/v1/product/list?pageNum=1&pageSize=1",
+      "authentication": false
+    }
+  ],
+  "maximumBusinessReads": 1,
+  "cjPointsReserved": 50,
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "liveCommerceAllowed": false,
+  "receipts": []
+}
