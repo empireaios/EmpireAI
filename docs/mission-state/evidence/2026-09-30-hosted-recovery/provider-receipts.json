@@ -1,0 +1,969 @@
+{
+  "appRestart": {
+    "scope": "deployment",
+    "deploymentId": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
+    "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-30T13:23:25.606274002Z",
+        "severity": "info",
+        "message": "bounded_canary_start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_canary_start\""
+          },
+          {
+            "key": "schema",
+            "value": "\"canary-launch-v1\""
+          },
+          {
+            "key": "launchId",
+            "value": "\"9b5d39b1-125a-4ab9-be55-0576dde2ce20\""
+          },
+          {
+            "key": "nodeVersion",
+            "value": "\"22.23.2\""
+          },
+          {
+            "key": "execPath",
+            "value": "\"/mise/installs/node/22.23.2/bin/node\""
+          },
+          {
+            "key": "launcherPid",
+            "value": "1"
+          },
+          {
+            "key": "launcherSha256",
+            "value": "\"cd959338913bc7b20f7d72a6814611a19ab520d19080b89b59e0b2527e1916d5\""
+          },
+          {
+            "key": "serviceId",
+            "value": "\"3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b\""
+          },
+          {
+            "key": "deploymentId",
+            "value": "\"562d64c8-3a00-425a-bc39-c10a8a02cf54\""
+          },
+          {
+            "key": "gitCommitSha",
+            "value": "\"bea6f0d490041cb2c85f5ca1ae68902bb3761f6c\""
+          },
+          {
+            "key": "expiresAt",
+            "value": "\"2026-09-30T14:07:09.699Z\""
+          },
+          {
+            "key": "scope",
+            "value": "\"engineering_test_only\""
+          },
+          {
+            "key": "commerce",
+            "value": "\"LOCKED\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:40:33.508576881Z",
+        "severity": "info",
+        "message": "bounded_canary_stopped",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_canary_stopped\""
+          },
+          {
+            "key": "reason",
+            "value": "\"signal\""
+          },
+          {
+            "key": "childExitCode",
+            "value": "0"
+          },
+          {
+            "key": "childSignal",
+            "value": "null"
+          },
+          {
+            "key": "forcedTermination",
+            "value": "false"
+          },
+          {
+            "key": "forcedSignal",
+            "value": "null"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:40:33.508580491Z",
+        "severity": "info",
+        "message": "bounded_canary_start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_canary_start\""
+          },
+          {
+            "key": "schema",
+            "value": "\"canary-launch-v1\""
+          },
+          {
+            "key": "launchId",
+            "value": "\"ebe61407-fa71-4f0a-9081-fe4eacea8371\""
+          },
+          {
+            "key": "nodeVersion",
+            "value": "\"22.23.2\""
+          },
+          {
+            "key": "execPath",
+            "value": "\"/mise/installs/node/22.23.2/bin/node\""
+          },
+          {
+            "key": "launcherPid",
+            "value": "1"
+          },
+          {
+            "key": "launcherSha256",
+            "value": "\"cd959338913bc7b20f7d72a6814611a19ab520d19080b89b59e0b2527e1916d5\""
+          },
+          {
+            "key": "serviceId",
+            "value": "\"3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b\""
+          },
+          {
+            "key": "deploymentId",
+            "value": "\"562d64c8-3a00-425a-bc39-c10a8a02cf54\""
+          },
+          {
+            "key": "gitCommitSha",
+            "value": "\"bea6f0d490041cb2c85f5ca1ae68902bb3761f6c\""
+          },
+          {
+            "key": "expiresAt",
+            "value": "\"2026-09-30T14:07:09.699Z\""
+          },
+          {
+            "key": "scope",
+            "value": "\"engineering_test_only\""
+          },
+          {
+            "key": "commerce",
+            "value": "\"LOCKED\""
+          }
+        ]
+      }
+    ]
+  },
+  "appConfig": {
+    "service": {
+      "id": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+      "name": "recovery-app-0930"
+    },
+    "environment": {
+      "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "name": "production"
+    },
+    "config": {
+      "source": {
+        "repo": "empireaios/EmpireAI",
+        "branch": "ci/hosted-recovery-app-20260930",
+        "commitSha": "bea6f0d490041cb2c85f5ca1ae68902bb3761f6c"
+      },
+      "build": {
+        "builder": "RAILPACK",
+        "buildCommand": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
+        "buildEnvironment": "V3"
+      },
+      "deploy": {
+        "startCommand": "node deployment/canary-launcher.cjs",
+        "healthcheckPath": "/health/ready",
+        "limitOverride": {
+          "containers": {
+            "cpu": 1,
+            "memoryBytes": 2000000000
+          }
+        },
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "NEVER",
+        "useLegacyStacker": false,
+        "ipv6EgressEnabled": false,
+        "runtime": "V2",
+        "multiRegionConfig": {
+          "sfo": {
+            "numReplicas": 1
+          }
+        }
+      },
+      "volumeMounts": {
+        "2ac0e12a-b537-4b05-89b9-099c16a5ccc0": {
+          "mountPath": "/data"
+        }
+      }
+    },
+    "variableNames": [
+      "ADMIN_EMAIL",
+      "ADMIN_PASSWORD",
+      "CORS_ORIGIN",
+      "DATABASE_PATH",
+      "EMPIRE_CANARY_ACK",
+      "EMPIRE_CANARY_EXPIRES_AT",
+      "EMPIRE_CANARY_REDIS_HOST",
+      "EMPIRE_ENGINEERING_TEST_MODE",
+      "FOUNDER_EMAIL",
+      "FOUNDER_PASSWORD",
+      "PORT",
+      "REDIS_URL",
+      "SESSION_SECRET"
+    ],
+    "staged": null
+  },
+  "redisConfig": {
+    "service": {
+      "id": "13466c75-fb98-406f-9ab8-8e676de203b7",
+      "name": "recovery-redis-0930"
+    },
+    "environment": {
+      "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "name": "production"
+    },
+    "config": {
+      "source": {
+        "repo": "empireaios/EmpireAI",
+        "branch": "ci/hosted-recovery-redis-20260930",
+        "commitSha": "b41fbc61985f4bcda0567060417a440ae43ceb6f"
+      },
+      "build": {
+        "builder": "DOCKERFILE",
+        "buildEnvironment": "V3",
+        "dockerfilePath": "deployment/redis-canary.Dockerfile"
+      },
+      "deploy": {
+        "limitOverride": {
+          "containers": {
+            "cpu": 1,
+            "memoryBytes": 500000000
+          }
+        },
+        "restartPolicyType": "NEVER",
+        "useLegacyStacker": false,
+        "ipv6EgressEnabled": false,
+        "runtime": "V2",
+        "multiRegionConfig": {
+          "sfo": {
+            "numReplicas": 1
+          }
+        }
+      },
+      "volumeMounts": {
+        "2d6cef10-72f2-40b9-9676-5d1df5e021cc": {
+          "mountPath": "/data"
+        }
+      }
+    },
+    "variableNames": [
+      "EMPIRE_CANARY_ACK",
+      "EMPIRE_CANARY_ENVIRONMENT_ID",
+      "EMPIRE_CANARY_EXPIRES_AT",
+      "EMPIRE_CANARY_PROJECT_ID",
+      "EMPIRE_CANARY_REDIS_SERVICE_ID",
+      "EMPIRE_ENGINEERING_TEST_MODE",
+      "REDIS_PASSWORD"
+    ],
+    "staged": null
+  },
+  "redisStop": {
+    "scope": "deployment",
+    "deploymentId": "8e3aefe8-7ded-4efd-9bea-ff68879783b0",
+    "serviceId": "13466c75-fb98-406f-9ab8-8e676de203b7",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "REMOVED",
+    "deploy": [
+      {
+        "timestamp": "2026-09-30T13:20:36.060510998Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.786 * monotonic clock: POSIX clock_gettime",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:20:36.060514828Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.786 * Running mode=standalone, port=6379.",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:20:36.060518618Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.787 * Server initialized",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:20:36.060522448Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.798 * Creating AOF base file appendonly.aof.1.base.rdb on server start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:20:36.060526178Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.804 * Creating AOF incr file appendonly.aof.1.incr.aof on server start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:20:36.060529798Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:20:35.804 * Ready to accept connections tcp",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:41.731230873Z",
+        "severity": "info",
+        "message": "Stopping Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.253328946Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:41.207 * Calling fsync() on the AOF file.",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.253334206Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:41.207 # Redis is now ready to exit, bye bye...",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.253337186Z",
+        "severity": "info",
+        "message": "bounded_redis_stopped",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_redis_stopped\""
+          },
+          {
+            "key": "schema",
+            "value": "\"bounded-redis-expiry-v1\""
+          },
+          {
+            "key": "projectId",
+            "value": "\"feb90d26-c54b-4435-ac32-f666e3e25447\""
+          },
+          {
+            "key": "environmentId",
+            "value": "\"3b0664a3-8655-4fc1-b9cf-113034a81e0a\""
+          },
+          {
+            "key": "serviceId",
+            "value": "\"13466c75-fb98-406f-9ab8-8e676de203b7\""
+          },
+          {
+            "key": "sourceCommit",
+            "value": "\"b41fbc61985f4bcda0567060417a440ae43ceb6f\""
+          },
+          {
+            "key": "expiresAt",
+            "value": "\"2026-09-30T14:07:09.699Z\""
+          },
+          {
+            "key": "deploymentId",
+            "value": "\"8e3aefe8-7ded-4efd-9bea-ff68879783b0\""
+          },
+          {
+            "key": "launcherSha256",
+            "value": "\"8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034\""
+          },
+          {
+            "key": "reason",
+            "value": "\"signal\""
+          },
+          {
+            "key": "childExitCode",
+            "value": "0"
+          },
+          {
+            "key": "childSignal",
+            "value": "null"
+          },
+          {
+            "key": "forcedTermination",
+            "value": "false"
+          },
+          {
+            "key": "forcedSignal",
+            "value": "null"
+          },
+          {
+            "key": "redisAofRecoveryProven",
+            "value": "false"
+          },
+          {
+            "key": "providerCleanupRequired",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.253346406Z",
+        "severity": "info",
+        "message": "8:signal-handler (1790774861) Received SIGTERM scheduling shutdown...",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.253350656Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:41.207 * User requested shutdown...",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:47.903561096Z",
+        "severity": "info",
+        "message": "Stopping Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "redisAfter": {
+    "scope": "deployment",
+    "deploymentId": "6e5c725e-bc0c-45f8-a681-a3ea684b223c",
+    "serviceId": "13466c75-fb98-406f-9ab8-8e676de203b7",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-30T13:27:42.743322965Z",
+        "severity": "info",
+        "message": "Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/498d9104-339e-4107-ac7b-095625a18a1a/vol_4p3l14ffolx9vbro",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139016155Z",
+        "severity": "info",
+        "message": "bounded_redis_start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_redis_start\""
+          },
+          {
+            "key": "schema",
+            "value": "\"bounded-redis-expiry-v1\""
+          },
+          {
+            "key": "projectId",
+            "value": "\"feb90d26-c54b-4435-ac32-f666e3e25447\""
+          },
+          {
+            "key": "environmentId",
+            "value": "\"3b0664a3-8655-4fc1-b9cf-113034a81e0a\""
+          },
+          {
+            "key": "serviceId",
+            "value": "\"13466c75-fb98-406f-9ab8-8e676de203b7\""
+          },
+          {
+            "key": "sourceCommit",
+            "value": "\"b41fbc61985f4bcda0567060417a440ae43ceb6f\""
+          },
+          {
+            "key": "expiresAt",
+            "value": "\"2026-09-30T14:07:09.699Z\""
+          },
+          {
+            "key": "deploymentId",
+            "value": "\"6e5c725e-bc0c-45f8-a681-a3ea684b223c\""
+          },
+          {
+            "key": "launcherSha256",
+            "value": "\"8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139022055Z",
+        "severity": "info",
+        "message": "8:C 30 Sep 2026 13:27:42.900 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139028125Z",
+        "severity": "info",
+        "message": "8:C 30 Sep 2026 13:27:42.900 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139033795Z",
+        "severity": "info",
+        "message": "8:C 30 Sep 2026 13:27:42.900 * Redis version=7.2.16, bits=64, commit=00000000, modified=0, pid=8, just started",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139039025Z",
+        "severity": "info",
+        "message": "8:C 30 Sep 2026 13:27:42.900 * Configuration loaded",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139044095Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.901 * monotonic clock: POSIX clock_gettime",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139050065Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.901 * Running mode=standalone, port=6379.",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139055554Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.901 * Server initialized",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139061724Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.902 * Reading RDB base file on AOF loading...",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139068064Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * Loading RDB produced by version 7.2.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139074674Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * RDB age 427 seconds",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139079674Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * RDB memory usage when created 0.83 Mb",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139198383Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * RDB is base AOF",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139203683Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * Done loading RDB, keys loaded: 0, keys expired: 0.",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139207152Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.903 * DB loaded from base file appendonly.aof.1.base.rdb: 0.000 seconds",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139209732Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.905 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.003 seconds",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139213392Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.905 * DB loaded from append only file: 0.003 seconds",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139216682Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.905 * Opening AOF incr file appendonly.aof.1.incr.aof on server start",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.139219602Z",
+        "severity": "info",
+        "message": "8:M 30 Sep 2026 13:27:42.905 * Ready to accept connections tcp",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:27:43.776211577Z",
+        "severity": "info",
+        "message": "Starting Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "redisReadback": [
+    {
+      "toolName": "readContainerFileTool",
+      "args": {
+        "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+        "path": "/data/canary/redis-readback.json"
+      },
+      "result": {
+        "content": "{\n  \"at\": \"2026-09-30T13:35:49.022Z\",\n  \"scope\": \"direct Redis GET after AOF restart; not app restart\",\n  \"rows\": [\n    {\n      \"requestId\": \"pcr_8e344635d14e41b2\",\n      \"status\": \"COMPLETED\",\n      \"attemptCount\": 1,\n      \"matched\": true,\n      \"resultHash\": \"c11bd66a321e07519a9b101020ee3fb8d8018d9d0bc91cd3dd8263f79c4639d3\"\n    },\n    {\n      \"requestId\": \"pcr_18c1a448f656451f\",\n      \"status\": \"FAILED_FATAL\",\n      \"attemptCount\": 1,\n      \"matched\": true,\n      \"resultHash\": \"74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\"\n    }\n  ]\n}",
+        "size": 563,
+        "truncated": false
+      },
+      "isError": false
+    }
+  ],
+  "sourceRedeployFailure": {
+    "scope": "deployment",
+    "deploymentId": "e597557a-846f-4e01-99a1-cbb386b5918f",
+    "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "BUILDING",
+    "build": [
+      {
+        "timestamp": "2026-09-30T13:36:18.977045990Z",
+        "severity": "info",
+        "message": "fetching snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "5963776"
+          },
+          {
+            "key": "duration_ms",
+            "value": "150678"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:36:48.978052603Z",
+        "severity": "info",
+        "message": "fetching snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "6291456"
+          },
+          {
+            "key": "duration_ms",
+            "value": "180679"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:37:18.978159295Z",
+        "severity": "info",
+        "message": "fetching snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "6488064"
+          },
+          {
+            "key": "duration_ms",
+            "value": "210679"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:37:48.979324046Z",
+        "severity": "info",
+        "message": "fetching snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "6619136"
+          },
+          {
+            "key": "duration_ms",
+            "value": "240681"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-30T13:38:18.979476476Z",
+        "severity": "info",
+        "message": "fetching snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "6750208"
+          },
+          {
+            "key": "duration_ms",
+            "value": "270681"
+          }
+        ]
+      }
+    ]
+  },
+  "restartOperation": [
+    {
+      "toolName": "restartServiceTool",
+      "args": {
+        "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b"
+      },
+      "result": {
+        "message": "Restarted deployment for recovery-app-0930.",
+        "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+        "serviceName": "recovery-app-0930",
+        "deploymentId": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
+        "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a"
+      },
+      "isError": false
+    }
+  ],
+  "cost": {
+    "at": "2026-09-30T13:33:19.902Z",
+    "billingPeriod": "Sep5-Oct5",
+    "testProjectUSD": 0.0673,
+    "workspaceAgentUSD": 0.96,
+    "conservativeCombinedUSD": 1.0273,
+    "limitations": [
+      "Agent amount includes entire workspace/current billing period, not attributed solely to rehearsal",
+      "Provisional usage may lag; not settled final cost"
+    ],
+    "ceilingUSD": 20
+  },
+  "cleanup": "PENDING"
+}
