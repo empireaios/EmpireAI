@@ -1,7 +1,7 @@
 {
   "schema": "hosted-recovery-checkpoint-v1",
-  "status": "DEPLOYED_REDIS_APP_BUILDING",
-  "at": "2026-09-30T13:22:49.155Z",
+  "status": "BOUNDED_REHEARSAL_CLOSED_PARTIAL_PROOF",
+  "at": "2026-09-30T13:54:00Z",
   "authorization": {
     "ceilingUSD": 20,
     "totalNotTarget": true,
@@ -101,7 +101,7 @@
       }
     }
   ],
-  "cleanupRequired": true,
+  "cleanupRequired": false,
   "applicationBase": "90e19c5067968d4712df7d7ca8fc2307843af488",
   "ci": {
     "product": 36715923156,
@@ -118,182 +118,104 @@
     "estimatedUSD": 0.11,
     "agentChargesUnknown": true
   },
-  "liveConfigs": [
-    {
-      "service": {
-        "id": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
-        "name": "recovery-app-0930"
-      },
-      "environment": {
-        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
-        "name": "production"
-      },
-      "config": {
-        "source": {
-          "repo": "empireaios/EmpireAI",
-          "branch": "ci/hosted-recovery-app-20260930",
-          "commitSha": "bea6f0d490041cb2c85f5ca1ae68902bb3761f6c"
-        },
-        "build": {
-          "builder": "RAILPACK",
-          "buildCommand": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
-          "buildEnvironment": "V3"
-        },
-        "deploy": {
-          "startCommand": "node deployment/canary-launcher.cjs",
-          "healthcheckPath": "/health/ready",
-          "limitOverride": {
-            "containers": {
-              "cpu": 1,
-              "memoryBytes": 2000000000
-            }
-          },
-          "healthcheckTimeout": 300,
-          "restartPolicyType": "NEVER",
-          "useLegacyStacker": false,
-          "ipv6EgressEnabled": false,
-          "runtime": "V2",
-          "multiRegionConfig": {
-            "sfo": {
-              "numReplicas": 1
-            }
-          }
-        },
-        "volumeMounts": {
-          "2ac0e12a-b537-4b05-89b9-099c16a5ccc0": {
-            "mountPath": "/data"
-          }
-        }
-      },
-      "variableNames": [
-        "ADMIN_EMAIL",
-        "ADMIN_PASSWORD",
-        "CORS_ORIGIN",
-        "DATABASE_PATH",
-        "EMPIRE_CANARY_ACK",
-        "EMPIRE_CANARY_EXPIRES_AT",
-        "EMPIRE_CANARY_REDIS_HOST",
-        "EMPIRE_ENGINEERING_TEST_MODE",
-        "FOUNDER_EMAIL",
-        "FOUNDER_PASSWORD",
-        "PORT",
-        "REDIS_URL",
-        "SESSION_SECRET"
-      ],
-      "staged": null
-    },
-    {
-      "service": {
-        "id": "13466c75-fb98-406f-9ab8-8e676de203b7",
-        "name": "recovery-redis-0930"
-      },
-      "environment": {
-        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
-        "name": "production"
-      },
-      "config": {
-        "source": {
-          "repo": "empireaios/EmpireAI",
-          "branch": "ci/hosted-recovery-redis-20260930",
-          "commitSha": "b41fbc61985f4bcda0567060417a440ae43ceb6f"
-        },
-        "build": {
-          "builder": "DOCKERFILE",
-          "buildEnvironment": "V3",
-          "dockerfilePath": "deployment/redis-canary.Dockerfile"
-        },
-        "deploy": {
-          "limitOverride": {
-            "containers": {
-              "cpu": 1,
-              "memoryBytes": 500000000
-            }
-          },
-          "restartPolicyType": "NEVER",
-          "useLegacyStacker": false,
-          "ipv6EgressEnabled": false,
-          "runtime": "V2",
-          "multiRegionConfig": {
-            "sfo": {
-              "numReplicas": 1
-            }
-          }
-        },
-        "volumeMounts": {
-          "2d6cef10-72f2-40b9-9676-5d1df5e021cc": {
-            "mountPath": "/data"
-          }
-        }
-      },
-      "variableNames": [
-        "EMPIRE_CANARY_ACK",
-        "EMPIRE_CANARY_ENVIRONMENT_ID",
-        "EMPIRE_CANARY_EXPIRES_AT",
-        "EMPIRE_CANARY_PROJECT_ID",
-        "EMPIRE_CANARY_REDIS_SERVICE_ID",
-        "EMPIRE_ENGINEERING_TEST_MODE",
-        "REDIS_PASSWORD"
-      ],
-      "staged": null
-    }
-  ],
-  "providerStatus": {
-    "project": {
-      "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
-      "name": "empireai-canary-20260923",
-      "workspaceName": "empireaios's Projects"
-    },
-    "environment": {
-      "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
-      "name": "production",
-      "unmergedChangesCount": null,
-      "stagedChanges": null
-    },
-    "services": [
+  "outcomes": {
+    "baseline": "35/35 PASS",
+    "originalAfterProbe": "FAILED exit 1: restart retained deployment ID; no probe weakening",
+    "independentContainerRestart": "10/10 PASS",
+    "redisAofRestart": "PASS; same image digest, direct GET result hashes preserved",
+    "lostRecords": "none among observed account, mission and two terminal request records",
+    "unproven": [
+      "in-flight interruption recovery",
+      "abrupt kill",
+      "lost-volume full restore",
+      "permanent production profile",
+      "Birth/commercial readiness"
+    ]
+  },
+  "finalCost": {
+    "observedAt": "2026-09-30T13:53:00Z",
+    "billingPeriod": "Sep 5 - Oct 5",
+    "testProjectUSD": 0.0693,
+    "workspaceAgentUSD": 1,
+    "conservativeDisplayedAllocationUSD": 1.0693,
+    "ceilingUSD": 20,
+    "settled": false,
+    "limitations": "Provisional metering may lag. Entire displayed workspace Agent amount conservatively allocated to rehearsal; not an exact incremental invoice."
+  },
+  "evidenceCommit": "46ed04b1dee8bb7707ce7a9e78cdb5018609f3c0",
+  "cleanup": {
+    "verifiedAt": "2026-09-30T13:52:00Z",
+    "stagedDeletionReceipts": [
       {
-        "id": "13466c75-fb98-406f-9ab8-8e676de203b7",
-        "name": "recovery-redis-0930",
-        "numReplicas": null,
-        "cronSchedule": null,
-        "volumes": [
-          {
-            "id": "2d6cef10-72f2-40b9-9676-5d1df5e021cc",
-            "name": "recovery-redis-0930-data",
-            "mountPath": "/data",
-            "sizeMB": 50000,
-            "region": "sfo"
-          }
-        ],
-        "latestDeployment": {
-          "id": "8e3aefe8-7ded-4efd-9bea-ff68879783b0",
-          "status": "SUCCESS",
-          "createdAt": "2026-09-30T13:19:58.677Z",
-          "url": null
-        }
+        "toolName": "removeServiceTool",
+        "args": {
+          "serviceId": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b"
+        },
+        "result": {
+          "status": "staged",
+          "message": "Service has been marked for removal."
+        },
+        "isError": false
       },
       {
-        "id": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
-        "name": "recovery-app-0930",
-        "numReplicas": null,
-        "cronSchedule": null,
-        "volumes": [
-          {
-            "id": "2ac0e12a-b537-4b05-89b9-099c16a5ccc0",
-            "name": "recovery-app-0930-data",
-            "mountPath": "/data",
-            "sizeMB": 50000,
-            "region": "sfo"
-          }
-        ],
-        "latestDeployment": {
-          "id": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
-          "status": "BUILDING",
-          "createdAt": "2026-09-30T13:19:58.606Z",
-          "url": null
-        }
+        "toolName": "removeServiceTool",
+        "args": {
+          "serviceId": "13466c75-fb98-406f-9ab8-8e676de203b7"
+        },
+        "result": {
+          "status": "staged",
+          "message": "Service has been marked for removal."
+        },
+        "isError": false
+      },
+      {
+        "toolName": "removeVolumeTool",
+        "args": {
+          "volumeId": "2ac0e12a-b537-4b05-89b9-099c16a5ccc0"
+        },
+        "result": {
+          "status": "staged",
+          "message": "Volume has been removed and the change is staged for deployment."
+        },
+        "isError": false
+      },
+      {
+        "toolName": "removeVolumeTool",
+        "args": {
+          "volumeId": "2d6cef10-72f2-40b9-9676-5d1df5e021cc"
+        },
+        "result": {
+          "status": "staged",
+          "message": "Volume has been removed and the change is staged for deployment."
+        },
+        "isError": false
+      },
+      {
+        "toolName": "commitStagedChangesTool",
+        "args": {},
+        "result": {
+          "status": "awaiting_user_action",
+          "message": "These staged changes require two-factor verification, which isn't available over an API/MCP token. Apply them from the Railway dashboard."
+        },
+        "isError": false
       }
     ],
-    "buckets": [],
-    "pendingWork": []
+    "status": {
+      "project": {
+        "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+        "name": "empireai-canary-20260923",
+        "workspaceName": "empireaios's Projects"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production",
+        "unmergedChangesCount": null,
+        "stagedChanges": null
+      },
+      "services": [],
+      "buckets": [],
+      "pendingWork": []
+    },
+    "browser": "Four exact deletions committed via authenticated dashboard; empty architecture including both volumes; no owner 2FA input requested."
   }
 }

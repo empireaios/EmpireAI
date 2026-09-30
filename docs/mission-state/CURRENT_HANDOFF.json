@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T13:21:57.425547+00:00",
+  "updatedAt": "2026-09-30T13:54:00Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -31,7 +31,7 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
+    "lastVerifiedIntegrationHead": "1d95eb1d75a51cc29d7f8a87dcf2988fefa35fd4",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
     "candidateCodeHead": "90e19c5067968d4712df7d7ca8fc2307843af488",
@@ -1623,7 +1623,7 @@
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Resolve explicit read-only/no-resource/no-redeploy boundary: request test-project-only permission for candidate+Redis services, disposable volumes, resource caps, bounded deployment/restart and cleanup within existing total5USD authorization. Do not touch production or silently override exclusions.",
+    "Prepare permanent LOCKED commissioning candidate and complete enabled-store backup/restore plus interrupted-job recovery contract. Reuse Sep30 actual app/Redis restart evidence; resources cleaned. No more speculative legacy recovery. Stop once before material production cutover for exact authorization.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
@@ -1668,9 +1668,22 @@
     "Amazon listing and CJ catalog authenticated readbacks succeeded in isolated workflows; both now disabled. Exact CJ VID/cost/stock/freight, independently verified account identity, orders and settled economics remain unproved. Additional reads require a separately bounded authorization."
   ],
   "hostedRehearsal": {
-    "status": "IN_PROGRESS_NOT_PROVEN",
+    "status": "CLOSED_PARTIAL_RECOVERY_PROVEN",
     "receipt": "evidence/2026-09-30-hosted-rehearsal.json",
-    "expiry": "2026-09-30T14:07:09.699Z",
-    "cleanupRequired": true
+    "evidenceCommit": "46ed04b1dee8bb7707ce7a9e78cdb5018609f3c0",
+    "baselineChecks": 35,
+    "independentReadbackChecks": 10,
+    "originalAfterProbePassed": false,
+    "cleanupRequired": false,
+    "cleanupVerified": true,
+    "productionTouched": false,
+    "provisionalConservativeUSD": 1.0693,
+    "ceilingUSD": 20,
+    "unproven": [
+      "interrupted in-flight jobs",
+      "abrupt kill",
+      "whole-store volume restore",
+      "permanent commissioning profile"
+    ]
   }
 }

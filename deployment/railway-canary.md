@@ -148,6 +148,30 @@ node --test deployment/canary-launcher.test.cjs deployment/canary-runtime-probe.
 
 These tests use local subprocesses, SQLite files and loopback HTTP fixtures. They
 validate the observer's rejection behavior and finite launcher supervision, not
-actual hosted readiness. Before spending on another canary, verify the remaining
-amount inside the owner's cumulative US$5 backup/deployment-test authorization;
-record cumulative usage and cleanup. A new expiry is not a new spending grant.
+actual hosted readiness. Before spending on another canary, verify the remaining amount inside the
+owner's current cumulative authorization (30 September: US$20 TOTAL ceiling,
+not a target, superseding US$5). Record cumulative usage and cleanup. A new
+expiry is not a new spending grant.
+
+## Hosted execution transport observed 30 September
+
+The connected Railway agent cannot execute arbitrary container commands. The
+isolated service's browser Console can run the exact reviewed probe. Read only
+credential-shaped environment **names** before invoking it: this console injected
+`GH_TOKEN` and `RAILWAY_API_TOKEN`, which the launcher validator correctly refuses.
+For the probe subprocess only, `env -u GH_TOKEN -u RAILWAY_API_TOKEN node ...`
+removes those exact observed transport variables. Do not inspect their values,
+change service variables, weaken the launcher validator, or strip arbitrary
+provider credentials to manufacture a pass. Never run this console procedure in
+protected production.
+
+Persist the sanitized probe stdout to a private file on the disposable /data
+volume, plus its exit status. Read that JSON through the file connector and save
+it to repository evidence before cleanup. Do not export the raw restart marker:
+it contains private session material absent from the sanitized receipt.
+
+Provider resource limits must be read back with the direct service-config tool.
+The agent's summarized getServiceConfigTool omitted caps even when the direct
+connector proved them. The UI successfully staged actual caps before launch;
+agent acceptance alone was insufficient. Read effective multiRegionConfig too:
+its per-region replica count is authoritative, even if get_status says null.
