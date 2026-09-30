@@ -21,10 +21,17 @@
     "priorObservedAt": "2026-09-30T13:53:00Z",
     "period": "Sep 5 - Oct 5",
     "settled": false,
-    "freshUsageUnavailable": true,
+    "freshUsageUnavailable": false,
     "meteredReadOnlyAgentInspectionThisTurn": 1,
-    "currentTotalUSD": null,
-    "ceilingUSD": 20
+    "currentTotalUSD": 1.1019,
+    "ceilingUSD": 20,
+    "freshObservedAt": "2026-09-30T21:37:29.473665+00:00",
+    "testProjectCurrentUSD": 0.0719,
+    "testProjectRoundedUSD": 0.07,
+    "testProjectEstimateUSD": 0.11,
+    "workspaceAgentUSD": 1.03,
+    "conservativeDisplayedAllocationUSD": 1.1019,
+    "limitations": "All displayed workspace Agent charges allocated conservatively; not exact incremental cost or settled invoice. Metering may lag. Workspace production costs excluded from rehearsal allocation."
   },
   "evidenceReadback": [
     "provider-receipts.json",
@@ -40,5 +47,12 @@
   },
   "productionTouched": false,
   "birth": "NOT_BORN",
-  "commerce": "LOCKED"
+  "commerce": "LOCKED",
+  "interruptedJobContract": {
+    "scope": "test-owned Redis AOF process; no provider effects",
+    "test": "leased job survives Redis process death and rejects stale settlement after recovery",
+    "backendTypecheck": "PASS",
+    "execution": "HOSTED_CI_PENDING; Redis binary absent locally",
+    "hostedProductionProof": false
+  }
 }

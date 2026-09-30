@@ -257,6 +257,35 @@ describe("real Redis durable reasoning queue (required, no skipped certification
     assert.equal(recovered?.input.bodyText, queueInput().input.bodyText);
   });
 
+  it("leased job survives Redis process death and rejects stale settlement after recovery", async () => {
+    const input = queueInput("preserve leased input through AOF recovery");
+    const accepted = await acceptDurableChatRequestClaim(input);
+    const original = await claimNextReasoningRequest({ owner: "before-redis-crash", leaseMs: 600 });
+    assert.ok(original);
+    const oldToken = original.request.leaseToken!;
+    assert.equal(original.request.attemptCount, 1);
+    await stopRedis(); dropChatRequestMemoryCacheForTests();
+    await delay(650); await startRedis();
+    const recovered = await claimNextReasoningRequest({ owner: "after-redis-crash", leaseMs: 10_000 });
+    assert.ok(recovered);
+    assert.equal(recovered.request.requestId, accepted.request.requestId);
+    assert.equal(recovered.input.bodyText, input.input.bodyText);
+    assert.equal(recovered.input.sessionToken, input.input.sessionToken);
+    assert.equal(recovered.request.attemptCount, 2);
+    assert.notEqual(recovered.request.leaseToken, oldToken);
+    assert.equal(await settleReasoningRequest({ requestId: accepted.request.requestId,
+      leaseToken: oldToken, result: { message: "stale result" } }), false);
+    const result = { message: "recovered leased result", kind: "authority_facts" };
+    assert.equal(await settleReasoningRequest({ requestId: accepted.request.requestId,
+      leaseToken: recovered.request.leaseToken!, result }), true);
+    dropChatRequestMemoryCacheForTests();
+    assert.deepEqual((await getChatRequest(accepted.request.requestId))?.finalResult, result);
+    const duplicate = await acceptDurableChatRequestClaim(input);
+    assert.equal(duplicate.disposition, "EXISTING_COMPLETED");
+    assert.equal(duplicate.request.attemptCount, 2);
+    assert.equal(await claimNextReasoningRequest({ owner: "no-third-execution", leaseMs: 10_000 }), null);
+  });
+
   it("same shared session/queue binding recovers from startup outage and later Redis crash", async () => {
     await stopRedis();
     const recovering = createTier0RedisClient(redisUrl);

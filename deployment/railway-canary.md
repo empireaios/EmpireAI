@@ -110,7 +110,7 @@ primary session IDs and independent worker SQL account IDs, mission identity/his
 preserved and cannot be overwritten to erase a failure. Do not restart after a
 failed before phase merely to seek a passing report; inspect the failed evidence.
 
-After a passing before phase, perform one separately authorized orderly redeploy
+After a passing before phase, perform one separately authorized orderly container restart or redeploy
 of the **same exact source commit**, without changing the expiry, accounts, Redis
 or volumes, then run:
 
@@ -118,7 +118,8 @@ or volumes, then run:
 node deployment/canary-runtime-probe.cjs after SERVICE_UUID EXPECTED_APP_COMMIT_SHA EXPECTED_PROBE_SHA256
 ```
 
-The after phase requires a different deployment and launcher boot, identical
+The after phase requires a distinct valid launcher boot ID (Railway may retain the
+deployment ID), identical
 candidate/probe/expiry, the prior passing marker, all previous native history,
 unchanged mission and request outcomes, both unchanged identity domains in login and the original worker SQL IDs in
 the completed SQL.js disk generation, and all authentication/Birth/guard checks
@@ -133,7 +134,10 @@ provider injects them, are forbidden by the launcher validator; never relax the
 runtime credential policy. Any separately reviewed probe-only environment cleanup
 must remove only the exact observed transport variables without reading values.
 
-A passing pair proves this bounded **application redeploy** scope only. It does
+A passing pair proves this bounded **application launch recovery** scope only.
+It records whether deployment identity changed; a new deployment ID alone cannot
+prove a restart. Source/service/probe/expiry and live launcher binding remain mandatory.
+Historical probe receipts and failures must never be rewritten after a validator change. It does
 not prove an identical deployed image, abrupt kill recovery, Redis restart,
 volume restore, full autonomous execution, V53/Birth or commercial readiness.
 Those remain `NOT_PROVEN` and block the overall production/Birth decision. Native

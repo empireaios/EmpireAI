@@ -1692,6 +1692,8 @@
     "recoveredHeadCI": "PRODUCT_SEMANTIC_RUNTIME_PASS",
     "observerRepairCI": "PENDING",
     "cleanupVerified": true,
-    "currentSpendUSD": null
+    "currentSpendUSD": 1.1019,
+    "settled": false,
+    "interruptedJobContract": "leased Redis crash/fencing regression added; typecheck passed; required hosted Runtime CI pending"
   }
 }
