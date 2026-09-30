@@ -1,0 +1,121 @@
+{
+  "schema": "hosted-recovery-checkpoint-v1",
+  "status": "PREPARED_NOT_LAUNCHED",
+  "at": "2026-09-30T13:12:47.448Z",
+  "authorization": {
+    "ceilingUSD": 20,
+    "totalNotTarget": true,
+    "productionExcluded": true
+  },
+  "expiry": "2026-09-30T14:07:09.699Z",
+  "testProject": "feb90d26-c54b-4435-ac32-f666e3e25447",
+  "environment": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+  "configs": [
+    {
+      "service": {
+        "id": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+        "name": "recovery-app-0930"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production"
+      },
+      "config": {},
+      "variableNames": [],
+      "staged": {
+        "patchId": "1cd856b2-96ec-433d-bb6a-593aa87676b4",
+        "patchStatus": "STAGED",
+        "changeCount": 12,
+        "config": {
+          "build": {
+            "buildCommand": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
+          },
+          "deploy": {
+            "startCommand": "node deployment/canary-launcher.cjs",
+            "limitOverride": {
+              "containers": {
+                "cpu": 1,
+                "memoryBytes": 2000000000
+              }
+            },
+            "healthcheckPath": "/health/ready",
+            "restartPolicyType": "NEVER",
+            "healthcheckTimeout": 300
+          },
+          "source": {
+            "repo": "empireaios/EmpireAI",
+            "branch": "ci/hosted-recovery-app-20260930",
+            "commitSha": "bea6f0d490041cb2c85f5ca1ae68902bb3761f6c"
+          },
+          "isCreated": true,
+          "volumeMounts": {
+            "2ac0e12a-b537-4b05-89b9-099c16a5ccc0": {
+              "mountPath": "/data"
+            }
+          }
+        },
+        "variableNames": []
+      }
+    },
+    {
+      "service": {
+        "id": "13466c75-fb98-406f-9ab8-8e676de203b7",
+        "name": "recovery-redis-0930"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production"
+      },
+      "config": {},
+      "variableNames": [],
+      "staged": {
+        "patchId": "1cd856b2-96ec-433d-bb6a-593aa87676b4",
+        "patchStatus": "STAGED",
+        "changeCount": 9,
+        "config": {
+          "build": {
+            "dockerfilePath": "deployment/redis-canary.Dockerfile"
+          },
+          "deploy": {
+            "limitOverride": {
+              "containers": {
+                "cpu": 1,
+                "memoryBytes": 500000000
+              }
+            },
+            "restartPolicyType": "NEVER"
+          },
+          "source": {
+            "repo": "empireaios/EmpireAI",
+            "branch": "ci/hosted-recovery-redis-20260930",
+            "commitSha": "b41fbc61985f4bcda0567060417a440ae43ceb6f"
+          },
+          "isCreated": true,
+          "volumeMounts": {
+            "2d6cef10-72f2-40b9-9676-5d1df5e021cc": {
+              "mountPath": "/data"
+            }
+          }
+        },
+        "variableNames": []
+      }
+    }
+  ],
+  "cleanupRequired": true,
+  "applicationBase": "90e19c5067968d4712df7d7ca8fc2307843af488",
+  "ci": {
+    "product": 36715923156,
+    "semantic": 36715923181,
+    "runtime": 36715923374
+  },
+  "observations": [
+    "Connector cannot exec probe; browser console fallback planned",
+    "Agent readback omits resource caps; direct get_service_config proves UI-staged app1CPU2GB Redis1CPU500MB",
+    "Two branches change only root railway.toml to reviewed canary configuration; never merge into production"
+  ],
+  "budgetBaseline": {
+    "currentUSD": 0.07,
+    "estimatedUSD": 0.11,
+    "agentChargesUnknown": true
+  }
+}
