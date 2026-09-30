@@ -224,3 +224,32 @@ describe("Given-metric arithmetic authority (Juniper class)", () => {
   // Silence unused const if tree-shaken oddly
   void JUNIPER_GK;
 });
+
+
+describe("owner-supplied monetary facts in ordinary prose", () => {
+  it("preserves explicitly supplied prices and computes through the answer path", () => {
+    for (const amount of [29.99, 47.35, 1234.56]) {
+      for (const price of [`Selling price is US$${amount}`, `US$${amount} selling price`, `selling price: usd ${amount}`]) {
+        const message = `${price}; supplier cost is USD 8; shipping cost is USD 3; marketplace fixed fee is USD 2. Calculate contribution and margin.`;
+        const result = resolveCommercialArithmetic(message);
+        assert.equal(result.operands.sellingPrice, amount, message);
+        assert.equal(result.currency, "USD");
+        assert.equal(result.ok, true, result.unknownReason || message);
+        assert.ok(Math.abs(result.contribution! - (amount - 13)) < 1e-8);
+        const answer = synthesizeCommercialArithmeticAnswer(message);
+        assert.ok(answer);
+        assert.doesNotMatch(answer, /SELLING_PRICE unknown/i);
+        const contract = parseExecutiveTaskContract(message);
+        const ownerAnswer = synthesizeTaskUnitAnswer(contract.tasks[0]!, truth() as never, { userMessage: message });
+        assert.ok(ownerAnswer.includes((amount - 13).toFixed(2)), ownerAnswer);
+        assert.doesNotMatch(ownerAnswer, /SELLING_PRICE unknown/i);
+      }
+    }
+  });
+  it("does not borrow another field or interpret malformed/ranged money as a price", () => {
+    for (const input of ["Selling price unknown; supplier cost US$29.99", "Selling price is US$29.99.50", "Selling price is US$29.99–US$39.99", "Selling price is 29.99%", "Selling price is US$29,99"]) {
+      assert.equal(parseCommercialOperands(input).sellingPrice, null, input);
+    }
+    assert.equal(parseCommercialOperands("Selling price is US$1,234.56").sellingPrice, 1234.56);
+  });
+});

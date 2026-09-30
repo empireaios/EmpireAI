@@ -1,5 +1,15 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active owner directive — operational launch convergence (30 September)
+
+King supersedes prior stop/recovery instructions: no further speculative legacy recovery. Preserve obtainable evidence and unresolved uncertainty; prepare safe cutover prerequisites, then stop once before the first irreversible/materially destructive production action with exact action/risk. No cutover or loss acceptance has yet been granted. Continue owner console/provider-backed qualification/lifecycle/Pillow certification/24-hour residency; separate bounded real-commerce authorization still required. NOT_BORN / LOCKED.
+
+Current implementation repairs an observed comprehension class: `Selling price is US$29.99` and `US$29.99 selling price` previously parsed as missing; ordinary prose/value-before-label and case-insensitive USD now preserve supplied values. Monetary token boundaries reject malformed decimals/ranges/percentages. 32 focused arithmetic/response-contract/decision tests pass through executive task-answer synthesis. Exact original owner transcript is unavailable; do not claim the complete reported live failure or deployed path is resolved. No fixed answer/certification bank introduced; independent fresh-case certification remains outstanding. Required hosted CI pending.
+
+Fresh read-only Railway configuration confirms main/old deployment remains active and named Amazon/CJ/OpenAI/Redis/auth/vault configuration exists; values were not inspected and validity/isolation not proven. Existing data must not be silently imported. Cutover preparation should use separate candidate storage and Redis, retain the legacy volume unchanged/quarantined, and distinguish traffic/code rollback from recovery of old pending RAM. No infrastructure/configuration mutation performed.
+
+Historical instructions below are superseded where they would resume speculative recovery or stop unrelated launch engineering.
+
 ## Current checkpoint — browser inspection found no safe read-only export
 
 Owner-approved Railway browser inspection completed on30September2026 Singapore time (29SeptemberUTC). Authenticated project/volume/service pages loaded. Volume exposed Metrics/Settings (mount /data,5GB) with no file/download control. Service Backups definitively displayed **No backup schedule** and **No Backups — This service's volume does not have any backups.** Available actions were New backup/Create Backup, which were not invoked. Console was not opened: no application or shell command authorized. No configuration controls changed.

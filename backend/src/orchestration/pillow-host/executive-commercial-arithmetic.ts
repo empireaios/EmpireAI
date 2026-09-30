@@ -63,7 +63,7 @@ function detectCurrency(text: string): { code: CurrencyCode; seen: string[] } {
   const seen: string[] = [];
   // Do NOT treat the "S$" inside "US$13" as SGD (Juniper checkpoint false MIXED).
   if (/(?<![A-Za-z])S\$|\bSGD\b/i.test(text)) seen.push("SGD");
-  if (/\bUS\$\b|\bUSD\b/.test(text)) seen.push("USD");
+  if (/\bUS\$(?=\s*\d)|\bUSD\b/i.test(text)) seen.push("USD");
   else if (/(?<![A-Za-zUuSs])\$\s*\d/.test(text) || /(?<![A-Za-zUuSs])\$\d/.test(text)) {
     seen.push("USD");
   }
@@ -75,14 +75,23 @@ function detectCurrency(text: string): { code: CurrencyCode; seen: string[] } {
 
 function moneyNear(text: string, label: RegExp): number | null {
   const t = String(text || "");
-  const re = new RegExp(
-    label.source +
-      String.raw`\s*(?:=|:)?\s*(?:S\$|SGD|US\$|USD|\$)?\s*(-?\d+(?:\.\d+)?)`,
+  // Treat the entire label as one field. Accept ordinary prose as well as
+  // label:value input, and currency-qualified value-before-label statements.
+  // Numeric boundaries prevent malformed decimals/ranges/percentages becoming money.
+  const amount = String.raw`(-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)(?!\d|\.\d|,\d|\s*%|\s*[-–—]\s*(?:US\$|USD|S\$|SGD|\$|\d))`;
+  const currency = String.raw`(?:US\$|USD|S\$|SGD|\$)`;
+  const field = `(?:${label.source})`;
+  const forward = new RegExp(
+    String.raw`\b${field}\b\s*(?:(?:is|of|at|will be)\s+)?(?:=|:)?\s*${currency}?\s*${amount}`,
     "i",
   );
-  const m = re.exec(t);
-  if (!m) return null;
-  const n = Number(m[1]);
+  const reverse = new RegExp(
+    String.raw`${currency}\s*${amount}\s+(?:is\s+(?:the\s+)?)?${field}\b`,
+    "i",
+  );
+  const m = forward.exec(t) ?? reverse.exec(t);
+  if (!m?.[1]) return null;
+  const n = Number(m[1].replaceAll(",", ""));
   return Number.isFinite(n) ? n : null;
 }
 
