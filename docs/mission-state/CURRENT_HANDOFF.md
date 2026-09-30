@@ -1,5 +1,15 @@
 # EmpireAI / Pillow active mission handoff
 
+## Latest bounded checkpoint — authorized read-only test billing inspection complete
+
+30September20:50SGT: authenticated Railway browser inspection of isolated `empireai-canary-20260923` shows **US$0.07 current usage / US$0.11 estimated usage**. Detailed project rows sum0.0662; deleted-service rows total0.0659 (volume difference0.0003 retained). Against the existing US$5 authorization, derived displayed headroom is4.93 current or4.89 using the estimate. This is not a settled/all-cost guarantee: no date range was shown and separate metered-agent/other historical charges were not reconciled. No shortfall or additional funding amount is established. Do not request the existing US$5 again.
+
+Browser architecture and fresh connector status show **zero services, no pending/staged work**. There are no existing service CPU/RAM caps to inspect. No resources were created or changed; no deployment/restart/rehearsal/provider operation occurred. Production remains protected, NOT_BORN / LOCKED. [Read-only evidence](evidence/2026-09-30-railway-test-allowance.json) preserves observed versus derived figures and limitations. Browser screenshots were captured but failed shared-file synchronization; do not claim they were attached or durably saved.
+
+**Next owner boundary is scope, not a proven budget shortage.** The current message conditionally says continue within the cap but explicitly excludes resource creation, configuration/service/volume changes and restart/redeploy. The empty project cannot run a hosted rehearsal without those operations. Do not silently interpret that contradiction as mutation permission. Request one explicit test-project-only exception for two temporary services (candidate + Redis), separate disposable volumes, required test-only configuration/resource caps, one bounded deployment and same-candidate restart/redeploy, and cleanup, all within the existing total US$5 cap. Proposed test remains <=60minutes with enforced expiry, no provider credentials, no production volume/Redis/domain access. Permanent production cutover and commerce authority are excluded. This turn stops at that explicit prohibition after persisting/readback; no unrelated engineering added under the user's narrowed scope.
+
+Previous browser-fallback request below is fulfilled/superseded by this inspection. Current application code remains90e19c5 with required three-workflow CI passed; this is evidence-only, not new runtime certification.
+
 ## Next critical boundary — isolated hosted rehearsal; read-only browser fallback permission
 
 All three bounded engineering checkpoints this turn are pushed and required CI passed. No production mutation, Amazon/CJ call, resource creation, provider write or commerce/Birth change. Actual `empire-ai.co` remains unchanged; candidate browser evidence is local-to-CI, not the live domain.

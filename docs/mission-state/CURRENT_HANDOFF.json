@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T12:43:28.980143+00:00",
+  "updatedAt": "2026-09-30T12:53:52.293337+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -16,12 +16,8 @@
     "continueAutomatically": true,
     "consolidatedExecutionDirective": "30September: close to operational launch; speculative legacy recovery closed. Execute safe promotion prerequisites, owner console/provider-backed commerce/Pillow certification/residency. Stop once before first materially destructive cutover and separately before bounded real commerce.",
     "pendingBrowserFallback": {
-      "scope": "READ_ONLY_TEST_PROJECT_USAGE_AND_RESOURCE_LIMITS",
-      "reason": "Connected tools lack direct billing read; Railway Agent is metered; browser fallback rule requires approval. Prior browser approval covered export inspection only.",
+      "status": "APPROVED_AND_READ_ONLY_INSPECTION_COMPLETED",
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
-      "productionMutation": false,
-      "existingAdditionalUsdAllowance": 5,
-      "remainingAllowance": "UNVERIFIED",
       "newSpendRequested": false
     }
   },
@@ -33,7 +29,7 @@
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
     "candidateCodeHead": "90e19c5067968d4712df7d7ca8fc2307843af488",
-    "branchTipNote": "All application changes through90e19c5 passed Product/Semantic/Runtime. Following evidence-only handoff commit records results and read-only billing browser permission boundary; not deployed.",
+    "branchTipNote": "Evidence-only read-only billing inspection follows verified application90e19c5. No app/config changes, hosted rehearsal or production operation this checkpoint.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -1508,6 +1504,76 @@
         },
         "browserArtifact": 11096316473
       }
+    },
+    "railwayTestAllowance20260930": {
+      "observedAt": "2026-09-30T12:50:45.671Z",
+      "mode": "AUTHENTICATED_READ_ONLY_BROWSER",
+      "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+      "projectName": "empireai-canary-20260923",
+      "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "environmentName": "production (inside isolated test project; NOT EmpireAI protected production)",
+      "page": "https://railway.com/project/feb90d26-c54b-4435-ac32-f666e3e25447/settings/usage?environmentId=3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "projectDescriptionObserved": "Disposable isolated restart/recovery test only. Additional owner-approved cap US$5. No production data or external provider credentials. Delete test resources after retained evidence.",
+      "displayedUsd": {
+        "currentTotal": 0.07,
+        "estimatedTotal": 0.11,
+        "currentMemory": 0.01,
+        "currentCpu": 0,
+        "currentEgress": 0,
+        "currentVolume": 0.06,
+        "estimatedVolume": 0.1
+      },
+      "detailedCurrentUsd": {
+        "memory": 0.0053,
+        "cpu": 0.0004,
+        "egress": 0,
+        "volume": 0.0605,
+        "sumDerived": 0.0662
+      },
+      "costByService": {
+        "label": "deleted services",
+        "memory": 0.0053,
+        "cpu": 0.0004,
+        "egress": 0,
+        "volume": 0.0602,
+        "total": 0.0659
+      },
+      "derivedHeadroomUsd": {
+        "againstRoundedCurrent": 4.93,
+        "againstDisplayedEstimate": 4.89
+      },
+      "scopeLimits": [
+        "Displayed current and estimated usage, not settled billing or a guaranteed spend balance.",
+        "Service breakdown and project detail differ by0.0003 in volume charge; preserve both, do not force equality.",
+        "UI did not show an explicit billing date range.",
+        "Railway Agent charges and other historical test-attributable costs were not reconciled from this project resource page."
+      ],
+      "resources": {
+        "browserArchitectureEmpty": true,
+        "connectorServices": [],
+        "connectorBuckets": [],
+        "connectorPendingWork": [],
+        "connectorStagedChanges": null,
+        "existingServiceResourceLimits": "NOT_APPLICABLE_NO_SERVICES; no configured CPU/RAM limits could be verified"
+      },
+      "result": "PROJECT_DISPLAYED_HEADROOM_EXISTS; HOSTED_REHEARSAL_NOT_EXECUTED",
+      "blockingBoundary": "Owner directive explicitly excludes resource creation, configuration/service/volume changes and restart/redeploy. Empty test project cannot host rehearsal without those operations. Conditional continue instruction cannot silently override explicit exclusions.",
+      "additionalAmountRequestedUsd": 0,
+      "additionalFundsRequired": "No shortfall established; exact additional requirement cannot be asserted from incomplete settled/all-cost evidence.",
+      "actionsPerformed": [
+        "Read project General/Usage/Cost-by-Service UI",
+        "Read isolated project connector status",
+        "Capture browser screenshots; shared-file synchronization failed"
+      ],
+      "screenshotPersisted": false,
+      "screenshotLimitation": "Browser captured screenshots, but corresponding shared files remained absent after5-second check. No screenshot attachment or durable screenshot claim.",
+      "resourceMutations": 0,
+      "newMeteredAgentCalls": 0,
+      "amazonCjCalls": 0,
+      "productionChanges": 0,
+      "rehearsalRuns": 0,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
     }
   },
   "failedAttempts": [
@@ -1544,14 +1610,14 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Hosted candidate recovery/cutover is unproven. Current access boundary: read-only Railway test-project billing/resource browser fallback permission; existing US$5 authorization remains, remaining balance unverified. Production and commerce/Birth authority unchanged.",
+    "Isolated test project is empty. Displayed headroom4.93USD current /4.89USD estimated against existing5USD cap; not settled/all-cost guarantee. Current owner message explicitly prohibits the creation/configuration/deployment operations needed for rehearsal. Await one test-only scope exception; no additional funds requested.",
     "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
     "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Await required read-only Railway billing/resource browser fallback permission; reconcile existing additional US$5 allowance without requesting it again. Then run bounded isolated hosted restart/recovery rehearsal, develop/prove permanent LOCKED profile, and present one concrete production-intervention authorization. No speculative legacy recovery.",
+    "Resolve explicit read-only/no-resource/no-redeploy boundary: request test-project-only permission for candidate+Redis services, disposable volumes, resource caps, bounded deployment/restart and cleanup within existing total5USD authorization. Do not touch production or silently override exclusions.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
