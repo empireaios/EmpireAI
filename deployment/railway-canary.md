@@ -33,7 +33,8 @@ Required private service variables:
   60 minutes in the future when the application starts. Keep the same value on
   restart or redeploy; an expired value refuses startup. Build time consumes the
   available window. Do not repeatedly extend it under one bounded approval.
-- `DATABASE_PATH=/data/canary/<unique-test-name>.sqlite`
+- `RAILWAY_VOLUME_MOUNT_PATH=/data`: provider-supplied attached-volume metadata, preserved into the child. Verify the actual separate volume attachment in Railway; the variable alone is not attachment proof. The launcher refuses a missing/redirected local mount root.
+- `DATABASE_PATH=/data/canary/<unique-test-name>.sqlite`. Shadow state is fixed to `<DATABASE_PATH>.shadow` on the same disposable volume, rather than the repository or legacy paths.
 - `EMPIRE_CANARY_REDIS_HOST`: the disposable Redis service's exact private
   `<service>.railway.internal` hostname.
 - `REDIS_URL`: authenticated URL for that separate Redis service, database 0.

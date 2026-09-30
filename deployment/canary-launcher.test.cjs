@@ -16,6 +16,7 @@ function configuration(now = Date.now()) {
     EMPIRE_CANARY_REDIS_HOST: 'engineering-redis.railway.internal',
     REDIS_URL: `redis://default:${crypto.randomBytes(24).toString('hex')}@engineering-redis.railway.internal:6379/0`,
     DATABASE_PATH: '/data/canary/disposable.sqlite',
+    RAILWAY_VOLUME_MOUNT_PATH: '/data',
     FOUNDER_EMAIL: 'founder@canary.invalid', ADMIN_EMAIL: 'admin@canary.invalid',
     FOUNDER_PASSWORD: crypto.randomBytes(24).toString('hex'),
     ADMIN_PASSWORD: crypto.randomBytes(24).toString('hex'),
@@ -38,6 +39,8 @@ test('bounded configuration preserves absolute expiry and strips inherited setti
   assert.equal(first.env.LIVE_PAYMENT_ENABLED, 'false');
   assert.equal(first.env.EMPIRE_ENABLE_EXTENSION_ROUTES, 'false');
   assert.equal(first.env.SOME_UNKNOWN_SETTING, undefined);
+  assert.equal(first.env.RAILWAY_VOLUME_MOUNT_PATH, '/data');
+  assert.equal(first.env.SHADOW_CEO_DATA_DIR, '/data/canary/disposable.sqlite.shadow');
 });
 
 test('expired, relative, missing and overlong deadlines cannot launch or renew on redeploy', () => {
@@ -54,6 +57,7 @@ test('acknowledgement, private isolated data paths and Redis identity fail close
   const input = configuration();
   const cases = [
     { EMPIRE_ENGINEERING_TEST_MODE: 'false' }, { EMPIRE_CANARY_ACK: '' },
+    { RAILWAY_VOLUME_MOUNT_PATH: undefined }, { RAILWAY_VOLUME_MOUNT_PATH: '/tmp' },
     { DATABASE_PATH: '/data/empireai-brain.db' }, { DATABASE_PATH: '/data/canary/../empireai-brain.db' },
     { DATABASE_PATH: '/tmp/canary.sqlite' }, { DATABASE_PATH: '/data/canary/subdir/test.sqlite' },
     { EMPIRE_CANARY_REDIS_HOST: 'production.upstash.io' },

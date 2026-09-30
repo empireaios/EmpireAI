@@ -25,6 +25,7 @@ const PASSTHROUGH = [
   'RAILWAY_SERVICE_ID', 'RAILWAY_SERVICE_NAME', 'RAILWAY_PROJECT_ID',
   'RAILWAY_ENVIRONMENT', 'RAILWAY_ENVIRONMENT_NAME', 'RAILWAY_ENVIRONMENT_ID',
   'RAILWAY_DEPLOYMENT_ID', 'RAILWAY_REPLICA_ID', 'RAILWAY_GIT_COMMIT_SHA',
+  'RAILWAY_VOLUME_MOUNT_PATH',
 ];
 
 function validateCanaryEnvironment(input, now = Date.now()) {
@@ -39,6 +40,9 @@ function validateCanaryEnvironment(input, now = Date.now()) {
   const expiresAt = Date.parse(expiry);
   if (!Number.isFinite(expiresAt) || expiresAt <= now || expiresAt - now > MAX_DURATION_MS) {
     throw new Error('Canary expiry must be future and no more than 60 minutes away');
+  }
+  if (input.RAILWAY_VOLUME_MOUNT_PATH !== '/data') {
+    throw new Error('Canary requires the attached Railway volume mount at /data');
   }
   const databasePath = input.DATABASE_PATH;
   if (!databasePath || !/^\/data\/canary\/[A-Za-z0-9_-]+\.(?:sqlite|db)$/.test(databasePath)) {
@@ -81,6 +85,7 @@ function validateCanaryEnvironment(input, now = Date.now()) {
     EMPIRE_SHUTDOWN_TIMEOUT_MS: '15000',
     EMPIRE_ENABLE_EXTENSION_ROUTES: 'false', EMPIRE_REQUIRE_DATA_VOLUME: 'true',
     EMPIRE_PERSISTENCE_GATE: 'strict', EMPIREAI_REPO_ROOT: path.resolve(__dirname, '..'),
+    SHADOW_CEO_DATA_DIR: `${databasePath}.shadow`,
     REDIS_OPTIONAL: 'false', WORKER_CONCURRENCY: '1', HOST: '0.0.0.0',
     LIVE_PAYMENT_ENABLED: 'false', LIVE_CJ_FULFILLMENT_ENABLED: 'false',
     META_ADS_LAUNCH_ENABLED: 'false', PRODUCTION_DEPLOYMENT_ENABLED: 'false',
@@ -98,6 +103,9 @@ function prepareFilesystem(cwd, databasePath) {
     } catch (error) {
       if (error.code !== 'ENOENT') throw error;
     }
+  }
+  if (!fs.existsSync('/data') || !fs.statSync('/data').isDirectory() || fs.realpathSync('/data') !== '/data') {
+    throw new Error('Canary refuses to create a missing or redirected volume root');
   }
   fs.mkdirSync(path.dirname(databasePath), { recursive: true, mode: 0o700 });
 }

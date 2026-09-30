@@ -358,7 +358,7 @@
   },
   "production": {
     "observedAt": "2026-09-29T13:07:27.345Z",
-    "status": "Saved state not yet secured. Production updates remain paused."
+    "status": "Legacy production remains unchanged by Work. Preparing a separate replacement; full legacy recovery remains unverified. Trading stays locked."
   },
   "decisionsAt": "2026-09-29T13:12:00Z",
   "screeningStatus": "Ready for the next bounded ordinary-CJ-product search; not currently running",

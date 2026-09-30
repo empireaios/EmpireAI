@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T12:17:01.271891+00:00",
+  "updatedAt": "2026-09-30T12:29:01.895102+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -22,9 +22,9 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged; recovery impact assessment partial, full production restore blocked by binary access; no deployment",
-    "candidateCodeHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
-    "branchTipNote": "Evidence-only browser inspection follows verified code2855b4e9. No application code/configuration changes. Current canonical MD/JSON record no safe browser export found.",
+    "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
+    "candidateCodeHead": "9a0319d47da629fd9e1ea1f138da9b551c5b743d",
+    "branchTipNote": "Canary volume propagation and owner launch-status follow-up follows9a0319 all-three CI; follow-up CI pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -57,7 +57,8 @@
       "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision. 2026-09-28 additional list_teams returned zero teams; known project/deployment with recorded team_gdcskAnaJteKW7BYtw8zlSWy returned INVALID_ARGUMENT. Fresh cloud browser opened the exact EmpireAI team deployments URL but was redirected to Vercel login. No fresh authenticated readback, no deployment change.",
       "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
       "teamScopedListing": "2026-09-28 teams=[] and known-ID GET INVALID_ARGUMENT; cloud browser unauthenticated",
-      "productionReadbackVerified": true
+      "productionReadbackVerified": true,
+      "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence."
     }
   },
   "authority": {
@@ -1449,6 +1450,22 @@
       "cutoverAuthorized": false,
       "lossAcceptanceAuthorized": false,
       "nextDecision": "No cutover/loss acceptance recommended. Separately establish a concrete private acquisition mechanism and its safety before any broader access or production intervention."
+    },
+    "launchConvergence20260930": {
+      "code": "9a0319d47da629fd9e1ea1f138da9b551c5b743d",
+      "ci": {
+        "Product": 36713910192,
+        "Semantic": 36713910205,
+        "Runtime": 36713910208
+      },
+      "localArithmeticTests": 32,
+      "localRestoreTests": 12,
+      "backendTypecheck": "PASS",
+      "browserArtifact": 11095637907,
+      "browserTestedMerge": "3807864347dcdc95e6cb736eb80447df8371aca7",
+      "scope": "isolated browser fixtures and candidate stores; not deployed production, full backup, owner full transcript or Birth certification",
+      "followupLocalCanaryTests": 18,
+      "shadowDurabilityTests": 3
     }
   },
   "failedAttempts": [
@@ -1492,11 +1509,11 @@
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Continue launch convergence: verify isolated fresh candidate storage/Redis/configuration, tested recovery/rollback and promotion prerequisites. Do not import ambiguous legacy state. Stop before first irreversible/materially destructive production action with exact risk; no cutover authorization yet.",
+    "Complete isolated hosted candidate restart/recovery rehearsal with repaired canary, then permanent LOCKED profile and exact one-time production-intervention decision. No further speculative legacy recovery. Vercel reauth when deployment verification requires it; continue unrelated safe engineering.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
-    "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
+    "Once preservation permits promotion, verify code→CI→Railway/Vercel→runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
     "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
   ],
   "oauthEngineering": {
