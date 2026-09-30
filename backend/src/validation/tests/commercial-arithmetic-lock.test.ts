@@ -253,3 +253,33 @@ describe("owner-supplied monetary facts in ordinary prose", () => {
     assert.equal(parseCommercialOperands("Selling price is US$1,234.56").sellingPrice, 1234.56);
   });
 });
+
+
+describe("supplied marketplace fees remain in scenario economics", () => {
+  it("uses the recovered owner fact summary without claiming the original transcript or provider qualification", () => {
+    const message = "Selling price US$29.99, supplier US$8.40, freight US$5.60, Amazon fees US$6.20, stock 180. Give a decision, economics, unverifiable items, and next action.";
+    assert.equal(isCommercialArithmeticAsk(message), true);
+    const result = resolveCommercialArithmetic(message);
+    assert.equal(result.ok, true);
+    assert.equal(result.operands.marketplaceFixedFee, 6.2);
+    assert.equal(result.totalCosts, 20.2);
+    assert.equal(result.displayContribution, "$9.79");
+    assert.equal(result.displayMargin, "32.64%");
+    const contract = parseExecutiveTaskContract(message);
+    const answers = contract.tasks.map(task => synthesizeTaskUnitAnswer(task, truth() as never, { userMessage: message })).join("\n");
+    assert.match(answers, /9\.79/);
+    assert.doesNotMatch(answers, /15\.99|UNKNOWN SELLING_PRICE/);
+  });
+  it("reads plural fixed and percentage fees without stealing a later margin", () => {
+    for (const phrase of ["Amazon fees US$4.70; intended margin 30%", "marketplace fees 10% of price"]) {
+      const result = resolveCommercialArithmetic(`Selling price US$47, supplier US$8, freight US$3, ${phrase}. Contribution?`);
+      assert.equal(result.ok, true);
+      assert.equal(result.displayContribution, "$31.30");
+    }
+    for (const fees of ["fees unknown; intended margin 30%", "fees US$6.20.50", "fees US$6.20–US$9.20", "fees 10%-20%"]) {
+      const result = resolveCommercialArithmetic(`Selling price US$29.99, supplier US$8.40, freight US$5.60, Amazon ${fees}. Contribution?`);
+      assert.equal(result.ok, false, fees);
+      assert.match(result.unknownReason ?? "", /FEE|fee/);
+    }
+  });
+});

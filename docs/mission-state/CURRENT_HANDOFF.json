@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T12:29:01.895102+00:00",
+  "updatedAt": "2026-09-30T12:35:53.417186+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -23,8 +23,8 @@
     "lastVerifiedIntegrationHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
-    "candidateCodeHead": "9a0319d47da629fd9e1ea1f138da9b551c5b743d",
-    "branchTipNote": "Canary volume propagation and owner launch-status follow-up follows9a0319 all-three CI; follow-up CI pending.",
+    "candidateCodeHead": "0fe6d9f7de873e7819d491523c03d6d01e5b702f",
+    "branchTipNote": "0fe6d9f7 all-three CI and isolated phone browser passed. Follow-through fixes plural fee omission exposed by recovered owner fact summary;34 focused tests pass, follow-through CI pending.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -1465,7 +1465,33 @@
       "browserTestedMerge": "3807864347dcdc95e6cb736eb80447df8371aca7",
       "scope": "isolated browser fixtures and candidate stores; not deployed production, full backup, owner full transcript or Birth certification",
       "followupLocalCanaryTests": 18,
-      "shadowDurabilityTests": 3
+      "shadowDurabilityTests": 3,
+      "followup": {
+        "code": "0fe6d9f7de873e7819d491523c03d6d01e5b702f",
+        "ci": {
+          "Product": 36715146286,
+          "Semantic": 36715146270,
+          "Runtime": 36715146283
+        },
+        "browserArtifact": 11095947329
+      },
+      "ownerScenarioFollowthrough": {
+        "exactTranscriptAvailable": false,
+        "recoveredSummaryFacts": {
+          "sellingPriceUsd": 29.99,
+          "supplierUsd": 8.4,
+          "freightUsd": 5.6,
+          "amazonFeesUsd": 6.2,
+          "stock": 180
+        },
+        "reconstructedScenarioOldContributionUsd": 15.99,
+        "correctSuppliedCostContributionUsd": 9.79,
+        "marginPercent": 32.64,
+        "providerQualification": false,
+        "realisedProfit": false,
+        "focusedTests": 34,
+        "hostedCI": "PENDING"
+      }
     }
   },
   "failedAttempts": [

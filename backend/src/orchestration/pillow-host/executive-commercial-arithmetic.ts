@@ -97,9 +97,9 @@ function moneyNear(text: string, label: RegExp): number | null {
 
 function pctNear(text: string, label: RegExp): number | null {
   const t = String(text || "");
-  // Do not let the gap consume digits — otherwise "14.5%" can capture only "5".
+  // Percentage belongs to this field, not a later margin or unrelated number.
   const re = new RegExp(
-    `(?:${label.source})[^\\d\\n%]{0,40}(-?\\d+(?:\\.\\d+)?)\\s*%`,
+    String.raw`\b(?:${label.source})\b\s*(?:(?:is|of|at|will be)\s+)?(?:=|:)?\s*(-?\d+(?:\.\d+)?)\s*%(?!\s*[-–—]\s*\d)`,
     "i",
   );
   const m = re.exec(t);
@@ -134,7 +134,7 @@ export function isGivenMetricDecisionAsk(message: string): boolean {
       )) ||
     (/\b(?:selling\s+)?price\b/i.test(t) &&
       /\b(?:cost|supplier)\b/i.test(t) &&
-      /\b(?:fee|shipping|refund)\b/i.test(t));
+      /\b(?:fees?|shipping|freight|refund)\b/i.test(t));
   return givenMetric && decisionShape && !asksCompute;
 }
 
@@ -157,7 +157,7 @@ export function isCommercialArithmeticAsk(message: string): boolean {
     // Negations like "do not recompute unit economics" are not compute cues.
     if (
       /contribution\s+(?:US\$|S\$|USD|SGD|\$)?\s*-?\d/i.test(t) &&
-      !/\b(?:price|fee|shipping|refund|compute|calculate|per order|\/\s*order)\b/i.test(t) &&
+      !/\b(?:price|fees?|shipping|freight|refund|compute|calculate|per order|\/\s*order)\b/i.test(t) &&
       (!/\bunit economics\b/i.test(t) ||
         /\b(?:do\s+not|don't|dont|without|never)\b[^.\n]{0,64}\b(?:unit economics|recomput)/i.test(
           t,
@@ -170,7 +170,7 @@ export function isCommercialArithmeticAsk(message: string): boolean {
   return (
     /\b(?:price|selling\s+price)\b/i.test(t) &&
     /\b(?:cost|supplier)\b/i.test(t) &&
-    /\b(?:fee|shipping|refund|contribution)\b/i.test(t)
+    /\b(?:fees?|shipping|freight|refund|contribution)\b/i.test(t)
   );
 }
 
@@ -189,16 +189,13 @@ export function parseCommercialOperands(message: string): CommercialOperands {
     moneyNear(t, /ship(?:ping)?(?:\s+cost)?/) ?? moneyNear(t, /freight/) ?? null;
 
   const marketplacePercentFee =
-    pctNear(t, /(?:marketplace\s+)?fee/) ??
-    pctNear(t, /marketplace\s+percent(?:age)?(?:\s+fee)?/) ??
+    pctNear(t, /(?:marketplace\s+)?fees?/) ??
+    pctNear(t, /marketplace\s+percent(?:age)?(?:\s+fees?)?/) ??
     null;
 
-  let marketplaceFixedFee: number | null = moneyNear(t, /(?:marketplace\s+)?fixed\s+fee/);
+  let marketplaceFixedFee: number | null = moneyNear(t, /(?:marketplace\s+)?fixed\s+fees?/);
   if (marketplacePercentFee == null && marketplaceFixedFee == null) {
-    const feeFrag = /(?:marketplace\s+)?fee[^\n]{0,60}/i.exec(t)?.[0] || "";
-    if (feeFrag && !/\d+(?:\.\d+)?\s*%/.test(feeFrag)) {
-      marketplaceFixedFee = moneyNear(t, /(?:marketplace\s+)?fee\b/);
-    }
+    marketplaceFixedFee = moneyNear(t, /(?:marketplace\s+)?fees?\b/);
   }
 
   const expectedReturnCost =
@@ -212,7 +209,7 @@ export function parseCommercialOperands(message: string): CommercialOperands {
     null;
 
   const feeMentionedWithoutValue =
-    /\b(?:marketplace\s+)?fee\b/i.test(t) &&
+    /\b(?:marketplace\s+)?fees?\b/i.test(t) &&
     marketplacePercentFee == null &&
     marketplaceFixedFee == null;
 
