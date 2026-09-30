@@ -1,0 +1,32 @@
+{
+  "artifactId": 11095947329,
+  "runId": 36715146286,
+  "branchHead": "0fe6d9f7de873e7819d491523c03d6d01e5b702f",
+  "zipSha256": "efd6b29d46a084f1d3426ec9170aade7c30fbbb32e9b7638e990aae29137177c",
+  "receipt": {
+    "evidenceMode": "OFFLINE_FIXTURE",
+    "sourceHead": "6d8e50be516714784d1bea7d5e575a995255ab29",
+    "terminalRejectionVisible": true,
+    "productStageFilterVerified": true,
+    "ownerHomeProductsEvidenceJourney": true,
+    "ownerHistoricalProviderSnapshot": true,
+    "approvalLocked": true,
+    "ownerApiWriteDenied": true,
+    "browserLogin": true,
+    "phoneViewport": [
+      390,
+      844
+    ],
+    "bffBackendDiskReadback": true,
+    "realAuthMiddleware": true,
+    "sessionBackend": "isolated in-memory",
+    "logoutRevokesSession": true,
+    "foreignWorkspaceQueryRefused": true,
+    "providerAuthenticity": false,
+    "transactionKey": "amz:111-2222222-3333333|item:item-1|sku:EMP-FD-MUO367NT",
+    "realisedFixtureContributionUsd": 15.95,
+    "authorityChanged": false,
+    "productionTouched": false
+  },
+  "scope": "Actual isolated Chromium phone journey; not live domain or provider-backed business execution"
+}

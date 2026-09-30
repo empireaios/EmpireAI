@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T12:35:53.417186+00:00",
+  "updatedAt": "2026-09-30T12:43:28.980143+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -14,7 +14,16 @@
       "bounded real commercial pilot authorization"
     ],
     "continueAutomatically": true,
-    "consolidatedExecutionDirective": "30September: close to operational launch; speculative legacy recovery closed. Execute safe promotion prerequisites, owner console/provider-backed commerce/Pillow certification/residency. Stop once before first materially destructive cutover and separately before bounded real commerce."
+    "consolidatedExecutionDirective": "30September: close to operational launch; speculative legacy recovery closed. Execute safe promotion prerequisites, owner console/provider-backed commerce/Pillow certification/residency. Stop once before first materially destructive cutover and separately before bounded real commerce.",
+    "pendingBrowserFallback": {
+      "scope": "READ_ONLY_TEST_PROJECT_USAGE_AND_RESOURCE_LIMITS",
+      "reason": "Connected tools lack direct billing read; Railway Agent is metered; browser fallback rule requires approval. Prior browser approval covered export inspection only.",
+      "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+      "productionMutation": false,
+      "existingAdditionalUsdAllowance": 5,
+      "remainingAllowance": "UNVERIFIED",
+      "newSpendRequested": false
+    }
   },
   "repository": {
     "name": "empireaios/EmpireAI",
@@ -23,8 +32,8 @@
     "lastVerifiedIntegrationHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
     "branch": "fix/pillow-integrated-closure-20260920",
     "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
-    "candidateCodeHead": "0fe6d9f7de873e7819d491523c03d6d01e5b702f",
-    "branchTipNote": "0fe6d9f7 all-three CI and isolated phone browser passed. Follow-through fixes plural fee omission exposed by recovered owner fact summary;34 focused tests pass, follow-through CI pending.",
+    "candidateCodeHead": "90e19c5067968d4712df7d7ca8fc2307843af488",
+    "branchTipNote": "All application changes through90e19c5 passed Product/Semantic/Runtime. Following evidence-only handoff commit records results and read-only billing browser permission boundary; not deployed.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -1490,7 +1499,14 @@
         "providerQualification": false,
         "realisedProfit": false,
         "focusedTests": 34,
-        "hostedCI": "PENDING"
+        "hostedCI": "PASS",
+        "code": "90e19c5067968d4712df7d7ca8fc2307843af488",
+        "ci": {
+          "Product": 36715923156,
+          "Semantic": 36715923181,
+          "Runtime": 36715923374
+        },
+        "browserArtifact": 11096316473
       }
     }
   },
@@ -1528,14 +1544,14 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Legacy uncertainty retained but no speculative recovery programme. Promotion needs tested isolated candidate initialization, persistence/backup/rollback and explicit first-destructive-action authorization. Do not infer old pending-RAM recovery.",
+    "Hosted candidate recovery/cutover is unproven. Current access boundary: read-only Railway test-project billing/resource browser fallback permission; existing US$5 authorization remains, remaining balance unverified. Production and commerce/Birth authority unchanged.",
     "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
     "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
     "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
     "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
   ],
   "nextExecutableActions": [
-    "Complete isolated hosted candidate restart/recovery rehearsal with repaired canary, then permanent LOCKED profile and exact one-time production-intervention decision. No further speculative legacy recovery. Vercel reauth when deployment verification requires it; continue unrelated safe engineering.",
+    "Await required read-only Railway billing/resource browser fallback permission; reconcile existing additional US$5 allowance without requesting it again. Then run bounded isolated hosted restart/recovery rehearsal, develop/prove permanent LOCKED profile, and present one concrete production-intervention authorization. No speculative legacy recovery.",
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",

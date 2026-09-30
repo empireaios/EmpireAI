@@ -1,0 +1,23 @@
+{
+  "codeHead": "90e19c5067968d4712df7d7ca8fc2307843af488",
+  "applicationTree": "f29bc6b3bece0d8165c12680b46edad2048e5e6f",
+  "runs": {
+    "Product": {
+      "id": 36715923156,
+      "conclusion": "success",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/36715923156"
+    },
+    "Semantic": {
+      "id": 36715923181,
+      "conclusion": "success",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/36715923181"
+    },
+    "Runtime": {
+      "id": 36715923374,
+      "conclusion": "success",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/36715923374"
+    }
+  },
+  "browserArtifact": 11096316473,
+  "scope": "Required PR candidate CI; actual isolated browser and Redis/recovery tests, not production/provider-backed operational certification"
+}
