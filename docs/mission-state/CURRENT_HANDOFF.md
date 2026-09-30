@@ -1,5 +1,15 @@
 # EmpireAI / Pillow active mission handoff
 
+## 1 October recovery readback and observer repair
+
+Independently recovered exact GitHub head `84aaacccefbcfce1941fe732de9a6d99fc961147`; Product36725188941, Semantic36725189108 and Runtime36725188989 all succeeded. Hosted provider, independent readback and failed after-probe receipts were read directly from GitHub. Fresh Railway inspection confirms services=[] and volumes=[]; one empty staged patch `5d3f4dff-9b0b-4527-9188-dd94ad41e851` has changes=[], so it was left alone. No deletion, creation, deployment or restart repeated.
+
+Prospective observer now requires distinct valid launch IDs while allowing Railway to retain deployment identity; it records deploymentChanged and does not claim redeploy/image-digest proof. Existing source/service/probe hash/expiry binding remains mandatory. Fourteen local Node24.19.0 tests pass; new exact-head hosted CI pending. Historical after failure remains unchanged; no retrospective pass or new hosted execution.
+
+Prior provisional US$1.0693 remains historical, not current settled spend. One metered read-only Railway Agent inspection was used for independent volume readback; its incremental cost and current aggregate are unavailable through connector billing tools. Do not report US$1.0693 as a fresh total or infer available headroom. No new paid workload. See [readback](evidence/2026-10-01-recovery-readback.json).
+
+Next remains permanent LOCKED profile plus complete enabled-store backup/restore and interrupted-job recovery. Existing offline bundle covers primary/native mission/execution and optional CJ ledger/legacy lineage; it excludes Shadow and Redis, and must not be labelled complete. No production cutover authorization requested; PR5 unmerged, NOT_BORN/LOCKED.
+
 ## Latest checkpoint — isolated hosted rehearsal closed; partial recovery proven
 
 30 September 2026, 13:54 UTC. Authorized US$20 total-ceiling rehearsal completed and **both temporary services and both disposable volumes deleted**. Railway readback shows zero services and no pending work; browser architecture is empty. Do not recreate these resources or repeat this exercise merely because historical sections below say pending. Production was not touched. NOT_BORN / commerce LOCKED.

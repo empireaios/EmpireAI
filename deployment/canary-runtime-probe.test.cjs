@@ -190,3 +190,17 @@ test('sanitized observer rejects object-valued allowed keys and absent final res
   assert.equal(observed.readiness.data.sessionStore, null);
   assert.equal(observed.accounts.primary.founder.id, null);
 });
+
+test('restart identity requires a new launch, not a new Railway deployment ID', () => {
+  const { restartIdentityPass } = require('./canary-runtime-probe.cjs');
+  assert.equal(restartIdentityPass('launch-a', 'launch-b', 'deployment-a', 'deployment-a'), true);
+  assert.equal(restartIdentityPass('launch-a', 'launch-b', 'deployment-a', 'deployment-b'), true);
+  assert.equal(restartIdentityPass('launch-a', 'launch-a', 'deployment-a', 'deployment-b'), false);
+  for (const missing of [undefined, null, '', {}, ' ']) {
+    for (let i = 0; i < 4; i++) {
+      const ids = ['launch-a', 'launch-b', 'deployment-a', 'deployment-a'];
+      ids[i] = missing;
+      assert.equal(restartIdentityPass(...ids), false);
+    }
+  }
+});

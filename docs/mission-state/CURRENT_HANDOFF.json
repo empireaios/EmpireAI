@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T13:54:00Z",
+  "updatedAt": "2026-09-30T21:32:48.406744+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1685,5 +1685,13 @@
       "whole-store volume restore",
       "permanent commissioning profile"
     ]
+  },
+  "recoveryReadback": {
+    "receipt": "evidence/2026-10-01-recovery-readback.json",
+    "recoveredHead": "84aaacccefbcfce1941fe732de9a6d99fc961147",
+    "recoveredHeadCI": "PRODUCT_SEMANTIC_RUNTIME_PASS",
+    "observerRepairCI": "PENDING",
+    "cleanupVerified": true,
+    "currentSpendUSD": null
   }
 }

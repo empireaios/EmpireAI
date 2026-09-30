@@ -220,7 +220,7 @@ function sanitizedObservations(input) {
 
 async function main(args = process.argv.slice(2)) {
   const out = { schema: 'empireai-bounded-canary-probe-v2', phase: args[0], startedAt: new Date().toISOString(), checks: [],
-    scope: 'private disposable canary, same-candidate application redeploy recovery only',
+    scope: 'private disposable canary, same-candidate application launch recovery only',
     limitations: ['Not production, live-commerce, model quality or Birth certification.',
       'No Redis restart, abrupt process kill, lost-volume or power-loss proof is claimed by this probe.',
       'npm identity requires its separate exact build receipt; it is not inferred from runtime configuration.'] };
@@ -350,10 +350,11 @@ async function main(args = process.argv.slice(2)) {
         marker.databaseAccountIds?.founder === workerFounder.userId && marker.databaseAccountIds?.admin === workerAdmin.userId);
       check('prior_phase_passed', marker.beforePassed === true && typeof marker.missionId === 'string' &&
         typeof marker.requestId === 'string' && typeof marker.failedRequestId === 'string');
-      check('same_candidate_restarted', typeof marker.beforeLaunchId === 'string' && marker.beforeLaunchId !== launch.launchId &&
-        typeof marker.beforeDeploymentId === 'string' && marker.beforeDeploymentId !== env.RAILWAY_DEPLOYMENT_ID,
+      check('same_candidate_restarted', restartIdentityPass(marker.beforeLaunchId, launch.launchId, marker.beforeDeploymentId, env.RAILWAY_DEPLOYMENT_ID),
         { beforeDeploymentId: marker.beforeDeploymentId, afterDeploymentId: env.RAILWAY_DEPLOYMENT_ID,
-          proofScope: 'new application launch and deployment at same exact source commit; not same-image proof' });
+          beforeLaunchId: marker.beforeLaunchId, afterLaunchId: launch.launchId,
+          deploymentChanged: marker.beforeDeploymentId !== env.RAILWAY_DEPLOYMENT_ID,
+          proofScope: 'new application launch at same bound source; not redeploy or image-digest proof' });
       if (!out.checks.every(c => c.pass)) throw new Error('RESTART_PREREQUISITE_FAILED');
     }
     const history = await post('/api/pillow/mission-runtime/history', {});
@@ -444,6 +445,13 @@ async function main(args = process.argv.slice(2)) {
       absentHandlerAndDependencyExecution: 'NOT_PROVEN' } });
   return out;
 }
-module.exports = { sanitizedObservations, REQUIRED, summarize, validateArguments, readinessPass, birthPass, authorityPass, failurePass,
+// Deployment identity may survive a container restart. Source/service/hash binding
+// and launcher validation are enforced separately before this assertion.
+function restartIdentityPass(beforeLaunchId, afterLaunchId, beforeDeploymentId, afterDeploymentId) {
+  const valid = value => typeof value === 'string' && /^[A-Za-z0-9_-]{1,200}$/.test(value);
+  return [beforeLaunchId, afterLaunchId, beforeDeploymentId, afterDeploymentId].every(valid) &&
+    beforeLaunchId !== afterLaunchId;
+}
+module.exports = { restartIdentityPass, sanitizedObservations, REQUIRED, summarize, validateArguments, readinessPass, birthPass, authorityPass, failurePass,
   accountRowsPass, unchangedMission, nativeHistory, preservesHistory, boundedHttp, readBounded, saveMarker };
 if (require.main === module) main().then(out => { console.log(JSON.stringify(out, null, 2)); process.exitCode = out.passed ? 0 : 1; });

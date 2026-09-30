@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-30T21:32:48.406744+00:00",
+  "recoveredHead": "84aaacccefbcfce1941fe732de9a6d99fc961147",
+  "ci": {
+    "Product": 36725188941,
+    "Semantic": 36725189108,
+    "Runtime": 36725188989,
+    "conclusion": "success"
+  },
+  "cleanup": {
+    "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+    "services": 0,
+    "volumes": 0,
+    "emptyStagedPatch": "5d3f4dff-9b0b-4527-9188-dd94ad41e851",
+    "changes": [],
+    "deletedThisTurn": []
+  },
+  "billing": {
+    "priorProvisionalUSD": 1.0693,
+    "priorObservedAt": "2026-09-30T13:53:00Z",
+    "period": "Sep 5 - Oct 5",
+    "settled": false,
+    "freshUsageUnavailable": true,
+    "meteredReadOnlyAgentInspectionThisTurn": 1,
+    "currentTotalUSD": null,
+    "ceilingUSD": 20
+  },
+  "evidenceReadback": [
+    "provider-receipts.json",
+    "restart-readback.json",
+    "after-receipt.json"
+  ],
+  "observerRepair": {
+    "localNode": "24.19.0",
+    "testsPassed": 14,
+    "hostedCI": "PENDING",
+    "historicalAfterFailureUnchanged": true,
+    "hostedReexecution": false
+  },
+  "productionTouched": false,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED"
+}
