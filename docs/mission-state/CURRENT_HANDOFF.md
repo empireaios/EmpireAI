@@ -1,5 +1,16 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — owner-authorized US$20 isolated hosted recovery rehearsal
+
+30 September 2026: King explicitly authorized temporary candidate/Redis services, separate disposable volumes, test configuration, deployment/restart/recovery and cleanup within **US$20 cumulative total maximum**, not a spending target. This supersedes the earlier US$5/scope stop below. Production and provider writes remain excluded; NOT_BORN / LOCKED.
+
+Test project `feb90d26-c54b-4435-ac32-f666e3e25447`, environment `3b0664a3-8655-4fc1-b9cf-113034a81e0a` (label production inside isolated test project only). Candidate service `3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b`, volume `2ac0e12a-b537-4b05-89b9-099c16a5ccc0`; Redis service `13466c75-fb98-406f-9ab8-8e676de203b7`, volume `2d6cef10-72f2-40b9-9676-5d1df5e021cc`. Both /data volumes were provider-default50GB allocations; no sizing was requested above minimum. One replica each; independently read-back CPU1/app2GB/Redis0.5GB limits; no public domains. All temporary resources require cleanup after receipts are persisted, even when processes expire. Never mutate protected project75374474-2b3a-4b0f-a9bc-203cdc1314d8.
+
+Fixed expiry `2026-09-30T14:07:09.699Z` (22:07 Singapore) shared across restarts. App isolated branch `ci/hosted-recovery-app-20260930` commitbea6f0d490041cb2c85f5ca1ae68902bb3761f6c; Redis branch `ci/hosted-recovery-redis-20260930` commitb41fbc61985f4bcda0567060417a440ae43ceb6f. Each changes only root railway.toml to its reviewed canary contract from green application90e19c5. Never merge these temporary configurations to main. Initial app deployment562d64c8-3a00-425a-bc39-c10a8a02cf54; Redis8e3aefe8-7ded-4efd-9bea-ff68879783b0. Redis started with actual expiry/AOF receipt; app build pending. **No recovery result yet.**
+
+Connector cannot run container commands; browser Console is the intended fallback for exact repository probe. Agent's cap readback was incomplete; direct connector independently confirms UI-applied caps. Baseline project usage0.07current/0.11estimated; separate Agent charges unknown. No assertion of settled total. [Checkpoint receipt](evidence/2026-09-30-hosted-rehearsal.json). Continue bounded proof or preserve blocker and clean up; do not ask for already-granted test authority. Previous scope/browser approval requests below are historical and superseded.
+
+
 ## Latest bounded checkpoint — authorized read-only test billing inspection complete
 
 30September20:50SGT: authenticated Railway browser inspection of isolated `empireai-canary-20260923` shows **US$0.07 current usage / US$0.11 estimated usage**. Detailed project rows sum0.0662; deleted-service rows total0.0659 (volume difference0.0003 retained). Against the existing US$5 authorization, derived displayed headroom is4.93 current or4.89 using the estimate. This is not a settled/all-cost guarantee: no date range was shown and separate metered-agent/other historical charges were not reconciled. No shortfall or additional funding amount is established. Do not request the existing US$5 again.

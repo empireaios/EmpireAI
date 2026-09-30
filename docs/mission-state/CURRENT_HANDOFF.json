@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T12:53:52.293337+00:00",
+  "updatedAt": "2026-09-30T13:21:57.425547+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -19,6 +19,12 @@
       "status": "APPROVED_AND_READ_ONLY_INSPECTION_COMPLETED",
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
       "newSpendRequested": false
+    },
+    "hostedRehearsalAuthorization": {
+      "totalMaximumUSD": 20,
+      "notSpendingTarget": true,
+      "productionExcluded": true,
+      "temporaryResourcesAndCleanupAuthorized": true
     }
   },
   "repository": {
@@ -1621,7 +1627,7 @@
     "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
     "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
     "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
-    "Once preservation permits promotion, verify code→CI→Railway/Vercel→runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
+    "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
     "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
   ],
   "oauthEngineering": {
@@ -1660,5 +1666,11 @@
     "Standalone ac947755 disk capture size repaired offline but old production has no quiesced in-process RAM save, and candidate 0cb86061 has locally repaired offline-state-bundle.cjs primary size without proving live quiescence. Neither standalone disk tool proves complete state or has been run on production.",
     "Vercel connector on 2026-09-28 lists zero teams and known-ID reads return INVALID_ARGUMENT; cloud browser shows login. Last verified direct production readback is 2026-09-27 READY/main 21384342. Fresh readback requires renewed authenticated access, but unrelated nonproduction engineering continues.",
     "Amazon listing and CJ catalog authenticated readbacks succeeded in isolated workflows; both now disabled. Exact CJ VID/cost/stock/freight, independently verified account identity, orders and settled economics remain unproved. Additional reads require a separately bounded authorization."
-  ]
+  ],
+  "hostedRehearsal": {
+    "status": "IN_PROGRESS_NOT_PROVEN",
+    "receipt": "evidence/2026-09-30-hosted-rehearsal.json",
+    "expiry": "2026-09-30T14:07:09.699Z",
+    "cleanupRequired": true
+  }
 }
