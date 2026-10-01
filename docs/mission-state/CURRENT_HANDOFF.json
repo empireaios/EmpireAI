@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T16:07:21.833Z",
+  "updatedAt": "2026-10-01T16:32:42.505Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE; frontend96e3722/backendaf0efc1 live; session route reaches authentication correctly; awaiting phone/accounting/history evidence.",
+    "status": "CUTOVER NOT COMPLETE: all Class A acceptance gates PASS; preserved legacy deployment stop and post-shutdown verification pending.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -1622,8 +1622,9 @@
     "Phone and full live commerce authority acceptance incomplete"
   ],
   "nextExecutableActions": [
-    "Provision authorized reasoning-only provider prerequisites without exposing credentials; minimally enable inference while retaining lock, then close remaining Class A gates.",
-    "Class B does not block shutdown unless actual safety/authority defect. Class A must pass before preserved legacy shutdown; post-stop verification then CUTOVER COMPLETE / NEXT PHASE OWNER UX CLOSURE. No unseen certification until King and ChatGPT close UX."
+    "Stop only legacy deployment using existing authorized Windows Railway CLI; preserve service/volume/Redis/credentials/evidence",
+    "Verify stopped legacy and bounded actual empire-ai.co new-stack operation",
+    "If verified declare CUTOVER COMPLETE and transition to PILLOW CERTIFICATION per latest owner priority; preserve Owner UX backlog; no Birth/commerce unlock"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2425,14 +2426,57 @@
   "accountingAccessCheckpoint": {
     "at": "2026-10-01T16:07:21.833Z",
     "ownerAuthorization": "Owner confirms CLI authorized1workspace/empireai project only; canary excluded",
-    "result": "BLOCKED_BY_WORK_NETWORK_POLICY",
+    "result": "RESOLVED_OWNER_LEDGER_DOWNLOAD_READ_ONLY",
     "exactError": "write_stdin failed: Unified exec process failed: Network access to \"https://backboard.railway.com:443\" was blocked by policy.",
     "noBypass": true,
-    "ledgerRead": false,
+    "ledgerRead": true,
     "productionChanges": 0,
     "additionalInference": 0,
     "legacy": "RUNNING_PRESERVED",
     "nextOwnerAction": "Use owner's own authorized Railway CLI to download only /data/commissioning/openai-october-2026.sqlite from existing locked-runtime service, then attach ledger for local read-only accounting reconciliation; no secret/config/account database download.",
     "downloadCommand": "railway service files --project 75374474-2b3a-4b0f-a9bc-203cdc1314d8 --environment da94aed2-956b-4903-a886-68a5e9a557c8 --service 7a25cfc6-7298-480f-91db-1b37871f8cac download /data/commissioning/openai-october-2026.sqlite ./openai-october-2026.sqlite"
+  },
+  "accountingReadbackCheckpoint": {
+    "at": "2026-10-01T16:32:42.505Z",
+    "status": "PASS",
+    "source": "Owner downloaded only production ledger via authorized Railway CLI and attached it; inspected SQLite read-only",
+    "sha256": "a1ec5b7e9d8b307b60cefeb0c08774866ff7c27acc0ceaf92c7947e3dd8dfd26",
+    "quickCheck": "ok",
+    "applicationId": 1162430793,
+    "userVersion": 1,
+    "rows": 6,
+    "completedUsageRecords": 5,
+    "failedUncertainRecords": 1,
+    "reservedUsd": 1.951842,
+    "conservativeEstimatedUsageUsd": 0.44113,
+    "remainingAdmissionBudgetUsd": 18.048158,
+    "ceilingUsd": 20,
+    "invoiceActual": "UNKNOWN; null in all rows",
+    "validation": "All five usage totals and conservative cost calculations reconcile; estimates below reservations. Uncertain first attempt retains reservation. Original15:07 records survived af0efc1 deployment15:49; phone records15:53–15:58 persisted. No new inference or restart.",
+    "workAdditionalInference": 0
+  },
+  "legacyShutdownCheckpoint": {
+    "at": "2026-10-01T16:32:42.505Z",
+    "status": "AWAITING_OWNER_CLI_STOP",
+    "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+    "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+    "savedRestartPolicy": "NEVER",
+    "readBack": true,
+    "effectiveCurrentDeploymentPolicy": "Existing deployment file manifest ON_FAILURE; saved config change applies next deployment, so current automatic stop not yet proved. Removing active deployment prevents it restarting; do not redeploy.",
+    "preservedVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+    "preservedVariableCount": 30,
+    "secretValuesRead": false,
+    "legacyState": "RUNNING",
+    "blocker": "Connector has no stop-deployment tool; Work CLI blocked by network policy. Owner Windows CLI authorized and functional.",
+    "nextAction": "Owner runs railway down scoped explicitly to legacy service/project/environment; then independently verify offline and new-stack live site. No delete-service/volume/Redis/credentials/evidence."
+  },
+  "nextPhaseDirective": {
+    "phase": "PILLOW CERTIFICATION",
+    "source": "Owner 2026-10-02 00:15 SGT changed priority to certification before broad OWNER UX CLOSURE",
+    "startsOnlyAfterCutoverComplete": true,
+    "ownerUXBacklogPreserved": true,
+    "uxException": "Repair only defects blocking safe certification or owner control",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
   }
 }
