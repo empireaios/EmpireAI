@@ -1,3 +1,13 @@
+# Current checkpoint — session repair live
+
+**CUTOVER NOT COMPLETE.** Frontend `96e3722` is production deployment `dpl_wfPyb19239eQDgcaqT7R6p3YByX5` on empire-ai.co. Exact backend `af0efc15cfb228b718a716cffa26a8caf3ee443b` deployment `109726a1-a2e1-407f-86ed-17b443cb4579` is SUCCESS; health and authenticated Home independently confirm identity, ready transport/storage, NOT_BORN/LOCKED and configured inference ceiling20USD.
+
+Live unauthenticated session POST now401 rather than incorrect423; Birth POST still423. No additional inference. Phone must refresh Pillow and report whether fresh-session unavailable clears; other reported phone passes retained. Accounting row readback and authenticated history remain outstanding. Legacy untouched running/preserved. Saved Railway source metadata still807a54e: exact-SHA deploy was used; do not use default source for later deployment.
+
+Next: remaining narrow acceptance → preserved legacy stop/restart-disable → bounded post-stop verification → CUTOVER COMPLETE / OWNER UX CLOSURE. No Birth/commerce unlock.
+
+---
+
 # Current checkpoint — fresh-device session repair
 
 **CUTOVER NOT COMPLETE.** Backend `af0efc15cfb228b718a716cffa26a8caf3ee443b` fixes the session POST omission only; targeted actual-app login/session/history/authority regression and backend build passed. Compatible frontend `96e37225733d5b4fb9d631b1e0de4c3478fb6205` adds only that runtime SHA; build passed and Vercel preview `dpl_6XWgPKjQeodJS7CZtnrBdvWiQCgJ` READY.

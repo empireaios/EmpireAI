@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T15:39:00.860Z",
+  "updatedAt": "2026-10-01T15:51:10.984Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE; narrow fresh-session repair tested/published; waiting Vercel production-environment rebuild96e3722 before runtimeaf0efc1 deployment.",
+    "status": "CUTOVER NOT COMPLETE; frontend96e3722/backendaf0efc1 live; session route reaches authentication correctly; awaiting phone/accounting/history evidence.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -2262,14 +2262,14 @@
     "updatedAt": "2026-10-01T15:17:59.230Z",
     "status": "CUTOVER_NOT_COMPLETE",
     "frontend": {
-      "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
-      "deployment": "dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc",
-      "domain": "empire-ai.co",
-      "binding": "https://empireai-locked-runtime-production.up.railway.app"
+      "sha": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+      "deployment": "dpl_wfPyb19239eQDgcaqT7R6p3YByX5",
+      "state": "READY",
+      "domain": "empire-ai.co"
     },
     "backend": {
-      "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
-      "deployment": "0da9e0fc-3c16-4fd4-9535-eb488a66d84c",
+      "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "deployment": "109726a1-a2e1-407f-86ed-17b443cb4579",
       "state": "SUCCESS",
       "credentialConfigured": true,
       "keyValueRead": false,
@@ -2277,7 +2277,11 @@
       "stagedChanges": null,
       "birth": "NOT_BORN",
       "commerce": "LOCKED",
-      "operational": false
+      "operational": false,
+      "status": "SUCCESS",
+      "liveIdentityVerified": true,
+      "ready": true,
+      "ceilingUsd": 20
     },
     "inference": {
       "status": "PASS_RUNTIME_CAPABILITY_ONLY",
@@ -2318,7 +2322,7 @@
       "Phone-sized essential live journey",
       "Complete authenticated authority/API and durable mission/history acceptance"
     ],
-    "next": "Complete only remaining acceptance evidence, then approved preserved legacy-worker stop/restart-disable and post-stop live verification. Only then CUTOVER COMPLETE / OWNER UX CLOSURE. No competence certification, Birth or commerce unlock."
+    "next": "Fresh phone session verification; direct persistent accounting readback and authenticated history evidence. Only all gates permit preserved legacy shutdown/postverification then OWNER UX CLOSURE."
   },
   "phoneAcceptanceDefect": {
     "at": "2026-10-01T15:28:38.558Z",
@@ -2333,7 +2337,7 @@
   },
   "freshSessionRepairCheckpoint": {
     "at": "2026-10-01T15:39:00.860Z",
-    "status": "REPAIR_TESTED_PUBLISHED_NOT_PRODUCTION",
+    "status": "DEPLOYED_VERIFIED_AWAITING_PHONE_AND_REMAINING_ACCEPTANCE",
     "backend": {
       "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
       "branch": "fix/locked-pillow-session-20261001",
@@ -2360,8 +2364,39 @@
       "legacy": "RUNNING_PRESERVED"
     },
     "blocker": "Vercel deploy_to_vercel returned UNAVAILABLE: not returned by tools/list. Prior approved dashboard fallback blocked by native-credential protection, not bypassed.",
-    "ownerAction": "Existing empireai Vercel project: production-environment rebuild/promote deployment dpl_6XWgPKjQeodJS7CZtnrBdvWiQCgJ at96e3722. Preserve production BRAIN_API_URL and empire-ai.co.",
+    "ownerAction": "On phone refresh empire-ai.co/cockpit/development/pillow; report whether unavailable disappears and composer can be used. Do not send another message yet.",
     "next": "Independently verify96e3722 production -> deploy exactaf0efc1 existing lockedRailway service preserving OPENAI_API_KEY andvolumeledger -> fresh authenticated session/phone/history authority acceptance; accounting rowreadback stillneeded -> only allA pass preservedlegacyshutdown/postverification ->OWNER UX CLOSURE",
     "noBirthOrCommerceUnlock": true
+  },
+  "freshSessionLiveCheckpoint": {
+    "frontend": {
+      "sha": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+      "deployment": "dpl_wfPyb19239eQDgcaqT7R6p3YByX5",
+      "state": "READY",
+      "domain": "empire-ai.co"
+    },
+    "backend": {
+      "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "deployment": "109726a1-a2e1-407f-86ed-17b443cb4579",
+      "status": "SUCCESS",
+      "liveIdentityVerified": true,
+      "ready": true,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "credentialConfigured": true,
+      "ceilingUsd": 20
+    },
+    "credentialValueRead": false,
+    "additionalPaidInference": 0,
+    "legacy": "RUNNING_PRESERVED_UNTOUCHED",
+    "savedSourceCaution": "Exact-SHA deployment preserves saved source metadata at807a54e; do not deploy default source on later configuration changes. Future deployment must pin intended tested SHA.",
+    "at": "2026-10-01T15:51:10.984Z",
+    "liveChecks": {
+      "home": "Authenticated Home shows af0efc1 ready NOT_BORN LOCKED checked2026-10-01T15:50:26.806Z",
+      "unauthenticatedSession": "POST empire-ai.co/api/pillow/session401 Authentication required (was423 beforefix)",
+      "birth": "POST empire-ai.co/api/pillow-commissioning/birth/authorise423 NOT_BORN LOCKED",
+      "freshPhone": "Pending owner refresh of previously failed fresh phone session",
+      "inference": "No additional request"
+    }
   }
 }
