@@ -1,5 +1,14 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — key staged; exact source prepared; activation approval rejected
+
+2026-10-01T14:56:08.569Z. King confirmed key staged. Readback confirms OPENAI_API_KEY pending on new locked service only; no value read/exposed. Work staged source.branch=fix/locked-openai-inference-20261001 and source.commitSha=807a54eab8b62cfdec4c7aea1f6e8966671dddaa. Independent GitHub ref read proves that exact branch tip. Patch bb0c4683 now has precisely these three changes on7a25cfc6; no legacy/Redis/resource changes.
+
+Authorized accept-deploy call was rejected by connector approval step: “Cancelled — the user did not approve this action. No changes were made.” INVALID_ARGUMENT. Do not reinterpret as missing user intent or bypass with another mutation tool. Post-rejection service readback confirms same3changes still STAGED, key absent from live variable names. Source and key are now concretely prepared; no more engineering is needed for this activation boundary.
+
+**Single owner action:** Railway → empireai → production → review/apply the3prepared changes for **empireai-locked-runtime** only: source branch, exact807a54e SHA, and OPENAI_API_KEY. Keep value private; reply “applied”. Then independently verify active SHA/credentialConfigured and continue one real bounded response, ledger readback and remaining ClassA. Legacy stays running/preserved. CUTOVER NOT COMPLETE; no paid inference call yet. No Birth/commerce unlock.
+
+
 ## Active checkpoint — cf7f475 / 807a54e LIVE, ready for private key staging
 
 2026-10-01T14:42:49.734Z. Vercel production **dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc** independently resolves empire-ai.co to exact **cf7f475aa96ae5db82ba339f102e31c45689addd**, READY; source explicitly accepts807a54e. Exact Railway deployment **3bfc4280-14b1-4f23-8d9b-8f9d149fc7cd** is SUCCESS for **807a54eab8b62cfdec4c7aea1f6e8966671dddaa**, built Node22.23.2/npm10.9.8. Live /health/live confirms SHA/deployment, /health/ready confirms Redis/worker readiness, NOT_BORN/LOCKED/operationalfalse, gpt-6.1-sol, US$20 ceiling and credentialConfigured:false. Authenticated actual empire-ai.co Home displays807a54e, ready/NOT_BORN/LOCKED at14:41:07.740Z. Existing session survived deployment. No repeat recovery or extra restart. Legacy and Redis untouched.
