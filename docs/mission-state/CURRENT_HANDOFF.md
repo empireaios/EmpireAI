@@ -1,5 +1,13 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — OAuth RESTORED; deployment write/browser capability still blocked
+
+2026-10-01T13:08:57.627Z. Reconnected OAuth independently verified: list_teams now returns EmpireAI / empireai-os / team_gdcskAnaJteKW7BYtw8zlSWy; team-scoped get_project and get_deployment succeed. Do NOT ask King to reconnect OAuth again. Production empire-ai.co remains dpl_7zWRX93P1TeJ6heYZYMgndcVuumt / d6e699. Exact repair 7837479aa60ee5d82963d046223dfb09523f6fe0 is already READY preview dpl_H6gmaxm6KQCm2aP23pdZb29A6W7X.
+
+Exact production deploy attempt still returns UNAVAILABLE: deploy_to_vercel not returned by server tools/list. Approved canonical Vercel dashboard navigation succeeds but observation still fails with native-credentials protection. Supported troubleshooting offers no applicable recovery; no bypass attempted. No deployment, code engineering, Railway/backend/recovery work or legacy shutdown performed.
+
+Immediate account-side continuation: in existing empireai project, select preview commit 7837479 (deployment H6gmaxm6KQCm2aP23pdZb29A6W7X) and use Promote to Production with production environment/rebuild, preserving empire-ai.co and existing Production BRAIN_API_URL locked origin. Then independently read back production revision and binding and complete actual desktop/phone acceptance before preserved legacy shutdown. Browser acceptance remains blocked until usable browser access is restored. CUTOVER NOT COMPLETE; NOT_BORN/LOCKED unchanged.
+
 ## Active checkpoint — CUTOVER NOT COMPLETE; routing defect repaired in candidate, deployment blocked
 
 2026-10-01T12:46:57.764Z. Backend gate remains CLOSED at d6e699 / e978b764; no backend rebuild/restart/recovery or CI rerun. Fresh health confirms NOT_BORN/LOCKED, transport-only readiness.
