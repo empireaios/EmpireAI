@@ -214,6 +214,10 @@ export function PillowConversationWorkspace({
                     {mine ? "Grand King" : "Pillow"}
                   </p>
                   <div className="mt-2 text-[#e8e0d0]">
+                    <p className="mb-2 text-xs text-[#8a847a]">
+                      Saved conversation · {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
+                      {" · Source runtime unverified. Historical conversation is not current operational evidence."}
+                    </p>
                     <ExecutiveChatMarkdown content={turn.content} />
                   </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (

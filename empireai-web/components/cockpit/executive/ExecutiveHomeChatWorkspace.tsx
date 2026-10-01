@@ -250,7 +250,11 @@ export function ExecutiveHomeChatWorkspace() {
                 {turn.role === "pillow" ? "Pillow" : "Grand King"}
               </span>
               <div className="mt-1.5 text-[#e8e0d0]">
-                <ExecutiveChatMarkdown content={turn.content} />
+                <p className="mb-2 text-xs text-[#8a847a]">
+                      Saved conversation · {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
+                      {" · Source runtime unverified. Historical conversation is not current operational evidence."}
+                    </p>
+                    <ExecutiveChatMarkdown content={turn.content} />
               </div>
               {turn.artifacts && turn.artifacts.length > 0 && (
                 <ExecutiveChatArtifacts artifacts={turn.artifacts} />
