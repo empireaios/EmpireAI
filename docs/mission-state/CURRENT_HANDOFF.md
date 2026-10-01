@@ -1,5 +1,20 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — bounded OpenAI inference candidates tested; production promotion blocked
+
+2026-10-01T14:28:33.196Z. King approved OpenAI inference while NOT_BORN/LOCKED, with a separate October inference hard ceiling of US$20. Backend candidate **807a54eab8b62cfdec4c7aea1f6e8966671dddaa**, frontend candidate **cf7f475aa96ae5db82ba339f102e31c45689addd** are published. Neither is production. Existing backend d6e699 gate stays CLOSED; frontend7837479 stays live; legacy unchanged/running/preserved. No paid call or production credential provisioning.
+
+**Implemented:** pinned gpt-6.1-sol Responses standard/medium/text-only, no hosted tools or mutation/Birth grant. Fixed native on-volume SQLite ledger atomically reserves a conservative maximum before each call, global cumulative US$20 across outcomes/processes/restarts. Cache-write/long-context/regional premiums included; reservations never automatically refund. Missing/invalid credentials, unknown usage/model/pricing, exhaustion and lost initialized ledger refuse. Records contain timestamp/model/token usage/reserved and estimated cost/response ID, never prompts/secrets; invoice actual remains unknown. Official pricing recheck due 2026-10-08T00:00Z, no budget reset. See OPENAI_COMMISSIONING_POLICY.md on candidate branch.
+
+**Targeted validation:** pinned Node22.23.2/npm10.9.8; five focused tests passed including 40 mutation denials after inference, missing/invalid credential and uncertain response failures, separate-process cumulative ceiling and persisted receipts. Pillow/backend build and final backend typecheck passed. Frontend production build and final typecheck passed. No new hosted GitHub CI runs observed; do not claim old CI certifies this change. Old gate/recovery not repeated.
+
+**Minimum provenance:** both conversation workspaces show saved timestamp and source-runtime-unverified/historical-not-current-evidence labels; no deletion or invented source. Frontend accepts exact d6e699 and807a54e during rollout, always displays actual source and binds exclusively to the same locked HTTPS origin. This frontend must be promoted BEFORE backend807a54e, otherwise live Home rejects the changed backend SHA.
+
+**Proven blocker:** Vercel read access works, but deploy_to_vercel returns UNAVAILABLE/not returned by tools/list. Approved dashboard navigation still hits native-credential observation protection. Preview cf7f475 is dpl_szaDgj8evNaFFTWaRG91nfTQfdZe, independently verified READY; backend-branch preview807a54e is READY but is NOT the frontend to promote. Owner action: promote **cf7f475** in existing empireai project with production-environment rebuild, keeping Production BRAIN_API_URL and empire-ai.co. Do NOT provision OPENAI_API_KEY into old d6e699 launcher: it rejects provider credentials.
+
+**Exact continuation:** independently verify promoted cf7f475 → deploy exact807a54e only to existing locked Railway service → privately provision separately billed OpenAI API key there via owner secret UI → prove one real ordinary completed response (connectivity only) → finish Class A phone/provenance/live authority denials → only then preserved legacy stop with automatic restart disabled → post-stop verification → CUTOVER COMPLETE / OWNER UX CLOSURE. Phone tooling still lacks viewport control; do not claim desktop as phone. No Birth/commerce unlock or unseen certification. Class B backlog remains unchanged, including Money & Services.
+
+
 ## Active checkpoint — King separates Class A cutover from Class B Owner UX
 
 2026-10-01T14:08:45.684Z. Class B must NOT prolong dual-running unless an actual safety/authority defect is found. Class A only: real completed reasoning path; essential phone journey; full live lock/authority denials; minimum historical provenance correction.
