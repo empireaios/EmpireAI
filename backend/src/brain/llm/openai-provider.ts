@@ -32,6 +32,7 @@ export class OpenAIProvider implements LLMProvider {
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
+    if (process.env.EMPIRE_RUNTIME_PROFILE === "LOCKED_COMMISSIONING_V1") throw new Error("Locked inference must use the durable commissioning guard");
     request.signal?.throwIfAborted();
     const client = this.getClient();
     const model = request.model ?? env.DEFAULT_LLM_MODEL;

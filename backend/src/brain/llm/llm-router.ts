@@ -1,3 +1,4 @@
+import { completeLockedInference, lockedInferenceProfile } from "./locked-inference.js";
 import { env } from "../../config/env.js";
 import { quoteBoundedLLMCall, reserveBoundedLLMCall } from "./llm-spend-reservation.js";
 import { assertPaidAutonomousAllowed } from "../../orchestration/pillow-commissioning/cost-guard.js";
@@ -24,6 +25,7 @@ export class LLMRouter {
   }
 
   listAvailable(): LLMProviderName[] {
+    if (lockedInferenceProfile()) return process.env.OPENAI_API_KEY?.trim() ? ["openai"] : [];
     return [...this.providers.values()]
       .filter((provider) => provider.isAvailable())
       .map((provider) => provider.name);
@@ -42,6 +44,7 @@ export class LLMRouter {
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
+    if (lockedInferenceProfile()) return completeLockedInference(request);
     const timeoutMs = parseLLMTimeout(process.env.LLM_REQUEST_TIMEOUT_MS);
     request.signal?.throwIfAborted();
     // Unknown owner limits and engineering mode stop before provider resolution.

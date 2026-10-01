@@ -19,6 +19,7 @@ export function installLockedCommissioning(app: FastifyInstance): void {
     const value=JSON.parse(payload);
     return JSON.stringify({...value,readinessScope:'transport_and_storage_only',operational:false,
       runtimeProfile:PROFILE,birth:'NOT_BORN',commerce:'LOCKED',
-      authorizedCapabilities:{commerce:false,paidProviders:false,birth:false}});
+      authorizedCapabilities:{commerce:false,paidProviders:false,birth:false,boundedTextInference:true},
+      inference:{provider:'openai',model:'gpt-6.1-sol',credentialConfigured:Boolean(process.env.OPENAI_API_KEY?.trim()),commissioningCeilingUsd:20,readiness:'subject_to_credential_and_durable_budget_admission'}});
   });
 }

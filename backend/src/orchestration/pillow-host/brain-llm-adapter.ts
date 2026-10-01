@@ -1,3 +1,4 @@
+import { lockedInferenceProfile } from "../../brain/llm/locked-inference.js";
 import type { LLMRouter } from "../../brain/llm/llm-router.js";
 import {
   buildCapabilitySystemPrompt,
@@ -78,17 +79,18 @@ export function createBrainLLMAdapter(llmRouter: LLMRouter): IntelligencePlatfor
 
     listCapabilities(): OpenAICapability[] {
       if (llmRouter.listAvailable().length === 0) return [];
-      return ALL_CAPABILITIES;
+      return lockedInferenceProfile() ? ["gpt_reasoning", "general_knowledge"] : ALL_CAPABILITIES;
     },
 
     isCapabilityAvailable(capability: OpenAICapability): boolean {
       if (llmRouter.listAvailable().length === 0) return false;
-      return ALL_CAPABILITIES.includes(capability);
+      return (lockedInferenceProfile() ? ["gpt_reasoning", "general_knowledge"] : ALL_CAPABILITIES).includes(capability);
     },
 
     async executeCapability(
       request: BrainLLMCapabilityRequest,
     ): Promise<BrainLLMCapabilityResponse> {
+      if (lockedInferenceProfile() && !["gpt_reasoning", "general_knowledge"].includes(request.capability)) throw new Error("Only bounded text inference is authorized");
       if (request.capability === "visual_generation") {
         try {
           const result = await createVisualAsset({
