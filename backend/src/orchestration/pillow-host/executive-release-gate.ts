@@ -773,7 +773,10 @@ export function releaseExecutiveAnswer(
         appended: Math.max(1, contract.tasks.length),
       });
     }
-    queue.push({ text: candidate, path, appended: 0 });
+    // Validate the task-specific answer before considering generated coverage.
+    // Missing obligations are evidence for certification, not permission to
+    // append unrelated live-business facts to a valid single-task response.
+    queue.unshift({ text: candidate, path, appended: 0 });
 
     const liveTruth =
       Boolean(truth.deploy.gitCommitSha) ||
@@ -872,7 +875,7 @@ export function releaseExecutiveAnswer(
     "MATERIAL_ASSUMPTION_TREATED_AS_ESTABLISHED",
     "UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL",
   ]);
-  if (first.violations.some((v) => decisionCodes.has(v)) && !multiObligation) {
+  if (first.violations.some((v) => decisionCodes.has(v)) && !multiObligation && !scopedAway) {
     telemetry.reconstructionAttempted = true;
     telemetry.claimLevelRepairUsed = true;
     const dq = assessDecisionQuality(draft, truth);

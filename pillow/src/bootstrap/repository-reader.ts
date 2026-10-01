@@ -1,4 +1,4 @@
-import { access, readFile, stat } from "node:fs/promises";
+import { access, readFile, stat, realpath, open } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import type { ArtifactDescriptor, LoadedArtifact } from "./types.js";
@@ -54,6 +54,26 @@ export class RepositoryReader {
       modifiedAt,
       excerpt,
     };
+  }
+
+  /** Bounded context-only read: no traversal, symlinks or whole-file allocation. */
+  async readBoundedText(relativePath: string, maxBytes: number): Promise<string | null> {
+    const root = await realpath(this.repositoryRoot);
+    const filename = path.resolve(root, relativePath);
+    if (!filename.startsWith(root + path.sep) || !Number.isInteger(maxBytes) || maxBytes < 1 || maxBytes > 4001) throw new Error("Context path/budget refused");
+    try {
+      if (await realpath(filename) !== filename) throw new Error("Context symlink refused");
+      const handle = await open(filename, constants.O_RDONLY | constants.O_NOFOLLOW);
+      try {
+        if (!(await handle.stat()).isFile()) throw new Error("Context source is not a file");
+        const buffer = Buffer.alloc(maxBytes);
+        const {bytesRead} = await handle.read(buffer, 0, maxBytes, 0);
+        return buffer.subarray(0, bytesRead).toString("utf8");
+      } finally { await handle.close(); }
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+      throw error;
+    }
   }
 
   async readText(relativePath: string): Promise<string | null> {

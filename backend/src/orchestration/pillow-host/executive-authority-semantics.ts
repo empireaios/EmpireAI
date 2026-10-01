@@ -293,7 +293,7 @@ export function authorityKindSignals(kind: AuthorityTaskKind): RegExp {
 function verifiedAuthorityLines(truth: ExecutiveTruthSnapshot): string[] {
   const a = truth.authority;
   return [
-    `Verified chat posture: publish=${a.pillowMayPublish}; supplier spend=${a.pillowMaySupplierSpend}; Birth authorisation=${a.pillowMayAuthoriseBirth}; production deploy=${a.pillowMayExecuteProductionDeploy}; in-chat tool loop=${a.chatHasToolCallingLoop}.`,
+    `Verified chat posture: publish=${a.pillowMayPublish}; supplier spend=${a.pillowMaySupplierSpend}; Birth authorisation=${a.pillowMayAuthoriseBirth}; production deploy=${a.pillowMayExecuteProductionDeploy}; unrestricted in-chat tool loop=${a.chatHasToolCallingLoop}.`,
     a.executableNow.length
       ? `Executable now from this chat: ${a.executableNow.join("; ")}.`
       : "Executable now from this chat: answer / recommend / analyze only.",

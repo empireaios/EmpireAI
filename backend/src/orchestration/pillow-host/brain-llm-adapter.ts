@@ -48,6 +48,9 @@ function artifactTypeFor(capability: OpenAICapability): EmpireAIArtifactType {
 /** Brain-side adapter — routes Pillow inference through LLMRouter + capability execution. */
 export function createBrainLLMAdapter(llmRouter: LLMRouter): IntelligencePlatformAdapter {
   const base: BrainLLMAdapter = {
+    async crossCheck(request, providers, justification) {
+      return llmRouter.crossCheck(request, providers, justification);
+    },
     listAvailableProviders(): BrainLLMProviderName[] {
       return llmRouter.listAvailable();
     },
@@ -56,6 +59,7 @@ export function createBrainLLMAdapter(llmRouter: LLMRouter): IntelligencePlatfor
       request: BrainLLMCompleteRequest,
     ): Promise<BrainLLMCompleteResponse> {
       const response = await llmRouter.complete({
+        signal: request.signal,
         capability: request.capability,
         provider: request.provider,
         model: request.model,

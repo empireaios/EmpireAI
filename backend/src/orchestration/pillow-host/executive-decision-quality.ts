@@ -91,7 +91,14 @@ const CAUSAL_BRIDGE =
   /\b(?:because\s+(?:we\s+)?(?:verified|confirmed|measured)|given\s+(?:verified|confirmed)\s+|evidence\s+(?:shows|supports)\s+that\s+(?:this|the)\s+(?:candidate|option|product|supplier|migration)|economics\s+(?:clear|pass|support)|readiness\s+(?:is\s+)?(?:confirmed|verified))\b/i;
 
 export function hasStrongSpecificRecommendation(text: string): boolean {
-  return STRONG_SPECIFIC_ACTION.test(text) || UNCONDITIONAL_URGENCY.test(text);
+  // A mentioned action is not a recommendation (plans, quotations and refusals
+  // routinely contain action verbs). Require an affirmative recommendation.
+  return text.split(/(?<=[.!?])\s+|\n+/).some((sentence) => {
+    if (/\b(?:do not|don.t|must not|should not|cannot|can.t|never|not authorized)\b/i.test(sentence)) return false;
+    return STRONG_SPECIFIC_ACTION.test(sentence) &&
+      (RECOMMENDATION_STANCE.test(sentence) || UNCONDITIONAL_URGENCY.test(sentence) ||
+       /^\s*(?:launch|publish|migrate|hire|discount|switch|increase\s+.*spend)\b/i.test(sentence));
+  });
 }
 
 export function hasDecisionConditionality(text: string): boolean {
@@ -143,7 +150,7 @@ export function assessDecisionQuality(
   for (const leap of GOAL_SOLUTION_LEAPS) {
     const goalHit =
       leap.id === "revenue_to_launch"
-        ? leap.goal.test(message) || zeroCommerce
+        ? leap.goal.test(message)
         : leap.goal.test(message);
     const solutionHit = leap.solution.test(message);
     const consequential =
@@ -175,6 +182,7 @@ export function assessDecisionQuality(
   // Verified problem + specific solution without acknowledging material unknowns when zero commerce + launch.
   if (
     zeroCommerce &&
+    GOAL_SOLUTION_LEAPS[0]!.goal.test(message) &&
     /\b(?:launch|publish|go\s+live\s+with|roll\s+out)\b/i.test(message) &&
     strong &&
     !conditional &&
@@ -206,69 +214,14 @@ export function repairDecisionQualityAnswer(
   truth: ExecutiveTruthSnapshot,
   assessment: DecisionQualityResult,
 ): string {
-  const zeroCommerce =
-    Number(truth?.financial?.orders ?? -1) === 0 &&
-    Number(truth?.financial?.realisedRevenueUsd ?? -1) === 0;
-  const product = truth?.product?.productName ?? "the current candidate";
-
-  const latencyCase = /\blatency\b/i.test(draft) && /\bmigrat/i.test(draft);
-  const churnOrConversion =
-    /\b(?:churn|conversion)\b/i.test(draft) &&
-    /\b(?:ad\s+spend|advertising|discount|spend)\b/i.test(draft);
-  const supplierCase = /\bsupplier\b/i.test(draft) && /\bswitch\b/i.test(draft);
-
-  const parts: string[] = [];
-
-  if (latencyCase) {
-    parts.push("The latency problem is clear from what we can observe.");
-    parts.push(
-      "Whether a database migration is the right immediate fix depends on premises we have not verified — for example whether the bottleneck is query shape, capacity, or something else.",
-    );
-  } else if (churnOrConversion) {
-    parts.push("The performance problem is clear from what we can observe.");
-    parts.push(
-      "Whether increasing spend or cutting price is the right immediate fix depends on premises we have not verified — for example offer quality, acquisition quality, and unit economics of the proposed lever.",
-    );
-  } else if (supplierCase) {
-    parts.push("Supplier failure is a real operational problem.");
-    parts.push(
-      "Whether switching to a particular replacement is the right immediate move depends on premises we have not verified — capacity, quality, lead time, and switching cost.",
-    );
-  } else {
-    const wantsProgress =
-      PROGRESS_GOAL.test(draft) ||
-      zeroCommerce ||
-      /\b(?:revenue|sales|traction|commercial)\b/i.test(draft);
-    if (wantsProgress && zeroCommerce) {
-      parts.push("We need commercial progress — realised sales are still zero.");
-    } else if (wantsProgress) {
-      parts.push("The underlying goal is clear from what we can verify.");
-    } else {
-      parts.push("The underlying goal is clear from what we can verify.");
-    }
-    parts.push(
-      `Whether ${product} is the right immediate move depends on premises we have not verified yet — typically demand attractiveness, unit economics, and operational readiness.`,
-    );
-  }
-
-  parts.push(
-    "Those checks are usually cheap relative to committing to one specific path, and they could reverse the decision, so I would verify them first.",
-  );
-
-  parts.push(
-    "If they clear a sensible threshold, proceed with a bounded test rather than treating one solution as already proven.",
-  );
-
-  if (!/\b(?:change\s+my\s+(?:mind|recommendation)|falsif)/i.test(draft)) {
-    parts.push(
-      "What would change this: evidence that clearly supports or refutes the proposed solution, or that waiting costs more than a reversible test.",
-    );
-  }
-
-  // Silence unused param warning while keeping signature for gate callers.
-  void assessment;
-
-  return parts.join(" ");
+  if (assessment.violations.length === 0) return draft;
+  // Preserve unrelated calculations, explanation and task structure. Never
+  // replace an answer with a live-commerce briefing based on ambient state.
+  void truth;
+  return draft.split(/(?<=[.!?])\s+|\n+/).map((sentence) => {
+    if (!hasStrongSpecificRecommendation(sentence) || hasDecisionConditionality(sentence)) return sentence;
+    return "This recommendation is not yet established: verify its decision-critical premises before committing to it.";
+  }).join("\n");
 }
 
 /** Brief fragment for LLM context — natural instructions, no sealed Q&A. */

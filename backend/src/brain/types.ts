@@ -78,7 +78,7 @@ export type LLMToolDefinition = {
 };
 
 export type LLMCompletionResponse = {
-  provenance?: {capability:string;requestKey:string;attempts:Array<{provider:LLMProviderName;outcome:string}>};
+  provenance?: {consultations?:Array<{provider:string;model:string;requestKey?:string}>;toolRequestKey?:string;capability:string;requestKey:string;attempts:Array<{provider:LLMProviderName;outcome:string}>};
   provider: LLMProviderName;
   model: string;
   content: string;

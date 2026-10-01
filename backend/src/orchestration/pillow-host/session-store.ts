@@ -1,3 +1,4 @@
+import { productionReasoningState, type ReasoningState } from "./reasoning-state.js";
 import { randomUUID } from "node:crypto";
 
 import type { WorkspaceSession } from "./types.js";
@@ -13,6 +14,10 @@ function emptyTokenUsage(): WorkspaceSession["tokenUsage"] {
 
 /** In-memory workspace session store (PILLOW-016 — ephemeral chat state). */
 export class PillowSessionStore {
+  constructor(private readonly durable: () => ReasoningState | null = productionReasoningState) {}
+
+  persist(session: WorkspaceSession): void { this.durable()?.save(session); }
+
   private readonly sessions = new Map<string, WorkspaceSession>();
 
   private key(workspaceId: string, sessionId: string): string {
@@ -56,6 +61,8 @@ export class PillowSessionStore {
     },
   ): { session: WorkspaceSession; reused: boolean } {
     const maxAgeMs = options?.maxAgeMs ?? Number(process.env.PILLOW_SESSION_REUSE_MAX_AGE_MS ?? 30 * 60_000);
+    const durableId = this.durable()?.latest(workspaceId, maxAgeMs);
+    if (durableId) this.get(workspaceId, durableId);
     const existing = this.listForWorkspace(workspaceId)
       .slice()
       .sort((a, b) => b.lastActivityAt.localeCompare(a.lastActivityAt))[0];
@@ -71,7 +78,18 @@ export class PillowSessionStore {
   }
 
   get(workspaceId: string, sessionId: string): WorkspaceSession | null {
-    return this.sessions.get(this.key(workspaceId, sessionId)) ?? null;
+    const cached = this.sessions.get(this.key(workspaceId, sessionId));
+    if (cached) return cached;
+    const turns = this.durable()?.load(workspaceId, sessionId);
+    if (!turns) return null;
+    const restored = this.create(workspaceId);
+    this.sessions.delete(this.key(workspaceId, restored.sessionId));
+    restored.sessionId = sessionId;
+    restored.conversationHistory = turns;
+    // No approval, mission authority or provider permissions are imported.
+    restored.approvalState = "none";
+    this.sessions.set(this.key(workspaceId, sessionId), restored);
+    return restored;
   }
 
   listForWorkspace(workspaceId: string): WorkspaceSession[] {

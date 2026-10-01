@@ -84,7 +84,7 @@ export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruth
       chatHasToolCallingLoop: false,
       executableNow: [
         "Answer Grand King questions within Digital Soul gates",
-        "Run commissioning / executive-loop tools via API when invoked (L1/L2)",
+        "Read permitted repository, mission and evidence context; bounded local arithmetic with receipts",
         "Surface escalations requiring Grand King approval",
       ],
       requiresGrandKing: [
@@ -101,7 +101,7 @@ export function buildExecutiveTruthSnapshot(workspaceId: string): ExecutiveTruth
       birth.authority.reason,
       "Birth authority is a fail-closed policy projection, not a certification of readiness or the legacy commissioning record.",
       "CURRENT_VERIFIED outranks historical mission docs (P0-1/B5 etc.).",
-      "ZERO realised sales means sales/demand/ratings/competitor history are UNKNOWN unless cited from this block.",
+      "Zero realised sales does not establish demand or competitor history; those claims require separate attributed evidence.",
       "Product ASIN and title are bound; never rename an ASIN.",
       `NODE_ENV=${process.env.NODE_ENV ?? "unset"}; DATABASE_PATH set=${Boolean(env.DATABASE_PATH)}`,
     ],
@@ -166,7 +166,7 @@ export function formatExecutiveTruthBrief(truth: ExecutiveTruthSnapshot): string
     `  pillowMaySupplierSpend=${truth.authority.pillowMaySupplierSpend}`,
     `  pillowMayAuthoriseBirth=${truth.authority.pillowMayAuthoriseBirth}`,
     `  pillowMayExecuteProductionDeploy=${truth.authority.pillowMayExecuteProductionDeploy}`,
-    `  chatToolCallingLoop=${truth.authority.chatHasToolCallingLoop}`,
+    `  unrestrictedChatToolCallingLoop=${truth.authority.chatHasToolCallingLoop}`,
     "  Executable now:",
     ...truth.authority.executableNow.map((x) => `    - ${x}`),
     "  Requires Grand King:",

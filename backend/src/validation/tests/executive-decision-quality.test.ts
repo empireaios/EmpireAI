@@ -86,7 +86,8 @@ describe("executive decision quality — Round A", () => {
       userMessage: "What should we do next?",
     });
     assert.doesNotMatch(out.message, /launch Synthetic Desk Widget Pro immediately/i);
-    assert.match(out.message, /verify|bounded test|depends/i);
+    // Both verb and noun forms express the same verification-first requirement.
+    assert.match(out.message, /verify|verification|bounded test|depends/i);
     assert.doesNotMatch(out.message, /\bACT_NOW\b|\bVERIFY_THEN_ACT\b|\bDECISION_CRITICAL\b/);
     assert.equal(assessConversationalUx(out.message).ok, true);
   });

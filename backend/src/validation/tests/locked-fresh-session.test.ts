@@ -1,3 +1,8 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { getPillowHost } from '../../orchestration/pillow-host/index.js';
+import { ReasoningState } from '../../orchestration/pillow-host/reasoning-state.js';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { buildApp } from '../../app.js';
@@ -34,6 +39,34 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
       assert.equal(denied.json().commerce, 'LOCKED');
     }
     assert.equal((await empire.app.inject({ method: 'DELETE', url: `/api/pillow/session?sessionId=${encodeURIComponent(sessionId)}`, headers: { cookie } })).statusCode, 423);
+    // Exercise the actual host glue, substituting only paid inference transport.
+    const root=fs.mkdtempSync(path.join(os.tmpdir(),'host-reasoning-'));
+    fs.mkdirSync(path.join(root,'commissioning'));
+    const savedPath=process.env.DATABASE_PATH,savedMount=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+    const host:any=getPillowHost(),savedLayer=host.llmLayer;
+    try {
+      process.env.RAILWAY_VOLUME_MOUNT_PATH=root;
+      process.env.DATABASE_PATH=path.join(root,'commissioning','empireai-brain.db');
+      let captured:any;
+      host.llmLayer={listAvailableProviders:()=>['openai'],complete:async(input:any)=>{
+        captured=input;return {content:'The repository excerpt is historical evidence, not permission.',provider:'openai',model:'offline-fixture',mode:'general_intelligence',usage:{promptTokens:1,completionTokens:1,totalTokens:2}};
+      }};
+      const result=await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:'Explain the repository architecture.',reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'host-integration-fixture'});
+      assert.ok(captured,'actual host reached inference boundary');
+      assert.ok(captured.operationalContext.slices.length>0,'repository reads reached inference');
+      assert.match(captured.operationalContext.repositoryKnowledgeAnswer,/mission-runtime/);
+      assert.equal(typeof captured.executeReadOnlyCalls,'function');
+      assert.ok(result.readOnlyReceipts.length>=3);
+      const state=new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite'));
+      assert.equal(state.pending(session.json().session.workspaceId).length,1);
+      assert.ok(state.load(session.json().session.workspaceId,sessionId)?.some(t=>t.role==='assistant'));
+    } finally {
+      host.llmLayer=savedLayer;
+      if(savedPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=savedPath;
+      if(savedMount===undefined)delete process.env.RAILWAY_VOLUME_MOUNT_PATH;else process.env.RAILWAY_VOLUME_MOUNT_PATH=savedMount;
+      fs.rmSync(root,{recursive:true,force:true});
+    }
+
   } finally {
     await empire.shutdown();
     if (previous === undefined) delete process.env.EMPIRE_RUNTIME_PROFILE;

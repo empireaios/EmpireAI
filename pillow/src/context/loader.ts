@@ -4,6 +4,7 @@ import type { ContextArtifactSlice, ContextSourceDescriptor } from "./types.js";
 export async function loadContextSlices(
   reader: RepositoryReader,
   sources: ContextSourceDescriptor[],
+  bounded = false,
 ): Promise<ContextArtifactSlice[]> {
   const slices: ContextArtifactSlice[] = [];
   const loadedPaths = new Set<string>();
@@ -12,7 +13,7 @@ export async function loadContextSlices(
     if (loadedPaths.has(source.path)) continue;
     loadedPaths.add(source.path);
 
-    const slice = await loadSingleSlice(reader, source);
+    const slice = await loadSingleSlice(reader, source, bounded);
     if (slice) slices.push(slice);
   }
 
@@ -22,11 +23,12 @@ export async function loadContextSlices(
 async function loadSingleSlice(
   reader: RepositoryReader,
   source: ContextSourceDescriptor,
+  bounded = false,
 ): Promise<ContextArtifactSlice | null> {
   const exists = await reader.exists(source.path);
   if (!exists) return null;
 
-  const full = await reader.readText(source.path);
+  const full = bounded ? await reader.readBoundedText(source.path, source.maxBytes + 1) : await reader.readText(source.path);
   if (full === null) return null;
 
   const encoder = new TextEncoder();

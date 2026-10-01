@@ -10,6 +10,7 @@ export interface BrainLLMMessage {
 }
 
 export interface BrainLLMCompleteRequest {
+  signal?: AbortSignal;
   capability?: 'reasoning' | 'analysis' | 'summarization' | 'critique';
   messages: BrainLLMMessage[];
   provider?: BrainLLMProviderName;
@@ -21,7 +22,7 @@ export interface BrainLLMCompleteRequest {
 }
 
 export interface BrainLLMCompleteResponse {
-  provenance?: {capability:string;requestKey:string;attempts:Array<{provider:BrainLLMProviderName;outcome:string}>};
+  provenance?: {consultations?:Array<{provider:string;model:string;requestKey?:string}>;toolRequestKey?:string;capability:string;requestKey:string;attempts:Array<{provider:BrainLLMProviderName;outcome:string}>};
   provider: BrainLLMProviderName;
   model: string;
   content: string;
@@ -35,6 +36,7 @@ export interface BrainLLMCompleteResponse {
 /** Pillow delegates all inference to Brain — never calls provider APIs directly. */
 export interface BrainLLMAdapter {
   complete(request: BrainLLMCompleteRequest): Promise<BrainLLMCompleteResponse>;
+  crossCheck?(request: BrainLLMCompleteRequest, providers: readonly [BrainLLMProviderName, BrainLLMProviderName], justification: string): Promise<BrainLLMCompleteResponse[]>;
   listAvailableProviders(): BrainLLMProviderName[];
 }
 
