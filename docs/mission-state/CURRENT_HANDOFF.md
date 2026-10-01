@@ -1,5 +1,12 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — backend CLOSED; Vercel URL scope repaired; frontend deployment next
+
+Recovery independently read GitHub Product36856624243/Semantic36856624215/Runtime36856624401 SUCCESS for d6e69910384a00b11711a50ccbc2d70826549fa5, Railway deployment e978b764 SUCCESS, persisted before/after receipts and fresh HTTPS /health/ready (ready true, Redis ping true, operational false, NOT_BORN/LOCKED). Backend gate CLOSED. No CI/build/restart/recovery tests repeated.
+
+Vercel dashboard fallback authenticated. Prior scope blocker resolved using ordinary Edit: retained existing write-only BRAIN_API_URL value and changed its target to Preview only; then added separate Production-only BRAIN_API_URL=https://empireai-locked-runtime-production.up.railway.app. Dashboard confirms separate Production and Preview rows and success. No secret rotation/revocation. Existing deployed production remains 21384342 until new deployment; domain empire-ai.co preserved. Next deploy exact d6e699 candidate empireai-web using Production environment, verify actual domain desktop/phone journey, then and only then stop legacy worker preserving resources. No frontend acceptance or legacy shutdown claimed yet.
+
+
 ## Active checkpoint — LOCKED backend PASS; Vercel production-only write blocked
 
 2026-10-01T12:10:57.334Z. Candidate **d6e69910384a00b11711a50ccbc2d70826549fa5** is running with exact Node22.23.2, ready200, persistent identities/mission/history/Redis sessions and terminal outcomes at one attempt after actual clean app and Redis restarts. NOT_BORN / LOCKED and eight mutation denials persist. [Independent receipts](evidence/2026-10-01-locked-backend-gate.json). Backend gate is complete; do not repeat deployment or restarts. General reasoning without provider is truthfully unavailable; authority-facts reasoning succeeds.
