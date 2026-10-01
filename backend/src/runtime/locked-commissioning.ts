@@ -6,7 +6,7 @@ export function installLockedCommissioning(app: FastifyInstance): void {
   if (profile !== PROFILE || process.env.EMPIRE_ENGINEERING_TEST_MODE !== 'true') throw new Error('Invalid locked runtime profile');
   // Deny mutations before any route handler, on both primary and worker. The
   // existing reasoning-only chat worker cannot dispatch commerce tools.
-  const allowed = new Set(['/auth/login','/auth/logout','/api/pillow/chat',
+  const allowed = new Set(['/auth/login','/auth/logout','/api/pillow/chat','/api/pillow/session',
     '/api/pillow/mission-runtime/create-mission','/api/pillow/mission-runtime/history']);
   app.addHook('onRequest', async (request, reply) => {
     const route = new URL(request.url, 'http://localhost').pathname;
