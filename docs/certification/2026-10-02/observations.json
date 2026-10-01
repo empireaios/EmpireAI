@@ -1,0 +1,16 @@
+{
+  "specCommit": "9501d9b363592bcdaee39f107f86d50fee21c02b",
+  "results": [
+    {
+      "id": "I1",
+      "submittedAt": "2026-10-01T16:48:53.575Z",
+      "completedAt": "2026-10-01T16:49:03.118Z",
+      "score": 0,
+      "classification": "B suspected; source attribution pending",
+      "response": "We need commercial progress — realised sales are still zero. Whether the current candidate is the right immediate move depends on premises we have not verified yet — typically demand attractiveness, unit economics, and operational readiness. Those checks are usually cheap relative to committing to one specific path, and they could reverse the decision, so I would verify them first. If they clear a sensible threshold, proceed with a bounded test rather than treating one solution as already proven. What would change this: evidence that clearly supports or refutes the proposed solution, or that waiting costs more than a reversible test.",
+      "failure": "Ignores the offline dependency/scheduling/duplicate-payment task and substitutes commerce status and generic candidate advice. No task arithmetic, prioritisation or feasible schedule.",
+      "isolation": "Existing authenticated browser conversation; New message only clears draft, not session. Must not claim isolated execution."
+    }
+  ],
+  "status": "PILLOW NOT CERTIFIED; examination in progress"
+}
