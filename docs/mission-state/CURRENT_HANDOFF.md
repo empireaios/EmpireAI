@@ -1,5 +1,17 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — backend CLOSED; frontend d6e699 LIVE; domain acceptance FAILED
+
+1 October 2026, 12:33 UTC. Exact backend d6e69910384a00b11711a50ccbc2d70826549fa5 remains verified on Node22.23.2, deployment e978b764. Independent GitHub CI/persisted before-after receipts and fresh HTTPS health/live/ready confirm locked runtime. No CI, rebuild, restart or recovery testing repeated. Backend gate CLOSED.
+
+Vercel Production-only BRAIN_API_URL saved to https://empireai-locked-runtime-production.up.railway.app, preserving old Preview-only value. Exact candidate promoted via production rebuild: **dpl_7zWRX93P1TeJ6heYZYMgndcVuumt**, READY, SHA d6e699, target production, aliases empire-ai.co/www retained; connector independent readback confirms. **Actual backend binding remains unverified/inconsistent despite saved config. Do not equate deployment success with cutover acceptance.**
+
+Actual live browser login, Home, Products, exact mirror evidence drawer passed. Transactions FAIL HTTP503. Pillow authority question returned stale mini-fan production narrative; live /api/pillow/health reports PILLOW-016, provider context overflow (167943>128000), two provider failures and degraded response, inconsistent with no-provider locked backend. Stop further prompts. Command panels fail503; Home's recovery/cutover text stale, no direct Pillow navigation, no live health/cost/stop controls. Reload/navigation retained auth, but durable mission/history and phone-size acceptance unfinished. Unauthorized /api/auth/me401; empty unauthenticated execution request503 worker-unavailable is not authority-denial proof. [Detailed evidence and UX defects](evidence/2026-10-01-live-domain-cutover-readback.json).
+
+**Legacy NOT stopped**: deployment86302878 SUCCESS, service and5000MB volume preserved; no legacy/Redis/recovery deletion or change. Live gate failed so shutdown condition not satisfied. Browser credential protection subsequently blocked inspection, including explicit canonical Vercel navigation; no bypass attempted. Team-scoped Vercel connector403, unscoped get_deployment succeeds; configuration writes require browser.
+
+First incomplete step: inspect and repair actual deployed frontend/backend binding, then Transactions/Pillow/durable mission/history/readiness/authority desktop+phone acceptance; only after pass stop legacy while preserving resources. Then scheduled Owner UX closure and unseen Pillow certification. Do not rebuild/restart verified Railway or launch recovery programme; no Birth/commerce unlock. Backend remains NOT_BORN/LOCKED. General reasoning capability is not certified.
+
 ## Active checkpoint — backend CLOSED; Vercel URL scope repaired; frontend deployment next
 
 Recovery independently read GitHub Product36856624243/Semantic36856624215/Runtime36856624401 SUCCESS for d6e69910384a00b11711a50ccbc2d70826549fa5, Railway deployment e978b764 SUCCESS, persisted before/after receipts and fresh HTTPS /health/ready (ready true, Redis ping true, operational false, NOT_BORN/LOCKED). Backend gate CLOSED. No CI/build/restart/recovery tests repeated.
