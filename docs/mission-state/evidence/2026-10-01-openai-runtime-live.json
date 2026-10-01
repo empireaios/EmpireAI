@@ -1,0 +1,52 @@
+{
+  "updatedAt": "2026-10-01T14:42:49.734Z",
+  "status": "AWAITING_PRIVATE_OPENAI_KEY_STAGING",
+  "frontend": {
+    "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
+    "deployment": "dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc",
+    "target": "production",
+    "domain": "empire-ai.co",
+    "state": "READY",
+    "compatibleWith807a54e": true
+  },
+  "backend": {
+    "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+    "deployment": "3bfc4280-14b1-4f23-8d9b-8f9d149fc7cd",
+    "state": "SUCCESS",
+    "origin": "https://empireai-locked-runtime-production.up.railway.app",
+    "liveEndpointVerified": true,
+    "authenticatedHomeVerifiedAt": "2026-10-01T14:41:07.740Z",
+    "transportReady": true,
+    "workerOnline": true,
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "operational": false,
+    "credentialConfigured": false,
+    "inferenceCeilingUsd": 20,
+    "model": "gpt-6.1-sol",
+    "buildNode": "22.23.2",
+    "buildNpm": "10.9.8"
+  },
+  "provenance": "Live Pillow page shows recorded timestamps and source-runtime-unverified/historical-not-current-evidence labels for old transcript",
+  "pricing": {
+    "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "verifiedAt": "2026-10-01T14:42:49.734Z",
+    "usdPerMillion": {
+      "input": 2,
+      "cachedInput": 0.1,
+      "cacheWrites": 2.5,
+      "output": 10
+    },
+    "longContextThreshold": 272000,
+    "longInputMultiplier": 2,
+    "longOutputMultiplier": 1.5,
+    "regionalPremium": 0.1
+  },
+  "privateAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add OPENAI_API_KEY privately and save as a staged change only. Do not click Deploy/Apply. Reply key staged, never value.",
+  "activationCaution": "Saved service source.commitSha still d69cdc9 despite live807a54e. Do not use default source deployment for key activation. Resolve/verify staged source807a54e and exact deployment activation after variable staging. Railway agent claim environment hot-updates without restart is unsupported/incorrect; do not rely on it. Agent also conflated old CI/current revision; only local new-candidate tests/build were proved.",
+  "paidCalls": 0,
+  "legacy": "untouched running preserved",
+  "cutover": "NOT_COMPLETE",
+  "next": "Private key staging -> controlled activation on exact807a54e -> one ordinary real response and ledger readback -> phone + full live authority denial acceptance -> only then preserved legacy shutdown/postverification -> OWNER UX CLOSURE",
+  "noBirthOrCommerceUnlock": true
+}

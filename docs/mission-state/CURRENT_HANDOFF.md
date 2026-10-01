@@ -1,5 +1,18 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — cf7f475 / 807a54e LIVE, ready for private key staging
+
+2026-10-01T14:42:49.734Z. Vercel production **dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc** independently resolves empire-ai.co to exact **cf7f475aa96ae5db82ba339f102e31c45689addd**, READY; source explicitly accepts807a54e. Exact Railway deployment **3bfc4280-14b1-4f23-8d9b-8f9d149fc7cd** is SUCCESS for **807a54eab8b62cfdec4c7aea1f6e8966671dddaa**, built Node22.23.2/npm10.9.8. Live /health/live confirms SHA/deployment, /health/ready confirms Redis/worker readiness, NOT_BORN/LOCKED/operationalfalse, gpt-6.1-sol, US$20 ceiling and credentialConfigured:false. Authenticated actual empire-ai.co Home displays807a54e, ready/NOT_BORN/LOCKED at14:41:07.740Z. Existing session survived deployment. No repeat recovery or extra restart. Legacy and Redis untouched.
+
+Historical provenance correction verified on actual Pillow page: saved timestamps and source-runtime-unverified/historical-not-current-evidence labels appear on pre-cutover and failed request transcripts. Available/DEMO and other Class B defects remain deferred.
+
+Official OpenAI model page re-read this turn confirms gpt-6.1-sol; per-million USD input2/cache-read.10/cache-write2.50/output10, >272K input premiums2x input/1.5x output and regional10%, covered by guard. No paid call; ledger/live response not yet verified.
+
+**Single private owner action:** Railway → empireai → production → **empireai-locked-runtime** → Variables: add **OPENAI_API_KEY** privately and **save/stage only; do not Deploy/Apply**. Reply “key staged”, never the value. Existing live launcher807a54e is compatible. Saved service config still has source.commitSha=d69cdc9: after staging, verify exact807a54e source/activation rather than default-deploying stale source. Do not trust Railway agent’s unsupported claim env changes hot-load without process replacement. New807a54e has local targeted tests/build/typecheck; old hosted Product/Semantic/Runtime belonged to d6e699. Agent memory conflation corrected here.
+
+Next: controlled credential activation on exact807a54e → one ordinary real inference + persistent usage/reservation readback → phone/full live authority denials → preserved legacy shutdown only if Class A passes → post-stop verification → OWNER UX CLOSURE. CUTOVER NOT COMPLETE. No Birth/commerce unlock or unseen certification.
+
+
 ## Active checkpoint — bounded OpenAI inference candidates tested; production promotion blocked
 
 2026-10-01T14:28:33.196Z. King approved OpenAI inference while NOT_BORN/LOCKED, with a separate October inference hard ceiling of US$20. Backend candidate **807a54eab8b62cfdec4c7aea1f6e8966671dddaa**, frontend candidate **cf7f475aa96ae5db82ba339f102e31c45689addd** are published. Neither is production. Existing backend d6e699 gate stays CLOSED; frontend7837479 stays live; legacy unchanged/running/preserved. No paid call or production credential provisioning.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T14:28:33.196Z",
+  "updatedAt": "2026-10-01T14:42:49.734Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE; bounded inference and provenance candidates published/tested, Vercel promotion blocked; production unchanged.",
+    "status": "CUTOVER NOT COMPLETE; frontend cf7f475 and runtime807a54e now live, ready for private key staging.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -2116,19 +2116,19 @@
       "backend": {
         "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
         "branch": "fix/locked-openai-inference-20261001",
-        "deployed": false
+        "deployed": true
       },
       "frontend": {
         "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
         "branch": "fix/locked-inference-provenance-web-20261001",
         "previewDeployment": "dpl_szaDgj8evNaFFTWaRG91nfTQfdZe",
         "lastObservedPreviewState": "READY",
-        "production": false
+        "production": true
       }
     },
     "live": {
-      "backend": "d6e69910384a00b11711a50ccbc2d70826549fa5",
-      "frontend": "7837479aa60ee5d82963d046223dfb09523f6fe0",
+      "backend": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+      "frontend": "cf7f475aa96ae5db82ba339f102e31c45689addd",
       "backendGate": "CLOSED_NOT_REOPENED",
       "legacy": "RUNNING_PRESERVED_UNCHANGED"
     },
@@ -2165,10 +2165,8 @@
       "liveInference": "NOT_TESTED"
     },
     "blocker": {
-      "primary": "Vercel production promotion write unavailable; dashboard native-credential observation protection persists",
-      "connector": "deploy_to_vercel not returned by tools/list",
-      "ownerAction": "In existing empireai Vercel project promote cf7f475 (dpl_szaDgj8evNaFFTWaRG91nfTQfdZe when READY) using production-environment rebuild, preserving Production BRAIN_API_URL and empire-ai.co",
-      "reasonForOrder": "Current live frontend pins d6e699 and would reject 807a54e. cf7f475 recognizes both exact approved revisions during transition."
+      "primary": "Private OpenAI API key not provisioned",
+      "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add OPENAI_API_KEY privately and save as a staged change only. Do not click Deploy/Apply. Reply key staged, never value."
     },
     "next": "After frontend promotion independently verify it, deploy exact backend807a54e only to existing locked service, then privately provision OPENAI_API_KEY there through owner secret UI. Do NOT add key to old d6e699 launcher. One real response -> remaining Class A -> preserved legacy shutdown -> post-stop verification -> OWNER UX CLOSURE.",
     "remainingClassA": [
@@ -2187,5 +2185,57 @@
       "one-stop Money & Services",
       "dashboard usefulness/navigation/presentation"
     ]
+  },
+  "openaiRuntimeDeploymentCheckpoint": {
+    "updatedAt": "2026-10-01T14:42:49.734Z",
+    "status": "AWAITING_PRIVATE_OPENAI_KEY_STAGING",
+    "frontend": {
+      "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
+      "deployment": "dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc",
+      "target": "production",
+      "domain": "empire-ai.co",
+      "state": "READY",
+      "compatibleWith807a54e": true
+    },
+    "backend": {
+      "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+      "deployment": "3bfc4280-14b1-4f23-8d9b-8f9d149fc7cd",
+      "state": "SUCCESS",
+      "origin": "https://empireai-locked-runtime-production.up.railway.app",
+      "liveEndpointVerified": true,
+      "authenticatedHomeVerifiedAt": "2026-10-01T14:41:07.740Z",
+      "transportReady": true,
+      "workerOnline": true,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "operational": false,
+      "credentialConfigured": false,
+      "inferenceCeilingUsd": 20,
+      "model": "gpt-6.1-sol",
+      "buildNode": "22.23.2",
+      "buildNpm": "10.9.8"
+    },
+    "provenance": "Live Pillow page shows recorded timestamps and source-runtime-unverified/historical-not-current-evidence labels for old transcript",
+    "pricing": {
+      "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "verifiedAt": "2026-10-01T14:42:49.734Z",
+      "usdPerMillion": {
+        "input": 2,
+        "cachedInput": 0.1,
+        "cacheWrites": 2.5,
+        "output": 10
+      },
+      "longContextThreshold": 272000,
+      "longInputMultiplier": 2,
+      "longOutputMultiplier": 1.5,
+      "regionalPremium": 0.1
+    },
+    "privateAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add OPENAI_API_KEY privately and save as a staged change only. Do not click Deploy/Apply. Reply key staged, never value.",
+    "activationCaution": "Saved service source.commitSha still d69cdc9 despite live807a54e. Do not use default source deployment for key activation. Resolve/verify staged source807a54e and exact deployment activation after variable staging. Railway agent claim environment hot-updates without restart is unsupported/incorrect; do not rely on it. Agent also conflated old CI/current revision; only local new-candidate tests/build were proved.",
+    "paidCalls": 0,
+    "legacy": "untouched running preserved",
+    "cutover": "NOT_COMPLETE",
+    "next": "Private key staging -> controlled activation on exact807a54e -> one ordinary real response and ledger readback -> phone + full live authority denial acceptance -> only then preserved legacy shutdown/postverification -> OWNER UX CLOSURE",
+    "noBirthOrCommerceUnlock": true
   }
 }
