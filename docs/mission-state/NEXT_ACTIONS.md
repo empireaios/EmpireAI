@@ -1,3 +1,7 @@
+# Active next action — 1 October2026
+
+PRE-CUTOVER CLOSURE PASS. See [canonical handoff](CURRENT_HANDOFF.md) and [actual production-cutover authorization](ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md). STOP for King approval. No deployment/restart or legacy recovery is authorized by this checkpoint. Following chronological material is superseded.
+
 # Remaining closure path
 
 > **Current mission handoff:** [CURRENT_HANDOFF.md](CURRENT_HANDOFF.md) and [machine-readable state](CURRENT_HANDOFF.json). This document retains earlier chronological checkpoints; read the active handoff first.

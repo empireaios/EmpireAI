@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T21:46:40.096011+00:00",
+  "updatedAt": "2026-10-01T09:21:01.480990+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -14,7 +14,7 @@
       "bounded real commercial pilot authorization"
     ],
     "continueAutomatically": true,
-    "consolidatedExecutionDirective": "30September: close to operational launch; speculative legacy recovery closed. Execute safe promotion prerequisites, owner console/provider-backed commerce/Pillow certification/residency. Stop once before first materially destructive cutover and separately before bounded real commerce.",
+    "consolidatedExecutionDirective": "1October: both bounded prerequisites closed. Stop for King approval of ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md. Fixed sequence: production cutover, live useful owner console, competence/Birth, qualified product, unattended24/7, pilot authorization. No production cutover approval yet.",
     "pendingBrowserFallback": {
       "status": "APPROVED_AND_READ_ONLY_INSPECTION_COMPLETED",
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -31,11 +31,11 @@
     "name": "empireaios/EmpireAI",
     "main": "21384342c401def948926904913840e63c18dff7",
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
-    "lastVerifiedIntegrationHead": "1d95eb1d75a51cc29d7f8a87dcf2988fefa35fd4",
+    "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "Draft unmerged. Supplied-price comprehension repaired; controlled cutover preparation; legacy speculative recovery closed. Production unchanged.",
-    "candidateCodeHead": "90e19c5067968d4712df7d7ca8fc2307843af488",
-    "branchTipNote": "Evidence-only read-only billing inspection follows verified application90e19c5. No app/config changes, hosted rehearsal or production operation this checkpoint.",
+    "status": "PRE-CUTOVER CLOSURE PASS. PR5 unmerged. STOP for concrete production-cutover approval.",
+    "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+    "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
   },
   "deployed": {
@@ -69,7 +69,8 @@
       "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
       "teamScopedListing": "2026-09-28 teams=[] and known-ID GET INVALID_ARGUMENT; cloud browser unauthenticated",
       "productionReadbackVerified": true,
-      "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence."
+      "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence.",
+      "freshReadback20261001": "Known project with idOrName and team returned403 forbidden; Sep27 remains last authenticated deployment evidence."
     }
   },
   "authority": {
@@ -1616,19 +1617,14 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Isolated test project is empty. Displayed headroom4.93USD current /4.89USD estimated against existing5USD cap; not settled/all-cost guarantee. Current owner message explicitly prohibits the creation/configuration/deployment operations needed for rehearsal. Await one test-only scope exception; no additional funds requested.",
-    "Mirror and tower terminally rejected: supplier-managed/shipped products fail CJ-controlled fulfilment mandate. No qualified product. Do not automatically reopen.",
-    "Next candidate still needs exact variant/CJ-controlled stock/freight/Amazon identity/fees/price/landed-cost/profit evidence. All real commerce remains locked.",
-    "Owner home/product/transaction flow passes isolated phone browser; live domain unchanged and deployed authenticated owner journey unverified. Live orders, settlements, current service health and platform/AI costs not reconciled.",
-    "Pillow live reasoning/runtime/outcome-learning certification and independent integrated acceptance incomplete. NOT_BORN / LOCKED; real pilot unauthorized."
+    "King has not approved the actual production-cutover package.",
+    "Vercel connector403; regain existing project access before interrupting legacy runtime.",
+    "Subsequent owner-console live verification, competence/Birth, qualified product, unattended24/7 and pilot authorization remain in fixed order; they are not extra pre-cutover engineering gates."
   ],
   "nextExecutableActions": [
-    "Prepare permanent LOCKED commissioning candidate and complete enabled-store backup/restore plus interrupted-job recovery contract. Reuse Sep30 actual app/Redis restart evidence; resources cleaned. No more speculative legacy recovery. Stop once before material production cutover for exact authorization.",
-    "Move on from rejected mirror and tower. The prepared ordinary-CJ-product discovery excludes recorded rejections and rejects unsupported fulfilment types before extra stock/freight calls. Keep reads bounded and approved, exact identity/stock/freight/economics mandatory; no automatic positive approval.",
-    "Continue owner-oriented nonproduction Today/Products/Orders/Health integration with authenticated durable ingestion, real exceptions and finance; preserve actual-vs-simulated evidence and server authority. No disconnected dashboard expansion.",
-    "Continue Pillow reasoning/arithmetic/ranking/memory/corrected facts/mission state/authority and durable unattended runtime certification; provider invoice reconciliation for paid-model reservations remains unproved. One fail-closed authority: NOT_BORN, Wave 0, commerce LOCKED.",
-    "Once preservation permits promotion, verify code\u2192CI\u2192Railway/Vercel\u2192runtime revision, independent unfamiliar/failure/restart cases and 84 replacement requirements. Vercel Sep 27 READY/main is latest authenticated evidence; fresh verification remains pending until a deployment/verification boundary requires it.",
-    "Only after independent certification request the required owner authorization for the smallest bounded real Amazon US pilot; reconcile actual orders, supplier fulfillment, tracking, settlement, refunds and attributable realised economics before expansion."
+    "STOP: present ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md and wait for King explicit approval.",
+    "After approval, perform frozen candidate cutover with stated preservation/risk and unchanged ceiling; restore Vercel access before old interruption.",
+    "Then deploy/verify useful empire-ai.co owner console -> Pillow competence/Birth certification -> real provider-backed qualified product -> unattended24/7 certification -> bounded real-commerce pilot authorization."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -1680,10 +1676,8 @@
     "provisionalConservativeUSD": 1.0693,
     "ceilingUSD": 20,
     "unproven": [
-      "interrupted in-flight jobs",
-      "abrupt kill",
-      "whole-store volume restore",
-      "permanent commissioning profile"
+      "provider-hosted abrupt application kill",
+      "full provider-volume restore (bounded independent store restore now passed in CI)"
     ]
   },
   "recoveryReadback": {
@@ -1701,5 +1695,71 @@
       "Semantic": 36780924273,
       "Runtime": 36780924222
     }
+  },
+  "preCutoverClosure": {
+    "schema": "precutover-seal-v1",
+    "at": "2026-10-01T09:21:01.480990+00:00",
+    "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+    "pr": 5,
+    "merged": false,
+    "closure": "PASS_BOUNDED_PRECUTOVER",
+    "productionCutoverAuthorized": false,
+    "productionTouched": false,
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "ci": {
+      "Product": 36841093494,
+      "Semantic": 36841093594,
+      "Runtime": 36841093491
+    },
+    "ciConclusions": "all success",
+    "runtimeJob": 110300124297,
+    "runtimeArtifact": 11150913478,
+    "artifactZipSha256": "3deab18a5ee29ee51e6304723c07d6ec8d7be16ba282d58af028698e77481de7",
+    "artifactDownloadedHashVerified": true,
+    "restoreReceipt": "runtime-restore-receipt.json",
+    "staleWorkTest": "ok 9 - leased job survives Redis process death and rejects stale settlement after recovery",
+    "enabledStores": [
+      "SQL.js primary: accounts, durable application state",
+      "native mission snapshot SQLite: unapproved mission/history",
+      "Shadow CEO SQLite, request-owner JSON, authority JSON",
+      "dedicated Redis AOF/base RDB/manifest: sessions and durable reasoning queue/results"
+    ],
+    "notRequiredForLockedRuntime": [
+      "native mission execution/outbox: execution route denied; no execution sidecar created",
+      "CJ supplier call ledger and credential/provider stores: dispatch disabled and provider credentials absent",
+      "commissioning mirror: none created in this profile; whole-directory copy includes it if later written",
+      "legacy stores and old queues: quarantined, not authoritative or imported"
+    ],
+    "backupBoundary": "All ordinary files under dedicated application directory and Redis persistence directory, after both processes stop cleanly; matching code, independent manifest hash and externally preserved owner/session/Redis secrets required. Restore refuses existing destinations and altered bundle. No automatic remote backup schedule claimed.",
+    "limitations": [
+      "30-second steady bounded process observation plus restore/outage checks; not 24/7 certification",
+      "CI actual process/store proof plus reused Sep30 Railway persistence proof; new production target not yet created",
+      "Shadow records seeded through actual repository/authority modules after clean stop and read through them independently after restore",
+      "legacy RAM/full store recovery not proven and not reopened",
+      "Vercel current read denied403; access required before legacy interruption"
+    ],
+    "defectsClosed": [
+      "existing partial bundle excluded Shadow and Redis: whole dedicated roots now included and independently restored",
+      "canary expiry was unsuitable for permanent operation: separate explicit permanent locked profile tested",
+      "locked authority/readiness now explicit at primary and worker HTTP boundaries"
+    ],
+    "cleanup": {
+      "testServices": [],
+      "testProject": "feb90d26-c54b-4435-ac32-f666e3e25447",
+      "testVolumesPreviouslyReadBackEmpty": true,
+      "freshStatus": "zero services; existing staged patch has zero changes; left alone",
+      "newResourcesThisClosure": 0
+    },
+    "spend": {
+      "lastProvisionalConservativeUSD": 1.1019,
+      "settled": false,
+      "ceilingUSD": 20,
+      "newRailwayResources": 0,
+      "paidAgentCallsThisClosure": 0,
+      "newAuthority": false
+    },
+    "cutoverPackage": "../../ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md",
+    "nextAction": "STOP for King approval of concrete package; no production cutover"
   }
 }

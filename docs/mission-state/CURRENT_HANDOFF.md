@@ -1,5 +1,18 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — PRE-CUTOVER CLOSURE PASS, awaiting King
+
+1 October2026. Both requested prerequisites passed on **d69cdc953a5a2bc21a271eb7a7bce2598ee330ea**. Product36841093494, Semantic36841093594, Runtime36841093491 all SUCCESS. PR5 remains unmerged; no production mutation or new Railway resource. **STOP for [actual production cutover authorization](ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md).** No approval has been given. Older next-action/recovery instructions below are historical and superseded.
+
+Runtime job110300124297 ran the actual permanent production-mode launcher, without a canary expiry or provider credentials, and restored into independent application/Redis roots after quarantining originals. It verified account IDs, native unapproved mission/history, Shadow SQLite/request-owner/blocked-action JSON continuity, Redis session/terminal result with one attempt, SQLite integrity, bundle-tamper rejection, NOT_BORN/LOCKED mutation denials and503 readiness when Redis disappeared. Existing mandatory real-Redis crash/lease test also passed with stale settlement rejected. Full evidence inventory lists five application files and three Redis persistence files. [Original receipt](evidence/2026-10-01-precutover/runtime-restore-receipt.json), [seal and scope](evidence/2026-10-01-precutover/seal.json). Artifact11150913478 downloaded and SHA256 verified. This is bounded CI process/restore proof (30 steady seconds), not24/7 certification or a new provider deployment.
+
+Whole dedicated application/Redis directories are backed up only after clean stop. Secrets/configuration are restored separately and must match. No automated offsite backup schedule is claimed. Native execution/outbox and CJ/provider stores are not enabled/required for this locked runtime; legacy state is not imported. Shadow readback used actual storage/authority modules. No speculative extension to disabled/legacy recovery.
+
+Fresh Railway target read confirms old main-linked service/volume retained. Test project remains empty; pre-existing zero-change patch left untouched. No new Agent/provider paid run. Last US$1.1019 conservative Railway allocation remains provisional, not settled; US$20 ceiling unchanged. Vercel current access403; access must be restored before any old production interruption. No live frontend verification claimed.
+
+Only next authorization boundary: King accepts the package's exact fresh-state replacement, preserved/quarantined disk stores, potentially unrecoverable old RAM/ephemeral history, interruption and safe paused rollback. After approval, follow **production cutover → useful live owner console → competence/Birth certification → real qualified product → unattended24/7 certification → bounded commerce pilot authorization**. Pillow NOT_BORN; commerce LOCKED.
+
+
 ## 1 October recovery readback and observer repair
 
 Independently recovered exact GitHub head `84aaacccefbcfce1941fe732de9a6d99fc961147`; Product36725188941, Semantic36725189108 and Runtime36725188989 all succeeded. Hosted provider, independent readback and failed after-probe receipts were read directly from GitHub. Fresh Railway inspection confirms services=[] and volumes=[]; one empty staged patch `5d3f4dff-9b0b-4527-9188-dd94ad41e851` has changes=[], so it was left alone. No deletion, creation, deployment or restart repeated.
