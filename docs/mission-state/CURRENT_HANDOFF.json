@@ -2308,7 +2308,7 @@
       "provenance": "PASS historical timestamps/source-runtime-unverified labels and stale product evidence displayed",
       "reload": "PASS authenticated session and new completed response retained; browser-local history alone not server durability proof",
       "missionHistory": "Direct authenticated request-history read blocked by browser native-credential protection; Mission Centre UI remains Class B unavailable",
-      "phone": "NOT_VERIFIED: supported browser exposes no viewport/emulation capability",
+      "phone": "FAIL owner reports Pillow unavailable and some buttons unusable; other essential phone steps okay for now. Proven sessionPOST423.",
       "authority": "44/44 live unauthenticated API probes423 NOT_BORN LOCKED:40 backend methods across10 paths,4 Vercel BFF POST paths. Authenticated owner approval/Trading controls visibly disabled; full authenticated mutation API matrix not performed.",
       "runtimeIdentity": "Home exact807a54e transport/storage ready at2026-10-01T15:14:27.572Z; business operationalfalse"
     },
@@ -2319,5 +2319,16 @@
       "Complete authenticated authority/API and durable mission/history acceptance"
     ],
     "next": "Complete only remaining acceptance evidence, then approved preserved legacy-worker stop/restart-disable and post-stop live verification. Only then CUTOVER COMPLETE / OWNER UX CLOSURE. No competence certification, Birth or commerce unlock."
+  },
+  "phoneAcceptanceDefect": {
+    "at": "2026-10-01T15:28:38.558Z",
+    "ownerReport": "Items1,2,3,5 okay for now; item4 Pillow unavailable; item6 some buttons unusable",
+    "status": "FAIL_PROVEN_FRESH_SESSION_INTEGRATION_DEFECT",
+    "evidence": "Owner test window15:21-15:26UTC: login200,auth/me200,transactions200; repeated POST/api/pillow/session423; founder-shell200; general brain/dispatch423. Runtime running, no extra inference.",
+    "cause": "locked-commissioning.ts POST allowlist omits /api/pillow/session; existing browser warm session hid new-device failure",
+    "routeSafetyInspection": "Session route retains pillowAuth, workspace authorization and admission control; creates conversation session, no inference/commerce call. Minimal proposed repair allow only authenticated POST session through global guard, leave DELETE/commerce/Birth/dispatch denied.",
+    "controls": "Context expand and sidebar collapse operate in desktop. Empty Send intentionallydisabled. Trading/Approve intentionallylocked. Unavailable executive panels from dispatch423 remain ClassB; exact other phone buttons unidentified.",
+    "next": "Minimal session admission repair with targeted regression, compatible frontend revision handling and production deployment; no additional inference for proof. Phone cannot pass until session start works.",
+    "legacy": "running preserved; not stopped"
   }
 }
