@@ -1,5 +1,19 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — authenticated live acceptance PARTIAL; CUTOVER NOT COMPLETE
+
+2026-10-01T14:03:14.560Z. Frontend7837479 / dpl_35vb1jq2v8YQTSopLbNPyPVEsMsk on empire-ai.co; authenticated Home live identity independently displays backend d6e699, transport/storage ready, NOT_BORN/LOCKED. Backend gate remains CLOSED. No CI/build/deploy/restart/recovery repeated.
+
+**PASS:** secure owner login confirmed by Railway /auth/login200 at13:57:56.974Z and /auth/me200; Executive Home; Products0qualified/3rejected; mirror detail and expanded dated provider receipts; truthful historical/stale evidence/unknown economics/disabled approval. Transactions503 RESOLVED: authoritative /pillow-commerce-presale/transactions200 at13:58:31.043Z and actual page truthfully shows no saved transactions; historical observations separate and explicitly not real revenue. Reload retains auth and displayed conversation.
+
+**FAIL:** new bounded Pillow authority/readiness request accepted202 at14:00:13.538Z with receipt200, pcr_a2e1aeb009b847eb, but UI reports no completed answer. Runtime health request a7798f8a-3188-48ae-8cc0-4ed16ea78782 classifies degraded_no_provider in78ms, zero provider failures. This is verified new runtime behavior, not legacy routing or competence certification. Earlier legacy mini-fan reply persists beside fresh request without historical/source label. Mission Centre has LIVE label but Mission Blockers/Approval Triage/Mission Queue only Retry; executive data unavailable, locked generic /brain/dispatch423. Displayed conversation persistence alone does not establish server-side history durability. Phone verification remains unproved: supported browser interface has no viewport/emulation control.
+
+**Authority observations:** Home Trading locked visibly disabled and explicitly not an emergency stop. Actual live unauthenticated empty POST /api/pillow/mission-runtime/execute and /api/pillow-commissioning/birth each returned423 LOCKED_COMMISSIONING, NOT_BORN/LOCKED, operationalfalse. Authenticated generic dispatch423. Full live commerce mutation matrix incomplete; do not inherit frontend acceptance from closed backend tests.
+
+**Legacy NOT STOPPED**; resources/state untouched. Owner UX defects: misleading401 login copy, unlabeled legacy transcript, Available badge despite unavailable provider reasoning, DEMO label on live Pillow, LIVE mission panels without usable data, no functional pause/stop and unreconciled money/costs, phone unverified. No Birth or commerce unlock.
+
+**Exact next boundary:** Resolve only remaining live cutover acceptance defects (history provenance, locked-profile mission/read integration and truthful Pillow no-provider availability); finish supported phone and authority acceptance. No backend recovery rerun, Pillow competence programme, providers, Birth or commerce unlock. Only all gates passing permits preserved legacy shutdown and post-stop verification, then OWNER UX CLOSURE.
+
 ## Active checkpoint — authentication root cause proven: locked-runtime credential rejection
 
 2026-10-01T13:48:06.532Z. CUTOVER NOT COMPLETE. Railway HTTP logs independently correlate both secure browser attempts: POST /auth/login on empireai-locked-runtime-production.up.railway.app at 2026-10-01T13:21:22.566562187Z returned401 in28ms; secure retry at 2026-10-01T13:47:01.743921621Z returned401 in26ms. Both have empty upstreamErrors. Credentials reached the correct locked runtime; this is not inferred from Vercel log timeout.
