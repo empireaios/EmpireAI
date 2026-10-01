@@ -1,5 +1,19 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — King separates Class A cutover from Class B Owner UX
+
+2026-10-01T14:08:45.684Z. Class B must NOT prolong dual-running unless an actual safety/authority defect is found. Class A only: real completed reasoning path; essential phone journey; full live lock/authority denials; minimum historical provenance correction.
+
+**Narrow provider diagnosis:** LOCKED_COMMISSIONING_V1 intentionally rejects provider credentials and strips provider environment. Current variable names contain no OpenAI/Anthropic key or LLM_AUTHORIZED_PRICING_JSON. Not provider reachability failure. Existing durable worker truthfully refuses degraded NO_LLM_PROVIDER as completed reasoning. Select approved inference provider/model, privately provision its scoped key, establish exact-model short-lived price authorization and bounded Cost Guard budget; make minimal reviewed locked-profile inference exception while preserving all commerce/provider-write/Birth denials. Do not just add a key to current service: current launcher would refuse startup. Existing credentials are OAuth-redacted; no value inspected or copied. The existing authority-facts shortcut is not a substitute for real general reasoning acceptance. No outage, credential typo or external provider failure established.
+
+**Provenance:** Conversation is owner-keyed browser localStorage at empireai:pillow:session:v1:<ownerId>; turns carry recordedAt but visible workspace omits it and backend provenance. Same origin and stable owner identity retain pre-cutover transcript. No evidence legacy backend routing returned. Minimum correction should mark stored turns as historical, display recorded timestamps and mark unavailable origin as unknown; never present them as fresh runtime evidence. Preserve transcripts rather than delete them. No code/deployment change this checkpoint.
+
+**Owner UX Closure backlog (Class B):** Mission Centre LIVE wording/unavailable panels; Available/DEMO presentation; Login error copy; Pillow navigation/interface; Functional owner stop/pause; Reconciled costs; One-stop Money & Services centre; Broader dashboard usefulness/navigation/presentation. Money & Services explicitly recorded. No unseen Pillow certification before King and ChatGPT inspect and close live Owner UX.
+
+Phone remains unproved: No viewport/emulation capability exposed by current supported browser; real phone evidence or supported phone testing surface still needed. Prior login/Home/Products/evidence/Transactions/reload passes and tested423 denials remain valid; do not repeat completed backend gates. Legacy unchanged/preserved and running because Class A incomplete. CUTOVER NOT COMPLETE.
+
+**Next boundary:** authorized provider/model credential and bounded inference-cost configuration are missing. Do not add a key blindly to the existing locked launcher or copy legacy secrets. Prepare minimum inference-only profile change after exact provider prerequisites are established, then remaining Class A → preserved legacy shutdown with automatic restart disabled → post-stop live verification → CUTOVER COMPLETE / NEXT PHASE OWNER UX CLOSURE. No Birth/commerce unlock.
+
 ## Active checkpoint — authenticated live acceptance PARTIAL; CUTOVER NOT COMPLETE
 
 2026-10-01T14:03:14.560Z. Frontend7837479 / dpl_35vb1jq2v8YQTSopLbNPyPVEsMsk on empire-ai.co; authenticated Home live identity independently displays backend d6e699, transport/storage ready, NOT_BORN/LOCKED. Backend gate remains CLOSED. No CI/build/deploy/restart/recovery repeated.
