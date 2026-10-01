@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T12:46:57.764Z",
+  "updatedAt": "2026-10-01T14:03:14.560Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1617,11 +1617,12 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Vercel deploy_to_vercel returns UNAVAILABLE: tool not returned by tools/list; team-scoped reads403",
-    "Approved dashboard fallback blocked by native-credentials browser protection even after explicit canonical navigation; no bypass"
+    "Live Pillow request has no completed answer",
+    "Mission/history owner workflow unavailable and legacy transcript unlabelled",
+    "Phone and full live commerce authority acceptance incomplete"
   ],
   "nextExecutableActions": [
-    "Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now."
+    "Resolve only remaining live cutover acceptance defects (history provenance, locked-profile mission/read integration and truthful Pillow no-provider availability); finish supported phone and authority acceptance. No backend recovery rerun, Pillow competence programme, providers, Birth or commerce unlock. Only all gates passing permits preserved legacy shutdown and post-stop verification, then OWNER UX CLOSURE."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2036,56 +2037,43 @@
     "deploymentAuthorized": "King explicitly conditionally authorized this deployment-only revision after all listed gates; conditions passed."
   },
   "liveDomainCutover": {
+    "at": "2026-10-01T14:03:14.560Z",
     "status": "CUTOVER_NOT_COMPLETE",
-    "recordedAt": "2026-10-01T12:46:57.764Z",
-    "backendGate": "CLOSED — do not repeat CI/rebuild/restart/recovery",
-    "backend": {
-      "revision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
-      "deployment": "e978b764-4529-46c7-9224-0e3d2aaae5f1",
-      "url": "https://empireai-locked-runtime-production.up.railway.app",
-      "birth": "NOT_BORN",
-      "commerce": "LOCKED"
-    },
-    "frontend": {
-      "liveRevision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
-      "deployment": "dpl_7zWRX93P1TeJ6heYZYMgndcVuumt",
-      "domain": "empire-ai.co",
-      "effectiveBinding": "legacy https://empireai-production.up.railway.app",
-      "defect": "empireai-web/vercel.json hardcoded legacy BRAIN_API_URL overrides dashboard; server proxy also silently defaulted legacy"
-    },
-    "repair": {
-      "revision": "7837479aa60ee5d82963d046223dfb09523f6fe0",
-      "branch": "fix/live-domain-locked-binding-20261001",
-      "deployed": false,
-      "scope": "Six frontend files only. Removed vercel.json override; fail-closed production allowlist; authenticated read-only runtime identity; historical readiness correction; direct Pillow navigation. No backend code or authority change.",
-      "tests": [
-        "frontend typecheck PASS",
-        "targeted eslint PASS",
-        "production frontend build PASS",
-        "production binding regression PASS",
-        "Transactions BFF session/denial/no-cache regression PASS"
-      ]
-    },
+    "frontendRevision": "7837479aa60ee5d82963d046223dfb09523f6fe0",
+    "frontendDeployment": "dpl_35vb1jq2v8YQTSopLbNPyPVEsMsk",
+    "backendRevision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+    "backendOrigin": "https://empireai-locked-runtime-production.up.railway.app",
+    "backendGate": "CLOSED",
+    "login": "PASS: secure owner login; Railway /auth/login200 at 13:57:56.974Z; subsequent /auth/me200",
+    "home": "PASS: live authenticated identity shows exact backend SHA, transport/storage ready, NOT_BORN LOCKED and operational unauthorized",
+    "transactions": "PASS: actual page no saved transactions, no fallback; authoritative /pillow-commerce-presale/transactions200 at13:58:31.043Z",
+    "products": "PASS: 3 rejected,0qualified; exact mirror evidence drawer receipts dated2026-09-29; historical/stale labels, unknown economics and disabled approval",
     "pillow": {
-      "classification": "LEGACY_ROUTING — not a new-backend competence result",
-      "legacyRequestId": "d7f4ef48-e79a-42bd-8e27-3973b08da951",
-      "acceptedAt": "2026-10-01T12:27:45.484Z",
-      "terminalAt": "2026-10-01T12:28:22.238Z",
-      "providerFailures": 2,
-      "newRuntimeHealth": "Idle; acceptedRequests=0; completedRequests=0; providerFailures=0; no recent requests",
-      "certified": false
+      "status": "FAIL: no completed answer displayed",
+      "durableRequest": "pcr_a2e1aeb009b847eb",
+      "runtimeRequest": "a7798f8a-3188-48ae-8cc0-4ed16ea78782",
+      "receivedAt": "2026-10-01T14:00:13.538830013Z",
+      "httpStatus": 202,
+      "receiptStatus": 200,
+      "classification": "degraded_no_provider on verified new runtime; not legacy routing or competence certification",
+      "historyDefect": "Earlier legacy mini-fan response displayed without historical/source label beside new failed request"
     },
-    "transactions": "Live HTTP503 unresolved until corrected frontend is deployed and tested against authoritative runtime; no empty-success fallback added",
-    "acceptance": {
-      "desktop": "Earlier login/Home/Products/evidence passed; Transactions failed; full mission/history/reconnect/authority journey incomplete",
-      "phone": "NOT TESTED",
-      "safety": "Owner Trading locked control disabled and explicitly labelled not a stop/emergency control; complete live safety verification pending"
-    },
-    "legacy": "NOT STOPPED; no restart policy change, service/volume/Redis/recovery deletion or mutation",
-    "blockers": [
-      "Vercel deploy_to_vercel returns UNAVAILABLE: tool not returned by tools/list; team-scoped reads403",
-      "Approved dashboard fallback blocked by native-credentials browser protection even after explicit canonical navigation; no bypass"
+    "reload": "PASS session and displayed conversation retained; this alone does not prove server-side conversation durability",
+    "missionHistory": "FAIL: Mission Centre LIVE label, Mission Blockers/Approval Triage/Mission Queue only Retry; executive data unavailable. /brain/dispatch423 under locked profile",
+    "desktop": "PARTIAL: login/Home/Products/evidence/Transactions/reload pass; Pillow and mission workflow fail",
+    "phone": "NOT VERIFIED: supported browser interface exposes no viewport/emulation control",
+    "authority": "Home Trading locked disabled explicitly not emergency stop; unauthenticated empty POST /api/pillow/mission-runtime/execute and /api/pillow-commissioning/birth each423 LOCKED_COMMISSIONING/NOT_BORN/LOCKED; authenticated generic dispatch423. Full commerce mutation matrix via live frontend not completed.",
+    "legacy": "NOT STOPPED, unchanged, all service/volume/Redis/recovery state preserved",
+    "remainingUX": [
+      "Misleading login error masks401",
+      "Legacy Pillow transcript lacks historical/source labelling",
+      "Pillow Available badge despite no-provider terminal failure",
+      "DEMO label on live Pillow route",
+      "Mission LIVE label with unavailable panels",
+      "No functional pause/stop controls; explicitly disabled/read-only on Home",
+      "Money/costs unreconciled",
+      "Phone operation unverified"
     ],
-    "next": "Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now."
+    "next": "Resolve only remaining live cutover acceptance defects (history provenance, locked-profile mission/read integration and truthful Pillow no-provider availability); finish supported phone and authority acceptance. No backend recovery rerun, Pillow competence programme, providers, Birth or commerce unlock. Only all gates passing permits preserved legacy shutdown and post-stop verification, then OWNER UX CLOSURE."
   }
 }
