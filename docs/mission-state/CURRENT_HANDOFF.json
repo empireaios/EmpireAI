@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T15:58:15.659Z",
+  "updatedAt": "2026-10-01T16:07:21.833Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -2421,5 +2421,18 @@
     "authorityHistory": "Accepted combined evidence: owner authenticated phone observation, actual session/history/durable-result200, authenticated frontend dispatch423, auth-independent global hook, narrow actual-app authenticated regression. No repeated broad matrix.",
     "remaining": "Exact persistent inference accounting row/totals readback. Text-only connector cannot inspectSQLite; preparing official Railway CLI login private ownerauthorization for existing service read-only file/SQL access. No production changes.",
     "legacy": "RUNNING_PRESERVED"
+  },
+  "accountingAccessCheckpoint": {
+    "at": "2026-10-01T16:07:21.833Z",
+    "ownerAuthorization": "Owner confirms CLI authorized1workspace/empireai project only; canary excluded",
+    "result": "BLOCKED_BY_WORK_NETWORK_POLICY",
+    "exactError": "write_stdin failed: Unified exec process failed: Network access to \"https://backboard.railway.com:443\" was blocked by policy.",
+    "noBypass": true,
+    "ledgerRead": false,
+    "productionChanges": 0,
+    "additionalInference": 0,
+    "legacy": "RUNNING_PRESERVED",
+    "nextOwnerAction": "Use owner's own authorized Railway CLI to download only /data/commissioning/openai-october-2026.sqlite from existing locked-runtime service, then attach ledger for local read-only accounting reconciliation; no secret/config/account database download.",
+    "downloadCommand": "railway service files --project 75374474-2b3a-4b0f-a9bc-203cdc1314d8 --environment da94aed2-956b-4903-a886-68a5e9a557c8 --service 7a25cfc6-7298-480f-91db-1b37871f8cac download /data/commissioning/openai-october-2026.sqlite ./openai-october-2026.sqlite"
   }
 }
