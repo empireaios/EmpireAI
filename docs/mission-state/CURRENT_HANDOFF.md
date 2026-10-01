@@ -1,3 +1,13 @@
+# Latest checkpoint — 2026-10-01 live bounded inference
+
+**CUTOVER NOT COMPLETE.** Owner applied the staged key/source patch. Current frontend `cf7f475` / runtime `807a54e`, deployment `0da9e0fc-3c16-4fd4-9535-eb488a66d84c`. Real OpenAI Pillow response completed at15:07:59Z; one internal retry, no degraded fallback. This proves connectivity only, not competence.
+
+Home, Products/evidence, Transactions and response reload passed. All44 unauthenticated live mutation probes returned423 NOT_BORN/LOCKED. Historical evidence/conversation labels are present. US$20 cumulative guard and persistence tests already passed; live ledger and initialization marker exist, but exact usage/cost rows cannot be read through the text-only Railway connector. No exact spend claimed. Phone viewport control is unavailable. Authenticated direct history observation was blocked by native-credential protection; do not bypass.
+
+Remaining boundary: sanitized private ledger readback, phone acceptance, authenticated authority/history checks → preserved legacy stop with restart disabled → post-stop verification. Legacy remains running and preserved. Class B UX backlog remains deferred. No Birth, commerce unlock or unseen certification. See `openaiLiveInferenceCheckpoint` in JSON for exact evidence.
+
+---
+
 # EmpireAI / Pillow active mission handoff
 
 ## Active checkpoint — key staged; exact source prepared; activation approval rejected

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T14:56:08.569Z",
+  "updatedAt": "2026-10-01T15:17:59.230Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE; frontend cf7f475 and runtime807a54e now live, ready for private key staging.",
+    "status": "CUTOVER NOT COMPLETE; frontend cf7f475/backend807a54e live; private credential active; real Pillow inference PASSED; remaining acceptance evidence blocked by tool capabilities.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -2149,8 +2149,8 @@
       "admission": "native SQLite BEGIN IMMEDIATE committed before network; no automatic refunds",
       "perCall": "timestamp/model/usage/reserved and estimated microUSD/sanitized response ID; invoice cost remains null",
       "promptAndCredentialLogging": false,
-      "liveCalls": 0,
-      "credentialsProvisioned": false
+      "liveCalls": "At least one; exact count not read back",
+      "credentialsProvisioned": true
     },
     "validation": {
       "node": "22.23.2",
@@ -2162,18 +2162,16 @@
       "frontendBuild": "PASS Next 16.2.9 Node24",
       "frontendFinalTypecheck": "PASS",
       "newHostedGithubActionsRuns": 0,
-      "liveInference": "NOT_TESTED"
+      "liveInference": "PASS_RUNTIME_CAPABILITY_ONLY"
     },
     "blocker": {
-      "primary": "Private OpenAI API key not provisioned",
-      "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add OPENAI_API_KEY privately and save as a staged change only. Do not click Deploy/Apply. Reply key staged, never value."
+      "primary": "Remaining acceptance evidence: accounting row readback, phone-sized journey and authenticated authority/history checks"
     },
-    "next": "After frontend promotion independently verify it, deploy exact backend807a54e only to existing locked service, then privately provision OPENAI_API_KEY there through owner secret UI. Do NOT add key to old d6e699 launcher. One real response -> remaining Class A -> preserved legacy shutdown -> post-stop verification -> OWNER UX CLOSURE.",
+    "next": "Complete only remaining acceptance evidence, then approved preserved legacy-worker stop/restart-disable and post-stop live verification. Only then CUTOVER COMPLETE / OWNER UX CLOSURE. No competence certification, Birth or commerce unlock.",
     "remainingClassA": [
-      "production inference response",
-      "deployed historical/source provenance",
-      "essential phone live journey (no viewport capability currently exposed)",
-      "complete live mutation-denial matrix"
+      "Read back production sanitized usage/reservation/cost rows using authorized private container SQL access",
+      "Phone-sized essential live journey",
+      "Complete authenticated authority/API and durable mission/history acceptance"
     ],
     "ownerUX": [
       "Mission Centre LIVE/unavailable panels",
@@ -2188,7 +2186,7 @@
   },
   "openaiRuntimeDeploymentCheckpoint": {
     "updatedAt": "2026-10-01T14:42:49.734Z",
-    "status": "ACTIVATION_APPROVAL_STEP_REJECTED",
+    "status": "CREDENTIAL_ACTIVE_REAL_RESPONSE_PASSED",
     "frontend": {
       "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
       "deployment": "dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc",
@@ -2199,7 +2197,7 @@
     },
     "backend": {
       "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
-      "deployment": "3bfc4280-14b1-4f23-8d9b-8f9d149fc7cd",
+      "deployment": "0da9e0fc-3c16-4fd4-9535-eb488a66d84c",
       "state": "SUCCESS",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
       "liveEndpointVerified": true,
@@ -2209,7 +2207,7 @@
       "birth": "NOT_BORN",
       "commerce": "LOCKED",
       "operational": false,
-      "credentialConfigured": false,
+      "credentialConfigured": true,
       "inferenceCeilingUsd": 20,
       "model": "gpt-6.1-sol",
       "buildNode": "22.23.2",
@@ -2230,9 +2228,9 @@
       "longOutputMultiplier": 1.5,
       "regionalPremium": 0.1
     },
-    "privateAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add OPENAI_API_KEY privately and save as a staged change only. Do not click Deploy/Apply. Reply key staged, never value.",
+    "privateAction": null,
     "activationCaution": "Saved service source.commitSha still d69cdc9 despite live807a54e. Do not use default source deployment for key activation. Resolve/verify staged source807a54e and exact deployment activation after variable staging. Railway agent claim environment hot-updates without restart is unsupported/incorrect; do not rely on it. Agent also conflated old CI/current revision; only local new-candidate tests/build were proved.",
-    "paidCalls": 0,
+    "paidCalls": "At least one; exact count not read back",
     "legacy": "untouched running preserved",
     "cutover": "NOT_COMPLETE",
     "next": "Private key staging -> controlled activation on exact807a54e -> one ordinary real response and ledger readback -> phone + full live authority denial acceptance -> only then preserved legacy shutdown/postverification -> OWNER UX CLOSURE",
@@ -2240,7 +2238,7 @@
   },
   "openaiActivationCheckpoint": {
     "updatedAt": "2026-10-01T14:56:08.569Z",
-    "status": "ACTIVATION_APPROVAL_STEP_REJECTED",
+    "status": "APPLIED_BY_OWNER_VERIFIED",
     "keyStaged": true,
     "keyValueRead": false,
     "patch": "bb0c4683-b133-4c8d-9b50-f60ef55c76f5",
@@ -2254,9 +2252,72 @@
     "activationResult": "Cancelled — the user did not approve this action. No changes were made.",
     "errorCode": "INVALID_ARGUMENT",
     "postFailureReadback": "same three staged changes preserved; key not in live variable names",
-    "ownerAction": "Railway empireai / production: review/apply the three prepared changes on empireai-locked-runtime only (source branch, source SHA807a54e, OPENAI_API_KEY). Do not reveal key. Reply applied.",
+    "ownerAction": null,
     "legacy": "untouched running preserved",
     "paidInferenceCalls": 0,
-    "cutover": "NOT_COMPLETE"
+    "cutover": "NOT_COMPLETE",
+    "supersededBy": "openaiLiveInferenceCheckpoint"
+  },
+  "openaiLiveInferenceCheckpoint": {
+    "updatedAt": "2026-10-01T15:17:59.230Z",
+    "status": "CUTOVER_NOT_COMPLETE",
+    "frontend": {
+      "sha": "cf7f475aa96ae5db82ba339f102e31c45689addd",
+      "deployment": "dpl_XxyoXCqhDy4n6aWRvpLKmWFkwnJc",
+      "domain": "empire-ai.co",
+      "binding": "https://empireai-locked-runtime-production.up.railway.app"
+    },
+    "backend": {
+      "sha": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+      "deployment": "0da9e0fc-3c16-4fd4-9535-eb488a66d84c",
+      "state": "SUCCESS",
+      "credentialConfigured": true,
+      "keyValueRead": false,
+      "sourceBranch": "fix/locked-openai-inference-20261001",
+      "stagedChanges": null,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "operational": false
+    },
+    "inference": {
+      "status": "PASS_RUNTIME_CAPABILITY_ONLY",
+      "model": "gpt-6.1-sol",
+      "submittedAt": "2026-10-01T15:07:47.491Z",
+      "completedAt": "2026-10-01T15:07:59.410Z",
+      "requestId": "3da24127-66ca-4e95-8d85-7bce496bcccf",
+      "question": "Briefly explain why a business forecast should use a range rather than a single number. Do not run tools or change any state.",
+      "outcome": "Real useful explanation completed; runtime trace provider=openai kind=llm logResult=success degradedUsed=false",
+      "internalRetries": 1,
+      "paidApiCallCount": "NOT_READ_BACK; one owner request is not necessarily one paid call",
+      "certification": false
+    },
+    "accounting": {
+      "ceilingUsd": 20,
+      "ledger": "/data/commissioning/openai-october-2026.sqlite",
+      "ledgerBytes": 12288,
+      "marker": "/data/commissioning/openai-october-2026.sqlite.initialized",
+      "markerContent": "October 2026 cumulative guard; never reset\n",
+      "sourceGuarantee": "Successful answer returned only after usage/cost settlement committed; prior targeted tests prove cumulative reservations and separate-process restart guard. No new recovery/restart test.",
+      "liveRowsReadBack": false,
+      "actualSpend": "UNKNOWN_NOT_ZERO",
+      "blocker": "Railway connector reads text only; SQLite file exposed as binary metadata. No exec/SQL/download capability. Do not expose ledger through unauthenticated endpoint or infer exact cost."
+    },
+    "acceptance": {
+      "desktop": "Home/Products/evidence/Transactions/Pillow/reload passed on activated runtime",
+      "transactions": "PASS actual page no saved transactions; historical observations labelled; no 503/fake success",
+      "provenance": "PASS historical timestamps/source-runtime-unverified labels and stale product evidence displayed",
+      "reload": "PASS authenticated session and new completed response retained; browser-local history alone not server durability proof",
+      "missionHistory": "Direct authenticated request-history read blocked by browser native-credential protection; Mission Centre UI remains Class B unavailable",
+      "phone": "NOT_VERIFIED: supported browser exposes no viewport/emulation capability",
+      "authority": "44/44 live unauthenticated API probes423 NOT_BORN LOCKED:40 backend methods across10 paths,4 Vercel BFF POST paths. Authenticated owner approval/Trading controls visibly disabled; full authenticated mutation API matrix not performed.",
+      "runtimeIdentity": "Home exact807a54e transport/storage ready at2026-10-01T15:14:27.572Z; business operationalfalse"
+    },
+    "legacy": "RUNNING_PRESERVED_UNCHANGED; shutdown not authorized until remaining Class A evidence passes",
+    "remaining": [
+      "Read back production sanitized usage/reservation/cost rows using authorized private container SQL access",
+      "Phone-sized essential live journey",
+      "Complete authenticated authority/API and durable mission/history acceptance"
+    ],
+    "next": "Complete only remaining acceptance evidence, then approved preserved legacy-worker stop/restart-disable and post-stop live verification. Only then CUTOVER COMPLETE / OWNER UX CLOSURE. No competence certification, Birth or commerce unlock."
   }
 }
