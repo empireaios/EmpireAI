@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T16:39:24.271Z",
+  "updatedAt": "2026-10-01T17:15:35.350Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -2482,7 +2482,7 @@
     "active": true
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "PILLOW CERTIFICATION",
+  "currentPhase": "PILLOW_PROVIDER_ARCHITECTURE_RESTORATION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2603,5 +2603,48 @@
       "Broader dashboard usefulness, navigation, unusable buttons"
     ],
     "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
+  },
+  "providerArchitectureCheckpoint": {
+    "status": "IMPLEMENTED_TESTED_PUBLISHED_NOT_DEPLOYED",
+    "cutoverBaseline": "41b897950fd83199bcf0e2d36d30d501aff628b1",
+    "cutoverStatus": "CLOSED",
+    "certification": "PAUSED_BY_OWNER; original unseen I1 implementation failure preserved; no repeated exam calls",
+    "evidenceCommit": "e0fd5ce847c53100e1b6126a13cd6a4e9285f42a",
+    "examinerBranch": "cert/pillow-unseen-20261002",
+    "backendCandidate": "be2423ee711e1866d1a4b21dcde133155aaffb07",
+    "backendBranch": "fix/locked-provider-layer-20261002",
+    "frontendCandidate": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
+    "frontendBranch": "fix/locked-provider-web-20261002",
+    "previewDeployment": "dpl_A83bU9JnroNXKsppRo2BsFqEhWke",
+    "previewStatus": "READY",
+    "liveBackend": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+    "liveFrontend": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+    "models": {
+      "openai": "gpt-6.1-sol",
+      "anthropic": "claude-sonnet-5-5",
+      "gemini": "gemini-3.8-flash"
+    },
+    "accounting": "Original ledger and global US$20 ceiling retained; sublimits OpenAI20 Anthropic5 Gemini5 share global20; never reset or refund uncertain reservations",
+    "verification": {
+      "backendBuild": "PASS",
+      "pillowBuild": "PASS",
+      "offlineTests": "11 distinct tests passed: 7 multi-provider, 2 original inference including authority denials, 2 launcher",
+      "frontend": "New revision compiled/typechecked; local final export encountered ENOTEMPTY generated-directory error; independent exact-source Vercel preview READY",
+      "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
+      "newPaidCalls": 0
+    },
+    "blocker": "Vercel deploy_to_vercel UNAVAILABLE (not returned by tools/list); browser dashboard observation blocked by native credential protection",
+    "ownerAction": "In existing empireai Vercel project promote 1412bb1 deployment dpl_A83bU9JnroNXKsppRo2BsFqEhWke with production-environment rebuild, preserving BRAIN_API_URL and empire-ai.co. Do not add new provider keys yet.",
+    "next": [
+      "Verify actual production frontend1412bb1",
+      "Deploy exact backendbe2423e to existing locked Railway runtime; verify identity/readiness",
+      "Give one private Railway credential-provisioning action at a time: ANTHROPIC_API_KEY then GOOGLE_AI_API_KEY for a paid Gemini API project; never chat",
+      "Run bounded provider connectivity/routing/accounting checks; ledger readback including I1 before unseen retest",
+      "Repair general release-gate implementation failure; freeze materially new unseen specification and resume certification"
+    ],
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "legacy": "STOPPED_PRESERVED; do not restart",
+    "ownerUx": "DEFERRED; preserve backlog"
   }
 }

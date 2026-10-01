@@ -1,3 +1,19 @@
+# Active checkpoint — multi-provider restoration (2026-10-02 Singapore)
+
+Cutover remains COMPLETE and CLOSED at baseline 41b8979. Certification is paused by King, not passed. Original unseen I1 and confirmed implementation failure remain preserved on cert/pillow-unseen-20261002 at e0fd5ce; no answer-key material enters the runtime branch. No semantic repair has been discarded or falsely claimed complete.
+
+Backend be2423ee711e1866d1a4b21dcde133155aaffb07 restores the existing Brain router's bounded OpenAI/Claude/Gemini capability path. Pillow and backend builds passed, and 11 distinct targeted tests passed. Original ledger, cumulative US$20 ceiling and all NOT_BORN / LOCKED mutation denials remain. Model/price sources and limitations are in MULTI_PROVIDER_RESTORATION_2026-10-02.md.
+
+Frontend compatibility revision 1412bb1f7cb3056e05617172a6e347b9ac19e142 has exact-source Vercel preview READY: dpl_A83bU9JnroNXKsppRo2BsFqEhWke. Local compilation/typecheck passed; final local export hit generated-directory ENOTEMPTY. Independent Vercel build READY resolves buildability; no claim of production promotion.
+
+**Single current owner action:** In existing Vercel empireai project, promote 1412bb1 / dpl_A83bU9JnroNXKsppRo2BsFqEhWke with production-environment rebuild. Preserve BRAIN_API_URL and empire-ai.co. Vercel write tool remains UNAVAILABLE; approved dashboard fallback blocked by native credential protection. Do not provision new inference keys until the new runtime is deployed and verified.
+
+Production remains frontend96e3722 / backendaf0efc1. Legacy remains stopped/preserved. No new paid calls during provider restoration. New provider connectivity is NOT proven. After promotion: verify production frontend, deploy exact backendbe2423e, verify, then give ONE private Railway credential action at a time. Follow with bounded real provider/routing/accounting proof; reconcile ledger including I1; repair the general release-gate failure; freeze materially new unseen tests before restarting certification. No Birth, commerce unlock or broad Owner UX.
+
+---
+
+## Prior accepted cutover handoff (historical, preserved)
+
 # EmpireAI canonical handoff
 
 Updated 2026-10-01T16:39:24.271Z.
