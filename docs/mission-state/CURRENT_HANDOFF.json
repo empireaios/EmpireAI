@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T11:04:27.488806+00:00",
+  "updatedAt": "2026-10-01T11:28:34.960103+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1617,10 +1617,10 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Stored source.commitSha was d69cdc953a5a2bc21a271eb7a7bce2598ee330ea but actual deployment resolved main21384342. Stored configuration is NOT proof of source pinning."
+    "Actual deployment propertyFileMapping maps build.builder to committed root railway.toml selectingNIXPACKS, overriding storedRAILPACK. Selecting existing deployment/railway.locked.toml rejected by Railway Config-as-Code deprecation guard. No verified supported override available through exposed deployment/config tools; do not silently edit source or weaken pins."
   ],
   "nextExecutableActions": [
-    "Resolve exact-source deployment mechanism for existing app before another build. Do not repeat source.commitSha-only deployment or auto-redeploy main. Candidate d69 remains frozen. Verification failure triggered approved safe pause; no legacy restart/stop, no traffic cutover. No new recovery research."
+    "Resolve provider configuration-path restriction or explicitly authorize a reviewed deployment-configuration revision. Do not rerun exact-source investigation: explicit deploy action commitSha works. No force deployment, no main merge, no recovery or unrelated engineering. Required running-source/backend gate still unpassed; Vercel unchanged."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -1776,11 +1776,11 @@
     "vercelWriteAccess": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
     "automaticReview": "Rejected underspecified deploy_to_vercel({}) call; nothing deployed; do not repeat unscoped deployment",
     "oldProduction": "Railway old service/deployment/volume retained and still running; Vercel source21384342 unchanged",
-    "nextAction": "Resolve exact-source deployment mechanism for existing app before another build. Do not repeat source.commitSha-only deployment or auto-redeploy main. Candidate d69 remains frozen. Verification failure triggered approved safe pause; no legacy restart/stop, no traffic cutover. No new recovery research."
+    "nextAction": "Resolve provider configuration-path restriction or explicitly authorize a reviewed deployment-configuration revision. Do not rerun exact-source investigation: explicit deploy action commitSha works. No force deployment, no main merge, no recovery or unrelated engineering. Required running-source/backend gate still unpassed; Vercel unchanged."
   },
   "cutoverExecution": {
-    "at": "2026-10-01T11:04:27.488806+00:00",
-    "stage": "SAFE_PAUSED_SOURCE_REVISION_MISMATCH",
+    "at": "2026-10-01T11:28:34.960103+00:00",
+    "stage": "EXACT_SOURCE_SELECTED_BUILD_CONFIG_BLOCKED_SAFE_PAUSE",
     "candidate": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "vercelFallback": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
     "railwayProject": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
@@ -1801,7 +1801,7 @@
       }
     },
     "volumeMounts": "Both /data staged; requested 1024MB each",
-    "sourceStatus": "Stored source.commitSha was d69cdc953a5a2bc21a271eb7a7bce2598ee330ea but actual deployment resolved main21384342. Stored configuration is NOT proof of source pinning.",
+    "sourceStatus": "Exact-source mechanism resolved: deployServiceTool with explicit commitSha argument (serviceInstanceDeployV2); actual deployment metadata independently confirms d69. No branch/main/PR changes. Never rely on stored source.commitSha.",
     "configurationDeviation": "Railway rejects Config-as-Code selector on new services since 2026-08-28. Same approved executable build/start/health/restart settings applied directly; no source change. Caps had to be applied through dashboard after Agent call did not persist them.",
     "budget": {
       "canaryProjectObservedUSD": 0.076,
@@ -1814,15 +1814,15 @@
     "ownerTraffic": "No Vercel changes or generated backend public endpoint; empire-ai.co remains old production.",
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
-    "next": "Resolve exact-source deployment mechanism for existing app before another build. Do not repeat source.commitSha-only deployment or auto-redeploy main. Candidate d69 remains frozen. Verification failure triggered approved safe pause; no legacy restart/stop, no traffic cutover. No new recovery research.",
+    "next": "Resolve provider configuration-path restriction or explicitly authorize a reviewed deployment-configuration revision. Do not rerun exact-source investigation: explicit deploy action commitSha works. No force deployment, no main merge, no recovery or unrelated engineering. Required running-source/backend gate still unpassed; Vercel unchanged.",
     "credentials": "Four independent cryptographically generated secrets privately configured on new service variables; no values in evidence; do not regenerate on resume",
     "executionRejection": null,
     "patchCommitted": true,
-    "appDeployment": "0cb7f3e9-add4-4457-861a-866152025c03",
-    "redisDeployment": "c60c8058-e65e-4e1b-b726-6d6d9c1fe5ef",
-    "actualAppRevision": "21384342c401def948926904913840e63c18dff7",
-    "runtimeFailure": "Node24.10.0 could not find /app/deployment/locked-runtime.cjs; /health/ready failed. No operational backend admitted.",
-    "safeAbort": "App aborted through dashboard; new Redis deployment removed/stopped through dashboard. Both services retained with volumes and private variables; get_status independently confirms neither has active deployment. No resource deletion.",
+    "appDeployment": "38e1795f-c8df-4200-a6b5-8683acacf63d",
+    "redisDeployment": "c01cd824-3b54-4b5a-8356-613cc629f745",
+    "actualAppRevision": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+    "runtimeFailure": "Correct-source build FAILED before startup: effective Nixpacks22.14.0/npm10.9.2 rejected by unchanged required22.23.2/npm10.9.8 guard.",
+    "safeAbort": "App failed at build, never started. Redis exact image briefly redeployed then stopped via dashboard; both services/volumes/private variables retained. Legacy untouched.",
     "volumesVerified": {
       "app": {
         "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
@@ -1835,6 +1835,7 @@
         "mountPath": "/data"
       }
     },
-    "cost": "New build plus approximately four minutes of private Redis incurred provisional charges not yet metered. New workloads stopped; retained volumes may incur storage charges. Earlier1.156USD is stale, not current total; US20 ceiling unchanged."
+    "cost": "Two additional Agent calls and one exact-source failed build plus about3minutesRedis incurred provisional charges; no current settled total. New workloads stopped; retained storage charges possible; US20 ceiling unchanged.",
+    "buildConfigurationBlocker": "Actual deployment propertyFileMapping maps build.builder to committed root railway.toml selectingNIXPACKS, overriding storedRAILPACK. Selecting existing deployment/railway.locked.toml rejected by Railway Config-as-Code deprecation guard. No verified supported override available through exposed deployment/config tools; do not silently edit source or weaken pins."
   }
 }

@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — exact source resolved; provider build configuration blocked
+
+2026-10-01T11:28:34.960103+00:00. Explicit deployServiceTool(commitSha=d69...) selected correct candidate, independently confirmed by deployment38e1795f-c8df-4200-a6b5-8683acacf63d. Build FAILED before startup: root railway.toml selectedNIXPACKS22.14.0/npm10.9.2 despite storedRAILPACK; exact runtime guard refused drift. Railway rejects selecting already-approved deployment/railway.locked.toml under Config-as-Code deprecation guard. No verified available override; do not change SHA/pins/main/PR without owner scope. Redis deploymentc01cd824 stopped after failed build; retained resources reused. Legacy and Vercel untouched. [Receipt](evidence/2026-10-01-cutover-progress.json). Prior exact-source mismatch blocker is superseded; do not repeat its investigation.
+
 ## Active checkpoint — SAFE PAUSE: actual source mismatch
 
 2026-10-01T11:04:27.488806+00:00. King approved exact patch retry and patch committed. **Actual app deployed main21384342 despite stored d69 commitSha**; startup failed missing locked-runtime.cjs on Node24.10.0. New app aborted, new Redis stopped; independently no active new deployments. Both 1024MB volumes/private variables preserved; legacy deployment86302878 remains online unchanged. Vercel/owner traffic untouched. Do not claim d69 deployed or restart main. Resolve exact-source mechanism before next approved-candidate attempt. [Durable receipt](evidence/2026-10-01-cutover-progress.json). Earlier approval-blocked checkpoint superseded.
