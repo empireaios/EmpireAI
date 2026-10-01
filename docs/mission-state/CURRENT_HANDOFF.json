@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T16:32:42.505Z",
+  "updatedAt": "2026-10-01T16:39:24.271Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE: all Class A acceptance gates PASS; preserved legacy deployment stop and post-shutdown verification pending.",
+    "status": "CUTOVER COMPLETE; frontend96e3722/backendaf0efc1 live, legacy deployment removed with service/state preserved. Next PILLOW CERTIFICATION per latest owner directive.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -1622,9 +1622,10 @@
     "Phone and full live commerce authority acceptance incomplete"
   ],
   "nextExecutableActions": [
-    "Stop only legacy deployment using existing authorized Windows Railway CLI; preserve service/volume/Redis/credentials/evidence",
-    "Verify stopped legacy and bounded actual empire-ai.co new-stack operation",
-    "If verified declare CUTOVER COMPLETE and transition to PILLOW CERTIFICATION per latest owner priority; preserve Owner UX backlog; no Birth/commerce unlock"
+    "Cutover track CLOSED; do not repeat backend/recovery/inference acceptance",
+    "Proceed to independent Pillow certification boundary using unseen tests and existing bounded inference accounting; do not claim certified/BORN",
+    "Preserve Owner UX backlog; only prioritize UX defects that block safe certification or owner control",
+    "No Birth, commerce unlock or real trading without separate authority"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2261,7 +2262,7 @@
   },
   "openaiLiveInferenceCheckpoint": {
     "updatedAt": "2026-10-01T15:17:59.230Z",
-    "status": "CUTOVER_NOT_COMPLETE",
+    "status": "CUTOVER_COMPLETE",
     "frontend": {
       "sha": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
       "deployment": "dpl_wfPyb19239eQDgcaqT7R6p3YByX5",
@@ -2318,10 +2319,8 @@
       "runtimeIdentity": "Home exact807a54e transport/storage ready at2026-10-01T15:14:27.572Z; business operationalfalse"
     },
     "legacy": "RUNNING_PRESERVED_UNCHANGED; shutdown not authorized until remaining Class A evidence passes",
-    "remaining": [
-      "Read exact persistent inference usage/reservations/cost totals; then preserved legacy shutdown and postshutdown verification"
-    ],
-    "next": "Fresh phone session verification; direct persistent accounting readback and authenticated history evidence. Only all gates permit preserved legacy shutdown/postverification then OWNER UX CLOSURE."
+    "remaining": [],
+    "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
   },
   "phoneAcceptanceDefect": {
     "at": "2026-10-01T15:28:38.558Z",
@@ -2420,7 +2419,7 @@
     },
     "workAdditionalInference": 0,
     "authorityHistory": "Accepted combined evidence: owner authenticated phone observation, actual session/history/durable-result200, authenticated frontend dispatch423, auth-independent global hook, narrow actual-app authenticated regression. No repeated broad matrix.",
-    "remaining": "Exact persistent inference accounting row/totals readback. Text-only connector cannot inspectSQLite; preparing official Railway CLI login private ownerauthorization for existing service read-only file/SQL access. No production changes.",
+    "remaining": "None for cutover; see cutoverCompletionCheckpoint",
     "legacy": "RUNNING_PRESERVED"
   },
   "accountingAccessCheckpoint": {
@@ -2456,19 +2455,21 @@
     "workAdditionalInference": 0
   },
   "legacyShutdownCheckpoint": {
-    "at": "2026-10-01T16:32:42.505Z",
-    "status": "AWAITING_OWNER_CLI_STOP",
+    "at": "2026-10-01T16:39:24.271Z",
+    "status": "STOPPED_PRESERVED_VERIFIED",
     "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
     "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
     "savedRestartPolicy": "NEVER",
     "readBack": true,
-    "effectiveCurrentDeploymentPolicy": "Existing deployment file manifest ON_FAILURE; saved config change applies next deployment, so current automatic stop not yet proved. Removing active deployment prevents it restarting; do not redeploy.",
+    "effectiveCurrentDeploymentPolicy": "Active deployment explicitly REMOVED via owner scoped railway down; no active legacy deployment to restart. Saved service restartPolicyType NEVER independently read back. No rebuild/redeploy.",
     "preservedVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
     "preservedVariableCount": 30,
     "secretValuesRead": false,
-    "legacyState": "RUNNING",
-    "blocker": "Connector has no stop-deployment tool; Work CLI blocked by network policy. Owner Windows CLI authorized and functional.",
-    "nextAction": "Owner runs railway down scoped explicitly to legacy service/project/environment; then independently verify offline and new-stack live site. No delete-service/volume/Redis/credentials/evidence."
+    "legacyState": "STOPPED",
+    "blocker": null,
+    "nextAction": null,
+    "removedAt": "2026-10-01T16:35:25.863Z",
+    "assets": "Service and 5GB /data volume retained; 30 variable names unchanged including REDIS_URL; no secret values read; no Redis, credential or recovery-evidence deletion. Deployment record/snapshot retained and canRollback/canRedeploy true."
   },
   "nextPhaseDirective": {
     "phase": "PILLOW CERTIFICATION",
@@ -2477,6 +2478,130 @@
     "ownerUXBacklogPreserved": true,
     "uxException": "Repair only defects blocking safe certification or owner control",
     "birth": "NOT_BORN",
-    "commerce": "LOCKED"
+    "commerce": "LOCKED",
+    "active": true
+  },
+  "status": "CUTOVER COMPLETE",
+  "currentPhase": "PILLOW CERTIFICATION",
+  "cutoverCompletionCheckpoint": {
+    "at": "2026-10-01T16:39:24.271Z",
+    "status": "CUTOVER COMPLETE",
+    "frontend": {
+      "sha": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+      "deployment": "dpl_wfPyb19239eQDgcaqT7R6p3YByX5",
+      "domain": "empire-ai.co",
+      "state": "READY",
+      "target": "production"
+    },
+    "backend": {
+      "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "deployment": "109726a1-a2e1-407f-86ed-17b443cb4579",
+      "origin": "https://empireai-locked-runtime-production.up.railway.app",
+      "ready": true,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "operational": false
+    },
+    "binding": "BRAIN_API_URL explicit new locked origin from prior verified config; postshutdown live Home exactaf0efc1 and timestamp correlated to locked deployment HTTP logs. Legacy REMOVED.",
+    "gates": {
+      "desktop": "PASS previously and bounded postshutdown",
+      "phone": "PASS owner actual fresh authenticated phone response; defect resolved; not repeated",
+      "transactions": "PASS live page no saved transactions; authoritative backend GET200 at16:37:08.414607212Z",
+      "historyProvenance": "PASS timestamps/source-unverified/historical labels retained; original15:07 response visible postshutdown; prior serverhistory/durable request evidence accepted",
+      "accounting": "PASS accountingReadbackCheckpoint",
+      "authority": "PASS prior44liveprobes plus authenticated regression/phonehistory; postshutdown authenticated /brain/dispatch423 retained",
+      "pillow": "Real OpenAI response and persistence verified; capability only, competence NOT CERTIFIED"
+    },
+    "postShutdown": {
+      "home": "Authenticated reload live exact backend af0efc1 transport/storage ready NOT_BORN LOCKED checked16:36:42.577Z",
+      "http": [
+        {
+          "at": "2026-10-01T16:36:41.780395548Z",
+          "path": "/auth/me",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:36:42.116997715Z",
+          "path": "/auth/me",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:36:42.417641068Z",
+          "path": "/auth/me",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:36:42.522508407Z",
+          "path": "/health/live",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:36:42.534218823Z",
+          "path": "/health/ready",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:37:08.414607212Z",
+          "path": "/pillow-commerce-presale/transactions",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:37:38.648292832Z",
+          "path": "/brain/dispatch",
+          "method": "POST",
+          "status": 423
+        },
+        {
+          "at": "2026-10-01T16:37:38.751318506Z",
+          "path": "/auth/me",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:37:39.040297725Z",
+          "path": "/brain/dispatch",
+          "method": "POST",
+          "status": 423
+        },
+        {
+          "at": "2026-10-01T16:37:39.131096317Z",
+          "path": "/api/pillow/founder-shell",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "at": "2026-10-01T16:37:39.239747153Z",
+          "path": "/brain/dispatch",
+          "method": "POST",
+          "status": 423
+        },
+        {
+          "at": "2026-10-01T16:37:39.378157276Z",
+          "path": "/brain/dispatch",
+          "method": "POST",
+          "status": 423
+        }
+      ],
+      "pillow": "Existing saved response visible and message composer available at16:37-16:38UTC; no new inference",
+      "legacyDeployment": "REMOVED independently verified",
+      "newDeployment": "SUCCESS unchanged",
+      "additionalInference": 0
+    },
+    "remainingUX": [
+      "Mission Centre LIVE wording/unavailable panels",
+      "Available/DEMO presentation",
+      "Login-error copy",
+      "Pillow navigation/interface",
+      "Functional owner stop/pause; current Home explicitly says it cannot stop a process",
+      "Costs reconciliation and Money & Services centre",
+      "Broader dashboard usefulness, navigation, unusable buttons"
+    ],
+    "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
   }
 }
