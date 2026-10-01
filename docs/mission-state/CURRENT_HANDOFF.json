@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T17:15:35.350Z",
+  "updatedAt": "2026-10-01T17:26:11.407Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -2482,7 +2482,7 @@
     "active": true
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "PILLOW_PROVIDER_ARCHITECTURE_RESTORATION",
+  "currentPhase": "BOUNDED_ARCHITECTURE_DELTA_REPORTED_BEFORE_CERTIFICATION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2618,7 +2618,7 @@
     "previewDeployment": "dpl_A83bU9JnroNXKsppRo2BsFqEhWke",
     "previewStatus": "READY",
     "liveBackend": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
-    "liveFrontend": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+    "liveFrontend": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
     "models": {
       "openai": "gpt-6.1-sol",
       "anthropic": "claude-sonnet-5-5",
@@ -2633,8 +2633,8 @@
       "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
       "newPaidCalls": 0
     },
-    "blocker": "Vercel deploy_to_vercel UNAVAILABLE (not returned by tools/list); browser dashboard observation blocked by native credential protection",
-    "ownerAction": "In existing empireai Vercel project promote 1412bb1 deployment dpl_A83bU9JnroNXKsppRo2BsFqEhWke with production-environment rebuild, preserving BRAIN_API_URL and empire-ai.co. Do not add new provider keys yet.",
+    "blocker": "Frontend promotion completed. Backend candidate remains undeployed; bounded delta review identifies additional executive integration omissions. No new credentials requested yet.",
+    "ownerAction": null,
     "next": [
       "Verify actual production frontend1412bb1",
       "Deploy exact backendbe2423e to existing locked Railway runtime; verify identity/readiness",
@@ -2645,6 +2645,34 @@
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
     "legacy": "STOPPED_PRESERVED; do not restart",
-    "ownerUx": "DEFERRED; preserve backlog"
+    "ownerUx": "DEFERRED; preserve backlog",
+    "frontendProductionDeployment": "dpl_5psHpg45h5NvWeN3zraquqe6D3YE"
+  },
+  "architectureDeltaCheckpoint": {
+    "status": "BOUNDED_READ_ONLY_REVIEW_COMPLETE",
+    "report": "docs/mission-state/PILLOW_ARCHITECTURE_DELTA_2026-10-02.md",
+    "sourceBaseline": "41b8979",
+    "liveBackend": "af0efc1",
+    "liveFrontend": "1412bb1",
+    "providerCandidate": "be2423e",
+    "materialOmissions": [
+      "Live capability/consultation routing remains unwired in candidate",
+      "Pure repository/mission/evidence retrieval bypassed",
+      "Durable transcript not rehydrated into reasoning session after restart",
+      "Read-only tool and mission observation reachability",
+      "Pending conversation-learning capture skipped",
+      "Confirmed heuristic answer replacement"
+    ],
+    "intentionalRestrictions": [
+      "Birth/self-authorization",
+      "Commerce/external writes",
+      "Unrestricted dispatch/background commercial workers",
+      "Unapproved paid autonomy",
+      "Knowledge promotion without owner approval"
+    ],
+    "newPaidCalls": 0,
+    "applicationChangesDuringReview": 0,
+    "certification": "PAUSED",
+    "nextBoundary": "Only scoped provider/retrieval/continuity/read-only-tool/pending-learning/answer-integrity integration; report precedes repairs"
   }
 }
