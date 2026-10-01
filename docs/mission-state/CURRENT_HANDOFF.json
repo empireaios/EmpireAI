@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T09:21:01.480990+00:00",
+  "updatedAt": "2026-10-01T09:36:30.218877+00:00",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -14,7 +14,7 @@
       "bounded real commercial pilot authorization"
     ],
     "continueAutomatically": true,
-    "consolidatedExecutionDirective": "1October: both bounded prerequisites closed. Stop for King approval of ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md. Fixed sequence: production cutover, live useful owner console, competence/Birth, qualified product, unattended24/7, pilot authorization. No production cutover approval yet.",
+    "consolidatedExecutionDirective": "King approved sealed b66b26b7 package for d69cdc9. Updated order: verify new backend, deploy/verify frontend, THEN stop preserved legacy worker. Never repeat approval request; no commerce/Birth authority.",
     "pendingBrowserFallback": {
       "status": "APPROVED_AND_READ_ONLY_INSPECTION_COMPLETED",
       "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "PRE-CUTOVER CLOSURE PASS. PR5 unmerged. STOP for concrete production-cutover approval.",
+    "status": "CUTOVER APPROVED, NOT EXECUTED; Vercel write path unavailable in current connector; old production unchanged.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -1617,14 +1617,11 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "King has not approved the actual production-cutover package.",
-    "Vercel connector403; regain existing project access before interrupting legacy runtime.",
-    "Subsequent owner-console live verification, competence/Birth, qualified product, unattended24/7 and pilot authorization remain in fixed order; they are not extra pre-cutover engineering gates."
+    "Vercel read access works without teamId. Need dashboard fallback permission for scoped environment/routing/deployment writes; no CLI credentials available."
   ],
   "nextExecutableActions": [
-    "STOP: present ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md and wait for King explicit approval.",
-    "After approval, perform frozen candidate cutover with stated preservation/risk and unchanged ceiling; restore Vercel access before old interruption.",
-    "Then deploy/verify useful empire-ai.co owner console -> Pillow competence/Birth certification -> real provider-backed qualified product -> unattended24/7 certification -> bounded real-commerce pilot authorization."
+    "Obtain permission for signed-in Vercel dashboard fallback for exact approved project/environment/source actions; do not request cutover approval again. Verify write path and billing before creating billable resources.",
+    "Follow approved backend -> frontend -> legacy-stop order. Preserve all old stores and credential references."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -1703,7 +1700,7 @@
     "pr": 5,
     "merged": false,
     "closure": "PASS_BOUNDED_PRECUTOVER",
-    "productionCutoverAuthorized": false,
+    "productionCutoverAuthorized": true,
     "productionTouched": false,
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
@@ -1760,6 +1757,26 @@
       "newAuthority": false
     },
     "cutoverPackage": "../../ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md",
-    "nextAction": "STOP for King approval of concrete package; no production cutover"
+    "nextAction": "Obtain permission for signed-in Vercel dashboard fallback for exact approved project/environment/source actions; do not request cutover approval again. Verify write path and billing before creating billable resources."
+  },
+  "cutoverAuthorization": {
+    "at": "2026-10-01T09:36:30.218877+00:00",
+    "approvedPackageCommit": "b66b26b7f369b0bc5990005f704cb9e64e33a161",
+    "approvedCandidate": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+    "ownerApproved": true,
+    "order": [
+      "new backend verification",
+      "new frontend deployment and verification",
+      "stop legacy worker and prevent automatic restart"
+    ],
+    "commerce": "LOCKED",
+    "birth": "NOT_BORN",
+    "productionMutated": false,
+    "newResourcesCreated": false,
+    "vercelReadAccess": "CONFIRMED when teamId omitted; project and existing production deployment independently read back",
+    "vercelWriteAccess": "NOT_AVAILABLE through current connector configuration tools; no CLI credentials; browser fallback needs permission under tool rules",
+    "automaticReview": "Rejected underspecified deploy_to_vercel({}) call; nothing deployed; do not repeat unscoped deployment",
+    "oldProduction": "Railway old service/deployment/volume retained and still running; Vercel source21384342 unchanged",
+    "nextAction": "Obtain permission for signed-in Vercel dashboard fallback for exact approved project/environment/source actions; do not request cutover approval again. Verify write path and billing before creating billable resources."
   }
 }

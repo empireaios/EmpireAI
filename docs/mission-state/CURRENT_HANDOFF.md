@@ -1,5 +1,14 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — CUTOVER APPROVED, execution not started
+
+King explicitly approved package `b66b26b7` and exact candidate `d69cdc953a5a2bc21a271eb7a7bce2598ee330ea`, accepting documented legacy uncertainty and interruption. **Updated order overrides the package: verify new backend → deploy and verify frontend → only then stop legacy worker and prevent restart.** No repeat cutover approval is needed. NOT_BORN / LOCKED persists.
+
+Fresh unscoped Vercel project/deployment readbacks succeed; explicitly team-scoped calls403. Existing domain remains on21384342. The connector does not expose required environment-setting writes and local CLI has no credentials. Automatic review rejected an underspecified deploy call; nothing deployed. Browser tool rules require permission before connector fallback. No new billable resources created while the write path remains unresolved. Railway service/volume/deployment unchanged and still running. [Approval receipt](evidence/2026-10-01-cutover-approval.json).
+
+Next: request only permission to use the signed-in Vercel dashboard for the already-approved project-specific cutover actions; establish access/billing, then execute the approved sequence. Historical awaiting-approval sections below are superseded.
+
+
 ## Active checkpoint — PRE-CUTOVER CLOSURE PASS, awaiting King
 
 1 October2026. Both requested prerequisites passed on **d69cdc953a5a2bc21a271eb7a7bce2598ee330ea**. Product36841093494, Semantic36841093594, Runtime36841093491 all SUCCESS. PR5 remains unmerged; no production mutation or new Railway resource. **STOP for [actual production cutover authorization](ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md).** No approval has been given. Older next-action/recovery instructions below are historical and superseded.
