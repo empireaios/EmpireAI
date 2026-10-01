@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T14:03:14.560Z",
+  "updatedAt": "2026-10-01T14:08:45.684Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1622,7 +1622,8 @@
     "Phone and full live commerce authority acceptance incomplete"
   ],
   "nextExecutableActions": [
-    "Resolve only remaining live cutover acceptance defects (history provenance, locked-profile mission/read integration and truthful Pillow no-provider availability); finish supported phone and authority acceptance. No backend recovery rerun, Pillow competence programme, providers, Birth or commerce unlock. Only all gates passing permits preserved legacy shutdown and post-stop verification, then OWNER UX CLOSURE."
+    "Provision authorized reasoning-only provider prerequisites without exposing credentials; minimally enable inference while retaining lock, then close remaining Class A gates.",
+    "Class B does not block shutdown unless actual safety/authority defect. Class A must pass before preserved legacy shutdown; post-stop verification then CUTOVER COMPLETE / NEXT PHASE OWNER UX CLOSURE. No unseen certification until King and ChatGPT close UX."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2075,5 +2076,29 @@
       "Phone operation unverified"
     ],
     "next": "Resolve only remaining live cutover acceptance defects (history provenance, locked-profile mission/read integration and truthful Pillow no-provider availability); finish supported phone and authority acceptance. No backend recovery rerun, Pillow competence programme, providers, Birth or commerce unlock. Only all gates passing permits preserved legacy shutdown and post-stop verification, then OWNER UX CLOSURE."
+  },
+  "cutoverGateClassification": {
+    "at": "2026-10-01T14:08:45.684Z",
+    "classA": [
+      "Real production reasoning response with authorized inference provider",
+      "Essential phone-sized live journey",
+      "Full live authority/mutation denials and NOT_BORN/LOCKED",
+      "Minimum historical conversation/evidence provenance correction"
+    ],
+    "classB": [
+      "Mission Centre LIVE wording/unavailable panels",
+      "Available/DEMO presentation",
+      "Login error copy",
+      "Pillow navigation/interface",
+      "Functional owner stop/pause",
+      "Reconciled costs",
+      "One-stop Money & Services centre",
+      "Broader dashboard usefulness/navigation/presentation"
+    ],
+    "providerFinding": "LOCKED_COMMISSIONING_V1 intentionally rejects provider credentials and strips provider environment. Current variable names contain no OpenAI/Anthropic key or LLM_AUTHORIZED_PRICING_JSON. Not provider reachability failure. Existing durable worker truthfully refuses degraded NO_LLM_PROVIDER as completed reasoning.",
+    "providerPrerequisites": "Select approved inference provider/model, privately provision its scoped key, establish exact-model short-lived price authorization and bounded Cost Guard budget; make minimal reviewed locked-profile inference exception while preserving all commerce/provider-write/Birth denials. Do not just add a key to current service: current launcher would refuse startup.",
+    "provenanceFinding": "Conversation is owner-keyed browser localStorage at empireai:pillow:session:v1:<ownerId>; turns carry recordedAt but visible workspace omits it and backend provenance. Same origin and stable owner identity retain pre-cutover transcript. No evidence legacy backend routing returned.",
+    "phone": "No viewport/emulation capability exposed by current supported browser; real phone evidence or supported phone testing surface still needed.",
+    "boundary": "Class B does not block shutdown unless actual safety/authority defect. Class A must pass before preserved legacy shutdown; post-stop verification then CUTOVER COMPLETE / NEXT PHASE OWNER UX CLOSURE. No unseen certification until King and ChatGPT close UX."
   }
 }
