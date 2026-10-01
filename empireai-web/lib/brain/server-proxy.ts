@@ -1,5 +1,5 @@
 const LOCAL_BRAIN_URL = "http://localhost:4000";
-const PRODUCTION_BRAIN_URL = "https://empireai-production.up.railway.app";
+export const LOCKED_BRAIN_URL = "https://empireai-locked-runtime-production.up.railway.app";
 const UPSTREAM_TIMEOUT_MS = 25_000;
 /** Auth must survive transient Brain lag; keep under Vercel route maxDuration. */
 const AUTH_UPSTREAM_TIMEOUT_MS = 55_000;
@@ -18,16 +18,20 @@ export function resolveBrainApiUrl(): string {
   const configured = process.env.BRAIN_API_URL?.trim();
 
   if (process.env.VERCEL) {
-    let resolved = (configured || PRODUCTION_BRAIN_URL).replace(/\/$/, "");
-    if (/localhost|127\.0\.0\.1/i.test(resolved)) {
-      resolved = PRODUCTION_BRAIN_URL;
+    if (!configured) throw new Error("BRAIN_API_URL is required on Vercel.");
+    let target: URL;
+    try { target = new URL(configured); } catch {
+      throw new Error("BRAIN_API_URL must be a valid HTTPS origin.");
     }
-    if (!/^https:\/\//i.test(resolved)) {
-      throw new Error(
-        `BRAIN_API_URL must be an absolute https URL on Vercel (received "${configured}").`,
-      );
+    if (target.protocol !== "https:" || target.username || target.password ||
+        target.pathname !== "/" || target.search || target.hash ||
+        /^(localhost|127\.0\.0\.1)$/i.test(target.hostname)) {
+      throw new Error("BRAIN_API_URL must be a remote HTTPS origin.");
     }
-    return resolved;
+    if (process.env.VERCEL_ENV !== "preview" && target.origin !== LOCKED_BRAIN_URL) {
+      throw new Error("Production backend binding does not match the approved locked runtime.");
+    }
+    return target.origin;
   }
 
   if (configured) {
