@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T15:51:10.984Z",
+  "updatedAt": "2026-10-01T15:58:15.659Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -2318,16 +2318,14 @@
     },
     "legacy": "RUNNING_PRESERVED_UNCHANGED; shutdown not authorized until remaining Class A evidence passes",
     "remaining": [
-      "Read back production sanitized usage/reservation/cost rows using authorized private container SQL access",
-      "Phone-sized essential live journey",
-      "Complete authenticated authority/API and durable mission/history acceptance"
+      "Read exact persistent inference usage/reservations/cost totals; then preserved legacy shutdown and postshutdown verification"
     ],
     "next": "Fresh phone session verification; direct persistent accounting readback and authenticated history evidence. Only all gates permit preserved legacy shutdown/postverification then OWNER UX CLOSURE."
   },
   "phoneAcceptanceDefect": {
     "at": "2026-10-01T15:28:38.558Z",
     "ownerReport": "Items1,2,3,5 okay for now; item4 Pillow unavailable; item6 some buttons unusable",
-    "status": "FAIL_PROVEN_FRESH_SESSION_INTEGRATION_DEFECT",
+    "status": "RESOLVED_OWNER_PHONE_AND_RUNTIME_VERIFIED",
     "evidence": "Owner test window15:21-15:26UTC: login200,auth/me200,transactions200; repeated POST/api/pillow/session423; founder-shell200; general brain/dispatch423. Runtime running, no extra inference.",
     "cause": "locked-commissioning.ts POST allowlist omits /api/pillow/session; existing browser warm session hid new-device failure",
     "routeSafetyInspection": "Session route retains pillowAuth, workspace authorization and admission control; creates conversation session, no inference/commerce call. Minimal proposed repair allow only authenticated POST session through global guard, leave DELETE/commerce/Birth/dispatch denied.",
@@ -2337,7 +2335,7 @@
   },
   "freshSessionRepairCheckpoint": {
     "at": "2026-10-01T15:39:00.860Z",
-    "status": "DEPLOYED_VERIFIED_AWAITING_PHONE_AND_REMAINING_ACCEPTANCE",
+    "status": "RESOLVED_PRODUCTION_PHONE_VERIFIED",
     "backend": {
       "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
       "branch": "fix/locked-pillow-session-20261001",
@@ -2398,5 +2396,30 @@
       "freshPhone": "Pending owner refresh of previously failed fresh phone session",
       "inference": "No additional request"
     }
+  },
+  "phoneAcceptanceResolved": {
+    "at": "2026-10-01T15:58:15.659Z",
+    "ownerConfirmed": true,
+    "report": "Actual phone refreshed Pillow, entered conversation, sent message, received completed presence response. Earlier login/Home/Products/evidence/Transactions/reload okay for now. Broader button UX remains ClassB.",
+    "backend": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+    "httpEvidence": {
+      "session201": "2026-10-01T15:53:24.529668597Z",
+      "history200": "2026-10-01T15:53:24.932704970Z",
+      "chat202": "2026-10-01T15:53:48.641007619Z",
+      "durableRequest": "pcr_0debf8e2955b4ef0",
+      "resultRetrieval200": "2026-10-01T15:53:53.821077591Z",
+      "runtimeRequest": "933dc23d-f792-49f7-9f62-e58ef97c851f",
+      "trace": "provider=openai logResult=success retryUsed=false degradedUsed=false"
+    },
+    "additionalOwnerRequestObserved": {
+      "durableRequest": "pcr_4c6c75d5b5a54b70",
+      "runtimeRequest": "5c073dae-212a-4492-acd6-51101442f7b0",
+      "at": "2026-10-01T15:56:35.808579256Z",
+      "trace": "provider=openai logResult=success_claim_repaired retryUsed=false degradedUsed=false; not competence certification"
+    },
+    "workAdditionalInference": 0,
+    "authorityHistory": "Accepted combined evidence: owner authenticated phone observation, actual session/history/durable-result200, authenticated frontend dispatch423, auth-independent global hook, narrow actual-app authenticated regression. No repeated broad matrix.",
+    "remaining": "Exact persistent inference accounting row/totals readback. Text-only connector cannot inspectSQLite; preparing official Railway CLI login private ownerauthorization for existing service read-only file/SQL access. No production changes.",
+    "legacy": "RUNNING_PRESERVED"
   }
 }
