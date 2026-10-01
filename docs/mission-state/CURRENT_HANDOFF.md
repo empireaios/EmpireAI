@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — automatic deployment approval rejection
+
+2026-10-01T10:20:34.303280+00:00. Exact source, bounded caps, new volumes staged; private independent credentials configured. railway_accept_deploy was rejected by automatic approval review: user did not approve; no changes made. **No deployment, traffic change or legacy stop.** Existing cutover and browser fallback approvals remain recorded. Resolve execution gate for exact existing patch; do not bypass it or duplicate resources. [Receipt](evidence/2026-10-01-cutover-progress.json).
+
 ## Active checkpoint — CUTOVER PREPARATION IN PROGRESS
 
 2026-10-01T10:15:40.182600+00:00. Vercel dashboard fallback authorized and authenticated. New app/Redis allocated, bounded caps and volumes staged; no workload, traffic switch or legacy mutation. **Reuse exact resources in [execution receipt](evidence/2026-10-01-cutover-progress.json); never recreate.** Railway no longer accepts TOML selector for new services; identical approved executable settings applied directly. Continue exact d69 backend verification → Vercel/live verification → legacy stop. Earlier awaiting-fallback sections are superseded.
