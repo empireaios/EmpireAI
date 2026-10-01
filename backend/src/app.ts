@@ -1,3 +1,4 @@
+import { installLockedCommissioning } from "./runtime/locked-commissioning.js";
 import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
 import { ManagedBackgroundTask } from "./runtime/managed-background-task.js";
 import type { FastifyInstance } from "fastify";
@@ -332,6 +333,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   eventStream.start();
 
   const app = Fastify({ logger: false });
+  installLockedCommissioning(app);
 
   await app.register(cors, {
     origin: env.CORS_ORIGIN,

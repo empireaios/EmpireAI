@@ -116,6 +116,20 @@ jobs:
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
+      - name: Prove permanent locked runtime and complete enabled-store restore
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          sudo install -d -m 700 -o "$(id -un)" /data
+          node --test deployment/locked-runtime.test.cjs
+          node deployment/precutover-closure.cjs
+      - name: Retain pre-cutover closure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: precutover-closure
+          path: precutover-evidence/
+          retention-days: 14
       - name: Run mandatory isolated runtime and session tests
         working-directory: backend
         shell: bash
@@ -127,6 +141,7 @@ jobs:
         run: |
           set -euo pipefail
           node --import tsx --test --test-concurrency=1 --test-reporter=tap \
+            src/validation/tests/locked-commissioning.test.ts \
             src/validation/tests/pillow-durable-queue-redis.test.ts \
             src/validation/tests/capture-shared-brain-redis.test.ts \
             src/validation/tests/pillow-durable-reasoning-worker.test.ts \

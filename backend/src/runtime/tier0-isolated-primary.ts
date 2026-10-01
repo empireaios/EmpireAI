@@ -1,3 +1,4 @@
+import { installLockedCommissioning } from "./locked-commissioning.js";
 /**
  * Tier-0 isolated primary process.
  *
@@ -486,6 +487,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
+  installLockedCommissioning(app);
   let stopSweeper: () => Promise<void> = async () => {};
   const lifecycle = installPrimaryShutdown({
     getChild: () => workerState.child,

@@ -112,7 +112,7 @@ function prepareFilesystem(cwd, databasePath) {
 
 function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, stdio = 'inherit', onSpawn }) {
   if (process.platform === 'win32') return Promise.reject(new Error('Canary process-group supervision requires POSIX'));
-  if (expiresAt <= Date.now()) return Promise.reject(new Error('Canary expiry has elapsed before spawn'));
+  if (expiresAt !== null && expiresAt <= Date.now()) return Promise.reject(new Error('Canary expiry has elapsed before spawn'));
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { env, cwd, stdio, detached: true });
     let stopping = false;
@@ -153,13 +153,13 @@ function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, st
       stopReason = reason;
       // Let the primary finish its worker and database shutdown first.
       try { child.kill('SIGTERM'); } catch (error) { if (error.code !== 'ESRCH') throw error; }
-      const remainingGrace = Math.max(0, Math.min(graceMs, expiresAt - Date.now()));
+      const remainingGrace = Math.max(0, Math.min(graceMs, expiresAt === null ? graceMs : expiresAt - Date.now()));
       graceTimer = setTimeout(finish, remainingGrace);
     };
     const term = () => stop('signal');
     process.on('SIGTERM', term); process.on('SIGINT', term);
     // Reserve grace inside the absolute time bound, not after it.
-    const deadlineTimer = setTimeout(() => stop('expired'), Math.max(0, expiresAt - Date.now() - graceMs));
+    const deadlineTimer = expiresAt === null ? undefined : setTimeout(() => stop('expired'), Math.max(0, expiresAt - Date.now() - graceMs));
     child.once('error', error => { if (!finished) { finished = true; cleanup(); reject(error); } });
     child.once('exit', (code, signal) => {
       childExited = true;
