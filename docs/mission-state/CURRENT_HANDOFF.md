@@ -1,5 +1,17 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — 7837479 LIVE; locked binding confirmed; authenticated acceptance blocked
+
+2026-10-01T13:23:41.527Z. King manually promoted using production rebuild. Independent team-scoped Vercel readback confirms production dpl_35vb1jq2v8YQTSopLbNPyPVEsMsk, exact 7837479aa60ee5d82963d046223dfb09523f6fe0, READY, aliases empire-ai.co/www retained. Do not deploy again.
+
+Actual live GET /api/pillow/health returned200 Idle/running, lastError null, accepted/completed/providerFailures0, no recent requests. Exact frontend production resolver only permits https://empireai-locked-runtime-production.up.railway.app; a successful proxied response therefore confirms effective locked-origin binding. No legacy fallback remains. Authenticated /api/owner/runtime remains unverified (unauthenticated401), so current backend SHA through that owner endpoint is pending; closed backend d6e699/e978b764 evidence remains unchanged.
+
+Browser recovered sufficiently to render actual domain login. Secure browserAuth submitted owner credentials without revealing values; rendered result was "Authentication service unavailable. Please retry." Do not classify as incorrect password or service defect yet: login page masks non-Error thrown objects, grouped Vercel errors showed none and two narrowed deployment log queries timed out. Subsequent browser console inspection was blocked by native-credential protection. No repeated credential request or bypass. GET /api/auth/me401 and /api/owner/runtime401 prove unauthenticated denial only, not commerce authority acceptance.
+
+CUTOVER NOT COMPLETE. Authenticated Home/Products/evidence/Transactions/Pillow request/history/reconnect, desktop/phone acceptance and live commerce mutation denials remain incomplete on the new production deployment. Prior old-routed desktop checks cannot count as new-runtime acceptance. Transactions repair is not yet verified authenticated. No new Pillow request or competence claim. Legacy remains untouched and NOT stopped; all service/volume/Redis/recovery state preserved. No Railway/backend CI/build/restart/recovery repeated; NOT_BORN/LOCKED authority unchanged.
+
+Exact next boundary: restore usable authenticated owner browser session, establish actual login error if it persists without exposing credentials, then read /api/owner/runtime and complete live desktop/phone acceptance. Only all gates passing allows preserved legacy-worker shutdown, then post-stop live verification and OWNER UX CLOSURE. No Birth or commerce unlock.
+
 ## Active checkpoint — OAuth RESTORED; deployment write/browser capability still blocked
 
 2026-10-01T13:08:57.627Z. Reconnected OAuth independently verified: list_teams now returns EmpireAI / empireai-os / team_gdcskAnaJteKW7BYtw8zlSWy; team-scoped get_project and get_deployment succeed. Do NOT ask King to reconnect OAuth again. Production empire-ai.co remains dpl_7zWRX93P1TeJ6heYZYMgndcVuumt / d6e699. Exact repair 7837479aa60ee5d82963d046223dfb09523f6fe0 is already READY preview dpl_H6gmaxm6KQCm2aP23pdZb29A6W7X.
