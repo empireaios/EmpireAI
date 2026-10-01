@@ -1,5 +1,17 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — authentication root cause proven: locked-runtime credential rejection
+
+2026-10-01T13:48:06.532Z. CUTOVER NOT COMPLETE. Railway HTTP logs independently correlate both secure browser attempts: POST /auth/login on empireai-locked-runtime-production.up.railway.app at 2026-10-01T13:21:22.566562187Z returned401 in28ms; secure retry at 2026-10-01T13:47:01.743921621Z returned401 in26ms. Both have empty upstreamErrors. Credentials reached the correct locked runtime; this is not inferred from Vercel log timeout.
+
+Exact deployed backend source backend/src/runtime/tier0-isolated-primary.ts registerTier0LoginRoute/authenticateSeedUser returns401 only when submitted email/password does not match configured FOUNDER/ADMIN credentials. Shared Redis prehandler precedes this check; session creation and Set-Cookie follow successful authentication. This rejection occurs before session creation and outside the worker database path. Browser uses same-origin /api/auth/login; Vercel proxy forwards JSON to /auth/login and preserves401. Browser CORS/cookie settings did not prevent credentials reaching runtime and cannot cause this particular pre-session401.
+
+Read-only Railway variable inspection confirms FOUNDER_EMAIL,FOUNDER_PASSWORD,ADMIN_EMAIL,ADMIN_PASSWORD,SESSION_SECRET,CORS_ORIGIN,DATABASE_PATH,REDIS_URL and volume names present; values withheld by OAuth and never exposed. Preserved CLOSED backend gate receipts independently include founder login, worker founder/admin login, database integrity/account identity continuity and Redis session continuity after restart. No gate rerun, database mutation, config/credential changes, restart or deployment.
+
+Separate proven display defect: lib/brain/client.ts normalizeError throws a plain BrainError object; login/page.tsx only accepts instanceof Error and replaces the backend rejection with misleading "Authentication service unavailable". This does not invalidate credentials or explain401; not repaired/deployed merely to mask the blocker. No fake session, weakened authentication or secret copying.
+
+Single next owner action: use the FOUNDER_EMAIL and FOUNDER_PASSWORD configured on Railway service empireai-locked-runtime, production environment, for empire-ai.co via secure sign-in (never chat). The two supplied combinations were rejected; do not retry them or ask for another OAuth reconnect. If King does not hold the configured credential, recover it privately from that exact service's Variables in Railway; no reset has been authorized/executed here. After valid login, immediately resume full authenticated desktop/phone acceptance, then and only then preserved legacy-worker shutdown and post-stop verification. Legacy remains untouched, NOT_BORN/LOCKED unchanged.
+
 ## Active checkpoint — 7837479 LIVE; locked binding confirmed; authenticated acceptance blocked
 
 2026-10-01T13:23:41.527Z. King manually promoted using production rebuild. Independent team-scoped Vercel readback confirms production dpl_35vb1jq2v8YQTSopLbNPyPVEsMsk, exact 7837479aa60ee5d82963d046223dfb09523f6fe0, READY, aliases empire-ai.co/www retained. Do not deploy again.
