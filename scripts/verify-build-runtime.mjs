@@ -59,8 +59,12 @@ export function assertRepositoryBuildConfiguration(root = repositoryRoot) {
       "A temporary canary root must be exactly the reviewed canary reference");
     assert.match(railway, /^restartPolicyType = "NEVER"$/m);
   } else {
-    assert.match(railway, /^startCommand = "node backend\/dist\/index\.js"$/m);
+    assert.match(railway, /^builder = "RAILPACK"$/m);
+    assert.match(railway, /^railpackVersion = "0\.40\.1"$/m);
+    assert.match(railway, /^startCommand = "node deployment\/locked-runtime\.cjs"$/m);
+    assert.match(railway, /^numReplicas = 1$/m);
     assert.match(railway, /^restartPolicyType = "ON_FAILURE"$/m);
+    assert.match(railway, /^restartPolicyMaxRetries = 3$/m);
   }
   assert.match(railway, /^healthcheckPath = "\/health\/ready"$/m);
   for (const file of readdirSync(resolve(root, ".github/workflows")).filter(name => /\.ya?ml$/.test(name))) {

@@ -23,6 +23,72 @@ env:
   NEXT_TELEMETRY_DISABLED: '1'
 
 jobs:
+  locked-railway-package:
+    name: Exact-source Railway Railpack image
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout candidate source without merge or persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Use the repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+      - name: Build the effective root Railway configuration without deployment
+        shell: bash
+        env:
+          BUILDKIT_HOST: docker-container://buildkit
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 120 \
+            https://github.com/railwayapp/railpack/releases/download/v0.40.1/railpack-v0.40.1-x86_64-unknown-linux-musl.tar.gz \
+            --output "$RUNNER_TEMP/railpack.tar.gz"
+          echo "2842de93e68713af9037e0bc0a398d7da78f3b96aa4804303a638db2bc69bd30  $RUNNER_TEMP/railpack.tar.gz" | sha256sum --check
+          mkdir "$RUNNER_TEMP/railpack-bin"
+          tar -xzf "$RUNNER_TEMP/railpack.tar.gz" -C "$RUNNER_TEMP/railpack-bin"
+          docker run --rm --privileged -d --name buildkit moby/buildkit:latest
+          python3 - <<'PY'
+          import json, pathlib, tomllib
+          config = tomllib.loads(pathlib.Path('railway.toml').read_text())
+          assert config['build']['builder'] == 'RAILPACK'
+          assert config['build']['railpackVersion'] == '0.40.1'
+          assert config['deploy']['startCommand'] == 'node deployment/locked-runtime.cjs'
+          assert config['deploy']['numReplicas'] == 1
+          assert config['deploy']['healthcheckPath'] == '/health/ready'
+          pathlib.Path('/tmp/empire-build-command').write_text(config['build']['buildCommand'])
+          pathlib.Path('/tmp/empire-start-command').write_text(config['deploy']['startCommand'])
+          PY
+          "$RUNNER_TEMP/railpack-bin/railpack" build . --name empireai-locked:ci \
+            --build-cmd "$(cat /tmp/empire-build-command)" \
+            --start-cmd "$(cat /tmp/empire-start-command)" --progress plain
+          mkdir -p "$RUNNER_TEMP/locked-package-evidence"
+          docker image inspect empireai-locked:ci > "$RUNNER_TEMP/locked-package-evidence/image.json"
+          docker run --rm --network none --entrypoint node empireai-locked:ci -e '
+            const fs = require("node:fs"), assert = require("node:assert/strict"), crypto = require("node:crypto");
+            assert.equal(process.versions.node, "22.23.2");
+            assert.ok(fs.existsSync("backend/dist/index.js"));
+            const launcher = crypto.createHash("sha256").update(fs.readFileSync("deployment/locked-runtime.cjs")).digest("hex");
+            assert.equal(launcher, "aff193b679bbf21d37da914b7fbe1fbf26fc7e84af38e9641307c380b70212c8");
+            console.log(JSON.stringify({node: process.versions.node, lockedLauncherSha256: launcher, backendBuilt: true}));
+          ' | tee "$RUNNER_TEMP/locked-package-evidence/runtime.json"
+          python3 - <<'PY'
+          import json, os, pathlib
+          image = json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'locked-package-evidence/image.json').read_text())[0]
+          assert image['Config']['Cmd'][-1] == 'node deployment/locked-runtime.cjs', image['Config']['Cmd']
+          PY
+          git rev-parse HEAD > "$RUNNER_TEMP/locked-package-evidence/source-sha.txt"
+          cp railway.toml railpack.json "$RUNNER_TEMP/locked-package-evidence/"
+          cat "$RUNNER_TEMP/locked-package-evidence/source-sha.txt" "$RUNNER_TEMP/locked-package-evidence/runtime.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve exact-source packaging receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: locked-railway-package
+          path: ${{ runner.temp }}/locked-package-evidence
+          if-no-files-found: error
+
   durable-runtime:
     name: Durable runtime — real Redis, restart, ownership and authorization
     runs-on: ubuntu-latest
@@ -317,7 +383,7 @@ jobs:
   runtime-repair-result:
     name: Runtime repair result (no deployment)
     if: ${{ always() }}
-    needs: [durable-runtime, durable-web]
+    needs: [durable-runtime, durable-web, locked-railway-package]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -325,7 +391,9 @@ jobs:
         env:
           RUNTIME_RESULT: ${{ needs.durable-runtime.result }}
           WEB_RESULT: ${{ needs.durable-web.result }}
+          PACKAGE_RESULT: ${{ needs.locked-railway-package.result }}
         run: |
           test "$RUNTIME_RESULT" = success
           test "$WEB_RESULT" = success
+          test "$PACKAGE_RESULT" = success
           echo 'Runtime and web repair checks passed. No production promotion or commerce unlock is authorized by this result.' >> "$GITHUB_STEP_SUMMARY"
