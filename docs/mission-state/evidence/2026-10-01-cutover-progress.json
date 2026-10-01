@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-01T10:20:34.303280+00:00",
-  "stage": "BLOCKED_AUTOMATIC_APPROVAL_REVIEW_NO_DEPLOYMENT",
+  "at": "2026-10-01T11:04:27.488806+00:00",
+  "stage": "SAFE_PAUSED_SOURCE_REVISION_MISMATCH",
   "candidate": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
   "vercelFallback": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
   "railwayProject": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
@@ -21,7 +21,7 @@
     }
   },
   "volumeMounts": "Both /data staged; requested 1024MB each",
-  "sourceStatus": "App exact d69 SHA and redis:7.2.16-bookworm independently verified staged; caps intact",
+  "sourceStatus": "Stored source.commitSha was d69cdc953a5a2bc21a271eb7a7bce2598ee330ea but actual deployment resolved main21384342. Stored configuration is NOT proof of source pinning.",
   "configurationDeviation": "Railway rejects Config-as-Code selector on new services since 2026-08-28. Same approved executable build/start/health/restart settings applied directly; no source change. Caps had to be applied through dashboard after Agent call did not persist them.",
   "budget": {
     "canaryProjectObservedUSD": 0.076,
@@ -30,11 +30,30 @@
     "ceilingUSD": 20,
     "settled": false
   },
-  "legacy": "Unmodified, online; old service/volume/Redis/credential references retained",
-  "ownerTraffic": "Unchanged old Vercel21384342; no BRAIN_API_URL update",
+  "legacy": "Original deployment86302878-25b5-4990-87d9-86580cd4e976 remains SUCCESS. Old service/volume/config/Redis/credentials untouched.",
+  "ownerTraffic": "No Vercel changes or generated backend public endpoint; empire-ai.co remains old production.",
   "birth": "NOT_BORN",
   "commerce": "LOCKED",
-  "next": "Resolve automatic approval review for exact existing staged patch, then deploy/verify new backend \u2192 Vercel/live checks \u2192 legacy stop. Do not recreate resources or regenerate configured credentials.",
+  "next": "Resolve exact-source deployment mechanism for existing app before another build. Do not repeat source.commitSha-only deployment or auto-redeploy main. Candidate d69 remains frozen. Verification failure triggered approved safe pause; no legacy restart/stop, no traffic cutover. No new recovery research.",
   "credentials": "Four independent cryptographically generated secrets privately configured on new service variables; no values in evidence; do not regenerate on resume",
-  "executionRejection": "railway_accept_deploy for exact production environment and scoped commitMessage returned Cancelled \u2014 the user did not approve this action. No changes were made. Automatic approval review did not accept existing authorization. Do not bypass via dashboard."
+  "executionRejection": null,
+  "patchCommitted": true,
+  "appDeployment": "0cb7f3e9-add4-4457-861a-866152025c03",
+  "redisDeployment": "c60c8058-e65e-4e1b-b726-6d6d9c1fe5ef",
+  "actualAppRevision": "21384342c401def948926904913840e63c18dff7",
+  "runtimeFailure": "Node24.10.0 could not find /app/deployment/locked-runtime.cjs; /health/ready failed. No operational backend admitted.",
+  "safeAbort": "App aborted through dashboard; new Redis deployment removed/stopped through dashboard. Both services retained with volumes and private variables; get_status independently confirms neither has active deployment. No resource deletion.",
+  "volumesVerified": {
+    "app": {
+      "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+      "sizeMB": 1024,
+      "mountPath": "/data"
+    },
+    "redis": {
+      "id": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+      "sizeMB": 1024,
+      "mountPath": "/data"
+    }
+  },
+  "cost": "New build plus approximately four minutes of private Redis incurred provisional charges not yet metered. New workloads stopped; retained volumes may incur storage charges. Earlier1.156USD is stale, not current total; US20 ceiling unchanged."
 }

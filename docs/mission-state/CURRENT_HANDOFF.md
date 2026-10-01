@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — SAFE PAUSE: actual source mismatch
+
+2026-10-01T11:04:27.488806+00:00. King approved exact patch retry and patch committed. **Actual app deployed main21384342 despite stored d69 commitSha**; startup failed missing locked-runtime.cjs on Node24.10.0. New app aborted, new Redis stopped; independently no active new deployments. Both 1024MB volumes/private variables preserved; legacy deployment86302878 remains online unchanged. Vercel/owner traffic untouched. Do not claim d69 deployed or restart main. Resolve exact-source mechanism before next approved-candidate attempt. [Durable receipt](evidence/2026-10-01-cutover-progress.json). Earlier approval-blocked checkpoint superseded.
+
 ## Active checkpoint — automatic deployment approval rejection
 
 2026-10-01T10:20:34.303280+00:00. Exact source, bounded caps, new volumes staged; private independent credentials configured. railway_accept_deploy was rejected by automatic approval review: user did not approve; no changes made. **No deployment, traffic change or legacy stop.** Existing cutover and browser fallback approvals remain recorded. Resolve execution gate for exact existing patch; do not bypass it or duplicate resources. [Receipt](evidence/2026-10-01-cutover-progress.json).
