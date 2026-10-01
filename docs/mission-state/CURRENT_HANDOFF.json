@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T17:26:11.407Z",
+  "updatedAt": "2026-10-01T18:08:23.770Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER COMPLETE; frontend96e3722/backendaf0efc1 live, legacy deployment removed with service/state preserved. Next PILLOW CERTIFICATION per latest owner directive.",
+    "status": "CUTOVER CLOSED at 41b8979; production frontend1412bb1/backendaf0efc1 unchanged; scoped reasoning repair4eb4428 and compatibility frontend1cfe444 published, not production-deployed. Certification paused.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -41,36 +41,18 @@
   "deployed": {
     "railway": {
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
-      "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
-      "source": "21384342c401def948926904913840e63c18dff7",
-      "dataVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
-      "pendingRamPersistence": "OLD_WORKER_EXITED_AUTONOMOUSLY_WITH_PENDING_STATUS; current worker pending, full restore UNPROVEN",
-      "stagedProductionPatch": "EnvironmentPatch changes=[] remains staged; not accepted or altered",
-      "recentLogs": "2026-09-26 12:50:26 UTC ~4.1-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown. Old-main noncritical overdue exports require recent/smoothed lag below 200/100 ms respectively; sustained lag plausibly prevents progress (inference, not RAM proof). At 13:04 UTC old process completed SMART_VIABLE_BATCH (24 retrieved, 19 rejected, page 44) after this checkpoint; disk/RAM receipt and provider-point use unverified. Read-only 14:29:59 UTC logs later recorded an sql.js-db.export known synchronous block and cooldown with flushCount still 3, with high-lag warnings continuing to 14:32; this is not a completed flush or RAM capture receipt.",
-      "readOnlyFileInventory": "2026-09-26 listContainerFilesTool: /data/empireai-brain.db 572035072 bytes mtime 05:32:57 UTC; /data/commissioning-mirror/ws_empire_1.json; /app/closure-backups historic snapshots. /app/backend/dist/orchestration/shadow-ceo-authority/repository listed JS/map only; source repository/data listed .gitignore only. Agent reported /app/.data and /app/backend/.data missing. Actual process cwd remains UNKNOWN; /proc/1/cwd symlink target inaccessible through file-list connector. Listing does not establish absence of other stores.",
-      "historicBackupMetadata": "Read-only /app/closure-backups manifest declares 2026-09-21 8-part 92862657-byte compressed snapshot; 2026-09-20 receipt declares 569380864-byte persisted-only source, compressed 114437480 bytes at 14:59 UTC, explicitly excludes pending RAM and Redis, restore not tested. Not a current complete backup.",
-      "metrics1h": {
-        "at": "2026-09-25T03:28:00Z",
-        "cpuCurrent": 1.10033155,
-        "cpuAverage": 0.9512460535519127,
-        "memoryGbCurrent": 2.632218624,
-        "memoryGbMax": 3.285624832,
-        "diskGbCurrent": 0.724770816
-      },
-      "latestReadOnlyStatusAt": "2026-09-29T13:07:27.345Z",
-      "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
-      "completedFlushAfterPriorCheckpointVerified": true,
-      "readOnlyLatest": "29September assessment: same deployment, oldPID539 exited autonomously14:00:42UTC, supervisor code78/respawn29; PID553 started14:01:04, flushes1-6 observed15:01-15:12, pending=true still observed. Work did not intervene. Prior stable-old-PID claim superseded."
+      "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+      "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+      "deploymentId": "109726a1-a2e1-407f-86ed-17b443cb4579",
+      "source": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "origin": "https://empireai-locked-runtime-production.up.railway.app",
+      "status": "SUCCESS; unchanged this repair turn"
     },
     "vercel": {
-      "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
-      "source": "21384342c401def948926904913840e63c18dff7",
-      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision. 2026-09-28 additional list_teams returned zero teams; known project/deployment with recorded team_gdcskAnaJteKW7BYtw8zlSWy returned INVALID_ARGUMENT. Fresh cloud browser opened the exact EmpireAI team deployments URL but was redirected to Vercel login. No fresh authenticated readback, no deployment change.",
-      "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
-      "teamScopedListing": "2026-09-28 teams=[] and known-ID GET INVALID_ARGUMENT; cloud browser unauthenticated",
-      "productionReadbackVerified": true,
-      "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence.",
-      "freshReadback20261001": "Known project with idOrName and team returned403 forbidden; Sep27 remains last authenticated deployment evidence."
+      "deploymentId": "dpl_5psHpg45h5NvWeN3zraquqe6D3YE",
+      "source": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
+      "status": "READY production",
+      "domain": "empire-ai.co"
     }
   },
   "authority": {
@@ -2479,10 +2461,11 @@
     "uxException": "Repair only defects blocking safe certification or owner control",
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
-    "active": true
+    "active": false,
+    "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "BOUNDED_ARCHITECTURE_DELTA_REPORTED_BEFORE_CERTIFICATION",
+  "currentPhase": "SCOPED_REASONING_INTEGRATION_PUBLISHED_AWAITING_FRONTEND_PROMOTION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2605,17 +2588,17 @@
     "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
   },
   "providerArchitectureCheckpoint": {
-    "status": "IMPLEMENTED_TESTED_PUBLISHED_NOT_DEPLOYED",
+    "status": "SUPERSEDED_BY_SCOPED_INTEGRATION_4eb4428",
     "cutoverBaseline": "41b897950fd83199bcf0e2d36d30d501aff628b1",
     "cutoverStatus": "CLOSED",
     "certification": "PAUSED_BY_OWNER; original unseen I1 implementation failure preserved; no repeated exam calls",
     "evidenceCommit": "e0fd5ce847c53100e1b6126a13cd6a4e9285f42a",
     "examinerBranch": "cert/pillow-unseen-20261002",
-    "backendCandidate": "be2423ee711e1866d1a4b21dcde133155aaffb07",
-    "backendBranch": "fix/locked-provider-layer-20261002",
-    "frontendCandidate": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
-    "frontendBranch": "fix/locked-provider-web-20261002",
-    "previewDeployment": "dpl_A83bU9JnroNXKsppRo2BsFqEhWke",
+    "backendCandidate": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
+    "backendBranch": "fix/locked-reasoning-integration-20261002",
+    "frontendCandidate": "1cfe444f01b178842566e303e356655e5c93be94",
+    "frontendBranch": "fix/locked-reasoning-web-20261002",
+    "previewDeployment": "dpl_7bTaQVkgorana3hGepoNcaj1a4fP",
     "previewStatus": "READY",
     "liveBackend": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
     "liveFrontend": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
@@ -2633,14 +2616,14 @@
       "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
       "newPaidCalls": 0
     },
-    "blocker": "Frontend promotion completed. Backend candidate remains undeployed; bounded delta review identifies additional executive integration omissions. No new credentials requested yet.",
-    "ownerAction": null,
+    "blocker": "Vercel deploy tool UNAVAILABLE; approved browser fallback blocked by native credential protection even fresh document",
+    "ownerAction": "Promote frontend1cfe444 deploymentdpl_7bTaQVkgorana3hGepoNcaj1a4fP using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain",
     "next": [
-      "Verify actual production frontend1412bb1",
-      "Deploy exact backendbe2423e to existing locked Railway runtime; verify identity/readiness",
-      "Give one private Railway credential-provisioning action at a time: ANTHROPIC_API_KEY then GOOGLE_AI_API_KEY for a paid Gemini API project; never chat",
-      "Run bounded provider connectivity/routing/accounting checks; ledger readback including I1 before unseen retest",
-      "Repair general release-gate implementation failure; freeze materially new unseen specification and resume certification"
+      "Verify actual production frontend1cfe444 after owner promotion",
+      "Deploy exact backend4eb4428 existing locked Railway runtime preserving volume, OpenAI credential and cumulative ledger",
+      "Verify identity/readiness and compatibility; then one private Railway credential action at a time",
+      "Bounded real provider/routing/consultation/accounting evidence; no full certification until integration closed",
+      "Read back cumulative accounting including preserved I1; freeze materially new unseen retest without reusing I1"
     ],
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
@@ -2649,7 +2632,7 @@
     "frontendProductionDeployment": "dpl_5psHpg45h5NvWeN3zraquqe6D3YE"
   },
   "architectureDeltaCheckpoint": {
-    "status": "BOUNDED_READ_ONLY_REVIEW_COMPLETE",
+    "status": "REVIEW_ACCEPTED_SCOPED_REPAIR_PUBLISHED_LIVE_PROOF_PENDING",
     "report": "docs/mission-state/PILLOW_ARCHITECTURE_DELTA_2026-10-02.md",
     "sourceBaseline": "41b8979",
     "liveBackend": "af0efc1",
@@ -2674,5 +2657,77 @@
     "applicationChangesDuringReview": 0,
     "certification": "PAUSED",
     "nextBoundary": "Only scoped provider/retrieval/continuity/read-only-tool/pending-learning/answer-integrity integration; report precedes repairs"
+  },
+  "integrationRepairCheckpoint": {
+    "at": "2026-10-01T18:08:23.770Z",
+    "status": "IMPLEMENTED_OFFLINE_VERIFIED_PUBLISHED_NOT_DEPLOYED",
+    "backend": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
+    "frontend": "1cfe444f01b178842566e303e356655e5c93be94",
+    "report": "docs/mission-state/LOCKED_REASONING_INTEGRATION_2026-10-02.md",
+    "parentBackend": "be2423ee711e1866d1a4b21dcde133155aaffb07",
+    "frontendPreview": "dpl_7bTaQVkgorana3hGepoNcaj1a4fP",
+    "previewState": "READY",
+    "verification": {
+      "pillowBuild": "PASS Node22.23.2",
+      "backendBuild": "PASS Node22.23.2 existing default heap",
+      "targetedTests": "44 distinct PASS; strengthened actual host and separate-process transcript/pending readback also PASS",
+      "frontendBuild": "Exact-source Vercel preview READY",
+      "paidInferenceCalls": 0,
+      "liveProviderActivation": "NOT DONE",
+      "fullCertification": "PAUSED"
+    },
+    "preserved": {
+      "cutoverBaseline": "41b897950fd83199bcf0e2d36d30d501aff628b1",
+      "unseenEvidence": "e0fd5ce847c53100e1b6126a13cd6a4e9285f42a",
+      "i1": "CONSUMED; no reused question/answer key",
+      "spendingCeilingUsd": 20,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "legacy": "STOPPED_PRESERVED",
+      "ownerUx": "DEFERRED"
+    },
+    "limitations": [
+      "Transcript hydration applies to bounded newly captured transcripts; pre-integration UI history is not silently imported as authority/context",
+      "Pending learning is untrusted pending_owner_review; no automatic promotion",
+      "Read tools are bounded catalog/mission/evidence reads and one exact arithmetic round, not arbitrary web/code execution",
+      "Claude/Gemini private credentials and live bounded receipts remain pending"
+    ],
+    "blocker": "Vercel deploy tool UNAVAILABLE; approved browser fallback blocked by native credential protection even fresh document",
+    "ownerAction": "Promote frontend1cfe444 deploymentdpl_7bTaQVkgorana3hGepoNcaj1a4fP using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain"
+  },
+  "historicalDeployedBeforeCutover": {
+    "railway": {
+      "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+      "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+      "source": "21384342c401def948926904913840e63c18dff7",
+      "dataVolume": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+      "pendingRamPersistence": "OLD_WORKER_EXITED_AUTONOMOUSLY_WITH_PENDING_STATUS; current worker pending, full restore UNPROVEN",
+      "stagedProductionPatch": "EnvironmentPatch changes=[] remains staged; not accepted or altered",
+      "recentLogs": "2026-09-26 12:50:26 UTC ~4.1-second event-loop lag, sqlite.pending=true, flushCount=3, flushInFlight=false, no flush error, criticalFlushRequested=0, criticalFlushSucceeded=0; last reported flush 2026-09-26 05:32:57 UTC. Unsaved RAM contents unknown. Old-main noncritical overdue exports require recent/smoothed lag below 200/100 ms respectively; sustained lag plausibly prevents progress (inference, not RAM proof). At 13:04 UTC old process completed SMART_VIABLE_BATCH (24 retrieved, 19 rejected, page 44) after this checkpoint; disk/RAM receipt and provider-point use unverified. Read-only 14:29:59 UTC logs later recorded an sql.js-db.export known synchronous block and cooldown with flushCount still 3, with high-lag warnings continuing to 14:32; this is not a completed flush or RAM capture receipt.",
+      "readOnlyFileInventory": "2026-09-26 listContainerFilesTool: /data/empireai-brain.db 572035072 bytes mtime 05:32:57 UTC; /data/commissioning-mirror/ws_empire_1.json; /app/closure-backups historic snapshots. /app/backend/dist/orchestration/shadow-ceo-authority/repository listed JS/map only; source repository/data listed .gitignore only. Agent reported /app/.data and /app/backend/.data missing. Actual process cwd remains UNKNOWN; /proc/1/cwd symlink target inaccessible through file-list connector. Listing does not establish absence of other stores.",
+      "historicBackupMetadata": "Read-only /app/closure-backups manifest declares 2026-09-21 8-part 92862657-byte compressed snapshot; 2026-09-20 receipt declares 569380864-byte persisted-only source, compressed 114437480 bytes at 14:59 UTC, explicitly excludes pending RAM and Redis, restore not tested. Not a current complete backup.",
+      "metrics1h": {
+        "at": "2026-09-25T03:28:00Z",
+        "cpuCurrent": 1.10033155,
+        "cpuAverage": 0.9512460535519127,
+        "memoryGbCurrent": 2.632218624,
+        "memoryGbMax": 3.285624832,
+        "diskGbCurrent": 0.724770816
+      },
+      "latestReadOnlyStatusAt": "2026-09-29T13:07:27.345Z",
+      "lastObservedExportBlockAt": "2026-09-26T14:29:59Z",
+      "completedFlushAfterPriorCheckpointVerified": true,
+      "readOnlyLatest": "29September assessment: same deployment, oldPID539 exited autonomously14:00:42UTC, supervisor code78/respawn29; PID553 started14:01:04, flushes1-6 observed15:01-15:12, pending=true still observed. Work did not intervene. Prior stable-old-PID claim superseded."
+    },
+    "vercel": {
+      "deploymentId": "dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R",
+      "source": "21384342c401def948926904913840e63c18dff7",
+      "lastRefreshedVia": "2026-09-27 direct project and deployment ID lookups succeed. Production dpl_7rfJqEeCpsojJ2nqF5V6jDevui8R READY target production with empire-ai.co aliases, source main 21384342. READY preview dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN source recovery commit 1ff5d85a target null. Team-scoped listing still 403, but known production revision is verified. No deployment mutation. 2026-09-28 fresh connector known project/deployment lookups returned INVALID_ARGUMENT, so no newer Vercel observation was established; earlier production readback remains the last verified revision. 2026-09-28 additional list_teams returned zero teams; known project/deployment with recorded team_gdcskAnaJteKW7BYtw8zlSWy returned INVALID_ARGUMENT. Fresh cloud browser opened the exact EmpireAI team deployments URL but was redirected to Vercel login. No fresh authenticated readback, no deployment change.",
+      "verifiedPreviewDeploymentId": "dpl_GaZpv5QGbAztWxYUS1WQiFAtRxNN",
+      "teamScopedListing": "2026-09-28 teams=[] and known-ID GET INVALID_ARGUMENT; cloud browser unauthenticated",
+      "productionReadbackVerified": true,
+      "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence.",
+      "freshReadback20261001": "Known project with idOrName and team returned403 forbidden; Sep27 remains last authenticated deployment evidence."
+    }
   }
 }

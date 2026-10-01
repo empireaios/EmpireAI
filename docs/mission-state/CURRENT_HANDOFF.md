@@ -1,43 +1,27 @@
-# Current checkpoint — bounded architecture delta reported
+# EmpireAI current handoff — 2026-10-01T18:08:23.770Z
 
-Frontend1412bb1 independently verified Production on empire-ai.co (dpl_5psHpg45h5NvWeN3zraquqe6D3YE). Backend remains af0efc1; be2423e not deployed. No owner promotion step remains pending.
+CUTOVER COMPLETE / CLOSED, baseline 41b8979. Legacy STOPPED and preserved. NOT_BORN / commerce LOCKED.
 
-Certification paused; review completed before further repairs. See PILLOW_ARCHITECTURE_DELTA_2026-10-02.md for intended vs reachable capabilities, intentional restrictions, evidence and bounded repair list. No application edits, paid calls or restarts in review. Cutover41b8979 CLOSED; original unseen evidence e0fd5ce preserved; NOT_BORN/LOCKED and deferred Owner UX unchanged.
+## Current boundary
+Owner accepted the bounded architecture review and authorized scoped integration repair. Certification is PAUSED; broad Owner UX is deferred.
 
-The previous multi-provider candidate is partial integration: capability selection/cross-check reachability, context/memory, read tools, pending learning and original answer replacement require scoped work before full certification. Do not mistake offline protocol tests for executive capability certification.
+Published backend: **4eb442823d219b26908c6e3fdd9ce1c1ffdf209b** (fix/locked-reasoning-integration-20261002), parent be2423e.
+Published frontend: **1cfe444f01b178842566e303e356655e5c93be94** (fix/locked-reasoning-web-20261002), parent1412bb1.
+Frontend preview **dpl_7bTaQVkgorana3hGepoNcaj1a4fP READY**.
+Production unchanged: frontend1412bb1 / backendaf0efc1.
 
-## Prior accepted cutover handoff (historical)
+## What passed
+44 distinct targeted tests across bounded provider protocols/fallback/accounting, authority, context/tools, answer integrity. Strengthened actual-host check proves repository and mission receipts reach the inference boundary (paid transport stubbed), pending learning and transcript persist. Separate child process reads back transcript and pending evidence. Pillow/backend builds pass Node22.23.2. Frontend exact-source Vercel build READY. No new paid calls.
 
-# EmpireAI canonical handoff
+Report: docs/mission-state/LOCKED_REASONING_INTEGRATION_2026-10-02.md on backend candidate branch.
+Original unseen I1 evidence remains e0fd5ce on cert/pillow-unseen-20261002; consumed, never reuse as unseen. The examiner branch must never be ingested into runtime context.
 
-Updated 2026-10-01T16:39:24.271Z.
+## Single owner action
+Existing empireai Vercel project: promote **1cfe444**, deployment **dpl_7bTaQVkgorana3hGepoNcaj1a4fP**, using **production-environment rebuild**. Preserve BRAIN_API_URL and empire-ai.co.
+Vercel deploy tool returned UNAVAILABLE/not in tools/list. Approved dashboard fallback remained blocked by native-credential protection, including fresh document; not bypassed.
 
-**CUTOVER COMPLETE. NEXT PHASE: PILLOW CERTIFICATION.**
+## Continue after promotion
+Independently verify production frontend identity. Deploy exact backend4eb4428 to existing locked runtime; preserve OpenAI key, volume and original cumulative US$20 ledger. Do not deploy default saved Railway source metadata. Verify runtime readiness/identity before one private credential action at a time: Claude then Gemini. No key in chat.
+Use bounded real provider evidence, deliberate routing/consultation, durable accounting readback and authority checks to close this integration boundary. Live provider proof is NOT DONE and certification must not resume yet. Current invoice actual remains unknown; prior ledger snapshot predates I1.
 
-Latest owner's revised priority supersedes earlier Owner UX-first order. Preserve the Owner UX backlog; repair UX first only if it blocks safe certification or owner control. Pillow remains NOT_BORN, commerce LOCKED, intelligence not certified. No trading authority granted.
-
-## Production identity and acceptance
-
-- Frontend96e37225733d5b4fb9d631b1e0de4c3478fb6205, Vercel dpl_wfPyb19239eQDgcaqT7R6p3YByX5 READY production with empire-ai.co preserved.
-- Backendaf0efc15cfb228b718a716cffa26a8caf3ee443b, Railway109726a1-a2e1-407f-86ed-17b443cb4579 SUCCESS, https://empireai-locked-runtime-production.up.railway.app. Explicit verified BRAIN_API_URL new origin, no legacy fallback.
-- Desktop and owner's actual fresh-phone essential journey passed. Session creation defect resolved. Real OpenAI response persisted; no further Work inference repeated.
-- Transactions returns authoritative200 and displays no saved transactions; historical evidence labelled. No503 or fabricated commerce success.
-- Authenticated history/authority passed with owner observation, server201/200 durable-result records, actual-app regression and44 prior live423 probes. Protected mutations remain denied.
-
-## Accounting
-
-Dedicated production SQLite downloaded by owner and inspected read-only. quick_check ok; six records (five usage_recorded, one failed_uncertain). Reserved US$1.951842; remaining admission ceiling US$18.048158 of US$20. Conservative usage estimates US$0.441130; invoice actual unknown. Original response records survive later runtime deployment. All usage totals and cost estimates reconcile. Ledger SHA256 a1ec5b7e9d8b307b60cefeb0c08774866ff7c27acc0ceaf92c7947e3dd8dfd26.
-
-## Legacy preserved shutdown and postverification
-
-Owner executed scoped railway down. Deployment86302878-25b5-4990-87d9-86580cd4e976 independently confirmed REMOVED at2026-10-01T16:35:25.863Z. Servicec3c89cbb-3e10-414a-98a2-f9ec4f1f840e retained, volume40ab30d1-2759-4eba-b3c8-255436610bb0 retained5GB/data, all30variable names retained including REDIS_URL; no secrets read or Redis/credentials/evidence deletion. Saved restartPolicyType NEVER read back; removed deployment cannot automatically restart. No redeployment merely to apply policy. Deployment/snapshot evidence remains recoverable.
-
-After stop, actual authenticated empire-ai.co Home reloaded and reported exactaf0efc1 ready NOT_BORN LOCKED at16:36:42.577Z. Locked runtime HTTPlogs confirm auth/me200, health/live200, health/ready200, transactions20016:37:08, founder-shell200 and protected dispatch42316:37:38-39. Pillow existing completed response remained visible with historical labels. No new paid inference. New runtime and Redis remain SUCCESS. Cutover closed.
-
-## Preserved UX backlog
-
-Mission Centre LIVE/unavailable panels; Available/DEMO presentation; login-error copy; Pillow navigation/interface; functional stop/pause (Home explicitly says current read-only view cannot stop a process); reconciled costs and one-stop Money & Services; broader dashboard navigation/usefulness/buttons. These are not claimed complete.
-
-Next boundary: independent unseen Pillow certification, with bounded inference spending and server-side NOT_BORN/LOCKED preserved. Do not tune to exposed test answers or call Pillow certified merely because connectivity passed.
-
-Historical checkpoint details remain in CURRENT_HANDOFF.json; cutoverCompletionCheckpoint is authoritative over older incomplete entries.
+No cutover reopening, legacy restart/deletion, new scheduling programme, Birth, commerce or broad UX work.
