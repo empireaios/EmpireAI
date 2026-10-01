@@ -1,3 +1,11 @@
+# Current checkpoint — fresh-device session repair
+
+**CUTOVER NOT COMPLETE.** Backend `af0efc15cfb228b718a716cffa26a8caf3ee443b` fixes the session POST omission only; targeted actual-app login/session/history/authority regression and backend build passed. Compatible frontend `96e37225733d5b4fb9d631b1e0de4c3478fb6205` adds only that runtime SHA; build passed and Vercel preview `dpl_6XWgPKjQeodJS7CZtnrBdvWiQCgJ` READY.
+
+Production remains cf7f475 /807a54e. Vercel write tool again UNAVAILABLE; known dashboard credential protection remains. **One owner action: promote/rebuild96e3722 in production environment, preserving BRAIN_API_URL and empire-ai.co.** Frontend first; do not deploy runtime until compatibility is live. Then continue exactaf0efc1 deployment, fresh-session/phone checks without unnecessary paid inference, remaining accounting/history evidence and gated preserved legacy shutdown. Legacy remains running and preserved. No Birth/commerce unlock.
+
+---
+
 # Latest checkpoint — 2026-10-01 live bounded inference
 
 **CUTOVER NOT COMPLETE.** Owner applied the staged key/source patch. Current frontend `cf7f475` / runtime `807a54e`, deployment `0da9e0fc-3c16-4fd4-9535-eb488a66d84c`. Real OpenAI Pillow response completed at15:07:59Z; one internal retry, no degraded fallback. This proves connectivity only, not competence.

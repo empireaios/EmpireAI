@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T15:17:59.230Z",
+  "updatedAt": "2026-10-01T15:39:00.860Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER NOT COMPLETE; frontend cf7f475/backend807a54e live; private credential active; real Pillow inference PASSED; remaining acceptance evidence blocked by tool capabilities.",
+    "status": "CUTOVER NOT COMPLETE; narrow fresh-session repair tested/published; waiting Vercel production-environment rebuild96e3722 before runtimeaf0efc1 deployment.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -2328,7 +2328,40 @@
     "cause": "locked-commissioning.ts POST allowlist omits /api/pillow/session; existing browser warm session hid new-device failure",
     "routeSafetyInspection": "Session route retains pillowAuth, workspace authorization and admission control; creates conversation session, no inference/commerce call. Minimal proposed repair allow only authenticated POST session through global guard, leave DELETE/commerce/Birth/dispatch denied.",
     "controls": "Context expand and sidebar collapse operate in desktop. Empty Send intentionallydisabled. Trading/Approve intentionallylocked. Unavailable executive panels from dispatch423 remain ClassB; exact other phone buttons unidentified.",
-    "next": "Minimal session admission repair with targeted regression, compatible frontend revision handling and production deployment; no additional inference for proof. Phone cannot pass until session start works.",
+    "next": "Independently verify96e3722 production -> deploy exactaf0efc1 existing lockedRailway service preserving OPENAI_API_KEY andvolumeledger -> fresh authenticated session/phone/history authority acceptance; accounting rowreadback stillneeded -> only allA pass preservedlegacyshutdown/postverification ->OWNER UX CLOSURE",
     "legacy": "running preserved; not stopped"
+  },
+  "freshSessionRepairCheckpoint": {
+    "at": "2026-10-01T15:39:00.860Z",
+    "status": "REPAIR_TESTED_PUBLISHED_NOT_PRODUCTION",
+    "backend": {
+      "sha": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "branch": "fix/locked-pillow-session-20261001",
+      "parent": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+      "diff": "One added POST allowlist entry /api/pillow/session plus actual-application regression test. Existing pillowAuth/workspace/admission checks unchanged."
+    },
+    "frontend": {
+      "sha": "96e37225733d5b4fb9d631b1e0de4c3478fb6205",
+      "branch": "fix/locked-session-web-20261001",
+      "parent": "cf7f475aa96ae5db82ba339f102e31c45689addd",
+      "diff": "Only add exact af0efc1 backend SHA to owner runtime identity allowlist; preserve existing accepted SHA during rollout.",
+      "preview": "dpl_6XWgPKjQeodJS7CZtnrBdvWiQCgJ",
+      "state": "READY"
+    },
+    "checks": {
+      "actualAppRegression": "PASS: unauth401, wrongworkspace403, fresh founder login200, session201, history200,10authenticated protectedPOST423 NOT_BORN LOCKED,DELETEsession423",
+      "backendBuild": "PASS Node22.23.2",
+      "frontendBuild": "PASS Next16.2.9",
+      "paidCalls": 0
+    },
+    "live": {
+      "frontend": "cf7f475aa96ae5db82ba339f102e31c45689addd",
+      "backend": "807a54eab8b62cfdec4c7aea1f6e8966671dddaa",
+      "legacy": "RUNNING_PRESERVED"
+    },
+    "blocker": "Vercel deploy_to_vercel returned UNAVAILABLE: not returned by tools/list. Prior approved dashboard fallback blocked by native-credential protection, not bypassed.",
+    "ownerAction": "Existing empireai Vercel project: production-environment rebuild/promote deployment dpl_6XWgPKjQeodJS7CZtnrBdvWiQCgJ at96e3722. Preserve production BRAIN_API_URL and empire-ai.co.",
+    "next": "Independently verify96e3722 production -> deploy exactaf0efc1 existing lockedRailway service preserving OPENAI_API_KEY andvolumeledger -> fresh authenticated session/phone/history authority acceptance; accounting rowreadback stillneeded -> only allA pass preservedlegacyshutdown/postverification ->OWNER UX CLOSURE",
+    "noBirthOrCommerceUnlock": true
   }
 }
