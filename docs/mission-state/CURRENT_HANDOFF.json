@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T11:44:48.956Z",
+  "updatedAt": "2026-10-01T12:46:57.764Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1617,10 +1617,11 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Actual deployment propertyFileMapping maps build.builder to committed root railway.toml selectingNIXPACKS, overriding storedRAILPACK. Selecting existing deployment/railway.locked.toml rejected by Railway Config-as-Code deprecation guard. No verified supported override available through exposed deployment/config tools; do not silently edit source or weaken pins."
+    "Vercel deploy_to_vercel returns UNAVAILABLE: tool not returned by tools/list; team-scoped reads403",
+    "Approved dashboard fallback blocked by native-credentials browser protection even after explicit canonical navigation; no bypass"
   ],
   "nextExecutableActions": [
-    "Resolve provider configuration-path restriction or explicitly authorize a reviewed deployment-configuration revision. Do not rerun exact-source investigation: explicit deploy action commitSha works. No force deployment, no main merge, no recovery or unrelated engineering. Required running-source/backend gate still unpassed; Vercel unchanged."
+    "Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -1846,7 +1847,60 @@
       "General LLM reasoning truthfully fails no_llm_provider; authority-facts reasoning succeeds.",
       "SQL.js first noncritical flush is delayed one hour; clean shutdown exported database and account integrity/identity passed after restart. No immediate crash durability claim.",
       "New locked services remain running and accrue bounded ongoing resource usage; current settled cost unavailable. Last provisional1.156 excludes this turn. Ceiling20 unchanged."
-    ]
+    ],
+    "latestCheckpoint": {
+      "status": "CUTOVER_NOT_COMPLETE",
+      "recordedAt": "2026-10-01T12:46:57.764Z",
+      "backendGate": "CLOSED — do not repeat CI/rebuild/restart/recovery",
+      "backend": {
+        "revision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+        "deployment": "e978b764-4529-46c7-9224-0e3d2aaae5f1",
+        "url": "https://empireai-locked-runtime-production.up.railway.app",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED"
+      },
+      "frontend": {
+        "liveRevision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+        "deployment": "dpl_7zWRX93P1TeJ6heYZYMgndcVuumt",
+        "domain": "empire-ai.co",
+        "effectiveBinding": "legacy https://empireai-production.up.railway.app",
+        "defect": "empireai-web/vercel.json hardcoded legacy BRAIN_API_URL overrides dashboard; server proxy also silently defaulted legacy"
+      },
+      "repair": {
+        "revision": "7837479aa60ee5d82963d046223dfb09523f6fe0",
+        "branch": "fix/live-domain-locked-binding-20261001",
+        "deployed": false,
+        "scope": "Six frontend files only. Removed vercel.json override; fail-closed production allowlist; authenticated read-only runtime identity; historical readiness correction; direct Pillow navigation. No backend code or authority change.",
+        "tests": [
+          "frontend typecheck PASS",
+          "targeted eslint PASS",
+          "production frontend build PASS",
+          "production binding regression PASS",
+          "Transactions BFF session/denial/no-cache regression PASS"
+        ]
+      },
+      "pillow": {
+        "classification": "LEGACY_ROUTING — not a new-backend competence result",
+        "legacyRequestId": "d7f4ef48-e79a-42bd-8e27-3973b08da951",
+        "acceptedAt": "2026-10-01T12:27:45.484Z",
+        "terminalAt": "2026-10-01T12:28:22.238Z",
+        "providerFailures": 2,
+        "newRuntimeHealth": "Idle; acceptedRequests=0; completedRequests=0; providerFailures=0; no recent requests",
+        "certified": false
+      },
+      "transactions": "Live HTTP503 unresolved until corrected frontend is deployed and tested against authoritative runtime; no empty-success fallback added",
+      "acceptance": {
+        "desktop": "Earlier login/Home/Products/evidence passed; Transactions failed; full mission/history/reconnect/authority journey incomplete",
+        "phone": "NOT TESTED",
+        "safety": "Owner Trading locked control disabled and explicitly labelled not a stop/emergency control; complete live safety verification pending"
+      },
+      "legacy": "NOT STOPPED; no restart policy change, service/volume/Redis/recovery deletion or mutation",
+      "blockers": [
+        "Vercel deploy_to_vercel returns UNAVAILABLE: tool not returned by tools/list; team-scoped reads403",
+        "Approved dashboard fallback blocked by native-credentials browser protection even after explicit canonical navigation; no bypass"
+      ],
+      "next": "Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now."
+    }
   },
   "deploymentPackagingClosure": {
     "candidate": "d6e69910384a00b11711a50ccbc2d70826549fa5",
@@ -1980,5 +2034,58 @@
     },
     "certifiedAt": "2026-10-01T11:44:48.956Z",
     "deploymentAuthorized": "King explicitly conditionally authorized this deployment-only revision after all listed gates; conditions passed."
+  },
+  "liveDomainCutover": {
+    "status": "CUTOVER_NOT_COMPLETE",
+    "recordedAt": "2026-10-01T12:46:57.764Z",
+    "backendGate": "CLOSED — do not repeat CI/rebuild/restart/recovery",
+    "backend": {
+      "revision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+      "deployment": "e978b764-4529-46c7-9224-0e3d2aaae5f1",
+      "url": "https://empireai-locked-runtime-production.up.railway.app",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    },
+    "frontend": {
+      "liveRevision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+      "deployment": "dpl_7zWRX93P1TeJ6heYZYMgndcVuumt",
+      "domain": "empire-ai.co",
+      "effectiveBinding": "legacy https://empireai-production.up.railway.app",
+      "defect": "empireai-web/vercel.json hardcoded legacy BRAIN_API_URL overrides dashboard; server proxy also silently defaulted legacy"
+    },
+    "repair": {
+      "revision": "7837479aa60ee5d82963d046223dfb09523f6fe0",
+      "branch": "fix/live-domain-locked-binding-20261001",
+      "deployed": false,
+      "scope": "Six frontend files only. Removed vercel.json override; fail-closed production allowlist; authenticated read-only runtime identity; historical readiness correction; direct Pillow navigation. No backend code or authority change.",
+      "tests": [
+        "frontend typecheck PASS",
+        "targeted eslint PASS",
+        "production frontend build PASS",
+        "production binding regression PASS",
+        "Transactions BFF session/denial/no-cache regression PASS"
+      ]
+    },
+    "pillow": {
+      "classification": "LEGACY_ROUTING — not a new-backend competence result",
+      "legacyRequestId": "d7f4ef48-e79a-42bd-8e27-3973b08da951",
+      "acceptedAt": "2026-10-01T12:27:45.484Z",
+      "terminalAt": "2026-10-01T12:28:22.238Z",
+      "providerFailures": 2,
+      "newRuntimeHealth": "Idle; acceptedRequests=0; completedRequests=0; providerFailures=0; no recent requests",
+      "certified": false
+    },
+    "transactions": "Live HTTP503 unresolved until corrected frontend is deployed and tested against authoritative runtime; no empty-success fallback added",
+    "acceptance": {
+      "desktop": "Earlier login/Home/Products/evidence passed; Transactions failed; full mission/history/reconnect/authority journey incomplete",
+      "phone": "NOT TESTED",
+      "safety": "Owner Trading locked control disabled and explicitly labelled not a stop/emergency control; complete live safety verification pending"
+    },
+    "legacy": "NOT STOPPED; no restart policy change, service/volume/Redis/recovery deletion or mutation",
+    "blockers": [
+      "Vercel deploy_to_vercel returns UNAVAILABLE: tool not returned by tools/list; team-scoped reads403",
+      "Approved dashboard fallback blocked by native-credentials browser protection even after explicit canonical navigation; no bypass"
+    ],
+    "next": "Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now."
   }
 }

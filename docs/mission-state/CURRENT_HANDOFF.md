@@ -1,5 +1,19 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — CUTOVER NOT COMPLETE; routing defect repaired in candidate, deployment blocked
+
+2026-10-01T12:46:57.764Z. Backend gate remains CLOSED at d6e699 / e978b764; no backend rebuild/restart/recovery or CI rerun. Fresh health confirms NOT_BORN/LOCKED, transport-only readiness.
+
+**Root cause established:** deployed empireai-web/vercel.json hardcodes legacy BRAIN_API_URL, overriding the separately saved Production dashboard value; proxy also silently falls back to legacy. Legacy Pillow health matches the live request ID d7f4ef48-e79a-42bd-8e27-3973b08da951, accepted 2026-10-01T12:27:45.484Z, terminal 2026-10-01T12:28:22.238Z, provider/context failures. New runtime has zero accepted/completed/provider-failed requests. Classify the inconsistent reply as LEGACY ROUTING, not new-runtime competence.
+
+**Repair saved and read back:** frontend-only child **7837479aa60ee5d82963d046223dfb09523f6fe0**, branch fix/live-domain-locked-binding-20261001. Removes hardcoded override/fallback; production rejects all but exact locked origin; owner-authenticated /api/owner/runtime reports sanitized frontend/backend identity and truthful readiness; Home labels historical production evidence, removes obsolete recovery instructions and links Pillow. Existing Trading locked control remains disabled and explicitly not an emergency stop. Typecheck, targeted lint, production frontend build and two routing/Transactions regression tests PASS. This is a prepared candidate, NOT a deployed repair or live acceptance.
+
+Fresh empire-ai.co deployment readback remains dpl_7zWRX93P1TeJ6heYZYMgndcVuumt / d6e699. Transactions live503 has NOT yet been retested after repair. Desktop partial only; phone, durable mission/history/reconnect and live authority denials incomplete. Vercel deploy connector UNAVAILABLE (not returned by tools/list); approved dashboard blocked by native-credentials browser protection after canonical navigation. No credentials exposed or bypass attempted.
+
+Legacy NOT STOPPED, unchanged/preserved. Remaining owner defects: live503, misleading legacy Pillow answer, unavailable command panels and LIVE labels, incomplete history/reconnect/phone proof, missing functional owner stop/pause and reconciled costs. Prepared copy/navigation repair is not yet live. [Structured checkpoint](evidence/2026-10-01-live-binding-repair.json).
+
+**Exact next boundary:** Restore usable approved Vercel/browser access, deploy exact frontend repair 7837479 using Production BRAIN_API_URL locked HTTPS origin; verify authenticated runtime identity and Transactions, desktop+phone journey, historical/freshness and safety/authority checks; only then disable restart and stop preserved legacy worker and reverify live domain. Then OWNER UX CLOSURE. No certification/Birth/commerce unlock now.
+
 ## Active checkpoint — backend CLOSED; frontend d6e699 LIVE; domain acceptance FAILED
 
 1 October 2026, 12:33 UTC. Exact backend d6e69910384a00b11711a50ccbc2d70826549fa5 remains verified on Node22.23.2, deployment e978b764. Independent GitHub CI/persisted before-after receipts and fresh HTTPS health/live/ready confirm locked runtime. No CI, rebuild, restart or recovery testing repeated. Backend gate CLOSED.
