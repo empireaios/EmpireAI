@@ -1,5 +1,11 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — deployment-only replacement candidate certified
+
+2026-10-01T11:44:48.956Z. King authorized minimum packaging-only child of d69 and deployment after exact gates. Replacement **d6e69910384a00b11711a50ccbc2d70826549fa5**, draft PR10, changes only root Railway TOML, build contract/test and Runtime CI image proof. Application, launcher, Pillow, authority, commerce, providers and web source unchanged. Product36856624243, Semantic36856624215, Runtime36856624401 all SUCCESS. Downloaded artifact11158868931 SHA25688630dcaca24db3aa76b76115609d9a090aa0a2fb30ef6e008dd391647217ccf independently binds exact source, root config, Node22.23.2, built backend and unchanged locked launcher. Existing permanent restore/authority CI also passed for this SHA; no new recovery track.
+
+Proceed with existing candidate service/Redis/volumes/credentials. Explicit SHA deploy is proven; never rely on stored source.commitSha. Verify new backend, then Vercel/live owner flow, only then legacy shutdown. Main/PR5 application code/legacy resources/owner traffic untouched. Earlier packaging blocker is superseded. [Seal](evidence/2026-10-01-packaging-certification.json).
+
 ## Active checkpoint — exact source resolved; provider build configuration blocked
 
 2026-10-01T11:28:34.960103+00:00. Explicit deployServiceTool(commitSha=d69...) selected correct candidate, independently confirmed by deployment38e1795f-c8df-4200-a6b5-8683acacf63d. Build FAILED before startup: root railway.toml selectedNIXPACKS22.14.0/npm10.9.2 despite storedRAILPACK; exact runtime guard refused drift. Railway rejects selecting already-approved deployment/railway.locked.toml under Config-as-Code deprecation guard. No verified available override; do not change SHA/pins/main/PR without owner scope. Redis deploymentc01cd824 stopped after failed build; retained resources reused. Legacy and Vercel untouched. [Receipt](evidence/2026-10-01-cutover-progress.json). Prior exact-source mismatch blocker is superseded; do not repeat its investigation.
