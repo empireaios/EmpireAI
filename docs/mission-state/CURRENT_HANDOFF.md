@@ -1,5 +1,14 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — LOCKED backend PASS; Vercel production-only write blocked
+
+2026-10-01T12:10:57.334Z. Candidate **d6e69910384a00b11711a50ccbc2d70826549fa5** is running with exact Node22.23.2, ready200, persistent identities/mission/history/Redis sessions and terminal outcomes at one attempt after actual clean app and Redis restarts. NOT_BORN / LOCKED and eight mutation denials persist. [Independent receipts](evidence/2026-10-01-locked-backend-gate.json). Backend gate is complete; do not repeat deployment or restarts. General reasoning without provider is truthfully unavailable; authority-facts reasoning succeeds.
+
+Vercel production-only BRAIN_API_URL update is blocked by shared write-only Production+Preview variable. Dashboard Edit changes both; production-only Add rejected duplicate; Rotate can split but requires new Preview value and old-value revocation attestation, incompatible with preserve-legacy. No Vercel change saved. Resolve exact scope/write-path, then deploy d6e699 and live-domain desktop/phone acceptance; only then legacy shutdown. Do not repeat backend deployment/restarts.
+
+Legacy service, volume, Redis and credentials remain preserved and running. No owner traffic switch or downtime introduced. New locked resources remain running; metered usage continues within existing20 ceiling, not a spending target. SQL.js clean-shutdown persistence passed; noncritical first flush delay remains a recorded limitation. No main merge or application-code change.
+
+
 ## Active checkpoint — deployment-only replacement candidate certified
 
 2026-10-01T11:44:48.956Z. King authorized minimum packaging-only child of d69 and deployment after exact gates. Replacement **d6e69910384a00b11711a50ccbc2d70826549fa5**, draft PR10, changes only root Railway TOML, build contract/test and Runtime CI image proof. Application, launcher, Pillow, authority, commerce, providers and web source unchanged. Product36856624243, Semantic36856624215, Runtime36856624401 all SUCCESS. Downloaded artifact11158868931 SHA25688630dcaca24db3aa76b76115609d9a090aa0a2fb30ef6e008dd391647217ccf independently binds exact source, root config, Node22.23.2, built backend and unchanged locked launcher. Existing permanent restore/authority CI also passed for this SHA; no new recovery track.

@@ -1770,19 +1770,19 @@
     ],
     "commerce": "LOCKED",
     "birth": "NOT_BORN",
-    "productionMutated": false,
+    "productionMutated": true,
     "newResourcesCreated": true,
     "vercelReadAccess": "CONFIRMED when teamId omitted; project and existing production deployment independently read back",
     "vercelWriteAccess": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
     "automaticReview": "Rejected underspecified deploy_to_vercel({}) call; nothing deployed; do not repeat unscoped deployment",
     "oldProduction": "Railway old service/deployment/volume retained and still running; Vercel source21384342 unchanged",
-    "nextAction": "Deploy exact d6e6991 using deployServiceTool(commitSha), reuse existing stopped candidate and Redis; verify running-source/health/persistence/restart/locks before any Vercel traffic change. Legacy remains untouched until live frontend verification.",
+    "nextAction": "Vercel production-only BRAIN_API_URL update is blocked by shared write-only Production+Preview variable. Dashboard Edit changes both; production-only Add rejected duplicate; Rotate can split but requires new Preview value and old-value revocation attestation, incompatible with preserve-legacy. No Vercel change saved. Resolve exact scope/write-path, then deploy d6e699 and live-domain desktop/phone acceptance; only then legacy shutdown. Do not repeat backend deployment/restarts.",
     "replacementCandidate": "d6e69910384a00b11711a50ccbc2d70826549fa5",
     "replacementConditionSatisfied": true
   },
   "cutoverExecution": {
-    "at": "2026-10-01T11:28:34.960103+00:00",
-    "stage": "DEPLOYMENT_ONLY_CANDIDATE_CERTIFIED",
+    "at": "2026-10-01T12:10:57.334Z",
+    "stage": "BACKEND_PASS_VERCEL_SCOPE_BLOCKED",
     "candidate": "d6e69910384a00b11711a50ccbc2d70826549fa5",
     "vercelFallback": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
     "railwayProject": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
@@ -1791,7 +1791,7 @@
     "redisService": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
     "appVolume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
     "redisVolume": "af8cc57d-7175-47c5-8145-3b68713c52c5",
-    "pendingPatch": "27de24e5-8d2f-47cc-b957-0b722316dd89",
+    "pendingPatch": null,
     "limitsVerifiedStaged": {
       "app": {
         "cpu": 1,
@@ -1813,18 +1813,18 @@
       "settled": false
     },
     "legacy": "Original deployment86302878-25b5-4990-87d9-86580cd4e976 remains SUCCESS. Old service/volume/config/Redis/credentials untouched.",
-    "ownerTraffic": "No Vercel changes or generated backend public endpoint; empire-ai.co remains old production.",
+    "ownerTraffic": "UNCHANGED old Vercel production; legacy still running preserved",
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
-    "next": "Deploy exact d6e6991 using deployServiceTool(commitSha), reuse existing stopped candidate and Redis; verify running-source/health/persistence/restart/locks before any Vercel traffic change. Legacy remains untouched until live frontend verification.",
+    "next": "Vercel production-only BRAIN_API_URL update is blocked by shared write-only Production+Preview variable. Dashboard Edit changes both; production-only Add rejected duplicate; Rotate can split but requires new Preview value and old-value revocation attestation, incompatible with preserve-legacy. No Vercel change saved. Resolve exact scope/write-path, then deploy d6e699 and live-domain desktop/phone acceptance; only then legacy shutdown. Do not repeat backend deployment/restarts.",
     "credentials": "Four independent cryptographically generated secrets privately configured on new service variables; no values in evidence; do not regenerate on resume",
     "executionRejection": null,
     "patchCommitted": true,
-    "appDeployment": "38e1795f-c8df-4200-a6b5-8683acacf63d",
-    "redisDeployment": "c01cd824-3b54-4b5a-8356-613cc629f745",
-    "actualAppRevision": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
-    "runtimeFailure": "Correct-source build FAILED before startup: effective Nixpacks22.14.0/npm10.9.2 rejected by unchanged required22.23.2/npm10.9.8 guard.",
-    "safeAbort": "App failed at build, never started. Redis exact image briefly redeployed then stopped via dashboard; both services/volumes/private variables retained. Legacy untouched.",
+    "appDeployment": "e978b764-4529-46c7-9224-0e3d2aaae5f1",
+    "redisDeployment": "2ca21fd5-1eda-418a-916a-ad16b6746af5",
+    "actualAppRevision": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+    "runtimeFailure": null,
+    "safeAbort": null,
     "volumesVerified": {
       "app": {
         "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
@@ -1838,7 +1838,15 @@
       }
     },
     "cost": "Two additional Agent calls and one exact-source failed build plus about3minutesRedis incurred provisional charges; no current settled total. New workloads stopped; retained storage charges possible; US20 ceiling unchanged.",
-    "buildConfigurationBlocker": "Actual deployment propertyFileMapping maps build.builder to committed root railway.toml selectingNIXPACKS, overriding storedRAILPACK. Selecting existing deployment/railway.locked.toml rejected by Railway Config-as-Code deprecation guard. No verified supported override available through exposed deployment/config tools; do not silently edit source or weaken pins."
+    "buildConfigurationBlocker": null,
+    "endpoint": "https://empireai-locked-runtime-production.up.railway.app",
+    "backendEvidence": "evidence/2026-10-01-locked-backend-gate.json",
+    "backendGate": "PASS actual source/Node22.23.2/ready/account+mission+Redis continuity/clean app+Redis restarts/idempotency/8 mutation denials",
+    "limitations": [
+      "General LLM reasoning truthfully fails no_llm_provider; authority-facts reasoning succeeds.",
+      "SQL.js first noncritical flush is delayed one hour; clean shutdown exported database and account integrity/identity passed after restart. No immediate crash durability claim.",
+      "New locked services remain running and accrue bounded ongoing resource usage; current settled cost unavailable. Last provisional1.156 excludes this turn. Ceiling20 unchanged."
+    ]
   },
   "deploymentPackagingClosure": {
     "candidate": "d6e69910384a00b11711a50ccbc2d70826549fa5",
