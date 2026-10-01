@@ -1,5 +1,9 @@
 # EmpireAI / Pillow active mission handoff
 
+## Active checkpoint — CUTOVER PREPARATION IN PROGRESS
+
+2026-10-01T10:15:40.182600+00:00. Vercel dashboard fallback authorized and authenticated. New app/Redis allocated, bounded caps and volumes staged; no workload, traffic switch or legacy mutation. **Reuse exact resources in [execution receipt](evidence/2026-10-01-cutover-progress.json); never recreate.** Railway no longer accepts TOML selector for new services; identical approved executable settings applied directly. Continue exact d69 backend verification → Vercel/live verification → legacy stop. Earlier awaiting-fallback sections are superseded.
+
 ## Active checkpoint — CUTOVER APPROVED, execution not started
 
 King explicitly approved package `b66b26b7` and exact candidate `d69cdc953a5a2bc21a271eb7a7bce2598ee330ea`, accepting documented legacy uncertainty and interruption. **Updated order overrides the package: verify new backend → deploy and verify frontend → only then stop legacy worker and prevent restart.** No repeat cutover approval is needed. NOT_BORN / LOCKED persists.

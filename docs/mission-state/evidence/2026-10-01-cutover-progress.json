@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-01T10:15:40.182600+00:00",
+  "stage": "PREPARATION_NO_WORKLOAD_OR_TRAFFIC_SWITCH",
+  "candidate": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+  "vercelFallback": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
+  "railwayProject": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+  "environment": "da94aed2-956b-4903-a886-68a5e9a557c8",
+  "appService": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+  "redisService": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+  "appVolume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+  "redisVolume": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+  "pendingPatch": "27de24e5-8d2f-47cc-b957-0b722316dd89",
+  "limitsVerifiedStaged": {
+    "app": {
+      "cpu": 1,
+      "memoryBytes": 2000000000
+    },
+    "redis": {
+      "cpu": 1,
+      "memoryBytes": 500000000
+    }
+  },
+  "volumeMounts": "Both /data staged; requested 1024MB each",
+  "sourceStatus": "Exact-SHA source/image staging requested; independently read back before deployment",
+  "configurationDeviation": "Railway rejects Config-as-Code selector on new services since 2026-08-28. Same approved executable build/start/health/restart settings applied directly; no source change. Caps had to be applied through dashboard after Agent call did not persist them.",
+  "budget": {
+    "canaryProjectObservedUSD": 0.076,
+    "workspaceAgentObservedUSD": 1.08,
+    "conservativeProvisionalUSD": 1.156,
+    "ceilingUSD": 20,
+    "settled": false
+  },
+  "legacy": "Unmodified, online; old service/volume/Redis/credential references retained",
+  "ownerTraffic": "Unchanged old Vercel21384342; no BRAIN_API_URL update",
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED",
+  "next": "Finish private credentials and exact-SHA source configuration; deploy/verify new backend, then Vercel/live domain, only then stop legacy worker. Reuse IDs; never duplicate."
+}
