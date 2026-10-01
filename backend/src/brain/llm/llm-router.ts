@@ -1,4 +1,5 @@
-import { completeLockedInference, lockedInferenceProfile } from "./locked-inference.js";
+import { lockedInferenceProfile } from "./locked-inference.js";
+import { completeLockedRouted, configuredLockedProviders } from "./locked-provider-orchestration.js";
 import { env } from "../../config/env.js";
 import { quoteBoundedLLMCall, reserveBoundedLLMCall } from "./llm-spend-reservation.js";
 import { assertPaidAutonomousAllowed } from "../../orchestration/pillow-commissioning/cost-guard.js";
@@ -14,6 +15,16 @@ import type { LLMProvider } from "./provider.js";
 import { parseLLMTimeout, withLLMDeadline } from "./call-control.js";
 
 export class LLMRouter {
+  /** Deliberate two-provider consultation; never invoked by ordinary complete(). */
+  async crossCheck(request: LLMCompletionRequest, providers: readonly [LLMProviderName, LLMProviderName], justification: string): Promise<LLMCompletionResponse[]> {
+    if (!lockedInferenceProfile() || providers[0] === providers[1] || !justification.trim()) throw new Error('Explicit distinct-provider consultation required');
+    const results: LLMCompletionResponse[] = [];
+    for (const provider of providers) {
+      results.push(await this.complete({...request, provider, model:undefined,
+        correlationId:request.correlationId+':consult:'+provider}));
+    }
+    return results; // Preserve independent answers/provenance; no fabricated consensus.
+  }
   private readonly providers: Map<LLMProviderName, LLMProvider>;
 
   constructor() {
@@ -25,7 +36,7 @@ export class LLMRouter {
   }
 
   listAvailable(): LLMProviderName[] {
-    if (lockedInferenceProfile()) return process.env.OPENAI_API_KEY?.trim() ? ["openai"] : [];
+    if (lockedInferenceProfile()) return configuredLockedProviders();
     return [...this.providers.values()]
       .filter((provider) => provider.isAvailable())
       .map((provider) => provider.name);
@@ -44,7 +55,7 @@ export class LLMRouter {
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
-    if (lockedInferenceProfile()) return completeLockedInference(request);
+    if (lockedInferenceProfile()) return completeLockedRouted(request);
     const timeoutMs = parseLLMTimeout(process.env.LLM_REQUEST_TIMEOUT_MS);
     request.signal?.throwIfAborted();
     // Unknown owner limits and engineering mode stop before provider resolution.

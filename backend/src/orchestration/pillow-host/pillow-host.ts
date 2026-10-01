@@ -30257,6 +30257,7 @@ export class PillowHost {
             let message = commandResponse.message;
             let kind = "command_fallback";
             let provider;
+            let inferenceProvenance;
             let model;
             let mode;
             let tokens;
@@ -30322,6 +30323,7 @@ export class PillowHost {
                     try {
                         completion = await this.llmLayer.complete(llmArgs);
                     } catch (firstLlmError) {
+                        if (reasoningOnly) throw firstLlmError; // Router owns bounded provider attempts.
                         recordPillowProviderFailure();
                         retryUsed = true;
                         logger.warn(
@@ -30401,6 +30403,7 @@ export class PillowHost {
                             }
                         }
                     }
+                    inferenceProvenance = completion.provenance;
                     provider = completion.provider;
                     model = completion.model;
                     mode = completion.mode;
@@ -30586,6 +30589,7 @@ export class PillowHost {
                 message,
                 kind,
                 provider,
+                inferenceProvenance,
                 model,
                 mode,
                 tokens,

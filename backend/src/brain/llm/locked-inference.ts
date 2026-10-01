@@ -1,7 +1,7 @@
 /** October commissioning inference only. No tool execution or authority transition. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import type { LLMCompletionRequest, LLMCompletionResponse } from '../types.js';
 
@@ -14,7 +14,7 @@ const STARTS = Date.parse('2026-09-30T16:00:00Z');
 const ENDS = Date.parse('2026-10-31T16:00:00Z');
 export const lockedInferenceProfile = () => process.env.EMPIRE_RUNTIME_PROFILE === 'LOCKED_COMMISSIONING_V1';
 
-function ledger<T>(filename: string, action: (db: DatabaseSync) => T): T {
+export function inferenceLedger<T>(filename: string, action: (db: DatabaseSync) => T): T {
   if (!path.isAbsolute(filename) || path.resolve(filename) !== filename || fs.realpathSync(path.dirname(filename)) !== path.dirname(filename)) throw Error('Inference ledger path refused');
   const existed = fs.existsSync(filename);
   const marker=filename+'.initialized';
@@ -44,24 +44,33 @@ function ledger<T>(filename: string, action: (db: DatabaseSync) => T): T {
     return result;
   } finally { if (db.isTransaction) db.exec('ROLLBACK'); db.close(); }
 }
+const ledger = inferenceLedger;
 export function inferenceLedgerPath(): string {
   const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
   if (!root || fs.realpathSync(root)!==root || process.env.DATABASE_PATH!==path.join(root,'commissioning','empireai-brain.db')) throw Error('Inference requires locked persistent volume');
   return path.join(root,'commissioning','openai-october-2026.sqlite');
 }
-export function reserveInference(filename: string, microUsd: number, now = Date.now()): string {
+export function reserveInference(filename: string, microUsd: number, now = Date.now(), policy: {provider:string;model:string;ceiling:number;requestKey?:string} = {provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD}): string {
   if (now < STARTS || now >= ENDS || now >= PRICE_EXPIRES || !Number.isSafeInteger(microUsd) || microUsd<=0) throw Error('Inference pricing/window unavailable');
   return ledger(filename, db => {
+    db.exec('CREATE TABLE IF NOT EXISTS call_providers (call_id TEXT PRIMARY KEY, provider TEXT NOT NULL, request_key TEXT) STRICT');
     // Global across accounts, workers, credentials, restarts and all outcomes.
     const used=db.prepare('SELECT COALESCE(SUM(reserved_micro_usd),0) AS n FROM calls').get()?.n;
     if (typeof used !== 'number' || !Number.isSafeInteger(used) || used+microUsd>CEILING_MICRO_USD) throw Error('Inference commissioning budget exhausted');
+    const providerUsed=db.prepare("SELECT COALESCE(SUM(c.reserved_micro_usd),0) AS n FROM calls c LEFT JOIN call_providers p ON p.call_id=c.id WHERE COALESCE(p.provider,'openai')=?").get(policy.provider)?.n;
+    if (!Number.isSafeInteger(policy.ceiling)||policy.ceiling<1||policy.ceiling>CEILING_MICRO_USD||typeof providerUsed!=='number'||!Number.isSafeInteger(providerUsed)||providerUsed+microUsd>policy.ceiling) throw Error('Inference provider budget exhausted');
     const id=randomUUID();
-    db.prepare('INSERT INTO calls(id,timestamp,model,reserved_micro_usd,status) VALUES(?,?,?,?,?)').run(id,new Date(now).toISOString(),LOCKED_MODEL,microUsd,'reserved_uncertain');
+    db.prepare('INSERT INTO calls(id,timestamp,model,reserved_micro_usd,status) VALUES(?,?,?,?,?)').run(id,new Date(now).toISOString(),policy.model,microUsd,'reserved_uncertain');
+    db.prepare('INSERT INTO call_providers VALUES(?,?,?)').run(id,policy.provider,policy.requestKey??null);
     return id;
   });
 }
-function settle(filename:string,id:string,status:string,usage:object|null=null,cost:number|null=null,responseId:string|null=null):void {
+export function settleInference(filename:string,id:string,status:string,usage:object|null=null,cost:number|null=null,responseId:string|null=null):void {
   ledger(filename,db=>{ const result=db.prepare('UPDATE calls SET status=?,usage_json=?,estimated_micro_usd=?,provider_response_id=? WHERE id=?').run(status,usage?JSON.stringify(usage):null,cost,responseId,id); if(result.changes!==1)throw Error('Inference receipt persistence failed'); });
+}
+const settle = settleInference;
+export class InferenceFailure extends Error {
+  constructor(readonly fallbackEligible=false) { super('Bounded inference failed; reservation retained for reconciliation'); }
 }
 function integer(value:unknown):value is number { return Number.isSafeInteger(value) && Number(value)>=0; }
 export async function completeLockedInference(request:LLMCompletionRequest):Promise<LLMCompletionResponse> {
@@ -83,15 +92,16 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   const reserved=Math.ceil(inputBound*(long?5.5:2.75)+outputBound*(long?16.5:11));
   const filename=inferenceLedgerPath();
   request.signal?.throwIfAborted();
-  const id=reserveInference(filename,reserved);
+  const id=reserveInference(filename,reserved,Date.now(),{provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD,requestKey:createHash('sha256').update(request.workspaceId+'\0'+request.correlationId).digest('hex')});
   const signal=AbortSignal.any([AbortSignal.timeout(120000),...(request.signal?[request.signal]:[])]);
+  let fallbackEligible=false;
   try {
     const response=await fetch('https://api.openai.com/v1/responses',{
       method:'POST',redirect:'error',signal,
       headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},
       body:JSON.stringify({model:LOCKED_MODEL,input,store:false,service_tier:'default',reasoning:{effort:'medium'},max_output_tokens:outputBound}),
     });
-    if(!response.ok) { await response.body?.cancel(); throw Error(`Inference HTTP ${response.status}`); }
+    if(!response.ok) { fallbackEligible=[429,503,529].includes(response.status); await response.body?.cancel(); throw Error('Inference HTTP refusal'); }
     const reader=response.body?.getReader(); if(!reader)throw Error('Inference response absent');
     const chunks:Uint8Array[]=[];let size=0;
     while(true){ const part=await reader.read();if(part.done)break;size+=part.value.length;if(size>2*1024*1024){await reader.cancel();throw Error('Inference response exceeds bound');}chunks.push(part.value); }
@@ -114,6 +124,6 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
     // Never log provider bodies, prompts, credentials or exception strings.
     // Keep any usage already saved and the reservation on every failure.
     ledger(filename,db=>db.prepare("UPDATE calls SET status=CASE WHEN usage_json IS NULL THEN 'failed_uncertain' ELSE status END WHERE id=?").run(id));
-    throw Error('Bounded inference failed; reservation retained for reconciliation');
+    throw new InferenceFailure(fallbackEligible);
   }
 }

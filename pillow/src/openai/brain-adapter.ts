@@ -10,6 +10,7 @@ export interface BrainLLMMessage {
 }
 
 export interface BrainLLMCompleteRequest {
+  capability?: 'reasoning' | 'analysis' | 'summarization' | 'critique';
   messages: BrainLLMMessage[];
   provider?: BrainLLMProviderName;
   model?: string;
@@ -20,6 +21,7 @@ export interface BrainLLMCompleteRequest {
 }
 
 export interface BrainLLMCompleteResponse {
+  provenance?: {capability:string;requestKey:string;attempts:Array<{provider:BrainLLMProviderName;outcome:string}>};
   provider: BrainLLMProviderName;
   model: string;
   content: string;

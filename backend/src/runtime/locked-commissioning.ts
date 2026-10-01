@@ -1,4 +1,5 @@
 import type { FastifyInstance } from 'fastify';
+import { LOCKED_PROVIDERS, configuredLockedProviders } from '../brain/llm/locked-provider-orchestration.js';
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 export function installLockedCommissioning(app: FastifyInstance): void {
   const profile = process.env.EMPIRE_RUNTIME_PROFILE;
@@ -20,6 +21,8 @@ export function installLockedCommissioning(app: FastifyInstance): void {
     return JSON.stringify({...value,readinessScope:'transport_and_storage_only',operational:false,
       runtimeProfile:PROFILE,birth:'NOT_BORN',commerce:'LOCKED',
       authorizedCapabilities:{commerce:false,paidProviders:false,birth:false,boundedTextInference:true},
-      inference:{provider:'openai',model:'gpt-6.1-sol',credentialConfigured:Boolean(process.env.OPENAI_API_KEY?.trim()),commissioningCeilingUsd:20,readiness:'subject_to_credential_and_durable_budget_admission'}});
+      inference:{provider:'openai',model:'gpt-6.1-sol',credentialConfigured:Boolean(process.env.OPENAI_API_KEY?.trim()),
+        providers:Object.entries(LOCKED_PROVIDERS).map(([provider,p])=>({provider,model:p.model,credentialConfigured:configuredLockedProviders().includes(provider as keyof typeof LOCKED_PROVIDERS),ceilingUsd:p.ceiling/1_000_000})),
+        commissioningCeilingUsd:20,readiness:'subject_to_credential_and_durable_budget_admission'}});
   });
 }

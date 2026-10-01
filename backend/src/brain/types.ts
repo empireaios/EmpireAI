@@ -58,6 +58,7 @@ export type LLMMessage = {
 };
 
 export type LLMCompletionRequest = {
+  capability?: 'reasoning' | 'analysis' | 'summarization' | 'critique';
   /** Client-side cancellation only; provider charges can remain uncertain. */
   signal?: AbortSignal;
   provider?: LLMProviderName;
@@ -77,6 +78,7 @@ export type LLMToolDefinition = {
 };
 
 export type LLMCompletionResponse = {
+  provenance?: {capability:string;requestKey:string;attempts:Array<{provider:LLMProviderName;outcome:string}>};
   provider: LLMProviderName;
   model: string;
   content: string;

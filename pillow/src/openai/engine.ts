@@ -11,6 +11,7 @@ import type {
   BrainLLMCompleteRequest,
   BrainLLMMessage,
   BrainLLMProviderName,
+  BrainLLMCompleteResponse,
 } from "./brain-adapter.js";
 import {
   assessKnowledgeRouting,
@@ -59,6 +60,7 @@ export interface PillowCompletionRequest {
 }
 
 export interface PillowCompletionResult {
+  provenance?: BrainLLMCompleteResponse["provenance"];
   content: string;
   provider: BrainLLMProviderName;
   model: string;
@@ -168,7 +170,8 @@ export class OpenAIIntegrationLayer {
 
     const llmRequest: BrainLLMCompleteRequest = {
       messages,
-      provider,
+      capability: 'reasoning',
+      provider: request.provider,
       model: request.model,
       temperature: budget.temperature,
       maxTokens: budget.maxCompletionTokens,
@@ -204,6 +207,7 @@ export class OpenAIIntegrationLayer {
       mode,
       manifestId: request.operationalContext.manifest.repositoryFingerprint,
       usage: response.usage,
+      provenance: response.provenance,
       artifacts,
       capabilitiesUsed: routing ? [routing.primaryCapability] : undefined,
       intelligenceRouting: routing

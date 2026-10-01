@@ -182,6 +182,8 @@ jobs:
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
+      - name: Verify bounded multi-provider inference and preserved authority
+        run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts
       - name: Prove permanent locked runtime and complete enabled-store restore
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}

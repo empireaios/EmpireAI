@@ -39780,7 +39780,8 @@ export async function registerPillowRoutes(
           message: body.message,
           reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
-          correlationId: request.id,
+          correlationId: isReasoningOnlyRequest(request.headers) && typeof request.headers['x-empire-pillow-request-id'] === 'string'
+            ? request.headers['x-empire-pillow-request-id'] : request.id,
           provider: body.provider,
           workspaceContext: body.workspaceContext,
         });
@@ -39807,7 +39808,8 @@ export async function registerPillowRoutes(
           message: body.message,
           reasoningOnly: isReasoningOnlyRequest(request.headers),
           actor: user.email,
-          correlationId: request.id,
+          correlationId: isReasoningOnlyRequest(request.headers) && typeof request.headers['x-empire-pillow-request-id'] === 'string'
+            ? request.headers['x-empire-pillow-request-id'] : request.id,
           provider: body.provider,
           workspaceContext: body.workspaceContext,
         });
