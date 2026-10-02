@@ -17,10 +17,15 @@ import {
 
 /** Truthful terminal for genuine fatal exhaustion — durable pending is not this path. */
 export const DEGRADED_CHAT_MESSAGE = [
-  "I accepted your request, but a completed executive answer was not produced in this response window.",
+  "A completed Pillow answer is unavailable; request acceptance is not confirmed without a durable request id.",
   "This is a temporary production-shell / transport limit — not a judgment on your ask.",
-  "If a durable request id was issued, status and completed result remain retrievable; otherwise please retry the same ask.",
+  "If a durable request id was issued, status and completed result remain retrievable. Nothing has been resubmitted automatically.",
 ].join(" ");
+
+/** Preserve upstream denial/failure status; empty successful transport is a bad gateway. */
+export function terminalPillowHttpStatus(upstreamStatus: number): number {
+  return upstreamStatus >= 400 && upstreamStatus <= 599 ? upstreamStatus : 502;
+}
 
 /** @deprecated alias kept for tests expecting prior export name */
 export const LEGACY_INFRASTRUCTURE_BUDGET_PHRASE =

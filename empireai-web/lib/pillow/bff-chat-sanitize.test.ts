@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
   DEGRADED_CHAT_MESSAGE,
+  terminalPillowHttpStatus,
   decideBffChatSurface,
   isFailClosedPillowResponse,
   stripForbiddenInfraDecoration,
@@ -164,4 +165,12 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
       false,
     );
   });
+});
+
+it("preserves auth, authority and availability failures without false admission", () => {
+  for (const status of [401, 403, 423, 429, 500, 503, 504]) assert.equal(terminalPillowHttpStatus(status), status);
+  assert.equal(terminalPillowHttpStatus(200), 502);
+  assert.doesNotMatch(DEGRADED_CHAT_MESSAGE, /I accepted|please retry the same ask/i);
+  assert.match(DEGRADED_CHAT_MESSAGE, /acceptance is not confirmed/i);
+  assert.match(DEGRADED_CHAT_MESSAGE, /Nothing has been resubmitted automatically/i);
 });
