@@ -7,6 +7,8 @@ on:
       - 'deployment/assurance-supervisor.cjs'
       - 'backend/src/runtime/tier0-isolated-primary.ts'
       - 'backend/src/validation/tests/*assurance*.test.mjs'
+      - 'backend/src/validation/tests/commissioning-operator.test.mjs'
+      - 'backend/src/runtime/owner-commissioning-readback.ts'
       - '.github/workflows/independent-assurance.yml'
   workflow_dispatch:
 permissions:
@@ -20,6 +22,7 @@ jobs:
         with:
           node-version-file: '.node-version'
       - run: |
+          node backend/src/validation/tests/commissioning-operator.test.mjs
           node backend/src/validation/tests/assurance-owner-evidence.test.mjs
           node backend/src/validation/tests/independent-assurance.test.mjs
           node backend/src/validation/tests/assurance-runtime-collector.test.mjs
