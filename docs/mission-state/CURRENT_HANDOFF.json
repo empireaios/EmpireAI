@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T02:54:42.597Z",
+  "updatedAt": "2026-10-02T03:15:49.176Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED41b8979. Productionfrontend98e9bdc/backend8dcc928 READY/SUCCESS. Three provider credentials present by names only. History/device and real multiprovider integration proof pending; certification paused.",
+    "status": "CUTOVER CLOSED. Frontend1352d6b/backend84ab891 last verified; desktopa9358a2 offline geometry PASS, production pending; provider accounting unresolved, certification paused.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -43,16 +43,16 @@
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
       "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
       "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
-      "deploymentId": "718a74de-586d-4818-8904-a152414aa407",
-      "source": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
+      "deploymentId": "29de981b-4d28-4788-be1a-ad68b9506f28",
+      "source": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
       "status": "SUCCESS; /health/ready passed2026-10-02T00:58:46.057Z",
-      "savedSourceBranch": "fix/pillow-cross-device-history-20261002",
-      "savedSourceCommit": "8dcc9284d1222aacc51908ca177c0f01154ac6c0"
+      "savedSourceBranch": "fix/pillow-inference-failure-integrity-20261002",
+      "savedSourceCommit": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de"
     },
     "vercel": {
-      "deploymentId": "dpl_57hNzegD6rfuMrUmdePpKbfkeRrg",
-      "source": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
+      "deploymentId": "dpl_CivSQEonB9ktzQqNjRMqTbzeSC6j",
+      "source": "1352d6b03990fff356d8b83942e457c80976bb12",
       "status": "READY production independently verified empire-ai.co alias",
       "domain": "empire-ai.co"
     },
@@ -2855,7 +2855,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "Promote a9358a2 / dpl_CqCaheHSEC2JiBRiu6savjp8DX5W using production-environment rebuild, existingempireai, preserveBRAIN_API_URL/domain. Then actualdesktopowneracceptance. Do notresendproviderprobe."
+    "ownerAction": "Existing Vercel empireai Project Settings > Environments > Production > Branch Tracking: production/empireai-web; Save. One-time configuration, not manual promotion."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2989,7 +2989,7 @@
       "typecheck": "PASS",
       "productionBuild": "PASS",
       "displayHistoryTests": "87 PASS",
-      "geometryRegression": "Added e2e/pillow-desktop-geometry.test.mjs:1024/1280/1440/1920 widths, expanded/collapsed, refresh, firsttext/listmarker/composerbounds,390phonebounds; syntaxcheckPASS; browser execution NOT RUN due protected browser/auth access.",
+      "geometryRegression": "PASS actual local Chromium: 16 desktop measurements across four widths, both sidebar states before/after reload; phone390 geometry PASS. Synthetic loopback fixtures only. Actual production acceptance pending.",
       "actualProductionRendering": "PENDING owner-visible after promotion; previous1352d6b explicitlyFAILED"
     },
     "noPaidInference": true
@@ -3007,7 +3007,7 @@
   },
   "postIntegrationRequirements": {
     "document": "docs/mission-state/PERMANENT_SUPERVISION_AND_DEPLOYMENT_REQUIREMENTS_2026-10-02.md",
-    "deploymentAutomation": "Secure Work-accessible existingVercelproduction deployment ANDrollback,minimumpermissions/privatecredentials, independentverify; implementafterintegrationnotnow.",
+    "deploymentAutomation": "Priority A now authorized: Git release branch prepared; one-time project branch tracking configuration needed; Work deploy/rollback proof remains pending.",
     "permanentSupervisedAutonomy": "Architectural invariant. Deterministic sentinels; Pillowmonitoring; independentWorkassurance target6h; auditdeadman; King~1h/day; ChatGPTindependentadvice. Pillowneversoleauditor/own-safeguardcertifier.",
     "transactionAssurance": "Goods+money states, refunds/recoveries confirmed/pending/residualloss/uncertainexposure; deficitsmaterialexceptions; independentwholeEmpireAIcoverage and ownervisualization.",
     "authority": "No newBirth/commerce/spending/externalwriteauthority; deferredappropriatecheckpoint."
@@ -3036,11 +3036,11 @@
       "NOT_BORN / commerce LOCKED"
     ],
     "deploymentAccess": {
-      "status": "UNRESOLVED",
+      "status": "OAUTH_OWNER_SUCCESS_CLI_NETWORK_POLICY_BLOCK_GIT_RELEASE_PATH_PREPARED",
       "productionFrontend": "1352d6b03990fff356d8b83942e457c80976bb12",
       "readyCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
       "connectorWrite": "UNAVAILABLE: deploy_to_vercel not returned by tools/list",
-      "cliInstalled": false,
+      "cliInstalled": true,
       "environmentTokenPresent": false,
       "rollbackProven": false
     },
@@ -3082,5 +3082,26 @@
     "credentialValuesExposed": false,
     "nextBoundary": "Do not repeat owner OAuth authorization. Resolve supported platform access or prepare an authorized Git-based release mechanism. Never bypass the network policy.",
     "preservedCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9"
+  },
+  "priorityAIndependentVerification": {
+    "status": "LOCAL_PASS_CI_RUNNING_PRODUCTION_ACCEPTANCE_PENDING",
+    "evidenceCommit": "b113b2be8082d27ecfa39bfad71cbda7a7bcbd6a",
+    "report": "docs/mission-state/PRIORITY_A_INDEPENDENT_VERIFICATION_2026-10-02.md",
+    "workflow": "https://github.com/empireaios/EmpireAI/actions/runs/36959294882",
+    "local": {
+      "backendExisting": 31,
+      "backendAdditional": 2,
+      "frontendUnit": 141,
+      "desktopGeometryMeasurements": 16,
+      "phoneGeometry": "PASS offline fixture",
+      "paidInferenceCalls": 0
+    },
+    "accounting": "STALE snapshot ends 2026-10-01T15:58:43.143Z; original failed attempt remains UNRECONCILED",
+    "nextOwnerAction": "Existing Vercel empireai Project Settings > Environments > Production > Branch Tracking: production/empireai-web; Save. One-time configuration, not manual promotion.",
+    "releaseBranch": "production/empireai-web",
+    "releaseBranchSource": "1352d6b03990fff356d8b83942e457c80976bb12",
+    "candidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
+    "rollback": "Exact previous-tree rebuild via Git; prepared, not proven",
+    "authority": "NOT_BORN / commerce LOCKED; no extra spending"
   }
 }
