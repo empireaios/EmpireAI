@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:15:49.176Z",
+  "updatedAt": "2026-10-02T03:16:53.879Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -3084,7 +3084,7 @@
     "preservedCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9"
   },
   "priorityAIndependentVerification": {
-    "status": "LOCAL_PASS_CI_RUNNING_PRODUCTION_ACCEPTANCE_PENDING",
+    "status": "LOCAL_AND_HOSTED_CI_PASS_PRODUCTION_ACCEPTANCE_PENDING",
     "evidenceCommit": "b113b2be8082d27ecfa39bfad71cbda7a7bcbd6a",
     "report": "docs/mission-state/PRIORITY_A_INDEPENDENT_VERIFICATION_2026-10-02.md",
     "workflow": "https://github.com/empireaios/EmpireAI/actions/runs/36959294882",
@@ -3102,6 +3102,11 @@
     "releaseBranchSource": "1352d6b03990fff356d8b83942e457c80976bb12",
     "candidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
     "rollback": "Exact previous-tree rebuild via Git; prepared, not proven",
-    "authority": "NOT_BORN / commerce LOCKED; no extra spending"
+    "authority": "NOT_BORN / commerce LOCKED; no extra spending",
+    "hostedCI": {
+      "backend": "SUCCESS",
+      "geometry": "SUCCESS",
+      "run": 36959294882
+    }
   }
 }
