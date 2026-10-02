@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T04:40:01.774Z",
+  "updatedAt": "2026-10-02T05:10:02.174Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -3847,19 +3847,22 @@
       ],
       "productionLiveEvidence": [
         "Historical OpenAI and Claude transport/usage independently proven by suppliedledger;Gemini temporary_refusal and failed_uncertain.",
-        "Owner submitted LEDGER-VERIFIED-20261002-B exactlyonce and gotcompletedanswer. Correlated durablepcr_871cd1411e2449a7 and host43530ccd-e646-4039-8135-3e6b60c2fa81;traceprovideropenai,success,retryUsedfalse,degradedUsedfalse. Gemini attempted/fallback/model/reservationunresolved."
+        "Owner submitted LEDGER-VERIFIED-20261002-B exactlyonce and gotcompletedanswer. Correlated durablepcr_871cd1411e2449a7 and host43530ccd-e646-4039-8135-3e6b60c2fa81;traceprovideropenai,success,retryUsedfalse,degradedUsedfalse. Gemini attempted/fallback/model/reservationunresolved.",
+        "B authoritative ledger proves summarization Gemini gemini-3.8-flash first failed_uncertain, OpenAI gpt-6.1-sol fallback usage_recorded. Exactly2 attempts/1 request. Host retry=false does not mean router fallback=false; degraded=false real completion. Gemini NOT PROVEN."
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
         "A-PROSPECTIVE-ACCOUNTING"
       ],
-      "blocker": "Freshpost-requestledgerrequired. Do notinferGeminisuccessorfailurefromOpenAI terminaltrace alone;no newpaidtest.",
-      "remainingWork": "Minimum fresh Gemini-first summary and per-call ledger delta; then remaining live context/tools/learning/answer/authority criteria. Existing transport proof does not prove repaired answer integrity.",
-      "nextExecutableAction": "Reconcile freshledger by expectedrequestkey37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3,then diagnose anyGemini refusal before spending.",
-      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
+      "blocker": "Gemini was attempted first and failed with fallback-eligible temporary refusal. Previous adapter discarded exact HTTP status/body; specific cause UNKNOWN. Account-side quota evidence unavailable to Work; do not blind-retry. Authenticated live capability evidence also remains open.",
+      "remainingWork": "Diagnose Gemini refusal from authoritative account/provider evidence; repair cause if required; then minimum new bounded successful invocation and remaining live integration criteria. Preserve consumed B and I1.",
+      "nextExecutableAction": "Read-only Google AI Studio rate-limit observation for the project used by the privately provisioned GOOGLE_AI_API_KEY; do not expose key. Do not repeat B.",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
-        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json"
       ]
     },
     {
@@ -3871,7 +3874,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending",
@@ -3882,9 +3886,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Use currentrequestreceipttoidentify fallback;do notcause another paidfailure justforevidence.",
-      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -3897,7 +3902,8 @@
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof."
+        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof.",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3907,9 +3913,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -3922,7 +3929,8 @@
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof."
+        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof.",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3932,9 +3940,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -3946,7 +3955,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3956,9 +3966,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -3970,7 +3981,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3980,9 +3992,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -3994,7 +4007,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4004,9 +4018,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -4018,7 +4033,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4028,9 +4044,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -4042,7 +4059,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4052,9 +4070,10 @@
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
       ]
     },
     {
@@ -4938,23 +4957,28 @@
       "phase": "A",
       "domain": "Prospective inference accounting",
       "priority": "A",
-      "currentStatus": "BLOCKED",
-      "implementationRevisionComponent": "Existing84ab891 cumulative ledger + deployment/read-current-inference-accounting.cjs read-only utility",
+      "currentStatus": "PROVEN",
+      "implementationRevisionComponent": "9fa1332 private read-only ledger export; shared spending guard unchanged",
       "testsPerformed": [
         "Offline reader: uncertain hold counted;request/provider link preserved;source bytes unchanged;over-cap rejected"
       ],
       "productionLiveEvidence": [
-        "Current snapshot consistent;two modern request IDs each join exactly one reservation;no duplicates;all holds retained. OpenAIUS$2.613787 ClaudeUS$0.418335 GeminiUS$0.309600."
+        "Current snapshot consistent;two modern request IDs each join exactly one reservation;no duplicates;all holds retained. OpenAIUS$2.613787 ClaudeUS$0.418335 GeminiUS$0.309600.",
+        "Post-B source SHA2564e955badbd5fd3e650d7683dfcc1ede18fb544bc2e575d0d3a4b70300942a0d6: one new request, two sequential provider reservations; all10 prior records unchanged. Total held4020427 microUSD, remaining15979573, estimates829363, releases0; invoices UNKNOWN.",
+        "9fa1332 deployment restart: private container readback2026-10-02T05:07:21.660Z independently read via Railway readContainerFileTool; same12 rows and amounts, no new inference."
       ],
       "ownerAcceptance": "Existing US$20 authority only",
       "dependencies": [],
-      "blocker": "New single owner request completed at04:30:30Z;prior snapshot predates it. Railway binary-reader cannot extract SQLite rows. Fresh owner download required before any paid call.",
-      "remainingWork": "Reconcile exact new reservation/provider/usage/fallback delta. PriorheadroomUS$16.658278 is PRE-REQUEST ONLY;currentheadroomUNKNOWN untilreadback.",
-      "nextExecutableAction": "Read-only download of current ledger to distinct post-request file;no repeat inference.",
-      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
+      "blocker": null,
+      "remainingWork": "Maintain before/after readback for each future call. Invoice actuals remain UNKNOWN and all uncertain reservations retained. New safe refusal-code receipt needs next genuinely necessary live request; not needed to reconstruct B accounting.",
+      "nextExecutableAction": "Use private operator readback after authorized future activity; do not repeat B.",
+      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
-        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md",
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json",
+        "docs/mission-state/POST_B_LIVE_OPERATOR_READBACK_2026-10-02.json"
       ]
     },
     {
@@ -4994,9 +5018,9 @@
     },
     "A": {
       "IN_PROGRESS": 28,
-      "PROVEN": 3,
+      "PROVEN": 4,
       "IMPLEMENTED_UNVERIFIED": 9,
-      "BLOCKED": 2
+      "BLOCKED": 1
     },
     "E": {
       "DEFERRED_BY_KING": 18
@@ -5093,6 +5117,14 @@
       "from": "IN_PROGRESS",
       "to": "BLOCKED",
       "evidence": "New single owner request completed at04:30:30Z;prior snapshot predates it. Railway binary-reader cannot extract SQLite rows. Fresh owner download required before any paid call."
+    },
+    {
+      "at": "2026-10-02T05:11:21.339Z",
+      "id": "A-PROSPECTIVE-ACCOUNTING",
+      "from": "BLOCKED",
+      "to": "PROVEN",
+      "reason": "Exact post-B ledger reconciliation and same12 records retained after9fa1332 deployment; no extra inference.",
+      "evidence": "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json"
     }
   ],
   "currentRunDelta": {
@@ -5101,11 +5133,8 @@
     "added": [],
     "removed": [],
     "statusChanges": [
-      "B-DESKTOP IN_PROGRESS→PROVEN",
-      "B-COMPOSER IMPLEMENTED_UNVERIFIED→PROVEN",
-      "B-SIDEBAR-REMOVAL IMPLEMENTED_UNVERIFIED→PROVEN",
-      "A-PROSPECTIVE-ACCOUNTING IN_PROGRESS→BLOCKED freshpost-callreadback"
+      "A-PROSPECTIVE-ACCOUNTING BLOCKED→PROVEN"
     ],
-    "reason": "Exactowneracceptanceclosedscopedinterface. Single new livecallinvalidatesuseofpriorheadroomascurrent;accountingmechanismnotreopened. No requirementremoved."
+    "reason": "Exact post-request reconciliation and independent live post-deployment readback close accounting prerequisite. New provider observability defect/repair recorded under existing A-INTEGRATION/A-FAILURE, no duplicate requirement. Other Phase-A statuses unchanged; deterministic tests not substituted for live proof."
   }
 }

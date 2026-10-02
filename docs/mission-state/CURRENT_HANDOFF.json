@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T04:40:53.804Z",
+  "updatedAt": "2026-10-02T05:11:21.339Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED41b8979; scoped desktop interface OWNER PASS4fdf96d. Single new request completed with terminal OpenAI trace; Gemini attempt/fallback/accounting unresolved. No further paid calls before fresh ledger readback.",
+    "status": "CUTOVER remains CLOSED41b8979; desktop owner PASS preserved. B reconciled: Gemini first failed, OpenAI fallback succeeded. Accounting PROVEN. Gemini success and remaining Phase-A live capability proof still open.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -43,17 +43,17 @@
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
       "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
       "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
-      "deploymentId": "29de981b-4d28-4788-be1a-ad68b9506f28",
-      "source": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
+      "deploymentId": "d6d53c63-eee8-4073-85d0-0c4aa4ad2315",
+      "source": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
-      "status": "SUCCESS; /health/ready passed2026-10-02T00:58:46.057Z",
-      "savedSourceBranch": "fix/pillow-inference-failure-integrity-20261002",
-      "savedSourceCommit": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de"
+      "status": "SUCCESS2026-10-02T05:07:56.803Z; live domain health200 correlated05:08:58.474Z",
+      "savedSourceBranch": "fix/inference-private-readback-20261002",
+      "savedSourceCommit": "9fa1332c6a7d302f54b3875bc50caaef921c2060"
     },
     "vercel": {
-      "deploymentId": "dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW",
-      "source": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
-      "status": "READY empire-ai.co exact alias; health200. Rail removal/compact composer OWNER ACCEPTANCE OPEN.",
+      "deploymentId": "dpl_EDMWGDvxRishXwcuF1H5TnD2bq6f",
+      "source": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
+      "status": "READY Production empire-ai.co; compatibility-only successor to owner-accepted4fdf96d",
       "domain": "empire-ai.co"
     },
     "frontendPromotionVerification": {
@@ -68,11 +68,11 @@
       "verifiedAt": "2026-10-02T01:30:48.194Z"
     },
     "currentVerifiedBinding": {
-      "frontend": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
-      "vercelDeployment": "dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW",
-      "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
-      "railwayDeployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
-      "binding": "Public Pillowhealth200 correlated to newlockedruntime above"
+      "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
+      "vercelDeployment": "dpl_EDMWGDvxRishXwcuF1H5TnD2bq6f",
+      "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+      "railwayDeployment": "d6d53c63-eee8-4073-85d0-0c4aa4ad2315",
+      "binding": "empire-ai.co/api/pillow/health20005:08:58GMT matched newruntime GET20005:08:58.474197670Z"
     }
   },
   "authority": {
@@ -3107,7 +3107,7 @@
   },
   "closureMatrix": {
     "path": "docs/mission-state/EMPIREAI_CLOSURE_MATRIX.json",
-    "requirements": 222,
+    "requirements": 223,
     "readAtRunStart": true,
     "countsByPhase": {
       "D": {
@@ -3115,9 +3115,9 @@
       },
       "A": {
         "IN_PROGRESS": 28,
-        "PROVEN": 3,
+        "PROVEN": 4,
         "IMPLEMENTED_UNVERIFIED": 9,
-        "BLOCKED": 2
+        "BLOCKED": 1
       },
       "E": {
         "DEFERRED_BY_KING": 18
@@ -3145,12 +3145,9 @@
       "added": [],
       "removed": [],
       "statusChanges": [
-        "B-DESKTOP IN_PROGRESS→PROVEN",
-        "B-COMPOSER IMPLEMENTED_UNVERIFIED→PROVEN",
-        "B-SIDEBAR-REMOVAL IMPLEMENTED_UNVERIFIED→PROVEN",
-        "A-PROSPECTIVE-ACCOUNTING IN_PROGRESS→BLOCKED freshpost-callreadback"
+        "A-PROSPECTIVE-ACCOUNTING BLOCKED→PROVEN"
       ],
-      "reason": "Exactowneracceptanceclosedscopedinterface. Single new livecallinvalidatesuseofpriorheadroomascurrent;accountingmechanismnotreopened. No requirementremoved."
+      "reason": "Exact post-request reconciliation and independent live post-deployment readback close accounting prerequisite. New provider observability defect/repair recorded under existing A-INTEGRATION/A-FAILURE, no duplicate requirement. Other Phase-A statuses unchanged; deterministic tests not substituted for live proof."
     }
   },
   "compactComposerCheckpoint": {
@@ -3162,18 +3159,19 @@
     "status": "PROVEN_OWNER_ACCEPTED"
   },
   "prospectiveAccountingCheckpoint": {
-    "status": "BLOCKED_POST_REQUEST_READBACK",
-    "sourceSha256": "d9aafaaa6d5e6021711b36704576b10bb3558a5cf101c1e372b4b363bb77910d",
-    "estimatedMicroUsd": 766819,
+    "status": "PROVEN",
+    "sourceSha256": "4e955badbd5fd3e650d7683dfcc1ede18fb544bc2e575d0d3a4b70300942a0d6",
+    "currentHeldMicroUsd": 4020427,
+    "currentHeadroomMicroUsd": 15979573,
+    "estimatedMicroUsd": 829363,
+    "uncertainHeldMicroUsd": 930181,
+    "releasedMicroUsd": 0,
     "invoiceActuals": "UNKNOWN",
     "newPaidCallsThisRun": 0,
-    "evidence": "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
-    "next": "One read-only freshledgerdownload;do NOT resend LEDGER-VERIFIED-20261002-B or callprovideragain",
-    "priorSnapshotHeldMicroUsd": 3341722,
-    "priorSnapshotHeadroomMicroUsd": 16658278,
-    "currentHeldMicroUsd": null,
-    "currentHeadroomMicroUsd": null,
-    "asOf": "Prior uploaded snapshot only;newownerrequest04:30notincluded"
+    "asOf": "2026-10-02T05:07:21.660Z",
+    "evidence": "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json",
+    "liveReadback": "docs/mission-state/POST_B_LIVE_OPERATOR_READBACK_2026-10-02.json",
+    "next": "No blind retry. Diagnose Gemini refusal before next paid call; use new private operator JSON for prospective readback."
   },
   "sidebarRemovalCheckpoint": {
     "revision": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
@@ -3466,18 +3464,64 @@
       }
     ],
     "interpretation": {
-      "terminalProvider": "openai as reported by runtime completion.provider",
-      "model": "Notlogged;configuredOpenAIpin gpt-6.1-sol mustbereadbackfromledger",
-      "selectedRoute": "Ownerrequested summarization;deployedpolicyGemini→OpenAI. Actualattemptchainunknownuntilreceipt.",
-      "geminiSuccess": "UNPROVEN",
-      "fallback": "UNKNOWN",
-      "usage": "UNKNOWN",
-      "cost": "UNKNOWN",
-      "reservation": "UNKNOWN",
-      "currentHeadroom": "UNKNOWN;pre-requestUS$16.658278only",
-      "hostRetry": false,
-      "degraded": false,
-      "paidDuplicate": "No secondchatPOSTorhostcompletioninwindow;ledgerstillrequired toprovepaidattemptcount",
+      "schema": "post-request-reconciliation-v1",
+      "sourceSha256": "4e955badbd5fd3e650d7683dfcc1ede18fb544bc2e575d0d3a4b70300942a0d6",
+      "requestId": "pcr_871cd1411e2449a7",
+      "requestKey": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3",
+      "capability": "summarization (owner exact request)",
+      "intendedRoute": [
+        "gemini",
+        "openai"
+      ],
+      "attempts": [
+        {
+          "id": "831aa927-70ea-4be8-96be-6c25553d1c56",
+          "timestamp": "2026-10-02T04:30:26.350Z",
+          "model": "gemini-3.8-flash",
+          "status": "failed_uncertain",
+          "reserved_micro_usd": 329237,
+          "estimated_micro_usd": null,
+          "invoice_actual_micro_usd": null,
+          "provider_response_id": null,
+          "provider": "gemini",
+          "usage": null,
+          "request_key": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3"
+        },
+        {
+          "id": "c13e7a02-b06b-4551-902c-475d807ded5e",
+          "timestamp": "2026-10-02T04:30:26.977Z",
+          "model": "gpt-6.1-sol",
+          "status": "usage_recorded",
+          "reserved_micro_usd": 349468,
+          "estimated_micro_usd": 62544,
+          "invoice_actual_micro_usd": null,
+          "provider_response_id": "resp_0ed1ed14ef45321d016abf3363d89487d0a387a9067e7e80e6",
+          "provider": "openai",
+          "usage": {
+            "inputTokens": 22587,
+            "outputTokens": 39,
+            "totalTokens": 22626,
+            "cachedInputTokens": 0,
+            "reasoningTokens": 0
+          },
+          "request_key": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3"
+        }
+      ],
+      "allPriorRecordsUnchanged": true,
+      "newReservationCount": 2,
+      "newRequestCount": 1,
+      "requestHeldMicroUsd": 678705,
+      "totalHeldMicroUsd": 4020427,
+      "remainingMicroUsd": 15979573,
+      "totalRecordedEstimateMicroUsd": 829363,
+      "uncertainHeldMicroUsd": 930181,
+      "releaseMicroUsd": 0,
+      "invoiceActual": "UNKNOWN",
+      "fallback": true,
+      "geminiSuccess": false,
+      "exactGeminiError": "UNKNOWN: old adapter discarded HTTP status/body; health and source establish only fallback-eligible refusal (429/503/529)",
+      "retryInterpretation": "retryUsed=false is host retry; router fallback occurred. degradedUsed=false means genuine OpenAI completion, not stock degraded advice.",
+      "duplicateInterpretation": "Exactly one new inference_requests claim and two sequential different-provider reservations; not duplicate execution of the same provider. No second inference by Work.",
       "sourceLedgerChangedByWork": false,
       "newInferenceByWork": 0
     },
@@ -3488,6 +3532,13 @@
       "threadId": "be215499-31c7-4407-b1f7-15a5efb52ed1"
     }
   },
-  "certificationResumeBoundary": "ScopeddesktopowneracceptanceCLOSED;actualPhaseAintegrationandcurrentledgerreadbackremainOPEN. Frozen98NOT_STARTEDcriteria remain;no unseenexamsentthisrun.",
-  "currentNextAction": "Only freshread-onlyledgerdownload. Single completed request MUSTNOTberepeated. Prior instruction tosubmitrequest isconsumed."
+  "certificationResumeBoundary": "Desktop acceptance closed; prospective accounting closed. Gemini success and remaining Phase-A live integration evidence OPEN;98 frozen unseen criteria remain NOT_STARTED.",
+  "currentNextAction": "Read-only Google AI Studio quota/rate-limit evidence for configured Gemini project; no key values. B consumed; do not repeat. Continue independent criteria where executable; live authenticated evidence remains blocked by Work browser credential protection.",
+  "inferenceReadbackRepair": {
+    "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+    "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
+    "status": "DEPLOYED_AND_STARTUP_LEDGER_READBACK_PROVEN",
+    "report": "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+    "limitation": "Future safe HTTP refusal-code and route receipt live behavior unverified; deterministic tests passed. Historical detail unrecoverable; no Gemini success."
+  }
 }
