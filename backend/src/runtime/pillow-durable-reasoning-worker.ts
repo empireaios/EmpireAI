@@ -61,7 +61,7 @@ export async function executeReasoningProxy(
     }
     const responseContract = result.responseContract as { code?: string } | undefined;
     if (!message || !COMPLETED_REASONING_KINDS.has(String(result.kind)) ||
-      constitutionalGate?.allowed === false || /blocked/i.test(responseContract?.code ?? "") ||
+      /blocked/i.test(responseContract?.code ?? "") ||
       result.degradedUsed === true || result.transportContractPassed === false || result.semanticSuccess === false ||
       result.brainCompleted === false || result.requestRemainsRunning === true ||
       message.startsWith("PILLOW_RESULT_PENDING:")) {
