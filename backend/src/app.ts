@@ -1,3 +1,4 @@
+import { runLegacyBusinessBootstrap } from "./runtime/startup-bootstrap-policy.js";
 import { installLockedCommissioning } from "./runtime/locked-commissioning.js";
 import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
 import { ManagedBackgroundTask } from "./runtime/managed-background-task.js";
@@ -288,10 +289,12 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     deferredBootstrap = setImmediate(() => {
       if (stopping) return;
       try {
-        seedDomainData();
-        seedGrandKingAccount();
-        bootstrapFoundation("ws_empire_1");
-        logger.info("Deferred production bootstrap completed");
+        const ran=runLegacyBusinessBootstrap(()=>{
+          seedDomainData();
+          seedGrandKingAccount();
+          bootstrapFoundation("ws_empire_1");
+        });
+        logger.info(ran ? "Deferred production bootstrap completed" : "Legacy business fixture bootstrap skipped for explicit runtime profile");
       } catch (error) {
         logger.error(
           { error: error instanceof Error ? error.message : String(error) },
@@ -300,9 +303,11 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       }
     });
   } else {
-    seedDomainData();
-    seedGrandKingAccount();
-    bootstrapFoundation("ws_empire_1");
+    runLegacyBusinessBootstrap(()=>{
+      seedDomainData();
+      seedGrandKingAccount();
+      bootstrapFoundation("ws_empire_1");
+    });
   }
 
   const pillowHost = getPillowHost();

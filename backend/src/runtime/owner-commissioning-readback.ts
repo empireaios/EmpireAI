@@ -39,6 +39,29 @@ export function readCommissioningAccounting(filename: string) {
 }
 
 export function registerOwnerCommissioningReadback(app: FastifyInstance, authenticate: ReturnType<typeof createAuthMiddleware>, readback = () => readCommissioningAccounting(inferenceLedgerPath())) {
+  // Independent capability, scoped to two non-commercial readbacks. Disabled unless provisioned.
+  const operatorAuthenticate = async (request: import('fastify').FastifyRequest, reply: import('fastify').FastifyReply) => {
+    const moduleUrl=new URL('../../src/assurance/commissioning-operator.mjs',import.meta.url).href;
+    const {authorizeCommissioningRead}=await import(moduleUrl);
+    const granted=authorizeCommissioningRead({method:request.method,url:request.url,token:request.headers['x-empire-commissioning-token']},
+      {profile:process.env.EMPIRE_RUNTIME_PROFILE,tokenSha256:process.env.COMMISSIONING_OPERATOR_TOKEN_SHA256,expiresAt:process.env.COMMISSIONING_OPERATOR_EXPIRES_AT});
+    // Fixed fields only: never log the supplied credential, headers or query values.
+    app.log.info({event:'commissioning_operator_read_authorization',requestId:request.id,granted,scope:'assurance_accounting_read_only'},'Commissioning read authorization');
+    reply.header('cache-control','private, no-store');
+    if(!granted)return reply.code(403).send({error:'Commissioning read access required'});
+  };
+  app.get('/api/commissioning/read-only/accounting',{preHandler:operatorAuthenticate},async(_request,reply)=>{
+    try{return reply.send(readback());}catch{return reply.code(503).send({error:'Current accounting unavailable; allowance unknown'});}
+  });
+  app.get('/api/commissioning/read-only/assurance',{preHandler:operatorAuthenticate},async(_request,reply)=>{
+    try{
+      const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if(!root||!root.startsWith('/')||fs.realpathSync(root)!==root)throw Error('Volume unavailable');
+      const moduleUrl=new URL('../../src/assurance/owner-evidence.mjs',import.meta.url).href;
+      const {readOwnerAssurance}=await import(moduleUrl);
+      return reply.send({...readOwnerAssurance(root+'/commissioning/assurance.sqlite'),accounting:readback()});
+    }catch{return reply.code(503).send({status:'UNKNOWN',error:'Durable Assurance evidence unavailable'});}
+  });
   app.get<{Params:{requestId:string}}>('/api/pillow/commissioning-provider-receipts/:requestId', {preHandler:authenticate}, async (request, reply) => {
     reply.header('cache-control','private, no-store');
     const user=request.user;

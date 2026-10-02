@@ -77,3 +77,39 @@ test('real locked onRequest boundary permits only the two founder isolated demo 
   for(const method of ['PUT','PATCH','DELETE'] as const)assert.equal((await app.inject({method,url:'/api/pillow/assurance-demo/inject',headers})).statusCode,423);
  }finally{await app.close();for(const [key,value]of Object.entries({EMPIRE_RUNTIME_PROFILE:saved.profile,EMPIRE_ENGINEERING_TEST_MODE:saved.engineering,RAILWAY_VOLUME_MOUNT_PATH:saved.root})){if(value===undefined)delete process.env[key];else process.env[key]=value;}fs.rmSync(root,{recursive:true,force:true});}
 });
+
+import {createHash} from 'node:crypto';
+test('commissioning operator reads accounting without founder credentials and cannot use mutation or founder routes',async()=>{
+ const keys=['EMPIRE_RUNTIME_PROFILE','EMPIRE_ENGINEERING_TEST_MODE','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT'];
+ const saved=Object.fromEntries(keys.map(k=>[k,process.env[k]]));
+ const token='b'.repeat(43);process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';process.env.EMPIRE_ENGINEERING_TEST_MODE='true';
+ process.env.COMMISSIONING_OPERATOR_TOKEN_SHA256=createHash('sha256').update(token).digest('hex');process.env.COMMISSIONING_OPERATOR_EXPIRES_AT=String(Date.now()+60000);
+ const app=Fastify(),sessions=new InMemorySessionStore();installLockedCommissioning(app);let reads=0;
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>{reads++;return {remainingMicroUsd:22355288} as ReturnType<typeof readCommissioningAccounting>;});
+ const url='/api/commissioning/read-only/accounting',headers={'x-empire-commissioning-token':token};
+ try{
+  assert.equal((await app.inject(url)).statusCode,403);assert.equal(reads,0);
+  const allowed=await app.inject({url,headers});assert.equal(allowed.statusCode,200);assert.equal(allowed.json().remainingMicroUsd,22355288);assert.equal(allowed.headers['cache-control'],'private, no-store');
+  assert.equal((await app.inject({url:url+'?scope=founder',headers})).statusCode,403);
+  assert.equal((await app.inject({url:'/api/pillow/commissioning-accounting',headers})).statusCode,401);
+  assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject',headers})).statusCode,401);
+  assert.equal((await app.inject({method:'POST',url:'/payments',headers})).statusCode,423);
+  assert.equal((await app.inject({method:'POST',url,headers})).statusCode,423);
+  assert.equal(reads,1);process.env.COMMISSIONING_OPERATOR_EXPIRES_AT=String(Date.now()-1);
+  assert.equal((await app.inject({url,headers})).statusCode,403);assert.equal(reads,1);
+ }finally{await app.close();for(const key of keys){if(saved[key]===undefined)delete process.env[key];else process.env[key]=saved[key];}}
+});
+
+import {runLegacyBusinessBootstrap} from '../../runtime/startup-bootstrap-policy.js';
+test('locked startup preserves existing business rows and refuses deferred fixture bootstrap',()=>{
+ const db=new DatabaseSync(':memory:');db.exec("CREATE TABLE business(id TEXT, value TEXT); INSERT INTO business VALUES('existing','preserve')");
+ const before=db.prepare('SELECT * FROM business').all();let calls=0;
+ const destructiveBootstrap=()=>{calls++;db.exec("UPDATE business SET value='fixture'; INSERT INTO business VALUES('demo','synthetic')")};
+ try{
+ for(const profile of ['LOCKED_COMMISSIONING_V1','UNKNOWN_EXPLICIT_PROFILE']){
+ assert.equal(runLegacyBusinessBootstrap(destructiveBootstrap,profile),false);
+ assert.equal(calls,0);assert.deepEqual(db.prepare('SELECT * FROM business').all(),before);
+ }
+ assert.equal(runLegacyBusinessBootstrap(destructiveBootstrap,''),true);assert.equal(calls,1);
+ }finally{db.close();}
+});
