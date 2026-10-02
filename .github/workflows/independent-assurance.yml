@@ -20,6 +20,7 @@ jobs:
         with:
           node-version-file: '.node-version'
       - run: |
+          node backend/src/validation/tests/assurance-owner-evidence.test.mjs
           node backend/src/validation/tests/independent-assurance.test.mjs
           node backend/src/validation/tests/assurance-runtime-collector.test.mjs
           node backend/src/validation/tests/assurance-live-sources.test.mjs
