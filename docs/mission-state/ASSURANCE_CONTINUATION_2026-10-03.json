@@ -1,0 +1,129 @@
+{
+  "schema": "empireai-assurance-continuation-v2",
+  "at": "2026-10-02T16:24:57.436Z",
+  "stopReason": {
+    "code": "environment_offline",
+    "httpStatus": 409,
+    "message": "Execution environment disconnected; authenticated live scripts and browser verification unavailable. No owner authority increase required to resume engineering."
+  },
+  "production": {
+    "backend": "82c2a7b89702677f15f42bd02b12ef6e8d4736a3",
+    "frontend": "bb3245a271a071a049fe7f44ba1d6a7f4eab6bcd",
+    "frontendTreeIdenticalTo": "093d64c56b3677252b06de45128b238c6cc4b02c",
+    "railwayDeployment": "a4c4332b-cd97-45b5-9698-65d67b54e072",
+    "vercelDeployment": "dpl_HEQBD1zX5mCQMtCs7Hx29BreUbZB",
+    "lastAuthenticatedPreservation": "2026-10-02T16:11:59.346Z",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "operational": false
+  },
+  "candidate": {
+    "backend": "cd32c7f50aa1d5e7bbef0d15d4b805aadf2d31cb",
+    "backendPR": 21,
+    "frontend": "495364c93843227b54d531cb6370ca2c1a450c27",
+    "frontendPR": 25,
+    "deployedAsPair": false,
+    "backendCI": {
+      "Product": 37029972064,
+      "Semantic": 37029972138,
+      "Runtime": 37029972035,
+      "Assurance": 37029971923,
+      "status": "ALL_SUCCESS"
+    },
+    "frontendCI": {
+      "Product": 37032199248,
+      "Semantic": 37032198871,
+      "Runtime": 37032198915,
+      "status": "ALL_SUCCESS",
+      "vercel": "dpl_2EyXqSzMsT8BJM68CnCZnknTkyBf",
+      "vercelState": "READY"
+    }
+  },
+  "preservation": {
+    "accountingRecords": 67,
+    "histories": 26,
+    "receipts": 32,
+    "missionDigestUnchanged": true,
+    "ceilingMicroUsd": 40000000,
+    "remainingMicroUsd": 22355288,
+    "inferenceCallsThisRun": 0,
+    "commercialWritesThisRun": 0
+  },
+  "findings": [
+    {
+      "release": "e20bd468/fba9e9e7",
+      "liveResult": "HEALTHY -> isolated discrepancy -> independent DEGRADED -> correction -> independent HEALTHY",
+      "failure": "No durable finding was created by the demonstration observer",
+      "rollbackVerified": true,
+      "repair": "14e3a12b persists OPEN/RESOLVED findings atomically in the independent observer; failed observer passes no longer renew freshness"
+    },
+    {
+      "release": "14e3a12b CI",
+      "failure": "Next Google font loader failed during web build",
+      "repair": "cd32c7f5 bundles existing OFL-licensed Inter and Cormorant fonts; exact required gates passed"
+    },
+    {
+      "release": "cd32c7f5/a72e06d5",
+      "liveResult": "Prior demonstration discrepancy was restored as resolved durable finding; overall overdue/degraded remained honest",
+      "failure": "Frontend historical revision allowlist rejected new backend identity with HTTP503 verified=false",
+      "rollbackVerified": true,
+      "repair": "495364c9 explicit reviewed release pin with negative revision, readiness and authority tests"
+    }
+  ],
+  "verifiedScope": {
+    "localFindingAndWatchdogTests": 6,
+    "localLockedHTTPTests": 3,
+    "frontendReleasePinNegativeTest": "PASS",
+    "frontendTypecheck": "PASS",
+    "newPairLiveDemonstration": "PENDING",
+    "controlledProductionRestart": "PENDING",
+    "liveInspectorStop": "NOT_PROVEN - direct SSH DNS unavailable; proxy accepted CONNECT but SSH banner timed out; temporary key removed"
+  },
+  "commerceReadback": {
+    "at": "2026-10-02T15:53:13.808Z",
+    "marketplaceEndpoint": 404,
+    "transactionsEvidenceMode": "OFFLINE_FIXTURE",
+    "realCommerceVerified": false,
+    "ownerOverview": "HISTORICAL_PROVIDER_EVIDENCE",
+    "replacementRuntime": "External commerce credentials deliberately forbidden by locked launcher; extension routes disabled",
+    "providerChecksPreparedButNotExecuted": true
+  },
+  "matrix": {
+    "canonicalRecords": 223,
+    "canonicalUpdated": false,
+    "reason": "Platform disconnected before live Assurance acceptance and matrix reconciliation; no new PROVEN claims",
+    "affectedRequirements": [
+      "MANDATE-01",
+      "MANDATE-02",
+      "MANDATE-03",
+      "MANDATE-04",
+      "MANDATE-18",
+      "MANDATE-38",
+      "MANDATE-39",
+      "MANDATE-40",
+      "COM-01",
+      "COM-02",
+      "COM-03",
+      "COM-04",
+      "COM-05",
+      "COM-06"
+    ]
+  },
+  "preservedConstraints": {
+    "reasoning": "Closed:17/17 domains,27/28 representative,8/8 replacement; do not repeat",
+    "gemini": "Do not repeat; uncertain reservation retained",
+    "birth": false,
+    "commerceUnlock": false,
+    "supplierPurchasing": false,
+    "realMarketplaceTransactions": false
+  },
+  "next": [
+    "Check only current production revisions and restore execution access; do not repeat consumed evidence",
+    "Deploy exact CI-green cd32c7f5/495364c9 pair; the stalled request was NOT present in Railway deployment records",
+    "Verify exact identity, locked invariants and preservation",
+    "One fresh safe isolated discrepancy: independent HIGH OPEN finding -> owner UI -> correction -> RESOLVED finding and HEALTHY demo",
+    "Controlled restart and durable state/finding/history comparison; verify overdue behavior without overstating live inspector-stop coverage",
+    "Reconcile existing223 requirements without reopening reasoning certification",
+    "Execute bounded read-only provider readiness and continue Commerce Executive/locked-rehearsal work; do not inject commerce credentials into locked launcher or fake live receipts"
+  ]
+}
