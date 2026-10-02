@@ -1,57 +1,34 @@
-# Compact composer and prospective accounting checkpoint — 2026-10-02T03:54:00.972Z
-## TARGETED THIS RUN
-Compact composer; owner full-height acceptance; prospective accounting readiness; canonical matrix reconciliation.
-## PROVEN CLOSED THIS RUN
-B-FULLHEIGHT: King's actual f7a31da full-height/sidebar/readability/composer visibility acceptance.
-Work-operated deployment of exact3add244c70397aae5b014d62b920fd6551375063, Vercel dpl_CBVemb5CtQuW4EBskkhQKtK6h45f READY, live empire-ai.co alias and health200.
-## IMPLEMENTED BUT UNVERIFIED
-Compact composer44px default, growth only with content to192px then internal scroll, shrink when cleared. Voice/Send remain compact; guidance/spoken summaries share an unobtrusive desktop row. Local actual Chromium16desktop measurements plus390phone PASS; desktop history81.2% at900px. Typecheck/build and exactpreviewREADY. Actual owner production geometry remains OPEN.
-Read-only current accounting export utility: no HTTP, inference, prompts, credentials or writes. Offline tests verify request/provider links, retained uncertain reservation, unchanged source bytes, and over-cap rejection. Not a live accounting read.
-## STILL OPEN FROM THIS RUN
-Current ledger/headroom readback; real three-provider receipts; answer integrity/context/tool/memory/learning/authority live evidence; actual production rollback; owner compact-composer acceptance; certification paused.
-## NEW DEFECTS / REGRESSIONS
-No new observed implementation regression. Owner-required compact input tracked separately from proven full-height geometry.
-## BLOCKED
-A-PROSPECTIVE-ACCOUNTING: connected Railway tools cannot download SQLite/execute SQL; WorkCLI access unavailable, owner's Windows CLI already authorized. Historical failed charge remains UNKNOWN and no longer blocks solely on invoice uncertainty. No reservation released, reset or changed.
-## PROSPECTIVE ADMISSION CONTRACT
-Obtain a current authoritative ledger snapshot; validate identity/schema/integrity, cumulative reservations and linked request keys/provider/model/outcomes/usage. All uncertain historical reservations remain charged. Current guard admits each new call only below global20m microUSD and provider sublimits, persisting reservation first; no reset for new commissioning evidence. Usage settlement records estimates but retains full conservative reservation. Actual invoice remains UNKNOWN absent authoritative provider billing. New requests require fresh unique identities, explicit bounded provider plan and durable readback after each top-level request; stop on missing linkage/unknown new outcome or inadequate headroom. Do not reuse consumedI1 or PROVIDER-CHECK-20261002-A. Existing controlled fallback/idempotency tests remain mechanics evidence, not claimed live provider proof.
-## MISSION BURN-DOWN
-{
-  "D": {
-    "DEFERRED_BY_KING": 20
-  },
-  "A": {
-    "IN_PROGRESS": 29,
-    "PROVEN": 2,
-    "IMPLEMENTED_UNVERIFIED": 9,
-    "BLOCKED": 2
-  },
-  "E": {
-    "DEFERRED_BY_KING": 18
-  },
-  "C": {
-    "NOT_STARTED": 98,
-    "PROVEN": 1
-  },
-  "F": {
-    "NOT_STARTED": 37
-  },
-  "B": {
-    "IN_PROGRESS": 2,
-    "PROVEN": 2,
-    "IMPLEMENTED_UNVERIFIED": 1
-  },
-  "CUTOVER": {
-    "PROVEN": 1
-  }
-}
-222 requirement records including parent obligations; not a completion percentage.
-## NEXT EXECUTABLE ITEMS
-Current prospective ledger readback, minimum new provider evidence only if admission is safe, remaining scoped integration, owner composer acceptance, then materially new frozen certification cases.
-## KING ACTION REQUIRED
-In already-authenticated Windows PowerShell, run one scoped read-only download:
-```powershell
-railway service files --project 75374474-2b3a-4b0f-a9bc-203cdc1314d8 --environment da94aed2-956b-4903-a886-68a5e9a557c8 --service 7a25cfc6-7298-480f-91db-1b37871f8cac download /data/commissioning/openai-october-2026.sqlite "$env:USERPROFILE\Downloads\empireai-inference-current-20261002.sqlite"
-```
-Success: named SQLite file in Downloads. No login/key reset, production mutation, restart or inference. Obtain file for verification in next interaction.
-No Birth, commerce unlock or additional spending. Legacy untouched.
+# Current handoff — 2026-10-02
+
+CUTOVER remains CLOSED at41b8979. Pillow is NOT CERTIFIED, NOT_BORN, commerceLOCKED. No new spending authority or paid inference in this run.
+
+TARGETED THIS RUN
+Current ledger verification, historical reconciliation, safe prospective baseline,minimum provider evidence,rail-free Pillow UI,self-deployment,matrix reconciliation.
+
+PROVEN CLOSED THIS RUN
+Read-only current-ledger reconciliation with unchanged SHA256;10calls,US$3.341722 held,US$16.658278 conservative headroom,US$0.766819 estimates;all invoicesUNKNOWN.
+Historical Claude transport/usage now proven;not downstream answer correctness. Gemini uncertain hold preserved.
+Local UI geometry/build/Back navigation passed;exact production4fdf96d3e64b2a9afa727fbe4996fb3605fda595 READY deploymentdpl_BbTLmk3V3gpeZREMmeamE1KjZWKW on empire-ai.co;health200.
+
+IMPLEMENTED BUT UNVERIFIED
+Actual owner production rendering of compact composer and sidebar removal. Backend84ab891 repaired semantics remain implemented with existing targeted tests,not fresh live proof.
+
+STILL OPEN FROM THIS RUN
+Gemini successful invocation;repaired routing/fallback/consultation/terminalfailure/metadata/idempotency live evidence;new-call accounting delta;live context/read-only receipts/learning/no-promotion/restart/authority criteria. Prior crossdevice ownerPASS retained. All original incomplete matrix requirements remain.
+
+NEW DEFECTS / REGRESSIONS
+Local Back client transition failed during testing;corrected with standard anchor and retested. No production regression established. Added sidebar-removal owner requirement(record223).
+
+BLOCKED
+Work browser native credential protection persists;no usable browser listed. Vercel deploymentfetch cannot authenticate application session(/api/auth/me401);Railway connector cannot execute authenticated Pillow request or SQL/download. No secrets requested,no bypass,no blind paid retries.
+
+MISSION BURN-DOWN BY PHASE
+{"D":{"DEFERRED_BY_KING":20},"A":{"IN_PROGRESS":29,"PROVEN":3,"IMPLEMENTED_UNVERIFIED":9,"BLOCKED":1},"E":{"DEFERRED_BY_KING":18},"C":{"NOT_STARTED":98,"PROVEN":1},"F":{"NOT_STARTED":37},"B":{"IN_PROGRESS":2,"PROVEN":2,"IMPLEMENTED_UNVERIFIED":2},"CUTOVER":{"PROVEN":1}}
+222→223 solely B-SIDEBAR-REMOVAL. A accounting IN_PROGRESS→PROVEN at known/unknown boundary;prospective BLOCKED→IN_PROGRESS. No criterion removed/weakened.
+
+NEXT EXECUTABLE ITEMS
+One new bounded Gemini-first summarization request via King's visible authenticated Pillow. Capture request/terminal result/provenance,then read fresh ledger before another call. Reuse existingOpenAI/Claude transport evidence;no repeat for connectivity alone.
+Owner observes compact composer/Back/no-sidebar when available. Full certification automatically resumes only after real PhaseA and interfaceacceptance gates close,using new unseen cases.
+
+KING ACTION REQUIRED
+One exact new summarization submission through visible authenticated live Pillow;no manual deployment,no invisible Work-browser prompt,no credentials in chat. See minimum sequence in CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md.

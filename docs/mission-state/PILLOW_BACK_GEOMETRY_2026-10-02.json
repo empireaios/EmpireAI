@@ -1,0 +1,4544 @@
+{
+  "scope": "OFFLINE_TRANSPORT_FIXTURE_NOT_PRODUCTION",
+  "inferenceAttempted": false,
+  "fixtureRequests": [
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/api/owner/overview"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/dispatch"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/events"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history"
+    }
+  ],
+  "evidence": [
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 20.46875,
+        "y": 12,
+        "width": 983.0625,
+        "height": 876,
+        "top": 12,
+        "right": 1003.53125,
+        "bottom": 888,
+        "left": 20.46875
+      },
+      "composer": {
+        "x": 64,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 814,
+        "bottom": 849,
+        "left": 64
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 21.46875,
+        "y": 61,
+        "width": 981.0625,
+        "height": 731,
+        "top": 61,
+        "right": 1002.53125,
+        "bottom": 792,
+        "left": 21.46875
+      },
+      "width": 1024,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 49.46875
+        },
+        {
+          "label": "Pillow",
+          "left": 122.203125
+        },
+        {
+          "label": "Chat available",
+          "left": 370
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 459
+        },
+        {
+          "label": "New message",
+          "left": 629
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 918.5
+        },
+        {
+          "label": "Grand King",
+          "left": 610
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 622.703125
+        },
+        {
+          "label": "Server record",
+          "left": 712.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 610
+        },
+        {
+          "label": "Pillow",
+          "left": 85
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 97.703125
+        },
+        {
+          "label": "Server record",
+          "left": 187.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 85
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 121
+        },
+        {
+          "label": "Voice",
+          "left": 839
+        },
+        {
+          "label": "Send",
+          "left": 913
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 41.46875
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 312.46875
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "composer placeholder",
+          "left": 80
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 20.46875,
+        "y": 12,
+        "width": 983.0625,
+        "height": 876,
+        "top": 12,
+        "right": 1003.53125,
+        "bottom": 888,
+        "left": 20.46875
+      },
+      "composer": {
+        "x": 64,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 814,
+        "bottom": 849,
+        "left": 64
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 21.46875,
+        "y": 61,
+        "width": 981.0625,
+        "height": 731,
+        "top": 61,
+        "right": 1002.53125,
+        "bottom": 792,
+        "left": 21.46875
+      },
+      "width": 1024,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 49.46875
+        },
+        {
+          "label": "Pillow",
+          "left": 122.203125
+        },
+        {
+          "label": "Chat available",
+          "left": 370
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 459
+        },
+        {
+          "label": "New message",
+          "left": 629
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 918.5
+        },
+        {
+          "label": "Grand King",
+          "left": 610
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 622.703125
+        },
+        {
+          "label": "Server record",
+          "left": 712.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 610
+        },
+        {
+          "label": "Pillow",
+          "left": 85
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 97.703125
+        },
+        {
+          "label": "Server record",
+          "left": 187.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 85
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 121
+        },
+        {
+          "label": "Voice",
+          "left": 839
+        },
+        {
+          "label": "Send",
+          "left": 913
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 41.46875
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 312.46875
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "composer placeholder",
+          "left": 80
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 20.46875,
+        "y": 12,
+        "width": 983.0625,
+        "height": 876,
+        "top": 12,
+        "right": 1003.53125,
+        "bottom": 888,
+        "left": 20.46875
+      },
+      "composer": {
+        "x": 64,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 814,
+        "bottom": 849,
+        "left": 64
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 21.46875,
+        "y": 61,
+        "width": 981.0625,
+        "height": 731,
+        "top": 61,
+        "right": 1002.53125,
+        "bottom": 792,
+        "left": 21.46875
+      },
+      "width": 1024,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 49.46875
+        },
+        {
+          "label": "Pillow",
+          "left": 122.203125
+        },
+        {
+          "label": "Chat available",
+          "left": 370
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 459
+        },
+        {
+          "label": "New message",
+          "left": 629
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 918.5
+        },
+        {
+          "label": "Grand King",
+          "left": 610
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 622.703125
+        },
+        {
+          "label": "Server record",
+          "left": 712.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 610
+        },
+        {
+          "label": "Pillow",
+          "left": 85
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 97.703125
+        },
+        {
+          "label": "Server record",
+          "left": 187.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 85
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 121
+        },
+        {
+          "label": "Voice",
+          "left": 839
+        },
+        {
+          "label": "Send",
+          "left": 913
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 41.46875
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 312.46875
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "composer placeholder",
+          "left": 80
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 20.46875,
+        "y": 12,
+        "width": 983.0625,
+        "height": 876,
+        "top": 12,
+        "right": 1003.53125,
+        "bottom": 888,
+        "left": 20.46875
+      },
+      "composer": {
+        "x": 64,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 814,
+        "bottom": 849,
+        "left": 64
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 21.46875,
+        "y": 61,
+        "width": 981.0625,
+        "height": 731,
+        "top": 61,
+        "right": 1002.53125,
+        "bottom": 792,
+        "left": 21.46875
+      },
+      "width": 1024,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 49.46875
+        },
+        {
+          "label": "Pillow",
+          "left": 122.203125
+        },
+        {
+          "label": "Chat available",
+          "left": 370
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 459
+        },
+        {
+          "label": "New message",
+          "left": 629
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 918.5
+        },
+        {
+          "label": "Grand King",
+          "left": 610
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 622.703125
+        },
+        {
+          "label": "Server record",
+          "left": 712.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 610
+        },
+        {
+          "label": "Pillow",
+          "left": 85
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 97.703125
+        },
+        {
+          "label": "Server record",
+          "left": 187.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 85
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 121
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 121
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 121
+        },
+        {
+          "label": "Voice",
+          "left": 839
+        },
+        {
+          "label": "Send",
+          "left": 913
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 41.46875
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 312.46875
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "list marker safety area",
+          "left": 85
+        },
+        {
+          "label": "composer placeholder",
+          "left": 80
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 25.59375,
+        "y": 12,
+        "width": 1228.8125,
+        "height": 876,
+        "top": 12,
+        "right": 1254.40625,
+        "bottom": 888,
+        "left": 25.59375
+      },
+      "composer": {
+        "x": 192,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 942,
+        "bottom": 849,
+        "left": 192
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 26.59375,
+        "y": 61,
+        "width": 1226.8125,
+        "height": 731,
+        "top": 61,
+        "right": 1253.40625,
+        "bottom": 792,
+        "left": 26.59375
+      },
+      "width": 1280,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 54.59375
+        },
+        {
+          "label": "Pillow",
+          "left": 127.328125
+        },
+        {
+          "label": "Chat available",
+          "left": 498
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 587
+        },
+        {
+          "label": "New message",
+          "left": 757
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1169.375
+        },
+        {
+          "label": "Grand King",
+          "left": 738
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 750.703125
+        },
+        {
+          "label": "Server record",
+          "left": 840.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 738
+        },
+        {
+          "label": "Pillow",
+          "left": 213
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 225.703125
+        },
+        {
+          "label": "Server record",
+          "left": 315.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 213
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 249
+        },
+        {
+          "label": "Voice",
+          "left": 967
+        },
+        {
+          "label": "Send",
+          "left": 1041
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 46.59375
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 317.59375
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "composer placeholder",
+          "left": 208
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 25.59375,
+        "y": 12,
+        "width": 1228.8125,
+        "height": 876,
+        "top": 12,
+        "right": 1254.40625,
+        "bottom": 888,
+        "left": 25.59375
+      },
+      "composer": {
+        "x": 192,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 942,
+        "bottom": 849,
+        "left": 192
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 26.59375,
+        "y": 61,
+        "width": 1226.8125,
+        "height": 731,
+        "top": 61,
+        "right": 1253.40625,
+        "bottom": 792,
+        "left": 26.59375
+      },
+      "width": 1280,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 54.59375
+        },
+        {
+          "label": "Pillow",
+          "left": 127.328125
+        },
+        {
+          "label": "Chat available",
+          "left": 498
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 587
+        },
+        {
+          "label": "New message",
+          "left": 757
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1169.375
+        },
+        {
+          "label": "Grand King",
+          "left": 738
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 750.703125
+        },
+        {
+          "label": "Server record",
+          "left": 840.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 738
+        },
+        {
+          "label": "Pillow",
+          "left": 213
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 225.703125
+        },
+        {
+          "label": "Server record",
+          "left": 315.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 213
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 249
+        },
+        {
+          "label": "Voice",
+          "left": 967
+        },
+        {
+          "label": "Send",
+          "left": 1041
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 46.59375
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 317.59375
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "composer placeholder",
+          "left": 208
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 25.59375,
+        "y": 12,
+        "width": 1228.8125,
+        "height": 876,
+        "top": 12,
+        "right": 1254.40625,
+        "bottom": 888,
+        "left": 25.59375
+      },
+      "composer": {
+        "x": 192,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 942,
+        "bottom": 849,
+        "left": 192
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 26.59375,
+        "y": 61,
+        "width": 1226.8125,
+        "height": 731,
+        "top": 61,
+        "right": 1253.40625,
+        "bottom": 792,
+        "left": 26.59375
+      },
+      "width": 1280,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 54.59375
+        },
+        {
+          "label": "Pillow",
+          "left": 127.328125
+        },
+        {
+          "label": "Chat available",
+          "left": 498
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 587
+        },
+        {
+          "label": "New message",
+          "left": 757
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1169.375
+        },
+        {
+          "label": "Grand King",
+          "left": 738
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 750.703125
+        },
+        {
+          "label": "Server record",
+          "left": 840.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 738
+        },
+        {
+          "label": "Pillow",
+          "left": 213
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 225.703125
+        },
+        {
+          "label": "Server record",
+          "left": 315.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 213
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 249
+        },
+        {
+          "label": "Voice",
+          "left": 967
+        },
+        {
+          "label": "Send",
+          "left": 1041
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 46.59375
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 317.59375
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "composer placeholder",
+          "left": 208
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 25.59375,
+        "y": 12,
+        "width": 1228.8125,
+        "height": 876,
+        "top": 12,
+        "right": 1254.40625,
+        "bottom": 888,
+        "left": 25.59375
+      },
+      "composer": {
+        "x": 192,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 942,
+        "bottom": 849,
+        "left": 192
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 26.59375,
+        "y": 61,
+        "width": 1226.8125,
+        "height": 731,
+        "top": 61,
+        "right": 1253.40625,
+        "bottom": 792,
+        "left": 26.59375
+      },
+      "width": 1280,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 54.59375
+        },
+        {
+          "label": "Pillow",
+          "left": 127.328125
+        },
+        {
+          "label": "Chat available",
+          "left": 498
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 587
+        },
+        {
+          "label": "New message",
+          "left": 757
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1169.375
+        },
+        {
+          "label": "Grand King",
+          "left": 738
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 750.703125
+        },
+        {
+          "label": "Server record",
+          "left": 840.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 738
+        },
+        {
+          "label": "Pillow",
+          "left": 213
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 225.703125
+        },
+        {
+          "label": "Server record",
+          "left": 315.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 213
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 249
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 249
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 249
+        },
+        {
+          "label": "Voice",
+          "left": 967
+        },
+        {
+          "label": "Send",
+          "left": 1041
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 46.59375
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 317.59375
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "list marker safety area",
+          "left": 213
+        },
+        {
+          "label": "composer placeholder",
+          "left": 208
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 80,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1360,
+        "bottom": 888,
+        "left": 80
+      },
+      "composer": {
+        "x": 272,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1022,
+        "bottom": 849,
+        "left": 272
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 81,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1359,
+        "bottom": 792,
+        "left": 81
+      },
+      "width": 1440,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 109
+        },
+        {
+          "label": "Pillow",
+          "left": 181.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 578
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 667
+        },
+        {
+          "label": "New message",
+          "left": 837
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1274.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 818
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 830.703125
+        },
+        {
+          "label": "Server record",
+          "left": 920.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 818
+        },
+        {
+          "label": "Pillow",
+          "left": 293
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 305.703125
+        },
+        {
+          "label": "Server record",
+          "left": 395.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 293
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 329
+        },
+        {
+          "label": "Voice",
+          "left": 1047
+        },
+        {
+          "label": "Send",
+          "left": 1121
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 101
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 372
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "composer placeholder",
+          "left": 288
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 80,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1360,
+        "bottom": 888,
+        "left": 80
+      },
+      "composer": {
+        "x": 272,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1022,
+        "bottom": 849,
+        "left": 272
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 81,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1359,
+        "bottom": 792,
+        "left": 81
+      },
+      "width": 1440,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 109
+        },
+        {
+          "label": "Pillow",
+          "left": 181.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 578
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 667
+        },
+        {
+          "label": "New message",
+          "left": 837
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1274.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 818
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 830.703125
+        },
+        {
+          "label": "Server record",
+          "left": 920.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 818
+        },
+        {
+          "label": "Pillow",
+          "left": 293
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 305.703125
+        },
+        {
+          "label": "Server record",
+          "left": 395.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 293
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 329
+        },
+        {
+          "label": "Voice",
+          "left": 1047
+        },
+        {
+          "label": "Send",
+          "left": 1121
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 101
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 372
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "composer placeholder",
+          "left": 288
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 80,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1360,
+        "bottom": 888,
+        "left": 80
+      },
+      "composer": {
+        "x": 272,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1022,
+        "bottom": 849,
+        "left": 272
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 81,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1359,
+        "bottom": 792,
+        "left": 81
+      },
+      "width": 1440,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 109
+        },
+        {
+          "label": "Pillow",
+          "left": 181.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 578
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 667
+        },
+        {
+          "label": "New message",
+          "left": 837
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1274.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 818
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 830.703125
+        },
+        {
+          "label": "Server record",
+          "left": 920.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 818
+        },
+        {
+          "label": "Pillow",
+          "left": 293
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 305.703125
+        },
+        {
+          "label": "Server record",
+          "left": 395.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 293
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 329
+        },
+        {
+          "label": "Voice",
+          "left": 1047
+        },
+        {
+          "label": "Send",
+          "left": 1121
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 101
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 372
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "composer placeholder",
+          "left": 288
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 80,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1360,
+        "bottom": 888,
+        "left": 80
+      },
+      "composer": {
+        "x": 272,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1022,
+        "bottom": 849,
+        "left": 272
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 81,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1359,
+        "bottom": 792,
+        "left": 81
+      },
+      "width": 1440,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 109
+        },
+        {
+          "label": "Pillow",
+          "left": 181.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 578
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 667
+        },
+        {
+          "label": "New message",
+          "left": 837
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1274.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 818
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 830.703125
+        },
+        {
+          "label": "Server record",
+          "left": 920.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 818
+        },
+        {
+          "label": "Pillow",
+          "left": 293
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 305.703125
+        },
+        {
+          "label": "Server record",
+          "left": 395.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 293
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 329
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 329
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 329
+        },
+        {
+          "label": "Voice",
+          "left": 1047
+        },
+        {
+          "label": "Send",
+          "left": 1121
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 101
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 372
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "list marker safety area",
+          "left": 293
+        },
+        {
+          "label": "composer placeholder",
+          "left": 288
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 320,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1600,
+        "bottom": 888,
+        "left": 320
+      },
+      "composer": {
+        "x": 512,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1262,
+        "bottom": 849,
+        "left": 512
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 321,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1599,
+        "bottom": 792,
+        "left": 321
+      },
+      "width": 1920,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 349
+        },
+        {
+          "label": "Pillow",
+          "left": 421.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 818
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 907
+        },
+        {
+          "label": "New message",
+          "left": 1077
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1514.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 1058
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 1070.703125
+        },
+        {
+          "label": "Server record",
+          "left": 1160.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 1058
+        },
+        {
+          "label": "Pillow",
+          "left": 533
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 545.703125
+        },
+        {
+          "label": "Server record",
+          "left": 635.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 533
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 569
+        },
+        {
+          "label": "Voice",
+          "left": 1287
+        },
+        {
+          "label": "Send",
+          "left": 1361
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 341
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 612
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "composer placeholder",
+          "left": 528
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 320,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1600,
+        "bottom": 888,
+        "left": 320
+      },
+      "composer": {
+        "x": 512,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1262,
+        "bottom": 849,
+        "left": 512
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 321,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1599,
+        "bottom": 792,
+        "left": 321
+      },
+      "width": 1920,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 349
+        },
+        {
+          "label": "Pillow",
+          "left": 421.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 818
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 907
+        },
+        {
+          "label": "New message",
+          "left": 1077
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1514.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 1058
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 1070.703125
+        },
+        {
+          "label": "Server record",
+          "left": 1160.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 1058
+        },
+        {
+          "label": "Pillow",
+          "left": 533
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 545.703125
+        },
+        {
+          "label": "Server record",
+          "left": 635.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 533
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 569
+        },
+        {
+          "label": "Voice",
+          "left": 1287
+        },
+        {
+          "label": "Send",
+          "left": 1361
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 341
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 612
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "composer placeholder",
+          "left": 528
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 320,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1600,
+        "bottom": 888,
+        "left": 320
+      },
+      "composer": {
+        "x": 512,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1262,
+        "bottom": 849,
+        "left": 512
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 321,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1599,
+        "bottom": 792,
+        "left": 321
+      },
+      "width": 1920,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 349
+        },
+        {
+          "label": "Pillow",
+          "left": 421.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 818
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 907
+        },
+        {
+          "label": "New message",
+          "left": 1077
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1514.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 1058
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 1070.703125
+        },
+        {
+          "label": "Server record",
+          "left": 1160.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 1058
+        },
+        {
+          "label": "Pillow",
+          "left": 533
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 545.703125
+        },
+        {
+          "label": "Server record",
+          "left": 635.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 533
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 569
+        },
+        {
+          "label": "Voice",
+          "left": 1287
+        },
+        {
+          "label": "Send",
+          "left": 1361
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 341
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 612
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "composer placeholder",
+          "left": 528
+        }
+      ],
+      "markers": 15
+    },
+    {
+      "boundary": 0,
+      "workspace": {
+        "x": 320,
+        "y": 12,
+        "width": 1280,
+        "height": 876,
+        "top": 12,
+        "right": 1600,
+        "bottom": 888,
+        "left": 320
+      },
+      "composer": {
+        "x": 512,
+        "y": 805,
+        "width": 750,
+        "height": 44,
+        "top": 805,
+        "right": 1262,
+        "bottom": 849,
+        "left": 512
+      },
+      "height": 900,
+      "documentHeight": 900,
+      "history": {
+        "x": 321,
+        "y": 61,
+        "width": 1278,
+        "height": 731,
+        "top": 61,
+        "right": 1599,
+        "bottom": 792,
+        "left": 321
+      },
+      "width": 1920,
+      "positions": [
+        {
+          "label": "\u2190 Back",
+          "left": 349
+        },
+        {
+          "label": "Pillow",
+          "left": 421.734375
+        },
+        {
+          "label": "Chat available",
+          "left": 818
+        },
+        {
+          "label": "NOT_BORN \u00b7 Commerce locked",
+          "left": 907
+        },
+        {
+          "label": "New message",
+          "left": 1077
+        },
+        {
+          "label": "Context \u25b8",
+          "left": 1514.96875
+        },
+        {
+          "label": "Grand King",
+          "left": 1058
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 1070.703125
+        },
+        {
+          "label": "Server record",
+          "left": 1160.703125
+        },
+        {
+          "label": "Local layout fixture: show the revi",
+          "left": 1058
+        },
+        {
+          "label": "Pillow",
+          "left": 533
+        },
+        {
+          "label": "Saved history \u00b7",
+          "left": 545.703125
+        },
+        {
+          "label": "Server record",
+          "left": 635.703125
+        },
+        {
+          "label": "Historical layout fixture",
+          "left": 533
+        },
+        {
+          "label": "Review item 1: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 2: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 3: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 4: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 5: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 6: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 7: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 8: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 9: verify the source an",
+          "left": 569
+        },
+        {
+          "label": "Review item 10: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 11: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 12: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 13: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 14: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "Review item 15: verify the source a",
+          "left": 569
+        },
+        {
+          "label": "This is synthetic browser-test cont",
+          "left": 569
+        },
+        {
+          "label": "Voice",
+          "left": 1287
+        },
+        {
+          "label": "Send",
+          "left": 1361
+        },
+        {
+          "label": "Enter to send \u00b7 Shift+Enter for a n",
+          "left": 341
+        },
+        {
+          "label": "Spoken summaries",
+          "left": 612
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "list marker safety area",
+          "left": 533
+        },
+        {
+          "label": "composer placeholder",
+          "left": 528
+        }
+      ],
+      "markers": 15
+    }
+  ]
+}

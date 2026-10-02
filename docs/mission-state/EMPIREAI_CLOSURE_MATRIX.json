@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:54:00.972Z",
+  "updatedAt": "2026-10-02T04:24:22.437Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -3816,20 +3816,22 @@
       "phase": "A",
       "domain": "Reconcile consumed provider attempt and current shared ceiling",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [
-        "Durable request pcr_5a792591850849c9 accepted202 at01:33:11.475Z; three degraded handlers; llm timing15.213s then67ms/64ms; no token/provider/cost receipts in available logs. Timing is not proof of paid transport."
+        "Read-only current production snapshot SHA256 d9aafaaa6d5e6021711b36704576b10bb3558a5cf101c1e372b4b363bb77910d unchanged.10calls;US$3.341722held;US$16.658278headroom;US$0.766819estimates.",
+        "Claude real response/usage proven;Gemini uncertainUS$0.309600hold retained;invoice actualsUNKNOWN."
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Historical charge UNKNOWN retained. Stop requerying exhausted sources. Prospective current ledger/headroom readback is separate gate; historical uncertainty alone does not mandate indefinite halt.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Reconciliation closed at supported known/unknown boundary. Unknown invoice costs remain held, not erased. Future live accounting tracked separately.",
+      "nextExecutableAction": "Use frozen baseline;do not revisit exhausted historical sources.",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
       ]
     },
     {
@@ -3841,17 +3843,20 @@
       "currentStatus": "BLOCKED",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Historical OpenAI and Claude transport/usage independently proven by suppliedledger;Gemini temporary_refusal and failed_uncertain."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
         "A-PROSPECTIVE-ACCOUNTING"
       ],
-      "blocker": "Current prospective accounting must be verified, not necessarily exact historical invoice reconstruction.",
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "blocker": "Accounting snapshot blocker resolved. Work browser native credential protection persists; Vercel auth/me401; connectors expose no authenticated Pillow POST. Gemini successful response and repaired live path still unproven.",
+      "remainingWork": "Minimum fresh Gemini-first summary and per-call ledger delta; then remaining live context/tools/learning/answer/authority criteria. Existing transport proof does not prove repaired answer integrity.",
+      "nextExecutableAction": "Owner one exact new authenticated request,then readback before more spending.",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
       ]
     },
     {
@@ -4077,7 +4082,7 @@
       "domain": "Full-height desktop conversation and owner acceptance",
       "priority": "B",
       "currentStatus": "IN_PROGRESS",
-      "implementationRevisionComponent": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
+      "implementationRevisionComponent": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
       "testsPerformed": [
         "Typecheck/build PASS; 16 local desktop measurements history73% viewport, no outer scroll, composer visible; phone horizontal/context checks PASS; previewREADY dpl_HqKL6u2628KEPTGsUmHsX6CJTXYr"
       ],
@@ -4087,9 +4092,9 @@
       "ownerAcceptance": "King PASS full-height/sidebar/readability/composer visibility on productionf7a31da2026-10-02; complete desktop acceptance conditional on compact composer observation.",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Compact composer production owner observation only for current geometry boundary; wider UX deferred.",
-      "nextExecutableAction": "Independently verify3add244 deployment; owner observes repaired composer.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Full-height owner PASS preserved. Compact composer and sidebar removal/Back owner observation remain OPEN.",
+      "nextExecutableAction": "Production alias readback,then actual owner observation.",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
       ]
@@ -4902,19 +4907,21 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "3add244c70397aae5b014d62b920fd6551375063",
       "testsPerformed": [
-        "Typecheck/build PASS; real Chromium44px empty, multiline growth,192px cap/internal scroll, shrink-after-clear;16desktop sidebar/reload checks and390phone bounds PASS; history81.2% tested900pxviewport"
+        "Typecheck/build PASS; real Chromium44px empty, multiline growth,192px cap/internal scroll, shrink-after-clear;16desktop sidebar/reload checks and390phone bounds PASS; history81.2% tested900pxviewport",
+        "Rail-free regression:16desktop44px;grow-to192px/internal scroll/shrink;390px phone passes."
       ],
       "productionLiveEvidence": [
-        "3add244c70397aae5b014d62b920fd6551375063 READY production dpl_CBVemb5CtQuW4EBskkhQKtK6h45f, empire-ai.co alias exact; /api/pillow/health200 Fri02Oct2026 03:52:45GMT; production authenticated geometry not independently observable by Work"
+        "3add244c70397aae5b014d62b920fd6551375063 READY production dpl_CBVemb5CtQuW4EBskkhQKtK6h45f, empire-ai.co alias exact; /api/pillow/health200 Fri02Oct2026 03:52:45GMT; production authenticated geometry not independently observable by Work",
+        "Production 4fdf96d3e64b2a9afa727fbe4996fb3605fda595 READY dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW, empire-ai.co exact alias;health200. Actual authenticated production geometry/owner acceptance OPEN."
       ],
-      "ownerAcceptance": "PENDING actual repaired production observation",
+      "ownerAcceptance": "PENDING actual production owner observation;local fixture never substitutes.",
       "dependencies": [
         "A-DEPLOY"
       ],
       "blocker": null,
       "remainingWork": "Owner visible acceptance of compact composer; local geometry is not actual production rendering proof.",
       "nextExecutableAction": "King observes repaired production when available; no inference needed.",
-      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
       ]
@@ -4925,20 +4932,53 @@
       "phase": "A",
       "domain": "Prospective inference accounting",
       "priority": "A",
-      "currentStatus": "BLOCKED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Existing84ab891 cumulative ledger + deployment/read-current-inference-accounting.cjs read-only utility",
       "testsPerformed": [
         "Offline reader: uncertain hold counted;request/provider link preserved;source bytes unchanged;over-cap rejected"
       ],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Current snapshot consistent;two modern request IDs each join exactly one reservation;no duplicates;all holds retained. OpenAIUS$2.613787 ClaudeUS$0.418335 GeminiUS$0.309600."
+      ],
       "ownerAcceptance": "Existing US$20 authority only",
       "dependencies": [],
-      "blocker": "Work connector cannot download production SQLite or execute read-only SQL; owner's already-authenticated RailwayCLI can download the current ledger.",
-      "remainingWork": "Read current authoritative snapshot; ensure marker/schema/integrity and cumulative holds; retain unknown historical costs; determine conservative headroom; do not reset/release holds.",
-      "nextExecutableAction": "One owner-side scoped Railway file download, then inspect supplied snapshot.",
-      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "blocker": null,
+      "remainingWork": "Current baseline/headroom verified;fresh readback after every future live request remains required before another paid call. No current Work-authenticated production submission/download path.",
+      "nextExecutableAction": "One new bounded authenticated summarization request,then fresh ledger delta readback.",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
+      ]
+    },
+    {
+      "id": "B-SIDEBAR-REMOVAL",
+      "requirement": "Remove permanent left sidebar/icon rail from normal Pillow conversation; accessible reliable Back to Executive Home; retain engineering destinations;preserve mobile;verify desktop/mobile;self-deploy;actual owner acceptance.",
+      "phase": "B",
+      "domain": "Pillow navigation",
+      "priority": "B",
+      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "implementationRevisionComponent": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
+      "testsPerformed": [
+        "Productionbuild/typecheckPASS",
+        "Chromium16desktop measurements1024/1280/1440/1920;both restored sidebar states/reload;no rail;safe gutter;history81.2%;44px composer",
+        "390pxphone bounds;Back reaches/cockpit;browser-back restoreshistory fixture;no inference"
+      ],
+      "productionLiveEvidence": [
+        "Production 4fdf96d3e64b2a9afa727fbe4996fb3605fda595 READY dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW, empire-ai.co exact alias;health200. Actual authenticated production geometry/owner acceptance OPEN."
+      ],
+      "ownerAcceptance": "PENDING",
+      "dependencies": [
+        "A-DEPLOY"
+      ],
+      "blocker": null,
+      "remainingWork": "Deploymentreadback and actual owner acceptance. Local fixture is NOT actual production rendering.",
+      "nextExecutableAction": "Verify production alias;owner observation remains open.",
+      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "evidenceReferences": [
+        "docs/mission-state/PILLOW_BACK_GEOMETRY_2026-10-02.json",
+        "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
+        "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
       ]
     }
   ],
@@ -4948,9 +4988,9 @@
     },
     "A": {
       "IN_PROGRESS": 29,
-      "PROVEN": 2,
+      "PROVEN": 3,
       "IMPLEMENTED_UNVERIFIED": 9,
-      "BLOCKED": 2
+      "BLOCKED": 1
     },
     "E": {
       "DEFERRED_BY_KING": 18
@@ -4965,7 +5005,7 @@
     "B": {
       "IN_PROGRESS": 2,
       "PROVEN": 2,
-      "IMPLEMENTED_UNVERIFIED": 1
+      "IMPLEMENTED_UNVERIFIED": 2
     },
     "CUTOVER": {
       "PROVEN": 1
@@ -4999,6 +5039,40 @@
       "from": "BLOCKED",
       "to": "IN_PROGRESS",
       "evidence": "Owner directs historicalUNKNOWN retained without indefinite block; separate prospective accounting gate added."
+    },
+    {
+      "at": "2026-10-02T04:24:22.437Z",
+      "id": "A-ACCOUNTING",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "evidence": "Reconciliation closed at supported known/unknown boundary. Unknown invoice costs remain held, not erased. Future live accounting tracked separately."
+    },
+    {
+      "at": "2026-10-02T04:24:22.437Z",
+      "id": "A-PROSPECTIVE-ACCOUNTING",
+      "from": "BLOCKED",
+      "to": "IN_PROGRESS",
+      "evidence": "Current baseline/headroom verified;fresh readback after every future live request remains required before another paid call. No current Work-authenticated production submission/download path."
+    },
+    {
+      "at": "2026-10-02T04:24:22.437Z",
+      "id": "B-SIDEBAR-REMOVAL",
+      "from": "NEW_OWNER_REQUIREMENT",
+      "to": "IMPLEMENTED_UNVERIFIED",
+      "evidence": "Addedrecord223;no prior record removed."
     }
-  ]
+  ],
+  "currentRunDelta": {
+    "fromRecords": 222,
+    "toRecords": 223,
+    "added": [
+      "B-SIDEBAR-REMOVAL"
+    ],
+    "removed": [],
+    "statusChanges": [
+      "A-ACCOUNTING IN_PROGRESS→PROVEN known/unknown reconciliation",
+      "A-PROSPECTIVE-ACCOUNTING BLOCKED→IN_PROGRESS baseline ready;future per-call readback pending"
+    ],
+    "unchanged": "All incomplete/deferred requirements carried forward;no certification coverage removed."
+  }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:54:00.972Z",
+  "updatedAt": "2026-10-02T04:25:12.631Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED. Frontend3add244/backend84ab891. Owner full-height geometryPASS; compact composer live awaitingowner. HistoricalchargeUNKNOWN retained; prospectivecurrentledger gateOPEN; certificationPAUSED.",
+    "status": "CUTOVER CLOSED41b8979;current engineering integration OPEN. Frontend4fdf96d productionREADY;backend84ab891 unchanged. Currentledger reconciled;Gemini successful live invocation/repaired answerproof pending.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -51,9 +51,9 @@
       "savedSourceCommit": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de"
     },
     "vercel": {
-      "deploymentId": "dpl_CBVemb5CtQuW4EBskkhQKtK6h45f",
-      "source": "3add244c70397aae5b014d62b920fd6551375063",
-      "status": "READY live alias/health200; compact composer owner acceptance OPEN",
+      "deploymentId": "dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW",
+      "source": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
+      "status": "READY empire-ai.co exact alias; health200. Rail removal/compact composer OWNER ACCEPTANCE OPEN.",
       "domain": "empire-ai.co"
     },
     "frontendPromotionVerification": {
@@ -68,8 +68,8 @@
       "verifiedAt": "2026-10-02T01:30:48.194Z"
     },
     "currentVerifiedBinding": {
-      "frontend": "3add244c70397aae5b014d62b920fd6551375063",
-      "vercelDeployment": "dpl_CBVemb5CtQuW4EBskkhQKtK6h45f",
+      "frontend": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
+      "vercelDeployment": "dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW",
       "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
       "railwayDeployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
       "binding": "Public Pillowhealth200 correlated to newlockedruntime above"
@@ -2850,11 +2850,11 @@
     "validity": "Not established by names alone; real Claude/Gemini calls still pending"
   },
   "integrationAccessBlocker": {
-    "at": "2026-10-02T01:18:16.425Z",
-    "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
-    "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
-    "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "One scoped current ledger download in already-authorized Windows RailwayCLI"
+    "observedAt": "2026-10-02T04:25:12.631Z",
+    "browser": "Browser observation unavailable for document containing native credentials;no usable browser listed",
+    "vercelAppAuth": "/api/auth/me401;deployment authorization is not application authentication",
+    "action": "One exact request in King's visible authenticated Pillow composer;no credential sharing, no invisible connected-browser action",
+    "paidCallsThisRun": 0
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -3114,9 +3114,9 @@
       },
       "A": {
         "IN_PROGRESS": 29,
-        "PROVEN": 2,
+        "PROVEN": 3,
         "IMPLEMENTED_UNVERIFIED": 9,
-        "BLOCKED": 2
+        "BLOCKED": 1
       },
       "E": {
         "DEFERRED_BY_KING": 18
@@ -3131,13 +3131,27 @@
       "B": {
         "IN_PROGRESS": 2,
         "PROVEN": 2,
-        "IMPLEMENTED_UNVERIFIED": 1
+        "IMPLEMENTED_UNVERIFIED": 2
       },
       "CUTOVER": {
         "PROVEN": 1
       }
     },
-    "rule": "Every substantial run must read/reconcile and persist/read back matrix; silence never closes requirements."
+    "rule": "Every substantial run must read/reconcile and persist/read back matrix; silence never closes requirements.",
+    "records": 223,
+    "currentRunDelta": {
+      "fromRecords": 222,
+      "toRecords": 223,
+      "added": [
+        "B-SIDEBAR-REMOVAL"
+      ],
+      "removed": [],
+      "statusChanges": [
+        "A-ACCOUNTING IN_PROGRESS→PROVEN known/unknown reconciliation",
+        "A-PROSPECTIVE-ACCOUNTING BLOCKED→IN_PROGRESS baseline ready;future per-call readback pending"
+      ],
+      "unchanged": "All incomplete/deferred requirements carried forward;no certification coverage removed."
+    }
   },
   "compactComposerCheckpoint": {
     "revision": "3add244c70397aae5b014d62b920fd6551375063",
@@ -3147,12 +3161,21 @@
     "paidCalls": 0
   },
   "prospectiveAccountingCheckpoint": {
-    "historicalCharge": "UNKNOWN",
-    "historicalUnknownAloneBlocksForward": false,
-    "currentSnapshotVerified": false,
-    "reader": "deployment/read-current-inference-accounting.cjs",
-    "guard": "Unchanged cumulativeUS$20 retained reservations including uncertain attempts",
-    "nextAction": "railway service files --project 75374474-2b3a-4b0f-a9bc-203cdc1314d8 --environment da94aed2-956b-4903-a886-68a5e9a557c8 --service 7a25cfc6-7298-480f-91db-1b37871f8cac download /data/commissioning/openai-october-2026.sqlite \"$env:USERPROFILE\\Downloads\\empireai-inference-current-20261002.sqlite\"",
-    "paidCalls": 0
+    "status": "BASELINE_VERIFIED_FUTURE_CALL_READBACK_PENDING",
+    "sourceSha256": "d9aafaaa6d5e6021711b36704576b10bb3558a5cf101c1e372b4b363bb77910d",
+    "heldMicroUsd": 3341722,
+    "remainingMicroUsd": 16658278,
+    "estimatedMicroUsd": 766819,
+    "invoiceActuals": "UNKNOWN",
+    "newPaidCallsThisRun": 0,
+    "evidence": "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
+    "next": "One new owner-authenticated Gemini-first summary then fresh ledger delta before more paid calls."
+  },
+  "sidebarRemovalCheckpoint": {
+    "revision": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
+    "deployment": "dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW",
+    "status": "DEPLOYED_OWNER_ACCEPTANCE_OPEN",
+    "localGeometry": "16desktop measurements;390phone;no rail;Back navigation;history81.2%;44px composer growthto192px",
+    "ownerAcceptance": "OPEN;compact composer also OPEN"
   }
 }
