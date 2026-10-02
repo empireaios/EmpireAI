@@ -8,7 +8,7 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import { installGeometryFixture } from './pillow-geometry-fixture.mjs';
 
-test('Pillow text and composer stay beyond navigation through resize, toggle and refresh', async () => {
+test('Pillow has no permanent rail and keeps safe text/composer geometry after preference restoration', async () => {
   assert.ok(process.env.PILLOW_BASE_URL, 'Explicit approved deployment URL required');
   const offline = process.env.PILLOW_GEOMETRY_FIXTURE === '1';
   assert.ok(offline || process.env.PILLOW_AUTH_STATE, 'Private authenticated browser state required');
@@ -22,6 +22,7 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
     else await route.continue();
   });
   const page = await context.newPage();
+  page.on('pageerror', error => console.error('Browser error:',error.message));
   const assertGeometry = async () => {
     await page.getByTestId('pillow-composer').waitFor();
     const result = await page.evaluate(() => {
@@ -29,7 +30,8 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
       const workspace = document.querySelector('[data-testid="pillow-conversation-workspace"]');
       const history = document.querySelector('[data-testid="pillow-message-history"]');
       const composer = document.querySelector('[data-testid="pillow-composer"]');
-      const boundary = nav.getBoundingClientRect().right;
+      if (nav) throw new Error('Permanent sidebar must not mount on Pillow');
+      const boundary = 0;
       const positions = [];
       const walker = document.createTreeWalker(workspace, NodeFilter.SHOW_TEXT);
       for (let text = walker.nextNode(); text; text = walker.nextNode()) {
@@ -63,9 +65,11 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
       await page.getByTestId('pillow-composer').waitFor();
       const nav = page.getByRole('complementary', { name:'Cockpit navigation' });
       for (const state of ['expanded', 'collapsed']) {
-        if (await nav.getAttribute('data-sidebar-state') !== state) {
-          await page.getByRole('button', {name:state === 'expanded' ? 'Expand sidebar' : 'Collapse sidebar',exact:true}).click();
-        }
+        await page.evaluate(value => localStorage.setItem('empireai.cockpit.sidebarCollapsed',value), state === 'collapsed' ? '1' : '0');
+        await page.reload();
+        await page.getByTestId('pillow-composer').waitFor();
+        assert.equal(await nav.count(),0);
+        assert.equal(await page.getByRole('link',{name:'Back to Executive Home'}).getAttribute('href'),'/cockpit');
         await assertGeometry();
         if(process.env.PILLOW_GEOMETRY_OUTPUT){
           await fs.mkdir(process.env.PILLOW_GEOMETRY_OUTPUT,{recursive:true});
@@ -73,7 +77,7 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
         }
         await page.reload();
         await page.getByTestId('pillow-composer').waitFor();
-        await page.waitForFunction(expected => document.querySelector('aside[aria-label="Cockpit navigation"]')?.dataset.sidebarState === expected, state);
+
         await assertGeometry();
       }
     }
@@ -98,6 +102,13 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
     const composer = await page.getByTestId('pillow-composer').boundingBox();
     assert.ok(composer && composer.x >= 0 && composer.x + composer.width <= 390, 'Phone composer remains within viewport');
     if(process.env.PILLOW_GEOMETRY_OUTPUT)await page.screenshot({path:`${process.env.PILLOW_GEOMETRY_OUTPUT}/phone.png`,fullPage:true});
+    const back = page.getByRole('link', {name:'Back to Executive Home'});
+    await back.scrollIntoViewIfNeeded();
+    assert.ok(await back.isVisible(), 'Phone Back control remains visible');
+    await back.click();
+    await page.waitForURL('**/cockpit', {timeout:10000}).catch(error => { throw new Error('Back navigation failed at '+page.url()+': '+error.message); });
+    await page.goBack();
+    await page.getByTestId('pillow-composer').waitFor();
     assert.equal(inferenceAttempted,false,'Geometry acceptance must not trigger paid inference');
   } finally {
     if(process.env.PILLOW_GEOMETRY_OUTPUT){

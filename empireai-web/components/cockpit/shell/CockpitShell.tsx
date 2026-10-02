@@ -60,7 +60,7 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
         <FounderShellProvider>
           <GlobalAiAssistantProvider>
             <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${pillowPage ? layout.shell : sidebarOffset}`}>
-              <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} inFlow={pillowPage} />
+              {!pillowPage && <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} />}
               <div className={`flex min-w-0 flex-1 flex-col pb-20 lg:min-h-0 lg:pb-0 ${pillowPage ? layout.content : ""}`}>
                 <div className={pillowPage ? "lg:hidden" : undefined}><CockpitTopBar /></div>
                 {!pillowPage && <ExecutiveCommandStrip />}

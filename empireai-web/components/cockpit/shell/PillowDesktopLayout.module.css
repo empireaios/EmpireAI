@@ -1,8 +1,8 @@
-/* Pillow only. Navigation participates in layout: no fixed-overlay offset arithmetic. */
+/* Pillow only: a single post-navigation workspace with no permanent side rail. */
 @media (min-width: 64rem) {
   .shell {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
@@ -20,7 +20,7 @@
   }
 
   .content {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     min-width: 0;
     min-height: 0;

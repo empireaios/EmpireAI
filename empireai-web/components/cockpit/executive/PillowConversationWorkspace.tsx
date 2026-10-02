@@ -134,7 +134,7 @@ export function PillowConversationWorkspace({
       <header className={`flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3 ${layout.header}`}>
         <div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] lg:hidden">Conversation</p>
-          <h2 className="font-display text-xl text-[#f0d78c]">{title}</h2>
+          <div className="flex items-center gap-4"><a href="/cockpit" aria-label="Back to Executive Home" className="rounded-lg px-2 py-1 text-sm text-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">← Back</a><h2 className="font-display text-xl text-[#f0d78c]">{title}</h2></div>
         </div>
         <div className="flex items-center gap-2">
           <span
