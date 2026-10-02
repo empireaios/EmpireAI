@@ -12,6 +12,7 @@ export type PillowConversationTurn = {
   screenPath: string;
   recordedAt: string;
   requestId?: string;
+  source?: "server_persisted_transcript" | "historical_browser_cache";
   artifacts?: import("@/lib/pillow/types").PillowChatArtifact[];
 };
 
@@ -228,4 +229,18 @@ export function appendPillowTurn(
   };
   savePillowSession(next, ownerId);
   return next;
+}
+
+/** Keep unverified device-only history intact while replacing the active cache. */
+export function preservePillowLocalArchive(previous: PillowSessionSnapshot | null, serverTurns: PillowConversationTurn[], ownerId: string): void {
+  if (typeof window === "undefined" || !previous?.turns.length) return;
+  const missing = previous.turns.filter(turn => !serverTurns.some(server =>
+    server.role === turn.role && (turn.requestId ? server.requestId === turn.requestId : server.content === turn.content)));
+  if (!missing.length) return;
+  const key = `${ownerSessionKey(ownerId)}:unverified-archive`;
+  const prior = JSON.parse(window.localStorage.getItem(key) ?? "[]") as PillowConversationTurn[];
+  const merged = [...prior];
+  for (const turn of missing) if (!merged.some(row => row.id === turn.id)) merged.push(turn);
+  // If archival fails, caller must not overwrite the original active cache.
+  window.localStorage.setItem(key, JSON.stringify(merged));
 }

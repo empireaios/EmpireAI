@@ -216,7 +216,7 @@ export function PillowConversationWorkspace({
                   <div className="mt-2 text-[#e8e0d0]">
                     <p className="mb-2 text-xs text-[#8a847a]">
                       Saved conversation · {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
-                      {" · Source runtime unverified. Historical conversation is not current operational evidence."}
+                      {turn.source === "server_persisted_transcript" ? " · Server-persisted conversation; historical, not current operational evidence." : " · Historical browser record; original source unverified, not current operational evidence."}
                     </p>
                     <ExecutiveChatMarkdown content={turn.content} />
                   </div>

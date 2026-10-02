@@ -23,6 +23,7 @@ import {
   clearPillowHostSession,
   loadPillowPanelPreferences,
   loadPillowSession,
+  preservePillowLocalArchive,
   savePillowPanelPreferences,
   savePillowSession,
   type PillowConversationTurn,
@@ -116,7 +117,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const founderShell = useFounderShellOptional();
   const panelPrefs = loadPillowPanelPreferences();
   const savedSession = loadPillowSession(user?.id);
-  const hostSessionInit = useRef(false);
   const recoveryLoopActive = useRef(false);
   const chatSubmissionActive = useRef(false);
   const activeOwnerId = useRef(user?.id);
@@ -247,98 +247,61 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!user) return;
-    if (hostSessionInit.current) return;
-    hostSessionInit.current = true;
+    let cancelled = false;
+    let running = false;
+    const hydrate = async () => {
+      if (running || chatSubmissionActive.current || recoveryLoopActive.current) return;
+      running = true;
+      try {
+        // Every device resolves the server conversation. Local storage is only a cache.
+        const cached=loadPillowSession(user.id);
+        const historicalBrowserTurns=(cached?.turns ?? []).filter(turn=>!turn.source && Number.isFinite(Date.parse(turn.recordedAt))).map(turn=>({role:turn.role==='grand-king'?'user' as const:'assistant' as const,content:turn.content,timestamp:new Date(turn.recordedAt).toISOString(),requestId:turn.requestId}));
+        const session = await createPillowHostSession(user.workspaceId, user.id, historicalBrowserTurns);
 
-    void (async () => {
-      // Remount / Strict-effect safety: reuse a persisted host session instead of
-      // creating another and rate-limit storming Brain (/api/pillow/session 503).
-      const existingId = loadPillowSession(user.id)?.hostSessionId ?? null;
-      if (existingId) {
-        markReady(existingId, loadPillowSession(user.id)?.turns ?? []);
-        return;
-      }
-
-      markStarting("starting");
-      const maxAttempts = 4;
-      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-        try {
-          const session = await createPillowHostSession(user.workspaceId, user.id);
-          if (activeOwnerId.current !== user.id) return;
-          // Mark ready immediately — history is non-blocking for conversation readiness.
-          markReady(session.sessionId, savedSession?.turns ?? []);
-          let turns = savedSession?.turns ?? [];
-          try {
-            const history = await fetchPillowHistory(session.sessionId);
-            if (activeOwnerId.current !== user.id) return;
-            if (history.session.conversationHistory.length > 0) {
-              turns = history.session.conversationHistory.flatMap((turn, index) => {
-                const role = turn.role === "user" ? ("grand-king" as const) : ("pillow" as const);
-                return [
-                  {
-                    id: `server-${index}-${turn.timestamp}`,
-                    role,
-                    content: toExecutiveSurfaceMessage(turn.content, turn.content),
-                    screenPath: pathname,
-                    recordedAt: turn.timestamp,
-                  },
-                ];
-              });
-              const snapshot: PillowSessionSnapshot = {
-                turns,
-                lastScreenPath: pathname,
-                updatedAt: new Date().toISOString(),
-                hostSessionId: session.sessionId,
-              };
-              savePillowSession(snapshot, user.id);
-              setState((s) => ({ ...s, conversation: turns }));
-            } else {
-              savePillowSession({
-                turns,
-                lastScreenPath: pathname,
-                updatedAt: new Date().toISOString(),
-                hostSessionId: session.sessionId,
-              }, user.id);
-            }
-          } catch {
-            if (activeOwnerId.current !== user.id) return;
-            savePillowSession({
-              turns,
-              lastScreenPath: pathname,
-              updatedAt: new Date().toISOString(),
-              hostSessionId: session.sessionId,
-            }, user.id);
-          }
-          return;
-        } catch (error) {
-          if (activeOwnerId.current !== user.id) return;
-          // Do not clear a concurrently established session on rate-limit failure.
-          const persisted = loadPillowSession(user.id);
-          if (persisted?.hostSessionId) {
-            markReady(persisted.hostSessionId, persisted.turns ?? []);
-            return;
-          }
-          clearPillowHostSession(user.id);
-          const phase: ExecutiveReadinessPhase =
-            attempt >= 3 ? "delayed" : attempt > 1 ? "recovering" : "starting";
-          markStarting(
-            phase,
-            error instanceof Error ? error.message : EXECUTIVE_STARTING_LABEL,
-          );
-          if (attempt < maxAttempts) {
-            await new Promise((r) => setTimeout(r, Math.min(8_000, 1_500 * attempt)));
+        const history = await fetchPillowHistory(session.sessionId);
+        if (cancelled || activeOwnerId.current !== user.id || chatSubmissionActive.current) return;
+        const turns: PillowConversationTurn[] = history.session.conversationHistory
+          .filter(turn => turn.role === "user" || turn.role === "assistant")
+          .map((turn, index) => ({
+            id: `server-${turn.requestId ?? index}-${turn.role}-${turn.timestamp}`,
+            role: turn.role === "user" ? "grand-king" : "pillow",
+            content: turn.content,
+            screenPath: pathname,
+            recordedAt: turn.timestamp,
+            requestId: turn.requestId,
+            source: "server_persisted_transcript",
+          }));
+        for (const turn of history.historicalArchive) {
+          const role=turn.role === 'user' ? 'grand-king' as const : 'pillow' as const;
+          if (!turns.some(server=>server.role===role && (turn.requestId ? server.requestId===turn.requestId : server.content===turn.content))) {
+            turns.push({id:`archive-${turn.id}`,role,content:turn.content,recordedAt:turn.timestamp,requestId:turn.requestId,screenPath:pathname,source:'historical_browser_cache'});
           }
         }
-      }
-      if (activeOwnerId.current !== user.id) return;
-      const recovered = loadPillowSession(user.id)?.hostSessionId;
-      if (recovered) {
-        markReady(recovered, loadPillowSession(user.id)?.turns ?? []);
-        return;
-      }
-      markStarting("delayed", EXECUTIVE_RECOVERING_LABEL);
-    })();
-  }, [markReady, markStarting, pathname, savedSession?.turns, user]);
+        turns.sort((a,b)=>a.recordedAt.localeCompare(b.recordedAt)||a.id.localeCompare(b.id));
+        const previous = loadPillowSession(user.id);
+        // Preserve browser-only historical records separately; never silently
+        // upload them as server evidence or inference context.
+        preservePillowLocalArchive(previous, turns, user.id);
+        savePillowSession({turns, lastScreenPath: pathname, updatedAt: new Date().toISOString(), hostSessionId: session.sessionId}, user.id);
+        markReady(session.sessionId, turns);
+      } catch {
+        if (!cancelled && activeOwnerId.current === user.id) {
+          markStarting("recovering", "Server conversation history could not be synchronized. Any displayed cached history is device-local and unverified.");
+        }
+      } finally { running = false; }
+    };
+    void hydrate();
+    const refresh = () => { if (document.visibilityState === "visible") void hydrate(); };
+    window.addEventListener("focus", refresh);
+    window.addEventListener("online", refresh);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("focus", refresh);
+      window.removeEventListener("online", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+    };
+  }, [markReady, markStarting, pathname, user?.id, user?.workspaceId]);
 
   const refreshContext = useCallback(async () => {
     // Never share chat `loading` with background context refresh — that disabled Send
@@ -425,12 +388,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
     if (!user || activeOwnerId.current !== user.id) return null;
-    // Reuse first — Executive Home / panel expand must not create parallel sessions.
-    const existing = loadPillowSession(user.id);
-    if (existing?.hostSessionId) {
-      markReady(existing.hostSessionId, existing.turns ?? []);
-      return existing.hostSessionId;
-    }
     try {
       const session = await createPillowHostSession(user.workspaceId, user.id);
       if (activeOwnerId.current !== user.id) return null;
@@ -445,11 +402,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       return session.sessionId;
     } catch (error) {
       if (activeOwnerId.current !== user.id) return null;
-      const persisted = loadPillowSession(user.id);
-      if (persisted?.hostSessionId) {
-        markReady(persisted.hostSessionId, persisted.turns ?? []);
-        return persisted.hostSessionId;
-      }
       markStarting(
         "recovering",
         error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
@@ -546,6 +498,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       const buildContextWithContinuity = (): Record<string, unknown> => {
         const base = buildWorkspaceContext(state.context, state.pageOverride);
         const turns = (loadPillowSession(user?.id)?.turns ?? [])
+          .filter(t => t.source === "server_persisted_transcript")
           .slice(-12)
           .map((t) => ({
             role: t.role,
