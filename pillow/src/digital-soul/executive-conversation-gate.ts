@@ -12,6 +12,7 @@ import type { DigitalSoulRuntime } from "./engine.js";
 import type { ConstitutionalComplianceResult } from "./types.js";
 import { buildDigitalSoulPromptBlock } from "./prompt.js";
 import { detectConstitutionalIntent } from "./constitutional-intent.js";
+import { isExplicitVisibleDenial } from "./visible-denial.js";
 
 export class DigitalSoulUnavailableError extends Error {
   readonly code = "DIGITAL_SOUL_UNAVAILABLE" as const;
@@ -178,6 +179,7 @@ export function gateExecutiveVisibleAnswer(
   let prohibitions = 0;
   const remaining = clauses.map(clause => {
     const text = clause.trim().replace(/^[\s*#>\-]+/, "");
+    if (isExplicitVisibleDenial(text)) { prohibitions++; return ""; }
     const unconditional = !/\b(?:if|unless|until|except|provided|otherwise|instead|while|although|when|where|because|to|so|also)\b/i.test(text);
     const prohibition = /^(?:(?:I|we|Pillow)\s+)?(?:will not|must not|cannot|can't|won't|do not|don't|never)\s+(?:ignore|bypass|skip|waive|override|disregard|circumvent|suspend|publish|pay|execute|release|reveal|expose|change|grant|authori[sz]e)\b/i.exec(text);
     // Do not discard an embedded second action or an indirect instruction.
