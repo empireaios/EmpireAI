@@ -40,3 +40,38 @@ test('HTTP readback requires configured founder and workspace and fails closed w
   delete process.env.EMPIRE_RUNTIME_PROFILE;assert.equal((await app.inject(options)).statusCode,404);assert.equal(reads,2);
  }finally{await app.close();if(old===undefined)delete process.env.EMPIRE_RUNTIME_PROFILE;else process.env.EMPIRE_RUNTIME_PROFILE=old;}
 });
+
+import {installLockedCommissioning} from '../../runtime/locked-commissioning.js';
+import {execFileSync} from 'node:child_process';
+test('real locked onRequest boundary permits only the two founder isolated demo actions and independent observation',async()=>{
+ const saved={profile:process.env.EMPIRE_RUNTIME_PROFILE,engineering:process.env.EMPIRE_ENGINEERING_TEST_MODE,root:process.env.RAILWAY_VOLUME_MOUNT_PATH};
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'locked-assurance-demo-'));fs.mkdirSync(path.join(root,'commissioning'));
+ process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';process.env.EMPIRE_ENGINEERING_TEST_MODE='true';process.env.RAILWAY_VOLUME_MOUNT_PATH=root;
+ const filename=path.join(root,'commissioning','assurance.sqlite');
+ const engineUrl=new URL('../../assurance/independent-assurance.mjs',import.meta.url).href;
+ const demoUrl=new URL('../../assurance/owner-demo.mjs',import.meta.url).href;
+ const {AssuranceStore}=await import(engineUrl);new AssuranceStore(filename).close();
+ const observer=()=>execFileSync(process.execPath,['--input-type=module','-e',`import {observeDemo} from ${JSON.stringify(demoUrl)};observeDemo(${JSON.stringify(filename)});`],{stdio:'pipe'});
+ observer();
+ const app=Fastify(),sessions=new InMemorySessionStore();installLockedCommissioning(app);
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>({remainingMicroUsd:22355288}) as ReturnType<typeof readCommissioningAccounting>);
+ const user={id:'founder',email:env.FOUNDER_EMAIL,name:'Owner',role:'founder' as const,workspaceId:'ws_empire_1'};
+ try{
+  for(const action of ['inject','correct'])assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/'+action})).statusCode,401);
+  for(const other of [{...user,email:'other@example.invalid'},{...user,workspaceId:'other'},{...user,role:'admin' as const}]){
+   const token=(await sessions.create(other)).token;
+   assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject',headers:{authorization:'Bearer '+token}})).statusCode,403);
+  }
+  const token=(await sessions.create(user)).token,headers={authorization:'Bearer '+token};
+  const read=async()=>{const r=await app.inject({url:'/api/pillow/assurance',headers});assert.equal(r.statusCode,200,r.body);return r.json();};
+  assert.equal((await read()).demonstration.history[0].status,'HEALTHY');
+  const injected=await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject',headers,payload:{path:'/real-business',force:true}});
+  assert.equal(injected.statusCode,200,injected.body);assert.equal(injected.json().awaitingIndependentObservation,true);
+  assert.equal((await read()).demonstration.history[0].status,'HEALTHY');
+  observer();assert.equal((await read()).demonstration.history[0].status,'DEGRADED');
+  assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/correct',headers})).statusCode,200);
+  observer();assert.deepEqual((await read()).demonstration.history.map((x:{status:string})=>x.status),['HEALTHY','DEGRADED','HEALTHY']);
+  for(const url of ['/api/pillow/assurance-demo/buy','/api/pillow/assurance-demo/inject/extra','/pillow-commissioning/birth/authorise','/payments','/live-cj-fulfillment/submit-live','/api/pillow/mission-runtime/execute'])assert.equal((await app.inject({method:'POST',url,headers,payload:{approved:true,force:true}})).statusCode,423,url);
+  for(const method of ['PUT','PATCH','DELETE'] as const)assert.equal((await app.inject({method,url:'/api/pillow/assurance-demo/inject',headers})).statusCode,423);
+ }finally{await app.close();for(const [key,value]of Object.entries({EMPIRE_RUNTIME_PROFILE:saved.profile,EMPIRE_ENGINEERING_TEST_MODE:saved.engineering,RAILWAY_VOLUME_MOUNT_PATH:saved.root})){if(value===undefined)delete process.env[key];else process.env[key]=value;}fs.rmSync(root,{recursive:true,force:true});}
+});
