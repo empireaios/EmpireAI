@@ -1,3 +1,5 @@
+# Bounded desktop Pillow checkpoint
+
 # EmpireAI current handoff — 2026-10-02T01:18:16.425Z
 
 CUTOVER COMPLETE/CLOSED baseline 41b8979. Legacy remains stopped and preserved. NOT_BORN / commerce LOCKED. Certification PAUSED; consumed I1 evidence preserved at e0fd5ce.
@@ -19,3 +21,11 @@ Fresh live Pillow document remains blocked by native-credential observation prot
 ## Remaining boundary
 Verify actual promoted frontend and desktop/phone presentation. Finish actual Claude/Gemini/OpenAI shared-router receipts, deliberate routing/consultation, bounded fallback, durable shared US$20 ledger, genuine context/tools/learning receipts, answer integrity and authority evidence. Credentials present is not provider proof. No new paid calls this checkpoint; old ledger balance predates I1 and is not current.
 Do not reopen cross-device defect or cutover. Broader Owner UX deferred. Once scoped integration AND bounded desktop Pillow interface pass, resume frozen certification with materially new unseen cases. No Birth or commerce unlock.
+
+
+Changed source files only:
+- empireai-web/components/cockpit/executive/PillowConversationWorkspace.tsx
+- empireai-web/components/cockpit/layout/CockpitDepartmentLayout.tsx
+- empireai-web/components/cockpit/development/DevelopmentPillowExperience.tsx
+
+Production promotion and visual acceptance remain pending, so this is not an interface completion claim. Existing 78 tests cover delivery/history semantics, not visual layout or scroll interaction. The consumed unseen I1 was neither replayed nor included in this repair.

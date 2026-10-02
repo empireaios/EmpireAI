@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T01:00:42.924Z",
+  "updatedAt": "2026-10-02T01:18:16.425Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1605,11 +1605,11 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
-    "Use owner CLI ledgerdownload only if necessary; do not requestkeys, tokensorpasswordsinchat",
-    "Bounded deliberate provider verification: Claude+Gemini realcalls and OpenAIsharedrouter asneeded; no blindretries/fanout, keepUS$20durableguard",
-    "After data exists prove durable history/accounting through one bounded restart if not already sufficientlyobserved; no broadrecoveryprogramme",
-    "Closeintegration onlyonevidence; resume frozennewunseencases, neverI1"
+    "Verify exact desktop preview READY then owner production-environment rebuild (Vercel write unavailable; browser protected).",
+    "Verify actual production revision; visual desktop and phone regression remains required.",
+    "Complete bounded authenticated real provider receipts and durable ledger readback via available authorized access; one owner action at a time if still blocked. Do not expose keys, reset budget, or blindly retry.",
+    "Complete scoped context/tools/learning/answer/authority live evidence; cross-device owner PASS must not be reopened without regression.",
+    "Only after integration and desktop gates close, resume frozen unseen certification with materially new cases; consumed I1 preserved."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2467,7 +2467,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_INTEGRATION_HISTORY_REPAIR_LIVE_OWNER_DEVICE_PROOF_PENDING",
+  "currentPhase": "SCOPED_INTEGRATION_AND_BOUNDED_DESKTOP_PILLOW_CLOSURE",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2772,9 +2772,9 @@
   },
   "crossDeviceHistoryCheckpoint": {
     "at": "2026-10-02T00:42:44.640Z",
-    "status": "DEPLOYED_READY_LIVE_DEVICE_PROOF_PENDING",
+    "status": "RESOLVED_OWNER_LIVE_DEVICE_VERIFICATION_PASSED",
     "classification": "B_IMPLEMENTATION_MEMORY_HISTORY",
-    "ownerEvidence": "Actual phone shows multiple saved GrandKing/Pillow exchanges; authenticated desktop empty",
+    "ownerEvidence": "King independently refreshed original phone and desktop Pillow Centres using the same authenticated account; both show the same saved Grand King/Pillow exchanges. No storage clearing and no new message/inference.",
     "backend": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
     "frontend": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
     "preview": "dpl_67u6LVGP87hzSUJzQhirN4RsTiKi",
@@ -2795,20 +2795,20 @@
       "frontendTests": "78 durable-delivery/client tests PASS",
       "backendBuild": "PASS Node22.23.2",
       "frontendTypecheck": "PASS",
-      "liveDevices": "PENDING owner original-phone refresh and desktop sameownerreadback; no claimclosed",
+      "liveDevices": "PASSED owner actual-device observation, accepted 2026-10-02. Do not reopen absent contradictory evidence.",
       "paidInferenceCalls": 0,
       "frontendBuild": "Exact-source Vercel preview READY",
       "liveDomain": "Anonymous history request4012026-10-02T00:59:37GMT; corresponding new runtime GET/api/pillow/history401 at00:59:37.842Z; bounded effective BFF binding proven. Initial504 duringrollout resolved afterready."
     },
-    "ownerAction": "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
-    "liveGate": "Not closed until same-owner phone/desktop/re-auth/restart evidence. Do not certify from tests alone.",
+    "ownerAction": null,
+    "liveGate": "Cross-device history/session defect RESOLVED. General restart/rebind integration proof remains a separate scoped capability gate.",
     "previewState": "READY",
     "deployedAt": "2026-10-02T01:00:42.924Z",
     "frontendProductionDeployment": "dpl_57hNzegD6rfuMrUmdePpKbfkeRrg",
     "backendProductionDeployment": "718a74de-586d-4818-8904-a152414aa407"
   },
   "ownerUxDesktopReference": {
-    "status": "DEFERRED_OWNER_UX",
+    "status": "BOUNDED_DESKTOP_PILLOW_REPAIR_AUTHORIZED_BEFORE_CERTIFICATION",
     "source": "King actualphone/desktop comparison2026-10-02",
     "preferredDesignReference": "Current mobile Pillow experience",
     "desktopDefects": [
@@ -2817,7 +2817,8 @@
       "Poor width utilisation",
       "Disconnected conversation/composer"
     ],
-    "direction": "Desktop should be responsive wider expression of same mobile Pillow product. Do not redesign mobile to match unfinished desktop."
+    "direction": "Desktop should be responsive wider expression of same mobile Pillow product. Do not redesign mobile to match unfinished desktop.",
+    "broadOwnerUx": "DEFERRED: Mission Centre, Money & Services, broad navigation/dashboard remain out of scope."
   },
   "providerCredentialStaging": {
     "status": "APPLIED_PRIVATE_NAMES_VERIFIED",
@@ -2832,16 +2833,11 @@
     "validity": "Not established by names alone; real Claude/Gemini calls still pending"
   },
   "integrationAccessBlocker": {
-    "browser": "Native credential protection blocks listTabs and fresh empire-ai.co/cockpit document; not bypassed",
-    "railway": "Infrastructure agent has no HTTP application client or SQL reader; binary readContainerFile returned placeholder only, not ledger bytes",
-    "ledgerMetadata": {
-      "path": "/data/commissioning/openai-october-2026.sqlite",
-      "size": 12288,
-      "modified": "2026-10-01T16:49:01Z",
-      "initializedMarkerPresent": true,
-      "meaning": "Existence only. Does not prove current usage/cost/accounting or remaining budget."
-    },
-    "paidCallsThisTurn": 0
+    "at": "2026-10-02T01:18:16.425Z",
+    "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
+    "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
+    "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
+    "ownerAction": "After preview READY, promote 4a6f97e / dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain. One action at a time."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2857,10 +2853,41 @@
     "claude": "Credential name present; real bounded call NOT DONE",
     "gemini": "Corrected credential name present; real bounded call NOT DONE",
     "routingFallbackConsultation": "Targeted offline tests pass; bounded live routing/explicit consultation receipts pending; do not deliberately cause uncontrolled provider errors",
-    "history": "Offline canonical/two-authenticated-session/archive/childprocess proof pass; owner original phone cache sync and live cross-device/readback/re-auth/restart PENDING",
+    "history": "Owner actual phone/desktop same-account saved history PASSED. Existing offline two-session/childprocess proof preserved; broader live reasoning-context restart/rebind readback remains pending.",
     "contextToolsLearningAnswer": "Offline tested; bounded actual runtime receipts/readback PENDING; no self-certification",
     "accounting": "Original guard preserved; current ledger reconciliation still PENDING; no new paid calls",
     "authority": "NOT_BORN/LOCKED code and targeted denials preserved; live proof remains required",
     "certification": "PAUSED; I1 consumed preserved; no new unseen case exposed"
+  },
+  "desktopPillowCheckpoint": {
+    "at": "2026-10-02T01:18:16.425Z",
+    "revision": "4a6f97ede3b28c50419ecb5c945eb2db2d2cd3b4",
+    "branch": "fix/pillow-desktop-conversation-20261002",
+    "parent": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
+    "preview": "dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh",
+    "status": "PREVIEW_READY_OWNER_PRODUCTION_REBUILD_REQUIRED",
+    "scope": [
+      "Desktop-only suppression of duplicate department/page headers on Pillow Centre",
+      "Wider bounded conversation measure and aligned composer, desktop viewport sizing",
+      "Clear role hierarchy and expandable historical provenance/timestamps",
+      "Preserve scroll anchor loading earlier messages; follow latest only near bottom; explicit jump to latest",
+      "IME composition does not send on Enter; visible desktop multiline keyboard hint"
+    ],
+    "unchanged": [
+      "Shared authoritative history API/provider",
+      "Pillow reasoning/memory/provider routing",
+      "Birth/commerce authority",
+      "Mobile breakpoint shell and base layout"
+    ],
+    "verification": {
+      "typecheck": "PASS Node22.23.2",
+      "productionBuild": "PASS next build --webpack",
+      "deliveryHistoryRegression": "78 PASS",
+      "visualDesktop": "BLOCKED browser native credential protection; not claimed passed",
+      "phoneVisualRegression": "PENDING after promotion; no claim from prior owner observation",
+      "preview": "READY exact revision independently verified"
+    },
+    "paidInferenceCalls": 0,
+    "report": "docs/mission-state/PILLOW_DESKTOP_CLOSURE_2026-10-02.md"
   }
 }
