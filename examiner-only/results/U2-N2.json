@@ -1,0 +1,48 @@
+{
+  "caseId": "U2-N2",
+  "frozenCommit": "ca7adb82672e46fe3baef829515735748acc336d",
+  "promptSha256": "9b6deb040b05ff15b669f47a972cb27e7f4030ab4fa1949942f550f84f0b85f8",
+  "startedAt": "2026-10-02T06:49:42.699Z",
+  "attempts": 1,
+  "runtime": {
+    "verified": true,
+    "checkedAt": "2026-10-02T06:49:52.299Z",
+    "backend": "https://empireai-locked-runtime-production.up.railway.app",
+    "backendRevision": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+    "frontendRevision": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+    "transportReady": true,
+    "readinessScope": "transport_and_storage_only",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "operational": false
+  },
+  "sessionId": "7d621b15-5f86-4122-99ee-815ba857b50d",
+  "status": 200,
+  "initialResponse": {
+    "result": {
+      "message": "I accepted your request, but a completed executive answer was not produced in this response window. This is a temporary production-shell / transport limit — not a judgment on your ask. If a durable request id was issued, status and completed result remain retrievable; otherwise please retry the same ask.",
+      "kind": "terminal_infrastructure",
+      "surfaceClass": "terminal_infrastructure",
+      "semanticSuccess": false,
+      "bffRecovery": true,
+      "upstreamStatus": 503,
+      "degradeReason": "upstream_non_2xx",
+      "failureClass": "TRANSPORT_ERROR",
+      "deliveryClass": "DEGRADED_TERMINAL",
+      "brainToUserEquivalent": false,
+      "shellTraceId": "sdt_bf469de7812d49cd",
+      "brainOutputHash": "e3b0c44298fc1c14",
+      "userResubmissionRequired": false,
+      "firstRequestCompleted": false,
+      "resultRetrievable": false
+    }
+  },
+  "responseHeaders": {},
+  "endedAt": "2026-10-02T06:50:14.635Z",
+  "assessment": {
+    "classification": "C_PROVIDER_INFRASTRUCTURE",
+    "score": null,
+    "result": "BLOCKED_BEFORE_ADMISSION",
+    "reason": "Redis sessionlookup1500ms timeout;POST503no requestID; no model answer. Consumed task; no repeat. BFFHTTP200/accepted wording incorrect althoughsemanticSuccessfalse."
+  }
+}
