@@ -1,3 +1,11 @@
+# Vercel CLI authorization checkpoint — 2026-10-02 10:53 Singapore
+
+King's screenshot confirms **Authorization Successful**. Work's subsequent CLI continuation was blocked by the platform network policy for `https://api.vercel.com:443`. This is distinct from the earlier unauthenticated HTTP missingToken response. Do not ask King to repeat OAuth authorization or manipulate an invisible Work browser. No deployment or rollback proof occurred. Candidate `a9358a2` remains preserved. Credential values were not read or exposed. No paid inference, Birth, commerce unlock, or increased spending authority.
+
+Next: supported platform access or a controlled Git-based deployment route; do not evade network policy. Accounting and integration acceptance remain open.
+
+---
+
 # Owner clarifications accepted — 2026-10-02
 
 Six owner clarifications are appended verbatim to `OWNER_OPERATING_MANDATE_2026-10-02.txt`: omission auditing; independent audit evidence; reverification of material marketplace changes; King → ChatGPT → King decision → Pillow; owner presence not an operating dependency; automatic detailed supervision with concise owner reporting.

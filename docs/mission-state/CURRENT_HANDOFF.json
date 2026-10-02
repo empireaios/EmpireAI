@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T02:33:26.372Z",
+  "updatedAt": "2026-10-02T02:54:42.597Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -3067,5 +3067,20 @@
       "next": "Supported Vercel CLI device authorization investigation; no token requested in chat"
     },
     "authority": "No Birth, commerce unlock, or additional spending."
+  },
+  "workVercelCliAuthorization": {
+    "ownerObservedStatus": "AUTHORIZATION SUCCESSFUL",
+    "ownerEvidence": {
+      "fileId": "file_0000000088f48211bb4004ecd9cd5a2f",
+      "observedAt": "2026-10-02T10:53:41+08:00"
+    },
+    "cliVersion": "62.1.0",
+    "workVerification": "BLOCKED_BY_PLATFORM_NETWORK_POLICY",
+    "error": "Unified exec process failed: Network access to \"https://api.vercel.com:443\" was blocked by policy.",
+    "deploymentPerformed": false,
+    "rollbackProven": false,
+    "credentialValuesExposed": false,
+    "nextBoundary": "Do not repeat owner OAuth authorization. Resolve supported platform access or prepare an authorized Git-based release mechanism. Never bypass the network policy.",
+    "preservedCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9"
   }
 }
