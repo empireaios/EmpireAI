@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T00:18:39.324Z",
+  "updatedAt": "2026-10-02T00:42:44.640Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED at41b8979; scoped integration frontend1cfe444 and runtime4eb4428 deployed; provider activation/live integration proof pending; certification paused.",
+    "status": "CUTOVER CLOSED41b8979. Productionfrontend1cfe444/backend4eb4428. Cross-device history ClassB repair backend8dcc928/frontend98e9bdc published, not deployed; certification paused.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -1601,15 +1601,16 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Claude and Gemini independent private credentials not configured; one private action at a time",
-    "Bounded real provider/routing/consultation/accounting integration receipts pending",
-    "Browser observation blocked by native credential protection; no bypass; health body direct fetch unavailable"
+    "Frontend production promotion write unavailable; dashboard native credential protection unresolved",
+    "Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying",
+    "Cross-device live closure and bounded provider integration receipts pending"
   ],
   "nextExecutableActions": [
-    "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
-    "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
-    "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
-    "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
+    "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+    "Verify production98e9bdc; inspect stagedRailwaypatch. Privately correct Gemini variable name before source+credential application; never exposevalues.",
+    "Deploy exact8dcc928 onexistinglockedruntime with savedsource; preserveoriginalvolumeledgerandlocks; no unrelatedpatchapplication",
+    "Bounded live history phone-original-cache sync then same-owner desktop/re-auth/restart readback; no paid inference merely for history",
+    "Continue original multi-provider bounded live proof/accounting integration; only then materially new unseen certification"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2467,7 +2468,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_REASONING_INTEGRATION_DEPLOYED_AWAITING_PRIVATE_CLAUDE_CREDENTIAL",
+  "currentPhase": "SCOPED_INTEGRATION_CROSS_DEVICE_REPAIR_PUBLISHED_AWAITING_PROMOTION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2618,13 +2619,14 @@
       "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
       "newPaidCalls": 0
     },
-    "blocker": "Claude/Gemini credentials absent; live provider/integration proof pending",
-    "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+    "blocker": "Frontend production promotion write unavailable; dashboard native credential protection unresolved; Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying; Cross-device live closure and bounded provider integration receipts pending",
+    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
     "next": [
-      "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
-      "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
-      "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
-      "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
+      "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+      "Verify production98e9bdc; inspect stagedRailwaypatch. Privately correct Gemini variable name before source+credential application; never exposevalues.",
+      "Deploy exact8dcc928 onexistinglockedruntime with savedsource; preserveoriginalvolumeledgerandlocks; no unrelatedpatchapplication",
+      "Bounded live history phone-original-cache sync then same-owner desktop/re-auth/restart readback; no paid inference merely for history",
+      "Continue original multi-provider bounded live proof/accounting integration; only then materially new unseen certification"
     ],
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
@@ -2663,7 +2665,7 @@
   },
   "integrationRepairCheckpoint": {
     "at": "2026-10-02T00:18:39.324Z",
-    "status": "DEPLOYED_READY_PRIVATE_PROVIDER_ACTIVATION_PENDING",
+    "status": "BASE_INTEGRATION_DEPLOYED_CROSS_DEVICE_EXTENSION_PENDING",
     "backend": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
     "frontend": "1cfe444f01b178842566e303e356655e5c93be94",
     "report": "docs/mission-state/LOCKED_REASONING_INTEGRATION_2026-10-02.md",
@@ -2695,8 +2697,8 @@
       "Read tools are bounded catalog/mission/evidence reads and one exact arithmetic round, not arbitrary web/code execution",
       "Claude/Gemini private credentials and live bounded receipts remain pending"
     ],
-    "blocker": "Claude/Gemini credentials absent; live provider/integration proof pending",
-    "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+    "blocker": "Frontend production promotion write unavailable; dashboard native credential protection unresolved; Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying; Cross-device live closure and bounded provider integration receipts pending",
+    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
     "frontendProductionDeployment": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
     "backendProductionDeployment": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b",
     "next": [
@@ -2704,7 +2706,9 @@
       "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
       "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
       "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
-    ]
+    ],
+    "crossDeviceBackend": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
+    "crossDeviceFrontend": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441"
   },
   "historicalDeployedBeforeCutover": {
     "railway": {
@@ -2768,5 +2772,62 @@
     "paidCallsByWork": 0,
     "certification": "PAUSED",
     "cutover": "CLOSED_UNCHANGED"
+  },
+  "crossDeviceHistoryCheckpoint": {
+    "at": "2026-10-02T00:42:44.640Z",
+    "status": "REPAIRED_OFFLINE_VERIFIED_PUBLISHED_LIVE_CLOSURE_PENDING",
+    "classification": "B_IMPLEMENTATION_MEMORY_HISTORY",
+    "ownerEvidence": "Actual phone shows multiple saved GrandKing/Pillow exchanges; authenticated desktop empty",
+    "backend": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
+    "frontend": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
+    "preview": "dpl_67u6LVGP87hzSUJzQhirN4RsTiKi",
+    "report": "docs/mission-state/PILLOW_CROSS_DEVICE_HISTORY_2026-10-02.md",
+    "causes": [
+      "Local cached session skips server hydration",
+      "Client expects session.conversationHistory while backend returns top-level history",
+      "30minute warm-session expiry forks fresh-device context"
+    ],
+    "repair": [
+      "Durable atomic canonical workspace conversation independent of expiry; forceNew isolated",
+      "Real history contract normalized; bootstrap/focus/online/re-auth rehydrates",
+      "Owner-scoped historical browser archive distinct from server transcripts; unverified/no authority/never inferred provider evidence; excluded from reasoning",
+      "Original cache preserved if archive acknowledgement/storage fails; no fake empty success"
+    ],
+    "verification": {
+      "backendTests": "9 reasoning integration including new cross-device/childprocess/archive tests PASS; strengthened actual-app fresh-session test PASS with two logins, anonymous401/protectedmutations423",
+      "frontendTests": "78 durable-delivery/client tests PASS",
+      "backendBuild": "PASS Node22.23.2",
+      "frontendTypecheck": "PASS",
+      "liveDevices": "PENDING deployment and original phone cache reload; no paid inference needed",
+      "paidInferenceCalls": 0,
+      "frontendBuild": "Exact-source Vercel preview READY"
+    },
+    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+    "liveGate": "Not closed until same-owner phone/desktop/re-auth/restart evidence. Do not certify from tests alone.",
+    "previewState": "READY"
+  },
+  "ownerUxDesktopReference": {
+    "status": "DEFERRED_OWNER_UX",
+    "source": "King actualphone/desktop comparison2026-10-02",
+    "preferredDesignReference": "Current mobile Pillow experience",
+    "desktopDefects": [
+      "Excessive empty space",
+      "Fragmented navigation hierarchy",
+      "Poor width utilisation",
+      "Disconnected conversation/composer"
+    ],
+    "direction": "Desktop should be responsive wider expression of same mobile Pillow product. Do not redesign mobile to match unfinished desktop."
+  },
+  "providerCredentialStaging": {
+    "at": "2026-10-02T00:42:44.640Z",
+    "patchId": "76dd5814-8830-46c9-8e4a-188991f5b15a",
+    "status": "STAGED_NOT_APPLIED",
+    "names": [
+      "ANTHROPIC_API_KEY",
+      "GEMINI_API_KEY"
+    ],
+    "valuesRead": false,
+    "requiredGeminiVariable": "GOOGLE_AI_API_KEY",
+    "warning": "GEMINI_API_KEY is not allowed by current launcher. Do not accept whole staged environment patch while deploying source. One private owner rename/correction action required before applying; do not reveal keys."
   }
 }
