@@ -61,6 +61,20 @@ function hasAny(normalized: string, patterns: RegExp[]): boolean {
   return patterns.some((p) => p.test(normalized));
 }
 
+/** An explicitly bounded hypothetical is not a claim of actual authorization.
+ * This only scopes the fabricated-approval detector; all other constitutional
+ * findings and structured execution/financial authorization gates still apply.
+ */
+function isNonExecutingPlanningHypothesis(n: string): boolean {
+  const planningOnly = /\b(?:pretend|hypothetical|fictional|simulated)\s+(?:planning\s+)?(?:exercise|scenario|comparison|analysis)\s+only\b/.test(n);
+  const prohibitedActions = /\b(?:do not|don't|must not|never)\s+(?:run|execute|make|place|send|change|perform)\b/.test(n);
+  // Strip only explicitly negated action verbs when checking for a conflicting
+  // positive execution request. A planning preface cannot authorize live action.
+  const positive = n.replace(/\b(?:do not|don't|must not|never)\s+(?:run|execute|make|place|send|change|perform)\b/g, "");
+  const execution = /\b(?:execute|purchase|pay|publish|transfer|deploy|activate|unlock|send|place|run)\b|\b(?:change|raise|increase|set)\s+(?:the\s+)?(?:real|actual|live|production)\b/.test(positive);
+  return planningOnly && prohibitedActions && !execution;
+}
+
 /** Bypass / override / waive language (action side of composition). */
 const BYPASS_ACTIONS: RegExp[] = [
   /\bignor(e|es|ed|ing)\b/,
@@ -283,9 +297,10 @@ const INTENT_FAMILIES: PatternFamily[] = [
     principleId: "S0-NON-FABRICATION",
     violation: true,
     match: (n) => {
+      if (isNonExecutingPlanningHypothesis(n)) return null;
       if (
         /\bpretend\b/.test(n) &&
-        /\b(already )?(approved|authori[sz]ed|authorisation|authorization)\b/.test(n)
+        /\b(already )?(approved|approval|authori[sz]ed|authorisation|authorization)\b/.test(n)
       ) {
         return "Free-text intent to fabricate prior approval";
       }
