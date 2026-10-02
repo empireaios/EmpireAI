@@ -71,3 +71,10 @@ it('valid read-only calculation uses one receipt round and preserves commentary 
  const result=await new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Combine supplied quantities',workspaceId:'ws-isolated',correlationId:'valid-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[{value:'7',simulated:false}];}});
  assert.equal(calls,2);assert.equal(tools,1);assert.equal(result.content,'The supplied quantities total seven.');
 });
+
+for (const content of ['Progress: {"readOnlyCalls":[]}', '```json\n{"readOnlyCalls":[]}\n```', '[{"readOnlyCalls":[]}]']) it('rejects prefixed, fenced and nested tool intent without another inference',async()=>{
+ let calls=0,tools=0;
+ const adapter:BrainLLMAdapter={listAvailableProviders:()=>['openai'],complete:async()=>{calls++;return{provider:'openai',model:'mock',content};}};
+ await assert.rejects(new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate supplied quantities',workspaceId:'ws-isolated',correlationId:'wrapped-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}}),/read-only tool|tool envelope/i);
+ assert.equal(calls,1);assert.equal(tools,0);
+});
