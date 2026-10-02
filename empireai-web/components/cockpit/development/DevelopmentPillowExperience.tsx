@@ -159,11 +159,14 @@ export function DevelopmentPillowExperience() {
 
   return (
     <div className="space-y-4">
+      <div className="lg:hidden">
       <PlatformPageHeader
         eyebrow="Pillow Centre"
         title="Talk with Pillow"
         description="Owner conversation workspace. Context stays with Pillow — not as a wall of metadata."
       />
+
+      </div>
 
       {conversationMode ? (
         <PillowConversationWorkspace title="Pillow" autoFocus />

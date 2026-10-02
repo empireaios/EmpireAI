@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useLayoutEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
@@ -34,7 +34,9 @@ export function PillowConversationWorkspace({
   const searchParams = useSearchParams();
   const historyRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
-  const seenLen = useRef<number | null>(null);
+  const followLatest = useRef(true);
+  const earlierAnchor = useRef<{ height: number; top: number } | null>(null);
+  const [showLatest, setShowLatest] = useState(false);
   const [windowSize, setWindowSize] = useState(PAGE_SIZE);
   const {
     loading,
@@ -88,19 +90,23 @@ export function PillowConversationWorkspace({
     }
   }, [conversation, voiceEnabled]);
 
-  useEffect(() => {
-    const prev = seenLen.current;
-    const next = conversation.length;
-    if (prev === null) {
-      seenLen.current = next;
-      return;
+  useLayoutEffect(() => {
+    const pane = historyRef.current;
+    if (!pane) return;
+    if (earlierAnchor.current) {
+      pane.scrollTop = earlierAnchor.current.top + pane.scrollHeight - earlierAnchor.current.height;
+      earlierAnchor.current = null;
+    } else if (followLatest.current) {
+      pane.scrollTop = pane.scrollHeight;
     }
-    if (next > prev) {
-      const pane = historyRef.current;
-      if (pane) pane.scrollTop = pane.scrollHeight;
-    }
-    seenLen.current = next;
-  }, [conversation.length]);
+  }, [conversation, windowSize, loading]);
+
+  const goToLatest = () => {
+    followLatest.current = true;
+    setShowLatest(false);
+    const pane = historyRef.current;
+    if (pane) pane.scrollTop = pane.scrollHeight;
+  };
 
   const hiddenCount = Math.max(0, conversation.length - windowSize);
   const visibleTurns = useMemo(
@@ -111,6 +117,8 @@ export function PillowConversationWorkspace({
 
   const onSend = useCallback(() => {
     if (!canSend) return;
+    followLatest.current = true;
+    setShowLatest(false);
     void ask(queryDraft.trim());
   }, [ask, canSend, queryDraft]);
 
@@ -119,7 +127,7 @@ export function PillowConversationWorkspace({
       id="pillow-conversation-workspace"
       data-testid="pillow-conversation-workspace"
       aria-label="Pillow conversation"
-      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a]"
+      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-[calc(100dvh-190px)] lg:min-h-[520px]"
     >
       <header className="flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3">
         <div>
@@ -166,7 +174,15 @@ export function PillowConversationWorkspace({
       <div
         ref={historyRef}
         data-testid="pillow-message-history"
-        className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6"
+        tabIndex={0}
+        aria-label="Saved Pillow conversation"
+        onScroll={(event) => {
+          const pane = event.currentTarget;
+          const nearBottom = pane.scrollHeight - pane.scrollTop - pane.clientHeight < 96;
+          followLatest.current = nearBottom;
+          setShowLatest(!nearBottom);
+        }}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain [overflow-anchor:none] px-4 py-5 sm:px-6 lg:px-10 lg:py-8"
       >
         {!executiveReady && (
           <p className="mb-4 rounded-lg border border-gold/15 bg-gold/5 px-3 py-2 text-xs text-[#f0d78c]">
@@ -188,14 +204,18 @@ export function PillowConversationWorkspace({
             <button
               type="button"
               className="text-xs text-[#d4af37] hover:underline"
-              onClick={() => setWindowSize((n) => n + PAGE_SIZE)}
+              onClick={() => {
+                const pane = historyRef.current;
+                if (pane) earlierAnchor.current = { height: pane.scrollHeight, top: pane.scrollTop };
+                setWindowSize((n) => n + PAGE_SIZE);
+              }}
             >
               Show earlier messages ({hiddenCount})
             </button>
           </div>
         )}
 
-        <ul className="mx-auto flex max-w-3xl flex-col gap-4">
+        <ul className="mx-auto flex max-w-3xl flex-col gap-4 lg:max-w-[56rem] lg:gap-6">
           {visibleTurns.map((turn) => {
             const mine = turn.role !== "pillow";
             return (
@@ -204,20 +224,23 @@ export function PillowConversationWorkspace({
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[min(42rem,92%)] rounded-2xl px-4 py-3.5 sm:px-5 ${
+                  className={`min-w-0 break-words max-w-[min(42rem,92%)] rounded-2xl px-4 py-3.5 sm:px-5 ${
                     mine
-                      ? "bg-[#d4af37]/15 text-[#f0d78c]"
-                      : "border border-gold/10 bg-white/[0.03] text-[#e8e0d0]"
+                      ? "bg-[#d4af37]/15 text-[#f0d78c] lg:max-w-[80%]"
+                      : "border border-gold/10 bg-white/[0.03] text-[#e8e0d0] lg:w-full lg:max-w-full"
                   }`}
                 >
-                  <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#b6a987]">
                     {mine ? "Grand King" : "Pillow"}
                   </p>
                   <div className="mt-2 text-[#e8e0d0]">
-                    <p className="mb-2 text-xs text-[#8a847a]">
-                      Saved conversation · {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
-                      {turn.source === "server_persisted_transcript" ? " · Server-persisted conversation; historical, not current operational evidence." : " · Historical browser record; original source unverified, not current operational evidence."}
-                    </p>
+                    <details className="mb-3 text-xs text-[#8a847a]">
+                      <summary className="cursor-pointer">Saved history · {turn.source === "server_persisted_transcript" ? "Server record" : "Unverified browser archive"}</summary>
+                      <p className="mt-1 leading-relaxed">
+                        {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
+                        {turn.source === "server_persisted_transcript" ? " · Server-persisted conversation; historical, not current operational evidence." : " · Historical browser record; original source unverified, not current operational evidence."}
+                      </p>
+                    </details>
                     <ExecutiveChatMarkdown content={turn.content} />
                   </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (
@@ -234,9 +257,15 @@ export function PillowConversationWorkspace({
         )}
       </div>
 
+      {showLatest && (
+        <div className="flex justify-center border-t border-gold/10 py-1.5">
+          <button type="button" onClick={goToLatest} className="px-4 py-2 text-xs text-[#d4af37]">Jump to latest</button>
+        </div>
+      )}
+
       <footer className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
         <form
-          className="mx-auto flex max-w-3xl items-end gap-2"
+          className="mx-auto flex max-w-3xl items-end gap-2 lg:max-w-[56rem] lg:gap-3"
           onSubmit={(e) => {
             e.preventDefault();
             onSend();
@@ -253,7 +282,7 @@ export function PillowConversationWorkspace({
             }}
             onKeyDown={(e) => {
               // Enter sends; Shift+Enter inserts newline (standard chat).
-              if (e.key === "Enter" && !e.shiftKey) {
+              if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
                 e.preventDefault();
                 onSend();
               }
@@ -284,7 +313,8 @@ export function PillowConversationWorkspace({
             Send
           </button>
         </form>
-        <label className="mx-auto mt-2 flex max-w-3xl items-center gap-2 text-[10px] text-[#6f6a60]">
+        <p className="mx-auto mt-2 hidden max-w-[56rem] text-xs text-[#8a847a] lg:block">Enter to send · Shift+Enter for a new line</p>
+        <label className="mx-auto mt-2 flex max-w-3xl lg:max-w-[56rem] items-center gap-2 text-[10px] text-[#6f6a60]">
           <input
             type="checkbox"
             checked={voiceEnabled}

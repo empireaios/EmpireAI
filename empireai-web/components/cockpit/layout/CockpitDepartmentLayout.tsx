@@ -29,6 +29,7 @@ export function CockpitDepartmentLayout({
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6">
+      <div className={pathname === "/cockpit/development/pillow" ? "space-y-6 lg:hidden" : "space-y-6"}>
       <CockpitPageHeader
         eyebrow="Department"
         title={department?.label ?? departmentNavId}
@@ -36,6 +37,7 @@ export function CockpitDepartmentLayout({
       />
       <p className="text-sm text-[#8a847a]">{description}</p>
       <CockpitDepartmentTabs tabs={tabs} />
+      </div>
       <div>{children}</div>
     </div>
   );
