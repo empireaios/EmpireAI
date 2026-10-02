@@ -71,7 +71,7 @@ jobs:
             assert.equal(process.versions.node, "22.23.2");
             assert.ok(fs.existsSync("backend/dist/index.js"));
             const launcher = crypto.createHash("sha256").update(fs.readFileSync("deployment/locked-runtime.cjs")).digest("hex");
-            assert.equal(launcher, "aff193b679bbf21d37da914b7fbe1fbf26fc7e84af38e9641307c380b70212c8");
+            assert.equal(launcher, "ac60c04916107e47494fd1284e9edc41cfebe95542c67db7bd2bbd455fb29e7a");
             console.log(JSON.stringify({node: process.versions.node, lockedLauncherSha256: launcher, backendBuilt: true}));
           ' | tee "$RUNNER_TEMP/locked-package-evidence/runtime.json"
           python3 - <<'PY'

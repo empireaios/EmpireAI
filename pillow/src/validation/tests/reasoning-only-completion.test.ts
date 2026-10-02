@@ -21,7 +21,8 @@ describe("reasoning-only completion cannot execute tools", () => {
         listAvailableProviders: () => ["openai"],
         complete: async (request) => {
           modelCalls++;
-          assert.match(request.messages.find(m => m.role === "system")!.content, /REASONING ONLY: No tools/);
+          assert.match(request.messages.find(m => m.role === "system")!.content, /REASONING ONLY: Only explicitly supplied read-only receipts establish retrieval or calculation/);
+          assert.match(request.messages.find(m => m.role === "system")!.content, /No commands, approvals, episodes, listings, orders, payments or other external actions are executed/);
           assert.match(request.messages.find(m => m.role === "system")!.content, /Repository health was not assessed/);
           assert.doesNotMatch(request.messages.find(m => m.role === "system")!.content, /Repository health score:/);
           return { content: "This is advice only; nothing was executed.", provider: "openai", model: "mock" };
