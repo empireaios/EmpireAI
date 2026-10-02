@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T01:30:48.194Z",
+  "updatedAt": "2026-10-02T01:48:12.365Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1616,10 +1616,10 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Owner submits prepared bounded Claude/Gemini consultation once; collect actual receipts/errors. Do not repeat without diagnosing outcome.",
-    "Read durable accounting and provider provenance; OpenAI current shared-router proof and remaining integration evidence as required within US$20 guard.",
-    "Complete desktop/mobile visual acceptance; owner cross-device history remains PASSED.",
-    "Resume frozen materially new unseen certification only after scoped integration plus bounded desktop interface gates pass. I1 remains consumed."
+    "Verify combined frontend1352d6b preview READY, owner production-environment rebuild (Vercelwrite unavailable/browserprotected). Do not promote superseded0801700.",
+    "Verify productionfrontend then deploy exact84ab891 to existing locked runtime through verified Railway path, preserve allvars/volumes/locks; no legacy work.",
+    "Reconcile existing failed request provider/cost evidence before any repeat; close truthful failure and visual desktop/phone gates. Do not ask owner to resend command.",
+    "Continue scoped integration only; full certification remainspaused, originalI1consumed preserved; no Birth/commerce or broadUX."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2477,7 +2477,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_INTEGRATION_AND_BOUNDED_DESKTOP_PILLOW_CLOSURE",
+  "currentPhase": "SCOPED_INTEGRATION_LIVE_FAILURE_REPAIR_AND_DESKTOP_OCCLUSION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2847,7 +2847,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "Send the exact prepared PROVIDER-CHECK-20261002-A message once in live authenticated Pillow Centre; return response/error without retrying. No credentials required."
+    "ownerAction": "Promote frontend1352d6b, deploymentdpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax using production-environment rebuild in existingempireai. PreserveBRAIN_API_URL andempire-ai.co. Do not resend providerprobe."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2860,12 +2860,12 @@
   },
   "liveIntegrationVerificationMatrix": {
     "openai": "Previously proven real; current shared-router path receipt still to verify as needed",
-    "claude": "Credential name present; real bounded call NOT DONE",
-    "gemini": "Corrected credential name present; real bounded call NOT DONE",
+    "claude": "Explicit owner probe attempted; no verified success. Existing request preserved; do not repeat.",
+    "gemini": "Explicit owner probe attempted; no verified success. Existing request preserved; do not repeat.",
     "routingFallbackConsultation": "Targeted offline tests pass; bounded live routing/explicit consultation receipts pending; do not deliberately cause uncontrolled provider errors",
     "history": "Owner actual phone/desktop same-account saved history PASSED. Existing offline two-session/childprocess proof preserved; broader live reasoning-context restart/rebind readback remains pending.",
-    "contextToolsLearningAnswer": "Offline tested; bounded actual runtime receipts/readback PENDING; no self-certification",
-    "accounting": "Original guard preserved; current ledger reconciliation still PENDING; no new paid calls",
+    "contextToolsLearningAnswer": "Answer-integrity live failure confirmed; targeted repair published84ab891. Runtime closure NOT passed.",
+    "accounting": "Original attempt cost unknown pending ledger; duplicate request ID rejected. No extra paid Work calls.",
     "authority": "NOT_BORN/LOCKED code and targeted denials preserved; live proof remains required",
     "certification": "PAUSED; I1 consumed preserved; no new unseen case exposed"
   },
@@ -2875,7 +2875,7 @@
     "branch": "fix/pillow-desktop-conversation-20261002",
     "parent": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
     "preview": "dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh",
-    "status": "PRODUCTION_READY_VISUAL_ACCEPTANCE_PENDING",
+    "status": "OWNER_REJECTED_LIVE_OCCLUSION_REPAIR_PUBLISHED",
     "scope": [
       "Desktop-only suppression of duplicate department/page headers on Pillow Centre",
       "Wider bounded conversation measure and aligned composer, desktop viewport sizing",
@@ -2900,13 +2900,68 @@
     },
     "paidInferenceCalls": 0,
     "report": "docs/mission-state/PILLOW_DESKTOP_CLOSURE_2026-10-02.md",
-    "productionDeployment": "dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS"
+    "productionDeployment": "dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS",
+    "ownerVisualAcceptance": "FAILED: screenshots prove sidebar covers message labels/numbers/composer. Previous build/typecheck not visual acceptance."
   },
   "providerLiveProbePreparation": {
-    "status": "PREPARED_NOT_SENT",
+    "status": "OWNER_SUBMITTED_FAILED_NOT_PROVIDER_SUCCESS",
     "marker": "PROVIDER-CHECK-20261002-A",
     "prompt": "/pillow-request {\"message\":\"Integration check PROVIDER-CHECK-20261002-A, not certification. Each consulted provider: give a brief response using the supplied read-only calculation receipt for 17.40 multiplied by 3. State the mission and authority status only if supported by the supplied runtime evidence; distinguish unknowns and historical records. Do not request additional tool calls or execute actions. Keep each response below 100 words.\",\"capability\":\"critique\",\"consultation\":{\"providers\":[\"anthropic\",\"gemini\"],\"justification\":\"Owner-authorized bounded verification of both newly configured inference providers and their independent provenance.\"},\"calculations\":[{\"operation\":\"multiply\",\"left\":\"17.40\",\"right\":\"3\"}]}",
     "paidInferenceCallsThisTurn": 0,
-    "expectedMechanism": "Explicit two-provider consultation; existing shared durable guard; no automatic triple fan-out. Response prose alone does not prove ledger/provenance."
+    "expectedMechanism": "Explicit two-provider consultation; existing shared durable guard; no automatic triple fan-out. Response prose alone does not prove ledger/provenance.",
+    "noResubmit": true
+  },
+  "providerLiveFailureCheckpoint": {
+    "at": "2026-10-02T01:46:17.960Z",
+    "marker": "PROVIDER-CHECK-20261002-A",
+    "classification": "B_IMPLEMENTATION_CONFIRMED_PROVIDER_OUTCOME_UNRESOLVED",
+    "ownerEvidence": "Owner screenshots show navigation occluding left conversation/composer/list numbers; pasted reply repeats request JSON, unsupported-verdict and stock commercial templates. Not provider success.",
+    "attachments": [
+      {
+        "fileId": "file_00000000f4448207aa96a2a2530eb038",
+        "libraryId": "libfile_8a7bd6d1f69c819181373c1629906bfc",
+        "sha256": "72cd0a3341394b6f8f9d8d57ab84bb275aef7810939f0e2efbc5cd7e3d4bcf85"
+      },
+      {
+        "fileId": "file_000000005da082079957cdf905201256",
+        "libraryId": "libfile_4531810165ec8191a057d53881a42f4c",
+        "sha256": "7d5f6e476b37feaf531f5bf6c692cd76bf55d1b3934d1c4e774485fe080cff42"
+      }
+    ],
+    "runtimeEvidence": {
+      "deployment": "718a74de-586d-4818-8904-a152414aa407",
+      "period": "2026-10-02T01:33:14Z–01:33:35Z",
+      "requestIds": [
+        "a175b14c-a626-4fa2-bf5e-fa79e0f0e7a8",
+        "9137d581-7a45-4577-8508-dc1bf5a05337",
+        "20378cb7-d78d-4e25-9714-af76ae692a72"
+      ],
+      "result": "degraded_useful / degraded_synthetic_live_strip",
+      "healthError": "UNIQUE constraint failed: inference_requests.id",
+      "interpretation": "Duplicate admission blocked by existing durable guard; original call outcome/cost not proven by this error. No additional paid probe authorized as evidence repetition."
+    },
+    "causes": [
+      "Sidebar maintains expanded=false independently of shell reading persisted collapse preference; fixed navigation can cover content.",
+      "Host passes raw JSON envelope into semantic task/answer contracts before parsing provider metadata.",
+      "Caught inference error becomes generic degraded advice; durable worker retries unrecognized inference failure, guard rejects duplicate ID."
+    ],
+    "repair": {
+      "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
+      "backendBranch": "fix/pillow-inference-failure-integrity-20261002",
+      "frontend": "1352d6b03990fff356d8b83942e457c80976bb12",
+      "frontendBranch": "fix/pillow-sidebar-viewport-20261002",
+      "preview": "dpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax",
+      "status": "FRONTEND_PREVIEW_READY_OWNER_PROMOTION_REQUIRED_BACKEND_DEPLOY_AFTER",
+      "changes": [
+        "One parent owns sidebar collapse and content offset; remove mismatched width transition.",
+        "Desktop-only viewport containment, same mobile base layout; brighter inset list numbers.",
+        "Parse owner envelope once before semantic gates, retain explicit capability/consultation plan.",
+        "Typed terminal INFERENCE_FAILED bypasses fabricated prose reconstruction; durable worker fails without another paid attempt."
+      ],
+      "tests": "Backend build PASS; 13 targeted host/worker tests PASS incl actual authenticated app mutation denials, new unrelated envelope intent and failed provider fixtures; frontend build PASS before allowlist-only update; nine display/parser tests PASS; exact combined preview pending. Combined frontend typecheck PASS. Exact combined Vercel preview build READY.",
+      "diffProof": "Host parent reconstructed by reversing narrow changes hashed to exact8dcc blob692683d78ed5901204b14dc8b7fa7b03a844816f.",
+      "previewState": "READY exact1352d6b independently verified"
+    },
+    "report": "docs/mission-state/PILLOW_LIVE_INTEGRATION_FAILURE_2026-10-02.md"
   }
 }
