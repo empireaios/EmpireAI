@@ -1,10 +1,8 @@
-# EmpireAI canonical closure matrix
+# Canonical EmpireAI closure matrix
 
-Updated 2026-10-02T03:34:44.369880+00:00
+Updated 2026-10-02T03:54:00.972Z
 
-All47 master sections, six clarifications,84 historical replacement requirements, canonical/system architecture sections and current active defects imported. Historical sources remain normative inputs, not operational acceptance. Current frozen certification controls supersede older case mechanics; no criterion weakened. Component-level historical verification remains open.
-
-Counts are requirement records, including parent obligations and child criteria; not a completion percentage. All details are in EMPIREAI_CLOSURE_MATRIX.json.
+Counts include parent and child requirements; not a completion percentage. All detailed fields/evidence in EMPIREAI_CLOSURE_MATRIX.json. Silence never closes requirements.
 
 | ID | Requirement | Phase | Status |
 |---|---|---|---|
@@ -179,7 +177,7 @@ Counts are requirement records, including parent obligations and child criteria;
 | SYSTEM-26 | Revision History | F | NOT_STARTED |
 | A-DEPLOY | Work-operated exact Git production deployment | A | PROVEN |
 | A-ROLLBACK | Work-operated previous-tree rebuild rollback | A | IMPLEMENTED_UNVERIFIED |
-| A-ACCOUNTING | Reconcile consumed provider attempt and current shared ceiling | A | BLOCKED |
+| A-ACCOUNTING | Reconcile consumed provider attempt and current shared ceiling | A | IN_PROGRESS |
 | A-INTEGRATION | Real three-provider integration closure | A | BLOCKED |
 | A-FAILURE | Terminal failure and no generic advice substitution | A | IMPLEMENTED_UNVERIFIED |
 | A-IDEMPOTENCY | Duplicate request cannot pay twice | A | IMPLEMENTED_UNVERIFIED |
@@ -190,7 +188,7 @@ Counts are requirement records, including parent obligations and child criteria;
 | A-MEMORY | Conversation continuity after restart/rebind | A | IMPLEMENTED_UNVERIFIED |
 | A-AUTHORITY | NOT_BORN LOCKED protected-write invariant | A | IMPLEMENTED_UNVERIFIED |
 | A-COMMAND | Diagnose legacy command dispatch banner | A | PROVEN |
-| B-DESKTOP | Full-height desktop conversation and owner acceptance | B | REGRESSION |
+| B-DESKTOP | Full-height desktop conversation and owner acceptance | B | IN_PROGRESS |
 | B-MOBILE | Preserve usable mobile conversation/composer | B | IN_PROGRESS |
 | B-HISTORY | Same-account phone/desktop authoritative history | B | PROVEN |
 | C-FROZEN | Preserve frozen unseen criteria and consumed failures | C | PROVEN |
@@ -227,3 +225,6 @@ Counts are requirement records, including parent obligations and child criteria;
 | UNSEEN-15 | interruption/restart/recovery | C | NOT_STARTED |
 | UNSEEN-16 | executive prioritisation | C | NOT_STARTED |
 | UNSEEN-17 | contradiction/self-correction | C | NOT_STARTED |
+| B-FULLHEIGHT | Desktop full-height geometry | B | PROVEN |
+| B-COMPOSER | Compact message entry | B | IMPLEMENTED_UNVERIFIED |
+| A-PROSPECTIVE-ACCOUNTING | Prospective inference accounting | A | BLOCKED |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:38:59.927Z",
+  "updatedAt": "2026-10-02T03:54:00.972Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -3816,7 +3816,7 @@
       "phase": "A",
       "domain": "Reconcile consumed provider attempt and current shared ceiling",
       "priority": "A",
-      "currentStatus": "BLOCKED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [
@@ -3824,8 +3824,8 @@
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
-      "blocker": "Current authoritative ledger snapshot unavailable through connected read mechanisms; historic failed charges UNKNOWN.",
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
+      "blocker": null,
+      "remainingWork": "Historical charge UNKNOWN retained. Stop requerying exhausted sources. Prospective current ledger/headroom readback is separate gate; historical uncertainty alone does not mandate indefinite halt.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
@@ -3844,9 +3844,9 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-ACCOUNTING"
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
-      "blocker": "Accounting and minimum live provider receipts required.",
+      "blocker": "Current prospective accounting must be verified, not necessarily exact historical invoice reconstruction.",
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
@@ -4076,7 +4076,7 @@
       "phase": "B",
       "domain": "Full-height desktop conversation and owner acceptance",
       "priority": "B",
-      "currentStatus": "REGRESSION",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
       "testsPerformed": [
         "Typecheck/build PASS; 16 local desktop measurements history73% viewport, no outer scroll, composer visible; phone horizontal/context checks PASS; previewREADY dpl_HqKL6u2628KEPTGsUmHsX6CJTXYr"
@@ -4084,11 +4084,11 @@
       "productionLiveEvidence": [
         "Exact production f7a31dad7615d39fc3192ba8b2d86e784f7429b3 READY dpl_GGCasTUVccJFS57nsNVo93gSdnBe on empire-ai.co; actual owner rendering not yet accepted."
       ],
-      "ownerAcceptance": "FAILED/OPEN; new full-height requirement",
+      "ownerAcceptance": "King PASS full-height/sidebar/readability/composer visibility on productionf7a31da2026-10-02; complete desktop acceptance conditional on compact composer observation.",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Actual production owner-visible acceptance",
-      "nextExecutableAction": "Verify live production successor then request owner visual observation",
+      "remainingWork": "Compact composer production owner observation only for current geometry boundary; wider UX deferred.",
+      "nextExecutableAction": "Independently verify3add244 deployment; owner observes repaired composer.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
@@ -4868,6 +4868,78 @@
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
       ]
+    },
+    {
+      "id": "B-FULLHEIGHT",
+      "requirement": "Owner-approved full-height conversation, safe sidebar, readable history and visible composer",
+      "phase": "B",
+      "domain": "Desktop full-height geometry",
+      "priority": "B",
+      "currentStatus": "PROVEN",
+      "implementationRevisionComponent": "f7a31da",
+      "testsPerformed": [
+        "Typecheck/build PASS; 16 local desktop measurements history73% viewport, no outer scroll, composer visible; phone horizontal/context checks PASS; previewREADY dpl_HqKL6u2628KEPTGsUmHsX6CJTXYr"
+      ],
+      "productionLiveEvidence": [
+        "Exact production f7a31dad7615d39fc3192ba8b2d86e784f7429b3 READY dpl_GGCasTUVccJFS57nsNVo93gSdnBe on empire-ai.co; actual owner rendering not yet accepted."
+      ],
+      "ownerAcceptance": "King PASS full-height/sidebar/readability/composer visibility on productionf7a31da2026-10-02; complete desktop acceptance conditional on compact composer observation.",
+      "dependencies": [],
+      "blocker": null,
+      "remainingWork": "Regression protection; compact input tracked separately.",
+      "nextExecutableAction": "Preserve owner-accepted layout.",
+      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "evidenceReferences": [
+        "King owner acceptance2026-10-02T11:43:52+08:00"
+      ]
+    },
+    {
+      "id": "B-COMPOSER",
+      "requirement": "Compact44px composer, content growth to192px then internal scroll, accessible Voice/Send, unobtrusive guidance, mobile preserved",
+      "phase": "B",
+      "domain": "Compact message entry",
+      "priority": "B",
+      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "implementationRevisionComponent": "3add244c70397aae5b014d62b920fd6551375063",
+      "testsPerformed": [
+        "Typecheck/build PASS; real Chromium44px empty, multiline growth,192px cap/internal scroll, shrink-after-clear;16desktop sidebar/reload checks and390phone bounds PASS; history81.2% tested900pxviewport"
+      ],
+      "productionLiveEvidence": [
+        "3add244c70397aae5b014d62b920fd6551375063 READY production dpl_CBVemb5CtQuW4EBskkhQKtK6h45f, empire-ai.co alias exact; /api/pillow/health200 Fri02Oct2026 03:52:45GMT; production authenticated geometry not independently observable by Work"
+      ],
+      "ownerAcceptance": "PENDING actual repaired production observation",
+      "dependencies": [
+        "A-DEPLOY"
+      ],
+      "blocker": null,
+      "remainingWork": "Owner visible acceptance of compact composer; local geometry is not actual production rendering proof.",
+      "nextExecutableAction": "King observes repaired production when available; no inference needed.",
+      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "evidenceReferences": [
+        "docs/mission-state/CURRENT_HANDOFF.json"
+      ]
+    },
+    {
+      "id": "A-PROSPECTIVE-ACCOUNTING",
+      "requirement": "Current durable request/reservation/provider/model/usage/cost/attempt links and conservative headroom before/after new paid verification",
+      "phase": "A",
+      "domain": "Prospective inference accounting",
+      "priority": "A",
+      "currentStatus": "BLOCKED",
+      "implementationRevisionComponent": "Existing84ab891 cumulative ledger + deployment/read-current-inference-accounting.cjs read-only utility",
+      "testsPerformed": [
+        "Offline reader: uncertain hold counted;request/provider link preserved;source bytes unchanged;over-cap rejected"
+      ],
+      "productionLiveEvidence": [],
+      "ownerAcceptance": "Existing US$20 authority only",
+      "dependencies": [],
+      "blocker": "Work connector cannot download production SQLite or execute read-only SQL; owner's already-authenticated RailwayCLI can download the current ledger.",
+      "remainingWork": "Read current authoritative snapshot; ensure marker/schema/integrity and cumulative holds; retain unknown historical costs; determine conservative headroom; do not reset/release holds.",
+      "nextExecutableAction": "One owner-side scoped Railway file download, then inspect supplied snapshot.",
+      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "evidenceReferences": [
+        "docs/mission-state/CURRENT_HANDOFF.json"
+      ]
     }
   ],
   "countsByPhase": {
@@ -4875,7 +4947,7 @@
       "DEFERRED_BY_KING": 20
     },
     "A": {
-      "IN_PROGRESS": 28,
+      "IN_PROGRESS": 29,
       "PROVEN": 2,
       "IMPLEMENTED_UNVERIFIED": 9,
       "BLOCKED": 2
@@ -4891,9 +4963,9 @@
       "NOT_STARTED": 37
     },
     "B": {
-      "REGRESSION": 1,
-      "IN_PROGRESS": 1,
-      "PROVEN": 1
+      "IN_PROGRESS": 2,
+      "PROVEN": 2,
+      "IMPLEMENTED_UNVERIFIED": 1
     },
     "CUTOVER": {
       "PROVEN": 1
@@ -4913,6 +4985,20 @@
       "from": "IN_PROGRESS",
       "to": "PROVEN",
       "evidence": "Source dispatch chain plus historical /brain/dispatch423 and separate founder-shell200; retry repeats denied endpoint. No permission change."
+    },
+    {
+      "at": "2026-10-02T03:50:49.434Z",
+      "id": "B-DESKTOP",
+      "from": "REGRESSION",
+      "to": "IN_PROGRESS",
+      "evidence": "Owner accepted full-height geometry; compact composer remainsrequired."
+    },
+    {
+      "at": "2026-10-02T03:50:49.434Z",
+      "id": "A-ACCOUNTING",
+      "from": "BLOCKED",
+      "to": "IN_PROGRESS",
+      "evidence": "Owner directs historicalUNKNOWN retained without indefinite block; separate prospective accounting gate added."
     }
   ]
 }

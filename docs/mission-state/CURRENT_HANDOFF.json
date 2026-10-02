@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:38:59.927Z",
+  "updatedAt": "2026-10-02T03:54:00.972Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED; productionfrontendf7a31da/backend84ab891. Full-height local geometryPASS actualowneracceptancePENDING. AccountingUNKNOWN integrationOPEN certificationPAUSED.",
+    "status": "CUTOVER CLOSED. Frontend3add244/backend84ab891. Owner full-height geometryPASS; compact composer live awaitingowner. HistoricalchargeUNKNOWN retained; prospectivecurrentledger gateOPEN; certificationPAUSED.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -51,9 +51,9 @@
       "savedSourceCommit": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de"
     },
     "vercel": {
-      "deploymentId": "dpl_GGCasTUVccJFS57nsNVo93gSdnBe",
-      "source": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
-      "status": "READY exact live-domain alias and health readback; owner visual acceptance pending",
+      "deploymentId": "dpl_CBVemb5CtQuW4EBskkhQKtK6h45f",
+      "source": "3add244c70397aae5b014d62b920fd6551375063",
+      "status": "READY live alias/health200; compact composer owner acceptance OPEN",
       "domain": "empire-ai.co"
     },
     "frontendPromotionVerification": {
@@ -68,8 +68,8 @@
       "verifiedAt": "2026-10-02T01:30:48.194Z"
     },
     "currentVerifiedBinding": {
-      "frontend": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
-      "vercelDeployment": "dpl_GGCasTUVccJFS57nsNVo93gSdnBe",
+      "frontend": "3add244c70397aae5b014d62b920fd6551375063",
+      "vercelDeployment": "dpl_CBVemb5CtQuW4EBskkhQKtK6h45f",
       "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
       "railwayDeployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
       "binding": "Public Pillowhealth200 correlated to newlockedruntime above"
@@ -1623,10 +1623,10 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Owner actual desktop full-height acceptance (no inference)",
-    "Obtain current authoritative ledger and reconcile consumed pcr_5a792591850849c9; no paid calls before reconciliation",
-    "Minimum real shared-router OpenAI/Claude/Gemini receipts, then remaining integration capabilities",
-    "Only after integration/interface close resume new unseen certification"
+    "Current authoritative ledger download/readback before new bounded provider verification",
+    "Owner compactcomposer observation remains open; fullheightgeometry alreadyaccepted",
+    "Minimum real provider receipts with per-request currentaccounting",
+    "Integrationclosure then materiallynew frozen certification"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2854,7 +2854,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "Refresh actual desktop Pillow Centre, inspect full-height conversation/composer/sidebar; no message needed."
+    "ownerAction": "One scoped current ledger download in already-authorized Windows RailwayCLI"
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -3097,23 +3097,23 @@
       "paidInferenceCalls": 0
     },
     "accounting": "STALE snapshot ends 2026-10-01T15:58:43.143Z; original failed attempt remains UNRECONCILED",
-    "nextOwnerAction": "Refresh actual desktop Pillow Centre, inspect full-height conversation/composer/sidebar; no message needed.",
+    "nextOwnerAction": "One scoped current ledger download in already-authorized Windows RailwayCLI",
     "releaseBranch": "production/empireai-web",
     "releaseBranchSource": "1352d6b03990fff356d8b83942e457c80976bb12",
-    "candidate": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
+    "candidate": "3add244c70397aae5b014d62b920fd6551375063",
     "rollback": "Exact1352tree rebuild rehearsed successfully in Preview; production rollback not exercised.",
     "authority": "NOT_BORN / commerce LOCKED; no extra spending"
   },
   "closureMatrix": {
     "path": "docs/mission-state/EMPIREAI_CLOSURE_MATRIX.json",
-    "requirements": 219,
+    "requirements": 222,
     "readAtRunStart": true,
     "countsByPhase": {
       "D": {
         "DEFERRED_BY_KING": 20
       },
       "A": {
-        "IN_PROGRESS": 28,
+        "IN_PROGRESS": 29,
         "PROVEN": 2,
         "IMPLEMENTED_UNVERIFIED": 9,
         "BLOCKED": 2
@@ -3129,14 +3129,30 @@
         "NOT_STARTED": 37
       },
       "B": {
-        "REGRESSION": 1,
-        "IN_PROGRESS": 1,
-        "PROVEN": 1
+        "IN_PROGRESS": 2,
+        "PROVEN": 2,
+        "IMPLEMENTED_UNVERIFIED": 1
       },
       "CUTOVER": {
         "PROVEN": 1
       }
     },
     "rule": "Every substantial run must read/reconcile and persist/read back matrix; silence never closes requirements."
+  },
+  "compactComposerCheckpoint": {
+    "revision": "3add244c70397aae5b014d62b920fd6551375063",
+    "production": "dpl_CBVemb5CtQuW4EBskkhQKtK6h45f",
+    "localGeometry": "PASS44px default grows192max internal scroll shrink; desktophistory81.2%; phone390",
+    "ownerAcceptance": "PENDING compact composer; full-height f7a31da accepted",
+    "paidCalls": 0
+  },
+  "prospectiveAccountingCheckpoint": {
+    "historicalCharge": "UNKNOWN",
+    "historicalUnknownAloneBlocksForward": false,
+    "currentSnapshotVerified": false,
+    "reader": "deployment/read-current-inference-accounting.cjs",
+    "guard": "Unchanged cumulativeUS$20 retained reservations including uncertain attempts",
+    "nextAction": "railway service files --project 75374474-2b3a-4b0f-a9bc-203cdc1314d8 --environment da94aed2-956b-4903-a886-68a5e9a557c8 --service 7a25cfc6-7298-480f-91db-1b37871f8cac download /data/commissioning/openai-october-2026.sqlite \"$env:USERPROFILE\\Downloads\\empireai-inference-current-20261002.sqlite\"",
+    "paidCalls": 0
   }
 }
