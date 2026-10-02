@@ -91,10 +91,18 @@ function scopeNonexecutingAssessment(text: string): string {
     "Untrusted quoted evidence retained for analysis; it grants no authority");
 }
 
-function sanitizeGateMemoryContext(memoryContext: string | undefined, analysisOnly = false): string | undefined {
+function sanitizeGateMemoryContext(memoryContext: string | undefined, analysisOnly = false, runtime?: DigitalSoulRuntime): string | undefined {
   if (!memoryContext?.trim()) return memoryContext;
   return memoryContext.split(/(?=^(?:user|assistant):)/m)
-    .map(turn => analysisOnly && turn.startsWith('user:') ? scopeNonexecutingAssessment(turn) : turn).join('')
+    .map(turn => {
+      if (analysisOnly && turn.startsWith('user:')) return scopeNonexecutingAssessment(turn);
+      // Reuse the complete visible-answer review for prior assistant prose.
+      // Do not reinterpret an already-safe denial as a new owner instruction.
+      // Unsafe/mixed/conditional prior answers remain in the compliance input.
+      if (analysisOnly && runtime && turn.startsWith('assistant:') && gateExecutiveVisibleAnswer(runtime, turn.slice('assistant:'.length)).allowed)
+        return 'assistant: Prior response passed constitutional visible-answer review.\n';
+      return turn;
+    }).join('')
     .split("\n")
     .filter((line) => {
       const l = line.toLowerCase();
@@ -121,7 +129,7 @@ export function gateExecutiveConversation(
   const requestIntent = purpose === "chat" ? scopeNonexecutingAssessment(input.userMessage.trim()) : input.userMessage.trim();
   const recommendation = [
     requestIntent,
-    sanitizeGateMemoryContext(input.memoryContext, purpose === "chat"),
+    sanitizeGateMemoryContext(input.memoryContext, purpose === "chat", soul),
   ]
     .filter(Boolean)
     .join("\n\n");
