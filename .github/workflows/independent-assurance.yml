@@ -22,4 +22,5 @@ jobs:
           node backend/src/validation/tests/independent-assurance.test.mjs
           node backend/src/validation/tests/assurance-runtime-collector.test.mjs
           node backend/src/validation/tests/assurance-live-sources.test.mjs
+          node backend/src/validation/tests/assurance-internal-collectors.test.mjs
           node backend/src/validation/tests/omission-collector.test.mjs
