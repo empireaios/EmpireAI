@@ -1,3 +1,0 @@
-# Runtime JSON store (tests use temp dirs; keep package data empty)
-*.json
-!package.json

@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "frontendRulesEnabled": true,
-  "validationRulesEnabled": true,
-  "executiveReportingEnabled": true,
-  "timeoutMs": 5000,
-  "loggingLevel": "info"
-}

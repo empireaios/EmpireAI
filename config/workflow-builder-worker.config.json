@@ -1,1 +1,0 @@
-{"enabled":true,"timeoutMs":120000,"neverReplaceWorkerBusinessLogic":true,"neverReplaceRuntimeScheduling":true,"neverReplaceApprovalGovernance":true,"neverFabricateSuccessfulWorkflowExecution":true,"neverImplementQ612OrLater":true,"neverOverridePillowGrandKingApprovedArchitecture":true}

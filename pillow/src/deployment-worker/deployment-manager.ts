@@ -1,1 +1,0 @@
-import type { DeploymentWorkerEngine } from "./engine.js"; export class DeploymentManager { constructor(private readonly engine:DeploymentWorkerEngine){} validateReadiness(input:{packageId:string;environment:"development"|"staging"|"production"}){return this.engine.validateReadiness(input)} }

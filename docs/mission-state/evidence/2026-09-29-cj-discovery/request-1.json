@@ -1,6 +1,0 @@
-{
-  "url": "https://developers.cjdropshipping.com/api2.0/v1/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc",
-  "method": "GET",
-  "body": null,
-  "pointsReserved": 50
-}
