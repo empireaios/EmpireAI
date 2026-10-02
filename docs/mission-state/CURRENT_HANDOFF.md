@@ -1,3 +1,11 @@
+# Owner clarifications accepted — 2026-10-02
+
+Six owner clarifications are appended verbatim to `OWNER_OPERATING_MANDATE_2026-10-02.txt`: omission auditing; independent audit evidence; reverification of material marketplace changes; King → ChatGPT → King decision → Pillow; owner presence not an operating dependency; automatic detailed supervision with concise owner reporting.
+
+The prior request for King to close a Work browser credential prompt is withdrawn: that interface is not available to him. Direct Vercel API reachability is now proven; the 403 is specifically missing authentication, not a network denial. Supported CLI authorization is being prepared. No deployment has occurred; preserved `a9358a2` remains the target candidate, and provider accounting remains unreconciled. No paid inference, Birth, commerce unlock, or added spending authority.
+
+---
+
 # Owner operating mandate — current priority, 2026-10-02
 
 The complete 47-section directive is preserved verbatim in `OWNER_OPERATING_MANDATE_2026-10-02.txt` (SHA-256 `defdc0f35c606733528387b445b6decf8075fd09bbb660124369146fada7373d`). It supersedes prior deferral of self-deployment automation. King must not be asked to manually promote `a9358a2`.

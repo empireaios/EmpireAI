@@ -1410,3 +1410,27 @@ No Birth.
 No commerce unlock.
 No increase in protected spending authority.
 Permanent supervised autonomy remains mandatory.
+
+==================================================
+OWNER CLARIFICATIONS — 2026-10-02
+==================================================
+
+1. INDEPENDENT ASSURANCE INCLUDES OMISSION AUDITING.
+Work must audit not only what Pillow did, but material actions/events Pillow should reasonably have detected or handled and did not. Examples include missed marketplace orders, stale supplier conditions, approaching deadlines, overdue reimbursements, unresolved exceptions and abandoned/stalled work.
+
+2. WORK'S AUDIT EVIDENCE MUST BE INDEPENDENT.
+Where technically possible, Work must obtain authoritative source evidence independently rather than allowing Pillow to choose the records/evidence used to audit Pillow. Pillow's evidence and explanation are inputs to the audit, not the sole audit universe.
+
+3. MARKETPLACE ASSURANCE CONTINUES THROUGH MATERIAL CHANGE.
+Material post-review changes to supplier, SKU/variant mapping, price, shipping/delivery promise, product claims, eligibility evidence or other economically/safety-relevant attributes require appropriate fresh verification. Previous approval/review must not silently transfer to a materially changed state.
+
+4. KING → CHATGPT → KING DECISION → PILLOW IS A FIRST-CLASS OWNER WORKFLOW.
+ChatGPT independently analyses/challenges Pillow and Work and drafts precise instructions; King reviews and makes/authorises the decision before it becomes authoritative for Pillow. This gives ChatGPT no independent protected authority.
+
+5. OWNER PRESENCE IS NOT AN OPERATING DEPENDENCY.
+Pillow, deterministic sentinels, transaction monitoring and scheduled Work assurance must continue while King is asleep, travelling, offline or not conducting the daily owner review.
+
+6. PERMANENT SUPERVISION MEANS MICROMANAGEMENT-GRADE CONTROLS WITHOUT KING PERSONALLY MICROMANAGING.
+Detailed supervision should be performed automatically/independently and surfaced to King as concise evidence, exceptions, disagreements, financial exposure and decisions requiring owner authority.
+
+Execution clarification: King has only his normal local Chrome browser; do not instruct him to operate an invisible Work/connected browser. Investigate supported access paths autonomously. If owner action is unavoidable, provide one precise owner-visible setup action, its location, and its success condition. Routine production deployment must be Work-operated. Preserve a9358a2 and continue safe independent Priority A work. No Birth, commerce unlock, or additional spending authority.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T02:25:55.963Z",
+  "updatedAt": "2026-10-02T02:33:26.372Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -3045,5 +3045,27 @@
       "rollbackProven": false
     },
     "futureSupervision": "No six-hour audit or dead-man coverage claimed active; implementation and proof required under Priority D."
+  },
+  "ownerOperatingMandateClarifications": {
+    "date": "2026-10-02",
+    "status": "ACCEPTED",
+    "source": "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt",
+    "clauses": [
+      "Omission auditing",
+      "Independent authoritative source evidence",
+      "Reverification after material marketplace changes",
+      "King → ChatGPT → King decision → Pillow; no independent protected ChatGPT authority",
+      "Owner presence is not an operating dependency",
+      "Automatic independent detailed supervision with concise owner exceptions"
+    ],
+    "browserCorrection": "King has only normal local Chrome; previous request to operate Work browser withdrawn.",
+    "deploymentInvestigation": {
+      "connectorWrite": "UNAVAILABLE",
+      "browser": "Work-side native credential observation block; not an owner-visible prompt",
+      "directApi": "REACHABLE; unauthenticated /v2/user returns missingToken 403",
+      "existingCliCredential": "ABSENT",
+      "next": "Supported Vercel CLI device authorization investigation; no token requested in chat"
+    },
+    "authority": "No Birth, commerce unlock, or additional spending."
   }
 }
