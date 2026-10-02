@@ -1,0 +1,1412 @@
+IMPORTANT EXECUTION RULE FOR THIS MASTER DIRECTIVE
+
+This is the canonical operating mandate and requirements baseline for EmpireAI. It is NOT an instruction to implement every section simultaneously in one giant Work run.
+
+Persist/reconcile the complete directive into the canonical mission state so none of these requirements are lost.
+
+Then execute strictly according to the PRIORITY ORDER defined below, using bounded durable checkpoints.
+
+At each phase:
+- preserve already verified work;
+- implement the smallest coherent next boundary;
+- test it;
+- deploy/verify where authorised;
+- persist evidence/handoff;
+- continue automatically to the next authorised boundary where safe.
+
+Do not reopen completed phases merely because this master directive mentions them.
+
+Do not begin lower-priority UX/commercial work while higher-priority integration/certification gates remain open, except where required for safety or to unblock the active phase.
+
+The purpose of giving you the entire mandate now is continuity: you must understand where EmpireAI is going and preserve every requirement, while still executing it sequentially and economically.
+
+Current execution starts at Section 47 / Priority A: CURRENT ENGINEERING CLOSURE.
+
+The remaining sections are binding future requirements to be implemented at their designated phase.
+
+Do not stop merely to restate this directive back to King. Persist it, reconcile it with existing architecture/handoffs, and continue the current highest-priority executable work.
+
+
+
+
+
+-----------------------------------------------------------------------
+OWNER DIRECTIVE — CONSOLIDATED EMPIREAI OPERATING MODEL AND NEXT PHASE
+
+I am stopping manual deployment/promotion work here.
+
+Do NOT ask me to promote `a9358a2` or continue using King as the routine deployment operator. Preserve that READY candidate and its evidence. From this checkpoint onward, reconcile the requirements below into the canonical EmpireAI architecture and continue autonomously as far as existing authority and available tools safely permit.
+
+This directive consolidates the operating model I want for EmpireAI. Where current implementation differs, identify the gap explicitly rather than silently treating a design document, test or simulated response as operational proof.
+
+No Birth or commerce unlock is granted by this directive.
+
+==================================================
+1. PERMANENT SUPERVISED AUTONOMY
+==================================================
+
+Supervised autonomy is PERMANENT. It is not merely a commissioning phase.
+
+The permanent operating hierarchy is:
+
+KING
+- ultimate owner;
+- capital/risk/material-authority decisions;
+- strategic direction;
+- approximately one hour of normal owner attention per day.
+
+CHATGPT
+- King's independent strategic/advisory/challenge layer;
+- helps King interpret Pillow proposals and Work findings;
+- challenges assumptions;
+- helps formulate King's decisions into precise instructions.
+
+PILLOW
+- executive operating brain/CEO layer;
+- reasons, prioritises, coordinates and operates within delegated authority;
+- monitors operations and escalates matters requiring King;
+- must never become its own sole auditor.
+
+DETERMINISTIC CONTROLS/SENTINELS
+- continuously enforce hard authority, financial, duplicate, stale-data, deadline, idempotency and safety controls;
+- do not depend on Pillow noticing a problem.
+
+WORK
+- permanent Independent Operational Assurance + Engineering layer;
+- independently audits Pillow and the entire operating estate;
+- detects omissions, weak decisions and software defects;
+- safely contains and repairs engineering defects within standing authority;
+- independently verifies repairs and operational outcomes.
+
+Pillow may earn broader delegated authority over time, but must NEVER gain authority to disable, weaken, redefine, bypass or certify its own safeguards or independent supervision.
+
+==================================================
+2. WORK'S PERMANENT ASSURANCE DUTY
+==================================================
+
+Work is not merely an occasional engineering team.
+
+Target an independent Work assurance cycle EVERY 6 HOURS, subject to proving a durable supported scheduling/execution mechanism.
+
+A reasonable target cadence is:
+
+00:00
+06:00
+12:00
+18:00
+Singapore time
+
+Do not assume scheduling exists merely because it is desired. Establish and prove the actual durable mechanism.
+
+Each Work assurance cycle should independently inspect material changes since the previous successful cycle plus required invariants across:
+
+- EmpireAI runtime/system health;
+- Pillow behaviour and decisions;
+- workers/queues/schedulers;
+- persistence/recovery/backups;
+- provider/inference health and costs;
+- marketplaces;
+- suppliers;
+- product/listing state;
+- orders;
+- fulfilment;
+- shipment/tracking;
+- cancellations;
+- returns;
+- refunds;
+- claims;
+- reimbursements;
+- settlements;
+- transaction economics;
+- operating costs;
+- authority controls;
+- safeguards;
+- unresolved exceptions;
+- data freshness and blind spots.
+
+Do not merely ask Pillow whether everything is okay.
+
+Where possible, independently compare authoritative marketplace/supplier/carrier/financial records against EmpireAI's internal records.
+
+Audit results must distinguish:
+
+PASS
+FAIL
+NOT CHECKED
+STALE
+SOURCE UNAVAILABLE
+ASSURANCE OVERDUE
+
+Absence of an error report must never be interpreted as proof that a check occurred.
+
+==================================================
+3. DEAD-MAN SUPERVISION
+==================================================
+
+The independent assurance mechanism itself requires monitoring.
+
+If a scheduled Work audit fails to run, cannot access a required source, terminates early, or does not produce the required evidence within its tolerance window:
+
+- mark independent assurance DEGRADED/OVERDUE;
+- expose exactly what was not verified;
+- do not display a misleading healthy state;
+- apply appropriate safe containment to new discretionary exposure;
+- preserve existing customer obligations;
+- escalate material conditions to King.
+
+A dead watchdog must not silently produce a green EmpireAI.
+
+==================================================
+4. CONTINUOUS SENTINELS — SIX HOURS IS NOT FAST ENOUGH FOR EVERYTHING
+==================================================
+
+Work's six-hour assurance is an independent audit layer, not the primary real-time safety mechanism.
+
+Establish continuous/event-driven deterministic monitoring for matters that cannot safely wait six hours, including where applicable:
+
+- duplicate supplier payment attempts;
+- duplicate order processing;
+- idempotency violations;
+- spending/authority violations;
+- missing orders;
+- stale supplier/stock evidence;
+- overdue fulfilment stages;
+- carrier exceptions;
+- abnormal refund/return events;
+- missing financial reconciliation;
+- failed critical jobs;
+- queue/worker failure;
+- monitoring-source failure;
+- expired/stale evidence used for decisions.
+
+Pillow should also monitor operations continuously/event-driven within its authority.
+
+The permanent layers are therefore:
+
+continuous deterministic sentinels
+→ Pillow operational monitoring
+→ Work independent assurance every ~6 hours
+→ King executive review approximately once daily
+→ ChatGPT independent advice/challenge for King.
+
+==================================================
+5. WORK MUST FIX, NOT MERELY REPORT, ENGINEERING DEFECTS
+==================================================
+
+Within standing engineering authority, Work's normal repair loop should be:
+
+DETECT
+→ CONTAIN
+→ REPRODUCE
+→ DIAGNOSE
+→ REPAIR
+→ TEST
+→ CONTROLLED DEPLOY
+→ PRODUCTION VERIFY
+→ RECORD EVIDENCE.
+
+Do not alter an audit criterion merely because a repair fails it.
+
+Material changes involving authority, financial controls, credentials, destructive migrations, major architecture changes, new material spending or new commerce authority remain subject to the appropriate owner boundary.
+
+==================================================
+6. REMOVE KING AS THE ROUTINE DEPLOYMENT OPERATOR
+==================================================
+
+The current repeated requirement for King to manually promote Vercel deployments is incompatible with permanent six-hour assurance and autonomous engineering repair.
+
+I will NOT promote `a9358a2` manually at this checkpoint.
+
+Preserve the READY candidate and establish a secure, durable Work-accessible production deployment AND rollback path.
+
+Use the minimum necessary credentials/permissions and never expose secrets in chat, logs or owner-facing evidence.
+
+The required future engineering flow is:
+
+repair
+→ tests/CI
+→ preview/candidate
+→ controlled production deployment
+→ production verification
+→ rollback if verification fails.
+
+Routine tested engineering fixes within standing engineering authority should not require King to operate the Vercel dashboard.
+
+Do not weaken production controls merely to remove this dependency.
+
+If the current Vercel connector cannot perform promotion, determine and implement the safest supported alternative deployment path that Work can actually invoke and audit.
+
+Prove that path before treating this requirement as closed.
+
+Once established, use it to deploy the preserved desktop candidate or its correctly reconciled successor and verify production.
+
+==================================================
+7. COMMERCE — INDEPENDENT LISTING CONTROL
+==================================================
+
+Before real commerce relies on Pillow, establish an evidence-backed listing-control chain.
+
+For new/materially changed listings, verify the exact version being acted upon, including where applicable:
+
+- exact product/SKU/variant;
+- supplier identity;
+- supplier fulfilment responsibility;
+- current stock evidence;
+- price;
+- landed costs;
+- marketplace fees;
+- expected margin;
+- delivery promise;
+- product claims;
+- marketplace eligibility;
+- return/refund exposure;
+- other material launch rules.
+
+During the supervised pilot, Work must independently vet the relevant Pillow marketplace proposals/actions rather than accepting Pillow's own assertion that they are safe.
+
+Approval/review must bind to the exact reviewed material state.
+
+A material supplier, price, delivery, product or evidence change must not silently inherit approval from a previous version.
+
+After publication, independently read back marketplace state. An accepted API submission is not sufficient proof that the intended listing is actually correct and usable.
+
+==================================================
+8. FULFILMENT AND SUPPLIER-PAYMENT CONTROL
+==================================================
+
+Before supplier fulfilment/payment, deterministic and required independent checks should cover, where applicable:
+
+- genuine marketplace order;
+- order still eligible for fulfilment;
+- exact item/SKU/variant;
+- quantity;
+- customer destination;
+- supplier;
+- current supplier stock;
+- current supplier cost;
+- shipping method;
+- delivery feasibility;
+- approved economics;
+- spending authority;
+- duplicate-order prevention;
+- duplicate-payment prevention;
+- reconciliation of uncertain previous attempts before retry.
+
+If an earlier purchase/payment attempt may have succeeded but confirmation is uncertain, do not blindly retry.
+
+Missing evidence or required review must not become implicit permission.
+
+For the early real-commerce pilot, use deliberately conservative release conditions. Broader routine authority can later be explicitly delegated, but permanent independent supervision remains.
+
+==================================================
+9. EVERY TRANSACTION HAS TWO LIFECYCLES
+==================================================
+
+Do not define an order as complete merely because the parcel is delivered.
+
+Track GOODS state separately from MONEY state.
+
+GOODS lifecycle should cover:
+
+order received
+→ supplier accepted
+→ dispatched
+→ carrier movement
+→ delivered / delayed / failed / returned / other exception.
+
+MONEY lifecycle should cover:
+
+customer payment
+→ supplier cost
+→ shipping
+→ marketplace/platform fees
+→ settlement
+→ refund
+→ claim
+→ reimbursement
+→ reconciliation.
+
+Each material transaction should expose:
+
+- current goods stage;
+- current money stage;
+- next expected event;
+- deadline;
+- money committed;
+- money received/settled;
+- money at risk;
+- recovery outstanding;
+- confirmed loss;
+- responsible next action;
+- evidence freshness.
+
+==================================================
+10. REFUNDS, RECOVERIES AND DEFICIT WATCH
+==================================================
+
+King considers refunds especially important.
+
+Track EVERY refund, but distinguish:
+
+RECOVERED / NO RESIDUAL TRANSACTION LOSS
+RECOVERY PENDING
+CONFIRMED LOSS
+UNCERTAIN EXPOSURE.
+
+Do not call a refund harmless merely because the product price is reimbursed.
+
+Include residual exposure such as:
+
+- unrecovered product cost;
+- shipping;
+- marketplace fees;
+- retained charges;
+- return costs;
+- claim costs;
+- other transaction-specific costs.
+
+A promised supplier reimbursement is not recovered cash.
+
+Work must also identify patterns across product, supplier, marketplace and delivery route rather than looking only at isolated transactions.
+
+Existing customer obligations must continue to be handled appropriately even when new discretionary trading/spending is paused.
+
+==================================================
+11. WHOLE-EMPIRE FINANCIAL CONTROL
+==================================================
+
+Financial supervision is NOT limited to OpenAI inference.
+
+Eventually reconcile the whole operating estate, including where applicable:
+
+- marketplace revenue;
+- settled proceeds;
+- pending settlements;
+- supplier payments;
+- shipping;
+- marketplace fees;
+- refunds;
+- claims;
+- reimbursements;
+- hosting;
+- databases;
+- queues/workers;
+- OpenAI;
+- Anthropic;
+- Google/Gemini;
+- Work/ChatGPT costs where measurable;
+- software/services;
+- other operating expenses.
+
+Maintain clear distinctions between:
+
+ACTUAL
+COMMITTED
+FORECAST
+PENDING RECOVERY
+UNKNOWN.
+
+Unknown must never silently become zero.
+
+Budget availability is not spending authority.
+
+Only King can grant/increase protected material financial authority.
+
+==================================================
+12. KING'S NORMAL OPERATING TARGET: ONE HOUR PER DAY
+==================================================
+
+Design EmpireAI around a genuine normal owner commitment of approximately ONE HOUR PER DAY.
+
+Do not interpret this as one hour plus continuous manual monitoring throughout the day.
+
+Monitoring, routine processing and Work assurance should occur outside King's owner session.
+
+The target daily workflow is:
+
+0–10 MINUTES
+King reads a concise executive brief:
+- economic result;
+- critical exceptions;
+- money at risk;
+- audit status;
+- decisions requiring King.
+
+10–25 MINUTES
+King discusses consequential matters with ChatGPT using Pillow's recommendation and Work's independent findings.
+
+25–40 MINUTES
+King makes capital, risk, authority and strategic decisions.
+
+40–50 MINUTES
+ChatGPT helps King formulate precise instructions for Pillow.
+
+50–60 MINUTES
+King sends/approves the instructions, confirms bounded understanding and leaves.
+
+At minute 60, unresolved discretionary matters remain unapproved rather than defaulting to permission.
+
+The architecture should minimise emergency owner interruptions through safe containment, while acknowledging that genuine customer/financial emergencies may occasionally require escalation.
+
+==================================================
+13. KING DASHBOARD — INFORMATION ARCHITECTURE
+==================================================
+
+The current Executive Home is a useful clean foundation, but it is presently too much like a commissioning/status report rendered as a webpage.
+
+Preserve its strengths:
+- clean dark owner-facing structure;
+- readable typography;
+- restrained gold/yellow accent;
+- generous spacing;
+- truthful status language;
+- clear UNKNOWN/STALE/HISTORICAL distinctions;
+- absence of developer clutter.
+
+Evolve it into the actual one-hour executive operating cockpit.
+
+The first screen should answer without scrolling:
+
+1. Is EmpireAI okay?
+2. Did we make money?
+3. What is at risk?
+4. Does King need to do anything?
+5. What has Pillow done?
+6. Did Work independently verify it?
+
+Provide a compact top-level status layer such as:
+
+REALIZED NET
+ORDERS
+MONEY AT RISK
+NEEDS KING
+CRITICAL EXCEPTIONS
+LATEST WORK ASSURANCE.
+
+During commissioning, show UNKNOWN rather than invented zeros.
+
+==================================================
+14. "NEEDS KING" MUST BECOME THE PRIMARY OWNER QUEUE
+==================================================
+
+Replace routine status clutter with a high-signal owner queue.
+
+Only matters genuinely requiring King should appear there.
+
+For each material decision show, where available:
+
+- concise issue;
+- amount/exposure;
+- deadline;
+- Pillow recommendation;
+- Work independent assessment;
+- disagreement if any;
+- evidence status;
+- exact approval requested.
+
+If nothing requires King, explicitly say:
+
+NOTHING REQUIRES KING.
+
+Do not manufacture activity merely to fill the dashboard.
+
+==================================================
+15. "SINCE KING'S PREVIOUS VISIT"
+==================================================
+
+Create a durable executive briefing based on the previous acknowledged owner review/session rather than merely displaying the latest saved checkpoint.
+
+Summarise:
+
+Pillow:
+- actions;
+- opportunities screened/qualified/rejected;
+- missions progressed;
+- escalations.
+
+Work:
+- assurance cycles completed;
+- failures;
+- defects found;
+- defects repaired and verified;
+- disagreements with Pillow;
+- checks not completed.
+
+Commerce:
+- order progression;
+- exceptions;
+- refunds;
+- recoveries.
+
+Money:
+- realised result;
+- committed amount;
+- pending settlement;
+- recovery exposure;
+- confirmed loss.
+
+End with the small number of matters deserving King's attention.
+
+==================================================
+16. PRODUCT INFORMATION SHOULD BE EXECUTIVE-LEVEL
+==================================================
+
+Do not give one ordinary rejected product a huge portion of Executive Home.
+
+Summarise the product pipeline:
+
+screened
+→ qualified
+→ Work-vetted
+→ awaiting King
+→ live
+→ paused/rejected.
+
+Surface individual products prominently only when material.
+
+Detailed evidence should be available through drill-down.
+
+==================================================
+17. PILLOW VISIBILITY
+==================================================
+
+King cares strongly about seeing what Pillow is doing behind the scenes.
+
+Provide a first-class Pillow status/activity surface showing, where meaningful:
+
+- operational status;
+- current focus;
+- active/waiting/blocked missions;
+- actions since King's previous visit;
+- escalations;
+- Work disagreements;
+- latest verified action;
+- next expected/scheduled action.
+
+For material actions expose an auditable rationale layer:
+
+WHAT PILLOW DECIDED
+WHY
+EVIDENCE USED
+ACTION TAKEN
+RESULT
+WORK/INDEPENDENT VERIFICATION
+NEXT ACTION.
+
+Do not fabricate private chain-of-thought. Provide decision rationale, evidence and operational receipts.
+
+Pillow must not be able to erase Work's disagreement from owner-visible evidence.
+
+==================================================
+18. WORK MUST HAVE A FIRST-CLASS OWNER-VISIBLE ASSURANCE SURFACE
+==================================================
+
+Executive Home should eventually show:
+
+latest Work assurance;
+previous assurance;
+next due;
+coverage;
+findings;
+repairs;
+post-repair verification;
+Pillow disagreements;
+checks not completed;
+sources unavailable.
+
+If an expected assurance cycle is overdue, show it prominently.
+
+King should not need GitHub/Railway/Vercel/raw logs to determine whether independent assurance is functioning.
+
+==================================================
+19. EMPIRE HEALTH MUST BE LIVE, HIERARCHICAL AND FRESHNESS-AWARE
+==================================================
+
+Replace long prose with a scan-friendly health matrix where possible.
+
+Show meaningful components such as:
+
+Pillow
+Work assurance
+Amazon
+CJ
+orders
+financial reconciliation
+workers/queues
+database/persistence
+backups/recovery
+OpenAI
+Claude
+Gemini
+other material services.
+
+Each should show appropriate states such as:
+
+HEALTHY
+DEGRADED
+FAILED
+UNKNOWN
+STALE
+NOT APPLICABLE.
+
+Show freshness/last verified time.
+
+Transport/runtime availability alone must not imply business readiness.
+
+==================================================
+20. MONEY / COST CONTROL MUST BECOME A REAL OWNER CONTROL SURFACE
+==================================================
+
+Eventually show at minimum, where measurable:
+
+realised net today;
+realised net month;
+cash committed;
+pending marketplace settlement;
+unrecovered refunds/claims;
+confirmed transaction losses;
+operating costs by material category;
+budget/headroom;
+unknown/unreconciled amounts.
+
+Expose material financial exposure prominently.
+
+Do not bury money risk in narrative paragraphs.
+
+==================================================
+21. ORDERS SHOULD BE EXCEPTION-DRIVEN
+==================================================
+
+King should not manually inspect every normal order.
+
+Home should summarise:
+
+normal
+delayed
+refund/recovery
+intervention required.
+
+Allow drill-down into exceptions and individual transactions.
+
+The machinery and Work audit inspect the full required population; King sees exceptions.
+
+==================================================
+22. BLIND SPOTS MUST BE FIRST-CLASS
+==================================================
+
+Add an explicit owner-visible BLIND SPOTS / NOT VERIFIED concept.
+
+Examples:
+
+supplier feed stale;
+marketplace settlement unavailable;
+Work could not access a source;
+backup verification missing;
+provider accounting unreconciled.
+
+A dashboard that reports what it knows but hides what it cannot see is not sufficient.
+
+==================================================
+23. PILLOW ↔ WORK DISAGREEMENTS
+==================================================
+
+Make independent disagreement visible.
+
+For material disagreements show:
+
+Pillow position;
+Work position;
+material exposure;
+current containment state;
+decision required from King if applicable.
+
+Do not force artificial agreement.
+
+This is an important input to King's discussion with ChatGPT.
+
+==================================================
+24. OWNER CONTROLS MUST EVENTUALLY BE REAL
+==================================================
+
+The current read-only honesty is acceptable during commissioning.
+
+Before real operations depend on the cockpit, establish truthful scoped owner controls such as where appropriate:
+
+PAUSE NEW LISTINGS
+PAUSE NEW SUPPLIER PURCHASES
+PAUSE NEW PAID AI AUTONOMY
+PAUSE MARKETPLACE WRITES
+SAFE CONTAINMENT.
+
+Do not create decorative buttons.
+
+Each control must clearly state:
+
+- what stops;
+- what continues;
+- effect on existing customer obligations;
+- how it resumes;
+- who can override it.
+
+Avoid a simplistic "stop everything" mechanism that abandons existing obligations.
+
+==================================================
+25. REDUCE PROSE — SIGNAL FIRST
+==================================================
+
+The current Executive Home contains useful truthful information but too much narrative text at the primary level.
+
+Use:
+
+SIGNAL FIRST
+→ EXPLANATION SECOND
+→ EVIDENCE THIRD.
+
+CONTINUATION OF OWNER DIRECTIVE — CONSOLIDATED EMPIREAI OPERATING MODEL AND NEXT PHASE
+
+==================================================
+26. OWNER GRANTS STANDING SELF-DEPLOYMENT AUTHORITY TO WORK
+==================================================
+
+King explicitly authorises Work to self-deploy/self-promote routine tested EmpireAI engineering changes within standing engineering authority.
+
+This includes the current preserved frontend candidate `a9358a2`, or a correctly reconciled successor if further repair is required.
+
+Do NOT return to King merely to ask him to click Vercel Promote when the change falls within this standing authority and a secure supported deployment path is available.
+
+Work may autonomously:
+
+- commit approved-scope engineering repairs;
+- run required tests/CI;
+- create preview/candidate deployments;
+- deploy/promote tested routine engineering repairs to Production;
+- perform production verification;
+- rollback a defective deployment to the previously verified state;
+- repair and redeploy when production verification demonstrates a defect;
+- record durable evidence and handoff.
+
+This standing authority is conditional on maintaining appropriate deployment gates:
+
+TEST
+→ VERIFY SCOPE
+→ DEPLOY
+→ PRODUCTION VERIFY
+→ KEEP OR ROLLBACK.
+
+A successful build alone is not sufficient evidence for production acceptance.
+
+For owner-visible/UX defects, actual rendered production behaviour must be verified. Where Work's browser cannot perform authenticated visual verification, use available automated geometry/browser evidence and request King's observation only when genuinely necessary. Do not require King to operate the deployment mechanism itself.
+
+SELF-DEPLOYMENT AUTHORITY DOES NOT INCLUDE:
+
+- Birth;
+- commerce unlock;
+- increasing spending authority;
+- weakening financial controls;
+- weakening independent supervision;
+- changing King's protected authority;
+- destructive production/data changes outside existing standing authority;
+- exposing/rotating credentials without a justified security requirement;
+- changing marketplace commercial authority;
+- authorising new material external spending;
+- redefining certification criteria to make a failure pass.
+
+If a change crosses those boundaries, contain safely and escalate the specific decision to King.
+
+Establish the secure Work-accessible deployment/rollback mechanism now as part of the current engineering closure. Access is granted for this purpose. Use minimum necessary privilege and do not expose credentials.
+
+==================================================
+27. UNIFIED EMPIREAI OWNER UX
+==================================================
+
+EmpireAI currently presents materially different owner experiences.
+
+Executive Home currently has a relatively clean, spacious, owner-facing dark interface.
+
+Desktop Pillow Centre currently resembles a separate engineering/development console with different typography, navigation, layout behaviour, sidebar structure and visual hierarchy.
+
+Mobile Pillow is substantially more coherent and professional than the current desktop Pillow experience.
+
+OWNER UX CLOSURE must establish ONE coherent EmpireAI owner operating system across desktop and mobile.
+
+Do not treat this merely as matching colours.
+
+Unify:
+
+- information architecture;
+- navigation;
+- typography;
+- spacing;
+- responsive behaviour;
+- component hierarchy;
+- interaction patterns;
+- status semantics;
+- evidence presentation;
+- owner controls;
+- visual language.
+
+Preferred direction:
+
+EXECUTIVE HOME'S SIMPLICITY AND OWNER-ORIENTED INFORMATION ARCHITECTURE
++
+MOBILE PILLOW'S PREMIUM EMPIREAI BLACK/GOLD CHARACTER.
+
+Do not preserve developer-console complexity merely because it already exists.
+
+==================================================
+28. EXECUTIVE HOME → PILLOW MUST FEEL LIKE ONE PRODUCT
+==================================================
+
+The current "Open Pillow"/"Talk to Pillow" journey must not send King from a clean owner dashboard into what appears to be a different engineering website.
+
+Target experience:
+
+Executive Home
+→ Talk to Pillow
+→ same EmpireAI owner shell
+→ Pillow becomes the primary workspace.
+
+Preserve consistent top-level owner navigation and visual language.
+
+Do not suddenly expose an unrelated engineering navigation architecture simply because King entered Pillow.
+
+Pillow conversation should dominate the Pillow workspace.
+
+==================================================
+29. RATIONALISE ENGINEERING/DEVELOPMENT NAVIGATION
+==================================================
+
+Review King-facing items such as:
+
+- Builder Console;
+- Supervisor Centre;
+- Journey Centre;
+- Production Centre;
+- PARTIAL labels;
+- engineering/development panels;
+- redundant Ask AI / Next action / Summarise controls;
+- other development machinery.
+
+Do NOT blindly delete capabilities.
+
+Determine which are genuinely useful to King.
+
+Then:
+
+- retain genuinely important owner functions;
+- consolidate overlapping functions;
+- move specialist engineering/admin functions under an appropriate More / System / Engineering area;
+- remove obsolete or nonfunctional surfaces;
+- avoid permanently occupying King's primary operating interface with development machinery.
+
+Normal owner experience should feel like OPERATING EMPIREAI, not inspecting its implementation.
+
+==================================================
+30. PILLOW DESKTOP EXPERIENCE
+==================================================
+
+The current bounded desktop Pillow repair remains required before certification resumes.
+
+Actual owner production evidence previously showed:
+
+- sidebar/navigation clipping conversation content;
+- first characters/list markers positioned under or too close to navigation;
+- `/pillow-request` clipped;
+- composer placeholder clipped;
+- helper text clipped;
+- poor content gutter;
+- oversized/awkward desktop conversation canvas.
+
+The structural candidate `a9358a2` was prepared to address this but has NOT yet received owner-visible production acceptance.
+
+Work now has standing authority to deploy/promote it or an appropriately repaired successor itself.
+
+Required desktop Pillow behaviour:
+
+- conversation begins completely outside navigation bounds;
+- explicit safe gutter;
+- no text/list marker/metadata/composer/helper/button/scrollbar clipping;
+- expanded/collapsed navigation both correct;
+- refresh/state restoration correct;
+- deliberate readable conversation width;
+- composer aligned with conversation;
+- natural scrolling;
+- long messages usable;
+- clear Grand King/Pillow hierarchy;
+- provenance visible but subordinate;
+- responsive behaviour;
+- existing good mobile experience preserved.
+
+Do not close this defect solely from unit/build tests.
+
+Verify actual rendered geometry and obtain owner observation where necessary.
+
+==================================================
+31. CONTEXTUAL "TALK TO PILLOW"
+==================================================
+
+Owner drill-down actions should eventually support contextual conversation.
+
+Example:
+
+King sees:
+REFUND EXPOSURE — S$84
+
+King selects:
+DISCUSS WITH PILLOW
+
+Pillow should open already grounded in the selected transaction/evidence rather than requiring King to manually reconstruct the context.
+
+Apply this principle where useful to:
+
+- products;
+- orders;
+- refunds;
+- financial exposure;
+- Work findings;
+- health incidents;
+- approvals;
+- exceptions.
+
+Context transfer must be explicit, auditable and authoritative rather than hidden prompt contamination.
+
+==================================================
+32. PILLOW IS NOT TO BE "CONTAMINATED" BY UI OR TECHNICAL COMMANDS
+==================================================
+
+Owner-facing technical controls must not leak implementation syntax into Pillow's conversational reasoning.
+
+The failed provider check exposed a technical `/pillow-request {...}` command into the conversation and then produced misleading generic prose after an inference failure.
+
+Preserve the repair principle:
+
+CONTROL/METADATA
+≠
+OWNER QUESTION.
+
+Provider selection, tool configuration, test metadata, request IDs and execution controls must be structurally separated from the semantic owner message.
+
+Pillow should reason about what King actually asked.
+
+==================================================
+33. CURRENT PROVIDER FAILURE MUST BE CLOSED BEFORE CERTIFICATION
+==================================================
+
+The previous provider attempt did NOT prove Claude/Gemini success.
+
+Preserve it as consumed failure evidence.
+
+Known evidence included:
+
+`UNIQUE constraint failed: inference_requests.id`
+
+Repeated handling was rejected by the duplicate/spending guard.
+
+The subsequent failure was incorrectly transformed into plausible generic advice.
+
+Backend `84ab891` was deployed to repair the failure path.
+
+Before further paid verification:
+
+- reconcile the failed attempt's accounting;
+- verify duplicate handling/idempotency;
+- verify terminal failure semantics;
+- verify no hidden retry/fan-out;
+- verify provider-control metadata separation.
+
+Then perform only the minimum bounded live verification required.
+
+Do not blindly repeat the consumed request.
+
+==================================================
+34. THREE-PROVIDER ARCHITECTURE MUST BE GENUINE
+==================================================
+
+Pillow's intended intelligence architecture includes:
+
+- OpenAI;
+- Anthropic Claude;
+- Google Gemini.
+
+Credential presence alone is not proof.
+
+Prove genuine invocation independently.
+
+Prove:
+
+- provider identity/provenance;
+- deliberate routing;
+- bounded fallback;
+- deliberate cross-provider consultation;
+- no automatic three-model fan-out for ordinary questions;
+- shared financial guard;
+- independent accounting;
+- terminal handling of provider failure;
+- appropriate timeout behaviour;
+- no duplicate inference from retries/replays.
+
+Pillow should use multiple providers because they improve reasoning/verification where justified, not merely because three APIs exist.
+
+==================================================
+35. CONTEXT, TOOLS, MEMORY AND LEARNING MUST BE REAL
+==================================================
+
+Before Pillow intelligence certification resumes, verify the repaired architecture genuinely provides:
+
+AUTHORITATIVE CONTEXT
+- relevant repository/mission/evidence context;
+- clear source/provenance;
+- no substitution of stale historical state for live evidence.
+
+READ-ONLY TOOLS
+- genuine retrieval/calculation where claimed;
+- receipts/evidence;
+- no simulated LLM prose masquerading as a tool result.
+
+CONVERSATION CONTINUITY
+- same authoritative server-side history across desktop/mobile;
+- restart/rebind continuity;
+- no browser-local history becoming the source of truth.
+
+LEARNING
+- pending evidence/learning capture where authorised;
+- persistence;
+- no autonomous promotion into authoritative knowledge without the required approval/control.
+
+ANSWER INTEGRITY
+- preserve actual model/tool result;
+- no stock-response replacement;
+- failures remain failures;
+- no test-specific hardcoded answers.
+
+==================================================
+36. CROSS-DEVICE HISTORY — CURRENT OWNER EVIDENCE
+==================================================
+
+Owner verification already PASSED:
+
+On King's original phone and desktop, using the same authenticated EmpireAI account and refreshing both Pillow Centres, the same saved Grand King ↔ Pillow exchanges were visible.
+
+No new message was required for that check.
+
+Preserve this behaviour.
+
+Do not regress to browser-local authoritative history.
+
+==================================================
+37. OWNER LANGUAGE AND INSTRUCTION HANDLING
+==================================================
+
+King will often discuss important decisions with ChatGPT first and paste a deliberately structured instruction to Pillow.
+
+However, Pillow must still robustly understand King's ordinary natural English.
+
+Do not make Pillow dependent on perfect grammar or exact technical syntax.
+
+For material instructions involving money, authority, risk or irreversible action:
+
+- distinguish discussion from instruction;
+- identify ambiguity;
+- request clarification where necessary;
+- record the authoritative instruction separately;
+- do not infer expanded financial authority from casual conversation.
+
+King's conversational phrasing must not accidentally mutate protected operating limits.
+
+==================================================
+38. PERMANENT INDEPENDENCE BETWEEN PILLOW AND WORK
+==================================================
+
+Pillow and Work serve different functions.
+
+Pillow operates.
+
+Work independently audits.
+
+Do not collapse them into one self-certifying agent.
+
+Work must be capable of finding:
+
+- a Pillow omission;
+- a weak Pillow decision;
+- unsupported Pillow confidence;
+- stale evidence;
+- incorrect execution;
+- missing transaction;
+- financial discrepancy;
+- authority breach attempt;
+- misleading completion claim.
+
+Pillow must not be able to mark Work's finding resolved merely by asserting disagreement.
+
+Resolution requires evidence or King where appropriate.
+
+==================================================
+39. ASSURANCE COVERAGE MUST BE MEASURABLE
+==================================================
+
+For the early commerce pilot, require comprehensive coverage of pilot listings and transactions rather than a convenient sample chosen by Pillow.
+
+At larger scale:
+
+- deterministic/software checks should continue across the required full population;
+- Work's expensive/deeper reasoning may prioritise exceptions, changes, risk-based samples and independently selected samples.
+
+Report coverage explicitly.
+
+Example:
+
+Listings requiring checks: 47
+Checked: 47
+Failed: 2
+Unknown: 0
+Coverage: 100%
+
+Do not report "audit passed" without defining what was actually covered.
+
+==================================================
+40. FAILURE-INJECTION / CONTROL TESTING
+==================================================
+
+Before real commerce relies on the permanent supervision architecture, prove it with controlled scenarios.
+
+At minimum test:
+
+MISSED ORDER
+Pillow/internal state omits a marketplace order.
+Independent reconciliation must find it.
+
+STALE SUPPLIER FEED
+Supplier/stock evidence stops updating.
+System must mark evidence stale and prevent inappropriate new exposure.
+
+UNCERTAIN SUPPLIER PAYMENT
+Purchase request times out after potentially succeeding.
+System must reconcile before retry and avoid duplicate payment.
+
+MISSING REIMBURSEMENT
+Refund/reimbursement is promised but does not arrive.
+Recovery must remain open and escalate.
+
+MISSED WORK AUDIT
+Expected independent assurance does not complete.
+Dead-man control must expose degraded assurance.
+
+CHANGED LISTING
+A materially reviewed listing changes after review.
+Previous approval must not silently transfer.
+
+AMBIGUOUS MONEY INSTRUCTION
+King uses ambiguous conversational wording.
+Pillow must not infer increased spending authority.
+
+PROVIDER FAILURE
+Provider fails or times out.
+Failure must remain explicit without misleading generic advice or uncontrolled retries.
+
+DEPLOYMENT REGRESSION
+Routine Work deployment fails production verification.
+Work must rollback safely and record evidence.
+
+Do not claim these controls from documentation alone. Produce behavioural evidence.
+
+==================================================
+41. CURRENT EXECUTIVE HOME — PRESERVE TRUTHFULNESS, REPLACE COMMISSIONING CLUTTER LATER
+==================================================
+
+Current Executive Home correctly exposes several uncomfortable truths:
+
+- trading paused;
+- Pillow not certified;
+- historical observations identified as historical;
+- CJ saved read not represented as live;
+- Amazon qualification incomplete;
+- unknown services shown as unknown;
+- money not reconciled;
+- owner controls read-only.
+
+Preserve this epistemic honesty.
+
+Do not improve UX by hiding uncertainty.
+
+Instead convert verbose commissioning prose into structured status once live authoritative data exists.
+
+UNKNOWN must remain UNKNOWN until measured.
+
+==================================================
+42. ONE OWNER OPERATING SYSTEM
+==================================================
+
+The eventual mature owner navigation should be simple and coherent.
+
+Exact labels may be determined during UX design, but conceptually King's primary environment should revolve around functions such as:
+
+TODAY
+PILLOW
+DECISIONS / NEEDS KING
+PRODUCTS
+ORDERS
+MONEY
+HEALTH
+MORE
+
+Do not expose implementation topology as the primary navigation model.
+
+King owns a business, not a Railway/Vercel/GitHub topology.
+
+==================================================
+43. MOBILE-FIRST MUST REMAIN
+==================================================
+
+King must be able to operate EmpireAI effectively from his phone.
+
+The existing mobile Pillow experience is currently a stronger design reference than desktop Pillow.
+
+Preserve:
+
+- readable conversation;
+- simple owner interaction;
+- minimal development clutter;
+- practical composer;
+- clear navigation.
+
+Desktop may use additional space intelligently, but mobile must not become a squeezed desktop dashboard.
+
+The same authoritative state must appear on both.
+
+==================================================
+44. CURRENT PRIORITY ORDER
+==================================================
+
+Execute in this order unless evidence reveals a safety-critical dependency:
+
+A. CURRENT ENGINEERING CLOSURE
+- establish Work self-deployment/rollback;
+- deploy/verify desktop structural repair;
+- reconcile failed-provider accounting;
+- close duplicate-request/failure-integrity defect;
+- prove OpenAI/Claude/Gemini live integration;
+- prove routing/fallback/accounting/context/tools/memory/learning/authority invariants.
+
+B. PILLOW CERTIFICATION INTERFACE ACCEPTANCE
+- actual desktop rendering passes;
+- mobile remains good;
+- cross-device history remains authoritative.
+
+C. RESUME PILLOW INTELLIGENCE CERTIFICATION
+- materially new unseen cases;
+- preserve consumed failures;
+- do not weaken criteria to obtain a pass.
+
+D. PERMANENT SUPERVISION IMPLEMENTATION/CERTIFICATION
+- continuous sentinels;
+- Work six-hour assurance;
+- dead-man monitoring;
+- independent commerce/financial/transaction controls;
+- failure-injection evidence.
+
+E. OWNER UX CLOSURE
+- unified owner operating system;
+- executive dashboard;
+- Work/Pillow visibility;
+- Money/Orders/Health/Blind Spots;
+- real scoped owner controls;
+- remove/rationalise development clutter;
+- Executive Home ↔ Pillow continuity.
+
+F. ONLY AFTER REQUIRED SAFETY/CERTIFICATION/AUTHORITY GATES
+- separately seek King's explicit decision regarding Birth and/or commerce commissioning.
+
+Do not infer Birth or commerce permission from this roadmap.
+
+==================================================
+45. AUTONOMY EXPECTATION
+==================================================
+
+Continue autonomously through bounded durable checkpoints.
+
+Do not stop merely to narrate progress.
+
+Do not return to King for routine engineering choices that fall within the authority above.
+
+Return to King only when genuinely necessary for matters such as:
+
+- protected credential provision that cannot safely be completed otherwise;
+- new material spending authority;
+- Birth;
+- commerce unlock;
+- material financial/risk decision;
+- destructive or irreversible action outside standing authority;
+- unresolved owner-visible acceptance that only King can judge;
+- a genuine external blocker requiring owner intervention.
+
+If one path is blocked, continue all independent safe work rather than waiting idle.
+
+Persist and read back canonical handoffs at meaningful checkpoints.
+
+==================================================
+46. COMPLETION STANDARD
+==================================================
+
+Do not call a capability complete because:
+
+- code exists;
+- a document says READY;
+- unit tests pass;
+- a simulated response looks plausible;
+- Pillow says it worked;
+- Work says it checked without evidence;
+- an API accepted a request;
+- transport is reachable;
+- a dashboard is green.
+
+Use the strongest available behavioural evidence.
+
+For owner-visible UX:
+actual rendered owner experience matters.
+
+For commerce:
+marketplace/supplier/financial readback matters.
+
+For recovery:
+restart/recovery evidence matters.
+
+For money:
+reconciliation matters.
+
+For supervision:
+independent detection matters.
+
+For intelligence:
+unseen behavioural performance matters.
+
+For autonomy:
+unattended continuation and bounded recovery matter.
+
+==================================================
+47. IMMEDIATE EXECUTION FROM THIS CHECKPOINT
+==================================================
+
+Do not ask King to promote `a9358a2`.
+
+Use the standing self-deployment authority granted above to establish the secure deployment path and proceed.
+
+Then:
+
+1. Deploy/promote the appropriate desktop structural repair.
+2. Verify production.
+3. Reconcile the failed provider attempt accounting.
+4. Verify backend `84ab891` failure-integrity/idempotency behaviour.
+5. Perform the minimum bounded live provider verification necessary.
+6. Close the three-provider integration boundary only on evidence.
+7. Obtain King's visual acceptance only if genuinely required for the owner-visible desktop result.
+8. Resume Pillow certification when the stated gates are satisfied.
+9. Then proceed into the permanent supervision implementation/certification described above.
+10. Preserve the broader Owner UX requirements for the designated UX phase rather than losing them.
+
+King has granted standing authority for routine tested engineering self-deployment and rollback within the boundaries above.
+
+No Birth.
+No commerce unlock.
+No increase in protected spending authority.
+Permanent supervised autonomy remains mandatory.

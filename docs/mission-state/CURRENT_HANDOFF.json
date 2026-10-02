@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T02:09:02.042Z",
+  "updatedAt": "2026-10-02T02:25:55.963Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -1623,10 +1623,11 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Owner promotes structuralfrontend a9358a2; independentlyverifyactualproductionrevision thenactualdesktopbothsidebarstatesandphoneregression. Geometrytestmustnotbereportedasrun.",
-    "Obtainexistingproductioninferenceledgerreadback/downloadwithoutinference; reconcileoriginalfailedproviderattempt,cost/reservations/provenance beforeanynewpaidverification.",
-    "Complete minimumrealprovider/integrationproofwithinsharedUS$20, nofanout/blindretries; backend84ab891alreadydeployed, donotduplicate.",
-    "Only afterintegrationANDactualdesktopacceptance close, resume frozennewunseencertification. PreserveI1andcurrentfailedprobe. Postintegrationdeploymentautomation/permanentsupervisionrequirementsdeferred."
+    "Establish secure supported Work-accessible production deployment and rollback, preserving production configuration and domain.",
+    "Deploy preserved a9358a2 or justified successor; actual expanded/collapsed desktop and mobile rendering verification.",
+    "Reconcile existing failed-provider ledger before further paid verification; verify 84ab891 failure behavior.",
+    "Complete minimum bounded provider/context/tool/memory/learning/authority evidence.",
+    "Close actual interface acceptance before materially new frozen certification cases."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2484,7 +2485,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "STRUCTURAL_DESKTOP_ACCEPTANCE_OPEN_INFERENCE_REPAIR_LIVE_ACCOUNTING_PENDING",
+  "currentPhase": "PRIORITY A — SCOPED INTEGRATION / SELF-DEPLOYMENT / DESKTOP REPAIR",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -3010,5 +3011,39 @@
     "permanentSupervisedAutonomy": "Architectural invariant. Deterministic sentinels; Pillowmonitoring; independentWorkassurance target6h; auditdeadman; King~1h/day; ChatGPTindependentadvice. Pillowneversoleauditor/own-safeguardcertifier.",
     "transactionAssurance": "Goods+money states, refunds/recoveries confirmed/pending/residualloss/uncertainexposure; deficitsmaterialexceptions; independentwholeEmpireAIcoverage and ownervisualization.",
     "authority": "No newBirth/commerce/spending/externalwriteauthority; deferredappropriatecheckpoint."
+  },
+  "ownerOperatingMandateCheckpoint": {
+    "status": "ACCEPTED_EXECUTION_IN_PROGRESS",
+    "source": "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt",
+    "sha256": "defdc0f35c606733528387b445b6decf8075fd09bbb660124369146fada7373d",
+    "sections": 47,
+    "verbatim": true,
+    "supersedes": "Prior deferral of Work-accessible production deployment/rollback. Do not request manual Vercel promotion.",
+    "priorityOrder": [
+      "A: secure Work deployment/rollback; structural desktop deploy/render verification; failed-provider accounting; bounded integration verification",
+      "B: actual desktop/mobile/shared-history acceptance",
+      "C: frozen unseen intelligence certification with new cases",
+      "D: permanent supervised autonomy implementation and behavioral verification",
+      "E: Owner UX Closure",
+      "F: separately authorized Birth/commerce gates"
+    ],
+    "standingAuthority": "Routine scoped tested engineering deployment and rollback only; no Birth, commerce unlock, spending increase, weakened controls or destructive unapproved changes.",
+    "preserved": [
+      "CUTOVER COMPLETE baseline 41b8979",
+      "Cross-device owner acceptance PASSED",
+      "Consumed I1 and failed provider attempt",
+      "US$20 shared ceiling",
+      "NOT_BORN / commerce LOCKED"
+    ],
+    "deploymentAccess": {
+      "status": "UNRESOLVED",
+      "productionFrontend": "1352d6b03990fff356d8b83942e457c80976bb12",
+      "readyCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
+      "connectorWrite": "UNAVAILABLE: deploy_to_vercel not returned by tools/list",
+      "cliInstalled": false,
+      "environmentTokenPresent": false,
+      "rollbackProven": false
+    },
+    "futureSupervision": "No six-hour audit or dead-man coverage claimed active; implementation and proof required under Priority D."
   }
 }

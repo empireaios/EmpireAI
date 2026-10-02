@@ -1,3 +1,15 @@
+# Owner operating mandate — current priority, 2026-10-02
+
+The complete 47-section directive is preserved verbatim in `OWNER_OPERATING_MANDATE_2026-10-02.txt` (SHA-256 `defdc0f35c606733528387b445b6decf8075fd09bbb660124369146fada7373d`). It supersedes prior deferral of self-deployment automation. King must not be asked to manually promote `a9358a2`.
+
+Priority A: establish and prove secure Work-operated production deployment/rollback; deploy the preserved structural desktop repair and verify actual rendering; reconcile the failed provider accounting before paid calls; close bounded integration evidence. Then desktop/mobile acceptance, frozen unseen certification, permanent supervision implementation, broader Owner UX Closure, and separately authorized Birth/commerce gates.
+
+Current production frontend independently remains `1352d6b`; candidate `a9358a2` is READY but not production. Backend `84ab891` remains the verified repair. Vercel read access works; deployment connector write remains UNAVAILABLE. Work CLI is not installed and VERCEL_TOKEN is absent from this process. No deployment/rollback mechanism is yet proven. Certification remains paused. CUTOVER remains COMPLETE; cross-device owner acceptance remains PASSED. NOT_BORN / commerce LOCKED and shared US$20 ceiling remain unchanged. No new paid inference.
+
+All future operating/UX requirements remain preserved in the full directive; no recurring assurance coverage is claimed active merely from this record.
+
+---
+
 # EmpireAI handoff — 2026-10-02T02:09:02.042Z
 
 CUTOVER COMPLETE/CLOSED baseline41b8979; legacy stopped/preserved. NOT_BORN / commerce LOCKED. Certification PAUSED. OriginalI1 and failedPROVIDER-CHECK-20261002-A consumed evidence preserved. Cross-devicehistoryownerPASS remainsclosed.
