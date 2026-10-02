@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:24:07.050Z",
+  "updatedAt": "2026-10-02T05:30:08.441Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -3849,22 +3849,24 @@
         "Historical OpenAI and Claude transport/usage independently proven by suppliedledger;Gemini temporary_refusal and failed_uncertain.",
         "Owner submitted LEDGER-VERIFIED-20261002-B exactlyonce and gotcompletedanswer. Correlated durablepcr_871cd1411e2449a7 and host43530ccd-e646-4039-8135-3e6b60c2fa81;traceprovideropenai,success,retryUsedfalse,degradedUsedfalse. Gemini attempted/fallback/model/reservationunresolved.",
         "B authoritative ledger proves summarization Gemini gemini-3.8-flash first failed_uncertain, OpenAI gpt-6.1-sol fallback usage_recorded. Exactly2 attempts/1 request. Host retry=false does not mean router fallback=false; degraded=false real completion. Gemini NOT PROVEN.",
-        "Owner exact Gemini project Free tier; model present;RPM1/5;~25.11KTPM used. Supports activity/model visibility, not exact request proof. Official API/schema review finds no proven parameter or tier defect."
+        "Owner exact Gemini project Free tier; model present;RPM1/5;~25.11KTPM used. Supports activity/model visibility, not exact request proof. Official API/schema review finds no proven parameter or tier defect.",
+        "C exact503UNAVAILABLE from Gemini3.8 Flash; OpenAI gpt6.1sol fallback succeeded; both attempts share requestkey; no triplefanout; route receipt and ledger independently read. Gemini success remains UNPROVEN."
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
         "A-PROSPECTIVE-ACCOUNTING"
       ],
-      "blocker": "Next unique diagnostic requires authenticated live owner session; Work browser credential protection remains. Gemini exact refusal/status not recoverable historically;9fa1332 ready for new diagnostic.",
-      "remainingWork": "Diagnose Gemini refusal from authoritative account/provider evidence; repair cause if required; then minimum new bounded successful invocation and remaining live integration criteria. Preserve consumed B and I1.",
-      "nextExecutableAction": "Owner submits unique GEMINI-DIAG-20261002-C once through authenticated Pillow Centre because Work browser observation is credential-protected. Then Work reads safe route receipt and ledger, no repeats.",
-      "lastVerifiedAt": "2026-10-02T05:24:07.050Z",
+      "blocker": "Gemini Google-side503UNAVAILABLE; successful invocation remains unproven. Live authenticated receipt access constrained separately; no billing cause established.",
+      "remainingWork": "Genuine Gemini success after justified future bounded verification, deliberate consultation live proof and remaining integration prerequisites. No C repeat.",
+      "nextExecutableAction": "Provider availability/backoff boundary, then bounded new test only when justified. Continue existing independent capability evidence; no billing experiment.",
+      "lastVerifiedAt": "2026-10-02T05:30:08.441Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
         "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json",
-        "docs/mission-state/GOOGLE_PROJECT_DIAGNOSIS_2026-10-02.md"
+        "docs/mission-state/GOOGLE_PROJECT_DIAGNOSIS_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -3891,7 +3893,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -3918,7 +3921,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -3927,7 +3931,7 @@
       "phase": "A",
       "domain": "Provider metadata separate from semantic owner request",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
@@ -3935,17 +3939,19 @@
         "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
       ],
       "productionLiveEvidence": [
-        "84ab891 runtime deployed; behavioral live closure still pending"
+        "84ab891 runtime deployed; behavioral live closure still pending",
+        "C: owner-submitted capability summarization reached durable router receipt; Gemini-first503 then OpenAI success; supplied note summarized verbatim as requested. Combined with exact published parser/engine regression evidence establishes provider-control metadata separation."
       ],
-      "ownerAcceptance": "Not granted unless explicitly recorded",
+      "ownerAcceptance": "Owner observed exact normal summary for unique C; matches semantic task, no control-envelope advice.",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Maintain regression coverage. Broader reasoning competence and terminal-failure criteria remain separate.",
+      "nextExecutableAction": "No repeat C; preserve exact envelope separation tests.",
+      "lastVerifiedAt": "2026-10-02T05:30:08.441Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -3997,7 +4003,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -4023,7 +4030,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -4049,7 +4057,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -4075,7 +4084,8 @@
       "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -4967,20 +4977,22 @@
       "productionLiveEvidence": [
         "Current snapshot consistent;two modern request IDs each join exactly one reservation;no duplicates;all holds retained. OpenAIUS$2.613787 ClaudeUS$0.418335 GeminiUS$0.309600.",
         "Post-B source SHA2564e955badbd5fd3e650d7683dfcc1ede18fb544bc2e575d0d3a4b70300942a0d6: one new request, two sequential provider reservations; all10 prior records unchanged. Total held4020427 microUSD, remaining15979573, estimates829363, releases0; invoices UNKNOWN.",
-        "9fa1332 deployment restart: private container readback2026-10-02T05:07:21.660Z independently read via Railway readContainerFileTool; same12 rows and amounts, no new inference."
+        "9fa1332 deployment restart: private container readback2026-10-02T05:07:21.660Z independently read via Railway readContainerFileTool; same12 rows and amounts, no new inference.",
+        "Post-C14records: prior12 unchanged, two new holds742250microUSD; total4762677, headroom15237323; estimates902084; uncertain1273043; releases0; invoicesUNKNOWN."
       ],
       "ownerAcceptance": "Existing US$20 authority only",
       "dependencies": [],
       "blocker": null,
       "remainingWork": "Maintain before/after readback for each future call. Invoice actuals remain UNKNOWN and all uncertain reservations retained. New safe refusal-code receipt needs next genuinely necessary live request; not needed to reconstruct B accounting.",
       "nextExecutableAction": "Use private operator readback after authorized future activity; do not repeat B.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "lastVerifiedAt": "2026-10-02T05:30:08.441Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
         "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json",
-        "docs/mission-state/POST_B_LIVE_OPERATOR_READBACK_2026-10-02.json"
+        "docs/mission-state/POST_B_LIVE_OPERATOR_READBACK_2026-10-02.json",
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
       ]
     },
     {
@@ -5020,8 +5032,8 @@
     },
     "A": {
       "IN_PROGRESS": 28,
-      "PROVEN": 4,
-      "IMPLEMENTED_UNVERIFIED": 9,
+      "PROVEN": 5,
+      "IMPLEMENTED_UNVERIFIED": 8,
       "BLOCKED": 1
     },
     "E": {
@@ -5127,6 +5139,14 @@
       "to": "PROVEN",
       "reason": "Exact post-B ledger reconciliation and same12 records retained after9fa1332 deployment; no extra inference.",
       "evidence": "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json"
+    },
+    {
+      "at": "2026-10-02T05:30:08.441Z",
+      "id": "A-METADATA",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Unique C live semantic answer plus actual capability route and prior exact parser/engine regressions prove metadata separation. Gemini503 is provider/infrastructure failure, not success. Other states retained.",
+      "evidence": "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
     }
   ],
   "currentRunDelta": {
@@ -5134,7 +5154,9 @@
     "toRecords": 223,
     "added": [],
     "removed": [],
-    "statusChanges": [],
-    "reason": "Owner Google project evidence and adapter/doc review narrow hypotheses but do not prove Gemini success or exact refusal. No status inflation."
+    "statusChanges": [
+      "A-METADATA IMPLEMENTED_UNVERIFIED→PROVEN"
+    ],
+    "reason": "Unique C live semantic answer plus actual capability route and prior exact parser/engine regressions prove metadata separation. Gemini503 is provider/infrastructure failure, not success. Other states retained."
   }
 }
