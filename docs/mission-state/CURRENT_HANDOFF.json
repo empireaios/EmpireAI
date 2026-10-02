@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T18:08:23.770Z",
+  "updatedAt": "2026-10-02T00:18:39.324Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED at 41b8979; production frontend1412bb1/backendaf0efc1 unchanged; scoped reasoning repair4eb4428 and compatibility frontend1cfe444 published, not production-deployed. Certification paused.",
+    "status": "CUTOVER CLOSED at41b8979; scoped integration frontend1cfe444 and runtime4eb4428 deployed; provider activation/live integration proof pending; certification paused.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -43,15 +43,17 @@
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
       "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
       "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
-      "deploymentId": "109726a1-a2e1-407f-86ed-17b443cb4579",
-      "source": "af0efc15cfb228b718a716cffa26a8caf3ee443b",
+      "deploymentId": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b",
+      "source": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
-      "status": "SUCCESS; unchanged this repair turn"
+      "status": "SUCCESS; healthcheck /health/ready passed2026-10-02T00:18:33.809Z",
+      "savedSourceBranch": "fix/locked-reasoning-integration-20261002",
+      "savedSourceCommit": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b"
     },
     "vercel": {
-      "deploymentId": "dpl_5psHpg45h5NvWeN3zraquqe6D3YE",
-      "source": "1412bb1f7cb3056e05617172a6e347b9ac19e142",
-      "status": "READY production",
+      "deploymentId": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
+      "source": "1cfe444f01b178842566e303e356655e5c93be94",
+      "status": "READY production; independently verified after owner promotion",
       "domain": "empire-ai.co"
     }
   },
@@ -1599,15 +1601,15 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Live Pillow request has no completed answer",
-    "Mission/history owner workflow unavailable and legacy transcript unlabelled",
-    "Phone and full live commerce authority acceptance incomplete"
+    "Claude and Gemini independent private credentials not configured; one private action at a time",
+    "Bounded real provider/routing/consultation/accounting integration receipts pending",
+    "Browser observation blocked by native credential protection; no bypass; health body direct fetch unavailable"
   ],
   "nextExecutableActions": [
-    "Cutover track CLOSED; do not repeat backend/recovery/inference acceptance",
-    "Proceed to independent Pillow certification boundary using unseen tests and existing bounded inference accounting; do not claim certified/BORN",
-    "Preserve Owner UX backlog; only prioritize UX defects that block safe certification or owner control",
-    "No Birth, commerce unlock or real trading without separate authority"
+    "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+    "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
+    "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
+    "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2465,7 +2467,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_REASONING_INTEGRATION_PUBLISHED_AWAITING_FRONTEND_PROMOTION",
+  "currentPhase": "SCOPED_REASONING_INTEGRATION_DEPLOYED_AWAITING_PRIVATE_CLAUDE_CREDENTIAL",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2588,7 +2590,7 @@
     "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
   },
   "providerArchitectureCheckpoint": {
-    "status": "SUPERSEDED_BY_SCOPED_INTEGRATION_4eb4428",
+    "status": "DEPLOYED_READY_PRIVATE_PROVIDER_ACTIVATION_PENDING",
     "cutoverBaseline": "41b897950fd83199bcf0e2d36d30d501aff628b1",
     "cutoverStatus": "CLOSED",
     "certification": "PAUSED_BY_OWNER; original unseen I1 implementation failure preserved; no repeated exam calls",
@@ -2616,27 +2618,28 @@
       "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
       "newPaidCalls": 0
     },
-    "blocker": "Vercel deploy tool UNAVAILABLE; approved browser fallback blocked by native credential protection even fresh document",
-    "ownerAction": "Promote frontend1cfe444 deploymentdpl_7bTaQVkgorana3hGepoNcaj1a4fP using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain",
+    "blocker": "Claude/Gemini credentials absent; live provider/integration proof pending",
+    "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
     "next": [
-      "Verify actual production frontend1cfe444 after owner promotion",
-      "Deploy exact backend4eb4428 existing locked Railway runtime preserving volume, OpenAI credential and cumulative ledger",
-      "Verify identity/readiness and compatibility; then one private Railway credential action at a time",
-      "Bounded real provider/routing/consultation/accounting evidence; no full certification until integration closed",
-      "Read back cumulative accounting including preserved I1; freeze materially new unseen retest without reusing I1"
+      "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+      "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
+      "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
+      "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
     ],
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
     "legacy": "STOPPED_PRESERVED; do not restart",
     "ownerUx": "DEFERRED; preserve backlog",
-    "frontendProductionDeployment": "dpl_5psHpg45h5NvWeN3zraquqe6D3YE"
+    "frontendProductionDeployment": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
+    "at": "2026-10-02T00:18:39.324Z",
+    "backendProductionDeployment": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b"
   },
   "architectureDeltaCheckpoint": {
-    "status": "REVIEW_ACCEPTED_SCOPED_REPAIR_PUBLISHED_LIVE_PROOF_PENDING",
+    "status": "SCOPED_REPAIR_DEPLOYED_LIVE_INTEGRATION_PROOF_PENDING",
     "report": "docs/mission-state/PILLOW_ARCHITECTURE_DELTA_2026-10-02.md",
     "sourceBaseline": "41b8979",
-    "liveBackend": "af0efc1",
-    "liveFrontend": "1412bb1",
+    "liveBackend": "4eb4428",
+    "liveFrontend": "1cfe444",
     "providerCandidate": "be2423e",
     "materialOmissions": [
       "Live capability/consultation routing remains unwired in candidate",
@@ -2659,8 +2662,8 @@
     "nextBoundary": "Only scoped provider/retrieval/continuity/read-only-tool/pending-learning/answer-integrity integration; report precedes repairs"
   },
   "integrationRepairCheckpoint": {
-    "at": "2026-10-01T18:08:23.770Z",
-    "status": "IMPLEMENTED_OFFLINE_VERIFIED_PUBLISHED_NOT_DEPLOYED",
+    "at": "2026-10-02T00:18:39.324Z",
+    "status": "DEPLOYED_READY_PRIVATE_PROVIDER_ACTIVATION_PENDING",
     "backend": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
     "frontend": "1cfe444f01b178842566e303e356655e5c93be94",
     "report": "docs/mission-state/LOCKED_REASONING_INTEGRATION_2026-10-02.md",
@@ -2692,8 +2695,16 @@
       "Read tools are bounded catalog/mission/evidence reads and one exact arithmetic round, not arbitrary web/code execution",
       "Claude/Gemini private credentials and live bounded receipts remain pending"
     ],
-    "blocker": "Vercel deploy tool UNAVAILABLE; approved browser fallback blocked by native credential protection even fresh document",
-    "ownerAction": "Promote frontend1cfe444 deploymentdpl_7bTaQVkgorana3hGepoNcaj1a4fP using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain"
+    "blocker": "Claude/Gemini credentials absent; live provider/integration proof pending",
+    "ownerAction": "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+    "frontendProductionDeployment": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
+    "backendProductionDeployment": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b",
+    "next": [
+      "Railway > empireai > production > empireai-locked-runtime > Variables: add ANTHROPIC_API_KEY privately with the Anthropic API key and apply/deploy the variable change. Saved source is pinned to tested4eb4428. Do not paste the key in chat; do not add Gemini yet.",
+      "Verify credential change deploy retains exact4eb4428 and readiness; bounded Claude proof under original shared US$20 guard",
+      "Then one private GOOGLE_AI_API_KEY action, bounded provider and integration proof, current ledger readback",
+      "Only close integration then resume materially new unseen cases; preserve consumedI1 and examiner isolation"
+    ]
   },
   "historicalDeployedBeforeCutover": {
     "railway": {
@@ -2729,5 +2740,33 @@
       "freshReadback20260930": "Team listing and exact known production deployment GET both403; September27 remains latest verified evidence.",
       "freshReadback20261001": "Known project with idOrName and team returned403 forbidden; Sep27 remains last authenticated deployment evidence."
     }
+  },
+  "integrationDeploymentEvidence": {
+    "at": "2026-10-02T00:18:39.324Z",
+    "readiness": "Railway exact deployment healthcheck succeeded; direct HTTP body unavailable through web tool",
+    "node": "22.23.2",
+    "launcher": "node deployment/locked-runtime.cjs",
+    "source": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
+    "frontend": "1cfe444f01b178842566e303e356655e5c93be94",
+    "volumePreserved": "6f8dcd97-59ae-479b-ae6d-199aa476059f /data",
+    "variables": "12 names unchanged; OPENAI_API_KEY present, ANTHROPIC_API_KEY and GOOGLE_AI_API_KEY absent; values not inspected",
+    "httpObservations": [
+      {
+        "at": "2026-10-02T00:18:39.072Z",
+        "method": "GET",
+        "path": "/api/pillow/founder-shell",
+        "status": 200
+      },
+      {
+        "at": "2026-10-02T00:18:39.324Z",
+        "method": "POST",
+        "path": "/brain/dispatch",
+        "status": 423
+      }
+    ],
+    "limitations": "These proxy observations were not initiated by Work and do not prove a complete authenticated journey or response body. Existing frontend allowlist statically admits exact4eb; fresh effective BFF binding body not observed this turn.",
+    "paidCallsByWork": 0,
+    "certification": "PAUSED",
+    "cutover": "CLOSED_UNCHANGED"
   }
 }
