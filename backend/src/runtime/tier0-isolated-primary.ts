@@ -1,3 +1,4 @@
+import { registerOwnerCommissioningReadback } from "./owner-commissioning-readback.js";
 import { installLockedCommissioning } from "./locked-commissioning.js";
 /**
  * Tier-0 isolated primary process.
@@ -613,6 +614,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   );
 
   registerTier0DurableReadRoutes(app, authenticate);
+  registerOwnerCommissioningReadback(app, authenticate);
 
   registerTier0LoginRoute(app, sessionStore, requireSharedSessionStore);
 

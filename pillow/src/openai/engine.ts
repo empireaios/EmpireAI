@@ -197,9 +197,11 @@ export class OpenAIIntegrationLayer {
         usage: results.reduce((sum,r)=>({promptTokens:sum.promptTokens+(r.usage?.promptTokens??0),completionTokens:sum.completionTokens+(r.usage?.completionTokens??0),totalTokens:sum.totalTokens+(r.usage?.totalTokens??0)}),{promptTokens:0,completionTokens:0,totalTokens:0})};
     } else response = await this.adapter.complete(llmRequest);
 
-    if (!plan.consultation && request.executeReadOnlyCalls && response.content.trim().startsWith('{')) {
+    if (response.content.includes('"readOnlyCalls"')) {
+      if (plan.consultation || !request.executeReadOnlyCalls) throw Error('Read-only tool protocol unavailable');
       let proposal: unknown;
-      try { proposal = JSON.parse(response.content); } catch { if (response.content.includes('"readOnlyCalls"')) throw Error('Malformed read-only tool protocol'); }
+      try { proposal = JSON.parse(response.content); } catch { throw Error('Malformed read-only tool protocol'); }
+      if (!proposal || typeof proposal !== 'object' || Array.isArray(proposal) || !('readOnlyCalls' in proposal)) throw Error('Read-only tool envelope refused');
       if (proposal && typeof proposal === 'object' && 'readOnlyCalls' in proposal) {
         if (Object.keys(proposal).some(key => key !== 'readOnlyCalls')) throw Error('Read-only tool envelope refused');
         const calls = (proposal as {readOnlyCalls:unknown}).readOnlyCalls;
