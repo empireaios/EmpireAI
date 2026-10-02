@@ -74,6 +74,7 @@ export function createBrainLLMAdapter(llmRouter: LLMRouter): IntelligencePlatfor
         provider: response.provider,
         model: response.model,
         content: response.content,
+        assistantPhase: response.assistantPhase,
         usage: response.usage,
         provenance: response.provenance,
       };

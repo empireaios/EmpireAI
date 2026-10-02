@@ -52,3 +52,22 @@ describe("reasoning-only completion cannot execute tools", () => {
     }), /Constitutional gate required/);
   });
 });
+
+it('rejects malformed tool protocol after one provider call without dispatch or follow-up',async()=>{
+ let calls=0,tools=0;
+ const adapter:BrainLLMAdapter={listAvailableProviders:()=>['openai'],complete:async()=>{calls++;return{provider:'openai',model:'mock',content:'{"readOnlyCalls":[]} extra text {"readOnlyCalls":[]}'};}};
+ await assert.rejects(new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate the supplied figures',workspaceId:'ws-isolated',correlationId:'malformed-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}}),/Malformed read-only tool protocol/);
+ assert.equal(calls,1);assert.equal(tools,0);
+});
+
+it('valid read-only calculation uses one receipt round and preserves commentary phase',async()=>{
+ let calls=0,tools=0;
+ const adapter:BrainLLMAdapter={listAvailableProviders:()=>['openai'],complete:async(request)=>{
+  calls++;
+  if(calls===1)return{provider:'openai',model:'mock',content:'{"readOnlyCalls":[{"name":"calculate","arguments":{"operation":"add","left":"2","right":"5"}}]}'};
+  assert.equal(request.messages.at(-2)?.phase,'commentary');
+  return{provider:'openai',model:'mock',content:'The supplied quantities total seven.'};
+ }};
+ const result=await new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Combine supplied quantities',workspaceId:'ws-isolated',correlationId:'valid-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[{value:'7',simulated:false}];}});
+ assert.equal(calls,2);assert.equal(tools,1);assert.equal(result.content,'The supplied quantities total seven.');
+});
