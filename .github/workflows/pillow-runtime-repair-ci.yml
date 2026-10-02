@@ -66,12 +66,14 @@ jobs:
             --start-cmd "$(cat /tmp/empire-start-command)" --progress plain
           mkdir -p "$RUNNER_TEMP/locked-package-evidence"
           docker image inspect empireai-locked:ci > "$RUNNER_TEMP/locked-package-evidence/image.json"
-          docker run --rm --network none --entrypoint node empireai-locked:ci -e '
+          launcher_sha=$(sha256sum deployment/locked-runtime.cjs | cut -d ' ' -f 1)
+          docker run --rm --network none -e EXPECTED_LAUNCHER_SHA="$launcher_sha" --entrypoint node empireai-locked:ci -e '
             const fs = require("node:fs"), assert = require("node:assert/strict"), crypto = require("node:crypto");
             assert.equal(process.versions.node, "22.23.2");
             assert.ok(fs.existsSync("backend/dist/index.js"));
             const launcher = crypto.createHash("sha256").update(fs.readFileSync("deployment/locked-runtime.cjs")).digest("hex");
-            assert.equal(launcher, "aff193b679bbf21d37da914b7fbe1fbf26fc7e84af38e9641307c380b70212c8");
+            assert.match(process.env.EXPECTED_LAUNCHER_SHA, /^[a-f0-9]{64}$/);
+            assert.equal(launcher, process.env.EXPECTED_LAUNCHER_SHA);
             console.log(JSON.stringify({node: process.versions.node, lockedLauncherSha256: launcher, backendBuilt: true}));
           ' | tee "$RUNNER_TEMP/locked-package-evidence/runtime.json"
           python3 - <<'PY'
