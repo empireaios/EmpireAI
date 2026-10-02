@@ -1,3 +1,4 @@
+import { COMMISSIONING_CEILING_MICRO_USD } from "../brain/llm/commissioning-inference-budget.js";
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
@@ -25,11 +26,11 @@ export function readCommissioningAccounting(filename: string) {
       if (row.estimated_micro_usd === null) estimateUnknown++; else estimated += Number(row.estimated_micro_usd);
       if (row.invoice_actual_micro_usd === null) invoiceUnknown++; else invoice += Number(row.invoice_actual_micro_usd);
     }
-    if (![held,estimated,invoice].every(Number.isSafeInteger) || held > 20_000_000) throw Error('Ledger ceiling invalid');
+    if (![held,estimated,invoice].every(Number.isSafeInteger) || held > COMMISSIONING_CEILING_MICRO_USD) throw Error('Ledger ceiling invalid');
     db.exec('COMMIT');
     return { schema: 'owner-commissioning-accounting-v1', observedAt: new Date().toISOString(), readOnly: true,
       recordCount: rows.length, recordDigestSha256: createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
-      ceilingMicroUsd: 20_000_000, heldMicroUsd: held, remainingMicroUsd: 20_000_000 - held,
+      ceilingMicroUsd: COMMISSIONING_CEILING_MICRO_USD, heldMicroUsd: held, remainingMicroUsd: COMMISSIONING_CEILING_MICRO_USD - held,
       recordedEstimateMicroUsd: estimated, estimateUnknownCount: estimateUnknown,
       invoiceActualMicroUsd: invoiceUnknown ? null : invoice, invoiceUnknownCount: invoiceUnknown,
       reservationReleased: false, inferenceCalls: 0 };

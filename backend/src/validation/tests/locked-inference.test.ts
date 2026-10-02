@@ -50,13 +50,13 @@ test('NOT_BORN inference is durable and never changes HTTP mutation authority',a
 test('cumulative ceiling survives a separate process; uncertainty and missing ledger fail closed',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'inference-ledger-')),file=path.join(root,'ledger.sqlite');
  try{
-  reserveInference(file,19_999_999,now);
+  reserveInference(file,39_999_999,now);
   const moduleUrl=new URL('../../brain/llm/locked-inference.ts',import.meta.url).href;
   const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {reserveInference} from ${JSON.stringify(moduleUrl)};try{reserveInference(${JSON.stringify(file)},2,${now});process.exit(3)}catch(e){if(!e.message.includes('budget exhausted'))throw e}`],{encoding:'utf8',cwd:new URL('../../../',import.meta.url)});
   assert.equal(child.status,0,child.stderr);assert.equal(read(file).length,1);
   reserveInference(file,1,now);assert.throws(()=>reserveInference(file,1,now),/budget exhausted/);
   assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-09')),/pricing/);
-  assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),20_000_000);
+  assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),40_000_000);
   fs.unlinkSync(file);assert.throws(()=>reserveInference(file,1,now),/missing/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
