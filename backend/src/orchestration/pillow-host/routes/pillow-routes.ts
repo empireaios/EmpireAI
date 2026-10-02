@@ -1,3 +1,4 @@
+import { productionReasoningState } from "../reasoning-state.js";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
@@ -39605,6 +39606,7 @@ export async function registerPillowRoutes(
         workspaceId: z.string().min(1).optional(),
         /** When true, never reuse a warm workspace session (certification / isolation). */
         forceNew: z.boolean().optional(),
+        historicalBrowserTurns: z.array(z.object({role:z.enum(['user','assistant']),content:z.string().max(16000),timestamp:z.string().datetime(),requestId:z.string().max(200).optional()})).max(200).optional(),
       })
       .parse(request.body ?? {});
 
@@ -39637,6 +39639,12 @@ export async function registerPillowRoutes(
 
     beginPillowSessionCreate();
     try {
+      if (body.historicalBrowserTurns?.length) {
+        if (Buffer.byteLength(JSON.stringify(body.historicalBrowserTurns)) > 256000) return reply.code(413).send({error:'Historical archive exceeds bound'});
+        const store=productionReasoningState();
+        if (!store) return reply.code(503).send({error:'Historical archive unavailable'});
+        store.archiveBrowserHistory(user.id,workspaceId,body.historicalBrowserTurns);
+      }
       const session = pillowHost.createSession(workspaceId, {
         forceNew: body.forceNew === true,
       });
@@ -39650,7 +39658,7 @@ export async function registerPillowRoutes(
           forceNew: body.forceNew === true,
         },
       });
-      return reply.code(201).send({ session });
+      return reply.code(201).send({ session, historicalArchiveAccepted: Boolean(body.historicalBrowserTurns?.length) });
     } catch (error) {
       if (error instanceof PillowHostNotRunningError) {
         return reply.code(503).send({ error: error.message, health: pillowHost.getHealth() });
@@ -39714,6 +39722,8 @@ export async function registerPillowRoutes(
       sessionId: session.sessionId,
       workspaceId: session.workspaceId,
       history: session.conversationHistory,
+      historySource: 'server_persisted_transcript',
+      historicalArchive: productionReasoningState()?.browserHistory(user.id,workspaceId) ?? [],
       tokenUsage: session.tokenUsage,
       repositoryFingerprint: session.repositoryFingerprint,
       currentMission: session.currentMission,

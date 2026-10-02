@@ -16,6 +16,8 @@ export class ReasoningState {
     try {
       db.exec(`PRAGMA trusted_schema=OFF; PRAGMA journal_mode=DELETE; PRAGMA synchronous=EXTRA;
         CREATE TABLE IF NOT EXISTS transcripts(workspace TEXT NOT NULL, session TEXT NOT NULL, updated TEXT NOT NULL, turns TEXT NOT NULL, PRIMARY KEY(workspace,session)) STRICT;
+        CREATE TABLE IF NOT EXISTS browser_history(owner TEXT NOT NULL, workspace TEXT NOT NULL, id TEXT NOT NULL, recorded TEXT NOT NULL, turn TEXT NOT NULL, PRIMARY KEY(owner,workspace,id)) STRICT;
+        CREATE TABLE IF NOT EXISTS canonical_conversations(workspace TEXT PRIMARY KEY, session TEXT NOT NULL) STRICT;
         CREATE TABLE IF NOT EXISTS pending_learning(id TEXT PRIMARY KEY, workspace TEXT NOT NULL, session TEXT NOT NULL, request TEXT NOT NULL, created TEXT NOT NULL, evidence TEXT NOT NULL, status TEXT NOT NULL CHECK(status='pending_owner_review')) STRICT;`);
       if (db.prepare('PRAGMA quick_check').get()?.quick_check !== 'ok') throw Error('Reasoning store integrity refused');
       return run(db);
@@ -31,6 +33,42 @@ export class ReasoningState {
       turns.unshift({role:turn.role,content:turn.content,timestamp:turn.timestamp,requestId:turn.requestId,provider:turn.provider});
     }
     this.use(db => {db.prepare('INSERT INTO transcripts VALUES(?,?,?,?) ON CONFLICT(workspace,session) DO UPDATE SET updated=excluded.updated, turns=excluded.turns').run(session.workspaceId,session.sessionId,new Date().toISOString(),JSON.stringify(turns));});
+  }
+  /** Historical UI records only. Never loaded into reasoning or authority state. */
+  archiveBrowserHistory(owner: string, workspace: string, turns: Array<{role: 'user'|'assistant'; content: string; timestamp: string; requestId?: string}>): void {
+    if (turns.length > 200 || Buffer.byteLength(JSON.stringify(turns)) > 256000) throw Error('Historical archive exceeds bound');
+    this.use(db => {
+      db.exec('BEGIN IMMEDIATE');
+      try {
+        for (const turn of turns) {
+          const id=createHash('sha256').update(JSON.stringify([turn.role,turn.content,turn.timestamp,turn.requestId??null])).digest('hex');
+          db.prepare('INSERT OR IGNORE INTO browser_history VALUES(?,?,?,?,?)').run(owner,workspace,id,turn.timestamp,JSON.stringify({...turn,source:'historical_browser_cache',verified:false,grantsAuthority:false}));
+        }
+        if (Number(db.prepare('SELECT count(*) AS n FROM browser_history WHERE owner=? AND workspace=?').get(owner,workspace)?.n) > 5000) throw Error('Historical archive capacity reached');
+        db.exec('COMMIT');
+      } catch(error) {db.exec('ROLLBACK');throw error;}
+    });
+  }
+  browserHistory(owner: string, workspace: string): Array<Record<string,unknown>> {
+    return this.use(db=>db.prepare('SELECT id,turn FROM browser_history WHERE owner=? AND workspace=? ORDER BY recorded,id LIMIT 200').all(owner,workspace).map(row=>({id:String(row.id),...JSON.parse(String(row.turn))})));
+  }
+  /** Atomically bind ordinary devices to one durable conversation. Isolated tests never bind here. */
+  canonical(workspace: string, candidate: string): string {
+    return this.use(db => {
+      db.exec('BEGIN IMMEDIATE');
+      try {
+        const old = db.prepare('SELECT session FROM canonical_conversations WHERE workspace=?').get(workspace);
+        if (!old) {
+          const prior = db.prepare('SELECT session FROM transcripts WHERE workspace=? ORDER BY updated DESC, session LIMIT 1').get(workspace);
+          const id = String(prior?.session ?? candidate);
+          db.prepare('INSERT INTO canonical_conversations VALUES(?,?)').run(workspace,id);
+          db.prepare('INSERT OR IGNORE INTO transcripts VALUES(?,?,?,?)').run(workspace,id,new Date().toISOString(),'[]');
+        }
+        const id = String(db.prepare('SELECT session FROM canonical_conversations WHERE workspace=?').get(workspace)!.session);
+        db.exec('COMMIT');
+        return id;
+      } catch (error) { db.exec('ROLLBACK'); throw error; }
+    });
   }
   latest(workspace:string, maxAgeMs:number): string | null {
     return this.use(db => {

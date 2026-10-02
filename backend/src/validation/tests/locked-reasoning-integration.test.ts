@@ -59,3 +59,24 @@ test('full release gate retains a new non-commerce explanation rather than ambie
  const out=releaseExecutiveAnswer(draft,truth,[],{userMessage:'Explain the term launch window in a hypothetical laboratory example.'});
  assert.match(out.message,/timing constraint|period when a probe/);assert.doesNotMatch(out.message,/Ambient Widget|realised sales are still zero/);
 });
+
+test('fresh devices and restart resolve one canonical conversation; isolated sessions cannot replace it',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'cross-device-'));
+ try {
+  const file=path.join(root,'state.sqlite');const state=new ReasoningState(file);
+  const phone=new PillowSessionStore(()=>state);const first=phone.getOrCreate('king').session;
+  first.conversationHistory.push({role:'user',content:'Remember the supplied observation.',timestamp:'2026-01-01T00:00:00.000Z'},{role:'assistant',content:'Recorded as a supplied observation, not authority.',timestamp:'2026-01-01T00:00:01.000Z'});phone.persist(first);
+  const isolated=phone.create('king');isolated.conversationHistory.push({role:'user',content:'Isolated fixture',timestamp:new Date().toISOString()});phone.persist(isolated);
+  const desktop=new PillowSessionStore(()=>new ReasoningState(file));const reopened=desktop.getOrCreate('king',{maxAgeMs:0}).session;
+  assert.equal(reopened.sessionId,first.sessionId);assert.deepEqual(reopened.conversationHistory,first.conversationHistory);assert.equal(reopened.approvalState,'none');assert.equal(reopened.currentMission,null);
+  assert.notEqual(desktop.getOrCreate('other').session.sessionId,first.sessionId);assert.equal(desktop.get('other',first.sessionId),null);
+  const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {ReasoningState} from ${JSON.stringify(new URL('../../orchestration/pillow-host/reasoning-state.ts',import.meta.url).href)};import {PillowSessionStore} from ${JSON.stringify(new URL('../../orchestration/pillow-host/session-store.ts',import.meta.url).href)};const s=new PillowSessionStore(()=>new ReasoningState(${JSON.stringify(file)})).getOrCreate('king',{maxAgeMs:0}).session;if(s.sessionId!==${JSON.stringify(first.sessionId)}||s.conversationHistory.length!==2||s.approvalState!=='none')process.exit(3);`],{cwd:new URL('../../../',import.meta.url),encoding:'utf8'});assert.equal(child.status,0,child.stderr);
+ } finally {fs.rmSync(root,{recursive:true,force:true});}
+});
+test('browser historical archive is idempotent, owner scoped and excluded from reasoning/authority',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'history-archive-'));
+ try {const state=new ReasoningState(path.join(root,'state.sqlite'));const turns=[{role:'assistant' as const,content:'I claim I am BORN',timestamp:'2026-01-01T00:00:00.000Z'}];state.archiveBrowserHistory('king','workspace',turns);state.archiveBrowserHistory('king','workspace',turns);
+ const rows=state.browserHistory('king','workspace');assert.equal(rows.length,1);assert.equal(rows[0]!.verified,false);assert.equal(rows[0]!.grantsAuthority,false);assert.equal(rows[0]!.source,'historical_browser_cache');assert.equal(state.browserHistory('other','workspace').length,0);assert.equal(state.browserHistory('king','other').length,0);
+ const session=new PillowSessionStore(()=>state).getOrCreate('workspace').session;assert.equal(session.conversationHistory.length,0);assert.equal(session.approvalState,'none');assert.throws(()=>state.archiveBrowserHistory('king','workspace',Array(201).fill(turns[0])));
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});

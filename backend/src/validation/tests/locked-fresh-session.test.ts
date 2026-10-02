@@ -14,6 +14,11 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
   const previous = process.env.EMPIRE_RUNTIME_PROFILE;
   process.env.EMPIRE_RUNTIME_PROFILE = 'LOCKED_COMMISSIONING_V1';
   process.env.EMPIRE_ENGINEERING_TEST_MODE = 'true';
+  const historyRoot=fs.mkdtempSync(path.join(os.tmpdir(),'authenticated-history-'));
+  fs.mkdirSync(path.join(historyRoot,'commissioning'));
+  const originalMount=process.env.RAILWAY_VOLUME_MOUNT_PATH,originalPath=process.env.DATABASE_PATH;
+  process.env.RAILWAY_VOLUME_MOUNT_PATH=historyRoot;
+  process.env.DATABASE_PATH=path.join(historyRoot,'commissioning','empireai-brain.db');
   const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: true, earlyListen: true });
   try {
     const create = (cookie?: string, workspaceId?: string) => empire.app.inject({
@@ -32,6 +37,15 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
     assert.ok(sessionId);
     const history = await empire.app.inject({ method: 'GET', url: `/api/pillow/history?sessionId=${encodeURIComponent(sessionId)}`, headers: { cookie } });
     assert.equal(history.statusCode, 200, history.body);
+    const phone = await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie},payload:{historicalBrowserTurns:[{role:'assistant',content:'Historical device statement, not verified inference',timestamp:'2026-01-01T00:00:00.000Z'}]}});
+    assert.equal(phone.statusCode,201,phone.body);assert.equal(phone.json().historicalArchiveAccepted,true);
+    const desktopLogin=await empire.app.inject({method:'POST',url:'/auth/login',payload:{email:env.FOUNDER_EMAIL,password:env.FOUNDER_PASSWORD}});
+    const desktopCookie=String(desktopLogin.headers['set-cookie']);
+    const desktop=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:desktopCookie},payload:{}});
+    assert.equal(desktop.statusCode,201,desktop.body);assert.equal(desktop.json().session.sessionId,phone.json().session.sessionId);
+    const shared=await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${desktop.json().session.sessionId}`,headers:{cookie:desktopCookie}});
+    assert.equal(shared.statusCode,200);assert.equal(shared.json().historicalArchive.length,1);assert.equal(shared.json().historicalArchive[0].verified,false);assert.equal(shared.json().history.length,0);
+    assert.equal((await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${desktop.json().session.sessionId}`})).statusCode,401);
     for (const url of ['/pillow-commissioning/birth/authorise', '/api/pillow/mission-runtime/execute', '/brain/dispatch', '/marketplace-publishing/execute', '/amazon/inventory', '/amazon/price', '/live-cj-fulfillment/submit-live', '/payments', '/fulfilment', '/providers/write']) {
       const denied = await empire.app.inject({ method: 'POST', url, headers: { cookie }, payload: { approved: true, force: true } });
       assert.equal(denied.statusCode, 423, url);
@@ -69,6 +83,9 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
 
   } finally {
     await empire.shutdown();
+    if(originalPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=originalPath;
+    if(originalMount===undefined)delete process.env.RAILWAY_VOLUME_MOUNT_PATH;else process.env.RAILWAY_VOLUME_MOUNT_PATH=originalMount;
+    fs.rmSync(historyRoot,{recursive:true,force:true});
     if (previous === undefined) delete process.env.EMPIRE_RUNTIME_PROFILE;
     else process.env.EMPIRE_RUNTIME_PROFILE = previous;
   }

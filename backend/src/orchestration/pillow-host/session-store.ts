@@ -60,6 +60,14 @@ export class PillowSessionStore {
       maxAgeMs?: number;
     },
   ): { session: WorkspaceSession; reused: boolean } {
+    const durable = this.durable();
+    if (durable) {
+      const candidate = randomUUID();
+      const canonicalId = durable.canonical(workspaceId, candidate);
+      const session = this.get(workspaceId, canonicalId);
+      if (!session) throw new Error('Canonical conversation unavailable');
+      return {session, reused: canonicalId !== candidate};
+    }
     const maxAgeMs = options?.maxAgeMs ?? Number(process.env.PILLOW_SESSION_REUSE_MAX_AGE_MS ?? 30 * 60_000);
     const durableId = this.durable()?.latest(workspaceId, maxAgeMs);
     if (durableId) this.get(workspaceId, durableId);
