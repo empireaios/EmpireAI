@@ -1,0 +1,15 @@
+{
+  "candidate": "bb67dbd789d55ed05315e5fa1979b2e9e8f04ab3",
+  "frozenAt": "2026-10-02T10:43:59.528065+00:00",
+  "sealedArtifacts": {
+    "U12-J3-frozen.json": "9768f0690c2a7d040c35bb29195a6ce01f730ffa7dd3ae000081515cc556848f",
+    "GEMINI-TIER1-V1-frozen.json": "345b1b1020e371ccb15e778428995212131e0edd04800e165c0d545eade5f463",
+    "sealed-reaffirmation.json": "4cc907868e34712d70362f3943f673f0a9a48cc0d3d7db048a6dc31e41c62e6d",
+    "independent-oracles.json": "0c086b4e3c93e55ca6c89a7a67d6da8706e747f146ba23b1fbd2f769620c471b"
+  },
+  "consumedExcluded": [
+    "U10-J1",
+    "U11-J2"
+  ],
+  "authority": "No Birth, commerce unlock, supplier purchases or marketplace transactions. USD40 total commissioning inference ceiling; uncertainty holds retained."
+}
