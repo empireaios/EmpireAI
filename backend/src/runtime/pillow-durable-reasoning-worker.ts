@@ -71,6 +71,9 @@ export async function executeReasoningProxy(
       ...result,
       ...(typeof body.reboundSessionId === "string" ? { reboundSessionId: body.reboundSessionId } : {}),
       ...(body.requestProvenance && typeof body.requestProvenance === "object" ? { requestProvenance: body.requestProvenance } : {}),
+      // The host transcript uses its own request identity. Preserve the join before
+      // replacing the public transport identity with the durable request ID.
+      ...(typeof result.requestId === "string" && result.requestId ? { transcriptRequestId: result.requestId } : {}),
       requestId: job.request.requestId,
       durableRequestId: job.request.requestId,
       durableRequest: true,

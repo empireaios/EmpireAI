@@ -16,34 +16,43 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
     if(++pages>100 || keys.size>10000)throw Error('Request inventory exceeds bound');
   }while(cursor!=='0');
   const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:1000});
-  const authoritative=[],internal=[];let inspected=0;
+  const authoritative=[],internal=[],bindings=new Set();let inspected=0,unbound=0;
   try {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');
     if(db.prepare('PRAGMA quick_check').get()?.quick_check!=='ok')throw Error('Reasoning source invalid');
     for(const key of keys){
       const raw=await redis.get(key);if(raw===null)throw Error('Inventory changed during collection');
       if(Buffer.byteLength(raw)>1024*1024)throw Error('Request exceeds bound');
-      const r=JSON.parse(raw),at=Date.parse(r.updatedAt);
+      const r=JSON.parse(raw);
       if(r.status!=='COMPLETED')continue;
+      // Delivery reads update updatedAt; only the immutable completion receipt
+      // defines this window. Raw Redis retains exact result bytes in resultJson.
+      const at=Date.parse(r.observability?.resultPersistedAt);
       if(!Number.isFinite(at)||at>now)throw Error('Request timestamp unavailable');
       if(at>now-30000 || at<now-900000)continue;
       if(r.workspaceId!=='ws_empire_1')continue;
-      if(key!=='pillow:chatreq:v2:'+r.requestId || typeof r.sessionId!=='string' || typeof r.finalResult?.message!=='string')throw Error('Request identity invalid');
+      const result=Object.hasOwn(r,'resultJson')?JSON.parse(r.resultJson):r.finalResult;
+      if(key!=='pillow:chatreq:v2:'+r.requestId || typeof r.sessionId!=='string' || typeof result?.message!=='string')throw Error('Request identity invalid');
+      if(typeof result.transcriptRequestId!=='string'||!result.transcriptRequestId){unbound++;continue;}
+      const transcriptId=result.transcriptRequestId;
+      const binding=r.sessionId+'\0'+transcriptId;
+      if(bindings.has(binding)||transcriptId.length>200||(result.sessionId!==undefined&&result.sessionId!==r.sessionId))throw Error('Transcript binding invalid or reused');
+      bindings.add(binding);
       const row=db.prepare('SELECT turns FROM transcripts WHERE workspace=? AND session=?').get(r.workspaceId,r.sessionId);
       const turns=row?JSON.parse(row.turns):[];
       if(!Array.isArray(turns)||turns.length>48)throw Error('History invalid');
       // A full retained window can have intentionally evicted an older turn.
-      if(turns.length===48 && !turns.some(t=>t.requestId===r.requestId))throw Error('History retention prevents complete comparison');
+      if(turns.length===48 && !turns.some(t=>t.requestId===transcriptId))throw Error('History retention prevents complete comparison');
       const digest=s=>createHash('sha256').update(s).digest('hex');
-      authoritative.push({id:r.requestId,value:digest(r.finalResult.message)});
-      const matches=turns.filter(t=>t.role==='assistant'&&t.requestId===r.requestId);
+      authoritative.push({id:r.requestId,value:digest(result.message)});
+      const matches=turns.filter(t=>t.role==='assistant'&&t.requestId===transcriptId);
       if(matches.length>1)throw Error('Duplicate delivered answer');
       if(matches.length===1){if(typeof matches[0].content!=='string')throw Error('Malformed delivery');internal.push({id:r.requestId,value:digest(matches[0].content)});}
       inspected++;
     }
     db.exec('COMMIT');
-    if(!inspected)return null;
-    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; completed 30s–15m window',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal};
+    if(!inspected&&!unbound)return null;
+    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; completed 30s–15m window',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound};
   }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }
 
