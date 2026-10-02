@@ -1,8 +1,6 @@
-# Canonical closure matrix — 2026-10-02
+# Canonical closure matrix
 
-223 records. Added B-SIDEBAR-REMOVAL only; none removed. Historical invoice uncertainty remains UNKNOWN, with conservative holds preserved. A-ACCOUNTING reconciliation PROVEN; A-PROSPECTIVE-ACCOUNTING baseline verified but future per-call readback remains IN_PROGRESS. Actual owner acceptance remains OPEN for composer and rail removal. No certification progress claimed from unit or geometry tests.
-
-Counts include parent and child obligations; they are not a percentage of business completion.
+223 records unchanged. Owner interface acceptance recorded; single new request awaits fresh accounting. Prior headroom is not current. All incomplete requirements retained.
 
 ```json
 {
@@ -10,10 +8,10 @@ Counts include parent and child obligations; they are not a percentage of busine
     "DEFERRED_BY_KING": 20
   },
   "A": {
-    "IN_PROGRESS": 29,
+    "IN_PROGRESS": 28,
     "PROVEN": 3,
     "IMPLEMENTED_UNVERIFIED": 9,
-    "BLOCKED": 1
+    "BLOCKED": 2
   },
   "E": {
     "DEFERRED_BY_KING": 18
@@ -26,9 +24,8 @@ Counts include parent and child obligations; they are not a percentage of busine
     "NOT_STARTED": 37
   },
   "B": {
-    "IN_PROGRESS": 2,
-    "PROVEN": 2,
-    "IMPLEMENTED_UNVERIFIED": 2
+    "PROVEN": 5,
+    "IN_PROGRESS": 1
   },
   "CUTOVER": {
     "PROVEN": 1
@@ -220,7 +217,7 @@ Counts include parent and child obligations; they are not a percentage of busine
 | A-MEMORY | A | IMPLEMENTED_UNVERIFIED | Conversation continuity after restart/rebind | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | A-AUTHORITY | A | IMPLEMENTED_UNVERIFIED | NOT_BORN LOCKED protected-write invariant | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | A-COMMAND | A | PROVEN | Diagnose legacy command dispatch banner | Presentation relocation in f7a31da awaiting production acceptance; no global dispatch unlock. |
-| B-DESKTOP | B | IN_PROGRESS | Full-height desktop conversation and owner acceptance | Full-height owner PASS preserved. Compact composer and sidebar removal/Back owner observation remain OPEN. |
+| B-DESKTOP | B | PROVEN | Full-height desktop conversation and owner acceptance | Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance. |
 | B-MOBILE | B | IN_PROGRESS | Preserve usable mobile conversation/composer | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | B-HISTORY | B | PROVEN | Same-account phone/desktop authoritative history | Regression protection |
 | C-FROZEN | C | PROVEN | Preserve frozen unseen criteria and consumed failures | Unseen certification execution pending, not certified. |
@@ -258,6 +255,6 @@ Counts include parent and child obligations; they are not a percentage of busine
 | UNSEEN-16 | C | NOT_STARTED | executive prioritisation | Execute materially new unseen case under frozen thresholds, no original I1 reuse. |
 | UNSEEN-17 | C | NOT_STARTED | contradiction/self-correction | Execute materially new unseen case under frozen thresholds, no original I1 reuse. |
 | B-FULLHEIGHT | B | PROVEN | Owner-approved full-height conversation, safe sidebar, readable history and visible composer | Regression protection; compact input tracked separately. |
-| B-COMPOSER | B | IMPLEMENTED_UNVERIFIED | Compact44px composer, content growth to192px then internal scroll, accessible Voice/Send, unobtrusive guidance, mobile preserved | Owner visible acceptance of compact composer; local geometry is not actual production rendering proof. |
-| A-PROSPECTIVE-ACCOUNTING | A | IN_PROGRESS | Current durable request/reservation/provider/model/usage/cost/attempt links and conservative headroom before/after new paid verification | Current baseline/headroom verified;fresh readback after every future live request remains required before another paid call. No current Work-authenticated production submission/download path. |
-| B-SIDEBAR-REMOVAL | B | IMPLEMENTED_UNVERIFIED | Remove permanent left sidebar/icon rail from normal Pillow conversation; accessible reliable Back to Executive Home; retain engineering destinations;preserve mobile;verify desktop/mobile;self-deploy;actual owner acceptance. | Deploymentreadback and actual owner acceptance. Local fixture is NOT actual production rendering. |
+| B-COMPOSER | B | PROVEN | Compact44px composer, content growth to192px then internal scroll, accessible Voice/Send, unobtrusive guidance, mobile preserved | Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance. |
+| A-PROSPECTIVE-ACCOUNTING | A | BLOCKED | Current durable request/reservation/provider/model/usage/cost/attempt links and conservative headroom before/after new paid verification | Reconcile exact new reservation/provider/usage/fallback delta. PriorheadroomUS$16.658278 is PRE-REQUEST ONLY;currentheadroomUNKNOWN untilreadback. |
+| B-SIDEBAR-REMOVAL | B | PROVEN | Remove permanent left sidebar/icon rail from normal Pillow conversation; accessible reliable Back to Executive Home; retain engineering destinations;preserve mobile;verify desktop/mobile;self-deploy;actual owner acceptance. | Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance. |

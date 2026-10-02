@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T04:24:22.437Z",
+  "updatedAt": "2026-10-02T04:40:01.774Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -3842,18 +3842,21 @@
       "priority": "A",
       "currentStatus": "BLOCKED",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Added actualPillowengine→Brainadapter→LLMRouter fixturetest:Gemini capabilityroute;Gemini503→OpenAIfallback;semanticmessage excludescontrolenvelope;durablereservationlink/replayguard.10/10testsPASS;zero realprovidercalls."
+      ],
       "productionLiveEvidence": [
-        "Historical OpenAI and Claude transport/usage independently proven by suppliedledger;Gemini temporary_refusal and failed_uncertain."
+        "Historical OpenAI and Claude transport/usage independently proven by suppliedledger;Gemini temporary_refusal and failed_uncertain.",
+        "Owner submitted LEDGER-VERIFIED-20261002-B exactlyonce and gotcompletedanswer. Correlated durablepcr_871cd1411e2449a7 and host43530ccd-e646-4039-8135-3e6b60c2fa81;traceprovideropenai,success,retryUsedfalse,degradedUsedfalse. Gemini attempted/fallback/model/reservationunresolved."
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
         "A-PROSPECTIVE-ACCOUNTING"
       ],
-      "blocker": "Accounting snapshot blocker resolved. Work browser native credential protection persists; Vercel auth/me401; connectors expose no authenticated Pillow POST. Gemini successful response and repaired live path still unproven.",
+      "blocker": "Freshpost-requestledgerrequired. Do notinferGeminisuccessorfailurefromOpenAI terminaltrace alone;no newpaidtest.",
       "remainingWork": "Minimum fresh Gemini-first summary and per-call ledger delta; then remaining live context/tools/learning/answer/authority criteria. Existing transport proof does not prove repaired answer integrity.",
-      "nextExecutableAction": "Owner one exact new authenticated request,then readback before more spending.",
-      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "nextExecutableAction": "Reconcile freshledger by expectedrequestkey37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3,then diagnose anyGemini refusal before spending.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
@@ -3871,14 +3874,15 @@
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
       ],
       "productionLiveEvidence": [
-        "84ab891 runtime deployed; behavioral live closure still pending"
+        "84ab891 runtime deployed; behavioral live closure still pending",
+        "Single currentlivechat trace:kindllm,provideropenai,logResultsuccess,retryUsedfalse,degradedUsedfalse. This successdoesnotprovefailed-providerterminalbehavior."
       ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
       "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "nextExecutableAction": "Use currentrequestreceipttoidentify fallback;do notcause another paidfailure justforevidence.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
       ]
@@ -3892,7 +3896,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3916,7 +3921,8 @@
       "currentStatus": "IMPLEMENTED_UNVERIFIED",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
-        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS"
+        "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
+        "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4081,7 +4087,7 @@
       "phase": "B",
       "domain": "Full-height desktop conversation and owner acceptance",
       "priority": "B",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
       "testsPerformed": [
         "Typecheck/build PASS; 16 local desktop measurements history73% viewport, no outer scroll, composer visible; phone horizontal/context checks PASS; previewREADY dpl_HqKL6u2628KEPTGsUmHsX6CJTXYr"
@@ -4089,12 +4095,12 @@
       "productionLiveEvidence": [
         "Exact production f7a31dad7615d39fc3192ba8b2d86e784f7429b3 READY dpl_GGCasTUVccJFS57nsNVo93gSdnBe on empire-ai.co; actual owner rendering not yet accepted."
       ],
-      "ownerAcceptance": "King PASS full-height/sidebar/readability/composer visibility on productionf7a31da2026-10-02; complete desktop acceptance conditional on compact composer observation.",
+      "ownerAcceptance": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace.",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Full-height owner PASS preserved. Compact composer and sidebar removal/Back owner observation remain OPEN.",
-      "nextExecutableAction": "Production alias readback,then actual owner observation.",
-      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "remainingWork": "Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance.",
+      "nextExecutableAction": "Preserve accepted geometry;only revisit if regression appears.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
       ]
@@ -4888,12 +4894,12 @@
       "productionLiveEvidence": [
         "Exact production f7a31dad7615d39fc3192ba8b2d86e784f7429b3 READY dpl_GGCasTUVccJFS57nsNVo93gSdnBe on empire-ai.co; actual owner rendering not yet accepted."
       ],
-      "ownerAcceptance": "King PASS full-height/sidebar/readability/composer visibility on productionf7a31da2026-10-02; complete desktop acceptance conditional on compact composer observation.",
+      "ownerAcceptance": "King reconfirmed PASS on4fdf96d;prior f7a31da acceptance preserved.",
       "dependencies": [],
       "blocker": null,
       "remainingWork": "Regression protection; compact input tracked separately.",
       "nextExecutableAction": "Preserve owner-accepted layout.",
-      "lastVerifiedAt": "2026-10-02T03:50:49.434Z",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "King owner acceptance2026-10-02T11:43:52+08:00"
       ]
@@ -4904,7 +4910,7 @@
       "phase": "B",
       "domain": "Compact message entry",
       "priority": "B",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "3add244c70397aae5b014d62b920fd6551375063",
       "testsPerformed": [
         "Typecheck/build PASS; real Chromium44px empty, multiline growth,192px cap/internal scroll, shrink-after-clear;16desktop sidebar/reload checks and390phone bounds PASS; history81.2% tested900pxviewport",
@@ -4914,14 +4920,14 @@
         "3add244c70397aae5b014d62b920fd6551375063 READY production dpl_CBVemb5CtQuW4EBskkhQKtK6h45f, empire-ai.co alias exact; /api/pillow/health200 Fri02Oct2026 03:52:45GMT; production authenticated geometry not independently observable by Work",
         "Production 4fdf96d3e64b2a9afa727fbe4996fb3605fda595 READY dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW, empire-ai.co exact alias;health200. Actual authenticated production geometry/owner acceptance OPEN."
       ],
-      "ownerAcceptance": "PENDING actual production owner observation;local fixture never substitutes.",
+      "ownerAcceptance": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace.",
       "dependencies": [
         "A-DEPLOY"
       ],
       "blocker": null,
-      "remainingWork": "Owner visible acceptance of compact composer; local geometry is not actual production rendering proof.",
-      "nextExecutableAction": "King observes repaired production when available; no inference needed.",
-      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "remainingWork": "Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance.",
+      "nextExecutableAction": "Preserve accepted geometry;only revisit if regression appears.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json"
       ]
@@ -4932,7 +4938,7 @@
       "phase": "A",
       "domain": "Prospective inference accounting",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "BLOCKED",
       "implementationRevisionComponent": "Existing84ab891 cumulative ledger + deployment/read-current-inference-accounting.cjs read-only utility",
       "testsPerformed": [
         "Offline reader: uncertain hold counted;request/provider link preserved;source bytes unchanged;over-cap rejected"
@@ -4942,10 +4948,10 @@
       ],
       "ownerAcceptance": "Existing US$20 authority only",
       "dependencies": [],
-      "blocker": null,
-      "remainingWork": "Current baseline/headroom verified;fresh readback after every future live request remains required before another paid call. No current Work-authenticated production submission/download path.",
-      "nextExecutableAction": "One new bounded authenticated summarization request,then fresh ledger delta readback.",
-      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "blocker": "New single owner request completed at04:30:30Z;prior snapshot predates it. Railway binary-reader cannot extract SQLite rows. Fresh owner download required before any paid call.",
+      "remainingWork": "Reconcile exact new reservation/provider/usage/fallback delta. PriorheadroomUS$16.658278 is PRE-REQUEST ONLY;currentheadroomUNKNOWN untilreadback.",
+      "nextExecutableAction": "Read-only download of current ledger to distinct post-request file;no repeat inference.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md"
@@ -4957,7 +4963,7 @@
       "phase": "B",
       "domain": "Pillow navigation",
       "priority": "B",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "4fdf96d3e64b2a9afa727fbe4996fb3605fda595",
       "testsPerformed": [
         "Productionbuild/typecheckPASS",
@@ -4967,14 +4973,14 @@
       "productionLiveEvidence": [
         "Production 4fdf96d3e64b2a9afa727fbe4996fb3605fda595 READY dpl_BbTLmk3V3gpeZREMmeamE1KjZWKW, empire-ai.co exact alias;health200. Actual authenticated production geometry/owner acceptance OPEN."
       ],
-      "ownerAcceptance": "PENDING",
+      "ownerAcceptance": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace.",
       "dependencies": [
         "A-DEPLOY"
       ],
       "blocker": null,
-      "remainingWork": "Deploymentreadback and actual owner acceptance. Local fixture is NOT actual production rendering.",
-      "nextExecutableAction": "Verify production alias;owner observation remains open.",
-      "lastVerifiedAt": "2026-10-02T04:24:22.437Z",
+      "remainingWork": "Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance.",
+      "nextExecutableAction": "Preserve accepted geometry;only revisit if regression appears.",
+      "lastVerifiedAt": "2026-10-02T04:40:01.774Z",
       "evidenceReferences": [
         "docs/mission-state/PILLOW_BACK_GEOMETRY_2026-10-02.json",
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
@@ -4987,10 +4993,10 @@
       "DEFERRED_BY_KING": 20
     },
     "A": {
-      "IN_PROGRESS": 29,
+      "IN_PROGRESS": 28,
       "PROVEN": 3,
       "IMPLEMENTED_UNVERIFIED": 9,
-      "BLOCKED": 1
+      "BLOCKED": 2
     },
     "E": {
       "DEFERRED_BY_KING": 18
@@ -5003,9 +5009,8 @@
       "NOT_STARTED": 37
     },
     "B": {
-      "IN_PROGRESS": 2,
-      "PROVEN": 2,
-      "IMPLEMENTED_UNVERIFIED": 2
+      "PROVEN": 5,
+      "IN_PROGRESS": 1
     },
     "CUTOVER": {
       "PROVEN": 1
@@ -5060,19 +5065,47 @@
       "from": "NEW_OWNER_REQUIREMENT",
       "to": "IMPLEMENTED_UNVERIFIED",
       "evidence": "Addedrecord223;no prior record removed."
+    },
+    {
+      "at": "2026-10-02T04:40:01.774Z",
+      "id": "B-DESKTOP",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "evidence": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace."
+    },
+    {
+      "at": "2026-10-02T04:40:01.774Z",
+      "id": "B-COMPOSER",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "evidence": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace."
+    },
+    {
+      "at": "2026-10-02T04:40:01.774Z",
+      "id": "B-SIDEBAR-REMOVAL",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "evidence": "King explicitly PASS on production4fdf96d:sidebar removal,Back replacement,compactcomposer,fullheightworkspace."
+    },
+    {
+      "at": "2026-10-02T04:40:01.774Z",
+      "id": "A-PROSPECTIVE-ACCOUNTING",
+      "from": "IN_PROGRESS",
+      "to": "BLOCKED",
+      "evidence": "New single owner request completed at04:30:30Z;prior snapshot predates it. Railway binary-reader cannot extract SQLite rows. Fresh owner download required before any paid call."
     }
   ],
   "currentRunDelta": {
-    "fromRecords": 222,
+    "fromRecords": 223,
     "toRecords": 223,
-    "added": [
-      "B-SIDEBAR-REMOVAL"
-    ],
+    "added": [],
     "removed": [],
     "statusChanges": [
-      "A-ACCOUNTING IN_PROGRESS→PROVEN known/unknown reconciliation",
-      "A-PROSPECTIVE-ACCOUNTING BLOCKED→IN_PROGRESS baseline ready;future per-call readback pending"
+      "B-DESKTOP IN_PROGRESS→PROVEN",
+      "B-COMPOSER IMPLEMENTED_UNVERIFIED→PROVEN",
+      "B-SIDEBAR-REMOVAL IMPLEMENTED_UNVERIFIED→PROVEN",
+      "A-PROSPECTIVE-ACCOUNTING IN_PROGRESS→BLOCKED freshpost-callreadback"
     ],
-    "unchanged": "All incomplete/deferred requirements carried forward;no certification coverage removed."
+    "reason": "Exactowneracceptanceclosedscopedinterface. Single new livecallinvalidatesuseofpriorheadroomascurrent;accountingmechanismnotreopened. No requirementremoved."
   }
 }

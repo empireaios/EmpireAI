@@ -1,0 +1,306 @@
+{
+  "schema": "pillow-single-request-observation-v1",
+  "ownerStatement": "LEDGER-VERIFIED-20261002-B submittedexactlyonce;completedreply;do notrepeat",
+  "observedAt": "2026-10-02T04:40:01.774Z",
+  "correlationBasis": "Only chatPOST inowner-observed04:30window,followedbydurablepollsandhostcompletion",
+  "durableRequestId": "pcr_871cd1411e2449a7",
+  "hostRequestId": "43530ccd-e646-4039-8135-3e6b60c2fa81",
+  "sessionId": "49ea7b46-c131-4b66-94b0-610da6aaf3c2",
+  "expectedRequestKey": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3",
+  "expectedKeyBasis": "SHA256(ws_empire_1 + NUL + durableRequestId),not yetobservedinpostcallledger",
+  "trace": [
+    {
+      "timestamp": "2026-10-02T04:30:35.072811441Z",
+      "severity": "info",
+      "message": "Pillow chat request entered",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790915426276"
+        },
+        {
+          "key": "pid",
+          "value": "28"
+        },
+        {
+          "key": "hostname",
+          "value": "\"627a3e2a63b9\""
+        },
+        {
+          "key": "correlationId",
+          "value": "\"req-74o\""
+        },
+        {
+          "key": "sessionId",
+          "value": "\"49ea7b46-c131-4b66-94b0-610da6aaf3c2\""
+        },
+        {
+          "key": "stage",
+          "value": "\"chat.enter\""
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-02T04:30:35.072817161Z",
+      "severity": "info",
+      "message": "Pillow chat trace",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790915430624"
+        },
+        {
+          "key": "pid",
+          "value": "28"
+        },
+        {
+          "key": "hostname",
+          "value": "\"627a3e2a63b9\""
+        },
+        {
+          "key": "requestId",
+          "value": "\"43530ccd-e646-4039-8135-3e6b60c2fa81\""
+        },
+        {
+          "key": "trace",
+          "value": "{\"digitalSoulGateMs\":0,\"responseContractMs\":3,\"shadowCeoAdmissionMs\":0,\"executiveReasoningMs\":6,\"executiveDeliberationMs\":0,\"executiveCouncilMs\":40,\"llmMs\":4272,\"totalMs\":4346}"
+        },
+        {
+          "key": "kind",
+          "value": "\"llm\""
+        },
+        {
+          "key": "provider",
+          "value": "\"openai\""
+        },
+        {
+          "key": "logResult",
+          "value": "\"success\""
+        },
+        {
+          "key": "retryUsed",
+          "value": "false"
+        },
+        {
+          "key": "degradedUsed",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-02T04:30:35.072823681Z",
+      "severity": "info",
+      "message": "Pillow chat request completed",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790915430643"
+        },
+        {
+          "key": "pid",
+          "value": "28"
+        },
+        {
+          "key": "hostname",
+          "value": "\"627a3e2a63b9\""
+        },
+        {
+          "key": "correlationId",
+          "value": "\"req-74o\""
+        },
+        {
+          "key": "sessionId",
+          "value": "\"49ea7b46-c131-4b66-94b0-610da6aaf3c2\""
+        },
+        {
+          "key": "reboundSessionId",
+          "value": "null"
+        },
+        {
+          "key": "stage",
+          "value": "\"chat.exit\""
+        },
+        {
+          "key": "durationMs",
+          "value": "4367"
+        },
+        {
+          "key": "trace",
+          "value": "{\"digitalSoulGateMs\":0,\"responseContractMs\":3,\"shadowCeoAdmissionMs\":0,\"executiveReasoningMs\":6,\"executiveDeliberationMs\":0,\"executiveCouncilMs\":40,\"llmMs\":4272,\"totalMs\":4346}"
+        },
+        {
+          "key": "kind",
+          "value": "\"llm\""
+        }
+      ]
+    }
+  ],
+  "http": [
+    {
+      "method": "POST",
+      "path": "/api/pillow/session",
+      "status": 201,
+      "at": "2026-10-02T04:30:16.513080526Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell",
+      "status": 200,
+      "at": "2026-10-02T04:30:16.527660659Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history",
+      "status": 200,
+      "at": "2026-10-02T04:30:16.904914457Z"
+    },
+    {
+      "method": "POST",
+      "path": "/brain/dispatch",
+      "status": 423,
+      "at": "2026-10-02T04:30:16.926656629Z"
+    },
+    {
+      "method": "POST",
+      "path": "/brain/dispatch",
+      "status": 423,
+      "at": "2026-10-02T04:30:20.999124648Z"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me",
+      "status": 200,
+      "at": "2026-10-02T04:30:21.150042518Z"
+    },
+    {
+      "method": "POST",
+      "path": "/brain/dispatch",
+      "status": 423,
+      "at": "2026-10-02T04:30:21.635877074Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell",
+      "status": 200,
+      "at": "2026-10-02T04:30:21.652651190Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session",
+      "status": 201,
+      "at": "2026-10-02T04:30:21.756241907Z"
+    },
+    {
+      "method": "POST",
+      "path": "/brain/dispatch",
+      "status": 423,
+      "at": "2026-10-02T04:30:22.029678871Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session",
+      "status": 201,
+      "at": "2026-10-02T04:30:22.327957750Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history",
+      "status": 200,
+      "at": "2026-10-02T04:30:22.741666733Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session",
+      "status": 201,
+      "at": "2026-10-02T04:30:25.427971089Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/chat",
+      "status": 202,
+      "at": "2026-10-02T04:30:26.105940526Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/chat-request/pcr_871cd1411e2449a7",
+      "status": 200,
+      "at": "2026-10-02T04:30:26.466517115Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/chat-request/pcr_871cd1411e2449a7",
+      "status": 200,
+      "at": "2026-10-02T04:30:29.351998957Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/chat-request/pcr_871cd1411e2449a7",
+      "status": 200,
+      "at": "2026-10-02T04:30:32.382512696Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/founder-shell",
+      "status": 200,
+      "at": "2026-10-02T04:30:39.133970585Z"
+    },
+    {
+      "method": "POST",
+      "path": "/brain/dispatch",
+      "status": 423,
+      "at": "2026-10-02T04:30:39.354994473Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pillow/session",
+      "status": 201,
+      "at": "2026-10-02T04:30:45.589151445Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pillow/history",
+      "status": 200,
+      "at": "2026-10-02T04:30:45.988272005Z"
+    },
+    {
+      "method": "GET",
+      "path": "/brain/events/stream",
+      "status": 499,
+      "at": "2026-10-02T04:30:46.631221211Z"
+    }
+  ],
+  "interpretation": {
+    "terminalProvider": "openai as reported by runtime completion.provider",
+    "model": "Notlogged;configuredOpenAIpin gpt-6.1-sol mustbereadbackfromledger",
+    "selectedRoute": "Ownerrequested summarization;deployedpolicyGemini→OpenAI. Actualattemptchainunknownuntilreceipt.",
+    "geminiSuccess": "UNPROVEN",
+    "fallback": "UNKNOWN",
+    "usage": "UNKNOWN",
+    "cost": "UNKNOWN",
+    "reservation": "UNKNOWN",
+    "currentHeadroom": "UNKNOWN;pre-requestUS$16.658278only",
+    "hostRetry": false,
+    "degraded": false,
+    "paidDuplicate": "No secondchatPOSTorhostcompletioninwindow;ledgerstillrequired toprovepaidattemptcount",
+    "sourceLedgerChangedByWork": false,
+    "newInferenceByWork": 0
+  },
+  "access": {
+    "railwayFileReadable": true,
+    "bytes": 36864,
+    "sqlCapability": false,
+    "threadId": "be215499-31c7-4407-b1f7-15a5efb52ed1"
+  }
+}
