@@ -118,6 +118,10 @@ test("a partial seller inventory sync is queued without granting full-cycle inve
   const status = getAmazonSellerInventoryImportStatus(ctx.workspaceId);
   assert.equal(status?.pagesPending, true);
   assert.doesNotMatch(JSON.stringify(status), /more|fake-token/);
+  // Disk flush/reopen can exceed the real one-second rate window on a busy
+  // runner. Establish an unambiguously future gate for this waiting assertion;
+  // the explicit past timestamp below independently tests eligible continuation.
+  getDatabase().prepare(`UPDATE amazon_seller_inventory_gate SET next_allowed_at='2999-01-01T00:00:00Z'`).run();
   assert.equal(await continueOneAmazonSellerInventoryImport(), "waiting");
   getDatabase().prepare(`UPDATE amazon_seller_inventory_gate SET next_allowed_at='2000-01-01T00:00:00Z'`).run();
   await getDatabase().requestCriticalPersist(); closeDatabase();
