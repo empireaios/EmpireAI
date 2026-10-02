@@ -1,3 +1,4 @@
+import { finalResponseText } from "./response-final-text.js";
 import {readProviderFailure, type ProviderFailureDetail} from './inference-readback.js';
 /** October commissioning inference only. No tool execution or authority transition. */
 import fs from 'node:fs';
@@ -80,7 +81,8 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   if (!key?.trim()) throw Error('Inference credential unavailable');
   if ((request.provider && request.provider!=='openai') || (request.model && request.model!==LOCKED_MODEL) || request.tools?.length) throw Error('Inference provider/model/tools not authorized');
   if (!request.messages.length || request.messages.length>64 || request.messages.some(m=>!['system','user','assistant'].includes(m.role)||typeof m.content!=='string')) throw Error('Inference text input refused');
-  const input=request.messages.map(({role,content})=>({role,content}));
+  if(request.messages.some(m => m.phase != null && (m.role !== 'assistant' || !['commentary','final_answer'].includes(m.phase))))throw Error('Inference phase input refused');
+  const input=request.messages.map(({role,content,phase})=>({role,content,...(role==='assistant'?{phase:phase??'final_answer'}:{})}));
   // Text-only UTF-8 bytes bound token count conservatively, plus framing. No
   // images, files, tools, stored conversation, implicit previous response or retries.
   const inputBound=Buffer.byteLength(JSON.stringify(input),'utf8')+4096+input.length*512;
@@ -115,13 +117,13 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
     if(!integer(cached)||cached>usage.input_tokens||!integer(reasoning)||reasoning>usage.output_tokens)throw Error('Inference usage cannot be reconciled');
     // Conservative estimate, not an invoice. Keep the original reservation.
     const cost=Math.ceil(usage.input_tokens*(long?5.5:2.75)+usage.output_tokens*(long?16.5:11));
-    const safeUsage={inputTokens:usage.input_tokens,outputTokens:usage.output_tokens,totalTokens:usage.total_tokens,cachedInputTokens:cached,reasoningTokens:reasoning};
+    const safeUsage={inputTokens:usage.input_tokens,outputTokens:usage.output_tokens,totalTokens:usage.total_tokens,cachedInputTokens:cached,reasoningTokens:reasoning,outputMessagePhases:Array.isArray(data.output)?data.output.filter((item:any)=>item.type==='message').map((item:any)=>['commentary','final_answer'].includes(item.phase)?item.phase:'unspecified'):[]};
     const responseId=typeof data.id==='string'&&/^resp_[A-Za-z0-9_-]{1,160}$/.test(data.id)?data.id:null;
     settle(filename,id,data.status==='completed'?'usage_recorded':'incomplete',safeUsage,cost,responseId);
     if(data.status!=='completed'||!Array.isArray(data.output)||data.output.some((item:any)=>!['message','reasoning'].includes(item.type)))throw Error('Inference not completed');
-    const content=data.output.filter((item:any)=>item.type==='message').flatMap((item:any)=>item.content??[]).filter((item:any)=>item.type==='output_text').map((item:any)=>item.text).join('\n');
+    const content=finalResponseText(data.output);
     if(typeof content!=='string'||!content.trim())throw Error('Inference answer absent');
-    return {provider:'openai',model:LOCKED_MODEL,content,usage:{promptTokens:usage.input_tokens,completionTokens:usage.output_tokens,totalTokens:usage.total_tokens}};
+    return {provider:'openai',model:LOCKED_MODEL,content,assistantPhase:data.output.some((item:any)=>item.type==='message'&&item.phase==='final_answer')?'final_answer':undefined,usage:{promptTokens:usage.input_tokens,completionTokens:usage.output_tokens,totalTokens:usage.total_tokens}};
   } catch {
     // Never log provider bodies, prompts, credentials or exception strings.
     // Keep any usage already saved and the reservation on every failure.

@@ -5,6 +5,7 @@ export type BrainLLMProviderName = "openai" | "anthropic" | "gemini";
 export type BrainLLMMessageRole = "system" | "user" | "assistant";
 
 export interface BrainLLMMessage {
+  phase?: "commentary" | "final_answer";
   role: BrainLLMMessageRole;
   content: string;
 }
@@ -22,6 +23,7 @@ export interface BrainLLMCompleteRequest {
 }
 
 export interface BrainLLMCompleteResponse {
+  assistantPhase?: "commentary" | "final_answer";
   provenance?: {consultations?:Array<{provider:string;model:string;requestKey?:string}>;toolRequestKey?:string;capability:string;requestKey:string;attempts:Array<{provider:BrainLLMProviderName;outcome:string}>};
   provider: BrainLLMProviderName;
   model: string;

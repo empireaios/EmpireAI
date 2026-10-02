@@ -52,6 +52,7 @@ export type LLMProviderName = "openai" | "anthropic" | "gemini";
 export type LLMMessageRole = "system" | "user" | "assistant" | "tool";
 
 export type LLMMessage = {
+  phase?: "commentary" | "final_answer";
   role: LLMMessageRole;
   content: string;
   name?: string;
@@ -78,6 +79,7 @@ export type LLMToolDefinition = {
 };
 
 export type LLMCompletionResponse = {
+  assistantPhase?: "commentary" | "final_answer";
   provenance?: {consultations?:Array<{provider:string;model:string;requestKey?:string}>;toolRequestKey?:string;capability:string;requestKey:string;attempts:Array<{provider:LLMProviderName;outcome:string}>};
   provider: LLMProviderName;
   model: string;

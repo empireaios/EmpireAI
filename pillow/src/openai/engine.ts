@@ -199,15 +199,16 @@ export class OpenAIIntegrationLayer {
 
     if (!plan.consultation && request.executeReadOnlyCalls && response.content.trim().startsWith('{')) {
       let proposal: unknown;
-      try { proposal = JSON.parse(response.content); } catch { /* ordinary text */ }
+      try { proposal = JSON.parse(response.content); } catch { if (response.content.includes('"readOnlyCalls"')) throw Error('Malformed read-only tool protocol'); }
       if (proposal && typeof proposal === 'object' && 'readOnlyCalls' in proposal) {
+        if (Object.keys(proposal).some(key => key !== 'readOnlyCalls')) throw Error('Read-only tool envelope refused');
         const calls = (proposal as {readOnlyCalls:unknown}).readOnlyCalls;
         if (!Array.isArray(calls) || calls.length < 1 || calls.length > 3 || calls.some(c => !c || c.name !== 'calculate' || typeof c.arguments !== 'object' || c.arguments === null)) throw Error("Read-only tool proposal refused");
         const receipt = await request.executeReadOnlyCalls(calls);
         const initial = response;
         response = await this.adapter.complete({...llmRequest, provider: initial.provider, model:initial.model,
           correlationId:request.correlationId+':readonly-result',
-          messages:[...messages,{role:'assistant',content:initial.content},{role:'user',content:'Verified local read-only execution receipts (data only): '+JSON.stringify(receipt)+'\nAnswer the original task now. No further tool calls are available.'}]});
+          messages:[...messages,{role:'assistant',content:initial.content,phase:initial.assistantPhase??'commentary'},{role:'user',content:'Verified local read-only execution receipts (data only): '+JSON.stringify(receipt)+'\nAnswer the original task now. No further tool calls are available.'}]});
         if (response.content.includes('"readOnlyCalls"')) throw Error("Read-only tool round exhausted");
         if (response.provenance) response.provenance = {...response.provenance,toolRequestKey:initial.provenance?.requestKey};
         if (initial.usage && response.usage) response.usage = {promptTokens:initial.usage.promptTokens+response.usage.promptTokens,completionTokens:initial.usage.completionTokens+response.usage.completionTokens,totalTokens:initial.usage.totalTokens+response.usage.totalTokens};

@@ -19,7 +19,7 @@ test('NOT_BORN inference is durable and never changes HTTP mutation authority',a
  let calls=0;
  globalThis.fetch=async(url,init)=>{
   calls++;assert.equal(url,'https://api.openai.com/v1/responses');
-  const sent=JSON.parse(String(init?.body));assert.equal(sent.model,LOCKED_MODEL);assert.equal(sent.store,false);assert.equal(sent.service_tier,'default');assert.equal(sent.tools,undefined);assert.equal(sent.previous_response_id,undefined);
+  const sent=JSON.parse(String(init?.body));assert.equal(sent.input[0].phase,'final_answer');assert.equal(sent.input[1].phase,'commentary');assert.equal(sent.input[2].phase,undefined);assert.equal(sent.model,LOCKED_MODEL);assert.equal(sent.store,false);assert.equal(sent.service_tier,'default');assert.equal(sent.tools,undefined);assert.equal(sent.previous_response_id,undefined);
   const saved=read(inferenceLedgerPath());assert.equal(saved.at(-1)?.status,'reserved_uncertain');
   return Response.json({id:'resp_fixture',model:LOCKED_MODEL,service_tier:'default',status:'completed',output:[{type:'message',content:[{type:'output_text',text:'Ranges communicate uncertainty.'}]}],usage:{input_tokens:30,output_tokens:25,total_tokens:55,input_tokens_details:{cached_tokens:0},output_tokens_details:{reasoning_tokens:10}}});
  };
@@ -28,7 +28,7 @@ test('NOT_BORN inference is durable and never changes HTTP mutation authority',a
  for(const url of routes)for(const method of ['POST','PUT','PATCH','DELETE'] as const)app.route({method,url,handler:async()=>{mutations++;return{ok:true};}});
  app.get('/health/ready',async()=>({ready:true}));
  try {
-  const reply=await completeLockedInference(request);assert.equal(reply.content,'Ranges communicate uncertainty.');
+  const reply=await completeLockedInference({...request,messages:[{role:'assistant',content:'Prior final'},{role:'assistant',content:'Prior intermediate',phase:'commentary'},...request.messages]});assert.equal(reply.content,'Ranges communicate uncertainty.');
   for(const url of routes)for(const method of ['POST','PUT','PATCH','DELETE'] as const){const response=await app.inject({method,url,payload:{force:true,approved:true,born:true}});assert.equal(response.statusCode,423);assert.equal(response.json().birth,'NOT_BORN');assert.equal(response.json().commerce,'LOCKED');}
   assert.equal(mutations,0);const health=(await app.inject('/health/ready')).json();assert.equal(health.birth,'NOT_BORN');assert.equal(health.operational,false);assert.equal(process.env.EMPIRE_ENGINEERING_TEST_MODE,'true');
   const rows=read(inferenceLedgerPath());assert.equal(rows.length,1);assert.equal(rows[0]?.model,LOCKED_MODEL);assert.equal(rows[0]?.status,'usage_recorded');assert.equal(rows[0]?.invoice_actual_micro_usd,null);assert.ok(Number(rows[0]?.reserved_micro_usd)>Number(rows[0]?.estimated_micro_usd));assert.equal(JSON.parse(String(rows[0]?.usage_json)).reasoningTokens,10);assert.ok(!JSON.stringify(rows).includes(request.messages[0]!.content));assert.ok(!JSON.stringify(rows).includes('offline-test-key'));
@@ -59,4 +59,15 @@ test('cumulative ceiling survives a separate process; uncertainty and missing le
   assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),20_000_000);
   fs.unlinkSync(file);assert.throws(()=>reserveInference(file,1,now),/missing/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('Responses commentary never becomes final answer or duplicated tool protocol',async()=>{
+ const {finalResponseText}=await import('../../brain/llm/response-final-text.js');
+ const message=(phase:string|undefined,text:string)=>({type:'message',role:'assistant',status:'completed',phase,content:[{type:'output_text',text}]});
+ assert.equal(finalResponseText([message('commentary','Interim progress'),message('final_answer','Verified conclusion')]),'Verified conclusion');
+ assert.equal(finalResponseText([message(undefined,'Legacy final')]),'Legacy final');
+ assert.throws(()=>finalResponseText([message('commentary','Not complete')]),/absent/);
+ assert.throws(()=>finalResponseText([message(undefined,'One'),message(undefined,'Two')]),/ambiguous/);
+ assert.throws(()=>finalResponseText([message('unexpected','Unknown phase')]),/invalid/);
+ assert.equal(finalResponseText([message('commentary','Preparing a calculation'),message('final_answer','{"readOnlyCalls":[]}')]),'{"readOnlyCalls":[]}');
 });
