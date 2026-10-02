@@ -1,3 +1,4 @@
+import { isPlanningCheckpoint } from "./planning-checkpoint.js";
 import { MSR_METADATA_VERSION } from "./paths.js";
 import type { MsrInput, MsrValidationReport } from "./types.js";
 
@@ -31,6 +32,7 @@ export class MissionValidator {
     const warnings: string[] = [];
 
     this.pushBoundaryErrors(input, errors);
+    if (input.planningCheckpoint !== undefined && !isPlanningCheckpoint(input.planningCheckpoint)) errors.push("Invalid bounded planning checkpoint");
     if (input.validated === false) errors.push("Mission Runtime requires validated=true");
     if (input.fabricateState === true) errors.push("fabricated mission state is rejected");
     if (executionApproval && input.highRisk === true && input.grandKingApproved !== true) {

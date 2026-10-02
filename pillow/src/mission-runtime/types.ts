@@ -154,6 +154,7 @@ export type Q1004ConsumableContract = {
 };
 
 export type MsrInput = {
+  planningCheckpoint?: import("./planning-checkpoint.js").PlanningCheckpoint;
   missionId?: string;
   missionType?: MissionType;
   missionName?: string;

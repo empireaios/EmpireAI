@@ -345,3 +345,29 @@ test("draft creation retains validation and governance boundaries", () => {
     }
   } finally { f.dispose(); }
 });
+
+test("bounded planning checkpoint persists atomically without execution or approval", () => {
+  const f = fixture();
+  try {
+    const first = new MissionManager(f.filename, canonicalMissionScope());
+    let dispatches = 0;
+    first.bindIntegrations({ pillowOrchestrationRuntime: { invokeWorker: () => { dispatches++; throw Error("No dispatch allowed"); } } });
+    const planningCheckpoint = {label:"forecast review",facts:{quantity:23,region:"east",cost:null,approved:false},pendingAction:"Obtain an authorized read-only estimate"};
+    const result = first.createMission({missionName:"Offline planning",highRisk:true,grandKingApproved:false,planningCheckpoint},config);
+    assert.equal(result.decision,"pass");
+    const history = first.getHistory();
+    assert.equal(history.checkpoints.length,1);
+    assert.deepEqual(history.checkpoints[0]?.payload.facts,planningCheckpoint.facts);
+    assert.equal(history.checkpoints[0]?.payload.grantsAuthority,false);
+    const second = new MissionManager(f.filename,canonicalMissionScope());second.ensureSeeded(config);
+    assert.deepEqual(second.getHistory(),history);
+    assert.equal(second.getHistory().missions[0]?.currentStatus,"Created");
+    assert.equal(second.getHistory().missions[0]?.grandKingApproved,false);
+    assert.equal(dispatches,0);
+    for (const invalid of [{...planningCheckpoint,facts:{text:"x".repeat(501)}},{...planningCheckpoint,execute:true},{...planningCheckpoint,facts:{nested:{approve:true}}}]) {
+      assert.equal(second.createMission({missionName:"invalid",planningCheckpoint:invalid as never},config).decision,"fail");
+      assert.equal(second.getHistory().missions.length,1);
+      assert.equal(second.getHistory().checkpoints.length,1);
+    }
+  } finally {f.dispose();}
+});

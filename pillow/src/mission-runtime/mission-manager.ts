@@ -164,6 +164,10 @@ export class MissionManager {
     const mission = this.factory.create(input);
     this.store.transaction(() => {
       this.store.saveMission(mission);
+      if (input.planningCheckpoint) {
+        const c = input.planningCheckpoint;
+        this.checkpointManager.create(this.store, mission, c.label, "Created", {kind:"planning_only_v1", facts:{...c.facts}, pendingAction:c.pendingAction, grantsAuthority:false});
+      }
       this.store.appendTimeline({
       entryId: nextMsrId(`${mission.missionId}-created`),
       timestamp: mission.createdAt,

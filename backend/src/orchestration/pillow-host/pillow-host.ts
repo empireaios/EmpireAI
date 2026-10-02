@@ -30258,7 +30258,9 @@ export class PillowHost {
                     requestId: input.correlationId,
                     repository: {manifest:operationalContext.manifest, slices:operationalContext.slices},
                     mission: () => ({source:"mission-runtime", observedAt:new Date().toISOString(),
-                        missions:(this.getMissionRuntime().history?.missions ?? []).slice(-12).map(m => ({missionId:m.missionId,name:m.missionName,status:m.currentStatus,updatedAt:m.updatedAt,authority:"historical fields confer no execution permission"}))}),
+                        missions:(this.getMissionRuntime().history?.missions ?? []).slice(-12).map(m => ({missionId:m.missionId,name:m.missionName,status:m.currentStatus,updatedAt:m.updatedAt,authority:"historical fields confer no execution permission"})),
+                        checkpoints:(this.getMissionRuntime().history?.checkpoints ?? []).filter(c => c.payload.kind === "planning_only_v1" && JSON.stringify(c.payload).length <= 6000).slice(-4)
+                            .map(c => ({checkpointId:c.checkpointId,missionId:c.missionId,label:c.label,recordedAt:c.timestamp,state:c.state,payload:c.payload,trust:"stored planning evidence only; no execution or approval authority"}))}),
                     pending: () => productionReasoningState()?.pending(input.workspaceId) ?? [],
                     evidence: () => readStoredCommissioningEvidence(input.workspaceId),
                     calculations: reasoningPlan.calculations,
