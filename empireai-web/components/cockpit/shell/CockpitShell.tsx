@@ -1,5 +1,6 @@
 "use client";
 
+import layout from "./PillowDesktopLayout.module.css";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { OwnerShell } from "@/components/owner/OwnerShell";
@@ -58,16 +59,16 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
       <CockpitAuthGuard>
         <FounderShellProvider>
           <GlobalAiAssistantProvider>
-            <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${sidebarOffset} ${pillowPage ? "lg:h-dvh lg:min-h-0 lg:overflow-hidden" : ""}`}>
-              <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} />
-              <div className="flex min-w-0 flex-1 flex-col pb-20 lg:min-h-0 lg:pb-0">
+            <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${pillowPage ? layout.shell : sidebarOffset}`}>
+              <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} inFlow={pillowPage} />
+              <div className={`flex min-w-0 flex-1 flex-col pb-20 lg:min-h-0 lg:pb-0 ${pillowPage ? layout.content : ""}`}>
                 <CockpitTopBar />
                 <ExecutiveCommandStrip />
                 <main
                   id="cockpit-main"
                   aria-label="Cockpit content"
                   data-scroll-owner="page"
-                  className={`flex-1 overflow-x-clip px-4 py-6 lg:px-8 ${pillowPage ? "lg:min-h-0 lg:overflow-hidden lg:py-3" : "lg:py-8"}`}
+                  className={`flex-1 overflow-x-clip px-4 py-6 lg:px-8 ${pillowPage ? layout.main : "lg:py-8"}`}
                 >
                   {children}
                 </main>
