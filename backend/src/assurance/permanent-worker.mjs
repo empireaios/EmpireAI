@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {runSafeLiveProbe} from './safe-live-probe.mjs';
 import Redis from 'ioredis';
 import { AssuranceStore,runAssuranceCycle } from './independent-assurance.mjs';
 import { createRuntimeCollector } from './runtime-collector.mjs';
@@ -9,6 +10,7 @@ const paths=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
 const store=new AssuranceStore(paths.database);fs.chmodSync(paths.database,0o600);
 const redis=new Redis(process.env.REDIS_URL,{maxRetriesPerRequest:1,connectTimeout:5000,lazyConnect:true,enableOfflineQueue:false});
 await redis.connect();
+try{await runSafeLiveProbe();}catch{console.error(JSON.stringify({event:'safe_assurance_probe_failed',inferenceCalls:0,productionRecordsMutated:0}));}
 let stopping=false;for(const s of ['SIGTERM','SIGINT'])process.on(s,()=>{stopping=true;});
 const runtime=createRuntimeCollector({origin:process.env.ASSURANCE_RUNTIME_ORIGIN,expectedRevision:process.env.RAILWAY_GIT_COMMIT_SHA});
 while(!stopping){
