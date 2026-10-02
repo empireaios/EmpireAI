@@ -11,6 +11,7 @@
 import type { DigitalSoulRuntime } from "./engine.js";
 import type { ConstitutionalComplianceResult } from "./types.js";
 import { buildDigitalSoulPromptBlock } from "./prompt.js";
+import { detectConstitutionalIntent } from "./constitutional-intent.js";
 
 export class DigitalSoulUnavailableError extends Error {
   readonly code = "DIGITAL_SOUL_UNAVAILABLE" as const;
@@ -168,6 +169,37 @@ export function gateExecutiveVisibleAnswer(
   if (gated.allowed) {
     return gated;
   }
+
+  // Negated commitments are prohibitions, not bypass requests. Scope this
+  // interpretation to visible prose only; request and structured action gates
+  // remain unchanged. Preserve every positive/conditional clause for review.
+  const clauses = visibleAnswer.replace(/[’‘]/g, "'")
+    .split(/(?<=[.!?;,:\n—–])\s*|\b(?:and|or|but|then|however|because|yet)\b/gi);
+  let prohibitions = 0;
+  const remaining = clauses.map(clause => {
+    const text = clause.trim().replace(/^[\s*#>\-]+/, "");
+    const unconditional = !/\b(?:if|unless|until|except|provided|otherwise|instead|while|although|when|where|because|to|so|also)\b/i.test(text);
+    const prohibition = /^(?:(?:I|we|Pillow)\s+)?(?:will not|must not|cannot|can't|won't|do not|don't|never)\s+(?:ignore|bypass|skip|waive|override|disregard|circumvent|suspend|publish|pay|execute|release|reveal|expose|change|grant|authori[sz]e)\b/i.exec(text);
+    // Do not discard an embedded second action or an indirect instruction.
+    const tail = prohibition ? text.slice(prohibition[0].length) : "";
+    const anotherAction = /\b(?:ignore|bypass|skip|waive|override|disregard|circumvent|suspend|publish|pay|execute|release|reveal|expose|change|grant|authori[sz]e|do|follow|obey|disable|remove|delete|send|transfer|run|proceed)\b/i.test(tail);
+    const objectWords = tail.toLowerCase().replace(/[.!?;:*#]/g, "").trim().split(/\s+/);
+    const simpleObject = objectWords.length > 0 && objectWords.length <= 12 && objectWords.every(word =>
+      /^(?:the|any|our|existing|required|mandatory|owner|grand|king|constitutional|constitution|governance|approval|process|gate|workflow|control|controls|check|checks|safeguards|review|rules|authorization|authorisation|external|action|actions|supplier|payments|payment|orders|listings|secrets|credentials|keys|api|without)$/.test(word));
+    if (unconditional && prohibition && simpleObject && !anotherAction) { prohibitions++; return ""; }
+    return clause;
+  }).join(". ");
+  if (prohibitions > 0) {
+    const reviewed = gateExecutiveConversation(runtime, {
+      userMessage: remaining.trim() || "Maintain existing authority restrictions.",
+      purpose: "chat",
+    });
+    return reviewed;
+  }
+
+  // Compliance findings may summarize a bypass as "requires approval". That
+  // summary is not permission to release a positively stated bypass request.
+  if (detectConstitutionalIntent(visibleAnswer).detected) return gated;
 
   // Advisory answers that *require* owner approval must surface — refusing them
   // hides the deliberation and looks like a false constitutional block.

@@ -17,6 +17,28 @@ import {
 } from "../../digital-soul/index.js";
 
 describe("Digital Soul mandatory executive conversation gate", () => {
+  test("visible prohibitions are distinct from positive or conditional bypass", async () => {
+    const soul = await createDigitalSoulRuntime(REPO_ROOT);
+    for (const answer of [
+      "I will not bypass owner approval. The evidence is unverified.",
+      "Do not publish without approval. Preserve existing controls.",
+      "We cannot ignore constitutional governance; obtain reliable evidence.",
+    ]) assert.equal(gateExecutiveVisibleAnswer(soul, answer).allowed, true, answer);
+    for (const answer of [
+      "I will not bypass owner approval, but skip mandatory review.",
+      "Do not publish without approval and waive the approval process.",
+      "I will not ignore governance until tomorrow.",
+      "I will not bypass approval unless the supplier insists.",
+      "I will not bypass approval because I will override the constitution.",
+      "Bypass owner approval. I will not ignore governance.",
+      "I will not bypass owner approval, waive mandatory review.",
+      "I will not ignore governance: bypass owner approval.",
+      "Waive the approval process.",
+      "I will not ignore governance while I bypass owner approval.",
+      "I will not bypass owner approval to waive mandatory review.",
+      "I will not ignore governance (bypass owner approval).",
+    ]) assert.equal(gateExecutiveVisibleAnswer(soul, answer).allowed, false, answer);
+  });
   test("distinguishes bounded hypothetical approval from real authorization", async () => {
     const soul = await createDigitalSoulRuntime(REPO_ROOT);
     for (const userMessage of [
