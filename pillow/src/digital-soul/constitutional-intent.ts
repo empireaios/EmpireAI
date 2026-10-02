@@ -102,7 +102,7 @@ const CONSTITUTION_OBJECTS: RegExp[] = [
 const OWNER_OBJECTS: RegExp[] = [
   /\bgrand king\b/,
   /\bowner(s)? (authority|approval|authorisation|authorization)\b/,
-  /\bowner control\b/,
+  /\bowner controls?\b/,
 ];
 
 const APPROVAL_OBJECTS: RegExp[] = [
@@ -256,6 +256,9 @@ const INTENT_FAMILIES: PatternFamily[] = [
     principleId: "S8-DECISION",
     violation: true,
     match: (n) => {
+      if (/\b(?:suppress|delete|erase|disable|hide)\s+(?:the\s+)?(?:audit|decision|accountability)\s+(?:logs?|records?|trail)\b/.test(n)) {
+        return "Free-text intent to suppress accountability records";
+      }
       if (
         /\b(don'?t|do not|never)\s+(record|log|write|persist)\b/.test(n) &&
         hasAny(n, RECORD_OBJECTS)

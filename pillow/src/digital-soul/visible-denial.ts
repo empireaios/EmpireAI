@@ -15,5 +15,14 @@ export function isExplicitVisibleDenial(clause: string): boolean {
   if (rejection.test(text)) return true;
   const subject = "(?:the|this|that|an?|any) (?:(?:unsigned|untrusted|external|third-party|supplier|vendor) )?(?:document|attachment|message|note|email|claim|request|instruction|source|footer)";
   const denial = "(?:cannot|can't|does not|doesn't|has no authority to|does not grant authority to)";
-  return new RegExp(`^${subject} ${denial} ${action} ${boundedObject}$`).test(text);
+  if (new RegExp(`^${subject} ${denial} ${action} ${boundedObject}$`).test(text)) return true;
+  // Grammar, not a catalogue of document names: a short noun subject may
+  // unconditionally deny authority. Keep nested actions and ambiguous tails.
+  const negative = /^(.*?)\b(?:cannot|can't|will not|won't|must not|does not|doesn't|is not authori[sz]ed to|has no authority to)\s+(bypass|override|ignore|waive|circumvent|suspend|disable|grant|confer|suppress|delete|erase|hide)\s+(.+)$/.exec(text);
+  if (!negative) return false;
+  const [, nounSubject, , nounObject] = negative;
+  const nounPhrase = (value: string) => /^[a-z][a-z' -]{0,160}$/.test(value.trim()) &&
+    value.trim().split(/\s+/).length <= 16 &&
+    !/\b(?:bypass|override|ignore|waive|circumvent|suspend|disable|grant|confer|suppress|delete|erase|hide|execute|publish|pay|send|transfer|run|proceed|follow|obey|do|not|and|or|but|then|to|because)\b/.test(value);
+  return nounPhrase(nounSubject!) && nounPhrase(nounObject!);
 }

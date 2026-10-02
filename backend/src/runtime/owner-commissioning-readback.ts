@@ -5,6 +5,7 @@ import type { FastifyInstance } from 'fastify';
 import type { createAuthMiddleware } from '../auth/middleware.js';
 import { env } from '../config/env.js';
 import { inferenceLedgerPath } from '../brain/llm/locked-inference.js';
+import { readAnswerGateDiagnostic } from './answer-gate-diagnostics.js';
 
 /** Read the existing ledger in one snapshot. Never initialize, settle or release reservations. */
 export function readCommissioningAccounting(filename: string) {
@@ -36,6 +37,14 @@ export function readCommissioningAccounting(filename: string) {
 }
 
 export function registerOwnerCommissioningReadback(app: FastifyInstance, authenticate: ReturnType<typeof createAuthMiddleware>, readback = () => readCommissioningAccounting(inferenceLedgerPath())) {
+  app.get<{Params:{requestId:string}}>('/api/pillow/answer-gate-diagnostics/:requestId', {preHandler:authenticate}, async (request, reply) => {
+    reply.header('cache-control','private, no-store');
+    const user=request.user;
+    if (!user || user.role!=='founder' || user.workspaceId!=='ws_empire_1' || user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase()) return reply.code(403).send({error:'Owner access required'});
+    if (process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1') return reply.code(404).send({error:'Unavailable'});
+    try { const record=readAnswerGateDiagnostic(request.params.requestId); return reply.code(record?200:404).send({readOnly:true,record}); }
+    catch { return reply.code(503).send({error:'Diagnostic unavailable'}); }
+  });
   app.get('/api/pillow/commissioning-accounting', { preHandler: authenticate }, async (request, reply) => {
     reply.header('cache-control', 'private, no-store');
     const user = request.user;
