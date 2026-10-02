@@ -1,0 +1,21 @@
+name: Independent Assurance Core
+on:
+  pull_request:
+    paths:
+      - 'backend/src/assurance/**'
+      - 'backend/src/validation/tests/*assurance*.test.mjs'
+      - '.github/workflows/independent-assurance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deterministic-assurance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+      - run: |
+          node backend/src/validation/tests/independent-assurance.test.mjs
+          node backend/src/validation/tests/assurance-runtime-collector.test.mjs
