@@ -25,7 +25,7 @@ function ownerEvidence(filename,now,persist){
   // Reconcile every retained cycle oldest-first so a recovery cannot erase an intervening incident.
   if(persist){
   const upsert=db.prepare(`INSERT INTO assurance_findings VALUES(?,?,?,'OPEN',?,?,NULL,?) ON CONFLICT(id) DO UPDATE SET status='OPEN',last_at=excluded.last_at,resolved_at=NULL,detail=excluded.detail`);
-  const resolve=db.prepare("UPDATE assurance_findings SET status='RESOLVED',resolved_at=? WHERE id=? AND status='OPEN'");
+  const resolve=db.prepare("UPDATE assurance_findings SET status='RESOLVED',resolved_at=? WHERE source=? AND status='OPEN'");
   db.exec('BEGIN IMMEDIATE');
   try{
    for(const c of [...cycles].reverse())if(c.checks){for(const [source,check] of Object.entries(c.checks)){
@@ -35,7 +35,12 @@ function ownerEvidence(filename,now,persist){
     if(check.status==='PASS')db.prepare("UPDATE assurance_findings SET status='RESOLVED',resolved_at=? WHERE source=? AND status='OPEN' AND last_at<?").run(c.completedAt,source,c.completedAt);
    }}
    for(const source of ['cycle-monitor','watchdog']){
-    const a=active.get(source);if(a)upsert.run(source,source,a.severity,now,now,a.detail);else resolve.run(now,source);
+    const a=active.get(source);
+    if(a){
+      // A new outage gets a new identity; never overwrite a resolved outage.
+      const open=db.prepare("SELECT id FROM assurance_findings WHERE source=? AND status='OPEN' ORDER BY first_at LIMIT 1").get(source);
+      upsert.run(open?.id??source+':'+now,source,a.severity,now,now,a.detail);
+    }else resolve.run(now,source);
    }
    db.exec('COMMIT');
   }catch(e){db.exec('ROLLBACK');throw e;}

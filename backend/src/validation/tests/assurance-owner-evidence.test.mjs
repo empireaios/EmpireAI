@@ -70,3 +70,17 @@ test('failed observer cannot renew heartbeat and dead watchdog makes fresh cycle
  assert.deepEqual(stale.findings,first.findings);assert.deepEqual(fs.readFileSync(file),before);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
  });
+
+test('a later watchdog outage retains the earlier resolved incident and its timestamps',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-outages-')),file=path.join(dir,'assurance.sqlite');
+ try{
+ const store=new AssuranceStore(file);store.close();
+ const first=recordOwnerAssurance(file,430000).findings.find(f=>f.source==='watchdog');
+ fs.writeFileSync(file+'.watchdog',JSON.stringify({observedAt:440000}));
+ const recovered=recordOwnerAssurance(file,440000).findings.find(f=>f.id===first.id);
+ assert.equal(recovered.status,'RESOLVED');assert.equal(recovered.resolved_at,440000);
+ const later=recordOwnerAssurance(file,540000).findings.filter(f=>f.source==='watchdog');
+ assert.equal(later.length,2);assert.deepEqual(later.find(f=>f.id===first.id),recovered);
+ assert.equal(later.filter(f=>f.status==='OPEN').length,1);
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
