@@ -1,0 +1,60 @@
+{
+  "schema": "assurance-first-live-verification-v1",
+  "at": "2026-10-02T13:44:03.676984+00:00",
+  "candidate": "cb0c696a936201f6d8c2c8899587eb6318dddff4",
+  "deployment": "b93fb186-49bb-415e-a415-0a725af660ed",
+  "outcome": "FAILED_VERIFICATION_ROLLBACK",
+  "independentInfrastructureObserved": true,
+  "scheduledCyclesObserved": 2,
+  "liveIsolatedProbes": {
+    "omittedRecord": "DETECTED",
+    "durableSourceMismatch": "DETECTED",
+    "correction": "PASS",
+    "staleEvidence": "DETECTED",
+    "unavailableCollector": "DETECTED",
+    "runtimeDiscrepancy": "DETECTED",
+    "authorityDiscrepancy": "DETECTED",
+    "interruptedCycle": "DETECTED_IN_ISOLATED_CLOCK_SCENARIO",
+    "missedCycle": "DETECTED_IN_ISOLATED_CLOCK_SCENARIO",
+    "newProcessPersistence": "PASS"
+  },
+  "productionInternalCycle": {
+    "runtime": "PASS_AFTER_STARTUP",
+    "workers": "PASS_AFTER_STARTUP",
+    "scheduler": "PASS",
+    "authoritySpending": "PASS",
+    "pillowOmissions": "INVALID_JOIN_23_APPARENT_OMISSIONS"
+  },
+  "defects": [
+    "Frontend allowlist does not include candidate; owner runtime verified=false",
+    "Collector assumes transport requestId equals host transcript requestId",
+    "Collector ignores resultJson exact durable result encoding",
+    "Collector uses delivery-mutated updatedAt instead of immutable resultPersistedAt"
+  ],
+  "preservation": {
+    "historiesUnchanged": 26,
+    "durableReceiptsUnchanged": 32,
+    "accountingRows": 67,
+    "accountingUnchanged": true,
+    "missionDigestUnchanged": true,
+    "remainingMicroUsd": 22355288
+  },
+  "rollback": {
+    "imageRollbackDeployment": "954425a8-d37b-4d83-9b3a-da476f0f5d58",
+    "imageRollbackIdentity": "MISSING_GIT_SHA",
+    "exactSourceRestoreDeployment": "51a39ba2-d008-43d8-9442-05bfae8a8f5b",
+    "target": "82c2a7b89702677f15f42bd02b12ef6e8d4736a3",
+    "verification": "PENDING"
+  },
+  "limitations": [
+    "Assurance not PROVEN",
+    "External commerce sources remain NOT_CHECKED",
+    "Real operational omission coverage is not proven by synthetic probes",
+    "Controlled restart proof for the corrected candidate remains pending",
+    "Owner actionable escalation remains open"
+  ],
+  "inferenceCalls": 0,
+  "commerceWrites": 0,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED"
+}

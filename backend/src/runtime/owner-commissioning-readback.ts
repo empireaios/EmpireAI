@@ -55,6 +55,33 @@ export function registerOwnerCommissioningReadback(app: FastifyInstance, authent
     try { const record=readAnswerGateDiagnostic(request.params.requestId); return reply.code(record?200:404).send({readOnly:true,record}); }
     catch { return reply.code(503).send({error:'Diagnostic unavailable'}); }
   });
+  app.post<{Params:{action:string}}>('/api/pillow/assurance-demo/:action', {preHandler:authenticate}, async(request,reply)=>{
+    reply.header('cache-control','private, no-store');
+    const user=request.user;
+    if(!user||user.role!=='founder'||user.workspaceId!=='ws_empire_1'||user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({error:'Owner access required'});
+    if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return reply.code(404).send({error:'Unavailable'});
+    if(!['inject','correct'].includes(request.params.action))return reply.code(400).send({error:'Invalid demonstration action'});
+    try{
+      const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if(!root||!root.startsWith('/')||fs.realpathSync(root)!==root)throw Error('Volume unavailable');
+      const moduleUrl=new URL('../../src/assurance/owner-demo.mjs',import.meta.url).href;
+      const {changeDemo}=await import(moduleUrl);
+      return reply.send(changeDemo(root+'/commissioning/assurance.sqlite',request.params.action));
+    }catch{return reply.code(503).send({error:'Isolated demonstration unavailable'});}
+  });
+  app.get('/api/pillow/assurance', {preHandler:authenticate}, async(request,reply)=>{
+    reply.header('cache-control','private, no-store');
+    const user=request.user;
+    if(!user||user.role!=='founder'||user.workspaceId!=='ws_empire_1'||user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({error:'Owner access required'});
+    if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return reply.code(404).send({error:'Unavailable'});
+    try{
+      const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if(!root||!root.startsWith('/')||fs.realpathSync(root)!==root)throw Error('Volume unavailable');
+      const moduleUrl=new URL('../../src/assurance/owner-evidence.mjs',import.meta.url).href;
+      const {readOwnerAssurance}=await import(moduleUrl);
+      return reply.send({...readOwnerAssurance(root+'/commissioning/assurance.sqlite'),accounting:readback()});
+    }catch{return reply.code(503).send({status:'UNKNOWN',error:'Durable Assurance evidence unavailable'});}
+  });
   app.get('/api/pillow/commissioning-accounting', { preHandler: authenticate }, async (request, reply) => {
     reply.header('cache-control', 'private, no-store');
     const user = request.user;

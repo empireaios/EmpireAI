@@ -12,6 +12,15 @@ const job = {
 } as ClaimedReasoningRequest;
 
 describe("durable worker completion contract", { concurrency: false }, () => {
+  it("preserves the distinct host transcript identity before wrapping the durable response", async () => {
+    const original=globalThis.fetch;
+    try {
+      globalThis.fetch=async()=>Response.json({result:{requestId:'host-transcript-id',sessionId:'synthetic',kind:'llm',message:'Synthetic completed answer'}});
+      const result=await executeReasoningProxy(job,9999);
+      assert.equal(result.ok,true);
+      if(result.ok){assert.equal(result.result.requestId,job.request.requestId);assert.equal(result.result.transcriptRequestId,'host-transcript-id');assert.equal(result.result.message,'Synthetic completed answer');}
+    } finally {globalThis.fetch=original;}
+  });
   it("does not retry a deterministic constitutional refusal", async () => {
     const original = globalThis.fetch;
     try {

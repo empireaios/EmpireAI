@@ -9,7 +9,9 @@ export function installLockedCommissioning(app: FastifyInstance): void {
   // Deny mutations before any route handler, on both primary and worker. The
   // existing reasoning-only chat worker cannot dispatch commerce tools.
   const allowed = new Set(['/auth/login','/auth/logout','/api/pillow/chat','/api/pillow/session',
-    '/api/pillow/mission-runtime/create-mission','/api/pillow/mission-runtime/history']);
+    '/api/pillow/mission-runtime/create-mission','/api/pillow/mission-runtime/history',
+    // Fixed isolated Assurance records only; each route still enforces founder authentication.
+    '/api/pillow/assurance-demo/inject','/api/pillow/assurance-demo/correct']);
   app.addHook('onRequest', async (request, reply) => {
     const route = new URL(request.url, 'http://localhost').pathname;
     if (!['GET','HEAD','OPTIONS'].includes(request.method) && !(request.method === 'POST' && allowed.has(route))) {

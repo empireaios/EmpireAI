@@ -1,0 +1,60 @@
+{
+  "schema": "assurance-owner-live-verification-v1",
+  "at": "2026-10-02T14:50:01.003463+00:00",
+  "backend": "40d76327eedad0832d18ce7984e3bac81a8f0d71",
+  "frontend": "cbcd03a0e6178cb17b4cb0893e85af1829154fc4",
+  "deployment": "17c2b2b4-df8d-4602-855c-a959e4faec25",
+  "outcome": "OWNER_DEMONSTRATION_FAILED_ROLLBACK_REQUESTED",
+  "preservation": {
+    "at": "2026-10-02T14:44:44.830456+00:00",
+    "pass": true,
+    "errors": [],
+    "backend": "40d76327eedad0832d18ce7984e3bac81a8f0d71",
+    "histories": 26,
+    "receipts": 32,
+    "accountingRecords": 67,
+    "remainingMicroUsd": 22355288,
+    "inferenceCalls": 0
+  },
+  "ownerAPI": {
+    "authenticatedRead": 200,
+    "realDurableEvidenceVisible": true,
+    "overallStatus": "DEGRADED",
+    "isolatedBaseline": "HEALTHY",
+    "attemptedInjectHTTP": 423,
+    "sourceMutated": false,
+    "failure": "Global locked commissioning onRequest hook omitted the two isolated demo paths"
+  },
+  "independentLiveChecks": {
+    "runtime": "PASS",
+    "workers": "PASS",
+    "scheduler": "PASS",
+    "pillow-omissions": "NOT_CHECKED",
+    "marketplace-orders": "NOT_CHECKED",
+    "supplier-fulfilment-tracking": "NOT_CHECKED",
+    "listing-drift": "NOT_CHECKED",
+    "money-transactions": "NOT_CHECKED",
+    "refunds-reimbursements": "NOT_CHECKED",
+    "provider-accounting": "NOT_CHECKED",
+    "evidence-freshness": "NOT_CHECKED",
+    "authority-spending": "PASS",
+    "persistence-backups-recovery": "NOT_CHECKED"
+  },
+  "productionShapeProbe": {
+    "schema": "safe-live-assurance-probe-v2",
+    "missingDetected": true,
+    "mismatchDetected": true,
+    "correctionPass": true,
+    "productionRecordsMutated": 0
+  },
+  "remaining": [
+    "Controlled production restart",
+    "Live owner demonstration failure/recovery",
+    "Owner acceptance",
+    "External integration coverage"
+  ],
+  "inferenceCalls": 0,
+  "commerceWrites": 0,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED"
+}
