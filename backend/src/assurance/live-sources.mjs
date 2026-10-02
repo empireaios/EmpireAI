@@ -25,7 +25,7 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
       if(Buffer.byteLength(raw)>1024*1024)throw Error('Request exceeds bound');
       const r=JSON.parse(raw),at=Date.parse(r.updatedAt);
       if(r.status!=='COMPLETED')continue;
-      if(!Number.isFinite(at))throw Error('Request timestamp unavailable');
+      if(!Number.isFinite(at)||at>now)throw Error('Request timestamp unavailable');
       if(at>now-30000 || at<now-900000)continue;
       if(r.workspaceId!=='ws_empire_1')continue;
       if(key!=='pillow:chatreq:v2:'+r.requestId || typeof r.sessionId!=='string' || typeof r.finalResult?.message!=='string')throw Error('Request identity invalid');
