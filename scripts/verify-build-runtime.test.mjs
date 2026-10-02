@@ -37,6 +37,13 @@ test("configuration regression to automatic npm install is detected", () => {
       mkdirSync(dirname(join(temp, file)), { recursive: true }); cpSync(join(root, file), join(temp, file));
     }
     cpSync(join(root, ".github/workflows"), join(temp, ".github/workflows"), { recursive: true });
+    const railway = readFileSync(join(temp, "railway.toml"), "utf8");
+    for (const broken of [railway.replace('builder = "RAILPACK"', 'builder = "NIXPACKS"'),
+      railway.replace('node deployment/locked-runtime.cjs', 'node backend/dist/index.js')]) {
+      writeFileSync(join(temp, "railway.toml"), broken);
+      assert.throws(() => assertRepositoryBuildConfiguration(temp));
+    }
+    writeFileSync(join(temp, "railway.toml"), railway);
     const railpack = JSON.parse(readFileSync(join(temp, "railpack.json"), "utf8"));
     // A clean provider image has no /opt/corepack until the bootstrap executes.
     railpack.steps.install.commands = ["npm ci --include=dev"];

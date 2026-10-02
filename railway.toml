@@ -1,16 +1,18 @@
-# EmpireAI Brain — Railway managed deployment (preferred backend host)
+# EmpireAI permanent LOCKED commissioning runtime
 # Deploy from repository root so @empireai/pillow (file:../pillow) resolves.
 # See deployment/railway.md for worker service, volumes, and env vars.
 
 [build]
-builder = "NIXPACKS"
+builder = "RAILPACK"
+railpackVersion = "0.40.1"
 # Install pillow+backend first so scripts/sync-pillow-governance.mjs can resolve tsx from backend/node_modules.
 buildCommand = "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
-startCommand = "node backend/dist/index.js"
+startCommand = "node deployment/locked-runtime.cjs"
+numReplicas = 1
 restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10
+restartPolicyMaxRetries = 3
 # Admit traffic only after Redis sessions, Brain worker, and Pillow lifecycle
 # are all ready. /health/live remains available for diagnostics.
 healthcheckPath = "/health/ready"
