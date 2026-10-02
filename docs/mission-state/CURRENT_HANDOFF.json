@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T01:48:12.365Z",
+  "updatedAt": "2026-10-02T02:09:02.042Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -66,6 +66,13 @@
         "www.empire-ai.co"
       ],
       "verifiedAt": "2026-10-02T01:30:48.194Z"
+    },
+    "currentVerifiedBinding": {
+      "frontend": "1352d6b03990fff356d8b83942e457c80976bb12",
+      "vercelDeployment": "dpl_CivSQEonB9ktzQqNjRMqTbzeSC6j",
+      "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
+      "railwayDeployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
+      "binding": "Public Pillowhealth200 correlated to newlockedruntime above"
     }
   },
   "authority": {
@@ -1616,10 +1623,10 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Verify combined frontend1352d6b preview READY, owner production-environment rebuild (Vercelwrite unavailable/browserprotected). Do not promote superseded0801700.",
-    "Verify productionfrontend then deploy exact84ab891 to existing locked runtime through verified Railway path, preserve allvars/volumes/locks; no legacy work.",
-    "Reconcile existing failed request provider/cost evidence before any repeat; close truthful failure and visual desktop/phone gates. Do not ask owner to resend command.",
-    "Continue scoped integration only; full certification remainspaused, originalI1consumed preserved; no Birth/commerce or broadUX."
+    "Owner promotes structuralfrontend a9358a2; independentlyverifyactualproductionrevision thenactualdesktopbothsidebarstatesandphoneregression. Geometrytestmustnotbereportedasrun.",
+    "Obtainexistingproductioninferenceledgerreadback/downloadwithoutinference; reconcileoriginalfailedproviderattempt,cost/reservations/provenance beforeanynewpaidverification.",
+    "Complete minimumrealprovider/integrationproofwithinsharedUS$20, nofanout/blindretries; backend84ab891alreadydeployed, donotduplicate.",
+    "Only afterintegrationANDactualdesktopacceptance close, resume frozennewunseencertification. PreserveI1andcurrentfailedprobe. Postintegrationdeploymentautomation/permanentsupervisionrequirementsdeferred."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2477,7 +2484,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_INTEGRATION_LIVE_FAILURE_REPAIR_AND_DESKTOP_OCCLUSION",
+  "currentPhase": "STRUCTURAL_DESKTOP_ACCEPTANCE_OPEN_INFERENCE_REPAIR_LIVE_ACCOUNTING_PENDING",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2847,7 +2854,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "Promote frontend1352d6b, deploymentdpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax using production-environment rebuild in existingempireai. PreserveBRAIN_API_URL andempire-ai.co. Do not resend providerprobe."
+    "ownerAction": "Promote a9358a2 / dpl_CqCaheHSEC2JiBRiu6savjp8DX5W using production-environment rebuild, existingempireai, preserveBRAIN_API_URL/domain. Then actualdesktopowneracceptance. Do notresendproviderprobe."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2864,7 +2871,7 @@
     "gemini": "Explicit owner probe attempted; no verified success. Existing request preserved; do not repeat.",
     "routingFallbackConsultation": "Targeted offline tests pass; bounded live routing/explicit consultation receipts pending; do not deliberately cause uncontrolled provider errors",
     "history": "Owner actual phone/desktop same-account saved history PASSED. Existing offline two-session/childprocess proof preserved; broader live reasoning-context restart/rebind readback remains pending.",
-    "contextToolsLearningAnswer": "Answer-integrity live failure confirmed; targeted repair published84ab891. Runtime closure NOT passed.",
+    "contextToolsLearningAnswer": "Backend84ab891 live/healthy; typed failure and envelope semantics targetedtestsPASS. Actual three-provider/context/tool/learning closure stillpending; no claimed provider success.",
     "accounting": "Original attempt cost unknown pending ledger; duplicate request ID rejected. No extra paid Work calls.",
     "authority": "NOT_BORN/LOCKED code and targeted denials preserved; live proof remains required",
     "certification": "PAUSED; I1 consumed preserved; no new unseen case exposed"
@@ -2875,7 +2882,7 @@
     "branch": "fix/pillow-desktop-conversation-20261002",
     "parent": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
     "preview": "dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh",
-    "status": "OWNER_REJECTED_LIVE_OCCLUSION_REPAIR_PUBLISHED",
+    "status": "FAILED_OWNER_PRODUCTION_ACCEPTANCE_1352D6B_STRUCTURAL_REPAIR_READY",
     "scope": [
       "Desktop-only suppression of duplicate department/page headers on Pillow Centre",
       "Wider bounded conversation measure and aligned composer, desktop viewport sizing",
@@ -2901,7 +2908,7 @@
     "paidInferenceCalls": 0,
     "report": "docs/mission-state/PILLOW_DESKTOP_CLOSURE_2026-10-02.md",
     "productionDeployment": "dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS",
-    "ownerVisualAcceptance": "FAILED: screenshots prove sidebar covers message labels/numbers/composer. Previous build/typecheck not visual acceptance."
+    "ownerVisualAcceptance": "FAILED after actual production1352d6b refresh: left conversation/markers/request/composer/helpertext clipped by sidebar. Prior state synchronization was insufficient. Do not close on tests/deployment."
   },
   "providerLiveProbePreparation": {
     "status": "OWNER_SUBMITTED_FAILED_NOT_PROVIDER_SUCCESS",
@@ -2951,7 +2958,7 @@
       "frontend": "1352d6b03990fff356d8b83942e457c80976bb12",
       "frontendBranch": "fix/pillow-sidebar-viewport-20261002",
       "preview": "dpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax",
-      "status": "FRONTEND_PREVIEW_READY_OWNER_PROMOTION_REQUIRED_BACKEND_DEPLOY_AFTER",
+      "status": "BACKEND84AB891_LIVE_DESKTOP1352D6B_FAILED_STRUCTURAL_CANDIDATE_READY",
       "changes": [
         "One parent owns sidebar collapse and content offset; remove mismatched width transition.",
         "Desktop-only viewport containment, same mobile base layout; brighter inset list numbers.",
@@ -2962,6 +2969,46 @@
       "diffProof": "Host parent reconstructed by reversing narrow changes hashed to exact8dcc blob692683d78ed5901204b14dc8b7fa7b03a844816f.",
       "previewState": "READY exact1352d6b independently verified"
     },
-    "report": "docs/mission-state/PILLOW_LIVE_INTEGRATION_FAILURE_2026-10-02.md"
+    "report": "docs/mission-state/PILLOW_LIVE_INTEGRATION_FAILURE_2026-10-02.md",
+    "accounting": "UNRECONCILED original attempt. Existing duplicate/spending guard preserved; no blindretry/no newpaidWorkcalls. Railwayconnector cannotreadSQL/binaryledger; ownerCLIreadback maybenecessary after currentonepromotionaction."
+  },
+  "structuralDesktopCheckpoint": {
+    "revision": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
+    "branch": "fix/pillow-structural-desktop-20261002",
+    "preview": "dpl_CqCaheHSEC2JiBRiu6savjp8DX5W",
+    "previewState": "READY",
+    "production": false,
+    "changes": [
+      "Pillow-only CSS module makes sidebar an in-flow first grid column, content a minmax(0,1fr) second column.",
+      "Actual sidebar width72/256px determines grid allocation; no manual fixed-sidebar padding compensation.",
+      "Content main has explicit20–40pxsafe gutter; conversation/composer stay in same second-column coordinate system.",
+      "Desktop64rem breakpoint only; mobile base layout and authoritative history source unchanged."
+    ],
+    "verification": {
+      "typecheck": "PASS",
+      "productionBuild": "PASS",
+      "displayHistoryTests": "87 PASS",
+      "geometryRegression": "Added e2e/pillow-desktop-geometry.test.mjs:1024/1280/1440/1920 widths, expanded/collapsed, refresh, firsttext/listmarker/composerbounds,390phonebounds; syntaxcheckPASS; browser execution NOT RUN due protected browser/auth access.",
+      "actualProductionRendering": "PENDING owner-visible after promotion; previous1352d6b explicitlyFAILED"
+    },
+    "noPaidInference": true
+  },
+  "inferenceFailureDeployment": {
+    "revision": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
+    "deployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
+    "status": "SUCCESS",
+    "at": "2026-10-02T02:06:35.185Z",
+    "source": "empireaios/EmpireAI",
+    "branch": "fix/pillow-inference-failure-integrity-20261002",
+    "preserved": "All14variable names/no values read; existingvolume/data,Redis,domain,oneSFOreplica1CPU2GB,lockedlauncher/healthcheck; stagednull",
+    "readiness": "Railway /health/ready succeeded; live empire-ai.co/api/pillow/health200Running/running/knowledgeFoundtrue/no currenterror at02:07:45GMT matches thisdeploymentHTTP200at02:07:45.365800723Z.",
+    "verificationLimit": "No additional inference. Targeted13tests previouslyPASS; actual failed-provider/accounting/liveauthority closure stillpending. Healthy process is not certification."
+  },
+  "postIntegrationRequirements": {
+    "document": "docs/mission-state/PERMANENT_SUPERVISION_AND_DEPLOYMENT_REQUIREMENTS_2026-10-02.md",
+    "deploymentAutomation": "Secure Work-accessible existingVercelproduction deployment ANDrollback,minimumpermissions/privatecredentials, independentverify; implementafterintegrationnotnow.",
+    "permanentSupervisedAutonomy": "Architectural invariant. Deterministic sentinels; Pillowmonitoring; independentWorkassurance target6h; auditdeadman; King~1h/day; ChatGPTindependentadvice. Pillowneversoleauditor/own-safeguardcertifier.",
+    "transactionAssurance": "Goods+money states, refunds/recoveries confirmed/pending/residualloss/uncertainexposure; deficitsmaterialexceptions; independentwholeEmpireAIcoverage and ownervisualization.",
+    "authority": "No newBirth/commerce/spending/externalwriteauthority; deferredappropriatecheckpoint."
   }
 }

@@ -1,20 +1,31 @@
-# EmpireAI handoff — 2026-10-02T01:48:12.365Z
+# EmpireAI handoff — 2026-10-02T02:09:02.042Z
 
-CUTOVER COMPLETE/CLOSED baseline41b8979. Legacy stopped/preserved. NOT_BORN / commerce LOCKED. Certification PAUSED; consumed originalI1 preserved at e0fd5ce. Owner cross-device history remains PASSED; no contrary history evidence.
+CUTOVER COMPLETE/CLOSED baseline41b8979; legacy stopped/preserved. NOT_BORN / commerce LOCKED. Certification PAUSED. OriginalI1 and failedPROVIDER-CHECK-20261002-A consumed evidence preserved. Cross-devicehistoryownerPASS remainsclosed.
 
-## Production
-Frontend4a6f97ede3b28c50419ecb5c945eb2db2d2cd3b4 / dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS.
-Backend8dcc9284d1222aacc51908ca177c0f01154ac6c0 /718a74de-586d-4818-8904-a152414aa407. No deployment/restart this checkpoint.
+## Actual production
+Frontend1352d6b03990fff356d8b83942e457c80976bb12 / dpl_CivSQEonB9ktzQqNjRMqTbzeSC6j READY confirmed.
+Backend84ab891fcafc733f9d43e4b30e14a4e0fb2d25de / Railway29de981b-4d28-4788-be1a-ad68b9506f28 SUCCESS02:06:35UTC. Exactrepositoryempireaios/EmpireAI andbranchfix/pillow-inference-failure-integrity-20261002 independentlyread. All14variablesnames preserved/no secretsread, existingvolume/Redis/resource/domain/launcherunchanged.
+Railway/health/readyPASS. Production/api/pillow/health200at02:07:45GMT returnsrunning/knowledgefound/no currenterror and matches exactnewdeploymentHTTP200at02:07:45.365800723Z. This is binding/readiness evidence, NOT realprovider/authority certification. No paidcalls.
 
-## New owner failure evidence
-Two original screenshots prove sidebar covers conversation/number markers/composer. Sidebar locally expanded while shell reserves stored collapsed width. Existing owner PROVIDER-CHECK-20261002-A returned repeated raw request JSON and stock commercial prose, NOT verified provider answers.
-Runtime01:33:14–35UTC shows three handling attempts; health lastError UNIQUE constraint failed: inference_requests.id. Guard rejected duplicate admission. Initial provider result/cost remains UNKNOWN. Do not repeat paid probe. Full evidence/source hashes: docs/mission-state/PILLOW_LIVE_INTEGRATION_FAILURE_2026-10-02.md.
+## Owner desktop acceptance FAILED
+Owner refreshed actual1352d6bproduction and stillobserved sidebarcovering firstcharacters/listmarkers/composer/helpertext. Previousstate-sync repair andbuildtests insufficient. Do not markclosed orblameownerzoom/cache. Samehistorysource remainscorrect.
 
-## Published narrow repairs
-Frontend **1352d6b03990fff356d8b83942e457c80976bb12**, branchfix/pillow-sidebar-viewport-20261002, exact preview **dpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax READY**. Shared sidebar state/spacing, no width-animation overlap, bounded desktop Pillow viewport, visible inset list numbering; mobile base layout preserved; recognizes new backend. Supersedes0801700.
-Backend **84ab891fcafc733f9d43e4b30e14a4e0fb2d25de**, branchfix/pillow-inference-failure-integrity-20261002. Parses owner envelope before semantic processing, retains provider plan; typed nonretryable failure stays failure, bypasses generic-prose reconstruction and prevents worker repeat attempt. No spendingguard/authority/model changes.
-Backendbuild PASS,13 targeted actual-host/worker tests PASS incl protected mutationdenials;9 display/parser tests PASS; frontendbuild/typecheck PASS; exact combinedVercelpreviewREADY. These are not visual/liveprovider acceptance. Browser remains blocked by nativecredential protection; Verceldeploymentwritetool unavailable.
+## Structural repair READY, not production
+Frontend **a9358a2db7d2eb956537480ecdf114635f9ca6a9**, branchfix/pillow-structural-desktop-20261002. Preview **dpl_CqCaheHSEC2JiBRiu6savjp8DX5W READY**.
+Pillow-only CSSmodule: actualsidebar is firstin-flowgridcolumn, contentsecondminmax(0,1fr); explicit20–40pxsafecontentgutter. No fixedsidebar/manualoffset arithmetic. Expanded/collapsedsidebaractualwidth determinesavailablecontent. Sameconversation/composercoordinates. Desktopbreakpointonly;mobilebase/historysemantics unchanged.
+Typecheck/buildPASS;87existingdisplay/historytestsPASS.
+New browserregression: e2e/pillow-desktop-geometry.test.mjs covers1024/1280/1440/1920,expanded/collapsed,refresh,firsttext/listmarker/composerbounds,390phoneregression. Syntaxchecked, **NOT executed** becauseauthenticatedbrowserobservationblocked. Visualproductionacceptance remainsOPEN.
 
-## One owner action and continuation
-Existing Vercel empireai project: promote **1352d6b**, deployment **dpl_43FGjVmRnrGbmmVmgs3yjKCGQ9Ax**, using **production-environment rebuild**. Preserve BRAIN_API_URL and empire-ai.co. Do not resend providerprobe.
-Then independently verifyfrontend, deploy exact84ab891 through existing verifiedRailwayservicepath withall14vars/volume/Redis/locks unchanged. Finish visualdesktop/phone acceptance and reconcile existingattempt/ledger before any morepaidverification. Continue scopedintegration; certifyonlyafterallrequiredliveproof. No broadOwnerUX, Birth, commerceunlock orcutoverreopen.
+## One owner action
+ExistingVercel empireai project: promote **a9358a2**, deployment **dpl_CqCaheHSEC2JiBRiu6savjp8DX5W**, usingproduction-environmentrebuild. PreserveBRAIN_API_URL andempire-ai.co.
+Then independentlyreadproductionrevision and obtainactualdesktopexpanded/collapsed+phoneregression. NeverclosefromREADYorunit/buildalone.
+
+## Integration/accounting
+Backend84ab891 nowlive: metadata/questionseparation andtypedterminalfailure/workerstop previously13targetedtestsPASSinclauthdenials. Guardunchanged. Originalfailedproviderattemptcost/provenance remainsUNRECONCILED; duplicateIDerror doesnotprovezerochargeorinitialcause. No ownerresubmission/blindretry/newpaidproof untilreconciliation. ExistingRailwayconnector cannotreadSQLitebinary/query; ownerCLIledgerdownloadmaybenecessary aftercurrentoneaction.
+Fullthreeprovider/context/tools/learning/durableaccounting/liveauthority closure stillpending. Do not resumefrozencertificationuntilintegrationANDdesktopactualacceptancepass; materiallynewunseencasesonly.
+
+## Deferred authoritative requirements
+See docs/mission-state/PERMANENT_SUPERVISION_AND_DEPLOYMENT_REQUIREMENTS_2026-10-02.md.
+Postintegration secureWork-accessibleVercelproductiondeploymentANDrollback withminimumpermissions/privatecredentials, independentverification; no routinemanualKingpromotiondependency.
+PERMANENT SUPERVISED AUTONOMY invariant: deterministiccontinuoussentinels, Pillowmonitoring, independentWorkwholeEmpireAIassurance target6hours, deadmanauditfailure,King~1h/day,ChatGPTindependentadvice. Pillowneversoleauditor/own-safeguardcertifier. EverytransactiongoodsANDmoney states,allrefund/recoveryoutcomes/deficitsmaterialexceptions. Ownerinspectionmustshowevidence/actions/independentfindings/exposure/blindspots/coverage without rawlogs.
+Recordonlynow; no newBirth/commerce/spending/externalwriteauthority. BroadOwnerUX remainsdeferred.
