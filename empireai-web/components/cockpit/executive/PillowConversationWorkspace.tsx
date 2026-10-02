@@ -127,7 +127,7 @@ export function PillowConversationWorkspace({
       id="pillow-conversation-workspace"
       data-testid="pillow-conversation-workspace"
       aria-label="Pillow conversation"
-      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-[calc(100dvh-190px)] lg:min-h-[520px]"
+      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1"
     >
       <header className="flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3">
         <div>

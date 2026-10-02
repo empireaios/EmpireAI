@@ -158,7 +158,7 @@ export function DevelopmentPillowExperience() {
   const conversationMode = activeTab === "chat" || activeTab === "conversation";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:space-y-0">
       <div className="lg:hidden">
       <PlatformPageHeader
         eyebrow="Pillow Centre"
@@ -172,7 +172,7 @@ export function DevelopmentPillowExperience() {
         <PillowConversationWorkspace title="Pillow" autoFocus />
       ) : null}
 
-      <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
+      <details className={`rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3 ${conversationMode ? "lg:hidden" : ""}`}>
         <summary className="cursor-pointer text-xs text-[#8a847a]">
           Engineering / development panels (not required for Grand King conversation)
         </summary>

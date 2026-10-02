@@ -22,13 +22,14 @@ export function CockpitDepartmentLayout({
   children,
 }: CockpitDepartmentLayoutProps) {
   const pathname = usePathname();
+  const pillowPage = pathname === "/cockpit/development/pillow";
   const department = getCockpitNavItemById(departmentNavId);
   const tabs = getCockpitNavTabs(departmentNavId);
 
   if (pathname === "/cockpit/commerce/transactions") return <>{children}</>;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-6">
+    <div className={`mx-auto flex max-w-7xl flex-col gap-6 ${pillowPage ? "lg:h-full lg:min-h-0 lg:gap-0" : ""}`}>
       <div className={pathname === "/cockpit/development/pillow" ? "space-y-6 lg:hidden" : "space-y-6"}>
       <CockpitPageHeader
         eyebrow="Department"
@@ -38,7 +39,7 @@ export function CockpitDepartmentLayout({
       <p className="text-sm text-[#8a847a]">{description}</p>
       <CockpitDepartmentTabs tabs={tabs} />
       </div>
-      <div>{children}</div>
+      <div className={pillowPage ? "lg:min-h-0 lg:flex-1" : undefined}>{children}</div>
     </div>
   );
 }

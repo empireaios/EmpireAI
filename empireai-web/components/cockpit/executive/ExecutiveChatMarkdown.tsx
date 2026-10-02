@@ -114,7 +114,7 @@ export function ExecutiveChatMarkdown({
         }
         if (b.type === "ul") {
           return (
-            <ul key={idx} className="list-disc space-y-2 pl-5 marker:text-[#d4af37]/70">
+            <ul key={idx} className="list-disc space-y-2 pl-5 marker:text-[#f0d78c]">
               {b.items.map((item, j) => (
                 <li key={j} className="pl-0.5">
                   {inlineFormat(item)}
@@ -127,7 +127,7 @@ export function ExecutiveChatMarkdown({
           return (
             <ol
               key={idx}
-              className="list-decimal space-y-5 pl-5 marker:font-semibold marker:text-[#d4af37]/80"
+              className="list-decimal space-y-5 pl-8 marker:font-semibold marker:text-[#f0d78c]"
             >
               {b.items.map((item, j) => (
                 <li key={j} className="pl-1 pb-1">

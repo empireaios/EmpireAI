@@ -16,7 +16,7 @@ import { CockpitRealtimeBridge } from "@/components/cockpit/ux/CockpitRealtimeBr
 import { FounderShellProvider } from "@/lib/founder-shell/FounderShellProvider";
 
 /** Keep main column clear of the fixed desktop sidebar. */
-function useSidebarOffsetClass() {
+function useSidebarState() {
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
     const sync = () => {
@@ -34,28 +34,40 @@ function useSidebarOffsetClass() {
       window.removeEventListener("empireai:sidebar-collapsed", sync);
     };
   }, []);
-  return collapsed ? "lg:pl-[72px]" : "lg:pl-64";
+  const toggle = () => {
+    const next = !collapsed;
+    setCollapsed(next);
+    try {
+      localStorage.setItem("empireai.cockpit.sidebarCollapsed", next ? "1" : "0");
+    } catch {
+      // The visible layout still updates when browser storage is unavailable.
+    }
+    window.dispatchEvent(new Event("empireai:sidebar-collapsed"));
+  };
+  return { collapsed, toggle };
 }
 
 export function CockpitShell({ children }: { children: React.ReactNode }) {
-  const sidebarOffset = useSidebarOffsetClass();
+  const sidebar = useSidebarState();
+  const sidebarOffset = sidebar.collapsed ? "lg:pl-[72px]" : "lg:pl-64";
   const pathname = usePathname();
+  const pillowPage = pathname === "/cockpit/development/pillow";
   if (pathname === "/cockpit" || pathname.startsWith("/cockpit/products") || pathname === "/cockpit/commerce/transactions") return <OwnerShell>{children}</OwnerShell>;
   return (
     <CockpitInteractionProvider>
       <CockpitAuthGuard>
         <FounderShellProvider>
           <GlobalAiAssistantProvider>
-            <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${sidebarOffset}`}>
-              <CockpitSidebar />
-              <div className="flex min-w-0 flex-1 flex-col pb-20 lg:pb-0">
+            <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${sidebarOffset} ${pillowPage ? "lg:h-dvh lg:min-h-0 lg:overflow-hidden" : ""}`}>
+              <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} />
+              <div className="flex min-w-0 flex-1 flex-col pb-20 lg:min-h-0 lg:pb-0">
                 <CockpitTopBar />
                 <ExecutiveCommandStrip />
                 <main
                   id="cockpit-main"
                   aria-label="Cockpit content"
                   data-scroll-owner="page"
-                  className="flex-1 overflow-x-clip px-4 py-6 lg:px-8 lg:py-8"
+                  className={`flex-1 overflow-x-clip px-4 py-6 lg:px-8 ${pillowPage ? "lg:min-h-0 lg:overflow-hidden lg:py-3" : "lg:py-8"}`}
                 >
                   {children}
                 </main>
