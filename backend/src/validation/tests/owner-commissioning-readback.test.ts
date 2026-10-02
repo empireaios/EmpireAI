@@ -68,9 +68,11 @@ test('real locked onRequest boundary permits only the two founder isolated demo 
   const injected=await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject',headers,payload:{path:'/real-business',force:true}});
   assert.equal(injected.statusCode,200,injected.body);assert.equal(injected.json().awaitingIndependentObservation,true);
   assert.equal((await read()).demonstration.history[0].status,'HEALTHY');
-  observer();assert.equal((await read()).demonstration.history[0].status,'DEGRADED');
+  observer();const detected=await read();assert.equal(detected.demonstration.history[0].status,'DEGRADED');
+  const finding=detected.findings.find((f:{source:string})=>f.source==='isolated-demonstration');assert.ok(finding);assert.equal(finding.status,'OPEN');assert.equal(finding.severity,'HIGH');
   assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/correct',headers})).statusCode,200);
-  observer();assert.deepEqual((await read()).demonstration.history.map((x:{status:string})=>x.status),['HEALTHY','DEGRADED','HEALTHY']);
+  observer();const recovered=await read();assert.deepEqual(recovered.demonstration.history.map((x:{status:string})=>x.status),['HEALTHY','DEGRADED','HEALTHY']);
+  assert.equal(recovered.findings.find((f:{id:string})=>f.id===finding.id).status,'RESOLVED');
   for(const url of ['/api/pillow/assurance-demo/buy','/api/pillow/assurance-demo/inject/extra','/pillow-commissioning/birth/authorise','/payments','/live-cj-fulfillment/submit-live','/api/pillow/mission-runtime/execute'])assert.equal((await app.inject({method:'POST',url,headers,payload:{approved:true,force:true}})).statusCode,423,url);
   for(const method of ['PUT','PATCH','DELETE'] as const)assert.equal((await app.inject({method,url:'/api/pillow/assurance-demo/inject',headers})).statusCode,423);
  }finally{await app.close();for(const [key,value]of Object.entries({EMPIRE_RUNTIME_PROFILE:saved.profile,EMPIRE_ENGINEERING_TEST_MODE:saved.engineering,RAILWAY_VOLUME_MOUNT_PATH:saved.root})){if(value===undefined)delete process.env[key];else process.env[key]=value;}fs.rmSync(root,{recursive:true,force:true});}

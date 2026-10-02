@@ -31,7 +31,8 @@ test('actual inspector restarts, reports missing durable cycles and stops prompt
    try{
     await new Promise((resolve,reject)=>{child.once('error',reject);child.stdout.on('data',chunk=>{output+=chunk; if(output.includes('\n'))resolve();});child.once('exit',()=>{if(!output)reject(Error('Inspector exited without evidence'));});});
     const report=JSON.parse(output.split('\n')[0]);assert.equal(report.event,'independent_assurance_watchdog');assert.equal(report.healthy,false);assert.equal(report.status,'SOURCE_UNAVAILABLE');
-    const heartbeat=JSON.parse(fs.readFileSync(path.join(root,'commissioning/assurance.sqlite.watchdog')));assert.equal(heartbeat.status,'SOURCE_UNAVAILABLE');
+    assert.equal(report.observerFailed,true);assert.equal(report.heartbeatRenewed,false);
+    assert.equal(fs.existsSync(path.join(root,'commissioning/assurance.sqlite.watchdog')),false);
     child.kill('SIGTERM');const stopped=await exit;assert.equal(stopped.code,0);assert.equal(stopped.signal,null);
    }finally{clearTimeout(timer);if(child.exitCode===null)child.kill('SIGKILL');}
   }

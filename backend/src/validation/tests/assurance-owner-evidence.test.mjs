@@ -20,7 +20,41 @@ test('durable incidents survive observer restart, resolve only on subsequent PAS
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 import {changeDemo,observeDemo,readDemo} from '../../assurance/owner-demo.mjs';
+import {DatabaseSync} from 'node:sqlite';
+import {execFileSync} from 'node:child_process';
 test('isolated demonstration needs independent observation and preserves healthy failure recovery history',()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-demo-')),file=path.join(dir,'demo.sqlite');
  try{observeDemo(file,1000);changeDemo(file,'inject',2000);assert.equal(readDemo(file).history[0].status,'HEALTHY');observeDemo(file,3000);assert.equal(readDemo(file).history[0].status,'DEGRADED');changeDemo(file,'correct',4000);observeDemo(file,5000);assert.deepEqual(readDemo(file).history.map(x=>x.status),['HEALTHY','DEGRADED','HEALTHY']);assert.throws(()=>changeDemo(file,'buy'));}finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('independent process persists discrepancy finding before owner reads and retains resolution across restart',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-finding-')),file=path.join(dir,'assurance.sqlite');
+ const module=new URL('../../assurance/owner-demo.mjs',import.meta.url).href;
+ const observe=now=>execFileSync(process.execPath,['--input-type=module','-e',`import {observeDemo} from ${JSON.stringify(module)};observeDemo(${JSON.stringify(file)},${now});`]);
+ const findings=()=>{const db=new DatabaseSync(file,{readOnly:true});try{return db.prepare("SELECT * FROM assurance_findings WHERE source='isolated-demonstration'").all();}finally{db.close();}};
+ try{
+   observe(1000);changeDemo(file,'inject',2000);observe(3000);
+   const open=findings();assert.equal(open.length,1);assert.equal(open[0].status,'OPEN');assert.equal(open[0].severity,'HIGH');
+   assert.equal(open[0].first_at,3000);assert.equal(JSON.parse(open[0].detail).sourceChangedAt,2000);
+   observe(3500);assert.deepEqual(findings(),open);
+   changeDemo(file,'correct',4000);assert.equal(findings()[0].status,'OPEN');
+   observe(5000);const resolved=findings()[0];assert.equal(resolved.id,open[0].id);assert.equal(resolved.status,'RESOLVED');assert.equal(resolved.resolved_at,5000);
+   observe(6000);assert.deepEqual(findings()[0],resolved);
+   changeDemo(file,'inject',7000);observe(8000);assert.equal(findings().length,2);assert.equal(findings().filter(f=>f.status==='OPEN').length,1);
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+import {runInspectorPass} from '../../assurance/inspector-cycle.mjs';
+test('failed observer cannot renew heartbeat and dead watchdog makes fresh cycle non-healthy',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-heartbeat-')),file=path.join(dir,'assurance.sqlite');
+ try{
+   const store=new AssuranceStore(file),checks=Object.fromEntries(REQUIRED_DOMAINS.map(d=>[d,{status:'PASS',observedAt:300000}]));
+   store.begin('good',300000,300000);store.complete('good',301000,checks);store.close();
+   runInspectorPass(file,430000);assert.equal(readOwnerAssurance(file,430001).healthy,true);
+   const heartbeat=fs.readFileSync(file+'.watchdog','utf8');
+   const db=new DatabaseSync(file);db.exec('DROP TABLE assurance_demo_source; CREATE TABLE assurance_demo_source(broken INTEGER)');db.close();
+   assert.throws(()=>runInspectorPass(file,450000));assert.equal(fs.readFileSync(file+'.watchdog','utf8'),heartbeat);
+   const overdue=readOwnerAssurance(file,520001);assert.equal(overdue.status,'ASSURANCE_OVERDUE');assert.equal(overdue.healthy,false);assert.equal(overdue.watchdog.fresh,false);
+   assert.equal(overdue.findings.find(f=>f.source==='watchdog').status,'OPEN');
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
