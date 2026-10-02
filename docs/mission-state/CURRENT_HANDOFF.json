@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T01:18:16.425Z",
+  "updatedAt": "2026-10-02T01:30:48.194Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -55,6 +55,17 @@
       "source": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
       "status": "READY production independently verified empire-ai.co alias",
       "domain": "empire-ai.co"
+    },
+    "frontendPromotionVerification": {
+      "revision": "4a6f97ede3b28c50419ecb5c945eb2db2d2cd3b4",
+      "deployment": "dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS",
+      "state": "READY",
+      "target": "production",
+      "aliases": [
+        "empire-ai.co",
+        "www.empire-ai.co"
+      ],
+      "verifiedAt": "2026-10-02T01:30:48.194Z"
     }
   },
   "authority": {
@@ -1605,11 +1616,10 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Verify exact desktop preview READY then owner production-environment rebuild (Vercel write unavailable; browser protected).",
-    "Verify actual production revision; visual desktop and phone regression remains required.",
-    "Complete bounded authenticated real provider receipts and durable ledger readback via available authorized access; one owner action at a time if still blocked. Do not expose keys, reset budget, or blindly retry.",
-    "Complete scoped context/tools/learning/answer/authority live evidence; cross-device owner PASS must not be reopened without regression.",
-    "Only after integration and desktop gates close, resume frozen unseen certification with materially new cases; consumed I1 preserved."
+    "Owner submits prepared bounded Claude/Gemini consultation once; collect actual receipts/errors. Do not repeat without diagnosing outcome.",
+    "Read durable accounting and provider provenance; OpenAI current shared-router proof and remaining integration evidence as required within US$20 guard.",
+    "Complete desktop/mobile visual acceptance; owner cross-device history remains PASSED.",
+    "Resume frozen materially new unseen certification only after scoped integration plus bounded desktop interface gates pass. I1 remains consumed."
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2837,7 +2847,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "After preview READY, promote 4a6f97e / dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh using production-environment rebuild in existing empireai project; preserve BRAIN_API_URL/domain. One action at a time."
+    "ownerAction": "Send the exact prepared PROVIDER-CHECK-20261002-A message once in live authenticated Pillow Centre; return response/error without retrying. No credentials required."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2865,7 +2875,7 @@
     "branch": "fix/pillow-desktop-conversation-20261002",
     "parent": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
     "preview": "dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh",
-    "status": "PREVIEW_READY_OWNER_PRODUCTION_REBUILD_REQUIRED",
+    "status": "PRODUCTION_READY_VISUAL_ACCEPTANCE_PENDING",
     "scope": [
       "Desktop-only suppression of duplicate department/page headers on Pillow Centre",
       "Wider bounded conversation measure and aligned composer, desktop viewport sizing",
@@ -2885,9 +2895,18 @@
       "deliveryHistoryRegression": "78 PASS",
       "visualDesktop": "BLOCKED browser native credential protection; not claimed passed",
       "phoneVisualRegression": "PENDING after promotion; no claim from prior owner observation",
-      "preview": "READY exact revision independently verified"
+      "preview": "READY exact revision independently verified",
+      "effectiveBinding": "Production unauthenticated GET /api/pillow/history401 at 01:29:39 GMT matched locked runtime718a74de GET401 at01:29:39.069510570Z. No claim authenticated provider proof."
     },
     "paidInferenceCalls": 0,
-    "report": "docs/mission-state/PILLOW_DESKTOP_CLOSURE_2026-10-02.md"
+    "report": "docs/mission-state/PILLOW_DESKTOP_CLOSURE_2026-10-02.md",
+    "productionDeployment": "dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS"
+  },
+  "providerLiveProbePreparation": {
+    "status": "PREPARED_NOT_SENT",
+    "marker": "PROVIDER-CHECK-20261002-A",
+    "prompt": "/pillow-request {\"message\":\"Integration check PROVIDER-CHECK-20261002-A, not certification. Each consulted provider: give a brief response using the supplied read-only calculation receipt for 17.40 multiplied by 3. State the mission and authority status only if supported by the supplied runtime evidence; distinguish unknowns and historical records. Do not request additional tool calls or execute actions. Keep each response below 100 words.\",\"capability\":\"critique\",\"consultation\":{\"providers\":[\"anthropic\",\"gemini\"],\"justification\":\"Owner-authorized bounded verification of both newly configured inference providers and their independent provenance.\"},\"calculations\":[{\"operation\":\"multiply\",\"left\":\"17.40\",\"right\":\"3\"}]}",
+    "paidInferenceCallsThisTurn": 0,
+    "expectedMechanism": "Explicit two-provider consultation; existing shared durable guard; no automatic triple fan-out. Response prose alone does not prove ledger/provenance."
   }
 }

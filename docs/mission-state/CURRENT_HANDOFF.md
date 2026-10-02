@@ -1,21 +1,19 @@
-# EmpireAI current handoff — 2026-10-02T01:18:16.425Z
+# EmpireAI handoff — 2026-10-02T01:30:48.194Z
 
-CUTOVER COMPLETE/CLOSED baseline 41b8979. Legacy remains stopped and preserved. NOT_BORN / commerce LOCKED. Certification PAUSED; consumed I1 evidence preserved at e0fd5ce.
+CUTOVER COMPLETE/CLOSED; baseline41b8979; legacy stopped/preserved. NOT_BORN / commerce LOCKED. Certification paused, consumedI1 preserved.
 
-## Production and accepted owner evidence
-Production frontend 98e9bdc / Vercel dpl_57hNzegD6rfuMrUmdePpKbfkeRrg; backend 8dcc928 / Railway 718a74de-586d-4818-8904-a152414aa407. No production change this checkpoint.
-King confirms original phone and desktop, same authenticated account, refreshed both and saw identical saved Grand King/Pillow exchanges. No storage cleared and no inference sent. CROSS-DEVICE HISTORY DEFECT RESOLVED; do not reopen absent contradictory evidence.
+Owner cross-device history PASSED and resolved; no repeat required absent contrary evidence.
 
-## Bounded desktop Pillow repair
-Published 4a6f97ede3b28c50419ecb5c945eb2db2d2cd3b4, branch fix/pillow-desktop-conversation-20261002, parent 98e9bdc. Preview dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh independently READY.
-Desktop conversation width/height and message hierarchy improved; composer aligned; duplicate desktop department/page headers hidden only on Pillow page. Historical source remains visible, timestamp/detail expandable. Reading position survives loading earlier messages; incoming updates do not force a reader to latest. Jump-to-latest provided; IME composition protected.
-No history API/state, provider, reasoning, authority, or commerce changes. Mobile base shell/layout preserved; visual phone regression still required.
-Typecheck PASS; production Next webpack build PASS; 78 delivery/history tests PASS. Browser visual checks NOT performed successfully and NOT claimed passed.
+## Current production
+Frontend4a6f97ede3b28c50419ecb5c945eb2db2d2cd3b4, Vercel dpl_BtrHgtSFZcTL3JDLkQk2REYaDViS READY production, empire-ai.co/www aliases. Independent connector readback after owner promotion.
+Backend8dcc9284d1222aacc51908ca177c0f01154ac6c0 deployment718a74de-586d-4818-8904-a152414aa407 remains SUCCESS. Production historyGET401 at01:29:39 GMT matched exact locked-runtime log01:29:39.069510570Z. No runtime redeploy/restart.
+Desktop repair now live; build/typecheck/78tests passed earlier, visual desktop/phone acceptance remains pending, not certified by deployment status.
 
-## Actual access blockers / one owner action
-Fresh live Pillow document remains blocked by native-credential observation protection. No bypass. Vercel deployment write again returns UNAVAILABLE (tool not returned by tools/list). Railway connector lacks authenticated application HTTP and usable binary ledger readback. Credential values never read/exposed.
-**One action:** existing Vercel empireai project: promote 4a6f97e, deployment dpl_Gbdt2XddpXTWwh6iT1jtbyYCGLyh, using production-environment rebuild. Preserve BRAIN_API_URL and empire-ai.co.
+## Next bounded action
+Work browser remains blocked by nativecredential protection. No key values read. One owner action: submit the following exact message ONCE in live Pillow Centre and return result/error; do not retry on failure. This is integration, not unseen certification. Genuine receipts/ledger still must be independently reconciled.
 
-## Remaining boundary
-Verify actual promoted frontend and desktop/phone presentation. Finish actual Claude/Gemini/OpenAI shared-router receipts, deliberate routing/consultation, bounded fallback, durable shared US$20 ledger, genuine context/tools/learning receipts, answer integrity and authority evidence. Credentials present is not provider proof. No new paid calls this checkpoint; old ledger balance predates I1 and is not current.
-Do not reopen cross-device defect or cutover. Broader Owner UX deferred. Once scoped integration AND bounded desktop Pillow interface pass, resume frozen certification with materially new unseen cases. No Birth or commerce unlock.
+```text
+/pillow-request {"message":"Integration check PROVIDER-CHECK-20261002-A, not certification. Each consulted provider: give a brief response using the supplied read-only calculation receipt for 17.40 multiplied by 3. State the mission and authority status only if supported by the supplied runtime evidence; distinguish unknowns and historical records. Do not request additional tool calls or execute actions. Keep each response below 100 words.","capability":"critique","consultation":{"providers":["anthropic","gemini"],"justification":"Owner-authorized bounded verification of both newly configured inference providers and their independent provenance."},"calculations":[{"operation":"multiply","left":"17.40","right":"3"}]}
+```
+
+No paid inference sent by Work this checkpoint. Shared US$20 hardcap unchanged; current balance not independently reconciled. Claude/Gemini live calls not yet proven. Continue provider routing/fallback/accounting/context/tools/learning/answer/authority evidence, then visual acceptance, then frozen new unseen certification. No broad Owner UX, Birth or commerce unlock.
