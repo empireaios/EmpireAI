@@ -6,6 +6,21 @@ export function isExplicitVisibleDenial(clause: string): boolean {
   const text = clause.toLowerCase().replace(/[’‘]/g, "'")
     .replace(/[*#]/g, "").trim().replace(/[.!?;:]+$/, "").trim();
   if (/\b(?:if|unless|until|except|provided|otherwise|instead|while|although|when|because|also|anyway)\b/.test(text)) return false;
+  // A denial may coordinate objects or permissions. Recognize the complete
+  // sentence before comma/conjunction splitting destroys its negative scope.
+  const safeNoun = (value: string) => /^[a-z'"“” -]{1,160}$/.test(value.trim()) &&
+    value.trim().split(/\s+/).length <= 20 &&
+    !/\b(?:if|unless|but|then|however|yet|because|to|bypass|override|ignore|waive|change|verify|grant|confer|suppress|delete|erase|hide|execute|publish|pay|send|transfer|run|proceed|follow|obey|do)\b/.test(value);
+  const coordinated = /^(.*?)\b(?:cannot|can't|will not|won't|must not|does not|doesn't)\s+(bypass|override|ignore|waive|change|grant|confer|suppress|delete|erase|hide)\s+(.+)$/.exec(text);
+  if (coordinated && safeNoun(coordinated[1]!) && coordinated[3]!.split(/\s+(?:and|or)\s+|,\s*/).every(safeNoun)) return true;
+  const noPermission = /^(.*?)\b(?:establishes|grants|conveys|provides) no (?:permission|authority) to (.+)$/.exec(text);
+  if (noPermission && safeNoun(noPermission[1]!)) {
+    const permissions = noPermission[2]!.split(/,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+/);
+    if (permissions.length <= 6 && permissions.every(p => {
+      const m = /^(?:change|verify|waive|bypass|override|publish|pay|release|suppress|delete) (.+)$/.exec(p);
+      return Boolean(m && safeNoun(m[1]!));
+    })) return true;
+  }
   // Dismissal must name third-party instructions, never governance itself.
   if (/^(?:reject|ignore|disregard) (?:the |these |those )?(?:untrusted|external|third-party|supplier|vendor) (?:instructions|requests|claims|directions)$/.test(text)) return true;
   const action = "(?:bypass|override|ignore|waive|suspend|change|grant|disable)";
