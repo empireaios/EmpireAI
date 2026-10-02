@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:11:21.339Z",
+  "updatedAt": "2026-10-02T05:24:07.050Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -3144,10 +3144,8 @@
       "toRecords": 223,
       "added": [],
       "removed": [],
-      "statusChanges": [
-        "A-PROSPECTIVE-ACCOUNTING BLOCKED→PROVEN"
-      ],
-      "reason": "Exact post-request reconciliation and independent live post-deployment readback close accounting prerequisite. New provider observability defect/repair recorded under existing A-INTEGRATION/A-FAILURE, no duplicate requirement. Other Phase-A statuses unchanged; deterministic tests not substituted for live proof."
+      "statusChanges": [],
+      "reason": "Owner Google project evidence and adapter/doc review narrow hypotheses but do not prove Gemini success or exact refusal. No status inflation."
     }
   },
   "compactComposerCheckpoint": {
@@ -3533,12 +3531,50 @@
     }
   },
   "certificationResumeBoundary": "Desktop acceptance closed; prospective accounting closed. Gemini success and remaining Phase-A live integration evidence OPEN;98 frozen unseen criteria remain NOT_STARTED.",
-  "currentNextAction": "Read-only Google AI Studio quota/rate-limit evidence for configured Gemini project; no key values. B consumed; do not repeat. Continue independent criteria where executable; live authenticated evidence remains blocked by Work browser credential protection.",
+  "currentNextAction": "Owner submits unique GEMINI-DIAG-20261002-C once through authenticated Pillow Centre because Work browser observation is credential-protected. Then Work reads safe route receipt and ledger, no repeats.",
   "inferenceReadbackRepair": {
     "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
     "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
     "status": "DEPLOYED_AND_STARTUP_LEDGER_READBACK_PROVEN",
     "report": "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
     "limitation": "Future safe HTTP refusal-code and route receipt live behavior unverified; deterministic tests passed. Historical detail unrecoverable; no Gemini success."
+  },
+  "googleProjectEvidence": {
+    "at": "2026-10-02T05:24:07.050Z",
+    "source": "Owner observation of exact Default Gemini Project; screenshot not independently inspected in this turn",
+    "project": "Default Gemini Project",
+    "tier": "Free",
+    "model": "Gemini 3.8 Flash",
+    "rpm": "1 / 5",
+    "tpmUsedApprox": 25110,
+    "tpmLimit": "NOT SUPPLIED",
+    "rpd": "NOT SUPPLIED",
+    "billing": "Set up billing offered; no billing change authorized or requested",
+    "correlation": "Supports project/model availability and activity; aggregate dashboard lacks request ID/timestamp, not exact B receipt.",
+    "request": "pcr_871cd1411e2449a7",
+    "findings": {
+      "route": "Gemini first, eligible refusal, OpenAI fallback already proven",
+      "exactHistoricalError": "UNKNOWN, old code discarded status",
+      "format": "Endpoint/contents/systemInstruction/standard/store:false/MEDIUM/candidateCount1 within official API contract. No proven code defect.",
+      "size": "Gemini exact token use UNKNOWN. OpenAI same-task fallback22587 input. Reservation reconstructs conservative input bound111302 (byte-based bound, not actual tokens). Owner25.11K cannot establish TPM exceedance without limit/window.",
+      "tier": "Official Gemini3.8 Flash Standard free tier exists. Free tier alone not a proven blocker. No billing experiment.",
+      "newCall": "One new materially distinct diagnostic justified to capture status/code on9fa1332; not submitted by Work due credential-protected browser and no authenticated HTTP executor."
+    },
+    "accounting": {
+      "snapshotAt": "2026-10-02T05:07:21.660Z",
+      "readAgainThread": "dc80ccc4-832b-4c84-8c1d-6a48a13fdb24",
+      "records": 12,
+      "heldMicroUsd": 4020427,
+      "remainingMicroUsd": 15979573,
+      "newWorkCalls": 0,
+      "invoiceActuals": "UNKNOWN"
+    },
+    "officialSources": [
+      "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "https://ai.google.dev/api/generate-content",
+      "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash/",
+      "https://ai.google.dev/gemini-api/docs/pricing"
+    ],
+    "nextPrompt": "/pillow-request {\"message\":\"GEMINI-DIAG-20261002-C — integration diagnostic, not certification. Summarize this supplied note in one short sentence: EmpireAI is checking provider connectivity while commerce remains locked. Do not use tools or take actions.\",\"capability\":\"summarization\"}"
   }
 }
