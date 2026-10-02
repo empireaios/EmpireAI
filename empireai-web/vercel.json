@@ -7,7 +7,8 @@
     "deploymentEnabled": {
       "fix/pillow-integrated-closure-20260920": false,
       "ci/provider-readback-amazon-v1": false,
-      "ci/provider-readback-cj-v1": false
+      "ci/provider-readback-cj-v1": false,
+      "ci/pillow-priority-a-20261002": false
     }
   }
 }

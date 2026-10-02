@@ -1,0 +1,19 @@
+{
+  "schema": "empireai-readonly-inference-reconciliation-v1",
+  "sha256": "a1ec5b7e9d8b307b60cefeb0c08774866ff7c27acc0ceaf92c7947e3dd8dfd26",
+  "readOnly": true,
+  "recordCount": 6,
+  "earliest": "2026-10-01T15:07:48.153Z",
+  "latest": "2026-10-01T15:58:43.143Z",
+  "ceilingMicroUsd": 20000000,
+  "reservedMicroUsd": 1951842,
+  "remainingReservationHeadroomMicroUsd": 18048158,
+  "recordedEstimateMicroUsd": 441130,
+  "unknownEstimateCount": 1,
+  "invoiceActualKnownForAll": false,
+  "inferenceRequestCount": null,
+  "since": "2026-10-02T01:30:00.000Z",
+  "selectedCalls": [],
+  "selectedEvidencePresent": false,
+  "interpretation": "Reservations consume the guard; estimates are not provider invoices. An absent row in an old snapshot does not prove zero spend."
+}

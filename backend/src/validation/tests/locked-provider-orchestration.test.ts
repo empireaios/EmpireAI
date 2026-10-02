@@ -44,3 +44,25 @@ test('legacy v1 ledger rows remain byte-for-byte values and count against all pr
 test('two temporary refusals stop without a third provider; bad usage cannot masquerade as a response',async()=>{
  const clean=setup();try{let count=0;globalThis.fetch=async()=>{count++;return new Response(null,{status:503});};await assert.rejects(completeLockedRouted(request('two-refusals')));assert.equal(count,2);assert.equal(rows().length,2);globalThis.fetch=async()=>Response.json({modelVersion:LOCKED_PROVIDERS.gemini.model,candidates:[{finishReason:'STOP',content:{parts:[{text:'untrusted'}]}}],usageMetadata:{promptTokenCount:1,candidatesTokenCount:1,thoughtsTokenCount:4,totalTokenCount:2}});await assert.rejects(completeLockedRouted({...request('bad-gemini-usage'),provider:'gemini'}));assert.equal(rows().at(-1)?.estimated_micro_usd,null);}finally{clean();}
 });
+test('real shared router consultation reserves two distinct identities and replay cannot pay again',async()=>{
+ const clean=setup();try{
+  const {LLMRouter}=await import('../../brain/llm/llm-router.js');
+  const router=new LLMRouter();let calls=0;
+  globalThis.fetch=async url=>{calls++;return fixture(String(url).includes('anthropic')?'anthropic':'gemini');};
+  const results=await router.crossCheck(request('distinct-consultation'),['anthropic','gemini'],'Offline integration check');
+  assert.equal(calls,2);assert.deepEqual(results.map(r=>r.provider),['anthropic','gemini']);
+  assert.equal(new Set(rows().map(r=>r.request_key)).size,2);
+  assert.ok(rows().every(r=>r.status==='usage_recorded'));
+  await assert.rejects(router.crossCheck(request('distinct-consultation'),['anthropic','gemini'],'Offline integration replay'));
+  assert.equal(calls,2);assert.equal(rows().length,2);
+ }finally{clean();}
+});
+test('concurrent duplicate requests admit one paid transport and one durable reservation',async()=>{
+ const clean=setup();try{
+  let calls=0;globalThis.fetch=async()=>{calls++;await new Promise(resolve=>setTimeout(resolve,20));return fixture('openai');};
+  const results=await Promise.allSettled([completeLockedRouted(request('concurrent-replay')),completeLockedRouted(request('concurrent-replay'))]);
+  assert.equal(results.filter(r=>r.status==='fulfilled').length,1);
+  assert.equal(results.filter(r=>r.status==='rejected').length,1);
+  assert.equal(calls,1);assert.equal(rows().length,1);
+ }finally{clean();}
+});

@@ -1,0 +1,90 @@
+name: Pillow Priority A bounded verification
+on:
+  push:
+    branches: ['ci/pillow-priority-a-20261002']
+permissions:
+  contents: read
+concurrency:
+  group: pillow-priority-a-offline
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  NEXT_TELEMETRY_DISABLED: '1'
+  SOAK_ALLOW_LIVE_RUN: '0'
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 84ab891fcafc733f9d43e4b30e14a4e0fb2d25de
+          path: runtime-candidate
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.23.2
+      - name: Install and build exact runtime; overlay only added offline regression tests
+        run: |
+          cp backend/src/validation/tests/locked-provider-orchestration.test.ts runtime-candidate/backend/src/validation/tests/
+          npm ci --prefix runtime-candidate/pillow
+          npm run build --prefix runtime-candidate/pillow
+          npm ci --prefix runtime-candidate/backend
+          npm run build --prefix runtime-candidate/backend
+      - name: Offline provider, spending, duplicate, host integrity and authority coverage
+        working-directory: runtime-candidate/backend
+        run: |
+          node --import tsx --test src/validation/tests/locked-provider-orchestration.test.ts src/validation/tests/locked-inference.test.ts src/validation/tests/locked-reasoning-integration.test.ts src/validation/tests/locked-fresh-session.test.ts src/validation/tests/pillow-durable-reasoning-worker.test.ts
+  geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: a9358a2db7d2eb956537480ecdf114635f9ca6a9
+          path: web-candidate
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.23.2
+      - name: Build exact web candidate with test-only loopback fixtures
+        run: |
+          cp empireai-web/e2e/pillow-*geometry*.mjs web-candidate/empireai-web/e2e/
+          npm ci --prefix web-candidate/empireai-web
+          npm run typecheck --prefix web-candidate/empireai-web
+          npm run build --prefix web-candidate/empireai-web
+          npm install --prefix "$RUNNER_TEMP/geometry-browser" --ignore-scripts --no-audit --no-fund @sparticuz/chromium@153.0.0
+          node --input-type=module - "$RUNNER_TEMP/geometry-browser" <<'JS'
+          import {writeFileSync,readFileSync,chmodSync} from 'node:fs';
+          import {brotliDecompressSync} from 'node:zlib';
+          const root=process.argv[2];
+          writeFileSync(root+'/chromium',brotliDecompressSync(readFileSync(root+'/node_modules/@sparticuz/chromium/bin/chromium.br')));
+          chmodSync(root+'/chromium',0o700);
+          JS
+      - name: Desktop sidebar states, first characters, lists, composer, reload and phone geometry
+        working-directory: web-candidate/empireai-web
+        env:
+          BRAIN_API_URL: http://127.0.0.1:9
+          PILLOW_BASE_URL: http://127.0.0.1:3317
+          PILLOW_GEOMETRY_FIXTURE: '1'
+          PILLOW_CHROMIUM_PATH: ${{ runner.temp }}/geometry-browser/chromium
+          PILLOW_GEOMETRY_OUTPUT: ${{ runner.temp }}/pillow-geometry
+        run: |
+          node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3317 > "$RUNNER_TEMP/pillow-next.log" 2>&1 &
+          pillow_server_pid=$!
+          trap 'kill "$pillow_server_pid" 2>/dev/null || true' EXIT
+          for attempt in 1 2 3 4 5; do curl --fail --silent --output /dev/null http://127.0.0.1:3317/login && break; sleep 1; done
+          node --test e2e/pillow-desktop-geometry.test.mjs
+      - name: Preserve geometry and screenshots, explicitly offline not production acceptance
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pillow-offline-geometry
+          path: ${{ runner.temp }}/pillow-geometry
+          retention-days: 14
