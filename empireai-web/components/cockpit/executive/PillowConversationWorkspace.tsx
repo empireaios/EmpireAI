@@ -6,6 +6,8 @@ import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAss
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
 import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
+import layout from "./PillowConversationLayout.module.css";
+import Link from "next/link";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
@@ -127,11 +129,11 @@ export function PillowConversationWorkspace({
       id="pillow-conversation-workspace"
       data-testid="pillow-conversation-workspace"
       aria-label="Pillow conversation"
-      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1"
+      className={`relative flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1 ${layout.workspace}`}
     >
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3">
+      <header className={`flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3 ${layout.header}`}>
         <div>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37]">Conversation</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] lg:hidden">Conversation</p>
           <h2 className="font-display text-xl text-[#f0d78c]">{title}</h2>
         </div>
         <div className="flex items-center gap-2">
@@ -142,8 +144,9 @@ export function PillowConversationWorkspace({
                 : "bg-amber-500/15 text-amber-200"
             }`}
           >
-            {executiveReady ? "Available" : scrubMachineLanguage(readinessLabel || "Starting")}
+            {executiveReady ? "Chat available" : scrubMachineLanguage(readinessLabel || "Starting")}
           </span>
+          <span className="text-[10px] text-amber-200">NOT_BORN · Commerce locked</span>
           <button
             type="button"
             className="rounded-lg border border-gold/15 px-2.5 py-1 text-[10px] text-[#8a847a] hover:border-gold/30"
@@ -155,21 +158,24 @@ export function PillowConversationWorkspace({
             New message
           </button>
         </div>
-      </header>
-
-      <details className="shrink-0 border-b border-gold/10 px-5 py-2">
+      <details className={layout.context}>
         <summary className="cursor-pointer text-xs text-[#6f6a60]">Context ▸</summary>
-        <div className="mt-2 max-h-40 overflow-y-auto">
+        <div className={layout.contextBody}>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           ) : (
             <p className="text-xs text-[#6f6a60]">
-              Pillow uses current screen and business state automatically. Details stay hidden unless
-              you open this.
+              Current screen context is unavailable. This is not evidence of current business state.
             </p>
           )}
+          <p className="mt-3 text-xs text-amber-200">Certification incomplete. Independent Work assurance is not yet scheduled.</p>
+          <p className="mt-2 text-xs text-[#8a847a]">The legacy command dashboard uses a dispatch endpoint denied in this locked runtime; it is not Pillow’s authoritative reasoning-context source. Retrying cannot unlock it.</p>
+          <Link href="/cockpit/command" className="mt-2 block text-xs text-[#d4af37]">Open command dashboard</Link>
         </div>
       </details>
+
+      </header>
+
 
       <div
         ref={historyRef}
@@ -258,12 +264,12 @@ export function PillowConversationWorkspace({
       </div>
 
       {showLatest && (
-        <div className="flex justify-center border-t border-gold/10 py-1.5">
+        <div className={layout.jump}>
           <button type="button" onClick={goToLatest} className="px-4 py-2 text-xs text-[#d4af37]">Jump to latest</button>
         </div>
       )}
 
-      <footer className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
+      <footer data-testid="pillow-composer-footer" className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
         <form
           className="mx-auto flex max-w-3xl items-end gap-2 lg:max-w-[56rem] lg:gap-3"
           onSubmit={(e) => {

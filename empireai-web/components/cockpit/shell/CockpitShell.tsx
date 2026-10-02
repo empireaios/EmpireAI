@@ -62,8 +62,8 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
             <div className={`flex min-h-screen bg-[#030303] text-[#f5f0e6] ${pillowPage ? layout.shell : sidebarOffset}`}>
               <CockpitSidebar collapsed={sidebar.collapsed} onToggle={sidebar.toggle} inFlow={pillowPage} />
               <div className={`flex min-w-0 flex-1 flex-col pb-20 lg:min-h-0 lg:pb-0 ${pillowPage ? layout.content : ""}`}>
-                <CockpitTopBar />
-                <ExecutiveCommandStrip />
+                <div className={pillowPage ? "lg:hidden" : undefined}><CockpitTopBar /></div>
+                {!pillowPage && <ExecutiveCommandStrip />}
                 <main
                   id="cockpit-main"
                   aria-label="Cockpit content"

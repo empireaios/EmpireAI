@@ -5,12 +5,17 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+import { installGeometryFixture } from './pillow-geometry-fixture.mjs';
 
 test('Pillow text and composer stay beyond navigation through resize, toggle and refresh', async () => {
   assert.ok(process.env.PILLOW_BASE_URL, 'Explicit approved deployment URL required');
-  assert.ok(process.env.PILLOW_AUTH_STATE, 'Private authenticated browser state required');
-  const browser = await chromium.launch();
-  const context = await browser.newContext({ storageState: process.env.PILLOW_AUTH_STATE });
+  const offline = process.env.PILLOW_GEOMETRY_FIXTURE === '1';
+  assert.ok(offline || process.env.PILLOW_AUTH_STATE, 'Private authenticated browser state required');
+  const browser = await chromium.launch({executablePath:process.env.PILLOW_CHROMIUM_PATH || undefined});
+  const context = await browser.newContext({ storageState: offline ? undefined : process.env.PILLOW_AUTH_STATE });
+  const fixtureRequests = offline ? await installGeometryFixture(context, process.env.PILLOW_BASE_URL) : null;
+  const evidence = [];
   let inferenceAttempted = false;
   await context.route('**/api/pillow/chat*', async route => {
     if (route.request().method() === 'POST') { inferenceAttempted = true; await route.abort(); }
@@ -39,8 +44,12 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
       for (const li of markers) positions.push({label:'list marker safety area', left:li.getBoundingClientRect().left - 32});
       const rect = composer.getBoundingClientRect();
       positions.push({label:'composer placeholder', left:rect.left + parseFloat(getComputedStyle(composer).paddingLeft)});
-      return {boundary, workspace:workspace.getBoundingClientRect().toJSON(), composer:rect.toJSON(), width:innerWidth, positions, markers:markers.length};
+      return {boundary, workspace:workspace.getBoundingClientRect().toJSON(), composer:rect.toJSON(), height:innerHeight, documentHeight:document.documentElement.scrollHeight, history:history.getBoundingClientRect().toJSON(), width:innerWidth, positions, markers:markers.length};
     });
+    evidence.push(result);
+    assert.ok(result.history.height >= result.height * 0.70, 'History must use at least70% viewport: '+JSON.stringify(result.history));
+    assert.ok(result.documentHeight <= result.height + 2, 'Desktop page must not scroll outside conversation');
+    assert.ok(result.composer.bottom <= result.height, 'Composer remains visible');
     assert.ok(result.workspace.left >= result.boundary + 16, JSON.stringify(result));
     assert.ok(result.workspace.right <= result.width, 'Workspace must stay within content viewport');
     assert.ok(result.composer.right <= result.workspace.right, 'Composer aligned within workspace');
@@ -58,6 +67,10 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
           await page.getByRole('button', {name:state === 'expanded' ? 'Expand sidebar' : 'Collapse sidebar',exact:true}).click();
         }
         await assertGeometry();
+        if(process.env.PILLOW_GEOMETRY_OUTPUT){
+          await fs.mkdir(process.env.PILLOW_GEOMETRY_OUTPUT,{recursive:true});
+          await page.screenshot({path:`${process.env.PILLOW_GEOMETRY_OUTPUT}/${width}-${state}.png`});
+        }
         await page.reload();
         await page.getByTestId('pillow-composer').waitFor();
         await page.waitForFunction(expected => document.querySelector('aside[aria-label="Cockpit navigation"]')?.dataset.sidebarState === expected, state);
@@ -68,8 +81,19 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
     await page.reload();
     await page.getByTestId('pillow-composer').waitFor();
     assert.equal(await page.getByRole('complementary',{name:'Cockpit navigation'}).isVisible(),false);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Mobile page must not overflow horizontally');
+    await page.getByText('Context ▸', {exact:true}).scrollIntoViewIfNeeded();
+    assert.ok(await page.getByText('Context ▸', {exact:true}).isVisible(), 'Mobile context remains accessible');
     const composer = await page.getByTestId('pillow-composer').boundingBox();
     assert.ok(composer && composer.x >= 0 && composer.x + composer.width <= 390, 'Phone composer remains within viewport');
+    if(process.env.PILLOW_GEOMETRY_OUTPUT)await page.screenshot({path:`${process.env.PILLOW_GEOMETRY_OUTPUT}/phone.png`,fullPage:true});
     assert.equal(inferenceAttempted,false,'Geometry acceptance must not trigger paid inference');
-  } finally { await context.close(); await browser.close(); }
+  } finally {
+    if(process.env.PILLOW_GEOMETRY_OUTPUT){
+      await fs.mkdir(process.env.PILLOW_GEOMETRY_OUTPUT,{recursive:true});
+      await page.screenshot({path:`${process.env.PILLOW_GEOMETRY_OUTPUT}/at-completion.png`,fullPage:true}).catch(()=>{});
+      await fs.writeFile(`${process.env.PILLOW_GEOMETRY_OUTPUT}/geometry.json`,JSON.stringify({scope:offline?'OFFLINE_TRANSPORT_FIXTURE_NOT_PRODUCTION':'AUTHENTICATED_DEPLOYMENT',inferenceAttempted,fixtureRequests,evidence},null,2));
+    }
+    await context.close(); await browser.close();
+  }
 });
