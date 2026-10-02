@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { spawn } = require('node:child_process');
+const { superviseAssurance } = require('./assurance-supervisor.cjs');
 const { runBounded, canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 function configuration(input) {
@@ -40,14 +40,7 @@ async function main(){
   }
   // Separate deterministic processes. Neither receives provider/owner secrets.
   // Inspector continues reporting missed cycles when the collector dies.
-  const assuranceEnv={PATH:env.PATH,RAILWAY_VOLUME_MOUNT_PATH:env.RAILWAY_VOLUME_MOUNT_PATH,RAILWAY_GIT_COMMIT_SHA:env.RAILWAY_GIT_COMMIT_SHA,REDIS_URL:env.REDIS_URL,ASSURANCE_RUNTIME_ORIGIN:'https://empireai-locked-runtime-production.up.railway.app'};
-  const assuranceChildren=['permanent-worker.mjs','permanent-inspector.mjs'].map(name=>{
-    const child=spawn(process.execPath,['backend/src/assurance/'+name],{cwd,env:assuranceEnv,stdio:['ignore','inherit','inherit']});
-    child.on('error',()=>console.error(JSON.stringify({event:'assurance_process_unavailable',component:name})));
-    child.on('exit',code=>console.error(JSON.stringify({event:'assurance_process_exit',component:name,code})));
-    return child;
-  });
-  const stopAssurance=()=>{for(const child of assuranceChildren)child.kill('SIGTERM');};
+  const stopAssurance=superviseAssurance({cwd,env});
   process.once('SIGTERM',stopAssurance);process.once('SIGINT',stopAssurance);
   const result=await runBounded({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
     console.log(JSON.stringify({event:'locked_runtime_start',profile:PROFILE,launchId:crypto.randomUUID(),childPid:child.pid,source:env.RAILWAY_GIT_COMMIT_SHA,birth:'NOT_BORN',commerce:'LOCKED',operational:false}));

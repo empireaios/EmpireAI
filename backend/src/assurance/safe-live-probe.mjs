@@ -25,7 +25,11 @@ try{
   const restoredDb=new DatabaseSync(filename);restoredDb.prepare('UPDATE transcripts SET turns=?').run(JSON.stringify([{role:'assistant',requestId:id,content:request.finalResult.message}]));restoredDb.close();
   const restored=reconcileSnapshot(await collectDurableOmissions({redis:fixtureSource,filename,now}),now,120000);
   if(restored.status!=='PASS')throw Error('Live correction not detected');
+  const mismatchDb=new DatabaseSync(filename);mismatchDb.prepare('UPDATE transcripts SET turns=?').run(JSON.stringify([{role:'assistant',requestId:id,content:'Different isolated test answer'}]));mismatchDb.close();
+  const mismatched=reconcileSnapshot(await collectDurableOmissions({redis:fixtureSource,filename,now}),now,120000);
+  if(mismatched.status!=='FAIL'||mismatched.mismatched!==1)throw Error('Live durable-source mismatch not detected');
   proof={schema:'safe-live-assurance-probe-v1',at:new Date().toISOString(),revision:process.env.RAILWAY_GIT_COMMIT_SHA,isolatedSyntheticSource:true,productionRecordsMutated:0,pillowSelfReportUsed:false,inferenceCalls:0,commerceWrites:0,omitted,restored,scope:'Live deployed collector detects a deliberately omitted synthetic delivery; not proof of all operational domains or actual unprompted Pillow fault detection'};
+  proof.mismatched=mismatched;
   fs.writeFileSync(dir+'/assurance-live-probe-proof.json',JSON.stringify(proof,null,2),{mode:0o600});console.log(JSON.stringify(proof));
 }finally{await redis.del(key);redis.disconnect();if(fs.existsSync(filename))fs.unlinkSync(filename);}
 
