@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-02T07:21:47.021Z",
+  "candidate": "eb5a7923f586c6dc2e19cf8ab4d1ac71cc899389",
+  "candidateTree": "cbf885b575a1d327a29917ee8c0518c42318be50",
+  "frontend": "dddb3242b942978260c8a010906489b6c13887f4",
+  "originalMethodology": "9501d9b363592bcdaee39f107f86d50fee21c02b",
+  "unexposedCases": [
+    {
+      "id": "U4-F1",
+      "frozenAtCommit": "ca7adb82672e46fe3baef829515735748acc336d"
+    },
+    {
+      "batch": "U3 ordinary authority",
+      "frozenAtCommit": "04feb2ae637abda0243046cefb5e1943e5d5cf99"
+    }
+  ],
+  "consumedExcluded": [
+    "I1",
+    "U2-N1",
+    "U2-N2",
+    "U2-N3"
+  ],
+  "unchangedCriteria": true,
+  "executionPrerequisites": [
+    "required CI passed",
+    "actual runtime candidate identity",
+    "current accounting readback",
+    "normal authenticated interface"
+  ],
+  "noAnswerKeyInRuntime": true
+}
