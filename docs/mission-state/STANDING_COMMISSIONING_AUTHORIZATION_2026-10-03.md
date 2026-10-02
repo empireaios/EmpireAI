@@ -23,3 +23,13 @@ The existing production owner session at empire-ai.co was reusable. The UI repor
 The existing isolated-demonstration:4 finding was visible as HIGH / RESOLVED: detected 2026-10-02T21:31:36Z and resolved 2026-10-02T21:33:06Z (the browser displayed UTC-7). Its historical entry and HEALTHY → DEGRADED → HEALTHY observations remained visible. No discrepancy was injected in this continuation. This is owner-visible recovery evidence, not a new production restart/preservation proof.
 
 Production was not modified. The current environment has no Railway CLI authentication/configuration, and the connected Railway OAuth tool returns variable names only (`valuesRedacted=true`). The owner browser session supports UI reads, but does not supply a supported private execution/preservation channel. Do not claim a production restart, full preservation comparison, phone verification, provider integration, or complete Assurance closure from these observations.
+
+## Restored console and preservation failure
+
+The existing authenticated Railway browser console was subsequently recovered using its normal Console control. No founder credential was exposed or new login needed. The original readback script `/data/commissioning/resume-20261003-readback.cjs` was reused; the failed result is preserved separately at `/data/commissioning/continuation-20261003-unexpected-preservation.json`.
+
+The earlier claim that only three audit rows differed is no longer sufficient: current comparison shows audit rows 384 → 388, guardian architecture checks 58 → 60, treasury snapshots 29 → 30, and changed digests in product catalog/evaluations/signals, product scout evaluations and supplier evaluations. The newest evaluation/check/snapshot timestamps cluster at 2026-10-02T21:27:41Z, followed by Pillow startup at 21:27:57Z. Source inspection identifies deferred legacy fixture bootstrap and persistent mock evaluations at startup. No real commerce transaction is established by these fixture changes.
+
+The candidate now prevents legacy business bootstrap from running in explicitly profiled runtimes. It does not delete or restore the changed records. The failed comparison remains evidence; restart/deployment validation must compare a newly captured current-state baseline as well as retain the original failure. The original historical preservation claim must not be silently relabelled PASS.
+
+Recurring cycle/watchdog outages now receive separate incident IDs; earlier resolved findings and timestamps are retained. Local tests cover this recurrence and prohibit locked bootstrap from overwriting existing business rows. Production has not yet received this repair.

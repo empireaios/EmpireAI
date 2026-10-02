@@ -99,3 +99,17 @@ test('commissioning operator reads accounting without founder credentials and ca
   assert.equal((await app.inject({url,headers})).statusCode,403);assert.equal(reads,1);
  }finally{await app.close();for(const key of keys){if(saved[key]===undefined)delete process.env[key];else process.env[key]=saved[key];}}
 });
+
+import {runLegacyBusinessBootstrap} from '../../runtime/startup-bootstrap-policy.js';
+test('locked startup preserves existing business rows and refuses deferred fixture bootstrap',()=>{
+ const db=new DatabaseSync(':memory:');db.exec("CREATE TABLE business(id TEXT, value TEXT); INSERT INTO business VALUES('existing','preserve')");
+ const before=db.prepare('SELECT * FROM business').all();let calls=0;
+ const destructiveBootstrap=()=>{calls++;db.exec("UPDATE business SET value='fixture'; INSERT INTO business VALUES('demo','synthetic')")};
+ try{
+ for(const profile of ['LOCKED_COMMISSIONING_V1','UNKNOWN_EXPLICIT_PROFILE']){
+ assert.equal(runLegacyBusinessBootstrap(destructiveBootstrap,profile),false);
+ assert.equal(calls,0);assert.deepEqual(db.prepare('SELECT * FROM business').all(),before);
+ }
+ assert.equal(runLegacyBusinessBootstrap(destructiveBootstrap,''),true);assert.equal(calls,1);
+ }finally{db.close();}
+});
