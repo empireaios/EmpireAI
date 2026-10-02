@@ -52,7 +52,7 @@ export function reconcileSnapshot(snapshot, now, maxAgeMs) {
 
 export class AssuranceStore {
   constructor(filename) {
-    this.db = new DatabaseSync(filename);
+    this.db = new DatabaseSync(filename, { timeout: 1000 });
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;
       CREATE TABLE IF NOT EXISTS assurance_cycles (
         id TEXT PRIMARY KEY, scheduled_at INTEGER NOT NULL UNIQUE, started_at INTEGER NOT NULL,
