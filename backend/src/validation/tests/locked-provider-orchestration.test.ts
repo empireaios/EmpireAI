@@ -67,6 +67,21 @@ test('concurrent duplicate requests admit one paid transport and one durable res
  }finally{clean();}
 });
 
+test('caller cancellation after dispatch retains uncertainty and never starts fallback',async()=>{
+ const clean=setup();try{
+  const controller=new AbortController();let calls=0;
+  globalThis.fetch=async(_url,init)=>{calls++;return new Promise((_resolve,reject)=>{
+    init!.signal!.addEventListener('abort',()=>reject(init!.signal!.reason),{once:true});
+    controller.abort(new DOMException('offline cancellation','AbortError'));
+  });};
+  await assert.rejects(completeLockedRouted({...request('cancelled-inflight'),signal:controller.signal}));
+  assert.equal(calls,1);assert.equal(rows().length,1);assert.equal(rows()[0].status,'failed_uncertain');
+  assert.ok(Number(rows()[0].reserved_micro_usd)>0);assert.equal(rows()[0].estimated_micro_usd,null);
+  await assert.rejects(completeLockedRouted({...request('cancelled-inflight'),signal:controller.signal}));
+  assert.equal(calls,1);assert.equal(rows().length,1);
+ }finally{clean();}
+});
+
 test('Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard',async()=>{
  const clean=setup();try{
   const {LLMRouter}=await import('../../brain/llm/llm-router.js');

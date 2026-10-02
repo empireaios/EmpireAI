@@ -89,6 +89,44 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
       assert.match(failed.message,/could not complete this inference/);
       assert.doesNotMatch(failed.message,/Recommended first moves|Unsupported as established fact|synthetic provider failure/);
 
+      // Exercise router -> real host -> durable transport as one failure path.
+      // Only external provider HTTP is replaced; no paid inference is possible.
+      const {LLMRouter}=await import('../../brain/llm/llm-router.js');
+      const {createBrainLLMAdapter}=await import('../../orchestration/pillow-host/brain-llm-adapter.js');
+      const {OpenAIIntegrationLayer}=await import('@empireai/pillow');
+      const {executeReasoningProxy}=await import('../../runtime/pillow-durable-reasoning-worker.js');
+      const {policyForFailure}=await import('../../runtime/pillow-chat-request-store.js');
+      const {DatabaseSync}=await import('node:sqlite');
+      const savedFetch=globalThis.fetch;
+      const priorKeys=[process.env.OPENAI_API_KEY,process.env.ANTHROPIC_API_KEY];
+      try {
+        process.env.OPENAI_API_KEY='offline-only';process.env.ANTHROPIC_API_KEY='offline-only';
+        const calls:string[]=[];
+        globalThis.fetch=async(url)=>{calls.push(String(url));return Response.json({error:{status:'UNAVAILABLE'}},{status:503});};
+        host.llmLayer=new OpenAIIntegrationLayer(createBrainLLMAdapter(new LLMRouter()));
+        const input={workspaceId:session.json().session.workspaceId,sessionId,message:'/pillow-request '+JSON.stringify({message:'Explain why an observation is not approval.',capability:'reasoning'}),reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'all-provider-terminal-fixture'};
+        const terminal=await host.routePrompt(input);
+        assert.equal(calls.length,2);assert.ok(calls[0].includes('openai'));assert.ok(calls[1].includes('anthropic'));
+        assert.deepEqual(terminal.reasoningFailure,{code:'INFERENCE_FAILED',retryable:false});
+        assert.doesNotMatch(terminal.message,/Recommended first moves|Unsupported as established fact/);
+        const db=new DatabaseSync(path.join(root,'commissioning','openai-october-2026.sqlite'),{readOnly:true});
+        const before=db.prepare('SELECT * FROM calls ORDER BY id').all();db.close();
+        assert.equal(before.length,2);assert.ok(before.every((r:any)=>r.status==='failed_uncertain'&&r.reserved_micro_usd>0));
+        let proxyCalls=0;
+        globalThis.fetch=async()=>{proxyCalls++;return Response.json({result:terminal});};
+        const proxy=await executeReasoningProxy({input:{kind:'reasoning',sessionToken:'offline-only',bodyText:'{}'},request:{requestId:'all-provider-terminal-fixture',leaseToken:1}} as any,9999);
+        assert.equal(proxyCalls,1);assert.equal(proxy.ok,false);
+        if(!proxy.ok){assert.equal(proxy.failureClass,'BRAIN_FATAL');assert.equal(policyForFailure(proxy.failureClass),'FAIL');}
+        globalThis.fetch=async()=>{throw Error('Replay must never reach provider HTTP');};
+        const replay=await host.routePrompt(input);
+        assert.equal(replay.reasoningFailure.code,'INFERENCE_FAILED');
+        const reopened=new DatabaseSync(path.join(root,'commissioning','openai-october-2026.sqlite'),{readOnly:true});
+        assert.deepEqual(reopened.prepare('SELECT * FROM calls ORDER BY id').all(),before);reopened.close();
+      } finally {
+        globalThis.fetch=savedFetch;
+        for(const [index,key]of ['OPENAI_API_KEY','ANTHROPIC_API_KEY'].entries()) {if(priorKeys[index]===undefined)delete process.env[key];else process.env[key]=priorKeys[index];}
+      }
+
     } finally {
       host.llmLayer=savedLayer;
       if(savedPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=savedPath;
