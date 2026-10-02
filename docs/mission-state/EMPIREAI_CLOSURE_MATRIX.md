@@ -1,15 +1,29 @@
-# EmpireAI canonical closure matrix
+# EmpireAI closure matrix
 
-Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EMPIREAI_CLOSURE_MATRIX.json.
+223 records retained. Continuous run; not a stopping checkpoint.
 
-| ID | Phase | Status | Remaining acceptance |
+D: {"DEFERRED_BY_KING":20}
+
+A: {"PROVEN":30,"IN_PROGRESS":9,"REGRESSION":2,"BLOCKED":1}
+
+E: {"DEFERRED_BY_KING":18}
+
+C: {"NOT_STARTED":93,"IN_PROGRESS":5,"PROVEN":1}
+
+F: {"NOT_STARTED":37}
+
+B: {"PROVEN":6}
+
+CUTOVER: {"PROVEN":1}
+
+| ID | Phase | Status | Exact remaining work |
 |---|---|---|---|
 | MANDATE-01 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-02 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. Commissioning debt: Work must independently obtain audit evidence without King routinely downloading SQLite through PowerShell. Prove minimum-privilege supported access, source independence, audit trail and unavailable-source handling in supervision phase; no unsafe credential work now. |
 | MANDATE-03 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-04 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-05 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
-| MANDATE-06 | A | IN_PROGRESS | Deploy and previous-tree preview rebuild proven; actual production rollback/alias restoration not exercised. Do not deliberately restore known defects. |
+| MANDATE-06 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | MANDATE-07 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-08 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-09 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
@@ -27,7 +41,7 @@ Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EM
 | MANDATE-23 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-24 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-25 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
-| MANDATE-26 | A | IN_PROGRESS | Actual production rollback evidence outstanding under A-ROLLBACK; deployment authority already exercised. No new permission needed. |
+| MANDATE-26 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | MANDATE-27 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-28 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | MANDATE-29 | E | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
@@ -36,7 +50,7 @@ Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EM
 | MANDATE-32 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | MANDATE-33 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | MANDATE-34 | A | IN_PROGRESS | Genuine Gemini success and live explicit consultation receipts absent. Engineering routing/fallback/provenance/accounting/cancellation/idempotency passes. |
-| MANDATE-35 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
+| MANDATE-35 | A | REGRESSION | U2-N1 real output replaced by heuristic UNKNOWN despite genuine calculated receipts. Failure preserved3173912; generalrepair80ae2f8 CIpass but deployment/new-unseen verification pending. |
 | MANDATE-36 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | MANDATE-37 | A | IN_PROGRESS | Unseen ordinary-language discussion/instruction, ambiguity and clarification behavior through normal authenticated Pillow; locks alone do not prove competence. |
 | MANDATE-38 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
@@ -57,7 +71,7 @@ Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EM
 | CLARIFY-06 | D | DEFERRED_BY_KING | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
 | CAP-TR-01 | C | NOT_STARTED | Historical compatibility mapping is not current release acceptance. No replacement assessment executed. |
 | CAP-TR-02 | C | NOT_STARTED | Historical compatibility mapping is not current release acceptance. No replacement assessment executed. |
-| CAP-TR-03 | C | IN_PROGRESS | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
+| CAP-TR-03 | C | IN_PROGRESS | U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI. |
 | CAP-TR-04 | C | NOT_STARTED | Historical compatibility mapping is not current release acceptance. No replacement assessment executed. |
 | CAP-TR-05 | C | NOT_STARTED | Historical compatibility mapping is not current release acceptance. No replacement assessment executed. |
 | CAP-TR-06 | C | NOT_STARTED | Historical compatibility mapping is not current release acceptance. No replacement assessment executed. |
@@ -174,7 +188,7 @@ Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EM
 | SYSTEM-25 | F | NOT_STARTED | Historical target architecture preserved. Reconcile against latest owner mandate before implementation; historical autonomous ownership never supersedes independent Work assurance or King authority. |
 | SYSTEM-26 | F | NOT_STARTED | Historical target architecture preserved. Reconcile against latest owner mandate before implementation; historical autonomous ownership never supersedes independent Work assurance or King authority. |
 | A-DEPLOY | A | PROVEN | Maintain deployment gate; desktop owner acceptance separate. |
-| A-ROLLBACK | A | IMPLEMENTED_UNVERIFIED | Exact prior-tree preview rebuild READY; no actual production rollback/alias readback. Use only on genuine regression. |
+| A-ROLLBACK | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | A-ACCOUNTING | A | PROVEN | Reconciliation closed at supported known/unknown boundary. Unknown invoice costs remain held, not erased. Future live accounting tracked separately. |
 | A-INTEGRATION | A | BLOCKED | Genuine Gemini success missing: C503 UNAVAILABLE. Live explicitly requested consultation receipt also absent; deterministic bounded consultation passes. No blind paid probe. |
 | A-FAILURE | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
@@ -187,28 +201,28 @@ Updated 2026-10-02T05:45:03.692Z.223records. Full criteria/evidence remain in EM
 | A-AUTHORITY | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | A-COMMAND | A | PROVEN | Presentation relocation in f7a31da awaiting production acceptance; no global dispatch unlock. |
 | B-DESKTOP | B | PROVEN | Scoped current desktop interface accepted. Broader Owner UX remains deferred;no certification/intelligence inference from visual acceptance. |
-| B-MOBILE | B | IN_PROGRESS | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
+| B-MOBILE | B | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | B-HISTORY | B | PROVEN | Regression protection |
 | C-FROZEN | C | PROVEN | Unseen certification execution pending, not certified. |
 | CUTOVER | CUTOVER | PROVEN | None absent genuine regression |
 | SYNC-01 | A | IN_PROGRESS | Composite carry-forward still includes actual rollback, full provider integration, certification and future supervision. |
 | SYNC-02 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
-| SYNC-03 | A | IN_PROGRESS | Verify implementation and obtain required behavioral evidence; documentation is not proof. |
+| SYNC-03 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | SYNC-04 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | SYNC-05 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
-| SYNC-06 | A | IN_PROGRESS | Source distinguishes chat availability/NOT_BORN/LOCKED; full certification/Work-assurance status presentation and current rendered evidence absent. No healthy-assurance inference. |
+| SYNC-06 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | SYNC-07 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
-| SYNC-08 | A | IN_PROGRESS | 390px responsive geometry and earlier owner phone/history pass; complete current-build phone journey after compatibility successors not observed. No regression established. |
+| SYNC-08 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | SYNC-09 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | SYNC-10 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | SYNC-11 | A | IN_PROGRESS | Genuine Gemini success and live explicit consultation receipts absent; never infer from fallback answer. |
-| SYNC-12 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
-| SYNC-13 | A | IN_PROGRESS | Independent supplied-evidence batches do not depend on Gemini success. Execution needs supported authenticated Work submission/readback and fresh ledger; browser credential protection blocks execution. |
+| SYNC-12 | A | REGRESSION | Answer-integrity regression proved by consumedU2-N1. Context/tool receipts retained; generalrepair80ae2f8 requires deployment and new unseen behavioral receipt. |
+| SYNC-13 | A | PROVEN | Maintain regression coverage; separately tracked obligations remain. |
 | SYNC-14 | A | IN_PROGRESS | Subsequent continuous controls and owner-independent assurance remain deferred PhaseD, not completed this run. |
 | SYNC-15 | A | PROVEN | Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open. |
 | UNSEEN-01 | C | NOT_STARTED | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
-| UNSEEN-02 | C | IN_PROGRESS | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
-| UNSEEN-03 | C | IN_PROGRESS | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
+| UNSEEN-02 | C | IN_PROGRESS | U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI. |
+| UNSEEN-03 | C | IN_PROGRESS | U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI. |
 | UNSEEN-04 | C | IN_PROGRESS | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
 | UNSEEN-05 | C | NOT_STARTED | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |
 | UNSEEN-06 | C | NOT_STARTED | New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected. |

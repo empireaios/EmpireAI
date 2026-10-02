@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:45:03.692Z",
+  "updatedAt": "2026-10-02T06:48:15.007Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -43,17 +43,17 @@
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
       "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
       "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
-      "deploymentId": "d6d53c63-eee8-4073-85d0-0c4aa4ad2315",
-      "source": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+      "deploymentId": "0aae1286-df2a-44d1-8387-e15ef5a20487",
+      "source": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
-      "status": "SUCCESS2026-10-02T05:07:56.803Z; live domain health200 correlated05:08:58.474Z",
+      "status": "SUCCESS; actualempire-ai.co authenticatedruntime06:42:56.710Z matches",
       "savedSourceBranch": "fix/inference-private-readback-20261002",
-      "savedSourceCommit": "9fa1332c6a7d302f54b3875bc50caaef921c2060"
+      "savedSourceCommit": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441"
     },
     "vercel": {
-      "deploymentId": "dpl_EDMWGDvxRishXwcuF1H5TnD2bq6f",
-      "source": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
-      "status": "READY Production empire-ai.co; compatibility-only successor to owner-accepted4fdf96d",
+      "deploymentId": "dpl_gziRBNPfsbRFp9rkog5Z7BLE3Tz3",
+      "source": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+      "status": "READY; actualcurrentphone/desktoprendering verified",
       "domain": "empire-ai.co"
     },
     "frontendPromotionVerification": {
@@ -68,11 +68,9 @@
       "verifiedAt": "2026-10-02T01:30:48.194Z"
     },
     "currentVerifiedBinding": {
-      "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
-      "vercelDeployment": "dpl_EDMWGDvxRishXwcuF1H5TnD2bq6f",
-      "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
-      "railwayDeployment": "d6d53c63-eee8-4073-85d0-0c4aa4ad2315",
-      "binding": "empire-ai.co/api/pillow/health20005:08:58GMT matched newruntime GET20005:08:58.474197670Z"
+      "frontend": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+      "backend": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+      "binding": "Authenticated empire-ai.co/api/owner/runtime verified; NOT_BORN/LOCKED, protectedPOST423"
     }
   },
   "authority": {
@@ -2483,8 +2481,8 @@
     "active": false,
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
-  "status": "CUTOVER COMPLETE",
-  "currentPhase": "PRIORITY A — SCOPED INTEGRATION / SELF-DEPLOYMENT / DESKTOP REPAIR",
+  "status": "CONTINUING; not certified; exact production rollback and interface verified, unforeseen ledger activity under read-only reconciliation",
+  "currentPhase": "PHASE_A_CLOSURE_AND_DEPENDENCY_SCOPED_UNSEEN_CERTIFICATION",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -3733,7 +3731,7 @@
     }
   },
   "certificationResumeBoundary": "Independent supplied-evidence batches do not require Gemini success; core engineering prerequisites closed. Normal authenticated Work examination path unavailable due credential protection. Three new cases sealed/examiner-only, zero execution. Full integration still requires Gemini success and live consultation; final certification unchanged.",
-  "currentNextAction": "Supported authenticated examination/readback when available, fresh accounting then one sealed case at a time. No repeatB/C, Gemini polling, billing change or owner routine file-transfer/test bridge. Preserve all223requirements.",
+  "currentNextAction": "Correlate six newly observed provider records before any new paid case; then continue frozen unused cases on verified80ae2f8.",
   "inferenceReadbackRepair": {
     "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
     "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
@@ -3907,5 +3905,48 @@
     "certificationPreparedNotExecuted": 5,
     "sealedExaminerCommit": "7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc",
     "kingActionRequired": "NONE"
+  },
+  "continuousClosureCheckpoint": {
+    "matrixRecords": 223,
+    "counts": {
+      "D": {
+        "DEFERRED_BY_KING": 20
+      },
+      "A": {
+        "PROVEN": 30,
+        "IN_PROGRESS": 9,
+        "REGRESSION": 2,
+        "BLOCKED": 1
+      },
+      "E": {
+        "DEFERRED_BY_KING": 18
+      },
+      "C": {
+        "NOT_STARTED": 93,
+        "IN_PROGRESS": 5,
+        "PROVEN": 1
+      },
+      "F": {
+        "NOT_STARTED": 37
+      },
+      "B": {
+        "PROVEN": 6
+      },
+      "CUTOVER": {
+        "PROVEN": 1
+      }
+    },
+    "evidence": "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json",
+    "failure": "U2-N1B_IMPLEMENTATION preserved3173912; repaired80ae2f8 exactCIpassdeployed, newunseenretestpending",
+    "ledger": {
+      "records": 22,
+      "heldMicroUsd": 6948467,
+      "remainingMicroUsd": 13051533,
+      "invoiceActual": "UNKNOWN",
+      "unreconciledNewRecords": 6
+    },
+    "examinerBranch": "cert/non-gemini-u2-20261002",
+    "examinerHead": "ca7adb82672e46fe3baef829515735748acc336d",
+    "kingAction": "NONE"
   }
 }

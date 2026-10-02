@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:45:03.692Z",
+  "updatedAt": "2026-10-02T06:40:20.865Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -117,19 +117,22 @@
       "phase": "A",
       "domain": "REMOVE KING AS THE ROUTINE DEPLOYMENT OPERATOR",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Real production rollback c03078a to exact ad0b8d8 tree and restoration bd3b090 to exact792efc8 tree, all on empire-ai.co. Authenticated same history SHA256 and locks retained."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Deploy and previous-tree preview rebuild proven; actual production rollback/alias restoration not exercised. Do not deliberately restore known defects.",
-      "nextExecutableAction": "Deploy and previous-tree preview rebuild proven; actual production rollback/alias restoration not exercised. Do not deliberately restore known defects.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-6",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -478,19 +481,22 @@
       "phase": "A",
       "domain": "OWNER GRANTS STANDING SELF-DEPLOYMENT AUTHORITY TO WORK",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Standing deployment and rollback exercised autonomously on approved Vercel project; exact live revision readbacks and history invariance."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Actual production rollback evidence outstanding under A-ROLLBACK; deployment authority already exercised. No new permission needed.",
-      "nextExecutableAction": "Actual production rollback evidence outstanding under A-ROLLBACK; deployment authority already exercised. No new permission needed.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-26",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -672,21 +678,24 @@
       "phase": "A",
       "domain": "CONTEXT, TOOLS, MEMORY AND LEARNING MUST BE REAL",
       "priority": "A",
-      "currentStatus": "PROVEN",
+      "currentStatus": "REGRESSION",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [
         "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified."
       ],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "U2-N1 real output replaced by heuristic UNKNOWN despite genuine calculated receipts. Failure preserved3173912; generalrepair80ae2f8 CIpass but deployment/new-unseen verification pending."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
-      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "U2-N1 real output replaced by heuristic UNKNOWN despite genuine calculated receipts. Failure preserved3173912; generalrepair80ae2f8 CIpass but deployment/new-unseen verification pending.",
+      "nextExecutableAction": "Verify deployed repair with materially new unseen case; never repeatN1.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-35",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ],
       "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
@@ -1136,12 +1145,13 @@
         "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "remainingWork": "U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI.",
       "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
-        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc",
+        "examiner-only3173912f884c939023e733da4fe6f477dd9cdf6b:results/U2-N1"
       ],
       "prerequisiteAssessment": {
         "geminiSuccessRequiredForEveryCase": false,
@@ -4313,21 +4323,24 @@
       "phase": "A",
       "domain": "Work-operated previous-tree rebuild rollback",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ec3e46c807a402472d39cc9983a00a37a2dd51 restores exact1352d6b tree81bd3315da649a36fff9bf18cdb4d7d2b013cfe3",
       "testsPerformed": [
         "Non-production Git rebuild READY dpl_EN4sujafhrUg6Hd7Xp3g25KhHS5j"
       ],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Controlled production rollback/restoration completed without intentional defect or state mutation. Production history SHA256 80f3bad557f98dad46ffcbfac3e087ca39f9a1d375b60d26400a1a40a6d78306 unchanged."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Exact prior-tree preview rebuild READY; no actual production rollback/alias readback. Use only on genuine regression.",
-      "nextExecutableAction": "Exact prior-tree preview rebuild READY; no actual production rollback/alias readback. Use only on genuine regression.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -4684,20 +4697,23 @@
       "phase": "B",
       "domain": "Preserve usable mobile conversation/composer",
       "priority": "B",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [
         "Full-height successor local browser phone390: no horizontal overflow, context accessible, composer inside viewport; shared history source unchanged."
       ],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Current production390px browser conversation/history/composer/Back/reload inspected; mobile scroll-to-composer and source labels preserved. Owner earlier mobile acceptance retained; no invented new owner observation."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -4813,18 +4829,21 @@
       "phase": "A",
       "domain": "PROVE WORK-OPERATED DEPLOYMENT AND ROLLBACK",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Git→Vercel production deployment, compatible prior-tree rollback, exact-tree restoration and live-domain readback proven."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -4881,19 +4900,22 @@
       "phase": "A",
       "domain": "STATUS SEMANTICS",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "87916cf actual production Chromium rendering: NOT_BORN/LOCKED, certification INCOMPLETE, assurance UNKNOWN, historical provider success and Gemini503 explicitly distinguished. TLS-verified relay; no fabricated responses."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Source distinguishes chat availability/NOT_BORN/LOCKED; full certification/Work-assurance status presentation and current rendered evidence absent. No healthy-assurance inference.",
-      "nextExecutableAction": "Source distinguishes chat availability/NOT_BORN/LOCKED; full certification/Work-assurance status presentation and current rendered evidence absent. No healthy-assurance inference.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -4926,19 +4948,22 @@
       "phase": "A",
       "domain": "MOBILE AND CROSS-DEVICE BEHAVIOUR MUST NOT REGRESS",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "87916cf fresh normal authenticated Chromium390px/1440px: shared server history, reload equality, Back navigation, composer input/44px, no horizontal clipping. Protected production requests423. No new inference."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "390px responsive geometry and earlier owner phone/history pass; complete current-build phone journey after compatibility successors not observed. No regression established.",
-      "nextExecutableAction": "390px responsive geometry and earlier owner phone/history pass; complete current-build phone journey after compatibility successors not observed. No regression established.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -5016,21 +5041,24 @@
       "phase": "A",
       "domain": "PILLOW INTEGRATION CAPABILITIES",
       "priority": "A",
-      "currentStatus": "PROVEN",
+      "currentStatus": "REGRESSION",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [
         "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded."
       ],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Answer-integrity regression proved by consumedU2-N1. Context/tool receipts retained; generalrepair80ae2f8 requires deployment and new unseen behavioral receipt."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
-      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Answer-integrity regression proved by consumedU2-N1. Context/tool receipts retained; generalrepair80ae2f8 requires deployment and new unseen behavioral receipt.",
+      "nextExecutableAction": "Verify deployed repair with materially new unseen case; never repeatN1.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ],
       "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
@@ -5040,19 +5068,22 @@
       "phase": "A",
       "domain": "RESUME PILLOW CERTIFICATION WHEN DEPENDENCIES CLOSE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
-      "productionLiveEvidence": [],
+      "productionLiveEvidence": [
+        "Supported Railway-run private normal production login restored examiner execution; U2-N1 submitted once, terminal/provider/tool/history/accounting evidence preserved, failure classifiedB and general repair in deployment. Not certification pass."
+      ],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Independent supplied-evidence batches do not depend on Gemini success. Execution needs supported authenticated Work submission/readback and fresh ledger; browser credential protection blocks execution.",
-      "nextExecutableAction": "Independent supplied-evidence batches do not depend on Gemini success. Execution needs supported authenticated Work submission/readback and fresh ledger; browser credential protection blocks execution.",
-      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
+      "remainingWork": "Maintain regression coverage; separately tracked obligations remain.",
+      "nextExecutableAction": "Continue next open matrix requirement.",
+      "lastVerifiedAt": "2026-10-02T06:40:20.865Z",
       "evidenceReferences": [
         "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
-        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+        "docs/mission-state/CONTINUOUS_CLOSURE_2026-10-02.json"
       ]
     },
     {
@@ -5151,12 +5182,13 @@
         "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "remainingWork": "U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI.",
       "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
-        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc",
+        "examiner-only3173912f884c939023e733da4fe6f477dd9cdf6b:results/U2-N1"
       ],
       "prerequisiteAssessment": {
         "geminiSuccessRequiredForEveryCase": false,
@@ -5184,12 +5216,13 @@
         "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "remainingWork": "U2-N1 consumed and failedB; first response preserved. Generalrepair80ae2f8 CIpass; materially new frozen retest after runtime deploy/readback. No certification credit from CI.",
       "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
-        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc",
+        "examiner-only3173912f884c939023e733da4fe6f477dd9cdf6b:results/U2-N1"
       ],
       "prerequisiteAssessment": {
         "geminiSuccessRequiredForEveryCase": false,
@@ -5759,9 +5792,9 @@
       "DEFERRED_BY_KING": 20
     },
     "A": {
-      "IN_PROGRESS": 15,
-      "PROVEN": 25,
-      "IMPLEMENTED_UNVERIFIED": 1,
+      "PROVEN": 30,
+      "IN_PROGRESS": 9,
+      "REGRESSION": 2,
       "BLOCKED": 1
     },
     "E": {
@@ -5776,8 +5809,7 @@
       "NOT_STARTED": 37
     },
     "B": {
-      "PROVEN": 5,
-      "IN_PROGRESS": 1
+      "PROVEN": 6
     },
     "CUTOVER": {
       "PROVEN": 1
@@ -6076,215 +6108,97 @@
       "to": "IN_PROGRESS",
       "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
       "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+    },
+    {
+      "id": "MANDATE-06",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Real production rollback c03078a to exact ad0b8d8 tree and restoration bd3b090 to exact792efc8 tree, all on empire-ai.co. Authenticated same history SHA256 and locks retained."
+    },
+    {
+      "id": "MANDATE-26",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Standing deployment and rollback exercised autonomously on approved Vercel project; exact live revision readbacks and history invariance."
+    },
+    {
+      "id": "A-ROLLBACK",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Controlled production rollback/restoration completed without intentional defect or state mutation. Production history SHA256 80f3bad557f98dad46ffcbfac3e087ca39f9a1d375b60d26400a1a40a6d78306 unchanged."
+    },
+    {
+      "id": "SYNC-03",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Git→Vercel production deployment, compatible prior-tree rollback, exact-tree restoration and live-domain readback proven."
+    },
+    {
+      "id": "SYNC-06",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "87916cf actual production Chromium rendering: NOT_BORN/LOCKED, certification INCOMPLETE, assurance UNKNOWN, historical provider success and Gemini503 explicitly distinguished. TLS-verified relay; no fabricated responses."
+    },
+    {
+      "id": "SYNC-08",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "87916cf fresh normal authenticated Chromium390px/1440px: shared server history, reload equality, Back navigation, composer input/44px, no horizontal clipping. Protected production requests423. No new inference."
+    },
+    {
+      "id": "B-MOBILE",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Current production390px browser conversation/history/composer/Back/reload inspected; mobile scroll-to-composer and source labels preserved. Owner earlier mobile acceptance retained; no invented new owner observation."
+    },
+    {
+      "id": "SYNC-13",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Supported Railway-run private normal production login restored examiner execution; U2-N1 submitted once, terminal/provider/tool/history/accounting evidence preserved, failure classifiedB and general repair in deployment. Not certification pass."
+    },
+    {
+      "id": "MANDATE-35",
+      "from": "PROVEN",
+      "to": "REGRESSION",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "U2-N1 real output replaced by heuristic UNKNOWN despite genuine calculated receipts. Failure preserved3173912; generalrepair80ae2f8 CIpass but deployment/new-unseen verification pending."
+    },
+    {
+      "id": "SYNC-12",
+      "from": "PROVEN",
+      "to": "REGRESSION",
+      "at": "2026-10-02T06:40:20.865Z",
+      "reason": "Answer-integrity regression proved by consumedU2-N1. Context/tool receipts retained; generalrepair80ae2f8 requires deployment and new unseen behavioral receipt."
     }
   ],
   "currentRunDelta": {
-    "fromRecords": 223,
-    "toRecords": 223,
-    "added": [],
-    "removed": [],
-    "statusChanges": [
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "MANDATE-30",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Existing4fdf96d owner desktop PASS and geometry evidence.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "MANDATE-32",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Existing A-METADATA live C and parser/host evidence.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "MANDATE-33",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Consumed failure preserved, historical cost UNKNOWN accepted; current accounting and failure/idempotency/metadata verified.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "MANDATE-35",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "MANDATE-36",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Existing explicit same-account phone/desktop refreshed history owner PASS.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-FAILURE",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Actual host/router/adapters/proxy both-provider503 terminates INFERENCE_FAILED/BRAIN_FATAL, no generic advice or recursive inference.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-IDEMPOTENCY",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Concurrent/replayed SQLite requests and separate-process restart: one reservation/transport per permitted attempt; live C one admission.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-CONTEXT",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Production-matching host context, filesystem mission/source hashes, changed/missing/corrupt source handling tested.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-TOOLS",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Actual allowlisted retrieval/calculation, hash-checked simulated=false receipts; foreign/write/unavailable operations fail closed.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-LEARNING",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Pending untrusted observation/correction durable across reopen/process; replay preserves originals; SQL constraint rejects authoritative promotion.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-MEMORY",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Actual process restart/rebind preserves server context/pending history; independent authenticated sessions same canonical owner. Existing owner phone/desktop PASS.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "A-AUTHORITY",
-        "from": "IMPLEMENTED_UNVERIFIED",
-        "to": "PROVEN",
-        "reason": "Actual authenticated app401/403/423 boundaries; conversation allowed while NOT_BORN/LOCKED; process-persistent spending limits.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-02",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "All223 records retained with exact open gaps and dependencies.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-04",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Existing actual production fullheight/composer/sidebar owner PASS.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-05",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Exact legacy dispatch423 versus founder shell200 diagnosed; nonessential banner removed, no dispatch unlock.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-07",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "All18PhaseE records retained deferred; preservation only, not UX completion.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-09",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Historical UNKNOWN retained; postC14rows/4762677held/15237323headroom reconciled.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-10",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Actual complete failure-chain/idempotency/metadata/authority and durable spending checks.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-12",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "SYNC-15",
-        "from": "IN_PROGRESS",
-        "to": "PROVEN",
-        "reason": "Complete checkpoint/matrix persisted/read back; all obligations retained.",
-        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "CAP-TR-03",
-        "from": "NOT_STARTED",
-        "to": "IN_PROGRESS",
-        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
-        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "UNSEEN-02",
-        "from": "NOT_STARTED",
-        "to": "IN_PROGRESS",
-        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
-        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "UNSEEN-03",
-        "from": "NOT_STARTED",
-        "to": "IN_PROGRESS",
-        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
-        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "UNSEEN-04",
-        "from": "NOT_STARTED",
-        "to": "IN_PROGRESS",
-        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
-        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
-      },
-      {
-        "at": "2026-10-02T05:45:03.692Z",
-        "id": "UNSEEN-07",
-        "from": "NOT_STARTED",
-        "to": "IN_PROGRESS",
-        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
-        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
-      }
+    "baseline": "76ab1cc",
+    "state": "CONTINUING_NOT_FINAL",
+    "closed": [
+      "MANDATE-06",
+      "MANDATE-26",
+      "A-ROLLBACK",
+      "SYNC-03",
+      "SYNC-06",
+      "SYNC-08",
+      "B-MOBILE",
+      "SYNC-13"
     ],
-    "reason": "20PhaseA closures;5certification preparation records, no case execution. No paid inference or production mutation."
+    "regressions": [
+      "MANDATE-35",
+      "SYNC-12"
+    ],
+    "recordCount": 223,
+    "recordCountChange": 0,
+    "reason": "New failure attached to existing exact answer-integrity criteria; no obligation removed or added."
   }
 }
