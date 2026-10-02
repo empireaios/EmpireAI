@@ -27,6 +27,20 @@ describe("durable worker completion contract", { concurrency: false }, () => {
       assert.equal(calls, 1);
     } finally { globalThis.fetch = original; }
   });
+  it("stops a typed inference failure without a new paid attempt", async () => {
+    const original = globalThis.fetch;
+    let calls = 0;
+    try {
+      globalThis.fetch = async () => {
+        calls++;
+        return new Response(JSON.stringify({result:{kind:"degraded_useful",message:"Inference did not complete.",degradedUsed:true,reasoningFailure:{code:"INFERENCE_FAILED",retryable:false}}}));
+      };
+      const result=await executeReasoningProxy(job,9999);
+      assert.deepEqual(result,{ok:false,failureClass:"BRAIN_FATAL",error:"inference_failed"});
+      assert.equal(policyForFailure(result.ok ? "NONE" : result.failureClass),"FAIL");
+      assert.equal(calls,1);
+    } finally { globalThis.fetch=original; }
+  });
   it("does not infer a terminal configuration failure from text or an unknown typed failure", async () => {
     const original = globalThis.fetch;
     try {

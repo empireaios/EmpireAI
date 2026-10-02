@@ -29678,6 +29678,11 @@ export class PillowHost {
         if (!session) {
             throw new PillowSessionNotFoundError(input.sessionId);
         }
+        // Parse the authenticated owner's transport envelope before semantic gates.
+        // Provider options are metadata, never task text or authority instructions.
+        const explicitReasoningPlan = input.message.startsWith("/pillow-request ")
+            ? resolveReasoningPlan(input.message, "general") : undefined;
+        if (explicitReasoningPlan) input = { ...input, message: explicitReasoningPlan.message };
         const requestId = newPillowRequestId();
         const started = performance.now();
         recordPillowResponseAccepted(requestId);
@@ -30243,7 +30248,7 @@ export class PillowHost {
                     executivePerspectives: executiveReasoning.executiveReasoningNotes,
                     userMessage: input.message,
                 });
-            const reasoningPlan = resolveReasoningPlan(input.message, operationalContext.manifest.task);
+            const reasoningPlan = explicitReasoningPlan ?? resolveReasoningPlan(input.message, operationalContext.manifest.task);
             let readReceipts = [];
             if (reasoningOnly) {
                 readReceipts = await readReasoningTools({
@@ -30282,7 +30287,7 @@ export class PillowHost {
             let mode;
             let tokens;
             let logResult = "fallback";
-            let reasoningFailure: { code: "NO_LLM_PROVIDER"; retryable: false } | undefined;
+            let reasoningFailure: { code: "NO_LLM_PROVIDER" | "INFERENCE_FAILED"; retryable: false } | undefined;
             let chatArtifacts;
             let intelligenceRouting;
             let executiveCouncilRecommendation;
@@ -30457,13 +30462,20 @@ export class PillowHost {
                     logResult = "degraded_after_llm_failure";
                     this.lastError =
                         error instanceof Error ? error.message : String(error);
-                    const sealed = ensureUsefulTerminalChatMessage({
-                        draft: null,
-                        userMessage: input.message,
-                        truth: executiveTruthSnapshot,
-                        reason: this.lastError,
-                    });
-                    message = sealed.message;
+                    if (reasoningOnly) {
+                        // A failed paid inference must remain a terminal failure, never
+                        // fabricated business advice or an automatic new paid attempt.
+                        reasoningFailure = { code: "INFERENCE_FAILED", retryable: false };
+                        message = "Pillow could not complete this inference request. No completed provider answer is available; the existing request and spending reservation are retained for investigation.";
+                    } else {
+                        const sealed = ensureUsefulTerminalChatMessage({
+                            draft: null,
+                            userMessage: input.message,
+                            truth: executiveTruthSnapshot,
+                            reason: this.lastError,
+                        });
+                        message = sealed.message;
+                    }
                     degradedUsed = true;
                     kind = "degraded_useful";
                 }
@@ -30483,7 +30495,8 @@ export class PillowHost {
             }
             // Final safety: never emit ask-again / infra-leak as the visible answer.
             // Also never leave synthetic-scoped answers as live Mini Fan briefings.
-            {
+            // Failure receipts must not enter prose reconstruction/release gates.
+            if (!reasoningFailure) {
                 const sealed = ensureUsefulTerminalChatMessage({
                     draft: message,
                     userMessage: input.message,

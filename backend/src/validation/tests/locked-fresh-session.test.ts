@@ -74,6 +74,21 @@ test('fresh authenticated conversation is allowed while Birth and commerce stay 
       const state=new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite'));
       assert.equal(state.pending(session.json().session.workspaceId).length,1);
       assert.ok(state.load(session.json().session.workspaceId,sessionId)?.some(t=>t.role==='assistant'));
+      const intent='Compare two maintenance windows and identify unknowns.';
+      const options={message:intent,capability:'critique',consultation:{providers:['anthropic','gemini'],justification:'Independent review of maintenance uncertainty'},calculations:[{operation:'multiply',left:'9.75',right:'4'}]};
+      await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:'/pillow-request '+JSON.stringify(options),reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'envelope-general-fixture'});
+      assert.equal(captured.reasoningPlan.message,intent);
+      assert.deepEqual(captured.reasoningPlan.consultation,options.consultation);
+      assert.ok(!captured.userMessage.includes('/pillow-request'));
+      let failedAttempts=0;
+      host.llmLayer={listAvailableProviders:()=>['anthropic'],complete:async()=>{failedAttempts++;throw Error('synthetic provider failure');}};
+      const failed=await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:intent,reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'failed-inference-fixture'});
+      assert.equal(failedAttempts,1);
+      assert.deepEqual(failed.reasoningFailure,{code:'INFERENCE_FAILED',retryable:false});
+      assert.equal(failed.degradedUsed,true);
+      assert.match(failed.message,/could not complete this inference/);
+      assert.doesNotMatch(failed.message,/Recommended first moves|Unsupported as established fact|synthetic provider failure/);
+
     } finally {
       host.llmLayer=savedLayer;
       if(savedPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=savedPath;
