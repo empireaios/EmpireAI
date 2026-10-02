@@ -12,7 +12,6 @@ import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPan
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 import { scrubMachineLanguage } from "@/lib/cockpit/executive/executive-presentation";
-import { PillowVerificationStatus } from "./PillowVerificationStatus";
 
 const PAGE_SIZE = 40;
 
@@ -160,7 +159,7 @@ export function PillowConversationWorkspace({
           </button>
         </div>
       <details className={layout.context}>
-        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; context · Not certified ▸</summary>
+        <summary className="cursor-pointer text-xs text-[#6f6a60]">Context ▸</summary>
         <div className={layout.contextBody}>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
@@ -169,7 +168,7 @@ export function PillowConversationWorkspace({
               Current screen context is unavailable. This is not evidence of current business state.
             </p>
           )}
-          <PillowVerificationStatus />
+          <p className="mt-3 text-xs text-amber-200">Certification incomplete. Independent Work assurance is not yet scheduled.</p>
           <p className="mt-2 text-xs text-[#8a847a]">The legacy command dashboard uses a dispatch endpoint denied in this locked runtime; it is not Pillow’s authoritative reasoning-context source. Retrying cannot unlock it.</p>
           <Link href="/cockpit/command" className="mt-2 block text-xs text-[#d4af37]">Open command dashboard</Link>
         </div>
