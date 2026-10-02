@@ -30,7 +30,8 @@ test('HTTP readback requires configured founder and workspace and fails closed w
  try {
   assert.equal((await app.inject('/api/pillow/commissioning-accounting')).statusCode,401);
   assert.equal((await app.inject('/api/pillow/answer-gate-diagnostics/pcr_private')).statusCode,401);
-  for(const other of [{...user,email:'other@example.com'},{...user,workspaceId:'other'},{...user,role:'admin' as const}]){const token=(await sessions.create(other)).token;assert.equal((await app.inject({url:'/api/pillow/commissioning-accounting',headers:{authorization:'Bearer '+token}})).statusCode,403);assert.equal((await app.inject({url:'/api/pillow/answer-gate-diagnostics/pcr_private',headers:{authorization:'Bearer '+token}})).statusCode,403);}
+  assert.equal((await app.inject('/api/pillow/commissioning-provider-receipts/pcr_private')).statusCode,401);
+  for(const other of [{...user,email:'other@example.com'},{...user,workspaceId:'other'},{...user,role:'admin' as const}]){const token=(await sessions.create(other)).token;assert.equal((await app.inject({url:'/api/pillow/commissioning-accounting',headers:{authorization:'Bearer '+token}})).statusCode,403);assert.equal((await app.inject({url:'/api/pillow/answer-gate-diagnostics/pcr_private',headers:{authorization:'Bearer '+token}})).statusCode,403);assert.equal((await app.inject({url:'/api/pillow/commissioning-provider-receipts/pcr_private',headers:{authorization:'Bearer '+token}})).statusCode,403);}
   assert.equal(reads,0);const token=(await sessions.create(user)).token;const options={url:'/api/pillow/commissioning-accounting',headers:{authorization:'Bearer '+token}};
   let r=await app.inject(options);assert.equal(r.statusCode,200);assert.equal(r.headers['cache-control'],'private, no-store');
   fail=true;r=await app.inject(options);assert.equal(r.statusCode,503);assert.ok(!r.body.includes('private/path'));assert.ok(!r.body.includes('15000000'));

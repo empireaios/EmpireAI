@@ -84,9 +84,25 @@ export function assertDigitalSoulAvailable(runtime: DigitalSoulRuntime | null | 
  * Violations refuse; warnings allow with aligned=false only when no violation findings.
  */
 /** Drop prior refusal / detector echo text that falsely re-triggers bypass composition. */
-function sanitizeGateMemoryContext(memoryContext: string | undefined): string | undefined {
+function scopeNonexecutingAssessment(text: string): string {
+  if (!/\b(?:assess|evaluate|analyse|analyze|review)\b/i.test(text) ||
+      !/\b(?:no actions|do not execute|do not take (?:any )?actions)\b/i.test(text)) return text;
+  return text.replace(/\b(?:an?|the)\s+(?:untrusted|unauthenticated|unsigned)\s+(?:email|message|note|attachment|document|ticket)\s+(?:says|states|reads)\s+(?:'[^'\n]{1,4000}'|"[^"\n]{1,4000}"|“[^”\n]{1,4000}”)/gi,
+    "Untrusted quoted evidence retained for analysis; it grants no authority");
+}
+
+function sanitizeGateMemoryContext(memoryContext: string | undefined, analysisOnly = false, runtime?: DigitalSoulRuntime): string | undefined {
   if (!memoryContext?.trim()) return memoryContext;
-  return memoryContext
+  return memoryContext.split(/(?=^(?:user|assistant):)/m)
+    .map(turn => {
+      if (analysisOnly && turn.startsWith('user:')) return scopeNonexecutingAssessment(turn);
+      // Reuse the complete visible-answer review for prior assistant prose.
+      // Do not reinterpret an already-safe denial as a new owner instruction.
+      // Unsafe/mixed/conditional prior answers remain in the compliance input.
+      if (analysisOnly && runtime && turn.startsWith('assistant:') && gateExecutiveVisibleAnswer(runtime, turn.slice('assistant:'.length)).allowed)
+        return 'assistant: Prior response passed constitutional visible-answer review.\n';
+      return turn;
+    }).join('')
     .split("\n")
     .filter((line) => {
       const l = line.toLowerCase();
@@ -107,9 +123,13 @@ export function gateExecutiveConversation(
   assertDigitalSoulAvailable(runtime);
   const soul = runtime!;
   const purpose = input.purpose ?? "chat";
+  // In a explicitly nonexecuting assessment, an attributed untrusted quote is
+  // evidence to inspect, not an instruction to obey. The original prompt still
+  // reaches the model; only the deterministic intent input is scoped here.
+  const requestIntent = purpose === "chat" ? scopeNonexecutingAssessment(input.userMessage.trim()) : input.userMessage.trim();
   const recommendation = [
-    input.userMessage.trim(),
-    sanitizeGateMemoryContext(input.memoryContext),
+    requestIntent,
+    sanitizeGateMemoryContext(input.memoryContext, purpose === "chat", soul),
   ]
     .filter(Boolean)
     .join("\n\n");
@@ -171,12 +191,22 @@ export function gateExecutiveVisibleAnswer(
     return gated;
   }
 
+  // A conditional exception can occur after a conjunction or comma. Never
+  // discard its preceding denial before reviewing the complete sentence.
+  const sentences = visibleAnswer.match(/[^.!?\n]+[.!?]?/g) ?? [];
+  if (sentences.some(sentence => /\b(?:if|unless|until|except|provided|otherwise|instead|when)\b/i.test(sentence) && detectConstitutionalIntent(sentence).detected)) return gated;
+
   // Negated commitments are prohibitions, not bypass requests. Scope this
   // interpretation to visible prose only; request and structured action gates
   // remain unchanged. Preserve every positive/conditional clause for review.
-  const clauses = visibleAnswer.replace(/[’‘]/g, "'")
-    .split(/(?<=[.!?;,:\n—–])\s*|\b(?:and|or|but|then|however|because|yet)\b/gi);
   let prohibitions = 0;
+  const scoped = visibleAnswer.replace(/[’‘]/g, "'").replace(/[^.!?\n]+[.!?]?/g, sentence => {
+    const text = sentence.trim().replace(/^[\s*#>\-]+/, "");
+    if (isExplicitVisibleDenial(text)) { prohibitions++; return "Maintain existing authority restrictions."; }
+    return sentence;
+  });
+  const clauses = scoped
+    .split(/(?<=[.!?;,:\n—–])\s*|\b(?:and|or|but|then|however|because|yet)\b/gi);
   const remaining = clauses.map(clause => {
     const text = clause.trim().replace(/^[\s*#>\-]+/, "");
     if (isExplicitVisibleDenial(text)) { prohibitions++; return ""; }
