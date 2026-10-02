@@ -56,9 +56,12 @@ export async function executeReasoningProxy(
     }
     // A receipt or infrastructure fallback is not a completed executive answer.
     const constitutionalGate = result.constitutionalGate as { allowed?: boolean } | undefined;
+    if (constitutionalGate?.allowed === false) {
+      return { ok: false, failureClass: "BRAIN_FATAL", error: "constitutional_gate_refused" };
+    }
     const responseContract = result.responseContract as { code?: string } | undefined;
     if (!message || !COMPLETED_REASONING_KINDS.has(String(result.kind)) ||
-      constitutionalGate?.allowed === false || /blocked/i.test(responseContract?.code ?? "") ||
+      /blocked/i.test(responseContract?.code ?? "") ||
       result.degradedUsed === true || result.transportContractPassed === false || result.semanticSuccess === false ||
       result.brainCompleted === false || result.requestRemainsRunning === true ||
       message.startsWith("PILLOW_RESULT_PENDING:")) {

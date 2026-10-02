@@ -12,6 +12,17 @@ const job = {
 } as ClaimedReasoningRequest;
 
 describe("durable worker completion contract", { concurrency: false }, () => {
+  it("does not retry a deterministic constitutional refusal", async () => {
+    const original = globalThis.fetch;
+    try {
+      globalThis.fetch = async () => new Response(JSON.stringify({ result: {
+        kind: "degraded_useful", message: "Authority unavailable", constitutionalGate: { allowed: false },
+      } }));
+      const result = await executeReasoningProxy(job, 9999);
+      assert.deepEqual(result, { ok: false, failureClass: "BRAIN_FATAL", error: "constitutional_gate_refused" });
+      assert.equal(policyForFailure(result.ok ? "NONE" : result.failureClass), "FAIL");
+    } finally { globalThis.fetch = original; }
+  });
   it("fails known no-provider fallback once without claiming reasoning completion", async () => {
     const original = globalThis.fetch;
     let calls = 0;
