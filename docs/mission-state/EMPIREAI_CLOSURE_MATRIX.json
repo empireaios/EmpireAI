@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:30:08.441Z",
+  "updatedAt": "2026-10-02T05:45:03.692Z",
   "rules": [
     "Silence never closes a requirement",
     "Implementation/CI is not live proof",
@@ -43,11 +43,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
+      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof. Commissioning debt: Work must independently obtain audit evidence without King routinely downloading SQLite through PowerShell. Prove minimum-privilege supported access, source independence, audit trail and unavailable-source handling in supervision phase; no unsafe credential work now.",
       "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-2"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-2",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -123,11 +124,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Deploy and previous-tree preview rebuild proven; actual production rollback/alias restoration not exercised. Do not deliberately restore known defects.",
+      "nextExecutableAction": "Deploy and previous-tree preview rebuild proven; actual production rollback/alias restoration not exercised. Do not deliberately restore known defects.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-6"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-6",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -483,11 +485,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Actual production rollback evidence outstanding under A-ROLLBACK; deployment authority already exercised. No new permission needed.",
+      "nextExecutableAction": "Actual production rollback evidence outstanding under A-ROLLBACK; deployment authority already exercised. No new permission needed.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-26"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-26",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -556,19 +559,23 @@
       "phase": "A",
       "domain": "PILLOW DESKTOP EXPERIENCE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Existing4fdf96d owner desktop PASS and geometry evidence."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-30"
-      ]
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-30",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "MANDATE-31",
@@ -596,19 +603,23 @@
       "phase": "A",
       "domain": "PILLOW IS NOT TO BE \"CONTAMINATED\" BY UI OR TECHNICAL COMMANDS",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Existing A-METADATA live C and parser/host evidence."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-32"
-      ]
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-32",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "MANDATE-33",
@@ -616,19 +627,23 @@
       "phase": "A",
       "domain": "CURRENT PROVIDER FAILURE MUST BE CLOSED BEFORE CERTIFICATION",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Consumed failure preserved, historical cost UNKNOWN accepted; current accounting and failure/idempotency/metadata verified."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-33"
-      ]
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-33",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "MANDATE-34",
@@ -643,11 +658,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Genuine Gemini success and live explicit consultation receipts absent. Engineering routing/fallback/provenance/accounting/cancellation/idempotency passes.",
+      "nextExecutableAction": "Genuine Gemini success and live explicit consultation receipts absent. Engineering routing/fallback/provenance/accounting/cancellation/idempotency passes.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-34"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-34",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -656,19 +672,23 @@
       "phase": "A",
       "domain": "CONTEXT, TOOLS, MEMORY AND LEARNING MUST BE REAL",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-35"
-      ]
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-35",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "MANDATE-36",
@@ -676,19 +696,23 @@
       "phase": "A",
       "domain": "CROSS-DEVICE HISTORY — CURRENT OWNER EVIDENCE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Existing explicit same-account phone/desktop refreshed history owner PASS."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-36"
-      ]
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-36",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "MANDATE-37",
@@ -703,11 +727,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Unseen ordinary-language discussion/instruction, ambiguity and clarification behavior through normal authenticated Pillow; locks alone do not prove competence.",
+      "nextExecutableAction": "Unseen ordinary-language discussion/instruction, ambiguity and clarification behavior through normal authenticated Pillow; locks alone do not prove competence.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-37"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-37",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -843,11 +868,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Ongoing roadmap: remaining provider evidence, unseen certification, then supervision and deferred UX.",
+      "nextExecutableAction": "Ongoing roadmap: remaining provider evidence, unseen certification, then supervision and deferred UX.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-44"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-44",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -863,11 +889,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Ongoing autonomous execution across future boundaries; authenticated exam path currently credential-protected. Safe available non-paid evidence work completed.",
+      "nextExecutableAction": "Ongoing autonomous execution across future boundaries; authenticated exam path currently credential-protected. Safe available non-paid evidence work completed.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-45"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-45",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -883,11 +910,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Remaining provider/live, unseen certification and future supervision acceptance cannot be certified by engineering tests.",
+      "nextExecutableAction": "Remaining provider/live, unseen certification and future supervision acceptance cannot be certified by engineering tests.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-46"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-46",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -903,11 +931,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Remaining provider/consultation evidence, unseen examination and later independent supervision; prior deployment/interface/accounting satisfied.",
+      "nextExecutableAction": "Remaining provider/consultation evidence, unseen examination and later independent supervision; prior deployment/interface/accounting satisfied.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-47"
+        "docs/mission-state/OWNER_OPERATING_MANDATE_2026-10-02.txt#section-47",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -1051,7 +1080,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-TR-02",
@@ -1074,7 +1109,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-TR-03",
@@ -1082,22 +1123,32 @@
       "phase": "C",
       "domain": "Truth & Evidence",
       "priority": "C",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Historical compatibility mapping is not current release acceptance. No replacement assessment executed.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+        "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json",
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-TR-04",
@@ -1120,7 +1171,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-TR-05",
@@ -1143,7 +1200,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-TR-06",
@@ -1166,7 +1229,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-AU-01",
@@ -1189,7 +1258,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-AU-02",
@@ -1212,7 +1287,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-AU-03",
@@ -1235,7 +1316,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-AU-04",
@@ -1258,7 +1345,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-AU-05",
@@ -1281,7 +1374,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-JR-01",
@@ -1304,7 +1403,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-JR-02",
@@ -1327,7 +1432,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-JR-03",
@@ -1350,7 +1461,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-JR-04",
@@ -1373,7 +1490,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-JR-05",
@@ -1396,7 +1519,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ST-01",
@@ -1419,7 +1548,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ST-02",
@@ -1442,7 +1577,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ST-03",
@@ -1465,7 +1606,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ST-04",
@@ -1488,7 +1635,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ST-05",
@@ -1511,7 +1664,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-01",
@@ -1534,7 +1693,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-02",
@@ -1557,7 +1722,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-03",
@@ -1580,7 +1751,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-04",
@@ -1603,7 +1780,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-05",
@@ -1626,7 +1809,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SC-06",
@@ -1649,7 +1838,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-01",
@@ -1672,7 +1867,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-02",
@@ -1695,7 +1896,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-03",
@@ -1718,7 +1925,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-04",
@@ -1741,7 +1954,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-05",
@@ -1764,7 +1983,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-CO-06",
@@ -1787,7 +2012,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-01",
@@ -1810,7 +2041,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-02",
@@ -1833,7 +2070,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-03",
@@ -1856,7 +2099,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-04",
@@ -1879,7 +2128,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-PR-01",
@@ -1902,7 +2157,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-PR-02",
@@ -1925,7 +2186,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-PR-03",
@@ -1948,7 +2215,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-LR-01",
@@ -1971,7 +2244,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-LR-02",
@@ -1994,7 +2273,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-LR-03",
@@ -2017,7 +2302,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-RT-01",
@@ -2040,7 +2331,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-RT-02",
@@ -2063,7 +2360,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-RT-03",
@@ -2086,7 +2389,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-RT-04",
@@ -2109,7 +2418,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-FI-01",
@@ -2132,7 +2447,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-FI-02",
@@ -2155,7 +2476,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-FI-03",
@@ -2178,7 +2505,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SE-01",
@@ -2201,7 +2534,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-SE-02",
@@ -2224,7 +2563,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-EX-01",
@@ -2247,7 +2592,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-EX-02",
@@ -2270,7 +2621,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-EX-03",
@@ -2293,7 +2650,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-EX-04",
@@ -2316,7 +2679,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-05",
@@ -2339,7 +2708,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-06",
@@ -2362,7 +2737,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-07",
@@ -2385,7 +2766,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-08",
@@ -2408,7 +2795,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-09",
@@ -2431,7 +2824,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "CAP-ME-10",
@@ -2454,7 +2853,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-01",
@@ -2490,7 +2895,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-02",
@@ -2526,7 +2937,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-03",
@@ -2558,7 +2975,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-04",
@@ -2594,7 +3017,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-05",
@@ -2626,7 +3055,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-06",
@@ -2658,7 +3093,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-07",
@@ -2681,7 +3122,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-08",
@@ -2704,7 +3151,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-09",
@@ -2727,7 +3180,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "OPS-10",
@@ -2750,7 +3209,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-01",
@@ -2786,7 +3251,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-02",
@@ -2818,7 +3289,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-03",
@@ -2850,7 +3327,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-04",
@@ -2890,7 +3373,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-05",
@@ -2913,7 +3402,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-06",
@@ -2936,7 +3431,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "COM-07",
@@ -3037,7 +3538,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "WAVE-CAMPAIGN",
@@ -3060,7 +3567,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "ARCH-01",
@@ -3083,7 +3596,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "docs/governance/PILLOW_REPLACEMENT_CERTIFICATION_V1.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "ARCH-01",
@@ -3803,11 +4322,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Production branch mechanism proved separately; actual production rollback not exercised to avoid deliberately reintroducing owner-visible defects.",
-      "nextExecutableAction": "Use exact-tree rollback if genuine deployment regression occurs; retain conservative unverified production rollback status.",
-      "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
+      "remainingWork": "Exact prior-tree preview rebuild READY; no actual production rollback/alias readback. Use only on genuine regression.",
+      "nextExecutableAction": "Exact prior-tree preview rebuild READY; no actual production rollback/alias readback. Use only on genuine regression.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/CURRENT_HANDOFF.json"
+        "docs/mission-state/CURRENT_HANDOFF.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -3857,16 +4377,17 @@
         "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": "Gemini Google-side503UNAVAILABLE; successful invocation remains unproven. Live authenticated receipt access constrained separately; no billing cause established.",
-      "remainingWork": "Genuine Gemini success after justified future bounded verification, deliberate consultation live proof and remaining integration prerequisites. No C repeat.",
-      "nextExecutableAction": "Provider availability/backoff boundary, then bounded new test only when justified. Continue existing independent capability evidence; no billing experiment.",
-      "lastVerifiedAt": "2026-10-02T05:30:08.441Z",
+      "remainingWork": "Genuine Gemini success missing: C503 UNAVAILABLE. Live explicitly requested consultation receipt also absent; deterministic bounded consultation passes. No blind paid probe.",
+      "nextExecutableAction": "Genuine Gemini success missing: C503 UNAVAILABLE. Live explicitly requested consultation receipt also absent; deterministic bounded consultation passes. No blind paid probe.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_INFERENCE_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/CURRENT_ACCOUNTING_AND_BACK_NAVIGATION_2026-10-02.md",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
         "docs/mission-state/POST_B_ACCOUNTING_2026-10-02.json",
         "docs/mission-state/GOOGLE_PROJECT_DIAGNOSIS_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -3875,11 +4396,12 @@
       "phase": "A",
       "domain": "Terminal failure and no generic advice substitution",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Actual host/router/adapters/proxy both-provider503 terminates INFERENCE_FAILED/BRAIN_FATAL, no generic advice or recursive inference."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending",
@@ -3888,14 +4410,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Use currentrequestreceipttoidentify fallback;do notcause another paidfailure justforevidence.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-IDEMPOTENCY",
@@ -3903,12 +4427,13 @@
       "phase": "A",
       "domain": "Duplicate request cannot pay twice",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
         "New full engine/Brainadapter/router fixture coveragePASS;metadata omittedfromproviderprompt;duplicate durablekey produces no newtransport. Fixtureisnotliveproof.",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Concurrent/replayed SQLite requests and separate-process restart: one reservation/transport per permitted attempt; live C one admission."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3916,14 +4441,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-METADATA",
@@ -3960,11 +4487,12 @@
       "phase": "A",
       "domain": "Authoritative repository mission evidence reaches reasoning",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Production-matching host context, filesystem mission/source hashes, changed/missing/corrupt source handling tested."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3972,13 +4500,15 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
-        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md"
-      ]
+        "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-TOOLS",
@@ -3986,11 +4516,12 @@
       "phase": "A",
       "domain": "Genuine permitted read-only tool receipts",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Actual allowlisted retrieval/calculation, hash-checked simulated=false receipts; foreign/write/unavailable operations fail closed."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -3998,14 +4529,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-LEARNING",
@@ -4013,11 +4546,12 @@
       "phase": "A",
       "domain": "Durable pending learning without autonomous promotion",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Pending untrusted observation/correction durable across reopen/process; replay preserves originals; SQL constraint rejects authoritative promotion."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4025,14 +4559,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-MEMORY",
@@ -4040,11 +4576,12 @@
       "phase": "A",
       "domain": "Conversation continuity after restart/rebind",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Actual process restart/rebind preserves server context/pending history; independent authenticated sessions same canonical owner. Existing owner phone/desktop PASS."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4052,14 +4589,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-AUTHORITY",
@@ -4067,11 +4606,12 @@
       "phase": "A",
       "domain": "NOT_BORN LOCKED protected-write invariant",
       "priority": "A",
-      "currentStatus": "IMPLEMENTED_UNVERIFIED",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "84ab891",
       "testsPerformed": [
         "Targeted offline actual-host/router/worker tests and hosted CI36959294882 PASS",
-        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference."
+        "2026-10-02: targeted suites PASS: provider/inference/worker25; context/learning/fresh-session/authority10; launcher2; final provider/readback11 (overlapping tests, not summed). Backend build PASS. No new paid inference.",
+        "Actual authenticated app401/403/423 boundaries; conversation allowed while NOT_BORN/LOCKED; process-persistent spending limits."
       ],
       "productionLiveEvidence": [
         "84ab891 runtime deployed; behavioral live closure still pending"
@@ -4079,14 +4619,16 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T05:10:02.174Z",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
         "docs/mission-state/CURRENT_HANDOFF.json",
         "docs/mission-state/POST_B_RECONCILIATION_AND_READBACK_2026-10-02.md",
-        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
-      ]
+        "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "A-COMMAND",
@@ -4233,11 +4775,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Composite carry-forward still includes actual rollback, full provider integration, certification and future supervision.",
+      "nextExecutableAction": "Composite carry-forward still includes actual rollback, full provider integration, certification and future supervision.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4246,19 +4789,23 @@
       "phase": "A",
       "domain": "CREATE THE CANONICAL EMPIREAI CLOSURE MATRIX NOW",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "All223 records retained with exact open gaps and dependencies."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-03",
@@ -4286,19 +4833,23 @@
       "phase": "A",
       "domain": "DESKTOP PILLOW OWNER ACCEPTANCE REMAINS OPEN",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Existing actual production fullheight/composer/sidebar owner PASS."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-05",
@@ -4306,19 +4857,23 @@
       "phase": "A",
       "domain": "DIAGNOSE `EXECUTIVE COMMAND DATA UNAVAILABLE`",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Exact legacy dispatch423 versus founder shell200 diagnosed; nonessential banner removed, no dispatch unlock."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-06",
@@ -4333,11 +4888,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Source distinguishes chat availability/NOT_BORN/LOCKED; full certification/Work-assurance status presentation and current rendered evidence absent. No healthy-assurance inference.",
+      "nextExecutableAction": "Source distinguishes chat availability/NOT_BORN/LOCKED; full certification/Work-assurance status presentation and current rendered evidence absent. No healthy-assurance inference.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4346,19 +4902,23 @@
       "phase": "A",
       "domain": "UNIFIED OWNER UX REMAINS OPEN / DEFERRED TO ITS PHASE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "All18PhaseE records retained deferred; preservation only, not UX completion."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-08",
@@ -4373,11 +4933,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "390px responsive geometry and earlier owner phone/history pass; complete current-build phone journey after compatibility successors not observed. No regression established.",
+      "nextExecutableAction": "390px responsive geometry and earlier owner phone/history pass; complete current-build phone journey after compatibility successors not observed. No regression established.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4386,19 +4947,23 @@
       "phase": "A",
       "domain": "FAILED-PROVIDER ACCOUNTING — KEEP PUSHING",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Historical UNKNOWN retained; postC14rows/4762677held/15237323headroom reconciled."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-10",
@@ -4406,19 +4971,23 @@
       "phase": "A",
       "domain": "BACKEND FAILURE / IDEMPOTENCY CLOSURE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Actual complete failure-chain/idempotency/metadata/authority and durable spending checks."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-11",
@@ -4433,11 +5002,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Genuine Gemini success and live explicit consultation receipts absent; never infer from fallback answer.",
+      "nextExecutableAction": "Genuine Gemini success and live explicit consultation receipts absent; never infer from fallback answer.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4446,19 +5016,23 @@
       "phase": "A",
       "domain": "PILLOW INTEGRATION CAPABILITIES",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "SYNC-13",
@@ -4473,11 +5047,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Independent supplied-evidence batches do not depend on Gemini success. Execution needs supported authenticated Work submission/readback and fresh ledger; browser credential protection blocks execution.",
+      "nextExecutableAction": "Independent supplied-evidence batches do not depend on Gemini success. Execution needs supported authenticated Work submission/readback and fresh ledger; browser credential protection blocks execution.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4493,11 +5068,12 @@
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Subsequent continuous controls and owner-independent assurance remain deferred PhaseD, not completed this run.",
+      "nextExecutableAction": "Subsequent continuous controls and owner-independent assurance remain deferred PhaseD, not completed this run.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
       ]
     },
     {
@@ -4506,19 +5082,23 @@
       "phase": "A",
       "domain": "CHECKPOINT DISCIPLINE",
       "priority": "A",
-      "currentStatus": "IN_PROGRESS",
+      "currentStatus": "PROVEN",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
-      "testsPerformed": [],
+      "testsPerformed": [
+        "Complete checkpoint/matrix persisted/read back; all obligations retained."
+      ],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [],
       "blocker": null,
-      "remainingWork": "Verify implementation and obtain required behavioral evidence; documentation is not proof.",
-      "nextExecutableAction": "Inspect referenced component and execute at designated phase.",
-      "lastVerifiedAt": "2026-10-02T03:34:44.369880+00:00",
+      "remainingWork": "Acceptance met in recorded scope; preserve regression coverage. Separate dependent criteria remain open.",
+      "nextExecutableAction": "Continue separately tracked open integration/certification obligations.",
+      "lastVerifiedAt": "2026-10-02T05:45:03.692Z",
       "evidenceReferences": [
-        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt"
-      ]
+        "docs/mission-state/OWNER_SYNC_DIRECTIVE_2026-10-02.txt",
+        "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      ],
+      "verificationScope": "Engineering integration, preservation or existing owner acceptance only; not unseen intelligence certification."
     },
     {
       "id": "UNSEEN-01",
@@ -4532,16 +5112,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-02",
@@ -4549,22 +5138,32 @@
       "phase": "C",
       "domain": "arithmetic/financial accuracy",
       "priority": "C",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-03",
@@ -4572,22 +5171,32 @@
       "phase": "C",
       "domain": "landed cost/margin/fee/break-even",
       "priority": "C",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-04",
@@ -4595,22 +5204,32 @@
       "phase": "C",
       "domain": "comparison/ranking conflicting evidence",
       "priority": "C",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-05",
@@ -4624,16 +5243,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-06",
@@ -4647,16 +5275,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-07",
@@ -4664,22 +5301,32 @@
       "phase": "C",
       "domain": "known/inferred/unknown calibration",
       "priority": "C",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "IN_PROGRESS",
       "implementationRevisionComponent": "Not yet reconciled at criterion level",
       "testsPerformed": [],
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
-        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+        "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json",
+        "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-08",
@@ -4693,16 +5340,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-09",
@@ -4725,7 +5381,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-10",
@@ -4748,7 +5410,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-11",
@@ -4762,16 +5430,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-12",
@@ -4785,16 +5462,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-13",
@@ -4808,16 +5494,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-14",
@@ -4831,16 +5526,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-15",
@@ -4863,7 +5567,13 @@
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-16",
@@ -4877,16 +5587,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "UNSEEN-17",
@@ -4900,16 +5619,25 @@
       "productionLiveEvidence": [],
       "ownerAcceptance": "Not granted unless explicitly recorded",
       "dependencies": [
-        "A-INTEGRATION",
-        "B-DESKTOP"
+        "B-DESKTOP",
+        "A-FAILURE",
+        "A-METADATA",
+        "A-AUTHORITY",
+        "A-PROSPECTIVE-ACCOUNTING"
       ],
       "blocker": null,
-      "remainingWork": "Execute materially new unseen case under frozen thresholds, no original I1 reuse.",
-      "nextExecutableAction": "Close integration/interface prerequisites.",
+      "remainingWork": "New unseen supplied-evidence cases, frozen oracle and first-output/provider/accounting readback. No Gemini-success dependency. Work authenticated path credential-protected.",
+      "nextExecutableAction": "Execute sealed independent cases when supported authenticated submission/readback available; no routine owner-paste bridge.",
       "lastVerifiedAt": "2026-10-02T03:27:35.069512+00:00",
       "evidenceReferences": [
         "cert/pillow-unseen-20261002@9501d9b363592bcdaee39f107f86d50fee21c02b:docs/certification/2026-10-02/examiner-spec.json"
-      ]
+      ],
+      "prerequisiteAssessment": {
+        "geminiSuccessRequiredForEveryCase": false,
+        "normalAuthenticatedTaskPathRequired": true,
+        "allRequiredCoverageStillRequired": true,
+        "reference": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      }
     },
     {
       "id": "B-FULLHEIGHT",
@@ -5031,16 +5759,17 @@
       "DEFERRED_BY_KING": 20
     },
     "A": {
-      "IN_PROGRESS": 28,
-      "PROVEN": 5,
-      "IMPLEMENTED_UNVERIFIED": 8,
+      "IN_PROGRESS": 15,
+      "PROVEN": 25,
+      "IMPLEMENTED_UNVERIFIED": 1,
       "BLOCKED": 1
     },
     "E": {
       "DEFERRED_BY_KING": 18
     },
     "C": {
-      "NOT_STARTED": 98,
+      "NOT_STARTED": 93,
+      "IN_PROGRESS": 5,
       "PROVEN": 1
     },
     "F": {
@@ -5147,6 +5876,206 @@
       "to": "PROVEN",
       "reason": "Unique C live semantic answer plus actual capability route and prior exact parser/engine regressions prove metadata separation. Gemini503 is provider/infrastructure failure, not success. Other states retained.",
       "evidence": "docs/mission-state/GEMINI_DIAGNOSTIC_C_2026-10-02.json"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "MANDATE-30",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Existing4fdf96d owner desktop PASS and geometry evidence.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "MANDATE-32",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Existing A-METADATA live C and parser/host evidence.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "MANDATE-33",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Consumed failure preserved, historical cost UNKNOWN accepted; current accounting and failure/idempotency/metadata verified.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "MANDATE-35",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "MANDATE-36",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Existing explicit same-account phone/desktop refreshed history owner PASS.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-FAILURE",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Actual host/router/adapters/proxy both-provider503 terminates INFERENCE_FAILED/BRAIN_FATAL, no generic advice or recursive inference.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-IDEMPOTENCY",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Concurrent/replayed SQLite requests and separate-process restart: one reservation/transport per permitted attempt; live C one admission.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-CONTEXT",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Production-matching host context, filesystem mission/source hashes, changed/missing/corrupt source handling tested.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-TOOLS",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Actual allowlisted retrieval/calculation, hash-checked simulated=false receipts; foreign/write/unavailable operations fail closed.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-LEARNING",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Pending untrusted observation/correction durable across reopen/process; replay preserves originals; SQL constraint rejects authoritative promotion.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-MEMORY",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Actual process restart/rebind preserves server context/pending history; independent authenticated sessions same canonical owner. Existing owner phone/desktop PASS.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "A-AUTHORITY",
+      "from": "IMPLEMENTED_UNVERIFIED",
+      "to": "PROVEN",
+      "reason": "Actual authenticated app401/403/423 boundaries; conversation allowed while NOT_BORN/LOCKED; process-persistent spending limits.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-02",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "All223 records retained with exact open gaps and dependencies.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-04",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Existing actual production fullheight/composer/sidebar owner PASS.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-05",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Exact legacy dispatch423 versus founder shell200 diagnosed; nonessential banner removed, no dispatch unlock.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-07",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "All18PhaseE records retained deferred; preservation only, not UX completion.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-09",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Historical UNKNOWN retained; postC14rows/4762677held/15237323headroom reconciled.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-10",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Actual complete failure-chain/idempotency/metadata/authority and durable spending checks.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-12",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "SYNC-15",
+      "from": "IN_PROGRESS",
+      "to": "PROVEN",
+      "reason": "Complete checkpoint/matrix persisted/read back; all obligations retained.",
+      "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "CAP-TR-03",
+      "from": "NOT_STARTED",
+      "to": "IN_PROGRESS",
+      "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+      "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "UNSEEN-02",
+      "from": "NOT_STARTED",
+      "to": "IN_PROGRESS",
+      "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+      "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "UNSEEN-03",
+      "from": "NOT_STARTED",
+      "to": "IN_PROGRESS",
+      "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+      "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "UNSEEN-04",
+      "from": "NOT_STARTED",
+      "to": "IN_PROGRESS",
+      "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+      "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+    },
+    {
+      "at": "2026-10-02T05:45:03.692Z",
+      "id": "UNSEEN-07",
+      "from": "NOT_STARTED",
+      "to": "IN_PROGRESS",
+      "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+      "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
     }
   ],
   "currentRunDelta": {
@@ -5155,8 +6084,207 @@
     "added": [],
     "removed": [],
     "statusChanges": [
-      "A-METADATA IMPLEMENTED_UNVERIFIED→PROVEN"
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "MANDATE-30",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Existing4fdf96d owner desktop PASS and geometry evidence.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "MANDATE-32",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Existing A-METADATA live C and parser/host evidence.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "MANDATE-33",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Consumed failure preserved, historical cost UNKNOWN accepted; current accounting and failure/idempotency/metadata verified.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "MANDATE-35",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "MANDATE-36",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Existing explicit same-account phone/desktop refreshed history owner PASS.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-FAILURE",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Actual host/router/adapters/proxy both-provider503 terminates INFERENCE_FAILED/BRAIN_FATAL, no generic advice or recursive inference.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-IDEMPOTENCY",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Concurrent/replayed SQLite requests and separate-process restart: one reservation/transport per permitted attempt; live C one admission.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-CONTEXT",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Production-matching host context, filesystem mission/source hashes, changed/missing/corrupt source handling tested.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-TOOLS",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Actual allowlisted retrieval/calculation, hash-checked simulated=false receipts; foreign/write/unavailable operations fail closed.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-LEARNING",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Pending untrusted observation/correction durable across reopen/process; replay preserves originals; SQL constraint rejects authoritative promotion.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-MEMORY",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Actual process restart/rebind preserves server context/pending history; independent authenticated sessions same canonical owner. Existing owner phone/desktop PASS.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "A-AUTHORITY",
+        "from": "IMPLEMENTED_UNVERIFIED",
+        "to": "PROVEN",
+        "reason": "Actual authenticated app401/403/423 boundaries; conversation allowed while NOT_BORN/LOCKED; process-persistent spending limits.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-02",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "All223 records retained with exact open gaps and dependencies.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-04",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Existing actual production fullheight/composer/sidebar owner PASS.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-05",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Exact legacy dispatch423 versus founder shell200 diagnosed; nonessential banner removed, no dispatch unlock.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-07",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "All18PhaseE records retained deferred; preservation only, not UX completion.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-09",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Historical UNKNOWN retained; postC14rows/4762677held/15237323headroom reconciled.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-10",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Actual complete failure-chain/idempotency/metadata/authority and durable spending checks.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-12",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "SYNC-15",
+        "from": "IN_PROGRESS",
+        "to": "PROVEN",
+        "reason": "Complete checkpoint/matrix persisted/read back; all obligations retained.",
+        "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "CAP-TR-03",
+        "from": "NOT_STARTED",
+        "to": "IN_PROGRESS",
+        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "UNSEEN-02",
+        "from": "NOT_STARTED",
+        "to": "IN_PROGRESS",
+        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "UNSEEN-03",
+        "from": "NOT_STARTED",
+        "to": "IN_PROGRESS",
+        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "UNSEEN-04",
+        "from": "NOT_STARTED",
+        "to": "IN_PROGRESS",
+        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      },
+      {
+        "at": "2026-10-02T05:45:03.692Z",
+        "id": "UNSEEN-07",
+        "from": "NOT_STARTED",
+        "to": "IN_PROGRESS",
+        "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+        "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+      }
     ],
-    "reason": "Unique C live semantic answer plus actual capability route and prior exact parser/engine regressions prove metadata separation. Gemini503 is provider/infrastructure failure, not success. Other states retained."
+    "reason": "20PhaseA closures;5certification preparation records, no case execution. No paid inference or production mutation."
   }
 }

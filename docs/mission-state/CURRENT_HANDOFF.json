@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T05:30:08.441Z",
+  "updatedAt": "2026-10-02T05:45:03.692Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -3114,16 +3114,17 @@
         "DEFERRED_BY_KING": 20
       },
       "A": {
-        "IN_PROGRESS": 28,
-        "PROVEN": 5,
-        "IMPLEMENTED_UNVERIFIED": 8,
+        "IN_PROGRESS": 15,
+        "PROVEN": 25,
+        "IMPLEMENTED_UNVERIFIED": 1,
         "BLOCKED": 1
       },
       "E": {
         "DEFERRED_BY_KING": 18
       },
       "C": {
-        "NOT_STARTED": 98,
+        "NOT_STARTED": 93,
+        "IN_PROGRESS": 5,
         "PROVEN": 1
       },
       "F": {
@@ -3145,9 +3146,208 @@
       "added": [],
       "removed": [],
       "statusChanges": [
-        "A-METADATA IMPLEMENTED_UNVERIFIED→PROVEN"
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "MANDATE-30",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Existing4fdf96d owner desktop PASS and geometry evidence.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "MANDATE-32",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Existing A-METADATA live C and parser/host evidence.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "MANDATE-33",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Consumed failure preserved, historical cost UNKNOWN accepted; current accounting and failure/idempotency/metadata verified.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "MANDATE-35",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Core context/tools/memory/learning/answer engineering evidence; model intelligence explicitly not certified.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "MANDATE-36",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Existing explicit same-account phone/desktop refreshed history owner PASS.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-FAILURE",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Actual host/router/adapters/proxy both-provider503 terminates INFERENCE_FAILED/BRAIN_FATAL, no generic advice or recursive inference.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-IDEMPOTENCY",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Concurrent/replayed SQLite requests and separate-process restart: one reservation/transport per permitted attempt; live C one admission.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-CONTEXT",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Production-matching host context, filesystem mission/source hashes, changed/missing/corrupt source handling tested.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-TOOLS",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Actual allowlisted retrieval/calculation, hash-checked simulated=false receipts; foreign/write/unavailable operations fail closed.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-LEARNING",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Pending untrusted observation/correction durable across reopen/process; replay preserves originals; SQL constraint rejects authoritative promotion.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-MEMORY",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Actual process restart/rebind preserves server context/pending history; independent authenticated sessions same canonical owner. Existing owner phone/desktop PASS.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "A-AUTHORITY",
+          "from": "IMPLEMENTED_UNVERIFIED",
+          "to": "PROVEN",
+          "reason": "Actual authenticated app401/403/423 boundaries; conversation allowed while NOT_BORN/LOCKED; process-persistent spending limits.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-02",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "All223 records retained with exact open gaps and dependencies.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-04",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Existing actual production fullheight/composer/sidebar owner PASS.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-05",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Exact legacy dispatch423 versus founder shell200 diagnosed; nonessential banner removed, no dispatch unlock.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-07",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "All18PhaseE records retained deferred; preservation only, not UX completion.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-09",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Historical UNKNOWN retained; postC14rows/4762677held/15237323headroom reconciled.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-10",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Actual complete failure-chain/idempotency/metadata/authority and durable spending checks.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-12",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Seven core engineering integration requirements satisfied; live three-provider/intelligence excluded.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "SYNC-15",
+          "from": "IN_PROGRESS",
+          "to": "PROVEN",
+          "reason": "Complete checkpoint/matrix persisted/read back; all obligations retained.",
+          "evidence": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "CAP-TR-03",
+          "from": "NOT_STARTED",
+          "to": "IN_PROGRESS",
+          "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+          "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "UNSEEN-02",
+          "from": "NOT_STARTED",
+          "to": "IN_PROGRESS",
+          "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+          "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "UNSEEN-03",
+          "from": "NOT_STARTED",
+          "to": "IN_PROGRESS",
+          "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+          "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "UNSEEN-04",
+          "from": "NOT_STARTED",
+          "to": "IN_PROGRESS",
+          "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+          "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        },
+        {
+          "at": "2026-10-02T05:45:03.692Z",
+          "id": "UNSEEN-07",
+          "from": "NOT_STARTED",
+          "to": "IN_PROGRESS",
+          "reason": "Three materially new cases sealed; independent decimal oracle verified. Zero cases exposed/executed; no pass.",
+          "evidence": "examiner-only7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc"
+        }
       ],
-      "reason": "Unique C live semantic answer plus actual capability route and prior exact parser/engine regressions prove metadata separation. Gemini503 is provider/infrastructure failure, not success. Other states retained."
+      "reason": "20PhaseA closures;5certification preparation records, no case execution. No paid inference or production mutation."
     }
   },
   "compactComposerCheckpoint": {
@@ -3532,8 +3732,8 @@
       "threadId": "be215499-31c7-4407-b1f7-15a5efb52ed1"
     }
   },
-  "certificationResumeBoundary": "A-METADATA nowPROVEN; Gemini genuine success and remaining live context/tool/memory/learning/terminal/authority criteria open.98 frozen unseen cases retained.",
-  "currentNextAction": "C consumed and reconciled; no repeat. Gemini503UNAVAILABLE provider-capacity/availability class remains; no billing change justified. Next bounded invocation only after justified recovery/backoff. Remaining authenticated live receipts need supported session; do not bypass credentials. No new exam until dependencies close.",
+  "certificationResumeBoundary": "Independent supplied-evidence batches do not require Gemini success; core engineering prerequisites closed. Normal authenticated Work examination path unavailable due credential protection. Three new cases sealed/examiner-only, zero execution. Full integration still requires Gemini success and live consultation; final certification unchanged.",
+  "currentNextAction": "Supported authenticated examination/readback when available, fresh accounting then one sealed case at a time. No repeatB/C, Gemini polling, billing change or owner routine file-transfer/test bridge. Preserve all223requirements.",
   "inferenceReadbackRepair": {
     "backend": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
     "frontend": "ad0b8d81de0e8fc85a088c0b425120ec4dec2259",
@@ -3673,5 +3873,39 @@
       "action": "No billing change, no speculative adapter patch, no repeat C. New provider verification only when justified after backoff/service recovery and accounting check."
     },
     "workCalls": 0
+  },
+  "nonGeminiClosureCheckpoint": {
+    "at": "2026-10-02T05:45:03.692Z",
+    "report": "docs/mission-state/NON_GEMINI_PHASE_A_CLOSURE_2026-10-02.md",
+    "testCommit": "d57a1e6c782100d1ee972ecc8712ea8b947f4640",
+    "newPaidRequests": 0,
+    "runtimeChanges": 0,
+    "phaseAClosed": [
+      "MANDATE-30",
+      "MANDATE-32",
+      "MANDATE-33",
+      "MANDATE-35",
+      "MANDATE-36",
+      "A-FAILURE",
+      "A-IDEMPOTENCY",
+      "A-CONTEXT",
+      "A-TOOLS",
+      "A-LEARNING",
+      "A-MEMORY",
+      "A-AUTHORITY",
+      "SYNC-02",
+      "SYNC-04",
+      "SYNC-05",
+      "SYNC-07",
+      "SYNC-09",
+      "SYNC-10",
+      "SYNC-12",
+      "SYNC-15"
+    ],
+    "remainingAllowanceSnapshotUsd": 15.237323,
+    "invoiceActuals": "UNKNOWN",
+    "certificationPreparedNotExecuted": 5,
+    "sealedExaminerCommit": "7d3d8dc9ad0ab81fa63b7de138e7796ffa35f2dc",
+    "kingActionRequired": "NONE"
   }
 }

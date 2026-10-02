@@ -1,5 +1,3 @@
-# Current handoff
-
 # Non-Gemini Phase-A closure — 2026-10-02
 
 ## TARGETED THIS RUN
