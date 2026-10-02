@@ -19,6 +19,7 @@ import { createHash } from "node:crypto";
 import { spawn, type ChildProcess } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import fs from "node:fs";
 import Fastify, {
   type FastifyInstance,
   type FastifyReply,
@@ -275,6 +276,19 @@ export function registerTier0ReadinessRoute(
   app: FastifyInstance,
   dependencies: Tier0ReadinessRouteDependencies,
 ): void {
+  app.get('/health/assurance', async (_req, reply) => {
+    reply.header('cache-control','no-store');
+    try {
+      const moduleUrl=new URL('../../src/assurance/independent-assurance.mjs',import.meta.url).href;
+      const {inspectAssurance}=await import(moduleUrl);
+      const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if(!root || !root.startsWith('/'))throw Error('Durable assurance unavailable');
+      const heartbeat=JSON.parse(fs.readFileSync(root+'/commissioning/assurance.sqlite.watchdog','utf8'));
+      if(!Number.isSafeInteger(heartbeat.observedAt)||heartbeat.observedAt>Date.now()||Date.now()-heartbeat.observedAt>90000)return reply.code(503).send({status:'ASSURANCE_OVERDUE',healthy:false,reason:'Independent inspector heartbeat missing or stale'});
+      const verdict=inspectAssurance(root+'/commissioning/assurance.sqlite',{now:Date.now(),epoch:0,intervalMs:300000,graceMs:120000});
+      return reply.code(verdict.healthy?200:503).send({status:verdict.status,healthy:verdict.healthy,due:verdict.due,coverage:verdict.receipt?.coverage??null,checks:verdict.receipt?Object.fromEntries(Object.entries(verdict.receipt.checks).map(([k,v])=>[k,(v as {status:string}).status])):null,scope:'independent_assurance_partial_coverage',birth:'NOT_BORN',commerce:'LOCKED'});
+    }catch{return reply.code(503).send({status:'SOURCE_UNAVAILABLE',healthy:false});}
+  });
   app.get("/health/ready", async (_req, reply) => {
     const [worker, redisPingReady] = await Promise.all([
       dependencies.probeWorkerReady(5_000),
