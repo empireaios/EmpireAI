@@ -80,3 +80,12 @@ test('browser historical archive is idempotent, owner scoped and excluded from r
  const session=new PillowSessionStore(()=>state).getOrCreate('workspace').session;assert.equal(session.conversationHistory.length,0);assert.equal(session.approvalState,'none');assert.throws(()=>state.archiveBrowserHistory('king','workspace',Array(201).fill(turns[0])));
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+
+test("read-only provider answers are validated without heuristic rewriting",async()=>{
+ const {preserveValidatedReasoningAnswer}=await import("../../orchestration/pillow-host/read-only-answer-integrity.js");
+ const truth:any={computedAt:new Date().toISOString(),workspaceId:'owner',provenance:'live_sqlite_commissioning_kpi_birth',product:{productName:'Ambient Widget',asin:'BTEST',stage:'COMMISSIONING',truthClass:'CURRENT_VERIFIED'},financial:{orders:0,realisedRevenueUsd:0,publishedListings:0,buyableListings:0,expectedProfitDisplay:null,expectedProfitTruthClass:'UNKNOWN',realisedTruthClass:'CURRENT_VERIFIED'},birth:{status:'NOT_BORN',technicallyReady:false,birthTimestamp:null,gatesPassedCount:0,gatesTotal:12,truthClass:'CURRENT_VERIFIED'},deploy:{gitCommitSha:'fixture',serviceOnlineHint:'assume_online_if_answering',truthClass:'CURRENT_VERIFIED'},authority:{pillowMayPublish:false,pillowMaySupplierSpend:false,pillowMayAuthoriseBirth:false,pillowMayExecuteProductionDeploy:false,chatHasToolCallingLoop:false,executableNow:['Answer'],requiresGrandKing:['Birth'],truthClass:'CURRENT_VERIFIED'},demandEvidence:'UNKNOWN',notes:[]};
+ for(const draft of ["For the fictional scenario, net amount is 8.23. Verify eligibility separately; no action is authorized.","A laboratory launch window is a timing constraint. This hypothetical does not authorize a launch.","The supplied percentage is an operand, not evidence of marketplace fees in a live account."]){assert.equal(preserveValidatedReasoningAnswer(draft,truth),draft);}
+ assert.throws(()=>preserveValidatedReasoningAnswer("",truth),/ANSWER_INTEGRITY_REJECTED/);
+ assert.throws(()=>preserveValidatedReasoningAnswer("I independently queried the Amazon API and verified current inventory is 300 units.",truth),/ANSWER_INTEGRITY_REJECTED/);
+});

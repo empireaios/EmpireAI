@@ -132,7 +132,7 @@ export function formatEpistemicDisciplineBrief(ctx: EpistemicContext): string {
 // --- Detectors (entity-agnostic; no sealed exam Q&A) ---
 
 const PERSONAL_RETRIEVAL_CLAIM =
-  /\b(i\s+(?:have\s+|did\s+|previously\s+)?(?:directly\s+)?(?:accessed|retrieved|reviewed|checked|read|inspected|queried|consulted|examined|looked\s+up|pulled|review|access)\b|\bi\s+participated\s+in\s+(?:these\s+)?discussions\b|\bi\s+(?:have\s+)?access\s+to\s+these\s+(?:communications|documents|reports)\b|\bi\s+did\s+review\b)/i;
+  /\b(i\s+(?:have\s+|did\s+|previously\s+)?(?:[a-z]+ly\s+){0,3}(?:accessed|retrieved|reviewed|checked|read|inspected|queried|consulted|examined|looked\s+up|pulled|review|access)\b|\bi\s+participated\s+in\s+(?:these\s+)?discussions\b|\bi\s+(?:have\s+)?access\s+to\s+these\s+(?:communications|documents|reports)\b|\bi\s+did\s+review\b)/i;
 
 /** Plausible-but-unattested evidence scaffolding (class detector; not an exam dictionary). */
 const INVENTED_SOURCE_SYSTEM =
@@ -243,7 +243,7 @@ export function validateEpistemicDraft(
     violations.push("INTERNAL_CONTRADICTION");
   }
 
-  if (personalRetrieval && (inventedSource || unavailableHits.length > 0)) {
+  if (personalRetrieval && (inventedSource || unavailableHits.length > 0 || ctx.attestations.length === 0)) {
     violations.push("UNATTESTED_RETRIEVAL_CLAIM");
   } else if (personalRetrieval && !safeUnknown && onlyRuntimeAttested && inventedSource) {
     violations.push("UNATTESTED_RETRIEVAL_CLAIM");

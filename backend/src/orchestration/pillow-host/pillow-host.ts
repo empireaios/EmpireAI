@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { preserveValidatedReasoningAnswer, READ_ONLY_TASK_DISCIPLINE } from './read-only-answer-integrity.js';
 
 export type PillowHostConfigureOptions = {
   repositoryRoot?: string;
@@ -30221,14 +30222,14 @@ export class PillowHost {
                             openReasoning
                                 ? "Decompose the objective; state assumptions and evidence needed. Do not replace the answer with a generic Unsupported/Unverified stub."
                                 : "Reason from the owner-supplied scenario. Use Unsupported verdicts only when auditing explicit claims — not as a replacement for bounded executive decisions.",
-                            formatTaskContractBrief(taskContract, input.message),
+                            reasoningOnly ? READ_ONLY_TASK_DISCIPLINE : formatTaskContractBrief(taskContract, input.message),
                           ].join("\n\n")
                         : [
                             formatExecutiveTruthBriefWithEpistemics(
                                 executiveTruthSnapshot,
                                 epistemicLedger.list(),
                             ),
-                            formatTaskContractBrief(taskContract, input.message),
+                            reasoningOnly ? READ_ONLY_TASK_DISCIPLINE : formatTaskContractBrief(taskContract, input.message),
                           ].join("\n\n"),
                     // Prevent Phase-7 static product catalog from inventing alternate products.
                     commerceIntelligenceBrief: undefined,
@@ -30373,11 +30374,11 @@ export class PillowHost {
                         completion = await this.llmLayer.complete(llmArgs);
                     }
                     message = completion.content;
-                    if (conversationalPipeline) {
+                    if (conversationalPipeline && !reasoningOnly) {
                         message = stripExecutiveResponseLabels(message);
                     }
                     // Soft fidelity: keep visible answer aligned with deliberation conclusions
-                    if (executiveReasoning?.deliberation) {
+                    if (!reasoningOnly && executiveReasoning?.deliberation) {
                         const aligned = alignVisibleAnswerWithDeliberation(
                             message,
                             executiveReasoning.deliberation,
@@ -30389,6 +30390,7 @@ export class PillowHost {
                     // Post-LLM constitutional gate — never surface a violating visible answer
                     const answerGate = gateExecutiveVisibleAnswer(pillow.digitalSoul, message);
                     if (!answerGate.allowed) {
+                        if (reasoningOnly) throw new Error("ANSWER_INTEGRITY_REJECTED:CONSTITUTIONAL_GATE");
                         const sealed = ensureUsefulTerminalChatMessage({
                             draft: answerGate.refusalMessage,
                             userMessage: input.message,
@@ -30406,7 +30408,11 @@ export class PillowHost {
                         logResult = "success";
                         // Final executive release gate: claim-level repair → natural surface.
                         // Never surface invalid draft + correction appendix to Grand King.
-                        if (executiveTruthSnapshot) {
+                        if (reasoningOnly) {
+                            if (!executiveTruthSnapshot) throw new Error("ANSWER_INTEGRITY_REJECTED:TRUTH_UNAVAILABLE");
+                            message = preserveValidatedReasoningAnswer(message, executiveTruthSnapshot, epistemicLedger.list());
+                            transportContractPassed = true;
+                        } else if (executiveTruthSnapshot) {
                             const grounded = enforceExecutiveTruthGrounding(
                                 message,
                                 executiveTruthSnapshot,
@@ -30496,7 +30502,7 @@ export class PillowHost {
             // Final safety: never emit ask-again / infra-leak as the visible answer.
             // Also never leave synthetic-scoped answers as live Mini Fan briefings.
             // Failure receipts must not enter prose reconstruction/release gates.
-            if (!reasoningFailure) {
+            if (!reasoningFailure && !reasoningOnly) {
                 const sealed = ensureUsefulTerminalChatMessage({
                     draft: message,
                     userMessage: input.message,
