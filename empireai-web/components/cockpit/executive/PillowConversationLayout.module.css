@@ -9,3 +9,8 @@
   .header h2 { font-size: 18px; }
   .workspace { height: 100%; min-height: 0; }
 }
+
+@media (min-width: 64rem) {
+  .workspace footer > p { display: inline-block; margin-block: 6px 0; }
+  .workspace footer > label { display: inline-flex; margin: 6px 0 0 16px; }
+}

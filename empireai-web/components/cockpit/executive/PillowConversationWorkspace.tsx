@@ -17,8 +17,8 @@ const PAGE_SIZE = 40;
 
 function autosize(el: HTMLTextAreaElement | null) {
   if (!el) return;
-  el.style.height = "auto";
-  el.style.height = `${Math.min(Math.max(el.scrollHeight, 72), 240)}px`;
+  el.style.height = "0px";
+  el.style.height = `${Math.min(Math.max(el.scrollHeight + 2, 44), 192)}px`;
 }
 
 /**
@@ -293,9 +293,9 @@ export function PillowConversationWorkspace({
                 onSend();
               }
             }}
-            rows={3}
+            rows={1}
             placeholder="Message Pillow…"
-            className="min-h-[72px] max-h-[240px] flex-1 resize-none rounded-xl border border-gold/20 bg-black/50 px-4 py-3 text-[15px] leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/40 focus:outline-none"
+            className="min-h-[44px] max-h-[192px] overflow-y-auto flex-1 resize-none rounded-xl border border-gold/20 bg-black/50 px-4 py-2 text-[15px] leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/40 focus:outline-none"
           />
           {voice.supported && (
             <button

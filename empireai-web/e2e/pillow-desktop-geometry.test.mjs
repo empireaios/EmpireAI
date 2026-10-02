@@ -77,6 +77,17 @@ test('Pillow text and composer stay beyond navigation through resize, toggle and
         await assertGeometry();
       }
     }
+    const input = page.getByTestId('pillow-composer');
+    const initial = await input.boundingBox();
+    assert.ok(initial.height <= 48, 'Empty composer must be compact');
+    await input.fill('Line one\nLine two\nLine three\nLine four');
+    const grown = await input.boundingBox();
+    assert.ok(grown.height > initial.height, 'Multiline draft grows');
+    await input.fill(Array.from({length:30},(_,i)=>`Long certification prompt line ${i}`).join('\n'));
+    assert.ok((await input.boundingBox()).height <= 194, 'Long draft must stop growing');
+    assert.ok(await input.evaluate(el => el.scrollHeight > el.clientHeight && getComputedStyle(el).overflowY === 'auto'), 'Long draft scrolls internally');
+    await input.fill('');
+    assert.ok((await input.boundingBox()).height <= 48, 'Cleared composer shrinks');
     await page.setViewportSize({width:390,height:844});
     await page.reload();
     await page.getByTestId('pillow-composer').waitFor();
