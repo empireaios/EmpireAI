@@ -8,7 +8,8 @@ import { DatabaseSync } from 'node:sqlite';
 import type { LLMCompletionRequest, LLMCompletionResponse } from '../types.js';
 
 export const LOCKED_MODEL = 'gpt-6.1-sol';
-export const CEILING_MICRO_USD = 20_000_000;
+import { COMMISSIONING_CEILING_MICRO_USD } from "./commissioning-inference-budget.js";
+export const CEILING_MICRO_USD = COMMISSIONING_CEILING_MICRO_USD;
 // Official model/pricing page verified 2026-10-01. Renewal requires price review;
 // neither renewal nor key/model changes reset the lifetime commissioning ledger.
 const PRICE_EXPIRES = Date.parse('2026-10-08T00:00:00Z');

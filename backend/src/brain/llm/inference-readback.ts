@@ -1,3 +1,4 @@
+import { COMMISSIONING_CEILING_MICRO_USD } from "./commissioning-inference-budget.js";
 /** Operator-only receipts: no prompts, credentials, provider messages or authority. */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -22,8 +23,8 @@ export function writeInferenceReadback(filename:string,requestKey:string,capabil
   const providerJoin=hasProviders?'LEFT JOIN call_providers p ON p.call_id=c.id':'';
   const records=db.prepare(`SELECT c.id,c.timestamp,c.model,c.status,c.reserved_micro_usd,c.estimated_micro_usd,c.invoice_actual_micro_usd,c.provider_response_id,c.usage_json,${providerColumns} FROM calls c ${providerJoin} ORDER BY c.timestamp,c.id`).all().map(r=>{const {usage_json,...safe}=r;return {...safe,reserved_micro_usd:r.reserved_micro_usd,usage:typeof usage_json==='string'?JSON.parse(usage_json):null,reservationReleased:false};});
   const held=records.reduce((sum,r)=>sum+Number(r.reserved_micro_usd),0);
-  if(!Number.isSafeInteger(held)||held<0||held>20_000_000)throw Error('Accounting readback refused');
-  const report={schema:'locked-inference-operator-readback-v1',at:new Date().toISOString(),requestKey,capability,attempts,ceilingMicroUsd:20_000_000,heldMicroUsd:held,remainingMicroUsd:20_000_000-held,records,invoiceNote:'Estimates are not invoices; unknown invoice costs remain unknown; no reservation released.'};
+  if(!Number.isSafeInteger(held)||held<0||held>COMMISSIONING_CEILING_MICRO_USD)throw Error('Accounting readback refused');
+  const report={schema:'locked-inference-operator-readback-v1',at:new Date().toISOString(),requestKey,capability,attempts,ceilingMicroUsd:COMMISSIONING_CEILING_MICRO_USD,heldMicroUsd:held,remainingMicroUsd:COMMISSIONING_CEILING_MICRO_USD-held,records,invoiceNote:'Estimates are not invoices; unknown invoice costs remain unknown; no reservation released.'};
   const content=JSON.stringify(report);if(Buffer.byteLength(content)>1024*1024)throw Error('Accounting readback exceeds bound');
   db.exec('COMMIT');
   const output=path.join(path.dirname(filename),'inference-operator-readback.json'),temp=output+'.tmp';

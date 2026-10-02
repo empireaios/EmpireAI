@@ -1,3 +1,4 @@
+import { COMMISSIONING_CEILING_MICRO_USD } from "./commissioning-inference-budget.js";
 import {readProviderFailure, writeInferenceReadback, type ProviderFailureDetail} from './inference-readback.js';
 /** Brain-owned text inference policy. Does not execute tools or change authority. */
 import { createHash } from 'node:crypto';
@@ -6,7 +7,7 @@ import { completeLockedInference, inferenceLedger, inferenceLedgerPath, reserveI
   settleInference, InferenceFailure, lockedInferenceProfile } from './locked-inference.js';
 
 export const LOCKED_PROVIDERS = {
-  openai: { model:'gpt-6.1-sol', key:'OPENAI_API_KEY', ceiling:20_000_000 },
+  openai: { model:'gpt-6.1-sol', key:'OPENAI_API_KEY', ceiling:COMMISSIONING_CEILING_MICRO_USD },
   anthropic: { model:'claude-sonnet-5-5', key:'ANTHROPIC_API_KEY', ceiling:5_000_000 },
   gemini: { model:'gemini-3.8-flash', key:'GOOGLE_AI_API_KEY', ceiling:5_000_000 },
 } as const;

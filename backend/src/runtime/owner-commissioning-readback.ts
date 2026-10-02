@@ -1,3 +1,4 @@
+import { COMMISSIONING_CEILING_MICRO_USD } from "../brain/llm/commissioning-inference-budget.js";
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
@@ -5,6 +6,7 @@ import type { FastifyInstance } from 'fastify';
 import type { createAuthMiddleware } from '../auth/middleware.js';
 import { env } from '../config/env.js';
 import { inferenceLedgerPath } from '../brain/llm/locked-inference.js';
+import { readAnswerGateDiagnostic } from './answer-gate-diagnostics.js';
 
 /** Read the existing ledger in one snapshot. Never initialize, settle or release reservations. */
 export function readCommissioningAccounting(filename: string) {
@@ -24,11 +26,11 @@ export function readCommissioningAccounting(filename: string) {
       if (row.estimated_micro_usd === null) estimateUnknown++; else estimated += Number(row.estimated_micro_usd);
       if (row.invoice_actual_micro_usd === null) invoiceUnknown++; else invoice += Number(row.invoice_actual_micro_usd);
     }
-    if (![held,estimated,invoice].every(Number.isSafeInteger) || held > 20_000_000) throw Error('Ledger ceiling invalid');
+    if (![held,estimated,invoice].every(Number.isSafeInteger) || held > COMMISSIONING_CEILING_MICRO_USD) throw Error('Ledger ceiling invalid');
     db.exec('COMMIT');
     return { schema: 'owner-commissioning-accounting-v1', observedAt: new Date().toISOString(), readOnly: true,
       recordCount: rows.length, recordDigestSha256: createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
-      ceilingMicroUsd: 20_000_000, heldMicroUsd: held, remainingMicroUsd: 20_000_000 - held,
+      ceilingMicroUsd: COMMISSIONING_CEILING_MICRO_USD, heldMicroUsd: held, remainingMicroUsd: COMMISSIONING_CEILING_MICRO_USD - held,
       recordedEstimateMicroUsd: estimated, estimateUnknownCount: estimateUnknown,
       invoiceActualMicroUsd: invoiceUnknown ? null : invoice, invoiceUnknownCount: invoiceUnknown,
       reservationReleased: false, inferenceCalls: 0 };
@@ -36,6 +38,14 @@ export function readCommissioningAccounting(filename: string) {
 }
 
 export function registerOwnerCommissioningReadback(app: FastifyInstance, authenticate: ReturnType<typeof createAuthMiddleware>, readback = () => readCommissioningAccounting(inferenceLedgerPath())) {
+  app.get<{Params:{requestId:string}}>('/api/pillow/answer-gate-diagnostics/:requestId', {preHandler:authenticate}, async (request, reply) => {
+    reply.header('cache-control','private, no-store');
+    const user=request.user;
+    if (!user || user.role!=='founder' || user.workspaceId!=='ws_empire_1' || user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase()) return reply.code(403).send({error:'Owner access required'});
+    if (process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1') return reply.code(404).send({error:'Unavailable'});
+    try { const record=readAnswerGateDiagnostic(request.params.requestId); return reply.code(record?200:404).send({readOnly:true,record}); }
+    catch { return reply.code(503).send({error:'Diagnostic unavailable'}); }
+  });
   app.get('/api/pillow/commissioning-accounting', { preHandler: authenticate }, async (request, reply) => {
     reply.header('cache-control', 'private, no-store');
     const user = request.user;
